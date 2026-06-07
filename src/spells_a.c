@@ -5,10 +5,10 @@ void acid_ball_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Acid Ball");
+        var_set_string(res, "酸球术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generate an Acid Ball on chosen target.");
+        var_set_string(res, "在选定目标处生成一个酸液球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(3*p_ptr->lev/2 + 35 + p_ptr->to_d_spell)));
@@ -38,10 +38,10 @@ void acid_bolt_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Acid Bolt");
+        var_set_string(res, "酸箭术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a bolt or beam of acid.");
+        var_set_string(res, "发射一发酸液箭或酸液射线。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(dd, spell_power(ds), spell_power(p_ptr->to_d_spell)));
@@ -73,19 +73,19 @@ void alchemy_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Alchemy");
+        var_set_string(res, "炼金术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Turns valuable items into gold.");
+        var_set_string(res, "将有价值的物品变成金币。");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("You gain the Midas touch.");
+        msg_print("你获得了点石成金的能力。");
         break;
     case SPELL_LOSE_MUT:
-        msg_print("You lose the Midas touch.");
+        msg_print("你失去了点石成金的能力。");
         break;
     case SPELL_MUT_DESC:
-        var_set_string(res, "You can turn ordinary items to gold.");
+        var_set_string(res, "你可以把普通物品变成金子。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
@@ -104,10 +104,10 @@ void alter_reality_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Alter Reality");
+        var_set_string(res, "改变现实");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Recreates current dungeon level.");
+        var_set_string(res, "重置当前的地下城层。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_delay(15, 20));
@@ -127,10 +127,10 @@ void amnesia_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Amnesia");
+        var_set_string(res, "失忆术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempt to make target monster forget something.");
+        var_set_string(res, "试图让目标怪物忘记某些事情。");
         break;
     case SPELL_CAST:
     {
@@ -156,10 +156,10 @@ void android_ray_gun_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Ray Gun");
+        var_set_string(res, "射线枪");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires unresistable damage at chosen foe.");
+        var_set_string(res, "向选定的敌人发射不可抵抗的伤害。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(5 + (p_ptr->lev+1) / 2)));
@@ -170,7 +170,7 @@ void android_ray_gun_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!get_fire_dir(&dir)) return;
         
-        msg_print("You fire your ray gun.");
+        msg_print("你发射了你的射线枪。");
         fire_bolt(GF_MISSILE, dir, spell_power(5 + (p_ptr->lev+1) / 2));
         
         var_set_bool(res, TRUE);
@@ -187,7 +187,7 @@ void android_blaster_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blaster");
+        var_set_string(res, "爆能枪");
         break;
     case SPELL_DESC:
         var_set_string(res, "");
@@ -201,7 +201,7 @@ void android_blaster_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!get_fire_dir(&dir)) return;
 
-        msg_print("You fire your blaster.");
+        msg_print("你发射了你的爆能枪。");
         fire_bolt(GF_MISSILE, dir, spell_power(5 + p_ptr->lev));
 
         var_set_bool(res, TRUE);
@@ -218,10 +218,10 @@ void android_bazooka_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Bazooka");
+        var_set_string(res, "火箭筒");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires your bazooka at a nearby monster.");
+        var_set_string(res, "向附近的怪物发射你的火箭筒。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(25 + p_ptr->lev * 2)));
@@ -232,7 +232,7 @@ void android_bazooka_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!get_fire_dir(&dir)) return;
 
-        msg_print("You fire your bazooka.");
+        msg_print("你发射了你的火箭筒。");
         fire_ball(GF_MISSILE, dir, spell_power(25 + p_ptr->lev * 2), 2);
 
         var_set_bool(res, TRUE);
@@ -249,7 +249,7 @@ void android_beam_cannon_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Beam Cannon");
+        var_set_string(res, "光束炮");
         break;
     case SPELL_DESC:
         var_set_string(res, "");
@@ -263,7 +263,7 @@ void android_beam_cannon_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!get_fire_dir(&dir)) return;
 
-        msg_print("You fire a beam cannon.");
+        msg_print("你发射了一发光束炮。");
         fire_beam(GF_MISSILE, dir, spell_power(25 + p_ptr->lev * 3));
 
         var_set_bool(res, TRUE);
@@ -280,10 +280,10 @@ void android_rocket_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Rocket Launcher");
+        var_set_string(res, "火箭发射器");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Launches a powerful rocket at your opponent.");
+        var_set_string(res, "向你的对手发射一枚威力强大的火箭。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(p_ptr->lev * 7)));
@@ -294,7 +294,7 @@ void android_rocket_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!get_fire_dir(&dir)) return;
 
-        msg_print("You launch a rocket.");
+        msg_print("你发射了一枚火箭。");
         fire_rocket(GF_ROCKET, dir, spell_power(p_ptr->lev * 7), 2);
 
         var_set_bool(res, TRUE);
@@ -311,10 +311,10 @@ void animate_dead_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Animate Dead");
+        var_set_string(res, "操纵死尸");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Resurrects nearby corpse and skeletons. And makes these your pets.");
+        var_set_string(res, "复活附近的尸体和骷髅。并使它们成为你的宠物。");
         break;
     case SPELL_CAST:
         animate_dead(0, py, px);
@@ -331,10 +331,10 @@ void awesome_blow_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Awesome Blow");
+        var_set_string(res, "惊骇一击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack a monster with a single melee blow. If blow hits, does normal melee damage and propels the monster backwards.");
+        var_set_string(res, "用单次近战攻击打击怪物。如果命中，将造成正常的近战伤害，并将怪物向后击退。");
         break;
     case SPELL_CAST:
     {
@@ -343,7 +343,7 @@ void awesome_blow_spell(int cmd, variant *res)
 
         if (!equip_find_first(object_is_melee_weapon))
         {
-            msg_print("You need to wield a weapon!");
+            msg_print("你需要装备一把武器！");
             return;
         }
         if (!get_rep_dir2(&dir)) return;
@@ -358,7 +358,7 @@ void awesome_blow_spell(int cmd, variant *res)
         }
         else
         {
-            msg_print("There is no monster.");
+            msg_print("没有怪物。");
             return;
         }
 
@@ -376,19 +376,19 @@ void banish_evil_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Banish Evil");
+        var_set_string(res, "放逐邪恶");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to remove a single evil opponent.");
+        var_set_string(res, "试图移除单个邪恶对手。");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("You feel a holy wrath fill you.");
+        msg_print("你感到一种神圣的愤怒充满了你。");
         break;
     case SPELL_LOSE_MUT:
-        msg_print("You no longer feel a holy wrath.");
+        msg_print("你不再感到神圣的愤怒了。");
         break;
     case SPELL_MUT_DESC:
-        var_set_string(res, "You can send evil creatures directly to Hell.");
+        var_set_string(res, "你可以把邪恶生物直接送进地狱。");
         break;
     case SPELL_CAST:
     {
@@ -412,7 +412,7 @@ void banish_evil_spell(int cmd, variant *res)
 
         if (!c_ptr->m_idx)
         {
-            msg_print("You sense no evil there!");
+            msg_print("你在那里感觉不到邪恶！");
             break;
         }
 
@@ -428,11 +428,11 @@ void banish_evil_spell(int cmd, variant *res)
         {
             /* Delete the monster, rather than killing it. */
             delete_monster_idx(c_ptr->m_idx);
-            msg_print("The evil creature vanishes in a puff of sulfurous smoke!");
+            msg_print("邪恶生物在一阵硫磺味的烟雾中消失了！");
         }
         else
         {
-            msg_print("Your invocation is ineffectual!");
+            msg_print("你的祈求没有效果！");
             if (one_in_(13)) m_ptr->mflag2 |= MFLAG2_NOGENO;
         }
         break;
@@ -449,10 +449,10 @@ void battle_frenzy_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Battle Frenzy");
+        var_set_string(res, "战斗狂怒");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gives another bonus to hit and HP, resistance to fear for a while. Hastes you. But decreases AC.");
+        var_set_string(res, "暂时提供额外的命中和生命值加成，以及对恐惧的抗性。使你加速。但会降低防御等级(AC)。");
         break;
     case SPELL_CAST:
     {
@@ -477,28 +477,28 @@ void berserk_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Berserk");
+        var_set_string(res, "狂暴");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Enter a berserk frenzy, gaining great combat bonuses, but losing the ability to think clearly.");
+        var_set_string(res, "进入狂暴状态，获得极大的战斗加成，但失去清醒思考的能力。");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("You feel a controlled rage.");
+        msg_print("你感到一阵受控的狂怒。");
         break;
     case SPELL_LOSE_MUT:
-        msg_print("You no longer feel a controlled rage.");
+        msg_print("你不再感到受控的狂怒了。");
         break;
     case SPELL_MUT_DESC:
-        var_set_string(res, "You can drive yourself into a berserk frenzy.");
+        var_set_string(res, "你可以使自己进入狂暴状态。");
         break;
     case SPELL_CAST:
     {
         if ((elemental_is_(ELEMENTAL_WATER)) && (p_ptr->shero))
         {
-            msg_print("You are already in a berserk rage!");
+            msg_print("你已经处于狂暴状态中了！");
             break;
         }
-        msg_print("Raaagh! You feel like hitting something.");
+        msg_print("嗷嗷嗷！你觉得想要揍点什么。");
         set_shero(10 + randint1(p_ptr->lev), FALSE);
         var_set_bool(res, TRUE);
         water_mana_action(FALSE, 50);
@@ -517,10 +517,10 @@ void bless_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Bless");
+        var_set_string(res, "祝福术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gives bonus to hit and AC for a few turns.");
+        var_set_string(res, "几回合内提供命中和防御等级(AC)加成。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(base, base));
@@ -540,10 +540,10 @@ void bless_weapon_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Bless Weapon");
+        var_set_string(res, "祝福武器");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Blesses your current weapon.");
+        var_set_string(res, "祝福你当前的武器。");
         break;
     case SPELL_CAST:
         var_set_bool(res, bless_weapon());
@@ -559,10 +559,10 @@ void brain_smash_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Brain Smash");
+        var_set_string(res, "碎脑术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gaze intently at a single foe, causing damage, confusion and stunning");
+        var_set_string(res, "凝视单个敌人，造成伤害、困惑和震慑效果。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(12, spell_power(12), spell_power(p_ptr->to_d_spell)));
@@ -592,10 +592,10 @@ void breathe_disintegration_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Disintegration");
+        var_set_string(res, "喷吐分解");
         break;
     case SPELL_DESC:
-        var_set_string(res, "A disintegration breath. Not even the dungeon walls can withstand its power!");
+        var_set_string(res, "一次分解喷吐。连地下城的墙壁也无法抵挡它的力量！");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(MIN(p_ptr->chp / 6, 150))));
@@ -607,7 +607,7 @@ void breathe_disintegration_spell(int cmd, variant *res)
         if (!get_fire_dir_aux(&dir, TARGET_DISI)) return;
 
         stop_mouth();
-        msg_print("You breathe disintegration.");
+        msg_print("你喷吐出分解波。");
         fire_ball(GF_DISINTEGRATE, dir, 
             spell_power(MIN(p_ptr->chp / 6, 150)), 
             (p_ptr->lev > 40 ? -3 : -2));
@@ -626,19 +626,19 @@ void breathe_fire_I_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Fire");
+        var_set_string(res, "喷吐火焰");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes Fire at your opponent.");
+        var_set_string(res, "向你的对手喷吐火焰。");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("You gain the ability to breathe fire.");
+        msg_print("你获得了喷吐火焰的能力。");
         break;
     case SPELL_LOSE_MUT:
-        msg_print("You lose the ability to breathe fire.");
+        msg_print("你失去了喷吐火焰的能力。");
         break;
     case SPELL_MUT_DESC:
-        var_set_string(res, "You can breathe fire (dam lvl * 2).");
+        var_set_string(res, "你可以喷吐火焰（伤害为 等级 * 2）。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(2 * p_ptr->lev)));
@@ -653,7 +653,7 @@ void breathe_fire_I_spell(int cmd, variant *res)
         if (get_fire_dir(&dir))
         {
             stop_mouth();
-            msg_print("You breathe fire...");
+            msg_print("你喷吐出火焰……");
             fire_ball(GF_FIRE, dir, spell_power(2 * p_ptr->lev), -1 - (p_ptr->lev / 20));
             var_set_bool(res, TRUE);
         }
@@ -671,10 +671,10 @@ void breathe_fire_II_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Fire");
+        var_set_string(res, "喷吐火焰");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes Fire at your opponent.");
+        var_set_string(res, "向你的对手喷吐火焰。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(p_ptr->chp*2/5)));
@@ -689,7 +689,7 @@ void breathe_fire_II_spell(int cmd, variant *res)
         if (get_fire_dir(&dir))
         {
             stop_mouth();
-            msg_print("You breathe fire...");
+            msg_print("你喷吐出火焰……");
             fire_ball(GF_FIRE, dir, spell_power(p_ptr->chp*2/5), -1 - (p_ptr->lev / 20));
             var_set_bool(res, TRUE);
         }
@@ -706,10 +706,10 @@ void building_up_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Building Up");
+        var_set_string(res, "蓄力");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Increases your physical prowess.");
+        var_set_string(res, "提升你的物理威力。");
         break;
     case SPELL_CAST:
         set_tim_building_up(20 + randint1(20), FALSE);

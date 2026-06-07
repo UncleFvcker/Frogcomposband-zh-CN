@@ -69,12 +69,12 @@ static bool _elemental_travel(int flag)
 
     if (!cave_have_flag_bold(y, x, flag))
     {
-        msg_print("Failed! You are out of your element!");
+        msg_print("失败了！你脱离了你的元素环境！");
         teleport_player((p_ptr->lev + 2) * 2, TELEPORT_PASSIVE);
     }
     else if (one_in_(7))
     {
-        msg_print("You failed to travel correctly!");
+        msg_print("你没能正确地进行传送！");
         teleport_player((p_ptr->lev + 2) * 2, TELEPORT_PASSIVE);
     }
     else
@@ -95,7 +95,7 @@ static bool _elemental_healing(int flag)
 
     if (!cave_have_flag_bold(py, px, flag))
     {
-        msg_print("Failed! You are out of your element!");
+        msg_print("失败了！你脱离了你的元素环境！");
         return FALSE;
     }
 
@@ -110,11 +110,11 @@ static bool _elemental_healing(int flag)
 
     if (ct < 4)
     {
-        msg_print("Failed! You need to be surrounded by your element!");
+        msg_print("失败了！你需要被你的元素环境包围！");
         return FALSE;
     }
 
-    msg_print("You bask in your element and slowly feel your life returning ... ");
+    msg_print("你沐浴在你的元素中，慢慢地感觉到生命力正在恢复……");
     if (elemental_is_(ELEMENTAL_WATER)) 
     {
         hp_player(50 + water_flow_rate() * 2);
@@ -129,7 +129,7 @@ static void _elemental_rage_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Elemental Rage");
+        var_set_string(res, "元素狂怒");
         break;
     default:
         berserk_spell(cmd, res);
@@ -220,7 +220,7 @@ static void _earth_gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_EARTH_SPIRIT && new_level >= 25)
     {
         p_ptr->current_r_idx = MON_EARTH_ELEMENTAL;
-        msg_print("You have evolved into an Earth Elemental.");
+        msg_print("你进化成了土元素(Earth Elemental)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -233,10 +233,10 @@ static void _shard_bolt_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shard Bolt");
+        var_set_string(res, "碎片箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a bolt of shards at chosen target.");
+        var_set_string(res, "向选定的目标发射一枚碎片箭。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(dd, ds, 0));
@@ -261,10 +261,10 @@ static void _earthen_healing_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Earthen Healing");
+        var_set_string(res, "大地治疗");
         break;
     case SPELL_DESC:
-        var_set_string(res, "If you are surrounded by rock, you may heal yourself at the cost of several acts.");
+        var_set_string(res, "如果你被岩石包围，你可以花费几次行动的机会来治疗自己。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_heal(0, 0, 100 + p_ptr->lev * 3));
@@ -286,10 +286,10 @@ static void _earthen_portal_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Earthen Portal");
+        var_set_string(res, "大地传送门");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Move instantaneously to chosen rocky locale.");
+        var_set_string(res, "瞬间移动到选定的岩石位置。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _elemental_travel(FF_WALL));
@@ -307,10 +307,10 @@ static void _shard_ball_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shard Ball");
+        var_set_string(res, "碎片球");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a ball of shards at chosen target");
+        var_set_string(res, "向选定的目标发射一个碎片球");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam));
@@ -338,10 +338,10 @@ static void _wall_of_earth_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Wall of Earth");
+        var_set_string(res, "石墙术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Create walls on all open, surrounding squares.");
+        var_set_string(res, "在周围所有空地上制造石墙。");
         break;
     case SPELL_CAST:
         wall_stone();
@@ -418,7 +418,7 @@ static race_t *_earth_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[2] =  {"Earth Spirit", "Earth Elemental"};
+    static cptr   titles[2] =  {"土之精魄", "土元素"};
     int           rank = 0;
 
     if (p_ptr->lev >= 25) rank++;
@@ -491,7 +491,7 @@ static void _air_gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_AIR_SPIRIT && new_level >= 25)
     {
         p_ptr->current_r_idx = MON_AIR_ELEMENTAL;
-        msg_print("You have evolved into an Air Elemental.");
+        msg_print("你进化成了风元素(Air Elemental)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -501,10 +501,10 @@ static void _confusing_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Confusing Strike");
+        var_set_string(res, "混乱打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with a confusing blow.");
+        var_set_string(res, "用带有混乱效果的攻击打击相邻的对手。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(HISSATSU_CONF));
@@ -520,10 +520,10 @@ static void _lightning_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Lightning Strike");
+        var_set_string(res, "闪电打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with a shocking blow.");
+        var_set_string(res, "用带有电击效果的攻击打击相邻的对手。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(HISSATSU_ELEC));
@@ -541,10 +541,10 @@ static void _lightning_storm_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Lightning Storm");
+        var_set_string(res, "闪电风暴");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a huge ball of electricity.");
+        var_set_string(res, "发射一个巨大的闪电球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam));
@@ -572,7 +572,7 @@ static void _whirlwind_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Whirlwind");
+        var_set_string(res, "旋风");
         break;
     default:
         massacre_spell(cmd, res);
@@ -584,10 +584,10 @@ static void _sky_gate_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Sky Gate");
+        var_set_string(res, "天空之门");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Move instantaneously to chosen open location.");
+        var_set_string(res, "瞬间移动到选定的开阔位置。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _elemental_travel(FF_FLOOR));
@@ -678,7 +678,7 @@ static race_t *_air_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[2] =  {"Air Spirit", "Air Elemental"};
+    static cptr   titles[2] =  {"风之精魄", "风元素"};
     int           rank = 0;
 
     if (p_ptr->lev >= 25) rank++;
@@ -762,10 +762,10 @@ void water_mana_action(byte check_hurt_mode, int mana)
             if (o_ptr->marked & OM_SLIPPING) return;
             object_desc(o_name, o_ptr, OD_NAME_ONLY | OD_OMIT_PREFIX | OD_OMIT_INSCRIPTION | OD_COLOR_CODED);
             o_ptr->marked |= OM_SLIPPING;
-            msg_format("You flow too fast! Your %s is caught in the flow and slips off!", o_name);
+            msg_format("你流动得太快了！你的%s被水流卷入并滑落了！", o_name);
             if ((object_is_(o_ptr, TV_SOFT_ARMOR, SV_ABUNAI_MIZUGI)) && (personality_is_(PERS_SEXY)))
             {
-                msg_print("You roar!");
+                msg_print("你咆哮了起来！");
                 p_ptr->csp = 1000;
                 set_fast(p_ptr->fast + 15, FALSE);
                 set_hero(p_ptr->hero + 15, FALSE);
@@ -809,7 +809,7 @@ static void _water_gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_WATER_SPIRIT && new_level >= 25)
     {
         p_ptr->current_r_idx = MON_WATER_ELEMENTAL;
-        msg_print("You have evolved into a Water Elemental.");
+        msg_print("你进化成了水元素(Water Elemental)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -819,7 +819,7 @@ static bool _adjust_armor_aux(void)
     slot_t slot = equip_find_first(object_is_body_armour);
     if (!slot)
     {
-        msg_print("You're not even attempting to wear body armour.");
+        msg_print("你身上根本没有穿着任何身体护甲。");
         return FALSE;
     }
     else
@@ -828,7 +828,7 @@ static bool _adjust_armor_aux(void)
 //        char o_name[MAX_NLEN];
         if (!(o_ptr->marked & OM_SLIPPING))
         {
-            msg_print("Your armour does not need adjusting.");
+            msg_print("你的护甲不需要调整。");
             return FALSE;
         }
         o_ptr->marked &= ~OM_SLIPPING;
@@ -847,10 +847,10 @@ static void _adjust_armor_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Adjust Armour");
+        var_set_string(res, "调整护甲");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Flow back into a slipping body armour, at the cost of two turns.");
+        var_set_string(res, "以两个回合的代价，流动回滑落的身体护甲中重新穿好。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _adjust_armor_aux());
@@ -869,10 +869,10 @@ static void _acid_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Acid Strike");
+        var_set_string(res, "强酸打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with a corrosive blow.");
+        var_set_string(res, "用带有腐蚀效果的攻击打击相邻的对手。");
         break;
     case SPELL_CAST:
         if (p_ptr->lev >= 25) 
@@ -901,10 +901,10 @@ static void _water_ball_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Water Ball");
+        var_set_string(res, "水球");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a huge ball of water.");
+        var_set_string(res, "发射一个巨大的水球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam));
@@ -933,10 +933,10 @@ static void _water_gate_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Water Gate");
+        var_set_string(res, "水之门");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Move instantaneously to chosen watery location.");
+        var_set_string(res, "瞬间移动到选定的水域位置。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _elemental_travel(FF_WATER));
@@ -952,10 +952,10 @@ static void _water_healing_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Healing Bath");
+        var_set_string(res, "治愈之浴");
         break;
     case SPELL_DESC:
-        var_set_string(res, "If you are surrounded by water, you may heal yourself at the cost of two turns.");
+        var_set_string(res, "如果你被水包围，你可以花费两个回合的时间来治疗自己。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_heal(0, 0, 50 + water_flow_rate()*2));
@@ -1034,7 +1034,7 @@ static void _water_damage(obj_ptr obj)
 //    if (object_is_artifact(obj) && !(one_in_(2))) return;
 
     object_desc(o_name, obj, OD_OMIT_PREFIX | OD_NAME_ONLY | OD_COLOR_CODED);
-    msg_format("Your watery touch corrodes your %s!", o_name);
+    msg_format("你那水状的身体腐蚀了你的%s！", o_name);
     obj->to_a--;
 
     if (obj->loc.where == INV_EQUIP)
@@ -1059,7 +1059,7 @@ static caster_info * _water_caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "elemental power";
+        me.magic_desc = "元素力量";
         me.which_stat = A_STR;
         me.options = CASTER_USE_HP;
         init = TRUE;
@@ -1082,7 +1082,7 @@ static race_t *_water_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[2] =  {"Water Spirit", "Water Elemental"};
+    static cptr   titles[2] =  {"水之精魄", "水元素"};
     int           rank = 0;
 
     if (p_ptr->lev >= 25) rank++;
@@ -1159,13 +1159,13 @@ static void _fire_gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_FIRE_SPIRIT && new_level >= 25)
     {
         p_ptr->current_r_idx = MON_FIRE_ELEMENTAL;
-        msg_print("You have evolved into a Fire Elemental.");
+        msg_print("你进化成了火元素(Fire Elemental)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_FIRE_ELEMENTAL && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_MAGMA_ELEMENTAL;
-        msg_print("You have evolved into a Magma Elemental.");
+        msg_print("你进化成了岩浆元素(Magma Elemental)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -1179,13 +1179,13 @@ static void _fire_whip_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Fire Whip");
+        var_set_string(res, "火焰鞭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a short beam of fire.");
+        var_set_string(res, "发射一道短距离的火焰射线。");
         break;
     case SPELL_INFO:
-        var_set_string(res, format("dam %dd%d (rng %d)", dd, ds, range));
+        var_set_string(res, format("伤害 %dd%d (距离 %d)", dd, ds, range));
         break;
     case SPELL_CAST:
     {
@@ -1210,10 +1210,10 @@ static void _fire_storm_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Fire Storm");
+        var_set_string(res, "火焰风暴");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a huge ball of fire.");
+        var_set_string(res, "发射一个巨大的火球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam));
@@ -1241,10 +1241,10 @@ static void _flaming_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Flaming Strike");
+        var_set_string(res, "烈焰打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with a fiery blow.");
+        var_set_string(res, "用带有火焰效果的攻击打击相邻的对手。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(HISSATSU_FIRE));
@@ -1260,10 +1260,10 @@ static void _fire_door_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Fire Door");
+        var_set_string(res, "火焰之门");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Move instantaneously to chosen fiery location.");
+        var_set_string(res, "瞬间移动到选定的火焰位置。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _elemental_travel(FF_LAVA));
@@ -1279,10 +1279,10 @@ static void _fire_healing_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Healing Flames");
+        var_set_string(res, "治愈之焰");
         break;
     case SPELL_DESC:
-        var_set_string(res, "If you are surrounded by lava, you may heal yourself at the cost of several acts.");
+        var_set_string(res, "如果你被岩浆包围，你可以花费几次行动的机会来治疗自己。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_heal(0, 0, 100 + p_ptr->lev * 3));
@@ -1379,7 +1379,7 @@ static race_t *_fire_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[3] =  {"Fire Spirit", "Fire Elemental", "Magma Elemental"};
+    static cptr   titles[3] =  {"火之精魄", "火元素", "岩浆元素"};
     int           rank = 0;
 
     if (p_ptr->lev >= 25) rank++;
@@ -1419,23 +1419,23 @@ static race_t *_fire_get_race_t(void)
 }
 
 static name_desc_t _info[ELEMENTAL_MAX] = {
-    { "Earth Elemental",
+    { "土元素",
         "Earth Elementals are creatures of rock: Strong, tough and slow. "
         "They may move freely through the earth and are capable of conjuring "
         "sharp clods of earth to hurl at their foes. Their skin is very tough, "
         "and they can even turn their bodies to stone. However, being made of "
         "earth, their potions frequently turn to mud." },
-    { "Air Elemental",
+    { "风元素",
         "Air Elementals are creatures of electricity. They are incredibly fast, "
         "blinking in and out of sight as they shower their enemies with confusing "
         "and shocking blows. Electricity crackles menacingly about their nimble frames, "
         "tending to destroy rings, amulets, wands and rods." },
-    { "Water Elemental",
+    { "水元素",
         "Water Elementals are creatures of water, able to modify this ubiquitous "
         "liquid into a deadly and often corrosive weapon of destruction. Fear their "
         "rage! They cannot be stunned. Their corrosive nature erodes any armor that "
         "gets too close." },
-    { "Fire Elemental",
+    { "火元素",
         "Fire Elementals are creatures of flame. They have a vast arsenal of "
         "flaming attacks with which to singe the fiercest of foes. However, they "
         "must beware of cold based attacks! Being wreathed in flames, scrolls and "
@@ -1467,7 +1467,7 @@ race_t *mon_elemental_get_race(int psubrace)
         result = _earth_get_race_t();
     }
 
-    result->name = "Elemental";
+    result->name = "元素生物";
     result->desc = _desc;
     result->flags = RACE_IS_MONSTER | RACE_IS_NONLIVING;
     if (psubrace == ELEMENTAL_AIR) result->flags |= RACE_EATS_DEVICES;

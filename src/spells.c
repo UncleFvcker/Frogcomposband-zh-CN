@@ -148,7 +148,7 @@ void default_spell(int cmd, variant *res) /* Base class */
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Unknown Spell");
+        var_set_string(res, "未知法术");
         break;
 
     case SPELL_DESC:
@@ -169,7 +169,7 @@ void default_spell(int cmd, variant *res) /* Base class */
         break;
 
     case SPELL_CAST:
-        msg_print("Zap?");
+        msg_print("使用(Zap)？");
         var_set_bool(res, TRUE);
         break;
 
@@ -364,22 +364,22 @@ static void _list_spells(power_info* spells, int ct, int max_cost, char *labels,
     Term_erase(display.x, display.y, display.cx);
     if (col_height == ct)
     {
-        if (poli) put_str("Lvl   Cost   Fail   Desc", display.y, display.x + 29);
-        else if (show_stats) put_str("Lvl Cost Fail Stat Desc", display.y, display.x + 29);
-        else put_str("Lvl Cost Fail Desc", display.y, display.x + 29);
+        if (poli) put_str("等级 消耗 失败 描述", display.y, display.x + 29);
+        else if (show_stats) put_str("等级 消耗 失败 属性 描述", display.y, display.x + 29);
+        else put_str("等级 消耗 失败 描述", display.y, display.x + 29);
     }
     else if (!poli)
     {
         col_width = 42;
-        put_str("Lvl Cost Fail", display.y, display.x + 29);
-        put_str("Lvl Cost Fail", display.y, display.x + col_width + 29);
+        put_str("等级 消耗 失败", display.y, display.x + 29);
+        put_str("等级 消耗 失败", display.y, display.x + col_width + 29);
         show_stats = FALSE;
     }
     else
     {
         col_width = 48;
-        put_str("Lvl   Cost   Fail", display.y, display.x + 29);
-        put_str("Lvl   Cost   Fail", display.y, display.x + col_width + 29);
+        put_str("等级 消耗 失败", display.y, display.x + 29);
+        put_str("等级 消耗 失败", display.y, display.x + col_width + 29);
     }
 
     for (i = 0; i < ct; i++)
@@ -437,7 +437,7 @@ static void _list_spells(power_info* spells, int ct, int max_cost, char *labels,
         if (show_stats)
         {
             if (spells[i].stat != A_NONE) strcat(temp, format("  %3.3s", stat_names_reduced[spells[i].stat]));
-            else strcat(temp, " None");
+            else strcat(temp, "无");
         }
 
         if ((col_height == ct) && (spell->level <= p_ptr->lev))
@@ -539,7 +539,7 @@ static int _choose_spell(power_info* spells, int ct, cptr verb, cptr desc, int m
     bool describe = force_browsing;
     bool inscribe = FALSE;
     char labels[100] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&'()*+,-./:;<=>{|}...............";
-    bool rage_hack = ((desc) && (!power) && (streq("rage", desc)) && (ct == 8));
+    bool rage_hack = ((desc) && (!power) && (streq("狂怒", desc)) && (ct == 8));
 
     if (power)
     {
@@ -726,7 +726,7 @@ static int _choose_spell(power_info* spells, int ct, cptr verb, cptr desc, int m
             _describe_spell(&spells[choice].spell, korkeus);
             continue;
         }
-        else if ((inscribe) && (get_com("New label ('!' to unstick): ", &ch, FALSE)))
+        else if ((inscribe) && (get_com("新标签（输入 '!' 取消标签）:", &ch, FALSE)))
         {
             char muisti = labels[choice];
             paikka = chrpos(ch, multicase);
@@ -791,7 +791,7 @@ void browse_spells(power_info* spells, int ct, cptr desc)
     {
         int choice = -1;
 
-        choice = _choose_spell(spells, ct, "Use", desc, 10000, FALSE, TRUE);
+        choice = _choose_spell(spells, ct, "使用", desc, 10000, FALSE, TRUE);
         if (choice < 0 || choice >= ct) break;
         if (p_ptr->pclass == CLASS_RAGE_MAGE)
         {
@@ -999,20 +999,20 @@ void do_cmd_spell(void)
 
     if (!caster)
     {
-        msg_print("You cannot cast spells.");
+        msg_print("你无法施放法术。");
         return;
     }
 
     if ((poli) && (p_ptr->lev < POLITICIAN_FIRST_SPELL)) 
     {
-        msg_print("You haven't learned any political skills yet.");
+        msg_print("你还没学会任何政治技能。");
         return;
     }
 
     if ((p_ptr->pclass == CLASS_BLOOD_KNIGHT) && ((get_race()->flags & RACE_IS_NONLIVING) || (p_ptr->no_cut)))
     {
-        if (get_true_race()->flags & RACE_IS_NONLIVING) msg_print("You can no longer use bloodcraft!");
-        else msg_print("You cannot use bloodcraft while transformed into a nonliving creature.");
+        if (get_true_race()->flags & RACE_IS_NONLIVING) msg_print("你不能再使用血魔法了！");
+        else msg_print("变身为非活物生物时你无法使用血魔法。");
         return;
     }
 
@@ -1021,7 +1021,7 @@ void do_cmd_spell(void)
 
     if ((p_ptr->riding) && (player_is_ninja))
     {
-        msg_print("You cannot use ninjutsu while riding!");
+        msg_print("骑乘时你无法使用忍术！");
         return;
     }
 
@@ -1041,22 +1041,22 @@ void do_cmd_spell(void)
         switch (p_ptr->pclass)
         {
             case CLASS_DISCIPLE:
-                msg_print("The Purples have not taught you any spells yet!");
+                msg_print("紫衣人还没教你任何法术呢！");
                 break;
             case CLASS_BERSERKER:
-                msg_print("Rargh! Go kill something for more experience!");
+                msg_print("吼！去杀点什么来获取更多经验吧！");
                 break;
             case CLASS_MAULER:
-                msg_print("Rargh! Go maul something for more experience!");
+                msg_print("吼！去撕碎点什么来获取更多经验吧！");
                 break;
             case CLASS_SCOUT:
-                msg_print("You have no powers yet! Why not go kill stuff?");
+                msg_print("你还没有任何能力！为什么不去杀点东西呢？");
                 break;
             case CLASS_WEAPONMASTER:
-                msg_print("You need more experience. Why not kill something?");
+                msg_print("你需要更多经验。为什么不去杀点东西呢？");
                 break;
             case CLASS_WARLOCK:
-                msg_print("You have not learned any spells yet. Go kill something for more experience!");
+                msg_print("你还没学会任何法术。去杀点什么来获取更多经验吧！");
                 break;
             default: break;
         }
@@ -1070,8 +1070,8 @@ void do_cmd_spell(void)
         ct = _puhdista(spells, ct, spell_problem);
         if (ct == 0)
         {
-            if (spell_problem & PWR_CONFUSED) msg_print("You are too confused!");
-            else if (spell_problem & PWR_AFRAID) msg_print("You are too scared!");
+            if (spell_problem & PWR_CONFUSED) msg_print("你太困惑了！");
+            else if (spell_problem & PWR_AFRAID) msg_print("你太害怕了！");
             return;
         }
     }
@@ -1088,7 +1088,7 @@ void do_cmd_spell(void)
         max_cost = p_ptr->au;
     else
         max_cost = p_ptr->csp;
-    choice = choose_spell(spells, ct, "Use", caster->magic_desc, max_cost, FALSE);
+    choice = choose_spell(spells, ct, "使用", caster->magic_desc, max_cost, FALSE);
 
     if (choice >= 0 && choice < ct)
     {
@@ -1097,7 +1097,7 @@ void do_cmd_spell(void)
 
         if (spell->level > p_ptr->lev)
         {
-            msg_print("You can't use that spell yet!");
+            msg_print("你还不能使用那个法术！");
             return;
         }
 
@@ -1111,7 +1111,7 @@ void do_cmd_spell(void)
         {
             if (spell->cost > p_ptr->concent)
             {
-                msg_print("You need to concentrate more to use this power.");
+                msg_print("你需要更集中注意力才能使用这个能力。");
                 return;
             }
         }
@@ -1119,7 +1119,7 @@ void do_cmd_spell(void)
         {
             if (spell->cost > p_ptr->chp)
             {
-                msg_print("You do not have enough hp to use this power.");
+                msg_print("你没有足够的生命值来使用这个能力。");
                 return;
             }
         }
@@ -1127,26 +1127,26 @@ void do_cmd_spell(void)
         {
             if (spell->cost > p_ptr->au)
             {
-                msg_print("You do not have enough gold to use this power.");
+                msg_print("你没有足够的金币来使用这个能力。");
                 return;
             }
         }
         else if (ongelma == POLLY_TOGGLE_AUCAST)
         {
-            msg_print("You do not have enough disposable gold to use this power.");
+            msg_print("你没有足够的可用金币来使用这个能力。");
             return;
         }
         else if (ongelma == POLLY_TOGGLE_XPCAST)
         {
-            if (prace_is_(RACE_ANDROID)) msg_print("You have taxed your construction too much to use this power now.");
-            else msg_print("You do not have enough experience to draw on.");
+            if (prace_is_(RACE_ANDROID)) msg_print("你的躯体损耗过大，现在无法使用这个能力。");
+            else msg_print("你没有足够的经验来汲取。");
             return;
         }
         else if (!poli)
         {
             if (spell->cost > p_ptr->csp)
             {
-                msg_print("You do not have enough mana to use this power.");
+                msg_print("你没有足够的法力来使用这个能力。");
                 return;
             }
             p_ptr->csp -= spell->cost;
@@ -1167,7 +1167,7 @@ void do_cmd_spell(void)
                 return;
             }
             if (flush_failure) flush();
-            msg_print("You failed to concentrate hard enough!");
+            msg_print("你没能集中足够的注意力！");
             if (prompt_on_failure) msg_print(NULL);
             if (!(caster->options & CASTER_USE_AU) && !hp_caster && !poli && demigod_is_(DEMIGOD_ATHENA) )
                 p_ptr->csp += spell->cost/2;
@@ -1198,7 +1198,7 @@ void do_cmd_spell(void)
         {
         }
         else if ((hp_caster) && spell->cost > 0)
-            take_hit(DAMAGE_USELIFE, spell->cost, "concentrating too hard");
+            take_hit(DAMAGE_USELIFE, spell->cost, "过度专注");
         else if ((caster->options & CASTER_USE_AU) && spell->cost > 0)
         {
             p_ptr->au -= spell->cost;
@@ -1273,7 +1273,7 @@ byte do_cmd_power(void)
 
     if (ct == 0)
     {
-        msg_print("You have no powers.");
+        msg_print("你没有任何能力。");
         return 0; /* No energy use even if frightened! */
     }
 
@@ -1282,8 +1282,8 @@ byte do_cmd_power(void)
         ct = _puhdista(spells, ct, ongelma);
         if (ct == 0)
         {
-             if (ongelma & PWR_AFRAID) msg_print("You are too scared!");
-             else if (ongelma & PWR_CONFUSED) msg_print("You are too confused!");
+             if (ongelma & PWR_AFRAID) msg_print("你太害怕了！");
+             else if (ongelma & PWR_CONFUSED) msg_print("你太困惑了！");
              if (flush_failure) flush();
              return ongelma;
         }
@@ -1291,7 +1291,7 @@ byte do_cmd_power(void)
     
     _add_extra_costs_powers(spells, ct);
 
-    choice = choose_spell(spells, ct, "Use", "power", budget, TRUE);
+    choice = choose_spell(spells, ct, "使用", "能力", budget, TRUE);
 
     if (p_ptr->special_defense & (KATA_MUSOU | KATA_KOUKIJIN))
     {
@@ -1304,13 +1304,13 @@ byte do_cmd_power(void)
 
         if (spell->level > p_ptr->lev)
         {
-            msg_print("You can't use that power yet!");
+            msg_print("你还不能使用那个能力！");
             return ongelma;
         }
 
         if (spell->cost > budget)
         {
-            msg_print("Using this power will kill you!  Why not rest a bit first?");
+            msg_print("使用这个能力会杀了你！为什么不先休息一下呢？");
             return ongelma;
         }
 
@@ -1322,7 +1322,7 @@ byte do_cmd_power(void)
             if (!fail_spell(spell->fn))
                return ongelma;
             if (flush_failure) flush();
-            msg_print("You failed to concentrate hard enough!");
+            msg_print("你没能集中足够的注意力！");
             if (prompt_on_failure) msg_print(NULL);
         }
         else
@@ -1339,7 +1339,7 @@ byte do_cmd_power(void)
         /* Casting costs spill over into hit points */
         if (hp_only)
         {
-            take_hit(DAMAGE_NOESCAPE, spell->cost, "concentrating too hard");
+            take_hit(DAMAGE_NOESCAPE, spell->cost, "过度专注");
         }
         else if (p_ptr->csp < spell->cost)
         {
@@ -1505,14 +1505,14 @@ static void _dump_book(doc_ptr doc, int realm, int book)
 
     if (realm == REALM_HISSATSU)
     {
-        doc_printf(doc, "<color:G>    %-25.25s Lvl  SP %-15.15s  Cast</color>\n", k_name + k_info[k_idx].name, "Desc");
+        doc_printf(doc, "<color:G> %-25.25s 等级 消耗 %-15.15s 施法</color>\n", k_name + k_info[k_idx].name, "描述");
     }
     else
     {
         if (caster_ptr && (caster_ptr->options & CASTER_USE_HP))
-            doc_printf(doc, "<color:G>    %-23.23s Profic Lvl  HP Fail %-15.15s  Cast Fail</color>\n", k_name + k_info[k_idx].name, "Desc");
+            doc_printf(doc, "<color:G> %-23.23s 熟练 等级 生命 失败 %-15.15s 施法 失败</color>\n", k_name + k_info[k_idx].name, "描述");
         else
-            doc_printf(doc, "<color:G>    %-23.23s Profic Lvl  SP Fail %-15.15s  Cast Fail</color>\n", k_name + k_info[k_idx].name, "Desc");
+            doc_printf(doc, "<color:G> %-23.23s 熟练 等级 消耗 失败 %-15.15s 施法 失败</color>\n", k_name + k_info[k_idx].name, "描述");
     }
 
     for (i = 0; i < 8; i++)
@@ -1710,7 +1710,7 @@ static void _dump_realm(doc_ptr doc, int realm)
         {
             if (first)
             {
-                doc_printf(doc, "<color:r>Realm:</color> <color:B>%s</color>\n\n", realm_names[realm]);
+                doc_printf(doc, "<color:r>领域:</color> <color:B>%s</color>\n\n", realm_names[realm]);
                 first = FALSE;
             }
             _dump_book(doc, realm, i);
@@ -1718,7 +1718,7 @@ static void _dump_realm(doc_ptr doc, int realm)
     }
     i = virtue_mod_spell_fail(realm, 0);
     if (!first && i)
-        doc_printf(doc, " Your alignment is adding <color:R>%+d%%</color> to your fail rates in this realm.\n\n", i);
+        doc_printf(doc, "你的阵营让你在该领域的失败率增加了 <color:R>%+d%%</color>。\n\n", i);
 }
 
 void spellbook_character_dump(doc_ptr doc)
@@ -1726,7 +1726,7 @@ void spellbook_character_dump(doc_ptr doc)
     if (p_ptr->pclass == CLASS_RAGE_MAGE)
         return; /* TODO */
 
-    doc_printf(doc, "<topic:Spells>==================================== <color:keypress>S</color>pells ===================================\n\n");
+    doc_printf(doc, "<topic:Spells>==================================== 法 术 (<color:keypress>S</color>) ===================================\n\n");
 
     if (p_ptr->pclass == CLASS_RED_MAGE || p_ptr->pclass == CLASS_SORCERER)
     {
@@ -1748,14 +1748,14 @@ void spellbook_character_dump(doc_ptr doc)
         for (i = 0; i < MAX_MAGIC; i++)
         {
             if (!(p_ptr->old_realm & 1L << i)) continue;
-            doc_printf(doc, " You were able to use %s magic before.\n", realm_names[i+1]);
+            doc_printf(doc, "你以前能够使用 %s 魔法。\n", realm_names[i+1]);
         }
         doc_newline(doc);
     }
 
     if (p_ptr->spells_per_round > 100)
     {
-        doc_printf(doc, " You may cast %d.%02d spells per round.\n\n", p_ptr->spells_per_round/100, p_ptr->spells_per_round%100);
+        doc_printf(doc, "你每回合可以施放 %d.%02d 个法术。\n\n", p_ptr->spells_per_round/100, p_ptr->spells_per_round%100);
     }
 }
 
@@ -1790,7 +1790,7 @@ void spellbook_destroy(obj_ptr obj)
         if (obj->sval < 3) tester_exp /= 4;
         if (tester_exp<1) tester_exp = 1;
 
-        msg_print("You feel more experienced.");
+        msg_print("你觉得自己经验更丰富了。");
         gain_exp(tester_exp * obj->number);
     }
 

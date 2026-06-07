@@ -443,7 +443,7 @@ static SDL_Surface *GfxSurface = NULL;    /* A surface for the graphics */
 static GfxInfo GfxDesc[GfxModes] =
 {
     /* No gfx (GRAPHICS_NONE) */
-    {"None", NULL, -1, -1, NULL, 0, 0, TRUE},
+    {"无", NULL, -1, -1, NULL, 0, 0, TRUE},
     /* 8x8 tiles (GRAPHICS_ORIGINAL) */
     {"8x8", "8x8.png", 8, 8, "old", 0, 0, TRUE},
     /* 16x16 tiles (GRAPHICS_ADAM_BOLT) */
@@ -1292,7 +1292,7 @@ static void SetStatusButtons(void)
     {
         sdl_ButtonVisible(fontbutton, TRUE);
         sdl_ButtonCaption(fontbutton, win->font.name);
-        sdl_ButtonCaption(visbutton, "Yes");
+        sdl_ButtonCaption(visbutton, "是");
     }
 }
 
@@ -1582,7 +1582,7 @@ static void FlipTag(sdl_Button *sender)
     if (sender->tag)
     {
         sender->tag = 0;
-        sdl_ButtonCaption(sender, "Off");
+        sdl_ButtonCaption(sender, "关");
     }
     else
     {
@@ -1695,7 +1695,7 @@ static void MoreActivate(sdl_Button *sender)
     button1->sel_colour = scolour;
     sdl_ButtonSize(button1, 50 , PopUp.font.height + 2);
     sdl_ButtonVisible(button1, TRUE);
-    sdl_ButtonCaption(button1, use_bigtile ? "On" : "Off");
+    sdl_ButtonCaption(button1, use_bigtile ? "On" : "关");
     button1->tag = use_bigtile;
     button1->activate = FlipTag;
 
@@ -1706,7 +1706,7 @@ static void MoreActivate(sdl_Button *sender)
     button2->sel_colour = scolour;
     sdl_ButtonSize(button2, 50 , PopUp.font.height + 2);
     sdl_ButtonVisible(button2, TRUE);
-    sdl_ButtonCaption(button2, use_dbltile ? "On" : "Off");
+    sdl_ButtonCaption(button2, use_dbltile ? "On" : "关");
     button2->tag = use_dbltile;
     button2->activate = FlipTag;
 
@@ -1717,7 +1717,7 @@ static void MoreActivate(sdl_Button *sender)
     button3->sel_colour = scolour;
     sdl_ButtonSize(button3, 50 , PopUp.font.height + 2);
     sdl_ButtonVisible(button3, TRUE);
-    sdl_ButtonCaption(button3, use_trptile ? "On" : "Off");
+    sdl_ButtonCaption(button3, use_trptile ? "On" : "关");
     button3->tag = use_trptile;
     button3->activate = FlipTag;
 #endif
@@ -1745,7 +1745,7 @@ static void MoreActivate(sdl_Button *sender)
     button->sel_colour = scolour;
     sdl_ButtonSize(button, 50 , PopUp.font.height + 2);
     sdl_ButtonVisible(button, TRUE);
-    sdl_ButtonCaption(button, fullscreen ? "On" : "Off");
+    sdl_ButtonCaption(button, fullscreen ? "On" : "关");
     button->tag = fullscreen;
     button->activate = FlipTag;
 
@@ -3124,7 +3124,7 @@ errr init_sound_sdl(int argc, char **argv)
     /* Load sound preferences if requested */
     if (!sound_sdl_init(no_cache_audio))
     {
-        plog("Failed to load sound config");
+        plog("加载音效配置失败");
 
         /* Failure */
         return (1);
@@ -3631,7 +3631,7 @@ static void init_morewindows(void)
     sdl_ButtonSize(button, 60,  StatusHeight - 2);
     sdl_ButtonMove(button, 400, 1);
     sdl_ButtonVisible(button, TRUE);
-    sdl_ButtonCaption(button, "Options");
+    sdl_ButtonCaption(button, "选项");
     button->activate = MoreActivate;
 
     /* Another new button */
@@ -3641,7 +3641,7 @@ static void init_morewindows(void)
     /* Initialize the 'quit' button */
     sdl_ButtonSize(button, 60,  StatusHeight - 2);
     sdl_ButtonMove(button, AppWin->w - 61, 1);
-    sdl_ButtonCaption(button, "Quit");
+    sdl_ButtonCaption(button, "退出");
     button->activate = QuitActivate;
     sdl_ButtonVisible(button, TRUE);
 
@@ -3999,7 +3999,7 @@ static void init_paths(void)
 }
 
 
-const char help_sdl[] = "SDL frontend";
+const char help_sdl[] = "SDL 前端";
 
 /**
  * The SDL port's main() function.

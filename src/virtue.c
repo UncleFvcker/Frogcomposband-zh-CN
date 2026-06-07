@@ -4,25 +4,25 @@
 
 static cptr _names[VIRTUE_MAX] =
 {
-    "Unknown",
-    "Compassion",
-    "Honour",
-    "Justice",
-    "Sacrifice",
-    "Knowledge",
-    "Faith",
-    "Enlightenment",
-    "Mysticism",
-    "Chance",
-    "Nature",
-    "Harmony",
-    "Vitality",
-    "Unlife",
-    "Patience",
-    "Temperance",
-    "Diligence",
-    "Valour",
-    "Individualism",
+    "未知",
+    "怜悯",
+    "荣誉",
+    "正义",
+    "牺牲",
+    "知识",
+    "信仰",
+    "启悟",
+    "神秘",
+    "运气",
+    "自然",
+    "和谐",
+    "活力",
+    "非生",
+    "耐心",
+    "节制",
+    "勤勉",
+    "勇猛",
+    "独立",
 };
 
 static cptr _good_msg[VIRTUE_MAX] =
@@ -555,7 +555,7 @@ void virtue_display(doc_ptr doc)
 {
     int idx = 0;
 
-    doc_printf(doc, "<color:G>Your alignment:</color> <color:%c>%s</color>\n\n", _alignment_color(), your_alignment());
+    doc_printf(doc, "<color:G>你的阵营：</color> <color:%c>%s</color>\n\n", _alignment_color(), your_alignment());
 
     for (idx = 0; idx < 8; idx++)
     {
@@ -570,31 +570,31 @@ void virtue_display(doc_ptr doc)
             strcpy(name, virtue_name(p_ptr->vir_types[idx]));
 
             if (tester < -100)
-                doc_printf(doc, "You are the <color:v>polar opposite</color> of %s.\n", name);
+                doc_printf(doc, "你与%s<color:v>截然相反</color>。\n", name);
             else if (tester < -80)
-                doc_printf(doc, "You are an <color:r>arch-enemy</color> of %s.\n", name);
+                doc_printf(doc, "你是%s的<color:r>死敌</color>。\n", name);
             else if (tester < -60)
-                doc_printf(doc, "You are a <color:R>bitter enemy</color> of %s.\n", name);
+                doc_printf(doc, "你是%s的<color:R>宿敌</color>。\n", name);
             else if (tester < -40)
-                doc_printf(doc, "You are an <color:o>enemy</color> of %s.\n", name);
+                doc_printf(doc, "你是%s的<color:o>敌人</color>。\n", name);
             else if (tester < -20)
-                doc_printf(doc, "You have <color:y>sinned against</color> %s.\n", name);
+                doc_printf(doc, "你对%s<color:y>犯下罪过</color>。\n", name);
             else if (tester < 0)
-                doc_printf(doc, "You have <color:U>strayed</color> from the path of %s.\n", name);
+                doc_printf(doc, "你已<color:U>偏离</color>了%s的道路。\n", name);
             else if (tester == 0)
-                doc_printf(doc, "You are neutral to %s.\n", name);
+                doc_printf(doc, "你对%s保持中立。\n", name);
             else if (tester < 20)
-                doc_printf(doc, "You are <color:G>somewhat virtuous</color> in %s.\n", name);
+                doc_printf(doc, "你在%s方面<color:G>略有美德</color>。\n", name);
             else if (tester < 40)
-                doc_printf(doc, "You are <color:G>virtuous</color> in %s.\n", name);
+                doc_printf(doc, "你在%s方面<color:G>具备美德</color>。\n", name);
             else if (tester < 60)
-                doc_printf(doc, "You are <color:g>very virtuous</color> in %s.\n", name);
+                doc_printf(doc, "你在%s方面<color:g>极具美德</color>。\n", name);
             else if (tester < 80)
-                doc_printf(doc, "You are a <color:g>champion</color> of %s.\n", name);
+                doc_printf(doc, "你是%s的<color:g>拥护者</color>。\n", name);
             else if (tester < 100)
-                doc_printf(doc, "You are a <color:B>great champion</color> of %s.\n",  name);
+                doc_printf(doc, "你是%s的<color:B>伟大拥护者</color>。\n",  name);
             else
-                doc_printf(doc, "You are the <color:B>living embodiment</color> of %s.\n", name);
+                doc_printf(doc, "你是%s的<color:B>现世化身</color>。\n", name);
         }
     }
 }

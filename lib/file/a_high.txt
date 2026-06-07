@@ -25,7 +25,7 @@ of Hellfire
 of Corona
 of Yama
 of Uriel
-#of Allah
+
 
 N: 4:BIAS_COLD
 'Helka-Turma'

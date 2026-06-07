@@ -24,11 +24,17 @@ int get_bldg_member_code(cptr name)
 {
     if (strcmp(name, "None") == 0)
         return BUILDING_NON_MEMBER;
+    if (strcmp(name, "无") == 0)
+        return BUILDING_NON_MEMBER;
 
     if (strcmp(name, "Owner") == 0)
         return BUILDING_OWNER;
+    if (strcmp(name, "主人") == 0)
+        return BUILDING_OWNER;
 
     if (strcmp(name, "Member") == 0)
+        return BUILDING_MEMBER;
+    if (strcmp(name, "成员") == 0)
         return BUILDING_MEMBER;
 
     return -1;
@@ -109,7 +115,7 @@ static void building_prt_gold(void)
     char tmp[10];
     char tmp_str[80];
 
-    prt("Gold Remaining: ", 23, 53);
+    prt("剩余金币:", 23, 53);
 
     big_num_display(p_ptr->au, tmp);
     sprintf(tmp_str, "%6.6s", tmp);
@@ -202,7 +208,7 @@ static void show_building(building_type* bldg)
         }
     }
 
-    prt(" ESC) Exit building", 23, 0);
+    prt("ESC) 离开建筑", 23, 0);
     paivita = FALSE;
 }
 
@@ -221,23 +227,23 @@ static void arena_comm(int cmd)
             if (p_ptr->arena_number == MAX_ARENA_MONS)
             {
                 clear_bldg(5, 19);
-                prt("               Arena Victor!", 5, 0);
-                prt("Congratulations!  You have defeated all before you.", 7, 0);
-                prt("For that, receive the prize: 1,000,000 gold pieces", 8, 0);
+                prt("竞技场冠军！", 5, 0);
+                prt("恭喜！你击败了面前所有的对手。", 7, 0);
+                prt("为此，请收下你的奖品：1,000,000金币", 8, 0);
 
                 prt("", 10, 0);
                 prt("", 11, 0);
                 p_ptr->au += 1000000;
                 stats_on_gold_winnings(1000000);
-                msg_prompt("Press the space bar to continue", " ", PROMPT_NEW_LINE | PROMPT_FORCE_CHOICE);
+                msg_prompt("按空格键继续", " ", PROMPT_NEW_LINE | PROMPT_FORCE_CHOICE);
                 p_ptr->arena_number++;
             }
             else if (p_ptr->arena_number > MAX_ARENA_MONS)
             {
                 if (p_ptr->arena_number < MAX_ARENA_MONS+2)
                 {
-                    msg_print("The strongest challenger is waiting for you.");
-                    if (get_check("Do you fight? "))
+                    msg_print("最强的挑战者正等着你。");
+                    if (get_check("你要战斗吗？"))
                     {
                         p_ptr->exit_bldg = FALSE;
                         reset_tim_flags();
@@ -251,17 +257,17 @@ static void arena_comm(int cmd)
                     }
                     else
                     {
-                        msg_print("We are disappointed.");
+                        msg_print("我们很失望。");
                     }
                 }
                 else
                 {
-                    msg_print("You enter the arena briefly and bask in your glory.");
+                    msg_print("你短暂地进入竞技场，沐浴在你的荣耀中。");
                 }
             }
             else if (p_ptr->riding && p_ptr->pclass != CLASS_BEASTMASTER && p_ptr->pclass != CLASS_CAVALRY && p_ptr->prace != RACE_MON_RING && !warlock_is_(WARLOCK_DRAGONS))
             {
-                msg_print("You don't have permission to enter with pet.");
+                msg_print("你不能带宠物进入。");
             }
             else
             {
@@ -278,17 +284,17 @@ static void arena_comm(int cmd)
             break;
         case BACT_POSTER:
             if (p_ptr->arena_number == MAX_ARENA_MONS)
-                msg_print("You are victorious. Enter the arena for the ceremony.");
+                msg_print("你胜利了。进入竞技场参加仪式吧。");
 
             else if (p_ptr->arena_number > MAX_ARENA_MONS)
             {
-                msg_print("You have won against all foes.");
+                msg_print("你已经战胜了所有的敌人。");
             }
             else
             {
                 r_ptr = &r_info[arena_info[p_ptr->arena_number].r_idx];
                 name = (r_name + r_ptr->name);
-                msg_format("Do I hear any challenges against: %s", name);
+                msg_format("有人敢挑战：%s 吗？", name);
             }
             break;
         case BACT_ARENA_RULES:
@@ -324,7 +330,7 @@ static void display_fruit(int row, int col, int fruit)
             c_put_str(TERM_YELLOW, "#     # ", row + 5, col);
             c_put_str(TERM_YELLOW, "#    #  ", row + 6, col);
             c_put_str(TERM_YELLOW, ".####   ", row + 7, col);
-            prt(                   " Lemon  ", row + 8, col);
+            prt(                   "柠檬", row + 8, col);
 
             break;
         case 1: /* orange */
@@ -336,7 +342,7 @@ static void display_fruit(int row, int col, int fruit)
             c_put_str(TERM_ORANGE, " #....# ", row + 5, col);
             c_put_str(TERM_ORANGE, "  #..#  ", row + 6, col);
             c_put_str(TERM_ORANGE, "   ##   ", row + 7, col);
-            prt(                   " Orange ", row + 8, col);
+            prt(                   "橘子", row + 8, col);
 
             break;
         case 2: /* sword */
@@ -348,7 +354,7 @@ static void display_fruit(int row, int col, int fruit)
             c_put_str(TERM_SLATE, "   ##   " , row + 5, col);
             c_put_str(TERM_UMBER, " ###### " , row + 6, col);
             c_put_str(TERM_UMBER, "   ##   " , row + 7, col);
-            prt(                  " Sword  " , row + 8, col);
+            prt(                  "剑" , row + 8, col);
 
             break;
         case 3: /* shield */
@@ -360,7 +366,7 @@ static void display_fruit(int row, int col, int fruit)
             c_put_str(TERM_SLATE, " #    # ", row + 5, col);
             c_put_str(TERM_SLATE, "  #  #  ", row + 6, col);
             c_put_str(TERM_SLATE, "   ##   ", row + 7, col);
-            prt(                  " Shield ", row + 8, col);
+            prt(                  "盾牌", row + 8, col);
 
             break;
         case 4: /* plum */
@@ -372,7 +378,7 @@ static void display_fruit(int row, int col, int fruit)
             c_put_str(TERM_VIOLET, " ###### ", row + 5, col);
             c_put_str(TERM_VIOLET, "  ####  ", row + 6, col);
             c_put_str(TERM_VIOLET, "   ##   ", row + 7, col);
-            prt(                   "  Plum  ", row + 8, col);
+            prt(                   "李子", row + 8, col);
 
             break;
         case 5: /* cherry */
@@ -384,7 +390,7 @@ static void display_fruit(int row, int col, int fruit)
             c_put_str(TERM_RED, "#..##..#", row + 5, col);
             c_put_str(TERM_RED, "#..##..#", row + 6, col);
             c_put_str(TERM_RED, " ##  ## ", row + 7, col);
-            prt(                " Cherry ", row + 8, col);
+            prt(                "樱桃", row + 8, col);
 
             break;
     }
@@ -574,13 +580,13 @@ static int yaku_check(void)
 
     switch(yaku_check_straight()){
     case 3: /* RF! */
-        c_put_str(TERM_YELLOW, "Royal Flush",  4,  3);
+        c_put_str(TERM_YELLOW, "皇家同花顺",  4,  3);
         return ODDS_RF;
     case 2: /* SF! */
-        c_put_str(TERM_YELLOW, "Straight Flush",  4,  3);
+        c_put_str(TERM_YELLOW, "同花顺",  4,  3);
         return ODDS_SF;
     case 1:
-        c_put_str(TERM_YELLOW, "Straight",  4,  3);
+        c_put_str(TERM_YELLOW, "顺子",  4,  3);
         return ODDS_ST;
     default:
         /* Not straight -- fall through */
@@ -590,36 +596,36 @@ static int yaku_check(void)
     if (yaku_check_flush())
     {
 
-    c_put_str(TERM_YELLOW, "Flush",  4,  3);
+    c_put_str(TERM_YELLOW, "同花",  4,  3);
         return ODDS_FL;
     }
 
     switch (yaku_check_pair())
     {
     case 1:
-        c_put_str(TERM_YELLOW, "One pair",  4,  3);
+        c_put_str(TERM_YELLOW, "一对",  4,  3);
         return 0;
     case 2:
-        c_put_str(TERM_YELLOW, "Two pair",  4,  3);
+        c_put_str(TERM_YELLOW, "两对",  4,  3);
         return ODDS_2P;
     case 3:
-        c_put_str(TERM_YELLOW, "Three of a kind",  4,  3);
+        c_put_str(TERM_YELLOW, "三条",  4,  3);
         return ODDS_3C;
     case 4:
-        c_put_str(TERM_YELLOW, "Full house",  4,  3);
+        c_put_str(TERM_YELLOW, "葫芦",  4,  3);
         return ODDS_FH;
     case 6:
-        c_put_str(TERM_YELLOW, "Four of a kind",  4,  3);
+        c_put_str(TERM_YELLOW, "四条",  4,  3);
         return ODDS_4C;
     case 7:
         if (!NUM_OF(cards[0]) || !NUM_OF(cards[1]))
         {
-            c_put_str(TERM_YELLOW, "Five ace",  4,  3);
+            c_put_str(TERM_YELLOW, "五个A",  4,  3);
             return ODDS_5A;
         }
         else
         {
-            c_put_str(TERM_YELLOW, "Five of a kind",  4,  3);
+            c_put_str(TERM_YELLOW, "五条",  4,  3);
             return ODDS_5C;
         }
     default:
@@ -638,13 +644,13 @@ static void display_kaeruka(int hoge, int kaeruka[])
         else if(kaeruka[i]) col = TERM_WHITE;
         else col = TERM_L_BLUE;
         if(kaeruka[i])
-            c_put_str(col, "Change", 14,  5+i*16);
+            c_put_str(col, "换牌", 14,  5+i*16);
         else
-            c_put_str(col, " Stay ", 14,  5+i*16);
+            c_put_str(col, "停牌", 14,  5+i*16);
     }
     if (hoge > 4) col = TERM_YELLOW;
     else col = TERM_WHITE;
-    c_put_str(col, "Sure", 16,  38);
+    c_put_str(col, "确定", 16,  38);
 
     /* Hilite current option */
     if (hoge < 5) move_cursor(14, 5+hoge*16);
@@ -842,7 +848,7 @@ static int do_poker(void)
 #endif
 
     /* suteruno wo kimeru */
-    prt("Stay witch? ", 0, 0);
+    prt("保留哪些？", 0, 0);
 
     display_cards();
     yaku_check();
@@ -912,14 +918,14 @@ static bool gamble_comm(int cmd)
     if (cmd == BACT_GAMBLE_RULES)
     {
         /* Peruse the gambling help file */
-        doc_display_help("gambling.txt", "Gambling");
+        doc_display_help("gambling.txt", "赌博");
     }
     else
     {
         /* No money */
         if (p_ptr->au < 1)
         {
-            msg_print("Hey! You don't have gold - get out of here!");
+            msg_print("嘿！你没有金币——滚出去！");
             msg_print(NULL);
             screen_load();
             return FALSE;
@@ -950,7 +956,7 @@ static bool gamble_comm(int cmd)
 
             if (wager > p_ptr->au)
             {
-                msg_print("Hey! You don't have the gold - get out of here!");
+                msg_print("嘿！你没有金币——滚出去！");
 
                 msg_print(NULL);
                 screen_load();
@@ -958,12 +964,12 @@ static bool gamble_comm(int cmd)
             }
             else if (wager > maxbet)
             {
-                msg_format("I'll take %d gold of that. Keep the rest.", maxbet);
+                msg_format("我收下%d金币。剩下的你留着。", maxbet);
                 wager = maxbet;
             }
             else if (wager < 1)
             {
-                msg_print("Ok, we'll start with 1 gold.");
+                msg_print("好吧，我们从1个金币开始。");
 
 
                 wager = 1;
@@ -991,7 +997,7 @@ static bool gamble_comm(int cmd)
                 switch (cmd)
                 {
                  case BACT_IN_BETWEEN: /* Game of In-Between */
-                    c_put_str(TERM_GREEN, "In Between", 5, 2);
+                    c_put_str(TERM_GREEN, "射龙门", 5, 2);
 
                     odds = 4;
                     win = FALSE;
@@ -1001,7 +1007,7 @@ static bool gamble_comm(int cmd)
                     sprintf(tmp_str, "Black die: %d       Black Die: %d", roll1, roll2);
 
                     prt(tmp_str, 8, 3);
-                    sprintf(tmp_str, "Red die: %d", choice);
+                    sprintf(tmp_str, "红骰子: %d", choice);
 
                     prt(tmp_str, 11, 14);
                     if (((choice > roll1) && (choice < roll2)) ||
@@ -1009,7 +1015,7 @@ static bool gamble_comm(int cmd)
                         win = TRUE;
                     break;
                 case BACT_CRAPS:  /* Game of Craps */
-                    c_put_str(TERM_GREEN, "Craps", 5, 2);
+                    c_put_str(TERM_GREEN, "双骰子", 5, 2);
 
                     win = 3;
                     odds = 2;
@@ -1028,7 +1034,7 @@ static bool gamble_comm(int cmd)
                     else
                         do
                         {
-                            msg_print("Hit any key to roll again");
+                            msg_print("按任意键再次掷骰");
 
                             msg_print(NULL);
                             roll1 = randint1(6);
@@ -1049,24 +1055,24 @@ static bool gamble_comm(int cmd)
                 case BACT_SPIN_WHEEL:  /* Spin the Wheel Game */
                     win = FALSE;
                     odds = 9;
-                    c_put_str(TERM_GREEN, "Wheel", 5, 2);
+                    c_put_str(TERM_GREEN, "轮盘", 5, 2);
 
                     prt("0  1  2  3  4  5  6  7  8  9", 7, 5);
                     prt("--------------------------------", 8, 3);
                     strcpy(out_val, "");
-                    get_string("Pick a number (0-9): ", out_val, 32);
+                    get_string("选一个数字 (0-9):", out_val, 32);
 
                     for (p = out_val; isspace(*p); p++);
                     choice = atol(p);
                     if (choice < 0)
                     {
-                        msg_print("I'll put you down for 0.");
+                        msg_print("我就当你在0上押注了。");
 
                         choice = 0;
                     }
                     else if (choice > 9)
                     {
-                        msg_print("Ok, I'll put you down for 9.");
+                        msg_print("好吧，我就当你在9上押注了。");
 
                         choice = 9;
                     }
@@ -1083,7 +1089,7 @@ static bool gamble_comm(int cmd)
                     break;
 
                 case BACT_DICE_SLOTS: /* The Dice Slots */
-                    c_put_str(TERM_GREEN, "Dice Slots", 5, 2);
+                    c_put_str(TERM_GREEN, "老虎机", 5, 2);
 
                     win = FALSE;
                     roll1 = randint1(21);
@@ -1155,7 +1161,7 @@ static bool gamble_comm(int cmd)
 
                 if (win)
                 {
-                    prt("YOU WON", 16, 37);
+                    prt("你赢了", 16, 37);
 
                     p_ptr->au += odds * wager;
                     stats_on_gold_winnings(odds * wager);
@@ -1165,13 +1171,13 @@ static bool gamble_comm(int cmd)
                 }
                 else
                 {
-                    prt("You Lost", 16, 37);
+                    prt("你输了", 16, 37);
                     prt("", 17, 37);
                 }
                 sprintf(tmp_str, "Current Gold:     %9d", p_ptr->au);
 
                 prt(tmp_str, 22, 2);
-                prt("Again(Y/N)?", 18, 37);
+                prt("再来一次 (Y/N)？", 18, 37);
 
                 move_cursor(18, 52);
                 again = inkey();
@@ -1180,7 +1186,7 @@ static bool gamble_comm(int cmd)
                 prt("", 18, 37);
                 if (wager > p_ptr->au)
                 {
-                    msg_print("Hey! You don't have the gold - get out of here!");
+                    msg_print("嘿！你没有金币——滚出去！");
                     msg_print(NULL);
 
                     /* Get out here */
@@ -1194,12 +1200,12 @@ static bool gamble_comm(int cmd)
             prt("", 18, 37);
             if (p_ptr->au >= oldgold)
             {
-                msg_print("You came out a winner! We'll win next time, I'm sure.");
+                msg_print("你赢了！我肯定我们下次会赢回来。");
                 virtue_add(VIRTUE_CHANCE, 3);
             }
             else
             {
-                msg_print("You lost gold! Haha, better head home.");
+                msg_print("你输了金币！哈哈，最好赶紧回家吧。");
                 virtue_add(VIRTUE_CHANCE, -3);
             }
         }
@@ -1500,7 +1506,7 @@ static bool kakutoujou(void)
     /* No money */
     if (p_ptr->au < 1)
     {
-        msg_print("Hey! You don't have gold - get out of here!");
+        msg_print("嘿！你没有金币——滚出去！");
 
         msg_print(NULL);
         screen_load();
@@ -1512,7 +1518,7 @@ static bool kakutoujou(void)
 
         clear_bldg(4, 10);
 
-        prt("Monsters                                                       Odds", 4, 4);
+        prt("怪物 赔率", 4, 4);
         for (i=0;i<4;i++)
         {
             char buf[80];
@@ -1522,7 +1528,7 @@ static bool kakutoujou(void)
             prt(buf, 5+i, 1);
         }
 
-        prt("Which monster: ", 0, 0);
+        prt("哪只怪物:", 0, 0);
         while(1)
         {
             i = inkey();
@@ -1568,7 +1574,7 @@ static bool kakutoujou(void)
 
             if (wager > p_ptr->au)
             {
-                msg_print("Hey! You don't have the gold - get out of here!");
+                msg_print("嘿！你没有金币——滚出去！");
 
                 msg_print(NULL);
                 screen_load();
@@ -1576,12 +1582,12 @@ static bool kakutoujou(void)
             }
             else if (wager > maxbet)
             {
-                msg_format("I'll take %d gold of that. Keep the rest.", maxbet);
+                msg_format("我收下%d金币。剩下的你留着。", maxbet);
                 wager = maxbet;
             }
             else if (wager < 1)
             {
-                msg_print("Ok, we'll start with 1 gold.");
+                msg_print("好吧，我们从1个金币开始。");
 
 
                 wager = 1;
@@ -1617,7 +1623,7 @@ static void today_target(void)
     monster_race *r_ptr = &r_info[today_mon];
 
     clear_bldg(4,18);
-    prt("Wanted monster that changes from day to day", 5, 10);
+    prt("通缉每天都会变化的怪物", 5, 10);
     sprintf(buf,"target: %s",r_name + r_ptr->name);
     c_put_str(TERM_YELLOW, buf, 6, 10);
     sprintf(buf,"corpse   ---- $%d",r_ptr->level * 50 + 100);
@@ -1630,11 +1636,11 @@ static void today_target(void)
 static void tsuchinoko(void)
 {
     clear_bldg(4,18);
-c_put_str(TERM_YELLOW, "Big chance to quick money!!!", 5, 10);
-c_put_str(TERM_YELLOW, "target: the rarest animal 'Tsuchinoko'", 6, 10);
-c_put_str(TERM_WHITE, "catch alive ---- $1,000,000", 8, 10);
-c_put_str(TERM_WHITE, "corpse      ----   $200,000", 9, 10);
-c_put_str(TERM_WHITE, "bones       ----   $100,000", 10, 10);
+c_put_str(TERM_YELLOW, "赚快钱的大好机会！！！", 5, 10);
+c_put_str(TERM_YELLOW, "目标：最稀有的动物“野槌蛇”（Tsuchinoko）", 6, 10);
+c_put_str(TERM_WHITE, "活捉 ---- $1,000,000", 8, 10);
+c_put_str(TERM_WHITE, "尸体 ---- $200,000", 9, 10);
+c_put_str(TERM_WHITE, "骨骸 ---- $100,000", 10, 10);
 }
 
 static void shoukinkubi(void)
@@ -1644,8 +1650,8 @@ static void shoukinkubi(void)
 
     clear_bldg(4,18);
 
-    prt("Offer a prize when you bring a wanted monster's corpse",4 ,10);
-    c_put_str(TERM_YELLOW, "Wanted monsters", 6, 10);
+    prt("带来通缉怪物的尸体即可获得悬赏",4 ,10);
+    c_put_str(TERM_YELLOW, "被通缉的怪物", 6, 10);
 
     for (i = 0; i < MAX_KUBI; i++)
     {
@@ -1675,7 +1681,7 @@ static void shoukinkubi(void)
         y = (y+1) % 10;
         if (!y && (i < MAX_KUBI -1))
         {
-            prt("Hit any key.", 0, 0);
+            prt("按任意键。", 0, 0);
             (void)inkey();
             prt("", 0, 0);
             clear_bldg(7,18);
@@ -1742,7 +1748,7 @@ static int _tsuchinoko_amt(obj_ptr obj)
 }
 static void _obj_reward(obj_ptr obj, int amt)
 {
-    msg_format("You get %dgp.", amt);
+    msg_format("你获得了%d金币。", amt);
     p_ptr->au += amt;
     stats_on_gold_winnings(amt);
     obj->number = 0;
@@ -1865,7 +1871,7 @@ static void _process_wanted_corpse(obj_ptr obj)
 
     if (!no_wanted_points)
     {
-        msg_format("You have turned in %d wanted monster%s.", num, num > 1 ? "s" : "");
+        msg_format("你上交了%d只通缉怪物%s。", num, num > 1 ? "s" : "");
     }
 
     object_desc(name, &prize, OD_COLOR_CODED);
@@ -1884,7 +1890,7 @@ static bool kankin(void)
     pack_for_each_that(_process_wanted_corpse, _is_wanted_captureball);
     if (!_prize_count)
     {
-        msg_print("You have nothing that I want.");
+        msg_print("你没有我想要的东西。");
         return FALSE;
     }
     return TRUE;
@@ -1927,7 +1933,7 @@ void have_nightmare(int r_idx)
 
     if (saving_throw(p_ptr->skills.sav * 100 / power))
     {
-        msg_format("%^s chases you through your dreams.", m_name);
+        msg_format("%^s在你的梦中追逐你。", m_name);
 
         /* Safe */
         return;
@@ -1936,7 +1942,7 @@ void have_nightmare(int r_idx)
     if (p_ptr->image)
     {
         /* Something silly happens... */
-        msg_format("You behold the %s visage of %s!",
+        msg_format("你看到了%s的面孔，那是%s！",
 
                       funny_desc[randint0(MAX_SAN_FUNNY)], m_name);
 
@@ -1951,7 +1957,7 @@ void have_nightmare(int r_idx)
     }
 
     /* Something frightening happens... */
-    msg_format("You behold the %s visage of %s!",
+    msg_format("你看到了%s的面孔，那是%s！",
 
                   horror_desc[randint0(MAX_SAN_HORROR)], desc);
 
@@ -2048,7 +2054,7 @@ void have_nightmare(int r_idx)
     {
         if (lose_all_info())
         {
-            msg_print("You forget everything in your utmost terror!");
+            msg_print("你在极度恐惧中忘记了一切！");
 
         }
         return;
@@ -2145,14 +2151,14 @@ static bool inn_comm(int cmd)
     {
         case BACT_FOOD: /* Buy food & drink */
             if ((prace_is_(RACE_BALROG)) || (prace_is_(RACE_MON_DEMON)))
-                msg_print("The barkeep offers you some very fresh meat, which you gratefully wolf down.");
+                msg_print("酒保给你端来了一些非常新鲜的肉，你感激地狼吞虎咽地吃下了。");
             else if (!mortal_food_check())
             {
                 if (prace_is_(RACE_SKELETON))
                 {
-                    msg_print("The barkeep brings you a Staff of Nothing.");
+                    msg_print("酒保给了你一根“空手法杖”（Staff of Nothing）。");
                 }
-                else if (one_in_(3)) msg_print("You receive little nutrition from the food of mortals, so you wolf down an enormous pile of it to satisfy your hunger, leaving the pale-looking barkeep regretting his 'All You Can Eat' offer.");
+                else if (one_in_(3)) msg_print("凡人的食物几乎不能给你提供营养，所以你狼吞虎咽地吃下了一大堆以满足你的饥饿感，让脸色苍白的酒保后悔他提出的“自助餐”优惠。");
                 else
                 {
                     int _race = ((p_ptr->mimic_form != MIMIC_NONE) ? p_ptr->mimic_form : p_ptr->prace);
@@ -2160,27 +2166,27 @@ static bool inn_comm(int cmd)
                     {
                         case RACE_VAMPIRE:
                         case RACE_MON_VAMPIRE:
-                            msg_print("You suck some blood from what we will describe as a lump of fresh meat.");
+                            msg_print("你从我们称之为“一块鲜肉”的东西里吸了些血。");
                             break;
                         case RACE_ENT:
-                            msg_print("The barkeep offers you some water, which you gratefully accept.");
+                            msg_print("酒保给你端来了一些水，你感激地接受了。");
                             break;
                         case RACE_ANDROID:
-                            msg_print("Blessed oil! The nectar of the gods!");
+                            msg_print("受祝福的油！神明们的甘露！");
                             break;
                         case RACE_MON_JELLY:
-                            msg_print("The barkeep leaves a bowl of gruel on the table, but you eat it anyway.");
+                            msg_print("酒保在桌上放下了一碗粥，但你还是吃下了它。");
                             break;
                         default:
                             if (!one_in_(27))
-                                msg_print("You sit down at the bar, expecting a funny message, but the barkeep just brings you a Staff of Nothing.");
+                                msg_print("你坐在吧台前，期待着什么有趣的消息，但酒保只给你端来了一根“空手法杖”。");
                             else
-                                msg_print("The barkeep offers you a well-charged Staff of Speed, which you happily suck until it is drained of all energy. (Pity you can't take it home with you!)");
+                                msg_print("酒保给了你一根充满能量的速度法杖，你开心地吸取它的力量，直到所有能量都被抽干。（可惜你不能把它带回家！）");
                             break;
                     }
                 }
             }
-            else msg_print("The barkeep gives you some gruel and a beer.");
+            else msg_print("酒保给了你一些粥和一杯啤酒。");
 
             (void)set_food(PY_FOOD_MAX - 1);
             break;
@@ -2188,8 +2194,8 @@ static bool inn_comm(int cmd)
         case BACT_REST: /* Rest for the night */
             if ((p_ptr->poisoned) || (p_ptr->cut))
             {
-                msg_print("You need a healer, not a room.");
-                msg_print("Sorry, but I don't want anyone dying in here.");
+                msg_print("你需要的是治疗师，而不是房间。");
+                msg_print("抱歉，但我可不想有人死在这里。");
             }
             else
             {
@@ -2211,7 +2217,7 @@ static bool inn_comm(int cmd)
 
                 if (ironman_nightmare)
                 {
-                    msg_print("Horrible visions flit through your mind as you sleep.");
+                    msg_print("睡觉时，可怕的幻象在你的脑海中掠过。");
                     get_mon_num_prep(get_nightmare, NULL);
                     while(1)
                     {
@@ -2220,7 +2226,7 @@ static bool inn_comm(int cmd)
                     }
 
                     get_mon_num_prep(NULL, NULL);
-                    msg_print("You awake screaming.");
+                    msg_print("你尖叫着惊醒。");
                 }
                 else
                 {
@@ -2232,12 +2238,12 @@ static bool inn_comm(int cmd)
 
                     if ((prace_is_(RACE_MON_POSSESSOR)) && (p_ptr->current_r_idx == MON_AUDE))
                     {
-                        msg_format("You awaken smiling and much refreshed after a good%s... sleep?%s", (prev_hour >= 6 && prev_hour <= 17) ? " evening's" : " night's", mut_present(MUT_NO_INHIBITIONS) ? " (You really like that No Inhibitions mutation!)" : "");
+                        msg_format("在经历了一场美妙的%s……睡眠？之后，你微笑着醒来，精神焕发。%s", (prev_hour >= 6 && prev_hour <= 17) ? "傍晚的" : "夜晚的", mut_present(MUT_NO_INHIBITIONS) ? "（你真的很喜欢那个“无所顾忌”变异！）" : "");
                     }
                     else if (prev_hour >= 6 && prev_hour <= 17)
-                        msg_print("You awake refreshed for the evening.");
+                        msg_print("你醒来了，为这个夜晚感到精神焕发。");
                     else
-                        msg_print("You awake refreshed for the new day.");
+                        msg_print("你醒来了，为新的一天感到精神焕发。");
                 }
                 /* Update daily wanted */
                 if (prev_hour >= 18) /* Proxy for date change */
@@ -2316,7 +2322,7 @@ static void castle_quest(void)
     /* Is there a quest available at the building? */
     if (!quest_id)
     {
-        put_str("I don't have a quest for you at the moment.", 8, 0);
+        put_str("我目前没有任务给你。", 8, 0);
         return;
     }
 
@@ -2324,7 +2330,7 @@ static void castle_quest(void)
 
     if (quest->status == QS_COMPLETED)
     {
-        if (strpos("Eddies", quest->name)) town_on_visit(TOWN_ZUL);
+        if (strpos("艾迪", quest->name)) town_on_visit(TOWN_ZUL);
         quest_reward(quest);
         reinit_wilderness = TRUE;
         refresh_buildings();
@@ -2332,7 +2338,7 @@ static void castle_quest(void)
     else if (quest->status == QS_FAILED)
     {
         string_ptr s = quest_get_description(quest);
-        msg_format("<color:R>%s</color> (<color:U>Level %d</color>): %s",
+        msg_format("<color:R>%s</color> (<color:U>等级 %d</color>): %s",
             quest->name, quest->danger_level, string_buffer(s));
         string_free(s);
         quest->status = QS_FAILED_DONE;
@@ -2341,9 +2347,9 @@ static void castle_quest(void)
     }
     else if (quest->status == QS_TAKEN)
     {
-        put_str("You have not completed your current quest yet!", 8, 0);
-        put_str("Use CTRL-Q to check the status of your quest.", 9, 0);
-        put_str("Return when you have completed your quest.", 12, 0);
+        put_str("你还没有完成你当前的任务！", 8, 0);
+        put_str("使用 CTRL-Q 查看你的任务状态。", 9, 0);
+        put_str("完成任务后再回来。", 12, 0);
     }
     else if (quest->status == QS_UNTAKEN)
     {
@@ -2421,13 +2427,13 @@ static bool eval_ac(int iAC)
     screen_save();
     clear_bldg(0, 22);
 
-    put_str(format("Your current AC : %3d", iAC), row++, 0);
-    put_str(format("Protection rate : %3d%%", protection), row++, 0);
+    put_str(format("你当前的护甲等级: %3d", iAC), row++, 0);
+    put_str(format("防护率 : %3d%%", protection), row++, 0);
     row++;
 
-    put_str("Level of Monster:", row + 0, 0);
-    put_str("Dodge Rate      :", row + 1, 0);
-    put_str("Average Damage  :", row + 2, 0);
+    put_str("怪物等级 :", row + 0, 0);
+    put_str("闪避率 :", row + 1, 0);
+    put_str("平均伤害 :", row + 2, 0);
     
     for (col = 17 + 1, lvl = 0; lvl <= 100; lvl += 10, col += 5)
     {
@@ -2449,7 +2455,7 @@ static bool eval_ac(int iAC)
     for (t = buf; t[0]; t += strlen(t) + 1)
         put_str(t, (row++) + 6, 4);
 
-    prt("Defense abilities from your current Armor Class are evaluated below.", 0, 0);
+    prt("基于你当前护甲等级的防御能力评估如下。", 0, 0);
   
     flush();
     (void)inkey();
@@ -2577,7 +2583,7 @@ static bool _gamble_shop_aux(object_type *o_ptr)
     obj_identify_fully(o_ptr);
     stats_on_identify(o_ptr);
     object_desc(buf, o_ptr, OD_COLOR_CODED);
-    msg_format("You win %s.", buf);
+    msg_format("你赢得了%s。", buf);
 
     auto_pick_idx = is_autopick(o_ptr);
     if (auto_pick_idx >= 0)
@@ -2592,7 +2598,7 @@ static bool _gamble_shop_aux(object_type *o_ptr)
             if (!handled && class_ptr->destroy_object)
                 handled = class_ptr->destroy_object(o_ptr);
             if (!handled)
-                msg_format("You destroy %s.", buf);
+                msg_format("你摧毁了%s。", buf);
             return TRUE;
         }
     }
@@ -2609,7 +2615,7 @@ static bool _gamble_shop(const _gamble_shop_t *choices)
 
     if (choice < 0)
     {
-        msg_print("Oops! Something went wrong.");
+        msg_print("哎呀！出了点问题。");
         return FALSE;
     }
 
@@ -2703,8 +2709,8 @@ static obj_ptr _get_reforge_src(int max_power)
     char buf2[255];
     obj_prompt_t prompt = {0};
 
-    sprintf(buf, "Use what artifact for reforging (Max Power = %d)? ", max_power);
-    sprintf(buf2, "You have no artifacts to reforge. (Max Power = %d) ", max_power);
+    sprintf(buf, "使用哪件神器进行重铸 (最大能量 = %d)？", max_power);
+    sprintf(buf2, "你没有可以重铸的神器。(最大能量 = %d)", max_power);
     prompt.prompt = buf;
     prompt.error = buf2;
     prompt.filter = object_is_artifact;
@@ -2720,9 +2726,9 @@ static obj_ptr _get_reforge_dest(int max_power)
     char buf[255];
     obj_prompt_t prompt = {0};
 
-    sprintf(buf, "Reforge which object (Max Power = %d)? ", max_power);
+    sprintf(buf, "重铸哪件物品 (最大能量 = %d)？", max_power);
     prompt.prompt = buf;
-    prompt.error = "You have nothing to reforge.";
+    prompt.error = "你没有可以重铸的物品。";
     prompt.filter = item_tester_hook_nameless_weapon_armour;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -2783,7 +2789,7 @@ static bool _reforge_artifact(void)
 
     if (p_ptr->prace == RACE_MON_SWORD || p_ptr->prace == RACE_MON_RING || p_ptr->prace == RACE_MON_ARMOR)
     {
-        msg_print("Go enchant yourself!");
+        msg_print("滚去给自己附魔吧！");
         return FALSE;
     }
 
@@ -2792,12 +2798,12 @@ static bool _reforge_artifact(void)
 
     if (!object_is_artifact(src)) /* paranoia */
     {
-        msg_print("You must choose an artifact for reforging.");
+        msg_print("你必须选择一件神器进行重铸。");
         return FALSE;
     }
     if (obj_value_real(src) > src_max_power)
     {
-        msg_print("You are not famous enough to reforge that item.");
+        msg_print("你还不够出名，无法重铸那件物品。");
         return FALSE;
     }
 
@@ -2810,21 +2816,21 @@ static bool _reforge_artifact(void)
 
     cost = _calculate_reforge_cost(value, src_weight);
 
-    msg_format("Reforging will cost you %d gold.", cost);
+    msg_format("重铸将花费你%d金币。", cost);
     if (p_ptr->au < cost)
     {
-        msg_print("You do not have that much.");
+        msg_print("你没有那么多钱。");
         return FALSE;
     }
     else if ((dest_max_power < value / 2) && (src_weight < 80))
     {
-        msg_print("(Additional costs may be incurred reforging this item into certain equipment slots.)");
+        msg_print("(将此物品重铸到某些装备槽位可能会产生额外费用。)");
         paivita = TRUE; /* The long message wipes the storeminder's name, so we need to redraw it */
         paivitys_no_inkey_hack = TRUE;
     }
 
     object_desc(o_name, src, OD_NAME_ONLY | OD_COLOR_CODED);
-    if (!get_check(format("Really use %s? (It will be destroyed!) ", o_name))) 
+    if (!get_check(format("真的要使用%s吗？(它将会被摧毁！)", o_name))) 
         return FALSE;
 
     dest = _get_reforge_dest(dest_max_power);
@@ -2832,43 +2838,43 @@ static bool _reforge_artifact(void)
 
     if (object_is_artifact(dest))
     {
-        msg_print("This item is already an artifact!");
+        msg_print("这件物品已经是一件神器了！");
         return _reforge_artifact_exit();
     }
 
     if (dest->tval == TV_QUIVER)
     {
-        msg_print("I am unable to reforge quivers.");
+        msg_print("我无法重铸箭袋。");
         return _reforge_artifact_exit();
     }
 
     if (object_is_ammo(dest))
     {
-        msg_print("I'm a weaponsmith not a fletcher. Perhaps you should check elsewhere?");
+        msg_print("我是一名武器匠，不是制箭师。也许你应该去别处看看？");
         return _reforge_artifact_exit();
     }
 
     if (have_flag(dest->flags, OF_NO_REMOVE))
     {
-        msg_print("You cannot be reforged!");
+        msg_print("你不能被重铸！");
         return _reforge_artifact_exit();
     }
 
     if (object_is_ego(dest))
     {
-        msg_print("This item is already an ego item!");
+        msg_print("这件物品已经是一件ego物品了！");
         return _reforge_artifact_exit();
     }
 
     if (!equip_first_slot(dest))
     {
-        msg_print("This item cannot be reforged.");
+        msg_print("这件物品无法被重铸。");
         return _reforge_artifact_exit();
     }
 
     if (obj_value_real(dest) > dest_max_power)
     {
-        msg_print("This item is too powerful for the source artifact you have chosen.");
+        msg_print("这件物品对你所选择的源神器来说太强大了。");
         return _reforge_artifact_exit();
     }
 
@@ -2884,10 +2890,10 @@ static bool _reforge_artifact(void)
             {
                 if (p_ptr->au < cost + extra_cost)
                 {
-                    msg_format("This reforge will cost an additional %d gold. You do not have that much.", extra_cost);
+                    msg_format("这次重铸需要额外花费%d金币。你没有那么多钱。", extra_cost);
                     return _reforge_artifact_exit();
                 }
-                if (!get_check(format("This reforge will cost an additional %d gold. Proceed?", extra_cost))) return FALSE;
+                if (!get_check(format("这次重铸需要额外花费%d金币。继续吗？", extra_cost))) return FALSE;
             }
         }
     }
@@ -2905,37 +2911,37 @@ static bool _reforge_artifact(void)
         get_reforge_powers(TRUE, src, dest, &src_weight, &dest_weight, &min_power, &max_power, &avg_bp, p_ptr->fame);
         object_desc(src_name, src, (OD_NAME_ONLY));
         object_desc(dest_name, dest, (OD_NAME_ONLY));
-        prt("Source:", 3, 1);
+        prt("源物品:", 3, 1);
         c_put_str(tval_to_attr[src->tval], format("%-30.30s", src_name), 3, 9);
-        put_str(format("Power: %-5d  Type strength: %d", MIN(value, MAX(src_weight, dest_weight) * 1125L), src_weight), 3, 41);
-        put_str("Target:", 4, 1);
+        put_str(format("能量: %-5d 类型强度: %d", MIN(value, MAX(src_weight, dest_weight) * 1125L), src_weight), 3, 41);
+        put_str("目标物品:", 4, 1);
         c_put_str(tval_to_attr[dest->tval], format("%-30.30s", dest_name), 4, 9);
-        put_str(format("Score: %-5d  Type strength: %d", obj_value(dest), dest_weight), 4, 41);
+        put_str(format("分数: %-5d 类型强度: %d", obj_value(dest), dest_weight), 4, 41);
 
         voima = MIN(value * MIN(src_weight, dest_weight) / src_weight, dest_weight * 1125L);
-        put_str("Reforge power after adjusting for item types:", 6, 1);
+        put_str("根据物品类型调整后的重铸能量:", 6, 1);
         c_put_str(TERM_L_BLUE, format("%d", voima), 6, 47);
         if (mut_present(MUT_INSPIRED_SMITHING)) avg_bp += avg_bp / 10; /* Eyeballing */
-        put_str("Reforge power after adjusting for inspiration level:", 7, 1);
+        put_str("根据灵感等级调整后的重铸能量:", 7, 1);
         c_put_str(TERM_L_BLUE, format("%d", avg_bp), 7, 54);
-        put_str("Range of possible scores for resulting artifact:", 8, 1);
+        put_str("生成神器的可能分数范围:", 8, 1);
         strcpy(buf, format("%d", min_power));
         c_put_str(TERM_L_BLUE, buf, 8, 50);
         buflen = strlen(buf);
-        put_str("to", 8, 51 + buflen);
+        put_str("至", 8, 51 + buflen);
         c_put_str(TERM_L_BLUE, format("%d", max_power), 8, 54 + buflen);
-        put_str("Estimated average score:", 9, 1);
+        put_str("预计平均分数:", 9, 1);
         if (max_power < arvo * 7 / 5)
         {
-            c_put_str(TERM_RED, "Not recommended - no room for improvements", 10, 1);
+            c_put_str(TERM_RED, "不推荐 - 没有提升空间", 10, 1);
         }
         else if ((src_weight < dest_weight * 9 / 10) && (value < dest_weight * 1000L))
         {
-            c_put_str(TERM_RED, "Not recommended - source item has lower type strength", 10, 1);
+            c_put_str(TERM_RED, "不推荐 - 源物品具有较低的类型强度", 10, 1);
         }
         else if ((src_weight == 80) && (value < 39000L) && ((dest_weight >= 45) || (src_max_power >= 45000L)))
         {
-            c_put_str(TERM_RED, "Not recommended - cheap source item of high type strength", 10, 1);
+            c_put_str(TERM_RED, "不推荐 - 类型强度高但廉价的源物品", 10, 1);
         }
         /* Hack - there's no actual way to calculate a real expected score,
          * apart from generating a very large number of test artifacts and
@@ -3088,7 +3094,7 @@ static bool _reforge_artifact(void)
         c_put_str(TERM_YELLOW, format("%d", arvio), 9, 26);
         paivita = TRUE;
         paivitys_no_inkey_hack = TRUE;
-        if (!get_check("Proceed with this reforge? ")) return FALSE;
+        if (!get_check("继续进行此重铸吗？")) return FALSE;
     }
 
     if (src->name1 == ART_STING)
@@ -3096,7 +3102,7 @@ static bool _reforge_artifact(void)
         char komento;
         paivita = TRUE;
         paivitys_no_inkey_hack = TRUE;
-        msg_print("You have chosen to <color:R>reforge Sting</color>, certified as a <color:y>Grade A1 (Premium) Very Bad Idea</color> by the Ministry of Silly Plans. Experts have concluded there are <color:G>no circumstances</color> in which reforging Sting would be a good decision.\nProceed anyway? <color:y>[y/n]</color>");
+        msg_print("你选择<color:R>重铸“刺针”(Sting)</color>，这被愚蠢计划部认证为<color:y>A1级(特级)极糟主意</color>。专家们的结论是，在<color:G>任何情况下</color>重铸“刺针”都不是一个好决定。\n仍要继续吗？<color:y>[y/n]</color>");
         while (1)
         {
             bool lopeta = FALSE;
@@ -3108,7 +3114,7 @@ static bool _reforge_artifact(void)
                 case 'N':
                 case 'q':
                 case 'Q':
-                     msg_print("You wisely decide not to use Sting as a reforge source.");
+                     msg_print("你明智地决定不将“刺针”作为重铸源。");
                      return FALSE;
                 case 'y':
                 case 'Y':
@@ -3120,7 +3126,7 @@ static bool _reforge_artifact(void)
         };
         if (!p_ptr->wizard)
         {
-            msg_print("Very well, you asked for it! (In fact, you've asked for it repeatedly! Remember, it was YOUR bad idea.)");
+            msg_print("很好，这可是你自找的！(事实上，你已经三番五次地自找麻烦了！记住，这可是你自己的馊主意。)");
             (void)inkey();
         }
     }
@@ -3135,7 +3141,7 @@ static bool _reforge_artifact(void)
         char    buf[MAX_NLEN];
 
         object_desc(buf, src, OD_COLOR_CODED);
-        doc_printf(doc, "Reforging %s (%d):\n", buf, base);
+        doc_printf(doc, "重铸 %s (%d):\n", buf, base);
         if (strpos("test", player_name)) ct = 1000;
         for (i = 0; i < ct; i++)
         {
@@ -3149,9 +3155,9 @@ static bool _reforge_artifact(void)
             doc_printf(doc, "%d) <indent><style:indent>%s (%d%%)</style></indent>\n",
                 i + 1, buf, score * 100 / base);
         }
-        doc_printf(doc, "\n\n<color:B>Average Reforge: <color:R>%d%%</color> (Score: <color:R>%d</color>)</color>\n",
+        doc_printf(doc, "\n\n<color:B>平均重铸水平: <color:R>%d%%</color> (分数: <color:R>%d</color>)</color>\n",
             total / base, total / ct);
-        doc_display(doc, "Reforging", 0);
+        doc_display(doc, "重铸", 0);
         doc_free(doc);
         return FALSE;
     }
@@ -3167,7 +3173,7 @@ static bool _reforge_artifact(void)
 
     if (!reforge_artifact(src, dest, p_ptr->fame))
     {
-        msg_print("The reforging failed!");
+        msg_print("重铸失败了！");
         return _reforge_artifact_exit();
     }
     else
@@ -3181,7 +3187,7 @@ static bool _reforge_artifact(void)
     p_ptr->au -= cost;
     stats_on_gold_services(cost);
 
-    msg_print("After several hours, you are presented your new artifact...");
+    msg_print("几个小时后，你的新神器呈现在你的面前……");
     extract_day_hour_min(&prev_day, &prev_hour, &prev_min);
     game_turn += rand_range(9075, 9196);
     prevent_turn_overflow();
@@ -3192,7 +3198,7 @@ static bool _reforge_artifact(void)
         if (p_ptr->prace == RACE_WEREWOLF) werewolf_check_midnight();
         if (ironman_nightmare)
         {
-            msg_print("You fall asleep as you wait, and horrible visions flit through your mind...");
+            msg_print("你在等待时睡着了，可怕的幻象在你的脑海中掠过……");
             get_mon_num_prep(get_nightmare, NULL);
             while(1)
             {
@@ -3201,7 +3207,7 @@ static bool _reforge_artifact(void)
             }
 
             get_mon_num_prep(NULL, NULL);
-            msg_print("You awake screaming.");
+            msg_print("你尖叫着惊醒。");
         }
     }
 
@@ -3226,7 +3232,7 @@ static bool _reforge_artifact(void)
     {
         if (pack_is_full()) /* This should never happen since using a source artifact ought to give us an empty slot... */
         {
-            msg_print("<color:v>Your pack is overflowing!</color>");
+            msg_print("<color:v>你的背包溢出了！</color>");
             pack_carry(&copy);
         }
         else pack_carry(&copy);
@@ -3280,14 +3286,14 @@ static bool enchant_item(obj_p filter, int cost, int to_hit, int to_dam, int to_
 
     if ((p_ptr->prace == RACE_MON_SWORD) || (p_ptr->prace == RACE_MON_ARMOR))
     {
-        msg_print("Go enchant yourself!");
+        msg_print("滚去给自己附魔吧！");
         return FALSE;
     }
 
     clear_bldg(4, 18);
 
-    prompt.prompt = "Improve which item?";
-    prompt.error = "You have nothing to improve.";
+    prompt.prompt = "改良哪件物品？";
+    prompt.error = "你没有可以改良的物品。";
     prompt.filter = filter;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -3308,8 +3314,8 @@ static bool enchant_item(obj_p filter, int cost, int to_hit, int to_dam, int to_
         int unit_cost_sum = 0;
         _enchant_choice_t choices[25];
         object_type copy = {0};
-        menu_t menu = { "Enchant How Much?", NULL, 
-                        "Amt      Cost", _enchant_menu_fn,
+        menu_t menu = { "附魔多少？", NULL, 
+                        "数量 花费", _enchant_menu_fn,
                         choices, 25, 0 };
 
         object_copy(&copy, prompt.obj);
@@ -3383,7 +3389,7 @@ static bool enchant_item(obj_p filter, int cost, int to_hit, int to_dam, int to_
         if (!i)
         {
             object_desc(tmp_str, prompt.obj, OD_COLOR_CODED);
-            msg_format("%^s can not be further improved.", tmp_str);
+            msg_format("%^s无法进一步改良了。", tmp_str);
             return FALSE;
         }
 
@@ -3401,7 +3407,7 @@ static bool enchant_item(obj_p filter, int cost, int to_hit, int to_dam, int to_
     if (p_ptr->au < cost)
     {
         object_desc(tmp_str, prompt.obj, OD_NAME_ONLY | OD_COLOR_CODED);
-        msg_format("You do not have the gold to improve %s!", tmp_str);
+        msg_format("你没有足够的金币来改良%s！", tmp_str);
         return FALSE;
     }
 
@@ -3438,13 +3444,13 @@ static bool enchant_item(obj_p filter, int cost, int to_hit, int to_dam, int to_
     if (!okay)
     {
         if (flush_failure) flush();
-        msg_print("The improvement failed.");
+        msg_print("改良失败了。");
         return (FALSE);
     }
     else
     {
         object_desc(tmp_str, prompt.obj, OD_NAME_AND_ENCHANT | OD_COLOR_CODED);
-        msg_format("Improved %s for %d gold.", tmp_str, cost);
+        msg_format("花费%d金币改良了%s。", tmp_str, cost);
 
         p_ptr->au -= cost;
         stats_on_gold_services(cost);
@@ -3461,13 +3467,13 @@ bool tele_town(void)
 
     if (dun_level)
     {
-        msg_print("This spell can only be used on the surface!");
+        msg_print("这个法术只能在地表使用！");
         return FALSE;
     }
 
     if (p_ptr->inside_arena || p_ptr->inside_battle)
     {
-        msg_print("This spell can only be used outside!");
+        msg_print("这个法术只能在室外使用！");
         return FALSE;
     }
 
@@ -3489,13 +3495,13 @@ bool tele_town(void)
 
     if (!num)
     {
-        msg_print("You have not yet visited any town.");
+        msg_print("你尚未访问过任何城镇。");
         msg_print(NULL);
         screen_load();
         return FALSE;
     }
 
-    prt("Which town you go: ", 0, 0);
+    prt("前往哪个城镇:", 0, 0);
     while(1)
     {
         i = inkey();
@@ -3569,7 +3575,7 @@ static bool research_mon(void)
     screen_save();
 
     /* Get a character, or abort */
-    if (!get_com("Enter character to be identified(^A:All,^U:Uniqs,^N:Non uniqs,^M:Name): ", &sym, FALSE))
+    if (!get_com("输入要标识的字符(^A:全部,^U:唯一,^N:非唯一,^M:名称):", &sym, FALSE))
 
     {
         /* Restore */
@@ -3603,7 +3609,7 @@ static bool research_mon(void)
     else if (sym == KTRL('M'))
     {
         all = TRUE;
-        if (!get_string("Enter name:",temp, 70))
+        if (!get_string("输入名称:",temp, 70))
         {
             temp[0]=0;
 
@@ -3620,7 +3626,7 @@ static bool research_mon(void)
     }
     else
     {
-        sprintf(buf, "%c - %s.", sym, "Unknown Symbol");
+        sprintf(buf, "%c - %s.", sym, "未知符号");
 
     }
 
@@ -3713,7 +3719,7 @@ static bool research_mon(void)
         roff_top(r_idx);
 
         /* Hack -- Complete the prompt */
-        Term_addstr(-1, TERM_WHITE, " [(r)ecall, ESC, space to continue]");
+        Term_addstr(-1, TERM_WHITE, "[(r)召回, ESC, 空格键继续]");
 
 
         /* Interact */
@@ -3806,24 +3812,24 @@ static void _sell_photo_local_aux(object_type *o_ptr)
     char name[MAX_NLEN];
     if (o_ptr->number > 1)
     {
-        if (!msg_input_num("Quantity", &amt, 1, o_ptr->number)) return;
+        if (!msg_input_num("数量", &amt, 1, o_ptr->number)) return;
     }
     if (o_ptr->pval == MON_BARNEY)
     {
-        msg_format("Thanks, but we already have more than enough photographs of him.");
+        msg_format("谢谢，但我们已经有足够多关于他的照片了。");
         return;
     }
     tarjous = tourist_sell_photo_aux(o_ptr, amt, FALSE);
     if (tarjous == -1)
     {
-        msg_format("We're not interested in %s.", (amt == 1) ? "this photograph" : "these photographs");
+        msg_format("我们对%s不感兴趣。", (amt == 1) ? "这张照片" : "这些照片");
         return;
     }
     myy = ((tarjous > 0) && (!no_selling));
     if (tarjous > 2000)
     {
-        if (o_ptr->pval == MON_TSUCHINOKO) msg_print("Hey, nice find!");
-        else msg_print("Is that... BIGFOOT????");
+        if (o_ptr->pval == MON_TSUCHINOKO) msg_print("嘿，发现得好！");
+        else msg_print("那是……大脚怪吗？？？？");
         myy = TRUE;
         if (no_selling) tarjous = (tarjous / 1000) * 1000;
     }
@@ -3833,7 +3839,7 @@ static void _sell_photo_local_aux(object_type *o_ptr)
     object_desc(name, o_ptr, OD_COLOR_CODED);
     if (!tarjous)
     {
-        if (!get_check(format("Really give %s? ", name)))
+        if (!get_check(format("真的要给予%s吗？", name)))
         {
             o_ptr->number = amt + jaljella;
             return;
@@ -3841,7 +3847,7 @@ static void _sell_photo_local_aux(object_type *o_ptr)
     }
     else
     {
-        if (!get_check(format("Really sell %s for <color:R>%d</color> gp? ", name, tarjous)))
+        if (!get_check(format("真的要以 <color:R>%d</color> 金币出售%s吗？", name, tarjous)))
         {
             o_ptr->number = amt + jaljella;
             return;
@@ -3855,9 +3861,9 @@ static void _sell_photo_local_aux(object_type *o_ptr)
 
     object_desc(name, o_ptr, OD_COLOR_CODED);
     if (!tarjous)
-        msg_format("You gave %s.", name);
+        msg_format("你给予了%s。", name);
     else
-        msg_format("You sold %s for <color:R>%d</color> gold.", name, tarjous);
+        msg_format("你以 <color:R>%d</color> 金币出售了%s。", name, tarjous);
     (void)tourist_sell_photo_aux(o_ptr, amt, TRUE);
     o_ptr->number = jaljella;
     p_ptr->notice |= (PN_CARRY | PN_OPTIMIZE_PACK);
@@ -3870,13 +3876,13 @@ static void _sell_photo(void)
 
     if (no_selling)
     {
-        prompt.prompt = "Give which photograph?";
+        prompt.prompt = "给予哪张照片？";
     }
     else
     {
-        prompt.prompt = "Sell which photograph?";
+        prompt.prompt = "出售哪张照片？";
     }
-    prompt.error = "You don't have any photographs.";
+    prompt.error = "你没有任何照片。";
     prompt.filter = _object_is_photograph;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_QUIVER;
@@ -3916,13 +3922,13 @@ static void bldg_process_command(building_type *bldg, int i)
     if (((bldg->action_restr[i] == 1) && !is_member(bldg)) ||
         ((bldg->action_restr[i] == 2) && !is_owner(bldg)))
     {
-        msg_print("You have no right to choose that!");
+        msg_print("你无权选择那个！");
         return;
     }
 
     if (bcost > p_ptr->au)
     {
-        msg_print("You do not have the gold!");
+        msg_print("你没有足够的金币！");
         return;
     }
 
@@ -3979,15 +3985,15 @@ static void bldg_process_command(building_type *bldg, int i)
         enchant_item(object_allow_enchant_armour, bcost, 0, 0, 1, is_guild);
         break;
     case BACT_RECHARGE:
-        msg_print("My apologies, but that service is no longer available!");
+        msg_print("十分抱歉，该服务不再可用！");
         break;
     case BACT_RECHARGE_ALL:
-        msg_print("My apologies, but that service is no longer available!");
+        msg_print("十分抱歉，该服务不再可用！");
         break;
     case BACT_IDENTS: /* needs work */
-        if (!get_check("Pay to have all your possessions identified? ")) break;
+        if (!get_check("花钱鉴定你所有的所有物吗？")) break;
         identify_pack();
-        msg_print("Your possessions have been identified.");
+        msg_print("你的所有物已被鉴定。");
 
         paid = TRUE;
         break;
@@ -4052,13 +4058,13 @@ static void bldg_process_command(building_type *bldg, int i)
         }
         else if ((select_dungeon == DUNGEON_HEAVEN) && (quests_get(QUEST_METATRON)->status != QS_FINISHED)) max_depth = 585;
 
-        amt = get_quantity(format("Teleport to which level of %s? ", d_name + d_info[select_dungeon].name), max_depth);
+        amt = get_quantity(format("传送到%s的哪一层？", d_name + d_info[select_dungeon].name), max_depth);
         if (amt > 0)
         {
             p_ptr->word_recall = 1;
             p_ptr->recall_dungeon = select_dungeon;
             max_dlv[p_ptr->recall_dungeon] = ((amt > d_info[select_dungeon].maxdepth) ? d_info[select_dungeon].maxdepth : ((amt < d_info[select_dungeon].mindepth) ? d_info[select_dungeon].mindepth : amt));
-            msg_print("The air about you becomes charged...");
+            msg_print("你周围的空气充满了电荷……");
 
             paid = TRUE;
             p_ptr->redraw |= (PR_STATUS);
@@ -4072,7 +4078,7 @@ static void bldg_process_command(building_type *bldg, int i)
         }
         else
         {
-            msg_print("You have no mutations that I can cure.");
+            msg_print("你没有我可以治愈的变异。");
         }
         break;
     case BACT_BATTLE:
@@ -4091,7 +4097,7 @@ static void bldg_process_command(building_type *bldg, int i)
         kankin();
         break;
     case BACT_HEIKOUKA:
-        msg_print("You received an equalization ritual.");
+        msg_print("你接受了平衡仪式。");
         virtue_init();
         paid = TRUE;
         break;
@@ -4131,7 +4137,7 @@ static void bldg_process_command(building_type *bldg, int i)
     case BACT_CHANGE_NAME:
         if (p_ptr->pclass == CLASS_POLITICIAN)
         {
-            msg_print("No way! Think of your name recognition.");
+            msg_print("绝不可能！想想你的知名度。");
         }
         else if (py_get_name())
         {
@@ -4141,21 +4147,21 @@ static void bldg_process_command(building_type *bldg, int i)
         break;
     case BACT_REPUTATION:
         if (p_ptr->fame <= 0)
-            cmsg_print(TERM_WHITE, "Who the hell are you?");
+            cmsg_print(TERM_WHITE, "你到底是谁？");
         else if (p_ptr->fame < 20)
-            cmsg_print(TERM_WHITE, "I've never even heard of you!");
+            cmsg_print(TERM_WHITE, "我甚至从未听说过你！");
         else if (p_ptr->fame < 40)
-            cmsg_print(TERM_L_UMBER, "Hmmm ... You've done a few minor notable deeds, but hardly anything worth bragging about!");
+            cmsg_print(TERM_L_UMBER, "嗯……你做了一些值得注意的小事，但几乎没有什么值得吹嘘的！");
         else if (p_ptr->fame < 60)
-            cmsg_print(TERM_YELLOW, "Yes, I've heard of you. The townfolk are talking!");
+            cmsg_print(TERM_YELLOW, "是的，我听说过你。镇上的人都在谈论你！");
         else if (p_ptr->fame < 80)
-            cmsg_print(TERM_ORANGE, "Ah, good sir. 'Tis an honor to see you again!");
+            cmsg_print(TERM_ORANGE, "啊，好心的先生。再次见到您是我的荣幸！");
         else if (p_ptr->fame < 100)
-            cmsg_print(TERM_L_RED, "You are a true hero!");
+            cmsg_print(TERM_L_RED, "你是一个真正的英雄！");
         else if (p_ptr->fame < 150)
-            cmsg_print(TERM_RED, "You are the stuff of legends!");
+            cmsg_print(TERM_RED, "你就是传说！");
         else
-            cmsg_print(TERM_VIOLET, "The bards doth sing of ye: Heroic ballads both far 'n wide!");
+            cmsg_print(TERM_VIOLET, "吟游诗人们都在歌颂你：英雄的民谣传遍四方！");
         paid = TRUE;
         break;
     case BACT_SELL_PHOTO:
@@ -4190,14 +4196,14 @@ void do_cmd_quest(void)
 
     if (!cave_have_flag_bold(py, px, FF_QUEST_ENTER))
     {
-        msg_print("You see no quest level here.");
+        msg_print("你在这里看不到任务层。");
         return;
     }
     else
     {
         int quest_id = cave[py][px].special;
         int danger = quests_get_level(quest_id);
-        msg_format("This is the entrance to the quest: <color:B>%s</color>.",
+        msg_format("这是任务的入口: <color:B>%s</color>。",
             quests_get_name(quest_id));
         if (((danger < 23) && (p_ptr->lev < danger - 4)) ||
             ((danger < 34) && (p_ptr->lev < danger - 7)) ||
@@ -4207,10 +4213,10 @@ void do_cmd_quest(void)
             char buf[255];
 
             sound(SOUND_WARN);
-            strcpy(buf, format("\n<color:R>WARNING:</color> This is a level <color:o>%d</color> quest. Really enter? <color:y>[Y/n]</color>\n", danger));
+            strcpy(buf, format("\n<color:R>警告:</color> 这是一个 <color:o>%d</color> 级的任务。真的要进入吗？ <color:y>[Y/n]</color>\n", danger));
             if (!paranoid_msg_prompt(buf, PROMPT_FORCE_CHOICE)) return;
         }
-        else if (!get_check("Do you enter? ")) return;
+        else if (!get_check("你要进入吗？")) return;
 
         /* Player enters a new quest XXX */
         p_ptr->oldpy = py;
@@ -4236,7 +4242,7 @@ void do_cmd_bldg(void)
 
     if (!cave_have_flag_bold(py, px, FF_BLDG))
     {
-        msg_print("You see no building here.");
+        msg_print("你在这里看不到建筑。");
 
         return;
     }
@@ -4250,19 +4256,19 @@ void do_cmd_bldg(void)
 
     if ((no_wilderness) && (p_ptr->lev < 10) && (which == 6))
     {
-        msg_print("Get some adventuring under your belt before you start gambling!");
+        msg_print("在开始赌博之前，先去积攒一些冒险经验吧！");
         return;
     }
     else if ((which == 2) && (p_ptr->arena_number < 0))
     {
-        msg_print("'There's no place here for a LOSER like you!'");
+        msg_print("“这里没有你这种失败者的容身之地！”");
         return;
     }
     else if ((which == 2) && p_ptr->inside_arena)
     {
         if (!p_ptr->exit_bldg)
         {
-            prt("The gates are closed. The monster awaits!", 0, 0);
+            prt("大门关上了。怪物在等着你！", 0, 0);
         }
         else
         {
@@ -4289,21 +4295,21 @@ void do_cmd_bldg(void)
 
         return;
     }
-    else if (prace_is_(RACE_MON_LEPRECHAUN) && strpos("Cornucopia", bldg->name))
+    else if (prace_is_(RACE_MON_LEPRECHAUN) && strpos("丰饶角", bldg->name))
     {
-        msg_print("We don't serve your kind in here!");
+        msg_print("我们这里不招待你这种人！");
         return;
     }
     else if (((p_ptr->current_r_idx == MON_IMPLORINGTON) || ((prace_is_(RACE_MON_RING)) && (p_ptr->riding) && (m_list[p_ptr->riding].r_idx == MON_IMPLORINGTON)))
-             && (strpos("Cornucopia", bldg->name)))
+             && (strpos("丰饶角", bldg->name)))
     {
         static bool yritetty = FALSE;
         if (!yritetty)
         {
-            msg_print("You look in, spy a large \"Wanted\" poster, and decide not to enter.");
+            msg_print("你往里看去，瞥见了一张巨大的“通缉”海报，于是决定不进去了。");
             yritetty = TRUE;
         }
-        else msg_print("That would be unwise.");
+        else msg_print("那是不明智的。");
         return;
     }
     else if (p_ptr->inside_battle)
@@ -4382,7 +4388,7 @@ void do_cmd_bldg(void)
 
         if (pack_overflow_count())
         {
-            msg_print("<color:v>Your pack is overflowing!</color> It's time for you to leave!");
+            msg_print("<color:v>你的背包溢出了！</color> 你是时候离开了！");
             msg_print(NULL);
             leave_bldg = TRUE;
         }

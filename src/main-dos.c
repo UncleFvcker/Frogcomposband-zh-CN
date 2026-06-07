@@ -761,28 +761,28 @@ static errr Term_user_dos(int n)
 		Term_clear();
 
 		/* Print date and time of compilation */
-		prt(format("Compiled: %s %s\n", __TIME__, __DATE__), 1, 45);
+		prt(format("编译时间：%s %s\n", __TIME__, __DATE__), 1, 45);
 
 		/* Why are we here */
-		prt("DOS options", 2, 0);
+		prt("DOS 选项", 2, 0);
 
 		/* Give some choices */
 #ifdef USE_SOUND
-		prt("(V) Sound Volume", 4, 5);
-		prt("(M) Music Volume", 5, 5);
+		prt("(V) 音效音量", 4, 5);
+		prt("(M) 音乐音量", 5, 5);
 #endif /* USE_SOUND */
 
 #ifdef USE_GRAPHICS
 
 		if (arg_graphics)
 		{
-			strcpy(status, "On");
+			strcpy(status, "开");
 		}
 		else
 		{
-			strcpy(status, "Off");
+			strcpy(status, "关");
 		}
-		prt(format("(G) Graphics : %s", status), 7, 5);
+		prt(format("(G) 图形模式：%s", status), 7, 5);
 
 #endif /* USE_GRAPHICS */
 
@@ -790,22 +790,22 @@ static errr Term_user_dos(int n)
 
 		if (arg_sound)
 		{
-			strcpy(status, "On");
+			strcpy(status, "开");
 		}
 		else
 		{
-			strcpy(status, "Off");
+			strcpy(status, "关");
 		}
-		prt(format("(S) Sound/Music : %s", status), 8, 5);
+		prt(format("(S) 音效/音乐：%s", status), 8, 5);
 
 #endif /* USE_SOUND */
 
-		prt("(R) Screen resolution", 12, 5);
+		prt("(R) 屏幕分辨率", 12, 5);
 
-		prt("(W) Save current options", 14, 5);
+		prt("(W) 保存当前选项", 14, 5);
 
 		/* Prompt */
-		prt("Command: ", 18, 0);
+		prt("命令：", 18, 0);
 
 		/* Get command */
 		k = inkey();
@@ -822,13 +822,13 @@ static errr Term_user_dos(int n)
 			case 'v':
 			{
 				/* Prompt */
-				prt("Command: Sound Volume", 18, 0);
+				prt("命令：音效音量", 18, 0);
 
 				/* Get a new value */
 				while (1)
 				{
-					prt(format("Current Volume: %d", digi_volume), 22, 0);
-					prt("Change Volume (+, - or ESC to accept): ", 20, 0);
+					prt(format("当前音量：%d", digi_volume), 22, 0);
+					prt("更改音量（+、- 或 ESC 确认）：", 20, 0);
 					k = inkey();
 					if (k == ESCAPE) break;
 					switch (k)
@@ -861,13 +861,13 @@ static errr Term_user_dos(int n)
 			case 'm':
 			{
 				/* Prompt */
-				prt("Command: Music Volume", 18, 0);
+				prt("命令：音乐音量", 18, 0);
 
 				/* Get a new value */
 				while (1)
 				{
-					prt(format("Current Volume: %d", midi_volume), 22, 0);
-					prt("Change Volume (+, - or ESC to accept): ", 20, 0);
+					prt(format("当前音量：%d", midi_volume), 22, 0);
+					prt("更改音量（+、- 或 ESC 确认）：", 20, 0);
 					k = inkey();
 					if (k == ESCAPE) break;
 					switch (k)
@@ -948,8 +948,8 @@ static errr Term_user_dos(int n)
 				Term_clear();
 
 				/* Prompt */
-				prt("Command: Screen Resolution", 1, 0);
-				prt("Restart Angband to get the new screenmode.", 3, 0);
+				prt("命令：屏幕分辨率", 1, 0);
+				prt("重启游戏以应用新的屏幕模式。", 3, 0);
 
 				/* Get a list of the available presets */
 				while (1)
@@ -972,7 +972,7 @@ static errr Term_user_dos(int n)
 				}
 
 				/* Get a new resolution */
-				prt(format("Screen Resolution : %d", resolution), 20, 0);
+				prt(format("屏幕分辨率：%d", resolution), 20, 0);
 				k = inkey();
 				if (k == ESCAPE) break;
 				if (isdigit(k)) resolution = D2I(k);
@@ -992,7 +992,7 @@ static errr Term_user_dos(int n)
 			case 'W':
 			case 'w':
 			{
-				prt("Saving current options", 18, 0);
+				prt("正在保存当前选项", 18, 0);
 
 #ifdef USE_SOUND
 				set_config_int("sound", "digi_volume", digi_volume);
@@ -1399,7 +1399,7 @@ static void dos_dump_screen(void)
 	if (bmp) destroy_bitmap(bmp);
 
 	/* Success message */
-	msg_print("Screen dump saved.");
+	msg_print("屏幕截图已保存。");
 	msg_print(NULL);
 }
 

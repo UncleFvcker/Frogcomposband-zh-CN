@@ -2017,17 +2017,17 @@ typedef struct {
     int   weight;
 } _slot_weight_t, *_slot_weight_ptr;
 static _slot_weight_t _slot_weight_tbl[] = {
-    {"Weapons", object_is_melee_weapon, 80},
-    {"Shields", object_is_shield, 52},
-    {"Bows", object_is_bow, 60},
-    {"Rings", object_is_ring, 55},
-    {"Amulets", object_is_amulet, 40},
-    {"Lights", object_is_lite, 36},
-    {"Body Armor", object_is_body_armour, 80},
-    {"Cloaks", object_is_cloak, 43},
-    {"Helmets", object_is_helmet, 50},
-    {"Gloves", object_is_gloves, 45},
-    {"Boots", object_is_boots, 50},
+    {"武器", object_is_melee_weapon, 80},
+    {"盾牌", object_is_shield, 52},
+    {"弓", object_is_bow, 60},
+    {"戒指", object_is_ring, 55},
+    {"项链", object_is_amulet, 40},
+    {"光源", object_is_lite, 36},
+    {"身体护甲", object_is_body_armour, 80},
+    {"披风", object_is_cloak, 43},
+    {"头盔", object_is_helmet, 50},
+    {"手套", object_is_gloves, 45},
+    {"鞋子", object_is_boots, 50},
     {NULL}
 };
 int get_slot_weight(obj_ptr obj)
@@ -3092,7 +3092,7 @@ s32b create_artifact(object_type *o_ptr, u32b mode)
     /* Hack: Lights won't value at all unless they are artifacts and the
        only way an object is marked as a rand-art is via the art_name field. */
     if (o_ptr->tval == TV_LITE)
-        o_ptr->art_name = quark_add("Temp");
+        o_ptr->art_name = quark_add("临时");
 
     if (object_is_melee_weapon(o_ptr))
         ego_weapon_adjust_weight(o_ptr);
@@ -3100,7 +3100,7 @@ s32b create_artifact(object_type *o_ptr, u32b mode)
     _sanitise_flags(o_ptr);
 
     total_flags = new_object_cost(o_ptr, COST_REAL);
-    if (cheat_peek) msg_format("Score: %d", total_flags);
+    if (cheat_peek) msg_format("分数: %d", total_flags);
 
     if (o_ptr->tval == TV_RING)
     {
@@ -3179,8 +3179,8 @@ s32b create_artifact(object_type *o_ptr, u32b mode)
 
     if (cheat_xtra)
     {
-        if (artifact_bias) msg_format("Biased artifact: %d.", artifact_bias);
-        else msg_print("No bias in artifact.");
+        if (artifact_bias) msg_format("偏向神器: %d。", artifact_bias);
+        else msg_print("神器没有偏向。");
     }
 
     /* Save the inscription */

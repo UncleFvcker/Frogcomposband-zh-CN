@@ -16,7 +16,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "devilish power";
+        me.magic_desc = "魔鬼力量";
         me.which_stat = A_INT;
         me.encumbrance.max_wgt = 750;
         me.encumbrance.weapon_pct = 0;
@@ -91,7 +91,7 @@ static void _khorne_calc_innate_attacks(void)
             a.weight = 100;
             calc_innate_blows(&a, 200);
             a.msg = "You claw.";
-            a.name = "Claw";
+            a.name = "爪击";
 
             p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
         }
@@ -108,7 +108,7 @@ static void _khorne_calc_innate_attacks(void)
 
             calc_innate_blows(&a, 300);
             a.msg = "You bite.";
-            a.name = "Bite";
+            a.name = "撕咬";
             p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
         }
     }
@@ -129,7 +129,7 @@ static void _khorne_calc_innate_attacks(void)
             a.weight = 200;
             calc_innate_blows(&a, 400);
             a.msg = "You crush.";
-            a.name = "Claw";
+            a.name = "爪击";
 
             p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
         }
@@ -146,7 +146,7 @@ static void _khorne_calc_innate_attacks(void)
 
             calc_innate_blows(&a, 200);
             a.msg = "You butt.";
-            a.name = "Head";
+            a.name = "头撞";
             p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
         }
     }
@@ -263,14 +263,14 @@ static void _khorne_gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_BLOODLETTER_KHORNE && new_level >= 20)
     {
         p_ptr->current_r_idx = MON_FLESHHOUND_KHORNE;
-        msg_print("You have evolved into a Fleshhound of Khorne.");
+        msg_print("你进化成了恐虐血犬(Fleshhound of Khorne)。");
         equip_on_change_race();
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_FLESHHOUND_KHORNE && new_level >= 30)
     {
         p_ptr->current_r_idx = MON_JUGGERNAUT_KHORNE;
-        msg_print("You have evolved into a Juggernaut of Khorne.");
+        msg_print("你进化成了恐虐钢牛(Juggernaut of Khorne)。");
         equip_on_change_race();
         p_ptr->redraw |= PR_MAP;
     }
@@ -279,7 +279,7 @@ static void _khorne_gain_level(int new_level)
         object_type forge;
         int slot;
         p_ptr->current_r_idx = MON_BLOODTHIRSTER;
-        msg_print("You have evolved into a Bloodthirster.");
+        msg_print("你进化成了嗜血狂魔(Bloodthirster)。");
         equip_on_change_race();
         p_ptr->redraw |= PR_MAP;
         object_prep(&forge, lookup_kind(TV_SWORD, SV_BLADE_OF_CHAOS));
@@ -310,7 +310,7 @@ static race_t *_khorne_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[4] =  {"Bloodletter of Khorne", "Fleshhound of Khorne", "Juggernaut of Khorne", "Bloodthirster"};
+    static cptr   titles[4] =  {"恐虐放血者", "恐虐血犬", "恐虐钢牛", "嗜血狂魔"};
     int           rank = 0;
 
     if (p_ptr->lev >= 20) rank++;
@@ -344,7 +344,7 @@ static race_t *_khorne_get_race_t(void)
     }
 
     if (spoiler_hack || birth_hack)
-        me.subname = "Servant of Khorne";
+        me.subname = "恐虐仆从";
     else
         me.subname = titles[rank];
     me.stats[A_STR] =  3 + rank;
@@ -417,7 +417,7 @@ static void _marilith_calc_innate_attacks(void) {
         a.blows = 100;
 
         a.msg = "You sting.";
-        a.name = "Tail";
+        a.name = "尾击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -534,26 +534,26 @@ static void _marilith_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_MANES && new_level >= 10)
     {
         p_ptr->current_r_idx = MON_QUASIT;
-        msg_print("You have evolved into a Quasit.");
+        msg_print("你进化成了夸塞魔(Quasit)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_QUASIT && new_level >= 20)
     {
         p_ptr->current_r_idx = MON_BODAK;
-        msg_print("You have evolved into a Bodak.");
+        msg_print("你进化成了伯达克魔(Bodak)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_BODAK && new_level >= 30)
     {
         p_ptr->current_r_idx = MON_DEATH_QUASIT;
-        msg_print("You have evolved into a Death Quasit.");
+        msg_print("你进化成了死亡夸塞魔(Death Quasit)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_DEATH_QUASIT && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_MARILITH;
         p_ptr->psex = SEX_FEMALE;
-        msg_print("You have evolved into a Marilith.");
+        msg_print("你进化成了六臂蛇魔(Marilith)。");
         equip_on_change_race();
         p_ptr->redraw |= PR_MAP;
     }
@@ -563,7 +563,7 @@ static race_t *_marilith_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[5] =  {"Manes", "Quasit", "Bodak", "Death Quasit", "Marilith"};
+    static cptr   titles[5] =  {"劣魔", "夸塞魔", "伯达克魔", "死亡夸塞魔", "六臂蛇魔"};
     int           rank = 0;
 
     if (p_ptr->lev >= 10) rank++;
@@ -601,7 +601,7 @@ static race_t *_marilith_get_race_t(void)
     }
 
     if (spoiler_hack || birth_hack)
-        me.subname = "Tanar'ri";
+        me.subname = "塔纳厘";
     else
         me.subname = titles[rank];
     me.stats[A_STR] =  (rank == 3) ? 0 : rank;
@@ -716,7 +716,7 @@ static void _balrog_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_LESSER_BALROG && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_GREATER_BALROG;
-        msg_print("You have evolved into a Greater Balrog.");
+        msg_print("你进化成了上级炎魔(Greater Balrog)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -724,7 +724,7 @@ static race_t *_balrog_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[2] =  {"Lesser Balrog", "Greater Balrog"};
+    static cptr   titles[2] =  {"下级炎魔", "上级炎魔"};
     int           rank = 0;
 
     if (p_ptr->lev >= 40) rank++;
@@ -756,7 +756,7 @@ static race_t *_balrog_get_race_t(void)
     }
 
     if (spoiler_hack || birth_hack)
-        me.subname = "Balrog";
+        me.subname = "炎魔";
     else
         me.subname = titles[rank];
     me.stats[A_STR] =  4 + 3*rank;
@@ -787,10 +787,10 @@ void _cyber_rocket_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Rocket");
+        var_set_string(res, "火箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Launches a powerful rocket at your opponent.");
+        var_set_string(res, "向你的对手发射一枚威力强大的火箭。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _rocket_amount()));
@@ -801,7 +801,7 @@ void _cyber_rocket_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!get_fire_dir(&dir)) return;
 
-        msg_print("You launch a rocket.");
+        msg_print("你发射了一枚火箭。");
         fire_rocket(GF_ROCKET, dir, _rocket_amount(), 2);
 
         var_set_bool(res, TRUE);
@@ -881,7 +881,7 @@ static void _cyber_move_player(void)
     {
         int i;
 
-        cmsg_print(TERM_RED, py_in_dungeon() ? "The dungeon trembles!" : "The ground trembles!");
+        cmsg_print(TERM_RED, py_in_dungeon() ? "地下城颤抖了！" : "大地颤抖了！");
         if (disturb_minor)
             disturb(0, 0);
 
@@ -906,7 +906,7 @@ static race_t *_cyber_get_race_t(void)
     skills_t bs = { 20,  18,  31,  -1,  13,   7,  75,  30};
     skills_t xs = { 12,   6,   9,   0,   0,   0,  35,   7};
 
-        me.subname = "Cyberdemon";
+        me.subname = "赛博恶魔";
         me.subdesc = "Cyberdemons are giant humanoid forms, half demon and half machine. They are a bit "
         "slow and move erratically, but their immense bodies and unsurpassable firepower "
         "more than make up for this. The walls of the dungeon reverberate with their heavy steps!\n\n"
@@ -969,7 +969,7 @@ race_t *mon_demon_get_race(int psubrace)
         result = _balrog_get_race_t();
     }
 
-    result->name = "Demon";
+    result->name = "恶魔";
     result->desc = _desc;
     result->flags = RACE_IS_MONSTER | RACE_IS_DEMON | RACE_IS_NONLIVING;
     result->shop_adjust = 140;

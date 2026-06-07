@@ -99,7 +99,7 @@ bool fear_set_p(int v)
 
     if (new_lvl > old_lvl)
     {
-        msg_format("You feel <color:%c>%s</color>.", _get_level_color(new_lvl), _get_level_name(new_lvl));
+        msg_format("你感到 <color:%c>%s</color>。", _get_level_color(new_lvl), _get_level_name(new_lvl));
         if (old_lvl <= FEAR_SCARED && one_in_(6) && !fear_save_p(v/5))
             do_dec_stat(A_CHR);
         if (p_ptr->special_defense & KATA_MASK)
@@ -113,10 +113,10 @@ bool fear_set_p(int v)
     else if (new_lvl < old_lvl)
     {
         if (new_lvl == FEAR_BOLD)
-            msg_print("Your fears finally subside.");
+            msg_print("你的恐惧终于平息了。");
         else
         {
-            msg_format("You are no longer %s, but you still feel %s.",
+            msg_format("你不再%s了，但你仍然感到%s。",
                         _get_level_name(old_lvl), _get_level_name(new_lvl));
         }
         notice = TRUE;
@@ -187,7 +187,7 @@ bool pelko(void)
 {
     if (!fear_allow_magic())
     {
-        msg_print("You are too scared!");
+        msg_print("你太害怕了！");
         if (energy_use < 100) energy_use = 100;
         if (flush_failure) flush();
         return TRUE;
@@ -333,19 +333,19 @@ void fear_recover_p(void)
             if (p_ptr->afraid >= FEAR_PETRIFIED)
             {
                 p_ptr->energy_need += 100 * TURNS_PER_TICK / 10;
-                msg_print("You are scared stiff!");
+                msg_print("你被吓僵了！");
                 disturb(1, 0);
             }
             else if (p_ptr->afraid >= FEAR_TERRIFIED)
             {
                 p_ptr->energy_need += 60 * TURNS_PER_TICK / 10;
-                msg_print("You shudder uncontrollably!");
+                msg_print("你无法控制地发抖！");
                 disturb(1, 0);
             }
             else
             {
                 p_ptr->energy_need += 30 * TURNS_PER_TICK / 10;
-                msg_print("You tremble in terror!");
+                msg_print("你在恐惧中颤抖！");
                 disturb(1, 0);
             }
         }
@@ -376,7 +376,7 @@ void fear_process_p(void)
         {
             char m_name[80];
             monster_desc(m_name, m_ptr, 0);
-            msg_format("You behold the terrifying visage of %s!", m_name);
+            msg_format("你注视着 %s 可怕的面容！", m_name);
             mon_lore_2(m_ptr, RF2_AURA_FEAR);
             fear_add_p(r_level/MAX(1, m_ptr->cdis-2));
         }
@@ -393,7 +393,7 @@ void fear_update_m(monster_type *m_ptr)
         {
             char m_name[80];
             monster_desc(m_name, m_ptr, 0);
-            msg_format("You behold the terrifying visage of %s!", m_name);
+            msg_format("你注视着 %s 可怕的面容！", m_name);
             mon_lore_2(m_ptr, RF2_AURA_FEAR);
             fear_add_p(r_level);
         }
@@ -461,7 +461,7 @@ void fear_terrify_p(monster_type *m_ptr)
     if (fear_save_p(r_level))
     {
         if (disturb_minor)
-            msg_print("You stand your ground!");
+            msg_print("你坚守住了阵地！");
     }
     else
         fear_add_p(r_level);
@@ -473,7 +473,7 @@ void fear_scare_p(monster_type *m_ptr)
     int           r_level = _r_level(r_ptr);
 
     if (fear_save_p(r_level))
-        msg_print("You refuse to be frightened.");
+        msg_print("你拒绝屈服于恐惧。");
     else
         fear_add_p(r_level);
 }
@@ -507,7 +507,7 @@ bool fear_process_m(int m_idx)
                 monster_desc(m_poss, m_ptr, MD_PRON_VISIBLE | MD_POSSESSIVE);
                 monster_desc(m_name, m_ptr, 0);
 
-                msg_format("%^s recovers %s courage.", m_name, m_poss);
+                msg_format("%^s恢复了%s的勇气。", m_name, m_poss);
             }
         }
         else if (one_in_(3) && !fear_save_m(m_ptr))
@@ -516,7 +516,7 @@ bool fear_process_m(int m_idx)
             {
                 char m_name[80];
                 monster_desc(m_name, m_ptr, 0);
-                msg_format("%^s is scared stiff!", m_name);
+                msg_format("%^s被吓僵了！", m_name);
             }
             return FALSE;
         }
@@ -601,7 +601,7 @@ void fear_hurt_p(int old_hp, int new_hp)
                 fear_add_p(new_hurt);
             }
             else
-                msg_format("You stand your ground!");
+                msg_format("你坚守住了阵地！");
         }
     }
 }

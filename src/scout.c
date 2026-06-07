@@ -5,10 +5,10 @@ static void _cavern_creation_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Cavern Creation");
+        var_set_string(res, "开拓洞穴");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Stone to Mud all surrounding walls.");
+        var_set_string(res, "化石为泥，破坏所有周围的墙壁。");
         break;
     case SPELL_CAST:
     {
@@ -40,10 +40,10 @@ static void _dark_stalker_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dark Stalker");
+        var_set_string(res, "黑暗潜行者");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Temporarily grants enhanced stealth.");
+        var_set_string(res, "暂时赋予增强的潜行能力。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(50, 50));
@@ -63,7 +63,7 @@ static void _greater_mapping_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Greater Mapping");
+        var_set_string(res, "高级地形探测");
         break;
     default:
         clairvoyance_spell(cmd, res);
@@ -76,10 +76,10 @@ static void _greater_whirlwind_attack_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Greater Ambush");
+        var_set_string(res, "高级伏击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Perform a massive ambush on nearby monsters.");
+        var_set_string(res, "对附近的怪物进行一次大规模的伏击。");
         break;
     case SPELL_CAST:
     {
@@ -171,7 +171,7 @@ static void _lookout_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Lookout");
+        var_set_string(res, "望风");
         break;
     default:
         detect_monsters_spell(cmd, res);
@@ -184,7 +184,7 @@ static void _mapping_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mapping");
+        var_set_string(res, "地形探测");
         break;
     default:
         magic_mapping_spell(cmd, res);
@@ -197,10 +197,10 @@ static void _nimble_dodge_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Nimble Dodge");
+        var_set_string(res, "敏捷闪避");
         break;
     case SPELL_DESC:
-        var_set_string(res, "For a short time, you will have a chance of dodging enemy breath attacks.");
+        var_set_string(res, "在短时间内，你将有机会闪避敌人的喷吐攻击。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(20, 20));
@@ -220,10 +220,10 @@ static void _reconnaissance_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Reconnaissance");
+        var_set_string(res, "侦察");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Quickly scout nearby terrain for enemies, traps and loot.");
+        var_set_string(res, "快速侦察附近地形中的敌人、陷阱和战利品。");
         break;
     case SPELL_CAST:
         map_area(DETECT_RAD_MAP);
@@ -241,7 +241,7 @@ static void _retreat_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Retreat");
+        var_set_string(res, "撤退");
         break;
     default:
         teleport_spell(cmd, res);
@@ -254,16 +254,16 @@ static void _sniping_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Sniping");
+        var_set_string(res, "狙击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Shoot a sleeping enemy sentry with great precision.");
+        var_set_string(res, "以极高的精度射击沉睡的敌方哨兵。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
         if (!equip_find_obj(TV_BOW, SV_ANY))
         {
-            msg_print("You need a bow to use this talent.");
+            msg_print("你需要一把弓才能使用这个能力。");
             break;
         }
         shoot_hack = SHOOT_SNIPING;
@@ -282,7 +282,7 @@ static void _spying_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Spying");
+        var_set_string(res, "刺探");
         break;
     default:
         telepathy_spell(cmd, res);
@@ -295,10 +295,10 @@ static void _stealthy_snipe_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Stealthy Snipe");
+        var_set_string(res, "潜行狙击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "For a short while, your missile attacks will not anger distant monsters.");
+        var_set_string(res, "在短时间内，你的远程攻击不会激怒远处的怪物。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(6, 6));
@@ -318,10 +318,10 @@ static void _whirlwind_attack_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Ambush");
+        var_set_string(res, "伏击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack all adjacent monsters in a single ambush.");
+        var_set_string(res, "在一次伏击中攻击所有相邻的怪物。");
         break;
     default:
         massacre_spell(cmd, res);
@@ -358,7 +358,7 @@ static spell_info *_get_spells(void)
 {
     if (heavy_armor())
     {
-        msg_print("Your talents are disrupted!");
+        msg_print("你的能力被干扰了！");
         return NULL;
     }
     return _spells;
@@ -465,23 +465,23 @@ static void _character_dump(doc_ptr doc)
         py_dump_spells(doc);
     }
 
-    doc_printf(doc, "<topic:Abilities>================================== <color:keypress>A</color>bilities ==================================\n\n");
+    doc_printf(doc, "<topic:Abilities>================================== 能 力 (<color:keypress>A</color>) ==================================\n\n");
 
     /* Hack: Heavy Armor negates advantages of being in the open, and
        actually incurs penalties for being entrenched! */
     if (disrupt)
     {
-        doc_printf(doc, "  * Your talents are disrupted by the weight of your armor.\n");
+        doc_printf(doc, "* 你的盔甲重量干扰了你的能力。\n");
         ct = 0;
     }
     else
     {
         if (ct >= 6)
-            doc_printf(doc, "  * You are out in the open (%d adjacent open squares).\n", ct);
+            doc_printf(doc, "* 你暴露在开阔地带（%d 个相邻的空地）。\n", ct);
         else if (ct >= 3)
-            doc_printf(doc, "  * You are somewhat confined (%d adjacent open squares).\n", ct);
+            doc_printf(doc, "* 你身处有些受限的空间（%d 个相邻的空地）。\n", ct);
         else
-            doc_printf(doc, "  * You are very confined (%d adjacent open squares).\n", ct);
+            doc_printf(doc, "* 你身处非常受限的空间（%d 个相邻的空地）。\n", ct);
     }
 
     /* Unfettered Body */
@@ -489,9 +489,9 @@ static void _character_dump(doc_ptr doc)
     {
         int amt = _unfettered_body(ct);
         if (amt > 0)
-            doc_printf(doc, "  * You gain %+d to your AC being out in the open.\n", amt);
+            doc_printf(doc, "* 身处开阔地带，你的护甲等级获得 %+d 加成。\n", amt);
         else if (amt < 0)
-            doc_printf(doc, "  * You lose %+d to your AC being so confined.\n", amt);
+            doc_printf(doc, "* 身处受限空间，你的护甲等级受到 %+d 惩罚。\n", amt);
     }
 
     /* Unfettered Mind */
@@ -499,16 +499,16 @@ static void _character_dump(doc_ptr doc)
     {
         int amt = _unfettered_mind(ct);
         if (amt > 0)
-            doc_printf(doc, "  * You gain %+d to your Saving Throws being out in the open.\n", amt);
+            doc_printf(doc, "* 身处开阔地带，你的豁免判定获得 %+d 加成。\n", amt);
         else if (amt < 0)
-            doc_printf(doc, "  * You lose %+d to your Saving Throws being so confined.\n", amt);
+            doc_printf(doc, "* 身处受限空间，你的豁免判定受到 %+d 惩罚。\n", amt);
     }
 
     if (!disrupt && p_ptr->lev >= 20)
-        doc_printf(doc, "  * You ambush sleeping monsters for extra damage.\n");
+        doc_printf(doc, "* 你对沉睡怪物进行伏击时会造成额外伤害。\n");
 
     if (!disrupt && p_ptr->lev >= 50)
-        doc_printf(doc, "  * You have Peerless Stealth and will never aggravate monsters.\n");
+        doc_printf(doc, "* 你拥有无与伦比的潜行能力，并且永远不会激怒怪物。\n");
 
     doc_newline(doc);
 }
@@ -553,14 +553,8 @@ class_t *scout_get_class(void)
     skills_t bs = { 30,  33,  34,   6,  50,  24,  50,  65 };
     skills_t xs = { 15,  11,  10,   0,   0,   0,  20,  25 };
 
-        me.name = "Scout";
-        me.desc = "The scout is the vanguard of any attack, and excels at stealth and observation "
-                    "skills. Scouts are not the best at one-on-one combat, but are unparalleled at "
-                    "ambush techniques for destroying groups of weak sentries. Scouts are lightly "
-                    "armored, and heavy armor disrupts their abilities. Unlike most characters, "
-                    "scouts are not at home in cramped corridors; in open areas they can "
-                    "dodge attacks effectively, but being confined severely hampers their "
-                    "defensive abilities.";
+        me.name = "斥候";
+        me.desc = "斥候是任何攻击的先锋，在潜行和观察技能方面表现出色。斥候并不是最擅长一对一战斗的职业，但在使用伏击技巧摧毁成群的弱小哨兵方面是无与伦比的。斥候穿着轻甲，重甲会干扰他们的能力。与大多数角色不同，斥候在狭窄的走廊里会感到不自在；在开阔区域，他们可以有效地闪避攻击，但被限制在狭小的空间里会严重妨碍他们的防御能力。";
 
         me.stats[A_STR] =  1;
         me.stats[A_INT] = -1;

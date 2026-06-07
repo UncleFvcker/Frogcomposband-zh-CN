@@ -32,7 +32,7 @@ char *_version(void)
 static char *_status(void)
 {
     cptr status = 
-        p_ptr->total_winner ? "Winner" : (p_ptr->is_dead ? "Dead" : "Alive");
+        p_ptr->total_winner ? "胜利" : (p_ptr->is_dead ? "死亡" : "存活");
     return _str_copy(status);
 }
 static char *_killer(void)
@@ -87,7 +87,7 @@ score_ptr score_current(void)
     score->class_ = _str_copy(class_->name);
     score->subclass = _str_copy(class_->subname);
 
-    score->sex = _str_copy(p_ptr->psex == SEX_MALE ? "Male" : "Female");
+    score->sex = _str_copy(p_ptr->psex == SEX_MALE ? "男性" : "女性");
     score->personality = _str_copy(personality->name);
 
     score->gold = p_ptr->au;
@@ -257,11 +257,11 @@ static int score_cmp_name(score_ptr l, score_ptr r)
 
 static bool score_is_winner(score_ptr score)
 {
-    return score->status && strcmp(score->status, "Winner") == 0;
+    return score->status && strcmp(score->status, "胜利") == 0;
 }
 static bool score_is_dead(score_ptr score)
 {
-    return score->status && strcmp(score->status, "Dead") == 0;
+    return score->status && strcmp(score->status, "死亡") == 0;
 }
 
 /************************************************************************
@@ -305,7 +305,7 @@ void scores_save(vec_ptr scores)
 
     if (!fp)
     {
-        msg_print("<color:v>Error:</color> Unable to open scores.txt");
+        msg_print("<color:v>错误:</color> 无法打开 scores.txt");
         return;
     }
     vec_sort(scores, (vec_cmp_f)score_cmp);
@@ -327,7 +327,7 @@ int scores_next_id(void)
         fp = _scores_fopen("next", "w");
         if (!fp)
         {
-            msg_print("<color:v>Error:</color> Unable to open next file in scores directory.");
+            msg_print("<color:v>错误:</color> 无法打开 scores 目录下的下一个文件。");
             return 1;
         }
         fputc('2', fp);
@@ -428,12 +428,8 @@ static void _display(doc_ptr doc, vec_ptr scores, int top, int page_size)
     int i, j;
     doc_clear(doc);
     doc_insert(doc, "<style:table>");
-    doc_insert(doc, "<tab:32><color:R>High Score Listing</color>\n");
-    doc_insert(doc, "<color:G>    <color:keypress>N</color>ame            "
-        "CL <color:keypress>R</color>ace         "
-        "<color:keypress>C</color>lass            "
-        "<color:keypress>S</color>core Rank <color:keypress>D</color>ate       "
-        "Status</color>\n");
+    doc_insert(doc, "<tab:32><color:R>高分排行榜</color>\n");
+    doc_insert(doc, "<color:G> 名字(<color:keypress>N</color>) CL 种族(<color:keypress>R</color>) 职业(<color:keypress>C</color>) 分数(<color:keypress>S</color>) 排名 日期(<color:keypress>D</color>) 状态</color>\n");
     for (i = 0; i < page_size; i++)
     {
         score_ptr score;
@@ -447,21 +443,21 @@ static void _display(doc_ptr doc, vec_ptr scores, int top, int page_size)
         doc_printf(doc, "%9d %4d", score->score, j + 1);
         doc_printf(doc, " %s", score->date);
         if (score_is_winner(score))
-            doc_insert(doc, " <color:v>Winner</color>");
+            doc_insert(doc, "<color:v>胜利</color>");
         else if (score_is_dead(score))
-            doc_insert(doc, " <color:r>Dead</color>");
+            doc_insert(doc, "<color:r>死亡</color>");
         else
-            doc_insert(doc, " Alive");
+            doc_insert(doc, "存活");
         if (score->id == p_ptr->id)
             doc_insert(doc, "</color>");
         doc_newline(doc);
     }
     doc_insert(doc, "</style>");
-    doc_insert(doc, "\n <color:U>Press corresponding letter to view last character sheet.</color>\n");
-    doc_insert(doc, " <color:U>Press <color:keypress>^N</color> to sort by Name, <color:keypress>^R</color> to sort by Race, etc.</color>\n");
+    doc_insert(doc, "\n <color:U>按下对应的字母以查看最后的人物属性单。</color>\n");
+    doc_insert(doc, "<color:U>按 <color:keypress>^N</color> 按名字排序，<color:keypress>^R</color> 按种族排序，以此类推。</color>\n");
     if (page_size < vec_length(scores))
     {
-        doc_insert(doc, " <color:U>Use <color:keypress>PageUp</color> and <color:keypress>PageDown</color> to scroll.</color>\n");
+        doc_insert(doc, "<color:U>使用 <color:keypress>PageUp</color> 和 <color:keypress>PageDown</color> 进行滚动。</color>\n");
         for (i = j; i < top + page_size; i++) /* hack */
         {
             doc_insert(doc, "\n");

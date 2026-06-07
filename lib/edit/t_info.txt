@@ -5,7 +5,7 @@
 %:t_lite.txt
 ?:[AND [EQU $TOWN 1] [EQU $WILDERNESS NORMAL] [LEQ $SPEED 1] ]
 %:t_outp.txt
-?:1
+
 
 ?:[EQU $TOWN 2]
 %:t_telmo.txt

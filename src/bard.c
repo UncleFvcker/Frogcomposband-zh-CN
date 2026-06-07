@@ -39,7 +39,7 @@ void bard_check_music(void)
         {
             p_ptr->magic_num1[0] = p_ptr->magic_num1[1];
             p_ptr->magic_num1[1] = 0;
-            msg_print("You restart singing.");
+            msg_print("你重新开始唱歌。");
             p_ptr->action = ACTION_SING;
 
             p_ptr->update |= (PU_BONUS | PU_HP);
@@ -108,7 +108,7 @@ static void _stop_singing_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Stop Singing");
+        var_set_string(res, "停止唱歌");
         break;
     case SPELL_DESC:
         var_set_string(res, "");
@@ -177,14 +177,8 @@ class_t *bard_get_class(void)
     skills_t bs = { 20,  33,  34,  -5,  16,  20,  34,  20};
     skills_t xs = {  8,  13,  11,   0,   0,   0,  10,   8};
 
-        me.name = "Bard";
-        me.desc = "Bards are traditional musicians, and songs and sound are the "
-                    "foundation of their magic. Four songbooks are available to a Bard, "
-                    "two of them sold in towns. Some songs are over in a quick yelp, "
-                    "consuming no more time than a magic spell would; but most continue to be "
-                    "sung, with continuing effects, until the bard either chooses to stop or "
-                    "runs out of mental energy. A bard can only ever sing one tune at "
-                    "a time. The primary spell stat of a bard is Charisma.";
+        me.name = "吟游诗人";
+        me.desc = "吟游诗人是传统的音乐家，歌曲和声音是他们魔法的基础。吟游诗人可以使用四本歌谱，其中两本在城镇有售。有些歌曲只是一声短暂的吼叫，消耗的时间不会比施展一个法术多；但大多数歌曲会持续演唱并产生持续效果，直到吟游诗人选择停止，或者耗尽精神能量。吟游诗人每次只能唱一首曲子。吟游诗人的主要施法属性是魅力（Charisma）。";
 
         me.stats[A_STR] = -2;
         me.stats[A_INT] =  1;

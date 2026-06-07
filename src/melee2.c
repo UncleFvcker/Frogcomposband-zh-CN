@@ -364,7 +364,7 @@ void mon_take_hit_mon(int m_idx, int dam, bool *fear, cptr note, int who)
     if (MON_INVULNER(m_ptr) && randint0(PENETRATE_INVULNERABILITY))
     {
         if (seen)
-            msg_format("%^s is unharmed.", m_name);
+            msg_format("%^s毫发无损。", m_name);
 
         return;
     }
@@ -379,7 +379,7 @@ void mon_take_hit_mon(int m_idx, int dam, bool *fear, cptr note, int who)
         if (dam==0)
         {
             if (seen)
-                msg_format("%^s is unharmed.", m_name);
+                msg_format("%^s毫发无损。", m_name);
 
             return;
         }
@@ -428,12 +428,12 @@ void mon_take_hit_mon(int m_idx, int dam, bool *fear, cptr note, int who)
                 /* Death by normal attack -- nonliving monster */
                 else if (!monster_living(r_ptr))
                 {
-                    msg_format("%^s is destroyed.", m_name);
+                    msg_format("%^s被摧毁了。", m_name);
                 }
                 /* Death by normal attack -- living monster */
                 else
                 {
-                    msg_format("%^s is killed.", m_name);
+                    msg_format("%^s被杀死了。", m_name);
                 }
             }
 
@@ -503,7 +503,7 @@ void mon_take_hit_mon(int m_idx, int dam, bool *fear, cptr note, int who)
         if (m_ptr->hp > m_ptr->maxhp/3) dam = (dam + 1) / 2;
         if (rakuba((dam > 200) ? 200 : dam, FALSE))
         {
-            msg_format("You are thrown off from %s!", m_name);
+            msg_format("你被%s甩了出去！", m_name);
         }
     }
 
@@ -1756,7 +1756,7 @@ bool mon_attack_mon(int m_idx, int t_idx)
         retaliation_count = 0;
 
     if (!retaliation_hack && see_either)
-        cmsg_format(TERM_GREEN, "<color:B>%^s</color> attacks <color:o>%s</color>:", m_name, t_name);
+        cmsg_format(TERM_GREEN, "<color:B>%^s</color> 攻击了 <color:o>%s</color>：", m_name, t_name);
     monster_desc(m_name, m_ptr, MD_PRON_VISIBLE);
     monster_desc(t_name, t_ptr, MD_PRON_VISIBLE);
 
@@ -1789,7 +1789,7 @@ bool mon_attack_mon(int m_idx, int t_idx)
 
         if (retaliation_hack && see_either)
         {
-            cmsg_format(TERM_GREEN, "(<color:o>%^s</color> retaliates:", m_name);
+            cmsg_format(TERM_GREEN, "(<color:o>%^s</color>反击：", m_name);
             mon_lore_2(m_ptr, RF2_AURA_REVENGE);
         }
 
@@ -1909,10 +1909,10 @@ bool mon_attack_mon(int m_idx, int t_idx)
                 if (do_silly_attack)
                 {
                     act = silly_attacks[randint0(MAX_SILLY_ATTACK)];
-                    msg_format("<color:B>%^s</color> %s <color:o>%s</color>%s", m_name, act, t_name, retaliation_hack ? ".<color:g>)</color>" : ".");
+                    msg_format("<color:B>%^s</color>%s<color:o>%s</color>%s", m_name, act, t_name, retaliation_hack ? ".<color:g>)</color>" : ".");
                 }
                 else
-                    msg_format("%^s %s%s", m_name, act, retaliation_hack ? ".<color:g>)</color>" : ".");
+                    msg_format("%^s%s%s", m_name, act, retaliation_hack ? ".<color:g>)</color>" : ".");
 
             }
 
@@ -2012,7 +2012,7 @@ bool mon_attack_mon(int m_idx, int t_idx)
                             /* Special message */
                             if (see_m && did_heal)
                             {
-                                msg_format("%^s appears healthier.", m_name);
+                                msg_format("%^s看起来更健康了。", m_name);
                             }
                         }
                         break;
@@ -2044,7 +2044,7 @@ bool mon_attack_mon(int m_idx, int t_idx)
                                 int ds = 1 + tr_ptr->level/17;
                                 int dam = damroll(dd, ds);
                                 if (see_either)
-                                    msg_format("%^s is <color:r>burned</color>!", m_name);
+                                    msg_format("%^s被<color:r>烧伤</color>了！", m_name);
                                 if (m_ptr->ml)
                                     mon_lore_2(t_ptr, RF2_AURA_FIRE);
                                 _mon_gf_mon(t_idx, m_ptr, GF_FIRE, dam);
@@ -2064,7 +2064,7 @@ bool mon_attack_mon(int m_idx, int t_idx)
                                 int ds = 1 + tr_ptr->level/17;
                                 int dam = damroll(dd, ds);
                                 if (see_either)
-                                    msg_format("%^s is <color:w>frozen</color>!", m_name);
+                                    msg_format("%^s被<color:w>冻结</color>了！", m_name);
                                 if (m_ptr->ml)
                                     mon_lore_3(t_ptr, RF3_AURA_COLD);
                                 _mon_gf_mon(t_idx, m_ptr, GF_COLD, dam);
@@ -2084,7 +2084,7 @@ bool mon_attack_mon(int m_idx, int t_idx)
                                 int ds = 1 + tr_ptr->level/17;
                                 int dam = damroll(dd, ds);
                                 if (see_either)
-                                    msg_format("%^s is <color:b>zapped</color>!", m_name);
+                                    msg_format("%^s被<color:b>电击</color>了！", m_name);
                                 if (m_ptr->ml)
                                     mon_lore_2(t_ptr, RF2_AURA_ELEC);
                                 _mon_gf_mon(t_idx, m_ptr, GF_ELEC, dam);
@@ -2131,22 +2131,22 @@ bool mon_attack_mon(int m_idx, int t_idx)
             case RBM_EXPLODE:
                 set_monster_csleep(t_idx, 0);
                 if (see_m)
-                    msg_format("%^s misses%s", m_name, retaliation_hack ? ".<color:g>)</color>" : ".");
+                    msg_format("%^s未命中%s", m_name, retaliation_hack ? ".<color:g>)</color>" : ".");
                 break;
             case RBM_DROOL:
                 if (see_m)
-                    msg_format("%^s slobbers ineffectually%s", m_name, retaliation_hack ? ".<color:g>)</color>" : ".");
+                    msg_format("%^s徒劳地流着口水%s", m_name, retaliation_hack ? ".<color:g>)</color>" : ".");
                 break;
             case RBM_WAIL:
                 if (see_m)
-                    msg_format("%^s wails ineffectually%s", m_name, retaliation_hack ? ".<color:g>)</color>" : ".");
+                    msg_format("%^s徒劳地哀嚎着%s", m_name, retaliation_hack ? ".<color:g>)</color>" : ".");
                 break;
             case RBM_GAZE:
                 if (see_m)
                 {
                     char tmp[MAX_NLEN];
                     monster_desc(tmp, m_ptr, MD_PRON_VISIBLE | MD_POSSESSIVE);
-                    msg_format("<color:o>%^s</color> avoids <color:B>%s</color> gaze%s", t_name, tmp, retaliation_hack ? ".<color:g>)</color>" : ".");
+                    msg_format("<color:o>%^s</color>避开了<color:B>%s</color>的凝视%s", t_name, tmp, retaliation_hack ? ".<color:g>)</color>" : ".");
                 }
                 break;
             }
@@ -2179,7 +2179,7 @@ bool mon_attack_mon(int m_idx, int t_idx)
         {
             if (see_m)
             {
-                msg_print("The thief flees laughing...? But magic barrier obstructs it.");
+                msg_print("盗贼大笑着逃跑了……？但魔法屏障阻挡了它。");
             }
             else if (known)
             {
@@ -2190,7 +2190,7 @@ bool mon_attack_mon(int m_idx, int t_idx)
         {
             if (see_m)
             {
-                msg_print("The thief flees laughing!");
+                msg_print("盗贼大笑着逃跑了！");
             }
             else if (known)
             {
@@ -2299,7 +2299,7 @@ static void process_monster(int m_idx)
             {
                 char m_name[80];
                 monster_desc(m_name, &m_list[p_ptr->riding], 0);
-                msg_format("You have fallen from %s.", m_name);
+                msg_format("你从%s身上摔了下来。", m_name);
             }
         }
     }
@@ -2331,8 +2331,8 @@ static void process_monster(int m_idx)
                 {
                     char m_name[80];
                     monster_desc(m_name, m_ptr, 0);
-                    msg_format("<color:G>%^s</color> feels neglected.", m_name);
-                    cmsg_format(TERM_L_RED, "%^s disappears!", m_name);
+                    msg_format("<color:G>%^s</color>感觉被冷落了。", m_name);
+                    cmsg_format(TERM_L_RED, "%^s消失了！", m_name);
                 }
                 delete_monster_idx(m_idx);
                 return;
@@ -2341,8 +2341,8 @@ static void process_monster(int m_idx)
             {
                 char m_name[80];
                 monster_desc(m_name, m_ptr, 0);
-                msg_format("<color:G>%^s</color> feels neglected.", m_name);
-                cmsg_format(TERM_L_RED, "%^s gets angry!", m_name);
+                msg_format("<color:G>%^s</color>感觉被冷落了。", m_name);
+                cmsg_format(TERM_L_RED, "%^s生气了！", m_name);
                 set_hostile(m_ptr);
             }
         }
@@ -2386,7 +2386,7 @@ static void process_monster(int m_idx)
             {
                 char m_name[80];
                 monster_desc(m_name, m_ptr, 0);
-                msg_format("%^s disappears!", m_name);
+                msg_format("%^s消失了！", m_name);
             }
 
             /* Delete the monster */
@@ -2418,7 +2418,7 @@ static void process_monster(int m_idx)
                 monster_desc(m_name, m_ptr, 0);
 
                 /* Oops */
-                msg_format("%^s disappears!", m_name);
+                msg_format("%^s消失了！", m_name);
             }
 
             /* Generate treasure, etc */
@@ -2428,7 +2428,7 @@ static void process_monster(int m_idx)
             delete_monster_idx(m_idx);
 
             if (sad)
-                msg_print("You feel sad for a moment.");
+                msg_print("你感到一阵悲伤。");
 
             return;
         }
@@ -2469,21 +2469,21 @@ static void process_monster(int m_idx)
             if (skip) {} /* Kamikaze pets fight to death */
             else if (is_riding_mon && riding_pinch < 2)
             {
-                msg_format("%^s seems to be in so much pain, and trying to escape from your restriction.", m_name);
+                msg_format("%^s看起来非常痛苦，并试图挣脱你的束缚。", m_name);
                 riding_pinch++;
                 disturb(1, 0);
             }
             else if ((!is_riding_mon) && (!((r_ptr->flags1 & RF1_UNIQUE) || (r_ptr->flags7 & RF7_NAZGUL))) && ((randint1((s32b)m_ptr->maxhp * 7 / 20) < m_ptr->hp) || (one_in_(5)) || ((p_ptr->pclass == CLASS_POLITICIAN) && (!is_pet(m_ptr)) && (one_in_(2)))))
             {
-                if (is_pet(m_ptr)) msg_format("<color:B>%^s</color> seems to be in great pain!", m_name);
+                if (is_pet(m_ptr)) msg_format("<color:B>%^s</color>看起来非常痛苦！", m_name);
             }
             else
             {
                 if (is_riding_mon)
                 {
-                    msg_format("%^s succeeded to escape from your restriction!", m_name);
+                    msg_format("%^s成功挣脱了你的束缚！", m_name);
                     if (rakuba(-1, FALSE))
-                        msg_print("You have fallen from riding pet.");
+                        msg_print("你从骑乘的宠物身上摔了下来。");
                 }
 
                 if (see_m)
@@ -2491,15 +2491,15 @@ static void process_monster(int m_idx)
                     if ((r_ptr->flags2 & RF2_CAN_SPEAK) && (m_ptr->r_idx != MON_GRIP) && (m_ptr->r_idx != MON_WOLF) && (m_ptr->r_idx != MON_FANG) &&
                         player_has_los_bold(m_ptr->fy, m_ptr->fx) && projectable(m_ptr->fy, m_ptr->fx, py, px))
                     {
-                        msg_format("<color:B>%^s</color> says 'It is the pinch! I will retreat'.", m_name);
-                        msg_format("<color:B>%^s</color> reads a scroll of Teleport Level.", m_name);
-                        msg_format("<color:B>%^s</color> disappears.", m_name);
+                        msg_format("<color:B>%^s</color>说：‘情况危急！我要撤退了’。", m_name);
+                        msg_format("<color:B>%^s</color>阅读了一卷传送楼层卷轴。", m_name);
+                        msg_format("<color:B>%^s</color>消失了。", m_name);
                     }
-                    else msg_format("<color:B>%^s</color> escapes.", m_name);
+                    else msg_format("<color:B>%^s</color>逃跑了。", m_name);
                 }
 
                 if (is_riding_mon && rakuba(-1, FALSE))
-                    msg_print("You have fallen from riding pet.");
+                    msg_print("你从骑乘的宠物身上摔了下来。");
 
                 quests_on_kill_mon(m_ptr);
                 delete_monster_idx(m_idx);
@@ -2543,7 +2543,7 @@ static void process_monster(int m_idx)
             char m_name[80];
 
             monster_desc(m_name, m_ptr, 0);
-            msg_format("%^s wakes up.", m_name);
+            msg_format("%^s醒来了。", m_name);
         }
 
         /* Hack -- Count the wakings */
@@ -2579,7 +2579,7 @@ static void process_monster(int m_idx)
         {
             char m_name[80];
             monster_desc(m_name, m_ptr, is_pet(m_ptr) ? MD_ASSUME_VISIBLE : 0);
-            msg_format("%^s suddenly becomes hostile!", m_name);
+            msg_format("%^s突然变得充满敌意！", m_name);
         }
 
         set_hostile(m_ptr);
@@ -2667,7 +2667,7 @@ static void process_monster(int m_idx)
         {
             if (disturb_minor)
             {
-                msg_print("You hear heavy steps.");
+                msg_print("你听到了沉重的脚步声。");
                 disturb(0, 0);
             }
         }
@@ -2701,7 +2701,7 @@ static void process_monster(int m_idx)
 
             if (get_rnd_line(filename, m_ptr->ap_r_idx, monmessage) == 0)
             {
-                msg_format("<color:g>%^s</color> %s", m_name, monmessage);
+                msg_format("<color:g>%^s</color>%s", m_name, monmessage);
                 msg_boundary();
             }
         }
@@ -2751,7 +2751,7 @@ static void process_monster(int m_idx)
             {
                 char m_name[80];
                 monster_desc(m_name, m_ptr, 0);
-                msg_format("%^s is no longer confused.", m_name);
+                msg_format("%^s不再困惑了。", m_name);
                 mon_lore_3(m_ptr, RF3_CLEAR_HEAD);
             }
         }
@@ -2825,7 +2825,7 @@ static void process_monster(int m_idx)
                 if (!mon_save_p(m_ptr->r_idx, A_STR))
                 {
                     if (mon_show_msg(m_ptr))
-                        msg_format("%^s tries to break your anti-magic ray but fails.", m_name);
+                        msg_format("%^s试图打破你的反魔法射线，但失败了。", m_name);
                     m_ptr->anti_magic_ct--;
 
                     return;
@@ -2833,7 +2833,7 @@ static void process_monster(int m_idx)
                 else
                 {
                     if (mon_show_msg(m_ptr))
-                        msg_format("%^s breaks your anti-magic ray.", m_name);
+                        msg_format("%^s打破了你的反魔法射线。", m_name);
                     m_ptr->anti_magic_ct = 0;
                 }
             }
@@ -2847,7 +2847,7 @@ static void process_monster(int m_idx)
 
         #if 0
         if (/*p_ptr->wizard &&*/ m_ptr->id == target_who)
-            msg_format("<color:B>Freq=%d%% (%d%%,%d,%d,%d)</color>", freq, r_ptr->spells->freq, m_ptr->anger, m_ptr->mana, MON_STUNNED(m_ptr));
+            msg_format("<color:B>频率=%d%% (%d%%,%d,%d,%d)</color>", freq, r_ptr->spells->freq, m_ptr->anger, m_ptr->mana, MON_STUNNED(m_ptr));
         #endif
 
         if (!blocked && randint1(100) <= freq)
@@ -3210,9 +3210,9 @@ static void process_monster(int m_idx)
                     if (disturb_minor)
                     {
                         if (have_flag(f_ptr->flags, FF_GLASS))
-                            msg_print("You hear a glass was crashed!");
+                            msg_print("你听到玻璃碎裂的声音！");
                         else
-                            msg_print("You hear a door burst open!");
+                            msg_print("你听到门被撞开的声音！");
 
                         disturb(0, 0);
                     }
@@ -3271,7 +3271,7 @@ static void process_monster(int m_idx)
             {
                 /* Describe observable breakage */
                 if (c_ptr->info & CAVE_MARK)
-                    msg_print("The rune of protection is broken!");
+                    msg_print("保护符文被破坏了！");
 
                 /* Forget the rune */
                 c_ptr->info &= ~(CAVE_MARK);
@@ -3460,9 +3460,9 @@ static void process_monster(int m_idx)
             if (one_in_(GRINDNOISE))
             {
                 if (have_flag(f_ptr->flags, FF_GLASS))
-                    msg_print("There is a crashing sound.");
+                    msg_print("传来一阵碎裂声。");
                 else
-                    msg_print("There is a grinding sound.");
+                    msg_print("传来一阵摩擦声。");
             }
 
 
@@ -3707,7 +3707,7 @@ static void process_monster(int m_idx)
                             if (m_ptr->ml && player_can_see_bold(ny, nx))
                             {
                                 /* Dump a message */
-                                msg_format("%^s tries to pick up %s, but fails.", m_name, o_name);
+                                msg_format("%^s试图捡起%s，但失败了。", m_name, o_name);
                             }
                         }
                     }
@@ -3722,7 +3722,7 @@ static void process_monster(int m_idx)
                         if (player_can_see_bold(ny, nx))
                         {
                             /* Dump a message */
-                            msg_format("%^s picks up %s.", m_name, o_name);
+                            msg_format("%^s捡起了%s。", m_name, o_name);
                         }
 
                         /* Excise the object */
@@ -3757,11 +3757,11 @@ static void process_monster(int m_idx)
                             /* Dump a message */
                             if (o_ptr->name2 != EGO_AMMO_ENDURANCE)
                             {
-                                msg_format("%^s destroys %s.", m_name, o_name);
+                                msg_format("%^s摧毁了%s。", m_name, o_name);
                                 stats_on_m_destroy(o_ptr, o_ptr->number);
                             }
                             else
-                                msg_format("%^s tries to destroy %s but fails.", m_name, o_name);
+                                msg_format("%^s试图摧毁%s但失败了。", m_name, o_name);
                         }
 
                         /* Delete the object */
@@ -3874,7 +3874,7 @@ static void process_monster(int m_idx)
             monster_desc(m_name, m_ptr, 0);
 
             /* Dump a message */
-            msg_format("%^s turns to fight!", m_name);
+            msg_format("%^s转过身来战斗！", m_name);
         }
 
         if (m_ptr->ml) virtue_add(VIRTUE_COMPASSION, -1);
@@ -4091,7 +4091,7 @@ void process_monsters(void)
         {
             char m_name[80];
             monster_desc(m_name, m_ptr, 0);
-            msg_format("%^s gets back up and looks mad as hell.", m_name);
+            msg_format("%^s重新站了起来，看起来极其愤怒。", m_name);
             m_ptr->mflag2 &= ~MFLAG2_TRIPPED;
             mon_anger(m_ptr);
             continue;
@@ -4429,7 +4429,7 @@ static void process_mon_mtimed(mon_ptr mon)
                     {
                         char m_name[80];
                         monster_desc(m_name, mon, 0);
-                        msg_format("%^s wakes up.", m_name);
+                        msg_format("%^s醒来了。", m_name);
                     }
                     if (is_original_ap_and_seen(mon))
                     {
@@ -4447,7 +4447,7 @@ static void process_mon_mtimed(mon_ptr mon)
             {
                 char m_name[80];
                 monster_desc(m_name, mon, 0);
-                msg_format("%^s is no longer fast.", m_name);
+                msg_format("%^s不再快速了。", m_name);
             }
         }
     }
@@ -4459,7 +4459,7 @@ static void process_mon_mtimed(mon_ptr mon)
             {
                 char m_name[80];
                 monster_desc(m_name, mon, 0);
-                msg_format("%^s is no longer slow.", m_name);
+                msg_format("%^s不再迟缓了。", m_name);
             }
         }
     }
@@ -4476,7 +4476,7 @@ static void process_mon_mtimed(mon_ptr mon)
             {
                 char m_name[80];
                 monster_desc(m_name, mon, 0);
-                msg_format("%^s is no longer stunned.", m_name);
+                msg_format("%^s不再被震慑了。", m_name);
             }
         }
     }
@@ -4489,7 +4489,7 @@ static void process_mon_mtimed(mon_ptr mon)
             {
                 char m_name[80];
                 monster_desc(m_name, mon, 0);
-                msg_format("%^s is no longer confused.", m_name);
+                msg_format("%^s不再困惑了。", m_name);
             }
         }
     }
@@ -4501,7 +4501,7 @@ static void process_mon_mtimed(mon_ptr mon)
             {
                 char m_name[80];
                 monster_desc(m_name, mon, 0);
-                msg_format("%^s is no longer invulnerable.", m_name);
+                msg_format("%^s不再无敌了。", m_name);
             }
         }
     }
@@ -4519,15 +4519,15 @@ void dispel_monster_status(int m_idx)
     monster_desc(m_name, m_ptr, 0);
     if (set_monster_invulner(m_idx, 0, TRUE))
     {
-        if (m_ptr->ml) msg_format("%^s is no longer invulnerable.", m_name);
+        if (m_ptr->ml) msg_format("%^s不再无敌了。", m_name);
     }
     if (set_monster_fast(m_idx, 0))
     {
-        if (m_ptr->ml) msg_format("%^s is no longer fast.", m_name);
+        if (m_ptr->ml) msg_format("%^s不再快速了。", m_name);
     }
     if (set_monster_slow(m_idx, 0))
     {
-        if (m_ptr->ml) msg_format("%^s is no longer slow.", m_name);
+        if (m_ptr->ml) msg_format("%^s不再迟缓了。", m_name);
     }
 }
 
@@ -4544,14 +4544,14 @@ bool process_the_world(int num, int who, bool vs_player)
         monster_desc(m_name, m_ptr, 0);
 
         if (who == 1)
-            msg_format("%s yells 'The World! Time has stopped!'", m_name);
+            msg_format("%s大喊‘The World！时间停止了！’", m_name);
         else if (who == 3)
-            msg_format("%s yells 'Time!'", m_name);
-        else msg_print("hek!");
+            msg_format("%s大喊‘时间！’", m_name);
+        else msg_print("hek！");
 
         if (p_ptr->pclass == CLASS_TIME_LORD && !mon_save_p(m_ptr->r_idx, A_WIS))
         {
-            msg_format("You grin as time begins to flow once again!");
+            msg_format("随着时间再次开始流动，你咧嘴笑了！");
             return TRUE;
         }
 
@@ -4598,7 +4598,7 @@ bool process_the_world(int num, int who, bool vs_player)
     world_monster = 0;
     if (vs_player || (player_has_los_bold(m_ptr->fy, m_ptr->fx) && projectable(py, px, m_ptr->fy, m_ptr->fx)))
     {
-        msg_print("You feel time flowing around you once more.");
+        msg_print("你感觉到时间再次在你周围流动。");
         msg_print(NULL);
     }
 
@@ -4617,7 +4617,7 @@ void mon_gain_exp(mon_ptr mon, int amt)
 
     if (mon->exp >= race->next_exp)
     {
-        mon_change_race(mon, race->next_r_idx, "evolved");
+        mon_change_race(mon, race->next_r_idx, "进化");
     }
     if (mon->id == p_ptr->riding) p_ptr->update |= PU_BONUS;
 }

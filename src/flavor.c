@@ -617,12 +617,12 @@ static flag_insc_table flag_insc_slay[] =
 
 static flag_insc_table flag_insc_esp1[] =
 {
-    { "Tele", OF_TELEPATHY, -1 },
-    { "Evil", OF_ESP_EVIL, -1 },
-    { "Good", OF_ESP_GOOD, -1 },
-    { "Nolv", OF_ESP_NONLIVING, -1 },
-    { "Uniq", OF_ESP_UNIQUE, -1 },
-	{ "Lvng", OF_ESP_LIVING, -1 },
+    { "心灵", OF_TELEPATHY, -1 },
+    { "邪恶", OF_ESP_EVIL, -1 },
+    { "善良", OF_ESP_GOOD, -1 },
+    { "死物", OF_ESP_NONLIVING, -1 },
+    { "独特", OF_ESP_UNIQUE, -1 },
+	{ "活物", OF_ESP_LIVING, -1 },
     { NULL, 0, -1 }
 };
 
@@ -2273,7 +2273,7 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
             char buf[255];
             sprintf(buf, " %dsp", o_ptr->activation.cost);
             strcat(tmp_val2, buf);
-            sprintf(buf, " P%d D%d", o_ptr->activation.power, o_ptr->activation.difficulty);
+            sprintf(buf, "强度%d 难度%d", o_ptr->activation.power, o_ptr->activation.difficulty);
             strcat(tmp_val2, buf);
         }
     }

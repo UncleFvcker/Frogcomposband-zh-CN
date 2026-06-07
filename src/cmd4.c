@@ -1,4 +1,4 @@
-/* File: cmd4.c */
+/* 文件: cmd4.c */
 
 /*
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke
@@ -98,7 +98,7 @@ static void remove_auto_dump(cptr orig_file)
 
     if (!tmp_fff)
     {
-        msg_format("Failed to create temporary file %s.", tmp_file);
+        msg_format("无法创建临时文件 %s。", tmp_file);
         msg_print(NULL);
         return;
     }
@@ -276,7 +276,7 @@ static bool open_auto_dump(cptr buf, cptr mark)
 
     /* Failure */
     if (!auto_dump_stream) {
-        msg_format("Failed to open %s.", buf);
+        msg_format("无法打开 %s。", buf);
         msg_print(NULL);
 
         /* Failed */
@@ -289,7 +289,7 @@ static bool open_auto_dump(cptr buf, cptr mark)
     /* Initialize counter */
     auto_dump_line_num = 0;
 
-    auto_dump_printf("# *Warning!*  The lines below are an automatic dump.\n");
+    auto_dump_printf("# *警告!* 下面的行是自动转储的。\n");
     auto_dump_printf("# Don't edit them; changes will be deleted and replaced automatically.\n");
 
     /* Success */
@@ -306,7 +306,7 @@ static void close_auto_dump(void)
     /* Prepare a footer mark string */
     sprintf(footer_mark_str, auto_dump_footer, auto_dump_mark);
 
-    auto_dump_printf("# *Warning!*  The lines above are an automatic dump.\n");
+    auto_dump_printf("# *警告!* 上面的行是自动转储的。\n");
     auto_dump_printf("# Don't edit them; changes will be deleted and replaced automatically.\n");
 
     /* End of dump */
@@ -487,7 +487,7 @@ void do_cmd_messages(int old_now_turn)
         doc_newline(doc);
     }
     screen_save();
-    doc_display(doc, "Previous Messages", doc_cursor(doc).y);
+    doc_display(doc, "历史消息", doc_cursor(doc).y);
     screen_load();
     doc_free(doc);
 }
@@ -505,27 +505,27 @@ void do_cmd_messages(int old_now_turn)
 static option_type cheat_info[CHEAT_MAX] =
 {
     { &cheat_peek,        FALSE,    255,    0x01, 0x00,
-    "cheat_peek",        "Peek into object creation"
+    "cheat_peek",        "查看物品生成"
     },
 
     { &cheat_hear,        FALSE,    255,    0x02, 0x00,
-    "cheat_hear",        "Peek into monster creation"
+    "cheat_hear",        "查看怪物生成"
     },
 
     { &cheat_room,        FALSE,    255,    0x04, 0x00,
-    "cheat_room",        "Peek into dungeon creation"
+    "cheat_room",        "查看地城生成"
     },
 
     { &cheat_xtra,        FALSE,    255,    0x08, 0x00,
-    "cheat_xtra",        "Peek into something else"
+    "cheat_xtra",        "查看其他调试信息"
     },
 
     { &cheat_live,        FALSE,    255,    0x20, 0x00,
-    "cheat_live",        "Allow player to avoid death"
+    "cheat_live",        "允许玩家避免死亡"
     },
 
     { &cheat_save,        FALSE,    255,    0x40, 0x00,
-    "cheat_save",        "Ask for saving death"
+    "cheat_save",        "死亡时询问是否保存"
     }
 };
 
@@ -550,7 +550,7 @@ static void do_cmd_options_cheat(cptr info)
         int dir;
 
         /* Prompt XXX XXX XXX */
-        sprintf(buf, "%s (RET to advance, y/n to set, ESC to accept) ", info);
+        sprintf(buf, "%s (回车:下一项, y/n:设置, ESC:确认) ", info);
 
         prt(buf, 0, 0);
 
@@ -669,11 +669,11 @@ static void do_cmd_options_cheat(cptr info)
 static option_type autosave_info[2] =
 {
     { &autosave_l,      TRUE, 255, 0x01, 0x00,
-        "autosave_l",    "Autosave when entering new levels" },
+        "autosave_l",    "进入新楼层时自动保存" },
 
 
     { &autosave_t,      FALSE, 255, 0x02, 0x00,
-        "autosave_t",   "Timed autosave" },
+        "autosave_t",   "定时自动保存" },
 
 };
 
@@ -715,7 +715,7 @@ static void do_cmd_options_autosave(cptr info)
     while (TRUE)
     {
         /* Prompt XXX XXX XXX */
-        sprintf(buf, "%s (RET to advance, y/n to set, 'F' for frequency, ESC to accept) ", info);
+        sprintf(buf, "%s (回车:下一项, y/n:设置, F:频率, ESC:确认) ", info);
 
         prt(buf, 0, 0);
 
@@ -736,7 +736,7 @@ static void do_cmd_options_autosave(cptr info)
             c_prt(a, buf, i + 2, 0);
         }
 
-        prt(format("Timed autosave frequency: every %d turns",  autosave_freq), 5, 0);
+        prt(format("定时自动保存频率: 每 %d 回合",  autosave_freq), 5, 0);
 
 
 
@@ -793,14 +793,14 @@ static void do_cmd_options_autosave(cptr info)
             case 'F':
             {
                 autosave_freq = toggle_frequency(autosave_freq);
-                prt(format("Timed autosave frequency: every %d turns",
+                prt(format("定时自动保存频率: 每 %d 回合",
                        autosave_freq), 5, 0);
                 break;
             }
 
             case '?':
             {
-                doc_display_help("option.txt", "Autosave");
+                doc_display_help("option.txt", "自动保存");
 
                 Term_clear();
                 break;
@@ -854,13 +854,13 @@ void do_cmd_options_aux(int page, cptr info)
         int dir;
 
         /* Prompt XXX XXX XXX */
-        sprintf(buf, "%s (RET:next, %s, ?:help) ", info, browse_only ? "ESC:exit" : "y/n:change, ESC:accept");
+        sprintf(buf, "%s (回车:下一项, %s, ?:帮助) ", info, browse_only ? "ESC:退出" : "y/n:切换, ESC:确认");
 
         prt(buf, 0, 0);
 
 
         /* HACK -- description for easy-auto-destroy options */
-        if (page == OPT_PAGE_AUTODESTROY) c_prt(TERM_YELLOW, "Following options will protect items from easy auto-destroyer.", 11, 3);
+        if (page == OPT_PAGE_AUTODESTROY) c_prt(TERM_YELLOW, "以下选项会保护物品不被简易自动销毁器销毁。", 11, 3);
 
         /* Display the options */
         for (i = option_offset; i < n; i++)
@@ -917,14 +917,14 @@ void do_cmd_options_aux(int page, cptr info)
                 sprintf(buf, "%-48s: ", option_info[opt[i]].o_desc);
                 if (pantheon_count == PANTHEON_MAX - 1)
                 {
-                    strcat(buf, "All ");
+                    strcat(buf, "全部");
                 }
                 else if ((game_pantheon) && (game_pantheon < PANTHEON_MAX))
                 {
                     sprintf(buf + strlen(buf), "%.3s ", pant_list[game_pantheon].short_name);
                 }
                 else
-                    strcat(buf, "None");
+                    strcat(buf, "无");
             }
             else if (option_info[opt[i]].o_var == &always_small_levels)
             {
@@ -940,8 +940,8 @@ void do_cmd_options_aux(int page, cptr info)
             }
             if ((page == OPT_PAGE_AUTODESTROY) && i > 7) rivi = i + 5 - option_offset;
             else rivi = i + 2 - option_offset;
-            if ((scroll_mode) && (rivi == Term->hgt - 1) && (i < n - 1)) c_prt(TERM_YELLOW, " (scroll down for more options)", rivi, 0);
-            else if ((scroll_mode) && (rivi == 2) && (i > 0)) c_prt(TERM_YELLOW, " (scroll up for more options)", rivi, 0);
+            if ((scroll_mode) && (rivi == Term->hgt - 1) && (i < n - 1)) c_prt(TERM_YELLOW, " (向下滚动查看更多选项)", rivi, 0);
+            else if ((scroll_mode) && (rivi == 2) && (i > 0)) c_prt(TERM_YELLOW, " (向上滚动查看更多选项)", rivi, 0);
             else if (((rivi >= 2) && (rivi < Term->hgt - 1)) || ((rivi == Term->hgt - 1) && ((i == n - 1) || (!scroll_mode)))) c_prt(a, buf, rivi, 0);
         }
 
@@ -1267,7 +1267,7 @@ static void do_cmd_options_win(void)
     while (go)
     {
         /* Prompt XXX XXX XXX */
-        prt("Window Flags (<dir>, t, y, n, ESC) ", 0, 0);
+        prt("窗口标记(<dir>, t, y, n, ESC) ", 0, 0);
 
 
         /* Display the windows */
@@ -1295,7 +1295,7 @@ static void do_cmd_options_win(void)
             if (i == y) a = TERM_L_BLUE;
 
             /* Unused option */
-            if (!str) str = "(Unused option)";
+            if (!str) str = "(未使用选项)";
 
 
             /* Flag name */
@@ -1370,7 +1370,7 @@ static void do_cmd_options_win(void)
 
             case '?':
             {
-                doc_display_help("option.txt", "Window");
+                doc_display_help("option.txt", "窗口");
                 Term_clear();
                 break;
             }
@@ -1424,23 +1424,23 @@ static struct opts
 }
 option_fields[OPT_NUM] =
 {
-    { '1', "Input Options", 3 },
-    { '2', "Map Screen Options", 4 },
-    { '3', "Text Display Options", 5 },
-    { '4', "Game-Play Options", 6 },
-    { '5', "Disturbance Options", 7 },
-    { '6', "Auto-Destroyer Options", 8 },
-    { '7', "List Display Options", 9 },
+    { '1', "输入选项", 3 },
+    { '2', "地图显示选项", 4 },
+    { '3', "文本显示选项", 5 },
+    { '4', "游戏玩法选项", 6 },
+    { '5', "打扰提示选项", 7 },
+    { '6', "自动销毁选项", 8 },
+    { '7', "列表显示选项", 9 },
 
-    { 'p', "Mogaminator Preferences", 11 },
-    { 'd', "Base Delay Factor", 12 },
-    { 'h', "Hitpoint Warning", 13 },
-    { 'm', "Mana Color Threshold", 14 },
-    { 'a', "Autosave Options", 15 },
-    { 'w', "Window Flags", 16 },
+    { 'p', "Mogaminator 偏好", 11 },
+    { 'd', "基础延迟系数", 12 },
+    { 'h', "生命警告阈值", 13 },
+    { 'm', "法力颜色阈值", 14 },
+    { 'a', "自动保存选项", 15 },
+    { 'w', "窗口标记", 16 },
 
-    { 'b', "Birth Options (Browse Only)", 18 },
-    { 'c', "Cheat Options", 19 },
+    { 'b', "出生选项(仅浏览)", 18 },
+    { 'c', "作弊选项", 19 },
 };
 
 
@@ -1472,7 +1472,7 @@ void do_cmd_options(void)
         Term_clear();
 
         /* Why are we here */
-        prt("FrogComposband Options", 1, 0);
+        prt("FrogComposband 选项", 1, 0);
 
         while(1)
         {
@@ -1488,7 +1488,7 @@ void do_cmd_options(void)
                     format("(%c) %s", toupper(option_fields[i].key), option_fields[i].name));
             }
 
-            prt("Move to <dir>, Select to Enter, Cancel to ESC, ? to help: ", 21, 0);
+            prt("移动:<dir> 选择:回车 取消:ESC  ?:帮助: ", 21, 0);
 
             /* Get command */
             skey = inkey_special(TRUE);
@@ -1532,49 +1532,49 @@ void do_cmd_options(void)
             case '1':
             {
                 /* Process the general options */
-                do_cmd_options_aux(OPT_PAGE_INPUT, "Input Options");
+                do_cmd_options_aux(OPT_PAGE_INPUT, "输入选项");
                 break;
             }
 
             case '2':
             {
                 /* Process the general options */
-                do_cmd_options_aux(OPT_PAGE_MAPSCREEN, "Map Screen Options");
+                do_cmd_options_aux(OPT_PAGE_MAPSCREEN, "地图显示选项");
                 break;
             }
 
             case '3':
             {
                 /* Spawn */
-                do_cmd_options_aux(OPT_PAGE_TEXT, "Text Display Options");
+                do_cmd_options_aux(OPT_PAGE_TEXT, "文本显示选项");
                 break;
             }
 
             case '4':
             {
                 /* Spawn */
-                do_cmd_options_aux(OPT_PAGE_GAMEPLAY, "Game-Play Options");
+                do_cmd_options_aux(OPT_PAGE_GAMEPLAY, "游戏玩法选项");
                 break;
             }
 
             case '5':
             {
                 /* Spawn */
-                do_cmd_options_aux(OPT_PAGE_DISTURBANCE, "Disturbance Options");
+                do_cmd_options_aux(OPT_PAGE_DISTURBANCE, "打扰提示选项");
                 break;
             }
 
             case '6':
             {
                 /* Spawn */
-                do_cmd_options_aux(OPT_PAGE_AUTODESTROY, "Auto-Destroyer Options");
+                do_cmd_options_aux(OPT_PAGE_AUTODESTROY, "自动销毁选项");
                 break;
             }
 
             case '7':
             {
                 /* Spawn */
-                do_cmd_options_aux(OPT_PAGE_LIST, "List Display Options");
+                do_cmd_options_aux(OPT_PAGE_LIST, "列表显示选项");
                 break;
             }
 
@@ -1582,7 +1582,7 @@ void do_cmd_options(void)
             case 'B':
             case 'b':
             {
-                do_cmd_options_aux(OPT_PAGE_BIRTH, (!p_ptr->wizard || !allow_debug_opts) ? "Birth Options(browse only)" : "Birth Options((*)s effect score)");
+                do_cmd_options_aux(OPT_PAGE_BIRTH, (!p_ptr->wizard || !allow_debug_opts) ? "出生选项(仅浏览)" : "出生选项((*)影响分数)");
                 break;
             }
 
@@ -1598,7 +1598,7 @@ void do_cmd_options(void)
                 }
 
                 /* Spawn */
-                do_cmd_options_cheat("Cheaters never win");
+                do_cmd_options_cheat("作弊者不会胜利");
 #else
                 bell();
 #endif
@@ -1608,7 +1608,7 @@ void do_cmd_options(void)
             case 'a':
             case 'A':
             {
-                do_cmd_options_autosave("Autosave");
+                do_cmd_options_autosave("自动保存");
                 break;
             }
 
@@ -1639,22 +1639,22 @@ void do_cmd_options(void)
             {
                 /* Prompt */
                 clear_from(18);
-                prt("Command: Base Delay Factor", 19, 0);
+                prt("命令: 基础延迟系数", 19, 0);
 
                 /* Get a new value */
                 while (1)
                 {
                     int msec = delay_time();
-                    prt(format("Current base delay factor: %d (%d msec)",
+                    prt(format("当前基础延迟: %d (%d毫秒)",
                            delay_factor, msec), 22, 0);
 
-                    prt("Delay Factor (0-9 or ESC to accept): ", 20, 0);
+                    prt("延迟系数(0-9, ESC确认): ", 20, 0);
 
                     k = inkey();
                     if (k == ESCAPE) break;
                     else if (k == '?')
                     {
-                        doc_display_help("option.txt", "BaseDelay");
+                        doc_display_help("option.txt", "基础延迟");
                         Term_clear();
                     }
                     else if (isdigit(k)) delay_factor = D2I(k);
@@ -1670,21 +1670,21 @@ void do_cmd_options(void)
             {
                 /* Prompt */
                 clear_from(18);
-                prt("Command: Hitpoint Warning", 19, 0);
+                prt("命令: 生命警告阈值", 19, 0);
 
                 /* Get a new value */
                 while (1)
                 {
-                    prt(format("Current hitpoint warning: %d0%%",
+                    prt(format("当前生命警告: %d0%%",
                            hitpoint_warn), 22, 0);
 
-                    prt("Hitpoint Warning (0-9 or ESC to accept): ", 20, 0);
+                    prt("生命警告阈值(0-9, ESC确认): ", 20, 0);
 
                     k = inkey();
                     if (k == ESCAPE) break;
                     else if (k == '?')
                     {
-                        doc_display_help("option.txt", "HitPoint");
+                        doc_display_help("option.txt", "生命值");
                         Term_clear();
                     }
                     else if (isdigit(k)) hitpoint_warn = D2I(k);
@@ -1700,21 +1700,21 @@ void do_cmd_options(void)
             {
                 /* Prompt */
                 clear_from(18);
-                prt("Command: Mana Color Threshold", 19, 0);
+                prt("命令: 法力颜色阈值", 19, 0);
 
                 /* Get a new value */
                 while (1)
                 {
-                    prt(format("Current mana color threshold: %d0%%",
+                    prt(format("当前法力颜色阈值: %d0%%",
                            mana_warn), 22, 0);
 
-                    prt("Mana color Threshold (0-9 or ESC to accept): ", 20, 0);
+                    prt("法力颜色阈值(0-9, ESC确认): ", 20, 0);
 
                     k = inkey();
                     if (k == ESCAPE) break;
                     else if (k == '?')
                     {
-                        doc_display_help("option.txt", "Manapoint");
+                        doc_display_help("option.txt", "法力值");
                         Term_clear();
                     }
                     else if (isdigit(k)) mana_warn = D2I(k);
@@ -1767,7 +1767,7 @@ void do_cmd_pref(void)
     strcpy(buf, "");
 
     /* Ask for a "user pref command" */
-    if (!get_string("Pref: ", buf, 80)) return;
+    if (!get_string("首选项:", buf, 80)) return;
 
 
     /* Process that pref command */
@@ -1776,7 +1776,7 @@ void do_cmd_pref(void)
 
 void do_cmd_reload_autopick(void)
 {
-    if (!get_check("Reload auto-pick preference file? ")) return;
+    if (!get_check("重新加载自动拾取首选项(pref)文件？")) return;
 
     /* Load the file with messages */
     autopick_load_pref(ALP_DISP_MES);
@@ -1789,7 +1789,7 @@ void do_cmd_reload_autopick(void)
  */
 static errr macro_dump(cptr fname)
 {
-    static cptr mark = "Macro Dump";
+    static cptr mark = "宏转储(Macro Dump)";
 
     int i;
 
@@ -1805,7 +1805,7 @@ static errr macro_dump(cptr fname)
     if (!open_auto_dump(buf, mark)) return (-1);
 
     /* Start dumping */
-    auto_dump_printf("\n# Automatic macro dump\n\n");
+    auto_dump_printf("\n# 自动宏转储\n\n");
 
     /* Dump them */
     for (i = 0; i < macro__num; i++)
@@ -1927,7 +1927,7 @@ static void do_cmd_macro_aux_keymap(char *buf)
  */
 static errr keymap_dump(cptr fname)
 {
-    static cptr mark = "Keymap Dump";
+    static cptr mark = "键位映射转储(Keymap Dump)";
     int i;
 
     char key[1024];
@@ -1958,7 +1958,7 @@ static errr keymap_dump(cptr fname)
     if (!open_auto_dump(buf, mark)) return -1;
 
     /* Start dumping */
-    auto_dump_printf("\n# Automatic keymap dump\n\n");
+    auto_dump_printf("\n# 自动键位映射转储\n\n");
 
     /* Dump them */
     for (i = 0; i < 256; i++)
@@ -2038,12 +2038,12 @@ void do_cmd_macros(void)
         Term_clear();
 
         /* Describe */
-        prt("Interact with Macros", 2, 0);
+        prt("宏设置", 2, 0);
 
 
 
         /* Describe that action */
-        prt("Current action (if any) shown below:", 20, 0);
+        prt("当前动作如下:", 20, 0);
 
 
         /* Analyze the current action */
@@ -2054,22 +2054,22 @@ void do_cmd_macros(void)
 
 
         /* Selections */
-        prt("(1) Load a user pref file", 4, 5);
+        prt("(1) 读取用户 pref 文件", 4, 5);
 
 #ifdef ALLOW_MACROS
-        prt("(2) Append macros and keymaps to a file", 5, 5);
-        prt("(3) Query a macro", 6, 5);
-        prt("(4) Create a macro", 7, 5);
-        prt("(5) Remove a macro", 8, 5);
-        prt("(7) Query a keymap", 10, 5);
-        prt("(8) Create a keymap", 11, 5);
-        prt("(9) Remove a keymap", 12, 5);
-        prt("(0) Enter a new action", 13, 5);
+        prt("(2) 追加宏和键位映射到文件", 5, 5);
+        prt("(3) 查询宏", 6, 5);
+        prt("(4) 创建宏", 7, 5);
+        prt("(5) 移除宏", 8, 5);
+        prt("(7) 查询键位映射", 10, 5);
+        prt("(8) 创建键位映射", 11, 5);
+        prt("(9) 移除键位映射", 12, 5);
+        prt("(0) 输入新动作", 13, 5);
 
 #endif /* ALLOW_MACROS */
 
         /* Prompt */
-        prt("Command: ", 16, 0);
+        prt("命令: ", 16, 0);
 
 
         /* Get a command */
@@ -2084,11 +2084,11 @@ void do_cmd_macros(void)
             errr err;
 
             /* Prompt */
-            prt("Command: Load a user pref file", 16, 0);
+            prt("命令: 读取用户 pref 文件", 16, 0);
 
 
             /* Prompt */
-            prt("File: ", 18, 0);
+            prt("文件: ", 18, 0);
 
 
             /* Default filename */
@@ -2101,16 +2101,16 @@ void do_cmd_macros(void)
             err = process_pref_file(tmp);
             if (-2 == err)
             {
-                msg_format("Loaded default '%s'.", tmp);
+                msg_format("已读取默认 '%s'。", tmp);
             }
             else if (err)
             {
                 /* Prompt */
-                msg_format("Failed to load '%s'!", tmp);
+                msg_format("读取 '%s' 失败！", tmp);
             }
             else
             {
-                msg_format("Loaded '%s'.", tmp);
+                msg_format("已读取 '%s'。", tmp);
             }
         }
 
@@ -2120,11 +2120,11 @@ void do_cmd_macros(void)
         else if (i == '2')
         {
             /* Prompt */
-            prt("Command: Append macros and keymaps to a file", 16, 0);
+            prt("命令: 追加宏和键位映射到文件", 16, 0);
 
 
             /* Prompt */
-            prt("File: ", 18, 0);
+            prt("文件: ", 18, 0);
 
 
             /* Default filename */
@@ -2138,7 +2138,7 @@ void do_cmd_macros(void)
             (void)keymap_dump(tmp);
 
             /* Prompt */
-            msg_print("Appended macros and keymaps.");
+            msg_print("已追加宏和键位映射。");
 
         }
 
@@ -2148,11 +2148,11 @@ void do_cmd_macros(void)
             int k;
 
             /* Prompt */
-            prt("Command: Query a macro", 16, 0);
+            prt("命令: 查询宏", 16, 0);
 
 
             /* Prompt */
-            prt("Trigger: ", 18, 0);
+            prt("触发键: ", 18, 0);
 
 
             /* Get a macro trigger */
@@ -2165,7 +2165,7 @@ void do_cmd_macros(void)
             if (k < 0)
             {
                 /* Prompt */
-                msg_print("Found no macro.");
+                msg_print("未找到宏。");
 
             }
 
@@ -2182,7 +2182,7 @@ void do_cmd_macros(void)
                 prt(buf, 22, 0);
 
                 /* Prompt */
-                msg_print("Found a macro.");
+                msg_print("已找到宏。");
 
             }
         }
@@ -2191,11 +2191,11 @@ void do_cmd_macros(void)
         else if (i == '4')
         {
             /* Prompt */
-            prt("Command: Create a macro", 16, 0);
+            prt("命令: 创建宏", 16, 0);
 
 
             /* Prompt */
-            prt("Trigger: ", 18, 0);
+            prt("触发键: ", 18, 0);
 
 
             /* Get a macro trigger */
@@ -2205,10 +2205,10 @@ void do_cmd_macros(void)
             clear_from(20);
 
             /* Help message */
-            c_prt(TERM_L_RED, "Press Left/Right arrow keys to move cursor. Backspace/Delete to delete a char.", 22, 0);
+            c_prt(TERM_L_RED, "用左右方向键移动光标，退格/Delete 删除字符。", 22, 0);
 
             /* Prompt */
-            prt("Action: ", 20, 0);
+            prt("动作: ", 20, 0);
 
 
             /* Convert to text */
@@ -2224,7 +2224,7 @@ void do_cmd_macros(void)
                 macro_add(buf, macro__buf);
 
                 /* Prompt */
-                msg_print("Added a macro.");
+                msg_print("已添加宏。");
 
             }
         }
@@ -2233,11 +2233,11 @@ void do_cmd_macros(void)
         else if (i == '5')
         {
             /* Prompt */
-            prt("Command: Remove a macro", 16, 0);
+            prt("命令: 移除宏", 16, 0);
 
 
             /* Prompt */
-            prt("Trigger: ", 18, 0);
+            prt("触发键: ", 18, 0);
 
 
             /* Get a macro trigger */
@@ -2247,7 +2247,7 @@ void do_cmd_macros(void)
             macro_add(buf, buf);
 
             /* Prompt */
-            msg_print("Removed a macro.");
+            msg_print("已移除宏。");
 
         }
 
@@ -2257,11 +2257,11 @@ void do_cmd_macros(void)
             cptr act;
 
             /* Prompt */
-            prt("Command: Query a keymap", 16, 0);
+            prt("命令: 查询键位映射", 16, 0);
 
 
             /* Prompt */
-            prt("Keypress: ", 18, 0);
+            prt("按键: ", 18, 0);
 
 
             /* Get a keymap trigger */
@@ -2274,7 +2274,7 @@ void do_cmd_macros(void)
             if (!act)
             {
                 /* Prompt */
-                msg_print("Found no keymap.");
+                msg_print("未找到键位映射。");
 
             }
 
@@ -2291,7 +2291,7 @@ void do_cmd_macros(void)
                 prt(buf, 22, 0);
 
                 /* Prompt */
-                msg_print("Found a keymap.");
+                msg_print("已找到键位映射。");
 
             }
         }
@@ -2300,11 +2300,11 @@ void do_cmd_macros(void)
         else if (i == '8')
         {
             /* Prompt */
-            prt("Command: Create a keymap", 16, 0);
+            prt("命令: 创建键位映射", 16, 0);
 
 
             /* Prompt */
-            prt("Keypress: ", 18, 0);
+            prt("按键: ", 18, 0);
 
 
             /* Get a keymap trigger */
@@ -2314,10 +2314,10 @@ void do_cmd_macros(void)
             clear_from(20);
 
             /* Help message */
-            c_prt(TERM_L_RED, "Press Left/Right arrow keys to move cursor. Backspace/Delete to delete a char.", 22, 0);
+            c_prt(TERM_L_RED, "用左右方向键移动光标，退格/Delete 删除字符。", 22, 0);
 
             /* Prompt */
-            prt("Action: ", 20, 0);
+            prt("动作: ", 20, 0);
 
 
             /* Convert to text */
@@ -2336,7 +2336,7 @@ void do_cmd_macros(void)
                 keymap_act[mode][(byte)(buf[0])] = z_string_make(macro__buf);
 
                 /* Prompt */
-                msg_print("Added a keymap.");
+                msg_print("已添加键位映射。");
 
             }
         }
@@ -2345,11 +2345,11 @@ void do_cmd_macros(void)
         else if (i == '9')
         {
             /* Prompt */
-            prt("Command: Remove a keymap", 16, 0);
+            prt("命令: 移除键位映射", 16, 0);
 
 
             /* Prompt */
-            prt("Keypress: ", 18, 0);
+            prt("按键: ", 18, 0);
 
 
             /* Get a keymap trigger */
@@ -2362,7 +2362,7 @@ void do_cmd_macros(void)
             keymap_act[mode][(byte)(buf[0])] = NULL;
 
             /* Prompt */
-            msg_print("Removed a keymap.");
+            msg_print("已移除键位映射。");
 
         }
 
@@ -2370,16 +2370,16 @@ void do_cmd_macros(void)
         else if (i == '0')
         {
             /* Prompt */
-            prt("Command: Enter a new action", 16, 0);
+            prt("命令: 输入新动作", 16, 0);
 
             /* Clear */
             clear_from(20);
 
             /* Help message */
-            c_prt(TERM_L_RED, "Press Left/Right arrow keys to move cursor. Backspace/Delete to delete a char.", 22, 0);
+            c_prt(TERM_L_RED, "用左右方向键移动光标，退格/Delete 删除字符。", 22, 0);
 
             /* Prompt */
-            prt("Action: ", 20, 0);
+            prt("动作: ", 20, 0);
 
             /* Hack -- limit the value */
             tmp[80] = '\0';
@@ -2411,9 +2411,9 @@ void do_cmd_macros(void)
 
 static cptr lighting_level_str[F_LIT_MAX] =
 {
-    "standard",
-    "brightly lit",
-    "darkened",
+    "标准",
+    "明亮",
+    "昏暗",
 };
 
 
@@ -2426,7 +2426,7 @@ static bool cmd_visuals_aux(int i, int *num, int max)
 
         sprintf(str, "%d", *num);
 
-        if (!get_string(format("Input new number(0-%d): ", max-1), str, 5))
+        if (!get_string(format("输入新数字(0-%d): ", max-1), str, 5))
             return FALSE;
 
         tmp = strtol(str, NULL, 0);
@@ -2443,28 +2443,28 @@ static bool cmd_visuals_aux(int i, int *num, int max)
 
 static void print_visuals_menu(cptr choice_msg)
 {
-    prt("Interact with Visuals", 1, 0);
+    prt("外观设置", 1, 0);
 
     /* Give some choices */
-    prt("(0) Load a user pref file", 3, 5);
+    prt("(0) 读取用户 pref 文件", 3, 5);
 
 #ifdef ALLOW_VISUALS
-    prt("(1) Dump monster attr/chars", 4, 5);
-    prt("(2) Dump object attr/chars", 5, 5);
-    prt("(3) Dump feature attr/chars", 6, 5);
-    prt("(4) Change monster attr/chars (numeric operation)", 7, 5);
-    prt("(5) Change object attr/chars (numeric operation)", 8, 5);
-    prt("(6) Change feature attr/chars (numeric operation)", 9, 5);
-    prt("(7) Change monster attr/chars (visual mode)", 10, 5);
-    prt("(8) Change object attr/chars (visual mode)", 11, 5);
-    prt("(9) Change feature attr/chars (visual mode)", 12, 5);
+    prt("(1) 导出怪物颜色/字符", 4, 5);
+    prt("(2) 导出物品颜色/字符", 5, 5);
+    prt("(3) 导出地形颜色/字符", 6, 5);
+    prt("(4) 修改怪物颜色/字符(数字)", 7, 5);
+    prt("(5) 修改物品颜色/字符(数字)", 8, 5);
+    prt("(6) 修改地形颜色/字符(数字)", 9, 5);
+    prt("(7) 修改怪物颜色/字符(可视)", 10, 5);
+    prt("(8) 修改物品颜色/字符(可视)", 11, 5);
+    prt("(9) 修改地形颜色/字符(可视)", 12, 5);
 
 #endif /* ALLOW_VISUALS */
 
-    prt("(R) Reset visuals", 13, 5);
+    prt("(R) 重置外观", 13, 5);
 
     /* Prompt */
-    prt(format("Command: %s", choice_msg ? choice_msg : ""), 15, 0);
+    prt(format("命令: %s", choice_msg ? choice_msg : ""), 15, 0);
 }
 
 static void do_cmd_knowledge_monsters(bool *need_redraw, bool visual_only, int direct_r_idx);
@@ -2510,10 +2510,10 @@ void do_cmd_visuals(void)
         /* Load a 'pref' file */
         case '0':
             /* Prompt */
-            prt("Command: Load a user pref file", 15, 0);
+            prt("命令: 读取用户 pref 文件", 15, 0);
 
             /* Prompt */
-            prt("File: ", 17, 0);
+            prt("文件: ", 17, 0);
 
             /* Default filename */
             sprintf(tmp, "%s.prf", pref_save_base);
@@ -2535,10 +2535,10 @@ void do_cmd_visuals(void)
             static cptr mark = "Monster attr/chars";
 
             /* Prompt */
-            prt("Command: Dump monster attr/chars", 15, 0);
+            prt("命令: 转储怪物外观属性/字符(attr/chars)", 15, 0);
 
             /* Prompt */
-            prt("File: ", 17, 0);
+            prt("文件: ", 17, 0);
 
             /* Default filename */
             sprintf(tmp, "%s.prf", pref_save_base);
@@ -2575,7 +2575,7 @@ void do_cmd_visuals(void)
             close_auto_dump();
 
             /* Message */
-            msg_print("Dumped monster attr/chars.");
+            msg_print("已导出怪物颜色/字符。");
 
             break;
         }
@@ -2586,10 +2586,10 @@ void do_cmd_visuals(void)
             static cptr mark = "Object attr/chars";
 
             /* Prompt */
-            prt("Command: Dump object attr/chars", 15, 0);
+            prt("命令: 转储物品外观属性/字符(attr/chars)", 15, 0);
 
             /* Prompt */
-            prt("File: ", 17, 0);
+            prt("文件: ", 17, 0);
 
             /* Default filename */
             sprintf(tmp, "%s.prf", pref_save_base);
@@ -2644,7 +2644,7 @@ void do_cmd_visuals(void)
             close_auto_dump();
 
             /* Message */
-            msg_print("Dumped object attr/chars.");
+            msg_print("已导出物品颜色/字符。");
 
             break;
         }
@@ -2655,10 +2655,10 @@ void do_cmd_visuals(void)
             static cptr mark = "Feature attr/chars";
 
             /* Prompt */
-            prt("Command: Dump feature attr/chars", 15, 0);
+            prt("命令: 转储地形外观属性/字符(attr/chars)", 15, 0);
 
             /* Prompt */
-            prt("File: ", 17, 0);
+            prt("文件: ", 17, 0);
 
             /* Default filename */
             sprintf(tmp, "%s.prf", pref_save_base);
@@ -2700,7 +2700,7 @@ void do_cmd_visuals(void)
             close_auto_dump();
 
             /* Message */
-            msg_print("Dumped feature attr/chars.");
+            msg_print("已导出地形颜色/字符。");
 
             break;
         }
@@ -2711,7 +2711,7 @@ void do_cmd_visuals(void)
             static cptr choice_msg = "Change monster attr/chars";
             static int r = 0;
 
-            prt(format("Command: %s", choice_msg), 15, 0);
+            prt(format("命令: %s", choice_msg), 15, 0);
 
             /* Hack -- query until done */
             while (1)
@@ -2805,7 +2805,7 @@ void do_cmd_visuals(void)
             static cptr choice_msg = "Change object attr/chars";
             static int k = 0;
 
-            prt(format("Command: %s", choice_msg), 15, 0);
+            prt(format("命令: %s", choice_msg), 15, 0);
 
             /* Hack -- query until done */
             while (1)
@@ -2900,7 +2900,7 @@ void do_cmd_visuals(void)
             static int f = 0;
             static int lighting_level = F_LIT_STANDARD;
 
-            prt(format("Command: %s", choice_msg), 15, 0);
+            prt(format("命令: %s", choice_msg), 15, 0);
 
             /* Hack -- query until done */
             while (1)
@@ -3024,7 +3024,7 @@ void do_cmd_visuals(void)
             reset_visuals();
 
             /* Message */
-            msg_print("Visual attr/char tables reset.");
+            msg_print("外观颜色/字符表已重置。");
 
             need_redraw = TRUE;
             break;
@@ -3073,22 +3073,22 @@ void do_cmd_colors(void)
         Term_clear();
 
         /* Ask for a choice */
-        prt("Interact with Colors", 2, 0);
+        prt("颜色设置", 2, 0);
 
 
         /* Give some choices */
-        prt("(1) Load a user pref file", 4, 5);
+        prt("(1) 读取用户 pref 文件", 4, 5);
 
 #ifdef ALLOW_COLORS
-        prt("(2) Dump colors", 5, 5);
-        prt("(3) Modify colors", 6, 5);
-        prt("(4) Load simple color set", 7, 5);
-        prt("(5) Load Windows color set", 8, 5);
+        prt("(2) 导出颜色", 5, 5);
+        prt("(3) 修改颜色", 6, 5);
+        prt("(4) 读取简易配色", 7, 5);
+        prt("(5) 读取 Windows 配色", 8, 5);
 
 #endif
 
         /* Prompt */
-        prt("Command: ", 10, 0);
+        prt("命令: ", 10, 0);
 
 
         /* Prompt */
@@ -3101,11 +3101,11 @@ void do_cmd_colors(void)
         if (i == '1')
         {
             /* Prompt */
-            prt("Command: Load a user pref file", 10, 0);
+            prt("命令: 读取用户 pref 文件", 10, 0);
 
 
             /* Prompt */
-            prt("File: ", 12, 0);
+            prt("文件: ", 12, 0);
 
 
             /* Default file */
@@ -3129,14 +3129,14 @@ void do_cmd_colors(void)
         /* Dump colors */
         else if (i == '2')
         {
-            static cptr mark = "Colors";
+            static cptr mark = "颜色";
 
             /* Prompt */
-            prt("Command: Dump colors", 10, 0);
+            prt("命令: 转储颜色(Dump colors)", 10, 0);
 
 
             /* Prompt */
-            prt("File: ", 12, 0);
+            prt("文件: ", 12, 0);
 
 
             /* Default filename */
@@ -3183,7 +3183,7 @@ void do_cmd_colors(void)
             close_auto_dump();
 
             /* Message */
-            msg_print("Dumped color redefinitions.");
+            msg_print("已导出颜色重定义。");
 
         }
 
@@ -3193,7 +3193,7 @@ void do_cmd_colors(void)
             static byte a = 0;
 
             /* Prompt */
-            prt("Command: Modify colors", 10, 0);
+            prt("命令: 修改颜色(Modify colors)", 10, 0);
 
 
             /* Hack -- query until done */
@@ -3232,7 +3232,7 @@ void do_cmd_colors(void)
 
                 /* Describe the color */
                 Term_putstr(5, 12, -1, TERM_WHITE,
-                        format("Color = %d, Name = %s", a, name));
+                        format("颜色 = %d, 名称 = %s", a, name));
 
 
                 /* Label the Current values */
@@ -3276,14 +3276,14 @@ void do_cmd_colors(void)
 
         else if (i == '4')
         {
-            if (process_pref_file("user-lim.prf")) msg_print("Done.");
+            if (process_pref_file("user-lim.prf")) msg_print("完成。");
             Term_xtra(TERM_XTRA_REACT, 0);
             Term_redraw();
         }
 
         else if (i == '5')
         {
-            if (process_pref_file("user-win.prf")) msg_print("Done.");
+            if (process_pref_file("user-win.prf")) msg_print("完成。");
             Term_xtra(TERM_XTRA_REACT, 0);
             Term_redraw();
         }
@@ -3449,13 +3449,13 @@ void do_cmd_note(void)
     strcpy(buf, "");
 
     /* Input */
-    if (!get_string("Note: ", buf, 60)) return;
+    if (!get_string("笔记:", buf, 60)) return;
 
     /* Ignore empty notes */
     if (!buf[0] || (buf[0] == ' ')) return;
 
     /* Add the note to the message recall */
-    msg_format("<color:R>Note:</color> %s\n", buf);
+    msg_format("<color:R>笔记:</color> %s\n", buf);
 
     s = get_tiny_screenshot(50, 24);
     msg_add(string_buffer(s));
@@ -3474,12 +3474,12 @@ void do_cmd_version(void)
 /*        if (VER_PATCH == 0) xtra = " (Alpha)"; */
         if (VER_MAJOR != 7) xtra = " (Beta)";
     }
-    msg_format("You are playing <color:B>FrogNet</color> <color:r>%d.%d.%s%s</color>.",
+    msg_format("你正在游玩 <color:B>FrogNet</color> <color:r>%d.%d.%s%s</color>。",
         VER_MAJOR, VER_MINOR, VER_PATCH, xtra);
     if (1)
     {
         rect_t r = ui_map_rect();
-        msg_format("Map display is %dx%d.", r.cx, r.cy);
+        msg_format("地图显示尺寸为 %dx%d。", r.cx, r.cy);
     }
 }
 
@@ -3534,26 +3534,26 @@ void do_cmd_feeling(void)
     /* No useful feeling in quests */
     if (!quests_allow_feeling())
     {
-        msg_print("Looks like a typical quest level.");
+        msg_print("看起来像个典型的任务层。");
     }
 
     /* No useful feeling in town */
     else if (p_ptr->town_num && !dun_level)
     {
-        if (!strcmp(town_name(p_ptr->town_num), "Wilderness"))
+        if (p_ptr->town_num == TOWN_RANDOM)
         {
-            msg_print("Looks like a strange wilderness.");
+            msg_print("看起来像是一片奇怪的荒野。");
         }
         else
         {
-            msg_print("Looks like a typical town.");
+            msg_print("看起来像个典型的城镇。");
         }
     }
 
     /* No useful feeling in the wilderness */
     else if (!dun_level)
     {
-        msg_print("Looks like a typical wilderness.");
+        msg_print("看起来像个典型的荒野。");
     }
 
     /* Display the feeling */
@@ -3576,69 +3576,69 @@ void do_cmd_feeling(void)
  */
 static cptr monster_group_text[] =
 {
-    "Corpses",
-    "Uniques",
-    "Ridable monsters",
-    "Wanted monsters",
-    "Dungeon guardians",
-    "Amberite",
-    "God",
-    "Ant",
-    "Bat",
-    "Centipede",
-    "Dragon",
-    "Floating Eye",
+    "尸体",
+    "唯一怪物",
+    "可骑乘怪物",
+    "通缉怪物",
+    "地下城守卫",
+    "安珀皇族",
+    "神祗",
+    "蚂蚁",
+    "蝙蝠",
+    "蜈蚣",
+    "龙",
+    "漂浮眼",
     "Feline/Fox",
-    "Golem",
+    "魔像",
     "Hobbit/Elf/Dwarf",
-    "Icky Thing",
-    "Jelly",
-    "Kobold",
-    "Aquatic monster",
-    "Mold",
-    "Naga",
-    "Orc",
+    "恶心之物",
+    "果冻怪",
+    "狗头人",
+    "水生怪物",
+    "霉菌",
+    "娜迦",
+    "兽人",
     "Person/Human",
-    "Quadruped",
-    "Rodent",
-    "Skeleton",
-    "Demon",
-    "Vortex",
+    "四足动物",
+    "啮齿动物",
+    "骷髅",
+    "恶魔",
+    "漩涡",
     "Worm/Worm-Mass",
     /* "unused", */
-    "Yeek",
+    "伊克",
     "Zombie/Mummy",
-    "Angel",
-    "Bird",
-    "Canine",
+    "天使",
+    "鸟类",
+    "犬科",
     /* "Ancient Dragon/Wyrm", */
-    "Elemental",
-    "Dragon Fly",
-    "Ghost",
-    "Hybrid",
-    "Insect",
-    "Snake",
-    "Killer Beetle",
-    "Lich",
-    "Multi-Headed Reptile",
-    "Mystery Living",
-    "Ogre",
-    "Giant Humanoid",
-    "Quylthulg",
+    "元素",
+    "龙蝇",
+    "幽灵",
+    "混血生物",
+    "昆虫",
+    "蛇",
+    "杀人甲虫",
+    "巫妖",
+    "多头爬行动物",
+    "神秘活物",
+    "食人魔",
+    "巨大人形生物",
+    "脉动肉块",
     "Reptile/Amphibian",
     "Spider/Scorpion/Tick",
-    "Troll",
+    "巨魔",
     /* "Major Demon", */
-    "Vampire",
+    "吸血鬼",
     "Wight/Wraith/etc",
     "Xorn/Xaren/etc",
-    "Yeti",
-    "Zephyr Hound",
-    "Mimic",
+    "雪人",
+    "微风猎犬",
+    "宝箱怪",
     "Wall/Plant/Gas",
-    "Mushroom patch",
-    "Ball",
-    "Player",
+    "蘑菇丛",
+    "球体",
+    "玩家",
     NULL
 };
 
@@ -3911,10 +3911,10 @@ static int collect_monsters(int grp_cur, s16b mon_idx[], byte mode)
  */
 static cptr object_group_text[] =
 {
-    "Food",
-    "Potions",
+    "食物",
+    "药水",
 /*  "Flasks", */
-    "Scrolls",
+    "卷轴",
 /*  "Rings",
     "Amulets", */
 /*  "Whistle",
@@ -3933,26 +3933,26 @@ static cptr object_group_text[] =
     "Bottles",
     "Skeletons",
     "Corpses", */
-    "Swords",
-    "Blunt Weapons",
-    "Polearms",
-    "Diggers",
-    "Bows",
-    "Shots",
-    "Arrows",
-    "Bolts",
-    "Soft Armor",
-    "Hard Armor",
-    "Dragon Armor",
-    "Shields",
-    "Cloaks",
-    "Gloves",
-    "Helms",
-    "Crowns",
-    "Boots",
-    "Spellbooks",
+    "剑类",
+    "钝器",
+    "长柄武器",
+    "挖掘工具",
+    "弓类",
+    "弹丸",
+    "箭矢",
+    "弩箭",
+    "软甲",
+    "硬甲",
+    "龙鳞甲",
+    "盾牌",
+    "披风",
+    "手套",
+    "头盔",
+    "皇冠",
+    "鞋子",
+    "法术书",
 /*  "Treasure", */
-    "Something",
+    "某物",
     NULL
 };
 
@@ -4218,7 +4218,7 @@ void do_cmd_save_screen(void)
     doc_insert(doc, string_buffer(s));
     doc_insert(doc, "</style>");
     screen_save();
-    doc_display(doc, "Current Screenshot", 0);
+    doc_display(doc, "当前截图", 0);
     screen_load();
 
     string_free(s);
@@ -4236,18 +4236,18 @@ typedef struct {
 } _art_type_t;
 
 static _art_type_t _art_types[] = {
-    { object_is_melee_weapon, "Weapons" },
-    { object_is_shield, "Shield" },
-    { object_is_bow, "Bows" },
-    { object_is_ring, "Rings" },
-    { object_is_amulet, "Amulets" },
-    { object_is_lite, "Lights" },
-    { object_is_body_armour, "Body Armor" },
-    { object_is_cloak, "Cloaks" },
-    { object_is_helmet, "Helmets" },
-    { object_is_gloves, "Gloves" },
-    { object_is_boots, "Boots" },
-    { object_is_ammo, "Ammo" },
+    { object_is_melee_weapon, "武器" },
+    { object_is_shield, "盾牌" },
+    { object_is_bow, "弓类" },
+    { object_is_ring, "戒指" },
+    { object_is_amulet, "护身符" },
+    { object_is_lite, "光源" },
+    { object_is_body_armour, "躯干护甲" },
+    { object_is_cloak, "披风" },
+    { object_is_helmet, "头盔" },
+    { object_is_gloves, "手套" },
+    { object_is_boots, "鞋子" },
+    { object_is_ammo, "弹药" },
     { NULL, NULL },
 };
 
@@ -4324,7 +4324,7 @@ static void do_cmd_knowledge_artifacts(void)
     }
     else if (no_artifacts)
     {
-        cmsg_print(TERM_L_RED, "You won't find any artifacts this game.");
+        cmsg_print(TERM_L_RED, "你在这场游戏中找不到任何神器。");
         return;
     }
 
@@ -4350,7 +4350,7 @@ static void do_cmd_knowledge_artifacts(void)
 
     if (!grp_cnt)
     {
-        prt("You haven't found any artifacts just yet. Press any key to continue.", 0, 0);
+        prt("你还没有找到任何神器。按任意键继续。", 0, 0);
         inkey();
         prt("", 0, 0);
         C_KILL(art_idx, max_a_idx, int);
@@ -4374,9 +4374,9 @@ static void do_cmd_knowledge_artifacts(void)
         {
             clear_from(0);
 
-            prt(format("%s - Artifacts", "Knowledge"), 2, 0);
-            prt("Group", 4, 0);
-            prt("Name", 4, max + 3);
+            prt(format("%s - 神器", "知识"), 2, 0);
+            prt("分组", 4, 0);
+            prt("名称", 4, max + 3);
 
             for (i = 0; i < 72; i++)
             {
@@ -4452,9 +4452,9 @@ static void do_cmd_knowledge_artifacts(void)
         }
 
         if (show_all)
-            prt("<dir>, 'r' to recall, 't' to Hide Unfound, ESC", hgt - 1, 0);
+            prt("<dir>, 'r' 召回, 't' 隐藏未发现, ESC", hgt - 1, 0);
         else
-            prt("<dir>, 'r' to recall, 't' to Show All, ESC", hgt - 1, 0);
+            prt("<dir>, 'r' 召回, 't' 显示全部, ESC", hgt - 1, 0);
 
         if (!column)
         {
@@ -4528,7 +4528,7 @@ static void do_cmd_knowledge_uniques(void)
 
     if (!fff)
     {
-        msg_format("Failed to create temporary file %s.", file_name);
+        msg_format("无法创建临时文件 %s。", file_name);
         msg_print(NULL);
         return;
     }
@@ -4622,7 +4622,7 @@ static void do_cmd_knowledge_uniques(void)
     my_fclose(fff);
 
     /* Display the file contents */
-    show_file(TRUE, file_name, "Alive Uniques", 0, 0);
+    show_file(TRUE, file_name, "存活的唯一怪物", 0, 0);
 
 
     /* Remove the file */
@@ -4637,11 +4637,11 @@ void do_cmd_knowledge_shooter(void)
     if (doc_line_count(doc))
     {
         screen_save();
-        doc_display(doc, "Shooting", 0);
+        doc_display(doc, "射击", 0);
         screen_load();
     }
     else
-        msg_print("You are not wielding a bow.");
+        msg_print("你没有装备弓。");
 
     doc_free(doc);
 }
@@ -4669,11 +4669,11 @@ void do_cmd_knowledge_weapon(void)
     if (doc_line_count(doc))
     {
         screen_save();
-        doc_display(doc, "Melee", 0);
+        doc_display(doc, "近战", 0);
         screen_load();
     }
     else
-        msg_print("You have no melee attacks.");
+        msg_print("你没有近战攻击能力。");
 
     doc_free(doc);
 }
@@ -4706,7 +4706,7 @@ static void do_cmd_knowledge_extra(void)
 
     doc_insert(doc, "</style>");
 
-    doc_display(doc, "Race/Class Extra Information", 0);
+    doc_display(doc, "种族/职业 额外信息", 0);
     doc_free(doc);
 }
 
@@ -4745,11 +4745,11 @@ static cptr _prof_weapon_heading(int tval)
 {
     switch (tval)
     {
-    case TV_SWORD: return "Swords";
-    case TV_POLEARM: return "Polearms";
-    case TV_HAFTED: return "Hafted";
-    case TV_DIGGING: return "Diggers";
-    case TV_BOW: return "Bows";
+    case TV_SWORD: return "剑类";
+    case TV_POLEARM: return "长柄武器";
+    case TV_HAFTED: return "钝器/有柄武器";
+    case TV_DIGGING: return "挖掘工具";
+    case TV_BOW: return "弓类";
     }
     return "";
 }
@@ -4813,14 +4813,14 @@ static void _prof_skill_aux(doc_ptr doc, int skill, int mode)
     switch (skill)
     {
     case SKILL_MARTIAL_ARTS:
-        name = "Martial Arts";
+        name = "武术";
         exp = skills_martial_arts_current();
         max = skills_martial_arts_max();
         max_lvl = weapon_exp_level(max);
         exp_lvl = weapon_exp_level(exp);
         break;
     case SKILL_DUAL_WIELDING:
-        name = "Dual Wielding";
+        name = "双持";
         exp = skills_dual_wielding_current();
         max = skills_dual_wielding_max();
         max_lvl = weapon_exp_level(max);
@@ -4828,7 +4828,7 @@ static void _prof_skill_aux(doc_ptr doc, int skill, int mode)
         break;
     case SKILL_RIDING:
     default: /* gcc warnings ... */
-        name = "Riding";
+        name = "骑乘";
         exp = skills_riding_current();
         max = skills_riding_max();
         max_lvl = riding_exp_level(max);
@@ -4867,7 +4867,7 @@ static void _prof_skill_aux(doc_ptr doc, int skill, int mode)
 
 static void _prof_skill_doc(doc_ptr doc, int mode)
 {
-    doc_insert_text(doc, TERM_RED, "Miscellaneous");
+    doc_insert_text(doc, TERM_RED, "杂项");
     doc_newline(doc);
     _prof_skill_aux(doc, SKILL_MARTIAL_ARTS, mode);
     _prof_skill_aux(doc, SKILL_DUAL_WIELDING, mode);
@@ -4899,12 +4899,12 @@ static int _do_cmd_knowledge_weapon_exp_aux(int mode, int *huippu)
             class_t *class_ptr = get_class();
             char buf[64];
             strcpy(buf, class_ptr->name);
-            strcat(buf, " Proficiency Caps");
+            strcat(buf, "熟练度上限");
             tulos = weapon_exp_display(doc, buf, huippu); break;
         }
         case 2: tulos = weapon_exp_display(doc, "Current Proficiency as % of Caps", huippu); break;
         case 3: tulos = weapon_exp_display(doc, "Current Proficiency as % of Full Mastery", huippu); break;
-        default: tulos = weapon_exp_display(doc, "Current Proficiency", huippu); break;
+        default: tulos = weapon_exp_display(doc, "当前熟练度", huippu); break;
     }
 
     doc_free(doc);
@@ -4936,7 +4936,7 @@ static void do_cmd_knowledge_spell_exp(void)
     doc_insert(doc, "<style:wide>");
     spellbook_character_dump(doc);
     doc_insert(doc, "</style>");
-    doc_display(doc, "Spell Proficiency", 0);
+    doc_display(doc, "法术熟练度", 0);
     doc_free(doc);
 }
 
@@ -4965,21 +4965,21 @@ void plural_aux(char *Name)
 {
     int NameLen = strlen(Name);
 
-    if (my_strstr(Name, "Disembodied hand"))
+    if (my_strstr(Name, "脱体之手"))
     {
-        strcpy(Name, "Disembodied hands that strangled people");
+        strcpy(Name, "勒死人的脱体之手");
     }
-    else if (my_strstr(Name, "Colour out of space"))
+    else if (my_strstr(Name, "星之彩"))
     {
-        strcpy(Name, "Colours out of space");
+        strcpy(Name, "星之彩");
     }
     else if (my_strstr(Name, "stairway to hell"))
     {
         strcpy(Name, "stairways to hell");
     }
-    else if (my_strstr(Name, "Dweller on the threshold"))
+    else if (my_strstr(Name, "门之主"))
     {
-        strcpy(Name, "Dwellers on the threshold");
+        strcpy(Name, "门之主");
     }
     else if (my_strstr(Name, " of "))
     {
@@ -5015,7 +5015,7 @@ void plural_aux(char *Name)
         strcpy(Name, dummy);
         return;
     }
-    else if (my_strstr(Name, "Manes"))
+    else if (my_strstr(Name, "亡魂"))
     {
         return;
     }
@@ -5087,7 +5087,7 @@ static void do_cmd_knowledge_pets(void)
     /* Open a new file */
     fff = my_fopen_temp(file_name, 1024);
     if (!fff) {
-        msg_format("Failed to create temporary file %s.", file_name);
+        msg_format("无法创建临时文件 %s。", file_name);
         msg_print(NULL);
         return;
     }
@@ -5127,7 +5127,7 @@ static void do_cmd_knowledge_pets(void)
     my_fclose(fff);
 
     /* Display the file contents */
-    show_file(TRUE, file_name, "Current Pets", 0, 0);
+    show_file(TRUE, file_name, "当前宠物", 0, 0);
 
 
     /* Remove the file */
@@ -5157,7 +5157,7 @@ static void do_cmd_knowledge_kill_count(void)
     fff = my_fopen_temp(file_name, 1024);
 
     if (!fff) {
-        msg_format("Failed to create temporary file %s.", file_name);
+        msg_format("无法创建临时文件 %s。", file_name);
         msg_print(NULL);
         return;
     }
@@ -5277,7 +5277,7 @@ static void do_cmd_knowledge_kill_count(void)
     my_fclose(fff);
 
     /* Display the file contents */
-    show_file(TRUE, file_name, "Kill Count", 0, 0);
+    show_file(TRUE, file_name, "击杀统计", 0, 0);
 
 
     /* Remove the file */
@@ -5699,7 +5699,7 @@ static void display_monster_list(int col, int row, int per_page, s16b mon_idx[],
         {
             /* Display kills */
             if (!(r_ptr->flags1 & RF1_UNIQUE)) put_str(format("%5d", r_ptr->r_pkills), row + i, 73);
-            else c_put_str((r_ptr->max_num == 0 ? TERM_L_DARK : TERM_WHITE), (r_ptr->max_num == 0 ? " dead" : "alive"), row + i, 73);
+            else c_put_str((r_ptr->max_num == 0 ? TERM_L_DARK : TERM_WHITE), (r_ptr->max_num == 0 ? "死亡" : "存活"), row + i, 73);
 
             /* Only Possessors get the extra body info display */
             if (p_ptr->wizard || p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC)
@@ -5904,19 +5904,19 @@ static void do_cmd_knowledge_monsters(bool *need_redraw, bool visual_only, int d
         {
             clear_from(0);
 
-            prt(format("%s - Monsters", !visual_only ? "Knowledge" : "Visuals"), 2, 0);
-            if (direct_r_idx < 0) prt("Group", 4, 0);
-            prt("Name", 4, max + 3);
-            if (p_ptr->wizard || visual_only) prt("Idx", 4, 62);
-            prt("Sym", 4, 68);
-            if (!visual_only) prt("Kills", 4, 73);
+            prt(format("%s - 怪物", !visual_only ? "知识" : "视觉(Visuals)"), 2, 0);
+            if (direct_r_idx < 0) prt("分组", 4, 0);
+            prt("名称", 4, max + 3);
+            if (p_ptr->wizard || visual_only) prt("序号(Idx)", 4, 62);
+            prt("字符(Sym)", 4, 68);
+            if (!visual_only) prt("击杀", 4, 73);
 
             if (p_ptr->wizard || p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC)
             {
                 char buf[255];
                 if (monster_mode == MONSTER_MODE_STATS)
                 {
-                    sprintf(buf, "STR  INT  WIS  DEX  CON  CHR  Life  Body");
+                    sprintf(buf, "力 智 感 敏 体 魅 命 躯");
                     c_put_str(TERM_WHITE, buf, 4, 80);
                     for (i = 78; i < 130; i++)
                         Term_putch(i, 5, TERM_WHITE, '=');
@@ -5930,7 +5930,7 @@ static void do_cmd_knowledge_monsters(bool *need_redraw, bool visual_only, int d
                 }
                 else if (monster_mode == MONSTER_MODE_EXTRA)
                 {
-                    sprintf(buf, "Lvl  Max  Speed    AC  Pseudo-Class");
+                    sprintf(buf, "等级 最大 速度 护甲 伪职业");
                     c_put_str(TERM_WHITE, buf, 4, 80);
                     for (i = 78; i < 130; i++)
                         Term_putch(i, 5, TERM_WHITE, '=');
@@ -6195,7 +6195,7 @@ static void display_object_list(int col, int row, int per_page, int object_idx[]
         }
 
         sprintf(buf, "%-35.35s %5d %6d %4d %4d",
-            "Totals",
+            "总计",
             totals.found, totals.bought, totals.used, totals.destroyed
         );
         c_prt(TERM_YELLOW, buf, row + i, col);
@@ -6254,27 +6254,27 @@ typedef struct {
 } _ego_type_t;
 
 static _ego_type_t _ego_types[] = {
-    { EGO_TYPE_WEAPON, "Weapons" },
-    { EGO_TYPE_DIGGER, "Diggers" },
+    { EGO_TYPE_WEAPON, "武器" },
+    { EGO_TYPE_DIGGER, "挖掘工具" },
 
-    { EGO_TYPE_SHIELD, "Shields" },
-    { EGO_TYPE_BODY_ARMOR, "Body Armor" },
-    { EGO_TYPE_ROBE, "Robes" },
-    { EGO_TYPE_DRAGON_ARMOR, "Dragon Armor" },
-    { EGO_TYPE_CLOAK, "Cloaks" },
-    { EGO_TYPE_HELMET, "Helmets" },
-    { EGO_TYPE_CROWN, "Crowns" },
-    { EGO_TYPE_GLOVES, "Gloves" },
-    { EGO_TYPE_BOOTS, "Boots" },
+    { EGO_TYPE_SHIELD, "盾牌" },
+    { EGO_TYPE_BODY_ARMOR, "躯干护甲" },
+    { EGO_TYPE_ROBE, "长袍" },
+    { EGO_TYPE_DRAGON_ARMOR, "龙鳞甲" },
+    { EGO_TYPE_CLOAK, "披风" },
+    { EGO_TYPE_HELMET, "头盔" },
+    { EGO_TYPE_CROWN, "皇冠" },
+    { EGO_TYPE_GLOVES, "手套" },
+    { EGO_TYPE_BOOTS, "鞋子" },
 
-    { EGO_TYPE_BOW, "Bows" },
-    { EGO_TYPE_AMMO, "Ammo" },
-    { EGO_TYPE_HARP, "Harps" },
+    { EGO_TYPE_BOW, "弓类" },
+    { EGO_TYPE_AMMO, "弹药" },
+    { EGO_TYPE_HARP, "竖琴" },
 
-    { EGO_TYPE_RING, "Rings" },
-    { EGO_TYPE_AMULET, "Amulets" },
-    { EGO_TYPE_LITE, "Lights" },
-    { EGO_TYPE_DEVICE, "Devices" },
+    { EGO_TYPE_RING, "戒指" },
+    { EGO_TYPE_AMULET, "护身符" },
+    { EGO_TYPE_LITE, "光源" },
+    { EGO_TYPE_DEVICE, "魔法装置" },
 
     { EGO_TYPE_NONE, NULL },
 };
@@ -6353,7 +6353,7 @@ static void do_cmd_knowledge_egos(void)
 
     if (!grp_cnt)
     {
-        prt("You haven't found any egos just yet. Press any key to continue.", 0, 0);
+        prt("你还没有发现任何 Ego 物品。按任意键继续。", 0, 0);
         inkey();
         prt("", 0, 0);
         C_KILL(ego_idx, max_e_idx, int);
@@ -6376,10 +6376,10 @@ static void do_cmd_knowledge_egos(void)
         {
             clear_from(0);
 
-            prt(format("%s - Egos", "Knowledge"), 2, 0);
-            prt("Group", 4, 0);
-            prt("Name", 4, max + 3);
-            prt("Found Bought Dest", 4, max + 3 + 36);
+            prt(format("%s - Ego物品", "知识"), 2, 0);
+            prt("分组", 4, 0);
+            prt("名称", 4, max + 3);
+            prt("发现 购买 破坏", 4, max + 3 + 36);
 
             for (i = 0; i < 72; i++)
             {
@@ -6460,7 +6460,7 @@ static void do_cmd_knowledge_egos(void)
             }
 
             sprintf(buf, "%35.35s %5d %6d %4d",
-                "Totals",
+                "总计",
                 totals.found, totals.bought, totals.destroyed
             );
             c_prt(TERM_YELLOW, buf, 6 + i, max + 3);
@@ -6474,7 +6474,7 @@ static void do_cmd_knowledge_egos(void)
             Term_erase(max + 3, 6 + i, 255);
         }
 
-        prt("<dir>, 'r' to recall, ESC", hgt - 1, 0);
+        prt("<dir>, 'r' 召回, ESC", hgt - 1, 0);
 
         if (!column)
         {
@@ -6620,11 +6620,11 @@ static void do_cmd_knowledge_objects(bool *need_redraw, bool visual_only, int di
         {
             clear_from(0);
 
-            prt(format("%s - Objects", !visual_only ? "Knowledge" : "Visuals"), 2, 0);
-            if (direct_k_idx < 0) prt("Group", 4, 0);
-            prt("Name", 4, max + 3);
-            if (visual_only) prt("Idx", 4, 70);
-            prt("Found Bought Used Dest Sym", 4, 52);
+            prt(format("%s - 物品", !visual_only ? "知识" : "视觉(Visuals)"), 2, 0);
+            if (direct_k_idx < 0) prt("分组", 4, 0);
+            prt("名称", 4, max + 3);
+            if (visual_only) prt("序号(Idx)", 4, 70);
+            prt("发现 购买 使用 破坏 字符", 4, 52);
 
             for (i = 0; i < 78; i++)
             {
@@ -6850,7 +6850,7 @@ static void display_feature_list(int col, int row, int per_page, int *feat_idx,
         }
         Term_putch(lit_col[F_LIT_MAX - 1] + (use_bigtile ? 3 : 2), row_i, TERM_SLATE, ')');
 
-        /* Mega-hack -- Use non-standard colour */
+        /* Mega-hack -- Use non-标准 colour */
         for (j = F_LIT_NS_BEGIN; j < F_LIT_MAX; j++)
         {
             Term_queue_bigchar(lit_col[j] + 1, row_i, f_ptr->x_attr[j], f_ptr->x_char[j], 0, 0);
@@ -6965,18 +6965,18 @@ static void do_cmd_knowledge_features(bool *need_redraw, bool visual_only, int d
         {
             clear_from(0);
 
-            prt("Visuals - features", 2, 0);
-            if (direct_f_idx < 0) prt("Group", 4, 0);
-            prt("Name", 4, max + 3);
+            prt("视觉(Visuals) - 地形", 2, 0);
+            if (direct_f_idx < 0) prt("分组", 4, 0);
+            prt("名称", 4, max + 3);
             if (use_bigtile)
             {
-                if (p_ptr->wizard || visual_only) prt("Idx", 4, 62);
-                prt("Sym ( l/ d)", 4, 67);
+                if (p_ptr->wizard || visual_only) prt("序号(Idx)", 4, 62);
+                prt("字符(亮/暗)", 4, 67);
             }
             else
             {
-                if (p_ptr->wizard || visual_only) prt("Idx", 4, 64);
-                prt("Sym (l/d)", 4, 69);
+                if (p_ptr->wizard || visual_only) prt("序号(Idx)", 4, 64);
+                prt("字符(亮/暗)", 4, 69);
             }
 
             for (i = 0; i < 78; i++)
@@ -7036,7 +7036,7 @@ static void do_cmd_knowledge_features(bool *need_redraw, bool visual_only, int d
         }
 
         /* Prompt */
-        prt(format("<dir>%s, 'd' for default lighting%s, ESC",
+        prt(format("<dir>%s, 'd' 恢复默认光照%s, ESC",
             visual_list ? ", ENTER to accept, 'a' for lighting level" : ", 'v' for visuals",
             (attr_idx || char_idx) ? ", 'c', 'p' to paste" : ", 'c' to copy"),
             hgt - 1, 0);
@@ -7201,7 +7201,7 @@ static void do_cmd_knowledge_kubi(void)
     /* Open a new file */
     fff = my_fopen_temp(file_name, 1024);
     if (!fff) {
-        msg_format("Failed to create temporary file %s.", file_name);
+        msg_format("无法创建临时文件 %s。", file_name);
         msg_print(NULL);
         return;
     }
@@ -7212,7 +7212,7 @@ static void do_cmd_knowledge_kubi(void)
 
         fprintf(fff, "Today target : %s\n", (p_ptr->today_mon ? r_name + r_info[p_ptr->today_mon].name : "unknown"));
         fprintf(fff, "\n");
-        fprintf(fff, "List of wanted monsters\n");
+        fprintf(fff, "通缉怪物列表\n");
         fprintf(fff, "----------------------------------------------\n");
 
         for (i = 0; i < MAX_KUBI; i++)
@@ -7235,7 +7235,7 @@ static void do_cmd_knowledge_kubi(void)
     my_fclose(fff);
 
     /* Display the file contents */
-    show_file(TRUE, file_name, "Wanted monsters", 0, 0);
+    show_file(TRUE, file_name, "通缉怪物", 0, 0);
 
 
     /* Remove the file */
@@ -7251,7 +7251,7 @@ static void do_cmd_knowledge_virtues(void)
     doc_ptr doc = doc_alloc(80);
 
     virtue_display(doc);
-    doc_display(doc, "Virtues", 0);
+    doc_display(doc, "美德(Virtues)", 0);
     doc_free(doc);
 }
 
@@ -7264,7 +7264,7 @@ static void do_cmd_knowledge_dungeon(void)
     doc_ptr doc = doc_alloc(80);
 
     py_display_dungeons(doc);
-    doc_display(doc, "Dungeons", 0);
+    doc_display(doc, "地下城(Dungeons)", 0);
     doc_free(doc);
 }
 
@@ -7277,11 +7277,11 @@ static void do_cmd_knowledge_stat(void)
     int              i;
 
     if (p_ptr->knowledge & KNOW_HPRATE)
-        doc_printf(doc, "Your current Life Rating is %s.\n\n", life_rating_desc(TRUE));
+        doc_printf(doc, "你当前的生命评级(Life Rating)是 %s。\n\n", life_rating_desc(TRUE));
     else
-        doc_insert(doc, "Your current Life Rating is <color:y>\?\?\?</color>.\n\n");
+        doc_insert(doc, "你当前的生命评级(Life Rating)是 <color:y>???</color>。\n\n");
 
-    doc_insert(doc, "<color:r>Limits of maximum stats</color>\n");
+    doc_insert(doc, "<color:r>最大属性上限</color>\n");
 
     for (i = 0; i < MAX_STATS; i++)
     {
@@ -7296,46 +7296,46 @@ static void do_cmd_knowledge_stat(void)
     }
     doc_insert(doc, "\n\n");
 
-    doc_printf(doc, "<color:r>Race:</color> <color:B>%s</color>\n", race_ptr->name);
+    doc_printf(doc, "<color:r>种族:</color> <color:B>%s</color>\n", race_ptr->name);
     doc_insert(doc, race_ptr->desc);
     if (p_ptr->pclass == CLASS_MONSTER)
-        doc_printf(doc, " For more information, see <link:MonsterRaces.txt#%s>.\n\n", race_ptr->name);
+        doc_printf(doc, "更多信息，请参见 <link:MonsterRaces.txt#%s>。\n\n", race_ptr->name);
     else
-        doc_printf(doc, " For more information, see <link:Races.txt#%s>.\n\n", race_ptr->name);
+        doc_printf(doc, "更多信息，请参见 <link:Races.txt#%s>。\n\n", race_ptr->name);
 
     if (race_ptr->subdesc && strlen(race_ptr->subdesc))
     {
-        doc_printf(doc, "<color:r>Subrace:</color> <color:B>%s</color>\n", race_ptr->subname);
+        doc_printf(doc, "<color:r>亚种:</color> <color:B>%s</color>\n", race_ptr->subname);
         doc_insert(doc, race_ptr->subdesc);
         doc_insert(doc, "\n\n");
     }
 
     if (p_ptr->pclass != CLASS_MONSTER)
     {
-        doc_printf(doc, "<color:r>Class:</color> <color:B>%s</color>\n", class_ptr->name);
+        doc_printf(doc, "<color:r>职业:</color> <color:B>%s</color>\n", class_ptr->name);
         doc_insert(doc, class_ptr->desc);
-        doc_printf(doc, " For more information, see <link:Classes.txt#%s>.\n\n", class_ptr->name);
+        doc_printf(doc, "更多信息，请参见 <link:Classes.txt#%s>。\n\n", class_ptr->name);
     }
 
-    doc_printf(doc, "<color:r>Personality:</color> <color:B>%s</color>\n", pers_ptr->name);
+    doc_printf(doc, "<color:r>性格:</color> <color:B>%s</color>\n", pers_ptr->name);
     doc_insert(doc, pers_ptr->desc);
-    doc_printf(doc, " For more information, see <link:Personalities.txt#%s>.\n\n", pers_ptr->name);
+    doc_printf(doc, "更多信息，请参见 <link:Personalities.txt#%s>。\n\n", pers_ptr->name);
 
     if (p_ptr->realm1)
     {
-        doc_printf(doc, "<color:r>Realm:</color> <color:B>%s</color>\n", realm_names[p_ptr->realm1]);
+        doc_printf(doc, "<color:r>法术领域:</color> <color:B>%s</color>\n", realm_names[p_ptr->realm1]);
         doc_insert(doc, realm_jouhou[technic2magic(p_ptr->realm1)-1]);
         doc_insert(doc, "\n\n");
     }
 
     if (p_ptr->realm2)
     {
-        doc_printf(doc, "<color:r>Realm:</color> <color:B>%s</color>\n", realm_names[p_ptr->realm2]);
+        doc_printf(doc, "<color:r>法术领域:</color> <color:B>%s</color>\n", realm_names[p_ptr->realm2]);
         doc_insert(doc, realm_jouhou[technic2magic(p_ptr->realm2)-1]);
         doc_insert(doc, "\n\n");
     }
 
-    doc_display(doc, "Self Knowledge", 0);
+    doc_display(doc, "自我知识", 0);
     doc_free(doc);
 }
 
@@ -7349,21 +7349,21 @@ static void do_cmd_knowledge_autopick(void)
 
     if (no_mogaminator)
     {
-        doc_insert(doc, "You have disabled the Mogaminator.\n");
+        doc_insert(doc, "你已禁用 Mogaminator(自动物品管理)。\n");
     }
     else if (!max_autopick)
     {
-        doc_insert(doc, "You have not yet activated the Mogaminator.\n");
+        doc_insert(doc, "你尚未启用 Mogaminator(自动物品管理)。\n");
     }
     else if (max_autopick == 1)
     {
-        doc_insert(doc, "There is 1 registered line for automatic object management.\n");
+        doc_insert(doc, "有 1 条用于自动物品管理的注册规则。\n");
     }
     else
     {
-        doc_printf(doc, "There are %d registered lines for automatic object management.\n", max_autopick);
+        doc_printf(doc, "有 %d 条用于自动物品管理的注册规则。\n", max_autopick);
     }
-    doc_insert(doc, "For help on the Mogaminator, see <link:editor.txt>.\n\n");
+    doc_insert(doc, "Mogaminator 帮助见 <link:editor.txt>。\n\n");
 
     if (!no_mogaminator)
     {
@@ -7375,22 +7375,22 @@ static void do_cmd_knowledge_autopick(void)
             byte act = autopick_list[k].action;
             if (act & DONT_AUTOPICK)
             {
-                tmp = "Leave";
+                tmp = "保留";
                 color = 'U';
             }
             else if (act & DO_AUTODESTROY)
             {
-                tmp = "Destroy";
+                tmp = "破坏";
                 color = 'r';
             }
             else if (act & DO_AUTOPICK)
             {
-                tmp = "Pick Up";
+                tmp = "拾取";
                 color = 'B';
             }
             else /* if (act & DO_QUERY_AUTOPICK) */ /* Obvious */
             {
-                tmp = "Query";
+                tmp = "询问";
                 color = 'y';
             }
 
@@ -7405,7 +7405,7 @@ static void do_cmd_knowledge_autopick(void)
         }
     }
 
-    doc_display(doc, "Mogaminator Preferences", 0);
+    doc_display(doc, "Mogaminator 偏好", 0);
     doc_free(doc);
 }
 
@@ -7426,59 +7426,59 @@ void do_cmd_knowledge(void)
     {
         Term_clear();
 
-        prt("Display current knowledge", 2, 0);
+        prt("显示当前知识", 2, 0);
 
         /* Give some choices */
         row = 4;
         col = 2;
-        c_prt(TERM_RED, "Object Knowledge", row++, col - 2);
-        prt("(a) Artifacts", row++, col);
-        prt("(o) Objects", row++, col);
-        prt("(e) Egos", row++, col);
-        prt("(_) Auto Pick/Destroy", row++, col);
+        c_prt(TERM_RED, "物品知识", row++, col - 2);
+        prt("(a) 神器", row++, col);
+        prt("(o) 物品", row++, col);
+        prt("(e) Ego物品", row++, col);
+        prt("(_) 自动拾取/破坏", row++, col);
         row++;
 
-        c_prt(TERM_RED, "Monster Knowledge", row++, col - 2);
-        prt("(m) Known Monsters", row++, col);
-        prt("(w) Wanted Monsters", row++, col);
-        prt("(u) Remaining Uniques", row++, col);
-        prt("(k) Kill Count", row++, col);
-        prt("(p) Pets", row++, col);
+        c_prt(TERM_RED, "怪物知识", row++, col - 2);
+        prt("(m) 已知怪物", row++, col);
+        prt("(w) 通缉怪物", row++, col);
+        prt("(u) 剩余唯一怪物", row++, col);
+        prt("(k) 击杀统计", row++, col);
+        prt("(p) 宠物", row++, col);
         row++;
 
         row = 4;
         col = 30;
 
-        c_prt(TERM_RED, "Dungeon Knowledge", row++, col - 2);
-        prt("(d) Dungeons", row++, col);
-        prt("(q) Quests", row++, col);
-        prt("(t) Terrain Symbols", row++, col);
+        c_prt(TERM_RED, "地下城知识", row++, col - 2);
+        prt("(d) 地下城", row++, col);
+        prt("(q) 任务", row++, col);
+        prt("(t) 地形字符", row++, col);
         row++;
 
-        c_prt(TERM_RED, "Self Knowledge", row++, col - 2);
-        prt("(@) About Yourself", row++, col);
+        c_prt(TERM_RED, "自我知识", row++, col - 2);
+        prt("(@) 关于你自己", row++, col);
         if (p_ptr->prace != RACE_MON_RING)
-            prt("(W) Weapon Damage", row++, col);
+            prt("(W) 武器伤害", row++, col);
         if (equip_find_obj(TV_BOW, SV_ANY) && !prace_is_(RACE_MON_JELLY) && p_ptr->shooter_info.tval_ammo != TV_NO_AMMO)
-            prt("(S) Shooter Damage", row++, col);
+            prt("(S) 射击伤害", row++, col);
         if (mut_count(NULL))
-            prt("(M) Mutations", row++, col);
+            prt("(M) 突变", row++, col);
         if (enable_virtues)
-            prt("(v) Virtues", row++, col);
+            prt("(v) 美德", row++, col);
         if (class_ptr->character_dump || race_ptr->character_dump)
-            prt("(x) Extra Info", row++, col);
-        prt("(H) High Score List", row++, col);
+            prt("(x) 额外信息", row++, col);
+        prt("(H) 高分榜", row++, col);
         row++;
 
-        c_prt(TERM_RED, "Skills", row++, col - 2);
-        prt("(P) Proficiency", row++, col);
+        c_prt(TERM_RED, "技能", row++, col - 2);
+        prt("(P) 武器熟练度", row++, col);
         if (p_ptr->pclass != CLASS_RAGE_MAGE) /* TODO */
-            prt("(s) Spell Proficiency", row++, col);
+            prt("(s) 法术熟练度", row++, col);
         row++;
 
         /* Prompt */
-        prt("ESC) Exit menu", 21, 1);
-        prt("Command: ", 20, 0);
+        prt("ESC) 退出菜单", 21, 1);
+        prt("命令: ", 20, 0);
 
         /* Prompt */
         i = inkey();
@@ -7627,7 +7627,7 @@ void do_cmd_time(void)
     else strcpy(day_buf, "*****");
 
     /* Message */
-    msg_format("This is day %s. The time is %d:%02d %s.",
+    msg_format("今天是第 %s 天。时间是 %d:%02d %s。",
            day_buf, (hour % 12 == 0) ? 12 : (hour % 12),
            min, (hour < 12) ? "AM" : "PM");
 

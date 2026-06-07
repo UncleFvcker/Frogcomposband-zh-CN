@@ -29,10 +29,10 @@ static void _detect_prey_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Prey");
+        var_set_string(res, "探测猎物");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Looks for a nearby meal.");
+        var_set_string(res, "寻找附近的美餐。");
         break;
     case SPELL_CAST:
         detect_monsters_living(DETECT_RAD_DEFAULT, "You sense potential prey!");
@@ -64,10 +64,10 @@ void spider_web_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Spider Web");
+        var_set_string(res, "蜘蛛网");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Weaves a fine, silky web which obstructs the movement of all save spiders.");
+        var_set_string(res, "编织一张精美的丝网，阻碍除蜘蛛外所有生物的移动。");
         break;
     case SPELL_CAST:
         if (p_ptr->lev >= 50)
@@ -124,7 +124,7 @@ static void _cave_spider_calc_innate_attacks(void)
     a.weight = 70;
     calc_innate_blows(&a, 200);
     a.msg = "You bite.";
-    a.name = "Bite";
+    a.name = "撕咬";
 
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
 }
@@ -155,7 +155,7 @@ race_t *_cave_spider_get_race_t(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.subname = "Cave Spider";
+        me.subname = "洞穴蜘蛛";
 
         me.stats[A_STR] = -2;
         me.stats[A_INT] = -1;
@@ -189,7 +189,7 @@ static void _giant_spider_calc_innate_attacks(void)
     a.effect[1] = GF_POIS;
     calc_innate_blows(&a, 400);
     a.msg = "You bite.";
-    a.name = "Bite";
+    a.name = "撕咬";
 
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
 }
@@ -216,7 +216,7 @@ race_t *_giant_spider_get_race_t(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.subname = "Giant Spider";
+        me.subname = "巨型蜘蛛";
 
         me.stats[A_STR] =  0;
         me.stats[A_INT] = -1;
@@ -243,15 +243,15 @@ static void _phase_shield_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Phase Shield");
+        var_set_string(res, "相位护盾");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Teleport as you receive an attack, potentially escaping damage altogether.");
+        var_set_string(res, "在你受到攻击时进行传送，有可能完全避开伤害。");
         break;
     case SPELL_CAST:
         if (!(p_ptr->special_defense & NINJA_KAWARIMI))
         {
-            msg_print("You prepare to evade any attacks.");
+            msg_print("你准备避开任何攻击。");
             p_ptr->special_defense |= NINJA_KAWARIMI;
             p_ptr->redraw |= PR_STATUS;
         }
@@ -288,7 +288,7 @@ static void _phase_spider_calc_innate_attacks(void)
     a.effect[2] = GF_OLD_SLEEP;
     calc_innate_blows(&a, 500);
     a.msg = "You bite.";
-    a.name = "Bite";
+    a.name = "撕咬";
 
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
 }
@@ -334,7 +334,7 @@ race_t *_phase_spider_get_race_t(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.subname = "Phase Spider";
+        me.subname = "相位蜘蛛";
 
         me.stats[A_STR] =  0;
         me.stats[A_INT] =  3;
@@ -375,7 +375,7 @@ static void _aranea_calc_innate_attacks(void)
     a.effect[2] = GF_OLD_SLEEP;
     calc_innate_blows(&a, 500);
     a.msg = "You bite.";
-    a.name = "Bite";
+    a.name = "撕咬";
 
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
 }
@@ -423,7 +423,7 @@ race_t *_aranea_get_race_t(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.subname = "Aranea";
+        me.subname = "蛛化精灵";
 
         me.stats[A_STR] =  1;
         me.stats[A_INT] =  0;
@@ -460,7 +460,7 @@ static void _elder_aranea_calc_innate_attacks(void)
     a.effect_chance[2] = 25 + 5*(p_ptr->lev - 40);
     calc_innate_blows(&a, 550);
     a.msg = "You bite.";
-    a.name = "Bite";
+    a.name = "撕咬";
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
 }
 
@@ -523,7 +523,7 @@ race_t *_elder_aranea_get_race_t(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.subname = "Elder Aranea";
+        me.subname = "长老蛛化精灵";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] =  1;
@@ -550,7 +550,7 @@ static void _gain_level(int new_level)
       && new_level >= 10 )
     {
         p_ptr->current_r_idx = MON_GIANT_SPIDER;
-        msg_print("You have evolved into a Giant Spider.");
+        msg_print("你进化成了巨型蜘蛛(Giant Spider)。");
         p_ptr->redraw |= PR_MAP;
     }
     else if ( p_ptr->current_r_idx == MON_GIANT_SPIDER
@@ -559,13 +559,13 @@ static void _gain_level(int new_level)
         if (p_ptr->psubrace == SPIDER_PHASE)
         {
             p_ptr->current_r_idx = MON_PHASE_SPIDER;
-            msg_print("You have evolved into a Phase Spider.");
+            msg_print("你进化成了相位蜘蛛(Phase Spider)。");
             p_ptr->redraw |= PR_MAP;
         }
         else
         {
             p_ptr->current_r_idx = MON_ARANEA;
-            msg_print("You have evolved into an Aranea.");
+            msg_print("你进化成了蛛化精灵(Aranea)。");
             p_ptr->redraw |= PR_MAP;
         }
     }
@@ -573,7 +573,7 @@ static void _gain_level(int new_level)
            && new_level >= 40 )
     {
         p_ptr->current_r_idx = MON_ELDER_ARANEA;
-        msg_print("You have evolved into an Elder Aranea.");
+        msg_print("你进化成了长老蛛化精灵(Elder Aranea)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -584,7 +584,7 @@ static void _birth(void)
 
     p_ptr->current_r_idx = MON_CAVE_SPIDER;
     equip_on_change_race();
-    skills_innate_init("Bite", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("撕咬", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
     object_prep(&forge, lookup_kind(TV_RING, 0));
     forge.name2 = EGO_RING_COMBAT;
@@ -601,7 +601,7 @@ static void _birth(void)
 }
 
 static name_desc_t _info[SPIDER_MAX] = {
-    { "Phase Spider", "Phase Spiders have unsurpassed powers of teleportation and average offense." },    { "Aranea", "Aranea are stronger in melee than Phase Spiders, but lack special powers except for their Spider Web." },
+    { "相位蜘蛛", "Phase Spiders have unsurpassed powers of teleportation and average offense." },    { "蛛化精灵", "Aranea are stronger in melee than Phase Spiders, but lack special powers except for their Spider Web." },
 };
 
 race_t *mon_spider_get_race(int psubrace)
@@ -629,7 +629,7 @@ race_t *mon_spider_get_race(int psubrace)
         result = (spoiler_hack ? _aranea_get_race_t() : _cave_spider_get_race_t());
     }
 
-    result->name = "Spider";
+    result->name = "蜘蛛";
     result->desc = _desc;
     result->exp = 200;
     result->equip_template = mon_get_equip_template();

@@ -912,7 +912,7 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
         }
         if (message)
         {
-            msg_format("The web %s", message);
+            msg_format("网%s", message);
             cave_set_feat(y, x, floor_type[randint0(100)]);
             if (c_ptr->info & (CAVE_MARK)) obvious = TRUE;
         }
@@ -981,7 +981,7 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
         }
         if (message)
         {
-            msg_format("A tree %s", message);
+            msg_format("一棵树%s", message);
             if (have_flag(f_ptr->flags, FF_SNOW))
             {
                 if ((typ == GF_FIRE) || (typ == GF_ELEC) || (typ == GF_PLASMA))
@@ -1056,7 +1056,7 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
                 /* Check line of sight */
                 if (known)
                 {
-                    msg_print("There is a bright flash of light!");
+                    msg_print("出现了一道明亮的闪光！");
 
                     obvious = TRUE;
                 }
@@ -1076,7 +1076,7 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
                 /* Check line of sound */
                 if (known && (old_feat != c_ptr->feat))
                 {
-                    msg_print("Click!");
+                    msg_print("咔嚓！");
 
                     obvious = TRUE;
                 }
@@ -1108,7 +1108,7 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
                 if (known)
                 {
                     /* Message */
-                    msg_print("There is a bright flash of light!");
+                    msg_print("出现了一道明亮的闪光！");
 
                     obvious = TRUE;
                 }
@@ -1152,7 +1152,7 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
                 if (known && have_flag(mimic_f_ptr->flags, FF_OPEN))
                 {
                     /* Message */
-                    msg_format("The %s seems stuck.", f_name + mimic_f_ptr->name);
+                    msg_format("%s 似乎被卡住了。", f_name + mimic_f_ptr->name);
 
                     obvious = TRUE;
                 }
@@ -1168,7 +1168,7 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
                 /* Message */
                 if (known && (c_ptr->info & (CAVE_MARK)))
                 {
-                    msg_format("The %s turns into mud!", f_name + f_info[get_feat_mimic(c_ptr)].name);
+                    msg_format("%s 变成了泥巴！", f_name + f_info[get_feat_mimic(c_ptr)].name);
 
                     obvious = TRUE;
                 }
@@ -1190,7 +1190,7 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
                 /* Message */
                 if (known && (c_ptr->info & (CAVE_MARK)))
                 {
-                    msg_format("The %s melts!", f_name + f_info[get_feat_mimic(c_ptr)].name);
+                    msg_format("%s 融化了！", f_name + f_info[get_feat_mimic(c_ptr)].name);
 
                     obvious = TRUE;
                 }
@@ -1462,7 +1462,7 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
         {
             if (is_mirror_grid(c_ptr))
             {
-                msg_print("The mirror was crashed!");
+                msg_print("镜子被粉碎了！");
                 sound(SOUND_GLASS);
                 remove_mirror(y, x);
                 project(PROJECT_WHO_MIRROR, 2, y, x, p_ptr->lev / 2 + 5, GF_SHARDS, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP));
@@ -1473,7 +1473,7 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
                 /* Message */
                 if (known && (c_ptr->info & CAVE_MARK))
                 {
-                    msg_format("The %s was crashed!", f_name + f_info[get_feat_mimic(c_ptr)].name);
+                    msg_format("%s 被粉碎了！", f_name + f_info[get_feat_mimic(c_ptr)].name);
                     sound(SOUND_GLASS);
                 }
 
@@ -1490,7 +1490,7 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
         {
             if (is_mirror_grid(c_ptr) && p_ptr->lev < 40)
             {
-                msg_print("The mirror was crashed!");
+                msg_print("镜子被粉碎了！");
                 sound(SOUND_GLASS);
                 remove_mirror(y, x);
                 project(PROJECT_WHO_MIRROR, 2, y, x, p_ptr->lev / 2 + 5, GF_SHARDS, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP));
@@ -1501,7 +1501,7 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
                 /* Message */
                 if (known && (c_ptr->info & CAVE_MARK))
                 {
-                    msg_format("The %s was crashed!", f_name + f_info[get_feat_mimic(c_ptr)].name);
+                    msg_format("%s 被粉碎了！", f_name + f_info[get_feat_mimic(c_ptr)].name);
                     sound(SOUND_GLASS);
                 }
 
@@ -1731,7 +1731,7 @@ static bool project_o(int who, int r, int y, int x, int dam, int typ)
                     /* Notice */
                     if (known && (o_ptr->marked & OM_FOUND))
                     {
-                        msg_print("Click!");
+                        msg_print("咔嚓！");
                         obvious = TRUE;
                     }
                 }
@@ -1788,7 +1788,7 @@ static bool project_o(int who, int r, int y, int x, int dam, int typ)
                 /* Observe the resist */
                 if (known && (o_ptr->marked & OM_FOUND))
                 {
-                    msg_format("The %s %s unaffected!",
+                    msg_format("%s %s 没受影响！",
                             o_name, (plural ? "are" : "is"));
                 }
             }
@@ -1799,7 +1799,7 @@ static bool project_o(int who, int r, int y, int x, int dam, int typ)
                 /* Describe if needed */
                 if (known && (o_ptr->marked & OM_FOUND) && note_kill)
                 {
-                    msg_format("The %s%s", o_name, note_kill);
+                    msg_format("%s%s", o_name, note_kill);
                     stats_on_m_destroy(o_ptr, o_ptr->number);
                 }
 
@@ -1997,8 +1997,8 @@ static bool project_p(int who, cptr who_name, int r, int y, int x, int dam, int 
         int max_attempts = 10;
         static bool _lukko = FALSE;
 
-        if (blind) msg_print("Something bounces!");
-        else msg_print("The attack bounces!");
+        if (blind) msg_print("有什么东西反弹了！");
+        else msg_print("攻击反弹了！");
 
         equip_learn_flag(OF_REFLECT);
         update_smart_learn(who, SM_REFLECTION);
@@ -2060,7 +2060,7 @@ static bool project_p(int who, cptr who_name, int r, int y, int x, int dam, int 
                 int odds = 7 * p_ptr->open_terrain_ct;
                 if (randint0(100) < odds)
                 {
-                    msg_print("You nimbly dodge the attack!");
+                    msg_print("你敏捷地躲开了攻击！");
                     dam = 0;
                     evaded = TRUE;
                     check_muscle_sprains(75, "You feel a sudden stabbing pain!");
@@ -2069,7 +2069,7 @@ static bool project_p(int who, cptr who_name, int r, int y, int x, int dam, int 
 
             if (!evaded && mut_present(MUT_EVASION))
             {
-                msg_print("You evade the attack!");
+                msg_print("你避开了攻击！");
                 dam -= dam * (10 + randint1(10))/100;
             }
         }
@@ -2083,7 +2083,7 @@ static bool project_p(int who, cptr who_name, int r, int y, int x, int dam, int 
 
             if (turn)
             {
-                msg_print("You turn the magic on the caster!");
+                msg_print("你把魔法反弹给了施法者！");
                 p_ptr->spell_turned = TRUE;
                 disturb(1, 0);
                 return TRUE;
@@ -2121,7 +2121,7 @@ static bool project_p(int who, cptr who_name, int r, int y, int x, int dam, int 
         char m_name_self[80];
         assert(m_ptr);
         monster_desc(m_name_self, m_ptr, MD_PRON_VISIBLE | MD_POSSESSIVE | MD_OBJECTIVE);
-        msg_format("%^s harms %s!", m_name, m_name_self);
+        msg_format("%^s 伤害了 %s！", m_name, m_name_self);
         project(0, 0, m_ptr->fy, m_ptr->fx, psion_backlash_dam(get_damage), GF_MISSILE, PROJECT_KILL);
         if (p_ptr->tim_eyeeye) set_tim_eyeeye(p_ptr->tim_eyeeye-5, TRUE);
     }
@@ -2134,11 +2134,11 @@ static bool project_p(int who, cptr who_name, int r, int y, int x, int dam, int 
     if (who > 0 && get_damage && p_ptr->tim_armor_of_fury)
     {
         assert(m_ptr);
-        msg_format("%^s is hit by your fury!", m_name);
+        msg_format("%^s 被你的狂怒击中！", m_name);
         if ( mon_save_p(m_ptr->r_idx, A_STR)
           && (!p_ptr->shero || mon_save_p(m_ptr->r_idx, A_STR)) )
         {
-            msg_format("%^s resists!", m_name);
+            msg_format("%^s 抵抗了！", m_name);
         }
         else
         {
@@ -2146,13 +2146,13 @@ static bool project_p(int who, cptr who_name, int r, int y, int x, int dam, int 
             if (p_ptr->shero) dur = 3;
             if (!MON_SLOW(m_ptr))
             {
-                msg_format("%^s is slowed.", m_name);
+                msg_format("%^s 被减速了。", m_name);
                 set_monster_slow(who, dur);
             }
             if (mon_stun(m_ptr, mon_stun_amount(dur*get_damage)))
-                msg_format("%^s is stunned.", m_name);
+                msg_format("%^s 被震晕了。", m_name);
             else
-                msg_format("%^s is more stunned.", m_name);
+                msg_format("%^s 被震得更晕了。", m_name);
         }
     }
 
@@ -2817,7 +2817,7 @@ bool project(int who, int rad, int y, int x, int dam, int typ, int flg)
     case GF_SOUND:
         if (p_ptr->no_air)
         {
-            if (who == PROJECT_WHO_PLAYER) msg_print("The sound fizzles out in the airless dungeon!");
+            if (who == PROJECT_WHO_PLAYER) msg_print("声音在没有空气的地牢中渐渐消失！");
             project_length = 0;
             return TRUE;
         }
@@ -3522,7 +3522,7 @@ bool project(int who, int rad, int y, int x, int dam, int typ, int flg)
 
                     if (mon_show_msg(m_ptr))
                     {
-                        msg_print("The attack bounces!");
+                        msg_print("攻击反弹了！");
                     }
                     mon_lore_2(m_ptr, RF2_REFLECTING);
 
@@ -3753,14 +3753,14 @@ bool project(int who, int rad, int y, int x, int dam, int typ, int flg)
         {
             if (rakuba(rakubadam_m, FALSE))
             {
-                msg_format("%^s has thrown you off!", m_name);
+                msg_format("%^s 把你甩了下来！", m_name);
             }
         }
         if (p_ptr->riding && rakubadam_p > 0)
         {
             if(rakuba(rakubadam_p, FALSE))
             {
-                msg_format("You have fallen from %s.", m_name);
+                msg_format("你从 %s 身上摔了下来。", m_name);
             }
         }
     }
@@ -3909,7 +3909,7 @@ bool binding_field( int dam )
         }
     }
     if( one_in_(7) ){
-        msg_print("The field broke a mirror!");
+        msg_print("力场打破了一面镜子！");
         remove_mirror(point_y[0],point_x[0]);
     }
 

@@ -469,9 +469,9 @@ static errr init_info(cptr filename, header *head,
         oops = (((err > 0) && (err < PARSE_ERROR_MAX)) ? err_str[err] : "unknown");
 
         /* Oops */
-        msg_format("Error %d at line %d of '%s.txt'.", err, error_line, filename);
-        msg_format("Record %d contains a '%s' error.", error_idx, oops);
-        msg_format("Parsing '%s'.", buf);
+        msg_format("错误 %d，位于 '%s.txt' 的第 %d 行。", err, error_line, filename);
+        msg_format("记录 %d 包含一个 '%s' 错误。", error_idx, oops);
+        msg_format("正在解析 '%s'。", buf);
         msg_print(NULL);
 
         /* Quit */
@@ -1411,7 +1411,7 @@ static void _display_file(cptr name)
         doc_free(doc);
         my_fclose(fp);
 
-        c_prt(TERM_YELLOW, "              [Press ? for Credits. Press Any Other Key to Play]", Term->hgt - 1, 0);
+        c_prt(TERM_YELLOW, "[按 ? 查看制作人员名单。按其他任意键开始游戏]", Term->hgt - 1, 0);
         Term_fresh();
     }
 }
@@ -1513,6 +1513,7 @@ void init_angband(void)
     int fd = -1;
     char buf[1024];
 
+
     /*** Verify the "news" file ***/
 
     /* Build the filename */
@@ -1549,36 +1550,36 @@ void init_angband(void)
 
     /* Initialize feature info */
     note("[Initializing arrays... (features)]");
-    if (init_f_info()) quit("Cannot initialize features");
-    if (init_feat_variables()) quit("Cannot initialize features");
+    if (init_f_info()) quit("无法初始化地形特征");
+    if (init_feat_variables()) quit("无法初始化地形特征变量");
 
 
     /* Initialize object info */
     note("[Initializing arrays... (objects)]");
-    if (init_k_info()) quit("Cannot initialize objects");
+    if (init_k_info()) quit("无法初始化物品");
 
 
     /* Initialize artifact info */
     note("[Initializing arrays... (artifacts)]");
-    if (init_a_info()) quit("Cannot initialize artifacts");
+    if (init_a_info()) quit("无法初始化神器");
 
 
     /* Initialize ego-item info */
     note("[Initializing arrays... (ego-items)]");
-    if (init_e_info()) quit("Cannot initialize ego-items");
+    if (init_e_info()) quit("无法初始化 ego 物品");
 
     /* Initialize monster info */
     note("[Initializing arrays... (body-types)]");
-    if (init_b_info()) quit("Cannot initialize body types");
+    if (init_b_info()) quit("无法初始化种族体型");
 
 
     /* Initialize monster info ... requires b_info */
     note("[Initializing arrays... (monsters)]");
-    if (init_r_info()) quit("Cannot initialize monsters");
+    if (init_r_info()) quit("无法初始化怪物");
 
     /* Initialize dungeon info ... requires k_info */
     note("[Initializing arrays... (dungeon)]");
-    if (init_d_info()) quit("Cannot initialize dungeon");
+    if (init_d_info()) quit("无法初始化地下城");
     {
         int i;
         for (i = 1; i < max_d_idx; i++)
@@ -1588,48 +1589,48 @@ void init_angband(void)
 
     /* Initialize magic info */
     note("[Initializing arrays... (magic)]");
-    if (init_m_info()) quit("Cannot initialize magic");
+    if (init_m_info()) quit("无法初始化魔法");
 
     /* Initialize weapon_exp info */
     note("[Initializing arrays... (skill)]");
-    if (init_s_info()) quit("Cannot initialize skill");
+    if (init_s_info()) quit("无法初始化技能");
 
     /* Initialize wilderness array */
     note("[Initializing arrays... (wilderness)]");
 
-    if (init_wilderness()) quit("Cannot initialize wilderness");
+    if (init_wilderness()) quit("无法初始化荒野");
 
 
     /* Initialize building array */
     note("[Initializing arrays... (buildings)]");
 
-    if (init_buildings()) quit("Cannot initialize buildings");
+    if (init_buildings()) quit("无法初始化建筑");
 
 
     note("[Initializing arrays... (quests)]");
-    if (!quests_init()) quit("Cannot initialize quests");
+    if (!quests_init()) quit("无法初始化任务");
 
 
     /* Initialize vault info */
-    if (init_v_info(0)) quit("Cannot initialize vaults");
+    if (init_v_info(0)) quit("无法初始化金库");
 
     /* Initialize monster info */
     note("[Initializing arrays... (random names)]");
-    if (name_parser()) quit("Cannot initialize random names");
+    if (name_parser()) quit("无法初始化随机名称");
 
     /* Initialize some other arrays */
     note("[Initializing arrays... (other)]");
-    if (init_other()) quit("Cannot initialize other stuff");
+    if (init_other()) quit("无法初始化其他杂项");
 
 
     /* Initialize some other arrays */
     note("[Initializing arrays... (alloc)]");
-    if (init_alloc()) quit("Cannot initialize alloc stuff");
+    if (init_alloc()) quit("无法初始化生成分配数据");
 
 #ifdef ALLOW_SPOILERS
     /* Initialize help files */
     note("[Updating help files - please wait...]");
-    if (init_help_files()) quit("Cannot initialize help files");
+    if (init_help_files()) quit("无法初始化帮助文件");
 #endif
 
     /*** Load default user pref files ***/

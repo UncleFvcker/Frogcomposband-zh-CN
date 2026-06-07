@@ -12,7 +12,7 @@ static caster_info * _caster_info(void)
 	static bool init = FALSE;
 	if (!init)
 	{
-		me.magic_desc = "spell";
+		me.magic_desc = "法术";
 		me.which_stat = A_INT;
 		me.encumbrance.max_wgt = 430;
 		me.encumbrance.weapon_pct = 33;
@@ -40,20 +40,8 @@ class_t *hex_mage_get_class(void)
 		skills_t bs = { 30,  35,  36,   2,  18,  16,  50,  50 };
 		skills_t xs = { 7,  10,  10,   0,   0,   0,  15,  15 };
 
-		me.name = "Hex-Mage";
-		me.desc = "A Hex-Mage is precisely what the name suggests: a mage "
-			"between the warrior and mage classes. While their brothers, the "
-			"rangers, specialize in Nature magic and survival skills, true "
-			"Warrior-Mages attempt to reach the best of both worlds. As "
-			"warriors they are much superior to the usual Mage class. "
-			"Intelligence determines a Warrior-Mage's spell casting ability.\n \n"
-			"Warrior-mages begin the game with Arcane magic, and they can "
-			"freely select another realm of magic. Although they do not gain "
-			"new spells as fast as regular mages, they will eventually learn "
-			"every spell in both realms, thus making them a very competitive "
-			"choice for players who appreciate Arcane magic. They have two "
-			"class powers - 'Convert HP to SP' and 'Convert SP to HP' - which "
-			"allow them to heal HP using mana or gain mana using HP.";
+		me.name = "咒术法师";
+		me.desc = "正如其名，咒术法师是介于战士与法师之间的职业。虽然他们的兄弟——游侠，专精于自然魔法与生存技能，但真正的战斗法师则试图同时兼顾两者之长。作为战士，他们远比普通的法师职业优秀。智力决定了战斗法师的施法能力。\n \n战斗法师开局即掌握奥秘魔法，且能自由选择另一个魔法领域。虽然他们获取新法术的速度不如普通法师快，但最终他们能学会这两个领域的所有法术，这使他们成为喜欢奥秘魔法的玩家极具竞争力的选择。他们有两个职业能力——“生命转法力”和“法力转生命”——允许他们用法力治疗生命值，或用生命值换取法力。";
 
 		me.stats[A_STR] = 2;
 		me.stats[A_INT] = 2;

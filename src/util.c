@@ -23,6 +23,140 @@
 
 int auto_more_state = AUTO_MORE_PROMPT;
 
+static bool _game_log_active = FALSE;
+
+static void _game_log_path(char *path, size_t max)
+{
+    if (ANGBAND_DIR_USER && ANGBAND_DIR_USER[0])
+        path_build(path, max, ANGBAND_DIR_USER, "runtime.log");
+    else
+        strnfmt(path, max, "runtime.log");
+}
+
+static bool _game_log_should_truncate(cptr path)
+{
+    FILE *fp = fopen(path, "rb");
+    long size;
+
+    if (!fp) return FALSE;
+    if (fseek(fp, 0, SEEK_END))
+    {
+        fclose(fp);
+        return FALSE;
+    }
+    size = ftell(fp);
+    fclose(fp);
+    return size > 1024L * 1024L;
+}
+
+void game_log_note(cptr tag, cptr msg)
+{
+    FILE *fp;
+    char path[1024];
+    char time_buf[64];
+    time_t now = time(NULL);
+    struct tm *tm_ptr = localtime(&now);
+    cptr mode;
+
+    if (_game_log_active) return;
+    _game_log_active = TRUE;
+
+    _game_log_path(path, sizeof(path));
+    mode = _game_log_should_truncate(path) ? "w" : "a";
+    fp = fopen(path, mode);
+    if (fp)
+    {
+        if (tm_ptr)
+            strftime(time_buf, sizeof(time_buf), "%Y-%m-%d %H:%M:%S", tm_ptr);
+        else
+            strnfmt(time_buf, sizeof(time_buf), "(unknown time)");
+
+        if (mode[0] == 'w')
+            fprintf(fp, "runtime.log truncated after exceeding 1 MB\n");
+
+        fprintf(fp, "%s | %-14s | %s | generated=%d playing=%d level=%d race=%d class=%d subclass=%d depth=%d town=%d pos=(%d,%d) turn=%ld player_turn=%ld name=%s\n",
+            time_buf,
+            tag ? tag : "(none)",
+            msg ? msg : "",
+            character_generated,
+            p_ptr ? p_ptr->playing : 0,
+            p_ptr ? p_ptr->lev : 0,
+            p_ptr ? p_ptr->prace : 0,
+            p_ptr ? p_ptr->pclass : 0,
+            p_ptr ? p_ptr->psubclass : 0,
+            dun_level,
+            p_ptr ? p_ptr->town_num : 0,
+            py, px,
+            (long)game_turn,
+            (long)player_turn,
+            player_base[0] ? player_base : (player_name[0] ? player_name : "(none)"));
+        fclose(fp);
+    }
+
+    _game_log_active = FALSE;
+}
+
+void game_log_event(cptr tag, cptr fmt, ...)
+{
+    va_list vp;
+    char msg[2048];
+
+    if (!fmt)
+    {
+        game_log_note(tag, NULL);
+        return;
+    }
+
+    va_start(vp, fmt);
+    vstrnfmt(msg, sizeof(msg), fmt, vp);
+    va_end(vp);
+
+    game_log_note(tag, msg);
+}
+
+void game_log_dump_recent(FILE *out, int max_lines)
+{
+    FILE *fp;
+    char path[1024];
+    char lines[32][1024];
+    int i, ct = 0, head = 0, cap = max_lines;
+
+    if (!out) return;
+    if (cap > 32) cap = 32;
+    if (cap < 1) cap = 1;
+
+    _game_log_path(path, sizeof(path));
+    fprintf(out, "\nRuntime log\n");
+    fprintf(out, "-----------\n");
+    fprintf(out, "Path: %s\n", path);
+
+    fp = fopen(path, "r");
+    if (!fp)
+    {
+        fprintf(out, "(runtime log not available)\n");
+        return;
+    }
+
+    while (fgets(lines[head], sizeof(lines[head]), fp))
+    {
+        head = (head + 1) % cap;
+        if (ct < cap) ct++;
+    }
+    fclose(fp);
+
+    if (!ct)
+    {
+        fprintf(out, "(runtime log is empty)\n");
+        return;
+    }
+
+    for (i = ct; i > 0; i--)
+    {
+        int idx = (head + cap - i) % cap;
+        fputs(lines[idx], out);
+    }
+}
+
 /*
  * Hack -- prevent "accidents" in "screen_save()" or "screen_load()"
  */
@@ -3255,13 +3389,13 @@ menu_naiyou menu_info[10][10] =
 {
     {
         {"Magic/Special", 1, FALSE},
-        {"Action", 2, FALSE},
+        {"行动", 2, FALSE},
         {"Items(use)", 3, FALSE},
         {"Items(other)", 4, FALSE},
-        {"Equip", 5, FALSE},
-        {"Door", 6, FALSE},
-        {"Information", 7, FALSE},
-        {"Options", 8, FALSE},
+        {"装备", 5, FALSE},
+        {"门", 6, FALSE},
+        {"信息", 7, FALSE},
+        {"选项", 8, FALSE},
         {"Save/Exit/Help", 9, FALSE},
         {"", 0, FALSE},
     },
@@ -3323,7 +3457,7 @@ menu_naiyou menu_info[10][10] =
         {"Take off(t/T)", 't', TRUE},
         {"Refuel(F)", 'F', TRUE},
         {"Equipment list(e)", 'e', TRUE},
-        {"Switch ring fingers", 'W', TRUE},
+        {"交换戒指位", 'W', TRUE},
         {"", 0, FALSE},
         {"", 0, FALSE},
         {"", 0, FALSE},
@@ -3354,7 +3488,7 @@ menu_naiyou menu_info[10][10] =
         {"Identify symbol(/)", '/', TRUE},
         {"Show prev messages(^p)", KTRL('P'), TRUE},
         {"Current time(^t/')", KTRL('T'), TRUE},
-        {"Knowledge menu(~)", '~', TRUE}
+        {"知识菜单(~)", '~', TRUE}
     },
 
     {
@@ -3376,8 +3510,8 @@ menu_naiyou menu_info[10][10] =
         {"Help(?)", '?', TRUE},
         {"Redraw(^r)", KTRL('R'), TRUE},
         {"Take note(:)", ':', TRUE},
-        {"Dump screen dump(()", ')', TRUE},
-        {"Load screen dump())", '(', TRUE},
+        {"保存屏幕截图(()", ')', TRUE},
+        {"加载屏幕截图())", '(', TRUE},
         {"Version info(V)", 'V', TRUE},
         {"Commit suicide(Q)", 'Q', TRUE},
         {"", 0, FALSE}
@@ -3652,7 +3786,7 @@ void request_command(int shopping)
             online_macro_hack = TRUE;
 
             /* Begin the input */
-            prt("Count: ", 0, 0);
+            prt("次数:", 0, 0);
 
             /* Get a command count */
             while (1)
@@ -3667,7 +3801,7 @@ void request_command(int shopping)
                     command_arg = command_arg / 10;
 
                     /* Show current count */
-                    prt(format("Count: %d", command_arg), 0, 0);
+                    prt(format("次数: %d", command_arg), 0, 0);
 
                 }
 
@@ -3692,7 +3826,7 @@ void request_command(int shopping)
                     }
 
                     /* Show current count */
-                    prt(format("Count: %d", command_arg), 0, 0);
+                    prt(format("次数: %d", command_arg), 0, 0);
 
                 }
 
@@ -3711,7 +3845,7 @@ void request_command(int shopping)
                 command_arg = 99;
 
                 /* Show current count */
-                prt(format("Count: %d", command_arg), 0, 0);
+                prt(format("次数: %d", command_arg), 0, 0);
 
             }
 
@@ -3722,7 +3856,7 @@ void request_command(int shopping)
                 command_arg = old_arg;
 
                 /* Show current count */
-                prt(format("Count: %d", command_arg), 0, 0);
+                prt(format("次数: %d", command_arg), 0, 0);
 
             }
 
@@ -3730,7 +3864,7 @@ void request_command(int shopping)
             if ((cmd == ' ') || (cmd == '\n') || (cmd == '\r'))
             {
                 /* Get a real command */
-                if (!get_com("Command: ", (char *)&cmd, FALSE))
+                if (!get_com("命令:", (char *)&cmd, FALSE))
 
                 {
                     /* Clear count */
@@ -3747,7 +3881,7 @@ void request_command(int shopping)
         if (cmd == '\\')
         {
             /* Get a real command */
-            (void)get_com("Command: ", (char *)&cmd, FALSE);
+            (void)get_com("命令:", (char *)&cmd, FALSE);
 
 
             /* Hack -- bypass keymaps */
@@ -3759,7 +3893,7 @@ void request_command(int shopping)
         if (cmd == '^')
         {
             /* Get a new command and controlify it */
-            if (get_com("Control: ", (char *)&cmd, FALSE)) cmd = KTRL(cmd);
+            if (get_com("控制键:", (char *)&cmd, FALSE)) cmd = KTRL(cmd);
 
         }
 
@@ -3836,7 +3970,7 @@ void request_command(int shopping)
         {
             if ((s[1] == command_cmd) || (s[1] == '*'))
             {
-                if (!get_check("Are you sure? "))
+                if (!get_check("你确定吗？"))
                 {
                     /* Hack -- Use space */
                     command_cmd = ' ';
@@ -4101,7 +4235,7 @@ void repeat_check(int shopping)
     if (command_cmd == '\'')
     {
         _repeat_state = _PLAYING;
-        prt("Playback: ", 0, 0);
+        prt("回放:", 0, 0);
         _repeat_reg = inkey_special(FALSE);
         if (_repeat_reg == '\'')
         {
@@ -4123,7 +4257,7 @@ void repeat_check(int shopping)
             command_cmd = what;
         else
         {
-            msg_format("There is no recorded command in <color:y>%c</color>. Type <color:keypress>'</color> to view recordings.", _repeat_reg);
+            msg_format("<color:y>%c</color> 中没有记录的命令。输入 <color:keypress>'</color> 查看录制记录。", _repeat_reg);
             _repeat_reg = 0;
             _repeat_state = _UNKNOWN;
             command_cmd = ESCAPE;
@@ -4148,7 +4282,7 @@ void repeat_check(int shopping)
         _repeat_reg = 0;
         if (command_cmd == '"')
         {
-            prt("Record: ", 0, 0);
+            prt("录制:", 0, 0);
             _repeat_reg = inkey_special(FALSE);
             prt("", 0, 0);
             if (_repeat_reg == ESCAPE)
@@ -4160,7 +4294,7 @@ void repeat_check(int shopping)
             }
             _repeat_buffers[(int)_repeat_reg].ct = 0;
             _repeat_buffers[(int)_repeat_reg].pos = 0;
-            prt("Command: ", 0, 0);
+            prt("命令:", 0, 0);
             request_command(shopping);
             prt("", 0, 0);
         }

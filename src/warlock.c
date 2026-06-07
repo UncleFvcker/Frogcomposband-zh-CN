@@ -127,16 +127,16 @@ static void _basic_blast(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Eldritch Blast");
+        var_set_string(res, "魔能爆");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires your basic Eldritch Blast.");
+        var_set_string(res, "发射基础的魔能爆。");
         break;
     case SPELL_INFO:
         if (p_ptr->to_d_spell)
-            var_set_string(res, format("%dd%d+%d (Rng %d)", _blast_dd(100), _blast_ds(), p_ptr->to_d_spell, _blast_range()));
+            var_set_string(res, format("%dd%d+%d (射程 %d)", _blast_dd(100), _blast_ds(), p_ptr->to_d_spell, _blast_range()));
         else
-            var_set_string(res, format("%dd%d (Rng %d)", _blast_dd(100), _blast_ds(), _blast_range()));
+            var_set_string(res, format("%dd%d (射程 %d)", _blast_dd(100), _blast_ds(), _blast_range()));
         break;
     case SPELL_COST_EXTRA:
         var_set_int(res, _power_cost(1 + (p_ptr->lev / 27), 185));
@@ -169,10 +169,10 @@ static void _easy_blast(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blast: Easy");
+        var_set_string(res, "魔能爆：简易");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a slightly weakened Eldritch Blast without consuming mana.");
+        var_set_string(res, "发射略微减弱的魔能爆，不消耗法力。");
         break;
     case SPELL_INFO:
         if (p_ptr->to_d_spell)
@@ -208,16 +208,16 @@ static void _extended_blast(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blast: Extended");
+        var_set_string(res, "魔能爆：延伸");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a slightly weakened Eldritch Blast with increased range.");
+        var_set_string(res, "发射略微减弱的魔能爆，但射程增加。");
         break;
     case SPELL_INFO:
         if (p_ptr->to_d_spell)
-            var_set_string(res, format("%dd%d+%d (Rng %d)", _blast_dd(100), _blast_ds() * 3 / 4, p_ptr->to_d_spell, _blast_range() + p_ptr->lev / 5));
+            var_set_string(res, format("%dd%d+%d (射程 %d)", _blast_dd(100), _blast_ds() * 3 / 4, p_ptr->to_d_spell, _blast_range() + p_ptr->lev / 5));
         else
-            var_set_string(res, format("%dd%d (Rng %d)", _blast_dd(100), _blast_ds() * 3 / 4, _blast_range() + p_ptr->lev / 5));
+            var_set_string(res, format("%dd%d (射程 %d)", _blast_dd(100), _blast_ds() * 3 / 4, _blast_range() + p_ptr->lev / 5));
         break;
     case SPELL_COST_EXTRA:
         var_set_int(res, _power_cost(1 + (p_ptr->lev / 27), 185));
@@ -250,10 +250,10 @@ static void _spear_blast(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blast: Spear");
+        var_set_string(res, "魔能爆：射线");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires an Eldritch Beam.");
+        var_set_string(res, "发射一道魔能射线。");
         break;
     case SPELL_COST_EXTRA:
         var_set_int(res, _power_cost(2 + (p_ptr->lev / 18), 125));
@@ -285,10 +285,10 @@ static void _burst_blast(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blast: Burst");
+        var_set_string(res, "魔能爆：爆发");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires an Eldritch Ball with full damage within radius 2.");
+        var_set_string(res, "发射一颗魔能球，在半径 2 格内造成全额伤害。");
         break;
     case SPELL_COST_EXTRA:
         var_set_int(res, _power_cost(2 + (p_ptr->lev / 18), 125));
@@ -324,10 +324,10 @@ static void _stunning_blast(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blast: Stunning");
+        var_set_string(res, "魔能爆：震慑");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Augments your Eldritch Blast with stunning effects.");
+        var_set_string(res, "为你的魔能爆附带震慑效果。");
         break;
     case SPELL_COST_EXTRA:
         var_set_int(res, _power_cost(2 + (p_ptr->lev / 18), 125));
@@ -360,10 +360,10 @@ static void _empowered_blast(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blast: Empowered");
+        var_set_string(res, "魔能爆：强化");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a very powerful Eldritch Blast, at the cost of disabling spells next turn.");
+        var_set_string(res, "发射一发非常强大的魔能爆，代价是下回合无法施法。");
         break;
     case SPELL_INFO:
         if (p_ptr->to_d_spell)
@@ -470,10 +470,10 @@ static void _draining_blast(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blast: Draining");
+        var_set_string(res, "魔能爆：汲取");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires an Eldritch Blast which also does Drain Life.");
+        var_set_string(res, "发射附带吸血效果的魔能爆。");
         break;
     case SPELL_COST_EXTRA:
         var_set_int(res, _power_cost(2 + (p_ptr->lev / 18), 125));
@@ -502,7 +502,7 @@ static void _draining_blast(int cmd, variant *res)
 }
 
 static _pact_t _undead_pact = {
-  "Undead",
+  "死灵",
   "The undead are tough creatures, each having already survived death at least once. Warlocks who make a pact "
       "with Undead will find themselves gaining additional resistances such as cold, poison, darkness and "
       "nether. In addition, they will be able to see invisible monsters and gain resistance to "
@@ -597,10 +597,10 @@ static void _dragon_blast(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blast: Dragon");
+        var_set_string(res, "魔能爆：巨龙");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes your eldritch blast at a chosen foe.");
+        var_set_string(res, "向选定的敌人喷吐你的魔能爆。");
         break;
     case SPELL_COST_EXTRA:
         var_set_int(res, _power_cost(1 + (p_ptr->lev / 27), 185));
@@ -632,7 +632,7 @@ static void _dragon_lore_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dragon's Lore");
+        var_set_string(res, "巨龙学识");
         break;
     default:
         identify_spell(cmd, res);
@@ -645,7 +645,7 @@ static void _dragon_eye_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dragon's Eye");
+        var_set_string(res, "巨龙之眼");
         break;
     default:
         telepathy_spell(cmd, res);
@@ -658,7 +658,7 @@ static void _understanding_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Understanding");
+        var_set_string(res, "洞悉");
         break;
     default:
         probing_spell(cmd, res);
@@ -671,10 +671,10 @@ static void _word_of_command_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Word of Command");
+        var_set_string(res, "支配真言");
         break;
     case SPELL_DESC:
-        var_set_string(res, "By uttering a word of obedience, the true dragon rider can bend the will of all but the mightiest serpents.");
+        var_set_string(res, "通过念出服从的真言，真正的龙骑士能够屈服除了最强大的巨龙之外所有龙类的意志。");
         break;
     case SPELL_CAST:                        /*v-- This is meaningless, but set high enough so that the project code actually works */
         project_hack(GF_CONTROL_PACT_MONSTER, 100);
@@ -719,7 +719,7 @@ static void _dragon_upkeep_song(void)
     }
     if (cost > p_ptr->csp)
     {
-        msg_print("You can no longer maintain the song.");
+        msg_print("你无法再维持这首战歌了。");
         _set_toggle(TOGGLE_NONE);
     }
     else
@@ -739,17 +739,17 @@ static void _dragon_upkeep_song(void)
             monster_desc(m_name, mount, 0);
             if (MON_STUNNED(mount))
             {
-                msg_format("%^s is no longer stunned.", m_name);
+                msg_format("%^s不再被震慑了。", m_name);
                 set_monster_stunned(p_ptr->riding, 0);
             }
             if (MON_CONFUSED(mount))
             {
-                msg_format("%^s is no longer confused.", m_name);
+                msg_format("%^s不再困惑了。", m_name);
                 set_monster_confused(p_ptr->riding, 0);
             }
             if (MON_MONFEAR(mount))
             {
-                msg_format("%^s is no longer afraid.", m_name);
+                msg_format("%^s不再恐惧了。", m_name);
                 set_monster_monfear(p_ptr->riding, 0);
             }
         }
@@ -764,17 +764,17 @@ static void _dragon_song(int which, cptr desc, int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!_get_mount())
         {
-            msg_print("You may only sing when riding.");
+            msg_print("你只能在骑乘时唱歌。");
             return;
         }
         if (_get_toggle() == which)
         {
-            msg_format("You stop singing %s.", desc);
+            msg_format("你停止唱%s。", desc);
             _set_toggle(TOGGLE_NONE);
         }
         else
         {
-            msg_format("You begin singing %s.", desc);
+            msg_format("你开始唱%s。", desc);
             _set_toggle(which);
         }
         var_set_bool(res, TRUE);
@@ -797,10 +797,10 @@ static void _bless_song(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Song of Blessing");
+        var_set_string(res, "祝福之歌");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Adagio. When sung, both you and your steed will gain enhanced melee skill.");
+        var_set_string(res, "柔板。演唱时，你和你的坐骑都将获得近战技能加成。");
         break;
     default:
         _dragon_song(WARLOCK_DRAGON_TOGGLE_BLESS, "of heroic deeds", cmd, res);
@@ -813,10 +813,10 @@ static void _canter_song(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Joyful Song");
+        var_set_string(res, "欢乐之歌");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Allegro. This is a pleasing melody, and your steed will prance along in time with the song.");
+        var_set_string(res, "快板。这是一段悦耳的旋律，你的坐骑会随着歌声的节奏欢跃。");
         break;
     default:
         _dragon_song(WARLOCK_DRAGON_TOGGLE_CANTER, "a joyful, upbeat melody", cmd, res);
@@ -829,10 +829,10 @@ static void _gallop_song(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Song of Haste");
+        var_set_string(res, "急速之歌");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Presto. A quick beat marks this song of urgency.");
+        var_set_string(res, "急板。急促的节拍是这首紧迫之歌的标志。");
         break;
     default:
         _dragon_song(WARLOCK_DRAGON_TOGGLE_GALLOP, "a spurring melody", cmd, res);
@@ -845,10 +845,10 @@ static void _healing_song(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Song of Life");
+        var_set_string(res, "生命之歌");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Largo. Slowly and majestically, both you and your mount feel the life giving effects of this powerful ballad.");
+        var_set_string(res, "广板。缓慢而庄严，你和你的坐骑都能感受到这首强大歌谣赋予生命的效果。");
         break;
     default:
         _dragon_song(WARLOCK_DRAGON_TOGGLE_HEALING, "a rejuvenating melody", cmd, res);
@@ -861,12 +861,10 @@ static void _heroic_charge_song(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Song of War");
+        var_set_string(res, "战争之歌");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Molto allegro. A song of defiance, its melody captures the essence of "
-                            "the dragon's lust for treasure and conquest. Woe be to all that hear "
-                            "this ancient dragon song.");
+        var_set_string(res, "极快板。一首挑衅之歌，其旋律捕捉了巨龙对财宝和征服的渴望的本质。听到这首古老龙之歌的人都将大难临头。");
         break;
     default:
         _dragon_song(WARLOCK_DRAGON_TOGGLE_HEROIC_CHARGE, "of battle and riches", cmd, res);
@@ -880,12 +878,12 @@ static void _mount_jump_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Jump");
+        var_set_string(res, "跳跃");
         break;
     case SPELL_CAST:
         if (!p_ptr->riding)
         {
-            msg_print("This is a riding technique. Where is your dragon?");
+            msg_print("这是一项骑乘技巧。你的龙在哪里？");
             var_set_bool(res, FALSE);
             return;
         }
@@ -900,10 +898,10 @@ static void _mount_attack_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Guided Attack");
+        var_set_string(res, "引导攻击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Guide your dragon to attack a chosen foe.");
+        var_set_string(res, "引导你的龙攻击选定的敌人。");
         break;
     case SPELL_CAST:
     {
@@ -915,13 +913,13 @@ static void _mount_attack_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!mount)
         {
-            msg_print("This is a riding technique. Where is your dragon?");
+            msg_print("这是一项骑乘技巧。你的龙在哪里？");
             return;
         }
 
         if (mount->energy_need > 300)
         {
-            msg_print("You sense your dragon is too tired for another attack.");
+            msg_print("你感觉到你的龙太累了，无法再次攻击。");
             return;
         }
 
@@ -950,7 +948,7 @@ static void _mount_attack_spell(int cmd, variant *res)
 
             if (!m_idx)
             {
-                msg_print("There is no monster there.");
+                msg_print("那里没有怪物。");
                 if (p_ptr->blind > 0) var_set_bool(res, TRUE);
                 return;
             }
@@ -1011,10 +1009,10 @@ static void _mount_breathe_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Guided Breath");
+        var_set_string(res, "引导吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Guide your dragon to breathe at a chosen foe.");
+        var_set_string(res, "引导你的龙向选定的敌人喷吐。");
         break;
     case SPELL_CAST:
     {
@@ -1023,13 +1021,13 @@ static void _mount_breathe_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!mount)
         {
-            msg_print("This is a riding technique. Where is your dragon?");
+            msg_print("这是一项骑乘技巧。你的龙在哪里？");
             return;
         }
 
         if (mount->energy_need > 300)
         {
-            msg_print("You sense your dragon is too tired for another attack.");
+            msg_print("你感觉到你的龙太累了，无法再次攻击。");
             return;
         }
 
@@ -1052,10 +1050,10 @@ static void _pets_breathe_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dragons' Fury");
+        var_set_string(res, "群龙之怒");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Guide all of your pet dragons to breathe at a chosen target.");
+        var_set_string(res, "引导你所有的宠物龙向选定的目标喷吐。");
         break;
     case SPELL_CAST:
     {
@@ -1065,19 +1063,19 @@ static void _pets_breathe_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!mount)
         {
-            msg_print("This is a riding technique. Where is your dragon?");
+            msg_print("这是一项骑乘技巧。你的龙在哪里？");
             return;
         }
 
         if (mount->energy_need > 300)
         {
-            msg_print("You sense your dragon is too tired for another attack.");
+            msg_print("你感觉到你的龙太累了，无法再次攻击。");
             return;
         }
 
         if (!get_fire_dir(&_hack_dir)) return;
 
-        msg_print("<color:v>Dragons: As One!!</color>");
+        msg_print("<color:v>群龙：合而为一！！</color>");
         msg_boundary();
 
         if (mon_spell_cast_mon(mount, _dragonrider_ai))
@@ -1107,7 +1105,7 @@ static void _pets_breathe_spell(int cmd, variant *res)
                     {
                         char m_name[MAX_NLEN];
                         monster_desc(m_name, m_ptr, 0);
-                        msg_format("%^s disappears!", m_name);
+                        msg_format("%^s消失了！", m_name);
                     }
                     delete_monster_idx(i);
                 }
@@ -1124,7 +1122,7 @@ static void _pets_breathe_spell(int cmd, variant *res)
 }
 
 static _pact_t _dragons_pact = {
-  "Dragons",
+  "龙类",
   "The bond between a Dragonrider and a Dragon is one of the strongest and most enduring ties "
   "seen the world over. Each draws strength, power, and encouragement from the other, and together "
   "they make a formidable foe. An alliance with Dragonkind enables this bond to form, and the Warlock "
@@ -1200,10 +1198,10 @@ static void _dispelling_blast(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blast: Dispelling");
+        var_set_string(res, "魔能爆：解除");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires an Eldritch Blast which also does Dispel Magic.");
+        var_set_string(res, "发射一发附带“解除魔法”效果的魔能爆。");
         break;
     case SPELL_COST_EXTRA:
         var_set_int(res, _power_cost(1 + (p_ptr->lev / 27), 185));
@@ -1232,7 +1230,7 @@ static void _dispelling_blast(int cmd, variant *res)
 }
 
 static _pact_t _angels_pact = {
-  "Angels",
+  "天使",
   "Angels are heavenly beings who use a variety of techniques to smite those they view as evil. "
     "Warlocks who make pacts with Angels will also find their saving throws significantly improved, "
     "and (eventually) their body almost immune to bolt-like effects. Since Angels are strongly aligned "
@@ -1308,10 +1306,10 @@ static void _vengeful_blast(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blast: Vengeful");
+        var_set_string(res, "魔能爆：复仇");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires an extremely deadly Eldritch Blast, but you also take 100 damage.");
+        var_set_string(res, "发射一发极其致命的魔能爆，但你也会受到 100 点伤害。");
         break;
     case SPELL_INFO:
         if (p_ptr->to_d_spell)
@@ -1333,7 +1331,7 @@ static void _vengeful_blast(int cmd, variant *res)
         project_length = _blast_range();
         if (p_ptr->chp < 100)
         {
-            if (!get_check("Really cast Vengeful Blast? ")) return;
+            if (!get_check("真的要施放复仇魔能爆吗？")) return;
         }
         if (!get_fire_dir(&dir)) return;
 
@@ -1350,7 +1348,7 @@ static void _vengeful_blast(int cmd, variant *res)
 }
 
 static _pact_t _demons_pact = {
-  "Demons",
+  "恶魔",
   "Demons are crafty creatures of Hell, using whatever means at their disposal to bring "
     "down their enemies. Warlocks who make pacts with Demons will find their abilities to use "
     "all magical devices improved, and learn the ability to Recharge these devices at will. "
@@ -1432,10 +1430,10 @@ static void _aether_blast(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blast: Aether");
+        var_set_string(res, "魔能爆：以太");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You channel the aether to unleash 2+1d5 random effects via your Eldritch Blast.");
+        var_set_string(res, "你引导以太，通过你的魔能爆释放 2+1d5 种随机效果。");
         break;
     case SPELL_INFO:
         if (p_ptr->to_d_spell)
@@ -1473,7 +1471,7 @@ static void _aether_blast(int cmd, variant *res)
             int resist = resists[idx];
             int dam = spell_power(damroll(dice, sides) + p_ptr->to_d_spell);
 
-            msg_format("You channel <color:%c>%s</color>.",
+            msg_format("你引导了<color:%c>%s</color>。",
                 attr_to_attr_char(res_color(resist)),
                 res_name(resist)
             );
@@ -1495,10 +1493,10 @@ static void _dog_whistle_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dog Whistle");
+        var_set_string(res, "犬笛");
         break;
     case SPELL_DESC:
-        var_set_string(res, "By emitting a shrill whistle, unaudible to most, you attempt to control nearby canines.");
+        var_set_string(res, "通过吹出大多数人听不到的刺耳口哨声，你试图控制附近的犬类。");
         break;
     case SPELL_CAST:
         project(0, 18, py, px, 1000, GF_CONTROL_PACT_MONSTER, PROJECT_KILL | PROJECT_HIDE);
@@ -1515,10 +1513,10 @@ static void _aether_shield_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Aether Shield");
+        var_set_string(res, "以太护盾");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Much like the dreaded Aether hound, you will gain protective elemental auras for a bit.");
+        var_set_string(res, "就像可怕的以太猎犬一样，你将短暂获得保护性的元素光环。");
         break;
     case SPELL_CAST:
         set_tim_sh_elements(randint1(30) + 20, FALSE);
@@ -1531,7 +1529,7 @@ static void _aether_shield_spell(int cmd, variant *res)
 }
 
 static _pact_t _hounds_pact = {
-  "Hounds",
+  "猎犬",
   "An alliance with hounds is sneakily strong: hounds are fast, stealthy and nimble, "
   "and the warlock will gain these attributes as well, in addition to basic elemental "
   "resistances. They also gain decent melee, and the ability to channel the unpredictable "
@@ -1599,10 +1597,10 @@ static void _phase_blast(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blast: Phasing");
+        var_set_string(res, "魔能爆：相位");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fire an Eldritch Blast and then jump to safety in a single move.");
+        var_set_string(res, "发射一发魔能爆，然后在同一回合内跳跃到安全的地方。");
         break;
     case SPELL_COST_EXTRA:
         var_set_int(res, _power_cost(1 + (p_ptr->lev / 27), 185));
@@ -1636,10 +1634,10 @@ static void _nexus_ball_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Nexus Ball");
+        var_set_string(res, "时空球");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generates a ball of nexus on chosen target.");
+        var_set_string(res, "在选定目标上生成一颗时空(Nexus)球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(p_ptr->lev + 20 + p_ptr->to_d_spell)));
@@ -1673,10 +1671,10 @@ static void _poison_jump_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Poison Jump");
+        var_set_string(res, "毒素跳跃");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generates a ball of poison as you jump to safety.");
+        var_set_string(res, "当你跳跃到安全地带时，生成一颗毒球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _poison_jump_dam()));
@@ -1698,10 +1696,10 @@ static void _nexus_jump_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Nexus Jump");
+        var_set_string(res, "时空跳跃");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generates a ball of nexus as you jump to safety.");
+        var_set_string(res, "当你跳跃到安全地带时，生成一颗时空(Nexus)球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _nexus_jump_dam()));
@@ -1723,10 +1721,10 @@ static void _greater_nexus_jump_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Greater Nexus Jump");
+        var_set_string(res, "高等时空跳跃");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generates a huge ball of nexus as you jump to safety.");
+        var_set_string(res, "当你跳跃到安全地带时，生成一颗巨大的时空(Nexus)球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _greater_nexus_jump_dam()));
@@ -1743,7 +1741,7 @@ static void _greater_nexus_jump_spell(int cmd, variant *res)
 }
 
 static _pact_t _spiders_pact = {
-  "Spiders",
+  "蜘蛛",
   "Of all the icky, crawling things in the world, you have chosen to make an alliance "
     "with spiders? Sure, they are stealthy, and fast, and very adept at hiding. Able "
     "to extrude a fine sticky substance to ensnare the unwary, the spider lurks nearby, "
@@ -1832,10 +1830,10 @@ static void _confusing_blast(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blast: Confusing");
+        var_set_string(res, "魔能爆：困惑");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires an Eldritch Blast that also confuses your opponent.");
+        var_set_string(res, "发射一发魔能爆，同时也会使你的对手困惑。");
         break;
     case SPELL_COST_EXTRA:
         var_set_int(res, _power_cost(2 + (p_ptr->lev / 18), 125));
@@ -1868,13 +1866,13 @@ static void _giant_healing_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Giant's Healing");
+        var_set_string(res, "巨人的治愈");
         break;
     case SPELL_DESC:
-        var_set_string(res, "All powerful giants can heal themselves, right? Why not you?");
+        var_set_string(res, "所有强大的巨人都能治愈自己，对吧？为什么你不能？");
         break;
     case SPELL_INFO:
-        var_set_string(res, format("Heals %d", spell_power(p_ptr->lev * 4)));
+        var_set_string(res, format("治疗 %d", spell_power(p_ptr->lev * 4)));
         break;
     case SPELL_CAST:
         hp_player(spell_power(p_ptr->lev * 4));
@@ -1887,7 +1885,7 @@ static void _giant_healing_spell(int cmd, variant *res)
 }
 
 static _pact_t _giants_pact = {
-  "Giants",
+  "巨人",
   "An alliance with giants and titans grants impressive physical strength and fortitude, "
     "but other stats will generally suffer. Later in life, you will gain giant-like resistances "
     "including sound, shards and chaos. Your combat will be impressive; and like giants, you "
@@ -2036,7 +2034,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "arcane power";
+        me.magic_desc = "奥秘之力";
         me.which_stat = A_CHR;
         me.encumbrance.max_wgt = 450;
         if (p_ptr->psubclass == WARLOCK_DRAGONS)
@@ -2118,22 +2116,9 @@ class_t *warlock_get_class(int psubclass)
     /* static info never changes */
     if (!init)
     {
-        me.name = "Warlock";
+        me.name = "邪术师";
         me.desc =
-        "Warlocks are a magical class; they derive their spells and powers not from books, "
-        "but from an eldritch pact made with a given class of monsters. This pact is irrevocable "
-        "and is made at the outset of the Warlock's career. Depending on the class of monsters with whom "
-        "they ally, the warlock will gain unique bonuses, abilities and magical powers; for example, "
-        "alliance with the forces of the netherworld grants resistances to poison and nether, enhanced "
-        "constitution and spells to control and conjure the unliving, as well as spells to access "
-        "the damaging forces of the netherworld directly. Each such alliance has thematic bonuses "
-        "and powers, and you can read the details in the respective help sections.\n\n"
-        "Allying with a given class of monsters dramatically reduces the warlock's ability to fight "
-        "these foes. Instead, the warlock seeks cooperation with their brethren, or perhaps domination "
-        "over them; direct assaults are rarely successful.\n \n"
-        "In addition to pact-related spells, all warlocks gain access to the unique power of the "
-        "Eldritch Blast. Their primary spell stat is Charisma, since they seek dominion and alliance "
-        "with their chosen kin, and these monsters tend to have a strong will of their own.";
+        "邪术师是一个魔法职业；他们的法术和力量并非源自书本，而是源自与特定怪物类别签订的邪术契约(eldritch pact)。这份契约是不可撤销的，在邪术师生涯的最初就会缔结。根据他们结盟的怪物类别，邪术师将获得独特的加成、能力和魔法力量；例如，与幽冥世界的力量结盟可以获得对毒素和幽冥的抗性，增强的体质，控制和召唤不死生物的法术，以及直接使用幽冥世界破坏力的法术。每种结盟都有主题性的加成和力量，你可以在相应的帮助章节中阅读详情。\n\n与特定的怪物类别结盟会大幅降低邪术师与这些敌人战斗的能力。作为替代，邪术师寻求与他们的同类合作，或者可能支配它们；直接攻击很少成功。\n \n除了与契约相关的法术，所有邪术师都能获得“魔能爆”这一独特力量。他们的主要施法属性是魅力，因为他们寻求统治并与选定的眷族结盟，而这些怪物通常都有很强的自我意志。";
 
         me.birth = _birth;
         me.caster_info = _caster_info;

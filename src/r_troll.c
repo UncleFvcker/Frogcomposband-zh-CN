@@ -36,7 +36,7 @@ static void _calc_innate_attacks(void)
     }
 
     a.msg = "You bite.";
-    a.name = "Bite";
+    a.name = "撕咬";
 
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
 }
@@ -49,10 +49,10 @@ static void _aklash_breathe_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Gas");
+        var_set_string(res, "毒气吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes poison at your opponent.");
+        var_set_string(res, "向你的对手喷吐毒气。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, p_ptr->chp / 4));
@@ -63,7 +63,7 @@ static void _aklash_breathe_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (get_fire_dir(&dir))
         {
-            msg_print("You breathe gas.");
+            msg_print("你喷吐出毒气。");
             fire_ball(GF_POIS, dir, p_ptr->chp / 4, -2);
             var_set_bool(res, TRUE);
         }
@@ -80,10 +80,10 @@ static void _super_attack_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Powerful Attack");
+        var_set_string(res, "强力攻击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent powerfully.");
+        var_set_string(res, "强力攻击一个相邻的对手。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(PY_POWER_ATTACK));
@@ -160,7 +160,7 @@ static void _birth(void)
 
     p_ptr->current_r_idx = MON_FOREST_TROLL;
     equip_on_change_race();
-    skills_innate_init("Bite", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("撕咬", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
     object_prep(&forge, lookup_kind(TV_HARD_ARMOR, SV_CHAIN_MAIL));
     py_birth_obj(&forge);
@@ -186,7 +186,7 @@ static void _gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_FOREST_TROLL && new_level >= 10)
     {
         p_ptr->current_r_idx = MON_STONE_TROLL;
-        msg_print("You have evolved into a Stone Troll.");
+        msg_print("你进化成了石巨魔(Stone Troll)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_STONE_TROLL && new_level >= 20)
@@ -198,15 +198,15 @@ static void _gain_level(int new_level)
         {
         case 0:
             p_ptr->current_r_idx = MON_ICE_TROLL;
-            msg_print("You have evolved into an Ice Troll.");
+            msg_print("你进化成了冰巨魔(Ice Troll)。");
             break;
         case 1:
             p_ptr->current_r_idx = MON_FIRE_TROLL;
-            msg_print("You have evolved into a Fire Troll.");
+            msg_print("你进化成了火巨魔(Fire Troll)。");
             break;
         case 2:
             p_ptr->current_r_idx = MON_ALGROTH;
-            msg_print("You have evolved into an Algroth.");
+            msg_print("你进化成了奥格罗斯巨魔(Algroth)。");
             break;
         }
         p_ptr->redraw |= PR_MAP;
@@ -214,7 +214,7 @@ static void _gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_ALGROTH && new_level >= 25)
     {
         p_ptr->current_r_idx = MON_AKLASH;
-        msg_print("You have evolved into an Aklash.");
+        msg_print("你进化成了阿克拉什巨魔(Aklash)。");
         p_ptr->redraw |= PR_MAP;
     }
     if ( ( p_ptr->current_r_idx == MON_FIRE_TROLL 
@@ -223,7 +223,7 @@ static void _gain_level(int new_level)
       && new_level >= 30 )
     {
         p_ptr->current_r_idx = MON_CAVE_TROLL;
-        msg_print("You have evolved into a Cave Troll.");
+        msg_print("你进化成了洞穴巨魔(Cave Troll)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (((p_ptr->current_r_idx == MON_OLOG) || (p_ptr->current_r_idx == MON_CAVE_TROLL)) && (new_level >= 40))
@@ -232,20 +232,20 @@ static void _gain_level(int new_level)
         {
         case TROLL_ETTIN:
             p_ptr->current_r_idx = MON_ETTIN;
-            msg_print("You have evolved into an Ettin.");
+            msg_print("你进化成了双头巨魔(Ettin)。");
             equip_on_change_race(); /* Two heads */
             break;
         case TROLL_STORM:
             p_ptr->current_r_idx = MON_STORM_TROLL;
-            msg_print("You have evolved into a Storm Troll.");
+            msg_print("你进化成了风暴巨魔(Storm Troll)。");
             break;
         case TROLL_SPIRIT:
             p_ptr->current_r_idx = MON_SPIRIT_TROLL;
-            msg_print("You have evolved into a Spirit Troll.");
+            msg_print("你进化成了幽灵巨魔(Spirit Troll)。");
             break;
         case TROLL_KING:
             p_ptr->current_r_idx = MON_TROLL_KING;
-            msg_print("You have evolved into a Troll King.");
+            msg_print("你进化成了巨魔王(Troll King)。");
             break;
         }
         p_ptr->redraw |= PR_MAP;
@@ -412,15 +412,14 @@ static void _calc_weapon_bonuses(object_type *o_ptr, weapon_info_t *info_ptr)
 }
 
 static name_desc_t _info[TROLL_MAX] = {
-    { "Ettin", "Ettins are large, two-headed trolls. They lack much in the way of "
+    { "双头巨魔", "Ettins are large, two-headed trolls. They lack much in the way of "
                 "powers and abilities, but make up for this with the ability to "
                 "wield an extra helmet." },
-    { "Storm Troll", "Storm Trolls are fast trolls with elemental powers. They may call "
+    { "风暴巨魔", "Storm Trolls are fast trolls with elemental powers. They may call "
                         "forth elemental balls and bolts. Their weapons are wreathed in "
                         "electricity as their fury rains down on all they meet." },
-    { "Spirit Troll", "Spirit trolls may pass through walls on their quest to demolish "
-                        "all that oppose them." },
-    { "Troll King", "Troll Kings are lords of their kind, fast and extremely deadly in "
+    { "幽灵巨魔", "幽灵巨魔可以穿墙而过，寻找并摧毁所有反对它们的敌人。" },
+    { "巨魔王", "Troll Kings are lords of their kind, fast and extremely deadly in "
                         "melee. They may blink themselves out of harm's way." },
 };
 
@@ -440,7 +439,7 @@ race_t *mon_troll_get_race(int psubrace)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.name = "Troll";
+        me.name = "巨魔";
         me.desc =     
             "Trolls are disgusting creatures: big, strong and stupid. They make excellent warriors, "
             "but are hopeless with magical devices. Trolls have incredible powers of regeneration.";

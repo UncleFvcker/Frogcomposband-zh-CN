@@ -579,7 +579,7 @@ errr process_pref_file_command(char *buf)
                 if ((p_ptr->playing || character_xtra) &&
                     (OPT_PAGE_BIRTH == option_info[i].o_page) && !p_ptr->wizard)
                 {
-                    msg_format("Birth options can not changed! '%s'", buf);
+                    msg_format("出生选项无法更改！'%s'", buf);
                     msg_print(NULL);
                     return 0;
                 }
@@ -601,7 +601,7 @@ errr process_pref_file_command(char *buf)
         }
 
         /* don't know that option. ignore it.*/
-        msg_format("Ignored invalid option: %s", buf);
+        msg_format("已忽略无效选项: %s", buf);
         msg_print(NULL);
         return 0;
 
@@ -700,7 +700,7 @@ errr process_pref_file_command(char *buf)
             char *t, *s;
             if (max_macrotrigger >= MAX_MACRO_TRIG)
             {
-                msg_print("Too many macro triggers!");
+                msg_print("宏触发器过多！");
                 return 1;
             }
             m = max_macrotrigger;
@@ -936,9 +936,9 @@ cptr process_pref_file_expr(char **sp, char *fp)
             else if (streq(b+1, "RACE"))
             {
                 if (p_ptr->prace == RACE_DOPPELGANGER) /* Use appropriate visuals for mimicked race */
-                    v = get_race()->name;
+                    v = get_race_internal_name(get_race()->id);
                 else
-                    v = get_true_race()->name;
+                    v = get_race_internal_name(get_true_race()->id);
                 while (1)
                 {
                     unsigned int paikka = strpos(" ", v);
@@ -952,7 +952,7 @@ cptr process_pref_file_expr(char **sp, char *fp)
             /* Class */
             else if (streq(b+1, "CLASS"))
             {
-                v = get_class()->name;
+                v = get_class_internal_name(get_class()->id);
             }
 
             else if (streq(b+1, "SUBCLASS"))
@@ -964,11 +964,11 @@ cptr process_pref_file_expr(char **sp, char *fp)
             else if (streq(b+1, "SPECIALITY"))
             {
                 if (p_ptr->pclass == CLASS_WEAPONMASTER)
-                    sprintf(tmp, "%s", weaponmaster_speciality_name(p_ptr->psubclass));
+                    sprintf(tmp, "%s", weaponmaster_internal_speciality_name(p_ptr->psubclass));
                 else if (p_ptr->pclass == CLASS_DEVICEMASTER)
-                    sprintf(tmp, "%s", devicemaster_speciality_name(p_ptr->psubclass));
+                    sprintf(tmp, "%s", devicemaster_internal_speciality_name(p_ptr->psubclass));
                 else
-                    sprintf(tmp, "None");
+                    sprintf(tmp, "无");
                 v = tmp;
             }
 
@@ -988,13 +988,13 @@ cptr process_pref_file_expr(char **sp, char *fp)
             /* First realm */
             else if (streq(b+1, "REALM1"))
             {
-                v = realm_names[p_ptr->realm1];
+                v = realm_internal_name(p_ptr->realm1);
             }
 
             /* Second realm */
             else if (streq(b+1, "REALM2"))
             {
-                v = realm_names[p_ptr->realm2];
+                v = realm_internal_name(p_ptr->realm2);
             }
 
             /* Level */
@@ -1022,7 +1022,7 @@ cptr process_pref_file_expr(char **sp, char *fp)
             /* Money */
             else if (streq(b+1, "SELLING"))
             {
-                sprintf(tmp, no_selling ? "Off" : "On");
+                sprintf(tmp, no_selling ? "关闭" : "On");
                 v = tmp;
             }
         }
@@ -1164,8 +1164,8 @@ static errr process_pref_file_aux(cptr name, int preftype)
     {
         /* Print error message */
         /* ToDo: Add better error messages */
-        msg_format("Error %d in line %d of file '%s'.", err, line, name);
-        msg_format("Parsing '%s'", old);
+        msg_format("错误 %d，行 %d，文件 '%s'。", err, line, name);
+        msg_format("正在解析 '%s'", old);
         msg_print(NULL);
     }
 
@@ -1773,13 +1773,13 @@ cptr map_name(void)
 {
     quest_ptr q = quests_get_current();
     if (q && (q->flags & QF_GENERATE))
-        return "Quest";
+        return "任务";
     else if (p_ptr->wild_mode)
-        return "Surface";
+        return "地表";
     else if (p_ptr->inside_arena)
-        return "Arena";
+        return "竞技场";
     else if (p_ptr->inside_battle)
-        return "Monster Arena";
+        return "怪物竞技场";
     else if (!dun_level && p_ptr->town_num)
         return town_name(p_ptr->town_num);
     else
@@ -1831,7 +1831,7 @@ static errr file_character(cptr name, bool no_msgs)
     if (!fff)
     {
         /* Message */
-        prt("Character dump failed!", 0, 0);
+        prt("角色信息导出失败！", 0, 0);
 
         (void)inkey();
 
@@ -1861,7 +1861,7 @@ static errr file_character(cptr name, bool no_msgs)
     if (!no_msgs)
     {
         /* Message */
-        msg_print("Character dump successful.");
+        msg_print("角色信息导出成功。");
 
         if (!strpos("htm", name)) /* Assume we know better than the player */
         {
@@ -1889,7 +1889,7 @@ static errr file_character(cptr name, bool no_msgs)
             }
             strcat(nuname, ".html");
             file_character(nuname, TRUE);
-            msg_format("Secondarily dumped as %s (angband.oook.cz ladder format)", nuname);
+            msg_format("同时导出为 %s（angband.oook.cz 排行榜格式）", nuname);
         }
         msg_print(NULL);
     }
@@ -2181,7 +2181,7 @@ bool show_file(bool show_version, cptr name, cptr what, int line, int mode)
     if (!fff)
     {
         /* Message */
-        msg_format("Cannot open '%s'.", name);
+        msg_format("无法打开 '%s'。", name);
 
         msg_print(NULL);
 
@@ -2360,14 +2360,14 @@ bool show_file(bool show_version, cptr name, cptr what, int line, int mode)
         if (size <= rows)
         {
             /* Wait for it */
-            prt("[Press ESC to exit.]", hgt - 1, 0);
+            prt("[按 ESC 退出。]", hgt - 1, 0);
 
         }
 
         /* Prompt -- large files */
         else
         {
-            prt("[Press Return, Space, -, =, /, |, or ESC to exit.]", hgt - 1, 0);
+            prt("[按 Return、Space、-、=、/、| 或 ESC 退出。]", hgt - 1, 0);
         }
 
         /* Get a special key code */
@@ -2388,7 +2388,7 @@ bool show_file(bool show_version, cptr name, cptr what, int line, int mode)
         /* Hack -- try showing */
         case '=':
             /* Get "shower" */
-            prt("Show: ", hgt - 1, 0);
+            prt("显示：", hgt - 1, 0);
 
             strcpy(back_str, shower_str);
             if (askfor(shower_str, 80))
@@ -2410,7 +2410,7 @@ bool show_file(bool show_version, cptr name, cptr what, int line, int mode)
         case '/':
         case KTRL('s'):
             /* Get "finder" */
-            prt("Find: ", hgt - 1, 0);
+            prt("查找：", hgt - 1, 0);
 
             strcpy(back_str, finder_str);
             if (askfor(finder_str, 80))
@@ -2437,7 +2437,7 @@ bool show_file(bool show_version, cptr name, cptr what, int line, int mode)
         case '#':
             {
                 char tmp[81];
-                prt("Goto Line: ", hgt - 1, 0);
+                prt("转到行：", hgt - 1, 0);
 
                 strcpy(tmp, "0");
 
@@ -2461,7 +2461,7 @@ bool show_file(bool show_version, cptr name, cptr what, int line, int mode)
         case '%':
             {
                 char tmp[81];
-                prt("Goto File: ", hgt - 1, 0);
+                prt("转到文件：", hgt - 1, 0);
                 strcpy(tmp, "help.hlp");
 
                 if (askfor(tmp, 80))
@@ -2541,7 +2541,7 @@ bool show_file(bool show_version, cptr name, cptr what, int line, int mode)
 
             strcpy (xtmp, "");
 
-            if (!get_string("File name: ", xtmp, 80)) continue;
+            if (!get_string("文件名：", xtmp, 80)) continue;
 
             /* Close it */
             my_fclose(fff);
@@ -2557,7 +2557,7 @@ bool show_file(bool show_version, cptr name, cptr what, int line, int mode)
             /* Oops */
             if (!(fff && ffp))
             {
-                msg_print("Failed to open file.");
+                msg_print("无法打开文件。");
                 skey = ESCAPE;
                 break;
             }
@@ -2773,7 +2773,7 @@ bool py_get_name(void)
     /* Check to see if this is for server play. If so, lock the player name. (--phantom) */
     if(!arg_lock_name)
     {
-        if (get_string("Enter a name for your character: ", tmp, PY_NAME_LEN + 1))
+        if (get_string("输入你的角色名称：", tmp, PY_NAME_LEN + 1))
         {
             /* Use the name */
             strcpy(player_name, tmp);
@@ -2814,14 +2814,14 @@ void do_cmd_suicide(void)
     else
     {
         /* Verify */
-        if (!get_check("Do you really want to commit suicide? ")) return;
+        if (!get_check("你真的想要自杀吗？")) return;
     }
 
 
     if (!p_ptr->noscore)
     {
         /* Special Verification for suicide */
-        prt("Please verify SUICIDE by typing the '@' sign (or pressing Ctrl-E): ", 0, 0);
+        prt("请输入 '@' 符号（或按 Ctrl-E）以确认自杀：", 0, 0);
 
         flush();
         i = inkey();
@@ -2840,7 +2840,7 @@ void do_cmd_suicide(void)
 
         do
         {
-            while (!get_string("*Winning* message: ", buf, sizeof buf)) ;
+            while (!get_string("*胜利*感言：", buf, sizeof buf)) ;
         }
         while (!get_check_strict("Are you sure? ", CHECK_NO_HISTORY));
 
@@ -2861,7 +2861,7 @@ void do_cmd_suicide(void)
     p_ptr->leaving = TRUE;
 
     /* Cause of death */
-    (void)strcpy(p_ptr->died_from, p_ptr->total_winner ? "Ripe Old Age" : "Quitting");
+    (void)strcpy(p_ptr->died_from, p_ptr->total_winner ? "寿终正寝" : "放弃冒险");
 }
 
 
@@ -2877,7 +2877,7 @@ void do_cmd_save_game(int is_autosave)
     handle_stuff();
 
     if (!is_autosave)
-        prt("Saving game...", 0, 0);
+        prt("保存游戏中……", 0, 0);
 
     Term_fresh();
 
@@ -2891,12 +2891,12 @@ void do_cmd_save_game(int is_autosave)
     if (save_player())
     {
         if (!is_autosave)
-            prt("Saving game... done.", 0, 0);
+            prt("保存游戏中……完毕。", 0, 0);
     }
     /* Save failed (oops) */
     else
     {
-        prt("Saving game... failed!", 0, 0);
+        prt("保存游戏中……失败！", 0, 0);
     }
 
     /* Allow suspend again */
@@ -3201,13 +3201,13 @@ static void print_tomb(void)
         /* King or Queen */
         if (p_ptr->total_winner || (p_ptr->lev > PY_MAX_LEVEL))
         {
-            p = "Magnificent";
+            p = "伟大的";
         }
 
         /* Normal */
         else
         {
-            p =  "Vanquished";
+            p =  "阵亡的";
         }
 
         center_string(buf, player_name);
@@ -3258,7 +3258,7 @@ static void print_tomb(void)
         center_string(buf, tmp);
         put_str(buf, 17, 11);
 
-        msg_format("Goodbye, %s!", player_name);
+        msg_format("再见，%s！", player_name);
     }
 }
 
@@ -3290,8 +3290,8 @@ static void show_info(void)
     msg_print(NULL);
 
     /* Describe options */
-    prt("You may now dump a character record to one or more files.", 21, 0);
-    prt("Then, hit RETURN to see the character, or ESC to abort.", 22, 0);
+    prt("你现在可以将角色记录导出到一个或多个文件中。", 21, 0);
+    prt("然后，按 RETURN 键查看角色信息，或按 ESC 键中止。", 22, 0);
 
 
     /* Dump character records as requested */
@@ -3300,7 +3300,7 @@ static void show_info(void)
         char out_val[160];
 
         /* Prompt */
-        put_str("Filename: ", 23, 0);
+        put_str("文件名：", 23, 0);
 
 
         /* Default */
@@ -3338,7 +3338,7 @@ bool check_score(void)
     /* Wizard-mode pre-empts scoring */
     if (p_ptr->noscore & 0x000F)
     {
-        msg_print("Score not registered for wizards.");
+        msg_print("巫师模式下得分不计入排行榜。");
 
         msg_print(NULL);
         return FALSE;
@@ -3349,7 +3349,7 @@ bool check_score(void)
     /* Borg-mode pre-empts scoring */
     if (p_ptr->noscore & 0x00F0)
     {
-        msg_print("Score not registered for borgs.");
+        msg_print("自动机（Borg）模式下得分不计入排行榜。");
 
         msg_print(NULL);
         return FALSE;
@@ -3360,7 +3360,7 @@ bool check_score(void)
     /* Cheaters are not scored */
     if (p_ptr->noscore & 0xFF00)
     {
-        msg_print("Score not registered for cheaters.");
+        msg_print("作弊模式下得分不计入排行榜。");
 
         msg_print(NULL);
         return FALSE;
@@ -3368,10 +3368,10 @@ bool check_score(void)
 #endif
 
     /* Interupted */
-    if (!p_ptr->total_winner && streq(p_ptr->died_from, "Interrupting"))
+    if (!p_ptr->total_winner && streq(p_ptr->died_from, "中断游戏"))
 
     {
-        msg_print("Score not registered due to interruption.");
+        msg_print("由于中断，得分未被记录。");
 
         msg_print(NULL);
         return FALSE;
@@ -3448,8 +3448,8 @@ void kingly(void)
 
     /* Display a message */
     put_str("Veni, Vidi, Vici!", cy + 3, cx - 9);
-    put_str("I came, I saw, I conquered!", cy + 4, cx - 14);
-    put_str(format("All Hail the Mighty %s!", sex_info[p_ptr->psex].winner), cy + 5, cx - 13);
+    put_str("我来，我见，我征服！", cy + 4, cx - 14);
+    put_str(format("向伟大的 %s 致敬！", sex_info[p_ptr->psex].winner), cy + 5, cx - 13);
 
 
     /* Flush input */
@@ -3488,12 +3488,12 @@ void close_game(void)
     if (p_ptr->is_dead)
     {
         /* Handle retirement */
-        if ((p_ptr->total_winner) && ((strpos("Ripe Old Age", p_ptr->died_from)) || (strpos("Seppuku", p_ptr->died_from)))) kingly();
+        if ((p_ptr->total_winner) && ((strpos("寿终正寝", p_ptr->died_from)) || (strpos("切腹", p_ptr->died_from)))) kingly();
 
         /* Save memories */
-        if (!cheat_save || get_check("Save death? "))
+        if (!cheat_save || get_check("保存死亡记录？"))
         {
-            if (!save_player()) msg_print("death save failed!");
+            if (!save_player()) msg_print("死亡记录保存失败！");
         }
 
         /* You are dead */
@@ -3629,7 +3629,7 @@ errr get_rnd_line(cptr file_name, int entry, char *output)
                 else
                 {
                     /* Error while converting the number */
-                    msg_format("Error in line %d of %s!", line_num, file_name);
+                    msg_format("在 %s 的第 %d 行发生错误！", file_name, line_num);
                     my_fclose(fp);
                     return -1;
                 }
@@ -3891,7 +3891,7 @@ static void handle_signal_simple(int sig)
     if (p_ptr->is_dead)
     {
         /* Mark the savefile */
-        (void)strcpy(p_ptr->died_from, "Abortion");
+        (void)strcpy(p_ptr->died_from, "中止游戏");
 
         forget_lite();
         forget_view();
@@ -3909,7 +3909,7 @@ static void handle_signal_simple(int sig)
     else if (signal_count >= 5)
     {
         /* Cause of "death" */
-        (void)strcpy(p_ptr->died_from, "Interrupting");
+        (void)strcpy(p_ptr->died_from, "中断游戏");
 
 
         forget_lite();
@@ -3943,7 +3943,7 @@ static void handle_signal_simple(int sig)
         Term_erase(0, 0, 255);
 
         /* Display the cause */
-        Term_putstr(0, 0, -1, TERM_WHITE, "Contemplating suicide!");
+        Term_putstr(0, 0, -1, TERM_WHITE, "正在考虑自杀！");
 
 
         /* Flush */
@@ -3992,7 +3992,7 @@ static void handle_signal_abort(int sig)
 
 
     /* Message */
-    Term_putstr(45, hgt - 1, -1, TERM_RED, "Panic save...");
+    Term_putstr(45, hgt - 1, -1, TERM_RED, "恐慌保存……");
 
 
 
@@ -4011,13 +4011,13 @@ static void handle_signal_abort(int sig)
     /* Attempt to save */
     if (save_player())
     {
-        Term_putstr(45, hgt - 1, -1, TERM_RED, "Panic save succeeded!");
+        Term_putstr(45, hgt - 1, -1, TERM_RED, "恐慌保存成功！");
     }
 
     /* Save failed */
     else
     {
-        Term_putstr(45, hgt - 1, -1, TERM_RED, "Panic save failed!");
+        Term_putstr(45, hgt - 1, -1, TERM_RED, "恐慌保存失败！");
     }
 
     /* Flush output */

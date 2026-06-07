@@ -55,8 +55,8 @@ static obj_ptr _get_obj(int type)
 {
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Throw which item?";
-    prompt.error = "You have nothing to throw.";
+    prompt.prompt = "投掷哪件物品？";
+    prompt.error = "你没有可以投掷的物品。";
     if (type & THROW_BOOMERANG)
     {
         slot_t slot = equip_find_first(object_is_melee_weapon);
@@ -123,7 +123,7 @@ bool _init_context(py_throw_ptr context)
           && context->obj->tval == TV_QUIVER
           && quiver_count(NULL) )
         {
-            msg_print("Your quiver still holds ammo. Remove all the ammo from your quiver first.");
+            msg_print("你的箭袋里还有弹药。请先将箭袋中的所有弹药取下。");
             return FALSE;
         }
     }
@@ -135,7 +135,7 @@ bool _init_context(py_throw_ptr context)
     {
         if ((context->obj->tval != TV_SPIKE) || (!player_is_ninja))
         {
-            msg_print("You're in the arena now. This is hand-to-hand!");
+            msg_print("你现在在竞技场里。必须进行肉搏！");
             return FALSE;
         }
     }
@@ -154,7 +154,7 @@ bool _init_context(py_throw_ptr context)
         energy_use = context->energy;
         if (!fear_allow_shoot())
         {
-            msg_print("You are too scared!");
+            msg_print("你太害怕了！");
             return FALSE;
         }
         if (context->obj->loc.where == INV_EQUIP && !equip_can_takeoff(context->obj))
@@ -259,15 +259,15 @@ bool _hit_mon(py_throw_ptr context, int m_idx)
         int  tdam;
 
         if (!visible)
-            msg_format("The %s finds a mark.", context->obj_name);
+            msg_format("%s命中了目标。", context->obj_name);
         else
         {
             char m_name[80];
             monster_desc(m_name, m_ptr, 0);
             if (ambush)
-                cmsg_format(TERM_RED, "The %s cruelly hits %s.", context->obj_name, m_name);
+                cmsg_format(TERM_RED, "%s残忍地击中了%s。", context->obj_name, m_name);
             else
-                msg_format("The %s hits %s.", context->obj_name, m_name);
+                msg_format("%s击中了%s。", context->obj_name, m_name);
             if (!p_ptr->image) mon_track(m_ptr);
             health_track(m_idx);
         }
@@ -292,13 +292,13 @@ bool _hit_mon(py_throw_ptr context, int m_idx)
                 monster_desc(m_name, m_ptr, MD_PRON_VISIBLE | MD_OBJECTIVE);
                 switch (mult)
                 {
-                case 2: msg_format("Your weapon <color:U>gouges</color> %s!", m_name); break;
-                case 3: msg_format("Your weapon <color:y>maims</color> %s!!", m_name); break;
-                case 4: msg_format("Your weapon <color:R>carves</color> %s!!!", m_name); break;
-                case 5: msg_format("Your weapon <color:r>cleaves</color> %s!!!!", m_name); break;
-                case 6: msg_format("Your weapon <color:v>smites</color> %s!!!!!", m_name); break;
-                case 7: msg_format("Your weapon <color:v>eviscerates</color> %s!!!!!!", m_name); break;
-                default: msg_format("Your weapon <color:v>shreds</color> %s!!!!!!!", m_name); break;
+                case 2: msg_format("你的武器<color:U>凿击了</color> %s！", m_name); break;
+                case 3: msg_format("你的武器<color:y>致残了</color> %s！！", m_name); break;
+                case 4: msg_format("你的武器<color:R>割裂了</color> %s！！！", m_name); break;
+                case 5: msg_format("你的武器<color:r>劈开了</color> %s！！！！", m_name); break;
+                case 6: msg_format("你的武器<color:v>重击了</color> %s！！！！！", m_name); break;
+                case 7: msg_format("你的武器对 %s<color:v>开膛破肚</color>！！！！！！", m_name); break;
+                default: msg_format("你的武器<color:v>粉碎了</color> %s！！！！！！！", m_name); break;
                 }
 
                 if (have_flag(context->flags, OF_VORPAL2))
@@ -342,7 +342,7 @@ bool _hit_mon(py_throw_ptr context, int m_idx)
                 char m_name[80];
                 int  heal = MIN(30, damroll(3, tdam / 8));
                 monster_desc(m_name, m_ptr, MD_PRON_VISIBLE | MD_OBJECTIVE);
-                msg_format("Your weapon drains life from %s!", m_name);
+                msg_format("你的武器吸取了 %s 的生命！", m_name);
                 hp_player_aux(heal);
                 obj_learn_slay(context->obj, OF_BRAND_VAMP, "is <color:D>Vampiric</color>");
             }
@@ -361,7 +361,7 @@ bool _hit_mon(py_throw_ptr context, int m_idx)
                 char m_name[80];
                 sound(SOUND_FLEE);
                 monster_desc(m_name, m_ptr, MD_PRON_VISIBLE);
-                msg_format("%^s flees in terror!", m_name);
+                msg_format("%^s 惊恐地逃跑了！", m_name);
             }
             if (context->after_hit_f)
                 context->after_hit_f(context, m_idx);
@@ -422,7 +422,7 @@ void _return(py_throw_ptr context)
     {
         for (; context->path_pos >= 0; context->path_pos--)
             _animate(context);
-        msg_format("Your %s comes back to you.", context->obj_name);
+        msg_format("你的 %s 飞回了你的手中。", context->obj_name);
         if (object_is_(context->obj, TV_POLEARM, SV_DEATH_SCYTHE) && (one_in_(2) || context->fail_catch))
             death_scythe_miss(context->obj, HAND_NONE, 0);
     }
@@ -434,14 +434,14 @@ void _return(py_throw_ptr context)
         if (context->type & THROW_BOOMERANG)
         {
             if (!context->come_back)
-                msg_format("Your %s fails to return!", context->obj_name);
+                msg_format("你的 %s 没有飞回来！", context->obj_name);
 
             if (context->fail_catch)
-                cmsg_print(TERM_VIOLET, "But you can't catch!");
+                cmsg_print(TERM_VIOLET, "但是你没接住！");
 
             if (context->obj->loc.where == INV_EQUIP)
             {
-                msg_print("Press <color:y>Space</color> to continue.");
+                msg_print("按 <color:y>空格键</color> 继续。");
                 flush();
                 for (;;)
                 {
@@ -461,10 +461,10 @@ void _return(py_throw_ptr context)
             {
                 if (!summon_named_creature(0, y, x, context->obj->pval,
                                 !object_is_cursed(context->obj) ? PM_FORCE_PET : 0))
-                    msg_print("The Figurine writhes and then shatters.");
+                    msg_print("手办扭动了一下，然后碎裂了。");
 
                 else if (object_is_cursed(context->obj))
-                    msg_print("You have a bad feeling about this.");
+                    msg_print("你对此有种不祥的预感。");
 
                 context->obj->number--;
                 obj_release(context->obj, OBJ_RELEASE_QUIET);
@@ -472,7 +472,7 @@ void _return(py_throw_ptr context)
             /* potions shatter with effects if they hit a wall or monster */
             else if (context->obj->tval == TV_POTION && randint0(100) < context->break_chance)
             {
-                msg_format("The %s shatters!", context->obj_name);
+                msg_format("%s 碎裂了！", context->obj_name);
                 obj_dec_number(context->obj, 1, TRUE); /* Do this first - otherwise the effect could potentially re-shatter the same object again... */
                 if (potion_smash_effect(0, y, x, context->obj->k_idx))
                 {
@@ -484,7 +484,7 @@ void _return(py_throw_ptr context)
                         {
                             char m_name[80];
                             monster_desc(m_name, m_ptr, 0);
-                            msg_format("%^s gets angry!", m_name);
+                            msg_format("%^s 生气了！", m_name);
                             set_hostile(m_ptr);
                         }
                     }
@@ -600,41 +600,41 @@ void py_throw_doc(py_throw_ptr context, doc_ptr doc)
 
     /* Column #1 */
     object_desc(context->obj_name, context->obj, OD_COLOR_CODED | OD_NAME_AND_ENCHANT | OD_THROWING);
-    doc_printf(cols[0], "<color:y> Throwing:</color> <indent><style:indent>%s</style></indent>\n", context->obj_name);
+    doc_printf(cols[0], "<color:y> 投掷物:</color> <indent><style:indent>%s</style></indent>\n", context->obj_name);
 
-    doc_printf(cols[0], " %-7.7s: %d.%d lbs\n", "Weight", context->obj->weight/10, context->obj->weight%10);
-    doc_printf(cols[0], " %-7.7s: %d + %d = %d\n", "To Hit", to_h, p_ptr->shooter_info.dis_to_h, to_h + p_ptr->shooter_info.dis_to_h);
+    doc_printf(cols[0], "%-7.7s: %d.%d 磅\n", "重量", context->obj->weight/10, context->obj->weight%10);
+    doc_printf(cols[0], " %-7.7s: %d + %d = %d\n", "命中加成", to_h, p_ptr->shooter_info.dis_to_h, to_h + p_ptr->shooter_info.dis_to_h);
 
-    doc_printf(cols[0], " %-7.7s: %d\n", "Range", context->range);
+    doc_printf(cols[0], " %-7.7s: %d\n", "射程", context->range);
     if (p_ptr->wizard && 0)
-        doc_printf(cols[0], " %-7.7s: %d (31 to return; 38 to catch)\n", "Back", context->back_chance);
-    doc_printf(cols[0], " %-7.7s: %d%%\n", "Return", 99*(1000 - MAX(0, (30 - context->back_chance))*1000/30)/1000);
-    doc_printf(cols[0], " %-7.7s: %d%%\n", "Catch", 99*(1000 - MAX(0, (37 - context->back_chance))*1000/30)/1000);
-    doc_printf(cols[0], " %-7.7s: %d.%2.2dx\n", "Mult", context->mult/100, context->mult%100);
-    doc_printf(cols[0], " %-7.7s: %d.%2.2d\n", "Throws", num_throw/100, num_throw%100);
+        doc_printf(cols[0], "%-7.7s: %d (31可回旋；38可接住)\n", "回旋率", context->back_chance);
+    doc_printf(cols[0], " %-7.7s: %d%%\n", "回旋", 99*(1000 - MAX(0, (30 - context->back_chance))*1000/30)/1000);
+    doc_printf(cols[0], " %-7.7s: %d%%\n", "接住", 99*(1000 - MAX(0, (37 - context->back_chance))*1000/30)/1000);
+    doc_printf(cols[0], "%-7.7s: %d.%2.2dx\n", "倍率", context->mult/100, context->mult%100);
+    doc_printf(cols[0], " %-7.7s: %d.%2.2d\n", "投掷次数", num_throw/100, num_throw%100);
 
     mult = mult * crit.mul / 100;
     to_d = to_d + crit.to_d/100;
 
-    doc_printf(cols[0], "<color:G> %-7.7s</color>\n", "Damage");
+    doc_printf(cols[0], "<color:G> %-7.7s</color>\n", "伤害");
 
     if (!have_flag(context->flags, OF_BRAND_ORDER))
     {
         if (crit.to_d)
         {
-            doc_printf(cols[0], " %-7.7s: %d.%02dx + %d.%02d\n", "Crits",
+            doc_printf(cols[0], "%-7.7s: %d.%02dx + %d.%02d\n", "暴击",
                             crit.mul/100, crit.mul%100, crit.to_d/100, crit.to_d%100);
         }
         else
         {
-            doc_printf(cols[0], " %-7.7s: %d.%02dx (%d.%d%%)\n", "Crits",
+            doc_printf(cols[0], "%-7.7s: %d.%02dx (%d.%d%%)\n", "暴击",
                             crit.mul/100, crit.mul%100, crit_pct / 10, crit_pct % 10);
         }
     }
 
-    _display_weapon_slay(mult, 100, FALSE, context->mult, num_throw, context->obj->dd, context->obj->ds, to_d, "Normal", TERM_WHITE, cols[0]);
+    _display_weapon_slay(mult, 100, FALSE, context->mult, num_throw, context->obj->dd, context->obj->ds, to_d, "普通", TERM_WHITE, cols[0]);
     if (force)
-        _display_weapon_slay(mult, 100, force, context->mult, num_throw, context->obj->dd, context->obj->ds, to_d, "Force", TERM_L_BLUE, cols[0]);
+        _display_weapon_slay(mult, 100, force, context->mult, num_throw, context->obj->dd, context->obj->ds, to_d, "原力", TERM_L_BLUE, cols[0]);
 
     i = 0;
     
@@ -646,12 +646,12 @@ void py_throw_doc(py_throw_ptr context, doc_ptr doc)
             _slay_mult = slay_tiers[_slay.tier - 1].kill * 10;
         else if (have_flag(context->flags, _slay.slay_flag))
             _slay_mult = slay_tiers[_slay.tier - 1].slay * 10;
-        if (_slay_mult) _display_weapon_slay(mult, _slay_mult, force, context->mult, num_throw, context->obj->dd, context->obj->ds, to_d, (_slay.slay_flag == OF_BRAND_ELEC) ? "Elec" : _slay.kill_desc, _slay.is_slay ? TERM_YELLOW : TERM_RED, cols[0]);
+        if (_slay_mult) _display_weapon_slay(mult, _slay_mult, force, context->mult, num_throw, context->obj->dd, context->obj->ds, to_d, (_slay.slay_flag == OF_BRAND_ELEC) ? "闪电" : _slay.kill_desc, _slay.is_slay ? TERM_YELLOW : TERM_RED, cols[0]);
     }
 
     /* Column #1 */
-    doc_insert(cols[1], "<color:G>Accuracy</color>\n");
-    doc_insert(cols[1], " AC Hit\n");
+    doc_insert(cols[1], "<color:G>精准度</color>\n");
+    doc_insert(cols[1], "AC 命中率\n");
 
     doc_printf(cols[1], "%3d %2d%%\n", 25, throw_hit_chance(to_h, 25, 10));
     doc_printf(cols[1], "%3d %2d%%\n", 50, throw_hit_chance(to_h, 50, 10));

@@ -5,7 +5,7 @@ void rodeo_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Rodeo");
+        var_set_string(res, "套马");
         break;
     case SPELL_DESC:
         var_set_string(res, "");
@@ -21,7 +21,7 @@ void rodeo_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (p_ptr->riding)
         {
-            msg_print("You are already riding.");
+            msg_print("你已经在骑乘了。");
             return;
         }
         if (!do_riding(TRUE)) return;
@@ -31,7 +31,7 @@ void rodeo_spell(int cmd, variant *res)
         m_ptr = &m_list[p_ptr->riding];
         r_ptr = &r_info[m_ptr->r_idx];
         monster_desc(m_name, m_ptr, 0);
-        cmsg_format(TERM_L_GREEN, "You ride on %s.", m_name);
+        cmsg_format(TERM_L_GREEN, "你骑上了%s。", m_name);
         if (is_pet(m_ptr)) break;
         rlev = r_ptr->level;
         if (r_ptr->flags1 & RF1_UNIQUE) rlev = rlev * 3 / 2;
@@ -39,18 +39,18 @@ void rodeo_spell(int cmd, variant *res)
 
         if (p_ptr->inside_arena || p_ptr->inside_battle)
         {
-            cmsg_format(TERM_RED, "You cannot tame anything in here!");
+            cmsg_format(TERM_RED, "你不能在这里驯服任何东西！");
             tame_success = FALSE;
         }
         else if ((r_ptr->flags7 & RF7_GUARDIAN) || (r_ptr->flagsx & RFX_QUESTOR))
         {
-            cmsg_format(TERM_RED, "It is impossible to tame %s!", m_name);
+            cmsg_format(TERM_RED, "%s是不可能被驯服的！", m_name);
             tame_success = FALSE;
         }
         else if (!((skills_riding_current() / 120 + p_ptr->lev * 2 / 3) > rlev
           && rlev < p_ptr->lev * 3 / 2 + (p_ptr->lev / 5)))
         {
-            cmsg_format(TERM_RED, "You are not powerful enough to tame %s.", m_name);
+            cmsg_format(TERM_RED, "你的力量不足以驯服%s。", m_name);
             tame_success = FALSE;
         }
         else if (!(randint1(skills_riding_current() / 120 + p_ptr->lev * 2 / 3) > rlev
@@ -66,12 +66,12 @@ void rodeo_spell(int cmd, variant *res)
 
         if (tame_success)
         {
-            cmsg_format(TERM_L_GREEN, "You tame %s.", m_name);
+            cmsg_format(TERM_L_GREEN, "你驯服了%s。", m_name);
             set_pet(m_ptr);
         }
         else
         {
-            cmsg_format(TERM_VIOLET, "You have been thrown off %s.", m_name);
+            cmsg_format(TERM_VIOLET, "你被%s甩了下来。", m_name);
             rakuba(1,TRUE);
             p_ptr->riding = 0;
         }
@@ -125,12 +125,8 @@ class_t *cavalry_get_class(void)
     skills_t bs = { 20,  18,  32,   1,  16,  10,  60,  66};
     skills_t xs = { 10,   7,  10,   0,   0,   0,  22,  26};
 
-        me.name = "Cavalry";
-        me.desc = "Cavalry are masters of horsemanship and enjoy riding to battle. Being good at "
-                    "both melee and archery, they take pride in their overwhelming offensive strength "
-                    "on horseback; but spellcasting is a closed book to them, and magical devices "
-                    "difficult to use. High-level Cavalry learn to forcibly saddle and "
-                    "tame wild monsters with their 'Rodeo' class power.";
+        me.name = "骑兵";
+        me.desc = "骑兵是马术大师，喜欢骑马作战。他们擅长近战和射箭，并为自己在马背上压倒性的攻击力感到自豪；但他们对施法一窍不通，也很难使用魔法装置。高等级的骑兵可以学会使用他们的“套马(Rodeo)”职业能力来强行给野生怪物套上鞍并将其驯服。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] = -2;

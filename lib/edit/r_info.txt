@@ -1,136 +1,136 @@
-# File: r_info.txt
-# With new monsters for Zangband 2.2 (or 2.3)
 
-# Do not modify this file unless you know exactly what you are doing,
-# unless you wish to risk possible system crashes and broken savefiles.
 
-# Zangband notes:
 
-# Currently, "unique" monsters are just "special" monster races, with
-# the requirement that only one monster of that race can exist at a time,
-# and when it is killed, it can never again be generated.
 
-# ATTR_CLEAR monsters acquire their attr from the item/floor below them,
-# and use "white" for the recall window. See "cave.c" for info.
 
-# ATTR_MULTI monsters have a "flickering" attr, and use "violet" for the
-# recall window. See "cave.c" for info.
 
-# CHAR_CLEAR monsters use special symbols (.) as given below,
-# and use those symbols for the recall window. In theory, normally,
-# these monsters cannot be targetted, and when examined look like normal
-# floors, until the player "notices" them (perhaps check "awake").
 
-# CHAR_MULTI monsters use special symbols (!, ?, =) as given below,
-# and use those symbols for the recall window. In theory, normally,
-# these monsters cannot be targetted, and when examined look like normal
-# objects, until the player "notices" them (perhaps check "awake").
 
-# Note that there are (a few) normal monsters who are "violet" but not
-# ATTR_MULTI, and a lot of monsters which are "white" but not ATTR_CLEAR.
 
-# Note that currently both CHAR_CLEAR and CHAR_MULTI monsters are treated
-# as normal monsters that are just a little hard to see.
 
-# The "0" and "9" symbols are reserved for internal debugging use.
 
-# The "&" symbol is reserved for future use as a special "terrain feature".
 
-# The "`" symbol is reserved as an "alternate" open door picture, since
-# the "'" symbol looks like the "," symbol in some fonts (esp. IBM).
 
-# The "x" symbol is free for use as an "attr/char mapping" for annoying
-# monsters, such as magic mushrooms, drolems, etc.
 
-# Certain symbols ("X", "Y", "B", "l", "I", etc) are used by
-# very few monsters, and could be reorganized somewhat.
 
-# There are still too many "p" monsters, perhaps they should be broken up.
 
-# As always, you can enforce any "visual picture" you want with a "pref file".
 
-# Note that monster zero is used for the "player" picture.
 
-# === Understanding r_info.txt ===
 
-# N: serial number : monster name
-# G: symbol : color
-# I: speed : hit points : vision : armor class : alertness : weight (lbs)
-# W: depth : rarity : max_depth : exp : next_exp : next_mon
-# B: attack method : attack effect : damage
-# S: spell frequency |
-# S: spell type | spell type | etc
-# F: flag | flag | etc
-# D: Description
 
-# Possessor Extra Information (Optional)
-#  The token after P: is a literal an must match case
-#  The Copy option, if used, should be specified first.
-#   Subsequent options increment this 'baseline', except for Life
-#   which is applied multiplicatively.
-#  As always, case matters for string lookups (RaceName, ClassName, BodyName).
-#  Body types are defined in b_info.txt. If you don't specify one, you get the
-#   standard humanoid body type as a default.
-# P:Copy:<Idx> | P:Copy:<RaceName>:<ClassName>
-# P:Stats:<Str>:<Int>:<Wis>:<Dex>:<Con>:<Chr>
-# P:Skills:<Dis>:<Dev>:<Sav>:<Stl>:<Srh>:<Fos>:<Thn>:<Thb>
-# P:ExtraSkills:<Dis>:<Dev>:<Sav>:<Stl>:<Srh>:<Fos>:<Thn>:<Thb>
-# P:Life:<Life>
-# P:Body:<BodyName>
-# P:SpellStat:<Str|Int|Wis|Dex|Con|Chr>
-# P:Speed:+12
 
-# 'N' indicates the beginning of an entry. The serial number must
-# increase for each new item. Entry 0 is used for the player.
 
-# 'G' is for graphics - symbol and color. There are 32 colors, as
-# follows:
 
-# D - Black       w - White        s - Gray        o - Orange
-# r - Red         g - Green        b - Blue        u - Brown
-# d - Dark Gray   W - Light Gray   v - Violet      y - Yellow
-# R - Light Red   G - Light Green  B - Light Blue  U - Light Brown
-# L - Int. Green  P - Pink         I - Int. Blue   C - Purple
-# t - Teal        S - Sky-Blue     m - Mud         M - Dark Yellow
-# T - Turquoise   O - Light Orange V - Lilac       c - Dark Purple
-# n - Dark Sky    K - Pale Blue    p - Dark Pink   h - Chestnut
 
-# 'I' is for information - speed, health, vision in tens of feet,
-# armor class, and alertness. 110 is normal speed. Alertness ranges
-# from 0 (ever vigilant for intruders) to 255 (prefers to ignore
-# intruders).
 
-# 'W' is for more information - level, rarity, and experience for
-# killing. The third slot is unused.
 
-# 'B' is for blows - method of attack, effect of attack, and damage
-# from attack. There may be up to four of these lines; effect and
-# damage are optional.
 
-# 'S' is for spells. The first S: line must be S:1_IN_X with X the
-# number of monster turns, on average, before the monster will cast
-# one of its spells. X must not be zero.
-# Alt: Use S:FREQ_NN to specify the spell frequency directly.
 
-# 'F' is for flags. These are fairly self-explanatory. As many F:
-# lines may be used as are needed to specify all the flags and flags
-# are separated by the '|' symbol.
 
-# 'D' is for description. As many D: lines may be used as are needed
-# to describe the monster. Note that lines may need spaces at their
-# ends to prevent words from running together in the monster memory.
 
-# 'P' is for posessor information. Generally this should lead with a
-# "copy directive" as in P:Copy:Human:Warrior to establish a baseline
-# for stats and skills. This also determines the spell stat, if any.
 
-##### The Player #####
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 N:0:Player
 I:0:1d1:0:0:0:0
 G:@:w
 
-##### Town monsters #####
+
 
 N:1:Filthy street urchin
 G:t:D
@@ -158,7 +158,7 @@ P:Life:50
 P:Body:Scrawny
 D:A skinny little furball with sharp claws and a menacing look.
 
-#Note: Sparrows live only near humans, thus no WILD_*
+
 
 N:3:Sparrow
 G:B:U
@@ -173,7 +173,7 @@ P:Stats:-5:0:0:0:-5:0
 P:Life:50
 P:Body:Scrawny
 
-#Instead, we have chaffinches for wilderness
+
 
 N:4:Chaffinch
 G:B:r
@@ -398,7 +398,7 @@ D:With the help of his lemming-like followers, Nick has already destroyed one
 D:parallel universe and butchered its inhabitants. Now he's come here to wreak
 D:more havoc... at least, this is what you heard some guy say at the inn.
 
-##### Normal monsters #####
+
 
 N:20:Grey mold
 G:m:s
@@ -726,7 +726,7 @@ P:Life:80
 P:Body:Centipede3
 D:It is about four feet long and carnivorous.
 
-#Dup with N:110
+
 N:43:Novice warrior
 G:p:U
 I:110:9d4:20:16:5:180
@@ -758,7 +758,7 @@ P:Life:85
 O:DROP_ROGUE
 D:A rather shifty individual.
 
-# Replacing a dup entry for novice priest
+
 
 N:45:Novice archaeologist
 G:p:W
@@ -776,7 +776,7 @@ P:Copy:Human:Archaeologist
 P:Life:85
 D:A young student, out exploring and looking for valuable items.
 
-#Dup with N:93
+
 N:46:Novice mage
 G:p:R
 I:110:6d4:20:6:5:120
@@ -1304,7 +1304,7 @@ P:Life:70
 P:Body:Scrawny
 D:It is an armoured lizard with a powerful bite.
 
-#Dup with N:142
+
 N:83:Novice ranger
 G:p:g
 I:110:6d8:20:6:5:170
@@ -1502,7 +1502,7 @@ P:Copy:Human:Warrior
 P:Body:Fish
 D:A predatory fish with razor-sharp teeth.
 
-#Dup with N:147
+
 N:97:Novice paladin
 G:p:w
 I:110:6d8:20:16:5:180
@@ -3874,7 +3874,7 @@ S:FREQ_5 | THROW
 O:DROP_WARRIOR
 D:A ten foot tall humanoid with powerful muscles.
 
-#Note! Flesh golem's CAN_SWIM is a tribute to Shelley...
+
 
 N:256:Flesh golem
 G:g:o
@@ -14296,7 +14296,7 @@ D:plains tribes -- presumably the primal source of the more
 D:southerly Quetzalcoatl or Kukulcan -- was an odd, half-anthropomorphic
 D:devil."
 
-#Entroband really should have renamed these 'Boltzmann Brains'
+
 N:815:Unmaker
 G:E:v
 I:120:6d66:60:50:60:50
@@ -14993,9 +14993,9 @@ P:Copy:Balrog:Mauler
 S:FREQ_20 | ROCKET(600) | S_CYBER
 D:The mightiest of Cyberdemons, their lord and ruler.
 
-#Note: Kaschei might grow quite powerful with his UNLIFE attacks
-#and aura, if players are foolish enough to melee him. I weakened
-#his Mana storm a bit to compensate.
+
+
+
 N:844:Kaschei the Immortal
 G:L:v
 I:130:60d100:100:100:0:170
@@ -15352,8 +15352,8 @@ D:somewhat bloated corpulence... It lumbered slobberingly into sight
 D:and gropingly squeezed its gelatinous green immensity through the
 D:black doorway... A mountain shambled or walked."
 
-# Sauron is no longer a quest monster (in Zangband), just a "normal" one.
-# Sauron is a FIXED_UNIQUE so that players may stop the bad effects of Nazgul rings
+
+
 
 N:858:Sauron, the Sorcerer
 G:p:o
@@ -15414,8 +15414,8 @@ D:of chaos, is watching the events unfold with growing distress. It
 D:regards you as a mortal meddling in the affairs of immortals, and
 D:attempts to eliminate you.
 
-# Oberon is the first Quest monster in Zangband: he must be killed before
-# the Serpent of Chaos
+
+
 
 N:860:Oberon, King of Amber
 G:p:v
@@ -15450,12 +15450,12 @@ P:Copy:Amberite:Chaos-Warrior
 P:Stats:2:0:0:2:2:2
 P:Life:110
 
-# Morgoth, mr normal monster!
-# XXX Morgoth can no longer be summoned by the J. Was it really
-# the intent in Heng that players must fight J and P side-by-side?
-# Being a FORCE_DEPTH monster, you can't kill him before the battle
-# and leaving him around rewards players that don't kill many uniques
-# while punishing those that do.
+
+
+
+
+
+
 N:861:Morgoth, Lord of Darkness
 G:P:D
 I:140:200d100:100:150:0:2000
@@ -15494,7 +15494,7 @@ D:two remaining Silmarils forever burning him. Grond, the mighty Hammer of
 D:the Underworld, cries defiance as he strides towards you to crush you to a
 D:pulp!
 
-# You must kill the SoC to complete the final quest, and win the game.
+
 
 N:862:The Serpent of Chaos
 G:J:D
@@ -16587,7 +16587,7 @@ P:Copy:Dunadan:Warrior-Mage
 S:1_IN_5
 S:BR_COLD | BO_COLD | BA_COLD
 
-# Description in English by Nick Keulmann
+
 N:924:Goomba
 G:,:U
 I:110:4d4:20:20:20:30
@@ -16622,7 +16622,7 @@ F:ANIMAL | DROP_SKELETON | DROP_CORPSE
 P:Copy:Human:Rogue
 P:Body:Snake
 
-# Description in English by Nick Keulmann
+
 N:927:Mario
 G:p:r
 I:110:80d10:20:80:10:180
@@ -16640,7 +16640,7 @@ D:A happy plumber jumping up and down, his red mustache matches
 D:his red hat.
 P:Copy:Hobbit:Rogue
 
-# Description in English by Nick Keulmann
+
 N:928:King Koopa
 G:D:g
 I:110:100d15:20:120:40:400
@@ -16827,7 +16827,7 @@ P:Life:105
 P:Body:Monk
 P:Speed:+7
 
-# Description in English by Nick Keulmann
+
 N:938:White knight
 G:p:w
 I:120:30d10:20:70:10:170
@@ -17050,7 +17050,7 @@ S:BO_MANA | BA_FIRE | BA_COLD | BA_ELEC | BA_ACID | BO_ICE | BO_PLASMA |
 S:BO_WATER | BA_WATER | PSY_SPEAR | CAUSE_3 | CAUSE_4 |
 S:CONFUSE | BLIND | S_MONSTER | TELE_SELF
 
-# Description in English by Nick Keulmann
+
 N:950:Hammer brother
 G:h:L
 I:120:10d25:20:30:10:300
@@ -17127,7 +17127,7 @@ D:In a rare display of ingenuity, the Orcs invented an incredibly
 D:destructive weapon. Most Orcish artillerists are those who dared
 D:criticize its effectiveness.
 
-# Description in English by Nick Keulmann
+
 N:955:Scrawny horse
 G:q:o
 I:110:4d5:20:5:30:180
@@ -17141,7 +17141,7 @@ P:Copy:Snotling:Warrior
 P:Body:Horse
 D:This pitiful horse has not been well fed. It walks unsteadily.
 
-# Description in English by Nick Keulmann
+
 N:956:Horse
 G:q:o
 I:110:11d8:20:30:30:280
@@ -17156,7 +17156,7 @@ P:Body:Horse
 D:As for the horse with the animal of four feet which can run fast,
 D:it was utilized for a long time as the vehicle of the human.
 
-# Description in English by Nick Keulmann
+
 N:957:Unruly horse
 G:q:G
 I:110:12d10:20:30:0:280
@@ -17172,7 +17172,7 @@ P:Body:Horse
 D:This creature is gentle and submissive until you try to ride it.
 D:Watch out for its reckless kicking.
 
-# Description in English by Nick Keulmann
+
 N:958:Red puyo
 G:j:r
 I:120:3d1:15:20:50:50
@@ -18564,7 +18564,7 @@ I:110:10d100:20:0:0:150
 W:20:1:999:0:0:0
 F:CHAMELEON | WILD_WOOD | DROP_1D2 | DROP_CORPSE | DROP_SKELETON | ANIMAL |
 F:CAN_FLY | RES_FIRE | RES_COLD | RES_ELEC | RES_ACID | RES_POIS |
-#TODO: Possessor?
+
 
 N:1041:Chameleon Lord
 G:R:v
@@ -18573,7 +18573,7 @@ W:45:1:999:0:0:0
 F:UNIQUE | NO_QUEST | ESCORT | DROP_GOOD |
 F:CHAMELEON | DROP_3D2 | DROP_CORPSE | DROP_SKELETON | ANIMAL |
 F:CAN_FLY | RES_FIRE | RES_COLD | RES_ELEC | RES_ACID | RES_POIS
-#TODO: Possessor?
+
 
 N:1042:Narwhal
 G:l:w
@@ -18782,7 +18782,7 @@ S:HEAL | HASTE | BLIND | CONFUSE | SCARE | TELE_SELF | BLINK
 D:A shabby humanoid with a wrinkled skin. It seems to shift
 D:in and out of existence as you watch.
 
-#Dup with N:1054
+
 N:1053:Novice mindcrafter
 G:p:y
 I:110:6d8:20:10:5:160
@@ -18925,7 +18925,7 @@ B:SHOW:LOSE_INT
 B:SHOW:LOSE_WIS
 B:CHARGE:EAT_GOLD
 B:CHARGE:EAT_GOLD
-#F:DROP_1D2 | DROP_90 | DROP_GOOD | DROP_GREAT | ONLY_ITEM |
+
 F:EVIL | MALE | CAN_SPEAK | SMART | RES_TELE | CAN_SWIM |
 F:ANIMAL | RES_POIS | NO_CONF | NO_SLEEP | FORCE_MAXHP | UNIQUE | FIXED_UNIQUE | FORCE_SLEEP |
 F:RES_CHAO
@@ -18947,7 +18947,7 @@ B:HIT:HURT(25d1)
 B:HIT:HURT(30d1)
 F:UNIQUE | FIXED_UNIQUE | MALE | WEIRD_MIND | CAN_SPEAK |
 F:FORCE_MAXHP | WILD_ALL | DROP_CORPSE
-#F:ONLY_ITEM | DROP_1D2 | DROP_GOOD |
+
 F:OPEN_DOOR | BASH_DOOR |
 F:TROLL | RES_COLD | RES_POIS
 D:He who laughs at Groo's brains will find there is nothing to laugh
@@ -19398,7 +19398,7 @@ S:FREQ_10 | BR_MANA | BR_DISINTEGRATE | BR_CHAOS | DISPEL_MAGIC | S_SPECIAL
 D:A giant figure of a man, shaped from bronze. Your spells
 D:fall short and your blood runs cold as you behold this
 D:colossal behemoth striding slowly, but purposefully, towards you.
-#description from tiny angband, I think ...
+
 
 N:1087:Tonberry
 G:h:u
@@ -20108,7 +20108,7 @@ D:indeed. It has the head of a snake, the body of a leopard,
 D:the haunches of a lion, and the feet of a deer. A great
 D:noise rumbles from its belly, a barking like "thirty couple
 D:hounds questing."
-#Description help from wikipedia
+
 
 N:1123:Greater demonic quylthulg
 G:Q:R
@@ -20221,7 +20221,7 @@ S:FREQ_25 | BLINK | TELE_TO | BR_ELEC | BR_STORM | THROW | HEAL
 D:It is a thirty foot tall giant wreathed in lighting. Winds howl about its
 D:massive frame.
 
-#From Posband: Empty Body for The Possessor
+
 N:1129:Soul
 G:G:B
 I:110:1d1:4:1:40:60
@@ -20255,14 +20255,14 @@ F:POS_HOLD_LIFE | POS_SEE_INVIS | POS_GAIN_AC
 P:Copy:Imp:Warrior
 P:Body:Marilith
 
-#Base form for the Mimic
+
 N:1131:Mimic
 G:@:w
 I:110:1d1:4:1:40:60
 W:50:0:0:0:0:0
 F:CAN_SWIM | DEPRECATED
-#XXX Fix this when the imitator is recoded to the new monster system
-#P:Copy:Human:Imitator
+
+
 P:Stats:0:1:-1:2:0:-1
 P:Skills:25:30:36:2:18:16:60:50
 P:ExtraSkills:7:10:10:0:0:0:18:20
@@ -20287,8 +20287,8 @@ P:Copy:Human:Mauler
 P:Body:Centipede6
 D:Oh my god, it's changing colors! Run!!
 
-# NEW MONSTERS ->
-# From XAngband
+
+
 N:1133:Takeminakata, Drastic Measures
 G:p:v
 I:130:45d100:100:125:10:200
@@ -20522,7 +20522,7 @@ D:She is the spirit of the sun that lords Takamagahara that is the country
 D:of heaven. Her brightness lights up the world.
 D:She and her children plot to conquest of countries of the ground.
 
-# Forest critters (blame Gwarl for these)
+
 
 N:1143:Rusalka
 G:h:B
@@ -20690,7 +20690,7 @@ D:The years have not been good to her, her eyes filled with weary hatred,
 D:her mottled cheeks and her gnarled skin testify to her long suffering and
 D:an intense abhorrence for all beauty and youth.
 
-# Demons from Vanilla
+
 N:1151:Osyluth
 G:U:W
 I:130:40d100:20:145:40:100
@@ -20837,7 +20837,7 @@ S:BLIND | CONFUSE
 P:Copy:Imp:Mauler
 D:It is a demon with a long neck and raking claws.
 
-# Tomenet
+
 N:1159:Cave Gorm
 G:R:D
 I:125:40d100:25:150:50:500
@@ -20857,7 +20857,7 @@ S:BR_DARK
 D:A large reptile in black scales, burning the earth with
 D:the touch of hell where it steps.
 
-# New things
+
 N:1160:Nebiros, the Marquis
 G:B:D
 I:140:70d100:20:150:15:300
@@ -21187,7 +21187,7 @@ S:1_IN_5 | JMP_HELL_FIRE(66) | DETECT_MONSTERS
 D:A giant spider from the planes of hell sent to rend your soul in
 D:eternal damnation.
 
-# Tomenet
+
 N:1178:Star Blade
 G:A:R
 I:130:90d100:100:155:255:250
@@ -21291,7 +21291,7 @@ D:This golem beholder is a perfect sentry and won't let anything come close.
 D:White mouldy flesh covered by metal plating holds a black lidless eye,
 D:slowly turning around and around forever.
 
-# orcs from FA/Sil
+
 
 N:1182:Balcmeg, the Relentless
 G:o:o
@@ -21414,7 +21414,7 @@ S:BERSERK
 D:He is the champion fighter of the expeditionary orc forces of Angband.  He 
 D:leers and swaggers as he approaches you.
 
-# more kinds of orc
+
 
 N:1188:Orc berserker
 G:o:u
@@ -21465,7 +21465,7 @@ O:DROP_WARRIOR_SHOOT
 D:An armoured orc of great size who has won respect and power among
 D:his fellow orcs.
 
-# new
+
 N:1191:The Maw of Hell
 G:v:r
 I:140:103d99:30:175:0:0
@@ -21481,7 +21481,7 @@ P:Body:Vortex8
 S:1_IN_1
 S:BA_NETHER | BO_PLASMA | BR_FIRE | BR_DARK | S_DEMON | S_UNDEAD | SHRIEK |
 
-# v from FA
+
 N:1192:Wiruin, the Maelstrom
 G:v:w
 I:130:70d95:100:175:0:0
@@ -21603,7 +21603,7 @@ S:1_IN_3 |
 S:HAND_DOOM | CAUSE_2 | CAUSE_3 | CAUSE_4 | DISPEL_MAGIC | CONFUSE | BLIND |
 S:BRAIN_SMASH | MIND_BLAST | AMNESIA | ANIM_DEAD |
 
-# golems from Vanilla
+
 N:1198:Bronze golem
 G:g:o
 I:120:55d100:25:170:50:1000
@@ -21665,7 +21665,7 @@ S:CAUSE_4 | PSY_SPEAR | BO_MANA | HEAL | HASTE | MIND_BLAST | BA_LITE | BA_ELEC 
 S:S_DEMON | S_CYBER | S_HI_UNDEAD | S_HI_DRAGON | S_MONSTER | S_UNIQUE |
 S:S_ANGEL | S_HOUND |
 
-# some steam stuff
+
 N:1201:Countess Bathory
 G:V:w
 I:130:50d100:20:100:10:170
@@ -21785,7 +21785,7 @@ D:That is much easier said than done, however, as you see a
 D:steady stream of automata appearing
 D:and moving towards you in an attempt to protect their master.
 
-# originally had S:SHOTGUN, could just do special messages?
+
 N:1206:The Marquis de la Tour
 G:p:r
 I:130:155d10:20:50:20:170
@@ -21831,9 +21831,9 @@ D:It promptly killed him and began exterminating life anywhere it could
 D:find it; since it can travel to any place and to any time, that
 D:is quite a bit of life indeed.
 
-# More monsters! (Blame Gwarl)
 
-# Silver Dragons
+
+
 
 N:1208:Young silver dragon
 G:d:W
@@ -21888,7 +21888,7 @@ P:Body:Dragon
 S:FREQ_15 | SLOW | CONFUSE | SCARE | BR_INERTIA | DETECT_OBJECTS
 D:A huge draconic form wreathed in a nimbus of light.
 
-# Crystal snakes
+
 
 N:1211:Ruby serpent
 G:J:r
@@ -21947,7 +21947,7 @@ P:Body:Naga
 D:A huge crystalline snake with razor-sharp fangs. Deep purple hues
 D:reflect from it as it moves in the light.
 
-# More dragon uniques
+
 
 N:1214:The Midnight Dragon
 G:D:D
@@ -21991,7 +21991,7 @@ S:BR_CHAOS | BR_NETHER | BR_INERTIA  | BA_DARK | BR_CONFUSION
 S:S_SPECIAL
 D:You try and convince yourself that it doesn't exist.
 
-# I want to ride one. Carrions evolve into it
+
 
 N:1216:Winged Horror
 G:B:v
@@ -22012,7 +22012,7 @@ D: seen, and with no feathers on its horrid black leathery wings.  Descended
 D: from a creature of an older world perhaps, bred by Sauron to be a winged
 D: steed for his Ringwraiths.
 
-# Dinosaurs
+
 
 N:1217:Triceratops
 G:R:O
@@ -22117,7 +22117,7 @@ P:Copy:Human:Mauler
 P:Body:Elephant
 D:This ridiculous looking creature has a large sail-like fin extending down its back.
 
-#A gesture torward corvids
+
 
 N:1224:Crow of Durthang
 G:B:s
@@ -22133,8 +22133,8 @@ S:1_IN_9 | CAUSE_1
 D:A crook-beaked bird with bedraggled black feathers.  It mocks you, and you 
 D:realise that its scorn can kill.
 
-# Frogspawn monsters (plus the beer elemental from ComPosband 7.0.4 and
-# Lorgan and Polyphemus from Vanilla, and some FrogComposband originals)
+
+
 
 N:1225:Justshorn, Sorcerer-King of the Sheeple
 G:p:W
@@ -22470,7 +22470,7 @@ P:Stats:-5:0:0:0:-5:0
 P:Body:Scrawny
 D:A legendary waterfowl, remembered in countless stories.
 
-# Restoring the Egyptian gods that Chris removed
+
 
 N:1242:Anubis, Keeper of the Balance
 G:H:D
@@ -22791,7 +22791,7 @@ D:Baba Yaga is the mightiest of all ogre spellcasters, and also the most
 D:intelligent. She has little respect for those not as versed in the arts
 D:of magic, and tends to view adventurers as either tools or food.
 
-# More Egyptians, this time FrogComposband originals
+
 
 N:1257:Wadjet the Protector
 G:J:G
@@ -22840,8 +22840,8 @@ D:The patron of Upper Egypt and protector of the Two Lands, the ancient
 D:vulture goddess appears less than motherly as you look up into her
 D:inky-blue beak.
 
-# Winner of the straw-poll about what Osiris should be like:
-# "Hades/Hela-like, and undead-like, but not undead"
+
+
 N:1259:Osiris, the Reborn
 G:z:g
 I:138:101d121:35:125:30:200
@@ -22890,10 +22890,10 @@ D:vilified by the followers of his nephew Horus. Mighty in his wrath, he now
 D:seeks to destroy all who oppose him; the dungeon shakes and the air swirls
 D:as he tramples his enemies underfoot.
 
-# Gender-lifted Wizard of Yendor from older versions of the game.
-# (Originally removed by Chris, the Wizard wasn't restored in his original
-# form because his being a shopkeeper made him feel out of place as a monster,
-# and vice versa)
+
+
+
+
 
 N:1261:Lutogaida, the Spellmistress of Rarfus
 G:p:v
@@ -23330,7 +23330,7 @@ D:Before the first man he was: Aijem, the ageless, who has been everywhere
 D:and seen everything and done everything. The passing of time has only made
 D:him tougher and given him more experience and opportunities to learn.
 
-# Not a real monster. For player rag use only
+
 
 N:1282:Filthy Rag
 G:(:D
@@ -23575,8 +23575,8 @@ F:EVIL | ANIMAL
 P:Copy:Ogre:Warrior
 D:A large creature resembling a skaven but with great size and strength.
 
-# I don't think grey seers can actually generate in any circumstances
-# right now... which some players might consider just as well.
+
+
 N:1296:Grey seer
 G:r:w
 I:116:24d10:10:30:10:30
@@ -23722,7 +23722,7 @@ D:perfectly, down to the last molecule on the flaming sword. You wonder
 D:what mad scientist designed this contraption, and whether he was also
 D:responsible for the Cloning Pits...
 
-# Salmiak additions
+
 
 N:1304:Spulga, the Troll Priestess
 G:T:I
@@ -25435,7 +25435,7 @@ D:creative energy and things that flow. Her origin as a great river goddess
 D:is all too apparent as she drowns you in a whirlpool with disdainful
 D:indifference.
 
-# Watch out for that S_PANTHEON...
+
 N:1391:Indra, the Heavenly King of Meru
 G:P:b
 I:134:144d100:40:160:5:1000
@@ -25540,24 +25540,3 @@ D:"In the heart of Tomenet’s wild world, a lone druid tends to
 D: the game’s ancient realms with unwavering devotion.
 D: For twenty years, he has woven magic into its fabric,
 D: keeping its challenges and mysteries alive."
-
-# N: serial number : monster name
-# G: symbol : color
-# I: speed : hit points : vision : armor class : alertness : weight (lbs)
-# W: depth : rarity : max_depth : exp : next_exp : next_mon
-# B: attack method : attack effect : damage
-# S: spell frequency |
-# S: spell type | spell type | etc
-# F: flag | flag | etc
-
-# D - Black       w - White        s - Gray        o - Orange
-# r - Red         g - Green        b - Blue        u - Brown
-# d - Dark Gray   W - Light Gray   v - Violet      y - Yellow
-# R - Light Red   G - Light Green  B - Light Blue  U - Light Brown
-# L - Int. Green  P - Pink         I - Int. Blue   C - Purple
-# t - Teal        S - Sky-Blue     m - Mud         M - Dark Yellow
-# T - Turquoise   O - Light Orange V - Lilac       c - Dark Purple
-# n - Dark Sky    K - Pale Blue    p - Dark Pink   h - Chestnut
-
-#
-# vim: filetype=ri :

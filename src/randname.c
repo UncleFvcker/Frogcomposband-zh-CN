@@ -310,8 +310,8 @@ errr name_parser(void)
 
         /* Oops */
         msg_boundary();
-        msg_format("<color:v>Error</color> %d (%s) at line %d of 'namebase.txt'.", err, oops, err_line);
-        msg_format("Parsing '%s'.", buf);
+        msg_format("<color:v>错误</color> %d (%s) 位于 'namebase.txt' 的第 %d 行。", err, oops, err_line);
+        msg_format("正在解析 '%s'。", buf);
 
         msg_print(NULL);
     }

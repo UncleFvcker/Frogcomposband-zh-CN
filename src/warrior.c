@@ -46,15 +46,8 @@ class_t *warrior_get_class(void)
     skills_t bs = { 25,  18,  31,   1,  14,   2,  70,  55};
     skills_t xs = { 12,   7,  10,   0,   0,   0,  30,  30};
 
-        me.name = "Warrior";
-        me.desc = "A Warrior is a hack-and-slash character, who solves most of his "
-                    "problems by cutting them to pieces, but will occasionally fall "
-                    "back on the help of a magical device. Unfortunately, many "
-                    "high-level devices may be forever beyond their use.\n \n"
-                    "Warriors cast no spells. They hate magic. In fact, they even "
-                    "gain experience for destroying high level spellbooks. They have a "
-                    "class power - 'Sword Dancing' - which allows them to conduct a "
-                    "melee attack in six random directions.";
+        me.name = "战士";
+        me.desc = "战士是一个砍杀型角色，他们通常通过把问题切成碎片来解决，但偶尔也会依靠魔法装置的帮助。不幸的是，许多高等级装置可能永远超出他们的使用能力。\n \n战士不会施法。他们讨厌魔法。事实上，他们甚至能通过摧毁高等级法术书来获取经验。他们拥有一个职业能力——“剑舞”，允许他们在六个随机方向上进行近战攻击。";
 
         me.stats[A_STR] =  4;
         me.stats[A_INT] = -2;

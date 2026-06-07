@@ -13,7 +13,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.which_stat = A_INT;
         me.encumbrance.max_wgt = 430;
         me.encumbrance.weapon_pct = 33;
@@ -41,15 +41,8 @@ class_t *warrior_mage_get_class(void)
     skills_t bs = { 30,  36,  34,   2,  18,  16,  56,  50};
     skills_t xs = {  7,  10,  10,   0,   0,   0,  18,  15};
 
-        me.name = "Warrior-Mage";
-        me.desc = "A Warrior-Mage is precisely what the name suggests: a cross "
-                    "between a warrior and a mage. To support their good-for-mages combat "
-                    "abilities, Warrior-Mages begin the game with Arcane magic and can "
-                    "freely select another spell realm. Although they do not gain "
-                    "new spells as fast as regular mages, they can eventually learn "
-                    "all or almost all spells in both realms, making them a very competitive "
-                    "choice for those who appreciate Arcane magic. Their class powers "
-                    "allow them to convert either HP to mana, or mana to HP, as needed.";
+        me.name = "战法师";
+        me.desc = "战法师正如其名：战士和法师的结合体。为了支持他们对法师来说不错的战斗能力，战法师在游戏开始时拥有奥秘魔法，并能自由选择另一个法术领域。虽然他们获得新法术的速度不如纯粹的法师快，但他们最终能学会两个领域中所有或几乎所有的法术，这使他们成为欣赏奥秘魔法的人的极具竞争力的选择。他们的职业能力允许他们根据需要在生命值(HP)和法力值(Mana)之间相互转换。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] =  2;

@@ -170,10 +170,10 @@ static obj_ptr _get_ammo(bool allow_floor)
     obj_prompt_t prompt = {0};
 
     if (allow_floor)
-        prompt.prompt = "Fire which ammo?";
+        prompt.prompt = "发射哪种弹药？";
     else
-        prompt.prompt = "Choose ammo to use for this technique.";
-    prompt.error = "You have nothing to fire.";
+        prompt.prompt = "选择用于此技巧的弹药。";
+    prompt.error = "你没有可发射的东西。";
     prompt.filter = obj_can_shoot;
     prompt.where[0] = INV_QUIVER;
     prompt.where[1] = INV_PACK;
@@ -208,7 +208,7 @@ static bool _do_blow(int type)
 {
     if (!_check_speciality_equip())
     {
-        msg_print("Failed! You do not feel comfortable with your weapon.");
+        msg_print("失败！你觉得你的武器用着不顺手。");
         return FALSE;
     }
     return do_blow(type);
@@ -225,7 +225,7 @@ static void _fire_spell(int which, int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your shooter.");
+            msg_print("失败！你觉得你的远程武器用着不顺手。");
             return;
         }
         if (_fire(which))
@@ -248,7 +248,7 @@ static void _toggle_spell(int which, int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your weapon.");
+            msg_print("失败！你觉得你的武器用着不顺手。");
             return;
         }
         if (_get_toggle() == which)
@@ -274,10 +274,10 @@ static void _judge_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Judge");
+        var_set_string(res, "评判");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Identifies a favored item.");
+        var_set_string(res, "鉴定一件偏好的物品。");
         break;
     case SPELL_CAST:
         if (p_ptr->lev >= 45)
@@ -300,10 +300,10 @@ static void _crusaders_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Crusaders Strike");
+        var_set_string(res, "十字军打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with a single blow. You regain hp.");
+        var_set_string(res, "用单次打击攻击一名相邻的对手。你将回复生命值。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _do_blow(WEAPONMASTER_CRUSADERS_STRIKE));
@@ -319,10 +319,10 @@ static void _power_attack_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Power Attack");
+        var_set_string(res, "强力攻击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You lose accuracy but gain damage.");
+        var_set_string(res, "你牺牲了命中率，但增加了伤害。");
         break;
     default:
         _toggle_spell(TOGGLE_POWER_ATTACK, cmd, res);
@@ -335,10 +335,10 @@ static void _vicious_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Vicious Strike");
+        var_set_string(res, "凶恶打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attacks an opponent very powerfully, but you become greatly exposed by the effort.");
+        var_set_string(res, "极其强力地攻击一名对手，但这种发力会让你露出很大破绽。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
@@ -362,10 +362,10 @@ static void _arrow_of_slaying_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Arrow of Slaying");
+        var_set_string(res, "杀戮之箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to kill a monster instantly by hitting a fatal spot, dealing 1 damage if unsuccessful.");
+        var_set_string(res, "尝试击中致命部位以瞬间击杀怪物，如果失败则只造成 1 点伤害。");
         break;
     default:
         _fire_spell(SHOOT_NEEDLE, cmd, res);
@@ -377,10 +377,10 @@ static void _disintegration_arrow_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Disintegration Arrow");
+        var_set_string(res, "解体之箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Shoot a single arrow at a chosen opponent. Not even intervening walls can stop this shot!");
+        var_set_string(res, "向选定的对手射出一支箭。即使是中间的墙壁也无法阻挡这一击！");
         break;
     default:
         _fire_spell(SHOOT_DISINTEGRATE, cmd, res);
@@ -392,10 +392,10 @@ static void _piercing_arrow_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Piercing Arrow");
+        var_set_string(res, "穿透之箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "If an arrow hits opponent, it pierces and can also hit next opponent in same direction (requires another attack roll), up to 5 opponents. Each successive pierce suffers a cumulative penalty to hit.");
+        var_set_string(res, "如果箭矢击中对手，它会穿透并能继续击中同一方向上的下一个对手（需要另一次攻击检定），最多可击中 5 名对手。每次连续的穿透都会受到累加的命中惩罚。");
         break;
     default:
         _toggle_spell(TOGGLE_PIERCING_ARROW, cmd, res);
@@ -408,16 +408,16 @@ static void _readied_shot_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Readied Shot");
+        var_set_string(res, "蓄势待发");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fire an arrow (choose which at time of casting) in response at enemy who damages you. Active until triggered.");
+        var_set_string(res, "对伤害你的敌人予以回击射出一支箭（在施放时选择）。在触发前一直处于激活状态。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your shooter.");
+            msg_print("失败！你觉得你的远程武器用着不顺手。");
             return;
         }
         if (_get_toggle() == TOGGLE_READIED_SHOT)
@@ -452,10 +452,10 @@ static void _tranquilizing_arrow_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Tranquilizing Arrow");
+        var_set_string(res, "镇静之箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempt to put a monster to sleep with a well aimed shot.");
+        var_set_string(res, "尝试用瞄准良好的一箭让怪物陷入沉睡。");
         break;
     default:
         _fire_spell(SHOOT_TRANQUILIZE, cmd, res);
@@ -467,10 +467,10 @@ static void _volley_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Volley");
+        var_set_string(res, "抛射");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Launch a single arrow at chosen foe. This arrow will be shot over the heads of any intervening monsters.");
+        var_set_string(res, "向选定的敌人发射一支箭。这支箭将从任何阻挡在中间的怪物头顶越过。");
         break;
     default:
         _fire_spell(SHOOT_VOLLEY, cmd, res);
@@ -485,10 +485,10 @@ static void _combat_expertise_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Defensive Stance");
+        var_set_string(res, "防御架势");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You lose accuracy but gain armor class.");
+        var_set_string(res, "你牺牲了命中率，但增加了护甲等级(AC)。");
         break;
     default:
         _toggle_spell(TOGGLE_COMBAT_EXPERTISE, cmd, res);
@@ -501,10 +501,10 @@ static void _cunning_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Cunning Strike");
+        var_set_string(res, "狡诈打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Number of attacks are cut in half, but blows are more likely to confuse, stun, knock out your opponent.");
+        var_set_string(res, "攻击次数减半，但打击更有可能让你的对手困惑、震慑或昏迷。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _do_blow(WEAPONMASTER_CUNNING_STRIKE));
@@ -520,10 +520,10 @@ static void _smite_evil_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Smite Evil");
+        var_set_string(res, "破邪斩");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack powerfully at an evil monster.");
+        var_set_string(res, "对邪恶怪物进行强力攻击。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _do_blow(WEAPONMASTER_SMITE_EVIL));
@@ -564,10 +564,10 @@ static void _smash_ground_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Smash Ground");
+        var_set_string(res, "粉碎大地");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Produces a loud, stunning noise.");
+        var_set_string(res, "制造出巨大的、令人震慑的声响。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _smash_ground_dam()));
@@ -578,10 +578,10 @@ static void _smash_ground_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your weapon.");
+            msg_print("失败！你觉得你的武器用着不顺手。");
             return;
         }
-        msg_print("You smash your weapon mightily on the ground.");
+        msg_print("你将武器用力砸向地面。");
         project(0, 8, py, px, device_power(dam*2), GF_SOUND, PROJECT_KILL | PROJECT_ITEM);
 
         var_set_bool(res, TRUE);
@@ -606,15 +606,15 @@ static void _toss_hit_mon(py_throw_ptr context, int m_idx)
         if (r_ptr->flags3 & RF3_NO_CONF)
         {
             mon_lore_3(m_ptr, RF3_NO_CONF);
-            msg_format("%^s is unaffected.", m_name);
+            msg_format("%^s不受影响。", m_name);
         }
         else if (mon_save_p(m_ptr->r_idx, A_STR))
         {
-            msg_format("%^s is unaffected.", m_name);
+            msg_format("%^s不受影响。", m_name);
         }
         else
         {
-            msg_format("%^s appears <color:U>confused</color>.", m_name);
+            msg_format("%^s看起来<color:U>困惑</color>了。", m_name);
             set_monster_confused(m_idx, MON_CONFUSED(m_ptr) + 10 + randint0(p_ptr->lev) / 5);
         }
     }
@@ -624,15 +624,15 @@ static void _toss_hit_mon(py_throw_ptr context, int m_idx)
         if (r_ptr->flags3 & RF3_NO_SLEEP)
         {
             mon_lore_3(m_ptr, RF3_NO_SLEEP);
-            msg_format("%^s is unaffected.", m_name);
+            msg_format("%^s不受影响。", m_name);
         }
         else if (mon_save_p(m_ptr->r_idx, A_STR))
         {
-            msg_format("%^s is unaffected.", m_name);
+            msg_format("%^s不受影响。", m_name);
         }
         else
         {
-            msg_format("%^s is <color:b>knocked out</color>.", m_name);
+            msg_format("%^s<color:b>昏迷</color>了。", m_name);
             set_monster_csleep(m_idx, MON_CSLEEP(m_ptr) + 500);
         }
     }
@@ -642,15 +642,15 @@ static void _toss_hit_mon(py_throw_ptr context, int m_idx)
         if (r_ptr->flags3 & RF3_NO_STUN)
         {
             mon_lore_3(m_ptr, RF3_NO_STUN);
-            msg_format("%^s is unaffected.", m_name);
+            msg_format("%^s不受影响。", m_name);
         }
         else if (mon_stun_save(r_ptr->level, context->dam))
         {
-            msg_format("%^s is unaffected.", m_name);
+            msg_format("%^s不受影响。", m_name);
         }
         else
         {
-            msg_format("%^s is <color:B>stunned</color>.", m_name);
+            msg_format("%^s被<color:B>震慑</color>了。", m_name);
             mon_stun(m_ptr, mon_stun_amount(context->dam));
         }
     }
@@ -667,15 +667,15 @@ static void _throw_weapon_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Throw Weapon");
+        var_set_string(res, "投掷武器");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Throws your weapon which might return to you.");
+        var_set_string(res, "投掷你的武器，它可能会回到你手中。");
         break;
     case SPELL_CAST:
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your weapon.");
+            msg_print("失败！你觉得你的武器用着不顺手。");
             return;
         }
         else
@@ -697,7 +697,7 @@ static void _throw_weapon_spell(int cmd, variant *res)
 
         if (screen_hack) screen_load();
         screen_save();
-        doc_display(doc, "Throw Weapon", 0);
+        doc_display(doc, "投掷武器", 0);
         screen_load();
         if (screen_hack) screen_save();
 
@@ -716,10 +716,10 @@ static void _trade_blows_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Trade Blows");
+        var_set_string(res, "以伤换伤");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique, you are somewhat exposed. However, you will retaliate whenever a monster hits you.");
+        var_set_string(res, "使用此技巧时，你会暴露出一些破绽。然而，每当怪物击中你时，你都会进行反击。");
         break;
     default:
         _toggle_spell(TOGGLE_TRADE_BLOWS, cmd, res);
@@ -735,10 +735,10 @@ static void _careful_aim_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Careful Aim");
+        var_set_string(res, "仔细瞄准");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You shoot more slowly but much more accurately.");
+        var_set_string(res, "你射击速度变慢，但准确度大幅提高。");
         break;
     default:
         _toggle_spell(TOGGLE_CAREFUL_AIM, cmd, res);
@@ -751,10 +751,10 @@ static void _elemental_bolt_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Elemental Bolt");
+        var_set_string(res, "元素弩箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Shoot a single bolt which explodes in a shower of the elements if it hits.");
+        var_set_string(res, "射出一支弩箭，如果击中目标，会在一阵元素之雨中爆炸。");
         break;
     default:
         _fire_spell(SHOOT_ELEMENTAL, cmd, res);
@@ -766,10 +766,10 @@ static void _exploding_bolt_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Exploding Bolt");
+        var_set_string(res, "爆炸弩箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Your bolts will explode on impact, but your firing rate is decreased.");
+        var_set_string(res, "你的弩箭在撞击时会爆炸，但你的射击速度会降低。");
         break;
     default:
         _toggle_spell(TOGGLE_EXPLODING_BOLT, cmd, res);
@@ -782,10 +782,10 @@ static void _knockback_bolt_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Knockback");
+        var_set_string(res, "击退击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Shoot a single bolt which propels your enemy backwards if it hits.");
+        var_set_string(res, "射出一支弩箭，如果击中目标，会将你的敌人向后推。");
         break;
     default:
         _fire_spell(SHOOT_KNOCKBACK, cmd, res);
@@ -797,10 +797,10 @@ static void _overdraw_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Overdraw");
+        var_set_string(res, "满弓");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You shoot with extra might, but your accuracy is diminished.");
+        var_set_string(res, "你以额外的力量射击，但你的命中率会降低。");
         break;
     default:
         _toggle_spell(TOGGLE_OVERDRAW, cmd, res);
@@ -813,10 +813,10 @@ static void _rapid_reload_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Rapid Reload");
+        var_set_string(res, "快速装填");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Your shots per round are increased, but you lose armor class and accuracy in your haste.");
+        var_set_string(res, "你每回合的射击次数增加，但由于匆忙，你会损失护甲等级(AC)和命中率。");
         break;
     default:
         _toggle_spell(TOGGLE_RAPID_RELOAD, cmd, res);
@@ -829,10 +829,10 @@ static void _shattering_bolt_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shattering Bolt");
+        var_set_string(res, "碎裂弩箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Shoot a single bolt which fragments on impact for extra damage.");
+        var_set_string(res, "射出一支弩箭，在撞击时会碎裂以造成额外伤害。");
         break;
     default:
         _fire_spell(SHOOT_SHATTER, cmd, res);
@@ -847,15 +847,15 @@ static void _dagger_toss_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dagger Toss");
+        var_set_string(res, "投掷匕首");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Throws your weapon at target monster.");
+        var_set_string(res, "将你的武器投掷向目标怪物。");
         break;
     case SPELL_CAST:
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your weapon.");
+            msg_print("失败！你觉得你的武器用着不顺手。");
             return;
         }
         else
@@ -890,16 +890,16 @@ static void _flying_dagger_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Flying Dagger Stance");
+        var_set_string(res, "飞刀架势");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique, you gain great prowess with the Dagger Toss. Thrown weapons return more often and damage is greatly increased. However, this stance leaves you somewhat exposed to your enemies.");
+        var_set_string(res, "使用此技巧时，你的“投掷匕首”技巧将变得极为精湛。投掷出的武器更频繁地返回，且伤害大幅增加。然而，这种架势会让你在敌人面前暴露出一些破绽。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your weapon.");
+            msg_print("失败！你觉得你的武器用着不顺手。");
             return;
         }
         if (_get_toggle() == TOGGLE_FLYING_DAGGER_STANCE)
@@ -925,10 +925,10 @@ static void _elusive_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Elusive Strike");
+        var_set_string(res, "飘忽打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent monster and blink to a new location in the line of sight of your current location.");
+        var_set_string(res, "攻击相邻的怪物，并闪现到你当前位置视线内的一个新位置。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _do_blow(WEAPONMASTER_ELUSIVE_STRIKE));
@@ -944,10 +944,10 @@ static void _frenzy_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Frenzy Stance");
+        var_set_string(res, "狂暴架势");
         break;
     case SPELL_DESC:
-        var_set_string(res, "In this posture, you attack foes with great power in melee. However, your rage exposes you to your enemies!");
+        var_set_string(res, "在这种架势下，你在近战中以巨大的力量攻击敌人。然而，你的狂暴会让你在敌人面前露出破绽！");
         break;
     default:
         _toggle_spell(TOGGLE_FRENZY_STANCE, cmd, res);
@@ -960,10 +960,10 @@ static void _shadow_stance_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shadow Stance");
+        var_set_string(res, "暗影架势");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique, you walk quickly and stealthily. On attacking a foe, you will swap positions.");
+        var_set_string(res, "使用此技巧时，你走得既快又隐蔽。在攻击敌人时，你们将交换位置。");
         break;
     default:
         _toggle_spell(TOGGLE_SHADOW_STANCE, cmd, res);
@@ -979,25 +979,25 @@ static void _tunnel_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Tunnel");
+        var_set_string(res, "挖掘隧道");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Creates a tunnel down to the next level.");
+        var_set_string(res, "挖掘一条通往下一层的隧道。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your weapon.");
+            msg_print("失败！你觉得你的武器用着不顺手。");
             return;
         }
         if (!cave_valid_bold(py, px))
         {
-            msg_print("You need room to dig!");
+            msg_print("你需要空间来挖掘！");
         }
         else
         {
-            msg_print("You tunnel downwards ...");
+            msg_print("你向下挖掘……");
             stair_creation(TRUE);
             var_set_bool(res, TRUE);
         }
@@ -1013,16 +1013,16 @@ static void _calamity_of_the_living_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Calamity of the Living");
+        var_set_string(res, "生者之灾");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Causes an earthquake or destruction.");
+        var_set_string(res, "引发地震或破坏。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your weapon.");
+            msg_print("失败！你觉得你的武器用着不顺手。");
             return;
         }
         if (p_ptr->lev >= 50 || one_in_(3))
@@ -1031,7 +1031,7 @@ static void _calamity_of_the_living_spell(int cmd, variant *res)
         }
         else
         {
-            msg_print("The ground rumbles!");
+            msg_print("地面发出轰隆声！");
             earthquake(py, px, 10);
         }
         var_set_bool(res, TRUE);
@@ -1054,10 +1054,10 @@ static void _bury_dead_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Bury Dead");
+        var_set_string(res, "埋葬死者");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You gain temporary enchantments by burying a corpse or skeleton.");
+        var_set_string(res, "通过埋葬尸体或骨架，你将获得暂时的强化。");
         break;
     case SPELL_CAST:
     {
@@ -1068,12 +1068,12 @@ static void _bury_dead_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your weapon.");
+            msg_print("失败！你觉得你的武器用着不顺手。");
             return;
         }
 
-        prompt.prompt = "Bury which corpse?";
-        prompt.error = "You have nothing to bury.";
+        prompt.prompt = "埋葬哪具尸体？";
+        prompt.error = "你没有可埋葬的东西。";
         prompt.filter = _object_is_corpse_or_skeleton;
         prompt.where[0] = INV_PACK;
         prompt.where[1] = INV_FLOOR;
@@ -1090,7 +1090,7 @@ static void _bury_dead_spell(int cmd, variant *res)
             turns = 15;
 
         object_desc(o_name, prompt.obj, OD_NAME_ONLY | OD_COLOR_CODED | OD_SINGULAR);
-        msg_format("You dig a hasty grave and toss in %s.", o_name);
+        msg_format("你匆忙挖了一个坟墓并把%s扔了进去。", o_name);
 
         prompt.obj->number--;
         obj_release(prompt.obj, 0);
@@ -1126,10 +1126,10 @@ static void _barricade_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Barricade");
+        var_set_string(res, "设置路障");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Creates some nearby rubble.");
+        var_set_string(res, "在附近制造一些碎石。");
         break;
     case SPELL_CAST:
     {
@@ -1137,7 +1137,7 @@ static void _barricade_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your weapon.");
+            msg_print("失败！你觉得你的武器用着不顺手。");
             return;
         }
 
@@ -1198,10 +1198,10 @@ static void _strength_of_the_undertaker_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Strength of Undertaker");
+        var_set_string(res, "掘墓人之力");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You gain additional strength based on the quality of your digger.");
+        var_set_string(res, "根据你挖掘工具的品质，你获得额外的力量。");
         break;
     default:
         _toggle_spell(TOGGLE_STRENGTH_OF_THE_UNDERTAKER, cmd, res);
@@ -1214,10 +1214,10 @@ static void _stoicism_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Stoicism");
+        var_set_string(res, "坚忍");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You gain additional constitution and stealth based on the quality of your digger.");
+        var_set_string(res, "根据你挖掘工具的品质，你获得额外的体质和潜行。");
         break;
     default:
         _toggle_spell(TOGGLE_STOICISM, cmd, res);
@@ -1230,10 +1230,10 @@ static void _industrious_mortician_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Industrious Mortician");
+        var_set_string(res, "勤勉殡葬师");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You gain additional attacks and speed when using this technique based on the quality of your digger.");
+        var_set_string(res, "使用此技巧时，根据你挖掘工具的品质，你获得额外的攻击次数和速度。");
         break;
     default:
         _toggle_spell(TOGGLE_INDUSTRIOUS_MORTICIAN, cmd, res);
@@ -1249,10 +1249,10 @@ static void _many_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Many Strike");
+        var_set_string(res, "多重打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Your attacks scatter widely among surrounding foes.");
+        var_set_string(res, "你的攻击广泛散布在周围的敌人之中。");
         break;
     default:
         _toggle_spell(TOGGLE_MANY_STRIKE, cmd, res);
@@ -1265,10 +1265,10 @@ static void _piercing_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Piercing Strike");
+        var_set_string(res, "穿透打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When you attack a foe, successful hits will pierce the opponent attacking additional monsters.");
+        var_set_string(res, "当你攻击敌人时，成功的击中将穿透对手，攻击到额外的怪物。");
         break;
     default:
         _toggle_spell(TOGGLE_PIERCING_STRIKE, cmd, res);
@@ -1281,10 +1281,10 @@ static void _trip_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Trip");
+        var_set_string(res, "绊倒");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When you attack a foe, successful hits will attempt to trip up your opponent.");
+        var_set_string(res, "当你攻击敌人时，成功的击中将尝试绊倒你的对手。");
         break;
     default:
         _toggle_spell(TOGGLE_TRIP, cmd, res);
@@ -1297,10 +1297,10 @@ static void _reach_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Reach");
+        var_set_string(res, "延伸");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This spell extends the range of your melee attack.");
+        var_set_string(res, "此法术延长了你的近战攻击范围。");
         break;
     case SPELL_CAST:
         if (_check_speciality_equip())
@@ -1318,7 +1318,7 @@ static void _reach_spell(int cmd, variant *res)
         }
         else
         {
-            msg_print("Failed! You do not feel comfortable with your weapon.");
+            msg_print("失败！你觉得你的武器用着不顺手。");
             var_set_bool(res, FALSE);
         }
         break;
@@ -1333,10 +1333,10 @@ static void _knock_back_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Knock Back");
+        var_set_string(res, "击退");
         break;
     case SPELL_DESC:
-        var_set_string(res, "A successful attack will push your opponent back a square.");
+        var_set_string(res, "成功的攻击会将你的对手向后推一格。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _do_blow(WEAPONMASTER_KNOCK_BACK));
@@ -1352,10 +1352,10 @@ static void _reaping_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Reaping");
+        var_set_string(res, "收割");
         break;
     case SPELL_DESC:
-        var_set_string(res, "A whirlwind of death, striking all adjacent enemies with powerful vampiric blows. Each kill further increases the strength of subsequent strikes.");
+        var_set_string(res, "死亡的旋风，以强大的吸血打击攻击所有相邻的敌人。每一次击杀都会进一步增强后续打击的力量。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _do_blow(WEAPONMASTER_REAPING));
@@ -1374,10 +1374,10 @@ static void _desperation_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Desperation");
+        var_set_string(res, "绝境求生");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You regain hp by disenchanting your current weapon.");
+        var_set_string(res, "通过解除你当前武器的魔法强化，你回复生命值。");
         break;
     case SPELL_CAST:
     {
@@ -1388,13 +1388,13 @@ static void _desperation_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do need a shield.");
+            msg_print("失败！你需要一面盾牌。");
             return;
         }
         slot = equip_random_slot(object_is_melee_weapon);
         if (!slot)
         {
-            msg_print("Failed! You do need a weapon to disenchant.");
+            msg_print("失败！你需要一把可以解除强化的武器。");
             return;
         }
         o_ptr = equip_obj(slot);
@@ -1410,16 +1410,16 @@ static void _desperation_spell(int cmd, variant *res)
             {
                 if (o_ptr->to_h > 0) o_ptr->to_h--;
                 if (o_ptr->to_d > 0) o_ptr->to_d--;
-                msg_format("Your %s is disenchanted.", o_name);
+                msg_format("你的%s被解除了强化。", o_name);
             }
             else
             {
-                msg_format("Your %s resists disenchantment.", o_name);
+                msg_format("你的%s抵抗了强化解除。", o_name);
             }
         }
         else
         {
-            msg_format("Your %s is too weak to help you any more.", o_name);
+            msg_format("你的%s太弱了，无法再帮助你了。", o_name);
         }
 
         var_set_bool(res, TRUE);
@@ -1436,16 +1436,16 @@ static void _sanctuary_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Sanctuary");
+        var_set_string(res, "庇护所");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You become invulnerable until you damage a monster.");
+        var_set_string(res, "你将变得无敌，直到你对怪物造成伤害为止。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do need a shield.");
+            msg_print("失败！你需要一面盾牌。");
             return;
         }
         set_sanctuary(TRUE);
@@ -1462,10 +1462,10 @@ static void _shield_bash_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shield Bash");
+        var_set_string(res, "盾击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You fight with your shield rather than your weapon.");
+        var_set_string(res, "你用盾牌而不是武器进行战斗。");
         break;
     default:
         _toggle_spell(TOGGLE_SHIELD_BASH, cmd, res);
@@ -1478,10 +1478,10 @@ static void _bulwark_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Bulwark");
+        var_set_string(res, "壁垒");
         break;
     case SPELL_DESC:
-        var_set_string(res, "All melee damage that you receive is reduced by one-third.");
+        var_set_string(res, "你受到的所有近战伤害减少三分之一。");
         break;
     default:
         _toggle_spell(TOGGLE_BULWARK, cmd, res);
@@ -1494,10 +1494,10 @@ static void _shield_revenge_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Revenge");
+        var_set_string(res, "复仇");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Monsters are damaged whenever they hurt you.");
+        var_set_string(res, "每当怪物伤害你时，它们也会受到伤害。");
         break;
     default:
         _toggle_spell(TOGGLE_SHIELD_REVENGE, cmd, res);
@@ -1513,10 +1513,10 @@ static void _bouncing_pebble_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Bouncing Pebble");
+        var_set_string(res, "弹跳石子");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a pebble or shot at an opponent. If you hit, the pebble or shot will ricochet in a random direction.");
+        var_set_string(res, "向对手发射一颗石子或弹丸。如果你击中目标，石子或弹丸将向随机方向反弹。");
         break;
     default:
         _fire_spell(SHOOT_BOUNCE, cmd, res);
@@ -1528,16 +1528,16 @@ static void _greater_many_shot_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Greater Many Shot");
+        var_set_string(res, "高等多重射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires pebbles at all visible monsters.");
+        var_set_string(res, "向所有可见的怪物发射石子。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your shooter.");
+            msg_print("失败！你觉得你的远程武器用着不顺手。");
             return;
         }
         else
@@ -1581,16 +1581,16 @@ static void _many_shot_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Many Shot");
+        var_set_string(res, "多重射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires pebbles at all visible monsters. You need to have a direct line of fire to each target, though.");
+        var_set_string(res, "向所有可见的怪物发射石子。不过，你需要对每个目标都有直接的射击路线。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your shooter.");
+            msg_print("失败！你觉得你的远程武器用着不顺手。");
             return;
         }
         else
@@ -1634,10 +1634,10 @@ static void _rapid_shot_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Rapid Shot");
+        var_set_string(res, "快速射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique, all of your shots will launch against a single opponent.");
+        var_set_string(res, "使用此技巧时，你的所有射击都将针对单一对手发射。");
         break;
     default:
         _toggle_spell(TOGGLE_RAPID_SHOT, cmd, res);
@@ -1650,16 +1650,16 @@ static void _shot_on_the_run_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shoot on the Run");
+        var_set_string(res, "移动射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique, you automatically fire at the closest opponent every time you move.");
+        var_set_string(res, "使用此技巧时，你每次移动都会自动向最近的对手射击。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your shooter.");
+            msg_print("失败！你觉得你的远程武器用着不顺手。");
             return;
         }
         if (_get_toggle() == TOGGLE_SHOT_ON_THE_RUN)
@@ -1706,7 +1706,7 @@ bool _design_monkey_clone(void)
 
     if (r_ptr->cur_num == 1)
     {
-        msg_print("You may only have one Monkey Clone at a time!");
+        msg_print("你同时只能拥有一只灵猴分身！");
         return FALSE;
     }
 
@@ -1806,17 +1806,17 @@ static void _monkey_king_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Monkey King's Technique");
+        var_set_string(res, "猴王绝技");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Create a clone of yourself, but at great cost.");
+        var_set_string(res, "制造一个你的分身，但要付出巨大的代价。");
         break;
     case SPELL_CAST:
     {
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your weapon.");
+            msg_print("失败！你觉得你的武器用着不顺手。");
             return;
         }
         if (_design_monkey_clone() && summon_named_creature(0, py, px, MON_MONKEY_CLONE, PM_FORCE_PET))
@@ -1864,17 +1864,17 @@ void _circle_kick(void)
                 int dam = damroll(dd, ds) + p_ptr->to_d_m;
 
                 sound(SOUND_HIT);
-                msg_format("You kick %s.", m_name);
+                msg_format("你踢了%s。", m_name);
 
                 if (!(r_ptr->flags3 & RF3_NO_STUN))
                 {
                     if (mon_stun(m_ptr, mon_stun_amount(dam)))
-                        msg_format("%s is dazed.", m_name);
+                        msg_format("%s被打懵了。", m_name);
                     else
-                        msg_format("%s is more dazed.", m_name);
+                        msg_format("%s被打得更懵了。", m_name);
                 }
                 else
-                    msg_format("%s is not affected.", m_name);
+                    msg_format("%s没有受到影响。", m_name);
 
 
                 dam = mon_damage_mod(m_ptr, dam, FALSE);
@@ -1892,7 +1892,7 @@ void _circle_kick(void)
             else
             {
                 sound(SOUND_MISS);
-                msg_format("You miss %s.", m_name);
+                msg_format("你未击中%s。", m_name);
             }
         }
     }
@@ -1903,10 +1903,10 @@ static void _circle_kick_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Circle Kick");
+        var_set_string(res, "旋风踢");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Kicks all adjacent opponents, stunning them. Damage depends on your boots!");
+        var_set_string(res, "踢击所有相邻的对手并使他们震慑。伤害取决于你的靴子！");
         break;
     case SPELL_INFO:
     {
@@ -1925,7 +1925,7 @@ static void _circle_kick_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your weapon.");
+            msg_print("失败！你觉得你的武器用着不顺手。");
             return;
         }
         if (no_melee_check()) return; 
@@ -1995,7 +1995,7 @@ static void _circle_kick_spell(int cmd, variant *res)
 
         if (!c_ptr->m_idx)
         {
-            msg_print("Failed!");
+            msg_print("失败！");
             break;
         }
 
@@ -2033,10 +2033,10 @@ static void _vault_attack_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Vault Attack");
+        var_set_string(res, "飞跃攻击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Charge and attack a nearby opponent in a single move.");
+        var_set_string(res, "在一次移动中冲锋并攻击附近的对手。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_range(3));
@@ -2046,7 +2046,7 @@ static void _vault_attack_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!_check_speciality_equip())
         {
-            msg_print("Failed! You do not feel comfortable with your weapon.");
+            msg_print("失败！你觉得你的武器用着不顺手。");
             return;
         }
         if (_vault_attack())
@@ -2064,10 +2064,10 @@ static void _flurry_of_blows_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Flurry of Blows");
+        var_set_string(res, "疾风连击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack a single opponent with a great number of blows, exhausting yourself in the process.");
+        var_set_string(res, "用大量的打击攻击单一对手，在此过程中会使自己筋疲力尽。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _do_blow(WEAPONMASTER_FLURRY));
@@ -2090,10 +2090,10 @@ static void _burning_blade_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Burning Blade");
+        var_set_string(res, "燃烧之刃");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Damage from your blade becomes fire damage and never misses.");
+        var_set_string(res, "你的剑刃伤害变为火焰伤害，并且绝对不会落空。");
         break;
     default:
         _toggle_spell(TOGGLE_BURNING_BLADE, cmd, res);
@@ -2106,10 +2106,10 @@ static void _ice_blade_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Ice Blade");
+        var_set_string(res, "寒冰之刃");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Damage from your blade becomes frost damage and slows your opponent.");
+        var_set_string(res, "你的剑刃伤害变为冰霜伤害，并使你的对手减速。");
         break;
     default:
         _toggle_spell(TOGGLE_ICE_BLADE, cmd, res);
@@ -2122,10 +2122,10 @@ static void _thunder_blade_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Thunder Blade");
+        var_set_string(res, "雷霆之刃");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Damage from your blade becomes lightning damage and stuns your opponent.");
+        var_set_string(res, "你的剑刃伤害变为闪电伤害，并使你的对手震慑。");
         break;
     default:
         _toggle_spell(TOGGLE_THUNDER_BLADE, cmd, res);
@@ -2138,10 +2138,10 @@ static void _blood_blade_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blood Blade");
+        var_set_string(res, "鲜血之刃");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Your blade thirsts for the living.");
+        var_set_string(res, "你的剑刃渴望着活物。");
         break;
     default:
         _toggle_spell(TOGGLE_BLOOD_BLADE, cmd, res);
@@ -2154,10 +2154,10 @@ static void _holy_blade_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Holy Blade");
+        var_set_string(res, "神圣之刃");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Your blade fights powerful against the forces of evil.");
+        var_set_string(res, "你的剑刃能强力对抗邪恶势力。");
         break;
     default:
         _toggle_spell(TOGGLE_HOLY_BLADE, cmd, res);
@@ -2170,10 +2170,10 @@ static void _order_blade_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Order Blade");
+        var_set_string(res, "秩序之刃");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Your blade becomes a weapon of order, always dealing maximal damage.");
+        var_set_string(res, "你的剑刃成为秩序的武器，总是造成最大伤害。");
         break;
     default:
         _toggle_spell(TOGGLE_ORDER_BLADE, cmd, res);
@@ -2186,10 +2186,10 @@ static void _wild_blade_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Wild Blade");
+        var_set_string(res, "狂野之刃");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This is too crazy to describe. You wouldn't believe me anyway!");
+        var_set_string(res, "这太疯狂了，无法形容。反正你也不会相信我！");
         break;
     default:
         _toggle_spell(TOGGLE_WILD_BLADE, cmd, res);
@@ -2252,7 +2252,7 @@ typedef struct {
     in load.c.
 */
 static _speciality _specialities[_MAX_SPECIALITIES] = {
-    { "Axes",
+    { "斧头",
       "The mighty axe! Your blows will cleave with damage unsurpassed. "
       "Specializing in axes gives great offensive prowess, especially when "
       "your axe is wielded with two hands. However, this speciality offers "
@@ -2281,7 +2281,7 @@ static _speciality _specialities[_MAX_SPECIALITIES] = {
       },
       { TV_POLEARM, SV_BROAD_AXE },
     },
-    { "Bows",
+    { "弓类",
       "You will shoot to kill! The bowmaster gains techniques to enhance shooting, "
       "including more rapid firing, the ability to volley shots over the heads of "
       "intervening monsters, reduced ammo destruction, the ability to kill with a "
@@ -2309,7 +2309,7 @@ static _speciality _specialities[_MAX_SPECIALITIES] = {
       },
       { TV_BOW, SV_SHORT_BOW },
     },
-    { "Clubs",
+    { "棍棒",
         "You will seek to club your opponents senseless! This speciality gains passive "
         "status effects against monsters, such as confusion, knock out and stunning. Also, "
         "you will gain some limited utility techniques. At high levels, your weapons will "
@@ -2347,7 +2347,7 @@ static _speciality _specialities[_MAX_SPECIALITIES] = {
         },
         { TV_HAFTED, SV_CLUB },
     },
-    { "Crossbows",
+    { "弩类",
       "The crossbowmaster shoots deadly bolts for great damage. Their bolts may explode "
       "powerfully damaging nearby monsters. Also, they may shoot so hard as to knock "
       "their opponents backwards!",
@@ -2373,7 +2373,7 @@ static _speciality _specialities[_MAX_SPECIALITIES] = {
       },
       { TV_BOW, SV_LIGHT_XBOW },
     },
-    { "Daggers",
+    { "匕首",
       "A knife in the back! This speciality favors dual-wielding and rogue-type behavior. "
       "The daggermaster can even assume the posture of The Flying Dagger which greatly "
       "enhances their low level dagger toss capability. Indeed, their prowess with the "
@@ -2411,7 +2411,7 @@ static _speciality _specialities[_MAX_SPECIALITIES] = {
       },
       { TV_SWORD, SV_DAGGER },
     },
-    { "Polearms",
+    { "长柄武器",
       "You don a grim face before setting out to reap your harvest of death. You will swing "
       "your weapon wide often affecting multiple surrounding opponents.",
       _WEAPONMASTER_MELEE,
@@ -2452,7 +2452,7 @@ static _speciality _specialities[_MAX_SPECIALITIES] = {
       },
       { TV_POLEARM, SV_SPEAR },
     },
-    { "Shields",
+    { "盾牌",
       "Specializing in shields gives excellent powers of defense and retaliation. In addition, "
       "you can even choose to melee with your shield rather than a normal weapon, bashing your "
       "opponents senseless. This form of combat is known as Shield Bashing and is unique to this "
@@ -2485,7 +2485,7 @@ static _speciality _specialities[_MAX_SPECIALITIES] = {
       },
       { TV_SHIELD, SV_SMALL_LEATHER_SHIELD },
     },
-    { "Slings",
+    { "弹弓",
       "Watch out, Goliath! As a master of slings you will shoot pebbles with uncanny speed. Your "
       "shots may even ricochet off other monsters to score multiple hits. As with other archery "
       "specializations, your ammo will break less often.",
@@ -2509,7 +2509,7 @@ static _speciality _specialities[_MAX_SPECIALITIES] = {
       },
       { TV_BOW, SV_SLING },
     },
-    { "Staves",
+    { "法杖",
       "Monkey King! You will battle opponents with a flurry of blows from your mighty "
       "staff and will be prepared to counter the attacks of your enemies. You can vault into "
       "battle and circle kick enemies for stunning effects, attacking them with your boots! "
@@ -2538,7 +2538,7 @@ static _speciality _specialities[_MAX_SPECIALITIES] = {
       },
       { TV_HAFTED, SV_QUARTERSTAFF },
     },
-    { "Swords",
+    { "剑类",
       "You will become a true swordmaster! Mastery of the blade will augment "
       "your weapon with elemental, vorpal or vampiric powers.",
       _WEAPONMASTER_MELEE,
@@ -2585,7 +2585,7 @@ static _speciality _specialities[_MAX_SPECIALITIES] = {
       },
       { TV_SWORD, SV_LONG_SWORD } ,
     },
-    { "Diggers",
+    { "挖掘工具",
       "A master of digging. You prefer rocky enclosures and don't mind "
       "lugging around a corpse or two, which you can bury in a pinch for "
       "a temporary bonus. You can choose one of several postures which allow "
@@ -3167,13 +3167,13 @@ static void _calc_bonuses(void)
             switch (kind)
             {
             case _WEAPONMASTER_BOWS:
-                msg_print("You do not feel comfortable with your shooter.");
+                msg_print("你觉得你的远程武器用着不顺手。");
                 break;
             case _WEAPONMASTER_SHIELDS:
-                msg_print("You do not feel comfortable with your shield.");
+                msg_print("你觉得你的盾牌用着不顺手。");
                 break;
             default:
-                msg_print("You do not feel comfortable with your weapon.");
+                msg_print("你觉得你的武器用着不顺手。");
                 break;
             }
         }
@@ -3182,13 +3182,13 @@ static void _calc_bonuses(void)
             switch (kind)
             {
             case _WEAPONMASTER_BOWS:
-                msg_print("You love your shooter.");
+                msg_print("你非常喜欢你的远程武器。");
                 break;
             case _WEAPONMASTER_SHIELDS:
-                msg_print("You love your shield.");
+                msg_print("你非常喜欢你的盾牌。");
                 break;
             default:
-                msg_print("You love your weapon.");
+                msg_print("你非常喜欢你的武器。");
                 break;
             }
         }
@@ -3527,7 +3527,7 @@ static void _move_monster(int m_idx)
             {
                 char m_name[80];
                 monster_desc(m_name, m_ptr, 0);
-                msg_format("%^s gets too close!", m_name);
+                msg_format("%^s靠得太近了！", m_name);
                 py_attack(m_ptr->fy, m_ptr->fx, WEAPONMASTER_PROXIMITY_ALERT);
             }
         }
@@ -3622,7 +3622,7 @@ static void _move_player(void)
             ammo = _find_ammo();
         if (!ammo)
         {
-            msg_print("You are out of ammo.");
+            msg_print("你的弹药用尽了。");
             _set_toggle(TOGGLE_NONE);
             return;
         }
@@ -3639,7 +3639,7 @@ static void _move_player(void)
                 ammo = _find_ammo();
                 if (!ammo)
                 {
-                    msg_print("Your ammo has run out. Time to reload!");
+                    msg_print("你的弹药用尽了。该装填了！");
                     _set_toggle(TOGGLE_NONE);
                     return;
                 }
@@ -3694,125 +3694,125 @@ static void _move_player(void)
 
 static void _character_dump(doc_ptr doc)
 {
-    doc_printf(doc, "<topic:Abilities>================================== <color:keypress>A</color>bilities ==================================\n\n");
+    doc_printf(doc, "<topic:Abilities>================================== <color:keypress>A</color> 能力 ==================================\n\n");
 
     if (p_ptr->psubclass == WEAPONMASTER_AXES)
     {
         if (p_ptr->lev >= 45)
-            doc_printf(doc, "  * You gain a huge bonus to damage when wielding an axe.\n");
+            doc_printf(doc, "* 当装备斧头时，你获得巨额伤害加成。\n");
         else if (p_ptr->lev >= 20)
-            doc_printf(doc, "  * You gain a large bonus to damage when wielding an axe.\n");
+            doc_printf(doc, "* 当装备斧头时，你获得大量伤害加成。\n");
         else
-            doc_printf(doc, "  * You gain a small bonus to damage when wielding an axe.\n");
+            doc_printf(doc, "* 当装备斧头时，你获得少量伤害加成。\n");
 
-        doc_printf(doc, "  * You gain +1 max attack when wielding an axe with two hands.\n");
+        doc_printf(doc, "* 当双手装备斧头时，你获得 +1 最大攻击次数。\n");
 
         if (p_ptr->lev >= 5)
-            doc_printf(doc, "  * You gain a bonus to tunneling when wielding an axe.\n");
+            doc_printf(doc, "* 当装备斧头时，你获得挖掘加成。\n");
 
         if (p_ptr->lev >= 30)
-            doc_printf(doc, "  * <indent>You occasionally attack an adjacent opponent after killing a foe when wielding an axe.</indent>\n");
+            doc_printf(doc, "* <indent>当装备斧头时，在击杀一名敌人后，你偶尔会顺势攻击相邻的对手。</indent>\n");
     }
     else if (p_ptr->psubclass == WEAPONMASTER_CLUBS)
     {
-        doc_printf(doc, "  * Your attacks have a chance to confuse when wielding a club.\n");
+        doc_printf(doc, "* 当装备棍棒时，你的攻击有几率使目标困惑。\n");
 
         if (p_ptr->lev >= 20)
-            doc_printf(doc, "  * Your attacks have a chance to knock out when wielding a club.\n");
+            doc_printf(doc, "* 当装备棍棒时，你的攻击有几率将目标击晕。\n");
 
         if (p_ptr->lev >= 45)
-            doc_printf(doc, "  * Your attacks have a chance to stun when wielding a club.\n");
+            doc_printf(doc, "* 当装备棍棒时，你的攻击有几率使目标震慑。\n");
 
         if (p_ptr->lev >= 25)
-            doc_printf(doc, "  * You gain a bonus to hit when wielding a club.\n");
+            doc_printf(doc, "* 当装备棍棒时，你获得命中加成。\n");
 
         if (p_ptr->lev >= 40)
-            doc_printf(doc, "  * You gain crushing blows when wielding a club.\n");
+            doc_printf(doc, "* 当装备棍棒时，你的攻击附加粉碎打击。\n");
     }
     else if (p_ptr->psubclass == WEAPONMASTER_CROSSBOWS)
     {
         if (p_ptr->lev >= 45)
-            doc_printf(doc, "  * <indent>You deal extra damage to already wounded monsters when shooting with a crossbow.</indent>\n");
+            doc_printf(doc, "* <indent>当使用弩射击时，你对已受伤的怪物造成额外伤害。</indent>\n");
     }
     else if (p_ptr->psubclass == WEAPONMASTER_DAGGERS)
     {
-        doc_printf(doc, "  * You pay reduced energy costs when equipping a dagger.\n");
-        doc_printf(doc, "  * You dual wield very effectively with daggers.\n");
+        doc_printf(doc, "* 当装备匕首时，你消耗的能量减少（行动更快）。\n");
+        doc_printf(doc, "* 当使用匕首时，你的双持效率极高。\n");
         if (p_ptr->lev >= 25)
-            doc_printf(doc, "  * You gain a bonus to AC when dual-wielding daggers.\n");
+            doc_printf(doc, "* 当双持匕首时，你获得护甲等级(AC)加成。\n");
         if (p_ptr->lev >= 12)
-            doc_printf(doc, "  * You gain a bonus to stealth when wielding a dagger.\n");
+            doc_printf(doc, "* 当装备匕首时，你获得潜行加成。\n");
         if (p_ptr->lev >= 30)
-            doc_printf(doc, "  * You gain sneak attack and backstab when wielding a dagger.\n");
+            doc_printf(doc, "* 当装备匕首时，你获得偷袭和背刺能力。\n");
     }
     else if (p_ptr->psubclass == WEAPONMASTER_DIGGERS)
     {
-        doc_printf(doc, "  * You gain a bonus to tunneling when wielding a digger.\n");
+        doc_printf(doc, "* 当装备挖掘工具时，你获得挖掘加成。\n");
         if (p_ptr->lev >= 45)
-            doc_printf(doc, "  * Your steps break walls when wielding a digger.\n");
+            doc_printf(doc, "* 当装备挖掘工具时，你的步伐会破坏墙壁。\n");
 
         if (p_ptr->lev >= 15)
-            doc_printf(doc, "  * <indent>You gain an AC bonus depending on the number of adjacent walls when wielding a digger.</indent>\n");
+            doc_printf(doc, "* <indent>当装备挖掘工具时，你根据相邻墙壁的数量获得护甲等级(AC)加成。</indent>\n");
     }
     else if (p_ptr->psubclass == WEAPONMASTER_POLEARMS)
     {
-        doc_printf(doc, "  * <indent>You occasionally get a free round of attacks after moving when wielding a polearm.</indent>\n");
+        doc_printf(doc, "* <indent>当装备长柄武器时，你在移动后偶尔会获得一轮免费攻击。</indent>\n");
         if (p_ptr->lev >= 20)
-            doc_printf(doc, "  * <indent>You automatically attack any enemy that steps next to you when wielding a polearm.</indent>\n");
+            doc_printf(doc, "* <indent>当装备长柄武器时，你会自动攻击任何走到你身旁的敌人。</indent>\n");
         if (p_ptr->lev >= 45)
-            doc_printf(doc, "  * You occasionally strike all adjacent foes when wielding a polearm.\n");
+            doc_printf(doc, "* 当装备长柄武器时，你偶尔会同时打击所有相邻的敌人。\n");
 
         if (p_ptr->lev >= 30)
-            doc_printf(doc, "  * <indent>You gain a bonus to hit and to AC when you don't move for 3 rounds when wielding a polearm.</indent>\n");
+            doc_printf(doc, "* <indent>当装备长柄武器时，如果你连续 3 回合不移动，你将获得命中和护甲等级(AC)加成。</indent>\n");
     }
     else if (p_ptr->psubclass == WEAPONMASTER_SLINGS)
     {
-        doc_printf(doc, "  * Your ammo often returns to you when wielding a sling.\n");
+        doc_printf(doc, "* 当使用弹弓时，你的弹药经常会返回给你。\n");
         if (p_ptr->lev >= 20)
-            doc_printf(doc, "  * Your ammo gains extra damage dice when wielding a sling.\n");
+            doc_printf(doc, "* 当使用弹弓时，你的弹药获得额外的伤害骰。\n");
 
         if (p_ptr->lev >= 10)
-            doc_printf(doc, "  * <indent>Your shots never miss your target once you score 3 consecutive hits when wielding a sling.</indent>\n");
+            doc_printf(doc, "* <indent>当使用弹弓时，一旦你连续命中 3 次，你的射击将绝对不会落空。</indent>\n");
         if (p_ptr->lev >= 40)
-            doc_printf(doc, "  * You gain extra shots when wielding a sling.\n");
+            doc_printf(doc, "* 当使用弹弓时，你获得额外的射击次数。\n");
     }
     else if (p_ptr->psubclass == WEAPONMASTER_SHIELDS)
     {
-        doc_printf(doc, "  * You gain two handed wielding bonuses even when wielding a shield.\n");
+        doc_printf(doc, "* 即使装备了盾牌，你也能获得双手挥舞的加成。\n");
         if (p_ptr->lev >= 20)
-            doc_printf(doc, "  * <indent>Your inventory items are somewhat protected from destruction when wielding a shield.</indent>\n");
+            doc_printf(doc, "* <indent>当装备盾牌时，你物品栏中的物品能在一定程度上免受破坏。</indent>\n");
         if (p_ptr->lev >= 45)
-            doc_printf(doc, "  * You gain reflection when wielding a shield.\n");
+            doc_printf(doc, "* 当装备盾牌时，你获得反弹能力。\n");
 
         if (p_ptr->lev >= 5)
-            doc_printf(doc, "  * You gain double the AC benefit when wielding a shield.\n");
+            doc_printf(doc, "* 当装备盾牌时，你获得双倍的护甲等级(AC)收益。\n");
 
         if (p_ptr->lev >= 25)
-            doc_printf(doc, "  * You gain a bonus to saving throws when wielding a shield.\n");
+            doc_printf(doc, "* 当装备盾牌时，你获得豁免检定加成。\n");
 
     }
     else if (p_ptr->psubclass == WEAPONMASTER_STAVES)
     {
-        doc_printf(doc, "  * <indent>You gain a bonus to AC until your next turn after any successful hit when wielding a staff.</indent>\n");
-        doc_printf(doc, "  * You suffer a penalty to speed when wielding a shield.\n");
+        doc_printf(doc, "* <indent>当装备法杖时，在任何成功的击中后，你将获得护甲等级(AC)加成直到你的下个回合。</indent>\n");
+        doc_printf(doc, "* 当装备盾牌时，你会受到速度惩罚。\n");
         if (p_ptr->lev >= 5)
-            doc_printf(doc, "  * <indent>You gain a bonus to AC after moving until your next turn when wielding a staff.</indent>\n");
+            doc_printf(doc, "* <indent>当装备法杖时，移动后你将获得护甲等级(AC)加成直到你的下个回合。</indent>\n");
         if (p_ptr->lev >= 10)
-            doc_printf(doc, "  * You retaliate when struck when wielding a staff.\n");
+            doc_printf(doc, "* 当装备法杖时，你在被击中后会进行反击。\n");
         if (p_ptr->lev >= 20)
-            doc_printf(doc, "  * You gain a bonus to speed when wielding a staff.\n");
+            doc_printf(doc, "* 当装备法杖时，你获得速度加成。\n");
         if (p_ptr->lev >= 30)
-            doc_printf(doc, "  * You gain an extra attack when you are at full health and wielding a staff.\n");
+            doc_printf(doc, "* 当你满血且装备法杖时，你获得一次额外攻击。\n");
         if (p_ptr->lev >= 35)
-            doc_printf(doc, "  * You are unaffected by monster auras when wielding a staff.\n");
+            doc_printf(doc, "* 当装备法杖时，你不受怪物光环的影响。\n");
     }
     else if (p_ptr->psubclass == WEAPONMASTER_SWORDS)
     {
-        doc_printf(doc, "  * You gain a bonus to hit when wielding a sword.\n");
+        doc_printf(doc, "* 当装备剑时，你获得命中加成。\n");
         if (p_ptr->lev >= 20)
-            doc_printf(doc, "  * You gain constant heroism when wielding a sword.\n");
+            doc_printf(doc, "* 当装备剑时，你获得常驻的英雄气概。\n");
         if (p_ptr->lev >= 45)
-            doc_printf(doc, "  * You gain vorpal attacks when wielding a sword.\n");
+            doc_printf(doc, "* 当装备剑时，你的攻击附加斩首(Vorpal)效果。\n");
     }
 
     doc_newline(doc);
@@ -3828,12 +3828,8 @@ class_t *weaponmaster_get_class(int subclass)
     /* static info never changes */
     if (!init)
     {
-        me.name = "Weaponmaster";
-        me.desc = "A Weaponmaster is exceptionally good with a single class of weapons, "
-                  "obtaining special combat bonuses and powers which depend on their chosen "
-                  "speciality. Focus is the key to success; weaponmasters are truly lousy "
-                  "with off-speciality weapons, but few can match the prowess they gain "
-                  "with something more suitable in their hands.";
+        me.name = "武器大师";
+        me.desc = "武器大师精通单一类别的武器，能够根据其选择的专精获得特殊的战斗加成和力量。专注是成功的关键；武器大师在使用非专精武器时真的非常糟糕，但很少有人能比得上他们在手中拿着合适武器时所展现出的威力。";
 
         me.life = 105;
         me.base_hp = 12;
@@ -3909,6 +3905,25 @@ cptr weaponmaster_speciality_name(int psubclass)
     return _specialities[psubclass].name;
 }
 
+cptr weaponmaster_internal_speciality_name(int psubclass)
+{
+    switch (psubclass)
+    {
+    case WEAPONMASTER_AXES: return "Axes";
+    case WEAPONMASTER_BOWS: return "Bows";
+    case WEAPONMASTER_CLUBS: return "Clubs";
+    case WEAPONMASTER_CROSSBOWS: return "Crossbows";
+    case WEAPONMASTER_DAGGERS: return "Daggers";
+    case WEAPONMASTER_POLEARMS: return "Polearms";
+    case WEAPONMASTER_SHIELDS: return "Shields";
+    case WEAPONMASTER_SLINGS: return "Slings";
+    case WEAPONMASTER_STAVES: return "Staves";
+    case WEAPONMASTER_SWORDS: return "Swords";
+    case WEAPONMASTER_DIGGERS: return "Diggers";
+    }
+    return "";
+}
+
 void weaponmaster_do_readied_shot(monster_type *m_ptr)
 {
     if ((!m_ptr) || (m_ptr->hp < 0)) return; /* exploders */
@@ -3932,7 +3947,7 @@ void weaponmaster_do_readied_shot(monster_type *m_ptr)
                 ammo = _find_ammo();*/
             if (!ammo)
             {
-                msg_print("The ammo you readied no longer exists!");
+                msg_print("你准备好的弹药已不存在了！");
                 _set_toggle(TOGGLE_NONE);
                 return;
             }

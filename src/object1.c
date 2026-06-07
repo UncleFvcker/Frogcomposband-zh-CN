@@ -737,7 +737,7 @@ void obj_learn_slay(object_type *o_ptr, int which, cptr msg)
     {
         char buf[MAX_NLEN];
         object_desc(buf, o_ptr, OD_LORE);
-        msg_format("<color:B>You learn that your %s %s.</color>", buf, msg);
+        msg_format("<color:B>你了解到你的%s%s。</color>", buf, msg);
     }
 
     if (which == OF_VORPAL2) /* hack - always display vorpal2 as |SS */
@@ -784,7 +784,7 @@ void obj_learn_equipped(object_type *o_ptr)
     {
         char buf[MAX_NLEN];
         object_desc(buf, o_ptr, OD_LORE);
-        msg_format("<color:B>You learn more about your %s.</color>", buf);
+        msg_format("<color:B>你了解了关于你%s的更多信息。</color>", buf);
     }
 }
 

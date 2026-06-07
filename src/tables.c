@@ -1425,12 +1425,12 @@ byte extract_energy[200] =
 player_sex sex_info[MAX_SEXES] =
 {
     {
-        "Female",
-        "Queen"
+        "女性",
+        "女王"
     },
     {
-        "Male",
-        "King"
+        "男性",
+        "国王"
     }
 };
 
@@ -1438,23 +1438,23 @@ player_sex sex_info[MAX_SEXES] =
 player_pact pact_info[WARLOCK_MAX] =
 {
     {
-        "Undead",
+        "死灵",
         "LWVzs"
     },
     {
-        "Dragon",
+        "龙",
         "Dd"
     },
     {
-        "Angel",
+        "天使",
         "A"
     },
     {
-        "Demon",
+        "恶魔",
         "Uu"
     },
     {
-        "Aberrations",
+        "畸变体",
         "hp"
     },
 };
@@ -1863,6 +1863,32 @@ s32b realm_choices2[MAX_CLASS] =
 cptr realm_names[]
 = {
     "none",
+    "生命",
+    "咒术",
+    "自然",
+    "混沌",
+    "死亡",
+    "王牌",
+    "奥秘",
+    "工匠",
+    "恶魔",
+    "圣战",
+    "死灵",
+    "毁灭",
+    "unknown",
+    "unknown",
+    "律法",
+    "音乐",
+    "剑道",
+    "诅咒",
+    "狂怒",
+    "行窃",
+    "unknown"
+};
+
+cptr realm_internal_names[]
+= {
+    "none",
     "Life",
     "Sorcery",
     "Nature",
@@ -1879,12 +1905,19 @@ cptr realm_names[]
     "unknown",
     "Law",
     "Music",
-    "Kendo",
+    "Hissatsu",
     "Hex",
     "Rage",
     "Burglary",
     "unknown"
 };
+
+cptr realm_internal_name(int realm)
+{
+    if (realm < REALM_NONE || realm > MAX_REALM)
+        return "unknown";
+    return realm_internal_names[realm];
+}
 
 
 /*
@@ -1968,38 +2001,38 @@ int chest_traps[64] =
  */
 cptr color_names[32] =
 {
-    "Dark",
-    "White",
-    "Slate",
-    "Orange",
-    "Red",
-    "Green",
-    "Blue",
-    "Umber",
-    "Light Dark",
-    "Light Slate",
-    "Violet",
-    "Yellow",
-    "Light Red",
-    "Light Green",
-    "Light Blue",
-    "Light Umber",
+    "暗黑",
+    "白色",
+    "石板色",
+    "橙色",
+    "红色",
+    "绿色",
+    "蓝色",
+    "赭色",
+    "浅黑",
+    "浅石板色",
+    "紫罗兰",
+    "黄色",
+    "浅红",
+    "浅绿",
+    "浅蓝",
+    "浅赭",
     "Int. Green",
-    "Pink",
+    "粉红",
     "Int. Blue",
-    "Purple",
-    "Teal",
-    "Sky-Blue",
-    "Mud",
-    "Dark Yellow",
-    "Turquoise",
-    "Light Orange",
-    "Lilac",
-    "Dark Purple",
-    "Dark Sky-Blue",
-    "Pale Blue",
-    "Dark Pink",
-    "Chestnut"
+    "紫色",
+    "青色",
+    "天蓝",
+    "泥土色",
+    "暗黄",
+    "绿松石",
+    "浅橙",
+    "淡紫",
+    "暗紫",
+    "暗天蓝",
+    "苍蓝",
+    "暗粉",
+    "栗色"
 };
 
 
@@ -2015,12 +2048,12 @@ cptr stat_names[6] =
 
 cptr stat_name_true[6] =
 {
-    "Strength", "Intelligence", "Wisdom", "Dexterity", "Constitution", "Charisma"
+    "力量", "智力", "感知", "敏捷", "体质", "魅力"
 };
 
 cptr stat_abbrev_true[6] =
 {
-    "Str", "Int", "Wis", "Dex", "Con", "Chr"
+    "力量", "智力", "感知", "敏捷", "体质", "魅力"
 };
 
 
@@ -2035,7 +2068,7 @@ cptr stat_names_reduced[6] =
 
 cptr empty_lv_description[EMPTY_MAX] =
 {
-    "Sometimes", "Never", "Always"
+    "有时", "从不", "总是"
 };
 
 /*
@@ -2062,17 +2095,17 @@ cptr window_flag_desc[32] =
 
     NULL,
 
-    "Display object list",
-    "Display monster list",
-    "Display messages",
+    "显示物品列表",
+    "显示怪物列表",
+    "显示消息",
 
-    "Display overhead view",
+    "显示俯视图",
 
-    "Display monster recall",
+    "显示怪物记忆",
 
-    "Display spell recall",
+    "显示法术记忆",
 
-    "Display dungeon view",
+    "显示地下城视图",
 
     NULL,
 
@@ -2112,81 +2145,81 @@ option_type option_info[] =
     /*** Input Options ***/
 
     { &rogue_like_commands,         FALSE, OPT_PAGE_INPUT, 0, 0,
-    "rogue_like_commands",          "Rogue-like commands" },
+    "rogue_like_commands",          "Rogue-like 操作键" },
 
     { &always_pickup,               FALSE, OPT_PAGE_INPUT, 0, 5,
-    "always_pickup",                "Pick things up by default" },
+    "always_pickup",                "默认拾取物品" },
 
     { &online_macros,               FALSE, OPT_PAGE_INPUT, 1, 11,
-    "online_macros",                "Substitute Walk for Run in macros" },
+    "online_macros",                "在宏指令中用步行代替跑步" },
 
     { &quick_messages,              TRUE,  OPT_PAGE_INPUT, 0, 1,
-    "quick_messages",               "Activate quick messages" },
+    "quick_messages",               "启用快捷消息" },
 
     { &command_menu,                TRUE,  OPT_PAGE_INPUT, 2, 7,
-    "command_menu",                 "Enable command selection menu" },
+    "command_menu",                 "启用命令选择菜单" },
 
     { &use_old_target,              FALSE, OPT_PAGE_INPUT, 0, 4,
-    "use_old_target",               "Use old target by default" },
+    "use_old_target",               "默认使用旧目标" },
 
     { &auto_target,                 FALSE, OPT_PAGE_INPUT, 0, 15,
-    "auto_target",                  "Automatically target nearest monster" },
+    "auto_target",                  "自动瞄准最近的怪物" },
 
     { &always_repeat,               TRUE,  OPT_PAGE_INPUT, 0, 6,
-    "always_repeat",                "Repeat obvious commands" },
+    "always_repeat",                "重复明显的命令" },
 
     { &confirm_destroy,             FALSE, OPT_PAGE_INPUT, 5, 3,
-    "confirm_destroy",              "Prompt for destruction of known worthless items" },
+    "confirm_destroy",              "在销毁已知无价值物品前提示" },
 
     { &confirm_wear,                TRUE,  OPT_PAGE_INPUT, 5, 4,
     "confirm_wear",                 "Confirm to wear/wield known cursed items" },
 
     { &target_pet,                  FALSE, OPT_PAGE_INPUT, 2, 5,
-    "target_pet",                   "Allow targetting pets" },
+    "target_pet",                   "允许瞄准宠物" },
 
 #ifdef ALLOW_EASY_OPEN
     { &easy_open,                   TRUE,  OPT_PAGE_INPUT, 5, 7,
-    "easy_open",                    "Automatically open doors" },
+    "easy_open",                    "自动开门" },
 #endif /* ALLOW_EASY_OPEN */
 
 #ifdef ALLOW_EASY_DISARM
     { &easy_disarm,                 TRUE,  OPT_PAGE_INPUT, 5, 8,
-    "easy_disarm",                  "Automatically disarm traps" },
+    "easy_disarm",                  "自动解除陷阱" },
 #endif /* ALLOW_EASY_DISARM */
 
     { &auto_detect_traps,           FALSE, OPT_PAGE_INPUT, 6, 9,
-    "auto_detect_traps",            "Automatically detect traps while running" },
+    "auto_detect_traps",            "跑步时自动探测陷阱" },
 
     { &auto_map_area,               FALSE, OPT_PAGE_INPUT, 6, 10,
-    "auto_map_area",                "Automatically map area while running" },
+    "auto_map_area",                "跑步时自动绘制地图" },
 
     { &auto_get_ammo,               FALSE, OPT_PAGE_INPUT, 6, 5,
-    "auto_get_ammo",                "Ctrl-G automatically gets nearby ammo" },
+    "auto_get_ammo",                "Ctrl-G 自动拾取附近弹药" },
 
     { &auto_get_objects,            FALSE, OPT_PAGE_INPUT, 6, 7,
-    "auto_get_objects",             "Ctrl-G automatically gets nearby wanted objects" },
+    "auto_get_objects",             "Ctrl-G 自动拾取附近想要的物品" },
 
     { &limit_shop_prompts,          TRUE, OPT_PAGE_INPUT, 6, 0,
-    "limit_shop_prompts",           "Limit shop quantity prompts by money available" },
+    "limit_shop_prompts",           "根据可用金钱限制商店的数量提示" },
 
     { &numpad_as_cursorkey,         TRUE, OPT_PAGE_INPUT, 2, 31,
-    "numpad_as_cursorkey",          "Use numpad keys as cursor keys in editor mode" },
+    "numpad_as_cursorkey",          "在编辑模式下使用小键盘作为方向键" },
 
     { &use_pack_slots,              TRUE,  OPT_PAGE_INPUT, 0, 3,
-    "use_pack_slots",               "Retain backpack slot labels in other inventories" },
+    "use_pack_slots",               "在其他物品栏中保留背包槽位标签" },
     /*** Map Screen Options ***/
 
     { &center_player,               FALSE, OPT_PAGE_MAPSCREEN, 5, 11,
-    "center_player",                "Center map on player while walking"},
+    "center_player",                "行走时以玩家为中心显示地图"},
 
     { &center_running,              TRUE,  OPT_PAGE_MAPSCREEN, 5, 12,
-    "center_running",               "Center map even while running" },
+    "center_running",               "跑步时也以玩家为中心显示地图" },
 
     { &view_yellow_lite,            TRUE,  OPT_PAGE_MAPSCREEN, 1, 28,
-    "view_yellow_lite",             "Use special colors for torch-lit grids" },
+    "view_yellow_lite",             "为火把照亮的网格使用特殊颜色" },
 
     { &view_bright_lite,            TRUE,  OPT_PAGE_MAPSCREEN, 1, 29,
-    "view_bright_lite",             "Use special colors for 'viewable' grids" },
+    "view_bright_lite",             "为“可视”的网格使用特殊颜色" },
 
     { &view_granite_lite,           TRUE,  OPT_PAGE_MAPSCREEN, 1, 30,
     "view_granite_lite",            "Use special colors for wall grids (slow)" },
@@ -2195,132 +2228,132 @@ option_type option_info[] =
     "view_special_lite",            "Use special colors for floor grids (slow)" },
 
     { &view_perma_grids,            TRUE,  OPT_PAGE_MAPSCREEN, 1, 6,
-    "view_perma_grids",             "Map remembers all perma-lit grids" },
+    "view_perma_grids",             "地图记住所有永久照明的网格" },
 
     { &view_torch_grids,            FALSE, OPT_PAGE_MAPSCREEN, 1, 7,
-    "view_torch_grids",             "Map remembers all torch-lit grids" },
+    "view_torch_grids",             "地图记住所有火把照亮的网格" },
 
     { &view_unsafe_grids,           FALSE, OPT_PAGE_MAPSCREEN, 1, 8,
-    "view_unsafe_grids",            "Map marked by detect traps" },
+    "view_unsafe_grids",            "地图标记探测出的陷阱区域" },
 
     { &fresh_before,                TRUE,  OPT_PAGE_MAPSCREEN, 1, 23,
-    "fresh_before",                 "Fresh screen before automated input" },
+    "fresh_before",                 "在自动输入前刷新屏幕" },
 
     { &fresh_after,                 FALSE, OPT_PAGE_MAPSCREEN, 1, 24,
-    "fresh_after",                  "Fresh screen after processing monsters" },
+    "fresh_after",                  "在处理怪物后刷新屏幕" },
 
     { &fresh_message,               FALSE, OPT_PAGE_MAPSCREEN, 1, 25,
-    "fresh_message",                "Fresh screen after every message" },
+    "fresh_message",                "在每条消息后刷新屏幕" },
 
     { &hilite_player,               FALSE, OPT_PAGE_MAPSCREEN, 1, 27,
-    "hilite_player",                "Hilite the player with the cursor" },
+    "hilite_player",                "用光标高亮显示玩家" },
 
     { &display_path,                FALSE, OPT_PAGE_MAPSCREEN, 2, 8,
-    "display_path",                 "Display actual path before shooting" },
+    "display_path",                 "射击前显示实际的飞行路径" },
 
     { &square_delays,               FALSE, OPT_PAGE_MAPSCREEN, 5, 23,
-    "square_delays",                "Use square-based delay factors" },
+    "square_delays",                "使用平方级延迟因子" },
 
     /*** Text Display Options ***/
 
     { &plain_descriptions,          TRUE,  OPT_PAGE_TEXT, 5, 1,
-    "plain_descriptions",           "Plain object descriptions" },
+    "plain_descriptions",           "使用简单的物品描述" },
 
     { &depth_in_feet,               FALSE, OPT_PAGE_TEXT, 0, 7,
-    "depth_in_feet",                "Show dungeon level in feet" },
+    "depth_in_feet",                "以英尺显示地下城深度" },
 
     { &effective_speed,             FALSE, OPT_PAGE_TEXT, 0, 29,
-    "effective_speed",              "Show speeds as energy multipliers" },
+    "effective_speed",              "将速度显示为能量倍率" },
 
     { &equippy_chars,               TRUE,  OPT_PAGE_TEXT, 1, 12,
-    "equippy_chars",                "Display 'equippy' chars" },
+    "equippy_chars",                "显示“装备栏”字符" },
 
     { &display_hp_bar,              FALSE,  OPT_PAGE_TEXT, 1, 1,
-    "display_hp_bar",               "Display player hp bar" },
+    "display_hp_bar",               "显示玩家生命条(HP)" },
 
     { &display_sp_bar,              FALSE,  OPT_PAGE_TEXT, 1, 2,
-    "display_sp_bar",               "Display player sp bar" },
+    "display_sp_bar",               "显示玩家法力条(SP)" },
 
     { &display_food_bar,            FALSE,  OPT_PAGE_TEXT, 1, 13,
-    "display_food_bar",             "Display detailed food status" },
+    "display_food_bar",             "显示详细的饱食度状态" },
 
     { &decimal_stats,               FALSE,  OPT_PAGE_TEXT, 2, 25,
-    "decimal_stats",                "Display stats as decimals" },
+    "decimal_stats",                "以小数形式显示属性(Stats)" },
 
     { &percentage_life,             FALSE,  OPT_PAGE_TEXT, 4, 2,
     "percentage_life",              "Display life rating on a scale of 87% to 117%" },
 
     { &show_rogue_keys,		    FALSE, OPT_PAGE_TEXT, 6, 3,
-    "show_rogue_keys",		    "Display roguelike movement keys as reminder" },
+    "show_rogue_keys",		    "显示 roguelike 移动键作为提示" },
 
     { &show_energy_cost,            FALSE, OPT_PAGE_TEXT, 2, 9,
-    "show_energy_cost",             "Display energy cost of most recent action" },
+    "show_energy_cost",             "显示最近一次动作的能量消耗" },
 
 //    { &display_percentages,         FALSE,  OPT_PAGE_TEXT, 1, 10,
 //    "display_percentages",          "Display percentages rather than status bars" },
 
     { &compress_savefile,           FALSE, OPT_PAGE_TEXT, 1, 26,
-    "compress_savefile",            "Compress messages in savefiles" },
+    "compress_savefile",            "在存档中压缩消息" },
 
     { &abbrev_extra,                FALSE, OPT_PAGE_TEXT, 2, 10,
-    "abbrev_extra",                 "Describe extra object attributes by abbreviation" },
+    "abbrev_extra",                 "使用缩写描述物品的额外属性" },
 
     { &abbrev_all,                  FALSE, OPT_PAGE_TEXT, 2, 11,
-    "abbrev_all",                   "Describe all object attributes by abbreviation" },
+    "abbrev_all",                   "使用缩写描述物品的所有属性" },
 
     { &mark_dragon,                 TRUE, OPT_PAGE_TEXT, 2, 4,
     "mark_dragon",                  "Extend use of '?' to random dragon resistances" },
 
     { &exp_need,                    FALSE, OPT_PAGE_TEXT, 2, 12,
-    "exp_need",                     "Show the experience needed for next level" },
+    "exp_need",                     "显示升至下一级所需的经验值" },
 
     { &ignore_unview,               FALSE, OPT_PAGE_TEXT, 2, 13,
-    "ignore_unview",                "Ignore actions of out of sight monsters" },
+    "ignore_unview",                "忽略视线外怪物的行动" },
 
     { &display_race,		        TRUE, OPT_PAGE_TEXT, 2, 29,
-    "display_race",                 "Player character depends on race" },
+    "display_race",                 "玩家字符取决于种族" },
 
     { &show_origins,		        TRUE, OPT_PAGE_TEXT, 2, 28,
-    "show_origins",                 "Show object origins on examination" },
+    "show_origins",                 "在调查时显示物品的来源" },
 
     { &show_discovery,		        FALSE, OPT_PAGE_TEXT, 2, 26,
-    "show_discovery",                 "Show time of discovery on examination" },
+    "show_discovery",                 "在调查时显示物品的发现时间" },
 
     { &final_dump_origins,		TRUE, OPT_PAGE_TEXT, 2, 18,
-    "final_dump_origins",             "Show origins in final character dumps" },
+    "final_dump_origins",             "在最终的角色转储记录中显示物品来源" },
 
     { &always_dump_origins,		FALSE, OPT_PAGE_TEXT, 2, 19,
-    "always_dump_origins",             "Show origins in all character dumps" },
+    "always_dump_origins",             "在所有的角色转储记录中显示物品来源" },
 
     { &easy_mimics,		        FALSE, OPT_PAGE_TEXT, 2, 27,
-    "easy_mimics",                  "Use 'x' for monsters that look like things" },
+    "easy_mimics",                  "使用 'x' 表示伪装成物品的怪物" },
 
     { &display_skill_num,            FALSE,  OPT_PAGE_TEXT, 2, 22,
-    "display_skill_num",            "Display skills as numbers on character sheet" },
+    "display_skill_num",            "在角色面板上以数字显示技能" },
 
     { &reforge_details,              TRUE,  OPT_PAGE_TEXT, 2, 16,
-    "reforge_details",              "Show statistics before proceeding with a reforge" },
+    "reforge_details",              "在进行重铸前显示统计信息" },
 
     { &show_damage_range,            FALSE, OPT_PAGE_TEXT, 4, 22,
-    "show_damage_range",            "Show non-melee damages as ranges in monster info" },
+    "show_damage_range",            "在怪物信息中将非近战伤害显示为范围区间" },
 
 
     /*** Game-Play ***/
 
     { &stack_force_notes,           TRUE,  OPT_PAGE_GAMEPLAY, 0, 8,
-    "stack_force_notes",            "Merge inscriptions when stacking" },
+    "stack_force_notes",            "堆叠物品时合并铭刻" },
 
     { &stack_force_costs,           TRUE, OPT_PAGE_GAMEPLAY, 0, 9,
-    "stack_force_costs",            "Merge discounts when stacking" },
+    "stack_force_costs",            "堆叠物品时合并折扣" },
 
     { &expand_list,                 TRUE,  OPT_PAGE_GAMEPLAY, 1, 5,
-    "expand_list",                  "Allow query option lists to loop to beginning" },
+    "expand_list",                  "允许选项查询列表循环滚动到开头" },
 
     { &bound_walls_perm,            FALSE, OPT_PAGE_GAMEPLAY, 2, 1,
-    "bound_walls_perm",             "Display dungeon boundaries as permanent walls" },
+    "bound_walls_perm",             "将地下城边界显示为永久墙壁" },
 
     { &last_words,                  TRUE,  OPT_PAGE_GAMEPLAY, 0, 28,
-    "last_words",                   "Leave last words when your character dies" },
+    "last_words",                   "角色死亡时留下遗言" },
 
 #ifdef ALLOW_WIZARD
     { &allow_debug_opts,            FALSE, OPT_PAGE_GAMEPLAY, 6, 11,
@@ -2330,76 +2363,76 @@ option_type option_info[] =
     /*** Disturbance ***/
 
     { &find_ignore_stairs,          FALSE, OPT_PAGE_DISTURBANCE, 0, 16,
-    "find_ignore_stairs",           "Run past stairs" },
+    "find_ignore_stairs",           "跑步时跑过楼梯" },
 
     { &find_ignore_doors,           TRUE,  OPT_PAGE_DISTURBANCE, 0, 17,
-    "find_ignore_doors",            "Run through open doors" },
+    "find_ignore_doors",            "跑步时穿过敞开的门" },
 
     { &find_ignore_veins,           TRUE,  OPT_PAGE_DISTURBANCE, 0, 19,
-    "find_ignore_veins",            "Run past buried treasure" },
+    "find_ignore_veins",            "跑步时跑过埋藏的财宝" },
 
     { &find_cut,                    FALSE, OPT_PAGE_DISTURBANCE, 0, 18,
-    "find_cut",                     "Run past known corners" },
+    "find_cut",                     "跑步时跑过已知的拐角" },
 
     { &travel_ignore_items,         TRUE, OPT_PAGE_DISTURBANCE, 2, 30,
-    "travel_ignore_items",          "Ignore identified items while travelling" },
+    "travel_ignore_items",          "行进时忽略已鉴定的物品" },
 
     { &check_abort,                 TRUE,  OPT_PAGE_DISTURBANCE, 1, 18,
-    "check_abort",                  "Check for user abort of automated input" },
+    "check_abort",                  "检查用户是否中止自动输入" },
 
     { &flush_failure,               TRUE,  OPT_PAGE_DISTURBANCE, 1, 20,
-    "flush_failure",                "Flush input on various failures" },
+    "flush_failure",                "在发生各种失败时清空输入缓存" },
 
     { &prompt_on_failure,           FALSE, OPT_PAGE_DISTURBANCE, 0, 26,
-    "prompt_on_failure",            "Give -more- prompts on device/spell failures" },
+    "prompt_on_failure",            "在装置/法术失败时给出 -more- 提示" },
 
     { &flush_disturb,               FALSE, OPT_PAGE_DISTURBANCE, 1, 21,
-    "flush_disturb",                "Flush input whenever disturbed" },
+    "flush_disturb",                "被打扰时清空输入缓存" },
 
     { &disturb_move,                FALSE, OPT_PAGE_DISTURBANCE, 0, 20,
-    "disturb_move",                 "Disturb whenever any monster moves" },
+    "disturb_move",                 "任何怪物移动时打扰" },
 
     { &disturb_high,                FALSE, OPT_PAGE_DISTURBANCE, 1, 3,
-    "disturb_high",                 "Disturb whenever high-level monster moves" },
+    "disturb_high",                 "高等级怪物移动时打扰" },
 
     { &disturb_near,                TRUE,  OPT_PAGE_DISTURBANCE, 0, 21,
-    "disturb_near",                 "Disturb whenever viewable monster moves" },
+    "disturb_near",                 "可见怪物移动时打扰" },
 
     { &disturb_pets,                FALSE, OPT_PAGE_DISTURBANCE, 5, 6,
-    "disturb_pets",                 "Disturb when visible pets move" },
+    "disturb_pets",                 "可见宠物移动时打扰" },
 
     { &disturb_panel,               TRUE,  OPT_PAGE_DISTURBANCE, 0, 22,
-    "disturb_panel",                "Disturb whenever map panel changes" },
+    "disturb_panel",                "地图面板改变时打扰" },
 
     { &disturb_state,               TRUE,  OPT_PAGE_DISTURBANCE, 0, 23,
-    "disturb_state",                "Disturb whenever player state changes" },
+    "disturb_state",                "玩家状态改变时打扰" },
 
     { &disturb_minor,               TRUE,  OPT_PAGE_DISTURBANCE, 0, 24,
-    "disturb_minor",                "Disturb whenever boring things happen" },
+    "disturb_minor",                "发生琐事时打扰" },
 
     { &town_no_disturb,             FALSE, OPT_PAGE_DISTURBANCE, 1, 17,
-    "town_no_disturb",              "Never disturb when a town monster moves" },
+    "town_no_disturb",              "城镇怪物移动时从不打扰" },
 
     { &ring_bell,                   FALSE, OPT_PAGE_DISTURBANCE, 0, 14,
-    "ring_bell",                    "Audible bell (on errors, etc.)" },
+    "ring_bell",                    "发出提示音（错误等情况）" },
 
     { &disturb_trap_detect,         TRUE,  OPT_PAGE_DISTURBANCE, 0, 27,
-    "disturb_trap_detect",          "Disturb when leaving trap-detected area" },
+    "disturb_trap_detect",          "离开已探测陷阱区域时打扰" },
 
     { &alert_trap_detect,           FALSE, OPT_PAGE_DISTURBANCE, 0, 25,
-    "alert_trap_detect",            "Alert when leaving trap-detected area" },
+    "alert_trap_detect",            "离开已探测陷阱区域时发出警报" },
 
     { &alert_device_gone,           TRUE,  OPT_PAGE_DISTURBANCE, 0, 13,
-    "alert_device_gone",            "Alert when carried device is destroyed or stolen" },
+    "alert_device_gone",            "携带的装置被毁或被盗时发出警报" },
 
     { &alert_insc_gone,             TRUE,  OPT_PAGE_DISTURBANCE, 0, 2,
-    "alert_insc_gone",              "Alert when inscribed item is destroyed or stolen" },
+    "alert_insc_gone",              "有铭刻的物品被毁或被盗时发出警报" },
 
     { &alert_wanted_kill,           FALSE,  OPT_PAGE_DISTURBANCE, 0, 30,
-    "alert_wanted_kill",            "Alert on killing wanted uniques" },
+    "alert_wanted_kill",            "击杀悬赏的独特怪物时发出警报" },
 
     { &alert_poison,                TRUE,  OPT_PAGE_DISTURBANCE, 2, 2,
-    "alert_poison",                 "Alert on dangerously high poison counter" },
+    "alert_poison",                 "中毒计数危险过高时发出警报" },
 
     /*** Birth Options ***/
 
@@ -2410,25 +2443,25 @@ option_type option_info[] =
 	"easy_id",			"Easy Identify (*)" },
 	
 	{ &easy_lore,			FALSE, OPT_PAGE_BIRTH, 6, 30,
-	"easy_lore",			"Easy Lore" },
+	"easy_lore",			"简易物品学识" },
 
 	{ &easy_damage,			FALSE, OPT_PAGE_BIRTH, 6, 16,
 	"easy_damage",			"Easy monster health and damage information (*)" },
 
 	{ &allow_spoilers,		FALSE, OPT_PAGE_BIRTH, 6, 29,
-	"allow_spoilers",		"Allow spoilers" },
+	"allow_spoilers",		"允许生成剧透文件" },
 	
 	{ &power_tele,			FALSE, OPT_PAGE_BIRTH, 6, 6,
 	"power_tele",			"Use enhanced telepathy (*)" },
 
 	{ &easy_thalos,			TRUE, OPT_PAGE_BIRTH, 6, 28,
-	"easy_thalos",			"Allow easy teleportation to Thalos" },
+	"easy_thalos",			"允许便捷传送到萨罗斯(Thalos)" },
 
 	{ &never_forget,		FALSE, OPT_PAGE_BIRTH, 6, 27,
-	"never_forget",			"Easy Labyrinth and no amnesia" },
+	"never_forget",			"简易迷宫且不失去记忆" },
 
 	{ &empty_lore,			FALSE, OPT_PAGE_BIRTH, 1, 16,
-	"empty_lore",			"Always forget item lore between games" },
+	"empty_lore",			"在不同游戏间总是忘记物品学识" },
 
     { &smart_learn,                 TRUE,  OPT_PAGE_BIRTH, 1, 14,
     "smart_learn",                  "Monsters learn from their mistakes (*)" },
@@ -2437,7 +2470,7 @@ option_type option_info[] =
     "smart_cheat",                  "Monsters exploit player's weaknesses (*)" },
 
     { &no_wilderness,               FALSE, OPT_PAGE_BIRTH, 6, 1,
-    "no_wilderness",                "Play without a wilderness" },
+    "no_wilderness",                "游玩无荒野模式" },
 
     { &ironman_shops,               FALSE, OPT_PAGE_BIRTH, 6, 2,
     "ironman_shops",                "Stores are permanently closed (*)" },
@@ -2455,7 +2488,7 @@ option_type option_info[] =
     "thrall_mode",                  "Thrall mode (start in extreme danger) (*)" },
 
     { &wacky_rooms,                 FALSE, OPT_PAGE_BIRTH, 1, 22,
-    "wacky_rooms",                  "Always generate very unusual rooms" },
+    "wacky_rooms",                  "总是生成极不寻常的房间" },
 
     { &melee_challenge,             FALSE, OPT_PAGE_BIRTH, 2, 21,
     "melee_challenge",              "Monsters can only be damaged in melee (*)" },
@@ -2464,28 +2497,28 @@ option_type option_info[] =
     "no_melee_challenge",           "Monsters cannot be damaged in melee (*)" },
 
     { &enable_virtues,              FALSE, OPT_PAGE_BIRTH, 6, 13,
-    "enable_virtues",               "Enable the virtue system" },
+    "enable_virtues",               "启用美德系统" },
 
     { &no_wanted_points,            TRUE, OPT_PAGE_BIRTH, 2, 24,
-    "no_wanted_points",             "Deeper wanted uniques give better rewards" },
+    "no_wanted_points",             "更深层悬赏的独特怪物给予更好的奖励" },
 
     { &preserve_mode,               TRUE,  OPT_PAGE_BIRTH, 6, 14,
     "preserve_mode",                "Preserve artifacts (*)" },
 
     { &allow_friendly_monster,      TRUE, OPT_PAGE_BIRTH, 6, 17,
-    "allow_friendly_monster",       "Allow monsters friendly to player" },
+    "allow_friendly_monster",       "允许生成对玩家友好的怪物" },
 
     { &allow_hostile_monster,       TRUE, OPT_PAGE_BIRTH, 6, 19,
-    "allow_hostile_monster",        "Allow monsters hostile to each other" },
+    "allow_hostile_monster",        "允许怪物之间相互敌对" },
 
     { &allow_pets,                  TRUE, OPT_PAGE_BIRTH, 6, 20,
     "allow_pets",                   "Allow player to summon/charm monsters" },
 
     { &quest_unique,                TRUE, OPT_PAGE_BIRTH, 6, 21,
-    "quest_unique",                 "Random quests for unique monsters only" },
+    "quest_unique",                 "随机任务仅限独特怪物" },
 
     { &random_artifacts,            FALSE, OPT_PAGE_BIRTH, 6, 23,
-    "random_artifacts",             "Randomize standard artifacts" },
+    "random_artifacts",             "随机化标准神器" },
 
     { &no_artifacts,                FALSE, OPT_PAGE_BIRTH, 6, 24,
     "no_artifacts",                 "Never create artifacts (*)" },
@@ -2494,127 +2527,127 @@ option_type option_info[] =
     "no_egos",                      "Never create non-jewelry ego items (*)" },
 
     { &no_selling,                  FALSE, OPT_PAGE_BIRTH, 6, 22,
-    "no_selling",                   "Disable selling but increase gold drops" },
+    "no_selling",                   "禁用售卖但增加金币掉落" },
 
     { &reduce_uniques,              FALSE, OPT_PAGE_BIRTH, 6, 26,
     "reduce_uniques",               "Reduce the number of uniques (randomly)" },
 
     { &single_pantheon,             FALSE, OPT_PAGE_BIRTH, 5, 9,
-    "single_pantheon",              "Active pantheons" },
+    "single_pantheon",              "激活神系" },
 
     { &guaranteed_pantheon,         FALSE, OPT_PAGE_BIRTH, 2, 3,
-    "guaranteed_pantheon",          "Guaranteed pantheon" },
+    "guaranteed_pantheon",          "必定生成的神系" },
 
     { &always_small_levels,         FALSE, OPT_PAGE_BIRTH, 4, 14,
-    "always_small_levels",          "Level size" },
+    "always_small_levels",          "楼层大小" },
 
     { &increase_density,            FALSE, OPT_PAGE_BIRTH, 4, 15,
-    "increase_density",             "Increase monster density on small levels" },
+    "increase_density",             "增加小型楼层中的怪物密度" },
                           { &no_big_dungeons,             FALSE, OPT_PAGE_BIRTH, 4, 17,
-    "no_big_dungeons",              "Allow small levels in all dungeons except Arena" },
+    "no_big_dungeons",              "允许在除竞技场外的所有地下城生成小型楼层" },
 
     { &even_proportions,            FALSE, OPT_PAGE_BIRTH, 4, 16,
     "even_proportions",             "Sometimes reshape very flat \"pipe\" levels" },
 
     { &no_chris,			FALSE, OPT_PAGE_BIRTH, 6, 12,
-    "no_chris",				"Nexus attacks never teleport to another dungeon" },
+    "no_chris",				"时空(Nexus)攻击从不传送到另一个地下城" },
 
     { &no_scrambling,			FALSE, OPT_PAGE_BIRTH, 6, 15,
-    "no_scrambling",			"Disallow stat scrambling from monster attacks" },
+    "no_scrambling",			"禁止怪物攻击导致属性被打乱" },
 
     { &comp_mode,			FALSE, OPT_PAGE_BIRTH, 5, 18,
-    "comp_mode",			"Disallow permanent changes to player race" },
+    "comp_mode",			"禁止永久改变玩家种族" },
 
     /*** Easy Object Auto-Destroyer ***/
 
     { &destroy_items,               FALSE, OPT_PAGE_AUTODESTROY, 7, 0,
-    "destroy_items",                "Use easy auto-destroyer" },
+    "destroy_items",                "使用简易自动销毁器" },
 
     { &destroy_feeling,             FALSE, OPT_PAGE_AUTODESTROY, 7, 8,
-    "destroy_feeling",              "Apply auto-destroy on sensing an item" },
+    "destroy_feeling",              "感知物品时应用自动销毁" },
 
     { &destroy_identify,            FALSE, OPT_PAGE_AUTODESTROY, 7, 9,
-    "destroy_identify",             "Apply auto-destroy on identifying an item" },
+    "destroy_identify",             "鉴定物品时应用自动销毁" },
 
     { &destroy_debug,               FALSE, OPT_PAGE_AUTODESTROY, 7, 10,
-    "destroy_debug",                "List the rule used when applying the Mogaminator" },
+    "destroy_debug",                "在应用 Mogaminator 时列出使用的规则" },
 
     { &no_mogaminator,              FALSE, OPT_PAGE_AUTODESTROY, 7, 11,
-    "no_mogaminator",               "Never apply the Mogaminator" },
+    "no_mogaminator",               "从不应用 Mogaminator" },
 
     { &leave_mogaminator,           FALSE, OPT_PAGE_AUTODESTROY, 7, 12,
-    "leave_mogaminator",            "Leave items the Mogaminator wants to destroy" },
+    "leave_mogaminator",            "保留 Mogaminator 想要销毁的物品" },
 
     { &check_full_pack,             TRUE, OPT_PAGE_AUTODESTROY, 2, 15,
-    "check_full_pack",              "Limit pickup prompts if pack is already full" },
+    "check_full_pack",              "背包已满时限制拾取提示" },
 
     { &delay_autopick,              FALSE, OPT_PAGE_AUTODESTROY, 1, 9,
-    "delay_autopick",               "Allow manual pickup before applying auto-pickup" },
+    "delay_autopick",               "在应用自动拾取前允许手动拾取" },
 
     { &leave_worth,                 TRUE,  OPT_PAGE_AUTODESTROY, 7, 2,
-    "leave_worth",                  "Auto-destroyer leaves known worthy items" },
+    "leave_worth",                  "自动销毁器保留已知的有价值物品" },
 
     { &leave_equip,                 FALSE, OPT_PAGE_AUTODESTROY, 7, 3,
-    "leave_equip",                  "Auto-destroyer leaves weapons and armour" },
+    "leave_equip",                  "自动销毁器保留武器和防具" },
 
     { &leave_chest,                 TRUE,  OPT_PAGE_AUTODESTROY, 7, 7,
-    "leave_chest",                  "Auto-destroyer leaves closed chests" },
+    "leave_chest",                  "自动销毁器保留未开启的箱子" },
 
     { &leave_wanted,                TRUE,  OPT_PAGE_AUTODESTROY, 7, 4,
-    "leave_wanted",                 "Auto-destroyer leaves wanted corpses" },
+    "leave_wanted",                 "自动销毁器保留悬赏的尸体" },
 
     { &leave_corpse,                FALSE, OPT_PAGE_AUTODESTROY, 7, 5,
-    "leave_corpse",                 "Auto-destroyer leaves corpses and skeletons" },
+    "leave_corpse",                 "自动销毁器保留尸体和骨架" },
 
     { &leave_junk,                  FALSE, OPT_PAGE_AUTODESTROY, 7, 6,
-    "leave_junk",                   "Auto-destroyer leaves junk" },
+    "leave_junk",                   "自动销毁器保留垃圾" },
 
     { &leave_special,               TRUE,  OPT_PAGE_AUTODESTROY, 7, 1,
-    "leave_special",                "Auto-destroyer leaves items your race/class needs" },
+    "leave_special",                "自动销毁器保留你的种族/职业需要的物品" },
 
     /* List Options */
 
     { &describe_slots,              TRUE,  OPT_PAGE_LIST, 0, 10,
-    "describe_slots",               "Show equipment slot descriptions" },
+    "describe_slots",               "显示装备槽位描述" },
 
     { &show_weights,                TRUE,  OPT_PAGE_LIST, 0, 11,
-    "show_weights",                 "Show weights in object listings" },
+    "show_weights",                 "在物品列表中显示重量" },
 
     { &show_discounts,              TRUE,  OPT_PAGE_LIST, 0, 12,
-    "show_discounts",               "Show discounts in object listings" },
+    "show_discounts",               "在物品列表中显示折扣" },
 
     { &show_power,                  FALSE, OPT_PAGE_LIST, 2, 14,
-    "show_power",                   "Show device power in object listings (if known)" },
+    "show_power",                   "在物品列表中显示装置能量（如果已知）" },
 
     { &show_item_graph,             TRUE,  OPT_PAGE_LIST, 2, 0,
-    "show_item_graph",              "Show item graphics in object listings" },
+    "show_item_graph",              "在物品列表中显示物品图形" },
 
     { &shops_mark_unseen,           FALSE, OPT_PAGE_LIST, 0, 31,
-    "shops_mark_unseen",            "Indicate unknown flavors in shop inventories" },
+    "shops_mark_unseen",            "在商店库存中指示未知的风味" },
 
     { &black_curses,                TRUE,  OPT_PAGE_LIST, 4, 23,
-    "black_curses",                 "Show cursed items as black in unwield menu" },
+    "black_curses",                 "在卸下菜单中将诅咒物品显示为黑色" },
 
     { &display_distance,            FALSE,  OPT_PAGE_LIST, 1, 4,
-    "display_distance",             "Display distance in monster list" },
+    "display_distance",             "在怪物列表中显示距离" },
 
     { &list_stairs,                 FALSE,  OPT_PAGE_LIST, 1, 10,
-    "list_stairs",                  "Display stairs in object list" },
+    "list_stairs",                  "在物品列表中显示楼梯" },
 
     { &show_future_powers,          TRUE,  OPT_PAGE_LIST, 1, 0,
-    "show_future_powers",           "Include known future race/class powers in lists" },
+    "show_future_powers",           "在列表中包含已知的未来种族/职业能力" },
 
     { &show_future_spells,          FALSE,  OPT_PAGE_LIST, 2, 20,
-    "show_future_spells",           "Include known future class spells in lists" },
+    "show_future_spells",           "在列表中包含已知的未来职业法术" },
 
     { &auto_sticky_labels,          TRUE,  OPT_PAGE_LIST, 2, 17,
-    "auto_sticky_labels",           "Automatically make all power labels sticky" },
+    "auto_sticky_labels",           "自动将所有能力标签设为置顶显示" },
 
     { &obj_list_width,              TRUE,  OPT_PAGE_LIST, 4, 0,
-    "object_list_width",            "Maximum width of the object list" },
+    "object_list_width",            "物品列表的最大宽度" },
 
     { &mon_list_width,              TRUE,  OPT_PAGE_LIST, 4, 1,
-    "monster_list_width",           "Maximum width of the monster list" },
+    "monster_list_width",           "怪物列表的最大宽度" },
 
     /*** End of Table ***/
 
@@ -2625,68 +2658,68 @@ option_type option_info[] =
 
 cptr chaos_patrons[MAX_PATRON] =
 {
-    "Slortar",
-    "Mabelode",
-    "Chardros",
-    "Hionhurn",
-    "Xiombarg",
+    "斯洛塔",
+    "马贝罗德",
+    "查卓斯",
+    "希恩霍恩",
+    "希昂芭格",
 
-    "Pyaray",
-    "Balaan",
-    "Arioch",
-    "Eequor",
-    "Narjhan",
+    "派拉伊",
+    "巴兰",
+    "阿里奥克",
+    "依奎尔",
+    "纳尔詹",
 
-    "Balo",
-    "Khorne",
-    "Slaanesh",
-    "Nurgle",
-    "Tzeentch",
+    "巴洛",
+    "恐虐",
+    "色孽",
+    "纳垢",
+    "奸奇",
 
-    "Khaine",
-    "Random",
+    "凯恩",
+    "随机",
 
-    "Karrot",
-    "Yeqrezh",
-    "Troika"
+    "卡罗特",
+    "耶克雷什",
+    "特罗伊卡"
 };
 
 cptr lv_size_options[SMALL_LVL_MAX + 1] =
 {
-    "Normal",
+    "普通",
     "Coffee-break (allow big)",
     "Coffee-break (never big)",
-    "Medium",
+    "中等",
     "Instant Coffee (allow big)",
     "Instant Coffee (never big)",
     "Small (classic)",
-    "Small Coffee",
-    "Very Small",
-    "Extremely Small",
-    "Tiny",
-    "Huge",
+    "小杯咖啡",
+    "非常小",
+    "极小",
+    "微小",
+    "巨大",
     "Huge (respect tiny)"
 };
 
 martial_arts ma_blows[MAX_MA] =
 {
-    { "Punch",         "You punch.",                                 1, 0, 1, 4, 0 },
-    { "Kick",          "You kick.",                                  2, 0, 1, 6, 0 },
-    { "Strike",        "You strike.",                                3, 0, 1, 7, 0 },
-    { "Knee",          "You knee.",                                  5, 5, 2, 3, MA_KNEE },
-    { "Elbow",         "You elbow.",                                 7, 5, 1, 8, 0 },
-    { "Butt",          "You <color:U>butt</color>.",                 9, 10, 2, 5, 0 },
-    { "Kick",          "You <color:U>kick</color>.",                 11, 10, 3, 4, MA_SLOW },
-    { "Uppercut",      "You <color:U>uppercut</color>.",             13, 12, 4, 4, 6 },
-    { "Double Kick",   "You <color:y>double-kick</color>.",          16, 15, 5, 4, 8 },
-    { "Cat's Claw",    "You land a <color:y>Cat's Claw</color>.",     20, 20, 5, 5, 0 },
-    { "Jump Kick",     "You <color:y>jump kick</color>.",            25, 25, 5, 6, 10 },
-    { "Eagle's Claw",  "You land an <color:o>Eagle's Claw</color>.", 29, 25, 6, 6, 0 },
-    { "Circle Kick",   "You <color:o>circle kick</color>.",          33, 30, 6, 8, 10 },
-    { "Iron Fist",     "You land an <color:R>Iron Fist</color>.",    37, 35, 8, 8, 10 },
-    { "Flying Kick",   "You land a <color:R>flying kick</color>.",   41, 35, 8, 10, 12 },
-    { "Dragon Fist",   "You land a <color:r>Dragon Fist</color>.",   45, 35, 10, 10, 16 },
-    { "Crushing Blow", "You land a <color:v>Crushing Blow</color>.", 48, 35, 10, 12, 18 },
+    { "冲拳",          "你使出冲拳。",                               1, 0, 1, 4, 0 },
+    { "踢击",          "你使出踢击。",                               2, 0, 1, 6, 0 },
+    { "掌击",          "你使出掌击。",                               3, 0, 1, 7, 0 },
+    { "膝击",          "你使出膝击。",                               5, 5, 2, 3, MA_KNEE },
+    { "肘击",          "你使出肘击。",                               7, 5, 1, 8, 0 },
+    { "头槌",          "你使出<color:U>头槌</color>。",              9, 10, 2, 5, 0 },
+    { "踢击",          "你使出<color:U>踢击</color>。",              11, 10, 3, 4, MA_SLOW },
+    { "上勾拳",        "你使出<color:U>上勾拳</color>。",            13, 12, 4, 4, 6 },
+    { "双重踢",        "你使出<color:y>双重踢</color>。",            16, 15, 5, 4, 8 },
+    { "猫爪",          "你使出了一记<color:y>猫爪</color>。",        20, 20, 5, 5, 0 },
+    { "飞踢",          "你使出<color:y>飞踢</color>。",              25, 25, 5, 6, 10 },
+    { "鹰爪",          "你使出了一记<color:o>鹰爪</color>。",        29, 25, 6, 6, 0 },
+    { "旋风踢",        "你使出<color:o>旋风踢</color>。",            33, 30, 6, 8, 10 },
+    { "铁拳",          "你使出了一记<color:R>铁拳</color>。",        37, 35, 8, 8, 10 },
+    { "凌空踢",        "你使出了一记<color:R>凌空踢</color>。",      41, 35, 8, 10, 12 },
+    { "龙拳",          "你使出了一记<color:r>龙拳</color>。",        45, 35, 10, 10, 16 },
+    { "致命打击",      "你使出了一记<color:v>致命打击</color>。",    48, 35, 10, 12, 18 },
 };
 
 /*
@@ -2710,18 +2743,18 @@ cptr game_inscriptions[] =
 
 kamae kamae_shurui[MAX_KAMAE] =
 {
-    {"Genbu", 25, "(Black Tortoise) "},
-    {"Byakko", 30, "(White Tiger) "},
-    {"Seiryuu", 35, "(Blue Dragon) "},
-    {"Suzaku", 40, "(Red Phoenix) "},
+    {"玄武", 25, "(北方玄武) "},
+    {"白虎", 30, "(西方白虎) "},
+    {"青龙", 35, "(东方青龙) "},
+    {"朱雀", 40, "(南方朱雀) "},
 };
 
 kamae kata_shurui[MAX_KATA] =
 {
-    {"Iai", 25, "Gives a single accuracy-boosted retaliatory blow against melee attacks, at the cost of increasing all damage taken by 20%. Any melee attack by you dispels this posture."},
-    {"Huujin", 30, "Gives reflection unless blind, at the cost of -1.00 to blows."},
-    {"Kouki", 35, "Gives +5 to all stats and +50 melee to-hit, at the cost of -50 AC, vulnerability to the base elements, and zero regeneration. Using most inventory items dispels this posture."},
-    {"Musou", 40, "Gives full telepathy and ultimate resistance, halves most types of damage, and gives a full round of retaliatory blows against melee attacks, at the cost of 2 SP per turn. Almost any action other than retaliation dispels this posture."},
+    {"居合", 25, "在受到近战攻击时，提供一次命中率加成的单次反击，代价是受到的所有伤害增加20%。你的任何近战攻击都会解除该架势。"},
+    {"风神", 30, "除非处于盲目状态，否则提供反射能力，代价是每回合攻击次数 -1.00。"},
+    {"光气", 35, "所有属性 +5，且近战命中 +50，代价是 -50 护甲等级(AC)，对基础元素变得脆弱，并且生命回复降为零。使用大多数物品栏物品都会解除该架势。"},
+    {"无双", 40, "提供完全的心灵感应和终极抗性，使大多数类型的伤害减半，并在受到近战攻击时提供一整轮的反击，代价是每回合消耗 2 点法力(SP)。除了反击之外的几乎任何动作都会解除该架势。"},
 };
 
 cptr exp_level_str[5]=
@@ -2833,12 +2866,12 @@ cptr ident_info[] =
     ".:Floor",
     "/:A polearm (Axe/Pike/etc)",
     "0:Entrance to Museum",
-    "1:Entrance to General Store",
+    "1:杂货店入口",
     "2:Entrance to Armory",
     "3:Entrance to Weaponsmith",
     "4:Entrance to Temple",
     "5:Entrance to Alchemy shop",
-    "6:Entrance to Magic store",
+    "6:魔法店入口",
     "7:Entrance to Black Market",
     "8:Entrance to your home",
     "9:Entrance to the bookstore",

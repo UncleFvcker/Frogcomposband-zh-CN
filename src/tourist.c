@@ -7,10 +7,10 @@ static void _take_photo_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Take Photograph");
+        var_set_string(res, "拍照");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Creates something to show the kids back home!");
+        var_set_string(res, "制作一些能给老家的孩子们看的东西！");
         break;
     case SPELL_CAST:
     {
@@ -25,7 +25,7 @@ static void _take_photo_spell(int cmd, variant *res)
         if ((prace_is_(RACE_VAMPIRE)) && (!res_save(RES_LITE, 20)))
         {
             int dam = res_calc_dam(RES_LITE, 20);
-            msg_print("You cringe from the flash!");
+            msg_print("你因闪光灯而退缩！");
             take_hit(DAMAGE_NOESCAPE, dam, "taking a photograph");
         }
         break;
@@ -49,7 +49,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.which_stat = A_INT;
         me.encumbrance.max_wgt = 450;
         me.encumbrance.weapon_pct = 67;
@@ -140,16 +140,8 @@ class_t *tourist_get_class(void)
     skills_t bs = { 15,  18,  28,   1,  12,   2,  46,  19};
     skills_t xs = {  5,   6,   9,   0,   0,   0,  12,  10};
 
-        me.name = "Tourist";
-        me.desc = "Tourists have visited this world for the purpose of sightseeing. "
-                    "Their fighting skills are bad, and they cannot cast powerful "
-                    "spells. They are the most difficult class to win the game with. "
-                    "Intelligence determines a tourist's spellcasting ability.\n \n"
-                    "Tourists are always seeing more of the world to add to their stock "
-                    "of information; no other class can compete with their "
-                    "identification skills. They have two class powers - 'Take a "
-                    "Photograph' and 'Identify True'. Their magic is based on Arcane, "
-                    "and - aside from identify - is very weak indeed.";
+        me.name = "游客";
+        me.desc = "游客是为了观光而来到这个世界的。他们的战斗技巧很差，也无法施放强大的法术。他们是最难通关的职业。智力决定了游客的施法能力。\n \n游客总是在观察世界以增加他们的信息储备；没有其他职业能在鉴定技能上与他们相比。他们有两个职业能力——“拍照”和“真实鉴定”。他们的魔法基于奥秘领域，除了鉴定之外，其他法术确实非常微弱。";
 
         me.stats[A_STR] = -2;
         me.stats[A_INT] = -1;

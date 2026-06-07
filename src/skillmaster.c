@@ -86,7 +86,7 @@ typedef struct _group_s {
 } _group_t, *_group_ptr;
 
 static _group_t _groups[] = {
-    { _TYPE_MELEE, "Melee",
+    { _TYPE_MELEE, "近战",
         "<color:B>Melee</color> skills increase your ability to fight monsters in hand to hand combat. "
         "The total number of points spent in this group will determine your base fighting "
         "skill, as well as how much melee skill you gain with experience. In addition, this "
@@ -94,13 +94,13 @@ static _group_t _groups[] = {
         "proficiency with the given type of weapon, as well as the maximum number of blows "
         "per round you may gain. For martial arts, the number of points determines your "
         "effective fighting level which is used to determine which types of hits you land.",
-        {{ _TYPE_MELEE, TV_SWORD, "Swords", 5, 0 },
-         { _TYPE_MELEE, TV_POLEARM, "Polearms", 5, 0 },
-         { _TYPE_MELEE, TV_HAFTED, "Hafted", 5, 0 },
-         { _TYPE_MELEE, TV_DIGGING, "Diggers", 5, 0 },
-         { _TYPE_MELEE, _MARTIAL_ARTS, "Martial Arts", 5, 0 },
+        {{ _TYPE_MELEE, TV_SWORD, "剑类", 5, 0 },
+         { _TYPE_MELEE, TV_POLEARM, "长柄武器", 5, 0 },
+         { _TYPE_MELEE, TV_HAFTED, "钝器", 5, 0 },
+         { _TYPE_MELEE, TV_DIGGING, "挖掘工具", 5, 0 },
+         { _TYPE_MELEE, _MARTIAL_ARTS, "武术", 5, 0 },
          { 0 }}},
-    { _TYPE_SHOOT, "Ranged",
+    { _TYPE_SHOOT, "远程",
         "<color:B>Ranged</color> skills increase your ability to fight monsters using distance weapons "
         "such as bows and slings, as well as the ability to throw melee weapons "
         "effectively. The total number of points spent in this group will determine "
@@ -108,10 +108,10 @@ static _group_t _groups[] = {
         "experience. Archery grants proficiency with the various classes of shooters "
         "as well as increasing your number of shots per round. Throwing grants the power "
         "to throw your leading melee weapon and perhaps have it return to you as well.",
-        {{ _TYPE_SHOOT, _ARCHERY, "Archery", 5, 0 },
-         { _TYPE_SHOOT, _THROWING, "Throwing", 5, 0 },
+        {{ _TYPE_SHOOT, _ARCHERY, "箭术", 5, 0 },
+         { _TYPE_SHOOT, _THROWING, "投掷", 5, 0 },
          { 0 }}},
-    { _TYPE_MAGIC, "Magic",
+    { _TYPE_MAGIC, "魔法",
         "<color:B>Magic</color> skills grant access to various spellcasting realms using INT rather "
         "than WIS as the spellcasting stat. Each point in a given realm increases "
         "your maximum spellcasting level as well as the decreasing the cost and fail "
@@ -121,18 +121,18 @@ static _group_t _groups[] = {
         "group provides a modest boost to device skills as well as increasing your "
         "INT. Unfortunately. this total also has a negative impact on your life rating, "
         "STR and CON.",
-        {{ _TYPE_MAGIC, REALM_ARCANE, "Arcane", 5, 0 },
-         { _TYPE_MAGIC, REALM_ARMAGEDDON, "Armageddon", 5, 0 },
-         { _TYPE_MAGIC, REALM_CHAOS, "Chaos", 5, 0 },
-         { _TYPE_MAGIC, REALM_CRAFT, "Craft", 5, 0 },
-         { _TYPE_MAGIC, REALM_CRUSADE, "Crusade", 5, 0 },
-         { _TYPE_MAGIC, REALM_DAEMON, "Daemon", 5, 0 },
-         { _TYPE_MAGIC, REALM_DEATH, "Death", 5, 0 },
-         { _TYPE_MAGIC, REALM_NATURE, "Nature", 5, 0 },
-         { _TYPE_MAGIC, REALM_SORCERY, "Sorcery", 5, 0 },
-         { _TYPE_MAGIC, REALM_TRUMP, "Trump", 5, 0 },
+        {{ _TYPE_MAGIC, REALM_ARCANE, "奥秘", 5, 0 },
+         { _TYPE_MAGIC, REALM_ARMAGEDDON, "毁灭", 5, 0 },
+         { _TYPE_MAGIC, REALM_CHAOS, "混沌", 5, 0 },
+         { _TYPE_MAGIC, REALM_CRAFT, "工匠", 5, 0 },
+         { _TYPE_MAGIC, REALM_CRUSADE, "圣战", 5, 0 },
+         { _TYPE_MAGIC, REALM_DAEMON, "恶魔", 5, 0 },
+         { _TYPE_MAGIC, REALM_DEATH, "死亡", 5, 0 },
+         { _TYPE_MAGIC, REALM_NATURE, "自然", 5, 0 },
+         { _TYPE_MAGIC, REALM_SORCERY, "咒术", 5, 0 },
+         { _TYPE_MAGIC, REALM_TRUMP, "王牌", 5, 0 },
          { 0 }}},
-    { _TYPE_PRAYER, "Prayer",
+    { _TYPE_PRAYER, "祈祷",
         "<color:B>Prayer</color> skills work like Magic skills, granting access to various realms of "
         "magic. However, prayer realms use WIS for the spellcasting stat rather than "
         "INT. Moreover, the total points in the Prayer group grants enhanced saving "
@@ -142,27 +142,27 @@ static _group_t _groups[] = {
         "fail rates. Life magic is only available as a Prayer talent. The other prayer "
         "realms are duplicated as Magic talents, but you can only learn them in one "
         "way: as either INT based or WIS based.",
-        {{ _TYPE_PRAYER, REALM_CRUSADE, "Crusade", 5, 0 },
-         { _TYPE_PRAYER, REALM_DAEMON, "Daemon", 5, 0 },
-         { _TYPE_PRAYER, REALM_DEATH, "Death", 5, 0 },
-         { _TYPE_PRAYER, REALM_LIFE, "Life", 5, 0 },
+        {{ _TYPE_PRAYER, REALM_CRUSADE, "圣战", 5, 0 },
+         { _TYPE_PRAYER, REALM_DAEMON, "恶魔", 5, 0 },
+         { _TYPE_PRAYER, REALM_DEATH, "死亡", 5, 0 },
+         { _TYPE_PRAYER, REALM_LIFE, "生命", 5, 0 },
          { 0 }}},
-    { _TYPE_SKILLS, "Skills",
+    { _TYPE_SKILLS, "技能",
         "There are various <color:B>Skills</color> important for every player, including "
         "stealth, perception, health and magic devices. While these skills may be influenced by "
         "talents in other groups (e.g. Magic increases your device skills), it is often "
         "desirable to directly increase these skills even more. In addition, you can directly "
         "improve your starting stats by investing in some of the skills in this group "
         "(e.g. Agility improves DEX while Health improve CON).",
-        {{ _TYPE_SKILLS, _AGILITY, "Agility", 3, 0 },
-         { _TYPE_SKILLS, _AWARENESS, "Awareness", 3, 0 },
-         { _TYPE_SKILLS, _DEVICES, "Devices", 3, 0 },
-         { _TYPE_SKILLS, _HEALTH, "Health", 3, 0 },
-         { _TYPE_SKILLS, _MAGIC_RESISTANCE, "Magic Resistance", 3, 0 },
-         { _TYPE_SKILLS, _SPEED, "Speed", 3, 0 },
-         { _TYPE_SKILLS, _STEALTH, "Stealth", 3, 0 },
+        {{ _TYPE_SKILLS, _AGILITY, "敏捷", 3, 0 },
+         { _TYPE_SKILLS, _AWARENESS, "察觉", 3, 0 },
+         { _TYPE_SKILLS, _DEVICES, "魔法装置", 3, 0 },
+         { _TYPE_SKILLS, _HEALTH, "健康", 3, 0 },
+         { _TYPE_SKILLS, _MAGIC_RESISTANCE, "魔法抗性", 3, 0 },
+         { _TYPE_SKILLS, _SPEED, "速度", 3, 0 },
+         { _TYPE_SKILLS, _STEALTH, "潜行", 3, 0 },
          { 0 }}},
-    { _TYPE_TECHNIQUE, "Techniques",
+    { _TYPE_TECHNIQUE, "技巧",
         "There are various specialty <color:B>Techniques</color> which you may want to "
         "learn, including the Riding and Dual Wielding talents, as well as access to the "
         "Burglary and Kendo techniques. These latter two function like spell realms, using "
@@ -170,27 +170,27 @@ static _group_t _groups[] = {
         "function like that of the Samurai, and this behavior is used no matter what other "
         "Magic or Prayer realms you have learned. Note that Kendo still requires you to "
         "carry the appropriate spellbooks since you really are not samurai.",
-        {{ _TYPE_TECHNIQUE, REALM_BURGLARY, "Burglary", 5, 0 },
-         { _TYPE_TECHNIQUE, REALM_HISSATSU, "Kendo", 5, 0 }, 
-         { _TYPE_TECHNIQUE, _DUAL_WIELDING, "Dual Wielding", 5, 0 },
-         { _TYPE_TECHNIQUE, _RIDING, "Riding", 5, 0 },
+        {{ _TYPE_TECHNIQUE, REALM_BURGLARY, "行窃", 5, 0 },
+         { _TYPE_TECHNIQUE, REALM_HISSATSU, "剑道", 5, 0 }, 
+         { _TYPE_TECHNIQUE, _DUAL_WIELDING, "双持", 5, 0 },
+         { _TYPE_TECHNIQUE, _RIDING, "骑乘", 5, 0 },
          { 0 }}},
-    { _TYPE_ABILITY, "Abilities",
+    { _TYPE_ABILITY, "能力",
         "Many <color:B>Abilities</color> can be purchased for a single skill point. Often "
         "these grant an extra power which you may activate at will without cost, and usually "
         "without fail. Alternatively, abilities may grant a bonus such as regeneration or "
         "good fortune.",
-        {{ _TYPE_ABILITY, _CLEAR_MIND, "Clear Mind", 1, 0 },
-         { _TYPE_ABILITY, _CREATE_AMMO, "Create Ammo", 1, 0 },
-         { _TYPE_ABILITY, _EAT_MAGIC, "Eat Magic", 1, 0 },
-         { _TYPE_ABILITY, _LUCK, "Good Luck", 1, 0 },
-         { _TYPE_ABILITY, _LOREMASTER, "Loremastery", 1, 0 },
-         { _TYPE_ABILITY, _MASSACRE, "Massacre", 1, 0 },
-         { _TYPE_ABILITY, _PANIC_HIT, "Panic Hit", 1, 0 },
-         { _TYPE_ABILITY, _REGENERATION, "Regeneration", 1, 0 },
-         { _TYPE_ABILITY, _RESISTANCE, "Resistance", 1, 0 },
-         { _TYPE_ABILITY, _RODEO, "Rodeo", 1, 0 },
-         { _TYPE_ABILITY, _STONE_SKIN, "Stone Skin", 1 , 0 },
+        {{ _TYPE_ABILITY, _CLEAR_MIND, "头脑清明", 1, 0 },
+         { _TYPE_ABILITY, _CREATE_AMMO, "制造弹药", 1, 0 },
+         { _TYPE_ABILITY, _EAT_MAGIC, "吞噬魔法", 1, 0 },
+         { _TYPE_ABILITY, _LUCK, "好运", 1, 0 },
+         { _TYPE_ABILITY, _LOREMASTER, "博学", 1, 0 },
+         { _TYPE_ABILITY, _MASSACRE, "大屠杀", 1, 0 },
+         { _TYPE_ABILITY, _PANIC_HIT, "恐慌打击", 1, 0 },
+         { _TYPE_ABILITY, _REGENERATION, "再生", 1, 0 },
+         { _TYPE_ABILITY, _RESISTANCE, "抗性", 1, 0 },
+         { _TYPE_ABILITY, _RODEO, "驭兽", 1, 0 },
+         { _TYPE_ABILITY, _STONE_SKIN, "石肤", 1 , 0 },
          { 0 }}},
     { 0 }
 };
@@ -563,10 +563,10 @@ static void _throw_weapon_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Throw Weapon");
+        var_set_string(res, "投掷武器");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Throws your weapon, which might return to you.");
+        var_set_string(res, "投掷你的武器，它有可能会回到你手中。");
         break;
     case SPELL_CAST: {
         py_throw_t context = {0};
@@ -713,7 +713,7 @@ caster_info *_caster_info(void)
     else if (magic_pts && magic_pts >= prayer_pts)
     {
         info.which_stat = A_INT;
-        info.magic_desc = "spell";
+        info.magic_desc = "法术";
         info.options |= CASTER_GLOVE_ENCUMBRANCE;
         if (magic_pts >= 5)
             info.options |= CASTER_ALLOW_DEC_MANA;
@@ -767,19 +767,19 @@ static bool _can_cast(void)
 {
     if (!_has_magic())
     {
-        msg_print("You don't know any spell realms. Use the 'G' command to gain the appropriate skills.");
+        msg_print("你还没学会任何魔法领域。使用 'G' 命令来获取相应的技能。");
         flush();
         return FALSE;
     }
     if (p_ptr->blind || no_lite())
     {
-        msg_print("You cannot see!");
+        msg_print("你什么也看不见！");
         flush();
         return FALSE;
     }
     if (p_ptr->confused)
     {
-        msg_print("You are too confused!");
+        msg_print("你太困惑了！");
         flush();
         return FALSE;
     }
@@ -838,8 +838,8 @@ static object_type *_prompt_spellbook(void)
 {
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Use which book?";
-    prompt.error = "You have no books that you can read.";
+    prompt.prompt = "使用哪本书？";
+    prompt.error = "你没有能读的书。";
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
     prompt.filter = _spellbook_hook;
@@ -918,10 +918,10 @@ static void _list_spells(doc_ptr doc, object_type *spellbook, vec_ptr spells, in
     int          i;
     object_kind *k_ptr = &k_info[spellbook->k_idx];
 
-    doc_printf(doc, "<color:%c>%-27.27s</color> <color:G>Lvl  SP Fail %-15.15s",
-        attr_to_attr_char(k_ptr->d_attr), k_name + k_ptr->name, "Desc");
+    doc_printf(doc, "<color:%c>%-27.27s</color> <color:G>Lv 消耗 失败 %-15.15s",
+        attr_to_attr_char(k_ptr->d_attr), k_name + k_ptr->name, "描述");
     if (options & _SHOW_STATS)
-        doc_insert(doc, "  Cast Fail");
+        doc_insert(doc, "施法失败");
     doc_insert(doc, "</color>\n");
 
     for (i = 0; i < vec_length(spells); i++)
@@ -929,7 +929,7 @@ static void _list_spells(doc_ptr doc, object_type *spellbook, vec_ptr spells, in
         _spell_info_ptr spell = vec_get(spells, i);
         if (spell->level > PY_MAX_LEVEL)
         {
-            doc_printf(doc, " <color:D>%c) Illegible</color>\n", I2A(i));
+            doc_printf(doc, "<color:D>%c) 无法辨认</color>\n", I2A(i));
         }
         else
         {
@@ -972,7 +972,7 @@ static void _spoil_book(doc_ptr doc, int realm, int book)
 
     doc_printf(doc, "<color:G>%-20.20s</color>", k_name + k_info[k_idx].name);
     for (pts = 1; pts <= 5; pts++)
-        doc_printf(doc, " <color:%c>Lv Cst Fail</color>", pts % 2 ? 'G' : 'R');
+        doc_printf(doc, "<color:%c>Lv 消耗 失败</color>", pts % 2 ? 'G' : 'R');
     doc_newline(doc);
     for (idx = start; idx < stop; idx++)
     {
@@ -981,7 +981,7 @@ static void _spoil_book(doc_ptr doc, int realm, int book)
         {
             _spell_info_ptr spell = _get_spell(realm, idx, pts);
             if (spell->level > PY_MAX_LEVEL)
-                doc_insert(doc, " <color:D> Illegible </color>");
+                doc_insert(doc, "<color:D> 无法辨认 </color>");
             else
             {
                 doc_printf(doc, " <color:%c>%2d %3d %3d%%</color>",
@@ -1092,7 +1092,7 @@ static void _cast_spell(_spell_info_ptr spell)
     {
         if (flush_failure) flush();
 
-        cmsg_format(TERM_VIOLET, "You failed to cast <color:B>%s</color>!", do_spell(spell->realm, spell->idx, SPELL_NAME));
+        cmsg_format(TERM_VIOLET, "你没能施放出 <color:B>%s</color>！", do_spell(spell->realm, spell->idx, SPELL_NAME));
         if (prompt_on_failure) msg_print(NULL);
         if (demigod_is_(DEMIGOD_ATHENA))
             p_ptr->csp += spell->cost/2;
@@ -1130,7 +1130,7 @@ void skillmaster_cast(void)
         if (spellbook->tval == TV_HISSATSU_BOOK && !equip_find_first(object_is_melee_weapon))
         {
             if (flush_failure) flush();
-            msg_print("You need to wield a weapon!");
+            msg_print("你需要装备一把武器！");
             return;
         }
         if (_prompt_spell(spellbook, &spell, 0))
@@ -1286,12 +1286,10 @@ static int _confirm_skill_ui(_skill_ptr s)
         int cmd;
 
         doc_clear(_doc);
-        doc_printf(_doc, "<color:v>Warning</color>: <indent>You are about to learn the <color:B>%s</color> skill. "
-                         "Are you sure you want to do this? The skills you learn are permanent choices and you "
-                         "won't be able to change your mind later!</indent>\n", s->name);
+        doc_printf(_doc, "<color:v>警告</color>: <indent>你即将学习 <color:B>%s</color> 技能。你确定要这么做吗？你学习的技能将是永久性的选择，并且之后无法再改变主意！</indent>\n", s->name);
         doc_newline(_doc);
-        doc_insert(_doc, "<color:y>RET</color>) <color:v>Accept</color>\n");
-        doc_insert(_doc, "<color:y>ESC</color>) Cancel\n");
+        doc_insert(_doc, "<color:y>回车</color>) <color:v>接受</color>\n");
+        doc_insert(_doc, "<color:y>ESC</color>) 取消\n");
 
         _sync_term(_doc);
         cmd = _inkey();
@@ -1366,7 +1364,7 @@ static int _gain_skill_ui(_group_ptr g)
 
             doc_clear(_doc);
             doc_printf(_doc, "%s\n\n", g->desc);
-            doc_insert(cols[0], "<color:G>Choose the Skill</color>\n");
+            doc_insert(cols[0], "<color:G>选择技能</color>\n");
             for (i = 0; ; i++)
             {
                 _skill_ptr s = &g->skills[i];
@@ -1380,11 +1378,11 @@ static int _gain_skill_ui(_group_ptr g)
                     doc_printf(cols[0], " (%d%%)", 100*s->current/s->max);
                 doc_newline(cols[0]);
             }
-            doc_printf(cols[1], "%-10.10s: <color:%c>%d</color>\n", "Learned", group_pts ? 'G' : 'r', group_pts);
-            doc_printf(cols[1], "%-10.10s: <color:%c>%d</color>\n", "Available", free_pts ? 'G' : 'r', free_pts);
+            doc_printf(cols[1], "%-10.10s: <color:%c>%d</color>\n", "已学习", group_pts ? 'G' : 'r', group_pts);
+            doc_printf(cols[1], "%-10.10s: <color:%c>%d</color>\n", "剩余点数", free_pts ? 'G' : 'r', free_pts);
             doc_insert(cols[1], "\n\n");
-            doc_insert(cols[1], "  <color:y>?</color>) Help\n");
-            doc_insert(cols[1], "<color:y>ESC</color>) Cancel\n");
+            doc_insert(cols[1], "<color:y>?</color>) 帮助\n");
+            doc_insert(cols[1], "<color:y>ESC</color>) 取消\n");
             doc_insert_cols(_doc, cols, 2, 1);
             doc_free(cols[0]);
             doc_free(cols[1]);
@@ -1396,7 +1394,7 @@ static int _gain_skill_ui(_group_ptr g)
         else if (cmd == '?') doc_display_help("Skillmasters.txt", g->name);
         else if (p_ptr->wizard && cmd == KTRL('R'))
         {
-            if (get_check("Really reset this group? "))
+            if (get_check("真的要重置这一组技能吗？"))
             {
                 _reset_group(g);
                 p_ptr->update |= PU_BONUS | PU_HP | PU_MANA;
@@ -1455,7 +1453,7 @@ static int _gain_type_ui(void)
                 "grant targetted benefits (such as proficiency with a class of weapons, or access to "
                 "a specific spell realm). Details are given in the submenu for each group. Feel free to "
                 "explore the various groups since you may always <color:keypress>ESC</color> to return here.\n\n");
-            doc_insert(cols[0], "<color:G>Choose the Skill Type</color>\n");
+            doc_insert(cols[0], "<color:G>选择技能类型</color>\n");
             for (i = 0; ; i++)
             {
                 _group_ptr g = &_groups[i];
@@ -1466,11 +1464,11 @@ static int _gain_type_ui(void)
                 doc_newline(cols[0]);
             }
 
-            doc_printf(cols[1], "%-10.10s: <color:%c>%d</color>\n", "Learned", learned_pts ? 'G' : 'r', learned_pts);
-            doc_printf(cols[1], "%-10.10s: <color:%c>%d</color>\n", "Available", free_pts ? 'G' : 'r', free_pts);
+            doc_printf(cols[1], "%-10.10s: <color:%c>%d</color>\n", "已学习", learned_pts ? 'G' : 'r', learned_pts);
+            doc_printf(cols[1], "%-10.10s: <color:%c>%d</color>\n", "剩余点数", free_pts ? 'G' : 'r', free_pts);
             doc_insert(cols[1], "\n\n");
-            doc_insert(cols[1], "  <color:y>?</color>) Help\n");
-            doc_insert(cols[1], "<color:y>ESC</color>) <color:v>Quit</color>\n");
+            doc_insert(cols[1], "<color:y>?</color>) 帮助\n");
+            doc_insert(cols[1], "<color:y>ESC</color>) <color:v>退出</color>\n");
             doc_insert_cols(_doc, cols, 2, 1);
             doc_free(cols[0]);
             doc_free(cols[1]);
@@ -1482,7 +1480,7 @@ static int _gain_type_ui(void)
         else if (cmd == '?') doc_display_help("Skillmasters.txt", NULL);
         else if (p_ptr->wizard && cmd == KTRL('R'))
         {
-            if (get_check("Really reset all skills? "))
+            if (get_check("真的要重置所有技能吗？"))
             {
                 _reset_groups();
                 p_ptr->update |= PU_BONUS | PU_HP | PU_MANA;
@@ -1641,7 +1639,7 @@ static void _dump_realm(doc_ptr doc, int realm)
         {
             if (first)
             {
-                doc_printf(doc, "<color:r>Realm:</color> <color:B>%s</color>\n\n", realm_names[realm]);
+                doc_printf(doc, "<color:r>领域:</color> <color:B>%s</color>\n\n", realm_names[realm]);
                 first = FALSE;
             }
             _dump_book(doc, spellbook);
@@ -1650,7 +1648,7 @@ static void _dump_realm(doc_ptr doc, int realm)
 
     i = virtue_mod_spell_fail(realm, 0);
     if (!first && i)
-        doc_printf(doc, " Your alignment is adding <color:R>%+d%%</color> to your fail rates in this realm.\n\n", i);
+        doc_printf(doc, "你的阵营让你在该领域的失败率增加了 <color:R>%+d%%</color>。\n\n", i);
 }
 
 static void _dump_group(doc_ptr doc, _group_ptr g)
@@ -1688,7 +1686,7 @@ static void _character_dump(doc_ptr doc)
         context.back_chance = _throw_info[pts].back;
         context.energy = _throw_info[pts].energy;
 
-        doc_insert(doc, "<topic:Throwing>=================================== <color:keypress>T</color>hrowing ==================================\n\n");
+        doc_insert(doc, "<topic:Throwing>=================================== 投 掷 (<color:keypress>T</color>) ==================================\n\n");
         for (i = 0; i < MAX_HANDS; i++)
         {
             if (p_ptr->weapon_info[i].wield_how == WIELD_NONE) continue;
@@ -1696,7 +1694,7 @@ static void _character_dump(doc_ptr doc)
             py_throw_doc(&context, doc);
         }
     }
-    doc_printf(doc, "<topic:Skills>==================================== <color:keypress>S</color>kills ===================================\n\n");
+    doc_printf(doc, "<topic:Skills>==================================== 技 能 (<color:keypress>S</color>) ===================================\n\n");
     for (i = 0; ; i++)
     {
         _group_ptr g = &_groups[i];
@@ -1706,7 +1704,7 @@ static void _character_dump(doc_ptr doc)
 
     if (_has_magic())
     {
-        doc_printf(doc, "<topic:Spells>==================================== <color:keypress>S</color>pells ===================================\n\n");
+        doc_printf(doc, "<topic:Spells>==================================== 法 术 (<color:keypress>S</color>) ===================================\n\n");
         for (i = REALM_LIFE; i <= MAX_REALM; i++)
         {
             int pts = _get_realm_pts(i);
@@ -1743,24 +1741,8 @@ class_t *skillmaster_get_class(void)
 
     if (!init)
     {
-        me.name = "Skillmaster";
-        me.desc = "The Skillmaster is not your ordinary class. Instead, you "
-                  "may design your own class, on the fly, using a point-based "
-                  "skill system. Upon birth, you will get 5 points to spend; "
-                  "use them wisely to set the basic direction of your class. "
-                  "Every fifth character level, you will "
-                  "receive an additional point to spend, for fifteen points "
-                  "overall. You may use these points to learn melee, to "
-                  "master a spell realm, to improve your speed or stealth, "
-                  "to increase your magic device skills, to gain special "
-                  "techniques, to learn riding, dual-wielding or martial "
-                  "arts... no other class, even Psion or Yeqrezh Disciple, "
-                  "offers as much flexibility.\n\n"
-                  "Most skills allow the investment of multiple points for "
-                  "increased proficiency, but some are abilities that you may "
-                  "buy with a single point (e.g. Luck). This class is not recommended for "
-                  "beginning players, despite being quite strong; you only have a limited "
-                  "amount of points to spend, and your choices are irreversible.";
+        me.name = "技能大师";
+        me.desc = "技能大师不是普通的职业。相反，你可以使用基于点数的技能系统在游戏中随时设计你自己的职业。出生时，你将获得5个技能点来分配；明智地使用它们来设定你职业的基本方向。每升五级，你将获得一个额外的技能点，总共十五个技能点。你可以使用这些点数来学习近战，精通一个魔法领域，提高你的速度或潜行，增加你使用魔法装置的技能，获得特殊的技巧，学习骑乘、双持或武术……没有其他职业，即使是灵能者(Psion)或耶格雷什学徒(Yeqrezh Disciple)，能提供如此大的灵活性。\n\n大多数技能允许投入多个点数以提高熟练度，但有些是你只需一个点数就可以购买的能力（例如幸运）。虽然这个职业非常强大，但不推荐初学者使用；你只有有限的点数可以分配，而且你的选择是不可逆的。";
 
         me.exp = 130;
 

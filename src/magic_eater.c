@@ -46,9 +46,9 @@ static cptr _which_name(int tval)
 {
     switch (tval)
     {
-    case TV_WAND: return "Wand";
-    case TV_STAFF: return "Staff";
-    case TV_ROD: return "Rod";
+    case TV_WAND: return "魔杖";
+    case TV_STAFF: return "法杖";
+    case TV_ROD: return "魔棒";
     }
     assert(0);
     return NULL;
@@ -162,14 +162,14 @@ static void _display(object_type *list, rect_t display)
             doc_insert(doc, buf);
 
             if (fail == 1000)
-                doc_printf(doc, "<tab:%d>Fail: %3d%%\n", display.cx - 12, fail/10);
+                doc_printf(doc, "<tab:%d>失败: %3d%%\n", display.cx - 12, fail/10);
             else
-                doc_printf(doc, "<tab:%d>Fail: %2d.%d%%\n", display.cx - 12, fail/10, fail%10);
+                doc_printf(doc, "<tab:%d>失败: %2d.%d%%\n", display.cx - 12, fail/10, fail%10);
 
             /*doc_printf(doc, "<tab:%d>SP: %3d.%2.2d\n", display.cx - 12, o_ptr->xtra5 / 100, o_ptr->xtra5 % 100);*/
         }
         else
-            doc_insert_text(doc, TERM_L_DARK, "(Empty)\n");
+            doc_insert_text(doc, TERM_L_DARK, "(空)\n");
     }
     doc_insert(doc, "</style>");
     doc_sync_term(doc, doc_range_all(doc), doc_pos_create(pos.x, pos.y));
@@ -229,7 +229,7 @@ static object_type *_choose(cptr verb, int tval, int options)
         }
         else
         {
-            string_printf(prompt, "%s which %s", inscribe ? "Inscribe" : verb, _which_name(which_tval));
+            string_printf(prompt, "%s which %s", inscribe ? "铭刻" : verb, _which_name(which_tval));
             if (options & _ALLOW_SWITCH)
             {
                 switch (which_tval)
@@ -248,7 +248,7 @@ static object_type *_choose(cptr verb, int tval, int options)
                 string_append_c(prompt, ':');
         }
         prt(string_buffer(prompt), 0, 0);
-        _magic_eater_calculate_labels(_which_list(which_tval), ((strpos("Use", verb) == 1) && (!inscribe)));
+        _magic_eater_calculate_labels(_which_list(which_tval), ((strpos("使用", verb) == 1) && (!inscribe)));
         _display(_which_list(which_tval), display);
 
         cmd = inkey_special(FALSE);
@@ -315,7 +315,7 @@ static object_type *_choose(cptr verb, int tval, int options)
                 else
                     strcpy(insc, "");
 
-                prt("Inscription: ", 0, 0);
+                prt("铭刻：", 0, 0);
                 if (askfor(insc, 80))
                     o_ptr->inscription = quark_add(insc);
                 inscribe = FALSE;
@@ -376,14 +376,14 @@ static void _use_object(object_type *o_ptr)
 
     if (!fear_allow_device())
     {
-        msg_print("You are too scared!");
+        msg_print("你太害怕了！");
         return;
     }
 
     if (!device_try(o_ptr))
     {
         if (flush_failure) flush();
-        msg_print("You failed to use the device properly.");
+        msg_print("你未能正确使用该装置。");
         if (prompt_on_failure) msg_print(NULL);
         sound(SOUND_FAIL);
         return;
@@ -392,7 +392,7 @@ static void _use_object(object_type *o_ptr)
     if (device_sp(o_ptr) < o_ptr->activation.cost)
     {
         if (flush_failure) flush();
-        msg_print("The device has no charges left.");
+        msg_print("该装置已经没有充能了。");
         if (prompt_on_failure) msg_print(NULL);
         energy_use = 0;
         return;
@@ -418,7 +418,7 @@ static void _use_object(object_type *o_ptr)
 
 void magic_eater_browse(void)
 {
-    object_type *o_ptr = _choose("Browse", TV_WAND, _ALLOW_SWITCH | _ALLOW_EXCHANGE);
+    object_type *o_ptr = _choose("浏览", TV_WAND, _ALLOW_SWITCH | _ALLOW_EXCHANGE);
     if (o_ptr)
         obj_display(o_ptr);
 }
@@ -431,28 +431,28 @@ void magic_eater_cast(int tval)
        For example, do_cmd_use_staff() will allow magic-eaters to invoke staff based spells. */
     if (dun_level && (d_info[dungeon_type].flags1 & DF1_NO_MAGIC))
     {
-        msg_print("The dungeon absorbs all attempted magic!");
+        msg_print("地下城吸收了所有试图施展的魔法！");
         return;
     }
     else if (p_ptr->tim_no_spells)
     {
-        msg_print("Your spells are blocked!");
+        msg_print("你的法术被阻挡了！");
         return;
     }
     else if (p_ptr->anti_magic)
     {
-        msg_print("An anti-magic shell disrupts your magic!");
+        msg_print("反魔法护罩扰乱了你的魔法！");
         return;
     }
     else if (IS_SHERO())
     {
-        msg_print("You cannot think clearly!");
+        msg_print("你无法清晰地思考！");
         return;
     }
 
     if (p_ptr->confused)
     {
-        msg_print("You are too confused!");
+        msg_print("你太困惑了！");
         return;
     }
 
@@ -462,7 +462,7 @@ void magic_eater_cast(int tval)
         tval = TV_WAND;
     }
 
-    o_ptr = _choose("Use", tval, _ALLOW_SWITCH | _ALLOW_INSCRIBE);
+    o_ptr = _choose("使用", tval, _ALLOW_SWITCH | _ALLOW_INSCRIBE);
     if (o_ptr)
         _use_object(o_ptr);
 }
@@ -475,8 +475,8 @@ static bool gain_magic(void)
     char o_name[MAX_NLEN];
     u16b _auto_insc = 0;
 
-    prompt.prompt = "Absorb which device?";
-    prompt.error = "You have nothing to absorb magic from.";
+    prompt.prompt = "吸收哪个装置？";
+    prompt.error = "你没有可以吸收魔法的物品。";
     prompt.filter = object_is_device;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -484,7 +484,7 @@ static bool gain_magic(void)
     obj_prompt(&prompt);
     if (!prompt.obj) return FALSE;
 
-    dest_ptr = _choose("Replace", prompt.obj->tval, _ALLOW_EMPTY);
+    dest_ptr = _choose("替换", prompt.obj->tval, _ALLOW_EMPTY);
     if (!dest_ptr)
         return FALSE;
 
@@ -503,7 +503,7 @@ static bool gain_magic(void)
     }
 
     object_desc(o_name, prompt.obj, OD_COLOR_CODED);
-    msg_format("You absorb the magic of %s.", o_name);
+    msg_format("你吸收了%s的魔法。", o_name);
 
     *dest_ptr = *prompt.obj;
 
@@ -523,7 +523,7 @@ static void _absorb_magic_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Absorb Magic");
+        var_set_string(res, "吸收魔法");
         break;
     case SPELL_DESC:
         var_set_string(res, "");
@@ -738,14 +738,14 @@ static void _dump_list(doc_ptr doc, object_type *which_list)
             doc_printf(doc, "%c) %s\n", I2A(i), o_name);
         }
         else
-            doc_printf(doc, "%c) (Empty)\n", I2A(i));
+            doc_printf(doc, "%c) (空)\n", I2A(i));
     }
     doc_newline(doc);
 }
 
 static void _character_dump(doc_ptr doc)
 {
-    doc_printf(doc, "<topic:MagicEater>================================ Absorbed <color:keypress>M</color>agic ===============================\n\n");
+    doc_printf(doc, "<topic:MagicEater>================================ 已吸收魔法 (<color:keypress>M</color>) ===============================\n\n");
 
     _dump_list(doc, _which_list(TV_WAND));
     _dump_list(doc, _which_list(TV_STAFF));
@@ -821,19 +821,8 @@ class_t *magic_eater_get_class(void)
     skills_t bs = { 25,  42,  36,   2,  20,  16,  48,  35 };
     skills_t xs = {  7,  16,  10,   0,   0,   0,  13,  11 };
 
-        me.name = "Magic-Eater";
-        me.desc = "The Magic-Eater can absorb magical devices. Once absorbed, "
-                    "these devices will function like normal objects and can be "
-                    "used whenever charges are available. In effect, it is as "
-                    "if the Magic-Eater had extra inventory slots for devices. "
-                    "However, absorbed magic can not be drained the way normal "
-                    "devices can, nor can these objects be destroyed. The number of "
-                    "slots for each kind of device is limited, and the Magic-Eater "
-                    "will need to choose which object to replace once the slots are "
-                    "all used. Absorbed magic cannot be recharged through scrolls, "
-                    "spells, potions or activations; the Magic-Eater must rest to "
-                    "regain charges. The rate at which absorbed devices recharge "
-                    "is affected by Regeneration.";
+        me.name = "魔法吞噬者";
+        me.desc = "魔法吞噬者可以吸收魔法装置。一旦被吸收，这些装置将像普通物品一样发挥作用，并在有充能时随时可以使用。实际上，这就像魔法吞噬者拥有了用于存放装置的额外物品栏。然而，被吸收的魔法不能像普通装置那样被吸取法力，这些物品也不会被破坏。每种装置的槽位数量是有限的，一旦槽位用完，魔法吞噬者将需要选择替换哪个物品。被吸收的魔法不能通过卷轴、法术、药水或物品激活来充能；魔法吞噬者必须休息才能恢复充能。被吸收的装置恢复充能的速度受再生能力影响。";
 
         me.stats[A_STR] = -1;
         me.stats[A_INT] =  2;

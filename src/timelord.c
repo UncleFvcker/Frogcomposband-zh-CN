@@ -114,17 +114,17 @@ void mon_change_race(mon_ptr mon, int new_r_idx, cptr verb)
                 }
                 while (!hallu_race->name || (hallu_race->flags1 & RF1_UNIQUE));
                 hallu_name = r_name + hallu_race->name;
-                cmsg_format(TERM_L_BLUE, "%^s %s into %s %s.", m_name, verb, is_a_vowel(hallu_name[0]) ? "an" : "a", r_name + hallu_race->name);
+                cmsg_format(TERM_L_BLUE, "%^s%s成了%.0s%s。", m_name, verb, is_a_vowel(hallu_name[0]) ? "一只" : "a", r_name + hallu_race->name);
             }
             else if (mon->nickname)
             {
                 cptr my_desc = r_name + race->name; /* hack - no monster_desc() flags fully suppress the nickname */
-                cmsg_format(TERM_L_BLUE, "%^s %s into %s %s.", m_name, verb, is_a_vowel(my_desc[0]) ? "an" : "a", my_desc);
+                cmsg_format(TERM_L_BLUE, "%^s%s成了%.0s%s。", m_name, verb, is_a_vowel(my_desc[0]) ? "一只" : "a", my_desc);
             }
             else
             {
                 monster_desc(new_name, mon, MD_INDEF_VISIBLE);
-                cmsg_format(TERM_L_BLUE, "%^s %s into %s.", m_name, verb, new_name);
+                cmsg_format(TERM_L_BLUE, "%^s%s成了%s。", m_name, verb, new_name);
                 if (race->r_sights < MAX_SHORT) race->r_sights++;
             }
         }
@@ -166,14 +166,14 @@ bool devolve_monster(int m_idx, bool msg)
     if (r_idx <= 0)
     {
         if (msg)
-            msg_format("%^s is too primitive for further devolution.", m_name);
+            msg_format("%^s太原始了，无法进一步退化。", m_name);
         return FALSE;
     }
 
     if (_monster_save(r_ptr, 2*p_ptr->lev))
     {
         if (msg)
-            msg_format("%^s resists.", m_name);
+            msg_format("%^s抵抗了。", m_name);
         return FALSE;
     }
 
@@ -196,7 +196,7 @@ bool evolve_monster(int m_idx, bool msg)
     if (r_idx <= 0)
     {
         if (msg)
-            msg_format("%^s has reached evolutionary perfection.", m_name);
+            msg_format("%^s已经达到了进化的完美境界。", m_name);
         return FALSE;
     }
     r_ptr = &r_info[r_idx];    /* We'll use the target race for a saving throw */
@@ -204,7 +204,7 @@ bool evolve_monster(int m_idx, bool msg)
     if (_monster_save(r_ptr, 2*p_ptr->lev))
     {
         if (msg)
-            msg_format("%^s resists.", m_name);
+            msg_format("%^s抵抗了。", m_name);
         return FALSE;
     }
     mon_change_race(m_ptr, r_idx, "evolved");
@@ -218,7 +218,7 @@ bool check_foresight(void)
 
     if (p_ptr->tim_foresight && randint1(100) <= 25)
     {
-        msg_print("You saw that one coming!");
+        msg_print("你早料到了！");
         return TRUE;
     }
 
@@ -235,11 +235,10 @@ static void _bolt_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Bolt");
+        var_set_string(res, "时间箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a temporal bolt at chosen foe. Time based attacks may produce various "
-                            "effects on a monster including slowing, stasis, and many others.");
+        var_set_string(res, "向选定的敌人发射时间箭。基于时间的攻击可能会对怪物产生各种影响，包括减速、停滞等。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(spell_power(dd), ds, spell_power(p_ptr->to_d_spell)));
@@ -271,10 +270,10 @@ static void _regeneration_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Regeneration");
+        var_set_string(res, "再生");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Speeds your recovery from physical damage.");
+        var_set_string(res, "加快你从物理伤害中恢复的速度。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(b, b));
@@ -294,10 +293,10 @@ static void _foretell_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Foretell");
+        var_set_string(res, "预言");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detects nearby monsters.");
+        var_set_string(res, "侦测附近的怪物。");
         break;
     case SPELL_CAST:
         detect_monsters_normal(DETECT_RAD_DEFAULT);
@@ -314,10 +313,10 @@ static void _quicken_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Quicken");
+        var_set_string(res, "加速");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gives a small speed boost for a short while.");
+        var_set_string(res, "在短时间内提供少量的速度加成。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(7, 7));
@@ -337,10 +336,10 @@ static void _withering_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Wither");
+        var_set_string(res, "枯萎");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Destroy an adjacent wall, tree or door.");
+        var_set_string(res, "摧毁相邻的墙壁、树木或门。");
         break;
     case SPELL_CAST:
     {
@@ -361,21 +360,21 @@ static void _withering_spell(int cmd, variant *res)
             cave_alter_feat(y, x, FF_TUNNEL);
             if (!cave_have_flag_bold(y, x, FF_DOOR)) /* Hack: Permanent Door in Arena! */
             {
-                msg_print("The door withers away.");
+                msg_print("门枯萎消失了。");
                 p_ptr->update |= (PU_FLOW);
             }
         }
         else if (cave_have_flag_bold(y, x, FF_HURT_ROCK))
         {
             cave_alter_feat(y, x, FF_HURT_ROCK);
-            msg_print("The wall turns to dust.");
+            msg_print("墙壁化为尘土。");
 
             p_ptr->update |= (PU_FLOW);
         }
         else if (cave_have_flag_bold(y, x, FF_TREE))
         {
             cave_set_feat(y, x, one_in_(3) ? feat_brake : feat_grass);
-            msg_print("The tree shrivels and dies.");
+            msg_print("树木枯萎而死。");
         }
         break;
     }
@@ -391,11 +390,10 @@ static void _blast_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blast");
+        var_set_string(res, "时间爆破");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a temporal blast at chosen foe. Time based attacks may produce various "
-                            "effects on a monster including slowing, stasis, and many others.");
+        var_set_string(res, "向选定的敌人发射时间爆破。基于时间的攻击可能会对怪物产生各种影响，包括减速、停滞等。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam));
@@ -421,10 +419,10 @@ static void _back_to_origins_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Revert");
+        var_set_string(res, "退化术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Eliminate monster offspring.");
+        var_set_string(res, "消除怪物的后代。");
         break;
     case SPELL_CAST:
     {
@@ -448,9 +446,9 @@ static void _back_to_origins_spell(int cmd, variant *res)
         }
 
         if (ct > 0)
-            msg_print("You feel the local population has reverted to an earlier state.");
+            msg_print("你感觉当地的怪物种群退化到了早期的状态。");
         else
-            msg_print("You feel the local population is stable.");
+            msg_print("你感觉当地的怪物种群很稳定。");
         var_set_bool(res, TRUE);
         break;
     }
@@ -467,10 +465,10 @@ static void _haste_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Haste");
+        var_set_string(res, "急速");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You gain a temporary speed boost.");
+        var_set_string(res, "你获得了暂时的速度加成。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(base, sides));
@@ -491,10 +489,10 @@ static void _wave_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Wave");
+        var_set_string(res, "时间波");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Produce a wave of time, affecting all monsters in sight.");
+        var_set_string(res, "产生一道时间波，影响视线内的所有怪物。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(1, spell_power(ds), spell_power(p_ptr->to_d_spell)));
@@ -515,10 +513,10 @@ static void _shield_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shield");
+        var_set_string(res, "时间盾");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Grants an Aura of Time for a short while.");
+        var_set_string(res, "在短时间内赋予时间光环。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(b, b));
@@ -538,19 +536,19 @@ static void _rewind_time_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Rewind");
+        var_set_string(res, "时光倒流");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Temporal escape:  You flee to safety, but forget some of your recent experiences.");
+        var_set_string(res, "时间逃脱：你逃到安全的地方，但会忘记一些最近的经历。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
-        if (!get_check("You will irreversibly alter the time line. Are you sure?")) return;
+        if (!get_check("你将不可逆转地改变时间线。你确定吗？")) return;
         var_set_bool(res, TRUE);
 
         if (p_ptr->inside_arena || only_downward() || !dun_level)
         {
-            msg_print("Nothing happens.");
+            msg_print("什么也没有发生。");
             return;
         }
 
@@ -602,11 +600,10 @@ static void _breath_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breath");
+        var_set_string(res, "时间吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathe time at chosen foe. Time based attacks may produce various "
-                            "effects on a monster including slowing, stasis, and many others.");
+        var_set_string(res, "向选定的敌人喷吐时间。基于时间的攻击可能会对怪物产生各种影响，包括减速、停滞等。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _breath_dam()));
@@ -632,10 +629,10 @@ static void _remember_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Remembrance");
+        var_set_string(res, "追忆");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Restores life and stats.");
+        var_set_string(res, "恢复生命值和属性。");
         break;
     case SPELL_CAST:
         do_res_stat(A_STR);
@@ -659,10 +656,10 @@ static void _stasis_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Stasis");
+        var_set_string(res, "时间停滞");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to suspend all monsters in view.");
+        var_set_string(res, "试图让视线内的所有怪物时间停滞。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(spell_power(7 * p_ptr->lev / 3)));
@@ -683,10 +680,10 @@ static void _travel_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Travel");
+        var_set_string(res, "时空旅行");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Travel instantaneously to given location. Be careful you don't accidentally get lost!");
+        var_set_string(res, "瞬间旅行到给定位置。小心别意外迷路了！");
         break;
     case SPELL_INFO:
         var_set_string(res, info_range(r));
@@ -705,15 +702,15 @@ static void _double_move_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Double Move");
+        var_set_string(res, "双重移动");
         break;
     case SPELL_DESC:
-        var_set_string(res, "After casting this spell, you may take two additional free moves. Make the most of them!");
+        var_set_string(res, "施放此法术后，你可以额外进行两次免费移动。好好利用它们！");
         break;
     case SPELL_CAST:
         if (p_ptr->free_turns)
         {
-            msg_print("You're wasting your free turns!");
+            msg_print("你在浪费你的免费回合！");
         }
         else
         {
@@ -735,13 +732,13 @@ static void _foresee_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Foresee");
+        var_set_string(res, "预见未来");
         break;
     case SPELL_DESC:
-        var_set_string(res, "For a very short time, you will be able to look into the future.");
+        var_set_string(res, "在极短的时间内，你将能够预见未来。");
         break;
     case SPELL_INFO:
-        var_set_string(res, format("dur %d", b));
+        var_set_string(res, format("持续 %d", b));
         break;
     case SPELL_CAST:
         set_tim_foresight(b, FALSE);
@@ -803,12 +800,12 @@ static void _on_fail(const spell_info *spell)
         {
             set_fast(0, TRUE);
             set_slow(randint1(5) + 5, FALSE);
-            msg_print("You feel caught in a temporal inversion!");
+            msg_print("你感觉陷入了时间倒转！");
         }
         else if (b <= 99)
         {
             lose_exp(p_ptr->exp / 4);
-            msg_print("You feel life's experiences fade away!");
+            msg_print("你感觉生活的经历逐渐褪去！");
         }
         else
         {
@@ -818,7 +815,7 @@ static void _on_fail(const spell_info *spell)
             dec_stat(A_STR, 10, FALSE);
             dec_stat(A_CHR, 10, FALSE);
             dec_stat(A_INT, 10, FALSE);
-            msg_print("You feel as weak as a newborn kitten!");
+            msg_print("你感觉自己像刚出生的小猫一样虚弱！");
         }
     }
 }
@@ -858,18 +855,8 @@ class_t *time_lord_get_class(void)
     skills_t bs = { 25,  35,  35,   2,  16,   8,  48,  20 };
     skills_t xs = {  7,  11,  10,   0,   0,   0,  13,  13 };
 
-        me.name = "Time-Lord";
-        me.desc = "Time-Lords are masters of temporal magic, altering the flow of time "
-                  "to their advantage. They gain new powers as their experience grows, "
-                  "and are unique in their ability to use time-based spells against monsters. "
-                  "Not only do these attacks damage a foe, they also inflict a wide variety of possible effects, "
-                  "from slowing to amnesia, from evolution to devolution, from weakening to stasis. "
-                  "In addition to temporal attacks, Time-Lords gain great powers of speed, and "
-                  "become naturally faster with experience. Legend has it that masters of time can even see "
-                  "into the future, avoiding attacks that would otherwise prove fatal!\n \n"
-                  "Time-Lords are fairly proficient with magical devices, but are mediocre fighters and not "
-                  "good at archery at all. At high levels, they become resistant to time. "
-                  "Time-Lords' primary stat is Wisdom.";
+        me.name = "时间领主";
+        me.desc = "时间领主是时间魔法的大师，他们能改变时间流以获取优势。他们会随着经验增长获得新能力，并且能独特地将时间法术用于攻击怪物。这不仅能伤害敌人，还能造成从减速到失忆、从进化到退化、从虚弱到停滞等各种效果。除了时间攻击外，时间领主还能获得极快的速度，并且天生随经验变得更敏捷。传说中，时间大师甚至能预见未来，从而避开致命的攻击！\n \n时间领主相当精通魔法装置，但近战平庸，且完全不擅长箭术。在高等级时，他们会对时间效果产生抗性。时间领主的主要属性是感知。";
 
         me.stats[A_STR] = -1;
         me.stats[A_INT] =  0;

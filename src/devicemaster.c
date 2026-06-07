@@ -22,10 +22,10 @@ void _desperation_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Desperation");
+        var_set_string(res, "绝境");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Use multiple charges in chosen device for extra power. The chosen device may explode, however.");
+        var_set_string(res, "消耗所选装置的多次使用次数以获得额外的力量。然而，所选的装置可能会发生爆炸。");
         break;
     case SPELL_CAST:
         devicemaster_desperation = TRUE;
@@ -83,7 +83,7 @@ bool _detect_devices(int range)
     }
 
     if (result)
-        msg_print("You sense the presence of magical devices!");
+        msg_print("你感觉到了魔法装置的存在！");
 
     return result;
 }
@@ -93,10 +93,10 @@ void _detect_devices_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Devices");
+        var_set_string(res, "探测装置");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detects nearby magical devices.");
+        var_set_string(res, "探测附近的魔法装置。");
         break;
     case SPELL_CAST:
         _detect_devices(DETECT_RAD_DEFAULT);
@@ -127,10 +127,10 @@ void _identify_device_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Identify Device");
+        var_set_string(res, "鉴定装置");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Identify a single magical device.");
+        var_set_string(res, "鉴定一件魔法装置。");
         break;
     case SPELL_CAST:
         if (p_ptr->lev >= 25)
@@ -149,13 +149,13 @@ void _recharging_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Recharging");
+        var_set_string(res, "充能");
         break;
     case SPELL_DESC:
-        var_set_string(res, "It attempts to recharge a device using another device for power.");
+        var_set_string(res, "它尝试使用另一个装置的能量来为目标装置充能。");
         break;
     case SPELL_INFO:
-        var_set_string(res, format("Power %d", 50 + 2*p_ptr->lev));
+        var_set_string(res, format("强度 %d", 50 + 2*p_ptr->lev));
         break;
     case SPELL_CAST:
         /* Devicemasters have no mana */
@@ -193,8 +193,8 @@ static obj_ptr _get_src_obj(void)
 
     _transfer_src_obj = NULL;
 
-    prompt.prompt = "Transfer from which item?";
-    prompt.error = "You have no source items to use.";
+    prompt.prompt = "从哪件物品转移？";
+    prompt.error = "你没有可用的来源物品。";
     prompt.filter = _transfer_obj_p;
     prompt.where[0] = INV_PACK;
 
@@ -208,8 +208,8 @@ static obj_ptr _get_dest_obj(obj_ptr src_obj)
 
     _transfer_src_obj = src_obj;
 
-    prompt.prompt = "Transfer to which item?";
-    prompt.error = "You have no destination items to use.";
+    prompt.prompt = "转移到哪件物品？";
+    prompt.error = "你没有可用的目标物品。";
     prompt.filter = _transfer_obj_p;
     prompt.where[0] = INV_PACK;
 
@@ -226,7 +226,7 @@ static bool _transfer_effect(void)
     if (!src_obj) return FALSE;
     if (object_is_artifact(src_obj))
     {
-        msg_print("Failed! You cannot transfer from artifacts.");
+        msg_print("失败！你不能从神器中转移。");
         return FALSE;
     }
 
@@ -234,17 +234,17 @@ static bool _transfer_effect(void)
     if (!dest_obj) return FALSE;
     if (dest_obj == src_obj)
     {
-        msg_print("Failed! Please pick distinct objects for the source and destination.");
+        msg_print("失败！请为来源和目标选择不同的物品。");
         return FALSE;
     }
     if (object_is_artifact(dest_obj))
     {
-        msg_print("Failed! You cannot transfer to artifacts.");
+        msg_print("失败！你不能转移到神器中。");
         return FALSE;
     }
     if (device_level(dest_obj) < src_obj->activation.difficulty)
     {
-        msg_print("Failed! The destination device is not powerful enough to receive the source effect.");
+        msg_print("失败！目标装置不够强大，无法接收来源的效果。");
         return FALSE;
     }
 
@@ -280,14 +280,14 @@ static bool _transfer_essence(void)
 
     if (dest_obj == src_obj)
     {
-        msg_print("Failed! Please pick distinct objects for the source and destination.");
+        msg_print("失败！请为来源和目标选择不同的物品。");
         return FALSE;
     }
     if (tval == TV_SCROLL || tval == TV_POTION)
     {
         if (dest_kind->level > src_kind->level) /* Double Check ... should already be excluded! */
         {
-            msg_print("Failed! The essence is too weak to be transferred to this object.");
+            msg_print("失败！这股精华太弱了，无法转移到该物品上。");
             return FALSE;
         }
     }
@@ -297,7 +297,7 @@ static bool _transfer_essence(void)
 
     if (max_charges <= 0)
     {
-        msg_print("Failed! The destination object is already fully charged.");
+        msg_print("失败！目标物品已经充满电了。");
         return FALSE;
     }
 
@@ -310,7 +310,7 @@ static bool _transfer_essence(void)
 
     if (dest_charges <= 0)
     {
-        msg_print("Failed! The source object is not powerful enough to transfer even a single charge.");
+        msg_print("失败！来源物品不够强大，连一次使用次数都无法转移。");
         return FALSE;
     }
 
@@ -328,21 +328,21 @@ void _transfer_charges_spell(int cmd, variant *res)
     {
     case SPELL_NAME:
         if (p_ptr->psubclass != DEVICEMASTER_POTIONS && p_ptr->psubclass != DEVICEMASTER_SCROLLS)
-            var_set_string(res, "Transfer Effect");
+            var_set_string(res, "转移效果");
         else
-            var_set_string(res, "Transfer Essence");
+            var_set_string(res, "转移精华");
         break;
     case SPELL_DESC:
         if (p_ptr->psubclass == DEVICEMASTER_POTIONS)
-            var_set_string(res, "Transfer essence from one potion to another.");
+            var_set_string(res, "将精华从一瓶药水转移到另一瓶药水。");
         else if (p_ptr->psubclass == DEVICEMASTER_SCROLLS)
-            var_set_string(res, "Transfer essence from one scroll to another.");
+            var_set_string(res, "将精华从一张卷轴转移到另一张卷轴。");
         else if (p_ptr->psubclass == DEVICEMASTER_WANDS)
-            var_set_string(res, "Transfer effect from one wand to another, destroying the source wand.");
+            var_set_string(res, "将效果从一根魔杖转移到另一根魔杖，此举会摧毁来源的魔杖。");
         else if (p_ptr->psubclass == DEVICEMASTER_RODS)
-            var_set_string(res, "Transfer effect from one rod to another, destroying the source rod.");
+            var_set_string(res, "将效果从一根魔棒转移到另一根魔棒，此举会摧毁来源的魔棒。");
         else if (p_ptr->psubclass == DEVICEMASTER_STAVES)
-            var_set_string(res, "Transfer effect from one staff to another, destroying the source staff.");
+            var_set_string(res, "将效果从一根法杖转移到另一根法杖，此举会摧毁来源的法杖。");
         break;
     case SPELL_CAST:
         if (p_ptr->psubclass != DEVICEMASTER_POTIONS && p_ptr->psubclass != DEVICEMASTER_SCROLLS)
@@ -369,6 +369,19 @@ static spell_info _get_spells[] =
 };
 
 cptr devicemaster_speciality_name(int psubclass)
+{
+    switch (psubclass)
+    {
+    case DEVICEMASTER_RODS: return "魔棒";
+    case DEVICEMASTER_STAVES: return "法杖";
+    case DEVICEMASTER_WANDS: return "魔杖";
+    case DEVICEMASTER_POTIONS: return "药水";
+    case DEVICEMASTER_SCROLLS: return "卷轴";
+    }
+    return "";
+}
+
+cptr devicemaster_internal_speciality_name(int psubclass)
 {
     switch (psubclass)
     {
@@ -446,21 +459,21 @@ static void _character_dump(doc_ptr doc)
 {
     cptr desc = devicemaster_speciality_name(p_ptr->psubclass);
 
-    doc_printf(doc, "<topic:Abilities>================================== <color:keypress>A</color>bilities ==================================\n\n");
+    doc_printf(doc, "<topic:Abilities>==================================== <color:keypress>A</color> 能力 ====================================\n\n");
 
     {
         int pow = p_ptr->lev / 10;
         if (pow)
-            doc_printf(doc, " * You gain +%d%% power when using %s.\n", device_power_aux(100, pow) - 100, desc);
+            doc_printf(doc, "* 你在使用%s时获得 +%d%% 的强度。\n", device_power_aux(100, pow) - 100, desc);
     }
-    doc_printf(doc, " * You use %s more quickly.\n", desc);
+    doc_printf(doc, "* 你使用%s的速度更快。\n", desc);
     if (p_ptr->psubclass != DEVICEMASTER_POTIONS && p_ptr->psubclass != DEVICEMASTER_SCROLLS)
-        doc_printf(doc, " * You have a chance of not consuming a charge when using %s.\n", desc);
+        doc_printf(doc, "* 你在使用%s时有几率不消耗使用次数。\n", desc);
     else
-        doc_printf(doc, " * You have a chance of not consuming an item when using %s.\n", desc);
+        doc_printf(doc, "* 你在使用%s时有几率不消耗物品。\n", desc);
     if (p_ptr->psubclass != DEVICEMASTER_POTIONS && p_ptr->psubclass != DEVICEMASTER_SCROLLS)
-        doc_printf(doc, " * You may use %s even when frightened.\n", desc);
-    doc_printf(doc, " * You are resistant to charge draining (Power=%d).\n\n", p_ptr->lev);
+        doc_printf(doc, "* 即使在恐惧状态下，你也可以使用%s。\n", desc);
+    doc_printf(doc, "* 你对吸取充能效果有抗性 (强度=%d)。\n\n", p_ptr->lev);
 
     py_dump_spells(doc); 
 }
@@ -492,7 +505,7 @@ class_t *devicemaster_get_class(int psubclass)
     skills_t bs = { 25,  40,  36,   2,  20,  16,  48,  35 };
     skills_t xs = {  7,  15,  10,   0,   0,   0,  13,  11 };
 
-        me.name = "Devicemaster";
+        me.name = "装置大师";
         me.desc = 
             "Devicemasters are excellent with magical devices, but poor in most other skills. "
             "They may shoot or use melee in a pinch, but this will never be their forte; instead, "

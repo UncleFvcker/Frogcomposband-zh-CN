@@ -96,8 +96,8 @@ static void _birth(void)
 
     p_ptr->current_r_idx = MON_CLEAR_HOUND;
     equip_on_change_race();
-    skills_innate_init("Claw", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
-    skills_innate_init("Bite", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("爪击", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("撕咬", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
     object_prep(&forge, lookup_kind(TV_RING, 0));
     forge.name2 = EGO_RING_COMBAT;
@@ -132,7 +132,7 @@ void hound_calc_innate_attacks(void)
         a.weight = 100;
         calc_innate_blows(&a, 200);
         a.msg = "You claw.";
-        a.name = "Claw";
+        a.name = "爪击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -157,7 +157,7 @@ void hound_calc_innate_attacks(void)
 
         calc_innate_blows(&a, 300);
         a.msg = "You bite.";
-        a.name = "Bite";
+        a.name = "撕咬";
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
 }
@@ -250,14 +250,14 @@ static void _breathe_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe");
+        var_set_string(res, "吐息");
         break;
     case SPELL_DESC:
     {
         static char elly[40];
         strcpy(elly, _breath_desc());
         str_tolower(elly);
-        var_set_string(res, format("Breathes %s at your opponent.", elly));
+        var_set_string(res, format("向你的对手喷吐%s。", elly));
         break;
     }
     case SPELL_INFO:
@@ -277,7 +277,7 @@ static void _breathe_spell(int cmd, variant *res)
         if (get_fire_dir(&dir))
         {
             int e = _breath_effect();
-            msg_format("You breathe %s", gf_name(e));
+            msg_format("你喷吐出%s", gf_name(e));
             fire_ball(e, dir, _breath_amount(), -1 - (p_ptr->lev / 20));
             var_set_bool(res, TRUE);
         }
@@ -294,13 +294,13 @@ void _bark_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Bark");
+        var_set_string(res, "吠叫");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You will make enough noise to wake the neighbors.");
+        var_set_string(res, "你会制造出足以吵醒邻居的巨大噪音。");
         break;
     case SPELL_CAST:
-        msg_print("Woof! Woof!");
+        msg_print("汪！汪！");
         aggravate_monsters(0);
         var_set_bool(res, TRUE);
         break;
@@ -315,10 +315,10 @@ void hound_leap_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Pounce");
+        var_set_string(res, "猛扑");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Leap towards a nearby prey and attack in a single action.");
+        var_set_string(res, "跃向附近的猎物，并在一次行动中进行攻击。");
         break;
     default:
         rush_attack_spell(cmd, res);
@@ -331,10 +331,10 @@ void hound_run_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Run");
+        var_set_string(res, "奔跑");
         break;
     case SPELL_DESC:
-        var_set_string(res, "By moving quickly, you will be able to run down your prey or to flee quickly in a pinch.");
+        var_set_string(res, "通过快速移动，你将能够追赶猎物，或者在紧要关头迅速逃离。");
         break;
     default:
         quick_walk_spell(cmd, res);
@@ -347,10 +347,10 @@ void hound_sniff_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Sniff");
+        var_set_string(res, "嗅探");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempt to smell a nearby meal.");
+        var_set_string(res, "尝试嗅出附近的猎物。");
         break;
     case SPELL_CAST:
         detect_monsters_living(DETECT_RAD_DEFAULT, "You smell nearby monsters.");
@@ -367,10 +367,10 @@ void hound_stalk_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Stalk");
+        var_set_string(res, "潜行");
         break;
     case SPELL_DESC:
-        var_set_string(res, "By moving slowly, you will be able to sneak up on your prey very effectively.");
+        var_set_string(res, "通过缓慢移动，你将能够非常有效地悄悄接近猎物。");
         break;
     case SPELL_CAST:
         if (p_ptr->action == ACTION_STALK) set_action(ACTION_NONE);
@@ -696,7 +696,7 @@ static void _gain_level(int new_level) {
     if (p_ptr->lev >= _tiers[tier + 1].level)
     {
         p_ptr->current_r_idx = _random(_tiers[tier+1].r_ids);
-        msg_format("You have evolved into a %s.", _mon_name(p_ptr->current_r_idx));
+        msg_format("你进化成了%s。", _mon_name(p_ptr->current_r_idx));
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -713,22 +713,8 @@ race_t *mon_hound_get_race(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.name = "Hound";
-        me.desc = "While Zephyr Hounds typically hunt in packs, you have chosen to go it alone. "
-                    "You will begin life in the weak form of a Clear Hound. As you mature, "
-                    "you will take a number of evolutionary steps. At each such step, the "
-                    "form you evolve into will be randomly determined; but each tier offers "
-                    "more powerful choices than the last. Who knows - you may even evolve "
-                    "into an Aether Hound some day.\n \n"
-                    "Hounds are not magical, and so cannot cast spells; however, they are "
-                    "fantastic hunters, and learn a number of special abilities that will aid them "
-                    "in this endeavour. And as you probably know all too well, hounds love to breathe!\n \n"
-                    "Due to their canine bodies, Hounds cannot wield weapons; instead, they "
-                    "attack with their vicious bite and razor-sharp claws. While their melee is "
-                    "not as powerful as that of dragons, it usually gets the job done. "
-                    "Hounds can wear four rings on their front paws, a pair of boots on their "
-                    "hind legs, an amulet around their neck, and even a cloak and a suit of "
-                    "body armor.";
+        me.name = "猎犬";
+        me.desc = "虽然西风猎犬通常成群结队地狩猎，但你却选择了独来独往。你将以一只脆弱的透明猎犬形态开始生命。随着你的成长，你将经历多次进化。在每一次进化中，你的形态将被随机决定；但每个阶层的选择都比上一个更强大。谁知道呢——也许有一天你会进化成以太猎犬。\n \n猎犬不具魔力，因此无法施展法术；然而，它们是出色的猎手，并能学习一些特殊能力来协助狩猎。而且正如你所深知的那样，猎犬非常喜欢吐息！\n \n受限于犬类的躯体，猎犬无法挥舞武器；取而代之的是，它们用凶猛的撕咬和极其锋利的爪子进行攻击。虽然它们的近战能力不如龙族强大，但通常也足以解决问题。猎犬可以在前爪上戴四枚戒指，在后腿上穿一双靴子，在脖子上戴一条护身符，甚至还能穿上一件披风和一套身体护甲。";
 
 
         me.infra = 5;

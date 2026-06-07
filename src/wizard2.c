@@ -158,47 +158,47 @@ cptr life_rating_desc(bool use_attr)
     if (!use_attr) return (percentage_life ? format("%d/100", life_rating()) : format("%d/76", tulos));
     if (tulos >= 76) /* 76 is the max but let's be paranoid... */
     {
-        strcpy(buf, "Optimal");
+        strcpy(buf, "绝佳");
         attr = TERM_VIOLET;
     }
     else if (tulos >= 66)
     {
-        strcpy(buf, "Superb");
+        strcpy(buf, "极好");
         attr = TERM_GREEN; 
     }
     else if (tulos >= 57)
     {
-        strcpy(buf, "Excellent");
+        strcpy(buf, "优秀");
         attr = TERM_L_GREEN;
     }
     else if (tulos >= 48)
     {
-        strcpy(buf, "Very Good");
+        strcpy(buf, "很好");
         attr = TERM_YELLOW;
     }
     else if (tulos >= 39)
     {
-        strcpy(buf, "Good");
+        strcpy(buf, "良好");
         attr = TERM_YELLOW;
     }
     else if (tulos >= 29)
     {
-        strcpy(buf, "Fair");
+        strcpy(buf, "一般");
         attr = TERM_ORANGE;
     }
     else if (tulos >= 19)
     {
-        strcpy(buf, "Bad");
+        strcpy(buf, "劣质");
         attr = TERM_L_RED;
     }
     else if (tulos >= 9)
     {
-        strcpy(buf, "Very Bad");
+        strcpy(buf, "极差");
         attr = TERM_RED;
     }
     else
     {
-        strcpy(buf, "Abysmal");
+        strcpy(buf, "极糟");
         attr = TERM_L_DARK;
     }
     if (percentage_life) return format("<color:%c>%s</color> (%d%%)", attr_to_attr_char(attr), buf, life_rating());
@@ -240,12 +240,12 @@ void do_cmd_rerate(bool display)
 
     if (display)
     {
-        msg_format("Your life rating is now %s.", life_rating_desc(TRUE));
+        msg_format("你现在的生命评级是 %s。", life_rating_desc(TRUE));
         p_ptr->knowledge |= KNOW_HPRATE;
     }
     else
     {
-        msg_print("Life rate is changed.");
+        msg_print("生命评级已更改。");
         p_ptr->knowledge &= ~(KNOW_HPRATE);
     }
 }
@@ -351,7 +351,7 @@ static void do_cmd_wiz_change_aux(void)
     sprintf(tmp_val, "%d", WEAPON_EXP_MASTER);
 
     /* Query */
-    if (!get_string("Proficiency: ", tmp_val, 9)) return;
+    if (!get_string("熟练度：", tmp_val, 9)) return;
 
     /* Extract */
     tmp_s16b = atoi(tmp_val);
@@ -388,7 +388,7 @@ static void do_cmd_wiz_change_aux(void)
     sprintf(tmp_val, "%d", p_ptr->au);
 
     /* Query */
-    if (!get_string("Gold: ", tmp_val, 10)) return;
+    if (!get_string("金币：", tmp_val, 10)) return;
 
     /* Extract */
     tmp_long = atol(tmp_val);
@@ -404,7 +404,7 @@ static void do_cmd_wiz_change_aux(void)
     sprintf(tmp_val, "%d", p_ptr->max_exp);
 
     /* Query */
-    if (!get_string("Experience: ", tmp_val, 10)) return;
+    if (!get_string("经验：", tmp_val, 10)) return;
 
     /* Extract */
     tmp_long = atol(tmp_val);
@@ -423,7 +423,7 @@ static void do_cmd_wiz_change_aux(void)
     }
 
     sprintf(tmp_val, "%d", p_ptr->fame);
-    if (!get_string("Fame: ", tmp_val, 4)) return;
+    if (!get_string("名声：", tmp_val, 4)) return;
     tmp_long = atol(tmp_val);
     if (tmp_long < 0) tmp_long = 0L;
     p_ptr->fame = (s16b)tmp_long;
@@ -445,8 +445,8 @@ static void do_cmd_wiz_change(void)
 /* Blue-Mage - learn spells for free */
 static void do_cmd_wiz_blue_mage(void)
 {
-    int n = get_quantity("Which type? ", MST_COUNT - 1);
-    int e = get_quantity("Which effect? ", 200);
+    int n = get_quantity("哪种类型？", MST_COUNT - 1);
+    int e = get_quantity("哪种效果？", 200);
     blue_mage_learn_spell_aux(n, e, 0, 0, TRUE);
 }
 
@@ -464,64 +464,64 @@ typedef struct tval_desc
  */
 static tval_desc tvals[] =
 {
-    { TV_SWORD,             "Sword"                },
-    { TV_POLEARM,           "Polearm"              },
-    { TV_HAFTED,            "Hafted Weapon"        },
-    { TV_BOW,               "Bow"                  },
-    { TV_ARROW,             "Arrows"               },
-    { TV_BOLT,              "Bolts"                },
-    { TV_SHOT,              "Shots"                },
-    { TV_SHIELD,            "Shield"               },
-    { TV_CROWN,             "Crown"                },
-    { TV_HELM,              "Helm"                 },
-    { TV_GLOVES,            "Gloves"               },
-    { TV_BOOTS,             "Boots"                },
-    { TV_CLOAK,             "Cloak"                },
-    { TV_DRAG_ARMOR,        "Dragon Scale Mail"    },
-    { TV_HARD_ARMOR,        "Hard Armor"           },
-    { TV_SOFT_ARMOR,        "Soft Armor"           },
-    { TV_RING,              "Ring"                 },
-    { TV_AMULET,            "Amulet"               },
-    { TV_LITE,              "Lite"                 },
-    { TV_POTION,            "Potion"               },
-    { TV_SCROLL,            "Scroll"               },
-    { TV_WAND,              "Wand"                 },
-    { TV_STAFF,             "Staff"                },
-    { TV_ROD,               "Rod"                  },
-    { TV_LIFE_BOOK,         "Life Spellbook"       },
-    { TV_SORCERY_BOOK,      "Sorcery Spellbook"    },
-    { TV_NATURE_BOOK,       "Nature Spellbook"     },
-    { TV_CHAOS_BOOK,        "Chaos Spellbook"      },
-    { TV_DEATH_BOOK,        "Death Spellbook"      },
-    { TV_TRUMP_BOOK,        "Trump Spellbook"      },
-    { TV_ARCANE_BOOK,       "Arcane Spellbook"     },
-    { TV_CRAFT_BOOK,        "Craft Spellbook"},
-    { TV_DAEMON_BOOK,       "Daemon Spellbook"},
-    { TV_CRUSADE_BOOK,      "Crusade Spellbook"},
-    { TV_NECROMANCY_BOOK,   "Necromancy Spellbook"},
-    { TV_ARMAGEDDON_BOOK,   "Armageddon Spellbook"},
-    { TV_LAW_BOOK,          "Law Spellbook"        },
-    { TV_MUSIC_BOOK,        "Music Spellbook"      },
-    { TV_HISSATSU_BOOK,     "Book of Kendo"        },
-    { TV_HEX_BOOK,          "Hex Spellbook"        },
-    { TV_RAGE_BOOK,         "Rage Spellbook"       },
-    { TV_BURGLARY_BOOK,     "Thieves' Guide"       },
-    { TV_PARCHMENT,         "Parchment" },
-    { TV_WHISTLE,           "Whistle"    },
-    { TV_QUIVER,            "Quiver"               },
-    { TV_SPIKE,             "Spikes"               },
-    { TV_DIGGING,           "Digger"               },
-    { TV_CHEST,             "Chest"                },
-    { TV_CAPTURE,           "Capture Ball"         },
-    { TV_CARD,              "Express Card"         },
-    { TV_FIGURINE,          "Magical Figurine"     },
-    { TV_STATUE,            "Statue"               },
-    { TV_CORPSE,            "Corpse"               },
-    { TV_FOOD,              "Food"                 },
-    { TV_FLASK,             "Flask"                },
-    { TV_BOTTLE,            "Bottle"               },
-    { TV_JUNK,              "Junk"                 },
-    { TV_SKELETON,          "Skeleton"             },
+    { TV_SWORD,             "剑类"                },
+    { TV_POLEARM,           "长柄武器"              },
+    { TV_HAFTED,            "有柄武器"        },
+    { TV_BOW,               "弓类"                  },
+    { TV_ARROW,             "箭矢"               },
+    { TV_BOLT,              "弩栓"                },
+    { TV_SHOT,              "弹丸"                },
+    { TV_SHIELD,            "盾牌"               },
+    { TV_CROWN,             "头冠"                },
+    { TV_HELM,              "头盔"                 },
+    { TV_GLOVES,            "手套"               },
+    { TV_BOOTS,             "靴子"                },
+    { TV_CLOAK,             "斗篷"                },
+    { TV_DRAG_ARMOR,        "龙鳞铠甲"    },
+    { TV_HARD_ARMOR,        "重甲"           },
+    { TV_SOFT_ARMOR,        "轻甲"           },
+    { TV_RING,              "戒指"                 },
+    { TV_AMULET,            "护身符"               },
+    { TV_LITE,              "光源"                 },
+    { TV_POTION,            "药水"               },
+    { TV_SCROLL,            "卷轴"               },
+    { TV_WAND,              "魔杖"                 },
+    { TV_STAFF,             "法杖"                },
+    { TV_ROD,               "魔棒"                  },
+    { TV_LIFE_BOOK,         "生命法术书"       },
+    { TV_SORCERY_BOOK,      "咒术法术书"    },
+    { TV_NATURE_BOOK,       "自然法术书"     },
+    { TV_CHAOS_BOOK,        "混沌法术书"      },
+    { TV_DEATH_BOOK,        "死亡法术书"      },
+    { TV_TRUMP_BOOK,        "王牌法术书"      },
+    { TV_ARCANE_BOOK,       "奥秘法术书"     },
+    { TV_CRAFT_BOOK,        "工匠法术书"},
+    { TV_DAEMON_BOOK,       "恶魔法术书"},
+    { TV_CRUSADE_BOOK,      "圣战法术书"},
+    { TV_NECROMANCY_BOOK,   "死灵法术书"},
+    { TV_ARMAGEDDON_BOOK,   "毁灭法术书"},
+    { TV_LAW_BOOK,          "律法法术书"        },
+    { TV_MUSIC_BOOK,        "音乐法术书"      },
+    { TV_HISSATSU_BOOK,     "剑道书"        },
+    { TV_HEX_BOOK,          "诅咒法术书"        },
+    { TV_RAGE_BOOK,         "狂怒法术书"       },
+    { TV_BURGLARY_BOOK,     "盗贼指南"       },
+    { TV_PARCHMENT,         "羊皮纸" },
+    { TV_WHISTLE,           "哨子"    },
+    { TV_QUIVER,            "箭袋"               },
+    { TV_SPIKE,             "铁蒺藜"               },
+    { TV_DIGGING,           "挖掘工具"               },
+    { TV_CHEST,             "箱子"                },
+    { TV_CAPTURE,           "捕获球"         },
+    { TV_CARD,              "快递卡"         },
+    { TV_FIGURINE,          "魔法小塑像"     },
+    { TV_STATUE,            "雕像"               },
+    { TV_CORPSE,            "尸体"               },
+    { TV_FOOD,              "食物"                 },
+    { TV_FLASK,             "油瓶"                },
+    { TV_BOTTLE,            "空瓶"               },
+    { TV_JUNK,              "垃圾"                 },
+    { TV_SKELETON,          "残骸"             },
     { 0,                    NULL                   }
 };
 
@@ -565,7 +565,7 @@ static int wiz_create_itemtype(void)
     max_num = num;
 
     /* Choose! */
-    if (!get_com("Get what type of object? ", &ch, FALSE)) return (0);
+    if (!get_com("获取哪种类型的物品？", &ch, FALSE)) return (0);
 
     /* Analyze choice */
     for (num = 0; num < max_num; num++)
@@ -608,9 +608,9 @@ static int wiz_create_itemtype(void)
 
                 /* Print it */
                 if (k_ptr->max_level)
-                    prt(format("[%c] %s (L%d-%d)", ch, buf, lvl, k_ptr->max_level), row, col);
+                    prt(format("[%c] %s (等级%d-%d)", ch, buf, lvl, k_ptr->max_level), row, col);
                 else
-                    prt(format("[%c] %s (L%d-*)", ch, buf, lvl), row, col);
+                    prt(format("[%c] %s (等级%d-*)", ch, buf, lvl), row, col);
 
                 /* Remember the object index */
                 choice[num++] = i;
@@ -622,7 +622,7 @@ static int wiz_create_itemtype(void)
     max_num = num;
 
     /* Choose! */
-    if (!get_com(format("What Kind of %s? ", tval_desc), &ch, FALSE)) return (0);
+    if (!get_com(format("哪种 %s？", tval_desc), &ch, FALSE)) return (0);
 
     /* Analyze choice */
     for (num = 0; num < max_num; num++)
@@ -686,7 +686,7 @@ static void wiz_create_item(void)
                 a_info[i].generated = TRUE;
 
             /* All done */
-            msg_print("Allocated(INSTA_ART).");
+            msg_print("已分配 (即刻神器)。");
 
             return;
         }
@@ -709,7 +709,7 @@ static void wiz_create_item(void)
             n = 1;
             break;
         default:
-            n = get_quantity("How many? ", 99);
+            n = get_quantity("多少个？", 99);
         }
     }
 
@@ -735,7 +735,7 @@ static void wiz_create_item(void)
     (void)drop_near(q_ptr, -1, py, px);
 
     /* All done */
-    msg_print("Allocated.");
+    msg_print("已分配。");
 }
 
 
@@ -840,7 +840,7 @@ static void do_cmd_wiz_jump(void)
     if (command_arg > d_info[dungeon_type].maxdepth) command_arg = d_info[dungeon_type].maxdepth;
 
     /* Accept request */
-    msg_format("<color:U>You jump to dungeon level %d:</color>", command_arg);
+    msg_format("<color:U>你跳跃到了地下城第 %d 层：</color>", command_arg);
 
     if (autosave_l) do_cmd_save_game(TRUE);
 
@@ -1036,7 +1036,7 @@ static void do_cmd_wiz_create_feature(void)
     sprintf(tmp_val, "%d", prev_feat);
 
     /* Query */
-    if (!get_string("Feature: ", tmp_val, 4)) return;
+    if (!get_string("地形：", tmp_val, 4)) return;
 
     /* Extract */
     tmp_feat = atoi(tmp_val);
@@ -1047,7 +1047,7 @@ static void do_cmd_wiz_create_feature(void)
     sprintf(tmp_val, "%d", prev_mimic);
 
     /* Query */
-    if (!get_string("Feature (mimic): ", tmp_val, 4)) return;
+    if (!get_string("地形 (伪装)：", tmp_val, 4)) return;
 
     /* Extract */
     tmp_mimic = atoi(tmp_val);
@@ -1100,11 +1100,11 @@ static void _wiz_stats_end(void)
     doc_insert(_wiz_doc, "</style>");
     if (_wiz_obj_count)
     {
-        doc_printf(_wiz_doc, "\n\n<color:R>%d</color> objects. <color:R>%d</color> average score.\n",
+        doc_printf(_wiz_doc, "\n\n<color:R>%d</color> 件物品。平均分数为 <color:R>%d</color>。\n",
             _wiz_obj_count, _wiz_obj_score / _wiz_obj_count);
     }
     if (original_score)
-        doc_printf(_wiz_doc, "<color:R>%d%%</color> replacement power.\n", replacement_score * 100 / original_score);
+        doc_printf(_wiz_doc, "<color:R>%d%%</color> 替代品强度。\n", replacement_score * 100 / original_score);
     statistics_hack = FALSE;
 }
 
@@ -1117,7 +1117,7 @@ static void _wiz_stats_free(void)
 static void _wiz_stats_display(void)
 {
     if (doc_line_count(_wiz_doc))
-        doc_display(_wiz_doc, "Statistics", 0);
+        doc_display(_wiz_doc, "统计信息", 0);
 
     viewport_verify();
     do_cmd_redraw();
@@ -1559,7 +1559,7 @@ void do_cmd_debug(void)
         cmd = repeat;
     else
     {
-        get_com("Debug Command: ", &cmd, FALSE);
+        get_com("调试命令：", &cmd, FALSE);
         REPEAT_PUSH(cmd);
     }
 
@@ -1597,7 +1597,7 @@ void do_cmd_debug(void)
 
     /* Know alignment */
     case 'A':
-        msg_format("Your alignment is %d.", p_ptr->align);
+        msg_format("你的阵营倾向是 %d。", p_ptr->align);
         break;
 
     /* Teleport to target */
@@ -1694,7 +1694,7 @@ void do_cmd_debug(void)
         }
         /* The average is around 39.14 (aka 102.915%) */
 //        msg_format("Life Ratings: %d%% (%d%%-%d%%)", tot/1000, min, max);
-        msg_format("Life Ratings: %d.%02d (%d-%d%%)", tot/1000000, ((tot/10000) % 100), min, max);
+        msg_format("生命评级: %d.%02d (%d-%d%%)", tot/1000000, ((tot/10000) % 100), min, max);
 
     /*    do_cmd_rerate(TRUE); */
 
@@ -1728,7 +1728,7 @@ void do_cmd_debug(void)
             }
         }
         no_karrot_hack = FALSE;
-        msg_format("Objects=%d", ct);
+        msg_format("物品数量=%d", ct);
         break;
     }
 
@@ -1763,7 +1763,7 @@ void do_cmd_debug(void)
     /*  mut_gain_choice(mut_demigod_pred);*/
     /*  mut_gain_choice(mut_draconian_pred); */
 
-      n = get_quantity("Which One? ", 500);
+      n = get_quantity("哪一个？", 500);
         if (n == 500)
         {
             int i;
@@ -1811,7 +1811,7 @@ void do_cmd_debug(void)
             mon_ptr mon = &m_list[target_who];
             doc_ptr doc = doc_alloc(80);
             mon_spell_wizard(mon, NULL, doc);
-            doc_display(doc, "Spells", 0);
+            doc_display(doc, "法术", 0);
             doc_free(doc);
             do_cmd_redraw();
         }
@@ -1870,7 +1870,7 @@ void do_cmd_debug(void)
                 }
                 #endif
             }
-            if (0) msg_format("Objects=%d", ct);
+            if (0) msg_format("物品数量=%d", ct);
         }
         no_karrot_hack = FALSE;
         break;
@@ -1899,7 +1899,7 @@ void do_cmd_debug(void)
 
         sprintf(tmp_val, "%d", p_ptr->exp);
         /* Query */
-        if (!get_string("Experience: ", tmp_val, 10)) break;
+        if (!get_string("经验：", tmp_val, 10)) break;
 
         /* Extract */
         tmp_long = atol(tmp_val);
@@ -1939,7 +1939,7 @@ void do_cmd_debug(void)
            or browse the object knowledge command (~2). Wizard commands "A and "O
            are also useful.*/
         int lev;
-        int max_depth = get_quantity("Max Depth? ", 100);
+        int max_depth = get_quantity("最大深度？", 100);
 
         _wiz_stats_begin();
         _stats_reset_monster_levels();
@@ -1966,7 +1966,7 @@ void do_cmd_debug(void)
                 obj_total += _object_histogram[lev];
 
             doc_newline(_wiz_doc);
-            doc_insert(_wiz_doc, "<color:G>Depth   Monster Level    Object Level   Object Counts</color>\n");
+            doc_insert(_wiz_doc, "<color:G>深度 怪物等级 物品等级 物品数量</color>\n");
             for (lev = 0; lev < MAX_DEPTH; lev++)
             {
                 _tally_t mon_tally = _monster_levels[lev];
@@ -2027,7 +2027,7 @@ void do_cmd_debug(void)
     {
         /* In this version, we gather statistics on the current level of the
            current dungeon. You still want to start with a fresh character. */
-        int reps = get_quantity("How many reps? ", 100);
+        int reps = get_quantity("重复多少次？", 100);
 
         _wiz_stats_begin();
         _wiz_stats_gather(dungeon_type, dun_level, reps);
@@ -2047,7 +2047,7 @@ void do_cmd_debug(void)
         }
         break; }
     default:
-        msg_print("That is not a valid debug command.");
+        msg_print("那不是一个有效的调试命令。");
         break;
     }
 }

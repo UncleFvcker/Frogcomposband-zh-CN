@@ -15,6 +15,166 @@ bool prace_is_(int which)
     return FALSE;
 }
 
+typedef struct {
+    cptr name;
+    int id;
+} _race_alias_t;
+
+static _race_alias_t _race_aliases[] = {
+        { "Amberite", RACE_AMBERITE },
+        { "Android", RACE_ANDROID },
+        { "Archon", RACE_ARCHON },
+        { "Balrog", RACE_BALROG },
+        { "Barbarian", RACE_BARBARIAN },
+        { "Beastman", RACE_BEASTMAN },
+        { "Beorning", RACE_BEORNING },
+        { "Boit", RACE_BOIT },
+        { "Centaur", RACE_CENTAUR },
+        { "Cyclops", RACE_CYCLOPS },
+        { "Dark-Elf", RACE_DARK_ELF },
+        { "Demigod", RACE_DEMIGOD },
+        { "Doppelganger", RACE_DOPPELGANGER },
+        { "Draconian", RACE_DRACONIAN },
+        { "Dunadan", RACE_DUNADAN },
+        { "Dwarf", RACE_DWARF },
+        { "Einheri", RACE_EINHERI },
+        { "Ent", RACE_ENT },
+        { "Gnome", RACE_GNOME },
+        { "Golem", RACE_GOLEM },
+        { "Half-Giant", RACE_HALF_GIANT },
+        { "Half-Orc", RACE_HALF_ORC },
+        { "Half-Titan", RACE_HALF_TITAN },
+        { "Half-Troll", RACE_HALF_TROLL },
+        { "High-Elf", RACE_HIGH_ELF },
+        { "Hobbit", RACE_HOBBIT },
+        { "Human", RACE_HUMAN },
+        { "Igor", RACE_IGOR },
+        { "Imp", RACE_IMP },
+        { "Klackon", RACE_KLACKON },
+        { "Kobold", RACE_KOBOLD },
+        { "Kutar", RACE_KUTAR },
+        { "Mindflayer", RACE_MIND_FLAYER },
+        { "Angel", RACE_MON_ANGEL },
+        { "Beholder", RACE_MON_BEHOLDER },
+        { "Centipede", RACE_MON_CENTIPEDE },
+        { "Demon", RACE_MON_DEMON },
+        { "Dragon", RACE_MON_DRAGON },
+        { "Elemental", RACE_MON_ELEMENTAL },
+        { "Filthy-Rag", RACE_MON_ARMOR },
+        { "Giant", RACE_MON_GIANT },
+        { "Golem", RACE_MON_GOLEM },
+        { "Hound", RACE_MON_HOUND },
+        { "Hydra", RACE_MON_HYDRA },
+        { "Jelly", RACE_MON_JELLY },
+        { "Leprechaun", RACE_MON_LEPRECHAUN },
+        { "Lich", RACE_MON_LICH },
+        { "Mimic", RACE_MON_MIMIC },
+        { "Orc", RACE_MON_ORC },
+        { "Possessor", RACE_MON_POSSESSOR },
+        { "Quylthulg", RACE_MON_QUYLTHULG },
+        { "Spider", RACE_MON_SPIDER },
+        { "Death-Sword", RACE_MON_SWORD },
+        { "Ring", RACE_MON_RING },
+        { "Pumpkin", RACE_MON_PUMPKIN },
+        { "Mummy", RACE_MON_MUMMY },
+        { "Troll", RACE_MON_TROLL },
+        { "Vampire", RACE_MON_VAMPIRE },
+        { "Vortex", RACE_MON_VORTEX },
+        { "Xorn", RACE_MON_XORN },
+        { "Clay-Golem", MIMIC_CLAY_GOLEM },
+        { "Colossus", MIMIC_COLOSSUS },
+        { "Bat", MIMIC_BAT },
+        { "Mist", MIMIC_MIST },
+        { "Wolf", MIMIC_WOLF },
+        { "Demon", MIMIC_DEMON },
+        { "Demon-Lord", MIMIC_DEMON_LORD },
+        { "Iron-Golem", MIMIC_IRON_GOLEM },
+        { "Mithril-Golem", MIMIC_MITHRIL_GOLEM },
+        { "Vampire-Lord", MIMIC_VAMPIRE },
+        { "Small-Kobold", MIMIC_SMALL_KOBOLD },
+        { "Mangy-Leper", MIMIC_MANGY_LEPER },
+        { "Karrot", MIMIC_DRAGON },
+        { "Nibelung", RACE_NIBELUNG },
+        { "Ogre", RACE_OGRE },
+        { "Half-Ogre", RACE_OGRE },
+        { "Shadow-Fairy", RACE_SHADOW_FAIRY },
+        { "Skeleton", RACE_SKELETON },
+        { "Snotling", RACE_SNOTLING },
+        { "Spectre", RACE_SPECTRE },
+        { "Sprite", RACE_SPRITE },
+        { "Tomte", RACE_TOMTE },
+        { "Tonberry", RACE_TONBERRY },
+        { "Vampire", RACE_VAMPIRE },
+        { "Werewolf", RACE_WEREWOLF },
+        { "Wood-Elf", RACE_WOOD_ELF },
+        { "Yeek", RACE_YEEK },
+        { "Zombie", RACE_ZOMBIE },
+        { NULL, -1 }
+};
+
+static bool _is_player_monster_or_mimic(int prace)
+{
+    switch (prace)
+    {
+    case RACE_MON_JELLY:
+    case RACE_MON_SPIDER:
+    case RACE_MON_DRAGON:
+    case RACE_MON_LICH:
+    case RACE_MON_XORN:
+    case RACE_MON_ANGEL:
+    case RACE_MON_HOUND:
+    case RACE_MON_GIANT:
+    case RACE_MON_BEHOLDER:
+    case RACE_MON_DEMON:
+    case RACE_MON_HYDRA:
+    case RACE_MON_LEPRECHAUN:
+    case RACE_MON_TROLL:
+    case RACE_MON_ELEMENTAL:
+    case RACE_MON_SWORD:
+    case RACE_MON_RING:
+    case RACE_MON_GOLEM:
+    case RACE_MON_QUYLTHULG:
+    case RACE_MON_POSSESSOR:
+    case RACE_MON_MIMIC:
+    case RACE_MON_VAMPIRE:
+    case RACE_MON_ARMOR:
+    case RACE_MON_ORC:
+    case RACE_MON_PUMPKIN:
+    case RACE_MON_MUMMY:
+    case RACE_MON_CENTIPEDE:
+    case RACE_MON_VORTEX:
+    case MIMIC_CLAY_GOLEM:
+    case MIMIC_COLOSSUS:
+    case MIMIC_BAT:
+    case MIMIC_MIST:
+    case MIMIC_WOLF:
+    case MIMIC_DEMON:
+    case MIMIC_DEMON_LORD:
+    case MIMIC_IRON_GOLEM:
+    case MIMIC_MITHRIL_GOLEM:
+    case MIMIC_VAMPIRE:
+    case MIMIC_SMALL_KOBOLD:
+    case MIMIC_MANGY_LEPER:
+    case MIMIC_DRAGON:
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static int _lookup_race_alias(cptr name)
+{
+    int i;
+
+    for (i = 0; _race_aliases[i].name; i++)
+    {
+        if (!initialized && _is_player_monster_or_mimic(_race_aliases[i].id))
+            continue;
+        if (strcmp(name, _race_aliases[i].name) == 0)
+            return _race_aliases[i].id;
+    }
+    return -1;
+}
+
 int get_race_idx(cptr name)
 {
     int i;
@@ -61,7 +221,23 @@ int get_race_idx(cptr name)
         if (race_ptr && strcmp(name, race_ptr->name) == 0)
             return i;
     }
-    return -1;
+    return _lookup_race_alias(name);
+}
+
+cptr get_race_internal_name(int prace)
+{
+    int i;
+    race_t *race_ptr;
+
+    for (i = 0; _race_aliases[i].name; i++)
+    {
+        if (_race_aliases[i].id == prace)
+            return _race_aliases[i].name;
+    }
+    race_ptr = get_race_aux(prace, 0);
+    if (race_ptr && race_ptr->name)
+        return race_ptr->name;
+    return "Unknown";
 }
 
 race_t *get_race_aux(int prace, int psubrace)
@@ -361,4 +537,3 @@ race_t *get_race(void)
     }
     return result;
 }
-

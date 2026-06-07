@@ -156,14 +156,14 @@ bool drain_random_object(int who, int drain_amt, bool *drained)
 
             if (pl >= randint1(dl))
             {
-                msg_print("Energy begins to drain from your pack ... But you pull it back!");
+                msg_print("能量开始从你的背包中流失……但你把它拉了回来！");
                 *drained = TRUE; /* No food drain! */
                 return TRUE; /* Obvious effect */
             }
         }
 
         object_desc(buf, obj, OD_OMIT_PREFIX | OD_COLOR_CODED);
-              msg_format("Energy drains from your %s!", buf);
+              msg_format("能量从你的%s中流失了！", buf);
         device_decrease_sp(obj, drain_amt);
         *drained = TRUE;
 
@@ -240,7 +240,7 @@ bool make_attack_normal(int m_idx)
 
     if (p_ptr->special_defense & KATA_IAI)
     {
-        msg_format("You took sen, draw and cut in one motion before %s move.", m_name);
+        msg_format("你在%s行动之前，一气呵成地完成了抢攻、拔刀和斩击。", m_name);
         if (py_attack(m_ptr->fy, m_ptr->fx, HISSATSU_IAI)) return TRUE;
     }
 
@@ -250,7 +250,7 @@ bool make_attack_normal(int m_idx)
     }
                            /* v---- Assume a beholder GAZE = {MST_BOLT, GF_ATTACK} */
     if (!retaliation_hack && !mon_spell_current())
-        cmsg_format(TERM_GREEN, "%^s attacks you:", m_name);
+        cmsg_format(TERM_GREEN, "%^s攻击你：", m_name);
     monster_desc(m_name, m_ptr, MD_PRON_VISIBLE);
 
     /* Assume no blink */
@@ -300,7 +300,7 @@ bool make_attack_normal(int m_idx)
         if (retaliation_hack)
         {
             if (m_ptr->ml)
-                cmsg_format(TERM_GREEN, "(%^s retaliates:", m_name);
+                cmsg_format(TERM_GREEN, "(%^s反击：", m_name);
             mon_lore_2(m_ptr, RF2_AURA_REVENGE);
         }
 
@@ -332,7 +332,7 @@ bool make_attack_normal(int m_idx)
                 !one_in_(3))
             {
                 mon_lore_3(m_ptr, RF3_EVIL);
-                cmsg_format(TERM_L_BLUE, "%^s is repelled.", m_name);
+                cmsg_format(TERM_L_BLUE, "%^s被击退了。", m_name);
                 if (retaliation_hack) break;
                 continue;
             }
@@ -465,7 +465,7 @@ bool make_attack_normal(int m_idx)
                 {
                     act = silly_attacks[randint0(MAX_SILLY_ATTACK)];
                 }
-                msg_format("%^s %s%s%s", m_name, act, do_silly_attack ? " you" : "", retaliation_hack ? ".<color:g>)</color>" : ".");
+                msg_format("%^s%s%s%s", m_name, act, do_silly_attack ? "你" : "", retaliation_hack ? ".<color:g>)</color>" : ".");
             }
 
             /* Hack -- assume all attacks are obvious */
@@ -532,7 +532,7 @@ bool make_attack_normal(int m_idx)
                       && (((!(get_race()->flags & RACE_IS_NONLIVING))
                       && (!prace_is_(RACE_MON_JELLY)) ) || (prace_is_(RACE_EINHERI))))
                     {
-                        msg_print("Food drains from your belly!");
+                        msg_print("食物从你的肚子里流失了！");
                         set_food(MAX(0, MIN(p_ptr->food - 1000, p_ptr->food*2/3)));
                     }
 
@@ -559,7 +559,7 @@ bool make_attack_normal(int m_idx)
                         (randint0(100) < (adj_dex_safe[p_ptr->stat_ind[A_DEX]] +
                                   p_ptr->lev)))
                     {
-                        msg_print("You quickly protect your money pouch!");
+                        msg_print("你迅速护住了你的钱袋！");
                         if (randint0(3)) blinked = TRUE;
                     }
                     else
@@ -572,19 +572,19 @@ bool make_attack_normal(int m_idx)
                         stats_on_gold_stolen(gold);
                         if (gold <= 0)
                         {
-                            msg_print("Nothing was stolen.");
+                            msg_print("什么也没有被偷。");
 
                         }
                         else if (p_ptr->au)
                         {
-                            msg_print("Your purse feels lighter.");
-                            msg_format("%d coins were stolen!", gold);
+                            msg_print("你的钱包变轻了。");
+                            msg_format("%d 枚金币被偷了！", gold);
                             virtue_add(VIRTUE_SACRIFICE, 1);
                         }
                         else
                         {
-                            msg_print("Your purse feels lighter.");
-                            msg_print("All of your coins were stolen!");
+                            msg_print("你的钱包变轻了。");
+                            msg_print("你所有的金币都被偷了！");
 
                             virtue_add(VIRTUE_SACRIFICE, 2);
                         }
@@ -614,7 +614,7 @@ bool make_attack_normal(int m_idx)
 
                     if (p_ptr->tim_inven_prot2)
                     {
-                        msg_print("Your inventory is protected!");
+                        msg_print("你的物品栏受到了保护！");
                         blinked = TRUE;
                         obvious = TRUE;
                         break;
@@ -624,7 +624,7 @@ bool make_attack_normal(int m_idx)
                         (randint0(100) < (adj_dex_safe[p_ptr->stat_ind[A_DEX]] +
                                   p_ptr->lev)))
                     {
-                        msg_print("You grab hold of your backpack!");
+                        msg_print("你紧紧抓住了你的背包！");
                         blinked = TRUE;
                         obvious = TRUE;
                         break;
@@ -645,7 +645,7 @@ bool make_attack_normal(int m_idx)
 
                         object_desc(o_name, obj, OD_OMIT_PREFIX);
 
-                        msg_format("%sour %s %s stolen!",
+                        msg_format("【物品被偷】%sour %s %s！",
                                ((obj->number > 1) ? "One of y" : "Y"),
                                o_name, have_flag(obj->flags, OF_PLURAL) ? "were" : "was");
 
@@ -699,7 +699,7 @@ bool make_attack_normal(int m_idx)
                         if (object_is_artifact(obj)) continue;
 
                         object_desc(o_name, obj, OD_OMIT_PREFIX | OD_NAME_ONLY | OD_COLOR_CODED);
-                        msg_format("%sour %s %s eaten!",
+                        msg_format("%sour %s %s被吃掉了！",
                                ((obj->number > 1) ? "One of y" : "Y"),
                                o_name, (((obj->number == 1) && (have_flag(obj->flags, OF_PLURAL))) ? "were" : "was"));
 
@@ -726,7 +726,7 @@ bool make_attack_normal(int m_idx)
 
                             if (!p_ptr->blind)
                             {
-                                msg_print("Your light dims.");
+                                msg_print("你的光芒变暗了。");
                                 obvious = TRUE;
                             }
                             p_ptr->window |= PW_EQUIP;
@@ -815,7 +815,7 @@ bool make_attack_normal(int m_idx)
                         bool perm = one_in_(10) && one_in_(100/MAX(1, rlev));
                         if (dec_stat(A_CON, randint1(10), perm))
                         {
-                            msg_print("You feel strange sickness.");
+                            msg_print("你感到一种奇怪的恶心感。");
                             obvious = TRUE;
                         }
                     }
@@ -845,7 +845,7 @@ bool make_attack_normal(int m_idx)
                             if (m_ptr->hp > m_ptr->maxhp) m_ptr->hp = m_ptr->maxhp;
                             check_mon_health_redraw(m_idx);
                             if (m_ptr->ml)
-                                msg_format("%^s appears healthier.", m_name);
+                                msg_format("%^s看起来更健康了。", m_name);
                         }
                     }
                     break;
@@ -917,9 +917,9 @@ bool make_attack_normal(int m_idx)
                   && !p_ptr->is_dead )
                 {
                     if (weaponmaster_get_toggle() == TOGGLE_TRADE_BLOWS)
-                        cmsg_print(TERM_L_UMBER, "(You trade blows:");
+                        cmsg_print(TERM_L_UMBER, "(你们互相攻击：");
                     else
-                        cmsg_print(TERM_L_UMBER, "(You retaliate:");
+                        cmsg_print(TERM_L_UMBER, "(你反击：");
 
                     retaliation_hack = TRUE;
                     py_attack(m_ptr->fy, m_ptr->fx, WEAPONMASTER_RETALIATION);
@@ -947,7 +947,7 @@ bool make_attack_normal(int m_idx)
                     dam = mon_damage_mod(m_ptr, dam, FALSE);
                     if (dam > 0)
                     {
-                        msg_format("%^s feels your bloody revenge!", m_name);
+                        msg_format("%^s感受到了你血腥的复仇！", m_name);
                         if (mon_take_hit(m_idx, dam, DAM_TYPE_MELEE, &fear,
                             " turns into a pool of blood."))
                         {
@@ -966,7 +966,7 @@ bool make_attack_normal(int m_idx)
                         /* Modify the damage */
                         dam = mon_damage_mod(m_ptr, dam, FALSE);
 
-                        msg_format("%^s is <color:r>burned</color>!", m_name);
+                        msg_format("%^s被<color:r>烧伤</color>了！", m_name);
 
                         if (mon_take_hit(m_idx, dam, DAM_TYPE_AURA, &fear,
                             " turns into a pile of ash."))
@@ -991,7 +991,7 @@ bool make_attack_normal(int m_idx)
                         /* Modify the damage */
                         dam = mon_damage_mod(m_ptr, dam, FALSE);
 
-                        msg_format("%^s is <color:b>zapped</color>!", m_name);
+                        msg_format("%^s被<color:b>电击</color>了！", m_name);
 
                         if (mon_take_hit(m_idx, dam, DAM_TYPE_AURA, &fear,
                             " turns into a pile of cinder."))
@@ -1016,7 +1016,7 @@ bool make_attack_normal(int m_idx)
                         /* Modify the damage */
                         dam = mon_damage_mod(m_ptr, dam, FALSE);
 
-                        msg_format("%^s is <color:w>frozen</color>!", m_name);
+                        msg_format("%^s被<color:w>冻结</color>了！", m_name);
 
                         if (mon_take_hit(m_idx, dam, DAM_TYPE_AURA, &fear,
                             " was frozen."))
@@ -1040,7 +1040,7 @@ bool make_attack_normal(int m_idx)
                         int dam = _aura_dam_p(p_ptr->sh_shards + (p_ptr->dustrobe ? 1 : 0));
 
                         dam = mon_damage_mod(m_ptr, dam, FALSE);
-                        msg_format("%^s is <color:u>shredded</color>!", m_name);
+                        msg_format("%^s被<color:u>撕碎</color>了！", m_name);
                         if (mon_take_hit(m_idx, dam, DAM_TYPE_AURA, &fear," was torn to pieces."))
                         {
                             blinked = FALSE;
@@ -1061,7 +1061,7 @@ bool make_attack_normal(int m_idx)
                     if (!(r_ptr->flagsr & RFR_RES_ALL))
                     {
                         int dam = (subjugation_power()+1)/2;
-                        msg_format("%^s feels the force of your presence!", m_name);
+                        msg_format("%^s感受到了你存在的压迫感！", m_name);
                         gf_affect_m(GF_WHO_PLAYER, m_ptr, GF_SUBJUGATION, dam, GF_AFFECT_AURA);
                         if (MON_CSLEEP(m_ptr) || !is_hostile(m_ptr) || MON_MONFEAR(m_ptr))
                             break;
@@ -1080,13 +1080,13 @@ bool make_attack_normal(int m_idx)
                         switch (randint1(3))
                         {
                         case 1:
-                            msg_format("%^s gets <color:B>chronosmashed</color>!", m_name);
+                            msg_format("%^s被<color:B>时间粉碎</color>了！", m_name);
                             break;
                         case 2:
-                            msg_format("%^s gets <color:B>flux capacitated</color>!", m_name);
+                            msg_format("%^s被<color:B>通量电容</color>击中了！", m_name);
                             break;
                         case 3:
-                            msg_format("%^s <color:B>withers</color>!", m_name);
+                            msg_format("%^s<color:B>枯萎</color>了！", m_name);
                             break;
                         }
                         gf_affect_m(GF_WHO_PLAYER, m_ptr, GF_TIME, dam, GF_AFFECT_AURA);
@@ -1117,7 +1117,7 @@ bool make_attack_normal(int m_idx)
                             /* Modify the damage */
                             dam = mon_damage_mod(m_ptr, dam, FALSE);
 
-                            msg_format("%^s is injured by holy power!", m_name);
+                            msg_format("%^s被神圣力量伤害了！", m_name);
 
                             if (mon_take_hit(m_idx, dam, DAM_TYPE_AURA, &fear,
                                 " is destroyed."))
@@ -1143,7 +1143,7 @@ bool make_attack_normal(int m_idx)
                         /* Modify the damage */
                         dam = mon_damage_mod(m_ptr, dam, FALSE);
 
-                        msg_format("%^s is injured by the <color:B>Force</color>.", m_name);
+                        msg_format("%^s被<color:B>原力</color>伤害了。", m_name);
 
                         if (mon_take_hit(m_idx, dam, DAM_TYPE_AURA, &fear,
                             " is destroyed."))
@@ -1189,7 +1189,7 @@ bool make_attack_normal(int m_idx)
 
                         dam = mon_damage_mod(m_ptr, dam, FALSE);
 
-                        msg_format("Enveloped shadows attack %^s.", m_name);
+                        msg_format("笼罩的暗影攻击了%^s。", m_name);
 
                         if (mon_take_hit(m_idx, dam, DAM_TYPE_AURA, &fear, " is destroyed."))
                         {
@@ -1255,21 +1255,21 @@ bool make_attack_normal(int m_idx)
                 if (m_ptr->ml)
                 {
                     disturb(1, 0);
-                    msg_format("%^s misses%s", m_name, retaliation_hack ? ".<color:g>)</color>" : ".");
+                    msg_format("%^s未命中%s", m_name, retaliation_hack ? ".<color:g>)</color>" : ".");
                 }
                 break;
             case RBM_DROOL:
                 if (m_ptr->ml)
                 {
                     disturb(1, 0);
-                    msg_format("%^s slobbers ineffectually%s", m_name, retaliation_hack ? ".<color:g>)</color>" : ".");
+                    msg_format("%^s徒劳地流着口水%s", m_name, retaliation_hack ? ".<color:g>)</color>" : ".");
                 }
                 break;
             case RBM_WAIL:
                 if (m_ptr->ml)
                 {
                     disturb(1, 0);
-                    msg_format("%^s wails ineffectually%s", m_name, retaliation_hack ? ".<color:g>)</color>" : ".");
+                    msg_format("%^s徒劳地哀嚎着%s", m_name, retaliation_hack ? ".<color:g>)</color>" : ".");
                 }
                 break;
             case RBM_GAZE:
@@ -1278,7 +1278,7 @@ bool make_attack_normal(int m_idx)
                     char tmp[MAX_NLEN];
                     disturb(1, 0);
                     monster_desc(tmp, m_ptr, MD_PRON_VISIBLE | MD_POSSESSIVE);
-                    msg_format("You avoid %s gaze%s", tmp, retaliation_hack ? ".<color:g>)</color>" : ".");
+                    msg_format("你避开了%s的凝视%s", tmp, retaliation_hack ? ".<color:g>)</color>" : ".");
                 }
                 break;
             }
@@ -1300,7 +1300,7 @@ bool make_attack_normal(int m_idx)
             monster_desc(m_name, &m_list[p_ptr->riding], 0);
             if (rakuba((blow_dam > 200) ? 200 : blow_dam, FALSE))
             {
-                msg_format("You have fallen from %s.", m_name);
+                msg_format("你从%s身上摔了下来。", m_name);
             }
         }
 
@@ -1326,7 +1326,7 @@ bool make_attack_normal(int m_idx)
 
         /* This message can be triggered by an already dead exploder -
          * but in that case it's still pretty appropriate... */
-        msg_format("%^s harms %s!", m_name, m_name_self);
+        msg_format("%^s伤害了%s！", m_name, m_name_self);
         project(0, 0, m_ptr->fy, m_ptr->fx, psion_backlash_dam(total_dam), GF_MISSILE, PROJECT_KILL);
         if (p_ptr->tim_eyeeye) set_tim_eyeeye(p_ptr->tim_eyeeye-5, TRUE);
     }
@@ -1337,7 +1337,7 @@ bool make_attack_normal(int m_idx)
         monster_desc(m_name, m_ptr, 0);
 
         p_ptr->csp -= 7;
-        msg_format("Your counterattack to %s!", m_name);
+        msg_format("你对%s进行了反击！", m_name);
         py_attack(m_ptr->fy, m_ptr->fx, HISSATSU_COUNTER);
         fear = FALSE;
 
@@ -1355,11 +1355,11 @@ bool make_attack_normal(int m_idx)
     {
         if (teleport_barrier(m_idx))
         {
-            msg_print("The thief flees laughing...? But magic barrier obstructs it.");
+            msg_print("盗贼大笑着逃跑了……？但魔法屏障阻挡了它。");
         }
         else
         {
-            msg_print("The thief flees laughing!");
+            msg_print("盗贼大笑着逃跑了！");
             teleport_away(m_idx, MAX_SIGHT * 2 + 5, 0L);
         }
     }
@@ -1374,7 +1374,7 @@ bool make_attack_normal(int m_idx)
     if (m_ptr->ml && fear && alive && !p_ptr->is_dead)
     {
         sound(SOUND_FLEE);
-        msg_format("%^s flees in terror!", m_name);
+        msg_format("%^s惊恐地逃跑了！", m_name);
 
     }
 

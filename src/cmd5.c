@@ -25,7 +25,7 @@ cptr spell_category_name(int tval)
     case TV_LAW_BOOK:
         return "legal trick";
     default:
-        return "spell";
+        return "法术";
     }
 }
 
@@ -248,7 +248,7 @@ static int get_spell(int *sn, cptr prompt, int sval, bool learned, int use_realm
         if (!spell_okay(spell, learned, FALSE, use_realm, browse))
         {
             bell();
-            msg_format("You may not %s that %s.", prompt, p);
+            msg_format("你不能%s那本%s。", prompt, p);
             continue;
         }
 
@@ -389,25 +389,25 @@ void do_cmd_study(void)
 
     if (!p_ptr->realm1)
     {
-        msg_print("You cannot read books!");
+        msg_print("你无法阅读书本！");
         return;
     }
 
     if (p_ptr->blind || no_lite())
     {
-        msg_print("You cannot see!");
+        msg_print("你看不见！");
         return;
     }
 
     if (p_ptr->confused)
     {
-        msg_print("You are too confused!");
+        msg_print("你太困惑了！");
         return;
     }
 
     if (!p_ptr->new_spells)
     {
-        msg_format("You cannot learn any new %ss!", p);
+        msg_format("你无法学习任何新的%s！", p);
         return;
     }
 
@@ -422,8 +422,8 @@ void do_cmd_study(void)
 
 
     /* Get an item */
-    prompt.prompt = "Study which book?";
-    prompt.error = "You have no books that you can read.";
+    prompt.prompt = "学习哪本书？";
+    prompt.error = "你没有可以阅读的书本。";
     prompt.filter = item_tester_learn_spell;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -434,7 +434,7 @@ void do_cmd_study(void)
     if (prompt.obj->tval == REALM2_BOOK) increment = 32;
     else if (prompt.obj->tval != REALM1_BOOK)
     {
-        if (!get_check("Really, change magic realm? ")) return;
+        if (!get_check("真的要改变魔法领域吗？")) return;
         change_realm2(tval2realm(prompt.obj->tval));
         increment = 32;
         autopick_alter_obj(prompt.obj, FALSE);
@@ -450,7 +450,7 @@ void do_cmd_study(void)
     if (mp_ptr->spell_book != TV_LIFE_BOOK)
     {
         /* Ask for a spell, allow cancel */
-        if (!get_spell(&spell, "study", prompt.obj->sval, FALSE, prompt.obj->tval - TV_LIFE_BOOK + 1, FALSE)
+        if (!get_spell(&spell, "学习", prompt.obj->sval, FALSE, prompt.obj->tval - TV_LIFE_BOOK + 1, FALSE)
             && (spell == -1)) return;
 
     }
@@ -486,7 +486,7 @@ void do_cmd_study(void)
     /* Nothing to study */
     if (spell < 0)
     {
-        msg_format("You cannot learn any %ss in that book.", p);
+        msg_format("你无法学习那本书里的任何%s。", p);
         return;
     }
 
@@ -513,10 +513,10 @@ void do_cmd_study(void)
 
         if (old_exp >= max_exp)
         {
-            msg_format("You don't need to study this %s anymore.", p);
+            msg_format("你不需要再学习这个%s了。", p);
             return;
         }
-        if (!get_check(format("You will study the %s of %s again. Are you sure? ", p, name)))
+        if (!get_check(format("你将再次学习%s的%s。你确定吗？", p, name)))
         {
             return;
         }
@@ -541,7 +541,7 @@ void do_cmd_study(void)
             p_ptr->spell_exp[spell] = SPELL_EXP_BEGINNER + old_exp / 3;
             new_rank = EXP_LEVEL_BEGINNER;
         }
-        msg_format("Your proficiency of %s is now %s rank.", name, exp_level_str[new_rank]);
+        msg_format("你对%s的熟练度现在是 %s 级别。", name, exp_level_str[new_rank]);
     }
     else
     {
@@ -556,7 +556,7 @@ void do_cmd_study(void)
         p_ptr->spell_order[i++] = spell;
 
         /* Mention the result */
-        msg_format("You have learned the %s of %s.",
+        msg_format("你学会了%s的%s。",
             p, do_spell(increment ? p_ptr->realm2 : p_ptr->realm1, spell % 32, SPELL_NAME));
     }
 
@@ -590,7 +590,7 @@ void do_cmd_study(void)
     if (p_ptr->new_spells)
     {
         /* Message */
-        msg_format("You can learn %d more %s%s.", p_ptr->new_spells, p,
+        msg_format("你还可以再学习 %d 个%s%s。", p_ptr->new_spells, p,
                    (p_ptr->new_spells != 1) ? "s" : "");
     }
 #endif
@@ -723,14 +723,14 @@ static obj_ptr _get_spellbook(int mode)
     char         msg[255];
 
     sprintf(msg, "%s which book%s?",
-        mode == _CAST ? "Use" : "Browse",
+        mode == _CAST ? "使用" : "浏览",
         p_ptr->pclass == CLASS_FORCETRAINER ?
             " (<color:keypress>F</color> for the Force)" : p_ptr->pclass == CLASS_NINJA_LAWYER ?
             " (<color:keypress>N</color> for Ninjutsu)" : ((politician_is_magic) && (p_ptr->lev >= POLITICIAN_FIRST_SPELL)) ?
             " (<color:keypress>P</color> for Politics)" : "");
 
     prompt.prompt = msg;
-    prompt.error = "You have no books that you can read.";
+    prompt.error = "你没有可以阅读的书本。";
     prompt.filter = obj_is_readable_book;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -813,14 +813,14 @@ void do_cmd_cast(void)
         {
             do_cmd_spell(); /* non-magical politician */
         }
-        else msg_print("You cannot cast spells!");
+        else msg_print("你无法施展法术！");
         return;
     }
 
     if ((p_ptr->pclass == CLASS_BLOOD_MAGE) && ((get_race()->flags & RACE_IS_NONLIVING) || (p_ptr->no_cut)))
     {
-        if (get_true_race()->flags & RACE_IS_NONLIVING) msg_print("You can no longer use blood magic!");
-        else msg_print("You cannot use blood magic while transformed into a nonliving creature.");
+        if (get_true_race()->flags & RACE_IS_NONLIVING) msg_print("你无法再使用血魔法了！");
+        else msg_print("当变身为非生物时，你无法使用血魔法。");
         return;
     }
 
@@ -831,7 +831,7 @@ void do_cmd_cast(void)
         if (p_ptr->pclass == CLASS_FORCETRAINER) do_cmd_spell();
         else
         {
-            msg_print("You cannot see!");
+            msg_print("你看不见！");
             flush();
         }
         return;
@@ -840,7 +840,7 @@ void do_cmd_cast(void)
     /* Not when confused */
     if (p_ptr->confused)
     {
-        msg_print("You are too confused!");
+        msg_print("你太困惑了！");
         flush();
         return;
     }
@@ -857,7 +857,7 @@ void do_cmd_cast(void)
         if (hex_spell_fully())
         {
             bool flag = FALSE;
-            msg_print("Can not spell new spells more.");
+            msg_print("无法再施展新法术了。");
             flush();
             if (p_ptr->lev >= 35) flag = stop_hex_spell();
             if (!flag) return;
@@ -882,7 +882,7 @@ void do_cmd_cast(void)
     if (!get_spell(&spell, spl_verb, book->sval, TRUE, use_realm, FALSE))
     {
         if (spell == -2)
-            msg_format("You don't know any %ss in that book.", prayer);
+            msg_format("你不知道那本书里的任何%s。", prayer);
         return;
     }
 
@@ -891,7 +891,7 @@ void do_cmd_cast(void)
     {
         if (hex_spelling(spell))
         {
-            msg_print("You are already casting it.");
+            msg_print("你已经在施放它了。");
             return;
         }
     }
@@ -920,7 +920,7 @@ void do_cmd_cast(void)
     {	
         if (need_mana > p_ptr->chp)
         {
-            msg_print("You do not have enough hit points to use this spell.");
+            msg_print("你没有足够的生命值来使用这个法术。");
             if (flush_failure) flush();
             return;
         }
@@ -930,7 +930,7 @@ void do_cmd_cast(void)
         if (flush_failure) flush();
 
         /* Warning */
-        msg_format("You do not have enough mana to %s this %s.",
+        msg_format("你没有足够的法力来%s这个%s。",
             spl_verb, prayer);
 
         return;
@@ -975,7 +975,7 @@ void do_cmd_cast(void)
     {
         if (flush_failure) flush();
 
-        msg_format("You failed to %s %s!", spl_verb, do_spell(use_realm, spell % 32, SPELL_NAME));
+        msg_format("你没能%s%s！", spl_verb, do_spell(use_realm, spell % 32, SPELL_NAME));
         if (prompt_on_failure) msg_print(NULL);
 
         if (take_mana && prace_is_(RACE_DEMIGOD) && p_ptr->psubrace == DEMIGOD_ATHENA)
@@ -1002,7 +1002,7 @@ void do_cmd_cast(void)
 
         if ((book->tval == TV_CHAOS_BOOK) && (randint1(100) < spell))
         {
-            msg_print("You produce a chaotic effect!");
+            msg_print("你产生了一个混沌效果！");
             wild_magic(spell);
         }
         else if ((book->tval == TV_DEATH_BOOK) && (randint1(100) < spell))
@@ -1013,9 +1013,9 @@ void do_cmd_cast(void)
             }
             else
             {
-                msg_print("It hurts!");
+                msg_print("好痛！");
 
-                take_hit(DAMAGE_LOSELIFE, damroll(book->sval + 1, 6), "a miscast Death spell");
+                take_hit(DAMAGE_LOSELIFE, damroll(book->sval + 1, 6), "一个施放失败的死亡法术");
 
                 if ((spell > 15) && one_in_(6) && !p_ptr->hold_life)
                     lose_exp(spell * 250);
@@ -1023,7 +1023,7 @@ void do_cmd_cast(void)
         }
         else if ((book->tval == TV_MUSIC_BOOK) && (randint1(200) < spell))
         {
-            msg_print("An infernal sound echoed.");
+            msg_print("地狱般的声音回荡着。");
             aggravate_monsters(0);
         }
     }
@@ -1182,9 +1182,7 @@ void do_cmd_cast(void)
                 }
                 else if (p_ptr->wizard)
                 {
-                    msg_format("<color:B>When casting an <color:R>L%d</color> spell on "
-                        "<color:R>DL%d</color> your max proficiency is <color:R>%d</color> "
-                        "(Current: <color:R>%d</color>).</color> <color:D>%d</color>",
+                    msg_format("<color:B>当在 <color:R>DL%d</color> 层施放 <color:R>等级%d</color> 的法术时，你的最大熟练度是 <color:R>%d</color> (当前: <color:R>%d</color>)。</color> <color:D>%d</color>",
                         vaikeustaso, dlvl, max_exp, cur_exp, ratio);
                 }
                 if (exp_gain)
@@ -1206,20 +1204,20 @@ void do_cmd_cast(void)
                 new_level = spell_exp_level(p_ptr->spell_exp[index]);
                 if (new_level > old_level)
                 {
-                    cptr desc[5] = { "Unskilled", "a Beginner", "Skilled", "an Expert", "a Master" };
-                    msg_format("You are now <color:B>%s</color> in <color:R>%s</color>.",
+                    cptr desc[5] = { "未受训练", "a Beginner", "熟练", "an Expert", "a Master" };
+                    msg_format("你现在对 <color:R>%s</color> 的熟练度达到了 <color:B>%s</color> 级。",
                         desc[new_level],
                         do_spell(use_realm, spell % 32, SPELL_NAME));
                 }
                 else if (p_ptr->wizard || easy_damage)
                 {
-                    msg_format("You now have <color:B>%d</color> proficiency in <color:R>%s</color>.",
+                    msg_format("你现在对 <color:R>%s</color> 拥有 <color:B>%d</color> 点熟练度。",
                         p_ptr->spell_exp[index],
                         do_spell(use_realm, spell % 32, SPELL_NAME));
                 }
                 else if (p_ptr->spell_exp[index]/100 > cur_exp/100)
                 {
-                    msg_format("<color:B>You are getting more proficient with <color:R>%s</color>.</color>",
+                    msg_format("<color:B>你对 <color:R>%s</color> 越来越熟练了。</color>",
                         do_spell(use_realm, spell % 32, SPELL_NAME));
                 }
             }
@@ -1276,7 +1274,7 @@ void do_cmd_browse(void)
 
     if (!(p_ptr->realm1 || p_ptr->realm2) && (p_ptr->pclass != CLASS_SORCERER) && (p_ptr->pclass != CLASS_RED_MAGE))
     {
-        msg_print("You cannot read books!");
+        msg_print("你无法阅读书本！");
         return;
     }
 
@@ -1310,7 +1308,7 @@ void do_cmd_browse(void)
     while(TRUE)
     {
         /* Ask for a spell, allow cancel */
-        if (!get_spell(&spell, "browse", book->sval, TRUE, use_realm, TRUE))
+        if (!get_spell(&spell, "浏览", book->sval, TRUE, use_realm, TRUE))
         {
             /* If cancelled, leave immediately. */
             if (spell == -1) break;
@@ -1320,9 +1318,9 @@ void do_cmd_browse(void)
 
             /* Notify that there's nothing to see, and wait. */
             if (use_realm == REALM_HISSATSU)
-                prt("No techniques to browse.", 0, 0);
+                prt("没有可浏览的战技。", 0, 0);
             else
-                prt("No spells to browse.", 0, 0);
+                prt("没有可浏览的法术。", 0, 0);
             (void)inkey();
 
             /* Restore the screen */
@@ -1605,7 +1603,7 @@ void do_cmd_pet_dismiss(void)
         {
             if (pet_ctr == p_ptr->riding)
             {
-                msg_format("You have got off %s. ", friend_name);
+                msg_format("你从%s身上下来了。", friend_name);
                 p_ptr->riding = 0;
                 p_ptr->update |= (PU_BONUS | PU_MONSTERS);
                 p_ptr->redraw |= (PR_EXTRA | PR_HEALTH_BARS);
@@ -1628,10 +1626,10 @@ void do_cmd_pet_dismiss(void)
 
     C_KILL(who, max_m_idx, u16b);
 
-    msg_format("You have dismissed %d pet%s.", Dismissed,
+    msg_format("你解散了 %d 只宠物%s。", Dismissed,
            (Dismissed == 1 ? "" : "s"));
     if (Dismissed == 0 && all_pets)
-        msg_print("'U'nnamed means all your pets except named pets and your mount.");
+        msg_print("(U)未命名 代表除了有名字的宠物和你当前坐骑之外的所有宠物。");
 }
 
 bool player_can_ride_aux(cave_type *c_ptr, bool now_riding)
@@ -1738,7 +1736,7 @@ bool rakuba(int dam, bool force)
         if (!sn)
         {
             monster_desc(m_name, m_ptr, 0);
-            msg_format("You nearly fall from %s, but bump into a wall.",m_name);
+            msg_format("你差点从%s身上摔下来，但是撞到了墙上。",m_name);
             take_hit(DAMAGE_NOESCAPE, r_ptr->level+3, "bumping into wall");
             return FALSE;
         }
@@ -1781,11 +1779,11 @@ bool rakuba(int dam, bool force)
     if (p_ptr->levitation && !force)
     {
         monster_desc(m_name, m_ptr, 0);
-        msg_format("You are thrown from %s, but make a good landing.",m_name);
+        msg_format("你被%s甩了出去，但安稳地着陆了。",m_name);
     }
     else
     {
-        take_hit(DAMAGE_NOESCAPE, r_ptr->level+3, "Falling from riding");
+        take_hit(DAMAGE_NOESCAPE, r_ptr->level+3, "从骑乘状态坠落");
         fall_dam = TRUE;
     }
 
@@ -1814,7 +1812,7 @@ bool do_riding(bool force)
         /* Skip non-empty grids */
         if (!player_can_ride_aux(c_ptr, FALSE))
         {
-            msg_print("You cannot go to that direction.");
+            msg_print("你不能去那个方向。");
             return FALSE;
         }
 
@@ -1826,7 +1824,7 @@ bool do_riding(bool force)
             energy_use = 100;
 
             /* Message */
-            msg_print("There is a monster in the way!");
+            msg_print("有怪物挡在路上！");
 
             py_attack(y, x, 0);
             return FALSE;
@@ -1840,7 +1838,7 @@ bool do_riding(bool force)
     {
         if (p_ptr->confused)
         {
-            msg_print("You are too confused!");
+            msg_print("你太困惑了！");
             return FALSE;
         }
 
@@ -1848,13 +1846,13 @@ bool do_riding(bool force)
 
         if (!c_ptr->m_idx || !m_ptr->ml)
         {
-            msg_print("Here is no monster.");
+            msg_print("这里没有怪物。");
 
             return FALSE;
         }
         if (!is_pet(m_ptr) && !force)
         {
-            msg_print("That monster is not a pet.");
+            msg_print("那个怪物不是宠物。");
 
             return FALSE;
         }
@@ -1865,12 +1863,12 @@ bool do_riding(bool force)
             switch (noppa)
             {
              case 0: 
-             case 1: { msg_print("In your dreams."); break; }
+             case 1: { msg_print("做梦去吧。"); break; }
              case 2: 
-             case 3: { msg_print("No can do."); break; }
-             case 4: { msg_print("What game do you think you're playing, Leisure Suit Larry?"); break; }
-             case 5: { msg_print("What game do you think you're playing, Frogspawn?"); break; }
-             default: { msg_print("Feature turned off due to the controversy aroused by the release of FrogComposband 6.9.cream."); break; }
+             case 3: { msg_print("臣妾做不到啊。"); break; }
+             case 4: { msg_print("你以为你在玩什么游戏，花花公子拉瑞吗？"); break; }
+             case 5: { msg_print("你以为你在玩什么游戏，蛙卵模拟器吗？"); break; }
+             default: { msg_print("由于 FrogComposband 6.9.cream 版本的发布引起了争议，该功能已被关闭。"); break; }
             }
             return FALSE;
         }
@@ -1880,9 +1878,9 @@ bool do_riding(bool force)
             int noppa = randint0(3);
             switch (noppa)
             {
-             case 0: { msg_print("Aivan sairas kaveri kun tuollaista aikoo puuhata!"); break; }
-             case 1: { msg_print("I'm not going to judge you, but... what the hell, I'm going to judge you. WHAT THE HELL?"); break; }
-             default: { msg_print("Holy bleating bleatity bleat!"); break; }
+             case 0: { msg_print("(芬兰语) 这家伙真是有病，居然想干这种事！"); break; }
+             case 1: { msg_print("我不想评判你，但是……管他呢，我就是要评判你。这到底是在搞什么鬼？！"); break; }
+             default: { msg_print("神圣的咩咩咩啊！"); break; }
             }
             return FALSE;
         }
@@ -1890,7 +1888,7 @@ bool do_riding(bool force)
         {
             if (!mon_is_type(m_ptr->r_idx, SUMMON_RING_BEARER))
             {
-                msg_print("This monster is not a suitable ring bearer.");
+                msg_print("这个怪物不适合当持戒人。");
                 return FALSE;
             }
         }
@@ -1898,13 +1896,13 @@ bool do_riding(bool force)
         {
             if (!(r_info[m_ptr->r_idx].flags7 & RF7_RIDING))
             {
-                msg_print("This monster doesn't seem suitable for riding.");
+                msg_print("这个怪物似乎不适合骑乘。");
 
                 return FALSE;
             }
             if (warlock_is_(WARLOCK_DRAGONS) && !(r_info[m_ptr->r_idx].flags3 & RF3_DRAGON))
             {
-                msg_print("You are a dragon rider!");
+                msg_print("你成为了一名龙骑士！");
                 return FALSE;
             }
         }
@@ -1913,7 +1911,7 @@ bool do_riding(bool force)
 
         if (m_ptr->parent_m_idx > 0)
         {
-            msg_print("That monster has divided loyalties, and would not be a trustworthy mount!");
+            msg_print("那个怪物忠诚不专，不会是个可靠的坐骑！");
             return FALSE;
         }
 
@@ -1921,7 +1919,7 @@ bool do_riding(bool force)
         {
             /* Feature code (applying "mimic" field) */
             feature_type *f_ptr = &f_info[get_feat_mimic(c_ptr)];
-            msg_format("This monster is %s the %s.",
+            msg_format("这个怪物是%s%s。",
                        ((!have_flag(f_ptr->flags, FF_MOVE) && !have_flag(f_ptr->flags, FF_CAN_FLY)) ||
                         (!have_flag(f_ptr->flags, FF_LOS) && !have_flag(f_ptr->flags, FF_TREE))) ?
                        "in" : "on", f_name + f_ptr->name);
@@ -1933,11 +1931,11 @@ bool do_riding(bool force)
         {
             if (r_info[m_ptr->r_idx].level > (skills_riding_current() / 50 + p_ptr->lev / 2 + 20))
             {
-                msg_print("This monster is too powerful for you to ride!");
+                msg_print("这个怪物太强大了，你驾驭不了！");
             }
             else
             {
-                msg_print("You failed to ride.");
+                msg_print("你没能骑上去。");
             }
 
             energy_use = 100;
@@ -1950,7 +1948,7 @@ bool do_riding(bool force)
             char m_name[80];
             monster_desc(m_name, m_ptr, 0);
             (void)set_monster_csleep(c_ptr->m_idx, 0);
-            msg_format("You have waked %s up.", m_name);
+            msg_format("你叫醒了%s。", m_name);
         }
 
         if (p_ptr->action == ACTION_KAMAE) set_action(ACTION_NONE);
@@ -2003,18 +2001,18 @@ static void do_name_pet(void)
         if (!is_pet(m_ptr))
         {
             /* Message */
-            msg_format("This monster is not a pet.");
+            msg_format("这个怪物不是宠物。");
             return;
         }
         if (r_info[m_ptr->r_idx].flags1 & RF1_UNIQUE)
         {
-            msg_format("You cannot rename this monster!");
+            msg_format("你无法重命名这个怪物！");
             return;
         }
         monster_desc(m_name, m_ptr, 0);
 
         /* Message */
-        msg_format("Name %s.", m_name);
+        msg_format("命名为 %s。", m_name);
 
         msg_print(NULL);
 
@@ -2029,7 +2027,7 @@ static void do_name_pet(void)
         }
 
         /* Get a new inscription (possibly empty) */
-        if (get_string("Name: ", out_val, 16))
+        if (get_string("名称:", out_val, 16))
         {
             if (out_val[0])
             {
@@ -2073,7 +2071,7 @@ void do_cmd_pet(void)
     powers[num++] = PET_DISMISS;
 
     sprintf(target_buf, "specify a target of pet (now:%s)",
-        (pet_t_m_idx ? (p_ptr->image ? "something strange" : ((m_list[pet_t_m_idx].mflag2 & MFLAG2_KNOWN) ? (r_name + r_info[m_list[pet_t_m_idx].ap_r_idx].name) : "Monster")) : "nothing"));
+        (pet_t_m_idx ? (p_ptr->image ? "something strange" : ((m_list[pet_t_m_idx].mflag2 & MFLAG2_KNOWN) ? (r_name + r_info[m_list[pet_t_m_idx].ap_r_idx].name) : "怪物")) : "nothing"));
     power_desc[num] = target_buf;
 
     powers[num++] = PET_TARGET;
@@ -2135,31 +2133,31 @@ void do_cmd_pet(void)
 
     if (p_ptr->pet_extra_flags & PF_ATTACK_SPELL)
     {
-        power_desc[num] = "allow cast attack spell (now On)";
+        power_desc[num] = "允许施放攻击法术 (当前: 开启)";
     }
     else
     {
-        power_desc[num] = "allow cast attack spell (now Off)";
+        power_desc[num] = "允许施放攻击法术 (当前: 关闭)";
     }
     powers[num++] = PET_ATTACK_SPELL;
 
     if (p_ptr->pet_extra_flags & PF_SUMMON_SPELL)
     {
-        power_desc[num] = "allow cast summon spell (now On)";
+        power_desc[num] = "允许施放召唤法术 (当前: 开启)";
     }
     else
     {
-        power_desc[num] = "allow cast summon spell (now Off)";
+        power_desc[num] = "允许施放召唤法术 (当前: 关闭)";
     }
     powers[num++] = PET_SUMMON_SPELL;
 
     if (p_ptr->pet_extra_flags & PF_BALL_SPELL)
     {
-        power_desc[num] = "allow involve player in area spell (now On)";
+        power_desc[num] = "允许范围法术波及玩家 (当前: 开启)";
     }
     else
     {
-        power_desc[num] = "allow involve player in area spell (now Off)";
+        power_desc[num] = "允许范围法术波及玩家 (当前: 关闭)";
     }
     powers[num++] = PET_BALL_SPELL;
 
@@ -2238,7 +2236,7 @@ void do_cmd_pet(void)
         screen_save();
 
         /* Build a prompt */
-        strnfmt(out_val, 78, "(Command, ESC=exit) Choose command from menu.");
+        strnfmt(out_val, 78, "(命令，ESC=退出) 从菜单中选择命令。");
     }
     else
     {
@@ -2406,7 +2404,7 @@ void do_cmd_pet(void)
 
             if (!pet_ctr)
             {
-                msg_print("You have no pets!");
+                msg_print("你没有宠物！");
                 break;
             }
             do_cmd_pet_dismiss();

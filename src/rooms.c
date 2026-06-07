@@ -2014,8 +2014,8 @@ obj_ptr room_grid_make_obj(room_grid_ptr grid, int level)
                         effect_t e = {0};
                         e.type = grid->extra;
                         sprintf(name, "%s", do_effect(&e, SPELL_NAME, 0));
-                        msg_format("Software Bug: %s is not a valid effect for this device.", name);
-                        msg_print("Generating a random device instead.");
+                        msg_format("软件错误：%s 不是此装置的有效效果。", name);
+                        msg_print("将生成一个随机装置作为替代。");
                     }
                     device_init(&forge, object_level, 0);
                 }
@@ -2139,7 +2139,7 @@ static obj_ptr _make_obj_theme(room_grid_ptr grid, int level)
         }
         else if (p_ptr->wizard)
         {
-            msg_format("Unable to _make_obj_theme(%d)", _obj_kind_hack);
+            msg_format("无法创建 _make_obj_theme(%d)", _obj_kind_hack);
         }
     }
     object_level = base_level;
@@ -2186,7 +2186,7 @@ static void _apply_room_grid_obj(point_t p, room_grid_ptr grid, room_ptr room)
     if (room->type == ROOM_VAULT && grid->flags & ROOM_GRID_EGO_RANDOM)
     {
         int     tries = room->subtype == VAULT_GREATER ? 4 : 2;
-        inv_ptr inv = inv_alloc("Temp", INV_PACK, 0);
+        inv_ptr inv = inv_alloc("临时", INV_PACK, 0);
         obj_ptr obj;
         int     i;
 
@@ -2731,7 +2731,7 @@ room_ptr choose_room_template(int type, int subtype)
 
     /* XXX I need a rooms_wizard analagous to quests_wizard ...*/
     if (0 && p_ptr->wizard)
-        msg_format("<color:B>Total of (%d,%d) is <color:R>%d</color>.</color>", type, subtype, total);
+        msg_format("<color:B>(%d,%d)的总计为 <color:R>%d</color>。</color>", type, subtype, total);
 
     n = randint1(total);
     for (i = 0; i < vec_length(room_info); i++)
@@ -3721,7 +3721,7 @@ void build_lake(int type)
     /* paranoia - exit if lake type out of range. */
     if ((type < LAKE_T_LAVA) || (type >= LAKE_T_MAX))
     {
-        msg_format("Invalid lake type (%d)", type);
+        msg_format("无效的湖泊类型 (%d)", type);
         return;
     }
 
@@ -4007,7 +4007,7 @@ void build_maze_vault(int x0, int y0, int xsize, int ysize, bool is_vault)
     cave_type *c_ptr;
 
 
-    if (cheat_room && is_vault) msg_print("Maze Vault");
+    if (cheat_room && is_vault) msg_print("迷宫金库");
 
     /* Choose lite or dark */
     light = ((dun_level <= randint1(25)) && is_vault && !(d_info[dungeon_type].flags1 & DF1_DARKNESS));
@@ -4316,7 +4316,7 @@ static bool build_type14(void)
     /* Message */
     if (cheat_room)
     {
-        msg_format("Room of %s", f_name + f_info[trap].name);
+        msg_format("%s的房间", f_name + f_info[trap].name);
     }
 
     return TRUE;
@@ -4604,7 +4604,7 @@ bool generate_rooms(void)
 
     if (cheat_room)
     {
-        msg_format("Number of Rooms: %d (%d)", rooms_built, dun_rooms);
+        msg_format("房间数量: %d (%d)", rooms_built, dun_rooms);
     }
 
     return TRUE;

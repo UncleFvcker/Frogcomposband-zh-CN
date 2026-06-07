@@ -6,15 +6,15 @@ static void _detect_near_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Near");
+        var_set_string(res, "近距侦测");
         break;
     case SPELL_DESC:
         if (p_ptr->lev >= 25)
-            var_set_string(res, "Detects nearby monsters, traps, doors, stairs and objects.");
+            var_set_string(res, "侦测附近的怪物、陷阱、门、楼梯和物品。");
         else if (p_ptr->lev >= 5)
-            var_set_string(res, "Detects nearby monsters, traps, doors and stairs.");
+            var_set_string(res, "侦测附近的怪物、陷阱、门和楼梯。");
         else 
-            var_set_string(res, "Detects nearby monsters.");
+            var_set_string(res, "侦测附近的怪物。");
         break;
     case SPELL_CAST:
         detect_monsters_normal(DETECT_RAD_DEFAULT);
@@ -68,7 +68,7 @@ static power_info _get_powers[] =
 static void _character_dump(doc_ptr doc)
 {
     spellbook_character_dump(doc);
-    doc_insert(doc, "<color:r>Realm:</color> <color:B>Ninjutsu</color>\n");
+    doc_insert(doc, "<color:r>领域:</color> <color:B>忍术</color>\n");
     py_dump_spells_aux(doc);
 }
 
@@ -174,14 +174,8 @@ class_t *ninja_lawyer_get_class(void)
     skills_t bs = { 45,  29,  38,   3,  42,  28,  66,  35 };
     skills_t xs = { 15,  11,  10,   1,   0,   0,  22,  11 };
 
-        me.name = "Ninja-Lawyer";
-        me.desc = "The Ninja-Lawyer moves silently in the night, combining the "
-                  "stealth, agility and offensive power of the ninja with the "
-                  "subtle practical tools of the lawyer. Ninja-Lawyers, like "
-                  "specialist ninjas, prefer light armour and stabbing weapons and "
-                  "acquire the powerful 'Quick Walk' class power. A ninja-lawyer "
-                  "relies on both wisdom and dexterity, requiring the former for "
-                  "legal tricks and the latter for ninjutsu.";
+        me.name = "忍者律师";
+        me.desc = "忍者律师在黑夜中默默穿行，将忍者的隐秘、敏捷和攻击力与律师微妙的实用工具结合在一起。与专职忍者一样，忍者律师也更喜欢轻甲和刺击武器，并能获得强大的职业能力“缩地(Quick Walk)”。忍者律师同时依赖感知和敏捷，前者用于法律把戏，后者用于忍术。";
 
         me.stats[A_STR] = -1;
         me.stats[A_INT] =  0;

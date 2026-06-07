@@ -3229,7 +3229,7 @@ static errr term_data_init(term_data *td, int i)
 	/* Make Class Hints */
     td->classh = XAllocClassHint();
 
-    if (td->classh == NULL) quit("XAllocClassHint failed");
+    if (td->classh == NULL) quit("XAllocClassHint 失败");
 
 	strcpy(res_name, name);
 	res_name[0] = FORCELOWER(res_name[0]);
@@ -3244,7 +3244,7 @@ static errr term_data_init(term_data *td, int i)
     td->sizeh = XAllocSizeHints();
 
 	/* Oops */
-    if (td->sizeh == NULL) quit("XAllocSizeHints failed");
+    if (td->sizeh == NULL) quit("XAllocSizeHints 失败");
 
 	/* Main window has a differing minimum size */
 	if (i == 0)
@@ -3287,7 +3287,7 @@ static errr term_data_init(term_data *td, int i)
 #ifdef USE_XIM
 	/* Make WM Hints */
 	wh = XAllocWMHints();
-	if(wh == NULL) quit("XAllocWMHints failed");
+	if(wh == NULL) quit("XAllocWMHints 失败");
 	wh->flags = InputHint;
 	wh->input = True;
 	XSetWMHints(Metadpy->dpy, Infowin->win, wh);
@@ -3456,7 +3456,7 @@ errr init_x11(int argc, char *argv[])
 			continue;
 		}
 
-		plog_fmt("Ignoring option: %s", argv[i]);
+		plog_fmt("正在忽略选项：%s", argv[i]);
 	}
 
 #ifdef USE_LOCALE

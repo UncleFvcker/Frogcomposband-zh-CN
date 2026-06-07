@@ -7,6 +7,184 @@
 #include <stdint.h>
 
 #define _INVALID_COLOR 255
+#define _DOC_UC_WIDE_TRAIL TERM_UC_WIDE_TRAIL
+#define _DOC_UC_REPLACEMENT TERM_UC_REPLACEMENT
+
+static int _doc_utf8_decode(cptr s, int n, u32b *cp)
+{
+    byte b0 = (byte)s[0];
+
+    if (b0 < 0x80)
+    {
+        *cp = b0;
+        return 1;
+    }
+    if (n >= 2 && (b0 & 0xE0) == 0xC0)
+    {
+        byte b1 = (byte)s[1];
+        if ((b1 & 0xC0) == 0x80)
+        {
+            u32b c = ((u32b)(b0 & 0x1F) << 6) | (u32b)(b1 & 0x3F);
+            if (c >= 0x80)
+            {
+                *cp = c;
+                return 2;
+            }
+        }
+    }
+    if (n >= 3 && (b0 & 0xF0) == 0xE0)
+    {
+        byte b1 = (byte)s[1];
+        byte b2 = (byte)s[2];
+        if ((b1 & 0xC0) == 0x80 && (b2 & 0xC0) == 0x80)
+        {
+            u32b c = ((u32b)(b0 & 0x0F) << 12) | ((u32b)(b1 & 0x3F) << 6) | (u32b)(b2 & 0x3F);
+            if (c >= 0x800 && !(0xD800 <= c && c <= 0xDFFF))
+            {
+                *cp = c;
+                return 3;
+            }
+        }
+    }
+    if (n >= 4 && (b0 & 0xF8) == 0xF0)
+    {
+        byte b1 = (byte)s[1];
+        byte b2 = (byte)s[2];
+        byte b3 = (byte)s[3];
+        if ((b1 & 0xC0) == 0x80 && (b2 & 0xC0) == 0x80 && (b3 & 0xC0) == 0x80)
+        {
+            u32b c = ((u32b)(b0 & 0x07) << 18) | ((u32b)(b1 & 0x3F) << 12) | ((u32b)(b2 & 0x3F) << 6) | (u32b)(b3 & 0x3F);
+            if (0x10000 <= c && c <= 0x10FFFF)
+            {
+                *cp = c;
+                return 4;
+            }
+        }
+    }
+
+    *cp = _DOC_UC_REPLACEMENT;
+    return 1;
+}
+
+static int _doc_utf8_width(u32b cp)
+{
+    if ( cp == 0
+      || cp == _DOC_UC_WIDE_TRAIL
+      || cp == _DOC_UC_REPLACEMENT )
+    {
+        return 1;
+    }
+    if ( (0x1100 <= cp && cp <= 0x115F)
+      || (0x2E80 <= cp && cp <= 0xA4CF)
+      || (0xAC00 <= cp && cp <= 0xD7A3)
+      || (0xF900 <= cp && cp <= 0xFAFF)
+      || (0xFE10 <= cp && cp <= 0xFE19)
+      || (0xFE30 <= cp && cp <= 0xFE6F)
+      || (0xFF00 <= cp && cp <= 0xFF60)
+      || (0xFFE0 <= cp && cp <= 0xFFE6)
+      || (0x20000 <= cp && cp <= 0x3FFFD) )
+    {
+        return 2;
+    }
+    return 1;
+}
+
+static int _doc_utf8_text_width(cptr s, int n)
+{
+    int i = 0;
+    int w = 0;
+    while (i < n)
+    {
+        u32b cp;
+        int len = _doc_utf8_decode(s + i, n - i, &cp);
+        if (cp == '\t') cp = ' ';
+        w += _doc_utf8_width(cp);
+        i += len;
+    }
+    return w;
+}
+
+static int _doc_utf8_encode(u32b cp, char *buf)
+{
+    if (cp < 0x80)
+    {
+        buf[0] = (char)cp;
+        return 1;
+    }
+    if (cp < 0x800)
+    {
+        buf[0] = (char)(0xC0 | (cp >> 6));
+        buf[1] = (char)(0x80 | (cp & 0x3F));
+        return 2;
+    }
+    if (cp < 0x10000)
+    {
+        buf[0] = (char)(0xE0 | (cp >> 12));
+        buf[1] = (char)(0x80 | ((cp >> 6) & 0x3F));
+        buf[2] = (char)(0x80 | (cp & 0x3F));
+        return 3;
+    }
+    buf[0] = (char)(0xF0 | (cp >> 18));
+    buf[1] = (char)(0x80 | ((cp >> 12) & 0x3F));
+    buf[2] = (char)(0x80 | ((cp >> 6) & 0x3F));
+    buf[3] = (char)(0x80 | (cp & 0x3F));
+    return 4;
+}
+
+static void _doc_fput_utf8(FILE *fp, u32b cp)
+{
+    char buf[5];
+    int len;
+
+    if (cp == _DOC_UC_WIDE_TRAIL)
+        return;
+
+    len = _doc_utf8_encode(cp, buf);
+    fwrite(buf, 1, len, fp);
+}
+
+static bool _doc_insert_codepoint(doc_ptr doc, doc_style_ptr style, byte a, u32b cp)
+{
+    int wid;
+    doc_char_ptr cell;
+
+    if (cp == '\t') cp = ' ';
+    wid = _doc_utf8_width(cp);
+
+    if (doc->cursor.x + wid > style->right)
+    {
+        if (style->options & DOC_STYLE_NO_WORDWRAP)
+            return FALSE;
+        doc_newline(doc);
+        if (style->indent)
+            doc_insert_space(doc, style->indent);
+    }
+
+    cell = doc_char(doc, doc->cursor);
+    cell->a = a;
+    cell->uc = cp;
+    cell->c = (cp < 0x80) ? (char)cp : '?';
+
+    if (wid == 2 && doc->cursor.x + 1 < doc->width)
+    {
+        doc_char_ptr trail = cell + 1;
+        trail->a = a;
+        trail->c = ' ';
+        trail->uc = _DOC_UC_WIDE_TRAIL;
+    }
+
+    if (doc->cursor.x + wid >= style->right)
+    {
+        if (style->options & DOC_STYLE_NO_WORDWRAP)
+            doc->cursor.x = style->right - 1;
+        else
+            doc_newline(doc);
+    }
+    else
+        doc->cursor.x += wid;
+
+    return TRUE;
+}
 
 doc_pos_t doc_pos_create(int x, int y)
 {
@@ -956,14 +1134,14 @@ doc_pos_t doc_insert(doc_ptr doc, cptr text)
 
         /* Queue Complexity is for "<color:R>difficult</color>!" which is actually a bit common! */
         qidx = 0;
-        cb = token.size;
+        cb = _doc_utf8_text_width(token.pos, token.size);
         queue[qidx++] = token;
         while (qidx < 10)
         {
             cptr peek = doc_lex(pos, &token);
             if (token.type == DOC_TOKEN_WORD)
             {
-                cb += token.size;
+                cb += _doc_utf8_text_width(token.pos, token.size);
             }
             else if ( token.type == DOC_TOKEN_TAG
                    && (token.tag.type == DOC_TAG_COLOR || token.tag.type == DOC_TAG_CLOSE_COLOR) )
@@ -1003,33 +1181,22 @@ doc_pos_t doc_insert(doc_ptr doc, cptr text)
                 assert(current->type == DOC_TOKEN_WORD);
                 assert(cell);
 
-                for (j = 0; j < current->size && !nowrap; j++)
+                for (j = 0; j < current->size && !nowrap; )
                 {
-                    cell->a = style->color;
-                    cell->c = current->pos[j];
-                    if (cell->c == '\t')
-                        cell->c = ' ';
-                    if (doc->cursor.x == style->right - 1)
+                    u32b cp;
+                    int len = _doc_utf8_decode(current->pos + j, current->size - j, &cp);
+
+                    if (!_doc_insert_codepoint(doc, style, style->color, cp))
                     {
-                        if (style->options & DOC_STYLE_NO_WORDWRAP)
-                        {
-                            /* nowrap is tricky ... we still need to process remaining tokens
-                             * since these may change the current style. however, we need to stop
-                             * trying to print, and we'll guard this for word tokens with the
-                             * following flag: */
-                            nowrap = TRUE;
-                            break;
-                        }
-                        doc_newline(doc);
-                        if (style->indent)
-                            doc_insert_space(doc, style->indent);
-                        cell = doc_char(doc, doc->cursor);
+                        /* nowrap is tricky ... we still need to process remaining tokens
+                         * since these may change the current style. however, we need to stop
+                         * trying to print, and we'll guard this for word tokens with the
+                         * following flag: */
+                        nowrap = TRUE;
+                        break;
                     }
-                    else
-                    {
-                        doc->cursor.x++;
-                        cell++;
-                    }
+                    j += len;
+                    cell = doc_char(doc, doc->cursor);
                 }
             }
         }
@@ -1045,6 +1212,7 @@ doc_pos_t doc_insert_char(doc_ptr doc, byte a, char c)
 
     cell->a = a;
     cell->c = c;
+    cell->uc = (byte)c;
 
     if (doc->cursor.x >= style->right - 1)
     {
@@ -1068,6 +1236,7 @@ doc_pos_t doc_insert_space(doc_ptr doc, int count)
     {
         cell->a = style->color;
         cell->c = ' ';
+        cell->uc = ' ';
         if (doc->cursor.x >= style->right - 1)
             break;
         doc->cursor.x++;
@@ -1152,6 +1321,7 @@ doc_pos_t doc_insert_doc(doc_ptr dest_doc, doc_ptr src_doc, int indent)
         {
             dest->a = src->a;
             dest->c = src->c;
+            dest->uc = src->uc;
 
             dest++;
             src++;
@@ -1217,9 +1387,13 @@ doc_pos_t doc_insert_cols(doc_ptr dest_doc, doc_ptr src_cols[], int col_count, i
 
                     dest->a = src->a;
                     dest->c = src->c;
+                    dest->uc = src->uc;
 
                     if (!dest->c)
+                    {
                         dest->c = ' ';
+                        dest->uc = ' ';
+                    }
 
                     dest++;
                     src++;
@@ -1243,6 +1417,7 @@ doc_pos_t doc_insert_cols(doc_ptr dest_doc, doc_ptr src_cols[], int col_count, i
                 {
                     dest->a = TERM_WHITE;
                     dest->c = ' ';
+                    dest->uc = ' ';
                     dest++;
                 }
             }
@@ -1303,8 +1478,9 @@ static void _doc_write_text_file(doc_ptr doc, FILE *fp)
         cell = doc_char(doc, pos);
         for (; pos.x < cx; pos.x++)
         {
+            u32b cp = cell->uc ? cell->uc : (byte)cell->c;
             if (!cell->c) break;
-            fputc(cell->c, fp);
+            _doc_fput_utf8(fp, cp);
             cell++;
         }
         fprintf(fp, "\n");
@@ -1376,7 +1552,8 @@ static void _doc_write_html_file(doc_ptr doc, FILE *fp)
 
         for (; pos.x < cx; pos.x++)
         {
-            char c = cell->c;
+            u32b cp = cell->uc ? cell->uc : (byte)cell->c;
+            char c = (cp < 0x80) ? (char)cp : '?';
             byte a = cell->a % MAX_COLOR;
 
             if (next_link)
@@ -1431,7 +1608,11 @@ static void _doc_write_html_file(doc_ptr doc, FILE *fp)
             case '&': fprintf(fp, "&amp;"); break;
             case '<': fprintf(fp, "&lt;"); break;
             case '>': fprintf(fp, "&gt;"); break;
-            default:  fprintf(fp, "%c", c); break;
+            default:
+                if (cp == _DOC_UC_WIDE_TRAIL) {}
+                else if (cp < 0x80) fprintf(fp, "%c", c);
+                else _doc_fput_utf8(fp, cp);
+                break;
             }
             cell++;
         }
@@ -1460,7 +1641,8 @@ static void _doc_write_doc_file(doc_ptr doc, FILE *fp)
 
         for (; pos.x < cx; pos.x++)
         {
-            char c = cell->c;
+            u32b cp = cell->uc ? cell->uc : (byte)cell->c;
+            char c = (cp < 0x80) ? (char)cp : '?';
             byte a = cell->a;
 
             if (!c) break;
@@ -1472,7 +1654,7 @@ static void _doc_write_doc_file(doc_ptr doc, FILE *fp)
                 fprintf(fp, "<color:%c>", attr_to_attr_char(a));
                 old_a = a;
             }
-            fputc(c, fp);
+            _doc_fput_utf8(fp, cp);
             cell++;
         }
         fputc('\n', fp);
@@ -1526,6 +1708,7 @@ static void _doc_clear_char(doc_pos_t pos, doc_char_ptr cell)
 {
     cell->c = '\0';
     cell->a = TERM_DARK;
+    cell->uc = 0;
 }
 void doc_rollback(doc_ptr doc, doc_pos_t pos)
 {
@@ -1602,13 +1785,28 @@ void doc_sync_term(doc_ptr doc, doc_region_t range, doc_pos_t term_pos)
                 {
                     int term_x = term_pos.x + pos.x;
                     byte         a = cell->a;
+                    u32b         cp = cell->uc ? cell->uc : (byte)cell->c;
 
                     if ( selection_color != _INVALID_COLOR
                       && doc_region_contains(&doc->selection, pos) )
                     {
                         a = selection_color;
                     }
-                    Term_putch(term_x, term_y, a, cell->c);
+                    if (cp == _DOC_UC_WIDE_TRAIL)
+                    {
+                        /* The leading wide cell queues this trail cell. */
+                    }
+                    else if (cp < 0x80)
+                    {
+                        Term_putch(term_x, term_y, a, (char)cp);
+                    }
+                    else
+                    {
+                        char buf[5];
+                        int len = _doc_utf8_encode(cp, buf);
+                        buf[len] = '\0';
+                        Term_queue_chars(term_x, term_y, len, a, buf);
+                    }
                 }
             }
         }
@@ -1631,7 +1829,7 @@ int doc_display_aux(doc_ptr doc, cptr caption, int top, rect_t display)
     char    back_str[81];
     int     page_size;
     bool    done = FALSE;
-    bool    verify_format_hack = (strpos("Character Sheet", caption) == 1);
+    bool    verify_format_hack = (strpos("角色面板", caption) == 1);
 
     strcpy(finder_str, "");
 
@@ -1650,10 +1848,10 @@ int doc_display_aux(doc_ptr doc, cptr caption, int top, rect_t display)
         int cmd;
 
         Term_erase(display.x, display.y, display.cx);
-        c_put_str(TERM_L_GREEN, format("[%s, Line %d/%d]", caption, top, doc->cursor.y), display.y, display.x);
+        c_put_str(TERM_L_GREEN, format("[%s，第 %d/%d 行]", caption, top, doc->cursor.y), display.y, display.x);
         doc_sync_term(doc, doc_region_create(0, top, doc->width, top + page_size - 1), doc_pos_create(display.x, display.y + 2));
         Term_erase(display.x, display.y + display.cy - 1, display.cx);
-        c_put_str(TERM_L_GREEN, "[Press ESC to exit. Press ? for help]", display.y + display.cy - 1, display.x);
+        c_put_str(TERM_L_GREEN, "[按 ESC 退出。按 ? 获取帮助]", display.y + display.cy - 1, display.x);
 
         cmd = inkey_special(TRUE);
 
@@ -1787,7 +1985,7 @@ int doc_display_aux(doc_ptr doc, cptr caption, int top, rect_t display)
 
             strcpy(name, string_buffer(doc->name));
 
-            if (!get_string("File name: ", name, 80)) break;
+            if (!get_string("文件名：", name, 80)) break;
             path_build(buf, sizeof(buf), ANGBAND_DIR_USER, name);
 
             cb = strlen(buf);
@@ -1819,7 +2017,7 @@ int doc_display_aux(doc_ptr doc, cptr caption, int top, rect_t display)
                     }
                 }
                 strcat(nuname, ".html");
-                sprintf(prompt, "Please note that the FrogComposband Ladder at angband.oook.cz only accepts HTML dumps.\n<color:y>Save dump as</color> <color:R>%s</color><color:y>? [y/n]</color>", nuname);
+                strnfmt(prompt, sizeof(prompt), "请注意，angband.oook.cz 的 FrogComposband 排行榜只接受 HTML 格式的转储文件。\n<color:y>将转储文件保存为</color> <color:R>%s</color><color:y> 吗？[y/n]</color>", nuname);
                 if (msg_prompt(prompt, "ny", PROMPT_DEFAULT) == 'y')
                 {
                     strcpy(buf, nuname);
@@ -1830,19 +2028,19 @@ int doc_display_aux(doc_ptr doc, cptr caption, int top, rect_t display)
             fp2 = my_fopen(buf, "w");
             if (!fp2)
             {
-                msg_format("Failed to open file: %s", buf);
+                msg_format("无法打开文件：%s", buf);
                 break;
             }
 
             doc_write_file(doc, fp2, format);
             my_fclose(fp2);
-            msg_format("Created file: %s", buf);
+            msg_format("创建文件：%s", buf);
             msg_print(NULL);
             break;
         }
         case '/':
             Term_erase(display.x, display.y + display.cy - 1, display.cx);
-            put_str("Find: ", display.y + display.cy - 1, display.x);
+            put_str("查找：", display.y + display.cy - 1, display.x);
             strcpy(back_str, finder_str);
             if (askfor(finder_str, 80))
             {
@@ -1864,7 +2062,7 @@ int doc_display_aux(doc_ptr doc, cptr caption, int top, rect_t display)
             break;
         case '\\':
             Term_erase(display.x, display.y + display.cy - 1, display.cx);
-            put_str("Find: ", display.y + display.cy - 1, display.x);
+            put_str("查找：", display.y + display.cy - 1, display.x);
             strcpy(back_str, finder_str);
             if (askfor(finder_str, 80))
             {
@@ -1933,10 +2131,10 @@ int weapon_exp_display(doc_ptr doc, cptr caption, int *top)
         int cmd;
 
         Term_erase(display.x, display.y, display.cx);
-        c_put_str(TERM_L_GREEN, format("[%s, Line %d/%d]", caption, *top, doc->cursor.y), display.y, display.x);
+        c_put_str(TERM_L_GREEN, format("[%s，第 %d/%d 行]", caption, *top, doc->cursor.y), display.y, display.x);
         doc_sync_term(doc, doc_region_create(0, *top, doc->width, *top + page_size - 1), doc_pos_create(display.x, display.y + 2));
         Term_erase(display.x, display.y + display.cy - 1, display.cx);
-        c_put_str(TERM_L_GREEN, "[Press ESC to exit. Press M to toggle mode. Press ? for help]", display.y + display.cy - 1, display.x);
+        c_put_str(TERM_L_GREEN, "[按 ESC 退出。按 M 切换模式。按 ? 获取帮助]", display.y + display.cy - 1, display.x);
 
         cmd = inkey_special(TRUE);
 
@@ -2045,12 +2243,12 @@ int weapon_exp_display(doc_ptr doc, cptr caption, int *top)
 
             strcpy(name, string_buffer(doc->name));
 
-            if (!get_string("File name: ", name, 80)) break;
+            if (!get_string("文件名：", name, 80)) break;
             path_build(buf, sizeof(buf), ANGBAND_DIR_USER, name);
             fp2 = my_fopen(buf, "w");
             if (!fp2)
             {
-                msg_format("Failed to open file: %s", buf);
+                msg_format("无法打开文件：%s", buf);
                 break;
             }
 
@@ -2062,13 +2260,13 @@ int weapon_exp_display(doc_ptr doc, cptr caption, int *top)
 
             doc_write_file(doc, fp2, format);
             my_fclose(fp2);
-            msg_format("Created file: %s", buf);
+            msg_format("创建文件：%s", buf);
             msg_print(NULL);
             break;
         }
         case '/':
             Term_erase(display.x, display.y + display.cy - 1, display.cx);
-            put_str("Find: ", display.y + display.cy - 1, display.x);
+            put_str("查找：", display.y + display.cy - 1, display.x);
             strcpy(back_str, finder_str);
             if (askfor(finder_str, 80))
             {
@@ -2090,7 +2288,7 @@ int weapon_exp_display(doc_ptr doc, cptr caption, int *top)
             break;
         case '\\':
             Term_erase(display.x, display.y + display.cy - 1, display.cx);
-            put_str("Find: ", display.y + display.cy - 1, display.x);
+            put_str("查找：", display.y + display.cy - 1, display.x);
             strcpy(back_str, finder_str);
             if (askfor(finder_str, 80))
             {
@@ -2155,7 +2353,7 @@ int doc_display_help_aux(cptr file_name, cptr topic, rect_t display)
     fp = my_fopen(path, "r");
     if (!fp)
     {
-        cmsg_format(TERM_VIOLET, "Cannot open '%s'.", file_name);
+        cmsg_format(TERM_VIOLET, "无法打开“%s”。", file_name);
         msg_print(NULL);
         return _OK;
     }

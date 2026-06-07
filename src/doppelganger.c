@@ -41,14 +41,14 @@ void mimic_race(int new_race, const char *msg)
     if (!suppress)
     {
         if (new_race == MIMIC_NONE)
-            msg_print("You resume your true form.");
+            msg_print("你恢复了原本的形态。");
         else
         {
             race_t *race_ptr = get_race_aux(new_race, 0);
             if (is_a_vowel(race_ptr->name[0]))
-                msg_format("You turn into an %s!", race_ptr->name);
+                msg_format("你变成了%s！", race_ptr->name);
             else
-                msg_format("You turn into a %s!", race_ptr->name);
+                msg_format("你变成了%s！", race_ptr->name);
         }
     }
 
@@ -211,15 +211,15 @@ static void _list_forms(int ct)
     if (col_height == ct)
     {
         Term_erase(x, y, 255);
-        put_str("Lv Cost Fail", y, x + 29);
+        put_str("等级 消耗 失败率", y, x + 29);
     }
     else
     {
         col_width = 42;
         x = 1;
         Term_erase(x, y, 255);
-        put_str("Lv Cost Fail", y, x + 29);
-        put_str("Lv Cost Fail", y, x + col_width + 29);
+        put_str("等级 消耗 失败率", y, x + 29);
+        put_str("等级 消耗 失败率", y, x + col_width + 29);
     }
 
     for (i = 0; i < ct; i++)
@@ -289,8 +289,8 @@ static int _choose_form_imp(int ct)
     char prompt2[140];
     bool describe = FALSE;
 
-    strnfmt(prompt1, 78, "Mimic which %s? (Type '?' to Browse) ", "Race");
-    strnfmt(prompt2, 78, "Browse which %s? (Type '?' to Use)", "Race");
+    strnfmt(prompt1, 78, "模仿哪种%s？(输入 '?' 浏览)", "种族");
+    strnfmt(prompt2, 78, "浏览哪种%s？(输入 '?' 模仿)", "种族");
     _list_forms(ct);
 
     for (;;)
@@ -369,22 +369,22 @@ static void _mimic_spell(int cmd, variant *res)
     {
     case SPELL_NAME:
         if (p_ptr->mimic_form != MIMIC_NONE)
-            var_set_string(res, "Stop Mimicry");
+            var_set_string(res, "停止模仿");
         else
-            var_set_string(res, "Mimic");
+            var_set_string(res, "模仿");
         break;
     case SPELL_SPOIL_NAME:
-        var_set_string(res, "Mimic");
+        var_set_string(res, "模仿");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You lose the benefits of your current race to take on a new form.");
+        var_set_string(res, "你失去当前种族的增益，呈现出新的形态。");
         break;
     case SPELL_CAST:
         var_set_bool(res, TRUE);
         /* Drawback: Casting polymorph magic will block racial shape shifting until the spell wears off */
         if (p_ptr->tim_mimic)
         {
-            msg_print("Something seems to be interfering with your racial shape shifting!");
+            msg_print("似乎有什么东西干扰了你的种族变形！");
         }
         /* Drawback: Before shifting to a new form, they must revert to their original form. */
         else if (p_ptr->mimic_form != MIMIC_NONE)
@@ -404,14 +404,14 @@ static void _mimic_spell(int cmd, variant *res)
 
                 if (cost > p_ptr->csp + p_ptr->chp)
                 {
-                    msg_print("Choosing this form will kill you. You need to rest first!");
+                    msg_print("选择这个形态会杀了你。你需要先休息！");
                     return;
                 }
 
                 if (randint0(100) >= fail)
                     mimic_race(race_idx, NULL);
                 else
-                    msg_print("You failed to concentrate hard enough!");
+                    msg_print("你无法集中足够的注意力！");
 
                 _pay_cost(cost);
             }
@@ -441,10 +441,8 @@ race_t *doppelganger_get_race(void)
 
     if (!init)
     {
-        me.name = "Doppelganger";
-        me.desc = "Doppelgangers are truly pathetic creatures. While nobody has actually ever seen "
-                    "their true form, they are rumored to be small, plain, pathetic creatures. "
-                    "Their one saving grace is the ability to mimic other races.";
+        me.name = "变形者";
+        me.desc = "变形者确实是可悲的生物。虽然实际上没有人见过它们的真实形态，但传闻它们是矮小、丑陋、可怜的生物。它们唯一的救赎就是能够模仿其他种族。";
         
         me.stats[A_STR] = -3;
         me.stats[A_INT] = -3;

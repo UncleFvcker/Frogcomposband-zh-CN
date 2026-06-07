@@ -8,10 +8,10 @@ static void _kiss_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Kiss");
+        var_set_string(res, "飞吻");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempt to charm an adjacent monster.");
+        var_set_string(res, "尝试魅惑一个相邻的怪物。");
         break;
     case SPELL_COST_EXTRA:
         var_set_int(res, p_ptr->lev * 2);
@@ -41,44 +41,44 @@ static void _kiss_spell(int cmd, variant *res)
                     switch (randint1(10))
                     {
                     case 1:
-                        msg_format("%^s says 'Impudent Strumpet!'", desc);
+                        msg_format("%^s说：“不知羞耻的荡妇！”", desc);
                         break;
                     case 2:
-                        msg_format("%^s says 'Ewwww! Gross!!'", desc);
+                        msg_format("%^s说：“噫！真恶心！！”", desc);
                         break;
                     case 3:
-                        msg_format("%^s says 'You ain't my type!'", desc);
+                        msg_format("%^s说：“你不是我的菜！”", desc);
                         break;
                     default:
-                        msg_format("%^s resists your charms.", desc);
+                        msg_format("%^s抗拒了你的魅惑。", desc);
                     }
 
                     if (allow_ticked_off(r_ptr))
                         mon_anger(m_ptr);
                 }
                 else
-                    msg_format("%^s ignores you.", desc);
+                    msg_format("%^s无视了你。", desc);
             }
             else
             {
                 if (is_pet(m_ptr))
-                    msg_format("%^s slobbers on you affectionately.", desc);
+                    msg_format("%^s深情地把口水流到了你身上。", desc);
                 else if (is_friendly(m_ptr))
                 {
                     set_pet(m_ptr);
-                    msg_format("%^s is charmed!", desc);
+                    msg_format("%^s被魅惑了！", desc);
                 }
                 else
                 {
                     set_friendly_ingame(m_ptr);
-                    msg_format("%^s suddenly becomes friendly.", desc);
+                    msg_format("%^s突然变得友好了。", desc);
                 }
             }
             var_set_bool(res, TRUE);
         }
         else
         {
-            msg_print("There is no monster.");
+            msg_print("那里没有怪物。");
         }
         break;
     }
@@ -93,17 +93,17 @@ static void _demeter_clw_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Cure Wounds");
+        var_set_string(res, "治疗伤势");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Heals cut and HP a little.");
+        var_set_string(res, "稍微治疗割伤和生命值。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_heal(p_ptr->lev/12 + 1, 10, 0));
         break;
     case SPELL_CAST:
         if (p_ptr->pclass == CLASS_BLOOD_MAGE)
-            msg_print("There is no effect.");
+            msg_print("毫无效果。");
         else
         {
             hp_player(damroll(p_ptr->lev/12 + 1, 10));
@@ -122,10 +122,10 @@ static void _shine_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shine");
+        var_set_string(res, "闪耀");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generates a large ball of sunlight.");
+        var_set_string(res, "产生一个巨大的阳光球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, p_ptr->lev * 3));
@@ -427,11 +427,8 @@ race_t *demigod_get_race(int psubrace)
     /* static info never changes */
     if (!init)
     {
-        me.name = "Demigod";
-        me.desc = "The term demigod is commonly used to describe mythological figures whose one "
-                    "parent was a god and whose other parent was human; as such, demigods are "
-                    "human-god hybrids and are quite powerful. Demigods receive special abilities "
-                    "depending on their parentage.";
+        me.name = "半神";
+        me.desc = "半神一词通常用于描述神话人物，他们的一位父母是神，另一位则是人类；因此，半神是人与神的混血儿，拥有极其强大的力量。半神会根据其神明父母的血统获得特殊的能力。";
         
         me.infra = 0;
 
@@ -479,11 +476,11 @@ race_t *demigod_get_race(int psubrace)
         switch (psubrace)
         {
         case DEMIGOD_MINOR:
-            me.subname = "Minor-God";
+            me.subname = "次神";
             me.subdesc = "Fathered by a minor god, you gain no starting powers.";
             break;
         case DEMIGOD_APHRODITE:
-            me.subname = "Aphrodite";
+            me.subname = "阿佛洛狄忒";
             me.subdesc = "Aphrodite is the Greek goddess of love, beauty, pleasure, and procreation. "
                          "You inherit her sex appeal. As such, your pets are more obedient and shopkeepers "
                          "fawn over you in their efforts to please you. You may kiss monsters and they "
@@ -498,7 +495,7 @@ race_t *demigod_get_race(int psubrace)
             me.get_flags = _aphrodite_get_flags;
             break;
         case DEMIGOD_APOLLO:
-            me.subname = "Apollo";
+            me.subname = "阿波罗";
             me.subdesc = "Apollo has been variously recognized as a god of light and the sun, "
                          "truth and prophecy, medicine, healing, plague, music, poetry, arts, "
                          "archery, and more. You inherit powers of illumination and are completely "
@@ -510,7 +507,7 @@ race_t *demigod_get_race(int psubrace)
             me.get_flags = _apollo_get_flags;
             break;
         case DEMIGOD_ARES:
-            me.subname = "Ares";
+            me.subname = "阿瑞斯";
             me.subdesc = "Ares is the bold son of Zeus and Hera, whose very name is feared and respected "
                          "by warriors and citizens alike. His legendary combat prowess exceeds that of "
                          "Zeus and Poseidon, but he is less skilled in wiles than the other Olympians. "
@@ -529,7 +526,7 @@ race_t *demigod_get_race(int psubrace)
             me.get_flags = _ares_get_flags;
             break;
         case DEMIGOD_ARTEMIS:
-            me.subname = "Artemis";
+            me.subname = "阿尔忒弥斯";
             me.subdesc = "Artemis was often described as the daughter of Zeus and Leto, and the "
                          "twin sister of Apollo. She was the Hellenic goddess of the hunt, wild "
                          "animals, wilderness, childbirth, virginity and young girls, bringing "
@@ -545,7 +542,7 @@ race_t *demigod_get_race(int psubrace)
             me.get_flags = _artemis_get_flags;
             break;
         case DEMIGOD_ATHENA:
-            me.subname = "Athena";
+            me.subname = "雅典娜";
             me.subdesc = "Athena is the great goddess of wisdom and the protector of Athens. She was "
                          "born of Zeus and the Titan Metis, and her cunning far surpasses that of the "
                          "other deities. You inherit great clarity of thought and magic and will be "
@@ -560,7 +557,7 @@ race_t *demigod_get_race(int psubrace)
             me.get_flags = _athena_get_flags;
             break;
         case DEMIGOD_DEMETER:
-            me.subname = "Demeter";
+            me.subname = "德墨忒尔";
             me.subdesc = "Demeter is the goddess of the harvest, who presided over grains, the "
                          "fertility of the earth, and the seasons. You gain powers of regeneration, "
                          "healing, and temperance. Eventually, you will become resistant to the "
@@ -572,7 +569,7 @@ race_t *demigod_get_race(int psubrace)
             me.get_flags = _demeter_get_flags;
             break;
         case DEMIGOD_HADES:
-            me.subname = "Hades";
+            me.subname = "哈迪斯";
             me.subdesc = "Hades is Ruler of the Underworld. You gain resistance to nether forces, "
                          "increased fortitude and have a firm grasp on your life and health.";
             me.stats[A_CON] += 2;
@@ -585,7 +582,7 @@ race_t *demigod_get_race(int psubrace)
             me.get_flags = _hades_get_flags;
             break;
         case DEMIGOD_HEPHAESTUS:
-            me.subname = "Hephaestus";
+            me.subname = "赫菲斯托斯";
             me.subdesc = "Hephaestus was the god of technology, blacksmiths, craftsmen, artisans, "
                          "sculptors, metals, metallurgy, fire and volcanoes. Like other mythic smiths "
                          "but unlike most other gods, Hephaestus was lame, which gave him a "
@@ -599,7 +596,7 @@ race_t *demigod_get_race(int psubrace)
             me.get_flags = _hephaestus_get_flags;
             break;
         case DEMIGOD_HERA:
-            me.subname = "Hera";
+            me.subname = "赫拉";
             me.subdesc = "Hera was the wife and one of three sisters of Zeus. Her chief function "
                          "was as the goddess of women and marriage. You inherit great clarity of "
                          "mind and capacity for magic. You are very wise and have a firm grasp on "
@@ -613,7 +610,7 @@ race_t *demigod_get_race(int psubrace)
             me.get_flags = _hera_get_flags;
             break;
         case DEMIGOD_HERMES:
-            me.subname = "Hermes";
+            me.subname = "赫尔墨斯";
             me.subdesc = "Hermes, the Messenger, is the extremely cunning diplomat used by the Olympians "
                          "to negotiate truces. With his Winged Sandals and his powerful magic, there "
                          "is no place barred from him, and there is no way to detain him. You inherit "
@@ -628,7 +625,7 @@ race_t *demigod_get_race(int psubrace)
             me.get_flags = _hermes_get_flags;
             break;
         case DEMIGOD_POSEIDON:
-            me.subname = "Poseidon";
+            me.subname = "波塞冬";
             me.subdesc = "Poseidon, Brother of Zeus, is Lord of the Seas and Storm. You inherit "
                          "elemental protection and corrosive attacks that melt the armor of your foes.";
             me.stats[A_STR] += 1;
@@ -640,7 +637,7 @@ race_t *demigod_get_race(int psubrace)
             me.get_flags = _poseidon_get_flags;
             break;
         case DEMIGOD_ZEUS:
-            me.subname = "Zeus";
+            me.subname = "宙斯";
             me.subdesc = "Zeus, King of the gods and ruler of Mount Olympus, is god of the Sky "
                          "and Thunder, and nominal husband of Hera. You inherit increased stature "
                          "and your divine birth will be marked by your aura of electricity. You also "

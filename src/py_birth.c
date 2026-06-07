@@ -422,25 +422,22 @@ static int _welcome_ui(void)
             "limits the options available, simplifying things for new players.\n\n "
         );
 
-        doc_insert(_doc, "<color:G>Choose the Type of Game to Play</color>\n");
-        doc_insert(_doc, "  <color:y>b</color>) Beginner\n");
-        doc_insert(_doc, "  <color:y>n</color>) Normal\n");
-        doc_insert(_doc, "  <color:y>m</color>) Monster\n");
+        doc_insert(_doc, "<color:G>选择要玩的游戏模式</color>\n");
+        doc_insert(_doc, "<color:y>b</color>) 新手模式(Beginner)\n");
+        doc_insert(_doc, "<color:y>n</color>) 普通模式(Normal)\n");
+        doc_insert(_doc, "<color:y>m</color>) 怪物模式(Monster)\n");
         doc_newline(_doc);
         if (previous_char.quick_ok)
-            doc_insert(_doc, "  <color:y>q</color>) Quick Start\n");
+            doc_insert(_doc, "<color:y>q</color>) 快速开始(Quick Start)\n");
         if (game_mode != GAME_MODE_BEGINNER)
-            doc_insert(_doc, "  <color:y>=</color>) Options\n");
-        doc_insert(_doc, "  <color:y>?</color>) Help\n");
-        doc_insert(_doc, "  <color:y>s</color>) View Scores\n");
-        doc_insert(_doc, "<color:y>ESC</color>) <color:v>Quit</color>\n");
+            doc_insert(_doc, "<color:y>=</color>) 选项(Options)\n");
+        doc_insert(_doc, "<color:y>?</color>) 帮助(Help)\n");
+        doc_insert(_doc, "<color:y>s</color>) 查看分数(View Scores)\n");
+        doc_insert(_doc, "<color:y>ESC</color>) <color:v>退出(Quit)</color>\n");
 
 
         doc_newline(_doc);
-        doc_insert(_doc, "<color:G>Tip:</color> <indent>You can often get specific "
-                         "help by entering the uppercase letter for a command. For "
-                         "example, type <color:keypress>B</color> on this screen "
-                         "to receive help on Beginner Mode.</indent>");
+        doc_insert(_doc, "<color:G>提示:</color> <indent>你通常可以通过输入命令的大写字母来获取特定的帮助。例如，在此屏幕上输入 <color:keypress>B</color> 以接收关于新手模式(Beginner Mode)的帮助。</indent>");
         _sync_term(_doc);
         cmd = _inkey();
         if (cmd == '?')
@@ -627,40 +624,37 @@ static int _race_class_ui(void)
         cols[0] = doc_alloc(30);
         cols[1] = doc_alloc(46);
 
-        doc_insert(cols[0], "  <color:y>n</color>) Change Name\n");
-        doc_insert(cols[0], "  <color:y>s</color>) Change Sex\n");
+        doc_insert(cols[0], "<color:y>n</color>) 更改名字\n");
+        doc_insert(cols[0], "<color:y>s</color>) 更改性别\n");
         if (game_mode != GAME_MODE_BEGINNER)
-            doc_insert(cols[0], "  <color:y>p</color>) Change Personality\n");
-        doc_insert(cols[0], "  <color:y>r</color>) Change Race\n");
+            doc_insert(cols[0], "<color:y>p</color>) 更改性格\n");
+        doc_insert(cols[0], "<color:y>r</color>) 更改种族\n");
         if (game_mode == GAME_MODE_MONSTER)
         {
             if (p_ptr->dragon_realm)
-                doc_insert(cols[0], "  <color:y>m</color>) Change Magic\n");
+                doc_insert(cols[0], "<color:y>m</color>) 更改魔法\n");
         }
         else
         {
-            doc_insert(cols[0], "  <color:y>c</color>) Change Class\n");
+            doc_insert(cols[0], "<color:y>c</color>) 更改职业\n");
             if (p_ptr->realm1)
-                doc_insert(cols[0], "  <color:y>m</color>) Change Magic\n");
+                doc_insert(cols[0], "<color:y>m</color>) 更改魔法\n");
         }
-        if (game_mode != GAME_MODE_BEGINNER) doc_insert(cols[0], "  <color:y>g</color>) Change Game Speed\n");
+        if (game_mode != GAME_MODE_BEGINNER) doc_insert(cols[0], "<color:y>g</color>) 更改游戏速度\n");
 
-        doc_insert(cols[1], "<color:y>  *</color>) Random Name\n");
-        doc_insert(cols[1], "<color:y>  ?</color>) Help\n");
+        doc_insert(cols[1], "<color:y> *</color>) 随机名字\n");
+        doc_insert(cols[1], "<color:y> ?</color>) 帮助\n");
         if (game_mode != GAME_MODE_BEGINNER)
-            doc_insert(cols[1], "<color:y>  =</color>) Options\n");
-        doc_insert(cols[1], "<color:y>TAB</color>) More Info\n");
-        doc_insert(cols[1], "<color:y>RET</color>) Next Screen\n");
-        doc_insert(cols[1], "<color:y>ESC</color>) Prev Screen\n");
+            doc_insert(cols[1], "<color:y> =</color>) 选项\n");
+        doc_insert(cols[1], "<color:y>TAB</color>) 更多信息\n");
+        doc_insert(cols[1], "<color:y>回车</color>) 下一屏\n");
+        doc_insert(cols[1], "<color:y>ESC</color>) 上一屏\n");
 
         doc_insert_cols(_doc, cols, 2, 1);
         doc_free(cols[0]);
         doc_free(cols[1]);
 
-        doc_insert(_doc, "<color:G>Tip:</color> <indent>You can often get specific "
-                         "help by entering the uppercase letter for a command. For "
-                         "example, type <color:keypress>R</color> on this screen "
-                         "to receive help on your currently selected race.</indent>");
+        doc_insert(_doc, "<color:G>提示:</color> <indent>你通常可以通过输入命令的大写字母来获取特定的帮助。例如，在此屏幕上输入 <color:keypress>R</color> 以接收关于你当前选择的种族的帮助。</indent>");
         _sync_term(_doc);
 
         cmd = _inkey();
@@ -689,7 +683,7 @@ static int _race_class_ui(void)
             doc_display_help("start.txt", NULL);
             break;
         case '*':
-            if (one_in_(847)) sprintf(player_name, "Epic Space Hero");
+            if (one_in_(847)) sprintf(player_name, "史诗太空英雄");
             else if (one_in_(8)) randname_make(RANDNAME_SCROLL, 4 + randint0(3), 5 + damroll(2, 5), player_name, sizeof(player_name), name_sections);
             else {
                 randname_make(RANDNAME_TOLKIEN, 4 + randint0(3), 5 + damroll(2, 5), player_name, sizeof(player_name), name_sections);
@@ -828,9 +822,9 @@ static void _split_pers_ui(byte _old)
             );
         }
 
-        doc_insert(_doc, "<color:G>Toggle Personalities (choose 2 or more; ENTER to accept)</color>\n");
+        doc_insert(_doc, "<color:G>切换性格（选择2个或更多；按 ENTER 接受）</color>\n");
         doc_insert_cols(_doc, cols, 2, 1);
-        doc_insert(_doc, "     Use SHIFT+choice to display help topic\n");
+        doc_insert(_doc, "使用 SHIFT+选择键 显示帮助主题\n");
 
         doc_free(cols[0]);
         doc_free(cols[1]);
@@ -932,11 +926,11 @@ static void _pers_ui(void)
                 pers_ptr->name
             );
         }
-        doc_insert(cols[vec_length(v) <= split ? 0 : 1], "  <color:y>*</color>) Random\n");
+        doc_insert(cols[vec_length(v) <= split ? 0 : 1], "<color:y>*</color>) 随机\n");
 
-        doc_insert(_doc, "<color:G>Choose Your Personality</color>\n");
+        doc_insert(_doc, "<color:G>选择你的性格</color>\n");
         doc_insert_cols(_doc, cols, 2, 1);
-        doc_insert(_doc, "     Use SHIFT+choice to display help topic\n");
+        doc_insert(_doc, "使用 SHIFT+选择键 显示帮助主题\n");
 
         doc_free(cols[0]);
         doc_free(cols[1]);
@@ -1012,53 +1006,53 @@ static vec_ptr _get_races_aux(int ids[]);
 static bool _is_valid_race_class(int race_id, int class_id);
 
 b_race_group_t b_race_groups[B_MAX_RACE_GROUPS] = {
-    { "Human",
+    { "人类",
         {RACE_AMBERITE, RACE_BARBARIAN, RACE_DEMIGOD, RACE_DUNADAN, RACE_HUMAN, RACE_IGOR, -1} },
-    { "Elf",
+    { "精灵",
         {RACE_DARK_ELF, RACE_HIGH_ELF, RACE_TOMTE, RACE_WOOD_ELF, -1} },
     { "Hobbit/Dwarf",
         {RACE_DWARF, RACE_GNOME, RACE_HOBBIT, RACE_NIBELUNG, -1} },
-    { "Fairy",
+    { "妖精",
         {RACE_SHADOW_FAIRY, RACE_SPRITE, -1} },
     { "Angel/Demon",
         {RACE_ARCHON, RACE_BALROG, RACE_IMP, -1} },
     { "Orc/Troll/Giant",
         {RACE_CYCLOPS, RACE_HALF_GIANT, RACE_HALF_ORC, RACE_HALF_TITAN,
          RACE_HALF_TROLL, RACE_KOBOLD, RACE_OGRE, RACE_SNOTLING, -1} },
-    { "Shapeshifter",
+    { "变形者",
         {RACE_BEORNING, RACE_DOPPELGANGER, RACE_WEREWOLF, -1} },
-    { "Undead",
+    { "不死生物",
         {RACE_EINHERI, RACE_SKELETON, RACE_SPECTRE, RACE_VAMPIRE, RACE_ZOMBIE, -1} },
-    { "Other",
+    { "其他",
         {RACE_ANDROID, RACE_BEASTMAN, RACE_BOIT, RACE_CENTAUR, RACE_DRACONIAN, RACE_ENT,
          RACE_GOLEM, RACE_KLACKON, RACE_KUTAR, RACE_MIND_FLAYER, RACE_TONBERRY, RACE_YEEK,-1 } },
 };
 
 b_race_group_t b_mon_race_groups[B_MAX_MON_RACE_GROUPS] = {
-    { "Animal",
+    { "动物",
         {/*RACE_MON_ANT, RACE_MON_BEETLE, RACE_MON_BIRD, RACE_MON_CAT,*/ RACE_MON_CENTIPEDE,
             RACE_MON_HOUND, /*RACE_MON_HORSE, */ RACE_MON_HYDRA, RACE_MON_SPIDER, -1} },
     { "Angel/Demon",
         {RACE_MON_ANGEL, RACE_MON_DEMON, -1} },
-    { "Beholder",
+    { "眼魔",
         {RACE_MON_BEHOLDER, -1} },
-    { "Dragon",
+    { "龙",
         {RACE_MON_DRAGON, -1} },
     { "Elemental/Vortex",
         {RACE_MON_ELEMENTAL, RACE_MON_VORTEX, -1} },
-    { "Golem",
+    { "魔像",
         {RACE_MON_GOLEM, -1} },
-    { "Jelly",
+    { "果冻",
         {RACE_MON_JELLY, /*RACE_MON_MOLD,*/ RACE_MON_QUYLTHULG, -1} },
-    { "Leprechaun",
+    { "小妖精",
         {RACE_MON_LEPRECHAUN, -1} },
     { "Mimic/Possessor",
         {RACE_MON_SWORD, RACE_MON_ARMOR, RACE_MON_MIMIC, RACE_MON_POSSESSOR, RACE_MON_RING, -1} },
     { "Orc/Troll/Giant",
         {RACE_MON_GIANT, /*RACE_MON_KOBOLD,*/ RACE_MON_ORC, RACE_MON_TROLL, -1} },
-    { "Undead",
+    { "不死生物",
         {/*RACE_MON_GHOST,*/ RACE_MON_LICH, RACE_MON_MUMMY, RACE_MON_VAMPIRE, /*RACE_MON_WRAITH,*/ -1 } },
-    { "Other",
+    { "其他",
         {RACE_MON_PUMPKIN, RACE_MON_XORN, -1} },
 };
 
@@ -1084,13 +1078,13 @@ static void _race_group_ui(void)
         doc_clear(_doc);
         _race_class_top(_doc);
 
-        doc_insert(_doc, "<color:G>Choose a Type of Race to Play</color>\n");
+        doc_insert(_doc, "<color:G>选择要玩的种族类型</color>\n");
         for (i = 0; i < vec_length(groups); i++)
         {
             b_race_group_ptr g_ptr = vec_get(groups, i);
             doc_printf(_doc, "  <color:y>%c</color>) %s\n", I2A(i), g_ptr->name);
         }
-        doc_insert(_doc, "  <color:y>*</color>) Random\n");
+        doc_insert(_doc, "<color:y>*</color>) 随机\n");
         _sync_term(_doc);
 
         cmd = _inkey();
@@ -1143,11 +1137,11 @@ static int _race_ui(int ids[])
                 race_ptr->name
             );
         }
-        doc_insert(cols[vec_length(v) < split ? 0 : 1], "  <color:y>*</color>) Random\n");
+        doc_insert(cols[vec_length(v) < split ? 0 : 1], "<color:y>*</color>) 随机\n");
 
-        doc_insert(_doc, "<color:G>Choose Your Race</color>\n");
+        doc_insert(_doc, "<color:G>选择你的种族</color>\n");
         doc_insert_cols(_doc, cols, 2, 1);
-        doc_insert(_doc, "     Use SHIFT+choice to display help topic\n");
+        doc_insert(_doc, "使用 SHIFT+选择键 显示帮助主题\n");
 
         doc_free(cols[0]);
         doc_free(cols[1]);
@@ -1275,11 +1269,11 @@ static int _subrace_ui_aux(int ct, cptr desc, cptr help, cptr topic)
                 i == p_ptr->psubrace ? 'B' : 'w',
                 race_ptr->subname);
         }
-        doc_insert(ct < split ? cols[0] : cols[1], "  <color:y>*</color>) Random\n");
+        doc_insert(ct < split ? cols[0] : cols[1], "<color:y>*</color>) 随机\n");
 
-        doc_printf(_doc, "<color:G>Choose %s</color>\n", desc);
+        doc_printf(_doc, "<color:G>选择 %s</color>\n", desc);
         doc_insert_cols(_doc, cols, 2, 1);
-        doc_insert(_doc, "     Use SHIFT+choice to display help topic\n");
+        doc_insert(_doc, "使用 SHIFT+选择键 显示帮助主题\n");
 
         doc_free(cols[0]);
         doc_free(cols[1]);
@@ -1316,13 +1310,13 @@ static int _subrace_ui_aux(int ct, cptr desc, cptr help, cptr topic)
 static int _demigod_ui(void)
 {
     assert(p_ptr->prace == RACE_DEMIGOD);
-    return _subrace_ui_aux(DEMIGOD_MAX, "Demigod Parentage", "Demigods.txt", NULL);
+    return _subrace_ui_aux(DEMIGOD_MAX, "半神血统", "Demigods.txt", NULL);
 }
 
 static int _draconian_ui(void)
 {
     assert(p_ptr->prace == RACE_DRACONIAN);
-    return _subrace_ui_aux(DRACONIAN_MAX, "Draconian Subrace", "Draconians.txt", NULL);
+    return _subrace_ui_aux(DRACONIAN_MAX, "龙人分支", "Draconians.txt", NULL);
 }
 
 /************************************************************************
@@ -1351,22 +1345,22 @@ typedef struct _class_group_s {
     int ids[_MAX_CLASSES_PER_GROUP];
 } _class_group_t, *_class_group_ptr;
 static _class_group_t _class_groups[_MAX_CLASS_GROUPS] = {
-    { "Melee", {CLASS_BERSERKER, CLASS_BLOOD_KNIGHT, CLASS_DUELIST, CLASS_MAULER,
+    { "近战", {CLASS_BERSERKER, CLASS_BLOOD_KNIGHT, CLASS_DUELIST, CLASS_MAULER,
                     CLASS_RUNE_KNIGHT, CLASS_SAMURAI, CLASS_WARRIOR, CLASS_WEAPONMASTER,
                     CLASS_WEAPONSMITH, -1} },
-    { "Archery", {CLASS_ARCHER, CLASS_SNIPER, -1} },
-    { "Martial Arts", {CLASS_FORCETRAINER, CLASS_MONK, CLASS_MYSTIC, -1} },
-    { "Magic", {CLASS_BLOOD_MAGE, CLASS_BLUE_MAGE, CLASS_GRAY_MAGE, CLASS_HIGH_MAGE, CLASS_MAGE,
+    { "箭术", {CLASS_ARCHER, CLASS_SNIPER, -1} },
+    { "武术", {CLASS_FORCETRAINER, CLASS_MONK, CLASS_MYSTIC, -1} },
+    { "魔法", {CLASS_BLOOD_MAGE, CLASS_BLUE_MAGE, CLASS_GRAY_MAGE, CLASS_HIGH_MAGE, CLASS_MAGE,
                     CLASS_NECROMANCER, CLASS_SORCERER, CLASS_YELLOW_MAGE, -1} },
-    { "Devices", { CLASS_ALCHEMIST, CLASS_DEVICEMASTER, CLASS_MAGIC_EATER, -1} },
-    { "Prayer", {CLASS_PRIEST, -1} },
-    { "Stealth", {CLASS_NINJA, CLASS_ROGUE, CLASS_SCOUT, -1} },
-    { "Hybrid", {CLASS_CHAOS_WARRIOR, CLASS_DISCIPLE, CLASS_NINJA_LAWYER, CLASS_PALADIN,
+    { "魔法装置", { CLASS_ALCHEMIST, CLASS_DEVICEMASTER, CLASS_MAGIC_EATER, -1} },
+    { "祈祷", {CLASS_PRIEST, -1} },
+    { "潜行", {CLASS_NINJA, CLASS_ROGUE, CLASS_SCOUT, -1} },
+    { "混合", {CLASS_CHAOS_WARRIOR, CLASS_DISCIPLE, CLASS_NINJA_LAWYER, CLASS_PALADIN,
                     CLASS_RANGER, CLASS_RED_MAGE, CLASS_WARRIOR_MAGE, -1} },
-    { "Riding", {CLASS_BEASTMASTER, CLASS_CAVALRY, -1} },
-    { "Mind", {CLASS_MINDCRAFTER, CLASS_MIRROR_MASTER, CLASS_PSION,
+    { "骑乘", {CLASS_BEASTMASTER, CLASS_CAVALRY, -1} },
+    { "心智", {CLASS_MINDCRAFTER, CLASS_MIRROR_MASTER, CLASS_PSION,
                     CLASS_TIME_LORD, CLASS_WARLOCK, -1} },
-    { "Other", {CLASS_ARCHAEOLOGIST, CLASS_BARD, CLASS_LAWYER, CLASS_POLITICIAN,
+    { "其他", {CLASS_ARCHAEOLOGIST, CLASS_BARD, CLASS_LAWYER, CLASS_POLITICIAN,
                 CLASS_RAGE_MAGE, CLASS_SKILLMASTER, CLASS_TOURIST, CLASS_WILD_TALENT, -1} },
 };
 
@@ -1406,9 +1400,9 @@ static void _class_group_ui(void)
                 i < split ? cols[0] : cols[1],
                 "  <color:y>%c</color>) %s\n", I2A(i), g_ptr->name);
         }
-        doc_insert(cols[vec_length(groups) <= split ? 0 : 1], "  <color:y>*</color>) Random\n");
+        doc_insert(cols[vec_length(groups) <= split ? 0 : 1], "<color:y>*</color>) 随机\n");
 
-        doc_insert(_doc, "<color:G>Choose a Type of Class to Play</color>\n");
+        doc_insert(_doc, "<color:G>选择要玩的职业类型</color>\n");
         doc_insert_cols(_doc, cols, 2, 1);
 
         doc_free(cols[0]);
@@ -1467,11 +1461,11 @@ static int _class_ui(int ids[])
                 class_ptr->name
             );
         }
-        doc_insert(cols[vec_length(v) <= split ? 0 : 1], "  <color:y>*</color>) Random\n");
+        doc_insert(cols[vec_length(v) <= split ? 0 : 1], "<color:y>*</color>) 随机\n");
 
-        doc_insert(_doc, "<color:G>Choose Your Class</color>\n");
+        doc_insert(_doc, "<color:G>选择你的职业</color>\n");
         doc_insert_cols(_doc, cols, 2, 1);
-        doc_insert(_doc, "     Use SHIFT+choice to display help topic\n");
+        doc_insert(_doc, "使用 SHIFT+选择键 显示帮助主题\n");
 
         doc_free(cols[0]);
         doc_free(cols[1]);
@@ -1565,7 +1559,7 @@ static int _warlock_ui(void)
         doc_clear(_doc);
         _race_class_top(_doc);
 
-        doc_insert(_doc, "<color:G>Choose Warlock Pact</color>\n");
+        doc_insert(_doc, "<color:G>选择邪术师契约</color>\n");
         for (i = 0; i < WARLOCK_MAX; i++)
         {
             class_t *class_ptr = get_class_aux(p_ptr->pclass, i);
@@ -1575,8 +1569,8 @@ static int _warlock_ui(void)
                 class_ptr->subname
             );
         }
-        doc_insert(_doc, "  <color:y>*</color>) Random\n");
-        doc_insert(_doc, "     Use SHIFT+choice to display help topic\n");
+        doc_insert(_doc, "<color:y>*</color>) 随机\n");
+        doc_insert(_doc, "使用 SHIFT+选择键 显示帮助主题\n");
 
         _sync_term(_doc);
         cmd = _inkey();
@@ -1617,7 +1611,7 @@ static int _weaponmaster_ui(void)
         doc_clear(_doc);
         _race_class_top(_doc);
 
-        doc_insert(_doc, "<color:G>Choose Speciality</color>\n");
+        doc_insert(_doc, "<color:G>选择专精</color>\n");
         for (i = 0; i < WEAPONMASTER_MAX; i++)
         {
             class_t *class_ptr = get_class_aux(p_ptr->pclass, i);
@@ -1627,8 +1621,8 @@ static int _weaponmaster_ui(void)
                 class_ptr->subname
             );
         }
-        doc_insert(_doc, "  <color:y>*</color>) Random\n");
-        doc_insert(_doc, "     Use SHIFT+choice to display help topic\n");
+        doc_insert(_doc, "<color:y>*</color>) 随机\n");
+        doc_insert(_doc, "使用 SHIFT+选择键 显示帮助主题\n");
 
         _sync_term(_doc);
         cmd = _inkey();
@@ -1669,7 +1663,7 @@ static int _devicemaster_ui(void)
         doc_clear(_doc);
         _race_class_top(_doc);
 
-        doc_insert(_doc, "<color:G>Choose Speciality</color>\n");
+        doc_insert(_doc, "<color:G>选择专精</color>\n");
         for (i = 0; i < DEVICEMASTER_MAX; i++)
         {
             class_t *class_ptr = get_class_aux(p_ptr->pclass, i);
@@ -1679,7 +1673,7 @@ static int _devicemaster_ui(void)
                 class_ptr->subname
             );
         }
-        doc_insert(_doc, "  <color:y>*</color>) Random\n");
+        doc_insert(_doc, "<color:y>*</color>) 随机\n");
 
         _sync_term(_doc);
         cmd = _inkey();
@@ -1711,7 +1705,7 @@ static int _gray_mage_ui(void)
         doc_clear(_doc);
         _race_class_top(_doc);
 
-        doc_insert(_doc, "<color:G>Choose Bias</color>\n");
+        doc_insert(_doc, "<color:G>选择倾向</color>\n");
         for (i = 0; i < GRAY_MAGE_MAX; i++)
         {
             class_t *class_ptr = get_class_aux(p_ptr->pclass, i);
@@ -1721,7 +1715,7 @@ static int _gray_mage_ui(void)
                 class_ptr->subname
             );
         }
-        doc_insert(_doc, "  <color:y>*</color>) Random\n");
+        doc_insert(_doc, "<color:y>*</color>) 随机\n");
 
         _sync_term(_doc);
         cmd = _inkey();
@@ -1772,16 +1766,16 @@ static int _patron_ui(void)
         doc_clear(_doc);
         _race_class_top(_doc);
 
-        doc_insert(_doc, "<color:G>Choose Patron</color>\n");
+        doc_insert(_doc, "<color:G>选择庇护者</color>\n");
         if (p_ptr->pclass != CLASS_DISCIPLE)
-            doc_insert(_doc, "  <color:y>*</color>) Random\n");
+            doc_insert(_doc, "<color:y>*</color>) 随机\n");
         for (i = alku; i < loppu; i++)
         {
             cptr patron_name = chaos_patrons[i];
             doc_printf(_doc, "  <color:y>%c</color>) <color:%c>%s</color>\n", I2A(i - alku), p_ptr->chaos_patron == i ? 'B' : 'w', patron_name);
         }
         if (p_ptr->pclass == CLASS_DISCIPLE)
-            doc_insert(_doc, "  <color:y>*</color>) Random\n");
+            doc_insert(_doc, "<color:y>*</color>) 随机\n");
 
         _sync_term(_doc);
         cmd = _inkey();
@@ -1818,9 +1812,9 @@ static int _patron_ui(void)
 }
 
 cptr _game_speed_text[GAME_SPEED_MAX] = {
- "Normal",
- "Coffee-Break",
- "Instant Coffee"
+ "普通模式",
+ "茶歇模式",
+ "速溶模式"
 };
 
 static int _speed_ui(void)
@@ -1831,7 +1825,7 @@ static int _speed_ui(void)
         doc_clear(_doc);
         _race_class_top(_doc);
 
-        doc_insert(_doc, "<color:G>Choose Game Speed</color>\n");
+        doc_insert(_doc, "<color:G>选择游戏速度</color>\n");
         for (i = 0; i < GAME_SPEED_MAX; i++)
         {
             doc_printf(_doc, "  <color:y>%c</color>) <color:%c>%s</color>\n", I2A(i), coffee_break == i ? 'B' : 'w', _game_speed_text[i]);
@@ -1896,7 +1890,7 @@ static int _realm1_ui(void)
         doc_clear(_doc);
         _race_class_top(_doc);
 
-        doc_insert(_doc, "<color:G>Choose Your Primary Magic Realm</color>\n");
+        doc_insert(_doc, "<color:G>选择你的第一魔法领域</color>\n");
         for (i = 0; i < ct; i++)
         {
             int id = choices[i];
@@ -1906,8 +1900,8 @@ static int _realm1_ui(void)
                 realm_names[id]
             );
         }
-        doc_insert(_doc, "  <color:y>*</color>) Random\n");
-        doc_insert(_doc, "\n     Use SHIFT+choice to display help topic\n");
+        doc_insert(_doc, "<color:y>*</color>) 随机\n");
+        doc_insert(_doc, "\n 使用 SHIFT+选择键 显示帮助主题\n");
 
         _sync_term(_doc);
         cmd = _inkey();
@@ -1983,7 +1977,7 @@ static int _realm2_ui(void)
         doc_clear(_doc);
         _race_class_top(_doc);
 
-        doc_insert(_doc, "<color:G>Choose Your Secondary Magic Realm</color>\n");
+        doc_insert(_doc, "<color:G>选择你的第二魔法领域</color>\n");
         for (i = 0; i < ct; i++)
         {
             int id = choices[i];
@@ -1993,8 +1987,8 @@ static int _realm2_ui(void)
                 realm_names[id]
             );
         }
-        doc_insert(_doc, "  <color:y>*</color>) Random\n");
-        doc_insert(_doc, "\n     Use SHIFT+choice to display help topic\n");
+        doc_insert(_doc, "<color:y>*</color>) 随机\n");
+        doc_insert(_doc, "\n 使用 SHIFT+选择键 显示帮助主题\n");
 
         _sync_term(_doc);
         cmd = _inkey();
@@ -2041,13 +2035,13 @@ static void _mon_race_group_ui(void)
         doc_clear(_doc);
         _race_class_top(_doc);
 
-        doc_insert(_doc, "<color:G>Choose a Type of Monster to Play</color>\n");
+        doc_insert(_doc, "<color:G>选择要玩的怪物类型</color>\n");
         for (i = 0; i < B_MAX_MON_RACE_GROUPS; i++)
         {
             b_race_group_ptr g_ptr = &b_mon_race_groups[i];
             doc_printf( _doc, "  <color:y>%c</color>) %s\n", I2A(i), g_ptr->name);
         }
-        doc_insert(_doc, "  <color:y>*</color>) Random\n");
+        doc_insert(_doc, "<color:y>*</color>) 随机\n");
         _sync_term(_doc);
 
         cmd = _inkey();
@@ -2107,7 +2101,7 @@ static int _mon_race_ui(int ids[])
         doc_clear(_doc);
         _race_class_top(_doc);
 
-        doc_insert(_doc, "<color:G>Choose Your Monster Race</color>\n");
+        doc_insert(_doc, "<color:G>选择你的怪物种族</color>\n");
         for (i = 0; ; i++)
         {
             int id = ids[i];
@@ -2125,8 +2119,8 @@ static int _mon_race_ui(int ids[])
                 race_ptr->name
             );
         }
-        doc_insert(_doc, "  <color:y>*</color>) Random\n");
-        doc_insert(_doc, "     Use SHIFT+choice to display help topic\n");
+        doc_insert(_doc, "<color:y>*</color>) 随机\n");
+        doc_insert(_doc, "使用 SHIFT+选择键 显示帮助主题\n");
 
         _sync_term(_doc);
 
@@ -2203,13 +2197,13 @@ static int _mon_subrace_ui(void)
 static int _mon_demon_ui(void)
 {
     assert(p_ptr->prace == RACE_MON_DEMON);
-    return _subrace_ui_aux(DEMON_MAX, "Demon Subrace", "Demons.txt", NULL);
+    return _subrace_ui_aux(DEMON_MAX, "恶魔分支", "Demons.txt", NULL);
 }
 
 static int _mon_orc_ui(void)
 {
     assert(p_ptr->prace == RACE_MON_ORC);
-    return _subrace_ui_aux(ORC_MAX, "Orc Subrace", "Orcs.txt", NULL);
+    return _subrace_ui_aux(ORC_MAX, "兽人分支", "Orcs.txt", NULL);
 }
 
 static int _mon_dragon_ui(void)
@@ -2218,7 +2212,7 @@ static int _mon_dragon_ui(void)
     assert(p_ptr->prace == RACE_MON_DRAGON);
     for (;;)
     {
-        rc = _subrace_ui_aux(DRAGON_MAX, "Dragon Subrace", "Dragons.txt", NULL);
+        rc = _subrace_ui_aux(DRAGON_MAX, "龙族分支", "Dragons.txt", NULL);
         if (rc == UI_OK)
             rc = _dragon_realm_ui();
         else return UI_CANCEL;
@@ -2256,7 +2250,7 @@ static int _dragon_realm_ui(void)
         doc_clear(_doc);
         _race_class_top(_doc);
 
-        doc_insert(_doc, "<color:G>Choose Your Realm</color>\n");
+        doc_insert(_doc, "<color:G>选择你的领域</color>\n");
         for (i = 0; i < vec_length(v); i++)
         {
             dragon_realm_ptr realm = vec_get(v, i);
@@ -2268,8 +2262,8 @@ static int _dragon_realm_ui(void)
                 realm->name
             );
         }
-        doc_insert(_doc, "  <color:y>*</color>) Random\n");
-        doc_insert(_doc, "     Use SHIFT+choice to display help topic\n");
+        doc_insert(_doc, "<color:y>*</color>) 随机\n");
+        doc_insert(_doc, "使用 SHIFT+选择键 显示帮助主题\n");
 
         _sync_term(_doc);
 
@@ -2309,31 +2303,31 @@ static int _dragon_realm_ui(void)
 static int _mon_elemental_ui(void)
 {
     assert(p_ptr->prace == RACE_MON_ELEMENTAL);
-    return _subrace_ui_aux(ELEMENTAL_MAX, "Elemental Subrace", "MonsterRaces.txt", "Elemental");
+    return _subrace_ui_aux(ELEMENTAL_MAX, "元素分支", "MonsterRaces.txt", "Elemental");
 }
 
 static int _mon_giant_ui(void)
 {
     assert(p_ptr->prace == RACE_MON_GIANT);
-    return _subrace_ui_aux(GIANT_MAX, "Giant Subrace", "MonsterRaces.txt", "Giant");
+    return _subrace_ui_aux(GIANT_MAX, "巨怪分支", "MonsterRaces.txt", "Giant");
 }
 
 static int _mon_golem_ui(void)
 {
     assert(p_ptr->prace == RACE_MON_GOLEM);
-    return _subrace_ui_aux(GOLEM_MAX, "Golem Subrace", "MonsterRaces.txt", "Golem");
+    return _subrace_ui_aux(GOLEM_MAX, "魔像分支", "MonsterRaces.txt", "Golem");
 }
 
 static int _mon_spider_ui(void)
 {
     assert(p_ptr->prace == RACE_MON_SPIDER);
-    return _subrace_ui_aux(SPIDER_MAX, "Spider Subrace", "MonsterRaces.txt", "Spider");
+    return _subrace_ui_aux(SPIDER_MAX, "蜘蛛分支", "MonsterRaces.txt", "Spider");
 }
 
 static int _mon_troll_ui(void)
 {
     assert(p_ptr->prace == RACE_MON_TROLL);
-    return _subrace_ui_aux(TROLL_MAX, "Troll Subrace", "MonsterRaces.txt", "Troll");
+    return _subrace_ui_aux(TROLL_MAX, "巨魔分支", "MonsterRaces.txt", "Troll");
 }
 
 
@@ -2356,7 +2350,7 @@ static void _stat_dec(int which);
 static void _stat_inc(int which);
 static cptr _stat_desc(int stat);
 
-static cptr _stat_names[MAX_STATS] = { "STR", "INT", "WIS", "DEX", "CON", "CHR" };
+static cptr _stat_names[MAX_STATS] = { "力量", "智力", "感知", "敏捷", "体质", "魅力" };
 static char _stat_to_char(int which);
 static int _char_to_stat(char which);
 
@@ -2385,8 +2379,8 @@ static int _stats_ui(void)
         _race_class_top(_doc);
 
         score = _stats_score();
-        doc_insert(cols[0], "<color:G>Enter Your Starting Stats</color>\n");
-        doc_insert(cols[0], "<tab:9>Base  Pts  Mod  Total\n");
+        doc_insert(cols[0], "<color:G>输入你的初始属性</color>\n");
+        doc_insert(cols[0], "<tab:9>基础 点数 修饰 总计\n");
         for (i = 0; i < MAX_STATS; i++)
         {
             int stat = p_ptr->stat_cur[i];
@@ -2408,15 +2402,15 @@ static int _stats_ui(void)
 
         doc_newline(cols[1]);
         doc_newline(cols[1]);
-        doc_insert(cols[1], "<color:y>  n</color>) Change Name\n");
-        doc_insert(cols[1], "<color:y>  ?</color>) Help\n");
+        doc_insert(cols[1], "<color:y> n</color>) 更改名字\n");
+        doc_insert(cols[1], "<color:y> ?</color>) 帮助\n");
         if (game_mode != GAME_MODE_BEGINNER)
-            doc_insert(cols[1], "<color:y>  =</color>) Options\n");
-        doc_insert(cols[1], "<color:y>TAB</color>) More Info\n");
-        doc_printf(cols[1], "<color:%c>RET</color>) <color:%c>Begin Play</color>\n",
+            doc_insert(cols[1], "<color:y> =</color>) 选项\n");
+        doc_insert(cols[1], "<color:y>TAB</color>) 更多信息\n");
+        doc_printf(cols[1], "<color:%c>回车</color>) <color:%c>开始游戏</color>\n",
             score <= _MAX_SCORE ? 'y' : 'D',
             score <= _MAX_SCORE ? 'v' : 'D');
-        doc_insert(cols[1], "<color:y>ESC</color>) Prev Screen\n");
+        doc_insert(cols[1], "<color:y>ESC</color>) 上一屏\n");
 
         doc_insert_cols(_doc, cols, 2, 1);
         doc_free(cols[0]);
@@ -2871,21 +2865,21 @@ static void _race_class_header(doc_ptr doc)
 static void _name_line(doc_ptr doc)
 {
     int _attr = (coffee_break) ? TERM_VIOLET : TERM_VIOLET;
-    doc_printf(doc, "Name : <color:B>%-32s</color>", player_name);
+    doc_printf(doc, "名字 : <color:B>%-32s</color>", player_name);
     if (coffee_break >= GAME_SPEED_MAX) coffee_break = 0; /* paranoia */
-    doc_printf(doc, "<color:o>Game Speed:</color> ");
+    doc_printf(doc, "<color:o>游戏速度:</color>");
     doc_printf(doc, "<color:%c>%s</color>\n", attr_to_attr_char(_attr), _game_speed_text[coffee_break]);
 }
 
 static void _sex_line(doc_ptr doc)
 {
-    doc_printf(doc, "Sex  : <color:B>%s</color>\n", sex_info[p_ptr->psex].title);
+    doc_printf(doc, "性别 : <color:B>%s</color>\n", sex_info[p_ptr->psex].title);
 }
 
 static void _pers_line(doc_ptr doc)
 {
     personality_ptr pers_ptr = get_personality();
-    doc_printf(doc, "Pers : <color:B>%s</color>\n", pers_ptr->name);
+    doc_printf(doc, "性格 : <color:B>%s</color>\n", pers_ptr->name);
 }
 
 static void _race_line(doc_ptr doc)
@@ -2898,18 +2892,18 @@ static void _race_line(doc_ptr doc)
           || p_ptr->prace == RACE_MON_ELEMENTAL
           || p_ptr->prace == RACE_MON_TROLL )
         {
-            doc_printf(doc, "Race : <color:B>%s</color>\n", race_ptr->subname);
+            doc_printf(doc, "种族 : <color:B>%s</color>\n", race_ptr->subname);
         }
         else
         {
-            doc_printf(doc, "Race : <color:B>%s</color>\n", race_ptr->name);
+            doc_printf(doc, "种族 : <color:B>%s</color>\n", race_ptr->name);
             if (race_ptr->subname)
                 doc_printf(doc, "       <color:B>%s</color>\n", race_ptr->subname);
         }
     }
     else
     {
-        doc_insert(doc, "Race : <indent><color:B>");
+        doc_insert(doc, "种族 : <indent><color:B>");
         if (race_ptr->subname)
             doc_printf(doc, "%s ", race_ptr->subname);
         doc_printf(doc, "%s</indent></color>\n", race_ptr->name);
@@ -2919,15 +2913,15 @@ static void _race_line(doc_ptr doc)
 static void _class_line(doc_ptr doc)
 {
     class_t *class_ptr = get_class();
-    doc_printf(doc, "Class: <color:B>%s</color>\n", class_ptr->name);
+    doc_printf(doc, "职业 : <color:B>%s</color>\n", class_ptr->name);
     if (class_ptr->subname)
     {
         if (p_ptr->pclass == CLASS_WARLOCK)
-            doc_printf(doc, "Pact : <color:B>%s</color>\n", class_ptr->subname);
+            doc_printf(doc, "契约 : <color:B>%s</color>\n", class_ptr->subname);
         else if (p_ptr->pclass == CLASS_WEAPONMASTER || p_ptr->pclass == CLASS_DEVICEMASTER)
-            doc_printf(doc, "Spec : <color:B>%s</color>\n", class_ptr->subname);
+            doc_printf(doc, "专精 : <color:B>%s</color>\n", class_ptr->subname);
         else if (p_ptr->pclass == CLASS_GRAY_MAGE)
-            doc_printf(doc, "Bias : <color:B>%s</color>\n", class_ptr->subname);
+            doc_printf(doc, "倾向 : <color:B>%s</color>\n", class_ptr->subname);
         else
             doc_printf(doc, "       <color:B>%s</color>\n", class_ptr->subname);
     }
@@ -2938,11 +2932,11 @@ static void _magic_line(doc_ptr doc)
     if (p_ptr->dragon_realm)
     {
         dragon_realm_ptr realm = dragon_get_realm(p_ptr->dragon_realm);
-        doc_printf(doc, "Magic: <color:B>%s</color>\n", realm->name);
+        doc_printf(doc, "魔法 : <color:B>%s</color>\n", realm->name);
     }
     else if (p_ptr->realm1)
     {
-        doc_printf(doc, "Magic: <color:B>%s</color>\n", realm_names[p_ptr->realm1]);
+        doc_printf(doc, "魔法 : <color:B>%s</color>\n", realm_names[p_ptr->realm1]);
         if (p_ptr->realm2)
             doc_printf(doc, "       <color:B>%s</color>\n", realm_names[p_ptr->realm2]);
     }
@@ -3004,7 +2998,7 @@ static void _race_class_info(doc_ptr doc)
         if (p_ptr->dragon_realm)
             _stats_add(stats, realm_ptr->stats);
 
-        doc_insert(doc, "<style:heading><color:w>  STR  INT  WIS  DEX  CON  CHR  Life  BHP  Exp</color>\n");
+        doc_insert(doc, "<style:heading><color:w> 力量 智力 感知 敏捷 体质 魅力 生命 基础HP 经验</color>\n");
         if (game_mode != GAME_MODE_BEGINNER)
         {
             doc_printf(doc, "  ");
@@ -3083,7 +3077,7 @@ static void _race_class_info(doc_ptr doc)
         if (_rcp_state == _RCP_SKILLS1)
         {
             doc_printf(doc, "<color:w>   %-10.10s %-10.10s %-10.10s %-10.10s</color>\n",
-                "Disarming", "Device", "Save", "Stealth");
+                "解除陷阱", "装置", "豁免", "潜行");
             if (game_mode != GAME_MODE_BEGINNER)
             {
                 doc_printf(doc, "   %s %s %s %s\n",
@@ -3108,7 +3102,7 @@ static void _race_class_info(doc_ptr doc)
         else
         {
             doc_printf(doc, "<color:w>   %-10.10s %-10.10s %-10.10s %-10.10s</color>\n",
-                "Searching", "Perception", "Melee", "Archery");
+                "搜索", "察觉", "近战", "箭术");
             if (game_mode != GAME_MODE_BEGINNER)
             {
                 doc_printf(doc, "   %s %s %s %s\n",
@@ -3175,7 +3169,7 @@ static void _birth_options(void)
     if (game_mode != GAME_MODE_BEGINNER)
     {
         Term_load();
-        do_cmd_options_aux(OPT_PAGE_BIRTH, "Birth Option((*)s effect score)");
+        do_cmd_options_aux(OPT_PAGE_BIRTH, "开局选项((*)会影响评分)");
     }
 }
 
@@ -3392,21 +3386,21 @@ static void _birth_finalize(void)
     if ((!coffee_break) && (ironman_downward))
     {
         if (thrall_mode) ironman_downward = FALSE; /* We start in R'lyeh... */
-        else if (!get_check("Really play with ironman stairs? "))
+        else if (!get_check("真的要以铁人(Ironman)楼梯模式进行游戏吗？"))
         {
             ironman_downward = FALSE;
         }
     }
     if ((!coffee_break) && (no_wilderness))
     {
-        if (!get_check("Really play with no wilderness? (This option and Normal game speed are not intended to be used together.) "))
+        if (!get_check("真的要在没有大地图的情况下游玩吗？（此选项和普通游戏速度不建议搭配使用。）"))
         {
             no_wilderness = FALSE;
         }
         else
         {
             Term_clear();
-            if (msg_prompt("The No Wilderness option is intended for coffee-break mode <color:v>only</color><color:w>. Normal game speed is balanced entirely around the presence of a</color> <color:G>wilderness</color> <color:w>and the</color> <color:B>many towns</color> and <color:B>dungeons</color> that come with it, while the no-wilderness option is balanced around the</color> <color:U>coffee-break</color> <color:w>and</color> <color:U>instant-coffee</color> <color:w>modes. Trying to combine Normal speed with the lack of a wilderness will make the game very <color:r>tedious</color> and <color:r>repetitive</color>, and you will miss out on much of what should make FrogComposband unique, enjoyable and engaging.\n\n</color><color:v>REALLY</color> <color:w>play with no wilderness?</color> <color:y>[y/n]</color>", "ny", PROMPT_DEFAULT) != 'y')
+            if (msg_prompt("无大地图选项<color:v>仅</color><color:w>为茶歇模式设计。普通游戏速度是完全围绕</color> <color:G>大地图</color> <color:w>以及随之而来的</color> <color:B>众多城镇</color>和<color:B>地下城</color>来平衡的，而无大地图选项则是围绕</color> <color:U>茶歇(coffee-break)</color> <color:w>和</color> <color:U>速溶(instant-coffee)</color> <color:w>模式来平衡的。试图将普通速度与缺乏大地图结合起来，会使游戏变得非常<color:r>乏味</color>和<color:r>重复</color>，而且你会错过许多本应使 FrogComposband 独一无二、令人愉快和引人入胜的内容。\n\n</color><color:v>真的</color> <color:w>要在没有大地图的情况下游玩吗？</color> <color:y>[y/n]</color>", "ny", PROMPT_DEFAULT) != 'y')
 //        else if (!get_check("REALLY? (The no-wilderness option is intended for coffee-break mode only.)"))
             {
                 no_wilderness = FALSE;
@@ -3416,7 +3410,7 @@ static void _birth_finalize(void)
 
     if ((reduce_uniques) && (coffee_break != SPEED_INSTA_COFFEE) && (reduce_uniques_pct == 60))
     {
-        if (!get_check("Really reduce number of uniques by 40%? "))
+        if (!get_check("真的要将唯一怪的数量减少 40% 吗？"))
         {
             reduce_uniques = FALSE;
             reduce_uniques_pct = 100;

@@ -41,7 +41,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.which_stat = A_INT;
         me.encumbrance.max_wgt = 430;
         me.encumbrance.weapon_pct = 100;
@@ -71,16 +71,8 @@ class_t *high_mage_get_class(void)
     skills_t bs = { 30,  40,  38,   3,  16,  20,  34,  20};
     skills_t xs = {  7,  15,  11,   0,   0,   0,   6,   7};
 
-        me.name = "High-Mage";
-        me.desc = "High-Mages are mages who specialize in one particular field of "
-                    "magic and learn it very well - much better than an ordinary mage.\n\n"
-                    "For the price of giving up a second realm of magic, High-Mages "
-                    "gain substantial benefits in the mana costs, power, minimum levels, and "
-                    "failure rates of the spells in their speciality realm. They are also the "
-                    "only class able to cast Hex spells. High-Mages have a class power - "
-                    "'Eat Magic' - which absorbs mana from wands, staves, or rods; although "
-                    "this power is not available to those who choose the Hex realm. Their "
-                    "primary spellcasting stat is Intelligence.";
+        me.name = "高阶法师";
+        me.desc = "高阶法师是专精于某一特定魔法领域并将其钻研到极深境界的法师——远超寻常法师的水平。\n\n作为放弃第二魔法领域的代价，高阶法师在其专精领域的法术法力消耗、威力、最低等级要求以及失败率上都获得了实质性的收益。他们也是唯一能够施展咒术魔法的职业。高阶法师拥有一项职业能力——“吞噬魔法”——能够从魔杖、法杖或魔棒中吸收法力；不过，选择咒术领域的法师无法使用该能力。他们首要的施法属性是智力。";
 
         me.stats[A_STR] = -4;
         me.stats[A_INT] =  4;

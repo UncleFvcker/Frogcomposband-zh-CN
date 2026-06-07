@@ -1132,95 +1132,95 @@ static void _prep_name(char *dest, const char *src)
    specifying room_grid_t
  */
 static parse_tbl_t _summon_type_tbl[] = {
-    { SUMMON_MONSTER, "Monsters", TERM_WHITE, "", "MONSTER", 10 },
-    { SUMMON_ANT, "Ants", TERM_WHITE, "", "ANT", 10 },
-    { SUMMON_SPIDER, "Spiders", TERM_WHITE, "", "SPIDER", 10 },
-    { SUMMON_HOUND, "Hounds", TERM_WHITE, "", "HOUND", 15 },
-    { SUMMON_HYDRA, "Hydras", TERM_WHITE, "", "HYDRA", 20 },
-    { SUMMON_ANGEL, "Angels", TERM_WHITE, "", "ANGEL", 60 },
-    { SUMMON_DEMON, "Demons", TERM_WHITE, "", "DEMON", 40 },
-    { SUMMON_UNDEAD, "Undead", TERM_WHITE, "", "UNDEAD", 40 },
-    { SUMMON_DRAGON, "Dragons", TERM_WHITE, "", "DRAGON", 40 },
-    { SUMMON_HI_UNDEAD, "Mighty Undead", TERM_L_DARK, "", "HI_UNDEAD", 60 },
-    { SUMMON_HI_DRAGON, "Ancient Dragons", TERM_RED, "", "HI_DRAGON", 70 },
-    { SUMMON_HI_DEMON, "Foul Demons", TERM_RED, "", "HI_DEMON", 66 },
-    { SUMMON_AMBERITE, "Amberites", TERM_WHITE, "", "AMBERITE", 100 },
-    { SUMMON_UNIQUE, "Uniques", TERM_VIOLET, "", "UNIQUE", 125 },
-    { SUMMON_BIZARRE1, "Mold", TERM_WHITE, "", "BIZARRE1", 15 },
-    { SUMMON_BIZARRE2, "Bats", TERM_WHITE, "", "BIZARRE2", 5 },
-    { SUMMON_BIZARRE3, "Quylthulgs", TERM_WHITE, "", "BIZARRE3", 20 },
-    { SUMMON_BIZARRE4, "Vortices", TERM_WHITE, "", "BIZARRE4", 20 },
-    { SUMMON_BIZARRE5, "Creeping Coins", TERM_WHITE, "", "BIZARRE5", 5 },
-    { SUMMON_BIZARRE6, "Mimics", TERM_WHITE, "", "BIZARRE6", 10 },
-    { SUMMON_CYBER, "Cyberdemons", TERM_WHITE, "", "CYBER", 80 },
-    { SUMMON_KIN, "Kin", TERM_WHITE, "", "KIN", 35 },
-    { SUMMON_DAWN, "Warriors of the Dawn", TERM_WHITE, "", "DAWN", 30 },
-    { SUMMON_ANIMAL, "Animals", TERM_WHITE, "", "ANIMAL", 15 },
-    { SUMMON_ANIMAL_RANGER, "Animals", TERM_WHITE, "", "ANIMAL_RANGER", 15 },
-    { SUMMON_PHANTOM, "Phantom Beasts", TERM_WHITE, "", "PHANTOM", 20 },
-    { SUMMON_BLUE_HORROR, "Blue Horrors", TERM_WHITE, "", "BLUE_HORROR", 5 },
-    { SUMMON_LIVING, "Life", TERM_WHITE, "", "LIVING", 10 },
-    { SUMMON_HI_DRAGON_LIVING, "Dragons", TERM_WHITE, "", "HI_DRAGON_LIVING", 70 },
-    { SUMMON_GOLEM, "Golems", TERM_WHITE, "", "GOLEM", 20 },
-    { SUMMON_ELEMENTAL, "Elementals", TERM_WHITE, "", "ELEMENTAL", 15 },
-    { SUMMON_VORTEX, "Vortices", TERM_WHITE, "", "VORTEX", 20 },
-    { SUMMON_HYBRID, "Abominations", TERM_WHITE, "", "HYBRID", 15 },
-    { SUMMON_BIRD, "Birds", TERM_WHITE, "", "BIRD", 20 },
-    { SUMMON_KAMIKAZE, "Fanatics", TERM_WHITE, "", "KAMIKAZE", 10 },
-    { SUMMON_KAMIKAZE_LIVING, "Fanatics", TERM_WHITE, "", "KAMIKAZE_LIVING", 15 },
-    { SUMMON_MANES, "Manes", TERM_WHITE, "", "MANES", 5 },
-    { SUMMON_LOUSE, "Lice", TERM_WHITE, "", "LOUSE", 1 },
-    { SUMMON_GUARDIAN, "Dungeon Guardians", TERM_VIOLET, "", "GUARDIAN", 150 },
-    { SUMMON_KNIGHT, "Knights", TERM_WHITE, "", "KNIGHT", 20 },
-    { SUMMON_EAGLE, "Eagles", TERM_WHITE, "", "EAGLE", 25 },
-    { SUMMON_PIRANHA, "Piranhas", TERM_WHITE, "", "PIRANHA", 5 },
-    { SUMMON_ARMAGE_GOOD, "Holy Monsters", TERM_WHITE, "", "ARMAGE_GOOD", 40 },
-    { SUMMON_ARMAGE_EVIL, "Foul Monsters", TERM_WHITE, "", "ARMAGE_EVIL", 40 },
-    { SUMMON_SOFTWARE_BUG, "Software Bugs", TERM_WHITE, "", "SOFTWARE_BUG", 1 },
-    { SUMMON_PANTHEON, "Gods", TERM_WHITE, "", "PANTHEON", 150 },
-    { SUMMON_RAT, "Rats", TERM_WHITE, "", "RAT", 2 },
-    { SUMMON_BAT, "Bats", TERM_WHITE, "", "BAT", 5 },
-    { SUMMON_WOLF, "Wolves", TERM_WHITE, "", "WOLF", 7 },
-    { SUMMON_DREAD, "Dread", TERM_WHITE, "", "DREAD", 20 },
-    { SUMMON_ZOMBIE, "Zombies", TERM_WHITE, "", "ZOMBIE", 10 },
-    { SUMMON_SKELETON, "Skeletons", TERM_WHITE, "", "SKELETON", 20 },
-    { SUMMON_GHOST, "Ghosts", TERM_WHITE, "", "GHOST", 20 },
-    { SUMMON_VAMPIRE, "Vampires", TERM_WHITE, "", "VAMPIRE", 25 },
-    { SUMMON_WIGHT, "Wights", TERM_WHITE, "", "WIGHT", 25 },
-    { SUMMON_LICH, "Liches", TERM_WHITE, "", "LICH", 30 },
-    { SUMMON_KRAKEN, "Kraken", TERM_WHITE, "", "KRAKEN", 50 },
-    { SUMMON_THIEF, "Thieves", TERM_WHITE, "", "THIEF", 15 },
-    { SUMMON_ENT, "Ents", TERM_WHITE, "", "ENT", 50 },
-    { SUMMON_CAMELOT, "Camelot Knights", TERM_WHITE, "", "CAMELOT", 25 },
-    { SUMMON_NIGHTMARE, "Nightmares", TERM_WHITE, "", "NIGHTMARE", 20 },
-    { SUMMON_YEEK, "Yeeks", TERM_WHITE, "", "YEEK", 2 },
-    { SUMMON_ORC, "Orcs", TERM_WHITE, "", "ORC", 5 },
-    { SUMMON_DARK_ELF, "Dark Elves", TERM_WHITE, "", "DARK_ELF", 15 },
-    { SUMMON_GIANT, "Giants", TERM_WHITE, "", "GIANT", 20 },
-    { SUMMON_UNDEAD_SUMMONER, "Undead Summoners", TERM_WHITE, "", "UNDEAD_SUMMONER", 25 },
-    { SUMMON_MATURE_DRAGON, "Mature Dragons", TERM_WHITE, "", "MATURE_DRAGON", 15 },
-    { SUMMON_DRAGON_SUMMONER, "Dragon Summoners", TERM_WHITE, "", "DRAGON_SUMMONER", 25 },
-    { SUMMON_CLUBBER_DEMON, "Clubber Demons", TERM_WHITE, "", "CLUBBER_DEMON", 20 },
-    { SUMMON_BALROG, "Balrogs", TERM_WHITE, "", "BALROG", 35 },
-    { SUMMON_DEMON_SUMMONER, "Demon Summoners", TERM_WHITE, "", "DEMON_SUMMONER", 35 },
-    { SUMMON_ULTIMATE, "Ultimate", TERM_WHITE, "", "ULTIMATE", 100 },
-    { SUMMON_HUMAN, "Human", TERM_WHITE, "", "HUMAN", 10 },
-    { SUMMON_HORSE, "Horses", TERM_WHITE, "", "HORSE", 10 },
-    { SUMMON_MAGICAL, "Magical Monsters", TERM_WHITE, "", "MAGICAL", 15 },
-    { SUMMON_TROLL, "Trolls", TERM_WHITE, "", "TROLL", 10 },
-    { SUMMON_CHAPEL_GOOD, "Good Monsters", TERM_WHITE, "", "CHAPEL_GOOD", 25 },
-    { SUMMON_CHAPEL_EVIL, "Evil Monsters", TERM_WHITE, "", "CHAPEL_EVIL", 25 },
-    { SUMMON_RING_BEARER, "Ring Bearers", TERM_WHITE, "", "RING_BEARER", 20 },
-    { SUMMON_ARCHER, "Archers", TERM_WHITE, "", "ARCHER", 10 },
-    { SUMMON_MONK, "Monks", TERM_WHITE, "", "MONK", 20 },
-    { SUMMON_MAGE, "Mages", TERM_WHITE, "", "MAGE", 20 },
-    { SUMMON_SPECIAL, "Special", TERM_WHITE, "", "SPECIAL", 30 },
-    { SUMMON_REPTILE, "Reptiles", TERM_WHITE, "", "REPTILE", 30 },
-    { SUMMON_DEAD_UNIQ, "Dead Uniques", TERM_WHITE, "", "DEAD_UNIQ", 150 },
-    { SUMMON_CAT, "Cats", TERM_WHITE, "", "CAT", 10 },
-    { SUMMON_VANARA, "Vanaras", TERM_WHITE, "", "VANARA", 40 },
-    { SUMMON_SERPENT, "Serpents", TERM_WHITE, "", "SERPENT", 40 },
-    { SUMMON_NAGA, "Nagas", TERM_WHITE, "", "NAGA", 20 },
+    { SUMMON_MONSTER, "怪物", TERM_WHITE, "", "MONSTER", 10 },
+    { SUMMON_ANT, "蚂蚁", TERM_WHITE, "", "ANT", 10 },
+    { SUMMON_SPIDER, "蜘蛛", TERM_WHITE, "", "SPIDER", 10 },
+    { SUMMON_HOUND, "猎犬", TERM_WHITE, "", "HOUND", 15 },
+    { SUMMON_HYDRA, "多头蛇", TERM_WHITE, "", "HYDRA", 20 },
+    { SUMMON_ANGEL, "天使", TERM_WHITE, "", "ANGEL", 60 },
+    { SUMMON_DEMON, "恶魔", TERM_WHITE, "", "DEMON", 40 },
+    { SUMMON_UNDEAD, "死灵", TERM_WHITE, "", "UNDEAD", 40 },
+    { SUMMON_DRAGON, "巨龙", TERM_WHITE, "", "DRAGON", 40 },
+    { SUMMON_HI_UNDEAD, "强力死灵", TERM_L_DARK, "", "HI_UNDEAD", 60 },
+    { SUMMON_HI_DRAGON, "远古巨龙", TERM_RED, "", "HI_DRAGON", 70 },
+    { SUMMON_HI_DEMON, "邪恶恶魔", TERM_RED, "", "HI_DEMON", 66 },
+    { SUMMON_AMBERITE, "安珀皇族", TERM_WHITE, "", "AMBERITE", 100 },
+    { SUMMON_UNIQUE, "独特怪物", TERM_VIOLET, "", "UNIQUE", 125 },
+    { SUMMON_BIZARRE1, "霉菌", TERM_WHITE, "", "BIZARRE1", 15 },
+    { SUMMON_BIZARRE2, "蝙蝠", TERM_WHITE, "", "BIZARRE2", 5 },
+    { SUMMON_BIZARRE3, "库尔苏格", TERM_WHITE, "", "BIZARRE3", 20 },
+    { SUMMON_BIZARRE4, "漩涡", TERM_WHITE, "", "BIZARRE4", 20 },
+    { SUMMON_BIZARRE5, "拟态硬币", TERM_WHITE, "", "BIZARRE5", 5 },
+    { SUMMON_BIZARRE6, "拟态怪", TERM_WHITE, "", "BIZARRE6", 10 },
+    { SUMMON_CYBER, "赛博恶魔", TERM_WHITE, "", "CYBER", 80 },
+    { SUMMON_KIN, "同族", TERM_WHITE, "", "KIN", 35 },
+    { SUMMON_DAWN, "黎明战士", TERM_WHITE, "", "DAWN", 30 },
+    { SUMMON_ANIMAL, "动物", TERM_WHITE, "", "ANIMAL", 15 },
+    { SUMMON_ANIMAL_RANGER, "动物", TERM_WHITE, "", "ANIMAL_RANGER", 15 },
+    { SUMMON_PHANTOM, "幻影兽", TERM_WHITE, "", "PHANTOM", 20 },
+    { SUMMON_BLUE_HORROR, "蓝色恐怖", TERM_WHITE, "", "BLUE_HORROR", 5 },
+    { SUMMON_LIVING, "生命体", TERM_WHITE, "", "LIVING", 10 },
+    { SUMMON_HI_DRAGON_LIVING, "巨龙", TERM_WHITE, "", "HI_DRAGON_LIVING", 70 },
+    { SUMMON_GOLEM, "魔像", TERM_WHITE, "", "GOLEM", 20 },
+    { SUMMON_ELEMENTAL, "元素", TERM_WHITE, "", "ELEMENTAL", 15 },
+    { SUMMON_VORTEX, "漩涡", TERM_WHITE, "", "VORTEX", 20 },
+    { SUMMON_HYBRID, "憎恶", TERM_WHITE, "", "HYBRID", 15 },
+    { SUMMON_BIRD, "鸟类", TERM_WHITE, "", "BIRD", 20 },
+    { SUMMON_KAMIKAZE, "狂热者", TERM_WHITE, "", "KAMIKAZE", 10 },
+    { SUMMON_KAMIKAZE_LIVING, "狂热者", TERM_WHITE, "", "KAMIKAZE_LIVING", 15 },
+    { SUMMON_MANES, "劣魔", TERM_WHITE, "", "MANES", 5 },
+    { SUMMON_LOUSE, "虱子", TERM_WHITE, "", "LOUSE", 1 },
+    { SUMMON_GUARDIAN, "地下城守卫", TERM_VIOLET, "", "GUARDIAN", 150 },
+    { SUMMON_KNIGHT, "骑士", TERM_WHITE, "", "KNIGHT", 20 },
+    { SUMMON_EAGLE, "鹰", TERM_WHITE, "", "EAGLE", 25 },
+    { SUMMON_PIRANHA, "食人鱼", TERM_WHITE, "", "PIRANHA", 5 },
+    { SUMMON_ARMAGE_GOOD, "神圣怪物", TERM_WHITE, "", "ARMAGE_GOOD", 40 },
+    { SUMMON_ARMAGE_EVIL, "邪恶怪物", TERM_WHITE, "", "ARMAGE_EVIL", 40 },
+    { SUMMON_SOFTWARE_BUG, "软件漏洞", TERM_WHITE, "", "SOFTWARE_BUG", 1 },
+    { SUMMON_PANTHEON, "神祇", TERM_WHITE, "", "PANTHEON", 150 },
+    { SUMMON_RAT, "老鼠", TERM_WHITE, "", "RAT", 2 },
+    { SUMMON_BAT, "蝙蝠", TERM_WHITE, "", "BAT", 5 },
+    { SUMMON_WOLF, "狼", TERM_WHITE, "", "WOLF", 7 },
+    { SUMMON_DREAD, "恐惧球", TERM_WHITE, "", "DREAD", 20 },
+    { SUMMON_ZOMBIE, "僵尸", TERM_WHITE, "", "ZOMBIE", 10 },
+    { SUMMON_SKELETON, "骷髅", TERM_WHITE, "", "SKELETON", 20 },
+    { SUMMON_GHOST, "幽灵", TERM_WHITE, "", "GHOST", 20 },
+    { SUMMON_VAMPIRE, "吸血鬼", TERM_WHITE, "", "VAMPIRE", 25 },
+    { SUMMON_WIGHT, "尸妖", TERM_WHITE, "", "WIGHT", 25 },
+    { SUMMON_LICH, "巫妖", TERM_WHITE, "", "LICH", 30 },
+    { SUMMON_KRAKEN, "海妖", TERM_WHITE, "", "KRAKEN", 50 },
+    { SUMMON_THIEF, "盗贼", TERM_WHITE, "", "THIEF", 15 },
+    { SUMMON_ENT, "树人", TERM_WHITE, "", "ENT", 50 },
+    { SUMMON_CAMELOT, "卡米洛特骑士", TERM_WHITE, "", "CAMELOT", 25 },
+    { SUMMON_NIGHTMARE, "梦魇", TERM_WHITE, "", "NIGHTMARE", 20 },
+    { SUMMON_YEEK, "伊克人", TERM_WHITE, "", "YEEK", 2 },
+    { SUMMON_ORC, "兽人", TERM_WHITE, "", "ORC", 5 },
+    { SUMMON_DARK_ELF, "黑暗精灵", TERM_WHITE, "", "DARK_ELF", 15 },
+    { SUMMON_GIANT, "巨人", TERM_WHITE, "", "GIANT", 20 },
+    { SUMMON_UNDEAD_SUMMONER, "死灵召唤师", TERM_WHITE, "", "UNDEAD_SUMMONER", 25 },
+    { SUMMON_MATURE_DRAGON, "成年巨龙", TERM_WHITE, "", "MATURE_DRAGON", 15 },
+    { SUMMON_DRAGON_SUMMONER, "巨龙召唤师", TERM_WHITE, "", "DRAGON_SUMMONER", 25 },
+    { SUMMON_CLUBBER_DEMON, "巨棒恶魔", TERM_WHITE, "", "CLUBBER_DEMON", 20 },
+    { SUMMON_BALROG, "炎魔", TERM_WHITE, "", "BALROG", 35 },
+    { SUMMON_DEMON_SUMMONER, "恶魔召唤师", TERM_WHITE, "", "DEMON_SUMMONER", 35 },
+    { SUMMON_ULTIMATE, "究极体", TERM_WHITE, "", "ULTIMATE", 100 },
+    { SUMMON_HUMAN, "人类", TERM_WHITE, "", "HUMAN", 10 },
+    { SUMMON_HORSE, "马", TERM_WHITE, "", "HORSE", 10 },
+    { SUMMON_MAGICAL, "魔法怪物", TERM_WHITE, "", "MAGICAL", 15 },
+    { SUMMON_TROLL, "巨魔", TERM_WHITE, "", "TROLL", 10 },
+    { SUMMON_CHAPEL_GOOD, "善良怪物", TERM_WHITE, "", "CHAPEL_GOOD", 25 },
+    { SUMMON_CHAPEL_EVIL, "邪恶怪物", TERM_WHITE, "", "CHAPEL_EVIL", 25 },
+    { SUMMON_RING_BEARER, "持戒者", TERM_WHITE, "", "RING_BEARER", 20 },
+    { SUMMON_ARCHER, "弓箭手", TERM_WHITE, "", "ARCHER", 10 },
+    { SUMMON_MONK, "武僧", TERM_WHITE, "", "MONK", 20 },
+    { SUMMON_MAGE, "法师", TERM_WHITE, "", "MAGE", 20 },
+    { SUMMON_SPECIAL, "特殊", TERM_WHITE, "", "SPECIAL", 30 },
+    { SUMMON_REPTILE, "爬行动物", TERM_WHITE, "", "REPTILE", 30 },
+    { SUMMON_DEAD_UNIQ, "死亡的独特怪物", TERM_WHITE, "", "DEAD_UNIQ", 150 },
+    { SUMMON_CAT, "猫", TERM_WHITE, "", "CAT", 10 },
+    { SUMMON_VANARA, "瓦纳拉猿人", TERM_WHITE, "", "VANARA", 40 },
+    { SUMMON_SERPENT, "大蛇", TERM_WHITE, "", "SERPENT", 40 },
+    { SUMMON_NAGA, "纳迦", TERM_WHITE, "", "NAGA", 20 },
     { 0 }
 };
 
@@ -1273,7 +1273,7 @@ int parse_lookup_monster(cptr name, int options)
                 continue;
             }
             if (trace_doc)
-                doc_printf(trace_doc, "Mapping <color:B>%s</color> to <color:R>%s</color> (%d).\n", name, buf, i);
+                doc_printf(trace_doc, "正在映射 <color:B>%s</color> 到 <color:R>%s</color> (%d)。\n", name, buf, i);
             return i;
         }
     }
@@ -1283,7 +1283,7 @@ int parse_lookup_monster(cptr name, int options)
         char buf[255];
         _prep_name(buf, r_name + r_ptr->name);
         if (trace_doc)
-            doc_printf(trace_doc, "Mapping <color:B>%s</color> to <color:R>%s</color> (%d).\n", name, buf, paras);
+            doc_printf(trace_doc, "正在映射 <color:B>%s</color> 到 <color:R>%s</color> (%d)。\n", name, buf, paras);
         return paras;
     }
     return 0;
@@ -1301,7 +1301,7 @@ int parse_lookup_dungeon(cptr name, int options)
         if (strstr(buf, name))
         {
             if (trace_doc)
-                doc_printf(trace_doc, "Mapping dungeon <color:B>%s</color> to <color:R>%s</color> (%d).\n", name, buf, i);
+                doc_printf(trace_doc, "正在映射地下城 <color:B>%s</color> 到 <color:R>%s</color> (%d)。\n", name, buf, i);
             return i;
         }
     }
@@ -1318,7 +1318,7 @@ static errr _parse_room_grid_monster(char **args, int arg_ct, room_grid_ptr grid
 {
     if (arg_ct < 1 || arg_ct > 2)
     {
-        msg_print("Invalid MON() directive: Syntax: MON(<which> [,<options>]).");
+        msg_print("无效的 MON() 指令：语法：MON(<which> [,<options>])。");
         return PARSE_ERROR_TOO_FEW_ARGUMENTS;
     }
 
@@ -1332,7 +1332,7 @@ static errr _parse_room_grid_monster(char **args, int arg_ct, room_grid_ptr grid
         grid->monster = atoi(args[0]);
         if (!grid->monster)
         {
-            msg_format("Error: %d is not a valid monster index (See r_idx.txt).", grid->monster);
+            msg_format("错误：%d 不是一个有效的怪物索引（请参阅 r_idx.txt）。", grid->monster);
             return PARSE_ERROR_GENERIC;
         }
     }
@@ -1354,7 +1354,7 @@ static errr _parse_room_grid_monster(char **args, int arg_ct, room_grid_ptr grid
             grid->monster = parse_lookup_monster(args[0], options);
             if (!grid->monster)
             {
-                msg_format("Error: Invalid monster specifier %s.", args[0]);
+                msg_format("错误：无效的怪物指定符 %s。", args[0]);
                 return PARSE_ERROR_GENERIC;
             }
         }
@@ -1404,7 +1404,7 @@ static errr _parse_room_grid_monster(char **args, int arg_ct, room_grid_ptr grid
             }
             else
             {
-                msg_format("Error: Invalid monster option %s.", flag);
+                msg_format("错误：无效的怪物选项 %s。", flag);
                 return PARSE_ERROR_GENERIC;
             }
         }
@@ -1511,7 +1511,7 @@ static int _lookup_ego(cptr name, int type, int options)
         if (strstr(buf, name))
         {
             if (trace_doc)
-                doc_printf(trace_doc, "Matching ego <color:B>%s</color> to <color:R>%s</color> (%d).\n", name, e_name + e_ptr->name, i);
+                doc_printf(trace_doc, "正在匹配 ego(特殊前缀) <color:B>%s</color> 到 <color:R>%s</color> (%d)。\n", name, e_name + e_ptr->name, i);
             return i;
         }
     }
@@ -1540,7 +1540,7 @@ static int _lookup_kind(char *arg, int options)
         if (strstr(buf, arg))
         {
             if (trace_doc)
-                doc_printf(trace_doc, "Mapping kind <color:B>%s</color> to <color:R>%s</color> (%d).\n", arg, buf, i);
+                doc_printf(trace_doc, "正在映射种类 <color:B>%s</color> 到 <color:R>%s</color> (%d)。\n", arg, buf, i);
             return i;
         }
     }
@@ -1554,12 +1554,12 @@ static errr _parse_effect(int tval, cptr arg, room_grid_ptr grid, int options)
     int effect_id = effect_parse_type(arg);
     if (!effect_id)
     {
-        msg_format("Unknown effect: %s", arg);
+        msg_format("未知的效果：%s", arg);
         return PARSE_ERROR_GENERIC;
     }
     if (!device_is_valid_effect(tval, effect_id))
     {
-        msg_format("Invalid effect for this device type: %s (%d)", arg, effect_id);
+        msg_format("此装置类型无效的效果：%s (%d)", arg, effect_id);
         return PARSE_ERROR_GENERIC;
     }
     grid->object = lookup_kind(tval, SV_ANY);
@@ -1571,7 +1571,7 @@ static errr _parse_effect(int tval, cptr arg, room_grid_ptr grid, int options)
         effect_t e = {0};
         e.type = grid->extra;
         sprintf(name, "%s", do_effect(&e, SPELL_NAME, 0));
-        doc_printf(trace_doc, "Mapping effect <color:B>%s</color> to <color:R>%s</color> (%d).\n",
+        doc_printf(trace_doc, "正在映射效果 <color:B>%s</color> 到 <color:R>%s</color> (%d)。\n",
             arg, name, grid->extra);
     }
     return 0;
@@ -1608,7 +1608,7 @@ static errr _parse_room_grid_object(char **args, int arg_ct, room_grid_ptr grid,
             {
                 if ((n < 1) || (nn < 1) || (nnn < 1))
                 {
-                    msg_format("Error: Invalid object pile size specifier %s.", flag);
+                    msg_format("错误：无效的物品堆叠数量指定符 %s。", flag);
                     return PARSE_ERROR_GENERIC;
                 }
                 grid->extra2 = n + damroll(nn, nnn);
@@ -1617,7 +1617,7 @@ static errr _parse_room_grid_object(char **args, int arg_ct, room_grid_ptr grid,
             {
                 if ((n < 1) || (nn < 1))
                 {
-                    msg_format("Error: Invalid object pile size specifier %s.", flag);
+                    msg_format("错误：无效的物品堆叠数量指定符 %s。", flag);
                     return PARSE_ERROR_GENERIC;
                 }
                 grid->extra2 = damroll(n, nn);
@@ -1656,7 +1656,7 @@ static errr _parse_room_grid_object(char **args, int arg_ct, room_grid_ptr grid,
             }
             else
             {
-                msg_format("Error: Invalid object option %s.", flag);
+                msg_format("错误：无效的物品选项 %s。", flag);
                 return PARSE_ERROR_GENERIC;
             }
         }
@@ -1696,14 +1696,14 @@ static errr _parse_room_grid_object(char **args, int arg_ct, room_grid_ptr grid,
                 grid->object = atoi(args[0]);
                 if (!grid->object)
                 {
-                    msg_format("Invalid object: %s", args[0]);
+                    msg_format("无效的物品：%s", args[0]);
                     return PARSE_ERROR_GENERIC;
                 }
             }
         }
         break;
     default:
-        msg_print("Error: Invalid OBJ() directive. Syntax: OBJ(<which> [,<flags>]).");
+        msg_print("错误：无效的 OBJ() 指令。语法：OBJ(<which> [,<flags>])。");
         return PARSE_ERROR_TOO_FEW_ARGUMENTS;
     }
     return 0;
@@ -1742,7 +1742,7 @@ static errr _parse_room_grid_ego(char **args, int arg_ct, room_grid_ptr grid, in
                 grid->extra = _lookup_ego(args[0], 0, options);
             if (!grid->extra)
             {
-                msg_format("Error: Unknown Ego %s.", args[0]);
+                msg_format("错误：未知的 Ego %s。", args[0]);
                 return PARSE_ERROR_GENERIC;
             }
             grid->flags |= ROOM_GRID_OBJ_EGO;
@@ -1750,7 +1750,7 @@ static errr _parse_room_grid_ego(char **args, int arg_ct, room_grid_ptr grid, in
         break;
 
     default:
-        msg_print("Error: Invalid EGO() directive. Syntax: EGO(<which>).");
+        msg_print("错误：无效的 EGO() 指令。语法：EGO(<which>)。");
         return PARSE_ERROR_TOO_FEW_ARGUMENTS;
     }
     return 0;
@@ -1779,7 +1779,7 @@ int parse_lookup_artifact(cptr name, int options)
         if (strstr(buf, name))
         {
             if (trace_doc)
-                doc_printf(trace_doc, "Matching artifact <color:B>%s</color> to <color:R>%s</color> (%d).\n", name, buf, i);
+                doc_printf(trace_doc, "正在匹配神器 <color:B>%s</color> 到 <color:R>%s</color> (%d)。\n", name, buf, i);
             return i;
         }
     }
@@ -1805,7 +1805,7 @@ static errr _parse_room_grid_artifact(char **args, int arg_ct, room_grid_ptr gri
                 grid->object = parse_lookup_artifact(args[0], options);
             if (!grid->object)
             {
-                msg_format("Error: Unknown Artifact %s.", args[0]);
+                msg_format("错误：未知的神器 %s。", args[0]);
                 return PARSE_ERROR_GENERIC;
             }
             grid->flags |= ROOM_GRID_OBJ_ARTIFACT;
@@ -1813,7 +1813,7 @@ static errr _parse_room_grid_artifact(char **args, int arg_ct, room_grid_ptr gri
         break;
 
     default:
-        msg_print("Error: Invalid ART() directive. Syntax: ART(<which>).");
+        msg_print("错误：无效的 ART() 指令。语法：ART(<which>)。");
         return PARSE_ERROR_TOO_FEW_ARGUMENTS;
     }
     return 0;
@@ -1838,7 +1838,7 @@ static errr _parse_room_grid_trap(char **args, int arg_ct, room_grid_ptr grid)
             s16b trap = f_tag_to_index(args[0]);
             if (trap < 0)
             {
-                msg_format("Error: Unknown Trap %s.", args[0]);
+                msg_format("错误：未知的陷阱 %s。", args[0]);
                 return PARSE_ERROR_GENERIC;
             }
             grid->cave_trap = trap;
@@ -1846,7 +1846,7 @@ static errr _parse_room_grid_trap(char **args, int arg_ct, room_grid_ptr grid)
         break;
 
     default:
-        msg_print("Error: Invalid TRAP() directive. Syntax: TRAP(<which> [,<pct odds>]).");
+        msg_print("错误：无效的 TRAP() 指令。语法：TRAP(<which> [,<pct odds>])。");
         return PARSE_ERROR_TOO_FEW_ARGUMENTS;
     }
     return 0;
@@ -1860,14 +1860,14 @@ static errr _parse_room_grid_feature(char* name, char **args, int arg_ct, room_g
 
     if (feat < 0)
     {
-        msg_format("Error: Unknown Feature %s.", name);
+        msg_format("错误：未知的地形特征(Feature) %s。", name);
         return PARSE_ERROR_GENERIC;
     }
     grid->cave_feat = feat;
 
     if (arg_ct > 2)
     {
-        msg_print("Error: Invalid feature directive. Syntax: <Name>[(<flags> [,<special info>])].");
+        msg_print("错误：无效的地形特征指令。语法：<Name>[(<flags> [,<special info>])]。");
         return PARSE_ERROR_TOO_FEW_ARGUMENTS;
     }
     if (arg_ct >= 2)
@@ -1908,7 +1908,7 @@ static errr _parse_room_grid_feature(char* name, char **args, int arg_ct, room_g
                 grid->feat_pct = n;
             else
             {
-                msg_format("Error: Unknown Feature Option %s.", flag);
+                msg_format("错误：未知的地形特征选项 %s。", flag);
                 return PARSE_ERROR_INVALID_FLAG;
             }
         }
@@ -1938,7 +1938,7 @@ errr parse_room_grid(char *buf, room_grid_ptr grid, int options)
 
         if (arg_ct < 0)
         {
-            msg_format("Error: Malformed argument %s. Missing )?", name);
+            msg_format("错误：格式错误的参数 %s。缺少 ) 吗？", name);
             return PARSE_ERROR_GENERIC;
         }
 
@@ -1971,7 +1971,7 @@ errr parse_room_grid(char *buf, room_grid_ptr grid, int options)
         {
             if (found_feature)
             {
-                msg_format("Error: Unknown %s directive.", name);
+                msg_format("错误：未知的 %s 指令。", name);
                 return PARSE_ERROR_GENERIC;
             }
 
@@ -2016,7 +2016,7 @@ static errr _parse_room_flags(char* buf, room_ptr room)
             room->flags |= ROOM_THEME_OBJECT;
         else
         {
-            msg_format("Error: Invalid room flag %s.", flag);
+            msg_format("错误：无效的房间标志 %s。", flag);
             return PARSE_ERROR_INVALID_FLAG;
         }
     }
@@ -2030,7 +2030,7 @@ static errr _parse_room_type(char *buf, room_ptr room)
 
     if (num < 2 || num > 3)
     {
-        msg_print("Error: Invalid T: line. Syntax is T:<Type>:<Subtype>[:<Flags>].");
+        msg_print("错误：无效的 T: 行。语法是 T:<Type>:<Subtype>[:<Flags>]。");
         return PARSE_ERROR_TOO_FEW_ARGUMENTS;
     }
 
@@ -2044,7 +2044,7 @@ static errr _parse_room_type(char *buf, room_ptr room)
 
         if (!room->subtype)
         {
-            msg_format("Error: Unknown vault type %s.", zz[1]);
+            msg_format("错误：未知的金库类型 %s。", zz[1]);
             return PARSE_ERROR_GENERIC;
         }
     }
@@ -2092,14 +2092,14 @@ static errr _parse_room_type(char *buf, room_ptr room)
 
         if (!room->subtype)
         {
-            msg_format("Error: Unknown wilderness type %s.", zz[1]);
+            msg_format("错误：未知的荒野类型 %s。", zz[1]);
             return PARSE_ERROR_GENERIC;
         }
     }
 
     if (!room->type)
     {
-        msg_format("Error: Unknown room type %s.", zz[0]);
+        msg_format("错误：未知的房间类型 %s。", zz[0]);
         return PARSE_ERROR_GENERIC;
     }
 
@@ -2136,7 +2136,7 @@ static errr parse_v_info(char *buf, int options)
 
         if (num != 1 || !*zz[0])
         {
-            msg_print("Error: Invalid N: line. Syntax: N:<Name>.");
+            msg_print("错误：无效的 N: 行。语法：N:<Name>。");
             return PARSE_ERROR_TOO_FEW_ARGUMENTS;
         }
 
@@ -2156,7 +2156,7 @@ static errr parse_v_info(char *buf, int options)
     /* There better be a current room */
     else if (!room)
     {
-        msg_print("Error: Missing N: line for new room template.");
+        msg_print("错误：新房间模板缺少 N: 行。");
         return PARSE_ERROR_MISSING_RECORD_HEADER;
     }
     else
@@ -2428,7 +2428,7 @@ static errr grab_one_feat_flag(feature_type *f_ptr, cptr what)
     }
 
     /* Oops */
-    msg_format("Unknown feature flag '%s'.", what);
+    msg_format("未知的地形特征标志 '%s'。", what);
 
     /* Error */
     return PARSE_ERROR_GENERIC;
@@ -2453,7 +2453,7 @@ static errr grab_one_feat_action(feature_type *f_ptr, cptr what, int count)
     }
 
     /* Oops */
-    msg_format("Unknown feature action '%s'.", what);
+    msg_format("未知的地形特征动作 '%s'。", what);
 
     /* Error */
     return PARSE_ERROR_GENERIC;
@@ -2770,7 +2770,7 @@ static void search_real_feat(s16b *feat)
     }
 
     /* Undefined tag */
-    msg_format("%s is undefined.", f_tag + (-(*feat)));
+    msg_format("%s 未定义。", f_tag + (-(*feat)));
 }
 
 
@@ -2820,7 +2820,7 @@ static errr grab_one_kind_flag(object_kind *k_ptr, cptr what)
         return 0;
 
     /* Oops */
-    msg_format("Unknown object flag '%s'.", what);
+    msg_format("未知的物品标志 '%s'。", what);
 
 
     /* Error */
@@ -3107,7 +3107,7 @@ static errr grab_one_artifact_flag(artifact_type *a_ptr, cptr what)
         return 0;
 
     /* Oops */
-    msg_format("Unknown artifact flag '%s'.", what);
+    msg_format("未知的神器标志 '%s'。", what);
 
 
     /* Error */
@@ -3317,7 +3317,7 @@ static bool grab_one_ego_item_flag(ego_type *e_ptr, cptr what)
         return 0;
 
     /* Oops */
-    msg_format("Unknown ego-item flag '%s'.", what);
+    msg_format("未知的 ego 物品标志 '%s'。", what);
 
 
     /* Error */
@@ -3348,7 +3348,7 @@ static bool grab_one_ego_type_flag(ego_type *e_ptr, cptr what)
     else if (streq(what, "QUIVER")) e_ptr->type |= EGO_TYPE_QUIVER;
     else
     {
-        msg_format("Unknown ego type flag: '%s'.", what);
+        msg_format("未知的 ego 类型标志：'%s'。", what);
         return ERROR_UNKNOWN_FAILURE;
     }
     return ERROR_SUCCESS;
@@ -3528,7 +3528,7 @@ static errr grab_one_basic_flag(monster_race *r_ptr, cptr what)
         return 0;
 
     /* Oops */
-    msg_format("Unknown monster flag '%s'.", what);
+    msg_format("未知的怪物标志 '%s'。", what);
 
 
     /* Failure */
@@ -3658,14 +3658,14 @@ static errr parse_mon_blow_method(char *command, mon_blow_ptr blow)
 
     if (arg_ct < 0)
     {
-        msg_format("Error: Malformed argument %s. Missing )?", name);
+        msg_format("错误：格式错误的参数 %s。缺少 ) 吗？", name);
         return PARSE_ERROR_GENERIC;
     }
 
     blow->method = _get_r_blow_method(name);
     if (!blow->method)
     {
-        msg_format("Error: Unknown monster blow method %s.", name);
+        msg_format("错误：未知的怪物攻击方式 %s。", name);
         return PARSE_ERROR_UNDEFINED_DIRECTIVE;
     }
 
@@ -3741,14 +3741,14 @@ static errr parse_mon_blow(char *buf, mon_blow_ptr blow)
 
         if (arg_ct < 0)
         {
-            msg_format("Error: Malformed argument %s. Missing )?", name);
+            msg_format("错误：格式错误的参数 %s。缺少 ) 吗？", name);
             return PARSE_ERROR_GENERIC;
         }
 
         effect->effect = _get_r_blow_effect(name);
         if (!effect->effect)
         {
-            msg_format("Error: Unknown monster blow effect %s.", name);
+            msg_format("错误：未知的怪物攻击效果 %s。", name);
             return PARSE_ERROR_UNDEFINED_DIRECTIVE;
         }
         if (arg_ct > 2)
@@ -3768,7 +3768,7 @@ static errr parse_mon_blow(char *buf, mon_blow_ptr blow)
             }
             else
             {
-                msg_format("Error: Unknown argument %s.", args[j]);
+                msg_format("错误：未知的参数 %s。", args[j]);
                 return PARSE_ERROR_GENERIC;
             }
         }
@@ -3805,19 +3805,19 @@ static errr parse_mon_auras(char *buf, mon_race_ptr r_ptr)
 
         if (arg_ct < 0)
         {
-            msg_format("Error: Malformed argument %s. Missing )?", name);
+            msg_format("错误：格式错误的参数 %s。缺少 ) 吗？", name);
             return PARSE_ERROR_GENERIC;
         }
         if (aura->effect)
         {
-            msg_print("Duplicate A: line. Put all auras on a single line, please!");
+            msg_print("重复的 A: 行。请将所有光环放在一行！");
             return PARSE_ERROR_GENERIC;
         }
 
         aura->effect = _get_gf_type(name);
         if (!aura->effect)
         {
-            msg_format("Error: Unknown monster aura effect %s.", name);
+            msg_format("错误：未知的怪物光环效果 %s。", name);
             return PARSE_ERROR_UNDEFINED_DIRECTIVE;
         }
         if (arg_ct > 2)
@@ -3837,7 +3837,7 @@ static errr parse_mon_auras(char *buf, mon_race_ptr r_ptr)
             }
             else
             {
-                msg_format("Error: Unknown argument %s.", args[j]);
+                msg_format("错误：未知的参数 %s。", args[j]);
                 return PARSE_ERROR_GENERIC;
             }
         }
@@ -3881,7 +3881,7 @@ static errr parse_mon_flags(char *buf, mon_race_ptr race)
                 }
                 else
                 {
-                    msg_format("Error: Unknown argument %s.", args[j]);
+                    msg_format("错误：未知的参数 %s。", args[j]);
                     return PARSE_ERROR_GENERIC;
                 }
             }
@@ -3895,7 +3895,7 @@ static errr parse_mon_flags(char *buf, mon_race_ptr race)
             }
             else
             {
-                msg_format("Error: Unknown monster dungeon %s.", token);
+                msg_format("错误：未知的怪物地下城 %s。", token);
                 return PARSE_ERROR_GENERIC;
             }
         }
@@ -4298,7 +4298,7 @@ static errr grab_one_dungeon_flag(dungeon_info_type *d_ptr, cptr what)
         return 0;
 
     /* Oops */
-    msg_format("Unknown dungeon type flag '%s'.", what);
+    msg_format("未知的地下城类型标志 '%s'。", what);
 
     /* Failure */
     return (1);
@@ -4331,7 +4331,7 @@ static errr grab_one_basic_monster_flag(dungeon_info_type *d_ptr, cptr what)
         return 0;
 
     /* Oops */
-    msg_format("Unknown monster flag '%s'.", what);
+    msg_format("未知的怪物标志 '%s'。", what);
     /* Failure */
     return (1);
 }
@@ -4711,7 +4711,7 @@ errr parse_room_line(room_ptr room, char *line, int options)
 
         if (num != 3)
         {
-            msg_print("Error: Invalid W: line. Syntax: W:<Level>:<MaxLevel>:<Rarity>.");
+            msg_print("错误：无效的 W: 行。语法：W:<Level>:<MaxLevel>:<Rarity>。");
             return PARSE_ERROR_TOO_FEW_ARGUMENTS;
         }
         room->level = atoi(zz[0]);
@@ -4722,7 +4722,7 @@ errr parse_room_line(room_ptr room, char *line, int options)
         tmp = atoi(zz[2]);
         if (tmp < 0 || tmp > 255) /* room_t.rarity is a byte */
         {
-            msg_format("Error: Invalid rarity %d. Enter a value between 1 and 255.", tmp);
+            msg_format("错误：无效的稀有度 %d。请输入 1 到 255 之间的值。", tmp);
             return PARSE_ERROR_OUT_OF_BOUNDS;
         }
         room->rarity = tmp;
@@ -4804,7 +4804,7 @@ errr parse_room_line(room_ptr room, char *line, int options)
 
         if (arg_ct < 0)
         {
-            msg_format("Error: Malformed argument %s. Missing )?", name);
+            msg_format("错误：格式错误的参数 %s。缺少 ) 吗？", name);
             return PARSE_ERROR_GENERIC;
         }
 
@@ -4815,7 +4815,7 @@ errr parse_room_line(room_ptr room, char *line, int options)
             int  i;
             if (arg_ct > _max_scramble)
             {
-                msg_format("I can only scramble %d letters.", _max_scramble);
+                msg_format("我只能乱序 %d 个字母。", _max_scramble);
                 return PARSE_ERROR_GENERIC;
             }
             for (i = 0; i < arg_ct; i++)
@@ -4837,23 +4837,23 @@ errr parse_room_line(room_ptr room, char *line, int options)
                 room_grid_ptr grid = int_map_find(room->letters, letter);
                 if (!grid)
                 {
-                    msg_format("Error: Undefined letter: %c", letter);
+                    msg_format("错误：未定义的字母：%c", letter);
                     return PARSE_ERROR_GENERIC;
                 }
                 grid->scramble = scramble; /* cf _find_room_grid (rooms.c) */
                 grid = int_map_find(room->letters, scramble);
                 if (!grid)
                 {
-                    msg_format("Error: Undefined scramble: %c", scramble);
+                    msg_format("错误：未定义的乱序：%c", scramble);
                     return PARSE_ERROR_GENERIC;
                 }
                 if (trace_doc)
-                    doc_printf(trace_doc, "Scrambled <color:R>%c</color> to <color:B>%c</color>.\n", letter, scramble);
+                    doc_printf(trace_doc, "将 <color:R>%c</color> 乱序为 <color:B>%c</color>。\n", letter, scramble);
             }
         }
         else
         {
-            msg_format("Error: Unknown directive: %s", name);
+            msg_format("错误：未知的指令：%s", name);
             return PARSE_ERROR_GENERIC;
         }
         return 0;
@@ -5108,7 +5108,7 @@ static cptr process_dungeon_file_expr(char **sp, char *fp)
             /* Race */
             else if (streq(b+1, "RACE"))
             {
-                v = get_true_race()->name;
+                v = get_race_internal_name(get_true_race()->id);
                 while (1)
                 {
                     unsigned int paikka = strpos(" ", v);
@@ -5125,7 +5125,7 @@ static cptr process_dungeon_file_expr(char **sp, char *fp)
             /* Class */
             else if (streq(b+1, "CLASS"))
             {
-                v = get_class()->name;
+                v = get_class_internal_name(get_class()->id);
             }
             else if (streq(b+1, "SUBCLASS"))
             {
@@ -5135,11 +5135,11 @@ static cptr process_dungeon_file_expr(char **sp, char *fp)
             /* Realms */
             else if (streq(b+1, "REALM1"))
             {
-                v = realm_names[p_ptr->realm1];
+                v = realm_internal_name(p_ptr->realm1);
             }
             else if (streq(b+1, "REALM2"))
             {
-                v = realm_names[p_ptr->realm2];
+                v = realm_internal_name(p_ptr->realm2);
             }
             /* Player name */
             else if (streq(b+1, "PLAYER"))
@@ -5171,11 +5171,11 @@ static cptr process_dungeon_file_expr(char **sp, char *fp)
             /* Quest status */
             else if (prefix(b+1, "QUEST"))
             {
-                cptr _status[] = { "Untaken", "Taken", "InProgress", "Completed", "Finished", "Failed", "FailedDone" };
+                cptr _status[] = { "未接取", "已接受", "进行中", "已达成", "已结束", "失败", "失败且结束" };
                 int  which = atoi(b+6);
                 quest_ptr q = quests_get(which);
                 if (q) sprintf(tmp, "%s", _status[q->status]);
-                else sprintf(tmp, "Unknown");
+                else sprintf(tmp, "未知");
                 v = tmp;
             }
 
@@ -5184,8 +5184,8 @@ static cptr process_dungeon_file_expr(char **sp, char *fp)
             {
                 int  which = atoi(b+8);
                 if ((which >= max_d_idx) || (d_info[which].flags1 & DF1_SUPPRESSED))
-                    sprintf(tmp, "Suppressed");
-                else sprintf(tmp, "Active");
+                    sprintf(tmp, "被抑制");
+                else sprintf(tmp, "激活");
                 v = tmp;
             }
 
@@ -5230,11 +5230,11 @@ static cptr process_dungeon_file_expr(char **sp, char *fp)
             else if (streq(b+1, "SPECIALITY"))
             {
                 if (p_ptr->pclass == CLASS_WEAPONMASTER)
-                    sprintf(tmp, "%s", weaponmaster_speciality_name(p_ptr->psubclass));
+                    sprintf(tmp, "%s", weaponmaster_internal_speciality_name(p_ptr->psubclass));
                 else if (p_ptr->pclass == CLASS_DEVICEMASTER)
-                    sprintf(tmp, "%s", devicemaster_speciality_name(p_ptr->psubclass));
+                    sprintf(tmp, "%s", devicemaster_internal_speciality_name(p_ptr->psubclass));
                 else
-                    sprintf(tmp, "None");
+                    sprintf(tmp, "无");
                 v = tmp;
             }
         }
@@ -5330,8 +5330,8 @@ errr process_dungeon_file(cptr name, int options)
 
         /* Oops */
         msg_boundary();
-        msg_format("<color:v>Error</color> %d (%s) at line %d of '%s'.", err, oops, num, name);
-        msg_format("Parsing '%s'.", buf);
+        msg_format("<color:v>错误</color> %d (%s)，位于 '%s' 的第 %d 行。", err, oops, num, name);
+        msg_format("正在解析 '%s'。", buf);
 
         msg_print(NULL);
     }
@@ -5392,8 +5392,8 @@ errr parse_edit_file(cptr name, parser_f parser, int options)
                 cptr oops = (err > 0 && err < PARSE_ERROR_MAX) ? err_str[err] : "unknown";
 
                 msg_boundary();
-                msg_format("<color:v>Error</color> %d (%s) at line %d of '%s'.", err, oops, line_num, name);
-                msg_format("Parsing '%s'.", buf);
+                msg_format("<color:v>错误</color> %d (%s)，位于 '%s' 的第 %d 行。", err, oops, line_num, name);
+                msg_format("正在解析 '%s'。", buf);
                 msg_print(NULL); /* quit() during initialization ... */
             }
         }

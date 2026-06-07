@@ -62,7 +62,7 @@ bool restore_mana(void)
         result = TRUE;
     }
 
-    msg_print("You feel your head clear.");
+    msg_print("你感觉头脑清醒了。");
     return result;
 }
 
@@ -86,13 +86,13 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
 
     if (object_is_mushroom(obj) && obj->art_name && obj->timeout)
     {
-        msg_print("Your mushroom is still charging.");
+        msg_print("你的蘑菇还在充能中。");
         return;
     }
 
     if ((disciple_is_(DISCIPLE_TROIKA)) && (object_is_(obj, TV_FOOD, SV_FOOD_CURE_POISON)) && (p_ptr->poisoned > 0))
     {
-        msg_print("Using mushrooms to cure poison is an abomination unto Uxip!");
+        msg_print("使用蘑菇来解毒是对 Uxip (蘑菇神)的亵渎！");
         return;
     }
 
@@ -276,13 +276,13 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
             case SV_FOOD_JERKY:
             case SV_FOOD_SLIME_MOLD:
             {
-                msg_print("That tastes good.");
+                msg_print("味道不错。");
                 ident = TRUE;
                 break;
             }
             case SV_FOOD_AMBROSIA:
             {
-                msg_print("That tastes divine!");
+                msg_print("这味道简直是神仙美味！");
                 set_poisoned(p_ptr->poisoned - MAX(100, p_ptr->poisoned / 5), TRUE);
                 hp_player(damroll(15, 15));
                 do_res_stat(A_STR);
@@ -300,7 +300,7 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
             {
                 if (mut_present(MUT_WAYBREAD_INTO))
                 {
-                    msg_print("The waybread makes you vomit!");
+                    msg_print("这路粮(兰巴斯)让你作呕！");
                     set_food(PY_FOOD_STARVE - 1);
                     set_paralyzed(randint1(4), FALSE);
                     set_poisoned(0, TRUE);
@@ -309,7 +309,7 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
                     break;
                 }
 
-                msg_print("That tastes good.");
+                msg_print("味道不错。");
                 set_poisoned(p_ptr->poisoned - MAX(100, p_ptr->poisoned / 5), TRUE);
                 hp_player(damroll(4, 8));
                 ident = TRUE;
@@ -319,7 +319,7 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
             case SV_FOOD_PINT_OF_ALE:
             case SV_FOOD_PINT_OF_WINE:
             {
-                msg_print("That tastes good.");
+                msg_print("味道不错。");
                 ident = TRUE;
                 break;
             }
@@ -366,15 +366,15 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
     {
         /* Reduced nutritional benefit */
         set_food(p_ptr->food + obj->pval / 10);
-        msg_print("Mere victuals hold scant sustenance for a being such as yourself.");
+        msg_print("区区口粮对你这样的存在来说，营养微乎其微。");
         if (p_ptr->food < PY_FOOD_ALERT)   /* Hungry */
-            msg_print("Your hunger can only be satisfied with fresh blood!");
+            msg_print("你的饥饿只能用鲜血来满足！");
     }
     else if (prace_is_(RACE_ANDROID))
     {
         if (obj->tval == TV_FLASK)
         {
-            msg_print("You replenish yourself with the oil.");
+            msg_print("你用油补充了体力。");
             set_food(p_ptr->food + 5000);
         }
     }
@@ -395,7 +395,7 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
 
         if (!amt)
         {
-            msg_print("The device has no energy left.");
+            msg_print("这台装置已经没有能量了。");
             return;
         }
 
@@ -418,7 +418,7 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
 
         object_desc(o_name, obj, (OD_OMIT_PREFIX | OD_NAME_ONLY | OD_SINGULAR));
 
-        msg_format("<color:%c>The %^s</color> is burnt to ashes. You absorb its vitality!", tval_to_attr_char(obj->tval), o_name);
+        msg_format("<color:%c>%^s</color> 被烧成了灰烬。你吸收了它的生命力！", tval_to_attr_char(obj->tval), o_name);
         set_food(PY_FOOD_MAX - 1);
     }
     else if (prace_is_(RACE_SKELETON))
@@ -427,19 +427,19 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
               obj->sval < SV_FOOD_BISCUIT))
         {
             int luku = obj->number;
-            msg_print("The food falls through your jaws!");
+            msg_print("食物从你的下颚漏了下去！");
             obj->number = 1;
             drop_near(obj, -1, py, px);
             obj->number = luku;
         }
         else
         {
-            msg_print("The food falls through your jaws and vanishes!");
+            msg_print("食物从你的下颚漏了下去，然后消失了！");
         }
     }
     else if (!mortal_food_check())
     {
-        msg_print("The food of mortals is poor sustenance for you.");
+        msg_print("凡人的食物对你来说缺乏营养。");
         set_food(p_ptr->food + obj->pval / 20);
     }
     else if (obj->tval == TV_FOOD && (obj->sval == SV_FOOD_WAYBREAD || obj->sval == SV_FOOD_AMBROSIA))
@@ -504,8 +504,8 @@ void do_cmd_eat_food(void)
     if (p_ptr->special_defense & (KATA_MUSOU | KATA_KOUKIJIN))
         set_action(ACTION_NONE);
 
-    prompt.prompt = "Eat which item?";
-    prompt.error = "You have nothing to eat.";
+    prompt.prompt = "吃哪件物品？";
+    prompt.error = "你没有可以吃的东西。";
     prompt.filter = _can_eat;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -534,7 +534,7 @@ static void do_cmd_quaff_potion_aux(obj_ptr obj)
     if (world_player)
     {
         if (flush_failure) flush();
-        msg_print("The potion doesn't flow out from the bottle.");
+        msg_print("药水流不出瓶子。");
         if (prompt_on_failure) msg_print(NULL);
         sound(SOUND_FAIL);
         return;
@@ -574,7 +574,7 @@ static void do_cmd_quaff_potion_aux(obj_ptr obj)
 
     if (prace_is_(RACE_SKELETON) || (p_ptr->current_r_idx && r_info[p_ptr->current_r_idx].d_char == 's'))
     {
-        msg_print("Some of the fluid falls through your jaws!");
+        msg_print("一些液体从你的下颚漏了下去！");
         potion_smash_effect(0, py, px, obj->k_idx);
     }
 
@@ -625,7 +625,7 @@ static void do_cmd_quaff_potion_aux(obj_ptr obj)
             case RACE_ANDROID:
                 if (obj->tval == TV_FLASK)
                 {
-                    msg_print("You replenish yourself with the oil.");
+                    msg_print("你用油补充了体力。");
                     set_food(p_ptr->food + 5000);
                 }
                 else
@@ -634,18 +634,18 @@ static void do_cmd_quaff_potion_aux(obj_ptr obj)
                 }
                 break;
             case RACE_ENT:
-                msg_print("You are moistened.");
+                msg_print("你被润湿了。");
                 set_food(MIN(p_ptr->food + obj->pval + MAX(0, obj->pval * 10) + 2000, PY_FOOD_MAX - 1));
                 break;
             default:
                 if (elemental_is_(ELEMENTAL_WATER))
                 {
-                    msg_print("That tastes delicious.");
+                    msg_print("味道很美味。");
                     set_food(MIN(p_ptr->food + obj->pval + MAX(0, obj->pval * 10) + 2000, PY_FOOD_MAX - 1));
                 }
                 else if (elemental_is_(ELEMENTAL_FIRE) && obj->tval == TV_FLASK)
                 {
-                    msg_print("Your body flames up with renewed vigor.");
+                    msg_print("你的身体燃起了新的活力。");
                     set_food(p_ptr->food + 5000);
                 }
                 else
@@ -668,7 +668,7 @@ static void do_cmd_quaff_potion_aux(obj_ptr obj)
     /* Consume Item */
     if (devicemaster_is_(DEVICEMASTER_POTIONS) && !devicemaster_desperation && randint1(3*p_ptr->lev/2) > MAX(10, lev))
     {
-        msg_print("You sip the potion sparingly.");
+        msg_print("你节省地啜饮着药水。");
     }
     else
     {
@@ -709,8 +709,8 @@ void do_cmd_quaff_potion(void)
     if (p_ptr->special_defense & (KATA_MUSOU | KATA_KOUKIJIN))
         set_action(ACTION_NONE);
 
-    prompt.prompt = "Quaff which potion?";
-    prompt.error = "You have no potions to quaff.";
+    prompt.prompt = "喝哪瓶药水？";
+    prompt.error = "你没有可以喝的药水。";
     prompt.filter = _can_quaff;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -754,14 +754,14 @@ static void do_cmd_read_scroll_aux(obj_ptr o_ptr)
     /* Hack: Block devices *after* consuming player energy */
     if (p_ptr->tim_no_device)
     {
-        msg_print("An evil power blocks your magic!");
+        msg_print("一股邪恶的力量阻碍了你的魔法！");
         return;
     }
 
     if (world_player)
     {
         if (flush_failure) flush();
-        msg_print("Nothing happens.");
+        msg_print("什么也没发生。");
         if (prompt_on_failure) msg_print(NULL);
         sound(SOUND_FAIL);
         return;
@@ -769,7 +769,7 @@ static void do_cmd_read_scroll_aux(obj_ptr o_ptr)
 
     if (p_ptr->pclass == CLASS_BERSERKER || (get_race()->flags & RACE_IS_ILLITERATE))
     {
-        msg_print("You cannot read.");
+        msg_print("你无法阅读。");
         return;
     }
 
@@ -791,7 +791,7 @@ static void do_cmd_read_scroll_aux(obj_ptr o_ptr)
         if (!device_try(o_ptr))
         {
             if (flush_failure) flush();
-            msg_print("You failed to pronounce the incantation properly.");
+            msg_print("你没能正确念出咒语。");
             if (prompt_on_failure) msg_print(NULL);
             sound(SOUND_FAIL);
             return;
@@ -843,13 +843,13 @@ static void do_cmd_read_scroll_aux(obj_ptr o_ptr)
     }
     else if (o_ptr->name1 == ART_POWER)
     {
-        msg_print("'One Ring to rule them all, ");
+        msg_print("‘至尊戒，驭众戒；");
         msg_print(NULL);
-        msg_print("One Ring to find them, ");
+        msg_print("至尊戒，寻众戒；");
         msg_print(NULL);
-        msg_print("One Ring to bring them all ");
+        msg_print("至尊戒，引众戒；");
         msg_print(NULL);
-        msg_print("and in the darkness bind them.'");
+        msg_print("禁锢众戒黑暗中。’");
         used_up = FALSE;
     }
     else if (o_ptr->tval==TV_PARCHMENT)
@@ -892,7 +892,7 @@ static void do_cmd_read_scroll_aux(obj_ptr o_ptr)
     sound(SOUND_SCROLL);
     if (devicemaster_is_(DEVICEMASTER_SCROLLS) && !devicemaster_desperation && randint1(2*p_ptr->lev) > MAX(10, lev))
     {
-        msg_print("Your mental focus preserves the scroll!");
+        msg_print("你精神集中，保住了卷轴不被消耗！");
     }
     else
     {
@@ -921,24 +921,24 @@ void do_cmd_read_scroll(void)
     if (p_ptr->blind)
     {
         flush();
-        msg_print("You can't see anything.");
+        msg_print("你什么也看不见。");
         return;
     }
     if (no_lite())
     {
         flush();
-        msg_print("You have no light to read by.");
+        msg_print("你没有可以用来阅读的光源。");
         return;
     }
     if (p_ptr->confused)
     {
         flush();
-        msg_print("You are too confused!");
+        msg_print("你太困惑了！");
         return;
     }
 
-    prompt.prompt = "Read which scroll? ";
-    prompt.error = "You have no scrolls to read.";
+    prompt.prompt = "读哪张卷轴？";
+    prompt.error = "你没有可以阅读的卷轴。";
     prompt.filter = _can_read;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -988,7 +988,7 @@ static void do_cmd_device_aux(obj_ptr obj)
     if (device_sp(obj) < obj->activation.cost)
     {
         if (flush_failure) flush();
-        msg_print("The device has no charges left.");
+        msg_print("该装置已经没有使用次数了。");
         if (prompt_on_failure) msg_print(NULL);
         energy_use = 0;
         return;
@@ -997,7 +997,7 @@ static void do_cmd_device_aux(obj_ptr obj)
     if (p_ptr->tim_no_device)
     {
         flush();
-        msg_print("An evil power blocks your magic!");
+        msg_print("一股邪恶的力量阻碍了你的魔法！");
         return;
     }
 
@@ -1005,14 +1005,14 @@ static void do_cmd_device_aux(obj_ptr obj)
     if (!(is_devicemaster || fear_allow_device()))
     {
         flush();
-        msg_print("You are too scared!");
+        msg_print("你太害怕了！");
         return;
     }
 
     if (world_player)
     {
         if (flush_failure) flush();
-        msg_print("Nothing happens. Maybe this device is freezing too.");
+        msg_print("什么也没发生。也许这个装置也被冻住了。");
         if (prompt_on_failure) msg_print(NULL);
         sound(SOUND_FAIL);
         return;
@@ -1021,7 +1021,7 @@ static void do_cmd_device_aux(obj_ptr obj)
     if (!device_try(obj))
     {
         if (flush_failure) flush();
-        msg_print("You failed to use the device properly.");
+        msg_print("你没能正确使用该装置。");
         if (prompt_on_failure) msg_print(NULL);
         sound(SOUND_FAIL);
         if ((p_ptr->pclass == CLASS_BERSERKER) || (beorning_is_(BEORNING_FORM_BEAR)))
@@ -1037,7 +1037,7 @@ static void do_cmd_device_aux(obj_ptr obj)
         {
             char buf[MAX_NLEN];
             object_desc(buf, obj, OD_LORE);
-            msg_format("<color:B>You learn more about your %s.</color>", buf);
+            msg_format("<color:B>你对你的%s了解得更多了。</color>", buf);
             obj->known_xtra |= OFL_DEVICE_FAIL;
             if (obj->known_xtra & OFL_DEVICE_POWER)
                 add_flag(obj->known_flags, OF_ACTIVATE);
@@ -1048,7 +1048,7 @@ static void do_cmd_device_aux(obj_ptr obj)
 
     if ((obj->curse_flags & OFC_CURSED) && one_in_(6))
     {
-        msg_print("Oops! The device explodes!");
+        msg_print("糟糕！装置爆炸了！");
         project(
             PROJECT_WHO_UNCTRL_POWER, 4, py, px,
             device_sp(obj), GF_MANA,
@@ -1091,7 +1091,7 @@ static void do_cmd_device_aux(obj_ptr obj)
     {
         char buf[MAX_NLEN];
         object_desc(buf, obj, OD_LORE);
-        msg_format("<color:B>You learn more about your %s.</color>", buf);
+        msg_format("<color:B>你对你的%s了解得更多了。</color>", buf);
         obj->known_xtra |= OFL_DEVICE_POWER;
         if (obj->known_xtra & OFL_DEVICE_FAIL)
             add_flag(obj->known_flags, OF_ACTIVATE);
@@ -1108,7 +1108,7 @@ static void do_cmd_device_aux(obj_ptr obj)
           && p_ptr->csp > obj->activation.cost
           && randint1(20 + obj->activation.difficulty) <= p_ptr->lev )
         {
-            msg_print("Your mental focus powers the device!");
+            msg_print("你的精神集中为装置提供了能量！");
             sp_player(-obj->activation.cost);
         }
         else
@@ -1118,7 +1118,7 @@ static void do_cmd_device_aux(obj_ptr obj)
             {
                 char o_name[MAX_NLEN];
                 object_desc(o_name, obj, OD_OMIT_PREFIX | OD_NAME_ONLY | OD_COLOR_CODED);
-                msg_format("Desperation magic consumes your %s!", o_name);
+                msg_format("绝境魔法消耗了你的%s！", o_name);
                 obj_zero(obj);
             }
             else
@@ -1149,8 +1149,8 @@ void do_cmd_use_staff(void)
         return;
     }
 
-    prompt.prompt = "Use which staff?";
-    prompt.error = "You have no staff to use.";
+    prompt.prompt = "使用哪根法杖？";
+    prompt.error = "你没有可用的法杖。";
     prompt.filter = obj_is_device;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -1176,8 +1176,8 @@ void do_cmd_aim_wand(void)
         return;
     }
 
-    prompt.prompt = "Aim which wand?";
-    prompt.error = "You have no wand to aim.";
+    prompt.prompt = "瞄准哪根魔杖？";
+    prompt.error = "你没有可瞄准的魔杖。";
     prompt.filter = obj_is_device;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -1202,8 +1202,8 @@ void do_cmd_zap_rod(void)
         return;
     }
 
-    prompt.prompt = "Zap which rod?";
-    prompt.error = "You have no rod to zap.";
+    prompt.prompt = "激发哪根魔棒？";
+    prompt.error = "你没有可激发的魔棒。";
     prompt.filter = obj_is_device;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -1228,7 +1228,7 @@ void ring_of_power(int dir)
         case 2:
         {
             /* Message */
-            msg_print("You are surrounded by a malignant aura.");
+            msg_print("你被一股恶意的光环包围着。");
 
             sound(SOUND_EVIL);
 
@@ -1251,7 +1251,7 @@ void ring_of_power(int dir)
         case 3:
         {
             /* Message */
-            msg_print("You are surrounded by a powerful aura.");
+            msg_print("你被一股强大的光环包围着。");
 
 
             /* Dispel monsters */
@@ -1326,7 +1326,7 @@ void capture_ball_opening(object_type *j_ptr, int y, int x, bool from_drop)
     {
         monster_race *r_ptr = &r_info[j_ptr->pval];
         int my = 0, mx = 0;
-        cmsg_format(TERM_YELLOW, "The Capture Ball %s!", from_drop ? "opens" : "shatters");
+        cmsg_format(TERM_YELLOW, "捕获球%s！", from_drop ? "打开了" : "碎裂了");
         if (monster_can_enter(y, x, r_ptr, 0))
         {
             my = y;
@@ -1357,7 +1357,7 @@ void capture_ball_opening(object_type *j_ptr, int y, int x, bool from_drop)
         }
         if (!my || !mx || !in_bounds(my, mx) || !capture_ball_release(j_ptr, my, mx, mode))
         {
-            cmsg_format(TERM_BLUE, "%s%^s disappears.", (r_ptr->flags1 & RF1_UNIQUE) ? "" : "The ", r_name + r_ptr->name);
+            cmsg_format(TERM_BLUE, "%s%^s消失了。", (r_ptr->flags1 & RF1_UNIQUE) ? "" : "那只", r_name + r_ptr->name);
         }
     }
 }
@@ -1385,7 +1385,7 @@ bool capture_ball_release(object_type *o_ptr, int y, int x, int mode)
             char mon_name[80];
             monster_type *m_ptr = &m_list[hack_m_idx_ii];
             monster_desc(mon_name, m_ptr, 0);
-            cmsg_format(TERM_BLUE, "%^s gets angry!", mon_name);
+            cmsg_format(TERM_BLUE, "%^s生气了！", mon_name);
             set_hostile(m_ptr);
         }
         if (o_ptr->inscription)
@@ -1495,7 +1495,7 @@ static void _do_capture_ball(object_type *o_ptr)
             success = capture_ball_release(o_ptr, py + ddy[dir], px + ddx[dir], CAPTURE_BALL_DEC_NUM);
         }
         if (!success)
-            msg_print("Oops. You failed to release your pet.");
+            msg_print("糟糕。你没能放出你的宠物。");
     }
 }
 
@@ -1521,14 +1521,14 @@ static void do_cmd_activate_aux(obj_ptr obj)
     if (world_player)
     {
         if (flush_failure) flush();
-        msg_print("It shows no reaction.");
+        msg_print("它毫无反应。");
         sound(SOUND_FAIL);
         return;
     }
 
     if (obj->timeout)
     {
-        msg_print("It whines, glows and fades...");
+        msg_print("它发出哀鸣，闪烁着光芒，然后消散了……");
         return;
     }
 
@@ -1536,13 +1536,13 @@ static void do_cmd_activate_aux(obj_ptr obj)
     if (!effect_try(&effect))
     {
         if (flush_failure) flush();
-        msg_print("You failed to activate it properly.");
+        msg_print("你没能正确激活它。");
         if (prompt_on_failure) msg_print(NULL);
         sound(SOUND_FAIL);
         return;
     }
 
-    msg_print("You activate it...");
+    msg_print("你激活了它……");
     sound(SOUND_ZAP);
 
     msg = obj_get_effect_msg(obj);
@@ -1577,8 +1577,8 @@ void do_cmd_activate(void)
     if (p_ptr->special_defense & (KATA_MUSOU | KATA_KOUKIJIN))
         set_action(ACTION_NONE);
 
-    prompt.prompt ="Activate which item?"; 
-    prompt.error = "You have nothing to activate.";
+    prompt.prompt ="激活哪件物品？"; 
+    prompt.error = "你没有可以激活的物品。";
     prompt.filter = _activate_p;
     prompt.where[0] = INV_EQUIP;
     if (get_race()->bonus_pack2) prompt.where[1] = INV_SPECIAL3;

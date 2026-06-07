@@ -47,14 +47,14 @@ typedef struct
  */
 static grouper group_item[] =
 {
-    { TV_SHOT,          "Ammo" },
+    { TV_SHOT,          "弹药" },
 
     { TV_ARROW,         NULL },
     { TV_BOLT,          NULL },
 
-    { TV_BOW,           "Bows" },
+    { TV_BOW,           "弓类" },
 
-    { TV_DIGGING,       "Weapons" },
+    { TV_DIGGING,       "武器" },
 
     { TV_POLEARM,       NULL },
     { TV_HAFTED,        NULL },
@@ -73,17 +73,17 @@ static grouper group_item[] =
     { TV_SHIELD,        NULL },
     { TV_CLOAK,         NULL },
 
-    { TV_LITE,          "Light Sources" },
-    { TV_AMULET,        "Amulets" },
-    { TV_RING,          "Rings" },
+    { TV_LITE,          "光源" },
+    { TV_AMULET,        "护身符" },
+    { TV_RING,          "戒指" },
 
-    { TV_STAFF,         "Staffs" },
-    { TV_WAND,          "Wands" },
-    { TV_ROD,           "Rods" },
+    { TV_STAFF,         "法杖" },
+    { TV_WAND,          "魔杖" },
+    { TV_ROD,           "魔棒" },
 
-    { TV_SCROLL,        "Scrolls" },
-    { TV_POTION,        "Potions" },
-    { TV_FOOD,          "Food" },
+    { TV_SCROLL,        "卷轴" },
+    { TV_POTION,        "药水" },
+    { TV_FOOD,          "食物" },
 
     { TV_LIFE_BOOK,     "Books (Life)" },
     { TV_SORCERY_BOOK,  "Books (Sorcery)" },
@@ -97,24 +97,24 @@ static grouper group_item[] =
     { TV_CRUSADE_BOOK,  "Books (Crusade)" },
     { TV_NECROMANCY_BOOK, "Books (Necromancy)" },
     { TV_ARMAGEDDON_BOOK, "Books (Armageddon)" },
-    { TV_MUSIC_BOOK,    "Song Books" },
+    { TV_MUSIC_BOOK,    "歌谱" },
     { TV_HISSATSU_BOOK, "Books (Kendo)" },
     { TV_HEX_BOOK,      "Books (Hex)" },
     { TV_RAGE_BOOK,      "Books (Rage)" },
 
-    { TV_WHISTLE,       "Whistle" },
-    { TV_CAPTURE,       "Capture Ball" },
-    { TV_CARD,          "Express Card" },
+    { TV_WHISTLE,       "哨子" },
+    { TV_CAPTURE,       "捕获球" },
+    { TV_CARD,          "快递卡" },
 
-    { TV_CHEST,         "Chests" },
+    { TV_CHEST,         "箱子" },
 
-    { TV_FIGURINE,      "Magical Figurines" },
-    { TV_STATUE,        "Statues" },
-    { TV_CORPSE,        "Corpses" },
+    { TV_FIGURINE,      "魔法小塑像" },
+    { TV_STATUE,        "雕像" },
+    { TV_CORPSE,        "尸体" },
 
-    { TV_QUIVER,        "Quivers" },
+    { TV_QUIVER,        "箭袋" },
 
-    { TV_SKELETON,      "Misc" },
+    { TV_SKELETON,      "杂项" },
 
     { TV_BOTTLE,        NULL },
     { TV_JUNK,          NULL },
@@ -246,7 +246,7 @@ static void spoil_obj_desc(cptr fname)
     /* Oops */
     if (!fff)
     {
-        msg_print("Cannot create spoiler file.");
+        msg_print("无法创建剧透文件。");
         return;
     }
 
@@ -257,7 +257,7 @@ static void spoil_obj_desc(cptr fname)
 
     /* More Header */
     fprintf(fff, "%-45s     %8s%7s%5s%9s\n",
-        "Description", "Dam/AC", "Wgt", "Lev", "Cost");
+        "描述", "Dam/AC", "重量", "等级", "价值");
     fprintf(fff, "%-45s     %8s%7s%5s%9s\n",
         "----------------------------------------",
         "------", "---", "---", "----");
@@ -343,12 +343,12 @@ static void spoil_obj_desc(cptr fname)
     /* Check for errors */
     if (ferror(fff) || my_fclose(fff))
     {
-        msg_print("Cannot close spoiler file.");
+        msg_print("无法关闭剧透文件。");
         return;
     }
 
     /* Message */
-    msg_print("Successfully created a spoiler file.");
+    msg_print("成功创建了一个剧透文件。");
 }
 
 /************************************************************************
@@ -363,28 +363,28 @@ static void spoil_obj_desc(cptr fname)
  */
 static grouper group_artifact[] =
 {
-    { TV_SWORD,             "Edged-Weapons" },
-    { TV_POLEARM,           "Polearms" },
-    { TV_HAFTED,            "Hafted-Weapons" },
-    { TV_DIGGING,           "Diggers" },
-    { TV_BOW,               "Bows" },
-    { TV_ARROW,             "Ammo" },
+    { TV_SWORD,             "利刃武器" },
+    { TV_POLEARM,           "长柄武器" },
+    { TV_HAFTED,            "有柄武器" },
+    { TV_DIGGING,           "挖掘工具" },
+    { TV_BOW,               "弓类" },
+    { TV_ARROW,             "弹药" },
 
-    { TV_SOFT_ARMOR,        "Body-Armor" },
+    { TV_SOFT_ARMOR,        "身体护甲" },
     { TV_HARD_ARMOR,        NULL },
     { TV_DRAG_ARMOR,        NULL },
 
-    { TV_CLOAK,             "Cloaks" },
-    { TV_SHIELD,            "Shields" },
+    { TV_CLOAK,             "斗篷" },
+    { TV_SHIELD,            "盾牌" },
     { TV_CARD,              NULL },
-    { TV_HELM,              "Headgear" },
+    { TV_HELM,              "头部装备" },
     { TV_CROWN,             NULL },
-    { TV_GLOVES,            "Gloves" },
-    { TV_BOOTS,             "Boots" },
+    { TV_GLOVES,            "手套" },
+    { TV_BOOTS,             "靴子" },
 
-    { TV_LITE,              "Light-Sources" },
-    { TV_AMULET,            "Amulets" },
-    { TV_RING,              "Rings" },
+    { TV_LITE,              "光源" },
+    { TV_AMULET,            "护身符" },
+    { TV_RING,              "戒指" },
 
     { 0, NULL }
 };
@@ -461,7 +461,7 @@ static void spoil_artifact_desc(void)
         }
     }
 
-    doc_display(doc, "Artifact Spoilers", 0);
+    doc_display(doc, "神器剧透", 0);
     doc_free(doc);
     spoiler_hack = FALSE;
 }
@@ -631,7 +631,7 @@ static void _spoil_table_aux(doc_ptr doc, cptr title, _obj_p pred, int options)
         vec_sort(entries, (vec_cmp_f)_art_score_cmp);
 
         doc_printf(doc, "<topic:%s><style:heading>%s</style>\n\n", title, title);
-        doc_insert(doc, "<style:wide>     <color:G>  Score Lvl Rty Cts Object Description</color>\n");
+        doc_insert(doc, "<style:wide> <color:G> 分数 等级 稀有度 数量 物品描述</color>\n");
         for (i = 0; i < vec_length(entries); i++)
         {
             _art_info_ptr  entry = vec_get(entries, i);
@@ -667,21 +667,21 @@ static void _spoil_table_aux(doc_ptr doc, cptr title, _obj_p pred, int options)
 
         if (ct_std || ct_rnd || ct_ego)
         {
-            doc_printf(doc, "\n<color:G>%20.20s   Ct Average    Best</color>\n", "");
+            doc_printf(doc, "\n<color:G>%20.20s 数量 平均分 最高分</color>\n", "");
             if (ct_std)
             {
                 doc_printf(doc, "<color:B>%20.20s</color> %4d %7d %7d\n",
-                    "Stand Arts", ct_std, score_std/ct_std, max_score_std);
+                    "标准神器", ct_std, score_std/ct_std, max_score_std);
             }
             if (ct_rnd)
             {
                 doc_printf(doc, "<color:B>%20.20s</color> %4d %7d %7d\n",
-                    "Rand Arts", ct_rnd, score_rnd/ct_rnd, max_score_rnd);
+                    "随机神器", ct_rnd, score_rnd/ct_rnd, max_score_rnd);
             }
             if (ct_ego)
             {
                 doc_printf(doc, "<color:B>%20.20s</color> %4d %7d %7d\n",
-                    "Egos", ct_ego, score_ego/ct_ego, max_score_ego);
+                    "Ego 物品", ct_ego, score_ego/ct_ego, max_score_ego);
             }
         }
         doc_insert(doc, "</style>\n\n");
@@ -704,21 +704,21 @@ static void spoil_artifact_tables(void)
     doc_ptr doc = doc_alloc(MIN(100, _term_width()));
 
     spoiler_hack = TRUE;
-    _spoil_artifact_table_aux(doc, "All Artifacts", NULL);
-    _spoil_artifact_table_aux(doc, "Weapons", object_is_melee_weapon);
-    _spoil_artifact_table_aux(doc, "Shields", object_is_shield);
-    _spoil_artifact_table_aux(doc, "Bows", object_is_bow);
-    _spoil_artifact_table_aux(doc, "Rings", object_is_ring);
-    _spoil_artifact_table_aux(doc, "Amulets", object_is_amulet);
-    _spoil_artifact_table_aux(doc, "Lights", object_is_lite);
-    _spoil_artifact_table_aux(doc, "Body Armor", object_is_body_armour);
-    _spoil_artifact_table_aux(doc, "Cloaks", object_is_cloak);
-    _spoil_artifact_table_aux(doc, "Helmets", object_is_helmet);
-    _spoil_artifact_table_aux(doc, "Gloves", object_is_gloves);
-    _spoil_artifact_table_aux(doc, "Boots", object_is_boots);
+    _spoil_artifact_table_aux(doc, "所有神器", NULL);
+    _spoil_artifact_table_aux(doc, "武器", object_is_melee_weapon);
+    _spoil_artifact_table_aux(doc, "盾牌", object_is_shield);
+    _spoil_artifact_table_aux(doc, "弓类", object_is_bow);
+    _spoil_artifact_table_aux(doc, "戒指", object_is_ring);
+    _spoil_artifact_table_aux(doc, "护身符", object_is_amulet);
+    _spoil_artifact_table_aux(doc, "光源", object_is_lite);
+    _spoil_artifact_table_aux(doc, "身体护甲", object_is_body_armour);
+    _spoil_artifact_table_aux(doc, "斗篷", object_is_cloak);
+    _spoil_artifact_table_aux(doc, "头盔", object_is_helmet);
+    _spoil_artifact_table_aux(doc, "手套", object_is_gloves);
+    _spoil_artifact_table_aux(doc, "靴子", object_is_boots);
     spoiler_hack = FALSE;
 
-    doc_display(doc, "Artifact Tables", 0);
+    doc_display(doc, "神器表格", 0);
     doc_free(doc);
 }
 
@@ -727,23 +727,23 @@ static void spoil_object_tables(void)
     doc_ptr doc = doc_alloc(MIN(100, _term_width()));
 
     spoiler_hack = TRUE;
-    _spoil_object_table_aux(doc, "All Objects", NULL);
-    _spoil_object_table_aux(doc, "Weapons", object_is_melee_weapon);
-    _spoil_object_table_aux(doc, "Shields", object_is_shield);
-    _spoil_object_table_aux(doc, "Bows", object_is_bow);
-    _spoil_object_table_aux(doc, "Rings", object_is_ring);
-    _spoil_object_table_aux(doc, "Amulets", object_is_amulet);
-    _spoil_object_table_aux(doc, "Lights", object_is_lite);
-    _spoil_object_table_aux(doc, "Body Armor", object_is_body_armour);
-    _spoil_object_table_aux(doc, "Cloaks", object_is_cloak);
-    _spoil_object_table_aux(doc, "Helmets", object_is_helmet);
-    _spoil_object_table_aux(doc, "Gloves", object_is_gloves);
-    _spoil_object_table_aux(doc, "Boots", object_is_boots);
-    _spoil_object_table_aux(doc, "Ammo", obj_is_ammo);
-    _spoil_object_table_aux(doc, "Quivers", obj_is_quiver);
+    _spoil_object_table_aux(doc, "所有物品", NULL);
+    _spoil_object_table_aux(doc, "武器", object_is_melee_weapon);
+    _spoil_object_table_aux(doc, "盾牌", object_is_shield);
+    _spoil_object_table_aux(doc, "弓类", object_is_bow);
+    _spoil_object_table_aux(doc, "戒指", object_is_ring);
+    _spoil_object_table_aux(doc, "护身符", object_is_amulet);
+    _spoil_object_table_aux(doc, "光源", object_is_lite);
+    _spoil_object_table_aux(doc, "身体护甲", object_is_body_armour);
+    _spoil_object_table_aux(doc, "斗篷", object_is_cloak);
+    _spoil_object_table_aux(doc, "头盔", object_is_helmet);
+    _spoil_object_table_aux(doc, "手套", object_is_gloves);
+    _spoil_object_table_aux(doc, "靴子", object_is_boots);
+    _spoil_object_table_aux(doc, "弹药", obj_is_ammo);
+    _spoil_object_table_aux(doc, "箭袋", obj_is_quiver);
     spoiler_hack = FALSE;
 
-    doc_display(doc, "Object Tables", 0);
+    doc_display(doc, "物品表格", 0);
     doc_free(doc);
 }
 
@@ -797,7 +797,7 @@ static void _spoil_mon_table(doc_ptr doc, cptr heading, _mon_pred p)
     vec_ptr monsters = _mon_table(p);
     int     i;
 
-    doc_printf(doc, "<topic:%s><color:G>%-38.38s Lvl Rar Spd     HP    AC Display</color>\n", heading, heading);
+    doc_printf(doc, "<topic:%s><color:G>%-38.38s 等级 稀有度 速度 生命 护甲 显示</color>\n", heading, heading);
     for (i = 0; i < vec_length(monsters); i++)
     {
         monster_race *r_ptr = vec_get(monsters, i);
@@ -806,7 +806,7 @@ static void _spoil_mon_table(doc_ptr doc, cptr heading, _mon_pred p)
         else if (r_ptr->flags7 & RF7_UNIQUE2)
             doc_printf(doc, "<color:%c>%-38.38s</color> ", p == _mon_is_nonunique ? 'v' : 'w', r_name + r_ptr->name);
         else
-            doc_printf(doc, "The %-34.34s ", r_name + r_ptr->name);
+            doc_printf(doc, "%-34.34s", r_name + r_ptr->name);
 
         doc_printf(doc, "%3d %3d %+3d", r_ptr->level, r_ptr->rarity, r_ptr->speed - 110);
         if ((r_ptr->flags1 & RF1_FORCE_MAXHP) || r_ptr->hside == 1)
@@ -836,16 +836,16 @@ static void spoil_mon_desc(void)
     doc_ptr doc = doc_alloc(80);
 
     doc_change_name(doc, "mon-desc.html");
-    doc_printf(doc, "<color:heading>Monster Tables for FrogComposband Version %d.%d.%s</color>\n\n",
+    doc_printf(doc, "<color:heading>FrogComposband 版本 %d.%d.%s 怪物表格</color>\n\n",
                      VER_MAJOR, VER_MINOR, VER_PATCH);
     doc_insert(doc, "<style:table>");
 
-    _spoil_mon_table(doc, "All Monsters", NULL);
-    _spoil_mon_table(doc, "Uniques", _mon_is_unique);
-    _spoil_mon_table(doc, "Non-uniques", _mon_is_nonunique);
+    _spoil_mon_table(doc, "所有怪物", NULL);
+    _spoil_mon_table(doc, "Unique(唯一怪物)", _mon_is_unique);
+    _spoil_mon_table(doc, "非Unique怪物", _mon_is_nonunique);
 
     doc_insert(doc, "</style>");
-    doc_display(doc, "Monster Tables", 0);
+    doc_display(doc, "怪物表格", 0);
     doc_free(doc);
 }
 
@@ -1091,7 +1091,7 @@ static void _spoil_mon_spell_dam_aux(doc_ptr doc, vec_ptr v)
             doc_printf(doc, "\n<tab:21><color:B>%3d %5d     </color>", p_ptr->lev, p_ptr->chp);
             for (j = RES_ACID; j <= RES_DISEN; j++)
                 _display_res(doc, j);
-            doc_printf(doc, "\n<color:G>%-20.20s Lvl    HP Freq  Ac  El  Fi  Co  Po  Li  Dk  Cf  Nt  Nx  So  Sh  Ca  Di  Un</color>\n", "Name");
+            doc_printf(doc, "\n<color:G>%-20.20s 等级 生命 频率 酸 电 火 冷 毒 光 暗 惑 冥 时 声 碎 混 解 死</color>\n", "名称");
         }
 
         if (r->flags9 & RF9_DEPRECATED)
@@ -1370,7 +1370,7 @@ static void _spoil_mon_melee_dam_aux_aux(doc_ptr doc, vec_ptr v)
         int               xp, nasty;
 
         if (i%25 == 0)
-            doc_printf(doc, "\n<color:G>%-30.30s Lvl    HP Speed  AC   Exp Damage   Damage   Auras Nastiness</color>\n", "Name");
+            doc_printf(doc, "\n<color:G>%-30.30s 等级 生命 速度 护甲 经验 伤害 伤害 光环 危险度</color>\n", "名称");
 
         if (info->mon->flags9 & RF9_DEPRECATED)
             color = 'D';
@@ -1421,15 +1421,15 @@ static void _spoil_mon_melee_dam_aux(doc_ptr doc, vec_ptr v)
     }
 
     vec_sort(v2, (vec_cmp_f)_cmp_info1);
-    doc_insert(doc, "<topic:ByLevel><style:heading>Monster Damage by Level</style>\n");
+    doc_insert(doc, "<topic:ByLevel><style:heading>按等级划分的怪物伤害</style>\n");
     _spoil_mon_melee_dam_aux_aux(doc, v2);
 
     vec_sort(v2, (vec_cmp_f)_cmp_info2);
-    doc_insert(doc, "\n<topic:ByNasty1><style:heading>Monster Damage by Melee Nastiness</style>\n");
+    doc_insert(doc, "\n<topic:ByNasty1><style:heading>按近战危险度划分的怪物伤害</style>\n");
     _spoil_mon_melee_dam_aux_aux(doc, v2);
 
     vec_sort(v2, (vec_cmp_f)_cmp_info3);
-    doc_insert(doc, "\n<topic:ByNasty2><style:heading>Monster Damage by Distance Nastiness</style>\n");
+    doc_insert(doc, "\n<topic:ByNasty2><style:heading>按远程危险度划分的怪物伤害</style>\n");
     _spoil_mon_melee_dam_aux_aux(doc, v2);
 
     vec_free(v2);
@@ -1543,9 +1543,9 @@ static void spoil_mon_spell_dam(void)
     _spoil_mon_spell_dam_aux(doc, v);
 
     doc_insert(doc, "</style>");
-    doc_printf(doc, "\n<color:D>Generated for FrogComposband Version %d.%d.%s</color>\n\n",
+    doc_printf(doc, "\n<color:D>为 FrogComposband 版本 %d.%d.%s 生成</color>\n\n",
                      VER_MAJOR, VER_MINOR, VER_PATCH);
-    doc_display(doc, "Monster Tables", 0);
+    doc_display(doc, "怪物表格", 0);
     doc_free(doc);
     vec_free(v);
 }
@@ -1561,9 +1561,9 @@ static void spoil_mon_melee_dam(void)
     _spoil_mon_melee_dam_aux(doc, v);
 
     doc_insert(doc, "</style>");
-    doc_printf(doc, "\n<color:D>Generated for FrogComposband Version %d.%d.%s</color>\n\n",
+    doc_printf(doc, "\n<color:D>为 FrogComposband 版本 %d.%d.%s 生成</color>\n\n",
                      VER_MAJOR, VER_MINOR, VER_PATCH);
-    doc_display(doc, "Monster Tables", 0);
+    doc_display(doc, "怪物表格", 0);
     doc_free(doc);
     vec_free(v);
 }
@@ -1578,7 +1578,7 @@ static void _spoil_mon_non_nice_aux(doc_ptr doc, vec_ptr v)
         char     color2 = 'w';
 
         if (i%25 == 0)
-            doc_printf(doc, "\n<color:G>%-35.35s Lvl Exp </color>\n", "Name");
+            doc_printf(doc, "\n<color:G>%-35.35s 等级 经验 </color>\n", "名称");
 
         if (mon->flags1 & RF1_UNIQUE)
             color = 'v';
@@ -1601,9 +1601,9 @@ static void spoil_mon_non_nice(void)
     _spoil_mon_non_nice_aux(doc, v);
 
     doc_insert(doc, "</style>");
-    doc_printf(doc, "\n<color:D>Generated for FrogComposband Version %d.%d.%s</color>\n\n",
+    doc_printf(doc, "\n<color:D>为 FrogComposband 版本 %d.%d.%s 生成</color>\n\n",
                      VER_MAJOR, VER_MINOR, VER_PATCH);
-    doc_display(doc, "Monster Tables", 0);
+    doc_display(doc, "怪物表格", 0);
     doc_free(doc);
     vec_free(v);
 }
@@ -1636,7 +1636,7 @@ static void _spoil_mon_resist_aux(doc_ptr doc, vec_ptr v)
 
         if (i%10 == 0)
         {
-            doc_printf(doc, "\n<color:G>%-30.30s Lvl    HP AcElFiCoPo LiDkCfNtNx SoShCaDiTm</color>\n", "Name");
+            doc_printf(doc, "\n<color:G>%-30.30s 等级 生命 酸电火冷毒 光暗惑冥时 声碎混解时</color>\n", "名称");
         }
 
         if (race->flags9 & RF9_DEPRECATED)
@@ -1678,9 +1678,9 @@ static void spoil_mon_resist(void)
     _spoil_mon_resist_aux(doc, v);
 
     doc_insert(doc, "</style>");
-    doc_printf(doc, "\n<color:D>Generated for FrogComposband Version %d.%d.%s</color>\n\n",
+    doc_printf(doc, "\n<color:D>为 FrogComposband 版本 %d.%d.%s 生成</color>\n\n",
                      VER_MAJOR, VER_MINOR, VER_PATCH);
-    doc_display(doc, "Monster Tables", 0);
+    doc_display(doc, "怪物表格", 0);
     doc_free(doc);
     vec_free(v);
 }
@@ -1700,8 +1700,8 @@ static void spoil_mon_anger(void)
         int boost = boosts[boost_idx];
         if (boost < 0) break;
         doc_idx = !doc_idx;
-        doc_printf(cols[doc_idx], "<color:R>Anger Boost: <color:B>%d</color></color>\n", boost);
-        doc_insert(cols[doc_idx], "<color:G>Base Actual Mean  Std Max</color>\n");
+        doc_printf(cols[doc_idx], "<color:R>愤怒加成： <color:B>%d</color></color>\n", boost);
+        doc_insert(cols[doc_idx], "<color:G>基础 实际 平均值 标差 最大</color>\n");
         for (freq_idx = 0;; freq_idx++)
         {
             vec_ptr runs;
@@ -1736,10 +1736,8 @@ static void spoil_mon_anger(void)
         doc_newline(cols[doc_idx]);
     }
     doc_insert_cols(doc, cols, 2, 0);
-    doc_insert(doc, "The stats are on the number of turns it takes to actually cast a spell. "
-                    "This is very important for mage-like distance tactics where very long runs "
-                    "of no player damage are to be avoided.\n");
-    doc_display(doc, "Dynamic Spell Frequencies", 0);
+    doc_insert(doc, "这些统计数据是关于实际施放一个法术所需的回合数。这对于法师类远程战术来说非常重要，因为必须避免长时间无法对怪物造成伤害的情况。\n");
+    doc_display(doc, "动态施法频率", 0);
     doc_free(cols[0]);
     doc_free(cols[1]);
     doc_free(doc);
@@ -1789,8 +1787,8 @@ static void spoil_mon_spell_freq(void)
     int     freqs[] = { 10, 15, 20, 25, 30, 33, 35, 40, 50, -1 };
     int     freq_idx;
 
-    doc_insert(doc, "<color:R>     ------Baseline------  ------Approach I----  ----Approach II-----</color>\n");
-    doc_insert(doc, "<color:G>Freq Actual Mean  Std Max  Actual Mean  Std Max  Actual Mean  Std Max</color>\n");
+    doc_insert(doc, "<color:R> ------基准数据------ ------方法 I-------- ----方法 II---------</color>\n");
+    doc_insert(doc, "<color:G>频率 实际 平均 标准 最大 实际 平均 标准 最大 实际 平均 标准 最大</color>\n");
     for (freq_idx = 0;; freq_idx++)
     {
         int freq = freqs[freq_idx];
@@ -1803,10 +1801,9 @@ static void spoil_mon_spell_freq(void)
         _spoil_mon_spell_freq_aux(doc, freq, _adaptive_caster2);
         doc_newline(doc);
     }
-    doc_insert(doc, "\n\nThe stats are on the number of casts in a row. This if very important for "
-                    "melee characters where long runs of monster spell casting are to be avoided.\n");
+    doc_insert(doc, "\n\n这些统计数据是关于连续施法的次数。这对于近战角色来说非常重要，因为必须避免怪物长时间连续施放法术的情况。\n");
     doc_newline(doc);
-    doc_display(doc, "Dynamic Spell Frequencies in Melee", 0);
+    doc_display(doc, "近战动态施法频率", 0);
     doc_free(doc);
 }
 
@@ -1831,12 +1828,12 @@ static void spoil_device_fail()
 
     doc_change_name(doc, "device_fail.html");
     doc_insert(doc, "<style:table>");
-    doc_insert(doc, "<topic:d_vs_s><color:r>Difficulty vs Skill</color>\n");
+    doc_insert(doc, "<topic:d_vs_s><color:r>难度对技能(Difficulty vs Skill)</color>\n");
     for (d = 1; d <= 100; d++)
     {
         if (d%25 == 1)
         {
-            doc_insert(doc, "\n<color:G>Dev ");
+            doc_insert(doc, "\n<color:G>装置");
             for (s = 20; s <= 160; s+=10)
                 doc_printf(doc, "%4d ", s);
             doc_insert(doc, "</color>\n");
@@ -1850,12 +1847,12 @@ static void spoil_device_fail()
         doc_newline(doc);
     }
 
-    doc_insert(doc, "\n<topic:s_vs_d><color:r>Skill vs Difficulty</color>\n");
+    doc_insert(doc, "\n<topic:s_vs_d><color:r>技能对难度(Skill vs Difficulty)</color>\n");
     for (s = 26; s <= 160; s++)
     {
         if (s%25 == 1)
         {
-            doc_insert(doc, "\n<color:G>Skl ");
+            doc_insert(doc, "\n<color:G>技能");
             for (d = 30; d <= 100; d+=5)
                 doc_printf(doc, "%4d ", d);
             doc_insert(doc, "</color>\n");
@@ -1869,9 +1866,9 @@ static void spoil_device_fail()
         doc_newline(doc);
     }
     doc_insert(doc, "</style>");
-    doc_printf(doc, "\n<color:D>Generated for FrogComposband %d.%d.%s</color>\n",
+    doc_printf(doc, "\n<color:D>为 FrogComposband %d.%d.%s 生成</color>\n",
                      VER_MAJOR, VER_MINOR, VER_PATCH);
-    doc_display(doc, "Device Fail Rates", 0);
+    doc_display(doc, "装置失败率", 0);
     doc_free(doc);
 }
 static char _effect_color(int which)
@@ -1908,9 +1905,9 @@ static void _display_device_power(doc_ptr doc, effect_t *effect)
         amt = base;
     else if (sscanf(s, "pow %d", &base) == 1)
         amt = base;
-    else if (sscanf(s, "power %d", &base) == 1)
+    else if (sscanf(s, "强度 %d", &base) == 1)
         amt = base;
-    else if (sscanf(s, "Power %d", &base) == 1)
+    else if (sscanf(s, "强度 %d", &base) == 1)
         amt = base;
     if (amt)
         doc_printf(doc, " %3d", amt);
@@ -1927,7 +1924,7 @@ static void _spoil_device_table_aux(doc_ptr doc, device_effect_info_ptr table, c
         int      max_depth = table->max_depth ? table->max_depth : 100;
         e.type = table->type;
         if (row % 25 == 0)
-            doc_printf(doc, "\n<style:heading>%-15.15s</style><color:G> Min Max   5  10  15  20  25  30  35  40  45  50  55  60  65  70  75  80  85  90  95 100</color>\n", heading);
+            doc_printf(doc, "\n<style:heading>%-15.15s</style><color:G> 最小 最大 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100</color>\n", heading);
         doc_printf(doc, "<color:%c>", _effect_color(table->type));
         doc_printf(doc, "%-15.15s", do_effect(&e, SPELL_NAME, 0));
         doc_printf(doc, " %3d %3d", table->level, max_depth);
@@ -1950,14 +1947,14 @@ static void spoil_device_tables()
     doc_change_name(doc, "devices.html");
     doc_insert(doc, "<style:table>");
 
-    _spoil_device_table_aux(doc, wand_effect_table, "Wands");
-    _spoil_device_table_aux(doc, staff_effect_table, "Staves");
-    _spoil_device_table_aux(doc, rod_effect_table, "Rods");
+    _spoil_device_table_aux(doc, wand_effect_table, "魔杖");
+    _spoil_device_table_aux(doc, staff_effect_table, "法杖");
+    _spoil_device_table_aux(doc, rod_effect_table, "魔棒");
 
     doc_insert(doc, "</style>");
-    doc_printf(doc, "\n<color:D>Generated for FrogComposband %d.%d.%s</color>\n",
+    doc_printf(doc, "\n<color:D>为 FrogComposband %d.%d.%s 生成</color>\n",
                      VER_MAJOR, VER_MINOR, VER_PATCH);
-    doc_display(doc, "Device Damage/Power Tables", 0);
+    doc_display(doc, "装置伤害/强度表格", 0);
     doc_free(doc);
 }
 /************************************************************************
@@ -1991,7 +1988,7 @@ static void spoil_mon_info(void)
     }
     vec_free(v);
 
-    doc_display(doc, "Monster Spoilers", 0);
+    doc_display(doc, "怪物剧透", 0);
     doc_free(doc);
 
     spoiler_hack = FALSE;
@@ -2032,7 +2029,7 @@ static vec_ptr _evol_roots(void)
 
 static void _evol_mon_line(doc_ptr doc, monster_race *r_ptr)
 {
-    doc_printf(doc, "[%d]: <color:B>%s</color> (Level <color:G>%d</color>, ", r_ptr->id, r_name + r_ptr->name, r_ptr->level);
+    doc_printf(doc, "[%d]: <color:B>%s</color> (等级 <color:G>%d</color>,", r_ptr->id, r_name + r_ptr->name, r_ptr->level);
     doc_printf(doc, "<color:%c>%c</color>", attr_to_attr_char(r_ptr->d_attr), r_ptr->d_char);
     if (use_graphics && (r_ptr->x_char != r_ptr->d_char || r_ptr->x_attr != r_ptr->d_attr))
     {
@@ -2049,7 +2046,7 @@ static void spoil_mon_evol(void)
     doc_ptr doc = doc_alloc(80);
 
     doc_change_name(doc, "mon-evol.html");
-    doc_printf(doc, "<color:heading>Monster Evolution for FrogComposband Version %d.%d.%s</color>\n",
+    doc_printf(doc, "<color:heading>FrogComposband 版本 %d.%d.%s 怪物进化列表</color>\n",
                      VER_MAJOR, VER_MINOR, VER_PATCH);
     doc_insert(doc, "<style:table>");
 
@@ -2069,7 +2066,7 @@ static void spoil_mon_evol(void)
     vec_free(roots);
 
     doc_insert(doc, "</style>");
-    doc_display(doc, "Monster Evolution", 0);
+    doc_display(doc, "怪物进化", 0);
     doc_free(doc);
 }
 
@@ -2081,7 +2078,7 @@ static void spoil_shared_symbols(void)
     doc_ptr doc = doc_alloc(80);
 
     doc_change_name(doc, "mon-ssym.html");
-    doc_insert(doc, "<color:heading>Monsters Sharing Symbols With Other Monsters</color>\n");
+    doc_insert(doc, "<color:heading>与其他怪物共享符号的怪物</color>\n");
     doc_insert(doc, "<style:table>");
 
     for (i = 1; i < max_r_idx; i++)
@@ -2107,14 +2104,14 @@ static void spoil_shared_symbols(void)
 
         if ((!_uniq) && (!_norm)) continue;
 
-        doc_printf(doc, "[%d]: <color:B>%s</color> (<color:%c>%c</color>): with ", r_ptr->id, r_name + r_ptr->name, attr_to_attr_char(r_ptr->d_attr), r_ptr->d_char);
-        if (_norm) doc_printf(doc, "%d non-unique%s%s", _norm, (_norm == 1) ? "" : "s", _uniq ? " and " : "");
-        if (_uniq) doc_printf(doc, "%d unique%s", _uniq, (_uniq == 1) ? "" : "s");
+        doc_printf(doc, "[%d]: <color:B>%s</color> (<color:%c>%c</color>)：与", r_ptr->id, r_name + r_ptr->name, attr_to_attr_char(r_ptr->d_attr), r_ptr->d_char);
+        if (_norm) doc_printf(doc, "%d 种非Unique怪物%s%s", _norm, (_norm == 1) ? "" : "s", _uniq ? "和" : "");
+        if (_uniq) doc_printf(doc, "%d 种Unique怪物%s", _uniq, (_uniq == 1) ? "" : "s");
         doc_newline(doc);
     }
 
     doc_insert(doc, "</style>");
-    doc_display(doc, "Monsters Sharing Symbols", 0);
+    doc_display(doc, "共享符号的怪物", 0);
     doc_free(doc);
 }
 
@@ -2188,8 +2185,8 @@ static void spoil_skills()
 
     /* Personalities */
     v = _get_personalities();
-    doc_insert(doc, "<topic:Personalities><style:heading>Personalities</style>\n");
-    doc_printf(doc, "<color:G>%-20.20s  Dis  Dev  Sav  Stl  Srh  Fos  Thn  Thb</color>\n", "Name");
+    doc_insert(doc, "<topic:Personalities><style:heading>性格</style>\n");
+    doc_printf(doc, "<color:G>%-20.20s 解陷 装置 豁免 潜行 搜索 察觉 近战 箭术</color>\n", "名称");
     for (i = 0; i < vec_length(v); i++)
     {
         personality_ptr p = vec_get(v, i);
@@ -2202,8 +2199,8 @@ static void spoil_skills()
 
     /* Races */
     v = _get_races();
-    doc_insert(doc, "<topic:Races><style:heading>Races</style>\n");
-    doc_printf(doc, "<color:G>%-20.20s  Dis  Dev  Sav  Stl  Srh  Fos  Thn  Thb</color>\n", "Name");
+    doc_insert(doc, "<topic:Races><style:heading>种族</style>\n");
+    doc_printf(doc, "<color:G>%-20.20s 解陷 装置 豁免 潜行 搜索 察觉 近战 箭术</color>\n", "名称");
     for (i = 0; i < vec_length(v); i++)
     {
         race_ptr r = vec_get(v, i);
@@ -2230,9 +2227,9 @@ static void spoil_skills()
     vec_free(v);
 
     doc_insert(doc, "</style>");
-    doc_printf(doc, "\n<color:D>Generated for FrogComposband %d.%d.%s</color>\n",
+    doc_printf(doc, "\n<color:D>为 FrogComposband %d.%d.%s 生成</color>\n",
                      VER_MAJOR, VER_MINOR, VER_PATCH);
-    doc_display(doc, "Skills", 0);
+    doc_display(doc, "技能", 0);
     doc_free(doc);
 }
 
@@ -2262,7 +2259,7 @@ static void _spoil_spell_book(doc_ptr doc, int class_idx, int realm_idx, int boo
     int           k_idx = lookup_kind(realm2tval(realm_idx), book_idx);
     player_magic *magic_ptr = &m_info[class_idx];
 
-    doc_printf(doc, "<color:o>%-25.25s</color><color:G> Lvl Cst Fail  </color>\n", k_name + k_info[k_idx].name);
+    doc_printf(doc, "<color:o>%-25.25s</color><color:G> 等级 消耗 失败率</color>\n", k_name + k_info[k_idx].name);
     for (spell_idx = book_idx*8; spell_idx < (book_idx+1)*8; spell_idx++)
     {
         magic_type *spell_ptr = NULL;
@@ -2282,7 +2279,7 @@ static void _spoil_spell_book(doc_ptr doc, int class_idx, int realm_idx, int boo
         }
         else
         {
-            doc_printf(doc, "<color:D>%-26.26s</color>\n", "Illegible");
+            doc_printf(doc, "<color:D>%-26.26s</color>\n", "无法辨认");
         }
     }
     doc_newline(doc);
@@ -2350,7 +2347,7 @@ static void spoil_spells_by_class(void)
         }
     }
 
-    doc_display(doc, "Spells by Class", 0);
+    doc_display(doc, "按职业划分法术", 0);
     doc_free(doc);
     vec_free(vec);
 }
@@ -2364,7 +2361,7 @@ static void _spoil_spell_book2(doc_ptr doc, int class1_idx, int class2_idx, int 
 
     doc_printf(doc, "%-25.25s <color:G>%-12.12s</color>  <color:R>%-12.12s</color>\n",
         "", get_class_aux(class1_idx, 0)->name, get_class_aux(class2_idx, 0)->name);
-    doc_printf(doc, "<color:o>%-25.25s</color><color:G> Lvl Cst Fail</color>  <color:R>Lvl Cst Fail</color>\n", k_name + k_info[k_idx].name);
+    doc_printf(doc, "<color:o>%-25.25s</color><color:G> 等级 消耗 失败</color> <color:R>等级 消耗 失败</color>\n", k_name + k_info[k_idx].name);
     for (spell_idx = book_idx*8; spell_idx < (book_idx+1)*8; spell_idx++)
     {
         magic_type *spell1_ptr = &magic1_ptr->info[realm_idx - 1][spell_idx];
@@ -2374,11 +2371,11 @@ static void _spoil_spell_book2(doc_ptr doc, int class1_idx, int class2_idx, int 
         if (1 <= spell1_ptr->slevel && spell1_ptr->slevel <= PY_MAX_LEVEL)
             doc_printf(doc, "%3d %3d %3d%%  ", spell1_ptr->slevel, spell1_ptr->smana, spell1_ptr->sfail);
         else
-            doc_insert(doc, "<color:D>Illegible</color>     ");
+            doc_insert(doc, "<color:D>无法辨认 </color>");
         if (1 <= spell2_ptr->slevel && spell2_ptr->slevel <= PY_MAX_LEVEL)
             doc_printf(doc, "%3d %3d %3d%%  ", spell2_ptr->slevel, spell2_ptr->smana, spell2_ptr->sfail);
         else
-            doc_insert(doc, "<color:D>Illegible</color>     ");
+            doc_insert(doc, "<color:D>无法辨认 </color>");
         doc_newline(doc);
     }
     doc_newline(doc);
@@ -2392,7 +2389,7 @@ static void _spoil_spells_by_realm_aux3(int realm_idx, int class1_idx, int class
     for (i = 0; i < 4; i++)
         _spoil_spell_book2(doc, class1_idx, class2_idx, realm_idx, i);
 
-    doc_display(doc, "Spells by Realm", 0);
+    doc_display(doc, "按领域划分法术", 0);
     doc_free(doc);
 }
 
@@ -2415,12 +2412,12 @@ static void _spoil_spells_by_realm_aux2(int realm_idx, int class1_idx)
         Term_clear();
 
         c_prt(TERM_L_BLUE, format("%s", realm_names[realm_idx]), 2, 0);
-        c_prt(TERM_L_BLUE, format("First Class: %s", get_class_aux(class1_idx, 0)->name), 3, 0);
+        c_prt(TERM_L_BLUE, format("第一职业：%s", get_class_aux(class1_idx, 0)->name), 3, 0);
 
         /* Classes */
         row = 4;
         col = 2;
-        c_prt(TERM_RED, "Second Class", row++, col - 2);
+        c_prt(TERM_RED, "第二职业", row++, col - 2);
 
         for (i = 0; i < vec_length(vec); i++)
         {
@@ -2467,7 +2464,7 @@ static void _spoil_spells_by_realm_aux1(int realm_idx)
         /* Classes */
         row = 4;
         col = 2;
-        c_prt(TERM_RED, "First Class", row++, col - 2);
+        c_prt(TERM_RED, "第一职业", row++, col - 2);
 
         for (i = 0; i < vec_length(vec); i++)
         {
@@ -2498,12 +2495,12 @@ static void spoil_spells_by_realm(void)
     {
         Term_clear();
 
-        prt("Realm Spoilers", 2, 0);
+        prt("领域剧透", 2, 0);
 
         /* Realms */
         row = 4;
         col = 2;
-        c_prt(TERM_RED, "Realms", row++, col - 2);
+        c_prt(TERM_RED, "领域", row++, col - 2);
 
         for (realm_idx = REALM_LIFE; realm_idx <= MAX_MAGIC; realm_idx++)
         {
@@ -2528,9 +2525,7 @@ static void spoil_option_bits(void)
     doc_ptr doc = doc_alloc(80);
     doc_ptr cols[2];
 
-    doc_insert(doc, "Options are stored in the savefile using hard coded "
-        "bits. When adding new options, it is hard to locate a free slot. "
-        "Perhaps this will help?\n\n");
+    doc_insert(doc, "选项使用硬编码的位(bits)存储在存档文件中。当添加新选项时，很难找到空闲的槽位。也许这个表格会有所帮助？\n\n");
     cols[0] = doc_alloc(36);
     cols[1] = doc_alloc(36);
     for (set = 0; set < 8; set++) /* 8 is hardcoded ... */
@@ -2555,7 +2550,7 @@ static void spoil_option_bits(void)
     doc_insert_cols(doc, cols, 2, 0);
     doc_free(cols[0]);
     doc_free(cols[1]);
-    doc_display(doc, "Option Bits", 0);
+    doc_display(doc, "选项位(Option Bits)", 0);
     doc_free(doc);
 }
 
@@ -2625,7 +2620,7 @@ static void spoil_deadliest_mons(bool allow_thrall)
         if (!score) continue;
         if (!score->status) continue;
         if (!score->killer) continue;
-        if (strcmp(score->status, "Dead") != 0) continue;
+        if (strcmp(score->status, "死亡") != 0) continue;
         if ((!allow_thrall) && (strpos("thrall", score->version))) continue;
         key = _lookup_monster(score->killer);
         if (!key) continue;
@@ -2664,12 +2659,12 @@ static void spoil_deadliest_mons(bool allow_thrall)
     }
     else
     {
-        doc_insert(doc, "Available data insufficient for analysis.");
+        doc_insert(doc, "可用数据不足以进行分析。");
     }
 
     vec_free(v);    
     int_map_free(map);
-    doc_display(doc, "Deadliest Monsters", 0);
+    doc_display(doc, "最致命的怪物", 0);
     doc_free(doc);
 }
 
@@ -2686,51 +2681,51 @@ void do_cmd_spoilers(void)
     {
         Term_clear();
 
-        prt("View Spoilers", 2, 0);
+        prt("查看剧透", 2, 0);
 
         /* Give some choices */
         row = 4;
         col = 2;
-        c_prt(TERM_RED, "Object Spoilers", row++, col - 2);
-        prt("(a) Artifact Descriptions", row++, col);
-        prt("(A) Artifact Tables", row++, col);
-        prt("(o) Objects", row++, col);
-        prt("(O) Object Tables", row++, col);
+        c_prt(TERM_RED, "物品剧透", row++, col - 2);
+        prt("(a) 神器描述", row++, col);
+        prt("(A) 神器表格", row++, col);
+        prt("(o) 物品", row++, col);
+        prt("(O) 物品表格", row++, col);
         row++;
 
-        c_prt(TERM_RED, "Monster Spoilers", row++, col - 2);
-        prt("(m) Brief Descriptions", row++, col);
-        prt("(M) Full Descriptions", row++, col);
-        prt("(e) Evolution", row++, col);
-        prt("(d) Damage by Resistance", row++, col);
-        prt("(D) Damage by Melee", row++, col);
-        prt("(R) Resistance", row++, col);
-        prt("(f) Spell Frequency (Anger)", row++, col);
-        prt("(F) Spell Frequency (Melee)", row++, col);
-        prt("(%) Shared Symbols", row++, col);
-        prt("(&) Non-Nice Monsters", row++, col);
+        c_prt(TERM_RED, "怪物剧透", row++, col - 2);
+        prt("(m) 简短描述", row++, col);
+        prt("(M) 完整描述", row++, col);
+        prt("(e) 进化表", row++, col);
+        prt("(d) 按抗性分类的伤害", row++, col);
+        prt("(D) 按近战分类的伤害", row++, col);
+        prt("(R) 抗性分布", row++, col);
+        prt("(f) 施法频率(激怒/Anger)", row++, col);
+        prt("(F) 施法频率(近战/Melee)", row++, col);
+        prt("(%) 共享符号的怪物", row++, col);
+        prt("(&) 不友善的怪物", row++, col);
         row++;
 
         row = 4;
         col = 40;
 
-        c_prt(TERM_RED, "Class Spoilers", row++, col - 2);
-        prt("(s) Spells by Class", row++, col);
-        prt("(r) Spells by Realm", row++, col);
-        prt("(S) Skills", row++, col);
+        c_prt(TERM_RED, "职业剧透", row++, col - 2);
+        prt("(s) 按职业划分法术", row++, col);
+        prt("(r) 按领域划分法术", row++, col);
+        prt("(S) 技能概览", row++, col);
         row++;
 
-        c_prt(TERM_RED, "Miscellaneous", row++, col - 2);
-        prt("(1) Option Bits", row++, col);
-        prt("(2) Device Fail Rates", row++, col);
-        prt("(3) Device Tables", row++, col);
-        prt("(4) Deadliest Monsters", row++, col);
-        prt("(5) Deadliest Monsters (Non-Thrall)", row++, col);
+        c_prt(TERM_RED, "杂项", row++, col - 2);
+        prt("(1) 选项位(Option Bits)", row++, col);
+        prt("(2) 装置失败率", row++, col);
+        prt("(3) 装置表格", row++, col);
+        prt("(4) 最致命的怪物", row++, col);
+        prt("(5) 最致命的怪物(排除奴役仆从)", row++, col);
         row++;
 
         /* Prompt */
-        prt("ESC) Exit menu", 27, 1);
-        prt("Command: ", 26, 0);
+        prt("ESC) 退出菜单", 27, 1);
+        prt("命令：", 26, 0);
 
         /* Prompt */
         i = inkey();

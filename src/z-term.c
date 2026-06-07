@@ -281,6 +281,117 @@ term *Term = NULL;
 
 /*** Local routines ***/
 
+static bool _term_is_wide_unicode(u32b cp)
+{
+    if (cp >= 0x1100 && cp <= 0x115F) return TRUE;
+    if (cp >= 0x2329 && cp <= 0x232A) return TRUE;
+    if (cp >= 0x2E80 && cp <= 0xA4CF) return TRUE;
+    if (cp >= 0xAC00 && cp <= 0xD7A3) return TRUE;
+    if (cp >= 0xF900 && cp <= 0xFAFF) return TRUE;
+    if (cp >= 0xFE10 && cp <= 0xFE19) return TRUE;
+    if (cp >= 0xFE30 && cp <= 0xFE6F) return TRUE;
+    if (cp >= 0xFF00 && cp <= 0xFF60) return TRUE;
+    if (cp >= 0xFFE0 && cp <= 0xFFE6) return TRUE;
+    if (cp >= 0x20000 && cp <= 0x3FFFD) return TRUE;
+    return FALSE;
+}
+
+static int _term_utf8_decode(cptr s, int max, u32b *cp)
+{
+    byte c0 = (byte)s[0];
+
+    if (!c0)
+    {
+        *cp = 0;
+        return 0;
+    }
+
+    if (c0 < 0x80)
+    {
+        *cp = c0;
+        return 1;
+    }
+
+    if ((c0 & 0xE0) == 0xC0)
+    {
+        byte c1;
+
+        if (max >= 0 && max < 2) goto bad;
+        c1 = (byte)s[1];
+        if ((c1 & 0xC0) != 0x80) goto bad;
+
+        *cp = ((u32b)(c0 & 0x1F) << 6) | (u32b)(c1 & 0x3F);
+        if (*cp < 0x80) goto bad;
+        return 2;
+    }
+
+    if ((c0 & 0xF0) == 0xE0)
+    {
+        byte c1, c2;
+
+        if (max >= 0 && max < 3) goto bad;
+        c1 = (byte)s[1];
+        c2 = (byte)s[2];
+        if ((c1 & 0xC0) != 0x80 || (c2 & 0xC0) != 0x80) goto bad;
+
+        *cp = ((u32b)(c0 & 0x0F) << 12) | ((u32b)(c1 & 0x3F) << 6) | (u32b)(c2 & 0x3F);
+        if (*cp < 0x800) goto bad;
+        if (*cp >= 0xD800 && *cp <= 0xDFFF) goto bad;
+        return 3;
+    }
+
+    if ((c0 & 0xF8) == 0xF0)
+    {
+        byte c1, c2, c3;
+
+        if (max >= 0 && max < 4) goto bad;
+        c1 = (byte)s[1];
+        c2 = (byte)s[2];
+        c3 = (byte)s[3];
+        if ((c1 & 0xC0) != 0x80 || (c2 & 0xC0) != 0x80 || (c3 & 0xC0) != 0x80) goto bad;
+
+        *cp = ((u32b)(c0 & 0x07) << 18) | ((u32b)(c1 & 0x3F) << 12) | ((u32b)(c2 & 0x3F) << 6) | (u32b)(c3 & 0x3F);
+        if (*cp < 0x10000 || *cp > 0x10FFFF) goto bad;
+        return 4;
+    }
+
+bad:
+    *cp = TERM_UC_REPLACEMENT;
+    return 1;
+}
+
+static int _term_utf8_width(u32b cp)
+{
+    if (!cp || cp == TERM_UC_WIDE_TRAIL) return 0;
+    if (_term_is_wide_unicode(cp)) return 2;
+    return 1;
+}
+
+static int _term_utf8_measure(cptr s, int max_cells, int avail_cells, int *bytes, int *cells)
+{
+    int used_bytes = 0;
+    int used_cells = 0;
+
+    while (s[used_bytes])
+    {
+        u32b cp;
+        int len = _term_utf8_decode(s + used_bytes, -1, &cp);
+        int wid = _term_utf8_width(cp);
+
+        if (!len) break;
+        if (max_cells >= 0 && used_cells + wid > max_cells) break;
+        if (used_cells + wid > avail_cells) break;
+
+        used_bytes += len;
+        used_cells += wid;
+    }
+
+    *bytes = used_bytes;
+    *cells = used_cells;
+
+    return s[used_bytes] ? 1 : 0;
+}
+
 
 /*
  * Nuke a term_win (see below)
@@ -290,18 +401,22 @@ static errr term_win_nuke(term_win *s, int w, int h)
     /* Free the window access arrays */
     C_KILL(s->a, h, byte*);
     C_KILL(s->c, h, char*);
+    C_KILL(s->uc, h, u32b*);
 
     /* Free the window content arrays */
     C_KILL(s->va, h * w, byte);
     C_KILL(s->vc, h * w, char);
+    C_KILL(s->vuc, h * w, u32b);
 
     /* Free the terrain access arrays */
     C_KILL(s->ta, h, byte*);
     C_KILL(s->tc, h, char*);
+    C_KILL(s->utc, h, u32b*);
 
     /* Free the terrain content arrays */
     C_KILL(s->vta, h * w, byte);
     C_KILL(s->vtc, h * w, char);
+    C_KILL(s->vutc, h * w, u32b);
 
     /* Success */
     return (0);
@@ -318,18 +433,22 @@ static errr term_win_init(term_win *s, int w, int h)
     /* Make the window access arrays */
     C_MAKE(s->a, h, byte*);
     C_MAKE(s->c, h, char*);
+    C_MAKE(s->uc, h, u32b*);
 
     /* Make the window content arrays */
     C_MAKE(s->va, h * w, byte);
     C_MAKE(s->vc, h * w, char);
+    C_MAKE(s->vuc, h * w, u32b);
 
     /* Make the terrain access arrays */
     C_MAKE(s->ta, h, byte*);
     C_MAKE(s->tc, h, char*);
+    C_MAKE(s->utc, h, u32b*);
 
     /* Make the terrain content arrays */
     C_MAKE(s->vta, h * w, byte);
     C_MAKE(s->vtc, h * w, char);
+    C_MAKE(s->vutc, h * w, u32b);
 
 
     /* Prepare the window access arrays */
@@ -337,9 +456,11 @@ static errr term_win_init(term_win *s, int w, int h)
     {
         s->a[y] = s->va + w * y;
         s->c[y] = s->vc + w * y;
+        s->uc[y] = s->vuc + w * y;
 
         s->ta[y] = s->vta + w * y;
         s->tc[y] = s->vtc + w * y;
+        s->utc[y] = s->vutc + w * y;
     }
 
     /* Success */
@@ -359,23 +480,29 @@ static errr term_win_copy(term_win *s, term_win *f, int w, int h)
     {
         byte *f_aa = f->a[y];
         char *f_cc = f->c[y];
+        u32b *f_uc = f->uc[y];
 
         byte *s_aa = s->a[y];
         char *s_cc = s->c[y];
+        u32b *s_uc = s->uc[y];
 
         byte *f_taa = f->ta[y];
         char *f_tcc = f->tc[y];
+        u32b *f_utc = f->utc[y];
 
         byte *s_taa = s->ta[y];
         char *s_tcc = s->tc[y];
+        u32b *s_utc = s->utc[y];
 
         for (x = 0; x < w; x++)
         {
             *s_aa++ = *f_aa++;
             *s_cc++ = *f_cc++;
+            *s_uc++ = *f_uc++;
 
             *s_taa++ = *f_taa++;
             *s_tcc++ = *f_tcc++;
+            *s_utc++ = *f_utc++;
         }
     }
 
@@ -508,20 +635,28 @@ void Term_queue_char(int x, int y, byte a, char c, byte ta, char tc)
     
     byte *scr_aa = &scrn->a[y][x];
     char *scr_cc = &scrn->c[y][x];
+    u32b *scr_uc = &scrn->uc[y][x];
 
     byte *scr_taa = &scrn->ta[y][x];
     char *scr_tcc = &scrn->tc[y][x];
+    u32b *scr_utc = &scrn->utc[y][x];
+
+    u32b uc = (byte)c;
+    u32b utc = (byte)tc;
 
     /* Hack -- Ignore non-changes */
     if ((*scr_aa == a) && (*scr_cc == c) &&
-         (*scr_taa == ta) && (*scr_tcc == tc)) return;
+         (*scr_uc == uc) && (*scr_taa == ta) &&
+         (*scr_tcc == tc) && (*scr_utc == utc)) return;
 
     /* Save the "literal" information */
     *scr_aa = a;
     *scr_cc = c;
+    *scr_uc = uc;
 
     *scr_taa = ta;
     *scr_tcc = tc;
+    *scr_utc = utc;
 
     /* Check for new min/max row info */
     if (y < Term->y1) Term->y1 = y;
@@ -606,21 +741,25 @@ void Term_queue_line(int x, int y, int n, byte *a, char *c, byte *ta, char *tc)
 
     byte *scr_aa = &scrn->a[y][x];
     char *scr_cc = &scrn->c[y][x];
+    u32b *scr_uc = &scrn->uc[y][x];
 
     byte *scr_taa = &scrn->ta[y][x];
     char *scr_tcc = &scrn->tc[y][x];
+    u32b *scr_utc = &scrn->utc[y][x];
 
     while (n--)
     {
         /* Hack -- Ignore non-changes */
-        if ((*scr_aa == *a) && (*scr_cc == *c) &&
-            (*scr_taa == *ta) && (*scr_tcc == *tc))
+        if ((*scr_aa == *a) && (*scr_cc == *c) && (*scr_uc == (byte)*c) &&
+            (*scr_taa == *ta) && (*scr_tcc == *tc) && (*scr_utc == (byte)*tc))
         {
             x++;
             a++;
             c++;
+            scr_uc++;
             ta++;
             tc++;
+            scr_utc++;
             scr_aa++;
             scr_cc++;
             scr_taa++;
@@ -630,10 +769,12 @@ void Term_queue_line(int x, int y, int n, byte *a, char *c, byte *ta, char *tc)
 
         /* Save the "literal" information */
         *scr_taa++ = *ta++;
-        *scr_tcc++ = *tc++;
+        *scr_tcc++ = *tc;
+        *scr_utc++ = (byte)*tc++;
 
         /* Save the "literal" information */
         *scr_aa++ = *a++;
+        *scr_uc++ = (byte)*c;
         *scr_cc++ = *c++;
 
         /* Track minimum changed column */
@@ -671,36 +812,88 @@ void Term_queue_line(int x, int y, int n, byte *a, char *c, byte *ta, char *tc)
 void Term_queue_chars(int x, int y, int n, byte a, cptr s)
 {
     int x1 = -1, x2 = -1;
+    int used = 0;
 
     byte *scr_aa = Term->scr->a[y];
     char *scr_cc = Term->scr->c[y];
+    u32b *scr_uc = Term->scr->uc[y];
 
     byte *scr_taa = Term->scr->ta[y];
     char *scr_tcc = Term->scr->tc[y];
+    u32b *scr_utc = Term->scr->utc[y];
 
 
     /* Queue the attr/chars */
-    for ( ; n; x++, s++, n--)
+    while (used < n && s[used])
     {
+        u32b cp;
+        int len = _term_utf8_decode(s + used, n - used, &cp);
+        int wid = _term_utf8_width(cp);
+        char c = (cp < 0x80) ? (char)cp : '?';
+        bool changed = FALSE;
         byte oa = scr_aa[x];
         char oc = scr_cc[x];
+        u32b ouc = scr_uc[x];
 
         byte ota = scr_taa[x];
         char otc = scr_tcc[x];
+        u32b outc = scr_utc[x];
 
         /* Hack -- Ignore non-changes */
-        if ((oa == a) && (oc == *s) && (ota == 0) && (otc == 0)) continue;
+        if ((oa == a) && (oc == c) && (ouc == cp) && (ota == 0) && (otc == 0) && (outc == 0))
+        {
+            /* No change */
+        }
+        else
+        {
+            /* Save the "literal" information */
+            scr_aa[x] = a;
+            scr_cc[x] = c;
+            scr_uc[x] = cp;
 
-        /* Save the "literal" information */
-        scr_aa[x] = a;
-        scr_cc[x] = *s;
+            scr_taa[x] = 0;
+            scr_tcc[x] = 0;
+            scr_utc[x] = 0;
 
-        scr_taa[x] = 0;
-        scr_tcc[x] = 0;
+            /* Note the "range" of window updates */
+            if (x1 < 0) x1 = x;
+            x2 = x;
+            changed = TRUE;
+        }
 
-        /* Note the "range" of window updates */
-        if (x1 < 0) x1 = x;
-        x2 = x;
+        if (wid == 2)
+        {
+            int tx = x + 1;
+            oa = scr_aa[tx];
+            oc = scr_cc[tx];
+            ouc = scr_uc[tx];
+            ota = scr_taa[tx];
+            otc = scr_tcc[tx];
+            outc = scr_utc[tx];
+
+            if ((oa != a) || (oc != ' ') || (ouc != TERM_UC_WIDE_TRAIL) || (ota != 0) || (otc != 0) || (outc != 0))
+            {
+                scr_aa[tx] = a;
+                scr_cc[tx] = ' ';
+                scr_uc[tx] = TERM_UC_WIDE_TRAIL;
+                scr_taa[tx] = 0;
+                scr_tcc[tx] = 0;
+                scr_utc[tx] = 0;
+
+                if (x1 < 0) x1 = tx;
+                x2 = tx;
+                changed = TRUE;
+            }
+
+            if (changed)
+            {
+                if (x1 < 0) x1 = x;
+                if (x2 < tx) x2 = tx;
+            }
+        }
+
+        used += len;
+        x += wid;
     }
 
     /* Expand the "change area" as needed */
@@ -732,15 +925,19 @@ static void Term_fresh_row_pict(int y, int x1, int x2)
 
     byte *old_aa = Term->old->a[y];
     char *old_cc = Term->old->c[y];
+    u32b *old_uc = Term->old->uc[y];
 
     byte *scr_aa = Term->scr->a[y];
     char *scr_cc = Term->scr->c[y];
+    u32b *scr_uc = Term->scr->uc[y];
 
     byte *old_taa = Term->old->ta[y];
     char *old_tcc = Term->old->tc[y];
+    u32b *old_utc = Term->old->utc[y];
 
     byte *scr_taa = Term->scr->ta[y];
     char *scr_tcc = Term->scr->tc[y];
+    u32b *scr_utc = Term->scr->utc[y];
 
     byte ota;
     char otc;
@@ -757,9 +954,11 @@ static void Term_fresh_row_pict(int y, int x1, int x2)
 
     byte oa;
     char oc;
+    u32b ouc;
 
     byte na;
     char nc;
+    u32b nuc;
 
     /* Scan "modified" columns */
     for (x = x1; x <= x2; x++)
@@ -767,21 +966,30 @@ static void Term_fresh_row_pict(int y, int x1, int x2)
         /* See what is currently here */
         oa = old_aa[x];
         oc = old_cc[x];
+        ouc = old_uc[x];
 
         /* See what is desired there */
         na = scr_aa[x];
         nc = scr_cc[x];
+        nuc = scr_uc[x];
 
 
         ota = old_taa[x];
         otc = old_tcc[x];
+        /* terrain unicode mirrors legacy terrain for pict frontends */
 
         nta = scr_taa[x];
         ntc = scr_tcc[x];
 
         /* Handle unchanged grids */
-        if ((na == oa) && (nc == oc) && (nta == ota) && (ntc == otc))
+        if ((na == oa) && (nc == oc) && (nuc == ouc) && (nta == ota) && (ntc == otc) && (scr_utc[x] == old_utc[x]))
         {
+            if ((nuc == TERM_UC_WIDE_TRAIL) && fn)
+            {
+                fn++;
+                continue;
+            }
+
             /* Flush */
             if (fn)
             {
@@ -799,9 +1007,11 @@ static void Term_fresh_row_pict(int y, int x1, int x2)
         /* Save new contents */
         old_aa[x] = na;
         old_cc[x] = nc;
+        old_uc[x] = nuc;
 
         old_taa[x] = nta;
         old_tcc[x] = ntc;
+        old_utc[x] = scr_utc[x];
 
         /* Restart and Advance */
         if (fn++ == 0) fx = x;
@@ -830,14 +1040,18 @@ static void Term_fresh_row_both(int y, int x1, int x2)
 
     byte *old_aa = Term->old->a[y];
     char *old_cc = Term->old->c[y];
+    u32b *old_uc = Term->old->uc[y];
 
     byte *scr_aa = Term->scr->a[y];
     char *scr_cc = Term->scr->c[y];
+    u32b *scr_uc = Term->scr->uc[y];
 
     byte *old_taa = Term->old->ta[y];
     char *old_tcc = Term->old->tc[y];
+    u32b *old_utc = Term->old->utc[y];
     byte *scr_taa = Term->scr->ta[y];
     char *scr_tcc = Term->scr->tc[y];
+    u32b *scr_utc = Term->scr->utc[y];
 
     byte ota;
     char otc;
@@ -858,9 +1072,11 @@ static void Term_fresh_row_both(int y, int x1, int x2)
 
     byte oa;
     char oc;
+    u32b ouc;
 
     byte na;
     char nc;
+    u32b nuc;
 
     /* Scan "modified" columns */
     for (x = x1; x <= x2; x++)
@@ -868,10 +1084,12 @@ static void Term_fresh_row_both(int y, int x1, int x2)
         /* See what is currently here */
         oa = old_aa[x];
         oc = old_cc[x];
+        ouc = old_uc[x];
 
         /* See what is desired there */
         na = scr_aa[x];
         nc = scr_cc[x];
+        nuc = scr_uc[x];
 
 
         ota = old_taa[x];
@@ -881,8 +1099,15 @@ static void Term_fresh_row_both(int y, int x1, int x2)
         ntc = scr_tcc[x];
 
         /* Handle unchanged grids */
-        if ((na == oa) && (nc == oc) && (nta == ota) && (ntc == otc))
+        if ((na == oa) && (nc == oc) && (nuc == ouc) &&
+            (nta == ota) && (ntc == otc) && (scr_utc[x] == old_utc[x]))
         {
+            if ((nuc == TERM_UC_WIDE_TRAIL) && fn)
+            {
+                fn++;
+                continue;
+            }
+
             /* Flush */
             if (fn)
             {
@@ -909,9 +1134,11 @@ static void Term_fresh_row_both(int y, int x1, int x2)
         /* Save new contents */
         old_aa[x] = na;
         old_cc[x] = nc;
+        old_uc[x] = nuc;
 
         old_taa[x] = nta;
         old_tcc[x] = ntc;
+        old_utc[x] = scr_utc[x];
 
         /* 2nd byte of bigtile */
         if ((na & AF_BIGTILE2) == AF_BIGTILE2) continue;
@@ -1006,9 +1233,11 @@ static void Term_fresh_row_text(int y, int x1, int x2)
 
     byte *old_aa = Term->old->a[y];
     char *old_cc = Term->old->c[y];
+    u32b *old_uc = Term->old->uc[y];
 
     byte *scr_aa = Term->scr->a[y];
     char *scr_cc = Term->scr->c[y];
+    u32b *scr_uc = Term->scr->uc[y];
 
     /* The "always_text" flag */
     int always_text = Term->always_text;
@@ -1024,9 +1253,11 @@ static void Term_fresh_row_text(int y, int x1, int x2)
 
     byte oa;
     char oc;
+    u32b ouc;
 
     byte na;
     char nc;
+    u32b nuc;
 
     /* Scan "modified" columns */
     for (x = x1; x <= x2; x++)
@@ -1034,15 +1265,23 @@ static void Term_fresh_row_text(int y, int x1, int x2)
         /* See what is currently here */
         oa = old_aa[x];
         oc = old_cc[x];
+        ouc = old_uc[x];
 
         /* See what is desired there */
         na = scr_aa[x];
         nc = scr_cc[x];
+        nuc = scr_uc[x];
 
         /* Handle unchanged grids */
-        if ((na == oa) && (nc == oc))
+        if ((na == oa) && (nc == oc) && (nuc == ouc))
 
         {
+            if ((nuc == TERM_UC_WIDE_TRAIL) && fn)
+            {
+                fn++;
+                continue;
+            }
+
             /* Flush */
             if (fn)
             {
@@ -1069,6 +1308,7 @@ static void Term_fresh_row_text(int y, int x1, int x2)
         /* Save new contents */
         old_aa[x] = na;
         old_cc[x] = nc;
+        old_uc[x] = nuc;
 
         /* Notice new color */
         if (fa != na)
@@ -1678,6 +1918,9 @@ errr Term_add_bigch(byte a, char c)
 errr Term_addstr(int n, byte a, cptr s)
 {
     int k;
+    int bytes;
+    int cells;
+    int truncated;
 
     int w = Term->wid;
 
@@ -1689,17 +1932,17 @@ errr Term_addstr(int n, byte a, cptr s)
     /* Obtain maximal length */
     k = (n < 0) ? (w + 1) : n;
 
-    /* Obtain the usable string length */
-    for (n = 0; (n < k) && s[n]; n++) /* loop */;
+    /* Obtain the usable UTF-8 byte length and screen cell width */
+    truncated = _term_utf8_measure(s, k, w - Term->scr->cx, &bytes, &cells);
 
     /* React to reaching the edge of the screen */
-    if (Term->scr->cx + n >= w) res = n = w - Term->scr->cx;
+    if (truncated && Term->scr->cx + cells >= w) res = cells ? cells : 1;
 
     /* Queue the first "n" characters for display */
-    Term_queue_chars(Term->scr->cx, Term->scr->cy, n, a, s);
+    Term_queue_chars(Term->scr->cx, Term->scr->cy, bytes, a, s);
 
     /* Advance the cursor */
-    Term->scr->cx += n;
+    Term->scr->cx += cells;
 
     /* Hack -- Notice "Useless" cursor */
     if (res) Term->scr->cu = 1;
@@ -1771,9 +2014,11 @@ errr Term_erase(int x, int y, int n)
 
     byte *scr_aa;
     char *scr_cc;
+    u32b *scr_uc;
 
     byte *scr_taa;
     char *scr_tcc;
+    u32b *scr_utc;
 
     /* Place cursor */
     if (Term_gotoxy(x, y)) return (-1);
@@ -1784,9 +2029,11 @@ errr Term_erase(int x, int y, int n)
     /* Fast access */
     scr_aa = Term->scr->a[y];
     scr_cc = Term->scr->c[y];
+    scr_uc = Term->scr->uc[y];
 
     scr_taa = Term->scr->ta[y];
     scr_tcc = Term->scr->tc[y];
+    scr_utc = Term->scr->utc[y];
 
     if (n > 0 && (scr_aa[x] & AF_BIGTILE2) == AF_BIGTILE2)
     {
@@ -1799,16 +2046,19 @@ errr Term_erase(int x, int y, int n)
     {
         int oa = scr_aa[x];
         int oc = scr_cc[x];
+        u32b ouc = scr_uc[x];
 
         /* Hack -- Ignore "non-changes" */
-        if ((oa == na) && (oc == nc)) continue;
+        if ((oa == na) && (oc == nc) && (ouc == (byte)nc) && (scr_utc[x] == 0)) continue;
 
         /* Save the "literal" information */
         scr_aa[x] = na;
         scr_cc[x] = nc;
+        scr_uc[x] = (byte)nc;
 
         scr_taa[x] = 0;
         scr_tcc[x] = 0;
+        scr_utc[x] = 0;
 
         /* Track minimum changed column */
         if (x1 < 0) x1 = x;
@@ -1860,18 +2110,22 @@ errr Term_clear(void)
     {
         byte *scr_aa = Term->scr->a[y];
         char *scr_cc = Term->scr->c[y];
+        u32b *scr_uc = Term->scr->uc[y];
 
         byte *scr_taa = Term->scr->ta[y];
         char *scr_tcc = Term->scr->tc[y];
+        u32b *scr_utc = Term->scr->utc[y];
 
         /* Wipe each column */
         for (x = 0; x < w; x++)
         {
             scr_aa[x] = na;
             scr_cc[x] = nc;
+            scr_uc[x] = (byte)nc;
 
             scr_taa[x] = 0;
             scr_tcc[x] = 0;
+            scr_utc[x] = 0;
         }
 
         /* This row has changed */
@@ -2651,5 +2905,3 @@ errr term_init(term *t, int w, int h, int k)
     /* Success */
     return (0);
 }
-
-

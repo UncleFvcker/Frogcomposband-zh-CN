@@ -1,0 +1,33 @@
+id	file	line	col	source	zh_cn
+SRC_05828	src/files.c	2370	17	`[Press Return, Space, -, =, /,	, or ESC to exit.]`
+SRC_07279	src/home.c	523	25	<color:keypress>d</color> to donate an item. <color:keypress>g</color> to get an item.	按 <color:keypress>d</color> 捐赠物品。按 <color:keypress>g</color> 取出物品。
+SRC_12336	src/obj_info.c	1948	25	Device	魔法装置
+SRC_13642	src/quest.c	1542	28	</color>. <color:v>You will fail this quest if you leave it before completing it!</color> Are you sure you want to	</color>。<color:v>如果你在完成它之前离开，你将导致这个任务失败！</color>你确定要
+SRC_18687	src/tables.c	2673	7	{ "Punch", "You punch.", 1, 0, 1, 4, 0 },	{ "冲拳", "你使出冲拳。", 1, 0, 1, 4, 0 },
+SRC_18689	src/tables.c	2674	7	{ "Kick", "You kick.", 2, 0, 1, 6, 0 },	{ "踢击", "你使出踢击。", 2, 0, 1, 6, 0 },
+SRC_18691	src/tables.c	2675	7	{ "Strike", "You strike.", 3, 0, 1, 7, 0 },	{ "掌击", "你使出掌击。", 3, 0, 1, 7, 0 },
+SRC_18693	src/tables.c	2676	7	{ "Knee", "You knee.", 5, 5, 2, 3, MA_KNEE },	{ "膝击", "你使出膝击。", 5, 5, 2, 3, MA_KNEE },
+SRC_18695	src/tables.c	2677	7	{ "Elbow", "You elbow.", 7, 5, 1, 8, 0 },	{ "肘击", "你使出肘击。", 7, 5, 1, 8, 0 },
+SRC_18697	src/tables.c	2678	7	{ "Butt", "You <color:U>butt</color>.", 9, 10, 2, 5, 0 },	{ "头槌", "你使出<color:U>头槌</color>。", 9, 10, 2, 5, 0 },
+SRC_18699	src/tables.c	2679	7	{ "Kick", "You <color:U>kick</color>.", 11, 10, 3, 4, MA_SLOW },	{ "踢击", "你使出<color:U>踢击</color>。", 11, 10, 3, 4, MA_SLOW },
+SRC_18701	src/tables.c	2680	7	{ "Uppercut", "You <color:U>uppercut</color>.", 13, 12, 4, 4, 6 },	{ "上勾拳", "你使出<color:U>上勾拳</color>。", 13, 12, 4, 4, 6 },
+SRC_18703	src/tables.c	2681	7	{ "Double Kick", "You <color:y>double-kick</color>.", 16, 15, 5, 4, 8 },	{ "双重踢", "你使出<color:y>双重踢</color>。", 16, 15, 5, 4, 8 },
+SRC_18705	src/tables.c	2682	7	{ "Cat's Claw", "You land a <color:y>Cat's Claw</color>.", 20, 20, 5, 5, 0 },	{ "猫爪", "你使出了一记<color:y>猫爪</color>。", 20, 20, 5, 5, 0 },
+SRC_18707	src/tables.c	2683	7	{ "Jump Kick", "You <color:y>jump kick</color>.", 25, 25, 5, 6, 10 },	{ "飞踢", "你使出<color:y>飞踢</color>。", 25, 25, 5, 6, 10 },
+SRC_18709	src/tables.c	2684	7	{ "Eagle's Claw", "You land an <color:o>Eagle's Claw</color>.", 29, 25, 6, 6, 0 },	{ "鹰爪", "你使出了一记<color:o>鹰爪</color>。", 29, 25, 6, 6, 0 },
+SRC_18711	src/tables.c	2685	7	{ "Circle Kick", "You <color:o>circle kick</color>.", 33, 30, 6, 8, 10 },	{ "旋风踢", "你使出<color:o>旋风踢</color>。", 33, 30, 6, 8, 10 },
+SRC_18713	src/tables.c	2686	7	{ "Iron Fist", "You land an <color:R>Iron Fist</color>.", 37, 35, 8, 8, 10 },	{ "铁拳", "你使出了一记<color:R>铁拳</color>。", 37, 35, 8, 8, 10 },
+SRC_18715	src/tables.c	2687	7	{ "Flying Kick", "You land a <color:R>flying kick</color>.", 41, 35, 8, 10, 12 },	{ "凌空踢", "你使出了一记<color:R>凌空踢</color>。", 41, 35, 8, 10, 12 },
+SRC_18717	src/tables.c	2688	7	{ "Dragon Fist", "You land a <color:r>Dragon Fist</color>.", 45, 35, 10, 10, 16 },	{ "龙拳", "你使出了一记<color:r>龙拳</color>。", 45, 35, 10, 10, 16 },
+SRC_18719	src/tables.c	2689	7	{ "Crushing Blow", "You land a <color:v>Crushing Blow</color>.", 48, 35, 10, 12, 18 },	{ "致命打击", "你使出了一记<color:v>致命打击</color>。", 48, 35, 10, 12, 18 },
+SRC_18731	src/tables.c	2713	6	{"Genbu", 25, "(Black Tortoise) "},	{"玄武", 25, "(北方玄武) "},
+SRC_18733	src/tables.c	2714	6	{"Byakko", 30, "(White Tiger) "},	{"白虎", 30, "(西方白虎) "},
+SRC_18735	src/tables.c	2715	6	{"Seiryuu", 35, "(Blue Dragon) "},	{"青龙", 35, "(东方青龙) "},
+SRC_18737	src/tables.c	2716	6	{"Suzaku", 40, "(Red Phoenix) "},	{"朱雀", 40, "(南方朱雀) "},
+SRC_18739	src/tables.c	2721	6	{"Iai", 25, "Gives a single accuracy-boosted retaliatory blow against melee attacks, at the cost of increasing all damage taken by 20%. Any melee attack by you dispels this posture."},	{"居合", 25, "在受到近战攻击时，提供一次命中率加成的单次反击，代价是受到的所有伤害增加20%。你的任何近战攻击都会解除该架势。"},
+SRC_18741	src/tables.c	2722	6	{"Huujin", 30, "Gives reflection unless blind, at the cost of -1.00 to blows."},	{"风神", 30, "除非处于盲目状态，否则提供反射能力，代价是每回合攻击次数 -1.00。"},
+SRC_18743	src/tables.c	2723	6	{"Kouki", 35, "Gives +5 to all stats and +50 melee to-hit, at the cost of -50 AC, vulnerability to the base elements, and zero regeneration. Using most inventory items dispels this posture."},	{"光气", 35, "所有属性 +5，且近战命中 +50，代价是 -50 护甲等级(AC)，对基础元素变得脆弱，并且生命回复降为零。使用大多数物品栏物品都会解除该架势。"},
+SRC_18745	src/tables.c	2724	6	{"Musou", 40, "Gives full telepathy and ultimate resistance, halves most types of damage, and gives a full round of retaliatory blows against melee attacks, at the cost of 2 SP per turn. Almost any action other than retaliation dispels this posture."},	{"无双", 40, "提供完全的心灵感应和终极抗性，使大多数类型的伤害减半，并在受到近战攻击时提供一整轮的反击，代价是每回合消耗 2 点法力(SP)。除了反击之外的几乎任何动作都会解除该架势。"},
+SRC_19442	src/variable.c	1295	25	Bug	漏洞
+SRC_19451	src/variable.c	1298	55	Nor	北欧
+SRC_21627	src/yeqrezh.c	1142	48	Yeqrezh's Memories	耶克列日的记忆

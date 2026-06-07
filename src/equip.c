@@ -199,7 +199,7 @@ static slot_t _prompt_wield_slot(obj_ptr obj)
     else if (ct > 1)
     {
         int    idx;
-        menu_t menu = { "Choose an equipment slot", NULL, NULL,
+        menu_t menu = { "选择一个装备栏位", NULL, NULL,
                         _slot_menu_fn, slots, ct, 0 };
 
         idx = menu_choose(&menu);
@@ -219,21 +219,21 @@ cptr equip_describe_slot(slot_t slot)
     {
         int hand = _template->slots[slot].hand;
         if (p_ptr->weapon_info[hand].heavy_wield)
-            return "Just Lifting";
+            return "仅举着";
         if (p_ptr->weapon_info[hand].wield_how == WIELD_TWO_HANDS && !prace_is_(RACE_MON_SWORD))
         {
             if (p_ptr->current_r_idx == MON_BLOODTHIRSTER)
-                return "Both Paws";
+                return "双爪";
             else
-                return "Both Arms";
+                return "双臂";
         }
         if (p_ptr->weapon_info[hand].riding)
-            return "Reins";
+            return "缰绳";
     }
     if (_template->slots[slot].type == EQUIP_SLOT_BOW)
     {
         if (p_ptr->shooter_info.heavy_shoot)
-            return "Just Holding";
+            return "仅拿着";
     }
     return b_tag + _template->slots[slot].tag;
 }
@@ -486,12 +486,12 @@ void equip_wield_ui(void)
     {
         if (object_is_(obj, TV_DRAG_ARMOR, SV_DRAGON_SILVER))
         {
-            msg_print("You briefly contemplate wearing silver armor, but conclude you're not really into that kind of thing. (Now, balance dragon armor, on the other hand...)");
+            msg_print("你短暂地考虑了一下穿上白银护甲，但最终得出结论，你并不太喜欢那种东西。（不过要是换成平衡龙鳞甲嘛……）");
             return;
         }
         else
         {
-            msg_print("You consider wielding the silver hammer, but then remember that the idea behind weapons is to hurt the enemy, not yourself.");
+            msg_print("你考虑挥舞这把白银之锤，但随即想起武器的作用是用来伤害敌人的，而不是伤害自己。");
             return;
         }
     }
@@ -504,10 +504,10 @@ void equip_wield_ui(void)
         assert(equip_find_obj(TV_QUIVER, SV_ANY));
         if (equip_find_obj(TV_QUIVER, SV_QUIVER) && quiver_capacity() <= quiver_count(NULL))
         {
-            msg_print("Your quiver is full.");
+            msg_print("你的箭袋满了。");
             return;
         }
-        if (amt == 1 || msg_input_num("Quantity", &amt, 1, obj->number))
+        if (amt == 1 || msg_input_num("数量", &amt, 1, obj->number))
         {
             obj_t copy = *obj;
             copy.number = amt;
@@ -555,8 +555,8 @@ static obj_ptr _wield_get_obj(void)
 {
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Wear/Wield which item?";
-    prompt.error = "You have nothing you can wear or wield.";
+    prompt.prompt = "穿戴/装备哪件物品？";
+    prompt.error = "你没有可穿戴或装备的物品。";
     prompt.filter = _can_wield;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -572,14 +572,13 @@ static bool _wield_verify(obj_ptr obj)
      * since the user might cancle the slot prompt */
     if (obj->tval == TV_QUIVER && quiver_count(NULL) > obj->xtra4)
     {
-        msg_format("Failed! Your current quiver holds %d missiles but this quiver "
-            "only has a capacity for %d missiles.", quiver_count(NULL), obj->xtra4);
+        msg_format("失败！你当前的箭袋装有 %d 发弹药，但这个箭袋的容量只有 %d 发弹药。", quiver_count(NULL), obj->xtra4);
         return FALSE;
     }
 
     if (quiver_count(NULL) >0 && obj->tval == TV_QUIVER && equip_find_obj(TV_QUIVER, SV_ANY) > 0 && equip_find_obj(TV_QUIVER, obj->sval) == 0)
     {
-        msg_format("Failed! Clear your bag first before wielding a new type bag.");
+        msg_format("失败！在装备新的包裹之前，请先清空你当前的包裹。");
         return FALSE;
     }
 
@@ -600,21 +599,21 @@ static bool _wield_confirm(obj_ptr obj, slot_t slot)
 
     if (old_obj && have_flag(old_obj->flags, OF_NO_REMOVE)) /* Hack!!!! */
     {
-        msg_print("You can't replace yourself with that!");
+        msg_print("你不能用那东西替换你自己！");
         return FALSE;
     }
 
     if (old_obj && object_is_cursed(old_obj) && !mummy_can_remove(old_obj))
     {
         object_desc(o_name, old_obj, OD_OMIT_PREFIX | OD_NAME_ONLY | OD_COLOR_CODED);
-        msg_format("The %s you are wearing appears to be cursed.", o_name);
+        msg_format("你穿着的 %s 似乎被诅咒了。", o_name);
         return FALSE;
     }
 
     /* Secondary psion verify */
     if (old_obj && psion_weapon_graft() && object_is_melee_weapon(old_obj))
     {
-        msg_print("Failed! Your weapon is currently grafted to your arm!");
+        msg_print("失败！你的武器目前移植在你的手臂上！");
         return FALSE;
     }
 
@@ -660,7 +659,7 @@ static bool _wield_confirm(obj_ptr obj, slot_t slot)
     {
         char dummy[MAX_NLEN+80];
         object_desc(o_name, obj, OD_OMIT_PREFIX | OD_NAME_ONLY);
-        msg_format("%s will permanently transform you into a vampire when equipped.", o_name);
+        msg_format("装备后，%s将把你永久变成吸血鬼。", o_name);
         sprintf(dummy, "Do you become a vampire?");
         if (!get_check(dummy)) return FALSE;
     }
@@ -709,25 +708,25 @@ static void _wield_after(slot_t slot)
     object_desc(o_name, obj, OD_COLOR_CODED);
     if ((p_ptr->prace == RACE_MON_SWORD || p_ptr->prace == RACE_MON_RING) || 
         ((p_ptr->prace == RACE_MON_ARMOR) && (obj->tval == TV_SOFT_ARMOR)))
-        msg_format("You are %s.", o_name);
+        msg_format("你是 %s。", o_name);
     else
-        msg_format("You are wearing %s (%c).", o_name, slot - 1 + 'a');
+        msg_format("你穿戴着 %s (%c)。", o_name, slot - 1 + 'a');
 
     /* After Effects? */
     if (object_is_cursed(obj))
     {
-        msg_print("Oops! It feels deathly cold!");
+        msg_print("哎呀！它感觉冰冷刺骨！");
         virtue_add(VIRTUE_HARMONY, -1);
         obj->ident |= IDENT_SENSE;
     }
     if (obj->name1 == ART_HAND_OF_VECNA)
     {
-        cmsg_print(TERM_VIOLET, "You chop off your own hand to wield the Hand of Vecna!");
+        cmsg_print(TERM_VIOLET, "你砍断了自己的手来装备维克那之手！");
         set_cut(CUT_MORTAL_WOUND, FALSE);
     }
     if (obj->name1 == ART_EYE_OF_VECNA)
     {
-        cmsg_print(TERM_VIOLET, "You pluck out your own eye to wield the Eye of Vecna!");
+        cmsg_print(TERM_VIOLET, "你挖出了自己的眼睛来装备维克那之眼！");
         set_cut(CUT_MORTAL_WOUND, FALSE);
     }
     if ( obj->name1 == ART_STONEMASK
@@ -781,7 +780,7 @@ void equip_takeoff_ui(void)
     if (!obj) return;
     if (obj->tval == TV_QUIVER && quiver_count(NULL) && obj->loc.where == INV_EQUIP)
     {
-        msg_print("Your bag still holds something. Remove all of them from your bag first.");
+        msg_print("你的包裹里还有东西。请先移除包裹里的所有物品。");
         return;
     }
     energy_use = 50;
@@ -818,7 +817,7 @@ void equip_drop(obj_ptr obj)
 
     if (obj->tval == TV_QUIVER && quiver_count(NULL))
     {
-        msg_print("Your quiver still holds ammo. Remove all the ammo from your quiver first.");
+        msg_print("你的箭袋里还有弹药。请先移除箭袋里的所有弹药。");
         return;
     }
     if (!_unwield_verify(obj)) return;
@@ -831,8 +830,8 @@ static obj_ptr _unwield_get_obj(void)
 {
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Take off which item?";
-    prompt.error = "You are not wearing anything to take off.";
+    prompt.prompt = "卸下哪件物品？";
+    prompt.error = "你没有穿戴任何可卸下的物品。";
     prompt.where[0] = INV_EQUIP;
     prompt.where[1] = INV_QUIVER;
     if (get_race()->bonus_pack) prompt.where[2] = INV_SPECIAL1;
@@ -848,7 +847,7 @@ bool _unwield_verify(obj_ptr obj)
     if (!psion_can_wield(obj)) return FALSE;
     if (have_flag(obj->flags, OF_NO_REMOVE))
     {
-        msg_print("You try to take yourself off, but fail!");
+        msg_print("你试图卸下你自己，但失败了！");
         energy_use = 0;
         return FALSE;
     }
@@ -856,7 +855,7 @@ bool _unwield_verify(obj_ptr obj)
     {
         if ((p_ptr->prace == RACE_MON_MUMMY) && (mummy_can_remove(obj)))
         {
-            msg_print("You confidently remove the cursed equipment.");
+            msg_print("你自信地取下了被诅咒的装备。");
             p_ptr->update |= PU_BONUS;
             p_ptr->window |= PW_EQUIP;
             p_ptr->redraw |= PR_EFFECTS;
@@ -864,13 +863,13 @@ bool _unwield_verify(obj_ptr obj)
         }
         if ((obj->curse_flags & OFC_PERMA_CURSE) || ((p_ptr->pclass != CLASS_BERSERKER) && (!beorning_is_(BEORNING_FORM_BEAR))))
         {
-            msg_print("Hmmm, it seems to be cursed.");
+            msg_print("嗯，它似乎被诅咒了。");
             energy_use = 0;
             return FALSE;
         }
         if (((obj->curse_flags & OFC_HEAVY_CURSE) && one_in_(7)) || one_in_(4))
         {
-            msg_print("You tear the cursed equipment off by sheer strength!");
+            msg_print("你凭着蛮力硬生生扯下了被诅咒的装备！");
             obj->ident |= IDENT_SENSE;
             obj->curse_flags = 0L;
             obj->known_curse_flags = 0L;
@@ -878,11 +877,11 @@ bool _unwield_verify(obj_ptr obj)
             p_ptr->update |= PU_BONUS;
             p_ptr->window |= PW_EQUIP;
             p_ptr->redraw |= PR_EFFECTS;
-            msg_print("You break the curse.");
+            msg_print("你打破了诅咒。");
         }
         else
         {
-            msg_print("You couldn't remove the equipment.");
+            msg_print("你无法卸下这件装备。");
             /* still takes energy! */
             return FALSE;
         }
@@ -904,7 +903,7 @@ void _unwield(obj_ptr obj, bool drop)
         int amt = obj->number;
         assert(equip_find_obj(TV_QUIVER, SV_ANY));
         assert(!drop); /* quiver_drop ... not us. cf do_cmd_drop */
-        if (obj->number == 1 || msg_input_num("Quantity", &amt, 1, obj->number))
+        if (obj->number == 1 || msg_input_num("数量", &amt, 1, obj->number))
         {
             obj_t copy = *obj;
 
@@ -920,7 +919,7 @@ void _unwield(obj_ptr obj, bool drop)
     {
         char name[MAX_NLEN];
         object_desc(name, obj, OD_COLOR_CODED);
-        if (obj->loc.where == INV_EQUIP) msg_format("You are no longer wearing %s.", name);
+        if (obj->loc.where == INV_EQUIP) msg_format("你不再穿戴 %s。", name);
         if (object_is_cursed(obj))
         {
             p_ptr->redraw |= PR_EFFECTS;
@@ -1153,7 +1152,7 @@ void object_calc_bonuses(obj_ptr obj, slot_t slot)
         static bool varoitettu = FALSE;
         if (!varoitettu)
         {
-            cmsg_print(TERM_RED, "Warning: object_calc_bonuses() called with bad slot value");
+            cmsg_print(TERM_RED, "警告：object_calc_bonuses() 传入了错误的装备栏位值");
             msg_print(NULL);
             varoitettu = TRUE;
         }
@@ -1774,7 +1773,7 @@ void equip_init(void)
         _template = &b_info[0];
 
     inv_free(_inv);
-    _inv = inv_alloc("Equipment", INV_EQUIP, EQUIP_MAX);
+    _inv = inv_alloc("装备", INV_EQUIP, EQUIP_MAX);
 }
 
 /* Attempt to gracefully handle changes to body type between
@@ -1785,7 +1784,7 @@ void equip_init(void)
 void equip_on_load(void)
 {
     slot_t  slot, max = inv_last(_inv, obj_exists);
-    inv_ptr temp = inv_alloc("Temp", INV_EQUIP, EQUIP_MAX);
+    inv_ptr temp = inv_alloc("临时", INV_EQUIP, EQUIP_MAX);
 
     for (slot = 1; slot <= max; slot++)
     {
@@ -1823,7 +1822,7 @@ void equip_on_load(void)
         {
             char name[MAX_NLEN];
             object_desc(name, obj, OD_COLOR_CODED);
-            msg_format("You can no longer wield %s.", name);
+            msg_format("你无法再装备 %s 了。", name);
             pack_carry(obj);
         }
     }
@@ -1860,7 +1859,7 @@ void equip_on_change_race(void)
                 char name[MAX_NLEN];
 
                 object_desc(name, src, 0);
-                msg_format("You can no longer wield %s.", name);
+                msg_format("你无法再装备 %s 了。", name);
 
                 /* Mark the object as previously worn. Next time we shift bodies,
                    we will attempt to wield this item again automatically */
@@ -1935,7 +1934,7 @@ void equip_learn_curse(int flag)
         {
             char buf[MAX_NLEN];
             object_desc(buf, obj, OD_LORE);
-            msg_format("<color:B>You feel that your %s is <color:r>cursed</color>.</color>", buf);
+            msg_format("<color:B>你感觉你的 %s 被 <color:r>诅咒</color> 了。</color>", buf);
         }
     }
 }
@@ -1950,7 +1949,7 @@ void _learn_resist_aux(int obj_flag, cptr desc)
         {
             char buf[MAX_NLEN];
             object_desc(buf, obj, OD_LORE);
-            msg_format("<color:B>You feel that your %s is %s you.</color>", buf, desc);
+            msg_format("<color:B>你感觉你的 %s 正在%s你。</color>", buf, desc);
         }
     }
 }
@@ -1975,7 +1974,7 @@ void equip_learn_flag(int obj_flag)
         {
             char buf[MAX_NLEN];
             object_desc(buf, obj, OD_LORE);
-            msg_format("<color:B>You learn more about your %s.</color>", buf);
+            msg_format("<color:B>你对你的 %s 了解得更多了。</color>", buf);
         }
     }
 }
@@ -1993,7 +1992,7 @@ void equip_learn_slay(int slay_flag, cptr msg)
         {
             char buf[MAX_NLEN];
             object_desc(buf, obj, OD_LORE);
-            msg_format("<color:B>You learn that your %s %s.</color>", buf, msg);
+            msg_format("<color:B>你了解到你的 %s 会%s。</color>", buf, msg);
             /* We need to update p_ptr->weapon_info[].known_flags (cf equip_calc_bonuses()) */
             p_ptr->update |= PU_BONUS;
         }
@@ -2033,19 +2032,19 @@ void _ring_finger_swap_aux(object_type *o_ptr, slot_t f1, slot_t f2)
     t_ptr = equip_obj(f1);
     if ((t_ptr) && (t_ptr->tval) && (object_is_cursed(t_ptr)) && (!mummy_can_remove(t_ptr)))
     {
-        msg_print("A dark curse prevents you from switching ring fingers!");
+        msg_print("一个黑暗的诅咒阻止了你切换戴戒指的手指！");
         t_ptr->ident |= IDENT_SENSE;
         return;
     }
     t_ptr = equip_obj(f2);
     if ((t_ptr) && (t_ptr->tval) && (object_is_cursed(t_ptr)) && (!mummy_can_remove(t_ptr)))
     {
-        msg_print("A dark curse prevents you from switching ring fingers!");
+        msg_print("一个黑暗的诅咒阻止了你切换戴戒指的手指！");
         t_ptr->ident |= IDENT_SENSE;
         return;
     }
     inv_swap(_inv, f1, f2);
-    msg_print("You nimbly switch ring fingers.");
+    msg_print("你敏捷地切换了戴戒指的手指。");
     p_ptr->update |= PU_BONUS;
     _ring_finger_sanity_check();
 }
@@ -2083,7 +2082,7 @@ void _ring_finger_sanity_check(void)
     }
     if ((tyhja) && (hukattu))
     {
-        if (get_check("Switch ring fingers so combat bonuses can apply to a weapon?")) _ring_finger_swap_aux(o_ptr, tyhja, hukattu);
+        if (get_check("切换戴戒指的手指，以便战斗加成能应用于对应的武器？")) _ring_finger_swap_aux(o_ptr, tyhja, hukattu);
     }
 }
 
@@ -2095,19 +2094,19 @@ void ring_finger_swap_ui(slot_t f1, slot_t f2)
     object_type *o_ptr;
     if (!ring_slot)
     {
-        msg_print("You do not have any rings equipped.");
+        msg_print("你没有装备任何戒指。");
         return;
     }
     o_ptr = equip_obj(ring_slot);
     if ((!o_ptr) || (o_ptr->tval != TV_RING))
     {
-        msg_print("A software bug has occurred in the ring finger swap UI - please report!");
+        msg_print("戒指切换界面发生了一个软件漏洞 —— 请报告该错误！");
         return;
     }
     ct = _get_slots(o_ptr, slots);
     if (ct < 2)
     {
-        msg_print("You cannot change ring fingers!");
+        msg_print("你无法切换戴戒指的手指！");
         return;
     }
     if (ct == 2)
@@ -2122,7 +2121,7 @@ void ring_finger_swap_ui(slot_t f1, slot_t f2)
     }
     else if (ct > 2)
     {
-        menu_t menu = { "Choose first slot", NULL, NULL,
+        menu_t menu = { "选择第一个戒指栏位", NULL, NULL,
                         _slot_menu_fn, slots, ct, 0 };
 
         int i, idx = menu_choose(&menu);
@@ -2135,7 +2134,7 @@ void ring_finger_swap_ui(slot_t f1, slot_t f2)
         }
         menu.count = ct;
         menu.cookie = slots;
-        menu.choose_prompt = "Choose second slot";
+        menu.choose_prompt = "选择第二个戒指栏位";
         idx = menu_choose(&menu);
         if (idx < 0) return;
         f2 = slots[idx];

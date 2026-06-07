@@ -45,7 +45,7 @@ static bool _whip_fetch(int dir, int rng)
 
         if (distance(py, px, ty, tx) > rng)
         {
-            msg_print("You can't fetch something that far away!");
+            msg_print("你无法抓取那么远的东西！");
             return FALSE;
         }
 
@@ -54,7 +54,7 @@ static bool _whip_fetch(int dir, int rng)
         /* We need an item to fetch */
         if (!c_ptr->o_idx)
         {
-            msg_print("There is no object at this place.");
+            msg_print("那个位置没有物品。");
             return TRUE;  /* didn't work, but charge the player energy anyway */
         }
 
@@ -63,12 +63,12 @@ static bool _whip_fetch(int dir, int rng)
         /* Line of sight is required */
         if (!player_has_los_bold(ty, tx))
         {
-            msg_print("You have no direct line of sight to that location.");
+            msg_print("你的视线无法直接看到那个位置。");
             return FALSE;
         }
         else if (!projectable(py, px, ty, tx))
         {
-            msg_print("You have no direct line of sight to that location.");
+            msg_print("你的视线无法直接看到那个位置。");
             return FALSE;
         }
     }
@@ -98,14 +98,14 @@ static bool _whip_fetch(int dir, int rng)
 
     if (o_ptr->weight > p_ptr->lev * 15)
     {
-        msg_print("The object is too heavy.");
+        msg_print("这件物品太重了。");
         return TRUE; /* didn't work, but charge the player energy anyway */
     }
 
     object_desc(o_name, o_ptr, OD_NAME_ONLY | OD_COLOR_CODED);
 
     /* Get the object */
-    msg_format("You skillfully crack your whip and fetch %s.", o_name);
+    msg_format("你熟练地挥出皮鞭，抓取了%s。", o_name);
     pack_carry(o_ptr);
     obj_release(o_ptr, OBJ_RELEASE_QUIET);
 
@@ -167,10 +167,10 @@ static void _ancient_protection_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Ancient Protection");
+        var_set_string(res, "远古庇护");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Sets a glyph on the floor beneath you. Monsters cannot attack you if you are on a glyph, but can try to break the glyph.");
+        var_set_string(res, "在你脚下的地板上刻下一个符文。如果你站在符文上，怪物无法攻击你，但它们会尝试打破符文。");
         break;
     case SPELL_CAST:
         warding_glyph();
@@ -187,10 +187,10 @@ static void _double_crack_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Double Crack");
+        var_set_string(res, "双重抽击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack a monster normally with your whip, and then randomly attack an adjacent monster.");
+        var_set_string(res, "用皮鞭正常攻击一个怪物，然后随机攻击一个相邻的怪物。");
         break;
     case SPELL_CAST:
         if (_whip_check())
@@ -211,7 +211,7 @@ static void _double_crack_spell(int cmd, variant *res)
                 if (in_bounds(y, x) && cave[y][x].m_idx)
                     py_attack(y, x, 0);
                 else
-                    msg_print("Your whip cracks in empty air.");
+                    msg_print("你的皮鞭抽在了空气中。");
 
                 /* Now the whip cracks randomly!
                    Note that we favor fighting in hallways, or
@@ -222,7 +222,7 @@ static void _double_crack_spell(int cmd, variant *res)
                     {
                         while (num > 0)
                         {
-                            msg_print("Your whip cracks in empty air.");
+                            msg_print("你的皮鞭抽在了空气中。");
                             num--;
                         }
                         break;
@@ -248,7 +248,7 @@ static void _double_crack_spell(int cmd, variant *res)
                     if (cave[y][x].m_idx)
                         py_attack(y, x, 0);
                     else
-                        msg_print("Your whip cracks in empty air.");
+                        msg_print("你的皮鞭抽在了空气中。");
 
                     num--;
                 }
@@ -259,7 +259,7 @@ static void _double_crack_spell(int cmd, variant *res)
         }
         else
         {
-            msg_print("Whip techniques can only be used if you are fighting with whips.");
+            msg_print("鞭法只能在你使用皮鞭战斗时使用。");
             var_set_bool(res, FALSE);
         }
         break;
@@ -274,10 +274,10 @@ static void _evacuation_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Escape Rope");
+        var_set_string(res, "逃脱绳");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Danger! Abandon this expedition and escape to a new level.");
+        var_set_string(res, "危险！放弃这次探险并逃往一个新的楼层。");
         break;
     case SPELL_CAST:
         var_set_bool(res, py_teleport_level("You are about to flee the current level. Are you sure? " ));
@@ -293,10 +293,10 @@ static void _excavation_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Excavation");
+        var_set_string(res, "挖掘");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You break walls on your quest for treasure!  This takes a bit more time, though.");
+        var_set_string(res, "在寻宝的过程中破坏墙壁！不过，这需要花费更多的时间。");
         break;
     case SPELL_ENERGY:
         {
@@ -324,20 +324,20 @@ static void _excavation_spell(int cmd, variant *res)
 
                 if (!in_bounds(y, x))
                 {
-                    msg_print("You may excavate no further.");
+                    msg_print("你无法继续挖掘了。");
                 }
                 else if ( cave_have_flag_bold(y, x, FF_WALL)
                        || cave_have_flag_bold(y, x, FF_TREE)
                        || cave_have_flag_bold(y, x, FF_CAN_DIG) )
                 {
-                    msg_print("You dig your way to treasure!");
+                    msg_print("你挖出了一条通往宝藏的路！");
                     cave_alter_feat(y, x, FF_TUNNEL);
                     move_player_effect(y, x, 0);
                     b = TRUE;
                 }
                 else
                 {
-                    msg_print("There is nothing to excavate.");
+                    msg_print("没有什么可挖掘的。");
                 }
             }
             var_set_bool(res, b);
@@ -354,10 +354,10 @@ static void _extended_whip_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Extended Crack");
+        var_set_string(res, "延伸抽击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This spell extends the range of your whip based melee attack.");
+        var_set_string(res, "这个法术能扩大你使用皮鞭进行近战攻击的范围。");
         break;
     case SPELL_CAST:
         if (_whip_check())
@@ -375,7 +375,7 @@ static void _extended_whip_spell(int cmd, variant *res)
         }
         else
         {
-            msg_print("Whip techniques can only be used if you are fighting with whips.");
+            msg_print("鞭法只能在你使用皮鞭战斗时使用。");
             var_set_bool(res, FALSE);
         }
         break;
@@ -390,10 +390,10 @@ static void _fetch_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Fetch");
+        var_set_string(res, "抓取");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Use your whip to fetch a nearby item.");
+        var_set_string(res, "使用皮鞭抓取附近的一件物品。");
         break;
     case SPELL_CAST:
         if (_whip_check())
@@ -411,7 +411,7 @@ static void _fetch_spell(int cmd, variant *res)
         }
         else
         {
-            msg_print("Whip techniques can only be used if you are fighting with whips.");
+            msg_print("鞭法只能在你使用皮鞭战斗时使用。");
             var_set_bool(res, FALSE);
         }
         break;
@@ -426,28 +426,28 @@ static void _first_aid_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "First Aid");
+        var_set_string(res, "急救");
         break;
     case SPELL_DESC:
         if (p_ptr->lev < 8)
-            var_set_string(res, "Heals HP and Stun.");
+            var_set_string(res, "治疗生命值并解除眩晕。");
         else if (p_ptr->lev < 12)
-            var_set_string(res, "Heals HP and Stun. Cures cuts.");
+            var_set_string(res, "治疗生命值并解除眩晕。治愈流血。");
         else if (p_ptr->lev < 16)
-            var_set_string(res, "Heals HP and Stun. Cures cuts and slows poison.");
+            var_set_string(res, "治疗生命值并解除眩晕。治愈流血并减缓中毒。");
         else if (p_ptr->lev < 20)
-            var_set_string(res, "Heals HP and Stun. Cures cuts and poison.");
+            var_set_string(res, "治疗生命值并解除眩晕。治愈流血和中毒。");
         else if (p_ptr->lev < 30)
-            var_set_string(res, "Heals HP and Stun. Cures cuts, poison and blindness.");
+            var_set_string(res, "治疗生命值并解除眩晕。治愈流血、中毒和盲目。");
         else if (p_ptr->lev < 40)
-            var_set_string(res, "Heals HP and Stun. Cures cuts, poison and blindness. Restores Con.");
+            var_set_string(res, "治疗生命值并解除眩晕。治愈流血、中毒和盲目。恢复体质。");
         else if (p_ptr->lev < 45)
-            var_set_string(res, "Heals HP and Stun. Cures cuts, poison and blindness. Restores Con and Chr.");
+            var_set_string(res, "治疗生命值并解除眩晕。治愈流血、中毒和盲目。恢复体质和魅力。");
         else
-            var_set_string(res, "Heals HP and Stun. Cures cuts, poison and blindness. Restores Con, Chr and Str.");
+            var_set_string(res, "治疗生命值并解除眩晕。治愈流血、中毒和盲目。恢复体质、魅力和力量。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Heals HP and Stun. Slows Poison (L12). Cures cuts (L8), poison (L16) and blindness (L20). Restores Con (L30), Chr (L40) and Str (L45).");
+        var_set_string(res, "治疗生命值并解除眩晕。减缓中毒（L12）。治愈流血（L8）、中毒（L16）和盲目（L20）。恢复体质（L30）、魅力（L40）和力量（L45）。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_heal(0, 0, spell_power(p_ptr->lev)));
@@ -487,16 +487,16 @@ static void _identify_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Identify");
+        var_set_string(res, "鉴定");
         break;
     case SPELL_DESC:
         if (p_ptr->lev < 25)
-            var_set_string(res, "New Treasure!  You examine your new discovery.");
+            var_set_string(res, "新宝物！你仔细检查你的新发现。");
         else
-            var_set_string(res, "New Treasure!  You examine your new discovery and learn its deepest truths.");
+            var_set_string(res, "新宝物！你仔细检查你的新发现，并了解了它的最深层秘密。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Identifies an object. At L25, fully identifies an object.");
+        var_set_string(res, "鉴定一件物品。在25级时，完全鉴定一件物品。");
         break;
     case SPELL_CAST:
         {
@@ -519,22 +519,22 @@ static void _magic_blueprint_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Magic Blueprint");
+        var_set_string(res, "魔法蓝图");
         break;
     case SPELL_DESC:
         if (p_ptr->lev < 20)
-            var_set_string(res, "A map to treasure!  Maps the surrounding area.");
+            var_set_string(res, "寻宝地图！探测周围区域。");
         else if (p_ptr->lev < 25)
-            var_set_string(res, "A map to treasure!  Maps the surrounding area and detects traps and doors.");
+            var_set_string(res, "寻宝地图！探测周围区域，并探测陷阱和门。");
         else if (p_ptr->lev < 30)
-            var_set_string(res, "A map to treasure!  Maps the surrounding area and detects traps, doors and objects.");
+            var_set_string(res, "寻宝地图！探测周围区域，并探测陷阱、门和物品。");
         else if (p_ptr->lev < 35)
-            var_set_string(res, "A map to treasure!  Maps the entire level and detects traps, doors and objects.");
+            var_set_string(res, "寻宝地图！探测整个楼层，并探测陷阱、门和物品。");
         else
-            var_set_string(res, "A map to treasure!  Maps and lights the entire level and detects traps, doors and objects.");
+            var_set_string(res, "寻宝地图！探测并照亮整个楼层，并探测陷阱、门和物品。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Maps nearby area or the entire level (L35). Detects treasure, traps (L20), doors (L20) and objects (25).");
+        var_set_string(res, "探测附近区域或整个楼层（L35）。探测宝藏、陷阱（L20）、门（L20）和物品（L25）。");
         break;
     case SPELL_CAST:
         {
@@ -571,10 +571,10 @@ static void _pharaohs_curse_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Pharaoh's Curse");
+        var_set_string(res, "法老的诅咒");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Curses all nearby monsters, doing great damage and various effects.");
+        var_set_string(res, "诅咒所有附近的怪物，造成巨大伤害并附加各种效果。");
         break;
     case SPELL_CAST:
         {
@@ -595,7 +595,7 @@ static void _pharaohs_curse_spell(int cmd, variant *res)
                     mode = PM_FORCE_PET;
                 if (summon_named_creature(0, py, px, MON_GREATER_MUMMY, mode))
                 {
-                    msg_print("You have disturbed the rest of an ancient pharaoh!");
+                    msg_print("你打扰了一位古老法老的安息！");
                 }
             }
             take_hit(DAMAGE_USELIFE, p_ptr->lev + randint1(p_ptr->lev), "the Pharaoh's Curse");
@@ -613,27 +613,27 @@ static void _remove_curse_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Remove Curse");
+        var_set_string(res, "移除诅咒");
         break;
     case SPELL_DESC:
         if (p_ptr->lev < 40)
-            var_set_string(res, "Cursed Treasure!  Removes any weak curses from your equipment.");
+            var_set_string(res, "被诅咒的宝物！移除你装备上任何微弱的诅咒。");
         else
-            var_set_string(res, "Cursed Treasure!  Removes any curses from your equipment.");
+            var_set_string(res, "被诅咒的宝物！移除你装备上的任何诅咒。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Removes weak curses. At L40, also removes heavy curses.");
+        var_set_string(res, "移除微弱的诅咒。在40级时，也能移除沉重的诅咒。");
         break;
     case SPELL_CAST:
         if (p_ptr->lev < 40)
         {
-            if (remove_curse()) msg_print("You feel the curse has lifted.");
-            else msg_print("Hmmm ... nothing happens.");
+            if (remove_curse()) msg_print("你感觉诅咒已被解除。");
+            else msg_print("嗯……什么也没发生。");
         }
         else
         {
-            if (remove_all_curse()) msg_print("You feel the curse has lifted.");
-            else msg_print("Hmmm ... nothing happens.");
+            if (remove_all_curse()) msg_print("你感觉诅咒已被解除。");
+            else msg_print("嗯……什么也没发生。");
         }
         var_set_bool(res, TRUE);
         break;
@@ -648,10 +648,10 @@ static void _remove_obstacles_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Remove Obstacles");
+        var_set_string(res, "移除障碍");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Clears a path to treasure!  Traps, doors and trees will be removed.");
+        var_set_string(res, "清理出一条通往宝藏的道路！陷阱、门和树木将被移除。");
         break;
     case SPELL_CAST:
         {
@@ -721,13 +721,13 @@ static void _process_player(void)
     bool sense = sense_great_discovery();
     if (sense && !p_ptr->sense_artifact)
     {
-        msg_print("You feel close to a great discovery!");
+        msg_print("你感觉离一个伟大的发现不远了！");
         p_ptr->sense_artifact = TRUE;
         p_ptr->redraw |= PR_STATUS;
     }
     else if (!sense && p_ptr->sense_artifact)
     {
-        msg_print("You feel you are leaving something special behind...");
+        msg_print("你感觉把什么特别的东西抛在了脑后……");
         p_ptr->sense_artifact = FALSE;
         p_ptr->redraw |= PR_STATUS;
     }
@@ -760,7 +760,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.which_stat = A_WIS;
         me.encumbrance.max_wgt = 400;
         me.encumbrance.weapon_pct = 33;
@@ -793,7 +793,7 @@ void _get_object(obj_ptr obj)
             char name[MAX_NLEN];
 
             object_desc(name, obj, OD_COLOR_CODED);
-            cmsg_format(TERM_L_BLUE, "You feel that the %s is %s...", name, game_inscriptions[FEEL_SPECIAL]);
+            cmsg_format(TERM_L_BLUE, "你感觉%s是%s……", name, game_inscriptions[FEEL_SPECIAL]);
 
             obj->ident |= IDENT_SENSE;
             obj->feeling = FEEL_SPECIAL;
@@ -811,13 +811,8 @@ class_t *archaeologist_get_class(void)
     skills_t bs = { 45,  40,  36,   4,  50,  32,  56,  35};
     skills_t xs = { 15,  12,  10,   0,   0,   0,  18,  11};
 
-        me.name = "Archaeologist";
-        me.desc = "The Archaeologist is an erudite treasure hunter, seeking out the most valuable "
-                  "prizes that the dungeon has to offer. At home in subterranean caverns and vaults, "
-                  "he is rarely lost or snared in traps. His powers of perception and detection are "
-                  "very great, as is his skill with arcane devices. At high levels he can use the "
-                  "dark magic of the entombed Pharaohs. The powers of the Archaeologist are enhanced "
-                  "by Wisdom.";
+        me.name = "考古学家";
+        me.desc = "考古学家是博学的寻宝者，寻找着地下城所能提供的最有价值的战利品。他们习惯于在地下洞穴和宝库中探索，很少迷路或陷入陷阱。他们的察觉和探测能力非常强，在使用奥秘装置方面的技巧也很高超。在高等级时，他们可以使用被埋葬的法老们的黑魔法。感知（Wisdom）可以增强考古学家的能力。";
 
         me.stats[A_STR] = -1;
         me.stats[A_INT] =  1;

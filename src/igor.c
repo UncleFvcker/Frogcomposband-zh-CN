@@ -38,8 +38,8 @@ void _igor_pack_init(void)
     if ((_pack_initialized) && (!_do_init_pack)) return;
     inv_free(_igor_cold_pack);
     inv_free(_igor_body);
-    _igor_cold_pack = inv_alloc("Ice Bag", INV_SPECIAL1, _MAX_PACK_SLOTS);
-    _igor_body = inv_alloc("Body", INV_SPECIAL3, _IB_MAX_ACTIVE);
+    _igor_cold_pack = inv_alloc("冰袋", INV_SPECIAL1, _MAX_PACK_SLOTS);
+    _igor_body = inv_alloc("躯体", INV_SPECIAL3, _IB_MAX_ACTIVE);
     _pack_initialized = TRUE;
     _do_init_pack = FALSE;
 }
@@ -98,10 +98,10 @@ static bool _freeze_carry(object_type *o_ptr, bool selita)
     object_desc(o_name, o_ptr, OD_COLOR_CODED);
     slot = inv_add(_igor_cold_pack, o_ptr);
     if (slot)
-        msg_format("You freeze %s.", o_name);
+        msg_format("你冷冻了%s。", o_name);
     else if (selita)
     {
-        msg_format("There is no room in your ice bag.");
+        msg_format("你的冰袋里没有空间了。");
         return FALSE;
     }
     else
@@ -125,7 +125,7 @@ static bool _igor_carry(object_type *o_ptr)
     if ((slot < 1) || (slot > _IB_MAX_ACTIVE)) return FALSE;
     if ((slot == _IB_HANDS) && (psion_weapon_graft()))
     {
-        msg_format("The weapon fused to your arm prevents you from replacing your hands!");
+        msg_format("融合在你手臂上的武器使你无法替换双手！");
         return FALSE;
     }
     ulos = inv_obj(_igor_body, slot);
@@ -135,7 +135,7 @@ static bool _igor_carry(object_type *o_ptr)
         {
             char o_name[MAX_NLEN];
             object_desc(o_name, ulos, OD_COLOR_CODED);
-            msg_format("You cannot replace your cursed %s!", o_name);
+            msg_format("你无法替换你被诅咒的%s！", o_name);
             return FALSE;
         }
         _freeze_carry(ulos, FALSE);
@@ -146,7 +146,7 @@ static bool _igor_carry(object_type *o_ptr)
         static const char *kuvaukset[_IB_MAX_ACTIVE] = {"head", "eyes", "ears", "stomach", "heart", "hands", "legs"};
         char o_name[MAX_NLEN];
         object_desc(o_name, o_ptr, OD_COLOR_CODED);
-        msg_format("You replace your %s with %s!", kuvaukset[slot - 1], o_name);
+        msg_format("你将你的%s替换为%s！", kuvaukset[slot - 1], o_name);
     }
     inv_add_at(_igor_body, o_ptr, slot);
     
@@ -167,13 +167,13 @@ static bool _equip_body_part(bool surgery)
     obj_prompt_t prompt = {0};
     if (surgery)
     {
-        prompt.prompt = "Use which body part?";
-        prompt.error = "You have no available body parts.";
+        prompt.prompt = "使用哪个身体部位？";
+        prompt.error = "你没有可用的身体部位。";
     }
     else
     {
-        prompt.prompt = "Freeze which body part?";
-        prompt.error = "You have no body parts to freeze.";
+        prompt.prompt = "冷冻哪个身体部位？";
+        prompt.error = "你没有可冷冻的身体部位。";
     }
     prompt.filter = _object_is_body_part;
     prompt.where[0] = INV_PACK;
@@ -259,8 +259,8 @@ bool igor_dissect_corpse(object_type *w_ptr)
 
     if (!w_ptr)
     {
-        prompt.prompt = "Dissect which corpse?";
-        prompt.error = "You have no corpses to dissect.";
+        prompt.prompt = "解剖哪具尸体？";
+        prompt.error = "你没有可解剖的尸体。";
         prompt.filter = _object_is_corpse;
         prompt.where[0] = INV_PACK;
         prompt.where[1] = INV_FLOOR;
@@ -283,7 +283,7 @@ bool igor_dissect_corpse(object_type *w_ptr)
 
     if ((_wanted) && (!unique) && (!_wizard))
     {
-        if (!get_check("Really dissect a wanted corpse? ")) return FALSE;
+        if (!get_check("确认要解剖一具悬赏的尸体吗？")) return FALSE;
     }
 
     for (slot = 1; slot <= et_ptr->max; slot++)
@@ -323,7 +323,7 @@ bool igor_dissect_corpse(object_type *w_ptr)
 
         if ((_wanted) && (!unique)) _wanted = FALSE;
 
-        msg_format("You dissect the %s, but find nothing %s.", o_name, _wanted ? "useful" : "worth keeping");
+        msg_format("你解剖了%s，但没有发现任何%s。", o_name, _wanted ? "有用的东西" : "值得保留的东西");
         prompt.obj->number--;
         obj_release(prompt.obj, 0);
         if (_wanted) _ears_of(_pval); /* Keep the ears so we can turn them in */
@@ -961,8 +961,8 @@ static void _birth(void)
 
     if (spoiler_hack) return;
 
-    skills_innate_init("Bite", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
-    skills_innate_init("Claw", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("咬", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("抓", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
     py_birth_food();
     py_birth_light();
@@ -1061,7 +1061,7 @@ void _igor_calc_innate_attacks(void)
                     _bite.weight = 60;
                     calc_innate_blows(&_bite, 100);
                     _bite.msg = "You bite.";
-                    _bite.name = "Bite";
+                    _bite.name = "咬";
                     _bite.effect[0] = GF_MISSILE;
                     if (venom) _bite.effect[1] = GF_POIS;
                     if (psion_combat()) psion_combat_innate_blows(&_bite);
@@ -1137,7 +1137,7 @@ void _igor_calc_innate_attacks(void)
                     _claw.weight = 60;
                     calc_innate_blows(&_claw, 100);
                     _claw.msg = "You claw.";
-                    _claw.name = "Claw";
+                    _claw.name = "抓";
                     _claw.effect[0] = GF_MISSILE;
                     if (venom) _claw.effect[1] = GF_POIS;
                     if (psion_combat()) psion_combat_innate_blows(&_claw);
@@ -1154,7 +1154,7 @@ static void _igor_head_breathe_spell(int cmd, variant *res)
 {
     object_type *nuppi = inv_obj(_igor_body, _IB_HEAD);
     static gf_info_ptr gf = NULL;
-    static char elly_upper[32] = "Software Bugs", elly_lower[32] = "software bugs";
+    static char elly_upper[32] = "软件漏洞", elly_lower[32] = "software bugs";
     static int mika = 0;
     int pow = 1;
     /* This is ugly, but some elements have multi-part names that are hard to
@@ -1194,10 +1194,10 @@ static void _igor_head_breathe_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, format("Breathe %^s", elly_upper));
+        var_set_string(res, format("喷吐%^s", elly_upper));
         break;
     case SPELL_DESC:
-        var_set_string(res, format("Breathes %s at your opponent.", elly_lower));
+        var_set_string(res, format("向你的对手喷吐%s。", elly_lower));
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, pow));
@@ -1215,7 +1215,7 @@ static void _igor_head_breathe_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (get_fire_dir(&dir))
         {
-            msg_format("You breathe <color:%c>%s.</color>", gf ? attr_to_attr_char(gf->color) : 'w', elly_upper);
+            msg_format("你喷吐出<color:%c>%s。</color>", gf ? attr_to_attr_char(gf->color) : 'w', elly_upper);
             fire_ball(nuppi->xtra5, dir, pow, -1 - (p_ptr->lev / 20));
             var_set_bool(res, TRUE);
         }
@@ -1231,7 +1231,7 @@ static void _igor_stomach_breathe_spell(int cmd, variant *res)
 {
     object_type *tummy = inv_obj(_igor_body, _IB_STOMACH);
     static gf_info_ptr gf = NULL;
-    static char elly_upper[32] = "Software Bugs", elly_lower[32] = "software bugs";
+    static char elly_upper[32] = "软件漏洞", elly_lower[32] = "software bugs";
     static int mika = 0;
     int pow = 1;
     /* This is ugly, but some elements have multi-part names that are hard to
@@ -1281,10 +1281,10 @@ static void _igor_stomach_breathe_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, format("Breathe %^s", elly_upper));
+        var_set_string(res, format("喷吐%^s", elly_upper));
         break;
     case SPELL_DESC:
-        var_set_string(res, format("Breathes %s at your opponent.", elly_lower));
+        var_set_string(res, format("向你的对手喷吐%s。", elly_lower));
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, pow));
@@ -1302,7 +1302,7 @@ static void _igor_stomach_breathe_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (get_fire_dir(&dir))
         {
-            msg_format("You breathe <color:%c>%s.</color>", gf ? attr_to_attr_char(gf->color) : 'w', elly_upper);
+            msg_format("你喷吐出<color:%c>%s。</color>", gf ? attr_to_attr_char(gf->color) : 'w', elly_upper);
             fire_ball(tummy->xtra5, dir, pow, -1 - (p_ptr->lev / 20));
             var_set_bool(res, TRUE);
         }
@@ -1319,10 +1319,10 @@ void _dissect_corpse_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dissect Corpse");
+        var_set_string(res, "解剖尸体");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Cuts open a dead body, looking for a part worth salvaging. (Don't be too clumsy!)");
+        var_set_string(res, "切开一具尸体，寻找值得回收的身体部位。（不要太笨手笨脚！）");
         break;
     case SPELL_CAST:
         var_set_bool(res, igor_dissect_corpse(NULL));
@@ -1338,10 +1338,10 @@ void _replace_body_part_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Surgery");
+        var_set_string(res, "外科手术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Replaces one of your body parts with another. (This requires several turns...)");
+        var_set_string(res, "将你的某个身体部位替换为另一个。（这需要花费几个回合……）");
         break;
     case SPELL_CAST:
         var_set_bool(res, _equip_body_part(TRUE));
@@ -1379,10 +1379,10 @@ void _freeze_body_part_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Freeze Body Part");
+        var_set_string(res, "冷冻身体部位");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places an organ in your ice bag for later use.");
+        var_set_string(res, "将一个器官放入你的冰袋中以备后用。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _equip_body_part(FALSE));
@@ -1544,7 +1544,7 @@ static void _dump_body(doc_ptr doc)
 
     if (!_pack_initialized) return;
 
-    doc_insert(doc, "<topic:Body>===================================== <color:keypress>B</color>ody ====================================\n\n");
+    doc_insert(doc, "<topic:Body>===================================== 躯体 (<color:keypress>B</color>) ====================================\n\n");
     for (slot = 1; slot <= _IB_MAX_ACTIVE; slot++)
     {
         object_type *o_ptr = inv_obj(_igor_body, slot);
@@ -1582,7 +1582,7 @@ static void _dump_cold_pack(doc_ptr doc)
     {
         char o_name[MAX_NLEN];
 
-        doc_insert(doc, "<topic:Ice Bag>=================================== <color:keypress>I</color>ce Bag ===================================\n\n");
+        doc_insert(doc, "<topic:Ice Bag>=================================== 冰袋 (<color:keypress>I</color>) ===================================\n\n");
         for (slot = 1; slot <= _MAX_PACK_SLOTS; slot++)
         {
             object_type *o_ptr = inv_obj(_igor_cold_pack, slot);
@@ -1652,13 +1652,8 @@ race_t *igor_get_race(void)
 
     if (!init)
     {
-        me.name = "Igor";
-        me.desc = "The epitome of a self-made man, an Igor is generally easily recognizable by "
-                  "the ring of stitches around his neck, the tendency to limp with perfectly "
-                  "healthy legs, and the mysterious ability to appear suddenly "
-                  "and then disappear when the mob comes looking. An Igor is "
-                  "at home with lightning, and always carries a bag full of ice in case he "
-                  "should find something that needs to be kept cold.";
+        me.name = "伊戈尔";
+        me.desc = "作为“自我改造”的典范，伊戈尔通常很容易辨认：他们脖子上有一圈缝合的痕迹，即使用着完全健康的腿也总是习惯性地跛行，并且拥有神秘的能力，能够突然出现，又在暴徒找来时瞬间消失。伊戈尔非常适应闪电，并且总是随身带着一个装满冰块的袋子，以防他找到什么需要保冷的东西。";
 
         me.exp = 145;
         me.calc_bonuses = _calc_bonuses;

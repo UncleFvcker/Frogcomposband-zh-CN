@@ -77,7 +77,7 @@ void self_knowledge(void)
             flgs[j] |= tflgs[j];
     }
 
-    info[i++] = "Limits of maximum stats";
+    info[i++] = "最大属性上限";
 
     for (v_nr = 0; v_nr < 6; v_nr++)
     {
@@ -659,7 +659,7 @@ void self_knowledge(void)
     for (k = 1; k < 24; k++) prt("", k, 13);
 
     /* Label the information */
-    prt("     Your Attributes:", 1, 15);
+    prt("你的属性：", 1, 15);
 
 
     /* We will print on top of the map (column 13) */
@@ -671,7 +671,7 @@ void self_knowledge(void)
         /* Every 20 entries (lines 2 to 21), start over */
         if ((k == 22) && (j+1 < i))
         {
-            prt("-- more --", k, 15);
+            prt("-- 更多 --", k, 15);
 
             inkey();
             for (; k > 2; k--) prt("", k, 15);
@@ -679,7 +679,7 @@ void self_knowledge(void)
     }
 
     /* Pause */
-    prt("[Press any key to continue]", k, 13);
+    prt("[按任意键继续]", k, 13);
 
     inkey();
 
@@ -748,73 +748,73 @@ void report_magics(void)
     if (p_ptr->blind)
     {
         info2[i]  = report_magics_aux(p_ptr->blind);
-        info[i++] = "You cannot see";
+        info[i++] = "你看不见";
 
     }
     if (p_ptr->confused)
     {
         info2[i]  = report_magics_aux(p_ptr->confused);
-        info[i++] = "You are confused";
+        info[i++] = "你很困惑";
 
     }
     if (p_ptr->afraid)
     {
         info2[i]  = report_magics_aux(p_ptr->afraid);
-        info[i++] = "You are terrified";
+        info[i++] = "你感到恐惧";
 
     }
     if (p_ptr->poisoned)
     {
         info2[i]  = report_magics_aux(p_ptr->poisoned);
-        info[i++] = "You are poisoned";
+        info[i++] = "你中毒了";
 
     }
     if (p_ptr->image)
     {
         info2[i]  = report_magics_aux(p_ptr->image);
-        info[i++] = "You are hallucinating";
+        info[i++] = "你产生了幻觉";
 
     }
     if (p_ptr->blessed)
     {
         info2[i]  = report_magics_aux(p_ptr->blessed);
-        info[i++] = "You feel rightous";
+        info[i++] = "你感到正气凛然";
 
     }
     if (p_ptr->hero)
     {
         info2[i]  = report_magics_aux(p_ptr->hero);
-        info[i++] = "You feel heroic";
+        info[i++] = "你充满英雄气概";
 
     }
     if (p_ptr->shero)
     {
         info2[i]  = report_magics_aux(p_ptr->shero);
-        info[i++] = "You are in a battle rage";
+        info[i++] = "你正处于战斗狂怒中";
 
     }
     if (p_ptr->protevil)
     {
         info2[i]  = report_magics_aux(p_ptr->protevil);
-        info[i++] = "You are protected from evil";
+        info[i++] = "你受到防护邪恶的保护";
 
     }
     if (p_ptr->shield)
     {
         info2[i]  = report_magics_aux(p_ptr->shield);
-        info[i++] = "You are protected by a mystic shield";
+        info[i++] = "你受到神秘护盾的保护";
 
     }
     if (p_ptr->invuln)
     {
         info2[i]  = report_magics_aux(p_ptr->invuln);
-        info[i++] = "You are invulnerable";
+        info[i++] = "你处于无敌状态";
 
     }
     if (p_ptr->wraith_form)
     {
         info2[i]  = report_magics_aux(p_ptr->wraith_form);
-        info[i++] = "You are incorporeal";
+        info[i++] = "你处于无实体状态";
 
     }
     if (p_ptr->special_attack & ATTACK_CONFUSE)
@@ -826,43 +826,43 @@ void report_magics(void)
     if (p_ptr->word_recall)
     {
         info2[i]  = report_magics_aux(p_ptr->word_recall);
-        info[i++] = "You are waiting to be recalled";
+        info[i++] = "你正在等待被召回";
 
     }
     if (p_ptr->alter_reality)
     {
         info2[i]  = report_magics_aux(p_ptr->alter_reality);
-        info[i++] = "You waiting to be altered";
+        info[i++] = "你正在等待被改变";
 
     }
     if (p_ptr->oppose_acid)
     {
         info2[i]  = report_magics_aux(p_ptr->oppose_acid);
-        info[i++] = "You are resistant to acid";
+        info[i++] = "你对酸有抗性";
 
     }
     if (p_ptr->oppose_elec)
     {
         info2[i]  = report_magics_aux(p_ptr->oppose_elec);
-        info[i++] = "You are resistant to lightning";
+        info[i++] = "你对闪电有抗性";
 
     }
     if (p_ptr->oppose_fire)
     {
         info2[i]  = report_magics_aux(p_ptr->oppose_fire);
-        info[i++] = "You are resistant to fire";
+        info[i++] = "你对火有抗性";
 
     }
     if (p_ptr->oppose_cold)
     {
         info2[i]  = report_magics_aux(p_ptr->oppose_cold);
-        info[i++] = "You are resistant to cold";
+        info[i++] = "你对冷有抗性";
 
     }
     if (p_ptr->oppose_pois)
     {
         info2[i]  = report_magics_aux(p_ptr->oppose_pois);
-        info[i++] = "You are resistant to poison";
+        info[i++] = "你对毒有抗性";
 
     }
 
@@ -873,7 +873,7 @@ void report_magics(void)
     for (k = 1; k < 24; k++) prt("", k, 13);
 
     /* Label the information */
-    prt("     Your Current Magic:", 1, 15);
+    prt("你当前的魔法：", 1, 15);
 
 
     /* We will print on top of the map (column 13) */
@@ -888,7 +888,7 @@ void report_magics(void)
         /* Every 20 entries (lines 2 to 21), start over */
         if ((k == 22) && (j + 1 < i))
         {
-            prt("-- more --", k, 15);
+            prt("-- 更多 --", k, 15);
 
             inkey();
             for (; k > 2; k--) prt("", k, 15);
@@ -896,7 +896,7 @@ void report_magics(void)
     }
 
     /* Pause */
-    prt("[Press any key to continue]", k, 13);
+    prt("[按任意键继续]", k, 13);
 
     inkey();
 
@@ -981,7 +981,7 @@ bool detect_traps(int range, bool known)
     /* Describe */
     if (detect)
     {
-        msg_print("You sense the presence of traps!");
+        msg_print("你感觉到了陷阱的存在！");
     }
 
     /* Result */
@@ -1001,7 +1001,7 @@ bool detect_doors(int range)
     /* Describe */
     if (detect)
     {
-        msg_print("You sense the presence of doors!");
+        msg_print("你感觉到了门的存在！");
     }
 
     /* Result */
@@ -1021,7 +1021,7 @@ bool detect_stairs(int range)
     /* Describe */
     if (detect)
     {
-        msg_print("You sense the presence of stairs!");
+        msg_print("你感觉到了楼梯的存在！");
     }
 
     /* Result */
@@ -1041,7 +1041,7 @@ bool detect_treasure(int range)
     /* Describe */
     if (detect)
     {
-        msg_print("You sense the presence of buried treasure!");
+        msg_print("你感觉到了埋藏的宝藏的存在！");
     }
 
     /* Result */
@@ -1098,7 +1098,7 @@ bool detect_objects_gold(int range)
     /* Describe */
     if (detect)
     {
-        msg_print("You sense the presence of treasure!");
+        msg_print("你感觉到了宝藏的存在！");
 
     }
 
@@ -1162,7 +1162,7 @@ bool detect_objects_normal(int range)
     /* Describe */
     if (detect)
     {
-        msg_print("You sense the presence of objects!");
+        msg_print("你感觉到了物品的存在！");
 
     }
 
@@ -1257,7 +1257,7 @@ bool detect_objects_magic(int range)
     /* Describe */
     if (detect)
     {
-        msg_print("You sense the presence of magic objects!");
+        msg_print("你感觉到了魔法物品的存在！");
 
     }
 
@@ -1317,7 +1317,7 @@ bool detect_monsters_normal(int range)
     if (flag)
     {
         /* Describe result */
-        msg_print("You sense the presence of monsters!");
+        msg_print("你感觉到了怪物的存在！");
 
     }
 
@@ -1382,7 +1382,7 @@ bool detect_monsters_invis(int range)
     if (flag)
     {
         /* Describe result */
-        msg_print("You sense the presence of invisible creatures!");
+        msg_print("你感觉到了隐形生物的存在！");
 
     }
 
@@ -1442,7 +1442,7 @@ bool detect_monsters_evil(int range)
     if (flag)
     {
         /* Describe result */
-        msg_print("You sense the presence of evil creatures!");
+        msg_print("你感觉到了邪恶生物的存在！");
 
     }
 
@@ -1507,7 +1507,7 @@ bool detect_monsters_nonliving(int range)
     if (flag)
     {
         /* Describe result */
-        msg_print("You sense the presence of unnatural beings!");
+        msg_print("你感觉到了不自然生物的存在！");
 
     }
 
@@ -1606,7 +1606,7 @@ bool detect_monsters_magical(int range)
     /* Describe */
     if (flag)
     {
-        msg_print("You sense the presence of magical foes!");
+        msg_print("你感觉到了魔法敌人的存在！");
     }
 
     /* Result */
@@ -1667,7 +1667,7 @@ bool detect_monsters_mind(int range)
     if (flag)
     {
         /* Describe result */
-        msg_print("You sense the presence of someone's mind!");
+        msg_print("你感觉到了某人心智的存在！");
 
     }
 
@@ -1732,7 +1732,7 @@ bool detect_monsters_string(int range, cptr Match)
     if (flag)
     {
         /* Describe result */
-        msg_print("You sense the presence of monsters!");
+        msg_print("你感觉到了怪物的存在！");
 
     }
 
@@ -1804,7 +1804,7 @@ bool detect_monsters_xxx(int range, u32b match_flag)
         }
 
         /* Describe result */
-        msg_format("You sense the presence of %s!", desc_monsters);
+        msg_format("你感觉到了 %s 的存在！", desc_monsters);
 
         msg_print(NULL);
     }
@@ -2042,8 +2042,8 @@ void aggravate_monsters(int who)
     }
 
     /* Messages */
-    if (speed) msg_print("You feel a sudden stirring nearby!");
-    else if (sleep) msg_print("You hear a sudden stirring in the distance!");
+    if (speed) msg_print("你感觉到附近突然有一阵骚动！");
+    else if (sleep) msg_print("你听到远处突然传来一阵骚动！");
     if (p_ptr->riding) p_ptr->update |= PU_BONUS;
 }
 
@@ -2090,21 +2090,21 @@ bool genocide_aux(int m_idx, int power, bool player_cast, int dam_side, cptr spe
         monster_desc(m_name, m_ptr, 0);
         if (see_m)
         {
-            msg_format("%^s is unaffected.", m_name);
+            msg_format("%^s 不受影响。", m_name);
         }
         if (MON_CSLEEP(m_ptr))
         {
             (void)set_monster_csleep(m_idx, 0);
             if (m_ptr->ml)
             {
-                msg_format("%^s wakes up.", m_name);
+                msg_format("%^s 醒了。", m_name);
             }
         }
         if (is_friendly(m_ptr) && !is_pet(m_ptr))
         {
             if (see_m)
             {
-                msg_format("%^s gets angry!", m_name);
+                msg_format("%^s 生气了！", m_name);
             }
             set_hostile(m_ptr);
         }
@@ -2156,7 +2156,7 @@ bool symbol_genocide(int power, bool player_cast)
     /* Mega-Hack -- Get a monster symbol */
     while (!okay)
     {
-        if (!get_com("Choose a monster species (by symbol; '?' for help) to genocide: ", &typ, FALSE))
+        if (!get_com("选择要灭绝的怪物种类 (通过符号；输入 '?' 获取帮助):", &typ, FALSE))
             return FALSE;
         if (typ == 'n') /* naga hack */
         {
@@ -2189,7 +2189,7 @@ bool symbol_genocide(int power, bool player_cast)
         if (!m_ptr->r_idx) continue;
         if (r_ptr->d_char != typ) continue;
 
-        if (genocide_aux(i, power, player_cast, 4, "Genocide"))
+        if (genocide_aux(i, power, player_cast, 4, "灭绝"))
             do_virtue = TRUE;
     }
 
@@ -2227,7 +2227,7 @@ bool mass_genocide(int power, bool player_cast)
         if (m_ptr->cdis > MAX_SIGHT) continue;
 
         /* Note effect */
-        result |= genocide_aux(i, power, player_cast, 3, "Mass Genocide");
+        result |= genocide_aux(i, power, player_cast, 3, "群体灭绝");
     }
 
     if (result)
@@ -2268,7 +2268,7 @@ bool mass_genocide_undead(int power, bool player_cast)
         if (m_ptr->cdis > MAX_SIGHT) continue;
 
         /* Note effect */
-        result |= genocide_aux(i, power, player_cast, 3, "Annihilate Undead");
+        result |= genocide_aux(i, power, player_cast, 3, "湮灭死灵");
     }
 
     if (result)
@@ -2437,19 +2437,19 @@ bool destroy_area(int y1, int x1, int r, int power)
                         monster_desc(m_name, m_ptr, 0);
 
                         if (see_m)
-                            msg_format("%^s is unaffected.", m_name);
+                            msg_format("%^s 不受影响。", m_name);
 
                         if (MON_CSLEEP(m_ptr))
                         {
                             set_monster_csleep(c_ptr->m_idx, 0);
                             if (m_ptr->ml)
-                                msg_format("%^s wakes up.", m_name);
+                                msg_format("%^s 醒了。", m_name);
                         }
 
                         if (is_friendly(m_ptr) && !is_pet(m_ptr))
                         {
                             if (see_m)
-                                msg_format("%^s gets angry!", m_name);
+                                msg_format("%^s 生气了！", m_name);
                             set_hostile(m_ptr);
                         }
 
@@ -2506,7 +2506,7 @@ bool destroy_area(int y1, int x1, int r, int power)
                         {
                             char o_name[MAX_NLEN];
                             object_desc(o_name, o_ptr, (OD_NAME_ONLY | OD_STORE));
-                            msg_format("Artifact (%s) was *destroyed* during generation.", o_name);
+                            msg_format("神器 (%s) 在生成时被 *摧毁* 了。", o_name);
                         }
                     }
                     else if (random_artifacts && o_ptr->name3 && (!object_is_known(o_ptr) || in_generate))
@@ -2518,12 +2518,12 @@ bool destroy_area(int y1, int x1, int r, int power)
                         {
                             char o_name[MAX_NLEN];
                             object_desc(o_name, o_ptr, (OD_NAME_ONLY | OD_STORE));
-                            msg_format("Artifact (%s) was *destroyed* during generation.", o_name);
+                            msg_format("神器 (%s) 在生成时被 *摧毁* 了。", o_name);
                         }
                     }
                     else if (in_generate && cheat_peek && o_ptr->art_name)
                     {
-                        msg_print("One of the random artifacts was *destroyed* during generation.");
+                        msg_print("一件随机神器在生成时被 *摧毁* 了。");
                     }
                 }
             }
@@ -2639,7 +2639,7 @@ bool destroy_area(int y1, int x1, int r, int power)
         if (flag)
         {
             /* Message */
-            msg_print("There is a searing blast of light!");
+            msg_print("出现了一道灼热的闪光！");
 
             /* Blind the player */
             if (!res_save_default(RES_BLIND) && !res_save_default(RES_LITE))
@@ -2808,18 +2808,18 @@ bool earthquake_aux(int cy, int cx, int r, int m_idx)
         {
             case 1:
             {
-                if (tree) msg_print("The cave quakes! A tree falls on top of you!");
-                else msg_print("The cave ceiling collapses!");
+                if (tree) msg_print("洞穴在震动！一棵树砸在了你身上！");
+                else msg_print("洞穴天花板坍塌了！");
                 break;
             }
             case 2:
             {
-                msg_print("The cave floor twists in an unnatural way!");
+                msg_print("洞穴地板以一种不自然的方式扭曲了！");
                 break;
             }
             default:
             {
-                msg_print("The cave quakes! You are pummeled with debris!");
+                msg_print("洞穴在震动！你被碎石连续砸中！");
                 break;
             }
         }
@@ -2830,7 +2830,7 @@ bool earthquake_aux(int cy, int cx, int r, int m_idx)
         {
             if (!mut_present(MUT_EVASION) || one_in_(2))
             {
-                msg_print("You are <color:v>severely crushed</color>!");
+                msg_print("你被 <color:v>严重压碎</color>！");
                 damage = 50 + damroll(3, 50);
                 (void)set_stun(p_ptr->stun + damroll(7, 7), FALSE);
             }
@@ -2844,14 +2844,14 @@ bool earthquake_aux(int cy, int cx, int r, int m_idx)
             {
                 case 1:
                 {
-                    msg_print("You nimbly dodge the blast!");
+                    msg_print("你敏捷地躲开了爆炸！");
                     break;
                 }
                 case 2:
                 {
                     if (!mut_present(MUT_EVASION) || one_in_(2))
                     {
-                        msg_print("You are <color:R>bashed by rubble</color>!");
+                        msg_print("你被 <color:R>碎石猛击</color>！");
                         damage = damroll(10, 4);
                         (void)set_stun(p_ptr->stun + damroll(5, 5), FALSE);
                     }
@@ -2861,7 +2861,7 @@ bool earthquake_aux(int cy, int cx, int r, int m_idx)
                 {
                     if (!mut_present(MUT_EVASION) || one_in_(2))
                     {
-                        msg_print("You are <color:R>crushed between the floor and ceiling</color>!");
+                        msg_print("你被 <color:R>压在天花板和地板之间</color>！");
                         damage = damroll(10, 4);
                         (void)set_stun(p_ptr->stun + damroll(5, 5), FALSE);
                     }
@@ -2977,7 +2977,7 @@ bool earthquake_aux(int cy, int cx, int r, int m_idx)
                     monster_desc(m_name, m_ptr, 0);
 
                     /* Scream in pain */
-                    if (mon_show_msg(m_ptr)) msg_format("%^s wails out in pain!", m_name);
+                    if (mon_show_msg(m_ptr)) msg_format("%^s 痛苦地哀嚎！", m_name);
 
                     /* Take damage from the quake */
                     damage = (sn ? damroll(4, 8) : (m_ptr->hp + 1));
@@ -2991,7 +2991,7 @@ bool earthquake_aux(int cy, int cx, int r, int m_idx)
                     /* Delete (not kill) "dead" monsters */
                     if (m_ptr->hp < 0)
                     {
-                        if (mon_show_msg(m_ptr)) msg_format("%^s is embedded in the rock!", m_name);
+                        if (mon_show_msg(m_ptr)) msg_format("%^s 被镶嵌在了岩石里！", m_name);
 
                         /* Delete the monster */
                         delete_monster(yy, xx);
@@ -3182,7 +3182,7 @@ void discharge_minion(void)
     }
     if (!okay || p_ptr->riding)
     {
-        if (!get_check("You will blast all pets. Are you sure? "))
+        if (!get_check("这会炸到所有的宠物。你确定吗？"))
             return;
     }
     for (i = 1; i < m_max; i++)
@@ -3211,7 +3211,7 @@ void discharge_minion(void)
         {
             char m_name[80];
             monster_desc(m_name, m_ptr, 0x00);
-            msg_format("%^s resists being blasted, and runs away.", m_name);
+            msg_format("%^s 抵抗了爆炸，逃跑了。", m_name);
             delete_monster_idx(i);
             continue;
         }
@@ -3297,7 +3297,7 @@ static void cave_temp_room_lite(void)
                     monster_desc(m_name, m_ptr, 0);
 
                     /* Dump a message */
-                    msg_format("%^s wakes up.", m_name);
+                    msg_format("%^s 醒了。", m_name);
                 }
             }
         }
@@ -3635,14 +3635,14 @@ bool lite_area(int dam, int rad)
 
     if (d_info[dungeon_type].flags1 & DF1_DARKNESS)
     {
-        msg_print("The darkness of this dungeon absorbs your light.");
+        msg_print("这个地下城的黑暗吸收了你的光。");
         return FALSE;
     }
 
     /* Hack -- Message */
     if (!p_ptr->blind)
     {
-        msg_print("You are surrounded by a white light.");
+        msg_print("你被白光包围了。");
 
     }
 
@@ -3668,7 +3668,7 @@ bool unlite_area(int dam, int rad)
     /* Hack -- Message */
     if (!p_ptr->blind)
     {
-        msg_print("Darkness surrounds you.");
+        msg_print("黑暗包围了你。");
 
     }
 
@@ -3875,7 +3875,7 @@ bool teleport_swap(int dir)
 
     if (p_ptr->anti_tele)
     {
-        msg_print("A mysterious force prevents you from teleporting!");
+        msg_print("一股神秘的力量阻止了你传送！");
         equip_learn_flag(OF_NO_TELE);
         return FALSE;
     }
@@ -3883,13 +3883,13 @@ bool teleport_swap(int dir)
     /* Require clean line of sight */
     if (!very_clean_shot(py, px, ty, tx))
     {
-        msg_print("You cannot see your target well enough.");
+        msg_print("你看不清你的目标。");
         return FALSE;
     }
 
     if (!c_ptr->m_idx || (c_ptr->m_idx == p_ptr->riding))
     {
-        msg_print("You can't trade places with that!");
+        msg_print("你不能和那个交换位置！");
 
 
         /* Failure */
@@ -3898,7 +3898,7 @@ bool teleport_swap(int dir)
 
     if ((c_ptr->info & CAVE_ICKY) || (distance(ty, tx, py, px) > p_ptr->lev * 3 / 2 + 10))
     {
-        msg_print("Failed to swap.");
+        msg_print("交换失败。");
 
 
         /* Failure */
@@ -3912,7 +3912,7 @@ bool teleport_swap(int dir)
 
     if (r_ptr->flagsr & RFR_RES_TELE)
     {
-        msg_print("Your teleportation is blocked!");
+        msg_print("你的传送被阻挡了！");
         mon_lore_r(m_ptr, RFR_RES_TELE);
         return FALSE;
     }
@@ -4264,7 +4264,7 @@ bool activate_ty_curse(bool stop_ty, int *count)
         case 28: case 29:
             if (!(*count))
             {
-                msg_print("The ground trembles...");
+                msg_print("地面在震颤……");
 
                 earthquake(py, px, 5 + randint0(10));
                 if (!one_in_(6)) break;
@@ -4273,7 +4273,7 @@ bool activate_ty_curse(bool stop_ty, int *count)
             if (!(*count))
             {
                 int dam = damroll(10, 10);
-                msg_print("A portal opens to a plane of raw mana!");
+                msg_print("一道通往纯粹法力位面的传送门打开了！");
 
                 project(0, 8, py, px, dam, GF_MANA, flg);
                 take_hit(DAMAGE_NOESCAPE, dam, "released pure mana");
@@ -4282,14 +4282,14 @@ bool activate_ty_curse(bool stop_ty, int *count)
         case 32: case 33:
             if (!(*count))
             {
-                msg_print("Space warps about you!");
+                msg_print("你周围的空间扭曲了！");
 
                 teleport_player(damroll(10, 10), TELEPORT_PASSIVE);
                 if (randint0(13)) (*count) += activate_hi_summon(py, px, FALSE);
                 if (!one_in_(6)) break;
             }
         case 34:
-            msg_print("You feel a surge of energy!");
+            msg_print("你感到一股能量涌现！");
 
             wall_breaker();
             if (!randint0(7))
@@ -4308,7 +4308,7 @@ bool activate_ty_curse(bool stop_ty, int *count)
             (*count) += summon_specific(0, py, px, dun_level, 0, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE | PM_NO_PET));
             if (!one_in_(6)) break;
         case 10: case 11: case 12:
-            msg_print("You feel your life draining away...");
+            msg_print("你感觉你的生命正在流逝……");
 
             lose_exp(p_ptr->exp / 16);
             if (!one_in_(6)) break;
@@ -4319,7 +4319,7 @@ bool activate_ty_curse(bool stop_ty, int *count)
             }
             else
             {
-                msg_print("You feel like a statue!");
+                msg_print("你感觉自己像一尊雕像！");
 
                 if (p_ptr->free_act)
                 {
@@ -4337,7 +4337,7 @@ bool activate_ty_curse(bool stop_ty, int *count)
         case 24:
             if (!never_forget)
             {
-                msg_print("Huh? Who am I? What am I doing here?");
+                msg_print("啊？我是谁？我在哪？");
 
                 lose_all_info();
                 if (!one_in_(6)) break;
@@ -4666,7 +4666,7 @@ bool kawarimi(bool success)
 
     if (!success && one_in_(3))
     {
-        msg_print("Failed! You could not escape.");
+        msg_print("失败！你无法逃脱。");
         p_ptr->special_defense &= ~(NINJA_KAWARIMI);
         p_ptr->redraw |= (PR_STATUS);
         return FALSE;
@@ -4687,8 +4687,8 @@ bool kawarimi(bool success)
         drop_near(&forge, -1, y, x);
     }
 
-    if (success) msg_print("You have escaped just before the attack hit you.");
-    else msg_print("Failed! You are hit by the attack.");
+    if (success) msg_print("你在攻击命中前及时逃脱了。");
+    else msg_print("失败！你被攻击击中了。");
 
     p_ptr->special_defense &= ~(NINJA_KAWARIMI);
     p_ptr->redraw |= (PR_STATUS);
@@ -4726,7 +4726,7 @@ bool rush_attack(int rng, bool *mdeath)
 
         if (!los(ty, tx, py, px))
         {
-            msg_format("%^s is not in your line of sight.", duelist_current_challenge());
+            msg_format("%^s 不在你的视线内。", duelist_current_challenge());
             return FALSE;
         }
     }
@@ -4783,11 +4783,11 @@ bool rush_attack(int rng, bool *mdeath)
         {
             if (tm_idx)
             {
-                msg_print("Failed!");
+                msg_print("失败！");
             }
             else
             {
-                msg_print("You can't move to that place.");
+                msg_print("你不能移动到那个地方。");
             }
 
             /* Exit loop */
@@ -4805,7 +4805,7 @@ bool rush_attack(int rng, bool *mdeath)
 
         if (tm_idx != cave[ny][nx].m_idx)
         {
-            msg_format("There is %s in the way!", m_ptr->ml ? (tm_idx ? "another monster" : "a monster") : "someone");
+            msg_format("有%s挡住了路！", m_ptr->ml ? (tm_idx ? "另一只怪物" : "一只怪物") : "某人");
         }
         else if (!player_bold(ty, tx))
         {
@@ -4814,7 +4814,7 @@ bool rush_attack(int rng, bool *mdeath)
 
             /* Get the monster name (BEFORE polymorphing) */
             monster_desc(m_name, m_ptr, 0);
-            msg_format("You quickly jump in and attack %s!", m_name);
+            msg_format("你快速冲上前并攻击了 %s！", m_name);
         }
 
         if (!player_bold(ty, tx)) teleport_player_to(ty, tx, TELEPORT_NONMAGICAL | TELEPORT_RUSH_ATTACK);

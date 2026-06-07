@@ -11,7 +11,7 @@ void pack_init(void)
     inv_free(_inv);
     vec_free(_overflow);
 
-    _inv = inv_alloc("Inventory", INV_PACK, pack_max());
+    _inv = inv_alloc("物品栏", INV_PACK, pack_max());
     _overflow = vec_alloc(free);
 }
 
@@ -97,11 +97,11 @@ void pack_get(obj_ptr obj)
 
         if ((p_ptr->prace == RACE_WEREWOLF) && (strpos("silver", name)))
         {
-            msg_print("You carefully avoid touching a pile of silver coins.");
+            msg_print("你小心翼翼地避免碰到那一堆银币。");
         }
         else
         {
-            msg_format("You collect %d gold pieces' worth of %s.",
+            msg_format("你收集了价值 %d 金币的%s。",
                value, name);
 
             sound(SOUND_SELL);
@@ -177,7 +177,7 @@ static bool _get_floor(inv_ptr floor)
 
     /* Prompt user for multiple floor objects */
     msg_print(NULL); /* Clear Autopicker Msg Spam */
-    prompt.prompt = "Get which item (<color:keypress>*</color> for all)? ";
+    prompt.prompt = "要拾取哪件物品 (<color:keypress>*</color> 全选)？";
     prompt.where[0] = INV_FLOOR;
     prompt.cmd_handler = _get_cmd_handler;
 
@@ -262,7 +262,7 @@ void pack_describe(obj_ptr obj)
     assert(1 <= obj->loc.slot && obj->loc.slot <= 26);
 
     object_desc(name, obj, OD_COLOR_CODED);
-    msg_format("You have %s (%c).", name, slot_label(obj->loc.slot));
+    msg_format("你获得了%s (%c)。", name, slot_label(obj->loc.slot));
 }
 
 void pack_remove(slot_t slot)
@@ -411,11 +411,11 @@ bool pack_overflow(void)
         {
             disturb(0, 0);
             msg_boundary();
-            cmsg_print(TERM_VIOLET, "Your pack overflows:");
+            cmsg_print(TERM_VIOLET, "你的背包满了：");
             result = TRUE;
         }
         object_desc(name, obj, OD_COLOR_CODED);
-        msg_format("You drop %s.", name);
+        msg_format("你丢下了%s。", name);
         drop_near(obj, 0, py, px);
         free(obj);
     }

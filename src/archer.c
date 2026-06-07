@@ -13,8 +13,8 @@ static bool _create_arrows(void)
     object_type  forge;
     char         name[MAX_NLEN];
 
-    prompt.prompt = "Convert which item?";
-    prompt.error = "You have no item to convert.";
+    prompt.prompt = "转化哪件物品？";
+    prompt.error = "你没有可以转化的物品。";
     prompt.filter = _create_ammo_p;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -31,7 +31,7 @@ static bool _create_arrows(void)
     forge.discount = 99;
 
     object_desc(name, &forge, OD_COLOR_CODED);
-    msg_format("You make %s.", name);
+    msg_format("你制造了%s。", name);
     pack_carry(&forge);
 
     stats_on_use(prompt.obj, 1);
@@ -46,8 +46,8 @@ static bool _create_bolts(void)
     object_type  forge;
     char         name[MAX_NLEN];
 
-    prompt.prompt = "Convert which item?";
-    prompt.error = "You have no item to convert.";
+    prompt.prompt = "转化哪件物品？";
+    prompt.error = "你没有可以转化的物品。";
     prompt.filter = _create_ammo_p;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -64,7 +64,7 @@ static bool _create_bolts(void)
     forge.discount = 99;
 
     object_desc(name, &forge, OD_COLOR_CODED);
-    msg_format("You make %s.", name);
+    msg_format("你制造了%s。", name);
     pack_carry(&forge);
 
     stats_on_use(prompt.obj, 1);
@@ -89,13 +89,13 @@ static bool _create_shots(void)
 
     if (!have_flag(f_info[get_feat_mimic(c_ptr)].flags, FF_CAN_DIG))
     {
-        msg_print("You need a pile of rubble.");
+        msg_print("你需要一堆碎石。");
         return FALSE;
     }
 
     if (!cave_have_flag_grid(c_ptr, FF_CAN_DIG) || !cave_have_flag_grid(c_ptr, FF_HURT_ROCK))
     {
-        msg_print("You failed to make ammo.");
+        msg_print("你制造弹药失败了。");
         return FALSE;
     }
 
@@ -107,7 +107,7 @@ static bool _create_shots(void)
     forge.discount = 99;
 
     object_desc(name, &forge, OD_COLOR_CODED);
-    msg_format("You make %s.", name);
+    msg_format("你制造了%s。", name);
     pack_carry(&forge);
 
     cave_alter_feat(y, x, FF_HURT_ROCK);
@@ -122,12 +122,12 @@ static bool _create_ammo(void)
 
     if (p_ptr->confused)
     {
-        msg_print("You are too confused!");
+        msg_print("你太困惑了！");
         return FALSE;
     }
     if (p_ptr->blind)
     {
-        msg_print("You can't see!");
+        msg_print("你看不见！");
         return FALSE;
     }
 
@@ -183,10 +183,10 @@ void create_ammo_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Create Ammo");
+        var_set_string(res, "制造弹药");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Create arrows, bolts or shots.");
+        var_set_string(res, "制造箭、弩箭或弹丸。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _create_ammo());
@@ -230,14 +230,8 @@ class_t *archer_get_class(void)
     skills_t bs = { 38,  24,  35,   4,  24,  16,  56,  82};
     skills_t xs = { 12,  10,  10,   0,   0,   0,  18,  36};
 
-        me.name = "Archer";
-        me.desc = "Archers are to bows what warriors are to melee. They are the best "
-                    "class around with any bow, crossbow, or sling. They need a lot of "
-                    "ammunition, but will learn how to make it from junk found in the "
-                    "dungeon. An archer is better than a warrior at stealth, "
-                    "perception, searching and magical devices.\n \n"
-                    "Archers have a class power - 'Create Ammo' - which creates pebbles "
-                    "or shots from rubble, and arrows and crossbow bolts from bones.";
+        me.name = "弓箭手";
+        me.desc = "弓箭手之于弓如同战士之于近战。他们是所有使用弓、十字弩或投石索的职业中最优秀的。他们需要大量的弹药，但会学习如何从地下城中发现的垃圾里制造弹药。弓箭手在潜行、察觉、搜索和使用魔法装置方面比战士更强。\n \n弓箭手拥有一项职业能力——“制造弹药”——可以把碎石转化成石子或弹丸，也可以把骨骸转化成箭和弩箭。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] = -1;

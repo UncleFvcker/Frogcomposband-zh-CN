@@ -216,25 +216,25 @@ static void _displayInfusions(rect_t display)
 			doc_insert(doc, buf);
 
 			if (DC <= alcskil){ // can do
-				 doc_printf(doc, "<tab:%d>Cost: %4d (%s)  Lvl: <color:G>%3d</color>\n", display.cx - 32, _FindFormula(o_ptr->sval)->cost, _tiername[tier], DC);
+				 doc_printf(doc, "<tab:%d>费用: %4d (%s) 等级: <color:G>%3d</color>\n", display.cx - 32, _FindFormula(o_ptr->sval)->cost, _tiername[tier], DC);
 			} 
 			else if (DC == 999){ // can't do ever
-				doc_printf(doc, "<tab:%d><color:r>Irreproducible</color>\n",display.cx - 22);
+				doc_printf(doc, "<tab:%d><color:r>不可复制</color>\n",display.cx - 22);
 			}
 			else {
-				doc_printf(doc, "<tab:%d>Cost: %4d (%s)  Lvl: <color:R>%3d</color>\n", display.cx - 32, _FindFormula(o_ptr->sval)->cost, _tiername[tier], DC);
+				doc_printf(doc, "<tab:%d>费用: %4d (%s) 等级: <color:R>%3d</color>\n", display.cx - 32, _FindFormula(o_ptr->sval)->cost, _tiername[tier], DC);
 			}
 
 			/*doc_printf(doc, "<tab:%d>SP: %3d.%2.2d\n", display.cx - 12, o_ptr->xtra5 / 100, o_ptr->xtra5 % 100);*/
 		}
 		else
-			doc_insert_text(doc, TERM_L_DARK, "(None)\n");
+			doc_insert_text(doc, TERM_L_DARK, "(无)\n");
 	}
 
 
-	doc_printf(doc, "\nAlchemist skill: <color:y>%3d%</color> \n", _AlchemistSkill());
-	doc_printf(doc, "Energy cost: <color:B>%7d%</color> \n", alchemist_infusion_energy_use());
-	doc_printf(doc, "\nChemical stock: \n");
+	doc_printf(doc, "\n炼金技能: <color:y>%3d%%</color> \n", _AlchemistSkill());
+	doc_printf(doc, "能量消耗: <color:B>%7d%%</color> \n", alchemist_infusion_energy_use());
+	doc_printf(doc, "\n化学试剂库存: \n");
 		doc_printf(doc, "<tab:4><color:U>%s: %5d</color> \n", _tiername[_CTIER0], _CHEM[_CTIER0]);
 		doc_printf(doc, "<tab:4><color:o>%s: %5d</color> \n", _tiername[_CTIER1], _CHEM[_CTIER1]);
 		doc_printf(doc, "<tab:4><color:v>%s: %5d</color> \n", _tiername[_CTIER2], _CHEM[_CTIER2]);
@@ -360,12 +360,12 @@ object_type *_chooseInfusion(cptr verb, int tval, int options)
 	if (result)
 	{
 		REPEAT_PUSH(I2A(slot));
-		if ((toisto) && (result->number > 0) && ((streq("Use", verb)) || (streq("Reproduce", verb))))
+		if ((toisto) && (result->number > 0) && ((streq("使用", verb)) || (streq("复制", verb))))
 		{ /* Inform player */
 			char o_name[MAX_NLEN];
 			result->number--;
 			object_desc(o_name, result, OD_COLOR_CODED);
-			msg_format("You have %s.", o_name);
+			msg_format("你有%s。", o_name);
 			result->number++;
 		}
 	}
@@ -387,7 +387,7 @@ void _use_infusion(object_type* o_ptr, int overdose)
 	if (o_ptr->number < uses || o_ptr->number == 0)
 	{
 		if (flush_failure) flush();
-		msg_print("You do not have enough infusions.");
+		msg_print("你没有足够的萃取液。");
 		return;
 	}
 
@@ -427,7 +427,7 @@ void _use_infusion(object_type* o_ptr, int overdose)
 
 void alchemist_browse(void)
 {
-	object_type *o_ptr = _chooseInfusion("Browse", TV_POTION, _ALLOW_SWITCH | _ALLOW_EXCHANGE);
+	object_type *o_ptr = _chooseInfusion("浏览", TV_POTION, _ALLOW_SWITCH | _ALLOW_EXCHANGE);
 	if (o_ptr)
 		obj_display(o_ptr);
 }
@@ -438,7 +438,7 @@ void alchemist_cast(int tval)
 
 	if (!fear_allow_magic())
 	{
-		msg_print("You are too scared!");
+		msg_print("你太害怕了！");
 		energy_use = alchemist_infusion_energy_use();
 		return;
 	}
@@ -446,7 +446,7 @@ void alchemist_cast(int tval)
 	if (!tval)
 		tval = TV_POTION;
 
-	o_ptr = _chooseInfusion("Use", tval, _ALLOW_SWITCH | _ALLOW_EXCHANGE);
+	o_ptr = _chooseInfusion("使用", tval, _ALLOW_SWITCH | _ALLOW_EXCHANGE);
 	if (o_ptr)
 	{
 		_use_infusion(o_ptr, 1);
@@ -462,8 +462,8 @@ static bool create_infusion(void)
 	bool already_slotted;
 	obj_prompt_t prompt = {0};
 
-	prompt.prompt = "Create infusion from which potions?";
-	prompt.error = "You have nothing to create infusions from.";
+	prompt.prompt = "要用哪些药水来制造萃取液？";
+	prompt.error = "你没有可以用来制造萃取液的物品。";
 	prompt.filter = object_is_potion;
 	prompt.where[0] = INV_PACK;
 	prompt.where[1] = INV_FLOOR;
@@ -480,7 +480,7 @@ static bool create_infusion(void)
 	}
 
 	if (!already_slotted){
-		dest_ptr = _chooseInfusion("Replace", prompt.obj->tval, _ALLOW_EMPTY);
+		dest_ptr = _chooseInfusion("替换", prompt.obj->tval, _ALLOW_EMPTY);
 	}
 
 	if (!dest_ptr)
@@ -488,7 +488,7 @@ static bool create_infusion(void)
 
 	if ((dest_ptr->k_idx) && (dest_ptr->number >= _INFUSION_CAP) && (dest_ptr->sval == prompt.obj->sval)) {
 		object_desc(o_name, dest_ptr, OD_OMIT_PREFIX);
-		msg_format("This slot is already full of %s.", o_name);
+		msg_format("这个槽位已经装满了%s。", o_name);
 		return FALSE;
 	}
 
@@ -506,7 +506,7 @@ static bool create_infusion(void)
 		infct = get_quantity_aux(NULL, MIN(prompt.obj->number, _INFUSION_CAP), MIN(prompt.obj->number, _INFUSION_CAP));
 	}
 
-	if (infct <= 0) { msg_format("You do nothing.");  return FALSE; }
+	if (infct <= 0) { msg_format("你什么也没做。");  return FALSE; }
 	
 
 	if (dest_ptr->sval == prompt.obj->sval && dest_ptr->number>0){ 
@@ -519,10 +519,10 @@ static bool create_infusion(void)
 			dest_ptr->number += infct;
 
 		if (capped == FALSE){
-			msg_format("You create %d additional infusion%s.", infct, ((infct == 1) ? "" : "s"));
+			msg_format("你额外制造了%d份萃取液%s。", infct, ((infct == 1) ? "" : "s"));
 		}
 		else {
-			msg_format("You create %d additional infusion%s, reaching the limit.", infct, ((infct == 1) ? "" : "s"));
+			msg_format("你额外制造了%d份萃取液%s，达到了上限。", infct, ((infct == 1) ? "" : "s"));
 		}
 	}
 	// limit the infusions
@@ -530,7 +530,7 @@ static bool create_infusion(void)
 		int oldct = prompt.obj->number;
 		prompt.obj->number = infct;
 		object_desc(o_name, prompt.obj, OD_COLOR_CODED);
-		msg_format("You create %s from %s.", infct == 1 ? "an infusion" : "infusions", o_name);
+		msg_format("你制造了%s，提取自%s。", infct == 1 ? "一份萃取液" : "多份萃取液", o_name);
 		prompt.obj->number = oldct;
 
 		*dest_ptr = *prompt.obj;
@@ -550,10 +550,10 @@ static void _create_infusion_spell(int cmd, variant *res)
 	switch (cmd)
 	{
 	case SPELL_NAME:
-		var_set_string(res, "Create Infusion");
+		var_set_string(res, "制造萃取液");
 		break;
 	case SPELL_DESC:
-		var_set_string(res, "Alchemically processes a potion to create an infusion - faster to use, and resistant to damage.");
+		var_set_string(res, "通过炼金术处理药水来制造萃取液——使用速度更快，且不易损坏。");
 		break;
 	case SPELL_CAST:
 		var_set_bool(res, create_infusion());
@@ -615,7 +615,7 @@ bool _evaporate_aux(object_type *o_ptr){
 		case SV_POTION_APPLE_JUICE:     desc = "It produces a blast of... apple juice?";	break;
 		case SV_POTION_SALT_WATER:      desc = "It produces a blast of mist, and some salt.";	break;
 		case SV_POTION_WATER:			desc = "It produces a blast of mist!";	break;
-		case SV_POTION_BLINDNESS:		desc = "It produces a cloud of darkness";	break;
+		case SV_POTION_BLINDNESS:		desc = "它会产生一团黑暗云雾";	break;
 		case SV_POTION_DETONATIONS:		desc = "It produces an explosion!";	break;
 		case SV_POTION_DEATH:			desc = "It produces a cloud of death!";	break;
 		case SV_POTION_RUINATION:		desc = "It produces an eerie white mist!";	break;
@@ -654,7 +654,7 @@ bool _evaporate_aux(object_type *o_ptr){
 	// Descriptions for sake of formatting.
 
 
-	if (blastType < 0) { msg_format("You cannot evaporate this potion."); return FALSE; }
+	if (blastType < 0) { msg_format("你不能挥发这瓶药水。"); return FALSE; }
 	if (!get_aim_dir(&dir)){ return FALSE; }
 
 	// some special stuff.
@@ -665,7 +665,7 @@ bool _evaporate_aux(object_type *o_ptr){
 
 	o_ptr->number = 1;
 	object_desc(o_name, o_ptr, OD_COLOR_CODED);
-	msg_format("You evaporate %s. %s", o_name, desc);
+	msg_format("你挥发了%s。%s", o_name, desc);
 	o_ptr->number = oldct;
 
 	fire_ball_aux(
@@ -701,8 +701,8 @@ static bool evaporate(void){
 
 	if (EvapInf == FALSE){
 		obj_prompt_t prompt = {0};
-		prompt.prompt = "Evaporate which potion?";
-		prompt.error = "You have nothing to evaporate.";
+		prompt.prompt = "挥发哪瓶药水？";
+		prompt.error = "你没有可以挥发的物品。";
 		prompt.filter = _object_is_evaporable;
 		prompt.where[0] = INV_PACK;
 		prompt.where[1] = INV_FLOOR;
@@ -721,11 +721,11 @@ static bool evaporate(void){
 	} 
 	else {
 		REPEAT_PUSH('m');
-		o_ptr = _chooseInfusion("Evaporate", TV_POTION, 0);
+		o_ptr = _chooseInfusion("挥发", TV_POTION, 0);
 		if (!o_ptr){ return FALSE; }
 
 		if (o_ptr->number < 1){
-			msg_format("There's nothing to evaporate.");
+			msg_format("没有什么可挥发的。");
 			return FALSE;
 		}
 
@@ -744,10 +744,10 @@ static void _evaporate_spell(int cmd, variant *res)
 	switch (cmd)
 	{
 	case SPELL_NAME:
-		var_set_string(res, "Evaporate");
+		var_set_string(res, "挥发");
 		break;
 	case SPELL_DESC:
-		var_set_string(res, "Evaporates a potion, creating a burst that may harm or benefit creatures.");
+		var_set_string(res, "挥发一瓶药水，产生可能对生物有害或有益的爆发效果。");
 		break;
 	case SPELL_CAST:
 		var_set_bool(res, evaporate());
@@ -767,7 +767,7 @@ bool alchemist_break_down_aux(object_type *o_ptr, int ct){
 	if (_CHEM[tier] + cost > _MAX_CHEM){
 		char prompt[255];
 		object_desc(o_name, o_ptr, OD_OMIT_PREFIX);
-		sprintf(prompt, "Really break down %s? %s chemicals will be lost due to lack of room. <color:y>[y/n]</color>", o_name, _CHEM[tier] == _MAX_CHEM ? "All" : "Some of the");
+		sprintf(prompt, "Really break down %s? %s chemicals will be lost due to lack of room. <color:y>[y/n]</color>", o_name, _CHEM[tier] == _MAX_CHEM ? "全部" : "部分");
 		if (msg_prompt(prompt, "ny", PROMPT_DEFAULT) == 'n')
 			return FALSE;
 	}
@@ -775,8 +775,8 @@ bool alchemist_break_down_aux(object_type *o_ptr, int ct){
 	newchem = MIN(cost, _MAX_CHEM - _CHEM[tier]);
 	_CHEM[tier] += newchem;
 
-	if (newchem) msg_format("You break down the potion%s and gain %d %s chemicals, for a total of %d.", (singular ? "" : "s"), newchem, _tiername[tier], _CHEM[tier]);
-	else msg_format("You break down the potion%s, losing all the chemicals in %s.", singular ? "" : "s", singular ? "it" : "them");
+	if (newchem) msg_format("你分解了药水%s并获得%d份%s化学试剂，总计%d份。", (singular ? "" : "s"), newchem, _tiername[tier], _CHEM[tier]);
+	else msg_format("你分解了药水%s，丢失了%s中所有的化学试剂。", singular ? "" : "s", singular ? "它" : "它们");
 	return TRUE;
 }
 
@@ -785,8 +785,8 @@ static bool break_down_potion(void){
 	obj_prompt_t prompt = {0};
 	bool success = FALSE;
 
-	prompt.prompt = "Break down which potions?";
-	prompt.error = "You have nothing to break down.";
+	prompt.prompt = "分解哪些药水？";
+	prompt.error = "你没有可以分解的物品。";
 	prompt.filter = object_is_potion;
 	prompt.where[0] = INV_PACK;
 	prompt.where[1] = INV_FLOOR;
@@ -799,9 +799,9 @@ static bool break_down_potion(void){
 	if (ct <= 0) return FALSE;
 
 	if (prompt.obj->sval == SV_POTION_WATER) {
-		if(randint0(100)<8) msg_print("It's just H2O, funny guy.");
-		else if (one_in_(12)) msg_print("You attempt to break down the dihydrogen monoxide, but fail.");
-		else msg_print("It's just plain water.");
+		if(randint0(100)<8) msg_print("那只是H2O，伙计。");
+		else if (one_in_(12)) msg_print("你试图分解一氧化二氢，但是失败了。");
+		else msg_print("这只是普通的水。");
 
 		return FALSE;
 	}
@@ -819,10 +819,10 @@ static void _break_down_potion_spell(int cmd, variant *res){
 	switch (cmd)
 	{
 	case SPELL_NAME:
-		var_set_string(res, "Break Down Potion");
+		var_set_string(res, "分解药水");
 		break;
 	case SPELL_DESC:
-		var_set_string(res, "Breaks down a potion to its base chemicals.");
+		var_set_string(res, "将一瓶药水分解为其基础化学试剂。");
 		break;
 	case SPELL_CAST:
 		var_set_bool(res, break_down_potion());
@@ -847,12 +847,12 @@ void _reproduceInf(object_type* o_ptr){
 	if (o_ptr->number >= _INFUSION_CAP)
 	{
 		if (flush_failure) flush();
-		msg_print("This slot is already full."); // perhaps make it sound more flavourful...
+		msg_print("这个槽位已经满了。"); // perhaps make it sound more flavourful...
 		return;
 	}
 	else if (!o_ptr){
 		if (flush_failure) flush();
-		msg_print("There's nothing to reproduce."); 
+		msg_print("没有什么可复制的。"); 
 		return;
 	}
 
@@ -868,7 +868,7 @@ void _reproduceInf(object_type* o_ptr){
 	cost = infct * _FindFormula(o_ptr->sval)->cost;
 	tier = _FindFormula(o_ptr->sval)->ctier;
 	if (_FindFormula(o_ptr->sval)->minLv > _AlchemistSkill()){
-		msg_format("This infusion is beyond your skills to reproduce.");
+		msg_format("你的技能不足以复制这种萃取液。");
 		return;
 	}
 	
@@ -882,13 +882,13 @@ void _reproduceInf(object_type* o_ptr){
 		return;
 
 	if (cost > _CHEM[tier]){ 
-		msg_format("You do not have enough %s chemicals.", _tiername[tier]);
+		msg_format("你没有足够的%s化学试剂。", _tiername[tier]);
 		return;
 	}
 
 	if (infct > 0)
 	{
-		msg_format("You recreate %d infusion%s.", infct, ((infct == 1) ? "" : "s"));
+		msg_format("你复制了%d份萃取液%s。", infct, ((infct == 1) ? "" : "s"));
 		o_ptr->number += infct;
 		_CHEM[tier] -= cost;
 	}
@@ -899,7 +899,7 @@ void _reproduceInf(object_type* o_ptr){
 
 static bool reproduceInfusion(void){
 	object_type *o_ptr;
-	o_ptr = _chooseInfusion("Reproduce", TV_POTION, 0);
+	o_ptr = _chooseInfusion("复制", TV_POTION, 0);
 	if (o_ptr){ _reproduceInf(o_ptr); return TRUE; }
 	return FALSE;
 }
@@ -909,10 +909,10 @@ static void _reproduce_infusion_spell(int cmd, variant *res)
 	switch (cmd)
 	{
 	case SPELL_NAME:
-		var_set_string(res, "Reproduce Infusion");
+		var_set_string(res, "复制萃取液");
 		break;
 	case SPELL_DESC:
-		var_set_string(res, "Uses chemicals to create an infusion based on an existing infusion.");
+		var_set_string(res, "使用化学试剂基于现有的萃取液制造一份新的萃取液。");
 		break;
 	case SPELL_CAST:
 		var_set_bool(res, reproduceInfusion());
@@ -1003,7 +1003,7 @@ static bool _on_destroy_object(object_type *o_ptr)
 	{
 		char o_name[MAX_NLEN];
 		object_desc(o_name, o_ptr, OD_COLOR_CODED);
-		msg_format("You attempt to break down %s. ", o_name);
+		msg_format("你尝试分解%s。", o_name);
 		alchemist_break_down_aux(o_ptr, o_ptr->number);
 		return TRUE;
 	}
@@ -1093,14 +1093,14 @@ static void _dump_list(doc_ptr doc)
 			doc_printf(doc, "%c) %s\n", I2A(i), o_name);
 		}
 		else
-			doc_printf(doc, "%c) (Empty)\n", I2A(i));
+			doc_printf(doc, "%c) (空)\n", I2A(i));
 	}
 	doc_newline(doc);
 }
 
 static void _character_dump(doc_ptr doc)
 {
-	doc_printf(doc, "<topic:Alchemist>============================= Created <color:keypress>I</color>nfusions ============================\n\n");
+	doc_printf(doc, "<topic:Alchemist>============================= 制造出的萃取液 (<color:keypress>I</color>) ============================\n\n");
 
 	_dump_list(doc);
 
@@ -1161,17 +1161,8 @@ class_t *alchemist_get_class(void)
 		skills_t bs = { 30, 30, 34, 3, 50, 24, 52, 52 };
 		skills_t xs = { 15,  9, 10, 0,  0,  0, 17, 17 };
 
-		me.name = "Alchemist";
-		me.desc = "Alchemists are masters of tinctures, concoctions and "
-			"infusions. They can prepare themselves set infusions from "
-			"potions that replicate the effect - without consuming inventory "
-			"space or being in danger of shattering. They are reasonably good "
-			"at melee, especially with the right potions, though they cannot "
-			"rival melee specialists. "
-			"Even bad potions are useful in their hands, as weapons or "
-			"ingredients. Their other abilities include creating copies "
-			"of potions and turning items to gold. They require intelligence "
-			"for some of their abilities.\n";
+		me.name = "炼金术士";
+		me.desc = "炼金术士是酊剂、混合药剂和萃取液的大师。他们可以从药水中为自己准备特殊的萃取液以复制其效果——这不会占用背包空间，也没有破裂的危险。他们相当擅长近战，特别是配合合适的药水时，尽管他们无法与近战专家相媲美。即使是劣质的药水在他们手中也能作为武器或材料发挥作用。他们的其他能力包括复制药水和把物品点石成金。他们的一些能力需要智力（Intelligence）加成。\n";
 
 		me.stats[A_STR] = 0;
 		me.stats[A_INT] = 2;

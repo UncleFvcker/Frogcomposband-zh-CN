@@ -25,7 +25,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.which_stat = A_WIS;
         me.encumbrance.max_wgt = 450;
         me.encumbrance.weapon_pct = 33;
@@ -57,25 +57,8 @@ class_t *ranger_get_class(void)
     skills_t bs = { 30,  37,  36,   3,  24,  16,  56,  50};
     skills_t xs = {  8,  11,  10,   0,   0,   0,  18,  16};
 
-        me.name = "Ranger";
-        me.desc = "A Ranger is a seasoned wanderer from the plains or woods, attuned "
-                    "to the natural world. Rangers have few weak points; like mages they "
-                    "are excellent with magic devices, yet they are also fairly good "
-                    "at using bows and melee weapons. Their stealth, searching and "
-                    "perception have been sharpened by their time in the wilderness, "
-                    "and their alliance with the spirits of nature even gives them a "
-                    "good saving throw.\n \n"
-                    "All rangers are trained in Nature magic, and all Nature spells are "
-                    "available to them; they even learn these spells almost as fast as "
-                    "mages. They can also select a secondary realm (Sorcery, "
-                    "Chaos, Death, Trump, Arcane, and Daemon); but they are slow "
-                    "learners here, and may find themselves unable to learn some of the "
-                    "highest level spells. Another downside is that rangers, like the "
-                    "priestly classes, lack the ability to choose their own spells; "
-                    "they will learn whatever the capricious nature gods choose to teach them.\n\n"
-                    "Rangers have a class power, 'Probe Monster', "
-                    "which allows them to assess the strengths and weaknesses of the "
-                    "monsters they meet. The magical powers of a ranger depend on Wisdom.";
+        me.name = "游侠";
+        me.desc = "游侠是来自平原或树林经验丰富的流浪者，他们与自然世界息息相关。游侠几乎没有弱点；像魔法师一样，他们精通魔法装置，但在使用弓箭和近战武器方面也相当不错。他们在荒野中的时光磨练了他们的潜行、搜索和察觉能力，他们与自然精灵的联盟甚至赋予了他们良好的豁免判定。\n \n所有的游侠都接受过自然魔法的训练，所有的自然法术他们都可以使用；他们学习这些法术的速度甚至几乎和魔法师一样快。他们还可以选择一个次系领域（咒术、混沌、死亡、王牌、奥秘和恶魔）；但在这些领域他们学习得很慢，并且可能会发现自己无法学习某些最高级别的法术。另一个缺点是，像牧师类职业一样，游侠缺乏选择自己法术的能力；他们会学习反复无常的自然之神选择教给他们的任何东西。\n\n游侠拥有一项职业能力——“探查怪物”，这允许他们评估遇到的怪物的优点和弱点。游侠的魔法力量取决于感知(Wisdom)。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] =  0;

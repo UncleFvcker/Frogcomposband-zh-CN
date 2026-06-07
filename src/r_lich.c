@@ -18,7 +18,7 @@ static void _birth(void)
     object_type    forge;
 
     p_ptr->current_r_idx = MON_LICH;
-    skills_innate_init("Finger", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("一指", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
     object_prep(&forge, lookup_kind(TV_CROWN, SV_IRON_CROWN));
     py_birth_obj(&forge);
@@ -64,7 +64,7 @@ static void _calc_innate_attacks(void)
         
         calc_innate_blows(&a, 400);
         a.msg = "You touch.";
-        a.name = "Finger";
+        a.name = "一指";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -78,7 +78,7 @@ static void _mana_bolt_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mana Bolt");
+        var_set_string(res, "法力箭");
         break;
     default:
         mana_bolt_II_spell(cmd, res);
@@ -91,7 +91,7 @@ static void _mana_storm_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mana Storm");
+        var_set_string(res, "法力风暴");
         break;
     default:
         mana_storm_II_spell(cmd, res);
@@ -193,19 +193,19 @@ static void _gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_LICH && new_level >= 25)
     {
         p_ptr->current_r_idx = MON_MASTER_LICH;
-        msg_print("You have evolved into a Master Lich.");
+        msg_print("你进化成了大师巫妖(Master Lich)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_MASTER_LICH && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_DEMILICH;
-        msg_print("You have evolved into a Demilich.");
+        msg_print("你进化成了半巫妖(Demilich)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_DEMILICH && new_level >= 50)
     {
         p_ptr->current_r_idx = MON_ARCHLICH;
-        msg_print("You have evolved into an Archlich.");
+        msg_print("你进化成了大巫妖(Archlich)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -213,7 +213,7 @@ static race_t *_archlich_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[4] =  {"Lich", "Master Lich", "Demilich", "Archlich"};    
+    static cptr   titles[4] =  {"巫妖", "大师巫妖", "半巫妖", "大巫妖"};    
     int           rank = 0;
 
     if (p_ptr->lev >= 25) rank++;
@@ -258,7 +258,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "unholy power";
+        me.magic_desc = "不洁力量";
         me.which_stat = A_INT;
         me.encumbrance.max_wgt = 450;
         me.encumbrance.weapon_pct = 100;
@@ -285,7 +285,7 @@ race_t *mon_lich_get_race(void)
         result = _archlich_get_race_t();
     }
 
-    result->name = "Lich";
+    result->name = "巫妖";
     result->desc = _desc;
     result->flags = RACE_IS_MONSTER | RACE_IS_NONLIVING | RACE_IS_UNDEAD | RACE_EATS_DEVICES;
     result->calc_innate_attacks = _calc_innate_attacks;

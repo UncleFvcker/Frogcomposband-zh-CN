@@ -16,7 +16,7 @@ cptr do_hissatsu_spell(int spell, int mode)
     switch (spell)
     {
     case 0:
-        if (name) return "Tobi-Izuna";
+        if (name) return "飞饭纲";
         if (desc) return "Attacks a two squares distant monster.";
         if (browse) return NULL;
         if (cast)
@@ -52,24 +52,24 @@ cptr do_hissatsu_spell(int spell, int mode)
             if (cave[y][x].m_idx)
                 py_attack(y, x, 0);
             else
-                msg_print("You attack the empty air.");
+                msg_print("你攻击了空气。");
             y = py + ddy_cdd[(cdir + 7) % 8];
             x = px + ddx_cdd[(cdir + 7) % 8];
             if (cave[y][x].m_idx)
                 py_attack(y, x, 0);
             else
-                msg_print("You attack the empty air.");
+                msg_print("你攻击了空气。");
             y = py + ddy_cdd[(cdir + 1) % 8];
             x = px + ddx_cdd[(cdir + 1) % 8];
             if (cave[y][x].m_idx)
                 py_attack(y, x, 0);
             else
-                msg_print("You attack the empty air.");
+                msg_print("你攻击了空气。");
         }
         break;
 
     case 2:
-        if (name) return "Boomerang";
+        if (name) return "回旋镖";
         if (desc) return "Throws current weapon. And it'll return to your hand unless failed.";
         if (browse) return NULL;
         if (cast)
@@ -82,7 +82,7 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 3:
-        if (name) return "Burning Strike";
+        if (name) return "燃烧打击";
         if (desc) return "Attacks a monster with more damage unless it has resistance to fire.";
         if (browse)
         {
@@ -103,14 +103,14 @@ cptr do_hissatsu_spell(int spell, int mode)
                 py_attack(y, x, HISSATSU_FIRE);
             else
             {
-                msg_print("There is no monster.");
+                msg_print("这里没有怪物。");
                 return NULL;
             }
         }
         break;
 
     case 4:
-        if (name) return "Detect Ferocity";
+        if (name) return "探测凶意";
         if (desc) return "Detects all monsters except mindless in your vicinity.";
         if (browse) return NULL;
         if (cast)
@@ -118,7 +118,7 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 5:
-        if (name) return "Strike to Stun";
+        if (name) return "震慑打击";
         if (desc) return "Attempts to stun an adjacent monster.";
         if (browse) return NULL;
         if (cast)
@@ -135,30 +135,30 @@ cptr do_hissatsu_spell(int spell, int mode)
                 py_attack(y, x, HISSATSU_MINEUCHI);
             else
             {
-                msg_print("There is no monster.");
+                msg_print("这里没有怪物。");
                 return NULL;
             }
         }
         break;
 
     case 6:
-        if (name) return "Counter";
+        if (name) return "反击";
         if (desc) return "Prepares to counterattack, using SP to retaliate against any monster strikes on the following turn.";
         if (browse) return NULL;
         if (cast)
         {
             if (p_ptr->riding)
             {
-                msg_print("You cannot do it when riding.");
+                msg_print("骑乘时你无法这么做。");
                 return NULL;
             }
-            msg_print("You prepare to counter blow.");
+            msg_print("你准备反击敌人的攻击。");
             p_ptr->counter = TRUE;
         }
         break;
 
     case 7:
-        if (name) return "Harainuke";
+        if (name) return "拂拔";
         if (desc) return "Attacks monster with your weapons normally, then move through counter side of the monster.";
         if (browse) return NULL;
         if (cast)
@@ -166,7 +166,7 @@ cptr do_hissatsu_spell(int spell, int mode)
             int y, x;
             if (p_ptr->riding)
             {
-                msg_print("You cannot do it when riding.");
+                msg_print("骑乘时你无法这么做。");
                 return NULL;
             }
     
@@ -178,7 +178,7 @@ cptr do_hissatsu_spell(int spell, int mode)
     
             if (!cave[y][x].m_idx)
             {
-                msg_print("There is no monster.");
+                msg_print("这里没有怪物。");
                 return NULL;
             }
     
@@ -199,7 +199,7 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 8:
-        if (name) return "Serpent's Tongue";
+        if (name) return "毒蛇之舌";
         if (desc) return "Attacks a monster with more damage unless it has resistance to poison.";
         if (browse)
         {
@@ -220,14 +220,14 @@ cptr do_hissatsu_spell(int spell, int mode)
                 py_attack(y, x, HISSATSU_POISON);
             else
             {
-                msg_print("There is no monster.");
+                msg_print("这里没有怪物。");
                 return NULL;
             }
         }
         break;
 
     case 9:
-        if (name) return "Zammaken";
+        if (name) return "斩魔剑";
         if (desc) return "Attacks an evil unliving monster with great damage. No effect to other monsters.";
         if (browse)
         {
@@ -248,14 +248,14 @@ cptr do_hissatsu_spell(int spell, int mode)
                 py_attack(y, x, HISSATSU_ZANMA);
             else
             {
-                msg_print("There is no monster.");
+                msg_print("这里没有怪物。");
                 return NULL;
             }
         }
         break;
 
     case 10:
-        if (name) return "Wind Blast";
+        if (name) return "风之冲击";
         if (desc) return "Attacks an adjacent monster, and blows it away.";
         if (browse) return NULL;
         if (cast)
@@ -272,7 +272,7 @@ cptr do_hissatsu_spell(int spell, int mode)
                 py_attack(y, x, 0);
             else
             {
-                msg_print("There is no monster.");
+                msg_print("这里没有怪物。");
                 return NULL;
             }
             if (d_info[dungeon_type].flags1 & DF1_NO_MELEE)
@@ -303,7 +303,7 @@ cptr do_hissatsu_spell(int spell, int mode)
                 }
                 if ((ty != oy) || (tx != ox))
                 {
-                    msg_format("You blow %s away!", m_name);
+                    msg_format("你把 %s 吹飞了！", m_name);
                     cave[oy][ox].m_idx = 0;
                     cave[ty][tx].m_idx = m_idx;
                     m_ptr->fy = ty;
@@ -321,7 +321,7 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 11:
-        if (name) return "Judge";
+        if (name) return "判定";
         if (desc) return "Identifies a weapon or armor. Or *identifies* these at level 45.";
         if (browse) return NULL;
         if (cast)
@@ -338,7 +338,7 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 12:
-        if (name) return "Rock Smash";
+        if (name) return "碎岩击";
         if (desc) return "Breaks rock, or greatly damages a monster made of rock.";
         if (browse)
         {
@@ -366,7 +366,7 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 13:
-        if (name) return "Midare-Setsugekka";
+        if (name) return "乱雪月花";
         if (desc) return "Attacks a monster with an increased number of attacks, and more damage unless it has resistance to cold.";
         if (browse)
         {
@@ -387,14 +387,14 @@ cptr do_hissatsu_spell(int spell, int mode)
                 py_attack(y, x, HISSATSU_COLD);
             else
             {
-                msg_print("There is no monster.");
+                msg_print("这里没有怪物。");
                 return NULL;
             }
         }
         break;
 
     case 14:
-        if (name) return "Spot Aiming";
+        if (name) return "弱点瞄准";
         if (desc) return "Attempts to kill a monster instantly. If failed cause only 1HP of damage.";
         if (browse) return NULL;
         if (cast)
@@ -411,14 +411,14 @@ cptr do_hissatsu_spell(int spell, int mode)
                 py_attack(y, x, HISSATSU_KYUSHO);
             else
             {
-                msg_print("There is no monster.");
+                msg_print("这里没有怪物。");
                 return NULL;
             }
         }
         break;
 
     case 15:
-        if (name) return "Majingiri";
+        if (name) return "魔神斩";
         if (desc) return "Attempts to attack with critical hit. But this attack is easy to evade for a monster.";
         if (browse)
         {
@@ -440,15 +440,15 @@ cptr do_hissatsu_spell(int spell, int mode)
                 py_attack(y, x, HISSATSU_MAJIN);
             else
             {
-                msg_print("There is no monster.");
+                msg_print("这里没有怪物。");
                 return NULL;
             }
         }
         break;
 
     case 16:
-        if (name) return "Desperate Attack";
-        if (desc) return "Attacks with all of your power. But all damages you take will be doubled for one turn.";
+        if (name) return "舍身一击";
+        if (desc) return "倾尽全力进行攻击。但在一回合内，你受到的所有伤害都会翻倍。";
         if (browse)
         {
             display_weapon_info_aux(HISSATSU_SUTEMI);
@@ -469,7 +469,7 @@ cptr do_hissatsu_spell(int spell, int mode)
                 py_attack(y, x, HISSATSU_SUTEMI);
             else
             {
-                msg_print("There is no monster.");
+                msg_print("这里没有怪物。");
                 return NULL;
             }
             p_ptr->sutemi = TRUE;
@@ -477,7 +477,7 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 17:
-        if (name) return "Lightning Eagle";
+        if (name) return "雷鹰斩";
         if (desc) return "Attacks a monster with more damage unless it has resistance to electricity.";
         if (browse)
         {
@@ -498,14 +498,14 @@ cptr do_hissatsu_spell(int spell, int mode)
                 py_attack(y, x, HISSATSU_ELEC);
             else
             {
-                msg_print("There is no monster.");
+                msg_print("这里没有怪物。");
                 return NULL;
             }
         }
         break;
 
     case 18:
-        if (name) return "Rush Attack";
+        if (name) return "突进攻击";
         if (desc) return "Steps close to a monster and attacks at a time.";
         if (browse) return NULL;
     
@@ -516,8 +516,8 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 19:
-        if (name) return "Bloody Maelstrom";
-        if (desc) return "Cuts you severely, then attacks all adjacent monsters with power corresponding to your cut status. No effect to unliving monsters.";
+        if (name) return "鲜血漩涡";
+        if (desc) return "严重割伤你自己，然后用与你的割伤状态相对应的威力攻击所有相邻的怪物。对非活物怪物无效。";
         if (browse)
         {
             display_weapon_info_aux(HISSATSU_SEKIRYUKA);
@@ -553,7 +553,7 @@ cptr do_hissatsu_spell(int spell, int mode)
                         char m_name[80];
     
                         monster_desc(m_name, m_ptr, 0);
-                        msg_format("%s is unharmed!", m_name);
+                        msg_format("%s 毫发无损！", m_name);
                     }
                     else py_attack(y, x, HISSATSU_SEKIRYUKA);
                 }
@@ -562,7 +562,7 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 20:
-        if (name) return "Earthquake Blow";
+        if (name) return "地震击";
         if (desc) return "Shakes dungeon structure, and results in random swapping of floors and walls.";
         if (browse) return NULL;
     
@@ -584,14 +584,14 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 21:
-        if (name) return "Crack";
+        if (name) return "裂地击";
         if (desc) return "Fires a beam of shock wave.";
         if (browse) return NULL;
         if (cast)
         {
             int total_damage = 0, hand;
             if (!get_fire_dir(&dir)) return NULL;
-            msg_print("You swing your weapon downward.");
+            msg_print("你向下挥舞武器。");
 
             for (hand = 0; hand < MAX_HANDS; hand++)
             {
@@ -627,20 +627,20 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 22:
-        if (name) return "War Cry";
+        if (name) return "战吼";
         if (desc) return "Damages all monsters in sight with sound. Aggravate nearby monsters.";
         if (browse) return NULL;
     
         if (cast)
         {
-            msg_print("You roar out!");
+            msg_print("你咆哮起来！");
             project_hack(GF_SOUND, randint1(plev * 3));
             aggravate_monsters(0);
         }
         break;
 
     case 23:
-        if (name) return "Musou-Sandan";
+        if (name) return "无双三段";
         if (desc) return "Attacks with powerful 3 strikes.";
         if (browse)
         {
@@ -671,7 +671,7 @@ cptr do_hissatsu_spell(int spell, int mode)
                     py_attack(y, x, HISSATSU_3DAN);
                 else
                 {
-                    msg_print("There is no monster.");
+                    msg_print("这里没有怪物。");
                     return NULL;
                 }
     
@@ -727,7 +727,7 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 24:
-        if (name) return "Vampire's Fang";
+        if (name) return "吸血鬼之牙";
         if (desc) return "Attacks with vampiric strikes which absorbs HP from a monster and gives them to you. No effect to unliving monsters.";
         if (browse) return NULL;
     
@@ -745,20 +745,20 @@ cptr do_hissatsu_spell(int spell, int mode)
                 py_attack(y, x, HISSATSU_DRAIN);
             else
             {
-                    msg_print("There is no monster.");
+                    msg_print("这里没有怪物。");
                 return NULL;
             }
         }
         break;
 
     case 25:
-        if (name) return "Moon Dazzling";
+        if (name) return "幻月";
         if (desc) return "Attempts to stun, confuse and sleep all waking monsters.";
         if (browse) return NULL;
     
         if (cast)
         {
-            msg_print("You irregularly wave your weapon...");
+            msg_print("你不规则地挥动着武器……");
             project_hack(GF_ENGETSU, plev * 4);
             project_hack(GF_ENGETSU, plev * 4);
             project_hack(GF_ENGETSU, plev * 4);
@@ -766,7 +766,7 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 26:
-        if (name) return "Hundred Slaughter";
+        if (name) return "百人斩";
         if (desc) return "Performs a series of rush attacks. The series continues while killing each monster in a time and SP remains.";
         if (browse) return NULL;
     
@@ -804,7 +804,7 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 27:
-        if (name) return "Dragonic Flash";
+        if (name) return "龙闪";
         if (desc) return "Runs toward given location while attacking all monsters on the path.";
         if (browse) return NULL;
     
@@ -818,12 +818,12 @@ cptr do_hissatsu_spell(int spell, int mode)
                 (distance(y, x, py, px) > MAX_SIGHT / 2) ||
                 !projectable(py, px, y, x))
             {
-                msg_print("You cannot move to that place!");
+                msg_print("你不能移动到那个地方！");
                 break;
             }
             if (p_ptr->anti_tele)
             {
-                msg_print("A mysterious force prevents you from teleporting!");
+                msg_print("一股神秘的力量阻止了你传送！");
                 equip_learn_flag(OF_NO_TELE);
                 break;
             }
@@ -833,7 +833,7 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 28:
-        if (name) return "Twin Slash";
+        if (name) return "双重斩";
         if (desc) return "Double attacks at a time.";
         if (browse) return NULL;
     
@@ -857,14 +857,14 @@ cptr do_hissatsu_spell(int spell, int mode)
             }
             else
             {
-                msg_print("You don't see any monster in this direction.");
+                msg_print("在这个方向你没看到任何怪物。");
                 return NULL;
             }
         }
         break;
 
     case 29:
-        if (name) return "Kofuku-Zettousei";
+        if (name) return "降伏绝刀势";
         if (desc) return "Performs a powerful attack which even effect nearby monsters.";
         if (browse) return NULL;
         if (cast)
@@ -880,10 +880,10 @@ cptr do_hissatsu_spell(int spell, int mode)
 
             if ((d_info[dungeon_type].flags1 & DF1_NO_MELEE) || (no_melee_challenge))
             {
-                msg_print("Something prevents you from attacking.");
+                msg_print("某种力量阻止了你进行攻击。");
                 return "";
             }
-            msg_print("You swing your weapon downward.");
+            msg_print("你向下挥舞武器。");
             for (hand = 0; hand < MAX_HANDS; hand++)
             {
                 int damage, basedam;
@@ -919,7 +919,7 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 30:
-        if (name) return "Keiun-Kininken";
+        if (name) return "庆云鬼忍剑";
         if (desc) return "Attacks a monster with extremely powerful strikes, but also causes you to suffer 100+d100 damage. Greatly hurts undead monsters.";
         if (browse)
         {
@@ -940,7 +940,7 @@ cptr do_hissatsu_spell(int spell, int mode)
                 py_attack(y, x, HISSATSU_UNDEAD);
             else
             {
-                msg_print("There is no monster.");
+                msg_print("这里没有怪物。");
                 return NULL;
             }
             take_hit(DAMAGE_NOESCAPE, 100 + randint1(100), "exhaustion on using Keiun-Kininken");
@@ -948,16 +948,16 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 31:
-        if (name) return "Harakiri";
+        if (name) return "切腹";
         if (desc) return "'Busido is found in death'";
         if (browse) return NULL;
 
         if (cast)
         {
             int i;
-            if (!get_check("Do you really want to commit suicide? ")) return NULL;
+            if (!get_check("你真的想要自杀吗？")) return NULL;
                 /* Special Verification for suicide */
-            prt("Please verify SUICIDE by typing the '@' sign: ", 0, 0);
+            prt("请输入 '@' 符号以确认自杀：", 0, 0);
     
             flush();
             i = inkey();
@@ -965,13 +965,13 @@ cptr do_hissatsu_spell(int spell, int mode)
             if (i != '@') return NULL;
             if (p_ptr->total_winner)
             {
-                take_hit(DAMAGE_FORCE, 9999, "Seppuku");
+                take_hit(DAMAGE_FORCE, 9999, "切腹");
                 p_ptr->total_winner = TRUE;
             }
             else
             {
-                msg_print("Meaning of Bushi-do is found in the death.");
-                take_hit(DAMAGE_FORCE, 9999, "Seppuku");
+                msg_print("武士道，就是对死的觉悟。");
+                take_hit(DAMAGE_FORCE, 9999, "切腹");
             }
         }
         break;
@@ -1090,7 +1090,7 @@ static void _kata_menu_fn(int cmd, int which, vptr cookie, variant *res)
     switch (cmd)
     {
     case MENU_TEXT:
-        var_set_string(res, which ? format("Form of %s", kata_shurui[which - 1].desc) : "No Form");
+        var_set_string(res, which ? format("%s之型", kata_shurui[which - 1].desc) : "无型");
         break;
     case MENU_COLOR:
         var_set_int(res, (kata_shurui[which - 1].min_level > p_ptr->lev) ? TERM_L_DARK : TERM_WHITE);
@@ -1107,22 +1107,22 @@ static bool _choose_kata(void)
 {
     int new_kata = 0;
     int idx;
-    menu_t menu = { "Choose which form", "Browse which form", NULL,
+    menu_t menu = { "选择哪种型", "浏览哪种型", NULL,
                     _kata_menu_fn, NULL, MAX_KATA + 1, 0 };
 
     if (p_ptr->confused)
     {
-        msg_print("You are too confused.");
+        msg_print("你太困惑了。");
         return FALSE;
     }
     if (p_ptr->stun)
     {
-        msg_print("You are not clear-headed.");
+        msg_print("你现在头脑不清醒。");
         return FALSE;
     }
     if (p_ptr->afraid)
     {
-        msg_print("You are trembling with fear!");
+        msg_print("你正恐惧得浑身发抖！");
         return FALSE;
     }
 
@@ -1133,7 +1133,7 @@ static bool _choose_kata(void)
         if (p_ptr->action == ACTION_KATA)
             set_action(ACTION_NONE);
         else
-            msg_print("You are not assuming a posture.");
+            msg_print("你没有处于任何架势中。");
         return TRUE;
     }
     else if ((idx <= MAX_KATA) && (p_ptr->lev >= kata_shurui[idx - 1].min_level)) new_kata = idx - 1;
@@ -1142,14 +1142,14 @@ static bool _choose_kata(void)
 
     if (p_ptr->special_defense & (KATA_IAI << new_kata))
     {
-        msg_print("You reassume a posture.");
+        msg_print("你重新摆好了架势。");
     }
     else
     {
         p_ptr->special_defense &= ~(KATA_MASK);
         p_ptr->update |= (PU_BONUS);
         p_ptr->update |= (PU_MONSTERS);
-        msg_format("You assume a posture of %s form.",kata_shurui[new_kata].desc);
+        msg_format("你摆出了%s的架势。",kata_shurui[new_kata].desc);
         p_ptr->special_defense |= (KATA_IAI << new_kata);
     }
     p_ptr->redraw |= (PR_STATE);
@@ -1170,7 +1170,7 @@ void cast_concentration(void)
     if (p_ptr->special_defense & KATA_MASK)
         return;
         
-    msg_print("You concentrate to charge your power.");
+    msg_print("你集中精神蓄力。");
 
     p_ptr->csp += p_ptr->msp / 2;
     if (p_ptr->csp >= max_csp)
@@ -1187,7 +1187,7 @@ void samurai_concentration_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Concentration");
+        var_set_string(res, "气合");
         break;
     case SPELL_DESC:
         var_set_string(res, "");
@@ -1197,12 +1197,12 @@ void samurai_concentration_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (total_friends)
         {
-            msg_print("You need concentration on the pets now.");
+            msg_print("你现在需要把注意力集中在宠物上。");
             return;
         }
         if (p_ptr->special_defense & KATA_MASK)
         {
-            msg_print("You need concentration on your form.");
+            msg_print("你现在需要把注意力集中在你的架势上。");
             return;
         }
 
@@ -1221,7 +1221,7 @@ void samurai_posture_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Assume a Guard Position");
+        var_set_string(res, "采取守备架势");
         break;
     case SPELL_DESC:
         var_set_string(res, "");
@@ -1230,7 +1230,7 @@ void samurai_posture_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!equip_find_first(object_is_melee_weapon))
         {
-            msg_print("You need to wield a weapon.");
+            msg_print("你需要装备一把武器。");
             return;
         }
         if (!_choose_kata()) return;
@@ -1305,24 +1305,8 @@ class_t *samurai_get_class(void)
     skills_t xs = { 12,   7,  10,   0,   0,   0,  23,  18};
 
 
-        me.name = "Samurai";
-        me.desc = "Samurai, masters of the art of the blade, are among the strongest "
-                    "fighters and can use various special combat techniques. "
-                    "Samurai are not good at most non-combat skills, and many "
-                    "magical devices in particular may be too difficult for them to use. "
-                    "Wisdom determines a Samurai's ability to use the special combat "
-                    "techniques available.\n \n"
-                    "Samurai use the art of the blade called Kendo (or Bugei). Books "
-                    "of Kendo are similar to spellbooks, but do not need to be carried "
-                    "around; they are only required for studying new combat techniques. "
-                    "Samurai need to wield a weapon to use Kendo, and many of their techniques will "
-                    "add special properties to their blows; these are often slays or brands such as "
-                    "flaming or poisoning, but can be much more powerful than a normal brand. "
-                    "The mana pool of a Samurai does not depend on their level but "
-                    "solely on wisdom; and they can use the class power 'Concentration' "
-                    "to temporarily increase their mana beyond its usual maximum value. The other "
-                    "Samurai class power, 'Assume a Posture', allows them to choose "
-                    "different postures depending on the needs of a situation.";
+        me.name = "武士";
+        me.desc = "武士是剑之艺术的大师，属于最强悍的战士之列，并能使用各种特殊的战斗技艺。武士不擅长大多数非战斗技能，许多魔法装置对他们来说可能也太难使用了。感知(Wisdom)决定了武士使用这些特殊战斗技艺的能力。\n \n武士使用被称为剑道（或武艺）的剑之艺术。剑道书类似于法术书，但不需要随身携带；它们只在学习新的战斗技艺时才需要。武士需要装备武器才能使用剑道，他们的许多技艺会给打击附加特殊属性；这些通常是斩杀或附魔，比如燃烧或中毒，但其威力可能远超普通的附魔。武士的法力池不取决于他们的等级，而完全取决于感知；他们可以使用职业能力“气合”(Concentration)暂时将法力提高到正常的上限之上。武士的另一项职业能力“采取守备架势”(Assume a Posture)，允许他们根据情况的需要选择不同的架势。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] = -2;

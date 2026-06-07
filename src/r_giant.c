@@ -183,18 +183,18 @@ bool monster_toss(int m_idx)
 
     if (r_ptr->flags2 & RF2_PASS_WALL)
     {
-        msg_format("Failed! %^s is incorporeal!", m_name);
+        msg_format("失败！%^s 是无实体的！", m_name);
         return TRUE;
     }
     if ((r_ptr->flags1 & RF1_UNIQUE) && r_ptr->level > p_ptr->lev)
     {
-        msg_format("Failed! %^s is too powerful!", m_name);
+        msg_format("失败！%^s 太强大了！", m_name);
         return TRUE;
     }
     chance = p_ptr->skills.thn + ((p_ptr->lev + p_ptr->to_h_m) * BTH_PLUS_ADJ);
     if (!test_hit_norm(chance, mon_ac(m_ptr), TRUE))
     {
-        msg_format("You lose hold of %s.", m_name);
+        msg_format("你抓不住%s了。", m_name);
         return TRUE;
     }
 
@@ -214,7 +214,7 @@ bool monster_toss(int m_idx)
 
         if (info.tdis <= 1) /* Can the giant lift the monster? */
         {
-            msg_format("Failed! %^s is too heavy!", m_name);
+            msg_format("失败！%^s 太重了！", m_name);
             return TRUE;
         }
 
@@ -262,7 +262,7 @@ static void _monster_toss_imp(_monster_toss_info *info)
     chance *= 2;
 
     monster_desc(m_name, m_ptr, 0);
-    msg_format("You toss %s.", m_name);
+    msg_format("你扔出了%s。", m_name);
 
     cave[m_ptr->fy][m_ptr->fx].m_idx = 0;
     lite_spot(m_ptr->fy, m_ptr->fx);
@@ -330,10 +330,10 @@ static void _monster_toss_imp(_monster_toss_info *info)
                 critical_t crit;
 
                 if (!visible)
-                    msg_format("%^s finds a mark.", m_name);
+                    msg_format("%^s 击中了目标。", m_name);
                 else
                 {
-                    msg_format("%^s hits %s.", m_name, m_name2);
+                    msg_format("%^s 砸中了 %s。", m_name, m_name2);
                     if (visible)
                     {
                         if (!p_ptr->image) mon_track(m_ptr2);
@@ -371,13 +371,13 @@ static void _monster_toss_imp(_monster_toss_info *info)
                     if (fear && visible)
                     {
                         sound(SOUND_FLEE);
-                        msg_format("%^s flees in terror!", m_name2);
+                        msg_format("%^s 惊恐地逃跑了！", m_name2);
                     }
                 }
             }
             else
             {
-                msg_format("%^s misses %s.", m_name, m_name2);
+                msg_format("%^s 没有砸中 %s。", m_name, m_name2);
             }
 
             /* Stop looking */
@@ -425,7 +425,7 @@ static void _monster_toss_imp(_monster_toss_info *info)
             }
             else
             {
-                msg_format("%^s is stunned.", m_name);
+                msg_format("%^s 被震慑了。", m_name);
                 mon_stun(m_ptr, mon_stun_amount(dam));
             }
 
@@ -434,7 +434,7 @@ static void _monster_toss_imp(_monster_toss_info *info)
                 anger_monster(m_ptr);
 
             if (fear)
-                msg_format("%^s flees in terror!", m_name);
+                msg_format("%^s 惊恐地逃跑了！", m_name);
         }
     }
 }
@@ -444,10 +444,10 @@ void monster_toss_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Throw Monster");
+        var_set_string(res, "投掷怪物");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Throw an adjacent monster at chosen target, provided it is light enough, of course!");
+        var_set_string(res, "将相邻的怪物扔向选定的目标——当然，前提是它足够轻！");
         break;
     case SPELL_CAST:
     {
@@ -464,7 +464,7 @@ void monster_toss_spell(int cmd, variant *res)
 
         if (!m_idx)
         {
-            msg_print("There is no monster there.");
+            msg_print("那里没有怪物。");
             if (p_ptr->blind > 0) var_set_bool(res, TRUE);
             return;
         }
@@ -517,19 +517,19 @@ static void _hru_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_HILL_GIANT && new_level >= 20)
     {
         p_ptr->current_r_idx = MON_STONE_GIANT;
-        msg_print("You have evolved into a Stone Giant.");
+        msg_print("你进化成了石巨人(Stone Giant)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_STONE_GIANT && new_level >= 30)
     {
         p_ptr->current_r_idx = MON_ROCK_GIANT;
-        msg_print("You have evolved into a Rock Giant.");
+        msg_print("你进化成了岩石巨人(Rock Giant)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_ROCK_GIANT && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_HRU;
-        msg_print("You have evolved into a Hru.");
+        msg_print("你进化成了赫鲁巨人(Hru)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -537,7 +537,7 @@ static race_t *_hru_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[4] =  {"Hill Giant", "Stone Giant", "Rock Giant", "Hru"};
+    static cptr   titles[4] =  {"丘陵巨人", "石巨人", "岩石巨人", "赫鲁巨人"};
     int           rank = 0;
 
     if (p_ptr->lev >= 20) rank++;
@@ -588,10 +588,10 @@ static void _breathe_plasma_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Plasma");
+        var_set_string(res, "等离子吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes Plasma at your opponent.");
+        var_set_string(res, "向你的对手喷吐等离子。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, p_ptr->chp*3/10));
@@ -605,7 +605,7 @@ static void _breathe_plasma_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (get_fire_dir(&dir))
         {
-            msg_print("You breathe plasma...");
+            msg_print("你喷吐出等离子……");
             fire_ball(GF_PLASMA, dir, p_ptr->chp*3/10, -3);
             var_set_bool(res, TRUE);
         }
@@ -657,19 +657,19 @@ static void _fire_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_HILL_GIANT && new_level >= 20)
     {
         p_ptr->current_r_idx = MON_STONE_GIANT;
-        msg_print("You have evolved into a Stone Giant.");
+        msg_print("你进化成了石巨人(Stone Giant)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_STONE_GIANT && new_level >= 30)
     {
         p_ptr->current_r_idx = MON_FIRE_GIANT;
-        msg_print("You have evolved into a Fire Giant.");
+        msg_print("你进化成了火巨人(Fire Giant)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_FIRE_GIANT && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_ELDER_FIRE_GIANT;
-        msg_print("You have evolved into an Elder Fire Giant.");
+        msg_print("你进化成了长老火巨人(Elder Fire Giant)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -677,7 +677,7 @@ static race_t *_fire_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[4] =  {"Hill Giant", "Stone Giant", "Fire Giant", "Elder Fire Giant"};
+    static cptr   titles[4] =  {"丘陵巨人", "石巨人", "火巨人", "长老火巨人"};
     int           rank = 0;
 
     if (p_ptr->lev >= 20) rank++;
@@ -726,10 +726,10 @@ static void _ice_storm_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Ice Storm");
+        var_set_string(res, "冰风暴");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generate a huge ball of ice on chosen target.");
+        var_set_string(res, "在选定目标处生成一个巨大的冰球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, 6*p_ptr->lev));
@@ -788,19 +788,19 @@ static void _frost_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_HILL_GIANT && new_level >= 20)
     {
         p_ptr->current_r_idx = MON_STONE_GIANT;
-        msg_print("You have evolved into a Stone Giant.");
+        msg_print("你进化成了石巨人(Stone Giant)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_STONE_GIANT && new_level >= 30)
     {
         p_ptr->current_r_idx = MON_FROST_GIANT;
-        msg_print("You have evolved into a Frost Giant.");
+        msg_print("你进化成了霜巨人(Frost Giant)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_FROST_GIANT && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_ICE_GIANT;
-        msg_print("You have evolved into an Ice Giant.");
+        msg_print("你进化成了冰巨人(Ice Giant)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -808,7 +808,7 @@ static race_t *_frost_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[4] =  {"Hill Giant", "Stone Giant", "Frost Giant", "Ice Giant"};
+    static cptr   titles[4] =  {"丘陵巨人", "石巨人", "霜巨人", "冰巨人"};
     int           rank = 0;
 
     if (p_ptr->lev >= 20) rank++;
@@ -857,10 +857,10 @@ static void _breathe_storm_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Storm");
+        var_set_string(res, "风暴吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes storm winds at your opponent.");
+        var_set_string(res, "向你的对手喷吐风暴。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, p_ptr->chp*3/10));
@@ -874,7 +874,7 @@ static void _breathe_storm_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (get_fire_dir(&dir))
         {
-            msg_print("You breathe storm winds...");
+            msg_print("你喷吐出风暴……");
             fire_ball(GF_STORM, dir, p_ptr->chp*3/10, -3);
             var_set_bool(res, TRUE);
         }
@@ -890,10 +890,10 @@ static void _lightning_storm_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Lightning Storm");
+        var_set_string(res, "闪电风暴");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generate a huge ball of lightning on chosen target.");
+        var_set_string(res, "在选定目标处生成一个巨大的闪电球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, 7*p_ptr->lev));
@@ -955,25 +955,25 @@ static void _storm_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_HILL_GIANT && new_level >= 20)
     {
         p_ptr->current_r_idx = MON_STONE_GIANT;
-        msg_print("You have evolved into a Stone Giant.");
+        msg_print("你进化成了石巨人(Stone Giant)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_STONE_GIANT && new_level >= 30)
     {
         p_ptr->current_r_idx = MON_CLOUD_GIANT;
-        msg_print("You have evolved into a Cloud Giant.");
+        msg_print("你进化成了云巨人(Cloud Giant)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_CLOUD_GIANT && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_STORM_GIANT;
-        msg_print("You have evolved into a Storm Giant.");
+        msg_print("你进化成了风暴巨人(Storm Giant)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_STORM_GIANT && new_level >= 45)
     {
         p_ptr->current_r_idx = MON_ELDER_STORM_GIANT;
-        msg_print("You have evolved into an Elder Storm Giant.");
+        msg_print("你进化成了长老风暴巨人(Elder Storm Giant)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -981,7 +981,7 @@ static race_t *_storm_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[5] =  {"Hill Giant", "Stone Giant", "Cloud Giant", "Storm Giant", "Elder Storm Giant"};
+    static cptr   titles[5] =  {"丘陵巨人", "石巨人", "云巨人", "风暴巨人", "长老风暴巨人"};
     int           rank = 0;
 
     if (p_ptr->lev >= 20) rank++;
@@ -1058,19 +1058,19 @@ static void _titan_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_HILL_GIANT && new_level >= 20)
     {
         p_ptr->current_r_idx = MON_STONE_GIANT;
-        msg_print("You have evolved into a Stone Giant.");
+        msg_print("你进化成了石巨人(Stone Giant)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_STONE_GIANT && new_level >= 30)
     {
         p_ptr->current_r_idx = MON_LESSER_TITAN;
-        msg_print("You have evolved into a Lesser Titan.");
+        msg_print("你进化成了下级泰坦(Lesser Titan)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_LESSER_TITAN && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_GREATER_TITAN;
-        msg_print("You have evolved into a Greater Titan.");
+        msg_print("你进化成了上级泰坦(Greater Titan)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -1078,7 +1078,7 @@ static race_t *_titan_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[4] =  {"Hill Giant", "Stone Giant", "Lesser Titan", "Greater Titan"};
+    static cptr   titles[4] =  {"丘陵巨人", "石巨人", "下级泰坦", "上级泰坦"};
     int           rank = 0;
 
     if (p_ptr->lev >= 20) rank++;
@@ -1119,22 +1119,20 @@ static race_t *_titan_get_race_t(void)
 }
 
 static name_desc_t _info[GIANT_MAX] = {
-    { "Fire Giant", "Fire Giants are massive giants of flame. At high levels they become "
+    { "火巨人", "Fire Giants are massive giants of flame. At high levels they become "
                         "wreathed in flames, and even their weapons will burn their foes. Like "
                         "all giants, they may toss loose rubble at their foes. In addition, "
                         "they have a few fire-based distance attacks up their sleeves." },
-    { "Frost Giant", "Frost Giants are massive giants of ice. At high levels they become "
+    { "霜巨人", "Frost Giants are massive giants of ice. At high levels they become "
                         "wreathed in cold, and even their weapons will freeze their foes. Like "
                         "all giants, they may toss loose rubble at their foes. In addition, "
                         "they have a few cold-based distance attacks up their sleeves." },
-    { "Storm Giant", "Storm Giants are massive giants of lightning. At high levels they become "
+    { "风暴巨人", "Storm Giants are massive giants of lightning. At high levels they become "
                         "wreathed in electricity, and even their weapons will shock their foes. Like "
                         "all giants, they may toss loose rubble at their foes. In addition, "
                         "they have a few lightning-based distance attacks up their sleeves." },
-    { "Titan", "Titans are huge immortal beings of incredible strength and awesome power. "
-                "Descended from Gaia and Uranus, they ruled during the legendary Golden Age, "
-                "but were overthrown by the Olympians during the War of the Titans." },
-    { "Hru", "Hrus are rock giants, made of stone. Their hides are tough and they are able "
+    { "泰坦", "泰坦是拥有令人难以置信的力量和可怕神威的巨大不朽存在。作为盖亚和乌拉诺斯的后裔，他们曾在传说中的黄金时代进行统治，但在泰坦之战中被奥林匹斯众神推翻。" },
+    { "赫鲁巨人", "Hrus are rock giants, made of stone. Their hides are tough and they are able "
                 "to break through walls effortlessly. Hrus are incredibly strong, but lack "
                 "much in the way of magical powers." },
 };
@@ -1173,7 +1171,7 @@ race_t *mon_giant_get_race(int psubrace)
         result = _fire_get_race_t();
     }
 
-    result->name = "Giant";
+    result->name = "巨人";
     result->desc = _desc;
     result->flags = RACE_IS_MONSTER;
     result->base_hp = 46;

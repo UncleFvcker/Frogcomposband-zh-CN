@@ -38,10 +38,10 @@ static void _psycho_spear_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Psycho-Spear");
+        var_set_string(res, "精神之矛");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a beam of pure energy which penetrate the invulnerability barrier.");
+        var_set_string(res, "发射一束能够穿透无敌屏障的纯粹能量射线。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(1, spell_power(p_ptr->lev * 3), spell_power(p_ptr->lev * 3 + p_ptr->to_d_spell)));
@@ -163,37 +163,37 @@ static void _gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_ANGEL && new_level >= 10)
     {
         p_ptr->current_r_idx = MON_ARCHANGEL;
-        msg_print("You have evolved into an Archangel.");
+        msg_print("你进化成了大天使(Archangel)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_ARCHANGEL && new_level >= 20)
     {
         p_ptr->current_r_idx = MON_CHERUB;
-        msg_print("You have evolved into a Cherub.");
+        msg_print("你进化成了智天使(Cherub)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_CHERUB && new_level >= 30)
     {
         p_ptr->current_r_idx = MON_SERAPH;
-        msg_print("You have evolved into a Seraph.");
+        msg_print("你进化成了炽天使(Seraph)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_SERAPH && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_ARCHON;
-        msg_print("You have evolved into an Archon.");
+        msg_print("你进化成了座天使(Archon)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_ARCHON && new_level >= 45)
     {
         p_ptr->current_r_idx = MON_PLANETAR;
-        msg_print("You have evolved into a Planetar.");
+        msg_print("你进化成了异界神侍(Planetar)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_PLANETAR && new_level >= 50)
     {
         p_ptr->current_r_idx = MON_SOLAR;
-        msg_print("You have evolved into a Solar.");
+        msg_print("你进化成了炽天神侍(Solar)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -201,7 +201,7 @@ static race_t *_solar_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[7] =  {"Angel", "Archangel", "Cherub", "Seraph", "Archon", "Planetar", "Solar"};
+    static cptr   titles[7] =  {"天使", "大天使", "智天使", "炽天使", "座天使", "异界神侍", "炽天神侍"};
     int           rank = 0;
 
     if (p_ptr->lev >= 10) rank++;
@@ -248,7 +248,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "divine power";
+        me.magic_desc = "神圣力量";
         me.which_stat = A_WIS;
         me.encumbrance.max_wgt = 450;
         me.encumbrance.weapon_pct = 67;
@@ -272,7 +272,7 @@ race_t *mon_angel_get_race(void)
         result = _solar_get_race_t();
     }
 
-    result->name = "Angel";
+    result->name = "天使";
     result->desc = _desc;
     result->flags = RACE_IS_MONSTER;
     result->birth = _birth;

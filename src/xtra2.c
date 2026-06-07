@@ -16,6 +16,7 @@
 
 #define REWARD_CHANCE 10
 #define OLYMPIAN_CHANCE 20 /* Olympians are now a bit easier */
+#define LAZY_NAMAKE_ARTIFACT_CHANCE 10
 
 static bool old_target_never_okay = FALSE;
 
@@ -160,19 +161,19 @@ void gain_chosen_stat(void)
         char tmp[32];
 
         cnv_stat(p_ptr->stat_max[0], tmp);
-        put_str(format("        a) Str (cur %6.6s)              ", tmp), 2, 14);
+        put_str(format("a) 力量 (当前 %6.6s)", tmp), 2, 14);
         cnv_stat(p_ptr->stat_max[1], tmp);
-        put_str(format("        b) Int (cur %6.6s)              ", tmp), 3, 14);
+        put_str(format("b) 智力 (当前 %6.6s)", tmp), 3, 14);
         cnv_stat(p_ptr->stat_max[2], tmp);
-        put_str(format("        c) Wis (cur %6.6s)              ", tmp), 4, 14);
+        put_str(format("c) 感知 (当前 %6.6s)", tmp), 4, 14);
         cnv_stat(p_ptr->stat_max[3], tmp);
-        put_str(format("        d) Dex (cur %6.6s)              ", tmp), 5, 14);
+        put_str(format("d) 敏捷 (当前 %6.6s)", tmp), 5, 14);
         cnv_stat(p_ptr->stat_max[4], tmp);
-        put_str(format("        e) Con (cur %6.6s)              ", tmp), 6, 14);
+        put_str(format("e) 体质 (当前 %6.6s)", tmp), 6, 14);
         cnv_stat(p_ptr->stat_max[5], tmp);
-        put_str(format("        f) Chr (cur %6.6s)              ", tmp), 7, 14);
+        put_str(format("f) 魅力 (当前 %6.6s)", tmp), 7, 14);
         put_str("                                         ", 8, 14);
-        c_put_str(TERM_YELLOW, "        Which stat do you want to raise? ", 1, 14);
+        c_put_str(TERM_YELLOW, "你想要提升哪项属性？", 1, 14);
 
         while(1)
         {
@@ -184,7 +185,7 @@ void gain_chosen_stat(void)
             if (n != choice - 'a')
                 put_str("                                         ", n+2, 14);
         }
-        if (get_check("Are you sure? ")) break;
+        if (get_check("你确定吗？")) break;
     }
     do_inc_stat(choice - 'a');
     screen_load();
@@ -266,7 +267,7 @@ void check_experience(void)
             p_ptr->max_plv = p_ptr->lev;
 
             sound(SOUND_LEVEL);
-            cmsg_format(TERM_L_GREEN, "Welcome to level %d.", p_ptr->lev);
+            cmsg_format(TERM_L_GREEN, "欢迎来到第 %d 级。", p_ptr->lev);
 
             if ((p_ptr->max_plv % 5) == 0) level_inc_stat = TRUE;
 
@@ -686,6 +687,41 @@ bool get_monster_drop(int m_idx, object_type *o_ptr)
     return TRUE;
 }
 
+static bool _drop_lazy_namake_artifact(int y, int x, int r_idx)
+{
+    int i, ct = 0;
+    int choices[3] = { ART_NAMAKE_HAMMER, ART_NAMAKE_BOW, ART_NAMAKE_ARMOR };
+    int available[3];
+    int a_idx;
+    artifact_type *a_ptr;
+
+    if (!personality_is_(PERS_LAZY)) return FALSE;
+    if (!one_in_(LAZY_NAMAKE_ARTIFACT_CHANCE)) return FALSE;
+
+    for (i = 0; i < 3; i++)
+    {
+        a_ptr = &a_info[choices[i]];
+        if (!a_ptr->generated)
+            available[ct++] = choices[i];
+    }
+    if (!ct) return FALSE;
+
+    a_idx = available[randint0(ct)];
+    a_ptr = &a_info[a_idx];
+
+    if (create_named_art(a_idx, y, x, ORIGIN_DROP, r_idx))
+    {
+        a_ptr->generated = TRUE;
+
+        /* Hack -- Memorize location of artifact in saved floors */
+        if (character_dungeon) a_ptr->floor_id = p_ptr->floor_id;
+
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 static bool _mon_is_wanted(int m_idx)
 {
     monster_type *m_ptr = &m_list[m_idx];
@@ -942,11 +978,11 @@ void monster_death(int m_idx, bool drop_item)
 
         if (p_ptr->arena_number > MAX_ARENA_MONS)
         {
-            msg_print("You are a Genuine Champion!");
+            msg_print("你是一位真正的冠军！");
         }
         else
         {
-            msg_print("Victorious! You're on your way to becoming Champion.");
+            msg_print("胜利！你正走在成为冠军的路上。");
             gain_fame(1);
         }
 
@@ -1007,7 +1043,7 @@ void monster_death(int m_idx, bool drop_item)
     {
         if (rakuba(-1, FALSE))
         {
-            msg_print("You have fallen from your riding pet.");
+            msg_print("你从坐骑上摔了下来。");
         }
     }
 
@@ -1138,7 +1174,7 @@ void monster_death(int m_idx, bool drop_item)
             }
 
             if (notice)
-                msg_print("The Pink horror divides!");
+                msg_print("粉红恶物分裂了！");
         }
         break;
 
@@ -1158,7 +1194,7 @@ void monster_death(int m_idx, bool drop_item)
         }
 
         if (notice)
-            msg_print("The Variant Maintainer is dead, but his crappy code remains!");
+            msg_print("变体维护者死了，但他那糟糕的代码还留着！");
         break;
     }
     case MON_BLOODLETTER:
@@ -1265,7 +1301,7 @@ void monster_death(int m_idx, bool drop_item)
                     if (summon_specific((pet ? -1 : m_idx), wy, wx, 40, SUMMON_DAWN, mode))
                     {
                         if (player_can_see_bold(wy, wx))
-                            msg_print("A new warrior steps forth!");
+                            msg_print("一位新的战士站了出来！");
 
                     }
                 }
@@ -1297,7 +1333,7 @@ void monster_death(int m_idx, bool drop_item)
                 if (summon_named_creature(0, wy, wx, MON_VIDARR, mode))
                 {
                     if (player_can_see_bold(wy, wx))
-                        cmsg_print(TERM_BLUE, "Vidarr steps forth to avenge his father!");
+                        cmsg_print(TERM_BLUE, "维达尔站了出来，为他的父亲复仇！");
                 }
             }
         }
@@ -1308,50 +1344,6 @@ void monster_death(int m_idx, bool drop_item)
         {
             int flg = PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL;
             (void)project(m_idx, 6, y, x, 100, GF_CHAOS, flg);
-        }
-        break;
-
-    case MON_UNICORN_ORD:
-    case MON_MORGOTH:
-    case MON_ONE_RING:
-        /* Reward for "lazy" player */
-        if (personality_is_(PERS_LAZY))
-        {
-            int a_idx = 0, yritys = 0;
-            artifact_type *a_ptr = NULL;
-
-            if (!drop_chosen_item) break;
-
-            do
-            {
-                switch (randint0(3))
-                {
-                case 0:
-                    a_idx = ART_NAMAKE_HAMMER;
-                    break;
-                case 1:
-                    a_idx = ART_NAMAKE_BOW;
-                    break;
-                case 2:
-                    a_idx = ART_NAMAKE_ARMOR;
-                    break;
-                }
-
-                a_ptr = &a_info[a_idx];
-                yritys++;
-            }
-            while ((yritys < 100) && (a_ptr->generated));
-
-            if (yritys > 99) break; 
-
-            /* Create the artifact */
-            if (create_named_art(a_idx, y, x, ORIGIN_DROP, m_ptr->r_idx))
-            {
-                a_ptr->generated = TRUE;
-
-                /* Hack -- Memorize location of artifact in saved floors */
-                if (character_dungeon) a_ptr->floor_id = p_ptr->floor_id;
-            }
         }
         break;
 
@@ -2316,7 +2308,7 @@ void monster_death(int m_idx, bool drop_item)
 
         if (race_ptr->boss_r_idx && race_ptr->boss_r_idx == m_ptr->r_idx)
         {
-            msg_print("Congratulations! You have killed the boss of your race!");
+            msg_print("恭喜！你杀死了本种族的首领！");
             gain_fame(10);
             chance = 100;
             p_ptr->update |= PU_BONUS; /* Player is now a "Hero" (cf IS_HERO()) */
@@ -2365,6 +2357,8 @@ void monster_death(int m_idx, bool drop_item)
     {
         if (get_monster_drop(m_idx, &forge))
         {
+            bool dropped_artifact = object_is_artifact(&forge);
+
             assert(forge.k_idx);
             if (forge.tval == TV_GOLD)
                 dump_gold++;
@@ -2372,6 +2366,8 @@ void monster_death(int m_idx, bool drop_item)
                 dump_item++;
 
             drop_near(&forge, -1, y, x);
+            if (dropped_artifact)
+                _drop_lazy_namake_artifact(y, x, m_ptr->r_idx);
             j++;
         }
     }
@@ -2408,10 +2404,10 @@ void monster_death(int m_idx, bool drop_item)
         if (!one_in_(3))
         {
             mode = PM_FORCE_FRIENDLY;
-            cmsg_format(TERM_RED, "%^s is transformed in undeath!", m_name);
+            cmsg_format(TERM_RED, "%^s 以死灵形态重生了！", m_name);
         }
         else
-            cmsg_format(TERM_RED, "%^s rises to serve you!", m_name);
+            cmsg_format(TERM_RED, "%^s站起来为你效劳！", m_name);
 
         if (r_ptr->flags1 & RF1_UNIQUE)
             r_lvl += 10;
@@ -2460,7 +2456,7 @@ int mon_damage_mod(monster_type *m_ptr, int dam, bool is_psy_spear)
         if (is_psy_spear)
         {
             if (mon_show_msg(m_ptr))
-                msg_print("The barrier is penetrated!");
+                msg_print("屏障被穿透了！");
         }
         else if (!one_in_(PENETRATE_INVULNERABILITY))
         {
@@ -2477,7 +2473,7 @@ int mon_damage_mod(monster_type *m_ptr, int dam, bool is_psy_spear)
         /* Let the player notice this for this monster race only the first time */
         if (!(r_ptr->r_flagsr & RFR_PACT_MONSTER))
         {
-            msg_print("<color:v>You are less effective against monsters you have made a pact with.</color>");
+            msg_print("<color:v>你对与你订下契约的怪物攻击效果较弱。</color>");
             r_ptr->r_flagsr |= (RFR_PACT_MONSTER);
         }
         dam = dam/2;
@@ -2500,7 +2496,7 @@ int mon_damage_mod_mon(monster_type *m_ptr, int dam, bool is_psy_spear)
         if (is_psy_spear)
         {
             if (mon_show_msg(m_ptr))
-                msg_print("The barrier is penetrated!");
+                msg_print("屏障被穿透了！");
         }
         else if (!one_in_(PENETRATE_INVULNERABILITY))
         {
@@ -2667,7 +2663,7 @@ static void get_exp_from_mon(int dam, monster_type *m_ptr, bool mon_dead)
         quest_ptr q_ptr = quests_get_current();
         if (q_ptr)
         {
-             if ((strpos("Shadow Fair", q_ptr->name)) || (strpos("Tidy ", q_ptr->name)))
+             if ((strpos("暗影集市", q_ptr->name)) || (strpos("清理", q_ptr->name)))
              {
                  s64b_mul(&new_exp, &new_exp_frac, 0, 2);
                  s64b_div(&new_exp, &new_exp_frac, 0, 3);
@@ -2910,7 +2906,7 @@ bool mon_take_hit(int m_idx, int dam, int type, bool *fear, cptr note)
     if (!m_idx) return TRUE;
 
     if (dam > 0 && (p_ptr->wizard || cheat_xtra || easy_damage))
-        msg_format("You do %d damage.", dam);
+        msg_format("你造成了 %d 点伤害。", dam);
 
     if ( p_ptr->melt_armor
       && note == NULL /* Hack: Trying to just get melee and shooting */
@@ -2919,10 +2915,10 @@ bool mon_take_hit(int m_idx, int dam, int type, bool *fear, cptr note)
     {
         char m_name[MAX_NLEN];
         monster_desc(m_name, m_ptr, MD_PRON_VISIBLE | MD_POSSESSIVE);
-        msg_format("%^s armor melts.", m_name);
+        msg_format("%^s的护甲融化了。", m_name);
         m_ptr->ac_adj -= randint1(2);
         if (p_ptr->wizard || cheat_xtra || easy_damage)
-            msg_format("Melt Armor: AC is now %d", mon_ac(m_ptr));
+            msg_format("融化护甲：护甲值现在是 %d", mon_ac(m_ptr));
     }
 
     /* Rage Mage: "Blood Lust" */
@@ -2977,7 +2973,7 @@ bool mon_take_hit(int m_idx, int dam, int type, bool *fear, cptr note)
                 if (m_ptr->r_idx == MON_PHOENIX && one_in_(3) && !equip_find_art(ART_SILVER_HAMMER) /* blame bostock */)
                 {
                     m_ptr->hp = m_ptr->maxhp;
-                    msg_print("The Phoenix rises again!");
+                    msg_print("凤凰浴火重生！");
                     return FALSE;
                 }
                 if (m_ptr->r_idx == MON_LUCIFER && m_ptr->max_maxhp < 24200)
@@ -2988,9 +2984,9 @@ bool mon_take_hit(int m_idx, int dam, int type, bool *fear, cptr note)
                     m_ptr->mpower = MAX(1250, m_ptr->mpower + 200);
                     m_ptr->mspeed = 160;
                     m_ptr->ac_adj = 0;
-                    if (strpos("Epic Space Hero", player_name)) msg_format("<color:R>%^s</color> <color:y>says:</color> <color:v>\'Epic Space Hero, I am your father! Abandon hope! MUAHAHAHAHA!!!!!'</color>", m_name);
-                    else if (one_in_(2)) msg_format("<color:R>%^s</color> <color:y>says:</color> <color:v>\'Thank you for killing the bits of me... THAT WERE HOLDING ME BACK! MUAHAHAHAHA!!!!!'</color>", m_name);
-                    else msg_format("<color:R>%^s</color> <color:y>says:</color> <color:v>\'I am Lucifer, created to be creation's shadow! You cannot destroy me... without destroying the universe! MUAHAHAHAHA!!!!!'</color>", m_name);
+                    if (strpos("史诗太空英雄", player_name)) msg_format("<color:R>%^s</color> <color:y>说：</color> <color:v>'史诗太空英雄，我是你爸爸！放弃希望吧！哇哈哈哈哈!!!!!'</color>", m_name);
+                    else if (one_in_(2)) msg_format("<color:R>%^s</color> <color:y>说：</color> <color:v>'谢谢你杀死了我身上……那些拖我后腿的部分！哇哈哈哈哈!!!!!'</color>", m_name);
+                    else msg_format("<color:R>%^s</color> <color:y>说：</color> <color:v>'我是路西法，生来就是造物的暗影！你无法毁灭我……除非毁灭整个宇宙！哇哈哈哈哈!!!!!'</color>", m_name);
                     return FALSE;
                 }
 
@@ -3075,7 +3071,7 @@ bool mon_take_hit(int m_idx, int dam, int type, bool *fear, cptr note)
             bool stop_ty = FALSE;
             int count = 0;
 
-            cmsg_format(TERM_VIOLET, "%^s puts a terrible blood curse on you!", m_name);
+            cmsg_format(TERM_VIOLET, "%^s对你下了一个可怕的鲜血诅咒！", m_name);
 
             curse_equipment(100, 50);
 
@@ -3096,7 +3092,7 @@ bool mon_take_hit(int m_idx, int dam, int type, bool *fear, cptr note)
             /* Dump a message */
             if (!get_rnd_line("mondeath.txt", m_ptr->r_idx, line_got))
 
-                msg_format("%^s %s", m_name, line_got);
+                msg_format("%^s%s", m_name, line_got);
 
 #ifdef WORLD_SCORE
             if (m_ptr->r_idx == MON_SERPENT)
@@ -3108,7 +3104,7 @@ bool mon_take_hit(int m_idx, int dam, int type, bool *fear, cptr note)
         }
         else if (m_ptr->r_idx == MON_R_MACHINE)
         {
-             msg_format("%^s types, 'All you have done is seal the permanence of your fate!'", m_name);
+             msg_format("%^s打字道：'你所做的一切只是让你那永久的命运更加不可改变！'", m_name);
         }
 
         if (!(d_info[dungeon_type].flags1 & DF1_BEGINNER))
@@ -3228,7 +3224,7 @@ bool mon_take_hit(int m_idx, int dam, int type, bool *fear, cptr note)
         /* Death by physical attack -- invisible monster */
         else if (!m_ptr->ml)
         {
-            cmsg_format(TERM_L_RED, "You have killed %s.", m_name);
+            cmsg_format(TERM_L_RED, "你杀死了%s。", m_name);
         }
 
         /* Death by Physical attack -- non-living monster */
@@ -3244,20 +3240,20 @@ bool mon_take_hit(int m_idx, int dam, int type, bool *fear, cptr note)
 
             /* Special note at death */
             if (explode)
-                cmsg_format(TERM_L_RED, "%^s explodes into tiny shreds.", m_name);
+                cmsg_format(TERM_L_RED, "%^s爆炸成了无数碎片。", m_name);
             else
-                cmsg_format(TERM_L_RED, "You have destroyed %s.", m_name);
+                cmsg_format(TERM_L_RED, "你摧毁了%s。", m_name);
         }
 
         /* Death by Physical attack -- living monster */
         else
-            cmsg_format(TERM_L_RED, "You have slain %s.", m_name);
+            cmsg_format(TERM_L_RED, "你击杀了%s。", m_name);
 
         if (_mon_is_wanted(m_idx))
         {
             char m_posname[MAX_NLEN];
             monster_desc(m_posname, m_ptr, MD_TRUE_NAME | MD_POSSESSIVE);
-            msg_format("There is a price on %s head.", m_posname);
+            msg_format("%s的头颅有悬赏在身。", m_posname);
             if (alert_wanted_kill) msg_print(NULL);
         }
 
@@ -3309,7 +3305,7 @@ bool mon_take_hit(int m_idx, int dam, int type, bool *fear, cptr note)
 
             if (summon_named_creature(0, dummy_y, dummy_x, MON_BIKETAL, mode))
             {
-                msg_print("Uwa-hahaha!  *I* am Biketal!");
+                msg_print("呜哇-哈哈哈！ *我*是比克塔尔！");
             }
         }
         else
@@ -4169,7 +4165,7 @@ static int target_set_aux(int y, int x, int mode, cptr info)
     if (player_bold(y, x))
     {
         /* Description */
-        s1 = "You are ";
+        s1 = "你是";
 
         /* Preposition */
         s2 = "on ";
@@ -4224,7 +4220,7 @@ static int target_set_aux(int y, int x, int mode, cptr info)
         boring = FALSE;
 
         if (fuzzy)
-            strcpy(m_name, "Monster");
+            strcpy(m_name, "怪物");
         else
         {
             monster_desc(m_name, m_ptr, MD_INDEF_VISIBLE);
@@ -4341,13 +4337,13 @@ static int target_set_aux(int y, int x, int mode, cptr info)
         }
 
         /* Change the intro */
-        s1 = "It is ";
+        s1 = "它是";
 
 
         /* Hack -- take account of gender */
-        if (ap_r_ptr->flags1 & (RF1_FEMALE)) s1 = "She is ";
+        if (ap_r_ptr->flags1 & (RF1_FEMALE)) s1 = "她是";
 
-        else if (ap_r_ptr->flags1 & (RF1_MALE)) s1 = "He is ";
+        else if (ap_r_ptr->flags1 & (RF1_MALE)) s1 = "他是";
 
 
         /* Use a preposition */
@@ -4490,7 +4486,7 @@ static int target_set_aux(int y, int x, int mode, cptr info)
         if (have_flag(f_ptr->flags, FF_QUEST_ENTER))
         {
             quest_ptr q = quests_get(c_ptr->special);
-            name = format("the entrance to the quest '%s' (level %d)", kayttonimi(q), q->danger_level);
+            name = format("通往任务“%s”（等级 %d）的入口", kayttonimi(q), q->danger_level);
         }
 
         /* Hack -- special handling for building doors */
@@ -4711,7 +4707,7 @@ bool target_set(int mode)
             {
                 case '?':
                     screen_save();
-                    doc_display_help("context_targetting.txt", "Targetting");
+                    doc_display_help("context_targetting.txt", "瞄准");
                     screen_load();
                     break;
                 case ESCAPE:
@@ -4966,7 +4962,7 @@ bool target_set(int mode)
             {
                 case '?':
                     screen_save();
-                    doc_display_help("context_targetting.txt", "Targetting");
+                    doc_display_help("context_targetting.txt", "瞄准");
                     screen_load();
                     break;
                 case ESCAPE:
@@ -5348,7 +5344,7 @@ bool get_aim_dir_aux(int *dp, int target_mode)
     if (command_dir != dir)
     {
         /* Warn the user */
-        msg_print("You are confused.");
+        msg_print("你混乱了。");
     }
 
     /* Save direction */
@@ -5420,7 +5416,7 @@ int get_rep_dir(int *dp, bool under)
         char ch;
 
         /* Get a command (or Cancel) */
-        if (!get_com("Direction (Escape to cancel)? ", &ch, TRUE)) break;
+        if (!get_com("方向（按 Escape 取消）？", &ch, TRUE)) break;
 
 
         /* Look up the direction */
@@ -5486,9 +5482,9 @@ int get_rep_dir(int *dp, bool under)
     if (command_dir != dir)
     {
         if (p_ptr->confused)
-            msg_print("You are confused.");
+            msg_print("你混乱了。");
         else if (p_ptr->move_random)
-            cmsg_print(TERM_YELLOW, "You are moving erratically.");
+            cmsg_print(TERM_YELLOW, "你正在毫无规律地移动。");
         else
         {
             char m_name[80];
@@ -5496,9 +5492,9 @@ int get_rep_dir(int *dp, bool under)
 
             monster_desc(m_name, m_ptr, 0);
             if (MON_CONFUSED(m_ptr))
-                msg_format("%^s is confused.", m_name);
+                msg_format("%^s混乱了。", m_name);
             else
-                msg_format("You cannot control %s.", m_name);
+                msg_format("你无法控制%s。", m_name);
         }
         /* Block running in random directions */
         result = GET_DIR_RANDOM;
@@ -5545,7 +5541,7 @@ bool get_rep_dir2(int *dp)
         char ch;
 
         /* Get a command (or Cancel) */
-        if (!get_com("Direction (Escape to cancel)? ", &ch, TRUE)) break;
+        if (!get_com("方向（按 Escape 取消）？", &ch, TRUE)) break;
 
 
         /* Look up the direction */
@@ -5579,7 +5575,7 @@ bool get_rep_dir2(int *dp)
     if (command_dir != dir)
     {
         /* Warn the user */
-        msg_print("You are confused.");
+        msg_print("你混乱了。");
 
     }
 
@@ -5690,7 +5686,7 @@ bool tgt_pt(int *x_ptr, int *y_ptr, int rng)
         n = 0;
     }
 
-    msg_print("Select a point and press <color:y>space</color>. < and > cycle through stairs, * cycles through monsters");
+    msg_print("选择一个点并按 <color:y>空格键</color>。< 和 > 循环切换楼梯，* 循环切换怪物");
 
     while ((ch != ESCAPE) && !success)
     {
@@ -5967,7 +5963,7 @@ bool get_hack_dir(int *dp)
     if (command_dir != dir)
     {
         /* Warn the user */
-        msg_print("You are confused.");
+        msg_print("你混乱了。");
 
     }
 
@@ -6065,13 +6061,13 @@ int bow_energy(int sval)
  */
 cptr your_alignment(void)
 {
-    if (p_ptr->align > 150) return "Lawful";
-    else if (p_ptr->align > 50) return "Good";
-    else if (p_ptr->align > 10) return "Neutral Good";
-    else if (p_ptr->align > -11) return "Neutral";
-    else if (p_ptr->align > -51) return "Neutral Evil";
-    else if (p_ptr->align > -151) return "Evil";
-    else return "Chaotic";
+    if (p_ptr->align > 150) return "守序";
+    else if (p_ptr->align > 50) return "善良";
+    else if (p_ptr->align > 10) return "中立善良";
+    else if (p_ptr->align > -11) return "绝对中立";
+    else if (p_ptr->align > -51) return "中立邪恶";
+    else if (p_ptr->align > -151) return "邪恶";
+    else return "混乱";
 }
 
 

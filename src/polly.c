@@ -84,10 +84,10 @@ static void _detect_threats_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Threats");
+        var_set_string(res, "侦测威胁");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detects nearby monsters.");
+        var_set_string(res, "侦测附近的怪物。");
         break;
     case SPELL_CAST:
         detect_monsters_normal(DETECT_RAD_DEFAULT);
@@ -106,16 +106,16 @@ static void _sleepy_speech_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Sleep-Inducing Speech");
+        var_set_string(res, "催眠演说");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Delivers a speech with soporific effects on nearby monsters.");
+        var_set_string(res, "发表一段对附近怪物有催眠效果的演说。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(pow));
         break;
     case SPELL_CAST:
-        msg_print("You deliver a sleep-inducing speech.");
+        msg_print("你发表了一段令人昏昏欲睡的演说。");
         sleep_monsters(pow);
         var_set_bool(res, TRUE);
         break;
@@ -131,10 +131,10 @@ static void _mystification_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mystification");
+        var_set_string(res, "故弄玄虚");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to confuse a nearby monster.");
+        var_set_string(res, "尝试使附近的一只怪物陷入混乱。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(pow));
@@ -160,18 +160,18 @@ static void _charm_monster_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Charm Monster");
+        var_set_string(res, "魅惑怪物");
         break;
     case SPELL_DESC:
-        if (politician_get_toggle() == POLLY_TOGGLE_XPCAST) var_set_string(res, "Attempts to charm a monster. In Glory mode you receive a 10% bonus for charming neutral monsters.");
-        else if (politician_get_toggle() == POLLY_TOGGLE_AUCAST) var_set_string(res, "Attempts to charm a monster. In Grease mode you receive a 10% bonus for charming evil monsters.");
-        else var_set_string(res, "Attempts to charm a monster. In Grit mode you receive a 10% bonus for charming good monsters.");
+        if (politician_get_toggle() == POLLY_TOGGLE_XPCAST) var_set_string(res, "尝试魅惑一只怪物。在“荣耀(Glory)”模式下，魅惑中立怪物会获得 10% 的加成。");
+        else if (politician_get_toggle() == POLLY_TOGGLE_AUCAST) var_set_string(res, "尝试魅惑一只怪物。在“油水(Grease)”模式下，魅惑邪恶怪物会获得 10% 的加成。");
+        else var_set_string(res, "尝试魅惑一只怪物。在“胆魄(Grit)”模式下，魅惑善良怪物会获得 10% 的加成。");
         break;
     case SPELL_INFO:
-        if (p_ptr->spin && p_ptr->uimapuku) var_set_string(res, "power +110%");
-        else if (p_ptr->uimapuku) var_set_string(res, "power +50%");
-        else if (p_ptr->spin) var_set_string(res, "power +40%");
-        else var_set_string(res, format("power %d+%dd7", (p_ptr->lev / 2) + (adj_con_fix[p_ptr->stat_ind[A_CHR]] - 1), dice));
+        if (p_ptr->spin && p_ptr->uimapuku) var_set_string(res, "能量 +110%");
+        else if (p_ptr->uimapuku) var_set_string(res, "能量 +50%");
+        else if (p_ptr->spin) var_set_string(res, "能量 +40%");
+        else var_set_string(res, format("能量 %d+%dd7", (p_ptr->lev / 2) + (adj_con_fix[p_ptr->stat_ind[A_CHR]] - 1), dice));
         break;
     case SPELL_CAST:
         if (!get_fire_dir(&dir))
@@ -193,10 +193,10 @@ static void _background_check_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Background Check");
+        var_set_string(res, "背景调查");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Reveals information about nearby monsters.");
+        var_set_string(res, "揭示附近怪物的信息。");
         break;
     case SPELL_CAST:
         probing();
@@ -226,17 +226,17 @@ static void _remove_aggro_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Remove Aggravation");
+        var_set_string(res, "消除仇恨");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Makes an item nonaggravating.");
+        var_set_string(res, "使一件物品不再激怒怪物。");
         break;
     case SPELL_CAST:
         {
             obj_prompt_t prompt = {0};
 
-            prompt.prompt = "Make which object nonaggravating?";
-            prompt.error = "You do not have any aggravating objects.";
+            prompt.prompt = "使哪件物品不再激怒怪物？";
+            prompt.error = "你没有可以激怒怪物的物品。";
             prompt.filter = _object_is_aggravating;
             prompt.where[0] = INV_PACK;
             prompt.where[1] = INV_EQUIP;
@@ -247,7 +247,7 @@ static void _remove_aggro_spell(int cmd, variant *res)
             if (!prompt.obj) return;
             if (prompt.obj->name1 == ART_WINBLOWS || prompt.obj->name1 == ART_MICRODOLLAR)
             {
-                msg_print("Even you can't make a Micro$oft product nonaggravating.");
+                msg_print("就算是你也无法让微软(Micro$oft)的产品变得不招人恨。");
                 return;
             }
             prompt.obj->xtra1 = _OBJ_DEAGGRAVATED;
@@ -265,10 +265,10 @@ static void _summon_aide_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Aide");
+        var_set_string(res, "召唤助手");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Summons a friendly monster.");
+        var_set_string(res, "召唤一只友好的怪物。");
         break;
     case SPELL_CAST:
         (void)summon_specific(-1, py, px, (p_ptr->lev * 7 / 5) - 15, 0, PM_FORCE_PET);
@@ -285,10 +285,10 @@ static void _spying_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Spying");
+        var_set_string(res, "间谍活动");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gives you temporary telepathy.");
+        var_set_string(res, "赋予你临时的心灵感应。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(25, 25));
@@ -308,10 +308,10 @@ static void _spinning_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Spinning");
+        var_set_string(res, "洗地");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Provides temporary resistance to nether and makes charming effects more powerful.");
+        var_set_string(res, "提供临时的地狱抗性，并使魅惑效果更加强大。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(25, 25));
@@ -331,18 +331,18 @@ static void _doctoring_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Doctoring");
+        var_set_string(res, "医治");
         break;
     case SPELL_DESC:
         if (p_ptr->lev < 40)
-            var_set_string(res, "Heals HP and Stun.");
+            var_set_string(res, "恢复生命值并治疗震慑。");
         else if (p_ptr->lev < 45)
-            var_set_string(res, "Heals HP and Stun. Cures cuts.");
+            var_set_string(res, "恢复生命值并治疗震慑。治愈流血。");
         else
-            var_set_string(res, "Heals HP and Stun. Cures cuts and slows poison.");
+            var_set_string(res, "恢复生命值并治疗震慑。治愈流血并减缓毒发。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Heals HP and Stun. Cures cuts (L40). Slows poison (L45).");
+        var_set_string(res, "恢复生命值并治疗震慑。治愈流血(L40)。减缓毒发(L45)。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_heal(0, 0, p_ptr->lev + 5));
@@ -369,10 +369,10 @@ static void _diplomatic_impunity_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Diplomatic Impunity");
+        var_set_string(res, "外交豁免权");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Removes fear and provides temporary heroism.");
+        var_set_string(res, "移除恐惧并提供临时的英雄主义。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(25, 25));
@@ -394,8 +394,8 @@ void set_filibuster(bool paalle)
     p_ptr->filibuster = paalle;
     if (old_fili != paalle)
     {
-        if (old_fili) msg_print("You stop filibustering.");
-        else msg_print("You start filibustering.");
+        if (old_fili) msg_print("你停止了冗长演说。");
+        else msg_print("你开始了冗长演说。");
         p_ptr->redraw |= PR_STATUS;
         p_ptr->update |= PU_BONUS;
         handle_stuff();
@@ -407,10 +407,10 @@ static void _filibuster_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Filibuster");
+        var_set_string(res, "冗长演说");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Toggles filibuster mode. While filibustering, you move very slowly (-12 to speed) and don't regenerate at all, but all monsters also receive the same speed penalty.");
+        var_set_string(res, "切换冗长演说模式。在进行冗长演说时，你的移动速度非常缓慢（-12速度），且完全不会再生生命值，但所有怪物也会受到相同的速度惩罚。");
         break;
     case SPELL_CAST:
         p_ptr->redraw |= PR_STATUS;
@@ -430,10 +430,10 @@ static void _create_chaos_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Create Chaos");
+        var_set_string(res, "制造混乱");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Creates a ball of chaos centered on you, potentially causing slight damage to you as well.");
+        var_set_string(res, "在你周围制造一个混沌能量球，可能也会对你造成轻微伤害。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(pow));
@@ -459,10 +459,10 @@ static void _nether_storm_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Nether Storm");
+        var_set_string(res, "地狱风暴");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generates a large ball of nether.");
+        var_set_string(res, "生成一个巨大的地狱能量球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(pow));
@@ -620,10 +620,10 @@ static void _grit_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Grit");
+        var_set_string(res, "胆魄");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Enters Grit mode (draw on your hitpoints to power your political career).");
+        var_set_string(res, "进入“胆魄”模式（消耗你的生命值来为你政治生涯的行动充能）。");
         break;
     case SPELL_ENERGY:
         var_set_int(res, 0);
@@ -643,10 +643,10 @@ static void _grease_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Grease");
+        var_set_string(res, "油水");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Enters Grease mode (draw on your wealth to power your political career).");
+        var_set_string(res, "进入“油水”模式（消耗你的财富来为你政治生涯的行动充能）。");
         break;
     case SPELL_ENERGY:
         var_set_int(res, 0);
@@ -666,10 +666,10 @@ static void _glory_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Glory");
+        var_set_string(res, "荣耀");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Enters Glory mode (draw on your experience to power your political career).");
+        var_set_string(res, "进入“荣耀”模式（消耗你的经验值来为你政治生涯的行动充能）。");
         break;
     case SPELL_ENERGY:
         var_set_int(res, 0);
@@ -695,7 +695,7 @@ static power_info _get_powers[] =
 static void _character_dump(doc_ptr doc)
 {
     spellbook_character_dump(doc);
-    doc_insert(doc, "<color:r>Realm:</color> <color:B>Politics</color>\n");
+    doc_insert(doc, "<color:r>领域:</color> <color:B>政治</color>\n");
     py_dump_spells_aux(doc);
 }
 
@@ -766,10 +766,10 @@ static void _politician_check_magic(bool syntyma)
     }
 
     /* Some politicians can access a magic realm */
-    if ((strpos("Don", player_name)) || (strpos("ump", player_name)) ||
-        (strpos("Small", player_name)) || (strpos("Little", player_name)) ||
-        (strpos("Tiny", player_name)) || (strpos("Matt", player_name)) ||
-        (strpos("God", player_name)))
+    if ((strpos("唐", player_name)) || (strpos("ump", player_name)) ||
+        (strpos("微小", player_name)) || (strpos("细小", player_name)) ||
+        (strpos("渺小", player_name)) || (strpos("马特", player_name)) ||
+        (strpos("神", player_name)))
     {
         class_t *poli = politician_get_class();
         poli->exp = 145;
@@ -898,15 +898,8 @@ class_t *politician_get_class(void)
     skills_t bs = { 45,  24,  36,   2,  45,  28,  36,  24 };
     skills_t xs = { 15,   9,  11,   1,   0,   0,   6,   8 };
 
-        me.name = "Politician";
-        me.desc = "Politicians are masters of spinning and manipulation, seeking "
-                  "to convert others to their cause and to destroy those they cannot "
-                  "convert. They are not very good at either direct combat or at using "
-                  "magical devices, and rely on their savvy and special skills and on "
-                  "the help of their friends to win fights. They have the ability to "
-                  "toggle between hit points, wealth and experience as the source of "
-                  "their power, although the latter two only become available at higher "
-                  "levels. Charisma is a key stat for Politicians.";
+        me.name = "政治家";
+        me.desc = "政治家是洗地和操纵的大师，他们试图让别人皈依自己的事业，并摧毁那些无法皈依的人。他们不太擅长直接战斗或使用魔法装置，而是依靠他们的机智、特殊技能以及朋友的帮助来赢得战斗。他们拥有将力量来源在生命值、财富和经验之间切换的能力，尽管后两者只能在更高的等级才可用。魅力是政治家的关键属性。";
 
         me.stats[A_STR] = -2;
         me.stats[A_INT] =  1;

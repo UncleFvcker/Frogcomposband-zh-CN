@@ -73,7 +73,7 @@ static void _list_spell(doc_ptr doc, int realm, int spell, int choice, int optio
         if (options & _FROM_BOOK)
             doc_printf(doc, "%-15.15s", "");
         else
-            doc_printf(doc, "%-15.15s", "Forgotten");
+            doc_printf(doc, "%-15.15s", "遗忘");
     }
     else if (options & _SHOW_INFO)
         doc_printf(doc, "%-15.15s", do_spell(realm, spell, SPELL_INFO));
@@ -99,9 +99,9 @@ static void _list_spells(doc_ptr doc, int options)
     int i;
 
     doc_insert(doc, "<style:table>");
-    doc_printf(doc, "<color:G>    %-20.20s Lvl  SP Fail %-15.15s", "Name", "Desc");
+    doc_printf(doc, "<color:G> %-20.20s 等级 法力 失败 %-15.15s", "名称", "描述");
     if (options & _SHOW_STATS)
-        doc_insert(doc, "  Cast Fail");
+        doc_insert(doc, "施法 失败");
     doc_insert(doc, "</color>\n");
 
     for (i = 0; i < _MAX_SLOTS; i++)
@@ -111,9 +111,9 @@ static void _list_spells(doc_ptr doc, int options)
         else
         {
             if (options & _ALLOW_EMPTY)
-                doc_printf(doc, " %c) <color:D>(Empty)</color>\n", I2A(i));
+                doc_printf(doc, "%c) <color:D>(空)</color>\n", I2A(i));
             else
-                doc_printf(doc, " <color:D>%c) (Empty)</color>\n", I2A(i));
+                doc_printf(doc, "<color:D>%c) (空)</color>\n", I2A(i));
         }
     }
     doc_insert(doc, "</style>");
@@ -169,13 +169,13 @@ static _slot_info_ptr _choose(cptr verb, int options)
         if (exchange)
         {
             if (slot1 == _INVALID_SLOT)
-                string_append_s(prompt, "Select the first spell:");
+                string_append_s(prompt, "选择第一个法术：");
             else
-                string_append_s(prompt, "Select the second spell:");
+                string_append_s(prompt, "选择第二个法术：");
         }
         else
         {
-            string_printf(prompt, "%s which spell", verb);
+            string_printf(prompt, "%s哪个法术", verb);
             if (options & _ALLOW_EXCHANGE)
                 string_append_s(prompt, " [Press 'X' to Exchange]");
             string_append_c(prompt, ':');
@@ -287,7 +287,7 @@ static void _birth(void)
  **********************************************************************/
 static void _character_dump(doc_ptr doc)
 {
-    doc_printf(doc, "<topic:Spells>==================================== <color:keypress>S</color>pells ===================================\n\n");
+    doc_printf(doc, "<topic:Spells>==================================== 法术 (<color:keypress>S</color>) ===================================\n\n");
     _list_spells(doc, _SHOW_INFO | _SHOW_STATS);
     doc_newline(doc);
 }
@@ -338,7 +338,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.which_stat = A_INT;
         me.encumbrance.max_wgt = 430;
         me.encumbrance.weapon_pct = 100;
@@ -405,9 +405,9 @@ static void _display_spells_to_gain(object_type *o_ptr, rect_t r, int tutki)
 
     r.x = 0;
     r.y = 0;
-    doc_insert(doc, "Memorize which spell [<color:keypress>A</color>-<color:keypress>H</color> to browse]:\n");
+    doc_insert(doc, "记忆哪个法术 [<color:keypress>A</color>-<color:keypress>H</color> 浏览]:\n");
     doc_insert(doc, "<style:table>");
-    doc_printf(doc, "<color:G>    %-20.20s Lvl  SP Fail Desc</color>\n", "Name");
+    doc_printf(doc, "<color:G> %-20.20s 等级 法力 失败 描述</color>\n", "名称");
 
     for (i = start_idx; i < start_idx + _SPELLS_PER_BOOK; i++)
         _list_spell(doc, realm, i, i - start_idx, (_FROM_BOOK | _SHOW_INFO));
@@ -483,7 +483,7 @@ void gray_mage_browse_spell(void)
     _browse_choice = 0;
     while (!done)
     {
-        _slot_info_ptr slot = _choose("Browse", _ALLOW_EXCHANGE | _SHOW_INFO | _SHOW_STATS);
+        _slot_info_ptr slot = _choose("浏览", _ALLOW_EXCHANGE | _SHOW_INFO | _SHOW_STATS);
         if (!slot)
             done = TRUE;
         else
@@ -501,13 +501,13 @@ void gray_mage_cast_spell(void)
 
     if (p_ptr->confused)
     {
-        msg_print("You are too confused!");
+        msg_print("你太困惑了！");
         return;
     }
 
     if (pelko()) return;
 
-    slot_ptr = _choose("Cast", _ALLOW_EXCHANGE | _SHOW_INFO);
+    slot_ptr = _choose("施法", _ALLOW_EXCHANGE | _SHOW_INFO);
     if (slot_ptr)
     {
         magic_type *spell_ptr = _get_spell_info(slot_ptr->realm, slot_ptr->spell);
@@ -517,13 +517,13 @@ void gray_mage_cast_spell(void)
 
         if (sp_level > p_ptr->lev) /* Experience Drain? */
         {
-            msg_format("You need to be level %d to use that spell.", sp_level);
+            msg_format("你需要达到 %d 级才能使用该法术。", sp_level);
             return;
         }
 
         if (cost > p_ptr->csp)
         {
-            msg_print("You do not have enough mana to cast this spell.");
+            msg_print("你没有足够的法力来施展此法术。");
             return;
         }
 
@@ -534,7 +534,7 @@ void gray_mage_cast_spell(void)
         {
             if (flush_failure) flush();
 
-            cmsg_format(TERM_VIOLET, "You failed to cast %s!", do_spell(slot_ptr->realm, slot_ptr->spell, SPELL_NAME));
+            cmsg_format(TERM_VIOLET, "你施展%s失败！", do_spell(slot_ptr->realm, slot_ptr->spell, SPELL_NAME));
             if (prompt_on_failure) msg_print(NULL);
             if (demigod_is_(DEMIGOD_ATHENA))
                 p_ptr->csp += cost/2;
@@ -567,24 +567,24 @@ void gray_mage_gain_spell(void)
 
     if (p_ptr->blind || no_lite())
     {
-        msg_print("You cannot see!");
+        msg_print("你看不见！");
         return;
     }
 
     if (p_ptr->confused)
     {
-        msg_print("You are too confused!");
+        msg_print("你太困惑了！");
         return;
     }
 
     if (!p_ptr->new_spells)
     {
-        msg_print("You cannot learn any new spells!");
+        msg_print("你无法学习任何新法术！");
         return;
     }
 
-    prompt.prompt = "Study which book?";
-    prompt.error = "You have no books that you can read.";
+    prompt.prompt = "研读哪本书？";
+    prompt.error = "你没有可研读的书。";
     prompt.filter = _spell_book_p;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -597,7 +597,7 @@ void gray_mage_gain_spell(void)
     if (spell_idx == -1) return;
 
     /* Pick a slot for storage (possibly replacing an already learned spell) */
-    slot_ptr = _choose("Replace", _ALLOW_EMPTY | _SHOW_INFO);
+    slot_ptr = _choose("替换", _ALLOW_EMPTY | _SHOW_INFO);
     if (!slot_ptr) return;
 
     if (slot_ptr->realm != REALM_NONE)
@@ -617,7 +617,7 @@ void gray_mage_gain_spell(void)
     p_ptr->learned_spells++;
     slot_ptr->realm = tval2realm(prompt.obj->tval);
     slot_ptr->spell = spell_idx;
-    msg_format("You have learned the spell '%s'.", do_spell(slot_ptr->realm, slot_ptr->spell, SPELL_NAME));
+    msg_format("你学会了法术“%s”。", do_spell(slot_ptr->realm, slot_ptr->spell, SPELL_NAME));
     p_ptr->update |= PU_SPELLS;
     p_ptr->redraw |= PR_EFFECTS;
     energy_use = 100;
@@ -627,9 +627,9 @@ extern cptr gray_mage_speciality_name(int psubclass)
 {
     switch (psubclass)
     {
-    case GRAY_MAGE_GOOD: return "Good Bias";
-    case GRAY_MAGE_NEUTRAL: return "Neutral Bias";
-    case GRAY_MAGE_EVIL: return "Evil Bias";
+    case GRAY_MAGE_GOOD: return "善良倾向";
+    case GRAY_MAGE_NEUTRAL: return "中立倾向";
+    case GRAY_MAGE_EVIL: return "邪恶倾向";
     }
     return "";
 }
@@ -655,21 +655,8 @@ class_t *gray_mage_get_class(int psubclass)
     skills_t bs = { 30,  40,  38,   3,  16,  20,  34,  20};
     skills_t xs = {  7,  15,  11,   0,   0,   0,   6,   7};
 
-        me.name = "Gray-Mage";
-        me.desc = "The Gray-Mage casts spells from memory rather than books; a "
-                    "spellbook is only required for the initial learning process. "
-                    "However, only ten spells may be memorized at any given time; and "
-                    "while a Gray-Mage may replace old spells with new ones, the total "
-                    "number of spells they can study is limited.\n\n"
-                    "Gray-Mages do not choose specific realms like book spellcasters; "
-                    "instead, they choose a general bias towards either Good, Neutral "
-                    "or Evil magic. So while all Gray-Mages may learn spells from the Arcane, "
-                    "Armageddon, Chaos, Craft, Sorcery and Trump realms, only a Good Bias allows "
-                    "access to Life and Crusade magic; only a Neutral Bias allows access to Nature "
-                    "magic; and only an Evil Bias allows access to Death and Daemon magic. At any one "
-                    "time, a Gray-Mage has relatively few spells directly at their disposal; but their ability "
-                    "to pick the best spells from an extremely large pool more than compensates for this. "
-                    "As with most mages, the key stat is Intelligence.";
+        me.name = "灰法师";
+        me.desc = "灰法师凭记忆而非书籍施法；法术书仅在最初的学习过程中才需要。然而，在任何时候都只能记忆十个法术；虽然灰法师可以用新法术替换旧法术，但他们能研读的法术总数是有限的。\n\n灰法师不会像依赖书本的施法者那样选择特定的领域；相反，他们选择一个总体倾向：善良、中立或邪恶魔法。因此，虽然所有灰法师都能学习奥秘、毁灭、混沌、工匠、咒术和王牌领域的法术，但只有善良倾向才允许接触生命和圣战魔法；只有中立倾向才允许接触自然魔法；只有邪恶倾向才允许接触死亡和恶魔魔法。在任何时候，灰法师能直接施展的法术都相对较少；但他们能够从极其庞大的法术池中挑选出最好的法术，这足以弥补这一缺陷。与大多数法师一样，关键属性是智力。";
 
         me.stats[A_STR] = -4;
         me.stats[A_INT] =  3;

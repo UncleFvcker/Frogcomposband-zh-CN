@@ -5,7 +5,7 @@ static void _birth(void)
     object_type    forge;
 
     p_ptr->current_r_idx = MON_UMBER_HULK;
-    skills_innate_init("Gaze", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("凝视", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
     object_prep(&forge, lookup_kind(TV_SWORD, SV_LONG_SWORD));
     py_birth_obj(&forge);
@@ -35,7 +35,7 @@ static void _calc_innate_attacks(void)
         a.blows = 100;
         a.to_h = p_ptr->lev/5;
         a.msg = "You gaze.";
-        a.name = "Gaze";
+        a.name = "凝视";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -95,13 +95,13 @@ static void _gain_level(int new_level) {
     {
         p_ptr->current_r_idx = MON_XORN;
         equip_on_change_race();
-        msg_print("You have evolved into a Xorn.");
+        msg_print("你进化成了索恩(Xorn)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_XORN && new_level >= 35)
     {
         p_ptr->current_r_idx = MON_XAREN;
-        msg_print("You have evolved into a Xaren.");
+        msg_print("你进化成了扎伦(Xaren)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -109,7 +109,7 @@ race_t *mon_xorn_get_race(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[3] =  {"Umber Hulk", "Xorn", "Xaren"};    
+    static cptr   titles[3] =  {"土巨怪", "索恩", "扎伦"};    
     int           rank = 0;
 
     if (p_ptr->lev >= 20) rank++;
@@ -123,16 +123,8 @@ race_t *mon_xorn_get_race(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.name = "Xorn";
-        me.desc = "Xorns are massive creatures of earth. They begin life as an Umber Hulk, a bizarre "
-                    "creature with large mandibles capable of slicing through rock and glaring eyes capable of confusing foes. "
-                    "At this stage in their evolution their body is vaguely humanoid, allowing them to "
-                    "wear a helmet, an amulet, a cloak and even a pair of boots; once the Umber Hulk evolves further, however, "
-                    "it can no longer wear these items. Instead, a grown Xorn can use its four massive arms for weapons, shields, rings "
-                    "and gloves; mature Xorns can also pass effortlessly through rock.\n \n"
-                    "Xorns have no active magical powers, but instead rely on their ability to hide in rocks and the advantage that their "
-                    "extra arms provide them in melee. Xorns, like most warrior characters, are very effective at killing monsters "
-                    "but have problems with advanced magic devices.";
+        me.name = "索恩";
+        me.desc = "索恩是体型巨大的土元素生物。它们生命之初是土巨怪，这是一种奇异的生物，拥有能切开岩石的巨大下颚和能使敌人困惑的耀眼双目。在进化的这个阶段，它们的身体隐约呈现人形，这允许它们戴头盔、护身符、斗篷甚至一双靴子；然而，一旦土巨怪进一步进化，它就不能再穿戴这些物品了。取而代之的是，成年的索恩可以利用它四条粗壮的手臂来装备武器、盾牌、戒指和手套；成熟的索恩也可以毫不费力地穿过岩石。\n \n索恩没有主动的魔法能力，而是依靠它们隐藏在岩石中的能力以及多出的手臂在近战中提供的优势。像大多数战士角色一样，索恩在击杀怪物方面非常有效，但在使用高级魔法装置时会遇到困难。";
 
         me.infra = 5;
         me.exp = 150;

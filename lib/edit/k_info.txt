@@ -1,85 +1,85 @@
-# File: k_info.txt
-# This file is used to initialize the "lib/raw/k_info.raw" file, which is
-# used to initialize the "object kind" information for the Angband game.
 
-# Do not modify this file unless you know exactly what you are doing,
-# unless you wish to risk possible system crashes and broken savefiles.
 
-# After modifying this file, delete the "lib/raw/k_info.raw" file.
 
-# The old "MULTI_HUED" objects are now "violet", and no other object
-# is violet, so all six violet objects can be made "multi-hued", though
-# this would be a heinous hack.  XXX XXX
 
-# Note that object zero is used for the "stack" picture (unused).
 
-# === Understanding k_info.txt ===
 
-# N: serial number : & object name~
-# G: symbol : color
-# I: tval : sval : pval
-# W: depth : rarity : max_depth : weight : cost
-# P: base armor class : base damage : plus to-hit : plus to-dam : plus to-ac
-# A: depth/rarity : depth/rarity : etc
-# M: chance of being generated in a pile : dice for number of items
-# F: flag | flag | etc
 
-# 'N' indicates the beginning of an entry. The serial number must
-# increase for each new item. The '&' and '~' symbols are use to
-# include articles and pluralization as necessary to ensure
-# grammatical correctness in object descriptions.
-#
-# You may use N:*: to automatically compute the next serial number.
-# A subsequent N:<number>: will manually advance the sequence. This
-# is useful if you are re-organizing this file, or if you want to
-# leave gaps for future objects. Historically, objects of a kind have
-# become widely scattered in this file, making it difficult to maintain.
-# I reorganized (at great tedium) for 6.0.0. But note that while k_idx
-# values are never referred to directly in code, they are stored in
-# savefiles, so reordering this file will break savefiles.
 
-# 'G' is for graphics - symbol and color. There are 16 colors, as
-# follows:
 
-# D - Black        w - White          s - Gray          o - Orange
-# r - Red          g - Green          b - Blue          u - Brown
-# d - Dark Gray    W - Light Gray     v - Violet        y - Yellow
-# R - Light Red    G - Light Green    B - Light Blue    U - Light Brown
 
-# 'I' is for basic information. The tval is for the type of item, the
-# sval identifies the subtype and the pval indicates the amount of
-# effect the item has, if applicable.
 
-# 'W' is for extra information. Depth is the depth the object is
-# normally found at, rarity determines how common the object is,
-# weight is in tenth-pounds and cost is the items value.
-# NOTE: rarity is not used at the moment!! Use the A line instead!
 
-# 'P' is for power information. The items base armor class, its base
-# damage and pluses to-hit, to-dam and to-ac.
 
-# 'A' is for allocation - depth and rarity, in pairs. This allows an
-# item to have multiple natural depths and rarities. It is used to
-# ensure that certain vital items such as food and identify scrolls
-# are found throughout the dungeon.
-# NOTE: Any rarity over 100 will cause the object to not be allocated.
 
-# 'F' is for flags. These are fairly self-explanatory. As many F:
-# lines may be used as are needed to specify all the flags and flags
-# are separated by the '|' symbol.
 
-# Version stamp (required)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 V:1.1.0
 
-##### Something special #####
-#Note: 0 is reserved and should never be a valid object kind
+
+
 N:0:something
 G:&:w
 
-########################################################################
-# Mushrooms (TV_FOOD)
-########################################################################
+
+
+
 
 N:1:Poison:Red
 G:,:r
@@ -252,11 +252,11 @@ A:15/1
 M:70:1d4
 D:It speeds your recovery when you eat it.
 
-# SV_FOOD_MAX_MUSHROOM = 31
 
-########################################################################
-# Food and Beverages (TV_FOOD)
-########################################################################
+
+
+
+
 
 N:32:& Ration~ of Food
 G:,:U
@@ -327,9 +327,9 @@ A:90/1
 D:Food of the gods, fragrant and sweet.
 D:It cures poison, heals hp a bit, and restores your stats and life when eaten.
 
-########################################################################
-# Edged Weapons (TV_SWORD)
-########################################################################
+
+
+
 
 N:45:& Broken Dagger~
 G:|:D
@@ -630,9 +630,9 @@ A:40/15
 P:0:1d9:3:3:0
 F:IGNORE_ACID | IGNORE_FIRE | IGNORE_ELEC | IGNORE_COLD
 
-########################################################################
-# Polearms (TV_POLEARM)
-########################################################################
+
+
+
 N:85:& Hatchet~
 G:/:s
 I:22:1:0
@@ -861,7 +861,7 @@ F:SLAY_UNDEAD | SLAY_DEMON | SLAY_TROLL | SLAY_GIANT | SLAY_ORC |
 F:BRAND_FIRE | BRAND_ELEC | BRAND_COLD | BRAND_ACID | BRAND_POIS |
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD | RIDING
 
-#Hack for RACE_MON_SWORD
+
 N:*:& Death Scythe~
 G:/:R
 I:22:51:0
@@ -869,9 +869,9 @@ W:70:0:0:350:10000
 P:0:10d10:-50:30:0
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 
-########################################################################
-# Blunt Weapons (TV_HAFTED)
-########################################################################
+
+
+
 N:120:& Club~
 G:\:u
 I:21:1:0
@@ -1053,9 +1053,9 @@ W:1:0:0:333:1000000
 P:0:1d11:0:0:0
 F:INSTA_ART
 
-########################################################################
-# Diggers (TV_DIGGING)
-########################################################################
+
+
+
 
 N:150:& Shovel~
 G:\:s
@@ -1124,12 +1124,12 @@ P:0:1d9:0:0:0
 F:SHOW_MODS | TUNNEL
 
 
-########################################################################
-# Bows (TV_BOW)
-# Note: The damage multiplier must be specified with all 3 digits
-#       as, say, x3.50 rather than x3.5 (which the parser would
-#       interpret as x3.05, being a stupid parser at the moment!)
-########################################################################
+
+
+
+
+
+
 N:160:& Sling~
 G:}:u
 I:19:2:0
@@ -1217,9 +1217,9 @@ W:66:0:0:5:500
 F:CHR | INSTA_ART | NO_ENCHANT
 D:A simple woodwind instrument.
 
-########################################################################
-# Arrows (TV_ARROW)
-########################################################################
+
+
+
 N:175:& Arrow~
 G:{:U
 I:17:1:0
@@ -1268,9 +1268,9 @@ W:35:0:0:2:1
 P:0:3d4:0:0:0
 F:INSTA_ART | SHOW_MODS
 
-########################################################################
-# Bolts (TV_BOLT)
-########################################################################
+
+
+
 N:185:& Bolt~
 G:{:s
 I:18:1:0
@@ -1321,9 +1321,9 @@ F:SHOW_MODS
 F:IGNORE_ACID | IGNORE_COLD | IGNORE_FIRE | IGNORE_ELEC
 M:100:6d7
 
-########################################################################
-# Shots (TV_SHOT)
-########################################################################
+
+
+
 N:190:& Rounded Pebble~
 G:{:s
 I:16:1:0
@@ -1352,9 +1352,9 @@ F:SHOW_MODS
 F:IGNORE_ACID | IGNORE_COLD | IGNORE_FIRE | IGNORE_ELEC
 M:100:6d7
 
-########################################################################
-#  Cloaks (TV_CLOAK)
-########################################################################
+
+
+
 N:195:& Cloak~
 G:(:g
 I:35:1:0
@@ -1410,9 +1410,9 @@ P:4:0d0:0:0:10
 F:IGNORE_ACID | IGNORE_FIRE | IGNORE_ELEC | IGNORE_COLD
 F:LEVITATION
 
-########################################################################
-#  Boots (TV_BOOTS)
-########################################################################
+
+
+
 N:205:& Pair~ of Soft Leather Boots
 G:]:U
 I:30:2:0
@@ -1459,9 +1459,9 @@ P:6:1d2:0:2:0
 D:A set of double-lined leather boots, with toes and heels reinforced with
 D:iron, allowing the wearer to deal a swift kick.
 
-########################################################################
-#  Helmets (TV_HELM)
-########################################################################
+
+
+
 N:212:& Hard Leather Cap~
 G:]:u
 I:32:2:0
@@ -1533,9 +1533,9 @@ W:50:0:0:80:300
 A:50/3
 P:7:1d2:0:0:0
 
-########################################################################
-#  Crowns (TV_CROWN)
-########################################################################
+
+
+
 N:220:& Iron Crown~
 G:]:s
 I:33:10:0
@@ -1589,9 +1589,9 @@ A:10/5:40/3
 P:1:0d0:0:0:0
 D:A pointy hat. (You wonder if wearing it will automatically make you a magician...)
 
-########################################################################
-#  Gloves (TV_GLOVES)
-########################################################################
+
+
+
 
 N:227:& Set~ of Leather Gloves
 G:]:U
@@ -1662,9 +1662,9 @@ W:66:0:0:5:66666
 P:0:1d1:0:0:0
 F:INSTA_ART | FIXED_FLAVOR
 
-########################################################################
-#  Shields (TV_SHIELD)
-########################################################################
+
+
+
 
 N:235:& Small Leather Shield~
 G:):U
@@ -1748,9 +1748,9 @@ I:50:0:0
 W:1:0:0:2:1000
 F:INSTA_ART
 
-########################################################################
-#  Soft Armor (TV_SOFT_ARMOR)
-########################################################################
+
+
+
 
 N:245:& T-shirt~
 G:~:w
@@ -1898,9 +1898,9 @@ I:36:63:0
 W:1:0:0:10:1000000
 F:INSTA_ART
 
-########################################################################
-#  Hard Armor (TV_HARD_ARMOR)
-########################################################################
+
+
+
 
 N:270:Rusty Chain Mail~
 G:[:r
@@ -2080,9 +2080,9 @@ F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 D:Adamantite, hard as diamonds, forms this exquisite suit; nothing else
 D:in Middle Earth gives as much protection.
 
-########################################################################
-#  Dragon Armor (TV_DRAG_ARMOR)
-########################################################################
+
+
+
 
 N:292:Black Dragon Scale Mail~
 G:[:s
@@ -2263,9 +2263,9 @@ D:A suit with scales of every color, surrounded in a nimbus of perfectly
 D:untrammelled yet inextricably intermingled and utterly mastered powers
 D:elemental and ethereal.
 
-########################################################################
-#  Jewelry
-########################################################################
+
+
+
 N:310:& Ring~
 G:=:g
 I:45:0:0
@@ -2278,9 +2278,9 @@ I:40:0:0
 W:10:0:0:2:500
 A:10/1
 
-########################################################################
-#  Devices
-########################################################################
+
+
+
 N:*:& Wand~
 G:-:B
 I:65:0:0
@@ -2302,9 +2302,9 @@ W:10:0:0:15:1
 A:15/1
 F:TOWN
 
-########################################################################
-#  Scrolls (TV_SCROLL)
-########################################################################
+
+
+
 
 N:315:Darkness:fapay doea
 G:?:w
@@ -2539,16 +2539,16 @@ N:*:Blessing:ooder dokrog
 G:?:w
 I:70:33:0
 W:1:0:30:5:15
-#A:1/1
-#F:TOWN
+
+
 M:80:2d6
 
 N:*:Holy Chant:nihum khomar
 G:?:w
 I:70:34:0
 W:10:0:50:5:40
-#A:10/1
-#F:TOWN
+
+
 M:90:2d6
 
 N:*:Holy Prayer:wexab jahnag
@@ -2751,15 +2751,15 @@ W:45:0:0:5:2500
 A:45/2
 M:75:1d4
 
-########################################################################
-#  Potions (TV_POTION)
-########################################################################
+
+
+
 
 N:400:Water:Clear
 G:!:w
 I:75:0:200
 W:0:0:20:4:1
-#A:0/1
+
 P:0:1d1:0:0:0
 F:FIXED_FLAVOR | TOWN
 M:100:3d5
@@ -2768,7 +2768,7 @@ N:*:Apple Juice:Light Brown
 G:!:U
 I:75:1:250
 W:0:0:10:4:1
-#A:0/1
+
 P:0:1d1:0:0:0
 F:FIXED_FLAVOR | TOWN
 M:100:1d5
@@ -2910,7 +2910,7 @@ A:55/4
 P:0:20d20:0:0:0
 M:100:1d5
 
-# add aura potions
+
 
 N:*:Sight:White
 G:!:w
@@ -3326,9 +3326,9 @@ F:NO_SHUFFLE | FIXED_FLAVOR
 M:50:1d3
 
 
-########################################################################
-#  Spellbooks (TV_LIFE_BOOK ... TV_BURGLARY_BOOK)
-########################################################################
+
+
+
 N:500:[Book of Common Prayer]
 G:?:W
 I:90:0:0
@@ -3939,9 +3939,9 @@ A:80/3
 P:0:1d1:0:0:0
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 
-########################################################################
-#  Lights (TV_LITE) and Flasks of Oil (TV_FLASK)
-########################################################################
+
+
+
 N:600:& Wooden Torch~
 G:~:u
 I:39:0:4000
@@ -4173,9 +4173,9 @@ W:60:0:0:3:20000
 P:0:1d1:0:0:0
 F:INSTA_ART
 
-########################################################################
-# Chests (TV_CHEST)
-########################################################################
+
+
+
 
 N:640:& Small wooden chest~
 G:&:o
@@ -4232,10 +4232,10 @@ W:1:0:0:50:500000
 A:1/255
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 
-########################################################################
-# Gold (TV_GOLD)
-# Note: OBJ_GOLD_LIST uses the k_idx (650) defined below. Don't change!!!
-########################################################################
+
+
+
+
 
 N:650:copper
 G:$:u
@@ -4334,9 +4334,9 @@ G:$:G
 I:127:18:0
 W:1:0:0:0:80
 
-########################################################################
-# Skeletons and Corpses (TV_SKELETON, TV_CORPSE)
-########################################################################
+
+
+
 
 N:670:& Broken Skull~
 G:~:w
@@ -4408,9 +4408,9 @@ W:1:0:0:40:0
 A:1/2
 P:0:1d1:0:0:0
 
-########################################################################
-# Statues (TV_STATUE and TV_FIGURINE)
-########################################################################
+
+
+
 
 N:685:& Magical Figurine~ of #
 G:`:b
@@ -4490,9 +4490,9 @@ W:50:0:0:500:5000
 A:50/3
 P:0:1d1:0:0:0
 
-########################################################################
-# Miscellaneous (TV_JUNK and others)
-########################################################################
+
+
+
 
 N:700:& Iron Spike~
 G:~:W
@@ -4563,9 +4563,9 @@ I:4:2:0
 W:15:0:60:25:10000
 E:RETURN_PETS:15:150
 
-########################################################################
-# Body parts
-########################################################################
+
+
+
 N:715:Head~
 G:~:D
 I:10:2:0

@@ -21,7 +21,7 @@ static void _birth(void)
 
     p_ptr->current_r_idx = MON_TWO_HEADED_HYDRA;
     equip_on_change_race();
-    skills_innate_init("Bite", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("撕咬", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
     object_prep(&forge, lookup_kind(TV_AMULET, 0));
     forge.name2 = EGO_JEWELRY_ELEMENTAL;
@@ -83,7 +83,7 @@ static void _calc_innate_attacks(void)
     calc_innate_blows(&a, _head_count() * 100);
     
     a.msg = "You bite.";
-    a.name = "Bite";
+    a.name = "撕咬";
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
 }
 
@@ -118,7 +118,7 @@ static void _breathe_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe");
+        var_set_string(res, "吐息");
         break;
     case SPELL_DESC:
     {
@@ -129,7 +129,7 @@ static void _breathe_spell(int cmd, variant *res)
            strcpy(elname, gf->name);
            str_tolower(elname);
         }
-        var_set_string(res, format("Breathes %s at your opponent.", elname));
+        var_set_string(res, format("向你的对手喷吐%s。", elname));
         break;
     }
     case SPELL_INFO:
@@ -145,7 +145,7 @@ static void _breathe_spell(int cmd, variant *res)
         if (get_fire_dir(&dir))
         {
             int e = _breath_effect();
-            msg_format("You breathe %s", gf_name(e));
+            msg_format("你喷吐出%s", gf_name(e));
             fire_ball(e, dir, _breath_amount(), -2);
             var_set_bool(res, TRUE);
         }
@@ -263,35 +263,35 @@ static void _gain_level(int new_level)
     {
         p_ptr->current_r_idx = MON_FOUR_HEADED_HYDRA;
         equip_on_change_race();
-        msg_print("You have evolved into a 4-headed hydra.");
+        msg_print("你进化成了 4首多头蛇(4-headed hydra)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_FOUR_HEADED_HYDRA && new_level >= 20)
     {
         p_ptr->current_r_idx = MON_FIVE_HEADED_HYDRA;
         equip_on_change_race();
-        msg_print("You have evolved into a 5-headed hydra.");
+        msg_print("你进化成了 5首多头蛇(5-headed hydra)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_FIVE_HEADED_HYDRA && new_level >= 30)
     {
         p_ptr->current_r_idx = MON_SEVEN_HEADED_HYDRA;
         equip_on_change_race();
-        msg_print("You have evolved into a 7-headed hydra.");
+        msg_print("你进化成了 7首多头蛇(7-headed hydra)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_SEVEN_HEADED_HYDRA && new_level >= 37)
     {
         p_ptr->current_r_idx = MON_NINE_HEADED_HYDRA;
         equip_on_change_race();
-        msg_print("You have evolved into a 9-headed hydra.");
+        msg_print("你进化成了 9首多头蛇(9-headed hydra)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_NINE_HEADED_HYDRA && new_level >= 45)
     {
         p_ptr->current_r_idx = MON_ELEVEN_HEADED_HYDRA;
         equip_on_change_race();
-        msg_print("You have evolved into an 11-headed hydra.");
+        msg_print("你进化成了 11首多头蛇(11-headed hydra)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -320,7 +320,7 @@ race_t *mon_hydra_get_race(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.name = "Hydra";
+        me.name = "多头蛇";
         me.desc = _desc;
 
         me.infra = 5;

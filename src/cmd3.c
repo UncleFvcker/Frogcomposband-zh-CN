@@ -27,8 +27,8 @@ void do_cmd_drop(void)
     if (p_ptr->special_defense & KATA_MUSOU)
         set_action(ACTION_NONE);
 
-    prompt.prompt = "Drop which item?";
-    prompt.error = "You have nothing to drop.";
+    prompt.prompt = "丢弃哪件物品？";
+    prompt.error = "你没有可以丢弃的物品。";
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
     prompt.where[2] = INV_QUIVER;
@@ -116,8 +116,8 @@ static void do_cmd_refill_lamp(object_type *lantern)
     bool check_id = FALSE;
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Refill with which flask?";
-    prompt.error = "You have no flasks of oil.";
+    prompt.prompt = "用哪个油瓶补充？";
+    prompt.error = "你没有油瓶。";
     prompt.filter = item_tester_refill_lantern;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -127,23 +127,23 @@ static void do_cmd_refill_lamp(object_type *lantern)
 
     energy_use = 50;
     lantern->xtra4 += prompt.obj->xtra4;
-    msg_print("You fuel your lamp.");
+    msg_print("你为灯补充了燃料。");
     if (_lite_is_darkness(prompt.obj) && lantern->xtra4 > 0)
     {
         lantern->xtra4 = 0;
-        msg_print("Your lamp has gone out!");
+        msg_print("你的灯熄灭了！");
         check_id = TRUE;
     }
     else if (_lite_is_darkness(prompt.obj) || _lite_is_darkness(lantern))
     {
         lantern->xtra4 = 0;
-        msg_print("Curiously, your lamp doesn't light.");
+        msg_print("奇怪的是，你的灯没有点亮。");
         check_id = TRUE;        
     }
     else if (lantern->xtra4 >= FUEL_LAMP)
     {
         lantern->xtra4 = FUEL_LAMP;
-        msg_print("Your lamp is full.");
+        msg_print("你的灯燃料是满的。");
         
         /* If the lamp is average, we now know it */ 
         check_id = TRUE;
@@ -169,8 +169,8 @@ static void do_cmd_refill_torch(object_type *torch)
 {
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Refuel with which torch?";
-    prompt.error = "You have no extra torches.";
+    prompt.prompt = "用哪支火把补充？";
+    prompt.error = "你没有多余的火把了。";
     prompt.filter = _is_torch;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -181,24 +181,24 @@ static void do_cmd_refill_torch(object_type *torch)
     energy_use = 50;
     torch->xtra4 += prompt.obj->xtra4 + 5;
 
-    msg_print("You combine the torches.");
+    msg_print("你组合了火把。");
     if (_lite_is_darkness(prompt.obj) && torch->xtra4 > 0)
     {
         torch->xtra4 = 0;
-        msg_print("Your torch has gone out!");
+        msg_print("你的火把熄灭了！");
     }
     else if (_lite_is_darkness(prompt.obj) || _lite_is_darkness(torch))
     {
         torch->xtra4 = 0;
-        msg_print("Curiously, your torch does not light.");
+        msg_print("奇怪的是，你的火把没有点亮。");
     }
     else if (torch->xtra4 >= FUEL_TORCH)
     {
         torch->xtra4 = FUEL_TORCH;
-        msg_print("Your torch is fully fueled.");
+        msg_print("你的火把燃料是满的。");
     }
     else
-        msg_print("Your torch glows more brightly.");
+        msg_print("你的火把燃烧得更亮了。");
 
     prompt.obj->number--;
     obj_release(prompt.obj, 0);
@@ -228,11 +228,11 @@ void do_cmd_refill(void)
             do_cmd_refill_torch(o_ptr);
             break;
         default:
-            msg_print("Your light cannot be refilled.");
+            msg_print("你的光源无法补充燃料。");
         }
     }
     else
-        msg_print("You are not wielding a light.");
+        msg_print("你没有装备光源。");
 }
 
 /*
@@ -249,18 +249,18 @@ void do_cmd_target(void)
             char          m_name[MAX_NLEN];
 
             monster_desc(m_name, m_ptr, MD_INDEF_VISIBLE);
-            msg_format("Targetting %s.", m_name);
+            msg_format("瞄准了%s。", m_name);
         }
         else
         {
-            msg_format("Targetting Position %d, %d.", target_row, target_col);
+            msg_format("瞄准了坐标 %d, %d。", target_row, target_col);
         }
     }
 
     /* Target aborted */
     else if (!travel.run)
     {
-        msg_print("Target Aborted.");
+        msg_print("取消瞄准。");
 
     }
 }
@@ -275,7 +275,7 @@ void do_cmd_look(void)
     /* Look around */
     if (target_set(TARGET_LOOK))
     {
-        msg_print("Target Selected.");
+        msg_print("目标已选定。");
 
     }
 }
@@ -307,8 +307,8 @@ void do_cmd_locate(void)
         else
         {
             sprintf(tmp_val, "%s%s of",
-                ((y2 < y1) ? " North" : (y2 > y1) ? " South" : ""),
-                ((x2 < x1) ? " West" : (x2 > x1) ? " East" : ""));
+                ((y2 < y1) ? "北" : (y2 > y1) ? "南" : ""),
+                ((x2 < x1) ? "西" : (x2 > x1) ? "东" : ""));
 
         }
 
@@ -490,7 +490,7 @@ void do_cmd_query_symbol(void)
     u16b    *who;
 
     /* Get a character, or abort */
-    if (!get_com("Enter character to be identified(^A:All,^U:Uniqs,^N:Non uniqs,^M:Name): ", &sym, FALSE)) return;
+    if (!get_com("输入要标识的字符(^A:全部,^U:唯一,^N:非唯一,^M:名称):", &sym, FALSE)) return;
 
     /* Find that character info, and describe it */
     for (i = 0; ident_info[i]; ++i)
@@ -523,7 +523,7 @@ void do_cmd_query_symbol(void)
     else if (sym == KTRL('M'))
     {
         all = TRUE;
-        if (!get_string("Enter name:",temp, 70))
+        if (!get_string("输入名称:",temp, 70))
         {
             temp[0]=0;
             return;
@@ -536,7 +536,7 @@ void do_cmd_query_symbol(void)
     }
     else
     {
-        sprintf(buf, "%c - %s.", sym, "Unknown Symbol");
+        sprintf(buf, "%c - %s.", sym, "未知符号");
     }
 
     /* Display the result */
@@ -597,7 +597,7 @@ void do_cmd_query_symbol(void)
 
 
     /* Prompt XXX XXX XXX */
-    put_str("Recall details? (k/y/n): ", 0, 40);
+    put_str("回忆详细信息？(k/y/n):", 0, 40);
 
 
     /* Query */
@@ -679,7 +679,7 @@ void do_cmd_query_symbol(void)
             roff_top(r_idx);
 
             /* Hack -- Complete the prompt */
-            Term_addstr(-1, TERM_WHITE, " [(r)ecall, ESC]");
+            Term_addstr(-1, TERM_WHITE, "[(r)召回, ESC]");
 
             /* Command */
             query = inkey();
@@ -1194,42 +1194,42 @@ static void _mon_display_probe(doc_ptr doc, int m_idx)
     speed -= monster_slow(m_ptr);
     if (p_ptr->filibuster) speed -= SPEED_ADJ_FILIBUSTER;
     if (m_ptr->nickname)
-        doc_printf(doc, "Name : <color:R>%13s</color>\n", quark_str(m_ptr->nickname));
+        doc_printf(doc, "名称 : <color:R>%13s</color>\n", quark_str(m_ptr->nickname));
     if (effective_speed)
-        doc_printf(doc, "Speed: <color:G>%10d.%dx</color>\n", SPEED_TO_ENERGY(speed + 110) / 10, SPEED_TO_ENERGY(speed + 110) % 10);
-    else doc_printf(doc, "Speed: <color:G>%+13d</color>\n", speed);
-    doc_printf(doc, "HP   : <color:%c>%6d</color>/<color:G>%6d</color>\n",
+        doc_printf(doc, "速度 : <color:G>%10d.%dx</color>\n", SPEED_TO_ENERGY(speed + 110) / 10, SPEED_TO_ENERGY(speed + 110) % 10);
+    else doc_printf(doc, "速度 : <color:G>%+13d</color>\n", speed);
+    doc_printf(doc, "生命 : <color:%c>%6d</color>/<color:G>%6d</color>\n",
         _mon_health_color(m_ptr),
         m_ptr->hp,
         m_ptr->maxhp
     );
-    doc_printf(doc, "AC   : <color:G>%13d</color>\n", mon_ac(m_ptr));
+    doc_printf(doc, "护甲 : <color:G>%13d</color>\n", mon_ac(m_ptr));
 
     if ((r_ptr->flags3 & (RF3_EVIL | RF3_GOOD)) == (RF3_EVIL | RF3_GOOD))
-        doc_printf(doc, "Align: <color:B>%13.13s</color>\n", "Good&Evil");
+        doc_printf(doc, "阵营 : <color:B>%13.13s</color>\n", "善良&邪恶");
     else if (r_ptr->flags3 & RF3_EVIL)
-        doc_printf(doc, "Align: <color:r>%13.13s</color>\n", "Evil");
+        doc_printf(doc, "阵营 : <color:r>%13.13s</color>\n", "邪恶");
     else if (r_ptr->flags3 & RF3_GOOD)
-        doc_printf(doc, "Align: <color:g>%13.13s</color>\n", "Good");
+        doc_printf(doc, "阵营 : <color:g>%13.13s</color>\n", "善良");
     else if ((m_ptr->sub_align & (SUB_ALIGN_EVIL | SUB_ALIGN_GOOD)) == (SUB_ALIGN_EVIL | SUB_ALIGN_GOOD))
-        doc_printf(doc, "Align: <color:g>%s</color>\n", "neutral(good&evil)");
+        doc_printf(doc, "阵营 : <color:g>%s</color>\n", "中立(善良&邪恶)");
     else if (m_ptr->sub_align & SUB_ALIGN_EVIL)
-        doc_printf(doc, "Align: <color:o>%13.13s</color>\n", "Neutral Evil");
+        doc_printf(doc, "阵营 : <color:o>%13.13s</color>\n", "中立邪恶");
     else if (m_ptr->sub_align & SUB_ALIGN_GOOD)
-        doc_printf(doc, "Align: <color:G>%13.13s</color>\n", "Neutral Good");
+        doc_printf(doc, "阵营 : <color:G>%13.13s</color>\n", "中立善良");
     else
-        doc_printf(doc, "Align: <color:w>%13.13s</color>\n", "Neutral");
+        doc_printf(doc, "阵营 : <color:w>%13.13s</color>\n", "中立");
 
     if (m_ptr->mpower != 1000)
     {
-        doc_printf(doc, "Power: <color:%c>%6d</color>/<color:G>%6d</color>\n",
+        doc_printf(doc, "能量 : <color:%c>%6d</color>/<color:G>%6d</color>\n",
             (m_ptr->mpower < 1000) ? 'y' : 'b', m_ptr->mpower, 1000
         );
     }
 
     if (r_ptr->next_r_idx)
     {
-        doc_printf(doc, "Exp  : <color:%c>%6d</color>/<color:G>%6d</color>\n",
+        doc_printf(doc, "经验 : <color:%c>%6d</color>/<color:G>%6d</color>\n",
             _mon_exp_color(m_ptr),
             m_ptr->exp,
             r_ptr->next_exp
@@ -1239,31 +1239,31 @@ static void _mon_display_probe(doc_ptr doc, int m_idx)
     if ((p_ptr->pclass == CLASS_POLITICIAN) && (!is_pet(m_ptr)) && (p_ptr->lev > 17))
     {
         int mahis = _charm_probability(m_ptr);
-        doc_printf(doc, "Charm: <color:B>%9d.%02d%%</color>\n", mahis / 100, mahis % 100);
+        doc_printf(doc, "魅惑 : <color:B>%9d.%02d%%</color>\n", mahis / 100, mahis % 100);
     }
 
     if (p_ptr->riding == m_idx)
-        doc_printf(doc, "       <color:G>%13.13s</color>\n", "Riding");
+        doc_printf(doc, "       <color:G>%13.13s</color>\n", "骑乘");
 
     if (is_pet(m_ptr))
-        doc_printf(doc, "       <color:G>%13.13s</color>\n", "Pet");
+        doc_printf(doc, "       <color:G>%13.13s</color>\n", "宠物");
     else if (is_friendly(m_ptr))
-        doc_printf(doc, "       <color:G>%13.13s</color>\n", "Friendly");
+        doc_printf(doc, "       <color:G>%13.13s</color>\n", "友善");
 
     if (MON_CSLEEP(m_ptr))
-        doc_printf(doc, "       <color:b>%13.13s</color>\n", "Sleeping");
+        doc_printf(doc, "       <color:b>%13.13s</color>\n", "睡眠");
 
     if (MON_STUNNED(m_ptr))
-        doc_printf(doc, "       <color:B>%13.13s</color>\n", "Stunned");
+        doc_printf(doc, "       <color:B>%13.13s</color>\n", "震晕");
 
     if (MON_MONFEAR(m_ptr))
-        doc_printf(doc, "       <color:v>%13.13s</color>\n", "Scared");
+        doc_printf(doc, "       <color:v>%13.13s</color>\n", "恐惧");
 
     if (MON_CONFUSED(m_ptr))
-        doc_printf(doc, "       <color:U>%13.13s</color>\n", "Confused");
+        doc_printf(doc, "       <color:U>%13.13s</color>\n", "困惑");
 
     if (MON_INVULNER(m_ptr))
-        doc_printf(doc, "       <color:W>%13.13s</color>\n", "Invulnerable");
+        doc_printf(doc, "       <color:W>%13.13s</color>\n", "无敌");
 
 }
 
@@ -1296,12 +1296,12 @@ static void _list_monsters_aux(_mon_list_ptr list, rect_t display_rect, int mode
             Term_erase(display_rect.x, display_rect.y + ct, display_rect.cx);
             if (mode == MON_LIST_PROBING)
             {
-                c_put_str(TERM_L_BLUE, "['P' for Probing; ESC to Exit; ? for Help]",
+                c_put_str(TERM_L_BLUE, "[P - 探测; ESC - 退出; ? - 帮助]",
                         display_rect.y + ct, display_rect.x + 3);
             }
             else
             {
-                c_put_str(TERM_L_BLUE, "[Press ESC to exit. Press ? for help]",
+                c_put_str(TERM_L_BLUE, "[按 ESC 退出。按 ? 获取帮助]",
                         display_rect.y + ct, display_rect.x + 3);
             }
             redraw = FALSE;
@@ -1369,7 +1369,7 @@ static void _list_monsters_aux(_mon_list_ptr list, rect_t display_rect, int mode
 
                         doc_insert(doc, "    <indent>");
                         _mon_display_probe(doc, info_ptr->m_idx);
-                        doc_insert(doc, "</indent>\n<color:b>[</color><color:B>Up for Prev; Down for Next; Any Key to Exit</color><color:b>]</color>\n");
+                        doc_insert(doc, "</indent>\n<color:b>[</color><color:B>上 - 上一页; 下 - 下一页; 任意键 - 退出</color><color:b>]</color>\n");
 
                         if (doc_cursor(doc).y + loc.y >= Term->hgt)
                             loc.y = Term->hgt - doc_cursor(doc).y;
@@ -1431,7 +1431,7 @@ static void _list_monsters_aux(_mon_list_ptr list, rect_t display_rect, int mode
                         else
                             strcpy(out_val, "");
 
-                        prt("Name : ", display_rect.y + pos + 1, display_rect.x);
+                        prt("名称 :", display_rect.y + pos + 1, display_rect.x);
                         if (askfor(out_val, 15))
                         {
                             if (out_val[0])
@@ -1641,7 +1641,7 @@ void do_cmd_list_monsters(int mode)
     if (list->ct_total)
         _list_monsters_aux(list, display_rect, mode);
     else
-        msg_print("You see no visible monsters.");
+        msg_print("你没有看到任何可见的怪物。");
 
     _mon_list_free(list);
 }
@@ -2035,7 +2035,7 @@ void do_cmd_list_objects(void)
                 int ct;
                 ct = _draw_obj_list(list, top, display_rect);
                 Term_erase(display_rect.x, display_rect.y + ct, display_rect.cx);
-                c_put_str(TERM_L_BLUE, "[Press ESC to exit. Press ? for help]",
+                c_put_str(TERM_L_BLUE, "[按 ESC 退出。按 ? 获取帮助]",
                         display_rect.y + ct, display_rect.x + 3);
                 redraw = FALSE;
             }
@@ -2256,7 +2256,7 @@ void do_cmd_list_objects(void)
         screen_load();
     }
     else
-        msg_print("You see no objects.");
+        msg_print("你没看到任何物品。");
 
     _obj_list_free(list);
     list_stairs = stairs_on; /* Keep old default */

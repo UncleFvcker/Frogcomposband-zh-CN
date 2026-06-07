@@ -110,7 +110,7 @@ static int get_hissatsu_power(int *sn)
     /* Build a prompt (accept all spells) */
     (void) strnfmt(out_val, 78, 
                "(%^ss %c-%c, ?=%s, !=Damage, ESC=exit) Use which %s? ",
-               p, I2A(0), "abcdefghijklmnopqrstuvwxyz012345"[num], is_browsing ? "Use" : "Browse", p);
+               p, I2A(0), "abcdefghijklmnopqrstuvwxyz012345"[num], is_browsing ? "使用" : "浏览", p);
 
 //    if (use_menu) screen_save();
     screen_save();
@@ -210,7 +210,7 @@ static int get_hissatsu_power(int *sn)
             is_browsing = (is_browsing == 1) ? 0 : 1;
             (void) strnfmt(out_val, 78,
                "(%^ss %c-%c, ?=%s, !=Damage, ESC=exit) %s which %s? ",
-               p, I2A(0), "abcdefghijklmnopqrstuvwxyz012345"[num], is_browsing ? "Use" : "Browse", is_browsing ? "Browse" : "Use", p);
+               p, I2A(0), "abcdefghijklmnopqrstuvwxyz012345"[num], is_browsing ? "使用" : "浏览", is_browsing ? "浏览" : "使用", p);
         }
 
         if (choice == '!')
@@ -241,7 +241,7 @@ static int get_hissatsu_power(int *sn)
 
                 /* Display a list of spells */
                 prt("", y, x);
-put_str("name              Lv  SP      name              Lv  SP ", y, x + 5);
+put_str("名称 Lv SP 名称 Lv SP", y, x + 5);
                 prt("", y+1, x);
                 /* Dump the spells */
                 for (i = 0, line = 0; i < 32; i++)
@@ -408,18 +408,18 @@ void do_cmd_hissatsu(void)
     /* not if confused */
     if (p_ptr->confused)
     {
-        msg_print("You are too confused!");
+        msg_print("你太困惑了！");
         return;
     }
     if (!equip_find_first(object_is_melee_weapon))
     {
         if (flush_failure) flush();
-        msg_print("You need to wield a weapon!");
+        msg_print("你需要装备一把武器！");
         return;
     }
     if (!p_ptr->spell_learned1)
     {
-        msg_print("You don't know any special attacks.");
+        msg_print("你不会任何必杀技。");
         return;
     }
     if (pelko()) return;
@@ -437,7 +437,7 @@ void do_cmd_hissatsu(void)
     {
         if (flush_failure) flush();
         /* Warning */
-        msg_print("You do not have enough mana to use this power.");
+        msg_print("你没有足够的法力来使用这个能力。");
         msg_print(NULL);
         return;
     }
@@ -484,27 +484,27 @@ void do_cmd_gain_hissatsu(void)
 
     if (p_ptr->blind || no_lite())
     {
-        msg_print("You cannot see!");
+        msg_print("你看不见！");
         return;
     }
 
     if (p_ptr->confused)
     {
-        msg_print("You are too confused!");
+        msg_print("你太困惑了！");
         return;
     }
 
     if (!(p_ptr->new_spells))
     {
-        msg_print("You cannot learn any new special attacks!");
+        msg_print("你无法学习任何新的必杀技！");
         return;
     }
 
-    msg_format("You can learn %d new special attack%s.", p_ptr->new_spells,
+    msg_format("你能够学习 %d 个新的必杀技。", p_ptr->new_spells,
         (p_ptr->new_spells == 1?"":"s"));
 
-    prompt.prompt = "Study which book?";
-    prompt.error = "You have no books that you can read.";
+    prompt.prompt = "研读哪本书？";
+    prompt.error = "你没有可研读的书。";
     prompt.filter = _is_book;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -519,7 +519,7 @@ void do_cmd_gain_hissatsu(void)
 
         p_ptr->spell_learned1 |= (1L << i);
         p_ptr->spell_worked1 |= (1L << i);
-        msg_format("You have learned the special attack of %s.", do_spell(REALM_HISSATSU, i, SPELL_NAME));
+        msg_format("你学会了必杀技 %s。", do_spell(REALM_HISSATSU, i, SPELL_NAME));
         for (j = 0; j < 64; j++)
         {
             /* Stop at the first empty space */
@@ -531,7 +531,7 @@ void do_cmd_gain_hissatsu(void)
 
     /* No gain ... */
     if (!gain)
-        msg_print("You were not able to learn any special attacks.");
+        msg_print("你未能学会任何必杀技。");
 
     /* Take a turn */
     else

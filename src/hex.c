@@ -49,7 +49,7 @@ bool stop_hex_spell(void)
 
     if (!hex_spelling_any())
     {
-        msg_print("You are casting no spell.");
+        msg_print("你没有在施展任何法术。");
         return FALSE;
     }
 
@@ -60,7 +60,7 @@ bool stop_hex_spell(void)
     }
     else
     {
-        strnfmt(out_val, 78, "Which spell do you stop casting? (Spell %c-%c, 'l' to all, ESC)",
+        strnfmt(out_val, 78, "你要停止施展哪个法术？（法术 %c-%c，'l' 表示全部，ESC 退出）",
             I2A(0), I2A(p_ptr->magic_num2[0] - 1));
 
         screen_save();
@@ -172,7 +172,7 @@ void check_hex(void)
         p_ptr->redraw |= PR_MANA;
         if (res)
         {
-            msg_print("You restart spelling.");
+            msg_print("你重新开始施法。");
             p_ptr->action = ACTION_SPELL;
 
             /* Recalculate bonuses */
@@ -296,7 +296,7 @@ void hex_stop_spelling_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Stop Spelling");
+        var_set_string(res, "停止施法");
         break;
     case SPELL_DESC:
         var_set_string(res, "");

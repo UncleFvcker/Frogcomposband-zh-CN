@@ -43,7 +43,7 @@ static void _birth(void)
     object_type forge;
 
     p_ptr->current_r_idx = MON_CLAY_GOLEM;
-    skills_innate_init("Fist", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("重拳", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
     object_prep(&forge, lookup_kind(TV_HARD_ARMOR, SV_CHAIN_MAIL));
     py_birth_obj(&forge);
@@ -97,7 +97,7 @@ static void _calc_innate_attacks(void)
 
         a.blows = 100;
         a.msg = "You punch.";
-        a.name = "Fist";
+        a.name = "重拳";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -108,25 +108,25 @@ static void _gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_CLAY_GOLEM && new_level >= 10)
     {
         p_ptr->current_r_idx = MON_STONE_GOLEM;
-        msg_print("You have evolved into a Stone Golem.");
+        msg_print("你进化成了石魔像(Stone Golem)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_STONE_GOLEM && new_level >= 20)
     {
         p_ptr->current_r_idx = MON_IRON_GOLEM;
-        msg_print("You have evolved into an Iron Golem.");
+        msg_print("你进化成了铁魔像(Iron Golem)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_IRON_GOLEM && new_level >= 30)
     {
         p_ptr->current_r_idx = MON_MITHRIL_GOLEM;
-        msg_print("You have evolved into a Mithril Golem.");
+        msg_print("你进化成了秘银魔像(Mithril Golem)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_MITHRIL_GOLEM && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_EOG_GOLEM;
-        msg_print("You have evolved into an Eog Golem.");
+        msg_print("你进化成了伊奥格魔像(Eog Golem)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_EOG_GOLEM && new_level >= 45)
@@ -135,15 +135,15 @@ static void _gain_level(int new_level)
         {
         case GOLEM_COLOSSUS:
             p_ptr->current_r_idx = MON_COLOSSUS;
-            msg_print("You have evolved into a Colossus.");
+            msg_print("你进化成了巨像(Colossus)。");
             break;
         case GOLEM_SKY:
             p_ptr->current_r_idx = MON_SKY_GOLEM;
-            msg_print("You have evolved into a Sky Golem.");
+            msg_print("你进化成了天空魔像(Sky Golem)。");
             break;
         case GOLEM_SPELLWARP:
             p_ptr->current_r_idx = MON_SPELLWARP_AUTOMATON;
-            msg_print("You have evolved into a Spellwarp Automaton.");
+            msg_print("你进化成了咒曲自动机(Spellwarp Automaton)。");
             break;
         }
         p_ptr->redraw |= PR_MAP;
@@ -308,17 +308,17 @@ static void _big_punch_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Big Punch");
+        var_set_string(res, "重拳击退");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with a single devastating blow.");
+        var_set_string(res, "用一次毁灭性的打击攻击相邻的对手。");
         break;
     case SPELL_CAST:
         if (p_ptr->innate_attack_ct)
             var_set_bool(res, do_blow(GOLEM_BIG_PUNCH));
         else
         {
-            msg_print("Not while you are wielding a weapon!");
+            msg_print("不能在挥舞武器时使用！");
             var_set_bool(res, FALSE);
         }
         break;
@@ -332,10 +332,10 @@ void _breathe_cold_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Cold");
+        var_set_string(res, "寒冰吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes cold at chosen target");
+        var_set_string(res, "向选定的目标喷吐寒冰");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, p_ptr->chp / 2));
@@ -346,7 +346,7 @@ void _breathe_cold_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!get_fire_dir(&dir)) return;
 
-        msg_print("You breathe cold.");
+        msg_print("你喷吐出寒冰。");
         fire_ball(GF_COLD, dir, p_ptr->chp / 2, -3);
 
         var_set_bool(res, TRUE);
@@ -362,10 +362,10 @@ void _breathe_disintegration_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Disintegration");
+        var_set_string(res, "解体吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "A disintegration breath. Not even the dungeon walls can withstand its power!");
+        var_set_string(res, "一种能引发物体解体的吐息。就连地下城的墙壁也无法抵挡它的威力！");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, p_ptr->chp / 4));
@@ -376,7 +376,7 @@ void _breathe_disintegration_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!get_fire_dir_aux(&dir, TARGET_DISI)) return;
 
-        msg_print("You breathe disintegration.");
+        msg_print("你喷吐出解体光波。");
         fire_ball(GF_DISINTEGRATE, dir, p_ptr->chp / 4, -3);
 
         var_set_bool(res, TRUE);
@@ -392,10 +392,10 @@ void _breathe_light_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Light");
+        var_set_string(res, "光明吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes light at chosen target");
+        var_set_string(res, "向选定目标喷吐光芒");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, p_ptr->chp / 3));
@@ -406,7 +406,7 @@ void _breathe_light_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!get_fire_dir(&dir)) return;
 
-        msg_print("You breathe light.");
+        msg_print("你喷吐出光芒。");
         fire_ball(GF_LITE, dir, p_ptr->chp / 3, -3);
 
         var_set_bool(res, TRUE);
@@ -422,10 +422,10 @@ void _breathe_time_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Time");
+        var_set_string(res, "时间吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes time at chosen target");
+        var_set_string(res, "向选定的目标喷吐时间能量");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, p_ptr->chp / 5));
@@ -436,7 +436,7 @@ void _breathe_time_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!get_fire_dir(&dir)) return;
 
-        msg_print("You breathe time.");
+        msg_print("你喷吐出时间能量。");
         fire_ball(GF_TIME, dir, p_ptr->chp / 5, -3);
 
         var_set_bool(res, TRUE);
@@ -452,10 +452,10 @@ void _shoot_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shoot");
+        var_set_string(res, "射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Shoot a missile at chosen target.");
+        var_set_string(res, "向选定的目标发射一枚飞弹。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(15, 15, 0));
@@ -465,7 +465,7 @@ void _shoot_spell(int cmd, variant *res)
         int dir = 0;
         var_set_bool(res, FALSE);
         if (!get_fire_dir(&dir)) return;
-        msg_print("You shoot a missile.");
+        msg_print("你发射了一枚飞弹。");
         fire_bolt(GF_MISSILE, dir, damroll(15, 15));
         var_set_bool(res, TRUE);
         break;
@@ -480,10 +480,10 @@ static void _stone_smash_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Stone Smash");
+        var_set_string(res, "碎石击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Destroys adjacent targeted wall.");
+        var_set_string(res, "摧毁相邻的选定墙壁。");
         break;
     case SPELL_CAST:
     {
@@ -559,12 +559,12 @@ static power_info *_get_powers(void)
 }
 
 static name_desc_t _info[GOLEM_MAX] = {
-    { "Colossus", "The Colossus is the biggest of all golems, truly immense. "
+    { "巨像", "The Colossus is the biggest of all golems, truly immense. "
                   "Unfortunately, they are also the slowest of all golems on "
                   "account of their great size." },
-    { "Sky Golem", "The Sky Golem is the product of powerful enchantments, resistant "
+    { "天空魔像", "The Sky Golem is the product of powerful enchantments, resistant "
                    "to the ravages of time. They may even breathe time!" },
-    { "Spellwarp Automaton", "The Spellwarp Automaton is nearly indestructible, being "
+    { "咒曲自动机", "The Spellwarp Automaton is nearly indestructible, being "
                              "almost completely immune to magic. However, their great "
                              "power takes a seeming eternity to mature." },
 };
@@ -589,7 +589,7 @@ race_t *mon_golem_get_race(int psubrace)
         me.infra = 5;
         me.shop_adjust = 130;
 
-        me.name = "Golem";
+        me.name = "魔像";
         me.desc = _desc;
         me.calc_innate_attacks = _calc_innate_attacks;
         me.birth = _birth;

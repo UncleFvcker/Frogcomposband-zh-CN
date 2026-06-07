@@ -459,6 +459,75 @@ bool colors16 = FALSE;
 static HINSTANCE hInstance;
 
 /*
+ * Private Chinese font bundled next to the executable.
+ */
+#define WIN_DEFAULT_FONT_FACE "YouYuan"
+#define WIN_FONT_RESOURCE_FLAGS 0
+
+static const char *private_font_files[] =
+{
+    "TTF SC\\975MaruSC-Regular.ttf",
+    "TTF SC\\975MaruSC-Medium.ttf",
+    "TTF SC\\975MaruSC-Bold.ttf"
+};
+
+#define PRIVATE_FONT_FILE_COUNT ((int)(sizeof(private_font_files) / sizeof(private_font_files[0])))
+
+static char private_font_paths[PRIVATE_FONT_FILE_COUNT][1024];
+static int private_font_registered = 0;
+
+static void register_private_font(cptr app_path)
+{
+    char path[1024];
+    int i, j;
+    DWORD attr;
+
+    if (private_font_registered) return;
+
+    strcpy(path, app_path);
+
+    for (i = strlen(path); i > 0; i--)
+    {
+        if (path[i] == '\\') break;
+    }
+
+    if (!i) return;
+
+    for (j = 0; j < PRIVATE_FONT_FILE_COUNT; j++)
+    {
+        strcpy(path + i + 1, private_font_files[j]);
+
+        attr = GetFileAttributes(path);
+        if ((attr == INVALID_FILE_ATTRIBUTES) || (attr & FILE_ATTRIBUTE_DIRECTORY)) continue;
+
+        if (AddFontResourceEx(path, WIN_FONT_RESOURCE_FLAGS, 0) > 0)
+        {
+            strcpy(private_font_paths[private_font_registered], path);
+            private_font_registered++;
+        }
+    }
+
+    if (private_font_registered)
+        SendMessage(HWND_BROADCAST, WM_FONTCHANGE, 0, 0);
+}
+
+static void unregister_private_font(void)
+{
+    int i;
+
+    if (!private_font_registered) return;
+
+    for (i = 0; i < private_font_registered; i++)
+    {
+        RemoveFontResourceEx(private_font_paths[i], WIN_FONT_RESOURCE_FLAGS, 0);
+        private_font_paths[i][0] = '\0';
+    }
+
+    private_font_registered = 0;
+    SendMessage(HWND_BROADCAST, WM_FONTCHANGE, 0, 0);
+}
+
+/*
  * Yellow brush for the cursor
  */
 static HBRUSH hbrYellow;
@@ -803,6 +872,365 @@ static void validate_dir(cptr s, bool vital)
     }
 }
 
+static bool crash_report_active = FALSE;
+static char crash_report_last_plog[1024];
+static DWORD crash_report_last_plog_tick = 0;
+
+static bool crash_report_is_diagnostic(cptr str)
+{
+    if (!str) return FALSE;
+
+    if (strstr(str, "<color:v>")) return TRUE;
+    if (strstr(str, "Error")) return TRUE;
+    if (strstr(str, "error")) return TRUE;
+    if (strstr(str, "Cannot ")) return TRUE;
+    if (strstr(str, "Unable ")) return TRUE;
+    if (strstr(str, "Fatal")) return TRUE;
+    if (strstr(str, "fatal")) return TRUE;
+    if (strstr(str, "panic")) return TRUE;
+    if (strstr(str, "software bug")) return TRUE;
+    if (strstr(str, "broken")) return TRUE;
+    if (strstr(str, "Parsing")) return TRUE;
+    if (strstr(str, "parsing")) return TRUE;
+    if (strstr(str, "parse")) return TRUE;
+    if (strstr(str, "错误")) return TRUE;
+    if (strstr(str, "閿")) return TRUE;
+    return FALSE;
+}
+
+static void crash_report_note_plog(cptr str)
+{
+    if (!str) return;
+    strnfmt(crash_report_last_plog, sizeof(crash_report_last_plog), "%s", str);
+    crash_report_last_plog_tick = GetTickCount();
+}
+
+static bool crash_report_recent_diagnostic(char *reason, size_t max)
+{
+    int i, ct;
+    DWORD now = GetTickCount();
+    bool found = FALSE;
+
+    if (max) reason[0] = '\0';
+
+    if (crash_report_last_plog[0] &&
+        now - crash_report_last_plog_tick < 15000 &&
+        crash_report_is_diagnostic(crash_report_last_plog))
+    {
+        strnfmt(reason, max, "Process exited without an explicit error after: %s", crash_report_last_plog);
+        return TRUE;
+    }
+
+    ct = msg_recent_count();
+    for (i = 0; i < ct && i < 8; i++)
+    {
+        char msg[1024];
+
+        msg_recent_text(i, msg, sizeof(msg));
+        if (crash_report_is_diagnostic(msg))
+        {
+            found = TRUE;
+            break;
+        }
+    }
+
+    if (found)
+    {
+        char tmp[1024];
+
+        msg_recent_text(0, tmp, sizeof(tmp));
+        strnfmt(reason, max, "Process exited without an explicit error after recent diagnostic message: %s", tmp);
+    }
+
+    return found;
+}
+
+static void crash_report_sanitize(char *s)
+{
+    int i;
+
+    for (i = 0; s[i]; i++)
+    {
+        if (!isalnum((unsigned char)s[i]) && s[i] != '-' && s[i] != '_')
+            s[i] = '_';
+    }
+}
+
+static void crash_report_make_dir(char *dir, size_t max)
+{
+    char module[1024];
+    int i;
+
+    if (ANGBAND_DIR_USER && check_dir(ANGBAND_DIR_USER))
+    {
+        path_build(dir, max, ANGBAND_DIR_USER, "crash-reports");
+    }
+    else
+    {
+        GetModuleFileName(NULL, module, sizeof(module));
+        module[sizeof(module) - 1] = '\0';
+        for (i = strlen(module); i > 0; i--)
+        {
+            if (module[i - 1] == '\\' || module[i - 1] == '/')
+            {
+                module[i - 1] = '\0';
+                break;
+            }
+        }
+        path_build(dir, max, module, "crash-reports");
+    }
+
+    if (!check_dir(dir))
+        _mkdir(dir);
+}
+
+static void crash_report_make_path(char *path, size_t max, cptr kind)
+{
+    SYSTEMTIME st;
+    char dir[1024];
+    char name[128];
+    char who[32];
+
+    crash_report_make_dir(dir, sizeof(dir));
+
+    if (player_base[0])
+        strnfmt(who, sizeof(who), "%s", player_base);
+    else if (player_name[0])
+        strnfmt(who, sizeof(who), "%s", player_name);
+    else
+        strnfmt(who, sizeof(who), "startup");
+    crash_report_sanitize(who);
+
+    GetLocalTime(&st);
+    strnfmt(name, sizeof(name),
+        "%04d%02d%02d-%02d%02d%02d-%s-%lu-%s.txt",
+        st.wYear, st.wMonth, st.wDay,
+        st.wHour, st.wMinute, st.wSecond,
+        kind, (unsigned long)GetCurrentProcessId(), who);
+    path_build(path, max, dir, name);
+}
+
+static void crash_report_write_common(FILE *fp, cptr kind, cptr reason)
+{
+    char module[1024];
+    char cwd[1024];
+    SYSTEM_INFO si;
+    SYSTEMTIME st;
+
+    GetLocalTime(&st);
+    GetModuleFileName(NULL, module, sizeof(module));
+    module[sizeof(module) - 1] = '\0';
+    GetCurrentDirectory(sizeof(cwd), cwd);
+    cwd[sizeof(cwd) - 1] = '\0';
+    GetSystemInfo(&si);
+
+    fprintf(fp, "%s crash report\n", VERSION_NAME);
+    fprintf(fp, "====================\n\n");
+    fprintf(fp, "Kind: %s\n", kind ? kind : "(unknown)");
+    fprintf(fp, "Reason: %s\n", reason ? reason : "(none)");
+    fprintf(fp, "Time: %04d-%02d-%02d %02d:%02d:%02d\n",
+        st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond);
+    fprintf(fp, "Version: %d.%d.%s.%d\n", VER_MAJOR, VER_MINOR, VER_PATCH, VER_EXTRA);
+    fprintf(fp, "Process: pid=%lu tid=%lu\n",
+        (unsigned long)GetCurrentProcessId(), (unsigned long)GetCurrentThreadId());
+    fprintf(fp, "Executable: %s\n", module);
+    fprintf(fp, "Working directory: %s\n", cwd);
+    fprintf(fp, "Command line: %s\n", GetCommandLine());
+    fprintf(fp, "System: processors=%lu page_size=%lu architecture=%u\n",
+        (unsigned long)si.dwNumberOfProcessors,
+        (unsigned long)si.dwPageSize,
+        (unsigned int)si.wProcessorArchitecture);
+    fprintf(fp, "Debugger present: %s\n", IsDebuggerPresent() ? "yes" : "no");
+    fprintf(fp, "\nGame state\n");
+    fprintf(fp, "----------\n");
+    fprintf(fp, "initialized=%d character_generated=%d character_saved=%d game_in_progress=%d\n",
+        initialized, character_generated, character_saved, game_in_progress);
+    fprintf(fp, "player_name=%s player_base=%s\n",
+        player_name[0] ? player_name : "(none)",
+        player_base[0] ? player_base : "(none)");
+
+    if (p_ptr)
+    {
+        fprintf(fp, "ids: sex=%d race=%d class=%d subclass=%d subrace=%d current_r_idx=%d\n",
+            p_ptr->psex, p_ptr->prace, p_ptr->pclass,
+            p_ptr->psubclass, p_ptr->psubrace, p_ptr->current_r_idx);
+        fprintf(fp, "level=%d exp=%ld gold=%ld depth=%d town=%d turn=%ld player_turn=%ld\n",
+            p_ptr->lev, (long)p_ptr->exp, (long)p_ptr->au,
+            dun_level, p_ptr->town_num, (long)game_turn, (long)player_turn);
+        fprintf(fp, "hp=%ld/%ld sp=%ld/%ld pos=(%d,%d) wild=(%ld,%ld) dead=%d panic_save=%d\n",
+            (long)p_ptr->chp, (long)p_ptr->mhp,
+            (long)p_ptr->csp, (long)p_ptr->msp,
+            p_ptr->oldpx, p_ptr->oldpy,
+            (long)p_ptr->wilderness_x, (long)p_ptr->wilderness_y,
+            p_ptr->is_dead, p_ptr->panic_save);
+    }
+
+    {
+        int i;
+        int ct = msg_recent_count();
+
+        fprintf(fp, "\nRecent messages\n");
+        fprintf(fp, "---------------\n");
+        if (!ct)
+        {
+            fprintf(fp, "(none)\n");
+        }
+        else
+        {
+            for (i = ct - 1; i >= 0; i--)
+            {
+                char msg[1024];
+
+                msg_recent_text(i, msg, sizeof(msg));
+                fprintf(fp, "%s\n", msg);
+            }
+        }
+    }
+
+    game_log_dump_recent(fp, 32);
+}
+
+static void crash_report_write_exception(FILE *fp, EXCEPTION_POINTERS *info)
+{
+    EXCEPTION_RECORD *er;
+    CONTEXT *ctx;
+    DWORD i;
+
+    if (!info) return;
+
+    er = info->ExceptionRecord;
+    ctx = info->ContextRecord;
+
+    fprintf(fp, "\nException\n");
+    fprintf(fp, "---------\n");
+    if (er)
+    {
+        fprintf(fp, "code=0x%08lx flags=0x%08lx address=%p parameters=%lu\n",
+            (unsigned long)er->ExceptionCode,
+            (unsigned long)er->ExceptionFlags,
+            er->ExceptionAddress,
+            (unsigned long)er->NumberParameters);
+        for (i = 0; i < er->NumberParameters && i < EXCEPTION_MAXIMUM_PARAMETERS; i++)
+            fprintf(fp, "param[%lu]=0x%p\n", (unsigned long)i, (void*)er->ExceptionInformation[i]);
+    }
+
+    if (ctx)
+    {
+        fprintf(fp, "\nRegisters\n");
+        fprintf(fp, "---------\n");
+#if defined(_M_X64) || defined(__x86_64__)
+        fprintf(fp, "RIP=0x%llx RSP=0x%llx RBP=0x%llx EFlags=0x%lx\n",
+            (unsigned long long)ctx->Rip,
+            (unsigned long long)ctx->Rsp,
+            (unsigned long long)ctx->Rbp,
+            (unsigned long)ctx->EFlags);
+        fprintf(fp, "RAX=0x%llx RBX=0x%llx RCX=0x%llx RDX=0x%llx\n",
+            (unsigned long long)ctx->Rax,
+            (unsigned long long)ctx->Rbx,
+            (unsigned long long)ctx->Rcx,
+            (unsigned long long)ctx->Rdx);
+        fprintf(fp, "RSI=0x%llx RDI=0x%llx R8=0x%llx R9=0x%llx\n",
+            (unsigned long long)ctx->Rsi,
+            (unsigned long long)ctx->Rdi,
+            (unsigned long long)ctx->R8,
+            (unsigned long long)ctx->R9);
+        fprintf(fp, "R10=0x%llx R11=0x%llx R12=0x%llx R13=0x%llx\n",
+            (unsigned long long)ctx->R10,
+            (unsigned long long)ctx->R11,
+            (unsigned long long)ctx->R12,
+            (unsigned long long)ctx->R13);
+        fprintf(fp, "R14=0x%llx R15=0x%llx\n",
+            (unsigned long long)ctx->R14,
+            (unsigned long long)ctx->R15);
+#elif defined(_M_IX86) || defined(__i386__)
+        fprintf(fp, "EIP=0x%lx ESP=0x%lx EBP=0x%lx EFlags=0x%lx\n",
+            (unsigned long)ctx->Eip,
+            (unsigned long)ctx->Esp,
+            (unsigned long)ctx->Ebp,
+            (unsigned long)ctx->EFlags);
+        fprintf(fp, "EAX=0x%lx EBX=0x%lx ECX=0x%lx EDX=0x%lx\n",
+            (unsigned long)ctx->Eax,
+            (unsigned long)ctx->Ebx,
+            (unsigned long)ctx->Ecx,
+            (unsigned long)ctx->Edx);
+        fprintf(fp, "ESI=0x%lx EDI=0x%lx\n",
+            (unsigned long)ctx->Esi,
+            (unsigned long)ctx->Edi);
+#else
+        fprintf(fp, "Register dump is not implemented for this CPU architecture.\n");
+#endif
+    }
+}
+
+static bool crash_report_write(cptr kind, cptr reason, EXCEPTION_POINTERS *info, char *out_path, size_t out_max)
+{
+    FILE *fp;
+    char path[1024];
+
+    if (crash_report_active) return FALSE;
+    crash_report_active = TRUE;
+
+    game_log_event("crash-report", "kind=%s reason=%s", kind ? kind : "(null)", reason ? reason : "(null)");
+
+    crash_report_make_path(path, sizeof(path), kind ? kind : "crash");
+    fp = fopen(path, "w");
+    if (fp)
+    {
+        crash_report_write_common(fp, kind, reason);
+        crash_report_write_exception(fp, info);
+        fprintf(fp, "\nEnd of report\n");
+        fclose(fp);
+
+        if (out_path && out_max)
+            strnfmt(out_path, out_max, "%s", path);
+    }
+
+    crash_report_active = FALSE;
+    return fp ? TRUE : FALSE;
+}
+
+static LONG WINAPI crash_report_exception_filter(EXCEPTION_POINTERS *info)
+{
+    char path[1024];
+    char msg[1400];
+
+    game_log_note("exception", "Unhandled Windows exception");
+
+    if (crash_report_write("exception", "Unhandled Windows exception", info, path, sizeof(path)))
+    {
+        strnfmt(msg, sizeof(msg),
+            "程序发生未处理异常，已生成错误报告：\n%s\n\n请把这个文件发给维护者。", path);
+        MessageBox(NULL, msg, "FrogComposband 崩溃报告", MB_ICONERROR | MB_OK);
+    }
+    else
+    {
+        MessageBox(NULL, "程序发生未处理异常，但错误报告写入失败。", "FrogComposband 崩溃报告", MB_ICONERROR | MB_OK);
+    }
+
+    return EXCEPTION_EXECUTE_HANDLER;
+}
+
+static void crash_report_show(HWND hwnd, cptr kind, cptr str)
+{
+    char path[1024];
+    char msg[1600];
+
+    if (!str) return;
+
+    if (crash_report_write(kind, str, NULL, path, sizeof(path)))
+    {
+        strnfmt(msg, sizeof(msg),
+            "%s\n\n已生成错误报告：\n%s\n\n请把这个文件发给维护者。", str, path);
+        MessageBox(hwnd, msg, "FrogComposband 错误报告", MB_ICONEXCLAMATION | MB_OK | MB_ICONSTOP);
+    }
+    else
+    {
+        strnfmt(msg, sizeof(msg),
+            "%s\n\n错误报告写入失败。", str);
+        MessageBox(hwnd, msg, "FrogComposband 错误报告", MB_ICONEXCLAMATION | MB_OK | MB_ICONSTOP);
+    }
+}
+
 static void term_init_double_buffer(term_data *td)
 {
     HDC hdc;
@@ -1029,7 +1457,7 @@ static void load_prefs_aux(int i)
     }
 
     /* Desired font, with default */
-    GetPrivateProfileString(sec_name, "Font", "Courier", tmp, 127, ini_file);
+    GetPrivateProfileString(sec_name, "Font", WIN_DEFAULT_FONT_FACE, tmp, 127, ini_file);
 
 
     /* Bizarre */
@@ -1514,7 +1942,7 @@ static void term_change_font(term_data *td)
 
     memset(&cf, 0, sizeof(cf));
     cf.lStructSize = sizeof(cf);
-    cf.Flags = CF_SCREENFONTS | CF_FIXEDPITCHONLY | CF_NOVERTFONTS | CF_INITTOLOGFONTSTRUCT;
+    cf.Flags = CF_SCREENFONTS | CF_NOVERTFONTS | CF_INITTOLOGFONTSTRUCT;
     cf.lpLogFont = &(td->lf);
 
     if (ChooseFont(&cf))
@@ -1578,7 +2006,7 @@ void Term_inversed_area(HWND hWnd, int x, int y, int w, int h)
     HPEN oldPen;
     HBRUSH myBrush, oldBrush;
 
-    term_data *td = (term_data *)GetWindowLong(hWnd, 0);
+    term_data *td = (term_data *)GetWindowLongPtr(hWnd, 0);
     int tx = td->size_ow1 + x * td->tile_wid;
     int ty = td->size_oh1 + y * td->tile_hgt;
     int tw = w * td->tile_wid - 1;
@@ -2153,6 +2581,39 @@ static errr Term_wipe_win(int x, int y, int n)
     return 0;
 }
 
+static int _win_codepoint_to_utf16(u32b cp, WCHAR *buf)
+{
+    if (cp == TERM_UC_WIDE_TRAIL) return 0;
+    if (!cp) cp = L' ';
+    if (cp > 0x10FFFF) cp = TERM_UC_REPLACEMENT;
+
+    if (cp <= 0xFFFF)
+    {
+        buf[0] = (WCHAR)cp;
+        return 1;
+    }
+
+    cp -= 0x10000;
+    buf[0] = (WCHAR)(0xD800 + (cp >> 10));
+    buf[1] = (WCHAR)(0xDC00 + (cp & 0x3FF));
+    return 2;
+}
+
+static bool _win_codepoint_is_wide(u32b cp)
+{
+    if (cp >= 0x1100 && cp <= 0x115F) return TRUE;
+    if (cp >= 0x2329 && cp <= 0x232A) return TRUE;
+    if (cp >= 0x2E80 && cp <= 0xA4CF) return TRUE;
+    if (cp >= 0xAC00 && cp <= 0xD7A3) return TRUE;
+    if (cp >= 0xF900 && cp <= 0xFAFF) return TRUE;
+    if (cp >= 0xFE10 && cp <= 0xFE19) return TRUE;
+    if (cp >= 0xFE30 && cp <= 0xFE6F) return TRUE;
+    if (cp >= 0xFF00 && cp <= 0xFF60) return TRUE;
+    if (cp >= 0xFFE0 && cp <= 0xFFE6) return TRUE;
+    if (cp >= 0x20000 && cp <= 0x3FFFD) return TRUE;
+    return FALSE;
+}
+
 /*
  * Low level graphics.  Assumes valid input.
  *
@@ -2169,6 +2630,7 @@ static errr Term_text_win(int x, int y, int n, byte a, const char *s)
     term_data *td = (term_data*)(Term->data);
     RECT rc;
     HDC hdc;
+    int i;
 
     static HBITMAP  WALL;
     static HBRUSH   myBrush, oldBrush;
@@ -2211,59 +2673,60 @@ static errr Term_text_win(int x, int y, int n, byte a, const char *s)
 
     /* Use the font */
     SelectObject(hdc, td->font_id);
-    
-    /* Bizarre size */
-    if (td->bizarre ||
-        (td->tile_hgt != td->font_hgt) ||
-        (td->tile_wid != td->font_wid))
+
+    /* Erase complete rectangle */
+    ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rc, NULL, 0, NULL);
+
+    /* Dump each character */
+    for (i = 0; i < n; i++)
     {
-        int i;
+        u32b cp = 0;
+        WCHAR wbuf[2];
+        RECT cell = rc;
+        int cells;
+        int wlen;
 
-        /* Erase complete rectangle */
-        ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rc, NULL, 0, NULL);
-        
-        /* New rectangle */
-        rc.left += ((td->tile_wid - td->font_wid) / 2);
-        rc.right = rc.left + td->font_wid;
-        rc.top += ((td->tile_hgt - td->font_hgt) / 2);
-        rc.bottom = rc.top + td->font_hgt;
+        if (Term && Term->old && Term->old->uc)
+            cp = Term->old->uc[y][x + i];
+        if (!cp) cp = (byte)s[i];
+        if (cp == TERM_UC_WIDE_TRAIL) continue;
 
-        /* Dump each character */
-        for (i = 0; i < n; i++)
+        cells = _win_codepoint_is_wide(cp) ? 2 : 1;
+        if (i + cells > n) cells = 1;
+
+        cell.left = x * td->tile_wid + td->size_ow1 + i * td->tile_wid;
+        cell.right = cell.left + cells * td->tile_wid;
+        if (td->bizarre ||
+            (td->tile_hgt != td->font_hgt) ||
+            (td->tile_wid != td->font_wid))
         {
-            if (*(s+i)==127){
-                oldBrush = SelectObject(hdc, myBrush);
-                oldPen = SelectObject(hdc, GetStockObject(NULL_PEN) );
-
-                /* Dump the wall */
-                Rectangle(hdc, rc.left, rc.top, rc.right+1, rc.bottom+1);
-                _update_rect_enlarge(td, &rc);
-
-                SelectObject(hdc, oldBrush);
-                SelectObject(hdc, oldPen);
-
-                /* Advance */
-                rc.left += td->tile_wid;
-                rc.right += td->tile_wid;
-            } else {
-                /* Dump the text */
-                ExtTextOut(hdc, rc.left, rc.top, ETO_CLIPPED, &rc,
-                       s+i, 1, NULL);
-                _update_rect_enlarge(td, &rc);
-                /* Advance */
-                rc.left += td->tile_wid;
-                rc.right += td->tile_wid;
-            }
-
+            cell.left += ((td->tile_wid - td->font_wid) / 2);
+            cell.right = cell.left + cells * td->tile_wid;
+            cell.top += ((td->tile_hgt - td->font_hgt) / 2);
+            cell.bottom = cell.top + td->font_hgt;
         }
-    }
 
-    /* Normal size */
-    else
-    {
-        /* Dump the text */
-        ExtTextOut(hdc, rc.left, rc.top, ETO_OPAQUE | ETO_CLIPPED, &rc,
-               s, n, NULL);
+        if (*(s+i)==127)
+        {
+            oldBrush = SelectObject(hdc, myBrush);
+            oldPen = SelectObject(hdc, GetStockObject(NULL_PEN) );
+
+            /* Dump the wall */
+            Rectangle(hdc, cell.left, cell.top, cell.right+1, cell.bottom+1);
+            _update_rect_enlarge(td, &cell);
+
+            SelectObject(hdc, oldBrush);
+            SelectObject(hdc, oldPen);
+        }
+        else
+        {
+            wlen = _win_codepoint_to_utf16(cp, wbuf);
+            if (wlen)
+            {
+                ExtTextOutW(hdc, cell.left, cell.top, ETO_CLIPPED, &cell, wbuf, wlen, NULL);
+                _update_rect_enlarge(td, &cell);
+            }
+        }
     }
 
     /* Success */
@@ -2627,7 +3090,7 @@ static void init_windows(void)
                        td->size_wid, td->size_hgt,
                        HWND_DESKTOP, NULL, hInstance, NULL);
         my_td = NULL;
-        if (!td->w) quit("Failed to create sub-window");
+        if (!td->w) quit("创建子窗口失败");
         term_init_double_buffer(td);
 
         if (td->visible)
@@ -2668,7 +3131,7 @@ static void init_windows(void)
                    td->size_wid, td->size_hgt,
                    HWND_DESKTOP, NULL, hInstance, NULL);
     my_td = NULL;
-    if (!td->w) quit("Failed to create Angband window");
+    if (!td->w) quit("创建 Angband 窗口失败");
 
     term_data_link(td);
     angband_term[0] = &td->t;
@@ -3419,7 +3882,7 @@ static void process_menus(WORD wCmd)
             ofn.nMaxFile = 1023;
             ofn.lpstrDefExt = "html";
             ofn.lpstrInitialDir = NULL;
-            ofn.lpstrTitle = "Save screen dump as HTML.";
+            ofn.lpstrTitle = "将屏幕截图保存为 HTML。";
             ofn.Flags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT;
 
             if (GetSaveFileName(&ofn))
@@ -3442,7 +3905,7 @@ static void process_menus(WORD wCmd)
             {
                 /* Create a screen scaver window */
                 hwndSaver = CreateWindowEx(WS_EX_TOPMOST, "WindowsScreenSaverClass",
-                               "Angband Screensaver",
+                               "Angband 屏幕保护程序",
                                WS_POPUP | WS_MAXIMIZE | WS_VISIBLE,
                                0, 0, GetSystemMetrics(SM_CXSCREEN),
                                GetSystemMetrics(SM_CYSCREEN),
@@ -3455,7 +3918,7 @@ static void process_menus(WORD wCmd)
                 }
                 else
                 {
-                    plog("Failed to create saver window");
+                    plog("创建屏幕保护窗口失败");
 
                 }
             }
@@ -3615,7 +4078,7 @@ LRESULT FAR PASCAL AngbandWndProc(HWND hWnd, UINT uMsg,
 
 
     /* Acquire proper "term_data" info */
-    td = (term_data *)GetWindowLong(hWnd, 0);
+    td = (term_data *)GetWindowLongPtr(hWnd, 0);
 
     /* Handle message */
     switch (uMsg)
@@ -3623,7 +4086,7 @@ LRESULT FAR PASCAL AngbandWndProc(HWND hWnd, UINT uMsg,
         /* XXX XXX XXX */
         case WM_NCCREATE:
         {
-            SetWindowLong(hWnd, 0, (LONG)(my_td));
+            SetWindowLongPtr(hWnd, 0, (LONG_PTR)(my_td));
             break;
         }
 
@@ -4000,7 +4463,7 @@ LRESULT FAR PASCAL AngbandListProc(HWND hWnd, UINT uMsg,
 
 
     /* Acquire proper "term_data" info */
-    td = (term_data *)GetWindowLong(hWnd, 0);
+    td = (term_data *)GetWindowLongPtr(hWnd, 0);
 
     /* Process message */
     switch (uMsg)
@@ -4008,7 +4471,7 @@ LRESULT FAR PASCAL AngbandListProc(HWND hWnd, UINT uMsg,
         /* XXX XXX XXX */
         case WM_NCCREATE:
         {
-            SetWindowLong(hWnd, 0, (LONG)(my_td));
+            SetWindowLongPtr(hWnd, 0, (LONG_PTR)(my_td));
             break;
         }
 
@@ -4260,10 +4723,13 @@ LRESULT FAR PASCAL AngbandSaverProc(HWND hWnd, UINT uMsg,
  */
 static void hack_plog(cptr str)
 {
+    crash_report_note_plog(str);
+    game_log_note("plog", str);
+
     /* Give a warning */
     if (str)
     {
-        MessageBox(NULL, str, "Warning",
+        MessageBox(NULL, str, "警告",
                MB_ICONEXCLAMATION | MB_OK);
 
     }
@@ -4275,12 +4741,19 @@ static void hack_plog(cptr str)
  */
 static void hack_quit(cptr str)
 {
+    game_log_note(str ? "quit-error" : "quit", str);
+
     /* Give a warning */
     if (str)
     {
-        MessageBox(NULL, str, "Error",
-               MB_ICONEXCLAMATION | MB_OK | MB_ICONSTOP);
+        crash_report_show(NULL, "quit", str);
+    }
+    else
+    {
+        char reason[1200];
 
+        if (crash_report_recent_diagnostic(reason, sizeof(reason)))
+            crash_report_show(NULL, "clean-exit", reason);
     }
 
     /* Unregister the classes */
@@ -4288,6 +4761,9 @@ static void hack_quit(cptr str)
 
     /* Destroy the icon */
     if (hIcon) DestroyIcon(hIcon);
+
+    /* Unload the private font */
+    unregister_private_font();
 
     /* Exit */
     exit(0);
@@ -4303,10 +4779,13 @@ static void hack_quit(cptr str)
  */
 static void hook_plog(cptr str)
 {
+    crash_report_note_plog(str);
+    game_log_note("plog", str);
+
     /* Warning */
     if (str)
     {
-        MessageBox(data[0].w, str, "Warning",
+        MessageBox(data[0].w, str, "警告",
                MB_ICONEXCLAMATION | MB_OK);
 
     }
@@ -4320,13 +4799,19 @@ static void hook_quit(cptr str)
 {
     int i;
 
+    game_log_note(str ? "quit-error" : "quit", str);
 
     /* Give a warning */
     if (str)
     {
-        MessageBox(data[0].w, str, "Error",
-               MB_ICONEXCLAMATION | MB_OK | MB_ICONSTOP);
+        crash_report_show(data[0].w, "quit", str);
+    }
+    else
+    {
+        char reason[1200];
 
+        if (crash_report_recent_diagnostic(reason, sizeof(reason)))
+            crash_report_show(data[0].w, "clean-exit", reason);
     }
 
 
@@ -4372,7 +4857,18 @@ static void hook_quit(cptr str)
 
     if (hIcon) DestroyIcon(hIcon);
 
+    unregister_private_font();
+
     exit(0);
+}
+
+/*
+ * Report fatal core() calls before exiting.
+ */
+static void hook_core(cptr str)
+{
+    crash_report_show(data[0].w, "core", str ? str : "core() called");
+    exit(EXIT_FAILURE);
 }
 
 
@@ -4395,6 +4891,9 @@ static void init_stuff(void)
 
     /* Save the "program name" XXX XXX XXX */
     argv0 = path;
+
+    /* Make the bundled Chinese font available to this process. */
+    register_private_font(path);
 
     /* Get the name of the "*.ini" file */
     strcpy(path + strlen(path) - 4, ".INI");
@@ -4515,11 +5014,15 @@ int FAR PASCAL WinMain(HINSTANCE hInst, HINSTANCE hPrevInst,
     HDC hdc;
     MSG msg;
 
+
     /* Unused */
     (void)nCmdShow;
 
     /* Save globally */
     hInstance = hInst;
+
+    SetUnhandledExceptionFilter(crash_report_exception_filter);
+    game_log_event("winmain", "started command_line=%s", GetCommandLine());
 
     /* Initialize */
     if (hPrevInst == NULL)
@@ -4527,7 +5030,7 @@ int FAR PASCAL WinMain(HINSTANCE hInst, HINSTANCE hPrevInst,
         wc.style         = CS_CLASSDC;
         wc.lpfnWndProc   = AngbandWndProc;
         wc.cbClsExtra    = 0;
-        wc.cbWndExtra    = 4; /* one long pointer to term_data */
+        wc.cbWndExtra    = sizeof(LONG_PTR); /* one pointer to term_data */
         wc.hInstance     = hInst;
         wc.hIcon         = hIcon = LoadIcon(hInst, AppName);
         wc.hCursor       = LoadCursor(NULL, IDC_ARROW);
@@ -4560,7 +5063,7 @@ int FAR PASCAL WinMain(HINSTANCE hInst, HINSTANCE hPrevInst,
     /* Temporary hooks */
     plog_aux = hack_plog;
     quit_aux = hack_quit;
-    core_aux = hack_quit;
+    core_aux = hook_core;
 
     /* Prepare the filepaths */
     init_stuff();
@@ -4605,7 +5108,7 @@ int FAR PASCAL WinMain(HINSTANCE hInst, HINSTANCE hPrevInst,
     /* Activate hooks */
     plog_aux = hook_plog;
     quit_aux = hook_quit;
-    core_aux = hook_quit;
+    core_aux = hook_core;
 
     /* Set the system suffix */
     ANGBAND_SYS = "win";
@@ -4641,7 +5144,7 @@ int FAR PASCAL WinMain(HINSTANCE hInst, HINSTANCE hPrevInst,
 
     Term_flush();
     display_news();
-    c_prt(TERM_YELLOW, "                 [Choose 'New' or 'Open' from the 'File' menu]", Term->hgt - 1, 0);
+    c_prt(TERM_YELLOW, "[请从“文件”菜单中选择“新建”或“打开”]", Term->hgt - 1, 0);
     Term_fresh();
 
     /* Process messages forever */
@@ -4660,4 +5163,3 @@ int FAR PASCAL WinMain(HINSTANCE hInst, HINSTANCE hPrevInst,
 
 
 #endif /* WINDOWS */
-

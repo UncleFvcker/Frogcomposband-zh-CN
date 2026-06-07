@@ -896,7 +896,7 @@ static int compare_advances(const void *ap, const void *bp)
     if( !libExists || !isDirectory )
     {
         NSLog( @"[%@ %@]: can't find %@/ in bundle: isDirectory: %d libExists: %d", NSStringFromClass( [self class] ), NSStringFromSelector( _cmd ), AngbandDirectoryNameLib, isDirectory, libExists );
-        NSRunAlertPanel( @"Missing Resources", @"PosChengband was unable to find required resources and must quit. Please report a bug on the Angband forums.", @"Quit", nil, nil );
+        NSRunAlertPanel( @"缺少资源", @"PosChengband was unable to find required resources and must quit. Please report a bug on the Angband forums.", @"退出", nil, nil );
         exit( 0 );
     }
 
@@ -987,7 +987,7 @@ static int compare_advances(const void *ap, const void *bp)
     [pool drain];
     
     /* Wait for response */
-    prt("[Choose 'New' or 'Open' from the 'File' menu]", 23, 17);
+    prt("[请从“文件”菜单中选择“新建”或“打开”]", 23, 17);
     while (!game_in_progress) (check_events(CHECK_EVENTS_WAIT)); 
 
     /* Play the game */
@@ -2522,7 +2522,7 @@ static errr get_cmd_init(void)
     if (cmd.command == CMD_NULL)
     {
         /* Prompt the user */ 
-        prt("[Choose 'New' or 'Open' from the 'File' menu]", 23, 17);
+        prt("[请从“文件”菜单中选择“新建”或“打开”]", 23, 17);
         Term_fresh();
         
         while (cmd.command == CMD_NULL) {
@@ -2843,7 +2843,7 @@ static void hook_plog(const char * str)
     if (str)
     {
         NSString *string = [NSString stringWithCString:str encoding:NSMacOSRomanStringEncoding];
-        NSRunAlertPanel(@"Danger Will Robinson", @"%@", @"OK", nil, nil, string);
+        NSRunAlertPanel(@"危险，威尔·罗宾逊", @"%@", @"OK", nil, nil, string);
     }
 }
 
@@ -3262,7 +3262,7 @@ static bool cocoa_get_file(const char *suggested_name, char *path, size_t len)
     SEL action = @selector(setGraphicsMode:);
     
     /* Add an initial Classic ASCII menu item */
-    NSMenuItem *item = [menu addItemWithTitle:@"Classic ASCII" action:action keyEquivalent:@""];
+    NSMenuItem *item = [menu addItemWithTitle:@"经典 ASCII" action:action keyEquivalent:@""];
     [item setTag:GRAPHICS_NONE];
     
     /* Walk through the list of graphics modes */

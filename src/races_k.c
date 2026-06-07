@@ -28,12 +28,8 @@ race_t *klackon_get_race(void)
 
     if (!init)
     {
-        me.name = "Klackon";
-        me.desc = "Klackons are bizarre semi-intelligent ant-like insectoid creatures. "
-                    "They make great fighters, but their mental abilities are severely limited. "
-                    "Obedient and well-ordered, they are resistant to confusion. They are very "
-                    "nimble, and become faster as they advance levels. They are also very acidic, "
-                    "inherently resist acid, and become capable of spitting it at higher levels.";
+        me.name = "克拉克虫人";
+        me.desc = "克拉克虫人是一种奇异的半智能蚂蚁状昆虫生物。他们是伟大的战士，但他们的心智能力受到了严重限制。他们顺从而守秩序，因此对困惑有抗性。他们非常敏捷，并且随着等级的提升会变得更快。他们的酸性很强，天生抵抗强酸，并且在更高等级时能够喷吐强酸。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] = -1;
@@ -89,10 +85,8 @@ race_t *kobold_get_race(void)
 
     if (!init)
     {
-        me.name = "Kobold";
-        me.desc = "Kobolds are a weak goblin race. They love poisoned weapons, and can learn to throw "
-                    "poisoned darts (of which they carry an unlimited supply). They are also inherently "
-                    "resistant to poison.";
+        me.name = "狗头人";
+        me.desc = "狗头人是一种弱小的地精类种族。他们喜欢带毒的武器，并且能学会投掷毒镖（他们携带着无限数量的毒镖）。他们也天生抵抗毒素。";
 
         me.stats[A_STR] =  1;
         me.stats[A_INT] = -1;
@@ -149,14 +143,8 @@ race_t *kutar_get_race(void)
 
     if (!init)
     {
-        me.name = "Kutar";
-        me.desc = "A Kutar is not a dog, cat or bear. Despite their characteristic "
-                    "vacant expression, Kutars are beautiful and so have a high charisma. "
-                    "Their absent-mindedness hurts their searching and perception skills, "
-                    "but renders them resistant to being confused. Due to their unearthly "
-                    "calmness and serenity, Kutars are extremely stealthy. They learn the "
-                    "special ability to expand their body horizontally; this increases "
-                    "their armour class, but renders them vulnerable to curses.";
+        me.name = "库塔";
+        me.desc = "库塔不是狗、猫或熊。尽管他们有着标志性的呆滞表情，但库塔非常可爱，因此拥有很高的魅力。他们的心不在焉损害了他们的搜索和察觉技能，但也使他们对困惑免疫。由于他们那种超凡脱俗的平静与安详，库塔的潜行能力极强。他们能学会横向膨胀身体的特殊能力；这会增加他们的护甲等级，但也会使他们容易受到诅咒。";
 
         me.stats[A_STR] =  0;
         me.stats[A_INT] = -1;
@@ -220,12 +208,8 @@ race_t *mindflayer_get_race(void)
 
     if (!init)
     {
-        me.name = "Mindflayer";
-        me.desc = "Mindflayers are a secretive and mysterious ancient race. Their civilization may well "
-                    "be older than any other; their intelligence and wisdom are naturally sustained, "
-                    "and so great as to make Mindflayers highly effective spellcasters, but their "
-                    "physical attributes are a good deal less admirable. As they gain levels, they "
-                    "learn to see invisible creatures, and eventually develop a telepathic sight.";
+        me.name = "夺心魔";
+        me.desc = "夺心魔是一个隐秘而神秘的古老种族。他们的文明可能比任何其他种族都要古老；他们的智力和感知能够自然维持，并且极高，这使得夺心魔成为非常高效的施法者，但他们的身体属性就不那么令人钦佩了。随着等级的提升，他们将学会识破隐形生物，并最终发展出心灵感应视力。";
 
         me.stats[A_STR] = -3;
         me.stats[A_INT] =  4;
@@ -285,10 +269,8 @@ race_t *nibelung_get_race(void)
 
     if (!init)
     {
-        me.name = "Nibelung";
-        me.desc = "The hated and persecuted race of nocturnal dwarves, these cave-dwellers are "
-                    "not much bothered by darkness. Their natural inclination to magical items "
-                    "has made them resistant to effects which could disenchant magical energy.";
+        me.name = "尼伯龙根人";
+        me.desc = "这些在夜间活动的矮人是受人憎恨和迫害的种族，这些穴居者并不怎么受黑暗的困扰。他们天生对魔法物品的偏好使他们能够抵抗那些解除魔法能量的效果。";
 
         me.stats[A_STR] =  0;
         me.stats[A_INT] =  1;
@@ -344,12 +326,8 @@ race_t *ogre_get_race(void)
 
     if (!init)
     {
-        me.name = "Ogre";
-        me.desc = "Ogres are big and ugly, but possessed of a low cunning and great strength. "
-                    "They have all the necessary attributes to be warriors, yet are also "
-                    "surprisingly adept as mages; and at high level, all Ogres learn the Ogre "
-                    "Mage skill of setting trapped runes. Being simple-minded, Ogres have their "
-                    "intelligence sustained.";
+        me.name = "食人魔";
+        me.desc = "食人魔庞大而丑陋，但拥有着低级的狡猾和巨大的力量。他们具备成为战士的所有必要属性，但也出人意料地擅长成为魔法师；在高级时，所有食人魔都能学会“食人魔魔法师”设置陷阱符文的技能。由于头脑简单，食人魔的智力属性能够维持不降。";
 
         me.stats[A_STR] =  3;
         me.stats[A_INT] =  0;
@@ -403,13 +381,8 @@ race_t *shadow_fairy_get_race(void)
 
     if (!init)
     {
-        me.name = "Shadow-Fairy";
-        me.desc = "Shadow-fairies are one of the several fairy races. They have wings, and can fly over "
-                    "traps that may open up beneath them. Being creatures of darkness, shadow-fairies are "
-                    "vulnerable to bright light. They are physically weak, but naturally adept at using "
-                    "magic. Shadow-fairies are amazingly stealthy, and have a wonderful advantage in "
-                    "that they almost never aggravate monsters; aggravating equipment only gives them a slight "
-                    "penalty to stealth, but if they have an aggravating personality the advantage is lost.";
+        me.name = "暗影妖精";
+        me.desc = "暗影妖精是几个妖精种族之一。他们有翅膀，可以飞越他们脚下可能打开的陷阱。作为黑暗生物，暗影妖精在强光下很脆弱。他们身体虚弱，但天生擅长使用魔法。暗影妖精的潜行能力惊人，并且有一个极好的优势，即他们几乎从不激怒怪物；带有激怒属性的装备只会给他们的潜行带来轻微的惩罚，但如果他们具有激怒型性格，那么这个优势就会丧失。";
 
         me.stats[A_STR] = -2;
         me.stats[A_INT] =  2;
@@ -479,14 +452,8 @@ race_t *skeleton_get_race(void)
 
     if (!init)
     {
-        me.name = "Skeleton";
-        me.desc = "As undead beings, skeletons need worry very little about poison or attacks "
-                    "that can drain life. Skeletons do not really use eyes for perceiving things, "
-                    "and are thus not fooled by invisibility. Their bones are resistant to sharp shrapnel, "
-                    "and they will quickly become resistant to cold. Although the magical effects of "
-                    "potions and mushrooms will affect the skeleton even without entering its (non-existent) "
-                    "belly, the food itself will fall through the skeleton's jaws, giving no nutritional benefit; "
-                    "instead, skeletons feed themselves by absorbing the energy of magical devices.";
+        me.name = "骷髅";
+        me.desc = "作为不死生物，骷髅几乎不需要担心毒素或能吸取生命的攻击。骷髅并不真正使用眼睛来感知事物，因此不会被隐形所欺骗。他们的骨头能抵抗尖锐的碎片，并且很快就能抵抗寒冰。虽然药水和蘑菇的魔法效果即使没有进入其（不存在的）胃部也会影响骷髅，但食物本身会从骷髅的下巴掉下去，不提供任何营养；相反，骷髅通过吸收魔法装置的能量来进食。";
 
         me.stats[A_STR] =  0;
         me.stats[A_INT] =  1;
@@ -529,18 +496,18 @@ static void _devour_flesh_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Devour Flesh");
+        var_set_string(res, "吞噬血肉");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Devour flesh (yours) in order to fill your belly.");
+        var_set_string(res, "吞噬血肉（你自己的）以填饱肚子。");
         break;
     case SPELL_FLAGS:
         var_set_int(res, PWR_CONFUSED);
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
-        if (!get_check("It might hurt a bit. Are you sure?")) return;
-        msg_print("You devour your own flesh!");
+        if (!get_check("这可能会有点疼。你确定吗？")) return;
+        msg_print("你吞噬了你自己的血肉！");
         set_food(PY_FOOD_MAX - 1);
         set_cut(p_ptr->cut + CUT_SEVERE, FALSE);
         take_hit(DAMAGE_USELIFE, p_ptr->mhp / 3, "devouring your own flesh");
@@ -576,11 +543,8 @@ race_t *snotling_get_race(void)
 
     if (!init)
     {
-        me.name = "Snotling";
-        me.desc = "Snotlings are greenskins, and are cousins of Goblins and Orcs, smaller than the "
-                    "former and dumber than the latter, often used by them as cannon fodder, food "
-                    "or even cannon missiles. They are on the lowest rung of greenskin society and "
-                    "are bullied by all. Snotlings often wield mushrooms or sticks into battle.";
+        me.name = "鼻涕精";
+        me.desc = "鼻涕精属于绿皮，是哥布林和兽人的近亲，比前者小，比后者笨，经常被他们用作炮灰、食物甚至是大炮的炮弹。他们处于绿皮社会的最底层，受到所有人的欺负。鼻涕精经常挥舞着蘑菇或木棍参加战斗。";
 
         me.stats[A_STR] = -2;
         me.stats[A_INT] = -2;
@@ -656,15 +620,8 @@ race_t *spectre_get_race(void)
 
     if (!init)
     {
-        me.name = "Spectre";
-        me.desc = "A powerful undead creature, the Spectre is a ghastly apparition, surrounded by "
-                    "an unearthly green glow. Spectres exist only partially on our plane of existence: "
-                    "half-corporeal, they can pass through walls, although the density of the wall "
-                    "will hurt them in the process of doing this. As undead, they have a firm hold "
-                    "on their life force, can see invisible creatures, and resist poison, cold and "
-                    "nether. Spectres make superb spellcasters, but their physical form is very weak. "
-                    "They gain very little nutrition from the food of mortals, but can absorb mana "
-                    "from magical devices as their energy source.";
+        me.name = "幽灵";
+        me.desc = "作为一种强大的不死生物，幽灵是可怕的幻影，被超自然的绿光所环绕。幽灵只是部分存在于我们的生存位面上：由于半实体的特性，他们可以穿墙，尽管在穿墙的过程中墙壁的密度会伤害他们。作为不死生物，他们牢牢地掌控着自己的生命力，能识破隐形生物，并抵抗毒素、寒冰和虚空。幽灵是非常出色的施法者，但他们的物理形态非常虚弱。他们从凡人的食物中获得的营养极少，但可以吸收魔法装置中的法力作为他们的能量来源。";
 
         me.stats[A_STR] = -5;
         me.stats[A_INT] =  4;
@@ -727,13 +684,8 @@ race_t *sprite_get_race(void)
 
     if (!init)
     {
-        me.name = "Sprite";
-        me.desc = "One of the several fairy races, Sprites are very small. They have tiny wings and can "
-                    "fly over traps that may open up beneath them. They enjoy sunlight intensely, and "
-                    "need worry little about light based attacks. Although physically among the weakest "
-                    "races, Sprites are very talented in magic, and can become highly skilled wizards. "
-                    "Sprites have the special power of spraying Sleeping Dust, and at higher levels they "
-                    "learn to fly faster.";
+        me.name = "雪碧仙子";
+        me.desc = "作为几个妖精种族之一，小妖精体型非常小。他们有微小的翅膀，可以飞越他们脚下可能打开的陷阱。他们极度享受阳光，并且几乎不需要担心基于光照的攻击。虽然身体上属于最弱的种族之列，但小妖精在魔法方面非常有天赋，并且可以成为技术高超的巫师。小妖精拥有喷洒催眠粉的特殊能力，在更高等级时他们会学会飞得更快。";
 
         me.stats[A_STR] = -4;
         me.stats[A_INT] =  3;
@@ -824,13 +776,8 @@ race_t *tomte_get_race(void)
 
     if (!init)
     {
-        me.name = "Tomte";
-        me.desc = "Smaller and of lighter build than regular elves, Tomtes are nimble, intelligent, "
-                  "extremely stealthy and at home with magical devices, but their size handicaps them "
-                  "in physical combat. They greatly prefer light headwear, and cannot think clearly "
-                  "with a heavy helmet squeezing their brains. Tomtes have the ability to assess "
-                  "monsters and items at a glance (they gain auto-identify at level 40); and being "
-                  "accustomed to long winters, they are not much bothered by cold.";
+        me.name = "尼森小人";
+        me.desc = "尼森小人比普通精灵体型更小、更轻盈，他们敏捷、聪明、潜行能力极强并且精通使用魔法装置，但他们的体型在物理战斗中对他们很不利。他们非常偏爱轻便的头饰，如果戴着沉重的头盔挤压他们的大脑，他们就无法清晰地思考。尼森小人有一眼就能评估怪物和物品的能力（他们在40级时获得自动鉴定）；由于习惯了漫长的冬天，他们不太怕冷。";
 
         me.stats[A_STR] = -4;
         me.stats[A_INT] =  2;
@@ -914,15 +861,8 @@ race_t *tonberry_get_race(void)
 
     if (!init)
     {
-        me.name = "Tonberry";
-        me.desc = "Tonberries are lizard-like creatures who possess enormous strength "
-                    "and have a preference for cleavers and large knives. They are, "
-                    "however, sluggish in their movements and reactions; young and "
-                    "inexperienced tonberries are often preyed on by the other races. "
-                    "They possess human-like intelligence, but rarely become mages due "
-                    "to their culture and physiology. Tonberries attack very powerfully "
-                    "in melee, albeit with fewer attacks than normal. They are also "
-                    "easily confused and move with reduced speed.";
+        me.name = "冬贝利";
+        me.desc = "冬贝利是一种类似蜥蜴的生物，他们拥有巨大的力量，并且偏爱菜刀和宽刃刀。然而，他们的动作和反应都很迟钝；年轻且缺乏经验的冬贝利经常被其他种族捕食。他们拥有类似人类的智力，但由于文化和生理原因很少成为魔法师。冬贝利在近战中的攻击非常强力，尽管攻击次数比正常情况下少。他们也容易被困惑，并且移动速度较慢。";
 
         me.stats[A_STR] =  4;
         me.stats[A_INT] =  0;
@@ -995,14 +935,8 @@ race_t *vampire_get_race(void)
 
     if (!init)
     {
-        me.name = "Vampire";
-        me.desc = "One of the mightier undead creatures, the vampire is an awe-inspiring sight. Yet this "
-                    "dread creature has a serious weakness: the bright rays of sun are its bane, and it "
-                    "will need to flee the surface to the deep recesses of earth until the sun finally "
-                    "sets. Darkness, on the other hand, holds few terrors to a vampire. Being undead, "
-                    "vampires also resist nether, cold and poison and have a firm hold on their life force; "
-                    "but they are susceptible to a perpetual hunger for fresh blood, which can only be "
-                    "satiated by sucking the blood from a nearby monster.";
+        me.name = "吸血鬼";
+        me.desc = "作为比较强大的不死生物之一，吸血鬼那令人敬畏的外表令人印象深刻。然而，这种可怕的生物有一个严重的弱点：明亮的阳光是他们的克星，他们需要从地表逃到地下的深处，直到太阳最终落山。另一方面，黑暗对吸血鬼来说并不可怕。作为不死生物，吸血鬼还能抵抗虚空、寒冰和毒素，并牢牢掌控着自己的生命力；但他们对新鲜血液有着永久的饥渴，这只能通过吸取附近怪物的血液来满足。";
 
         me.stats[A_STR] =  3;
         me.stats[A_INT] =  3;
@@ -1052,11 +986,8 @@ race_t *wood_elf_get_race(void)
 
     if (!init)
     {
-        me.name = "Wood-Elf";
-        me.desc = "Wood-Elves are the most common of elves. They prefer the seclusion of thick "
-                    "forests and are unhampered when moving through dense foliage. Their skills "
-                    "with tracking and bow are unsurpassed, and as they advance they gain the "
-                    "power of Nature Awareness.";
+        me.name = "木精灵";
+        me.desc = "木精灵是最常见的精灵。他们喜欢幽居在茂密的森林中，在茂密的枝叶中穿行时不受阻碍。他们在追踪和弓箭方面的技巧是无与伦比的，并且随着等级的提升，他们将获得“自然感知”的能力。";
 
         me.stats[A_STR] = -1;
         me.stats[A_INT] =  1;
@@ -1114,11 +1045,8 @@ race_t *yeek_get_race(void)
 
     if (!init)
     {
-        me.name = "Yeek";
-        me.desc = "Yeeks are among the most pathetic creatures. Fortunately, their horrible screams "
-                    "can scare away less confident foes, and their skin becomes more and more resistant "
-                    "to acid as they gain experience. They are also fairly good at magic; but in combat, "
-                    "even a mediocre monster can wipe the proverbial floor with an unwary Yeek.";
+        me.name = "伊克人";
+        me.desc = "伊克人是最可悲的生物之一。幸运的是，他们可怕的尖叫声可以吓跑不太自信的敌人，而且随着经验的增长，他们的皮肤会越来越抗酸。他们在魔法方面也相当不错；但在战斗中，即使是一只平庸的怪物也能把粗心大意的伊克人按在地上摩擦。";
 
         me.stats[A_STR] = -2;
         me.stats[A_INT] =  1;
@@ -1190,12 +1118,8 @@ race_t *zombie_get_race(void)
 
     if (!init)
     {
-        me.name = "Zombie";
-        me.desc = "Zombies are undead horrors, resistant to life draining and the forces "
-            "of the netherworld. The grave is cold, but this does not bother the undead, and "
-            "poison also scarcely affects the unliving. Zombies gain little nutrition from "
-            "ordinary food; instead, they absorb energy from magical devices to maintain "
-            "their undead existence.";
+        me.name = "僵尸";
+        me.desc = "僵尸是恐怖的不死生物，对生命吸取和虚空力量有抗性。坟墓很冷，但这并不困扰不死生物，毒素也几乎影响不到他们。僵尸从普通食物中获得的营养极少；相反，他们通过吸收魔法装置的能量来维持其不死状态。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] = -6;

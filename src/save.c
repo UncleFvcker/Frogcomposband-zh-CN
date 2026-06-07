@@ -46,7 +46,7 @@ void updatecharinfoS(void)
             int paikka;
             bool ok_name = FALSE;
             if ((prace_is_(RACE_MON_MIMIC)) && (p_ptr->current_r_idx == MON_MIMIC)) strncpy(nimi, "nothing", sizeof(nimi));
-            else if (strpos("Mouth of Sauron", race_->subname)) strncpy(nimi, "Mouth of Sauron", sizeof(nimi));
+            else if (strpos("索伦之口", race_->subname)) strncpy(nimi, "索伦之口", sizeof(nimi));
             else strncpy(nimi, race_->subname, sizeof(nimi));
             if (strlen(nimi) < 16) ok_name = TRUE;
             while (!ok_name)
@@ -79,7 +79,7 @@ void updatecharinfoS(void)
 	fprintf(oFile, "dLvl: \"%i\",\n", dun_level);
 	if (p_ptr->realm1 > 0)fprintf(oFile, "mRealm1: \"%s\",\n", realm_names[p_ptr->realm1]);
 	if (p_ptr->realm2 > 0)fprintf(oFile, "mRealm2: \"%s\",\n", realm_names[p_ptr->realm2]);
-	if (!strcmp("Chaos-Warrior", class_->name))fprintf(oFile, "mRealm2: \"%s\",\n", chaos_patrons[p_ptr->chaos_patron]);
+	if (class_->id == CLASS_CHAOS_WARRIOR)fprintf(oFile, "mRealm2: \"%s\",\n", chaos_patrons[p_ptr->chaos_patron]);
 	if (p_ptr->dragon_realm > 0)fprintf(oFile, "mRealm1: \"%s\",\n", drealm->name);
 	fprintf(oFile, "cLvl: \"%i\",\n", p_ptr->lev);
 	fprintf(oFile, "isDead: \"%i\",\n", p_ptr->is_dead);
@@ -1604,7 +1604,7 @@ bool load_player(void)
     if (access(savefile, 0) < 0)
     {
         /* Give a message */
-        msg_print("Savefile does not exist.");
+        msg_print("存档文件不存在。");
 
         msg_print(NULL);
 
@@ -1638,7 +1638,7 @@ bool load_player(void)
             my_fclose(fkk);
 
             /* Message */
-            msg_print("Savefile is currently in use.");
+            msg_print("存档文件当前正在被使用。");
 
             msg_print(NULL);
 
@@ -1669,7 +1669,7 @@ bool load_player(void)
         if (fd < 0) err = -1;
 
         /* Message (below) */
-        if (err) what = "Cannot open savefile";
+        if (err) what = "无法打开存档文件";
 
     }
 
@@ -1686,7 +1686,7 @@ bool load_player(void)
         if (fd_read(fd, (char*)(vvv), 4)) err = -1;
 
         /* What */
-        if (err) what = "Cannot read savefile";
+        if (err) what = "无法读取存档文件";
 
 
         /* Close the file */
@@ -1711,7 +1711,7 @@ bool load_player(void)
         err = rd_savefile_new();
 
         /* Message (below) */
-        if (err) what = "Cannot parse savefile";
+        if (err) what = "无法解析存档文件";
 
     }
 
@@ -1722,7 +1722,7 @@ bool load_player(void)
         if (!game_turn) err = -1;
 
         /* Message (below) */
-        if (err) what = "Broken savefile";
+        if (err) what = "损坏的存档文件";
 
     }
 
@@ -1735,7 +1735,7 @@ bool load_player(void)
             sf_when < (statbuf.st_ctime - 100))
         {
             /* Message */
-            what = "Invalid timestamp";
+            what = "无效的时间戳";
 
 
             /* Oops */
@@ -1753,7 +1753,7 @@ bool load_player(void)
             (VER_MINOR != z_minor) ||
             (!streq(VER_PATCH, z_patch)))
         {
-            msg_format("Converted a %d.%d.%s savefile.",
+            msg_format("转换了一个 %d.%d.%s 版本的存档文件。",
                 (z_major > 9) ? z_major-10 : z_major , z_minor, z_patch);
             msg_print(NULL);
         }
@@ -1817,7 +1817,7 @@ bool load_player(void)
 
 
     /* Message */
-    msg_format("Error (%s) reading %d.%d.%s savefile.",
+    msg_format("读取 %d.%d.%s 版本的存档文件时出错 (%s)。",
            what, (z_major>9) ? z_major - 10 : z_major, z_minor, z_patch);
     msg_print(NULL);
 

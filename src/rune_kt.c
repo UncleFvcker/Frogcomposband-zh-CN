@@ -220,19 +220,19 @@ bool rune_add(object_type *o_ptr, int which, bool prompt)    /* Birthing needs a
 
     if (o_ptr->rune)
     {
-        msg_format("%^s already has an attached rune.", o_name);
+        msg_format("%^s 已经附有一个符文了。", o_name);
         return FALSE;
     }
 
     if (object_is_(o_ptr, TV_SWORD, SV_RUNESWORD))
     {
-        msg_print("Failed! Rune Swords already have runes, albeit ones you fail to comprehend.");
+        msg_print("失败！符文之剑已经有符文了，尽管那是你无法理解的符文。");
         return FALSE;
     }
 
     if (o_ptr->number > 1)
     {
-        msg_print("Failed! You may only add a rune to a single object at a time.");
+        msg_print("失败！你一次只能在一个单独的物品上添加一个符文。");
         return FALSE;
     }
 
@@ -395,7 +395,7 @@ bool rune_add(object_type *o_ptr, int which, bool prompt)    /* Birthing needs a
     }
 
     if (prompt)
-        msg_format("%^s gleams.", o_name);
+        msg_format("%^s 闪烁着微光。", o_name);
     p_ptr->update |= PU_BONUS;
 
     return TRUE;
@@ -408,8 +408,8 @@ static object_type *_rune_object_prompt(obj_p filter)
 {
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Enchant which item?";
-    prompt.error = "You have nothing to enchant.";
+    prompt.prompt = "附魔哪件物品？";
+    prompt.error = "你没有什么可以附魔的。";
     prompt.filter = filter;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -449,13 +449,13 @@ static void _obj_absorption_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Absorption");
+        var_set_string(res, "吸收");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_absorption");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Absorption on chosen melee weapon, body armor or shield. This rune grants a special magical defense that absorbs damage from all monster spells, restoring your mana in the process.");
+        var_set_string(res, "在你选择的近战武器、身体防具或盾牌上放置一个吸收符文。这个符文会赋予你一种特殊的魔法防御，吸收来自所有怪物法术的伤害，并在此过程中恢复你的法力。");
         break;
     case SPELL_CAST:
     {
@@ -486,13 +486,13 @@ static void _obj_protection_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Protection");
+        var_set_string(res, "保护");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_protection");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Protection on chosen armor, making it immune to acid while slightly enhancing its protective capabilities.");
+        var_set_string(res, "在你选择的护甲上放置一个保护符文，使其免疫强酸，同时略微增强其防护能力。");
         break;
     case SPELL_CAST:
     {
@@ -526,13 +526,13 @@ static void _obj_regeneration_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Regeneration");
+        var_set_string(res, "再生");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_regeneration");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Regeneration on chosen item, granting powers of regeneration.");
+        var_set_string(res, "在你选择的物品上放置一个再生符文，赋予其再生的力量。");
         break;
     case SPELL_CAST:
     {
@@ -570,13 +570,13 @@ static void _obj_fire_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Fire");
+        var_set_string(res, "火焰");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_fire");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Fire on chosen item, granting special fire-based powers.");
+        var_set_string(res, "在你选择的物品上放置一个火焰符文，赋予基于火焰的特殊力量。");
         break;
     case SPELL_CAST:
     {
@@ -608,13 +608,13 @@ static void _obj_air_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Air");
+        var_set_string(res, "空气");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_air");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Air on chosen item, granting special wind-based powers.");
+        var_set_string(res, "在你选择的物品上放置一个空气符文，赋予基于风的特殊力量。");
         break;
     case SPELL_CAST:
     {
@@ -648,13 +648,13 @@ static void _obj_water_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Water");
+        var_set_string(res, "水");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_water");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Water on chosen item, granting special acid-based powers.");
+        var_set_string(res, "在你选择的物品上放置一个水之符文，赋予基于酸的特殊力量。");
         break;
     case SPELL_CAST:
     {
@@ -685,13 +685,13 @@ static void _obj_light_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Light");
+        var_set_string(res, "光照");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_light");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Light on chosen item, granting special light-based powers.");
+        var_set_string(res, "在你选择的物品上放置一个光之符文，赋予基于光照的特殊力量。");
         break;
     case SPELL_CAST:
     {
@@ -724,13 +724,13 @@ static void _obj_shadow_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shadow");
+        var_set_string(res, "暗影");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_shadow");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Shadow on chosen item, granting special darkness-based powers.");
+        var_set_string(res, "在你选择的物品上放置一个暗影符文，赋予基于黑暗的特殊力量。");
         break;
     case SPELL_CAST:
     {
@@ -763,13 +763,13 @@ static void _obj_earth_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Earth");
+        var_set_string(res, "大地");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_earth");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Earth on chosen item, granting special shard-based powers.");
+        var_set_string(res, "在你选择的物品上放置一个大地符文，赋予基于碎片的特殊力量。");
         break;
     case SPELL_CAST:
     {
@@ -800,13 +800,13 @@ static void _obj_understanding_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Understanding");
+        var_set_string(res, "理解");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_understanding");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Understanding on chosen item, granting special knowledge-based powers.");
+        var_set_string(res, "在你选择的物品上放置一个理解符文，赋予基于知识的特殊力量。");
         break;
     case SPELL_CAST:
     {
@@ -828,13 +828,13 @@ static void _obj_elemental_protection_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Preservation");
+        var_set_string(res, "保存");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_preservation");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Creates a standalone rune. As long as you have this rune in your inventory, your inventory items are less likely to be destroyed by elemental attacks.");
+        var_set_string(res, "创造一个独立的符文。只要你的物品栏里有这个符文，你物品栏里的物品就不太可能被元素攻击所摧毁。");
         break;
     case SPELL_CAST:
     {
@@ -866,13 +866,13 @@ static void _obj_haste_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Haste");
+        var_set_string(res, "加速");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_haste");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Haste on chosen item, granting special speed-based powers.");
+        var_set_string(res, "在你选择的物品上放置一个加速符文，赋予基于速度的特殊力量。");
         break;
     case SPELL_CAST:
     {
@@ -903,13 +903,13 @@ static void _obj_seeing_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Seeing");
+        var_set_string(res, "洞察");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_seeing");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Seeing on chosen item, granting powers of sight.");
+        var_set_string(res, "在你选择的物品上放置一个洞察符文，赋予视觉相关的力量。");
         break;
     case SPELL_CAST:
     {
@@ -971,13 +971,13 @@ static void _obj_life_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Life");
+        var_set_string(res, "生命");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_life");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Life on chosen item, protecting your living essence.");
+        var_set_string(res, "在你选择的物品上放置一个生命符文，保护你的生命精华。");
         break;
     case SPELL_CAST:
     {
@@ -1010,13 +1010,13 @@ static void _obj_stability_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Stability");
+        var_set_string(res, "稳定");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_stability");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Stability on chosen item, protecting you from the vicissitudes of the world around you.");
+        var_set_string(res, "在你选择的物品上放置一个稳定符文，保护你免受周围世界变迁的影响。");
         break;
     case SPELL_CAST:
     {
@@ -1038,13 +1038,13 @@ static void _obj_reflection_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Reflection");
+        var_set_string(res, "反射");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_reflection");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Reflection on your shield.");
+        var_set_string(res, "在你的盾牌上放置一个反射符文。");
         break;
     case SPELL_CAST:
     {
@@ -1077,13 +1077,13 @@ static void _obj_death_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Death");
+        var_set_string(res, "死亡");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_death");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Death on chosen item, granting powers of the nether world.");
+        var_set_string(res, "在你选择的物品上放置一个死亡符文，赋予虚空世界的力量。");
         break;
     case SPELL_CAST:
     {
@@ -1114,13 +1114,13 @@ static void _obj_mind_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mind");
+        var_set_string(res, "心灵");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_mind");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Mind on chosen item, granting powers of thought and awareness.");
+        var_set_string(res, "在你选择的物品上放置一个心灵符文，赋予思想和感知的能力。");
         break;
     case SPELL_CAST:
     {
@@ -1151,13 +1151,13 @@ static void _obj_might_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Might");
+        var_set_string(res, "力量");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_might");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Might on chosen item, granting powers of strength and fortitude.");
+        var_set_string(res, "在你选择的物品上放置一个力量符文，赋予力量与坚韧的能力。");
         break;
     case SPELL_CAST:
     {
@@ -1188,13 +1188,13 @@ static void _obj_destruction_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Destruction");
+        var_set_string(res, "毁灭");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_destruction");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Destruction on chosen item, granting great combat powers.");
+        var_set_string(res, "在你选择的物品上放置一个毁灭符文，赋予强大的战斗能力。");
         break;
     case SPELL_CAST:
     {
@@ -1216,13 +1216,13 @@ static void _obj_good_fortune_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Luck");
+        var_set_string(res, "幸运");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_luck");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Creates a standalone rune. As long as you have this rune in your inventory, you will experience better luck during your adventures.");
+        var_set_string(res, "创造一个独立的符文。只要你的物品栏里有这个符文，在你的冒险中你就会经历更好的运气。");
         break;
     case SPELL_CAST:
     {
@@ -1256,13 +1256,13 @@ static void _obj_immortality_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Immortality");
+        var_set_string(res, "不朽");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_obj_immortality");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Places a Rune of Immortality on chosen item, granting power over time itself.");
+        var_set_string(res, "在你选择的物品上放置一个不朽符文，赋予掌控时间本身的力量。");
         break;
     case SPELL_CAST:
     {
@@ -1292,13 +1292,13 @@ void _self_darkness_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Darkness");
+        var_set_string(res, "黑暗");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_self_darkness");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Place a temporary Rune of Darkness on your person, granting enhanced stealth.");
+        var_set_string(res, "在你身上放置一个临时的黑暗符文，赋予增强的潜行能力。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(_DURATION, _DURATION));
@@ -1317,13 +1317,13 @@ void _self_seeing_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Seeing");
+        var_set_string(res, "洞察");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_self_seeing");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Place a temporary Rune of Seeing on your person, granting telepathic powers.");
+        var_set_string(res, "在你身上放置一个临时的洞察符文，赋予心灵感应能力。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(_DURATION, _DURATION));
@@ -1342,13 +1342,13 @@ void _self_understanding_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Understanding");
+        var_set_string(res, "理解");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_self_understanding");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Place a temporary Rune of Understanding on your person, granting knowledge of yourself.");
+        var_set_string(res, "在你身上放置一个临时的理解符文，赋予对自身的认知。");
         break;
     default:
         self_knowledge_spell(cmd, res);
@@ -1360,13 +1360,13 @@ void _self_haste_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Haste");
+        var_set_string(res, "加速");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_self_haste");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Place a temporary Rune of Haste on your person, granting enhanced speed of motion.");
+        var_set_string(res, "在你身上放置一个临时的加速符文，赋予增强的移动速度。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(_DURATION, _DURATION));
@@ -1385,13 +1385,13 @@ void _self_protection_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Protection");
+        var_set_string(res, "保护");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_self_protection");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Place a temporary Rune of Protection on your person, granting temporary resistance to the basic elements.");
+        var_set_string(res, "在你身上放置一个临时的保护符文，赋予对基础元素的临时抗性。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(_DURATION, _DURATION));
@@ -1410,13 +1410,13 @@ void _self_earth_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Earth");
+        var_set_string(res, "大地");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_self_earth");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Place a temporary Rune of Earth on your person, hardening your skin to ward off enemy blows.");
+        var_set_string(res, "在你身上放置一个临时的大地符文，硬化你的皮肤以抵御敌人的攻击。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(_DURATION, _DURATION));
@@ -1435,13 +1435,13 @@ void _self_life_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Life");
+        var_set_string(res, "生命");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_self_life");
         break;
     case SPELL_DESC:
-        var_set_string(res, "By placing a temporary Rune of Life on your person, you may recover that which was lost.");
+        var_set_string(res, "通过在你身上放置一个临时的生命符文，你可以恢复已经失去的东西。");
         break;
     default:
         restore_life_spell(cmd, res);
@@ -1453,13 +1453,13 @@ void _self_daemon_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Daemon");
+        var_set_string(res, "恶魔");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_self_daemon");
         break;
     case SPELL_DESC:
-        var_set_string(res, "By placing a temporary Demonic Rune on your person you transform yourself into a more powerful form.");
+        var_set_string(res, "通过在你身上放置一个临时的恶魔符文，你将自己转化为更强大的形态。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(_DURATION, _DURATION));
@@ -1478,13 +1478,13 @@ void _self_might_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Might");
+        var_set_string(res, "力量");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_self_might");
         break;
     case SPELL_DESC:
-        var_set_string(res, "By placing a temporary Rune of Might on your person you gain the strength of giants.");
+        var_set_string(res, "通过在你身上放置一个临时的力量符文，你将获得巨人的力量。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(_DURATION/2, _DURATION/2));
@@ -1519,9 +1519,9 @@ void _feat_spell(int feat, int cmd, variant *res)
         if (!in_bounds(y, x)) return;
         c_ptr = &cave[y][x];
         if ((c_ptr->info & CAVE_OBJECT) || c_ptr->o_idx)
-            msg_print("<color:r>The object resists your rune.</color>");
+            msg_print("<color:r>该物品抵抗了你的符文。</color>");
         else if (c_ptr->m_idx)
-            msg_print("<color:r>There is a monster in your way.</color>");
+            msg_print("<color:r>有一个怪物挡住了你的路。</color>");
         else
             cave_set_feat(y, x, feat);
 
@@ -1537,13 +1537,13 @@ void _feat_light_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Light");
+        var_set_string(res, "光照");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_feat_light");
         break;
     case SPELL_DESC:
-        var_set_string(res, "By placing a Rune of Light at your current location you may light up your surroundings.");
+        var_set_string(res, "通过在你当前位置放置一个光之符文，你可以照亮周围的环境。");
         break;
     default:
         light_area_spell(cmd, res);
@@ -1555,13 +1555,13 @@ void _feat_water_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Water");
+        var_set_string(res, "水");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_feat_water");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This rune washes away all in its path.");
+        var_set_string(res, "这个符文会冲刷掉其路径上的一切。");
         break;
     default:
         _feat_spell(p_ptr->lev < 35 ? feat_shallow_water : feat_deep_water, cmd, res);
@@ -1573,13 +1573,13 @@ void _feat_earth_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Earth");
+        var_set_string(res, "大地");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_feat_earth");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This rune blocks the passage of your foes.");
+        var_set_string(res, "这个符文会阻挡敌人的通行。");
         break;
     default:
         _feat_spell(p_ptr->lev < 45 ? feat_rubble : feat_granite, cmd, res);
@@ -1591,13 +1591,13 @@ void _feat_fire_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Fire");
+        var_set_string(res, "火焰");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_feat_fire");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This rune burns the surrounding landscape.");
+        var_set_string(res, "这个符文会燃烧周围的地形。");
         break;
     default:
         _feat_spell(p_ptr->lev < 40 ? feat_shallow_lava : feat_deep_lava, cmd, res);
@@ -1609,13 +1609,13 @@ void _feat_air_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Air");
+        var_set_string(res, "空气");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_feat_air");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This rune summons air where once there was none.");
+        var_set_string(res, "这个符文在曾经没有空气的地方召唤出空气。");
         break;
     default:
         _feat_spell(feat_dark_pit, cmd, res);
@@ -1627,13 +1627,13 @@ void _feat_stability_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Stability");
+        var_set_string(res, "稳定");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_feat_stability");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This rune creates solid footing of the most ordinary sort.");
+        var_set_string(res, "这个符文会创造出最普通的坚实立足点。");
         break;
     default:
         _feat_spell(feat_floor, cmd, res);
@@ -1645,13 +1645,13 @@ void _feat_life_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Life");
+        var_set_string(res, "生命");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_feat_life");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This rune causes rapid plant growth wherever it is placed.");
+        var_set_string(res, "这个符文无论放在哪里，都会导致植物快速生长。");
         break;
     default:
         _feat_spell(feat_tree, cmd, res);
@@ -1663,13 +1663,13 @@ void _feat_protection_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Protection");
+        var_set_string(res, "保护");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_feat_protection");
         break;
     case SPELL_DESC:
-        var_set_string(res, "By placing a Rune of Protection at your current location, you may block the passage of all save the mightiest of enemies.");
+        var_set_string(res, "通过在你当前位置放置一个保护符文，你可以阻挡除了最强大的敌人之外的所有人的通行。");
         break;
     default:
         glyph_of_warding_spell(cmd, res);
@@ -1681,13 +1681,13 @@ void _feat_destruction_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Destruction");
+        var_set_string(res, "毁灭");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_feat_destruction");
         break;
     case SPELL_DESC:
-        var_set_string(res, "By placing a highly unstable Rune of Destruction at your current location you may destroy your nearby surroundings.");
+        var_set_string(res, "通过在你当前位置放置一个极不稳定的毁灭符文，你可以摧毁附近的环境。");
         break;
     case SPELL_CAST:
         destroy_area(py, px, 12 + randint1(4), spell_power(8 * p_ptr->lev));
@@ -1706,13 +1706,13 @@ void _blow_confusion_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Confusion");
+        var_set_string(res, "困惑");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_blow_confusion");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This temporary rune enhances your melee attacks to baffle your enemies.");
+        var_set_string(res, "这个临时符文会强化你的近战攻击，使你的敌人感到困惑。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(HISSATSU_CONF));
@@ -1727,13 +1727,13 @@ void _blow_fire_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Fire");
+        var_set_string(res, "火焰");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_blow_fire");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This temporary rune enhances your melee attacks to burn your enemies.");
+        var_set_string(res, "这个临时符文会强化你的近战攻击，烧伤你的敌人。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(HISSATSU_FIRE));
@@ -1748,13 +1748,13 @@ void _blow_water_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Water");
+        var_set_string(res, "水");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_blow_water");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This temporary rune enhances your melee attacks to corrode your enemies.");
+        var_set_string(res, "这个临时符文会强化你的近战攻击，腐蚀你的敌人。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(PY_ATTACK_ACID));
@@ -1769,13 +1769,13 @@ void _blow_earth_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Earth");
+        var_set_string(res, "大地");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_blow_earth");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This temporary rune enhances your melee attacks to cut your enemies.");
+        var_set_string(res, "这个临时符文会强化你的近战攻击，割伤你的敌人。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(PY_ATTACK_VORPAL));
@@ -1790,13 +1790,13 @@ void _blow_death_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Death");
+        var_set_string(res, "死亡");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_blow_death");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This temporary rune enhances your melee attacks to drain life from your enemies.");
+        var_set_string(res, "这个临时符文会强化你的近战攻击，吸取敌人的生命。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(PY_ATTACK_VAMP));
@@ -1811,13 +1811,13 @@ void _blow_elec_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Lightning");
+        var_set_string(res, "闪电");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_blow_lightning");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This temporary rune enhances your melee attacks to shock your enemies.");
+        var_set_string(res, "这个临时符文会强化你的近战攻击，电击你的敌人。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(HISSATSU_ELEC));
@@ -1832,13 +1832,13 @@ void _blow_air_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Air");
+        var_set_string(res, "空气");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_blow_air");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This temporary rune allows you to attack all adjacent foes in a whirlwind of destruction.");
+        var_set_string(res, "这个临时符文允许你在毁灭旋风中攻击所有相邻的敌人。");
         break;
     default:
         massacre_spell(cmd, res);
@@ -1850,13 +1850,13 @@ void _blow_mana_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mana");
+        var_set_string(res, "法力");
         break;
     case SPELL_STAT_NAME:
         var_set_string(res, "_blow_mana");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Your most powerful battle rune uses your mana to powerfully rend your enemies.");
+        var_set_string(res, "你最强大的战斗符文使用你的法力来强力撕裂你的敌人。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(PY_ATTACK_MANA));
@@ -1880,7 +1880,7 @@ typedef struct {
 } _spell_group, *_spell_group_ptr;
 
 static _spell_group _spell_groups[_MAX_SPELL_GROUPS] = {
-    { "Runes of Creation",
+    { "创造符文",
       "Augment your equipment by attaching runes of various powers. Also, you may create "
       "certain stand-alone runes that grant powers by virtue of being present in your "
       "inventory. Be sure to always keep Absorption handy, for it is your only means "
@@ -1920,7 +1920,7 @@ static _spell_group _spell_groups[_MAX_SPELL_GROUPS] = {
         { -1,   0, 0, NULL },
       }
     },
-    { "Runes of Enhancement",
+    { "强化符文",
       "Place runes on yourself for temporary or one-time effects.",
       TERM_L_GREEN, {
         { 10,   5, 20, _self_darkness_spell },
@@ -1935,7 +1935,7 @@ static _spell_group _spell_groups[_MAX_SPELL_GROUPS] = {
         { -1,   0,  0, NULL },
       }
     },
-    { "Runes of Alteration",
+    { "转化符文",
       "These runes of change allow you to permanently alter your surroundings.",
       TERM_UMBER, { 
         {  5,  1, 20, _feat_light_spell },
@@ -1950,7 +1950,7 @@ static _spell_group _spell_groups[_MAX_SPELL_GROUPS] = {
         { -1,  0,  0, NULL },
       }
     },
-    { "Runes of Battle",
+    { "战斗符文",
       "These runes allow you to effect adjacent enemies. By creating a temporary rune "
       "attached to your melee weapon, you may make a single attack with enhanced power.",
       TERM_RED, {
@@ -1993,7 +1993,7 @@ static int _get_spells_imp(spell_info* spells, int max, _spell_group *spell_grou
 static void _character_dump(doc_ptr doc)
 {
     int i;
-    doc_printf(doc, "<topic:Spells>==================================== <color:keypress>S</color>pells ===================================\n\n");
+    doc_printf(doc, "<topic:Spells>==================================== 法 术 (<color:keypress>S</color>) ===================================\n\n");
     for (i = 0; i < _MAX_SPELL_GROUPS; i++)
     {
         _spell_group_ptr group = &_spell_groups[i];
@@ -2032,7 +2032,7 @@ static spell_info *_get_spells(void)
     int idx = -1;
     int ct = 0;
     int max = MAX_SPELLS;
-    menu_t menu = { "Use which group of spells?", "Browse which group of spells?", NULL,
+    menu_t menu = { "使用哪一类法术？", "浏览哪一类法术？", NULL,
                     _spell_menu_fn, _spell_groups, _MAX_SPELL_GROUPS, 0};
     static spell_info spells[MAX_SPELLS];
 
@@ -2041,7 +2041,7 @@ static spell_info *_get_spells(void)
     ct = _get_spells_imp(spells, max, &_spell_groups[idx]);
     if (ct == 0)
     {
-        msg_print("You don't know any of those spells yet!");
+        msg_print("你还不懂其中的任何法术！");
         return NULL;
     }
     spells[ct].fn = NULL;
@@ -2059,7 +2059,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.which_stat = A_INT;
         me.encumbrance.max_wgt = 3000;
         me.encumbrance.weapon_pct = 0;
@@ -2089,7 +2089,7 @@ static bool _destroy_object(obj_ptr obj)
         int add_hp = is_equipped ? p_ptr->mhp : p_ptr->mhp/3;
         int add_sp = is_equipped ? p_ptr->msp : p_ptr->msp/3;
 
-        msg_print("You feel a surge of wondrous power enter your body.");
+        msg_print("你感觉一股奇妙的力量涌入体内。");
 
         p_ptr->chp = MIN(p_ptr->mhp, p_ptr->chp + add_hp);
         p_ptr->chp_frac = 0;
@@ -2120,7 +2120,7 @@ class_t *rune_knight_get_class(void)
     skills_t bs = { 30,  23,  36,   2,  18,  16,  48,  35};
     skills_t xs = {  7,   9,   9,   0,   0,   0,  14,  11};
 
-        me.name = "Rune-Knight";
+        me.name = "符文骑士";
         me.desc = 
             "The Rune-Knight is a mythical warrior, "
             "dedicated to the discovery of ancient runes that hold immense power. They "

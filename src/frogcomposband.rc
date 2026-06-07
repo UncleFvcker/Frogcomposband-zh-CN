@@ -38,7 +38,7 @@ ANGBAND MENU
             MENUITEM "Term-7 window", 217
         }
 
-        POPUP "Keep on top"
+        POPUP "总在最前"
         {
             MENUITEM "Term-1 window", 221
             MENUITEM "Term-2 window", 222
@@ -63,7 +63,7 @@ ANGBAND MENU
             MENUITEM "Term-7 window", 237
         }
 */
-        POPUP "Increase Tile Width"
+        POPUP "增加图块宽度"
         {
             MENUITEM "Term-0 window", 240
             MENUITEM "Term-1 window", 241
@@ -75,7 +75,7 @@ ANGBAND MENU
             MENUITEM "Term-7 window", 247
         }
 
-        POPUP "Decrease Tile Width"
+        POPUP "减小图块宽度"
         {
             MENUITEM "Term-0 window", 250
             MENUITEM "Term-1 window", 251
@@ -87,7 +87,7 @@ ANGBAND MENU
             MENUITEM "Term-7 window", 257
         }
 
-        POPUP "Increase Tile Height"
+        POPUP "增加图块高度"
         {
             MENUITEM "Term-0 window", 260
             MENUITEM "Term-1 window", 261
@@ -99,7 +99,7 @@ ANGBAND MENU
             MENUITEM "Term-7 window", 267
         }
 
-        POPUP "Decrease Tile Height"
+        POPUP "减小图块高度"
         {
             MENUITEM "Term-0 window", 270
             MENUITEM "Term-1 window", 271
@@ -123,7 +123,7 @@ ANGBAND MENU
         }
 
         MENUITEM "&Sound", 410
-        MENUITEM "&HTML dump", 450
+        MENUITEM "&HTML 导出", 450
     }
 
 }

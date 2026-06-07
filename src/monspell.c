@@ -65,56 +65,56 @@ enum {
 };
 static _parse_t _annoy_tbl[] = {
     { "AMNESIA", { MST_ANNOY, ANNOY_AMNESIA },
-        { "Amnesia", TERM_L_BLUE,
+        { "失忆", TERM_L_BLUE,
           "$CASTER tries to blank your mind.",
           "$CASTER tries to blank your mind."}, MSF_TARGET | MSF_DIRECT},
     { "ANIM_DEAD", { MST_ANNOY, ANNOY_ANIMATE_DEAD },
-        { "Animate Dead", TERM_L_DARK,
-          "$CASTER casts a spell to revive the dead.",
+        { "操纵死尸", TERM_L_DARK,
+          "$CASTER施展法术复活死者。",
           "$CASTER mumbles."}},
     { "BLIND", { MST_ANNOY, ANNOY_BLIND },
-        { "Blind", TERM_ORANGE,
-          "$CASTER casts a spell, burning your eyes!",
+        { "致盲", TERM_ORANGE,
+          "$CASTER施展法术，灼烧了你的眼睛！",
           "$CASTER mumbles."}, MSF_TARGET | MSF_DIRECT},
     { "CONFUSE", { MST_ANNOY, ANNOY_CONFUSE },
-        { "Confuse", TERM_L_UMBER,
+        { "混乱", TERM_L_UMBER,
           "$CASTER creates a mesmerizing illusion.",
           "$CASTER mumbles, and you hear puzzling noises."}, MSF_TARGET | MSF_DIRECT},
     { "DARKNESS", { MST_ANNOY, ANNOY_DARKNESS },
-        { "Create Darkness", TERM_L_DARK }},
+        { "制造黑暗", TERM_L_DARK }},
     { "PARALYZE", { MST_ANNOY, ANNOY_PARALYZE },
-        { "Paralyze", TERM_RED,
+        { "麻痹", TERM_RED,
           "$CASTER stares deep into your eyes!",
           "$CASTER mumbles."}, MSF_TARGET},
     { "SCARE", { MST_ANNOY, ANNOY_SCARE },
-        { "Terrify", TERM_RED,
+        { "惊骇", TERM_RED,
           "$CASTER casts a fearful illusion.",
           "$CASTER mumbles, and you hear scary noises."}, MSF_TARGET | MSF_DIRECT},
     { "SLOW", { MST_ANNOY, ANNOY_SLOW },
-        { "Slow", TERM_SLATE,
-          "$CASTER drains power from your muscles!",
-          "$CASTER drains power from your muscles!"}, MSF_TARGET | MSF_DIRECT},
+        { "减速", TERM_SLATE,
+          "$CASTER吸取了你肌肉中的力量！",
+          "$CASTER吸取了你肌肉中的力量！"}, MSF_TARGET | MSF_DIRECT},
     { "SHRIEK", { MST_ANNOY, ANNOY_SHRIEK },
-        { "Shriek", TERM_L_BLUE,
+        { "尖叫", TERM_L_BLUE,
           "$CASTER makes a high pitched shriek.",
           "$CASTER makes a high pitched shriek." }, MSF_INNATE },
     { "TELE_LEVEL", { MST_ANNOY, ANNOY_TELE_LEVEL },
-        { "Teleport Level", TERM_WHITE,
+        { "传送楼层", TERM_WHITE,
           "$CASTER gestures at your feet.",
           "$CASTER mumbles strangely."}, MSF_TARGET | MSF_DIRECT},
     { "TELE_TO", { MST_ANNOY, ANNOY_TELE_TO },
-        { "Teleport To", TERM_WHITE,
+        { "传送至身边", TERM_WHITE,
           "$CASTER commands you to return.",
           "$CASTER mumbles." }, MSF_TARGET | MSF_DIRECT},
     { "TRAPS", { MST_ANNOY, ANNOY_TRAPS },
-        { "Create Traps", TERM_WHITE,
-          "$CASTER casts a spell and cackles evilly.",
+        { "制造陷阱", TERM_WHITE,
+          "$CASTER施展法术并邪恶地咯咯大笑。",
           "$CASTER mumbles gleefully.",
           "You create a trap." }},
     { "WORLD", { MST_ANNOY, ANNOY_WORLD },
-        { "Stop Time", TERM_L_BLUE}},
+        { "时间停止", TERM_L_BLUE}},
     { "NO_AIR", { MST_ANNOY, ANNOY_NO_AIR },
-        { "Remove Air", TERM_L_BLUE,
+        { "抽空空气", TERM_L_BLUE,
           "$CASTER takes a deep breath.",
           "$CASTER takes a deep breath.",
           "You take a deep breath." }},
@@ -129,19 +129,19 @@ enum {
 };
 static _parse_t _biff_tbl[] = {
     { "ANTI_MAGIC", { MST_BIFF, BIFF_ANTI_MAGIC },
-        { "Anti-Magic", TERM_L_BLUE,
+        { "反魔法", TERM_L_BLUE,
           "$CASTER invokes <color:B>Anti-Magic</color>.",
           "$CASTER mumbles powerfully.",
           "",
           "You invoke <color:B>Anti-Magic</color>." }, MSF_TARGET | MSF_DIRECT},
     { "DISPEL_MAGIC", { MST_BIFF, BIFF_DISPEL_MAGIC },
-        { "Dispel Magic", TERM_L_BLUE,
+        { "解除魔法", TERM_L_BLUE,
           "$CASTER invokes <color:B>Dispel Magic</color>.",
           "$CASTER mumbles powerfully.",
           "",
           "You invoke <color:B>Dispel Magic</color>." }, MSF_TARGET | MSF_DIRECT},
     { "POLYMORPH", { MST_BIFF, BIFF_POLYMORPH },
-        { "Polymorph Other", TERM_RED,
+        { "变形他人", TERM_RED,
           "$CASTER invokes <color:r>Polymorph Other</color>.",
           "$CASTER mumbles powerfully.",
           "",
@@ -156,13 +156,13 @@ enum {
 };
 static _parse_t _buff_tbl[] = {
     { "HASTE", { MST_BUFF, BUFF_HASTE },
-        { "Haste Self", TERM_WHITE,
+        { "自我加速", TERM_WHITE,
           "$CASTER concentrates on $CASTER_POS body.",
           "$CASTER mumbles.",
           "$CASTER concentrates on $CASTER_POS body.",
           "You concentrate on your body." }},
     { "INVULN", { MST_BUFF, BUFF_INVULN },
-        { "Invulnerability", TERM_YELLOW,
+        { "无敌", TERM_YELLOW,
           "$CASTER casts a <color:y>Globe of Invulnerability</color>.",
           "$CASTER mumbles powerfully.",
           "$CASTER casts a <color:y>Globe of Invulnerability</color>.",
@@ -173,84 +173,84 @@ static _parse_t _buff_tbl[] = {
 /* MST_BALL */
 static _parse_t _ball_tbl[] = {
     { "BA_CHAOS", { MST_BALL, GF_CHAOS },
-        { "Invoke Logrus", TERM_VIOLET,
+        { "唤起罗格鲁斯", TERM_VIOLET,
           "$CASTER invokes a <color:v>Raw Logrus</color>.",
           "$CASTER mumbles frighteningly.",
           "$CASTER invokes a <color:v>Raw Logrus</color> at $TARGET.",
           "You invoke a <color:v>Raw Logrus</color>." }, MSF_TARGET | MSF_BALL4},
     { "BA_DARK", { MST_BALL, GF_DARK },
-        { "Darkness Storm", TERM_L_DARK,
+        { "黑暗风暴", TERM_L_DARK,
           "$CASTER invokes a <color:D>Darkness Storm</color>.",
           "$CASTER mumbles powerfully.",
           "$CASTER invokes a <color:D>Darkness Storm</color> at $TARGET.",
           "You invoke a <color:D>Darkness Storm</color>." }, MSF_TARGET | MSF_BALL4},
     { "BA_LITE", { MST_BALL, GF_LITE },
-        { "Starburst", TERM_YELLOW,
+        { "星爆", TERM_YELLOW,
           "$CASTER invokes a <color:y>Starburst</color>.",
           "$CASTER mumbles powerfully.",
           "$CASTER invokes a <color:y>Starburst</color> at $TARGET.",
           "You invoke a <color:y>Starburst</color>." }, MSF_TARGET | MSF_BALL4},
     { "MANA_STORM", { MST_BALL, GF_MANA },
-        { "Mana Storm", TERM_L_BLUE,
+        { "法力风暴", TERM_L_BLUE,
           "$CASTER invokes a <color:B>Mana Storm</color>.",
           "$CASTER mumbles powerfully.",
           "$CASTER invokes a <color:B>Mana Storm</color> at $TARGET.",
           "You invoke a <color:B>Mana Storm</color>." }, MSF_TARGET | MSF_BALL4},
     { "BA_NUKE", { MST_BALL, GF_NUKE },
-        { "Radiation Ball", TERM_L_GREEN,
+        { "辐射球", TERM_L_GREEN,
           "$CASTER casts a <color:G>Ball of Radiation</color>.",
           "$CASTER mumbles.",
           "$CASTER casts a <color:G>Ball of Radiation</color> at $TARGET.",
           "You cast a <color:G>Ball of Radiation</color>." }, MSF_TARGET},
     { "BA_POISON", { MST_BALL, GF_POIS },
-        { "Stinking Cloud", TERM_L_GREEN,
+        { "恶臭之云", TERM_L_GREEN,
           "$CASTER casts a <color:G>Stinking Cloud</color>.",
           "$CASTER mumbles.",
           "$CASTER casts a <color:G>Stinking Cloud</color> at $TARGET.",
           "You cast a <color:G>Stinking Cloud</color>." }, MSF_TARGET},
     { "BA_WATER", { MST_BALL, GF_WATER },
-        { "Whirlpool", TERM_L_BLUE,
+        { "大漩涡", TERM_L_BLUE,
           "$CASTER gestures fluidly. You are engulfed in a <color:B>Whirlpool</color>.",
           "$CASTER mumbles. You are engulfed in a <color:B>Whirlpool</color>.",
           "$CASTER gestures fluidly. $TARGET is engulfed in a <color:B>Whirlpool</color>.",
           "You gesture fluidly." }, MSF_TARGET},
     { "BRAIN_SMASH", { MST_BALL, GF_BRAIN_SMASH },
-        { "Brain Smash", TERM_L_BLUE,
+        { "大脑粉碎", TERM_L_BLUE,
           "$CASTER gazes deep into your eyes.",
           "You feel something focusing on your mind.", 
           "$CASTER gazes deep into the eyes of $TARGET.",
           "You gaze deeply." }, MSF_BALL0 | MSF_TARGET },
     { "DRAIN_MANA", { MST_BALL, GF_DRAIN_MANA },
-        { "Drain Mana", TERM_L_BLUE,
+        { "吸取法力", TERM_L_BLUE,
           "$CASTER attempts to drain psychic energy from you.",
           "$CASTER attempts to drain psychic energy from you.",
           "$CASTER drains psychic energy from $TARGET."}, MSF_BALL0 | MSF_TARGET },
     { "MIND_BLAST", { MST_BALL, GF_MIND_BLAST },
-        { "Mind Blast", TERM_L_BLUE,
+        { "心灵爆破", TERM_L_BLUE,
           "$CASTER gazes deep into your eyes.",
           "You feel something focusing on your mind.", 
           "$CASTER gazes deep into the eyes of $TARGET.",
           "You gaze deeply." }, MSF_BALL0 | MSF_TARGET},
     { "PULVERISE", { MST_BALL, GF_TELEKINESIS },
-        { "Pulverise", TERM_L_BLUE,
+        { "念力粉碎", TERM_L_BLUE,
           "$CASTER <color:B>pulverises</color> you.",
           "Something <color:B>pulverises</color> you.",
           "$CASTER <color:B>pulverises</color> $TARGET.",
           "" }, MSF_TARGET},
     { "ROCKET", { MST_BALL, GF_ROCKET },
-        { "Rocket", TERM_L_UMBER,
+        { "火箭", TERM_L_UMBER,
           "$CASTER fires a <color:U>Rocket</color>.",
           "$CASTER shoots something.",
           "$CASTER fires a <color:U>Rocket</color> at $TARGET.",
           "You fire a <color:U>Rocket</color>." }, MSF_INNATE | MSF_TARGET },
     { "THROW", { MST_BALL, GF_ROCK }, /* non-reflectable! */
-        { "Throw Boulder", TERM_L_UMBER,
+        { "投掷巨石", TERM_L_UMBER,
           "$CASTER throws a large rock.",
           "$CASTER shouts, 'Haaa!!'.",
           "$CASTER throws a large rock at $TARGET.", 
           "You throw a large rock." }, MSF_INNATE | MSF_BALL0 | MSF_TARGET},
     { "CHICKEN", { MST_BALL, GF_CHICKEN },
-        { "Chicken", TERM_YELLOW,
+        { "小鸡化", TERM_YELLOW,
           "$CASTER fires a <color:y>Chicken</color>.",
           "$CASTER shoots something.",
           "$CASTER fires a <color:y>Chicken</color> at $TARGET.",
@@ -261,25 +261,25 @@ static _parse_t _ball_tbl[] = {
 /* MST_BOLT */
 static _parse_t _bolt_tbl[] = {
     { "GAZE", { MST_BOLT, GF_ATTACK },
-        { "Gaze", TERM_RED,
+        { "凝视", TERM_RED,
           "$CASTER gazes at you.",
           "",
           "$CASTER gazes at $TARGET.",
           ""}, MSF_TARGET},
     { "MISSILE", { MST_BOLT, GF_MISSILE },
-        { "Magic Missile", TERM_WHITE,
+        { "魔法飞弹", TERM_WHITE,
           "$CASTER casts a Magic Missile.",
           "$CASTER mumbles.",
           "$CASTER casts a Magic Missile at $TARGET.",
           "You cast a Magic Missile." }, MSF_TARGET},
     { "SHOOT", { MST_BOLT, GF_ARROW },
-        { "Shoot", TERM_L_UMBER,
+        { "射击", TERM_L_UMBER,
           "$CASTER fires an arrow.",
           "$CASTER makes a strange noise.",
           "$CASTER fires an arrow at $TARGET.",
           "You fire an arrow." }, MSF_INNATE | MSF_TARGET },
     { "BO_TIME", { MST_BOLT, GF_TIME },
-        { "Time Wave", TERM_L_BLUE,
+        { "时间波", TERM_L_BLUE,
           "$CASTER casts a <color:B>Time Wave</color>.",
           "$CASTER mumbles.",
           "$CASTER casts a <color:B>Time Wave</color> at $TARGET.",
@@ -290,19 +290,19 @@ static _parse_t _bolt_tbl[] = {
 /* MST_BEAM */
 static _parse_t _beam_tbl[] = {
     { "PSY_SPEAR", { MST_BEAM, GF_PSY_SPEAR },
-        { "Psycho-Spear", TERM_L_BLUE,
+        { "精神之矛", TERM_L_BLUE,
           "$CASTER throws a <color:B>Psycho-Spear</color>.",
           "$CASTER mumbles.", 
           "$CASTER throws a <color:B>Psycho-Spear</color> at $TARGET.",
           "You throw a <color:B>Psycho-Spear</color>." }, MSF_TARGET },
     { "HELL_LANCE", { MST_BEAM, GF_HELL_FIRE },
-        { "Hell Lance", TERM_RED,
+        { "地狱之枪", TERM_RED,
           "$CASTER throws a <color:r>Hell Lance</color>.",
           "$CASTER mumbles.",
           "$CASTER throws a <color:r>Hell Lance</color> at $TARGET.",
           "You throw a <color:r>Hell Lance</color>." }, MSF_TARGET},
     { "HOLY_LANCE", { MST_BEAM, GF_HOLY_FIRE },
-        { "Holy Lance", TERM_YELLOW,
+        { "神圣之枪", TERM_YELLOW,
           "$CASTER throws a <color:y>Holy Lance</color>.",
           "$CASTER mumbles.",
           "$CASTER throws a <color:y>Holy Lance</color> at $TARGET.",
@@ -314,27 +314,27 @@ static _parse_t _beam_tbl[] = {
  * so we must omit the player casting messages. */
 static _parse_t _curse_tbl[] = {
     { "CAUSE_1", { MST_CURSE, GF_CAUSE_1 },
-        { "Wounding Curse", TERM_RED,
+        { "创伤诅咒", TERM_RED,
           "$CASTER points at you and curses.",
           "$CASTER curses.",
           "$CASTER points at $TARGET and curses." }, MSF_TARGET },
     { "CAUSE_2", { MST_CURSE, GF_CAUSE_2 },
-        { "Evil Curse", TERM_RED,
+        { "邪恶诅咒", TERM_RED,
           "$CASTER points at you and curses horribly.",
           "$CASTER curses horribly.",
           "$CASTER points at $TARGET and curses horribly." }, MSF_TARGET },
     { "CAUSE_3", { MST_CURSE, GF_CAUSE_3 },
-        { "Mighty Curse", TERM_RED,
+        { "强力诅咒", TERM_RED,
           "$CASTER points at you, incanting terribly!",
           "$CASTER incants terribly.",
           "$CASTER points at $TARGET, incanting terribly!" }, MSF_TARGET },
     { "CAUSE_4", { MST_CURSE, GF_CAUSE_4 },
-        { "Death Curse", TERM_RED,
+        { "死亡诅咒", TERM_RED,
           "$CASTER points at you, screaming the word DIE!",
           "$CASTER screams the word DIE!", 
           "$CASTER points at $TARGET, screaming the word DIE!" }, MSF_TARGET },
     { "HAND_DOOM", { MST_CURSE, GF_HAND_DOOM },
-        { "Hand of Doom", TERM_RED,
+        { "毁灭之手", TERM_RED,
           "$CASTER invokes the <color:r>Hand of Doom</color>!",
           "$CASTER invokes the <color:r>Hand of Doom</color>!",
           "$CASTER invokes the <color:r>Hand of Doom</color> at $TARGET.",
@@ -349,9 +349,9 @@ enum {
 };
 static _parse_t _escape_tbl[] = {
     { "TELE_OTHER", { MST_ESCAPE, ESCAPE_TELE_OTHER },
-        { "Teleport Away", TERM_WHITE }, MSF_TARGET | MSF_DIRECT },
+        { "传送走", TERM_WHITE }, MSF_TARGET | MSF_DIRECT },
     { "TELE_SELF", { MST_ESCAPE, ESCAPE_TELE_SELF },
-        { "Teleport", TERM_WHITE }},
+        { "传送", TERM_WHITE }},
     {0}
 };
 enum {
@@ -360,9 +360,9 @@ enum {
 };
 static _parse_t _tactic_tbl[] = {
     { "BLINK", { MST_TACTIC, TACTIC_BLINK },
-        { "Blink", TERM_WHITE }},
+        { "闪现", TERM_WHITE }},
     { "BLINK_OTHER", { MST_TACTIC, TACTIC_BLINK_OTHER },
-        { "Blink Away", TERM_WHITE }, MSF_TARGET | MSF_DIRECT },
+        { "闪现走", TERM_WHITE }, MSF_TARGET | MSF_DIRECT },
     {0}
 };
 
@@ -372,7 +372,7 @@ enum {
 };
 static _parse_t _heal_tbl[] = {
     { "HEAL", { MST_HEAL, HEAL_SELF },
-        { "Heal Self", TERM_WHITE,
+        { "自我治疗", TERM_WHITE,
           "$CASTER concentrates on $CASTER_POS wounds.",
           "$CASTER mumbles.",
           "$CASTER concentrates on $CASTER_POS wounds.",
@@ -387,9 +387,9 @@ enum {
 };
 static _parse_t _weird_tbl[] = {
     { "SPECIAL", { MST_WEIRD, WEIRD_SPECIAL },
-        { "Something Weird", TERM_RED }},
+        { "怪异现象", TERM_RED }},
     { "BIRD_DROP", { MST_WEIRD, WEIRD_BIRD },
-        { "Drop Monster", TERM_RED }, MSF_TARGET | MSF_DIRECT},
+        { "空投怪物", TERM_RED }, MSF_TARGET | MSF_DIRECT},
     {0}
 };
 
@@ -414,35 +414,35 @@ enum {
 };
 static _parse_t _pos_tbl[] = {
     { "DETECT_TRAPS", { MST_POSSESSOR, POS_DETECT_TRAPS },
-        { "Detect Traps", TERM_L_UMBER }},
+        { "探测陷阱", TERM_L_UMBER }},
     { "DETECT_EVIL", { MST_POSSESSOR, POS_DETECT_EVIL },
-        { "Detect Evil", TERM_L_UMBER }},
+        { "探测邪恶", TERM_L_UMBER }},
     { "DETECT_MONSTERS", { MST_POSSESSOR, POS_DETECT_MONSTERS },
-        { "Detect Monsters", TERM_L_UMBER }},
+        { "探测怪物", TERM_L_UMBER }},
     { "DETECT_OBJECTS", { MST_POSSESSOR, POS_DETECT_OBJECTS },
-        { "Detect Objects", TERM_L_UMBER }},
+        { "探测物品", TERM_L_UMBER }},
     { "IDENTIFY", { MST_POSSESSOR, POS_IDENTIFY },
-        { "Identify", TERM_L_BLUE }},
+        { "鉴定", TERM_L_BLUE }},
     { "MAPPING", { MST_POSSESSOR, POS_MAPPING },
-        { "Mapping", TERM_L_BLUE }},
+        { "测绘", TERM_L_BLUE }},
     { "CLAIRVOYANCE", { MST_POSSESSOR, POS_CLAIRVOYANCE },
-        { "Clairvoyance", TERM_L_BLUE }},
+        { "千里眼", TERM_L_BLUE }},
     { "MULTIPLY", { MST_POSSESSOR, POS_MULTIPLY },
-        { "Multiply", TERM_RED }},
+        { "繁殖", TERM_RED }},
     { "BLESS", { MST_POSSESSOR, POS_BLESS },
-        { "Bless", TERM_WHITE,
+        { "祝福", TERM_WHITE,
           "$CASTER prays for aid.",
           "$CASTER mumbles a petition.",
           "$CASTER prays for aid.",
           "You pray for aid."}},
     { "HEROISM", { MST_POSSESSOR, POS_HEROISM },
-        { "Heroism", TERM_WHITE,
+        { "英雄气概", TERM_WHITE,
           "$CASTER prays for aid.",
           "$CASTER mumbles a petition.",
           "$CASTER prays for aid.",
           "You pray for aid."}},
     { "BERSERK", { MST_POSSESSOR, POS_BERSERK },
-        { "Berserk", TERM_RED,
+        { "狂暴", TERM_RED,
           "$CASTER enters into a berserk frenzy.",
           "$CASTER sounds furious!",
           "$CASTER enters into a berserk frenzy.",
@@ -502,20 +502,20 @@ typedef struct {
     int  prob;
 } _mst_info_t, *_mst_info_ptr;
 static _mst_info_t _mst_tbl[MST_COUNT] = {
-    { MST_BREATH, "Breathe", TERM_RED, 15 },
-    { MST_BALL, "Ball", TERM_RED, 15 },
-    { MST_BOLT, "Bolt", TERM_RED, 15 },
-    { MST_BEAM, "Beam", TERM_RED, 15 },
-    { MST_CURSE, "Curse", TERM_RED, 15 },
-    { MST_BUFF, "Buff", TERM_L_BLUE, 5 },
-    { MST_BIFF, "Biff", TERM_RED, 10 },
-    { MST_ESCAPE, "Escape", TERM_L_BLUE, 5 },
-    { MST_ANNOY, "Annoy", TERM_ORANGE, 5 },
-    { MST_SUMMON, "Summon", TERM_ORANGE, 8 },
-    { MST_HEAL, "Heal", TERM_L_BLUE, 10 },
-    { MST_TACTIC, "Tactic", TERM_L_BLUE, 10 },
-    { MST_WEIRD, "Weird", TERM_L_UMBER, 100 },
-    { MST_POSSESSOR, "Possessor", TERM_L_BLUE, 0 }, /* <== 0 prevents monster casting */
+    { MST_BREATH, "喷吐", TERM_RED, 15 },
+    { MST_BALL, "球体", TERM_RED, 15 },
+    { MST_BOLT, "箭矢", TERM_RED, 15 },
+    { MST_BEAM, "射线", TERM_RED, 15 },
+    { MST_CURSE, "诅咒", TERM_RED, 15 },
+    { MST_BUFF, "增益", TERM_L_BLUE, 5 },
+    { MST_BIFF, "减益", TERM_RED, 10 },
+    { MST_ESCAPE, "逃跑", TERM_L_BLUE, 5 },
+    { MST_ANNOY, "干扰", TERM_ORANGE, 5 },
+    { MST_SUMMON, "召唤", TERM_ORANGE, 8 },
+    { MST_HEAL, "治疗", TERM_L_BLUE, 10 },
+    { MST_TACTIC, "战术", TERM_L_BLUE, 10 },
+    { MST_WEIRD, "怪异", TERM_L_UMBER, 100 },
+    { MST_POSSESSOR, "附身者", TERM_L_BLUE, 0 }, /* <== 0 prevents monster casting */
 };
 static _mst_info_ptr _mst_lookup(int which)
 {
@@ -655,7 +655,7 @@ static mon_spell_parm_t _breath_parm(int which)
         break;
     default:
         /*assert(FALSE);*/
-        msg_format("Unsupported breath %s (%d)", gf_name(which), which);
+        msg_format("不支持的喷吐 %s (%d)", gf_name(which), which);
     }
     return parm;
 }
@@ -919,7 +919,7 @@ errr mon_spell_parm_parse(mon_spell_parm_ptr parm, char *token)
     {
         if (parm->tag != MSP_HP_PCT)
         {
-            msg_print("Error: A hitpoint percentage is only valid on BR_* spells.");
+            msg_print("错误：生命值百分比仅对 BR_* 法术有效。");
             return PARSE_ERROR_GENERIC;
         }
         parm->v.hp_pct.pct = MAX(0, MIN(100, pct));
@@ -928,7 +928,7 @@ errr mon_spell_parm_parse(mon_spell_parm_ptr parm, char *token)
     {
         if (parm->tag != MSP_DICE)
         {
-            msg_print("Error: Dice parameters are not supported on this spell type.");
+            msg_print("错误：此法术类型不支持骰子参数。");
             return PARSE_ERROR_GENERIC;
         }
         parm->v.dice.dd = MAX(0, dd);
@@ -939,7 +939,7 @@ errr mon_spell_parm_parse(mon_spell_parm_ptr parm, char *token)
     {
         if (parm->tag != MSP_DICE)
         {
-            msg_print("Error: Dice parameters are not supported on this spell type.");
+            msg_print("错误：此法术类型不支持骰子参数。");
             return PARSE_ERROR_GENERIC;
         }
         parm->v.dice.dd = MAX(0, dd);
@@ -950,7 +950,7 @@ errr mon_spell_parm_parse(mon_spell_parm_ptr parm, char *token)
     {
         if (parm->tag != MSP_DICE)
         {
-            msg_print("Error: Dice parameters are not supported on this spell type.");
+            msg_print("错误：此法术类型不支持骰子参数。");
             return PARSE_ERROR_GENERIC;
         }
         parm->v.dice.dd = 0;
@@ -959,7 +959,7 @@ errr mon_spell_parm_parse(mon_spell_parm_ptr parm, char *token)
     }
     else
     {
-        msg_format("Error: Unknown argument %s.", token);
+        msg_format("错误：未知参数 %s。", token);
         return PARSE_ERROR_GENERIC;
     }
     return 0;
@@ -1015,7 +1015,7 @@ errr mon_spell_parse(mon_spell_ptr spell, int rlev, char *token)
 
     if (arg_ct < 0)
     {
-        msg_format("Error: Malformed argument %s. Missing )?", name);
+        msg_format("错误：格式错误的参数 %s。缺少 )？", name);
         return PARSE_ERROR_GENERIC;
     }
 
@@ -1031,7 +1031,7 @@ errr mon_spell_parse(mon_spell_ptr spell, int rlev, char *token)
         parse_tbl_ptr p = summon_type_parse(name + 2);
         if (!p)
         {
-            msg_format("Error: Unknown summon type %s.", name + 2);
+            msg_format("错误：未知召唤类型 %s。", name + 2);
             return PARSE_ERROR_GENERIC;
         }
         spell->id.type = MST_SUMMON;
@@ -1066,13 +1066,13 @@ errr mon_spell_parse(mon_spell_ptr spell, int rlev, char *token)
         }
         else
         {
-            msg_format("Error: Unknown spell %s.", name);
+            msg_format("错误：未知法术 %s。", name);
             return PARSE_ERROR_GENERIC;
         }
         gf = gf_parse_name(suffix);
         if (!gf)
         {
-            msg_format("Error: Unknown type %s.", name + 3);
+            msg_format("错误：未知类型 %s。", name + 3);
             return PARSE_ERROR_GENERIC;
         }
         spell->id.effect = gf->id;
@@ -1098,7 +1098,7 @@ void mon_spell_print(mon_spell_ptr spell, string_ptr s)
     {
         parse_tbl_ptr p = summon_type_lookup(spell->id.effect);
         if (!p)
-            string_printf(s, "Summon %d", spell->id.effect);
+            string_printf(s, "召唤 %d", spell->id.effect);
         else
             string_printf(s, "<color:%c>Summon %s</color>", attr_to_attr_char(p->color), p->name);
     }
@@ -1111,7 +1111,7 @@ void mon_spell_print(mon_spell_ptr spell, string_ptr s)
                 attr_to_attr_char(gf->color), gf->name);
         }
         else
-            string_printf(s, "Breathe %d", spell->id.effect);
+            string_printf(s, "喷吐 %d", spell->id.effect);
     }
     else if (spell->id.type == MST_TACTIC) /* BLINK and BLINK_OTHER have spell->display set */
     {
@@ -1122,7 +1122,7 @@ void mon_spell_print(mon_spell_ptr spell, string_ptr s)
                 attr_to_attr_char(gf->color), gf->name);
         }
         else
-            string_printf(s, "%d Jump", spell->id.effect);
+            string_printf(s, "%d跳跃", spell->id.effect);
     }
     else
     {
@@ -1149,7 +1149,7 @@ void mon_spell_display(mon_spell_ptr spell, string_ptr s)
                 attr_to_attr_char(gf->color), gf->name);
         }
         else
-            string_printf(s, "Unknown %d", spell->id.effect);
+            string_printf(s, "未知 %d", spell->id.effect);
     }
     else if (spell->id.type == MST_SUMMON)
     {
@@ -1157,7 +1157,7 @@ void mon_spell_display(mon_spell_ptr spell, string_ptr s)
         if (p)
             string_printf(s, "<color:%c>%s</color>", attr_to_attr_char(p->color), p->name);
         else
-            string_printf(s, "Unknown %d", spell->id.effect);
+            string_printf(s, "未知 %d", spell->id.effect);
     }
     else
         mon_spell_print(spell, s);
@@ -1492,7 +1492,7 @@ static bool _blue_mage_spell_fail(void)
     {
         sound(SOUND_FAIL);
         if (flush_failure) flush();
-        msg_print("You failed to concentrate hard enough!");
+        msg_print("你未能充分集中精神！");
         if (prompt_on_failure) msg_print(NULL);
         return TRUE;
     }
@@ -1558,15 +1558,15 @@ static bool _spell_fail(void)
         if (_current.flags & MSC_SRC_PLAYER)
         {
             if (0 || p_ptr->wizard)
-                msg_format("You try to cast a spell, but fail (%d%%).", fail);
+                msg_format("你试图施展法术，但失败了 (%d%%)。", fail);
             else
-                msg_print("You try to cast a spell, but fail.");
+                msg_print("你试图施展法术，但失败了。");
         }
         else if (mon_show_msg(_current.mon))
         {
             if (_projectable(point(px, py), _current.src))
                 mon_lore_aux_spell_turns(_current.race);
-            msg_format("%s tries to cast a spell, but fails.", _current.name);
+            msg_format("%s试图施展法术，但失败了。", _current.name);
         }
         return TRUE;
     }
@@ -1578,13 +1578,13 @@ static bool _spell_blocked(void)
         return FALSE;
     if (magic_barrier_aux(_current.mon))
     {
-        msg_format("Your anti-magic barrier blocks the spell which %^s casts.", _current.name);
+        msg_format("你的反魔法屏障挡住了%^s施展的法术。", _current.name);
         return (TRUE);
     }
 
     if (psion_check_disruption_aux(_current.mon))
     {
-        msg_format("Your psionic disruption blocks the spell which %^s casts.", _current.name);
+        msg_format("你的灵能干扰挡住了%^s施展的法术。", _current.name);
         return TRUE;
     }
     return FALSE;
@@ -1623,14 +1623,14 @@ static void _breath(void)
         switch (typ)
         {
             case GF_SOUND:
-                if ((_current.flags & MSC_SRC_PLAYER) || (mon_show_msg(_current.mon))) msg_print("The lack of air only allows for a faint, embarrassing squeak.");
+                if ((_current.flags & MSC_SRC_PLAYER) || (mon_show_msg(_current.mon))) msg_print("空气的缺乏让你只能发出一声微弱、令人尴尬的吱吱声。");
                 return;
             case GF_AIR:
                 if ((no_air_monster) && (!(_current.flags & MSC_SRC_PLAYER)) && (_current.mon) && (_current.mon->id == no_air_monster))
                 dam += (dam * 4 / 5);
                 typ = GF_STORM;
                 set_no_air(0, TRUE);
-                msg_print("Winds pummel you from all sides!");
+                msg_print("狂风从四面八方猛击你！");
                 break;
             case GF_STORM:
                 set_no_air(0, TRUE);
@@ -1806,7 +1806,7 @@ bool mon_save_tele_to(mon_ptr mon, cptr name, bool assume_sight)
             if ((assume_sight) || (mon_show_msg(mon)))
             {
                 mon_lore_r(mon, RFR_RES_TELE);
-                msg_format("%^s is unaffected!", name);
+                msg_format("%^s未受影响！", name);
             }
             return TRUE;
         }
@@ -1815,7 +1815,7 @@ bool mon_save_tele_to(mon_ptr mon, cptr name, bool assume_sight)
             if ((assume_sight) || (mon_show_msg(mon)))
             {
                 mon_lore_r(mon, RFR_RES_TELE);
-                msg_format("%^s resists!", name);
+                msg_format("%^s抵抗了！", name);
             }
             return TRUE;
         }
@@ -1861,7 +1861,7 @@ static void _annoy_m(void)
     case ANNOY_SHRIEK:
         if ((p_ptr->no_air) && ((_current.flags & MSC_SRC_PLAYER) || (mon_show_msg(_current.mon))))
         {
-            msg_print("The lack of air only allows for a faint, embarrassing squeak.");
+            msg_print("空气的缺乏让你只能发出一声微弱、令人尴尬的吱吱声。");
             break;
         }
         aggravate_monsters(_who());
@@ -1877,13 +1877,13 @@ static void _annoy_m(void)
         if (race2->flagsr & (RFR_EFF_RES_NEXU_MASK | RFR_RES_TELE))
         {
             if (mon_show_msg(_current.mon2))
-                msg_format("%s is unaffected!", _current.name2);
+                msg_format("%s未受影响！", _current.name2);
         }
         else if ((_current.mon2->mflag2 & MFLAG2_QUESTOR) ||
                  randint0(100 + _current.race->level/2) < race2->level )
         {
             if (mon_show_msg(_current.mon2))
-                msg_format("%s resists the effects!", _current.name2);
+                msg_format("%s抵抗了效果！", _current.name2);
         }
         else
         {
@@ -1939,20 +1939,20 @@ static void _annoy_p(void)
         break;
     case ANNOY_DARKNESS:
         if (p_ptr->blind)
-            msg_format("%s mumbles.", _current.name);
+            msg_format("%s喃喃自语。", _current.name);
 
         if ( (player_is_ninja)
           && (!(_current.race->flags3 & (RF3_UNDEAD | RF3_HURT_LITE)))
           && (!(_current.race->flags7 & RF7_DARK_MASK)) )
         {
             if (!p_ptr->blind)
-                msg_format("%s casts a spell to light up.", _current.name);
+                msg_format("%s施展了一个照明法术。", _current.name);
             lite_area(0, 3);
         }
         else
         {
             if (!p_ptr->blind)
-                msg_format("%s gestures in shadow.", _current.name);
+                msg_format("%s在阴影中比划手势。", _current.name);
             unlite_area(0, 3);
         }
         break;
@@ -1965,14 +1965,14 @@ static void _annoy_p(void)
     case ANNOY_SHRIEK:
         if ((p_ptr->no_air) && ((_current.flags & MSC_SRC_PLAYER) || (mon_show_msg(_current.mon))))
         {
-            msg_print("The lack of air only allows for a faint, embarrassing squeak.");
+            msg_print("空气的缺乏让你只能发出一声微弱、令人尴尬的吱吱声。");
             return;
         }
         aggravate_monsters(_current.mon->id);
         break;
     case ANNOY_SLOW:
         if (free_act_save_p(_current.race->level) || _curse_save())
-            msg_print("You resist the effects!");
+            msg_print("你抵抗了效果！");
         else
             set_slow(p_ptr->slow + randint0(4) + 4, FALSE);
         if (p_ptr->action == ACTION_LEARN) blue_mage_learn_spell();
@@ -1980,7 +1980,7 @@ static void _annoy_p(void)
         break;
     case ANNOY_TELE_LEVEL:
         if (res_save_default(RES_NEXUS) || _curse_save())
-            msg_print("You resist the effects!");
+            msg_print("你抵抗了效果！");
         else
             teleport_level(0);
         if (p_ptr->action == ACTION_LEARN) blue_mage_learn_spell();
@@ -1990,9 +1990,9 @@ static void _annoy_p(void)
         /* Only powerful monsters can choose this spell when the player is not in
            los. In this case, it is nasty enough to warrant a saving throw. */
         if (!_projectable(_current.src, _current.dest) && _curse_save())
-            msg_print("You resist the effects!");
+            msg_print("你抵抗了效果！");
         else if (res_save_default(RES_TELEPORT))
-            msg_print("You resist the effects!");
+            msg_print("你抵抗了效果！");
         else
             teleport_player_to(_current.src.y, _current.src.x, TELEPORT_PASSIVE);
         if (p_ptr->action == ACTION_LEARN) blue_mage_learn_spell();
@@ -2040,20 +2040,20 @@ static void _biff_p(void)
     {
     case BIFF_ANTI_MAGIC:
         if (_curse_save())
-            msg_print("You resist the effects!");
+            msg_print("你抵抗了效果！");
         else if (mut_present(MUT_ONE_WITH_MAGIC) && _one_with_magic_chance())
-            msg_print("You resist the effects!");
+            msg_print("你抵抗了效果！");
         else if (psion_mental_fortress())
-            msg_print("Your mental fortress is impenetrable!");
+            msg_print("你的精神堡垒坚不可摧！");
         else
             set_tim_no_spells(p_ptr->tim_no_spells + 3 + randint1(3), FALSE);
         if (p_ptr->action == ACTION_LEARN) blue_mage_learn_spell();
         break;
     case BIFF_DISPEL_MAGIC:
         if (mut_present(MUT_ONE_WITH_MAGIC) && _one_with_magic_chance())
-            msg_print("You resist the effects!");
+            msg_print("你抵抗了效果！");
         else if (psion_mental_fortress())
-            msg_print("Your mental fortress is impenetrable!");
+            msg_print("你的精神堡垒坚不可摧！");
         else
         {
             dispel_player();
@@ -2099,7 +2099,7 @@ static void _m_buff(void)
         if (set_monster_fast(_current.mon->id, MON_FAST(_current.mon) + 100))
         {
             if (mon_show_msg(_current.mon))
-                msg_format("%s starts moving faster.", _current.name);
+                msg_format("%s的移动速度变快了。", _current.name);
         }
         break;
     case BUFF_INVULN:
@@ -2136,15 +2136,15 @@ static void _escape(void)
     case ESCAPE_TELE_SELF:
         if ((_current.flags & MSC_SRC_PLAYER) || (_current.mon->id == p_ptr->riding))
         {
-            if ((_current.mon) && (_current.mon->id == p_ptr->riding)) msg_format("%s teleports away.", _current.name);
+            if ((_current.mon) && (_current.mon->id == p_ptr->riding)) msg_format("%s传送走了。", _current.name);
             teleport_player(10 + 2*_current.race->level, 0);
         }
         else if (teleport_barrier(_current.mon->id))
-            msg_format("Magic barrier obstructs teleporting of %s.", _current.name);
+            msg_format("魔法屏障阻挡了%s的传送。", _current.name);
         else
         {
             if (mon_show_msg(_current.mon))
-                msg_format("%s teleports away.", _current.name);
+                msg_format("%s传送走了。", _current.name);
             teleport_away_followable(_current.mon->id);
         }
         break;
@@ -2156,20 +2156,20 @@ static void _escape(void)
               && p_ptr->duelist_target_idx == _current.mon->id
               && p_ptr->lev >= 30 )
             {
-                if (get_check(format("%^s is attempting to teleport you. Prevent? ", _current.name)))
+                if (get_check(format("%^s正试图传送你。是否阻止？", _current.name)))
                 {
                     if (one_in_(3))
-                        msg_print("Failed!");
+                        msg_print("失败了！");
                     else
                     {
-                        msg_print("You invoke Unending Pursuit ... The duel continues!");
+                        msg_print("你唤起了“无尽追击(Unending Pursuit)”……决斗继续！");
                         break;
                     }
                 }
             }
-            msg_format("%s teleports you away.", _current.name);
+            msg_format("%s将你传送走了。", _current.name);
             if (res_save_default(RES_TELEPORT))
-                msg_print("You resist the effects!");
+                msg_print("你抵抗了效果！");
             else
                 teleport_player_away(_current.mon->id, 100);
             if (p_ptr->action == ACTION_LEARN) blue_mage_learn_spell();
@@ -2196,11 +2196,11 @@ static void _m_tactic(void)
     {
     case TACTIC_BLINK:
         if (teleport_barrier(_current.mon->id))
-            msg_format("Magic barrier obstructs teleporting of %s.", _current.name);
+            msg_format("魔法屏障阻挡了%s的传送。", _current.name);
         else
         {
             if (!p_ptr->blind && _current.mon->ml)
-                msg_format("%s blinks away.", _current.name);
+                msg_format("%s闪现走了。", _current.name);
             if (_current.mon->id == p_ptr->riding)
                 teleport_player(10, 0);
             else teleport_away(_current.mon->id, 10, 0);
@@ -2210,9 +2210,9 @@ static void _m_tactic(void)
     case TACTIC_BLINK_OTHER:
         if (_current.flags & MSC_DEST_PLAYER)
         {
-            msg_format("%s blinks you away.", _current.name);
+            msg_format("%s将你闪现走了。", _current.name);
             if (res_save_default(RES_TELEPORT))
-                msg_print("You resist the effects!");
+                msg_print("你抵抗了效果！");
             else
                 teleport_player_away(_current.mon->id, 10);
             update_smart_learn(_current.mon->id, RES_TELEPORT);
@@ -2296,7 +2296,7 @@ bool hp_mon(mon_ptr mon, int amt, bool is_monspell)
     {
         if (mon->hp >= mon->maxhp) mon->hp = mon->maxhp;
         if (mon_show_msg(mon))
-            msg_format("%s %s %s", _current.name, (p_ptr->blind) ? "sounds" : "looks", ((mon->hp == mon->maxhp) ? "completely healed!" : "healthier.")); /* XXX */
+            msg_format("%s %s %s", _current.name, (p_ptr->blind) ? "听起来" : "看起来", ((mon->hp == mon->maxhp) ? "完全治愈了！" : "更健康了。")); /* XXX */
     }
     check_mon_health_redraw(mon->id);
     if (MON_MONFEAR(mon))
@@ -2308,7 +2308,7 @@ bool hp_mon(mon_ptr mon, int amt, bool is_monspell)
             char m_name[80];
             monster_desc(m_poss, mon, MD_PRON_VISIBLE | MD_POSSESSIVE);
             monster_desc(m_name, mon, 0);
-            msg_format("%^s recovers %s courage.", m_name, m_poss); /* XXX */
+            msg_format("%^s恢复了%s的勇气。", m_name, m_poss); /* XXX */
         }
     }
     return TRUE;
@@ -2381,65 +2381,65 @@ static void _summon_special(void)
     {
     case MON_SANTACLAUS:
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You say 'Now Dasher! Now Dancer! Now, Prancer and Vixen! On, Comet! On, Cupid! On, Donner and Blitzen!'");
+            msg_print("你说：‘上吧，猛冲者！上吧，舞者！上吧，欢腾和悍妇！冲啊，彗星！冲啊，丘比特！冲啊，唐纳和闪电！’");
         else
-            msg_format("%s says 'Now Dasher! Now Dancer! Now, Prancer and Vixen! On, Comet! On, Cupid! On, Donner and Blitzen!'", _current.name);
+            msg_format("%s说：‘上吧，猛冲者！上吧，舞者！上吧，欢腾和悍妇！冲啊，彗星！冲啊，丘比特！冲啊，唐纳和闪电！’", _current.name);
         r_idx = MON_REINDEER;
         break;
     case MON_JUSTSHORN:
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon sheep!");
+            msg_print("你召唤了绵羊！");
         else
-            msg_format("%s summons sheep!", _current.name);
+            msg_format("%s召唤了绵羊！", _current.name);
         r_idx = MON_SHEEP;
         break;
     case MON_GRAGOMANI:
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon your followers!");
+            msg_print("你召唤了你的追随者！");
         else
-            msg_format("%s summons his followers!", _current.name);
+            msg_format("%s召唤了他的追随者！", _current.name);
         if (one_in_(4)) r_idx = MON_MALICIOUS_LEPRECHAUN;
         else r_idx = MON_LEPRECHAUN_FANATIC;
         num += 4;
         break;
     case MON_ZOOPI:
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon your minions!");
+            msg_print("你召唤了你的仆从！");
         else
-            msg_format("%s summons his minions!", _current.name);
+            msg_format("%s召唤了他的仆从！", _current.name);
         r_idx = MON_GELATINOUS_CUBE;
         if (num == 4) num--;
         break;
      case MON_ZEUS:
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon Shamblers!");
+            msg_print("你召唤了蹒跚怪！");
         else
-            msg_format("%s summons Shamblers!", _current.name);
+            msg_format("%s召唤了蹒跚怪！", _current.name);
         r_idx = MON_SHAMBLER;
         break;
     case MON_POSEIDON:
         fire_ball_hide(GF_WATER_FLOW, 0, 3, 8);
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon Greater Kraken!");
+            msg_print("你召唤了高等克拉肯！");
         else
-            msg_format("%s summons Greater Kraken!", _current.name);
+            msg_format("%s召唤了高等克拉肯！", _current.name);
         r_idx = MON_GREATER_KRAKEN;
         break;
     case MON_HADES:
         num = randint1(2);
         fire_ball_hide(GF_LAVA_FLOW, 0, 3, 8);
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon Death!");
+            msg_print("你召唤了死神！");
         else
-            msg_format("%s summons Death!", _current.name);
+            msg_format("%s召唤了死神！", _current.name);
         r_idx = MON_GREATER_BALROG;
         r_idx2 = MON_ARCHLICH;
         break;
     case MON_ATHENA:
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon friends!");
+            msg_print("你召唤了朋友！");
         else
-            msg_format("%s summons friends!", _current.name);
+            msg_format("%s召唤了朋友！", _current.name);
         if (one_in_(3) && mon_available_num(&r_info[MON_ZEUS]) == 1)
         {
             num = 1;
@@ -2454,17 +2454,17 @@ static void _summon_special(void)
     case MON_ARES:
         num = 1;
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You yell 'Mommy! Daddy! Help!!");
+            msg_print("你大喊‘妈咪！爹地！救命！！’");
         else
-            msg_format("%s yells 'Mommy! Daddy! Help!!'", _current.name);
+            msg_format("%s大喊‘妈咪！爹地！救命！！’", _current.name);
         r_idx = MON_ZEUS;
         r_idx2 = MON_HERA;
         break;
     case MON_APOLLO:
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon help!");
+            msg_print("你召唤了援兵！");
         else
-            msg_format("%s summons help!", _current.name);
+            msg_format("%s召唤了援兵！", _current.name);
         if (one_in_(3) && mon_available_num(&r_info[MON_ARTEMIS]) == 1)
         {
             num = 1;
@@ -2476,16 +2476,16 @@ static void _summon_special(void)
     case MON_ARTEMIS:
         num = 1;
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon help!");
+            msg_print("你召唤了援兵！");
         else
-            msg_format("%s summons help!", _current.name);
+            msg_format("%s召唤了援兵！", _current.name);
         r_idx = MON_APOLLO;
         break;
     case MON_HEPHAESTUS:
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon friends!");
+            msg_print("你召唤了朋友！");
         else
-            msg_format("%s summons friends!", _current.name);
+            msg_format("%s召唤了朋友！", _current.name);
         if (one_in_(3) && mon_available_num(&r_info[MON_ZEUS]) == 1)
         {
             num = 1;
@@ -2502,16 +2502,16 @@ static void _summon_special(void)
     case MON_HERMES:
         num = randint1(16); /* XXX Why so high, RF1_FRIENDS? */
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon friends!");
+            msg_print("你召唤了朋友！");
         else
-            msg_format("%s summons friends!", _current.name);
+            msg_format("%s召唤了朋友！", _current.name);
         r_idx = MON_MAGIC_MUSHROOM;
         break;
     case MON_HERA:
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon aid!");
+            msg_print("你召唤了援助！");
         else
-            msg_format("%s summons aid!", _current.name);
+            msg_format("%s召唤了援助！", _current.name);
         if (one_in_(3) && mon_available_num(&r_info[MON_ARES]) == 1)
         {
             num = 1;
@@ -2527,92 +2527,92 @@ static void _summon_special(void)
         break;
     case MON_DEMETER:
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon ents!");
+            msg_print("你召唤了树人！");
         else
-            msg_format("%s summons ents!", _current.name);
+            msg_format("%s召唤了树人！", _current.name);
         r_idx = MON_ENT;
         break;
     case MON_ROLENTO:
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You throw some hand grenades.");
+            msg_print("你扔出了一些手榴弹。");
         else
         {
-            if (p_ptr->blind) msg_format("%s spreads something.", _current.name);
-            else msg_format("%s throws some hand grenades.", _current.name);
+            if (p_ptr->blind) msg_format("%s散布了一些东西。", _current.name);
+            else msg_format("%s扔出了一些手榴弹。", _current.name);
         }
         num = 1 + randint1(3);
         r_idx = MON_SHURYUUDAN;
         break;
     case MON_BULLGATES:
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon your minions!");
+            msg_print("你召唤了你的仆从！");
         else
-            msg_format("%s summons his minions.", _current.name);
+            msg_format("%s召唤了他的仆从。", _current.name);
         r_idx = MON_IE;
         break;
     case MON_CALDARM:
         num = randint1(3);
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon your minions!");
+            msg_print("你召唤了你的仆从！");
         else
-            msg_format("%s summons his minions.", _current.name);
+            msg_format("%s召唤了他的仆从。", _current.name);
         r_idx = MON_LOCKE_CLONE;
         break;
     case MON_TALOS:
         num = randint1(3);
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon your minions!");
+            msg_print("你召唤了你的仆从！");
         else
-            msg_format("%s summons his minions.", _current.name);
+            msg_format("%s召唤了他的仆从。", _current.name);
         r_idx = MON_SPELLWARP_AUTOMATON;
         break;
 	case MON_GERTRUDE:
 		num = 2;
 		if (_current.flags & MSC_SRC_PLAYER)
-			msg_print("You call upon your sisters for aid.");
+			msg_print("你呼唤你的姐妹们来帮忙。");
 		else
-			msg_format("%s calls out to her sisters.", _current.name);
+			msg_format("%s呼唤了她的姐妹们。", _current.name);
 		r_idx = MON_AUDE;
 		r_idx2 = MON_HELGA;
 		break;
 	case MON_NIGHTMARE_DRAGON:
 		num = 2 + randint1(3);
 		if (_current.flags & MSC_SRC_PLAYER)
-			msg_print("You call forth nightmares.");
+			msg_print("你唤出了梦魇。");
 		else
-			msg_format("%s calls forth nightmares.", _current.name);
+			msg_format("%s唤出了梦魇。", _current.name);
 		r_idx = MON_NIGHTMARE;
 		break;
     case MON_OSIRIS:
         num = 1;
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon your family!");
+            msg_print("你召唤了你的家人！");
         else
-            msg_format("%s summons his family!", _current.name);
+            msg_format("%s召唤了他的家人！", _current.name);
         r_idx = MON_HORUS;
         r_idx2 = MON_ISIS;
         break;
     case MON_MUG:
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon your minions!");
+            msg_print("你召唤了你的仆从！");
         else
-            msg_format("%s summons his minions.", _current.name);
+            msg_format("%s召唤了他的仆从。", _current.name);
         r_idx = MON_PIXEL;
         if (num == 4) num = 3;
         break;
     case MON_JACK_LANTERN:
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon your minions!");
+            msg_print("你召唤了你的仆从！");
         else
-            msg_format("%s summons his minions.", _current.name);
+            msg_format("%s召唤了他的仆从。", _current.name);
         r_idx = MON_DEATH_PUMPKIN;
         break;
     case MON_VARUNA:
         fire_ball_hide(GF_WATER_FLOW, 0, 3, 8);
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon your minions!");
+            msg_print("你召唤了你的仆从！");
         else
-            msg_format("%s summons his minions!", _current.name);
+            msg_format("%s召唤了他的仆从！", _current.name);
         r_idx = MON_MAKARA;
         if (num < 3) num += 2;
         break;
@@ -2621,17 +2621,17 @@ static void _summon_special(void)
         if (one_in_(2))
         {
             if (_current.flags & MSC_SRC_PLAYER)
-                msg_print("You summon your servants!");
+                msg_print("你召唤了你的仆从！");
             else
-                msg_format("%s summons his servants!", _current.name);
+                msg_format("%s召唤了他的仆从！", _current.name);
             r_idx = MON_SEA_GIANT;
         }
         else
         {
             if (_current.flags & MSC_SRC_PLAYER)
-                msg_print("You summon Kraken!");
+                msg_print("你召唤了克拉肯！");
             else
-                msg_format("%s summons Kraken!", _current.name);
+                msg_format("%s召唤了克拉肯！", _current.name);
             r_idx = MON_LESSER_KRAKEN;
         }
         break;
@@ -2642,27 +2642,27 @@ static void _summon_special(void)
             r_idx = MON_RAMA;
             r_idx2 = MON_KRISHNA;
             if (_current.flags & MSC_SRC_PLAYER)
-                msg_print("You summon your avatars!");
+                msg_print("你召唤了你的化身！");
             else if (one_in_(15))
-                msg_format("%s summons his avatars! (You consider this blatant sockpuppetry!)", _current.name);
+                msg_format("%s召唤了他的化身！(你认为这是公然开小号的行为！)", _current.name);
             else
-                msg_format("%s summons his avatars!", _current.name);
+                msg_format("%s召唤了他的化身！", _current.name);
         }
         else if (one_in_(2) && mon_available_num(&r_info[MON_LAKSHMI]) == 1)
         {
             if (_current.flags & MSC_SRC_PLAYER)
-                msg_print("You summon your family!");
+                msg_print("你召唤了你的家人！");
             else
-                msg_format("%s summons his family!", _current.name);
+                msg_format("%s召唤了他的家人！", _current.name);
             num = 1;
             r_idx = MON_LAKSHMI;
         }
         else
         {
             if (_current.flags & MSC_SRC_PLAYER)
-                msg_print("You summon your mount!");
+                msg_print("你召唤了你的坐骑！");
             else
-                msg_format("%s summons his mount!", _current.name);
+                msg_format("%s召唤了他的坐骑！", _current.name);
             num = 1;
             r_idx = MON_SHESHA;
         }
@@ -2682,16 +2682,16 @@ static void _summon_special(void)
                 else r_idx2 = MON_PARVATI;
             }
             if (_current.flags & MSC_SRC_PLAYER)
-                msg_print("You summon your family!");
+                msg_print("你召唤了你的家人！");
             else if (one_in_(15))
-                msg_format("%s summons his family!");
+                msg_format("%s召唤了他的家人！");
         }
         else
         {
             if (_current.flags & MSC_SRC_PLAYER)
-                msg_print("You summon your pets!");
+                msg_print("你召唤了你的宠物！");
             else
-                msg_format("%s summons his pets!", _current.name);
+                msg_format("%s召唤了他的宠物！", _current.name);
             num = 1;
             r_idx = MON_NANDI;
             r_idx = MON_VASUKI;
@@ -2710,33 +2710,33 @@ static void _summon_special(void)
                 else r_idx2 = MON_SHIVA;
             }
             if (_current.flags & MSC_SRC_PLAYER)
-                msg_print("You summon your family!");
+                msg_print("你召唤了你的家人！");
             else if (one_in_(15))
-                msg_format("%s summons her family!");
+                msg_format("%s召唤了她的家人！");
         }
         break;
     case MON_LAKSHMI:
         num = 1;
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon your family!");
+            msg_print("你召唤了你的家人！");
         else
-            msg_format("%s summons her family!", _current.name);
+            msg_format("%s召唤了她的家人！", _current.name);
         r_idx = MON_VISHNU;
         break;
     case MON_BRAHMA:
         num = 1;
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon your family!");
+            msg_print("你召唤了你的家人！");
         else
-            msg_format("%s summons his family!", _current.name);
+            msg_format("%s召唤了他的家人！", _current.name);
         r_idx = MON_SARASWATI;
         break;
     case MON_SARASWATI:
         num = 1;
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_print("You summon your family!");
+            msg_print("你召唤了你的家人！");
         else
-            msg_format("%s summons her family!", _current.name);
+            msg_format("%s召唤了她的家人！", _current.name);
         r_idx = MON_BRAHMA;
         break;
     case MON_ODIN:
@@ -2744,17 +2744,17 @@ static void _summon_special(void)
         if (one_in_(2))
         {
             if (_current.flags & MSC_SRC_PLAYER)
-                msg_print("You summon the heroes of Valhalla!");
+                msg_print("你召唤了瓦尔哈拉的英雄！");
             else
-                msg_format("%s summons the heroes of Valhalla!", _current.name);
+                msg_format("%s召唤了瓦尔哈拉的英雄！", _current.name);
             r_idx = MON_EINHERI;
         }
         else
         {
             if (_current.flags & MSC_SRC_PLAYER)
-                msg_print("You summon Valkyries!");
+                msg_print("你召唤了女武神！");
             else
-                msg_format("%s summons Valkyries!", _current.name);
+                msg_format("%s召唤了女武神！", _current.name);
             r_idx = MON_VALKYRIE;
         }
         break;
@@ -2834,7 +2834,7 @@ static void _weird_bird_p(void)
 
     if (one_in_(3) || !(_current.flags & MSC_DIRECT))
     {
-        msg_format("%s suddenly goes out of your sight!", _current.name);
+        msg_format("%s突然从你的视线中消失了！", _current.name);
         teleport_away(_current.mon->id, 10, TELEPORT_NONMAGICAL);
         p_ptr->update |= PU_MONSTERS;
     }
@@ -2843,17 +2843,17 @@ static void _weird_bird_p(void)
         int dam = 0;
         int get_damage = 0;
 
-        msg_format("%s holds you, and drops from the sky.", _current.name);
+        msg_format("%s抓着你，从天空中坠落。", _current.name);
         dam = damroll(4, 8);
         teleport_player_to(_current.src.y, _current.src.x, TELEPORT_NONMAGICAL | TELEPORT_PASSIVE);
 
         sound(SOUND_FALL);
 
         if (p_ptr->levitation)
-            msg_print("You float gently down to the ground.");
+            msg_print("你轻柔地飘落到地面上。");
         else
         {
-            msg_print("You crashed into the ground.");
+            msg_print("你重重地摔在地上。");
             dam += damroll(6, 8);
         }
 
@@ -2870,7 +2870,7 @@ static void _weird_bird_p(void)
 
             monster_desc(m_name_self, _current.mon, MD_PRON_VISIBLE | MD_POSSESSIVE | MD_OBJECTIVE);
 
-            msg_format("%^s harms %s!", _current.name, m_name_self);
+            msg_format("%^s伤害了%s！", _current.name, m_name_self);
             project(0, 0, _current.src.y, _current.src.x, psion_backlash_dam(get_damage), GF_MISSILE, PROJECT_KILL);
             if (p_ptr->tim_eyeeye)
                 set_tim_eyeeye(p_ptr->tim_eyeeye-5, TRUE);
@@ -2889,9 +2889,9 @@ static void _weird_bird_m(void)
     if (one_in_(3) && (_current.flags & MSC_SRC_MONSTER))
     {
         if ((_current.mon) && (_current.mon->id == p_ptr->riding))
-            msg_format("%s suddenly flies away!", _current.name);
+            msg_format("%s突然飞走了！", _current.name);
         else if (mon_show_msg(_current.mon))
-            msg_format("%s suddenly goes out of your sight!", _current.name);
+            msg_format("%s突然从你的视线中消失了！", _current.name);
         teleport_away(_current.mon->id, 10, TELEPORT_NONMAGICAL);
         p_ptr->update |= PU_MONSTERS;
     }
@@ -2901,9 +2901,9 @@ static void _weird_bird_m(void)
         bool fear = FALSE;
         int dam = 0;
         if (_current.flags & MSC_SRC_PLAYER)
-            msg_format("You hold %s and drop from the sky.", _current.name2);
+            msg_format("你抓着%s从天空中坠落。", _current.name2);
         else if (mon_show_msg(_current.mon) || mon_show_msg(_current.mon2))
-            msg_format("%s holds %s and drops from the sky.", _current.name, _current.name2);
+            msg_format("%s抓着%s从天空中坠落。", _current.name, _current.name2);
 
         dam = damroll(4, 8);
         if (_current.mon2->id == p_ptr->riding)
@@ -2915,12 +2915,12 @@ static void _weird_bird_m(void)
         if (race2->flags7 & RF7_CAN_FLY)
         {
             if (mon_show_msg(_current.mon2))
-                msg_format("%s floats gently down to the ground.", _current.name2);
+                msg_format("%s轻柔地飘落到地面上。", _current.name2);
         }
         else
         {
             if (mon_show_msg(_current.mon2))
-                msg_format("%s crashes into the ground.", _current.name2);
+                msg_format("%s重重地摔在地上。", _current.name2);
             dam += damroll(6, 8);
         }
 
@@ -2943,7 +2943,7 @@ static void _weird_bird_m(void)
                 /* hisself */
                 monster_desc(m_name_self, _current.mon, MD_PRON_VISIBLE | MD_POSSESSIVE | MD_OBJECTIVE);
 
-                msg_format("%^s harms %s!", _current.name, m_name_self);
+                msg_format("%^s伤害了%s！", _current.name, m_name_self);
                 project(0, 0, _current.src.y, _current.src.x, psion_backlash_dam(get_damage), GF_MISSILE, PROJECT_KILL);
                 if (p_ptr->tim_eyeeye) set_tim_eyeeye(p_ptr->tim_eyeeye-5, TRUE);
             }
@@ -2984,7 +2984,7 @@ static void _weird(void)
         m_list[hack_m_idx_ii].hp = hp;
         m_list[hack_m_idx_ii].maxhp = maxhp;
 
-        if (viesti) msg_print("Banor=Rupart splits in two!");
+        if (viesti) msg_print("巴诺和鲁帕特一分为二！");
 
         break; }
 
@@ -3015,7 +3015,7 @@ static void _weird(void)
         _current.mon->hp = hp;
         _current.mon->maxhp = maxhp;
 
-        if (viesti) msg_print("Banor and Rupart combine into one!");
+        if (viesti) msg_print("巴诺和鲁帕特合二为一！");
 
         break; }
     }
@@ -3074,9 +3074,9 @@ static cptr _a_an(cptr noun)
 }
 static cptr _possessive(mon_race_ptr race)
 {
-    if (!race) return "its";
-    if (race->flags1 & RF1_MALE) return "his";
-    if (race->flags1 & RF1_FEMALE) return "her";
+    if (!race) return "它的";
+    if (race->flags1 & RF1_MALE) return "他的";
+    if (race->flags1 & RF1_FEMALE) return "她的";
     return "its";
 }
 /* Some monsters override the default message with something cutesy */
@@ -3145,9 +3145,9 @@ static _custom_msg_t _mon_msg_tbl[] = {
         "$CASTER fires a <color:R>Jet of Plasma</color> at $TARGET.",
         "You fire a <color:R>Jet of Plasma</color>."},
     { MON_NIZUKIL, {MST_ANNOY, ANNOY_CONFUSE},
-        "$CASTER commands you to spell his name.",
-        "$CASTER commands you to spell his name.",
-        "$CASTER commands $TARGET to spell his name.",
+        "$CASTER命令你拼出他的名字。",
+        "$CASTER命令你拼出他的名字。",
+        "$CASTER命令$TARGET拼出他的名字。",
         "You organise an impromptu spelling bee."},
     { MON_MANTA, {MST_BOLT, GF_ARROW},
         "$CASTER fires a harpoon.",
@@ -3249,7 +3249,7 @@ static cptr _ball_msg(void)
     gf_info_ptr gf = gf_lookup(_current.spell->id.effect);
     if (!gf)
     {
-        msg_format("Unknown Ball %d", _current.spell->id.effect);
+        msg_format("未知球体 %d", _current.spell->id.effect);
         return NULL;
     }
     assert(gf);
@@ -5125,17 +5125,17 @@ void list_spell_info(doc_ptr doc, mon_spell_ptr spell, mon_race_ptr race)
         int hp = _avg_hp(race);
         int chp = hp * p_ptr->chp / p_ptr->mhp;
         int dam = MIN(max, chp * pct / 100);
-        doc_printf(doc, " dam %d", dam);
+        doc_printf(doc, "伤害 %d", dam);
         break; }
     case MST_BALL:
     case MST_BOLT:
     case MST_BEAM:
     case MST_CURSE:
-        doc_insert(doc, " dam ");
+        doc_insert(doc, "伤害");
         _list_dice(doc, spell->parm.v.dice);
         break;
     case MST_HEAL:
-        doc_insert(doc, " heal ");
+        doc_insert(doc, "治疗");
         _list_dice(doc, spell->parm.v.dice);
         break;
     }
@@ -5265,10 +5265,10 @@ static void _list_spells(doc_ptr doc, vec_ptr spells, mon_spell_cast_ptr cast)
 {
     int i;
     bool is_blue_mage = ((p_ptr->pclass == CLASS_BLUE_MAGE) && (cast->flags & MSC_SRC_PLAYER));
-    doc_insert(doc, " <color:R>Cast which spell?</color>");
+    doc_insert(doc, "<color:R>施展哪个法术？</color>");
     if (is_blue_mage)
-        doc_insert(doc, "<color:G><tab:38>Lv Cost Fail Info</color>\n");
-    else doc_insert(doc, "<color:G><tab:30>Cost Info</color>\n");
+        doc_insert(doc, "<color:G><tab:38>等级 消耗 失败率 信息</color>\n");
+    else doc_insert(doc, "<color:G><tab:30>消耗 信息</color>\n");
     for (i = 0; i < vec_length(spells); i++)
     {
         mon_spell_ptr spell = vec_get(spells, i);
@@ -5381,19 +5381,19 @@ typedef struct {
 } _group_t, *_group_ptr;
 static _group_t _mage_groups[] =
 {
-    { "Breath", _spell_is_breath, TRUE },
+    { "喷吐", _spell_is_breath, TRUE },
     { "Bolt/Beam", _spell_is_bolt, TRUE },
-    { "Ball", _spell_is_ball, TRUE },
-    { "Utility", _spell_is_defense, TRUE },
-    { "Summon", _spell_is_summon, TRUE },
+    { "球体", _spell_is_ball, TRUE },
+    { "辅助", _spell_is_defense, TRUE },
+    { "召唤", _spell_is_summon, TRUE },
     { 0 }
 };
 static _group_t _poss_groups[] =
 {
-    { "Breath", _spell_is_breath, TRUE },
-    { "Offense", _spell_is_offense, TRUE },
-    { "Defense", _spell_is_defense, TRUE },
-    { "Summon", _spell_is_summon, TRUE },
+    { "喷吐", _spell_is_breath, TRUE },
+    { "攻击", _spell_is_offense, TRUE },
+    { "防御", _spell_is_defense, TRUE },
+    { "召唤", _spell_is_summon, TRUE },
     { 0 }
 };
 static vec_ptr _spell_groups(mon_race_ptr race)
@@ -5416,7 +5416,7 @@ static vec_ptr _spell_groups(mon_race_ptr race)
 static void _list_groups(doc_ptr doc, vec_ptr groups)
 {
     int i;
-    doc_insert(doc, " <color:R>Cast spell from which group?</color>\n");
+    doc_insert(doc, "<color:R>施展哪个组别的法术？</color>\n");
     for (i = 0; i < vec_length(groups); i++)
     {
         _group_ptr group = vec_get(groups, i);
@@ -5495,10 +5495,10 @@ static vec_ptr _prompt_spell_group(mon_race_ptr race)
         for (;;)
         {
             doc_clear(doc);
-            doc_insert(doc, " <color:R>Cast spell from which page?</color>\n");
+            doc_insert(doc, "<color:R>施展哪一页的法术？</color>\n");
             for (j = 0; j < (vec_length(spells) + 25) / 26; j++)
             {
-                doc_printf(doc, " <color:B>%c) Page %d</color>\n", I2A(j), j + 1);
+                doc_printf(doc, "<color:B>%c) 第 %d 页</color>\n", I2A(j), j + 1);
             }
             _sync_term(doc);
             cmd = _inkey();
@@ -5552,7 +5552,7 @@ static bool _prompt_plr(mon_spell_cast_ptr cast)
             m_idx = cave[target_row][target_col].m_idx;
             if (!m_idx)
             {
-                msg_print("You need to target a monster.");
+                msg_print("你需要瞄准一个怪物。");
                 return FALSE;
             }
             _set_target(cast, m_idx);
@@ -5692,7 +5692,7 @@ void blue_mage_learn_spell_aux(byte type, s16b effect, s16b lore, s16b seniority
     }
     if ((noisy) && (loytyi))
     {
-        msg_format("You have learned the spell %s.", string_buffer(s));
+        msg_format("你学会了法术%s。", string_buffer(s));
         new_mane = TRUE;
         string_free(s);
     }

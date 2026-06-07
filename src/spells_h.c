@@ -5,10 +5,10 @@ void heroism_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Heroism");
+        var_set_string(res, "英雄气概");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Temporarily grants increased combat prowess and great bravery.");
+        var_set_string(res, "暂时提高战斗能力并赋予极大的勇气。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(25, 25));
@@ -29,10 +29,10 @@ void hide_in_mud_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Hide in Mud");
+        var_set_string(res, "藏身泥沼");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gain the ability to pass into walls temporarily, as well as extra resistance to acid.");
+        var_set_string(res, "暂时获得穿墙能力，以及对酸的额外抗性。");
         break;
     case SPELL_CAST:
         set_kabenuke(randint1(p_ptr->lev/2) + p_ptr->lev/2, FALSE);
@@ -53,10 +53,10 @@ void ice_bolt_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Ice Bolt");
+        var_set_string(res, "寒冰箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a bolt of ice.");
+        var_set_string(res, "发射一发寒冰箭。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(dd, spell_power(ds), spell_power(p_ptr->to_d_spell)));
@@ -85,10 +85,10 @@ void identify_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Identify");
+        var_set_string(res, "鉴定术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Identifies a single object.");
+        var_set_string(res, "鉴定单件物品。");
         break;
     case SPELL_CAST:
         var_set_bool(res, ident_spell(NULL));
@@ -105,10 +105,10 @@ void identify_fully_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Identify True");
+        var_set_string(res, "完全鉴定");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Completely identifies a single object.");
+        var_set_string(res, "完全鉴定单件物品的全部属性。");
         break;
     case SPELL_CAST:
         var_set_bool(res, identify_fully(NULL));
@@ -125,17 +125,17 @@ void hand_of_doom_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Hand of Doom");
+        var_set_string(res, "末日之手");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to mortally wound a target monster, draining a large proportion of their remaining health.");
+        var_set_string(res, "试图重创目标怪物，按比例大幅吸取其剩余生命值。");
         break;
     case SPELL_CAST:
     {
         int dir = 0;
         var_set_bool(res, FALSE);
         if (!get_fire_dir(&dir)) return;
-        msg_print("You invoke the Hand of Doom!");
+        msg_print("你唤起了末日之手！");
         fire_ball_hide(GF_HAND_DOOM, dir, spell_power(p_ptr->lev * 3), 0);
         var_set_bool(res, TRUE);
         break;
@@ -153,10 +153,10 @@ void haste_self_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Haste Self");
+        var_set_string(res, "自我加速");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Hastes you for a while.");
+        var_set_string(res, "在一段时间内使你加速。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(base, sides));
@@ -176,10 +176,10 @@ void healing_I_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Healing");
+        var_set_string(res, "痊愈术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Powerful healing magic:  heals hitpoints, cuts and stun.");
+        var_set_string(res, "强大的治疗魔法：恢复生命值，并治愈割伤和震慑。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_heal(0, 0, spell_power(300)));
@@ -201,10 +201,10 @@ void healing_II_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Healing");
+        var_set_string(res, "痊愈术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Powerful healing magic:  heals hitpoints, cuts and stun.");
+        var_set_string(res, "强大的治疗魔法：恢复生命值，并治愈割伤和震慑。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_heal(0, 0, spell_power(500)));
@@ -226,10 +226,10 @@ void hellfire_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Hellfire");
+        var_set_string(res, "地狱火");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a powerful ball of evil power directly from the bowels of hell. Good monsters are especially susceptible.");
+        var_set_string(res, "直接从地狱深处发射一颗充满邪恶力量的强大法球。善良怪物对此格外脆弱。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(666 + p_ptr->to_d_spell)));
@@ -259,10 +259,10 @@ void hell_lance_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Hell Lance");
+        var_set_string(res, "地狱长枪");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a beam of pure hellfire.");
+        var_set_string(res, "发射一道纯粹的地狱火射线。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam));
@@ -291,10 +291,10 @@ void holy_lance_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Holy Lance");
+        var_set_string(res, "神圣长枪");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a beam of pure holiness.");
+        var_set_string(res, "发射一道纯粹的神圣射线。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam));
@@ -322,19 +322,19 @@ void hp_to_sp_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Convert HP to SP");
+        var_set_string(res, "生命转法力");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Converts HP into SP");
+        var_set_string(res, "将生命值转化为法力值");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("You are subject to fits of painful clarity.");
+        msg_print("你时不时地体验到一种痛苦的清醒。");
         break;
     case SPELL_LOSE_MUT:
-        msg_print("You are no longer subject to fits of painful clarity.");
+        msg_print("你不再体验到那种痛苦的清醒了。");
         break;
     case SPELL_MUT_DESC:
-        var_set_string(res, "Your blood sometimes rushes to your head.");
+        var_set_string(res, "有时你会气血上涌。");
         break;
     case SPELL_PROCESS:
         if (!p_ptr->anti_magic && one_in_(4000))
@@ -371,7 +371,7 @@ void hp_to_sp_spell(int cmd, variant *res)
             p_ptr->redraw |= PR_MANA;
         }
         else
-            msg_print("You failed to convert.");
+            msg_print("你转换失败了。");
 
         var_set_bool(res, TRUE);
         break;
@@ -387,19 +387,19 @@ void hypnotic_gaze_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Hypnotic Gaze");
+        var_set_string(res, "催眠凝视");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempt to charm a monster.");
+        var_set_string(res, "试图魅惑一只怪物。");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("Your eyes look mesmerizing...");
+        msg_print("你的眼睛看起来迷人极了……");
         break;
     case SPELL_LOSE_MUT:
-        msg_print("Your eyes look uninteresting.");
+        msg_print("你的眼睛看起来平淡无奇。");
         break;
     case SPELL_MUT_DESC:
-        var_set_string(res, "Your gaze is hypnotic.");
+        var_set_string(res, "你的凝视具有催眠作用。");
         break;
     case SPELL_CAST:
     {
@@ -412,7 +412,7 @@ void hypnotic_gaze_spell(int cmd, variant *res)
             if (prace_is_(RACE_MON_VAMPIRE))
                 power *= 2;
 
-            msg_print("Your eyes look mesmerizing...");
+            msg_print("你的眼睛看起来迷人极了……");
             charm_monster(dir, power);
             var_set_bool(res, TRUE);
         }
@@ -432,21 +432,21 @@ void imp_fire_spell(int cmd, variant *res)
     {
     case SPELL_NAME:
         if (p_ptr->lev >= ball_lev)
-            var_set_string(res, "Fire Ball");
+            var_set_string(res, "火球术");
         else
-            var_set_string(res, "Fire Bolt");
+            var_set_string(res, "火焰箭");
         break;
     case SPELL_SPOIL_NAME:
-        var_set_string(res, "Fire Bolt/Ball");
+        var_set_string(res, "火焰箭/火球术");
         break;
     case SPELL_DESC:
         if (p_ptr->lev >= ball_lev)
-            var_set_string(res, "Generate a Fire Ball on chosen target.");
+            var_set_string(res, "在选定目标处生成一个火球。");
         else
-            var_set_string(res, "Hurls a fiery missile at chosen target.");
+            var_set_string(res, "向选定目标投掷一枚火焰飞弹。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Fire Bolt for L damage. At L30, does a radius 2 Fire Ball for 2L damage instead.");
+        var_set_string(res, "造成 L 点伤害的火焰箭。在 30 级时，改为释放半径 2、造成 2L 伤害的火球。");
         break;
     case SPELL_INFO:
         if (p_ptr->lev >= ball_lev)
@@ -483,10 +483,10 @@ void invoke_logrus_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Invoke Logrus");
+        var_set_string(res, "唤起罗格鲁斯");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a huge ball of chaos.");
+        var_set_string(res, "发射一个巨大的混沌法球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(spell_power(10), 10, spell_power(p_ptr->lev*4 + p_ptr->to_d_spell)));
@@ -511,16 +511,16 @@ void invulnerability_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Invulnerability");
+        var_set_string(res, "无敌术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generates a globe of invulnerability which completely protects you from almost all attacks, consuming one turn when the barrier breaks or duration time is exceeded.");
+        var_set_string(res, "生成一个无敌法球，完全保护你免受几乎所有的攻击，当屏障破裂或持续时间结束时会消耗一回合。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(4, 4));
         break;
     case SPELL_CAST:
-        msg_print("You cast a Globe of Invulnerability.");
+        msg_print("你施放了无敌法球。");
         set_invuln(spell_power(randint1(4) + 4), FALSE);
         var_set_bool(res, TRUE);
         break;
@@ -536,10 +536,10 @@ void kiss_of_succubus_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Kiss of Succubus");
+        var_set_string(res, "魅魔之吻");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a ball of nexus.");
+        var_set_string(res, "发射一个时空(Nexus)法球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam));
@@ -564,10 +564,10 @@ void kutar_expand_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Expand Horizontally");
+        var_set_string(res, "横向膨胀");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Expand like a cat, temporarily giving +35 AC but a very poor saving throw.");
+        var_set_string(res, "像猫一样膨胀起来，暂时提供 +35 的防御等级(AC)，但豁免判定会变得非常差。");
         break;
     case SPELL_CAST:
         set_tsubureru(randint1(20) + 30, FALSE);
@@ -584,22 +584,22 @@ void laser_eye_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Laser Eye");
+        var_set_string(res, "激光眼");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a laser beam.");
+        var_set_string(res, "发射一道激光束。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(p_ptr->lev*2)));
         break;
     case SPELL_GAIN_MUT:
-        msg_print("Your eyes burn for a moment.");
+        msg_print("你的眼睛灼热了片刻。");
         break;
     case SPELL_LOSE_MUT:
-        msg_print("Your eyes burn for a moment, then feel soothed.");
+        msg_print("你的眼睛灼热了片刻，然后感到舒缓。");
         break;
     case SPELL_MUT_DESC:
-        var_set_string(res, "Your eyes can fire laser beams.");
+        var_set_string(res, "你的眼睛可以发射激光束。");
         break;
     case SPELL_CAST:
     {
@@ -628,19 +628,19 @@ void light_area_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Light Area");
+        var_set_string(res, "照亮区域");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Lights up nearby area and the inside of a room permanently.");
+        var_set_string(res, "永久照亮附近区域和房间内部。");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("You can light up rooms with your presence.");
+        msg_print("你的存在可以照亮房间。");
         break;
     case SPELL_LOSE_MUT:
-        msg_print("You can no longer light up rooms with your presence.");
+        msg_print("你的存在不再能照亮房间了。");
         break;
     case SPELL_MUT_DESC:
-        var_set_string(res, "You can emit bright light.");
+        var_set_string(res, "你可以散发出明亮的光芒。");
         break;
     case SPELL_CAST:
         lite_area(spell_power(damroll(dice, sides)), rad);
@@ -658,10 +658,10 @@ void lightning_ball_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Lightning Ball");
+        var_set_string(res, "闪电球");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a ball of electricity.");
+        var_set_string(res, "发射一个电光球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(3*p_ptr->lev/2 + 20 + p_ptr->to_d_spell)));
@@ -689,10 +689,10 @@ void lightning_bolt_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Lightning Bolt");
+        var_set_string(res, "闪电箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a bolt or beam of electricity.");
+        var_set_string(res, "发射一发闪电箭或闪电射线。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(dd, spell_power(ds), spell_power(p_ptr->to_d_spell)));
@@ -722,17 +722,17 @@ void living_trump_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Living Trump");
+        var_set_string(res, "活体王牌");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gives mutation which makes you teleport randomly or makes you able to teleport at will.");
+        var_set_string(res, "赋予你随机传送的变异，或者让你能够随心所欲地传送。");
         break;
     case SPELL_CAST:
     {
         int mutation = one_in_(7) ? MUT_TELEPORT : MUT_TELEPORT_RND;
 
         if (mut_gain(mutation))
-            msg_print("You have turned into a Living Trump.");
+            msg_print("你变成了活体王牌。");
         var_set_bool(res, TRUE);
         break;
     }

@@ -19,9 +19,9 @@ static void _dump(doc_ptr doc)
     if ((!r_ptr) || (!r_ptr->name) || (!r_ptr->spells)) return;
     spells = mon_spells_all(r_ptr->spells);
     blue_mage_update_parms(spells);
-    doc_insert(doc, "<topic:Blue Magic>================================== <color:keypress>B</color>lue Magic =================================\n\n");
+    doc_insert(doc, "<topic:Blue Magic>================================== 青魔法 (<color:keypress>B</color>) =================================\n\n");
 
-    doc_insert(doc, "<color:G><tab:27>Lvl Cost Fail Desc           Cast</color>\n");
+    doc_insert(doc, "<color:G><tab:27>等级 消耗 失败率 描述 施法</color>\n");
 
     for (i = 0; i < vec_length(spells); i++)
     {
@@ -57,10 +57,10 @@ void _learning_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Learning");
+        var_set_string(res, "学习");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Study the spells monsters use against you.");
+        var_set_string(res, "研究怪物对你使用的法术。");
         break;
     case SPELL_CAST:
         if (p_ptr->action == ACTION_LEARN)
@@ -90,7 +90,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "power";
+        me.magic_desc = "能力";
         me.which_stat = A_INT;
         me.encumbrance.max_wgt = 430;
         me.encumbrance.weapon_pct = 100;
@@ -173,17 +173,8 @@ class_t *blue_mage_get_class(void)
     skills_t bs = { 30,  40,  36,   3,  20,  16,  40,  25};
     skills_t xs = {  7,  15,  11,   0,   0,   0,   6,   7};
 
-        me.name = "Blue-Mage";
-        me.desc = "Blue-Mages, like all mages, rely on magic rather than muscle; "
-                    "but they are unique in the way they gain new spells, as they "
-                    "learn from monsters rather than books. Blue-Mages' primary "
-                    "spellcasting stat is Intelligence.\n \n"
-                    "A Blue-Mage can learn and cast monster spells, summons, and even "
-                    "ranged attacks as their own spells; this technique is called Blue magic. "
-                    "Blue-Mages remember their spells permanently, but to learn a spell they "
-                    "must be directly hit by it while their 'Learning' class power is "
-                    "active. Because of this requirement, Blue-Mages never learn spells like "
-                    "Haste or Healing that affect the monster itself.";
+        me.name = "青法师";
+        me.desc = "和所有的法师一样，青法师依赖魔法而不是肌肉；但他们获取新法术的方式非常独特，因为他们是从怪物身上学习，而不是从书本上学习。青法师的主要施法属性是智力(Intelligence)。\n \n青法师可以学习并施展怪物的法术、召唤术甚至远程攻击，将它们作为自己的法术；这项技术被称为青魔法。青法师会永久记住他们的法术，但要学习一个法术，他们必须在开启“学习”职业能力时被该法术直接击中。正因为这种要求，青法师永远无法学习像加速或治疗这种只作用于怪物自身的法术。";
 
         me.stats[A_STR] = -4;
         me.stats[A_INT] =  4;

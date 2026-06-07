@@ -232,20 +232,20 @@ static int _max_vampiric_drain(void)
               && o_ptr->dd * o_ptr->ds > 60 )
             {
                 add_flag(o_ptr->flags, OF_TY_CURSE);
-                msg_print("Your Rune Sword seeks to dominate you!");
+                msg_print("你的符文剑试图支配你！");
             }
             else if (!have_flag(o_ptr->flags, OF_AGGRAVATE)
                    && o_ptr->dd * o_ptr->ds > 30 )
             {
                 add_flag(o_ptr->flags, OF_AGGRAVATE);
-                msg_print("The thirst of your sword redoubles!");
+                msg_print("你的剑对鲜血的渴望加倍了！");
             }
             else
-                msg_print("Your rune sword grows more powerful!");
+                msg_print("你的符文剑变得更强大了！");
         }
     }
     else
-        msg_print("Only cursed Rune Swords may feed.");
+        msg_print("只有受诅咒的符文剑才能吸血。");
 }
 
 void death_scythe_miss(object_type *o_ptr, int hand, int mode)
@@ -263,10 +263,10 @@ void death_scythe_miss(object_type *o_ptr, int hand, int mode)
 
     /* Message */
     if (hand == HAND_NONE) /* this is a thrown  weapon */
-        cmsg_print(TERM_VIOLET, "Your scythe viciously slashes you!");
+        cmsg_print(TERM_VIOLET, "你的镰刀恶毒地砍伤了你！");
     else
     {
-        cmsg_print(TERM_VIOLET, "Your scythe returns to you!");
+        cmsg_print(TERM_VIOLET, "你的镰刀回到了你的手中！");
         dd += p_ptr->weapon_info[hand].to_dd;
         ds += p_ptr->weapon_info[hand].to_ds;
         to_h += p_ptr->weapon_info[hand].to_h;
@@ -359,7 +359,7 @@ void death_scythe_miss(object_type *o_ptr, int hand, int mode)
     if (one_in_(6))
     {
         int mult = 2;
-        msg_format("Your weapon cuts deep into yourself!");
+        msg_format("你的武器深深地切入你自己的身体！");
         /* Try to increase the damage */
         while (one_in_(4))
         {
@@ -372,7 +372,7 @@ void death_scythe_miss(object_type *o_ptr, int hand, int mode)
 
     if (k < 0) k = 0;
 
-    take_hit(DAMAGE_FORCE, k, "Death scythe");
+    take_hit(DAMAGE_FORCE, k, "死神镰刀");
 }
 
 /*
@@ -595,7 +595,7 @@ void search(void)
                     disclose_grid(y, x);
 
                     /* Message */
-                    msg_print("You have found a trap.");
+                    msg_print("你发现了一个陷阱。");
 
                     /* Disturb */
                     disturb(0, 0);
@@ -605,7 +605,7 @@ void search(void)
                 if (is_hidden_door(c_ptr))
                 {
                     /* Message */
-                    msg_print("You have found a secret door.");
+                    msg_print("你发现了一扇暗门。");
 
                     /* Disclose */
                     disclose_grid(y, x);
@@ -635,7 +635,7 @@ void search(void)
                     if (!object_is_known(o_ptr))
                     {
                         /* Message */
-                        msg_print("You have discovered a trap on the chest!");
+                        msg_print("你发现箱子上有一个陷阱！");
 
                         /* Know the trap */
                         obj_identify(o_ptr);
@@ -709,12 +709,12 @@ static void hit_trap(bool break_trap, bool do_jump)
         {
             if (p_ptr->levitation && !do_jump)
             {
-                msg_print("You fly over a trap door.");
+                msg_print("你飞过了暗门陷阱。");
 
             }
             else
             {
-                msg_print("You have fallen through a trap door!");
+                msg_print("你掉进了暗门陷阱！");
                 sound(SOUND_FALL);
                 dam = damroll(2, 8);
                 name = "a trap door";
@@ -737,12 +737,12 @@ static void hit_trap(bool break_trap, bool do_jump)
         {
             if (p_ptr->levitation)
             {
-                msg_print("You fly over a pit trap.");
+                msg_print("你飞过了地坑陷阱。");
 
             }
             else
             {
-                msg_print("You have fallen into a pit!");
+                msg_print("你掉进了地坑陷阱！");
 
                 dam = damroll(2, 6);
                 name = "a pit trap";
@@ -756,12 +756,12 @@ static void hit_trap(bool break_trap, bool do_jump)
         {
             if (p_ptr->levitation)
             {
-                msg_print("You fly over a spiked pit.");
+                msg_print("你飞过了尖刺地坑。");
 
             }
             else
             {
-                msg_print("You fall into a spiked pit!");
+                msg_print("你掉进了尖刺地坑！");
 
 
                 /* Base damage */
@@ -772,7 +772,7 @@ static void hit_trap(bool break_trap, bool do_jump)
                 /* Extra spike damage */
                 if (randint0(100) < 50)
                 {
-                    msg_print("You are impaled!");
+                    msg_print("你被刺穿了！");
 
 
                     name = "a spiked pit";
@@ -791,12 +791,12 @@ static void hit_trap(bool break_trap, bool do_jump)
         {
             if (p_ptr->levitation)
             {
-                msg_print("You fly over a spiked pit.");
+                msg_print("你飞过了尖刺地坑。");
 
             }
             else
             {
-                msg_print("You fall into a spiked pit!");
+                msg_print("你掉进了尖刺地坑！");
 
 
                 /* Base damage */
@@ -808,7 +808,7 @@ static void hit_trap(bool break_trap, bool do_jump)
                 /* Extra spike damage */
                 if (randint0(100) < 50)
                 {
-                    msg_print("You are impaled on poisonous spikes!");
+                    msg_print("你被有毒的尖刺刺穿了！");
 
 
                     name = "a spiked pit";
@@ -818,7 +818,7 @@ static void hit_trap(bool break_trap, bool do_jump)
                     (void)set_cut(p_ptr->cut + randint1(dam), FALSE);
 
                     if (res_save_default(RES_POIS))
-                        msg_print("The poison does not affect you!");
+                        msg_print("毒药对你没有影响！");
                     else
                     {
                         (void)set_poisoned(p_ptr->poisoned + dam, FALSE);
@@ -834,7 +834,7 @@ static void hit_trap(bool break_trap, bool do_jump)
 
         case TRAP_TY_CURSE:
         {
-            msg_print("There is a flash of shimmering light!");
+            msg_print("闪过一道微光！");
 
             num = 2 + randint1(3);
             for (i = 0; i < num; i++)
@@ -858,7 +858,7 @@ static void hit_trap(bool break_trap, bool do_jump)
 
         case TRAP_TELEPORT:
         {
-            msg_print("You hit a teleport trap!");
+            msg_print("你踩中了传送陷阱！");
 
             teleport_player(100, TELEPORT_PASSIVE);
             break;
@@ -866,7 +866,7 @@ static void hit_trap(bool break_trap, bool do_jump)
 
         case TRAP_FIRE:
         {
-            msg_print("You are enveloped in flames!");
+            msg_print("你被火焰吞没了！");
 
             dam = damroll(4, 6);
             gf_affect_p(GF_WHO_TRAP, GF_FIRE, dam, GF_AFFECT_TRAP);
@@ -875,7 +875,7 @@ static void hit_trap(bool break_trap, bool do_jump)
 
         case TRAP_ACID:
         {
-            msg_print("You are splashed with acid!");
+            msg_print("你被酸液溅到了！");
 
             dam = damroll(4, 6);
             gf_affect_p(GF_WHO_TRAP, GF_ACID, dam, GF_AFFECT_TRAP);
@@ -886,7 +886,7 @@ static void hit_trap(bool break_trap, bool do_jump)
         {
             if (_check_hit(125))
             {
-                msg_print("A small dart hits you!");
+                msg_print("一支小飞镖击中了你！");
 
                 dam = damroll(1, 4);
                 take_hit(DAMAGE_ATTACK, dam, "a dart trap");
@@ -896,7 +896,7 @@ static void hit_trap(bool break_trap, bool do_jump)
             }
             else
             {
-                msg_print("A small dart barely misses you.");
+                msg_print("一支小飞镖与你擦肩而过。");
 
             }
             break;
@@ -906,7 +906,7 @@ static void hit_trap(bool break_trap, bool do_jump)
         {
             if (_check_hit(125))
             {
-                msg_print("A small dart hits you!");
+                msg_print("一支小飞镖击中了你！");
 
                 dam = damroll(1, 4);
                 take_hit(DAMAGE_ATTACK, dam, "a dart trap");
@@ -915,7 +915,7 @@ static void hit_trap(bool break_trap, bool do_jump)
             }
             else
             {
-                msg_print("A small dart barely misses you.");
+                msg_print("一支小飞镖与你擦肩而过。");
 
             }
             break;
@@ -925,7 +925,7 @@ static void hit_trap(bool break_trap, bool do_jump)
         {
             if (_check_hit(125))
             {
-                msg_print("A small dart hits you!");
+                msg_print("一支小飞镖击中了你！");
 
                 dam = damroll(1, 4);
                 take_hit(DAMAGE_ATTACK, dam, "a dart trap");
@@ -934,7 +934,7 @@ static void hit_trap(bool break_trap, bool do_jump)
             }
             else
             {
-                msg_print("A small dart barely misses you.");
+                msg_print("一支小飞镖与你擦肩而过。");
 
             }
             break;
@@ -944,7 +944,7 @@ static void hit_trap(bool break_trap, bool do_jump)
         {
             if (_check_hit(125))
             {
-                msg_print("A small dart hits you!");
+                msg_print("一支小飞镖击中了你！");
 
                 dam = damroll(1, 4);
                 take_hit(DAMAGE_ATTACK, dam, "a dart trap");
@@ -953,7 +953,7 @@ static void hit_trap(bool break_trap, bool do_jump)
             }
             else
             {
-                msg_print("A small dart barely misses you.");
+                msg_print("一支小飞镖与你擦肩而过。");
 
             }
             break;
@@ -961,7 +961,7 @@ static void hit_trap(bool break_trap, bool do_jump)
 
         case TRAP_BLIND:
         {
-            msg_print("A black gas surrounds you!");
+            msg_print("一股黑色的气体包围了你！");
             if (!res_save_default(RES_BLIND))
                 (void)set_blind(p_ptr->blind + randint0(50) + 25, FALSE);
             break;
@@ -969,7 +969,7 @@ static void hit_trap(bool break_trap, bool do_jump)
 
         case TRAP_CONFUSE:
         {
-            msg_print("A gas of scintillating colors surrounds you!");
+            msg_print("一股五彩闪烁的气体包围了你！");
             if (!res_save_default(RES_CONF))
                 (void)set_confused(p_ptr->confused + randint0(20) + 10, FALSE);
             break;
@@ -977,7 +977,7 @@ static void hit_trap(bool break_trap, bool do_jump)
 
         case TRAP_POISON:
         {
-            msg_print("A pungent green gas surrounds you!");
+            msg_print("一股刺鼻的绿色气体包围了你！");
             if (!res_save_default(RES_POIS))
                 (void)set_poisoned(p_ptr->poisoned + randint0(20) + 10, FALSE);
             break;
@@ -985,16 +985,16 @@ static void hit_trap(bool break_trap, bool do_jump)
 
         case TRAP_SLEEP:
         {
-            msg_print("A strange white mist surrounds you!");
+            msg_print("一股奇怪的白色薄雾包围了你！");
 
             if (!free_act_save_p(0))
             {
-                msg_print("You fall asleep.");
+                msg_print("你睡着了。");
 
 
                 if (ironman_nightmare)
                 {
-                    msg_print("A horrible vision enters your mind.");
+                    msg_print("一个可怕的幻象进入了你的脑海。");
 
 
                     /* Pick a nightmare */
@@ -1014,7 +1014,7 @@ static void hit_trap(bool break_trap, bool do_jump)
 
         case TRAP_TRAPS:
         {
-            msg_print("There is a bright flash of light!");
+            msg_print("爆发出一道刺眼的强光！");
 
             /* Make some new traps */
             project(0, 1, y, x, 0, GF_MAKE_TRAP, PROJECT_HIDE | PROJECT_JUMP | PROJECT_GRID);
@@ -1024,7 +1024,7 @@ static void hit_trap(bool break_trap, bool do_jump)
 
         case TRAP_ALARM:
         {
-            msg_print("An alarm sounds!");
+            msg_print("警报响了！");
 
             aggravate_monsters(0);
 
@@ -1033,7 +1033,7 @@ static void hit_trap(bool break_trap, bool do_jump)
 
         case TRAP_OPEN:
         {
-            msg_print("Suddenly, surrounding walls are opened!");
+            msg_print("突然，周围的墙壁打开了！");
             /*TODO: Fire beams in 4 principle directions that kill adjacent walls ... */
             project(0, 10, y, x, 0, GF_DISINTEGRATE, PROJECT_GRID | PROJECT_HIDE);
             aggravate_monsters(0);
@@ -1047,7 +1047,7 @@ static void hit_trap(bool break_trap, bool do_jump)
             int evil_idx = 0, good_idx = 0;
 
             int lev;
-            msg_print("Suddenly, you are surrounded by immortal beings!");
+            msg_print("突然，你被不朽生物包围了！");
 
             /* Summon Demons and Angels */
             for (lev = dun_level; lev >= 20; lev -= 1 + lev/16)
@@ -1089,7 +1089,7 @@ static void hit_trap(bool break_trap, bool do_jump)
 
         case TRAP_PIRANHA:
         {
-            msg_print("Suddenly, the room is filled with water with piranhas!");
+            msg_print("突然，房间里充满了水和食人鱼！");
 
             /* Water fills room */
             fire_ball_hide(GF_WATER_FLOW, 0, 1, 10);
@@ -1113,13 +1113,13 @@ static void hit_trap(bool break_trap, bool do_jump)
             }
             if (!summon_named_creature(0, y, x, MON_DROP_BEAR, PM_NO_PET))
             {
-                msg_print("A bear falls on top of you from the branches above, and disappears into the bushes!");
+                msg_print("一只熊从上面的树枝掉在你身上，然后消失在灌木丛中！");
             }
-            else msg_print("A bear falls on top of you from the branch above!");
+            else msg_print("一只熊从上面的树枝掉在了你身上！");
 
             dam -= (prot * 3 / 2);
             if ((dam < 1) || ((IS_INVULN()) && (!p_ptr->ignore_invuln) &&
-                (!one_in_(PENETRATE_INVULNERABILITY)))) msg_print("You shrug off the attack.");
+                (!one_in_(PENETRATE_INVULNERABILITY)))) msg_print("你硬扛下了这次攻击。");
             else
             {
                 set_stun(p_ptr->stun + dam, TRUE);
@@ -1129,7 +1129,7 @@ static void hit_trap(bool break_trap, bool do_jump)
         }
         case TRAP_ICICLE:
         {
-            msg_print("You are hit by a falling icicle!");
+            msg_print("你被掉落的冰柱击中了！");
             dam = damroll(5, 10) + 10;
             gf_affect_p(GF_WHO_TRAP, GF_ICE, dam, GF_AFFECT_TRAP);
             break;
@@ -1138,7 +1138,7 @@ static void hit_trap(bool break_trap, bool do_jump)
         {
             if (!p_ptr->levitation)
             {
-                msg_print("You slip on a banana peel!");
+                msg_print("你踩到香蕉皮滑倒了！");
                 dam = randint1(10);
                 take_hit(DAMAGE_NOESCAPE, dam, "slipping on a banana peel");
                 p_ptr->energy_need += ENERGY_NEED() * 3 / 4;
@@ -1153,10 +1153,10 @@ static void hit_trap(bool break_trap, bool do_jump)
                     object_desc(o_name, obj, OD_OMIT_PREFIX | OD_NO_PLURAL | OD_COLOR_CODED);
                     if (obj->number > 1)
                     {
-                        msg_format("A %^s flies from your pack!", o_name);
+                        msg_format("%^s从你的背包里飞了出去！", o_name);
                         command_arg = 1;
                     }
-                    else msg_format("The %^s is dislodged from your pack and flies on the floor!", o_name);
+                    else msg_format("%^s从你的背包里掉落，飞到了地板上！", o_name);
                     silent_drop_hack = TRUE;
                     pack_drop(obj);
                     silent_drop_hack = FALSE;
@@ -1166,7 +1166,7 @@ static void hit_trap(bool break_trap, bool do_jump)
             }
             else
             {
-                msg_print("You fly over the banana peel.");
+                msg_print("你飞过了香蕉皮。");
                 break;
             }
         }
@@ -1175,7 +1175,7 @@ static void hit_trap(bool break_trap, bool do_jump)
     if (break_trap && is_trap(c_ptr->feat))
     {
         cave_alter_feat(y, x, FF_DISARM);
-        msg_print("You destroyed the trap.");
+        msg_print("你摧毁了陷阱。");
     }
 }
 
@@ -1250,7 +1250,7 @@ void touch_zap_player(int m_idx)
                 strcat(buf, "<color:b>shocked</color>");
             }
 
-            msg_format("You are %s.", buf);
+            msg_format("你%s。", buf);
             monster_desc(m_name, m_ptr, MD_IGNORE_HALLU | MD_ASSUME_VISIBLE | MD_INDEF_VISIBLE);
             take_hit(DAMAGE_NOESCAPE, fire_dam + cold_dam + elec_dam, m_name);
             handle_stuff();
@@ -1315,7 +1315,7 @@ void wizard_report_damage(int amt)
 
     count++;
     total += amt;
-    cmsg_format(TERM_L_RED, "You did %d damage (%d Avg).", amt, total / count);
+    cmsg_format(TERM_L_RED, "你造成了%d点伤害 (平均 %d)。", amt, total / count);
 #endif
 }
 
@@ -1405,9 +1405,9 @@ static void innate_attacks(s16b m_idx, bool *fear, bool *mdeath, int mode)
         if (!fear_allow_melee(m_idx))
         {
             if (m_ptr->ml)
-                cmsg_format(TERM_VIOLET, "You are too afraid to attack %s!", m_name_object);
+                cmsg_format(TERM_VIOLET, "你太害怕了，不敢攻击%s！", m_name_object);
             else
-                cmsg_format(TERM_VIOLET, "There is something scary in your way!");
+                cmsg_format(TERM_VIOLET, "挡在你面前的东西太吓人了！");
             return;
         }
     }
@@ -1455,7 +1455,7 @@ static void innate_attacks(s16b m_idx, bool *fear, bool *mdeath, int mode)
     if ((p_ptr->pclass == CLASS_DUELIST) && ((!retaliation_hack) || (!p_ptr->duelist_target_idx)) && (m_ptr->maxhp > 100) && ((r_ptr->level >= (p_ptr->lev * 4 / 5)) || (m_ptr->maxhp > 1000)) && (m_idx != p_ptr->duelist_target_idx) && (!duelist_equip_error()))
     {
         p_ptr->duelist_target_idx = m_idx;
-        msg_format("You challenge %s to a duel!", duelist_current_challenge());
+        msg_format("你向%s发起了决斗挑战！", duelist_current_challenge());
         set_monster_csleep(m_idx, 0);
         set_hostile(&m_list[m_idx]);
         p_ptr->redraw |= PR_STATUS;
@@ -1474,7 +1474,7 @@ static void innate_attacks(s16b m_idx, bool *fear, bool *mdeath, int mode)
         if (prace_is_(RACE_MON_BEHOLDER))
         {
             is_gaze = TRUE;
-            if ((!a->name) || (!strpos("Gaze", a->name)))
+            if ((!a->name) || (!strpos("凝视", a->name)))
             {
                 is_gaze = FALSE;
                 if (m_ptr->cdis > 1) continue;
@@ -1506,13 +1506,13 @@ static void innate_attacks(s16b m_idx, bool *fear, bool *mdeath, int mode)
 
                 if (do_werewolf_effect) werewolf_silver_effect(ac / 4, FALSE);
 
-                if (backstab) cmsg_format(TERM_L_GREEN, "You cruelly attack %s!", m_name_object);
-                else if (fuiuchi) cmsg_format(TERM_L_GREEN, "You make a surprise attack, and hit %s with a powerful blow!", m_name_object);
-                else if (stab_fleeing) cmsg_format(TERM_L_GREEN, "You attack %s in the back!",  m_name_object);
+                if (backstab) cmsg_format(TERM_L_GREEN, "你残忍地攻击了%s！", m_name_object);
+                else if (fuiuchi) cmsg_format(TERM_L_GREEN, "你发动了奇袭，用强力的一击击中了%s！", m_name_object);
+                else if (stab_fleeing) cmsg_format(TERM_L_GREEN, "你从背后攻击了%s！",  m_name_object);
 
                 hit_ct++;
                 sound(SOUND_HIT);
-                if (mode == BEORNING_BIG_SWIPE) msg_print("You hit.");
+                if (mode == BEORNING_BIG_SWIPE) msg_print("你命中了。");
                 else msg_format(a->msg, m_name_object);
 
                 base_dam = damroll(dd, a->ds);
@@ -1525,13 +1525,13 @@ static void innate_attacks(s16b m_idx, bool *fear, bool *mdeath, int mode)
                     base_dam *= m;
                     switch (m)
                     {
-                    case 2: msg_format("You <color:U>gouge</color> %s!", m_name_object); break;
-                    case 3: msg_format("You <color:y>maim</color> %s!", m_name_object); break;
-                    case 4: msg_format("You <color:R>carve</color> %s!", m_name_object); break;
-                    case 5: msg_format("You <color:r>cleave</color> %s!", m_name_object); break;
-                    case 6: msg_format("You <color:v>smite</color> %s!", m_name_object); break;
-                    case 7: msg_format("You <color:v>eviscerate</color> %s!", m_name_object); break;
-                    default: msg_format("You <color:v>shred</color> %s!", m_name_object); break;
+                    case 2: msg_format("你<color:U>凿击</color>了%s！", m_name_object); break;
+                    case 3: msg_format("你<color:y>重残</color>了%s！", m_name_object); break;
+                    case 4: msg_format("你<color:R>切开</color>了%s！", m_name_object); break;
+                    case 5: msg_format("你<color:r>劈开</color>了%s！", m_name_object); break;
+                    case 6: msg_format("你<color:v>重击</color>了%s！", m_name_object); break;
+                    case 7: msg_format("你对%s<color:v>开膛破肚</color>！", m_name_object); break;
+                    default: msg_format("你<color:v>撕碎</color>了%s！", m_name_object); break;
                     }
                 }
 
@@ -1590,7 +1590,7 @@ static void innate_attacks(s16b m_idx, bool *fear, bool *mdeath, int mode)
                     if (one_in_(backstab ? 13 : (stab_fleeing || fuiuchi) ? 15 : 27))
                     {
                         dam *= 5;
-                        msg_format("You critically injured %s!", m_name_object);
+                        msg_format("你重创了%s！", m_name_object);
                     }
                     else if ( (m_ptr->hp < maxhp/2 && one_in_(50))
                            || ( (one_in_(666) || ((backstab || fuiuchi) && one_in_(p_ptr->pclass == CLASS_NINJA ? 11 : 20)))
@@ -1600,12 +1600,12 @@ static void innate_attacks(s16b m_idx, bool *fear, bool *mdeath, int mode)
                         if ((r_ptr->flags1 & RF1_UNIQUE) || (r_ptr->flags7 & RF7_UNIQUE2) || (m_ptr->hp >= maxhp/2))
                         {
                             dam = MAX(dam*5, m_ptr->hp/2);
-                            msg_format("You fatally injured %s!", m_name_object);
+                            msg_format("你给予了%s致命伤！", m_name_object);
                         }
                         else
                         {
                             dam = m_ptr->hp + 1;
-                            msg_format("You hit %s on a fatal spot!", m_name_object);
+                            msg_format("你击中了%s的致命部位！", m_name_object);
                         }
                     }
                 }
@@ -1812,7 +1812,7 @@ static void innate_attacks(s16b m_idx, bool *fear, bool *mdeath, int mode)
                             }
                             else
                             {
-                                msg_format("You <color:D>drain life</color> from %s!", m_name_object);
+                                msg_format("你从%s身上<color:D>吸取生命</color>！", m_name_object);
                                 vampirism_hack = m_ptr->hp;
                                 vamp_player(amt);
                             }
@@ -1862,7 +1862,7 @@ static void innate_attacks(s16b m_idx, bool *fear, bool *mdeath, int mode)
 
                 if (mode == DRAGON_SNATCH)
                 {
-                    msg_format("You grab %s in your jaws.", m_name_object);
+                    msg_format("你用下巴咬住了%s。", m_name_object);
                     monster_toss(m_idx);
                     return;
                 }
@@ -1871,10 +1871,10 @@ static void innate_attacks(s16b m_idx, bool *fear, bool *mdeath, int mode)
             {
                 sound(SOUND_MISS);
                 if (is_gaze)
-                    msg_format("%^s avoids your gaze.", m_name_subject);
+                    msg_format("%^s避开了你的凝视。", m_name_subject);
                 else
                 {
-                    msg_print("You miss.");
+                    msg_print("你未命中。");
                     check_muscle_sprains(300, "You pull a muscle!");
                 }
             }
@@ -1898,11 +1898,11 @@ static void innate_attacks(s16b m_idx, bool *fear, bool *mdeath, int mode)
     if (delay_paralysis && !*mdeath)
         _gf_innate(m_ptr, GF_PARALYSIS, delay_paralysis);
     if (weak && !(*mdeath))
-        msg_format("%^s seems weakened.", m_name_subject);
+        msg_format("%^s似乎变弱了。", m_name_subject);
     if (steal_ct && !*mdeath)
     {
         if (mon_save_p(m_ptr->r_idx, A_DEX))
-            msg_print("You fail to run away!");
+            msg_print("你逃跑失败了！");
         else
             teleport_player(25 + p_ptr->lev/2, 0L);
     }
@@ -2053,7 +2053,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
 
     if (!c_ptr->m_idx)
     {
-        msg_print("You swing wildly at nothing.");
+        msg_print("你在空气中一通乱挥。");
         return FALSE;
     }
 
@@ -2101,7 +2101,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
     }
     else
     {
-        sprintf(o_name, "Your fists");
+        sprintf(o_name, "你的拳头");
         dd = 1;
         ds = 1;
         to_h = 0;
@@ -2257,7 +2257,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
     {
         char m_name_norm[MAX_NLEN];
         monster_desc(m_name_norm, m_ptr, 0);
-        cmsg_format(TERM_L_UMBER, "You attack %s:", m_name_norm);
+        cmsg_format(TERM_L_UMBER, "你攻击%s：", m_name_norm);
         _many_strike_mon = c_ptr->m_idx;
     }
 
@@ -2276,7 +2276,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
 
         if (!c_ptr->m_idx) /* A real thing that can happen */
         {
-            msg_print("You swing wildly at nothing.");
+            msg_print("你在空气中一通乱挥。");
             break;
         }
 
@@ -2287,9 +2287,9 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
             if (!fear_allow_melee(c_ptr->m_idx))
             {
                 if (m_ptr->ml)
-                    msg_format("You are too afraid to attack %s!", m_name_object);
+                    msg_format("你太害怕了，不敢攻击%s！", m_name_object);
                 else
-                    msg_format("There is something scary in your way!");
+                    msg_format("挡在你面前的东西太吓人了！");
 
                 fear_stop = TRUE;
                 break;
@@ -2301,7 +2301,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
 		{
 			int m_idx = c_ptr->m_idx;
 			p_ptr->duelist_target_idx = c_ptr->m_idx;
-			msg_format("You challenge %s to a duel!", duelist_current_challenge());
+			msg_format("你向%s发起了决斗挑战！", duelist_current_challenge());
 			set_monster_csleep(m_idx, 0);
 			set_hostile(&m_list[m_idx]);
 			p_ptr->redraw |= PR_STATUS;
@@ -2316,7 +2316,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
 
         if (bird_recoil)
         {
-            msg_print("You recoil at the thought of harming a bird!");
+            msg_print("一想到要伤害鸟类，你就退缩了！");
             break;
         }
 
@@ -2384,11 +2384,11 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                 }
             }
 
-            if (backstab) cmsg_format(TERM_L_GREEN, "You cruelly attack %s!", m_name_object);
-            else if (fuiuchi) cmsg_format(TERM_L_GREEN, "You make a surprise attack, and hit %s with a powerful blow!", m_name_object);
-            else if (stab_fleeing) cmsg_format(TERM_L_GREEN, "You backstab %s!",  m_name_object);
-            else if (perfect_strike) msg_format("You land a <color:G>perfect strike</color> against %s.", m_name_object);
-            else if (!monk_attack) msg_format("You hit.", m_name_object);
+            if (backstab) cmsg_format(TERM_L_GREEN, "你残忍地攻击了%s！", m_name_object);
+            else if (fuiuchi) cmsg_format(TERM_L_GREEN, "你发动了奇袭，用强力的一击击中了%s！", m_name_object);
+            else if (stab_fleeing) cmsg_format(TERM_L_GREEN, "你背刺了%s！",  m_name_object);
+            else if (perfect_strike) msg_format("你对%s打出了一次<color:G>完美打击</color>。", m_name_object);
+            else if (!monk_attack) msg_format("你命中了。", m_name_object);
 
             /* Hack -- bare hands do one damage */
             k = 1;
@@ -2457,7 +2457,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                 {
                     if (r_ptr->flags1 & RF1_MALE)
                     {
-                        msg_format("You hit %s in the groin with your knee!", m_name_object);
+                        msg_format("你用膝盖狠狠地顶了%s的要害！", m_name_object);
                         sound(SOUND_PAIN);
                         special_effect = MA_KNEE;
                     }
@@ -2470,7 +2470,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                     if (!((r_ptr->flags1 & RF1_NEVER_MOVE) ||
                         my_strchr("~#{}.UjmeEv$,DdsbBFIJQSXclnw!=?", r_ptr->d_char)))
                     {
-                        msg_format("You kick %s in the ankle.", m_name_object);
+                        msg_format("你踢中了%s的脚踝。", m_name_object);
                         special_effect = MA_SLOW;
                     }
                     else msg_format(ma_ptr->desc, m_name_object);
@@ -2501,7 +2501,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
 
                 if ((special_effect == MA_KNEE) && ((k + p_ptr->weapon_info[hand].to_d) < m_ptr->hp))
                 {
-                    msg_format("%^s moans in agony!", m_name_subject);
+                    msg_format("%^s痛苦地呻吟！", m_name_subject);
                     stun_effect = 7 + randint1(13);
                     resist_stun /= 3;
                 }
@@ -2512,7 +2512,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                         (randint1(p_ptr->lev) > r_ptr->level) &&
                         m_ptr->mspeed > 60)
                     {
-                        msg_format("%^s starts limping slower.", m_name_subject);
+                        msg_format("%^s开始一瘸一拐地减速。", m_name_subject);
                         m_ptr->mspeed -= 10;
                     }
                 }
@@ -2541,9 +2541,9 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                             /* No message */
                         }
                         else if (set_monster_stunned(c_ptr->m_idx, cur_stun + stun_effect))
-                            msg_format("%^s is stunned.", m_name_subject);
+                            msg_format("%^s被击晕了。", m_name_subject);
                         else
-                            msg_format("%^s is more stunned.", m_name_subject);
+                            msg_format("%^s被击晕得更严重了。", m_name_subject);
                     }
                 }
                 if (mode == MYSTIC_KNOCKOUT)
@@ -2551,15 +2551,15 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                     if (r_ptr->flagsr & RFR_RES_ALL)
                     {
                         mon_lore_r(m_ptr, RFR_RES_ALL);
-                        msg_format("%^s is immune.", m_name_subject);
+                        msg_format("%^s免疫了。", m_name_subject);
                     }
                     else if (mon_save_p(m_ptr->r_idx, A_DEX))
                     {
-                        msg_format("%^s resists.", m_name_subject);
+                        msg_format("%^s抵抗了。", m_name_subject);
                     }
                     else
                     {
-                        cmsg_format(TERM_VIOLET, "%^s is knocked out.", m_name_subject);
+                        cmsg_format(TERM_VIOLET, "%^s被打昏了。", m_name_subject);
                         knock_out++;
                         /* No more retaliation this round! */
                         retaliation_count = 100; /* Any number >= 4 will do ... */
@@ -2629,7 +2629,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                     }
                     else
                     {
-                        msg_format("%^s is stunned.", m_name_subject);
+                        msg_format("%^s被击晕了。", m_name_subject);
                         mon_stun(m_ptr, mon_stun_amount(k));
                     }
                 }
@@ -2642,7 +2642,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                     }
                     else
                     {
-                        msg_format("%^s is stunned.", m_name_subject);
+                        msg_format("%^s被击晕了。", m_name_subject);
                         mon_stun(m_ptr, mon_stun_amount(k));
                         obj_learn_slay(o_ptr, OF_STUN, "<color:o>Stuns</color> your enemies");
                     }
@@ -2662,9 +2662,9 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                     }
 
                     if (o_ptr->name1 == ART_VORPAL_BLADE)
-                        msg_print("Your Vorpal Blade goes <color:y>snicker-snack</color>!");
+                        msg_print("你的斩首剑发出<color:y>咔嚓咔嚓</color>的声音！");
                     else
-                        msg_format("Your weapon <color:y>cuts deep</color> into %s!", m_name_object);
+                        msg_format("你的武器<color:y>深深切入</color>了%s！", m_name_object);
 
                     while (one_in_(vorpal_chance))
                         mult++;
@@ -2673,18 +2673,18 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
 
                     /* Ouch! */
                     if (((r_ptr->flagsr & RFR_RES_ALL) ? k/100 : k) > m_ptr->hp)
-                        cmsg_format(TERM_VIOLET, "You cut %s in half!", m_name_object);
+                        cmsg_format(TERM_VIOLET, "你把%s劈成了两半！", m_name_object);
                     else
                     {
                         switch (mult)
                         {
-                        case 2: msg_format("You <color:U>gouge</color> %s!", m_name_object); break;
-                        case 3: msg_format("You <color:y>maim</color> %s!", m_name_object); break;
-                        case 4: msg_format("You <color:R>carve</color> %s!", m_name_object); break;
-                        case 5: msg_format("You <color:r>cleave</color> %s!", m_name_object); break;
-                        case 6: msg_format("You <color:v>smite</color> %s!", m_name_object); break;
-                        case 7: msg_format("You <color:v>eviscerate</color> %s!", m_name_object); break;
-                        default: msg_format("You <color:v>shred</color> %s!", m_name_object); break;
+                        case 2: msg_format("你<color:U>凿击</color>了%s！", m_name_object); break;
+                        case 3: msg_format("你<color:y>重残</color>了%s！", m_name_object); break;
+                        case 4: msg_format("你<color:R>切开</color>了%s！", m_name_object); break;
+                        case 5: msg_format("你<color:r>劈开</color>了%s！", m_name_object); break;
+                        case 6: msg_format("你<color:v>重击</color>了%s！", m_name_object); break;
+                        case 7: msg_format("你对%s<color:v>开膛破肚</color>！", m_name_object); break;
+                        default: msg_format("你<color:v>撕碎</color>了%s！", m_name_object); break;
                         }
                     }
                     drain_result = drain_result * 3 / 2;
@@ -2713,13 +2713,13 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
 
             if (zantetsu_mukou)
             {
-                msg_print("You cannot cut such an elastic thing!");
+                msg_print("你无法切开如此有弹性的东西！");
                 k = 0;
             }
 
             if (e_j_mukou)
             {
-                msg_print("Spiders are difficult for you to deal with!");
+                msg_print("蜘蛛对你来说很难对付！");
                 k /= 2;
             }
 
@@ -2734,18 +2734,18 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                 {
                     if (MON_STUNNED(m_ptr))
                     {
-                        msg_format("%^s is more dazed.", m_name_subject);
+                        msg_format("%^s变得更加头晕目眩了。", m_name_subject);
                         tmp /= 2;
                     }
                     else
                     {
-                        msg_format("%^s is dazed.", m_name_subject);
+                        msg_format("%^s头晕目眩了。", m_name_subject);
                     }
                     (void)set_monster_stunned(c_ptr->m_idx, MON_STUNNED(m_ptr) + tmp);
                 }
                 else
                 {
-                    msg_format("%^s is not affected.", m_name_subject);
+                    msg_format("%^s没有受到影响。", m_name_subject);
                 }
             }
 
@@ -2770,27 +2770,27 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                     && !(r_ptr->flags1 & (RF1_UNIQUE))
                     && !mon_save_p(m_ptr->r_idx, A_DEX) )
                 {
-                    msg_format("You <color:y>hamstring</color> %s.", m_name_object);
+                    msg_format("你<color:y>割断</color>了%s的腿筋。", m_name_object);
                     set_monster_slow(c_ptr->m_idx, MON_SLOW(m_ptr) + 50);
                 }
                 if ( p_ptr->lev >= 25    /* Stunning Blow */
                     && !(r_ptr->flags3 & (RF3_NO_STUN))
                     && !mon_save_p(m_ptr->r_idx, A_DEX) )
                 {
-                    msg_format("%^s is dealt a <color:B>stunning</color> blow.", m_name_subject);
+                    msg_format("%^s遭受了<color:B>震荡</color>一击。", m_name_subject);
                     mon_stun(m_ptr, mon_stun_amount(d));
                 }
                 if ( p_ptr->lev >= 20    /* Wounding Strike */
                   && !mon_save_p(m_ptr->r_idx, A_DEX) )
                 {
-                    msg_format("%^s is dealt a <color:r>wounding</color> strike.", m_name_subject);
+                    msg_format("%^s遭受了<color:r>创伤</color>打击。", m_name_subject);
                     k += pienempi(m_ptr->hp / 5, randint1(3) * d);
                     drain_result = k;
                 }
                 if ( p_ptr->lev >= 40    /* Greater Wounding Strike */
                   && !mon_save_p(m_ptr->r_idx, A_DEX) )
                 {
-                    msg_format("%^s is dealt a <color:v>*WOUNDING*</color> strike.", m_name_subject);
+                    msg_format("%^s遭受了<color:v>*重创*</color>打击。", m_name_subject);
                     k += pienempi(m_ptr->hp * 2 / 5, rand_range(2, 6) * d);
                     drain_result = k;
                 }
@@ -2806,7 +2806,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                   && !(r_ptr->flags7 & RF7_UNIQUE2))
                 {
                     k = m_ptr->hp + 1;
-                    msg_format("You hit %s on a fatal spot!", m_name_object);
+                    msg_format("你击中了%s的致命部位！", m_name_object);
                     insta_kill = TRUE;
                 }
                 else k = 1;
@@ -2822,7 +2822,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                 {
                     k *= 5;
                     drain_result *= 2;
-                    msg_format("You critically injured %s!", m_name_object);
+                    msg_format("你重创了%s！", m_name_object);
                 }
                 else if ( (m_ptr->hp < maxhp/2 && one_in_(num_blow*10))
                        || ( (one_in_(666) || ((backstab || fuiuchi) && one_in_(p_ptr->pclass == CLASS_NINJA ? 11 : 20)))
@@ -2834,12 +2834,12 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                         k *= 5; 
                         if (p_ptr->pclass == CLASS_NINJA) k = MAX(k, m_ptr->hp/2);
                         drain_result *= 2;
-                        msg_format("You fatally injured %s!", m_name_object);
+                        msg_format("你给予了%s致命伤！", m_name_object);
                     }
                     else
                     {
                         k = m_ptr->hp + 1;
-                        msg_format("You hit %s on a fatal spot!", m_name_object);
+                        msg_format("你击中了%s的致命部位！", m_name_object);
                         insta_kill = TRUE;
                     }
                 }
@@ -2862,12 +2862,12 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                 {
                     k = MAX(k*5, m_ptr->hp/2);
                     drain_result *= 2;
-                    msg_format("You fatally injured %s!", m_name_object);
+                    msg_format("你给予了%s致命伤！", m_name_object);
                 }
                 else
                 {
                     k = m_ptr->hp + 1;
-                    msg_format("You hit %s on a fatal spot!", m_name_object);
+                    msg_format("你击中了%s的致命部位！", m_name_object);
                     insta_kill = TRUE;
                 }
             }
@@ -2892,20 +2892,20 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                         if (r_ptr->flagsr & RFR_RES_ALL)
                         {
                             mon_lore_r(m_ptr, RFR_RES_ALL);
-                            msg_format("%^s is immune.", m_name_subject);
+                            msg_format("%^s免疫了。", m_name_subject);
                         }
                         else if (r_ptr->flags3 & RF3_NO_STUN)
                         {
                             mon_lore_3(m_ptr, RF3_NO_STUN);
-                            msg_format("%^s is immune.", m_name_subject);
+                            msg_format("%^s免疫了。", m_name_subject);
                         }
                         else if (mon_stun_save(r_ptr->level, k))
                         {
-                            msg_format("%^s resists.", m_name_subject);
+                            msg_format("%^s抵抗了。", m_name_subject);
                         }
                         else
                         {
-                            msg_format("%^s is stunned.", m_name_subject);
+                            msg_format("%^s被击晕了。", m_name_subject);
                             mon_stun(m_ptr, mon_stun_amount(k));
                         }
                     }
@@ -2914,25 +2914,25 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                 case TOGGLE_BURNING_BLADE:
                     if (r_ptr->flagsr & RFR_RES_ALL)
                     {
-                        msg_format("%^s is immune.", m_name_subject);
+                        msg_format("%^s免疫了。", m_name_subject);
                         k = 0;
                         mon_lore_r(m_ptr, RFR_RES_ALL);
                     }
                     else if (r_ptr->flagsr & RFR_IM_FIRE)
                     {
-                        msg_format("%^s is immune.", m_name_subject);
+                        msg_format("%^s免疫了。", m_name_subject);
                         k = 0;
                         mon_lore_r(m_ptr, RFR_IM_FIRE);
                     }
                     else if (r_ptr->flagsr & RFR_RES_FIRE)
                     {
-                        msg_format("%^s resists.", m_name_subject);
+                        msg_format("%^s抵抗了。", m_name_subject);
                         k /= 3;
                         mon_lore_r(m_ptr, RFR_RES_FIRE);
                     }
                     else if (r_ptr->flags3 & (RF3_HURT_FIRE))
                     {
-                        msg_format("%^s is hit hard.", m_name_subject);
+                        msg_format("%^s受到了猛烈的打击。", m_name_subject);
                         k *= 2;
                         mon_lore_3(m_ptr, RF3_HURT_FIRE);
                     }
@@ -2940,19 +2940,19 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                 case TOGGLE_ICE_BLADE:
                     if (r_ptr->flagsr & RFR_RES_ALL)
                     {
-                        msg_format("%^s is immune.", m_name_subject);
+                        msg_format("%^s免疫了。", m_name_subject);
                         k = 0;
                         mon_lore_r(m_ptr, RFR_RES_ALL);
                     }
                     else if (r_ptr->flagsr & RFR_IM_COLD)
                     {
-                        msg_format("%^s is immune.", m_name_subject);
+                        msg_format("%^s免疫了。", m_name_subject);
                         k = 0;
                         mon_lore_r(m_ptr, RFR_IM_COLD);
                     }
                     else if (r_ptr->flagsr & RFR_RES_COLD)
                     {
-                        msg_format("%^s resists.", m_name_subject);
+                        msg_format("%^s抵抗了。", m_name_subject);
                         k /= 3;
                         mon_lore_r(m_ptr, RFR_RES_COLD);
                     }
@@ -2960,7 +2960,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                     {
                         if (r_ptr->flags3 & (RF3_HURT_COLD))
                         {
-                            msg_format("%^s is hit hard.", m_name_subject);
+                            msg_format("%^s受到了猛烈的打击。", m_name_subject);
                             k *= 2;
                             mon_lore_3(m_ptr, RF3_HURT_COLD);
                         }
@@ -2968,7 +2968,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                             && !(r_ptr->flags1 & (RF1_UNIQUE))
                             && !mon_save_p(m_ptr->r_idx, A_STR) )
                         {
-                            msg_format("%^s is slowed by the cold.", m_name_subject);
+                            msg_format("%^s因寒冷而减速了。", m_name_subject);
                             set_monster_slow(c_ptr->m_idx, MON_SLOW(m_ptr) + 50);
                         }
                     }
@@ -2976,19 +2976,19 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                 case TOGGLE_THUNDER_BLADE:
                     if (r_ptr->flagsr & RFR_RES_ALL)
                     {
-                        msg_format("%^s is immune.", m_name_subject);
+                        msg_format("%^s免疫了。", m_name_subject);
                         k = 0;
                         mon_lore_r(m_ptr, RFR_RES_ALL);
                     }
                     else if (r_ptr->flagsr & RFR_IM_ELEC)
                     {
-                        msg_format("%^s is immune.", m_name_subject);
+                        msg_format("%^s免疫了。", m_name_subject);
                         k = 0;
                         mon_lore_r(m_ptr, RFR_IM_ELEC);
                     }
                     else if (r_ptr->flagsr & RFR_RES_ELEC)
                     {
-                        msg_format("%^s resists.", m_name_subject);
+                        msg_format("%^s抵抗了。", m_name_subject);
                         k /= 3;
                         mon_lore_r(m_ptr, RFR_RES_ELEC);
                     }
@@ -2998,7 +2998,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                           && !(r_ptr->flags3 & RF3_NO_STUN)
                           && !mon_stun_save(r_ptr->level, k) )
                         {
-                            msg_format("%^s is shocked convulsively.", m_name_subject);
+                            msg_format("%^s被电得抽搐起来。", m_name_subject);
                             mon_stun(m_ptr, mon_stun_amount(k));
                         }
                     }
@@ -3047,12 +3047,12 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                         /* Hacks so that get_fire_dir() actually allows user to select a new target */
                         target_who = 0;
                         command_dir = 0;
-                        msg_print("Your chosen target is vanquished!  Select another.");
+                        msg_print("你选择的目标已被击败！请选择另一个。");
                         msg_print(NULL);
                         duelist_issue_challenge();
                     }
                     else
-                        msg_print("Your chosen target is vanquished!");
+                        msg_print("你选择的目标已被击败！");
                 }
 
                 if ((p_ptr->pclass == CLASS_BERSERKER || mut_present(MUT_FANTASTIC_FRENZY) || beorning_is_(BEORNING_FORM_BEAR)) && energy_use)
@@ -3071,7 +3071,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                     goto weaponmaster_reap;
                 }
                 if (o_ptr && o_ptr->name1 == ART_ZANTETSU && is_lowlevel)
-                    msg_print("Sigh... Another trifling thing I've cut....");
+                    msg_print("唉……我又砍了一个无聊的东西……");
                 break;
             }
             else
@@ -3088,27 +3088,27 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                 {
                     int amt = (k+2)/3;
                     m_ptr->maxhp -= amt;
-                    msg_format("%^s seems weakened.", m_name_subject);
+                    msg_format("%^s似乎变弱了。", m_name_subject);
                 }
                 if (mode == MAULER_STUNNING_BLOW || mode == DRACONIAN_STRIKE_STUN)
                 {
                     if (r_ptr->flagsr & RFR_RES_ALL)
                     {
                         mon_lore_r(m_ptr, RFR_RES_ALL);
-                        msg_format("%^s is immune.", m_name_subject);
+                        msg_format("%^s免疫了。", m_name_subject);
                     }
                     else if (r_ptr->flags3 & RF3_NO_STUN)
                     {
                         mon_lore_3(m_ptr, RF3_NO_STUN);
-                        msg_format("%^s is immune.", m_name_subject);
+                        msg_format("%^s免疫了。", m_name_subject);
                     }
                     else if ((r_ptr->flags1 & RF1_UNIQUE) && mon_stun_save(r_ptr->level, k))
                     {
-                        msg_format("%^s resists.", m_name_subject);
+                        msg_format("%^s抵抗了。", m_name_subject);
                     }
                     else
                     {
-                        msg_format("%^s is stunned.", m_name_subject);
+                        msg_format("%^s被击晕了。", m_name_subject);
                         mon_stun(m_ptr, mon_stun_amount(k));
                     }
                 }
@@ -3149,7 +3149,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                                 {
                                     dam = 25;
                                 }
-                                msg_format("%^s is wounded.", m_name_subject);
+                                msg_format("%^s受伤了。", m_name_subject);
                                 mon_take_hit(m_idx, dam * (max - ct), DAM_TYPE_MELEE, fear, NULL);
                                 break;
                             }
@@ -3183,7 +3183,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
 
                 if (mode == WEAPONMASTER_CRUSADERS_STRIKE)
                 {
-                    msg_format("Your Crusader's Strike drains life from %s!", m_name_object);
+                    msg_format("你的十字军打击从%s身上吸取了生命！", m_name_object);
                     hp_player(MIN(k, 150));
                 }
 
@@ -3200,20 +3200,20 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                         if (r_ptr->flagsr & RFR_RES_ALL)
                         {
                             mon_lore_r(m_ptr, RFR_RES_ALL);
-                            msg_format("%^s is immune.", m_name_subject);
+                            msg_format("%^s免疫了。", m_name_subject);
                         }
                         else if (r_ptr->flags3 & RF3_NO_CONF)
                         {
                             mon_lore_3(m_ptr, RF3_NO_CONF);
-                            msg_format("%^s is immune.", m_name_subject);
+                            msg_format("%^s免疫了。", m_name_subject);
                         }
                         else if (mon_save_p(m_ptr->r_idx, A_STR))
                         {
-                            msg_format("%^s resists.", m_name_subject);
+                            msg_format("%^s抵抗了。", m_name_subject);
                         }
                         else
                         {
-                            msg_format("%^s appears <color:U>confused</color>.", m_name_subject);
+                            msg_format("%^s显得<color:U>很困惑</color>。", m_name_subject);
                             set_monster_confused(c_ptr->m_idx, MON_CONFUSED(m_ptr) + 10 + randint0(p_ptr->lev) / 5);
                         }
                     }
@@ -3223,20 +3223,20 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                         if (r_ptr->flagsr & RFR_RES_ALL)
                         {
                             mon_lore_r(m_ptr, RFR_RES_ALL);
-                            msg_format("%^s is immune.", m_name_subject);
+                            msg_format("%^s免疫了。", m_name_subject);
                         }
                         else if (r_ptr->flags3 & RF3_NO_SLEEP)
                         {
                             mon_lore_3(m_ptr, RF3_NO_SLEEP);
-                            msg_format("%^s is immune.", m_name_subject);
+                            msg_format("%^s免疫了。", m_name_subject);
                         }
                         else if (mon_save_p(m_ptr->r_idx, A_STR))
                         {
-                            msg_format("%^s resists.", m_name_subject);
+                            msg_format("%^s抵抗了。", m_name_subject);
                         }
                         else
                         {
-                            msg_format("%^s is <color:b>knocked out</color>.", m_name_subject);
+                            msg_format("%^s被<color:b>打昏了</color>。", m_name_subject);
                             knock_out++;
                             /* No more retaliation this round! */
                             retaliation_count = 100; /* Any number >= 4 will do ... */
@@ -3249,20 +3249,20 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                         if (r_ptr->flagsr & RFR_RES_ALL)
                         {
                             mon_lore_r(m_ptr, RFR_RES_ALL);
-                            msg_format("%^s is immune.", m_name_subject);
+                            msg_format("%^s免疫了。", m_name_subject);
                         }
                         else if (r_ptr->flags3 & RF3_NO_STUN)
                         {
                             mon_lore_3(m_ptr, RF3_NO_STUN);
-                            msg_format("%^s is immune.", m_name_subject);
+                            msg_format("%^s免疫了。", m_name_subject);
                         }
                         else if (mon_stun_save(r_ptr->level, k))
                         {
-                            msg_format("%^s resists.", m_name_subject);
+                            msg_format("%^s抵抗了。", m_name_subject);
                         }
                         else
                         {
-                            msg_format("%^s is <color:B>stunned</color>.", m_name_subject);
+                            msg_format("%^s被<color:B>击晕了</color>。", m_name_subject);
                             mon_stun(m_ptr, mon_stun_amount(k));
                         }
                     }
@@ -3296,7 +3296,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
 
                         if (o_ptr->to_h != to_h || o_ptr->to_d != to_d)
                         {
-                            msg_print("Muramasa sucked blood, and became more powerful!");
+                            msg_print("村正吸了血，变得更强大了！");
                             o_ptr->to_h = to_h;
                             o_ptr->to_d = to_d;
                         }
@@ -3327,9 +3327,9 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                             if (drain_msg)
                             {
                                 if (o_ptr)
-                                    msg_format("Your weapon drains life from %s!", m_name_object);
+                                    msg_format("你的武器从%s身上吸取了生命！", m_name_object);
                                 else
-                                    msg_format("You drain life from %s!", m_name_object);
+                                    msg_format("你从%s身上吸取了生命！", m_name_object);
                                 drain_msg = FALSE;
                             }
                             drain_heal = (drain_heal * mutant_regenerate_mod) / 100;
@@ -3360,7 +3360,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                 if (p_ptr->special_attack & ATTACK_CONFUSE)
                 {
                     p_ptr->special_attack &= ~(ATTACK_CONFUSE);
-                    msg_print("Your hands stop glowing.");
+                    msg_print("你的双手停止发光了。");
                     p_ptr->redraw |= (PR_STATUS);
 
                 }
@@ -3369,13 +3369,13 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                 if (r_ptr->flags3 & RF3_NO_CONF)
                 {
                     mon_lore_3(m_ptr, RF3_NO_CONF);
-                    msg_format("%^s is unaffected.", m_name_subject);
+                    msg_format("%^s没有受到影响。", m_name_subject);
                 }
                 else if (randint0(100) < r_ptr->level)
-                    msg_format("%^s is unaffected.", m_name_subject);
+                    msg_format("%^s没有受到影响。", m_name_subject);
                 else
                 {
-                    msg_format("%^s appears confused.", m_name_subject);
+                    msg_format("%^s显得很困惑。", m_name_subject);
                     (void)set_monster_confused(c_ptr->m_idx, MON_CONFUSED(m_ptr) + 10 + randint0(p_ptr->lev) / 5);
                 }
 
@@ -3390,7 +3390,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
 
                 if (mummy_get_toggle() == MUMMY_TOGGLE_ANTITELE)
                 {
-                     msg_format("%^s is unaffected!", m_name_subject);
+                     msg_format("%^s没有受到影响！", m_name_subject);
                      resists_tele = TRUE;
                 }
                 else if (r_ptr->flagsr & RFR_RES_TELE)
@@ -3398,20 +3398,20 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                     if (r_ptr->flags1 & RF1_UNIQUE)
                     {
                         mon_lore_r(m_ptr, RFR_RES_TELE);
-                        msg_format("%^s is unaffected!", m_name_subject);
+                        msg_format("%^s没有受到影响！", m_name_subject);
                         resists_tele = TRUE;
                     }
                     else if (r_ptr->level > randint1(100))
                     {
                         mon_lore_r(m_ptr, RFR_RES_TELE);
-                        msg_format("%^s resists!", m_name_subject);
+                        msg_format("%^s抵抗了！", m_name_subject);
                         resists_tele = TRUE;
                     }
                 }
 
                 if (!resists_tele)
                 {
-                    msg_format("%^s disappears!", m_name_subject);
+                    msg_format("%^s消失了！", m_name_subject);
                     teleport_away(c_ptr->m_idx, 50, TELEPORT_PASSIVE);
                     num = num_blow + 1; /* Can't hit it anymore! */
                     *mdeath = TRUE;
@@ -3426,12 +3426,12 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                 {
                     if (polymorph_monster(m_ptr))
                     {
-                        msg_format("%^s changes!", m_name_subject);
+                        msg_format("%^s变形了！", m_name_subject);
                         *fear = FALSE;
                         weak = FALSE;
                     }
                     else
-                        msg_format("%^s is unaffected.", m_name_subject);
+                        msg_format("%^s没有受到影响。", m_name_subject);
 
                     m_ptr = &m_list[c_ptr->m_idx];
                     monster_desc(m_name_subject, m_ptr, MD_PRON_VISIBLE | MD_OBJECTIVE);
@@ -3453,7 +3453,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                     q_ptr->marked = OM_TOUCHED;
                     m_ptr->hold_o_idx = q_ptr->next_o_idx;
                     q_ptr->next_o_idx = 0;
-                    msg_format("You snatched %s.", stolen_name);
+                    msg_format("你抢夺了%s。", stolen_name);
                     pack_carry(q_ptr);
                     obj_release(q_ptr, OBJ_RELEASE_QUIET);
                 }
@@ -3485,13 +3485,13 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
               && o_ptr->sval == SV_DEATH_SCYTHE
               && one_in_(3) )
             {
-                msg_format("You miss.", m_name_object);
+                msg_format("你未命中。", m_name_object);
                 death_scythe_miss(o_ptr, hand, mode);
             }
             else
             {
                 sound(SOUND_MISS);
-                msg_format("You miss.", m_name_object);
+                msg_format("你未命中。", m_name_object);
             }
             check_muscle_sprains(250, "You sprain a muscle!");
         }
@@ -3519,7 +3519,7 @@ weaponmaster_reap:
             /* Message order */
             if (weak && !(*mdeath))
             {
-                msg_format("%^s seems weakened.", m_name_subject);
+                msg_format("%^s似乎变弱了。", m_name_subject);
                 weak = FALSE;
             }            
 
@@ -3545,18 +3545,18 @@ weaponmaster_reap:
                     {
                         if (mode == WEAPONMASTER_REAPING)
                         {
-                            cmsg_format(TERM_RED, "You swing your %s about, reaping a harvest of death!", o_name);
+                            cmsg_format(TERM_RED, "你挥舞着你的%s，收割着死亡！", o_name);
                         }
-                        else cmsg_format(TERM_BLUE, "You swing your %s about, striking all nearby foes.", o_name);
+                        else cmsg_format(TERM_BLUE, "你挥舞着你的%s，击中了附近所有的敌人。", o_name);
                     }
                     _laskuri++;
-                    cmsg_format(TERM_L_UMBER, "You attack %s:", m_name2);
+                    cmsg_format(TERM_L_UMBER, "你攻击%s：", m_name2);
                     py_attack_aux(y2, x2, &fear2, &mdeath2, hand, (mode == WEAPONMASTER_REAPING) ? mode : WEAPONMASTER_WHIRLWIND);
                 }
             }
 
             if (p_ptr->wizard)
-                msg_print("****END WHIRLWIND****");
+                msg_print("****旋风斩结束****");
             _reaper_lock = FALSE;
             _reaper_bonus = 0;
         }
@@ -3618,22 +3618,22 @@ weaponmaster_reap:
         if (test_hit_norm(chance, mon_ac(m_ptr), m_ptr->ml))
         {
             if (m_ptr->mflag2 & MFLAG2_TRIPPED)
-                msg_format("%^s is already tripped up.", m_name_subject);
+                msg_format("%^s已经被绊倒了。", m_name_subject);
             else if ( !(r_ptr->flags1 & RF1_UNIQUE)
                    || !mon_save_p(m_ptr->r_idx, A_STR) )
             {
-                msg_format("%^s cries 'Help! I've fallen and I can't get up!'", m_name_subject);
+                msg_format("%^s大喊：“救命！我摔倒了，爬不起来！”", m_name_subject);
                 m_ptr->mflag2 |= MFLAG2_TRIPPED;
             }
             else
-                msg_format("%^s nimbly dodges your attempt to trip.", m_name_subject);
+                msg_format("%^s敏捷地躲开了你的绊腿。", m_name_subject);
         }
         else
-            msg_format("You attempt to trip %s, but miss.", m_name_object);
+            msg_format("你试图绊倒%s，但没有成功。", m_name_object);
     }
 
     if (weak && !(*mdeath))
-        msg_format("%^s seems weakened.", m_name_subject);
+        msg_format("%^s似乎变弱了。", m_name_subject);
 
     if (drain_left != _max_vampiric_drain())
     {
@@ -3652,9 +3652,9 @@ weaponmaster_reap:
 
 #if 0
     if (p_ptr->pclass == CLASS_MAULER)
-        c_put_str(TERM_WHITE, format("Maul:%5d", dam_tot), 24, 0);
+        c_put_str(TERM_WHITE, format("槌击:%5d", dam_tot), 24, 0);
     if (p_ptr->pclass == CLASS_DUELIST)
-        c_put_str(TERM_WHITE, format("Duel:%5d", dam_tot), 24, 0);
+        c_put_str(TERM_WHITE, format("决斗:%5d", dam_tot), 24, 0);
 #endif
     if (*mdeath)
         wizard_report_damage(old_hp);
@@ -3664,9 +3664,9 @@ weaponmaster_reap:
     if ((o_ptr) && (o_ptr->name1 == ART_BLOODRIP) && ((p_ptr->pclass == CLASS_BLOOD_KNIGHT) || (one_in_(2))))
     {
         if (object_is_known(o_ptr))
-            msg_print("Bloodrip swings back to feed on you!");
+            msg_print("“血斩”(Bloodrip)砍了回来，以你为食！");
         else
-            msg_print("Your sword swings back to feed on you!");
+            msg_print("你的剑砍了回来，以你为食！");
         (void)set_cut(p_ptr->cut + 2 + damroll(2, 3), FALSE);
     }
 
@@ -3751,7 +3751,7 @@ bool _melee_attack_not_confirmed(monster_type *m_ptr)
                 }
                 if (r_info[m_ptr->r_idx].level < taso) return FALSE;
                 monster_desc(m_name, m_ptr, 0);
-                if (!get_check(format("Really attack %s? ", m_name)))
+                if (!get_check(format("真的要攻击%s吗？", m_name)))
                 {
                     return TRUE;
                 }
@@ -3779,7 +3779,7 @@ bool _py_attack_exit(void)
 bool no_melee_check(void)
 {
     if (!no_melee_challenge) return FALSE;
-    msg_print("You would never hit anybody!");
+    msg_print("你绝不会打中任何人！");
     return TRUE;
 }
 
@@ -3815,7 +3815,7 @@ bool py_attack(int y, int x, int mode)
 
     if (!p_ptr->weapon_ct && !p_ptr->innate_attack_ct && !possessor_can_attack())
     {
-        msg_print("You have no melee attacks.");
+        msg_print("你没有近战攻击能力。");
         energy_use = 0;
         if (!m_ptr->ml) energy_use = 50; /* bumping into an invisible monster shouldn't give a free turn */
         return _py_attack_exit();
@@ -3823,7 +3823,7 @@ bool py_attack(int y, int x, int mode)
 
     if (prace_is_(MIMIC_MIST))
     {
-        msg_print("You cannot attack while incorporeal.");
+        msg_print("你在无形状态下无法攻击。");
         energy_use = 0;
         if (!m_ptr->ml) energy_use = 50; /* bumping into an invisible monster shouldn't give a free turn */
         return _py_attack_exit();
@@ -3840,13 +3840,13 @@ bool py_attack(int y, int x, int mode)
       && !(p_ptr->stun || p_ptr->confused || p_ptr->image || !m_ptr->ml)
       && equip_find_art(ART_ZANTETSU))
     {
-        msg_print("I can not attack women!");
+        msg_print("我不能攻击女人！");
         return _py_attack_exit();
     }
 
     if (d_info[dungeon_type].flags1 & DF1_NO_MELEE)
     {
-        msg_print("Something prevents you from attacking!");
+        msg_print("有什么东西阻止了你攻击！");
         return _py_attack_exit();
     }
 
@@ -3861,7 +3861,7 @@ bool py_attack(int y, int x, int mode)
     {
         if (equip_find_art(ART_STORMBRINGER))
         {
-            msg_format("Your black blade greedily attacks %s!", m_name);
+            msg_format("你的黑刃贪婪地攻击了%s！", m_name);
             virtue_add(VIRTUE_INDIVIDUALISM, 1);
             virtue_add(VIRTUE_HONOUR, -1);
             virtue_add(VIRTUE_JUSTICE, -1);
@@ -3869,7 +3869,7 @@ bool py_attack(int y, int x, int mode)
         }
         else if (p_ptr->pclass != CLASS_BERSERKER)
         {
-            if (get_check("Really hit it? "))
+            if (get_check("真的要攻击它吗？"))
             {
                 virtue_add(VIRTUE_INDIVIDUALISM, 1);
                 virtue_add(VIRTUE_HONOUR, -1);
@@ -3879,7 +3879,7 @@ bool py_attack(int y, int x, int mode)
             }
             else
             {
-                msg_format("You stop to avoid hitting %s.", m_name);
+                msg_format("你停下来以避免打到%s。", m_name);
                 return _py_attack_exit();
             }
         }
@@ -3921,7 +3921,7 @@ bool py_attack(int y, int x, int mode)
     fear_stop = FALSE;
 
     if (mode != WEAPONMASTER_RETALIATION)
-        cmsg_format(TERM_L_UMBER, "You attack %s%s:", m_name, py_attack_desc(mode));
+        cmsg_format(TERM_L_UMBER, "你攻击%s%s：", m_name, py_attack_desc(mode));
 
     if (weaponmaster_get_toggle() == TOGGLE_MANY_STRIKE && mode == 0)
     {
@@ -4054,7 +4054,7 @@ bool py_attack(int y, int x, int mode)
                             py_attack_aux(y, x, &fear, &mdeath, i, 0);
                         else
                         {
-                            msg_print("There is no monster.");
+                            msg_print("那里没有怪物。");
                             break;
                         }
 
@@ -4123,7 +4123,7 @@ bool py_attack(int y, int x, int mode)
 
             if (cave[ny][nx].m_idx)
             {
-                msg_print("You attempt to cleave another foe!");
+                msg_print("你试图顺劈另一个敌人！");
                 py_attack(ny, nx, WEAPONMASTER_CLEAVE);
                 break;
             }
@@ -4202,7 +4202,7 @@ bool py_attack(int y, int x, int mode)
     if (fear && m_ptr->ml && !mdeath)
     {
         sound(SOUND_FLEE);
-        msg_format("%^s flees in terror!", m_name);
+        msg_format("%^s惊恐地逃跑了！", m_name);
     }
 
     if ((p_ptr->special_defense & KATA_IAI) && (mode != HISSATSU_IAI || mdeath))
@@ -4229,7 +4229,7 @@ bool pattern_seq(int c_y, int c_x, int n_y, int n_x)
     {
         if (!is_pattern_tile_cur && !p_ptr->confused && !p_ptr->stun && !p_ptr->image)
         {
-            if (get_check("If you start walking the Pattern, you must walk the whole way. Ok? "))
+            if (get_check("如果你开始走原主迷宫，你必须走完全程。确定吗？"))
                 return TRUE;
             else
                 return FALSE;
@@ -4248,7 +4248,7 @@ bool pattern_seq(int c_y, int c_x, int n_y, int n_x)
         }
         else
         {
-            msg_print("You must start walking the Pattern from the startpoint.");
+            msg_print("你必须从起点开始走原主迷宫。");
 
             return FALSE;
         }
@@ -4264,7 +4264,7 @@ bool pattern_seq(int c_y, int c_x, int n_y, int n_x)
             return TRUE;
         else
         {
-            msg_print("You must walk the Pattern in correct order.");
+            msg_print("你必须按正确的顺序走原主迷宫。");
 
             return FALSE;
         }
@@ -4275,7 +4275,7 @@ bool pattern_seq(int c_y, int c_x, int n_y, int n_x)
     {
         if (!is_pattern_tile_new)
         {
-            msg_print("You may not step off from the Pattern.");
+            msg_print("你不能走出原主迷宫的范围。");
 
             return FALSE;
         }
@@ -4288,7 +4288,7 @@ bool pattern_seq(int c_y, int c_x, int n_y, int n_x)
     {
         if (!is_pattern_tile_cur)
         {
-            msg_print("You must start walking the Pattern from the startpoint.");
+            msg_print("你必须从起点开始走原主迷宫。");
 
             return FALSE;
         }
@@ -4311,7 +4311,7 @@ bool pattern_seq(int c_y, int c_x, int n_y, int n_x)
                     break;
                 default:
                     if (p_ptr->wizard)
-                        msg_format("Funny Pattern walking, %d.", pattern_type_cur);
+                        msg_format("有趣的原主迷宫走法，%d。", pattern_type_cur);
 
                     return TRUE; /* Goof-up */
             }
@@ -4322,9 +4322,9 @@ bool pattern_seq(int c_y, int c_x, int n_y, int n_x)
             else
             {
                 if (!is_pattern_tile_new)
-                    msg_print("You may not step off from the Pattern.");
+                    msg_print("你不能走出原主迷宫的范围。");
                 else
-                    msg_print("You must walk the Pattern in correct order.");
+                    msg_print("你必须按正确的顺序走原主迷宫。");
 
                 return FALSE;
             }
@@ -4485,7 +4485,7 @@ bool move_player_effect(int ny, int nx, u32b mpe_mode)
         {
             disturb(0, 0);
             energy_use = 0;
-            cmsg_print(TERM_VIOLET, "You are about to leave a trap detected zone.");
+            cmsg_print(TERM_VIOLET, "你即将离开已探测陷阱的区域。");
             return FALSE;
         }
     }
@@ -4558,7 +4558,7 @@ bool move_player_effect(int ny, int nx, u32b mpe_mode)
         {
             if (alert_trap_detect)
             {
-                cmsg_print(TERM_VIOLET, "You leave a trap detected zone.");
+                cmsg_print(TERM_VIOLET, "你离开了已探测陷阱的区域。");
                 msg_print(NULL); /* Force a -more- prompt (unless auto_more is enabled!) */
             }
             p_ptr->redraw |= (PR_STATUS);
@@ -4566,7 +4566,7 @@ bool move_player_effect(int ny, int nx, u32b mpe_mode)
         else if (!old_dtrap && new_dtrap)
         {
             if (alert_trap_detect)
-                cmsg_print(TERM_L_BLUE, "You enter a trap detected zone.");
+                cmsg_print(TERM_L_BLUE, "你进入了已探测陷阱的区域。");
             p_ptr->redraw |= (PR_STATUS);
         }
 
@@ -4644,12 +4644,12 @@ bool move_player_effect(int ny, int nx, u32b mpe_mode)
             (!have_flag(f_ptr->flags, FF_PROJECT) ||
              (!p_ptr->levitation && have_flag(f_ptr->flags, FF_DEEP))))
         {
-            msg_print("You cannot run in here.");
+            msg_print("你不能在这里奔跑。");
             set_action(ACTION_NONE);
 
             if (weaponmaster_get_toggle() == TOGGLE_SHADOW_STANCE)
             {
-                msg_print("Your shadow stance is disrupted!");
+                msg_print("你的暗影架势被打断了！");
                 weaponmaster_set_toggle(TOGGLE_NONE);
             }
         }
@@ -4699,7 +4699,7 @@ bool move_player_effect(int ny, int nx, u32b mpe_mode)
                 obj_ptr obj = &o_list[this_o_idx];
                 next_o_idx = obj->next_o_idx;
                 object_desc(name, obj, OD_COLOR_CODED);
-                msg_format("You see %s.", name);
+                msg_format("你看到了%s。", name);
                 disturb(0, 0);
             }
         }
@@ -4748,7 +4748,7 @@ bool move_player_effect(int ny, int nx, u32b mpe_mode)
         c_ptr->info &= ~(CAVE_OBJECT);
         c_ptr->mimic = 0;
         note_spot(py, px);
-        msg_print("You merge with your shadow!");
+        msg_print("你与你的影子融为一体了！");
     }
 
     /* Set off a trap */
@@ -4761,7 +4761,7 @@ bool move_player_effect(int ny, int nx, u32b mpe_mode)
         if (c_ptr->mimic || have_flag(f_ptr->flags, FF_SECRET))
         {
             /* Message */
-            msg_print("You found a trap!");
+            msg_print("你发现了一个陷阱！");
 
             /* Pick a trap */
             disclose_grid(py, px);
@@ -4834,35 +4834,35 @@ void _glacier_slip(feature_type *f_ptr)
      ow_level -= randint1(ow_level / 2);
      if (p_ptr->levitation) /* paranoia */
      {
-         cmsg_print(TERM_VIOLET, "Please report a Mysterious Bug to the maintainer.");
+         cmsg_print(TERM_VIOLET, "请向维护者报告这个神秘的漏洞（Bug）。");
          return;
      }
      if ((have_flag(f_ptr->flags, FF_MOUNTAIN)) && (!have_flag(f_ptr->flags, FF_MOVE)))
      {
-         msg_print("You slip and crash into the hard mountainside at speed!");
+         msg_print("你脚下一滑，高速撞向了坚硬的山腰！");
          if (!res_save_default(RES_SOUND)) set_stun(p_ptr->stun + ow_level, FALSE);
      }
      else if (have_flag(f_ptr->flags, FF_TREE))
      {
-         msg_print("You slip and crash into the trees at speed!");
+         msg_print("你脚下一滑，高速撞进了树林里！");
          ow_level -= (ow_level / 8); /* Better than hitting a mountain... */
          if (!res_save_default(RES_SOUND)) set_stun(p_ptr->stun + ow_level, FALSE);
      }
      else if (have_flag(f_ptr->flags, FF_SLIPPERY))
      {
-         msg_print("You slip and crash onto the ice!");
+         msg_print("你滑倒并重重地摔在冰面上！");
          if (!res_save_default(RES_SOUND)) set_stun(p_ptr->stun + ow_level, FALSE);
      }
      else if (have_flag(f_ptr->flags, FF_SNOW)) /* Hey, something soft */
      {
-         msg_print("You slip off the icy slope and fall into the snow!");
+         msg_print("你从冰坡上滑落，摔进了雪地里！");
          ow_level /= 5;
      }
      else if (have_flag(f_ptr->flags, FF_CREVASSE)) /* OW */
      {
-         cmsg_print(TERM_RED, "You slip off the icy hillside and fall into the crevasse!");
+         cmsg_print(TERM_RED, "你从结冰的山坡上滑落，掉进了冰隙里！");
      }
-     else msg_print("You slip off the icy slope!");
+     else msg_print("你从冰坡上滑落了！");
      if (have_flag(f_ptr->flags, FF_CREVASSE))
      {
          take_hit(DAMAGE_NOESCAPE, ow_level * 2, "falling into a crevasse");
@@ -4973,7 +4973,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
             }
             else
             {
-                msg_format("%^s is in your way!", m_name);
+                msg_format("%^s挡住了你的去路！", m_name);
 
                 energy_use = 0;
                 oktomove = FALSE;
@@ -5021,14 +5021,14 @@ void move_player(int dir, bool do_pickup, bool break_trap)
             !(r_ptr->flags7 & RF7_AQUATIC) &&
             (have_flag(f_ptr->flags, FF_DEEP) || (r_ptr->flags2 & RF2_AURA_FIRE)))
         {
-            msg_print("You can't swim.");
+            msg_print("你不会游泳。");
             energy_use = 0;
             oktomove = FALSE;
             disturb(0, 0);
         }
         else if (!have_flag(f_ptr->flags, FF_WATER) && (r_ptr->flags7 & RF7_AQUATIC))
         {
-            msg_print("You can't move onto dry land.");
+            msg_print("你不能移动到干旱的陆地上。");
             energy_use = 0;
             oktomove = FALSE;
             disturb(0, 0);
@@ -5036,7 +5036,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
     }
     else if (p_ptr->prace == RACE_MON_RING && !p_ptr->riding)
     {
-        msg_print("You can't move! Try using your Glitter power to lure a ringbearer instead.");
+        msg_print("你不能移动！试着利用你的“闪耀”能力引诱持戒者过来。");
         energy_use = 0;
         oktomove = FALSE;
         disturb(0, 0);
@@ -5045,7 +5045,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
     {
         if (riding_r_ptr->flags1 & RF1_NEVER_MOVE)
         {
-            msg_print("You can't move!");
+            msg_print("你无法移动！");
             energy_use = 0;
             oktomove = FALSE;
             disturb(0, 0);
@@ -5054,7 +5054,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
         {
             char m_name[80];
             monster_desc(m_name, riding_m_ptr, 0);
-            msg_format("%^s is sleeping.", m_name);
+            msg_format("%^s在睡觉。", m_name);
             oktomove = FALSE;
             disturb(0,0);
         }
@@ -5062,7 +5062,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
         {
             char m_name[80];
             monster_desc(m_name, riding_m_ptr, 0);
-            msg_format("%^s is paralyzed.", m_name);
+            msg_format("%^s被麻痹了。", m_name);
             oktomove = FALSE;
             disturb(0,0);
         }
@@ -5074,7 +5074,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
             monster_desc(m_name, riding_m_ptr, 0);
 
             /* Dump a message */
-            msg_format("%^s is too scared to control.", m_name);
+            msg_format("%^s太害怕了，无法控制。", m_name);
             oktomove = FALSE;
             disturb(0, 0);
         }
@@ -5099,21 +5099,21 @@ void move_player(int dir, bool do_pickup, bool break_trap)
             !(riding_r_ptr->flags7 & RF7_AQUATIC) &&
             (have_flag(f_ptr->flags, FF_DEEP) || (riding_r_ptr->flags2 & RF2_AURA_FIRE)))
         {
-            msg_print("Can't swim.");
+            msg_print("无法游泳。");
             energy_use = 0;
             oktomove = FALSE;
             disturb(0, 0);
         }
         else if (!have_flag(f_ptr->flags, FF_WATER) && (riding_r_ptr->flags7 & RF7_AQUATIC))
         {
-            msg_print("Can't land.");
+            msg_print("无法着陆。");
             energy_use = 0;
             oktomove = FALSE;
             disturb(0, 0);
         }
         else if (have_flag(f_ptr->flags, FF_LAVA) && !(riding_r_ptr->flagsr & RFR_EFF_IM_FIRE_MASK))
         {
-            msg_print("Too hot to go through.");
+            msg_print("太热了，无法通过。");
             energy_use = 0;
             oktomove = FALSE;
             disturb(0, 0);
@@ -5123,7 +5123,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
         {
             char m_name[80];
             monster_desc(m_name, riding_m_ptr, 0);
-            msg_format("You cannot control stunned %s!",m_name);
+            msg_format("你无法控制被击晕的%s！",m_name);
             oktomove = FALSE;
             disturb(0, 0);
         }
@@ -5135,7 +5135,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
         {
             if (!_glacier_hack)
             {
-                msg_format("You need to fly to go through the %s.", f_name + f_info[get_feat_mimic(c_ptr)].name);
+                msg_format("你需要飞行才能穿过%s。", f_name + f_info[get_feat_mimic(c_ptr)].name);
                 oktomove = FALSE;
             }
             else if (have_flag(f_ptr->flags, FF_CREVASSE)) p_can_enter = TRUE;
@@ -5189,7 +5189,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
              (have_flag(f_ptr->flags, FF_SLIPPERY)) && (!_glacier_hack) &&
              (!p_ptr->riding || !(riding_r_ptr->flags8 & RF8_WILD_SNOW)))
     {
-        msg_print("You struggle for safe footholds on the icy slope.");
+        msg_print("你在冰坡上挣扎着寻找安全的立足点。");
         energy_use *= 2;
     }
     else if (((have_flag(f_ptr->flags, FF_SNOW)) || (have_flag(f_ptr->flags, FF_SLUSH))) && !p_ptr->pass_wall)
@@ -5240,13 +5240,13 @@ void move_player(int dir, bool do_pickup, bool break_trap)
             /* Boundary floor mimic */
             if (boundary_floor(c_ptr, f_ptr, mimic_f_ptr))
             {
-                msg_print("You feel you cannot go any more.");
+                msg_print("你觉得你不能再往前走了。");
             }
 
             /* Wall (or secret door) */
             else
             {
-                msg_format("You feel %s %s blocking your way.",
+                msg_format("你感觉到%s%s挡住了你的去路。",
                     is_a_vowel(name[0]) ? "an" : "a", name);
 
                 c_ptr->info |= (CAVE_MARK | CAVE_AWARE);
@@ -5260,7 +5260,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
             /* Boundary floor mimic */
             if (boundary_floor(c_ptr, f_ptr, mimic_f_ptr))
             {
-                msg_print("You cannot go any more.");
+                msg_print("你不能再往前走了。");
 
                 if (!(p_ptr->confused || p_ptr->image))
                 {
@@ -5305,7 +5305,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
                 }
 #endif /* ALLOW_EASY_OPEN */
 
-                msg_format("There is %s %s blocking your way.",
+                msg_format("有%s%s挡住了你的去路。",
                     is_a_vowel(name[0]) ? "an" : "a", name);
 
                 /*
@@ -5370,7 +5370,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
 
         if (do_past)
         {
-            msg_format("You push past %s.", m_name);
+            msg_format("你从%s身边挤了过去。", m_name);
         }
 
         /* Change oldpx and oldpy to place the player well when going back to big mode */
@@ -5441,7 +5441,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
                 }
                 if (loytyi)
                 {
-                    msg_print("You hear the ghostly song of a dead swagman as you approach the billabong.");
+                    msg_print("当你靠近死水潭时，你听到了一名死去的流浪汉那幽灵般的歌声。");
                     _tulppa = TRUE;
                 }
             }
@@ -5487,13 +5487,13 @@ void move_player(int dir, bool do_pickup, bool break_trap)
                         sattui = TRUE;
                         if (saving_throw(_save))
                         {
-                            msg_print("You briefly lose your balance on the slippery ice!");
+                            msg_print("你在滑溜的冰面上短暂地失去了平衡！");
                             energy_use += 25;
                             break;
                         }
                         else
                         {
-                            msg_print("You lose your footing and fall on the slippery ice!");
+                            msg_print("你没站稳，在滑溜的冰面上摔倒了！");
                             ow_level = randint0(MAX(5, 25 - ((p_ptr->ac + p_ptr->to_a) / 8))) + 5;
                             take_hit(DAMAGE_NOESCAPE, ow_level, "slipping on ice");
                             if (hex_spelling_any()) stop_hex_spell_all();
@@ -5540,7 +5540,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
             }
             if (!sattui)
             {
-                msg_print("You nimbly maintain your balance on the slippery ice!");
+                msg_print("你在滑溜的冰面上敏捷地保持了平衡！");
             }
             else
             {
@@ -6280,7 +6280,7 @@ void run_step(int dir)
         if (see_wall(dir, py, px))
         {
             /* Message */
-            msg_print("You cannot run in that direction.");
+            msg_print("你不能朝那个方向跑。");
 
             /* Disturb */
             disturb(0, 0);
@@ -6314,7 +6314,7 @@ void run_step(int dir)
                 ongelma = TRUE;
                 if (see_wall(uus_dir, py, px))
                 {
-                    msg_print("You are confused.");
+                    msg_print("你很困惑。");
                     disturb(0, 0);
                     return;
                 }
@@ -6341,7 +6341,7 @@ void run_step(int dir)
 
     if (ongelma)
     {
-        msg_print("You are confused.");
+        msg_print("你很困惑。");
         disturb(0, 0);
         return;
     }
@@ -6376,14 +6376,14 @@ static bool travel_abort(void)
 
     if (stop)
     {
-        msg_print("No route is found,");
+        msg_print("没有找到路线，");
         return (TRUE);
     } 
 
     /* Cannot travel when blind */
     if (p_ptr->blind || no_lite())
     {
-        msg_print("You cannot see!");
+        msg_print("你看不见！");
         return (TRUE);
     }
 
@@ -6415,7 +6415,7 @@ static bool travel_abort(void)
 
             if (old_dtrap && !new_dtrap && !_auto_detect_traps())
             {
-                cmsg_print(TERM_VIOLET, "You are about to leave a trap detected zone.");
+                cmsg_print(TERM_VIOLET, "你即将离开已探测陷阱的区域。");
                 return TRUE;
             }
         }
@@ -6429,7 +6429,7 @@ static bool travel_abort(void)
 			if (m_ptr->ml) {
                 char m_name[80];
                 monster_desc(m_name, m_ptr, 0);
-                msg_format("You see <color:R>%s</color> here.\n", m_name);
+                msg_format("你在这里看到了 <color:R>%s</color>。\n", m_name);
 				return TRUE;
             }
 		}
@@ -6447,7 +6447,7 @@ static bool travel_abort(void)
             if (m_ptr->ml && (c_ptr->info & CAVE_VIEW) && is_hostile(m_ptr)){
                 char m_name[80];
                 monster_desc(m_name, m_ptr, 0);
-                msg_format("You see <color:R>%s</color> here.\n", m_name);
+                msg_format("你在这里看到了 <color:R>%s</color>。\n", m_name);
                 return TRUE; /* Visible monster */
             }
         }
@@ -6479,14 +6479,14 @@ void travel_step(void)
     {
         if (travel.run == 255)
             if (travel.mode == TRAVEL_MODE_AUTOEXPLORE)
-                msg_print("Auto explore aborted.");
+                msg_print("自动探索已中止。");
             else
-                msg_print("No route is found!");
+                msg_print("没有找到路线！");
         else
             if (travel.mode == TRAVEL_MODE_AUTOEXPLORE)
-                msg_print("Auto explore aborted.");
+                msg_print("自动探索已中止。");
             else
-                msg_print("travel is aborted.");
+                msg_print("旅行已中止。");
         disturb(0, 0);
         return;
     }

@@ -144,7 +144,7 @@ static cptr info_multi_damage_dice(int dice, int sides)
  */
 cptr info_power(int power)
 {
-    return format("power %d", power);
+    return format("强度 %d", power);
 }
 
 /*
@@ -163,7 +163,7 @@ cptr info_level(int base, int sides)
  */
 static cptr info_power_dice(int dice, int sides)
 {
-    return format("power %dd%d", dice, sides);
+    return format("强度 %dd%d", dice, sides);
 }
 
 
@@ -250,9 +250,9 @@ bool trump_summoning(int num, bool pet, int y, int x, int lev, int type, u32b mo
     if (!success)
     {
         if (p_ptr->pclass == CLASS_NECROMANCER)
-            msg_print("Nobody answers to your foul summons.");
+            msg_print("没有人回应你邪恶的召唤。");
         else
-            msg_print("Nobody answers to your Trump call.");
+            msg_print("没有人回应你的王牌召唤。");
     }
 
     return success;
@@ -289,7 +289,7 @@ void cast_wonder(int dir)
 
     if (die > 100)
     {
-        msg_print("You feel a surge of power!");
+        msg_print("你感觉到一股力量涌现！");
     }
 
     if (die < 8) clone_monster(dir);
@@ -359,33 +359,33 @@ static void cast_invoke_spirits(int dir)
         while (randint1(400) < -vir) die--;
     }
 
-    msg_print("You call on the power of the dead...");
+    msg_print("你呼唤死者的力量……");
 
     if (die < 26)
         virtue_add(VIRTUE_CHANCE, 1);
 
     if (die > 100)
     {
-        msg_print("You feel a surge of eldritch force!");
+        msg_print("你感觉到一股诡异的力量涌现！");
     }
 
 
     if (die < 8)
     {
-        msg_print("Oh no! Mouldering forms rise from the earth around you!");
+        msg_print("糟糕！腐朽的身躯从你周围的土地中爬出！");
 
         (void)summon_specific(SUMMON_WHO_PLAYER, py, px, dun_level, SUMMON_UNDEAD, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE | PM_NO_PET));
         virtue_add(VIRTUE_UNLIFE, 1);
     }
     else if (die < 14)
     {
-        msg_print("An unnamable evil brushes against your mind...");
+        msg_print("一种不可名状的邪恶掠过你的脑海……");
 
         fear_add_p(FEAR_TERRIFIED);
     }
     else if (die < 26)
     {
-        msg_print("Your head is invaded by a horde of gibbering spectral voices...");
+        msg_print("你的脑海被一群喋喋不休的幽灵般的声音所侵入……");
 
         set_confused(p_ptr->confused + randint1(4) + 4, FALSE);
     }
@@ -480,7 +480,7 @@ static void cast_invoke_spirits(int dir)
 
     if (die < 31)
     {
-        msg_print("Sepulchral voices chuckle. 'Soon you will join us, mortal.'");
+        msg_print("阴森的声音轻笑道：“凡人，你很快就会加入我们了。”");
     }
 }
 
@@ -497,7 +497,7 @@ void do_sneeze(void)
     for (i = 0; i < kiep_ct; i++)
     {
         disturb(0, 0);
-        msg_print("AAAAHHHHH-CHEEOO!");
+        msg_print("阿——嚏！");
         msg_print(NULL);
 
         project(0, 0, y, x, p_ptr->lev / 2, GF_COLD,
@@ -631,151 +631,151 @@ void cast_shuffle(void)
         while (randint1(400) < -vir) die--;
     }
 
-    msg_print("You shuffle the deck and draw a card...");
+    msg_print("你洗了洗牌并抽出一张牌……");
 
     if (die < 30)
         virtue_add(VIRTUE_CHANCE, 1);
 
     if (die < 7)
     {
-        msg_print("Oh no! It's Death!");
+        msg_print("糟糕！是“死神”！");
 
         for (i = 0; i < randint1(3); i++)
             activate_hi_summon(py, px, FALSE);
     }
     else if (die < 14)
     {
-        msg_print("Oh no! It's the Devil!");
+        msg_print("糟糕！是“恶魔”！");
 
         summon_specific(SUMMON_WHO_PLAYER, py, px, dun_level, SUMMON_DEMON, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE | PM_NO_PET));
     }
     else if (die < 18)
     {
         int count = 0;
-        msg_print("Oh no! It's the Hanged Man.");
+        msg_print("糟糕！是“倒吊人”。");
 
         activate_ty_curse(FALSE, &count);
     }
     else if (die < 22)
     {
-        msg_print("It's the swords of discord.");
+        msg_print("是“纷争之剑”。");
 
         aggravate_monsters(0);
     }
     else if (die < 26)
     {
-        msg_print("It's the Fool.");
+        msg_print("是“愚者”。");
 
         do_dec_stat(A_INT);
         do_dec_stat(A_WIS);
     }
     else if (die < 30)
     {
-        msg_print("It's the picture of a strange monster.");
+        msg_print("这是一张奇怪怪物的图画。");
 
         trump_summoning(1, FALSE, py, px, (dun_level * 3 / 2), (SUMMON_BIZARRE1 + randint0(6)), PM_ALLOW_GROUP | PM_ALLOW_UNIQUE);
     }
     else if (die < 33)
     {
-        msg_print("It's the Moon.");
+        msg_print("是“月亮”。");
 
         unlite_area(10, 3);
     }
     else if (die < 38)
     {
-        msg_print("It's the Wheel of Fortune.");
+        msg_print("是“命运之轮”。");
 
         wild_magic(randint0(32));
     }
     else if (die < 40)
     {
-        msg_print("It's a teleport trump card.");
+        msg_print("这是一张传送王牌。");
 
         teleport_player(10, TELEPORT_PASSIVE);
     }
     else if (die < 42)
     {
-        msg_print("It's Justice.");
+        msg_print("是“正义”。");
 
         set_blessed(p_ptr->lev, FALSE);
     }
     else if (die < 47)
     {
-        msg_print("It's a teleport trump card.");
+        msg_print("这是一张传送王牌。");
 
         teleport_player(100, TELEPORT_PASSIVE);
     }
     else if (die < 52)
     {
-        msg_print("It's a teleport trump card.");
+        msg_print("这是一张传送王牌。");
 
         teleport_player(200, TELEPORT_PASSIVE);
     }
     else if (die < 60)
     {
-        msg_print("It's the Tower.");
+        msg_print("是“高塔”。");
 
         wall_breaker();
     }
     else if (die < 72)
     {
-        msg_print("It's Temperance.");
+        msg_print("是“节制”。");
 
         sleep_monsters_touch();
     }
     else if (die < 80)
     {
-        msg_print("It's the Tower.");
+        msg_print("是“高塔”。");
 
         earthquake(py, px, 5);
     }
     else if (die < 82)
     {
-        msg_print("It's the picture of a friendly monster.");
+        msg_print("这是一张友善怪物的图画。");
 
         trump_summoning(1, TRUE, py, px, (dun_level * 3 / 2), SUMMON_BIZARRE1, 0L);
     }
     else if (die < 84)
     {
-        msg_print("It's the picture of a friendly monster.");
+        msg_print("这是一张友善怪物的图画。");
 
         trump_summoning(1, TRUE, py, px, (dun_level * 3 / 2), SUMMON_BIZARRE2, 0L);
     }
     else if (die < 86)
     {
-        msg_print("It's the picture of a friendly monster.");
+        msg_print("这是一张友善怪物的图画。");
 
         trump_summoning(1, TRUE, py, px, (dun_level * 3 / 2), SUMMON_BIZARRE4, 0L);
     }
     else if (die < 88)
     {
-        msg_print("It's the picture of a friendly monster.");
+        msg_print("这是一张友善怪物的图画。");
 
         trump_summoning(1, TRUE, py, px, (dun_level * 3 / 2), SUMMON_BIZARRE5, 0L);
     }
     else if (die < 96)
     {
-        msg_print("It's the Lovers.");
+        msg_print("是“恋人”。");
 
         if (get_fire_dir(&dir))
             charm_monster(dir, MIN(p_ptr->lev, 20));
     }
     else if (die < 101)
     {
-        msg_print("It's the Hermit.");
+        msg_print("是“隐者”。");
 
         wall_stone();
     }
     else if (die < 111)
     {
-        msg_print("It's the Judgement.");
+        msg_print("是“审判”。");
 
         do_cmd_rerate(FALSE);
         mut_lose_all();
     }
     else if (die < 120)
     {
-        msg_print("It's the Sun.");
+        msg_print("是“太阳”。");
 
         virtue_add(VIRTUE_KNOWLEDGE, 1);
         virtue_add(VIRTUE_ENLIGHTENMENT, 1);
@@ -783,13 +783,13 @@ void cast_shuffle(void)
     }
     else
     {
-        msg_print("It's the World.");
+        msg_print("是“世界”。");
 
         if (p_ptr->exp < PY_MAX_EXP)
         {
             s32b ee = (p_ptr->exp / 25) + 1;
             if (ee > 5000) ee = 5000;
-            msg_print("You feel more experienced.");
+            msg_print("你感觉自己更有经验了。");
 
             gain_exp(ee);
         }
@@ -951,8 +951,8 @@ bool cast_summon_greater_demon(void)
     int plev = p_ptr->lev;
     int summon_lev;
 
-    prompt.prompt = "Sacrifice which corpse?";
-    prompt.error = "You have nothing to sacrifice.";
+    prompt.prompt = "献祭哪具尸体？";
+    prompt.error = "你没有什么可献祭的。";
     prompt.filter = item_tester_offer;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -964,15 +964,15 @@ bool cast_summon_greater_demon(void)
 
     if (summon_specific(SUMMON_WHO_PLAYER, py, px, summon_lev, SUMMON_HI_DEMON, (PM_ALLOW_GROUP | PM_FORCE_PET)))
     {
-        msg_print("The area fills with a stench of sulphur and brimstone.");
-        msg_print("'What is thy bidding... Master?'");
+        msg_print("这片区域弥漫着硫磺和烈火的恶臭。");
+        msg_print("'您有何吩咐……主人？'");
 
         prompt.obj->number--;
         obj_release(prompt.obj, 0);
     }
     else
     {
-        msg_print("No Greater Demons arrive.");
+        msg_print("没有高阶恶魔降临。");
     }
 
     return TRUE;
@@ -993,7 +993,7 @@ static cptr do_life_spell(int spell, int mode)
     switch (spell)
     {
     case 0:
-        if (name) return "Cure Light Wounds";
+        if (name) return "治疗轻伤";
         if (desc) return "Heals cut and HP a little.";
 
         {
@@ -1011,7 +1011,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 1:
-        if (name) return "Bless";
+        if (name) return "祝福";
         if (desc) return "Gives bonus to hit and AC for a few turns.";
 
         {
@@ -1027,7 +1027,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 2:
-        if (name) return "Regeneration";
+        if (name) return "再生";
         if (desc) return "Gives regeneration ability for a while.";
 
         {
@@ -1043,7 +1043,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 3:
-        if (name) return "Call Light";
+        if (name) return "召唤光芒";
         if (desc) return "Lights up nearby area and the inside of a room permanently.";
 
         {
@@ -1079,7 +1079,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 5:
-        if (name) return "Cure Medium Wounds";
+        if (name) return "治疗中伤";
         if (desc) return "Heals cut and HP more.";
 
         {
@@ -1096,19 +1096,19 @@ static cptr do_life_spell(int spell, int mode)
         }
         break;
     case 6:
-        if (name) return "Cure Poison";
+        if (name) return "解毒";
         if (desc) return "Relieves poisoning a bit. Completely cures low-level poisoning.";
         if (cast)
             set_poisoned(p_ptr->poisoned - MAX(125, p_ptr->poisoned / 3), TRUE);
         break;
     case 7:
-        if (name) return "Satisfy Hunger";
+        if (name) return "充饥";
         if (desc) return "Satisfies hunger.";
         if (cast)
             set_food(PY_FOOD_MAX - 1);
         break;
     case 8:
-        if (name) return "Remove Curse";
+        if (name) return "移除诅咒";
         if (desc) return "Removes normal curses from equipped items.";
 
         {
@@ -1116,14 +1116,14 @@ static cptr do_life_spell(int spell, int mode)
             {
                 if (remove_curse())
                 {
-                    msg_print("You feel as if someone is watching over you.");
+                    msg_print("你感觉好像有人在守护着你。");
                 }
             }
         }
         break;
 
     case 9:
-        if (name) return "Fasting";
+        if (name) return "禁食";
         if (desc) return "Begin a religious fast. In time, your god may restore you!";
         if (spoil) return "Player begins a fast. Once hungry there is a small chance that the player will have a random stat restored, or will have their life restored.";
 
@@ -1131,10 +1131,10 @@ static cptr do_life_spell(int spell, int mode)
         {
             if (p_ptr->fasting)
             {
-                msg_print("You are already fasting. Perhaps you should pray as well?");
+                msg_print("你已经在禁食了。也许你也该祈祷一下？");
                 return NULL;
             }
-            msg_print("You begin to fast.");
+            msg_print("你开始了禁食。");
             set_food(p_ptr->food/2);
             p_ptr->redraw |= PR_STATUS;
             p_ptr->fasting = TRUE;
@@ -1142,7 +1142,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 10:
-        if (name) return "Cure Critical Wounds";
+        if (name) return "治疗重伤";
         if (desc) return "Heals cut, stun and HP greatly.";
 
         {
@@ -1161,7 +1161,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 11:
-        if (name) return "Resist Heat and Cold";
+        if (name) return "抵抗冷热";
         if (desc) return "Gives temporary resistance to fire and cold.";
 
         {
@@ -1195,7 +1195,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 13:
-        if (name) return "Turn Undead";
+        if (name) return "亡灵退散";
         if (desc) return "Attempts to scare undead monsters in sight.";
 
         {
@@ -1207,7 +1207,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 14:
-        if (name) return "Healing";
+        if (name) return "治疗";
         if (desc) return "Much powerful healing magic, and heals cut and stun completely.";
 
         {
@@ -1225,7 +1225,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 15:
-        if (name) return "Glyph of Warding";
+        if (name) return "守护结界";
         if (desc) return "Sets a glyph on the floor beneath you. Monsters cannot attack you if you are on a glyph, but can try to break the glyph.";
 
         {
@@ -1237,7 +1237,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 16:
-        if (name) return "Dispel Curse";
+        if (name) return "驱除诅咒";
         if (desc) return "Removes normal and heavy curse from equipped items.";
 
         {
@@ -1245,14 +1245,14 @@ static cptr do_life_spell(int spell, int mode)
             {
                 if (remove_all_curse())
                 {
-                    msg_print("You feel as if someone is watching over you.");
+                    msg_print("你感觉好像有人在守护着你。");
                 }
             }
         }
         break;
 
     case 17:
-        if (name) return "Perception";
+        if (name) return "察觉";
         if (desc) return "Identifies an item.";
 
         {
@@ -1265,7 +1265,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 18:
-        if (name) return "Dispel Undead";
+        if (name) return "驱散不死生物";
         if (desc) return "Damages all undead monsters in sight.";
 
         {
@@ -1279,7 +1279,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 19:
-        if (name) return "Sustaining";
+        if (name) return "维持属性";
         if (desc) return "Grants temporary stat sustains, depending on your level.";
         if (spoil) return "Player gains up to L/7 stat sustains for L turns.";
 
@@ -1333,7 +1333,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 20:
-        if (name) return "Cure Mutation";
+        if (name) return "治愈变异";
         if (desc) return "Remove a random mutation.";
         if (spoil) return "Remove a random mutation. There is a 1 in 100/L chance of removing a bad mutation only.";
 
@@ -1347,7 +1347,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 21:
-        if (name) return "Word of Recall";
+        if (name) return "召回之语";
         if (desc) return "Recalls player from dungeon to town, or from town to the deepest level of dungeon.";
 
         {
@@ -1364,8 +1364,8 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 22:
-        if (name) return "Transcendence";
-        if (desc) return "For a short while, any damage you receive will be absorbed by your spell points.";
+        if (name) return "超越";
+        if (desc) return "在短时间内，你受到的任何伤害都将由你的法力值吸收。";
 
         {
             int dur = spell_power(plev/10);
@@ -1378,7 +1378,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 23:
-        if (name) return "Warding True";
+        if (name) return "真实结界";
         if (desc) return "Creates glyphs in all adjacent squares and under you.";
 
         {
@@ -1395,7 +1395,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 24:
-        if (name) return "Sterilization";
+        if (name) return "绝育";
         if (desc) return "Prevents any breeders on current level from breeding.";
 
         {
@@ -1407,7 +1407,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 25:
-        if (name) return "Detection";
+        if (name) return "探测";
         if (desc) return "Detects all monsters, traps, doors, stairs, treasures and items in your vicinity.";
 
         {
@@ -1423,7 +1423,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 26:
-        if (name) return "Annihilate Undead";
+        if (name) return "湮灭不死生物";
         if (desc) return "Eliminates all nearby undead monsters, exhausting you. Powerful or unique monsters may be able to resist.";
 
         {
@@ -1439,7 +1439,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 27:
-        if (name) return "Clairvoyance";
+        if (name) return "透视";
         if (desc) return "Maps and lights whole dungeon level. Knows all objects location. And gives telepathy for a while.";
 
         {
@@ -1451,7 +1451,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 28:
-        if (name) return "Restoration";
+        if (name) return "完全恢复";
         if (desc) return "Restores all stats, life and experience.";
 
         {
@@ -1470,7 +1470,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 29:
-        if (name) return "Healing True";
+        if (name) return "真实治疗";
         if (desc) return "The greatest healing magic. Heals all HP, cut and stun.";
         if (spoil) return "Removes cuts and stuns, and heals the player 2000hp.";
 
@@ -1489,7 +1489,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 30:
-        if (name) return "Holy Vision";
+        if (name) return "神圣视界";
         if (desc) return "Fully identifies an item.";
 
         {
@@ -1501,7 +1501,7 @@ static cptr do_life_spell(int spell, int mode)
         break;
 
     case 31:
-        if (name) return "Ultimate Resistance";
+        if (name) return "终极抵抗";
         if (desc) return "Gives ultimate resistance, bonus to AC and speed.";
         if (spoil) return "Player gains all resistances, auras, sustains, FA, SI, slow digestion, regeneration, levitation and reflection as well as double base resistance, haste, and +100AC for X+dX rounds where X=L/2.";
 
@@ -1538,7 +1538,7 @@ static cptr do_sorcery_spell(int spell, int mode)
     switch (spell)
     {
     case 0:
-        if (name) return "Detect Monsters";
+        if (name) return "探测怪物";
         if (desc) return "Detects all monsters in your vicinity unless invisible.";
 
         {
@@ -1554,7 +1554,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 1:
-        if (name) return "Phase Door";
+        if (name) return "相位门";
         if (desc) return "Teleport short distance.";
 
         {
@@ -1572,7 +1572,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 2:
-        if (name) return "Detect Doors and Traps";
+        if (name) return "探测门与陷阱";
         if (desc) return "Detects traps, doors, and stairs in your vicinity.";
 
         {
@@ -1590,7 +1590,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 3:
-        if (name) return "Light Area";
+        if (name) return "区域照明";
         if (desc) return "Lights up nearby area and the inside of a room permanently.";
 
         {
@@ -1608,7 +1608,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 4:
-        if (name) return "Confuse Monster";
+        if (name) return "困惑单一怪物";
         if (desc) return "Attempts to confuse a monster.";
 
         {
@@ -1626,7 +1626,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 5:
-        if (name) return "Teleport";
+        if (name) return "传送";
         if (desc) return "Teleport long distance.";
 
         {
@@ -1644,7 +1644,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 6:
-        if (name) return "Sleep Monster";
+        if (name) return "催眠单一怪物";
         if (desc) return "Attempts to sleep a monster.";
 
         {
@@ -1662,13 +1662,13 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 7:
-        if (name) return "Recharging";
+        if (name) return "充能";
         if (desc)
         {
             if (p_ptr->pclass == CLASS_BLOOD_MAGE)
-                return "It attempts to recharge a device using your blood for power.";
+                return "它尝试消耗你的血液为一件装置充能。";
             else
-                return "It attempts to recharge a device using your mana for power.";
+                return "它尝试消耗你的法力为一件装置充能。";
         }
 
         {
@@ -1684,7 +1684,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 8:
-        if (name) return "Magic Mapping";
+        if (name) return "魔法探知";
         if (desc) return "Maps nearby area.";
 
         {
@@ -1700,8 +1700,8 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 9:
-        if (name) return plev < 30 ? "Identify" : "Mass Identify";
-        if (desc) return plev < 30 ? "Identifies an item." : "Identifies all items in your pack";
+        if (name) return plev < 30 ? "鉴定" : "批量鉴定";
+        if (desc) return plev < 30 ? "Identifies an item." : "鉴定背包中的所有物品";
 
         {
             if (cast)
@@ -1718,7 +1718,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 10:
-        if (name) return "Slow Monster";
+        if (name) return "减速单一怪物";
         if (desc) return "Attempts to slow a monster.";
 
         {
@@ -1738,12 +1738,12 @@ static cptr do_sorcery_spell(int spell, int mode)
     case 11:
         if (plev < 35)
         {
-            if (name) return "Mass Sleep";
+            if (name) return "群体催眠";
             if (desc) return "Attempts to sleep all monsters in sight.";
         }
         else
         {
-            if (name) return "Mass Stasis";
+            if (name) return "群体静滞";
             if (desc) return "Attempts to suspend all monsters in sight.";
         }
 
@@ -1763,7 +1763,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 12:
-        if (name) return "Teleport Away";
+        if (name) return "传送离开";
         if (desc) return "Teleports all monsters on the line away unless resisted.";
 
         {
@@ -1781,7 +1781,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 13:
-        if (name) return "Haste Self";
+        if (name) return "自我加速";
         if (desc) return "Hastes you for a while.";
 
         {
@@ -1798,7 +1798,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 14:
-        if (name) return "Detection True";
+        if (name) return "真实探测";
         if (desc) return "Detects all monsters, traps, doors, stairs, treasures and items in your vicinity.";
 
         {
@@ -1814,7 +1814,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 15:
-        if (name) return "Identify True";
+        if (name) return "真实鉴定";
         if (desc) return "*Identifies* an item.";
 
         {
@@ -1826,7 +1826,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 16:
-        if (name) return "Inventory Protection";
+        if (name) return "物品栏保护";
         if (desc) return "For a short while, items in your pack have a chance to resist destruction.";
 
         {
@@ -1840,7 +1840,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 17:
-        if (name) return "Stair Creation";
+        if (name) return "制造阶梯";
         if (desc) return "Creates a stair which goes down or up.";
 
         if (cast)
@@ -1848,7 +1848,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 18:
-        if (name) return "Sense Minds";
+        if (name) return "感知心灵";
         if (desc) return "Gives telepathy for a while.";
 
         {
@@ -1865,7 +1865,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 19:
-        if (name) return "Teleport to Town";
+        if (name) return "传送到城镇";
         if (desc) return "Teleport to a town which you choose in a moment. Can only be used outdoors.";
 
         {
@@ -1877,7 +1877,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 20:
-        if (name) return "Self Knowledge";
+        if (name) return "自我知识";
         if (desc) return "Gives you useful info regarding your current resistances, the powers of your weapon and maximum limits of your stats.";
 
         {
@@ -1889,7 +1889,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 21:
-        if (name) return "Teleport Level";
+        if (name) return "传送楼层";
         if (desc) return "Teleport to up or down stairs in a moment.";
 
         {
@@ -1901,7 +1901,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 22:
-        if (name) return "Word of Recall";
+        if (name) return "召回之语";
         if (desc) return "Recalls player from dungeon to town, or from town to the deepest level of dungeon.";
 
         {
@@ -1918,7 +1918,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 23:
-        if (name) return "Dimension Door";
+        if (name) return "任意门";
         if (desc) return "Teleport to given location.";
 
         {
@@ -1928,7 +1928,7 @@ static cptr do_sorcery_spell(int spell, int mode)
 
             if (cast)
             {
-                msg_print("You open a dimensional gate. Choose a destination.");
+                msg_print("你打开了一道次元门。选择一个目的地。");
 
                 if (!dimension_door(range)) return NULL;
             }
@@ -1936,7 +1936,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 24:
-        if (name) return "Probing";
+        if (name) return "探知";
         if (desc) return "Proves all monsters' alignment, HP, speed and their true character.";
 
         {
@@ -1948,7 +1948,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 25:
-        if (name) return "Door Creation";
+        if (name) return "制造门";
         if (desc) return "Creates doors on all surrounding squares.";
 
         if (cast)
@@ -1960,7 +1960,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 26:
-        if (name) return "Telekinesis";
+        if (name) return "隔空取物";
         if (desc) return "Pulls a distant item close to you.";
 
         {
@@ -1978,7 +1978,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 27:
-        if (name) return "Clairvoyance";
+        if (name) return "透视";
         if (desc) return "Maps and lights whole dungeon level. Knows all objects location. And gives telepathy for a while.";
 
         {
@@ -2003,7 +2003,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 28:
-        if (name) return "Device Mastery";
+        if (name) return "装置精通";
         if (desc) return "For a very short time, your magical devices are more powerful.";
 
         {
@@ -2017,7 +2017,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 29:
-        if (name) return "Alchemy";
+        if (name) return "炼金术";
         if (desc) return (no_selling) ? "Turns an item into 1/9 of its value in gold." : "Turns an item into 1/3 of its value in gold.";
 
         {
@@ -2029,7 +2029,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 30:
-        if (name) return "Banishment";
+        if (name) return "放逐";
         if (desc) return "Teleports all monsters in sight away unless resisted.";
 
         {
@@ -2045,7 +2045,7 @@ static cptr do_sorcery_spell(int spell, int mode)
         break;
 
     case 31:
-        if (name) return "Globe of Invulnerability";
+        if (name) return "无敌结界";
         if (desc) return "Generates barrier which completely protect you from almost all damages. Takes a few your turns when the barrier breaks or duration time is exceeded.";
 
         {
@@ -2078,7 +2078,7 @@ static cptr do_nature_spell(int spell, int mode)
     switch (spell)
     {
     case 0:
-        if (name) return "Detect Creatures";
+        if (name) return "探测生物";
         if (desc) return "Detects all monsters in your vicinity unless invisible.";
 
         {
@@ -2094,7 +2094,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 1:
-        if (name) return "Lightning";
+        if (name) return "闪电";
         if (desc) return "Fires a short beam of lightning.";
 
         {
@@ -2116,7 +2116,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 2:
-        if (name) return "Detect Doors and Traps";
+        if (name) return "探测门与陷阱";
         if (desc) return "Detects traps, doors, and stairs in your vicinity.";
 
         {
@@ -2134,7 +2134,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 3:
-        if (name) return "Produce Food";
+        if (name) return "制造食物";
         if (desc) return "Produces a Ration of Food.";
 
         {
@@ -2142,7 +2142,7 @@ static cptr do_nature_spell(int spell, int mode)
             {
                 object_type forge, *q_ptr = &forge;
 
-                msg_print("A food ration is produced.");
+                msg_print("一份口粮被制造出来了。");
 
                 /* Create the food ration */
                 object_prep(q_ptr, lookup_kind(TV_FOOD, SV_FOOD_RATION));
@@ -2155,7 +2155,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 4:
-        if (name) return "Daylight";
+        if (name) return "昼光";
         if (desc) return "Lights up nearby area and the inside of a room permanently.";
 
         {
@@ -2172,7 +2172,7 @@ static cptr do_nature_spell(int spell, int mode)
                 if ( (prace_is_(RACE_VAMPIRE) || prace_is_(RACE_MON_VAMPIRE) || p_ptr->mimic_form == MIMIC_VAMPIRE)
                   && !res_save_default(RES_LITE) )
                 {
-                    msg_print("The daylight scorches your flesh!");
+                    msg_print("昼光灼伤了你的肉体！");
                     take_hit(DAMAGE_NOESCAPE, damroll(2, 2), "daylight");
                 }
             }
@@ -2180,7 +2180,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 5:
-        if (name) return "Wind Walker";
+        if (name) return "御风而行";
         if (desc) return "Grants temporary levitation.";
 
         {
@@ -2194,7 +2194,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 6:
-        if (name) return "Resist Environment";
+        if (name) return "抵抗环境";
         if (desc) return "Gives resistance to fire, cold and electricity for a while.";
 
         {
@@ -2233,7 +2233,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 8:
-        if (name) return "Stone to Mud";
+        if (name) return "化石为泥";
         if (desc) return "Turns one rock square to mud.";
 
         {
@@ -2253,7 +2253,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 9:
-        if (name) return "Frost Bolt";
+        if (name) return "冰霜之矢";
         if (desc) return "Fires a bolt or beam of cold.";
 
         {
@@ -2276,7 +2276,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 10:
-        if (name) return "Nature Awareness";
+        if (name) return "自然感知";
         if (desc) return "Maps nearby area. Detects all monsters, traps, doors and stairs.";
 
         {
@@ -2297,7 +2297,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 11:
-        if (name) return "Fire Bolt";
+        if (name) return "火之矢";
         if (desc) return "Fires a bolt or beam of fire.";
 
         {
@@ -2320,7 +2320,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 12:
-        if (name) return "Ray of Sunlight";
+        if (name) return "阳光射线";
         if (desc) return "Fires a beam of light which damages to light-sensitive monsters.";
 
         {
@@ -2332,7 +2332,7 @@ static cptr do_nature_spell(int spell, int mode)
             if (cast)
             {
                 if (!get_fire_dir(&dir)) return NULL;
-                msg_print("A line of sunlight appears.");
+                msg_print("一道阳光射线出现了。");
 
                 project_hook(
                     GF_LITE_WEAK,
@@ -2345,7 +2345,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 13:
-        if (name) return "Entangle";
+        if (name) return "纠缠";
         if (desc) return "Attempts to slow all monsters in sight.";
 
         {
@@ -2361,7 +2361,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 14:
-        if (name) return "Nature's Gate";
+        if (name) return "自然之门";
         if (desc) return "Summons one or more animals. At higher levels, might summon hounds, reptiles or even an Ent!";
 
         if (cast)
@@ -2390,12 +2390,12 @@ static cptr do_nature_spell(int spell, int mode)
                     success = trump_summoning(1, TRUE, py, px, 0, SUMMON_ENT, PM_ALLOW_GROUP);
             }
             if (!success)
-                msg_print("No help arrives.");
+                msg_print("没有援军到来。");
         }
         break;
 
     case 15:
-        if (name) return "Herbal Healing";
+        if (name) return "草药治疗";
         if (desc) return "Heals HP greatly. And heals cut, stun and perhaps poison.";
 
         {
@@ -2414,7 +2414,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 16:
-        if (name) return "Stair Building";
+        if (name) return "建造阶梯";
         if (desc) return "Creates a stair which goes down or up.";
 
         {
@@ -2426,7 +2426,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 17:
-        if (name) return "Stone Skin";
+        if (name) return "石肤术";
         if (desc) return "Gives bonus to AC for a while.";
 
         {
@@ -2443,7 +2443,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 18:
-        if (name) return "Resistance True";
+        if (name) return "真实抵抗";
         if (desc) return "Gives resistance to fire, cold, electricity, acid and poison for a while.";
 
         {
@@ -2459,7 +2459,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 19:
-        if (name) return "Forest Creation";
+        if (name) return "制造森林";
         if (desc) return "Creates trees in all adjacent squares.";
 
         {
@@ -2471,7 +2471,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 20:
-        if (name) return "Stone Tell";
+        if (name) return "与石交谈";
         if (desc) return "*Identifies* an item.";
 
         {
@@ -2483,7 +2483,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 21:
-        if (name) return "Wall of Stone";
+        if (name) return "石墙术";
         if (desc) return "Creates granite walls in all adjacent squares.";
 
         {
@@ -2495,7 +2495,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 22:
-        if (name) return "Protect from Corrosion";
+        if (name) return "防腐保护";
         if (desc) return "Makes an equipment acid-proof.";
 
         {
@@ -2507,7 +2507,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 23:
-        if (name) return "Call Sunlight";
+        if (name) return "召唤阳光";
         if (desc) return "Generates ball of light centered on you. Maps and lights whole dungeon level. Knows all objects location.";
 
         {
@@ -2526,7 +2526,7 @@ static cptr do_nature_spell(int spell, int mode)
                 if ( (prace_is_(RACE_VAMPIRE) || prace_is_(RACE_MON_VAMPIRE) || p_ptr->mimic_form == MIMIC_VAMPIRE)
                   && !res_save_default(RES_LITE) )
                 {
-                    msg_print("The sunlight scorches your flesh!");
+                    msg_print("阳光灼伤了你的肉体！");
                     take_hit(DAMAGE_NOESCAPE, 50, "sunlight");
                 }
             }
@@ -2534,7 +2534,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 24:
-        if (name) return "Earthquake";
+        if (name) return "地震";
         if (desc) return "Shakes dungeon structure, and results in random swapping of floors and walls.";
 
         {
@@ -2550,7 +2550,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 25:
-        if (name) return "Fire Storm";
+        if (name) return "火焰风暴";
         if (desc) return "Fires a huge ball of fire.";
 
         {
@@ -2568,7 +2568,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 26:
-        if (name) return "Blizzard";
+        if (name) return "暴风雪";
         if (desc) return "Fires a huge ball of cold.";
 
         {
@@ -2587,7 +2587,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 27:
-        if (name) return "Lightning Storm";
+        if (name) return "闪电风暴";
         if (desc) return "Fires a huge electric ball.";
 
         {
@@ -2606,7 +2606,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 28:
-        if (name) return "Whirlpool";
+        if (name) return "漩涡";
         if (desc) return "Fires a huge ball of water.";
 
         {
@@ -2624,7 +2624,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 29:
-        if (name) return "Ice Bolt";
+        if (name) return "寒冰之矢";
         if (desc) return "Fires a bolt of ice.";
 
         {
@@ -2646,7 +2646,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 30:
-        if (name) return "Gravity Storm";
+        if (name) return "重力风暴";
         if (desc) return "Fires a huge ball of gravity.";
 
         {
@@ -2664,7 +2664,7 @@ static cptr do_nature_spell(int spell, int mode)
         break;
 
     case 31:
-        if (name) return "Nature's Wrath";
+        if (name) return "自然之怒";
         if (desc) return "You unleash Nature's full fury, the exact consequences of which can't be predicted.";
 
         if (cast)
@@ -2673,7 +2673,7 @@ static cptr do_nature_spell(int spell, int mode)
             switch (randint1(6))
             {
             case 1: /* The original effect: Line of Sight damage, earthquake, disintegration ball */
-                msg_print("Nature's Fury is unleashed!");
+                msg_print("自然的狂怒被释放了！");
                 dispel_monsters(spell_power(4 * plev + p_ptr->to_d_spell));
                 earthquake(py, px, spell_power(20 + plev / 2));
                 project(
@@ -2688,7 +2688,7 @@ static cptr do_nature_spell(int spell, int mode)
                 break;
 
             case 2: /* Deadly bolt of lightning */
-                msg_print("Your hands crackle with electricity!");
+                msg_print("你的双手闪烁着电火花！");
                 if (!get_fire_dir(&dir)) return NULL;
                 fire_bolt(
                     GF_ELEC,
@@ -2698,17 +2698,17 @@ static cptr do_nature_spell(int spell, int mode)
                 break;
 
             case 3: /* Immense thunderclap */
-                msg_print("There is a large thunderclap!");
+                msg_print("响起了一声巨大的雷鸣！");
                 project_hack(GF_SOUND, spell_power(plev * 5 + p_ptr->to_d_spell));
                 break;
 
             case 4: /* Gravitational Wave */
-                msg_print("Space warps around you!");
+                msg_print("你周围的空间扭曲了！");
                 project_hack(GF_GRAVITY, spell_power(plev * 4 + p_ptr->to_d_spell));
                 break;
 
             case 5: /* Elemental Storm */
-                msg_print("You unleash the elements!");
+                msg_print("你释放了元素！");
                 project(
                     0,
                     spell_power(1 + plev / 12),
@@ -2739,7 +2739,7 @@ static cptr do_nature_spell(int spell, int mode)
                 break;
 
             case 6: /* Rock Storm */
-                msg_print("You fire a storm of boulders!");
+                msg_print("你发射出了一阵巨石风暴！");
                 if (!get_fire_dir(&dir)) return NULL;
                 for (i = 0; i < 3; i++)
                     fire_ball(GF_SHARDS, dir, spell_power(70 + plev + p_ptr->to_d_spell), 1);
@@ -2769,7 +2769,7 @@ static cptr do_chaos_spell(int spell, int mode)
     switch (spell)
     {
     case 0:
-        if (name) return "Magic Missile";
+        if (name) return "魔法飞弹";
         if (desc) return "Fires a weak bolt of magic.";
 
         {
@@ -2809,7 +2809,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 2:
-        if (name) return "Flash of Light";
+        if (name) return "闪光";
         if (desc) return "Lights up nearby area and the inside of a room permanently.";
 
         {
@@ -2827,7 +2827,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 3:
-        if (name) return "Touch of Confusion";
+        if (name) return "困惑之触";
         if (desc) return "Attempts to confuse the next monster that you hit.";
 
         {
@@ -2835,7 +2835,7 @@ static cptr do_chaos_spell(int spell, int mode)
             {
                 if (!(p_ptr->special_attack & ATTACK_CONFUSE))
                 {
-                    msg_print("Your hands start glowing.");
+                    msg_print("你的双手开始发光。");
 
                     p_ptr->special_attack |= ATTACK_CONFUSE;
                     p_ptr->redraw |= (PR_STATUS);
@@ -2845,7 +2845,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 4:
-        if (name) return "Mana Burst";
+        if (name) return "法力爆发";
         if (desc) return "Fires a ball of magic.";
 
         {
@@ -2882,7 +2882,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 5:
-        if (name) return "Fire Bolt";
+        if (name) return "火之矢";
         if (desc) return "Fires a bolt or beam of fire.";
 
         {
@@ -2906,7 +2906,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 6:
-        if (name) return "Fist of Force";
+        if (name) return "力场之拳";
         if (desc) return "Fires a tiny ball of disintegration.";
 
         {
@@ -2930,7 +2930,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 7:
-        if (name) return "Teleport Self";
+        if (name) return "传送自身";
         if (desc) return "Teleport long distance.";
 
         {
@@ -2946,7 +2946,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 8:
-        if (name) return "Wonder";
+        if (name) return "奇迹";
         if (desc) return "Fires something with random effects.";
 
         {
@@ -2963,7 +2963,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 9:
-        if (name) return "Chaos Bolt";
+        if (name) return "混沌之矢";
         if (desc) return "Fires a bolt or beam of chaos.";
 
         {
@@ -2987,7 +2987,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 10:
-        if (name) return "Sonic Boom";
+        if (name) return "音爆";
         if (desc) return "Generates a ball of sound centered on you.";
 
         {   /* Note: Damage is high relative to say fireball, but this is
@@ -3001,14 +3001,14 @@ static cptr do_chaos_spell(int spell, int mode)
 
             if (cast)
             {
-                msg_print("BOOM! Shake the room!");
+                msg_print("轰！震动了整个房间！");
                 project(0, rad, py, px, dam*2, GF_SOUND, PROJECT_KILL | PROJECT_ITEM);
             }
         }
         break;
 
     case 11:
-        if (name) return "Doom Bolt";
+        if (name) return "毁灭之矢";
         if (desc) return "Fires a beam of pure mana.";
 
         {
@@ -3031,7 +3031,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 12:
-        if (name) return "Fire Ball";
+        if (name) return "火球";
         if (desc) return "Fires a ball of fire.";
 
         {
@@ -3050,7 +3050,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 13:
-        if (name) return "Teleport Other";
+        if (name) return "传送他人";
         if (desc) return "Teleports all monsters on the line away unless resisted.";
 
         {
@@ -3068,7 +3068,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 14:
-        if (name) return "Word of Destruction";
+        if (name) return "毁灭之语";
         if (desc) return "Destroy everything in nearby area.";
 
         {
@@ -3086,7 +3086,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 15:
-        if (name) return "Invoke Logrus";
+        if (name) return "唤起洛格鲁斯";
         if (desc) return "Fires a huge ball of chaos.";
 
         {
@@ -3105,7 +3105,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 16:
-        if (name) return "Polymorph Other";
+        if (name) return "变形他人";
         if (desc) return "Attempts to polymorph a monster.";
 
         {
@@ -3123,7 +3123,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 17:
-        if (name) return "Chain Lightning";
+        if (name) return "连锁闪电";
         if (desc) return "Fires lightning beams in all directions.";
 
         {
@@ -3147,8 +3147,8 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 18:
-        if (name) return "Arcane Binding";
-        if (desc) return "It attempts to recharge a device using your mana for power.";
+        if (name) return "奥术绑定";
+        if (desc) return "它尝试使用你的法力为一件装置充能。";
 
         {
             int power = spell_power(90);
@@ -3163,7 +3163,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 19:
-        if (name) return "Disintegrate";
+        if (name) return "解离";
         if (desc) return "Fires a huge ball of disintegration.";
 
         {
@@ -3182,7 +3182,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 20:
-        if (name) return "Alter Reality";
+        if (name) return "改变现实";
         if (desc) return "Recreates current dungeon level.";
 
         {
@@ -3199,7 +3199,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 21:
-        if (name) return "Magic Rocket";
+        if (name) return "魔法火箭";
         if (desc) return "Fires a magic rocket.";
 
         {
@@ -3211,14 +3211,14 @@ static cptr do_chaos_spell(int spell, int mode)
             if (cast)
             {
                 if (!get_fire_dir(&dir)) return NULL;
-                msg_print("You launch a rocket!");
+                msg_print("你发射了一枚火箭！");
                 fire_rocket(GF_ROCKET, dir, dam, rad);
             }
         }
         break;
 
     case 22:
-        if (name) return "Chaos Branding";
+        if (name) return "混沌烙印";
         if (desc) return "Makes current weapon a Chaotic weapon.";
 
         {
@@ -3230,7 +3230,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 23:
-        if (name) return "Summon Demon";
+        if (name) return "召唤恶魔";
         if (desc) return "Summons a demon.";
 
         {
@@ -3245,15 +3245,15 @@ static cptr do_chaos_spell(int spell, int mode)
 
                 if (summon_specific(SUMMON_WHO_PLAYER, py, px, (plev * 3) / 2, SUMMON_DEMON, mode))
                 {
-                    msg_print("The area fills with a stench of sulphur and brimstone.");
+                    msg_print("这片区域弥漫着硫磺和烈火的恶臭。");
 
                     if (pet)
                     {
-                        msg_print("'What is thy bidding... Master?'");
+                        msg_print("'您有何吩咐……主人？'");
                     }
                     else
                     {
-                        msg_print("'NON SERVIAM! Wretch! I shall feast on thy mortal soul!'");
+                        msg_print("'我绝不服从！可怜虫！我要吞噬你凡人的灵魂！'");
                     }
                 }
             }
@@ -3261,7 +3261,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 24:
-        if (name) return "Beam of Gravity";
+        if (name) return "重力射线";
         if (desc) return "Fires a beam of gravity.";
 
         {
@@ -3284,7 +3284,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 25:
-        if (name) return "Meteor Swarm";
+        if (name) return "陨石雨";
         if (desc) return "Makes meteor balls fall down to nearby random locations.";
 
         {
@@ -3301,7 +3301,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 26:
-        if (name) return "Flame Strike";
+        if (name) return "烈焰打击";
         if (desc) return "Generate a huge ball of fire centered on you.";
 
         {
@@ -3318,7 +3318,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 27:
-        if (name) return "Call Chaos";
+        if (name) return "召唤混沌";
         if (desc) return "Generate random kind of balls or beams.";
 
         {
@@ -3330,7 +3330,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 28:
-        if (name) return "Polymorph Self";
+        if (name) return "变形自身";
         if (desc) return "Polymorphs yourself into a new form.";
 
         if (cast)
@@ -3360,12 +3360,12 @@ static cptr do_chaos_spell(int spell, int mode)
                 }
             }
             set_mimic(50 + randint1(50), which, FALSE);
-            if (p_ptr->mimic_form == MIMIC_NONE) msg_print("There is no effect.");
+            if (p_ptr->mimic_form == MIMIC_NONE) msg_print("毫无效果。");
         }
         break;
 
     case 29:
-        if (name) return "Mana Storm";
+        if (name) return "法力风暴";
         if (desc) return "Fires an extremely powerful huge ball of pure mana.";
 
         {
@@ -3384,7 +3384,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 30:
-        if (name) return "Breathe Logrus";
+        if (name) return "喷吐洛格鲁斯";
         if (desc) return "Fires an extremely powerful ball of chaos.";
 
         {
@@ -3403,7 +3403,7 @@ static cptr do_chaos_spell(int spell, int mode)
         break;
 
     case 31:
-        if (name) return "Call the Void";
+        if (name) return "呼唤虚空";
         if (desc) return "Fires rockets, mana balls and nuclear waste balls in all directions each unless you are not adjacent to any walls. Otherwise *destroys* huge area.";
 
         {
@@ -3437,7 +3437,7 @@ static cptr do_death_spell(int spell, int mode)
     switch (spell)
     {
     case 0:
-        if (name) return "Detect Unlife";
+        if (name) return "探测非生命体";
         if (desc) return "Detects all nonliving monsters in your vicinity.";
 
         {
@@ -3453,8 +3453,8 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 1:
-        if (name) return "Malediction";
-        if (desc) return "Fires a tiny ball of evil power which hurts good monsters greatly.";
+        if (name) return "恶咒";
+        if (desc) return "发射一颗微小的邪恶能量球，对善良阵营的怪物造成极大的伤害。";
 
         {
             int dice = 3 + (plev - 1) / 5;
@@ -3489,7 +3489,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 2:
-        if (name) return "Detect Evil";
+        if (name) return "探测邪恶";
         if (desc) return "Detects all evil monsters in your vicinity.";
 
         {
@@ -3505,7 +3505,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 3:
-        if (name) return "Stinking Cloud";
+        if (name) return "臭气云";
         if (desc) return "Fires a ball of poison.";
 
         {
@@ -3524,7 +3524,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 4:
-        if (name) return "Black Sleep";
+        if (name) return "黑死眠";
         if (desc) return "Attempts to sleep a monster.";
 
         {
@@ -3542,7 +3542,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 5:
-        if (name) return "Undead Resistance";
+        if (name) return "死灵抗性";
         if (desc) return "Gives resistance to poison and cold.";
 
         {
@@ -3560,7 +3560,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 6:
-        if (name) return "Horrify";
+        if (name) return "惊骇";
         if (desc) return "Attempts to scare and stun a monster.";
 
         {
@@ -3579,7 +3579,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 7:
-        if (name) return "Enslave Undead";
+        if (name) return "奴役不死生物";
         if (desc) return "Attempts to charm an undead monster.";
 
         {
@@ -3597,7 +3597,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 8:
-        if (name) return "Orb of Entropy";
+        if (name) return "熵之法球";
         if (desc) return "Fires a ball which damages living monsters.";
 
         {
@@ -3634,7 +3634,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 9:
-        if (name) return "Nether Bolt";
+        if (name) return "地狱之矢";
         if (desc) return "Fires a bolt or beam of nether.";
 
         {
@@ -3658,7 +3658,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 10:
-        if (name) return "Cloud Kill";
+        if (name) return "死云术";
         if (desc) return "Generate a ball of poison centered on you.";
 
         {
@@ -3675,7 +3675,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 11:
-        if (name) return "Genocide One";
+        if (name) return "单体灭绝";
         if (desc) return "Attempts to vanish a monster.";
 
         {
@@ -3693,7 +3693,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 12:
-        if (name) return "Poison Branding";
+        if (name) return "毒素烙印";
         if (desc) return "Makes current weapon poison branded.";
 
         {
@@ -3705,7 +3705,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 13:
-        if (name) return "Vampiric Drain";
+        if (name) return "吸血汲取";
         if (desc) return "Absorbs some HP from a monster and gives them to you. You will also gain nutritional sustenance from this.";
 
         {
@@ -3725,7 +3725,7 @@ static cptr do_death_spell(int spell, int mode)
                 {
                     if (p_ptr->pclass == CLASS_BLOOD_MAGE)
                     {
-                        msg_print("You are unaffected.");
+                        msg_print("你不受影响。");
                         break;
                     }
 
@@ -3756,7 +3756,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 14:
-        if (name) return "Animate Dead";
+        if (name) return "操纵死尸";
         if (desc) return "Resurrects nearby corpse and skeletons. And makes these your pets.";
 
         {
@@ -3768,8 +3768,8 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 15:
-        if (name) return "Genocide";
-        if (desc) return "Eliminates an entire class of monster, exhausting you. Powerful or unique monsters may resist.";
+        if (name) return "灭绝";
+        if (desc) return "灭绝一整类怪物，此举会使你筋疲力尽。强大或唯一的怪物可能会抵抗。";
 
         {
             int power = spell_power(plev*3);
@@ -3784,7 +3784,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 16:
-        if (name) return "Berserk";
+        if (name) return "狂暴";
         if (desc) return "Gives bonus to hit and HP, immunity to fear for a while. But decreases AC.";
 
         {
@@ -3801,7 +3801,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 17:
-        if (name) return "Invoke Spirits";
+        if (name) return "唤起幽魂";
         if (desc) return "Causes random effects.";
 
         {
@@ -3817,7 +3817,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 18:
-        if (name) return "Dark Bolt";
+        if (name) return "暗之矢";
         if (desc) return "Fires a bolt or beam of darkness.";
 
         {
@@ -3841,7 +3841,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 19:
-        if (name) return "Battle Frenzy";
+        if (name) return "战斗狂热";
         if (desc) return "Gives a bonus to accuracy and HP and fear resistance for a while, hastes you, and increases AC.";
 
         {
@@ -3861,7 +3861,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 20:
-        if (name) return "Vampiric Branding";
+        if (name) return "吸血烙印";
         if (desc) return "Makes current weapon Vampiric.";
 
         {
@@ -3873,7 +3873,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 21:
-        if (name) return "Vampirism True";
+        if (name) return "真实吸血";
         if (desc) return "Fires 3 bolts. Each of the bolts absorbs some HP from a monster and gives them to you.";
 
         {
@@ -3900,7 +3900,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 22:
-        if (name) return "Nether Wave";
+        if (name) return "地狱冲击波";
         if (desc) return "Damages all living monsters in sight.";
 
         {
@@ -3916,7 +3916,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 23:
-        if (name) return "Darkness Storm";
+        if (name) return "黑暗风暴";
         if (desc) return "Fires a huge ball of darkness.";
 
         {
@@ -3937,7 +3937,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 24:
-        if (name) return "Death Ray";
+        if (name) return "死亡射线";
         if (desc) return "Fires a beam of death.";
 
         {
@@ -3951,7 +3951,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 25:
-        if (name) return "Raise the Dead";
+        if (name) return "复活死者";
         if (desc) return "Summons an undead monster.";
 
         {
@@ -3971,16 +3971,16 @@ static cptr do_death_spell(int spell, int mode)
 
                 if (summon_specific(SUMMON_WHO_PLAYER, py, px, (plev * 3) / 2, type, mode))
                 {
-                    msg_print("Cold winds begin to blow around you, carrying with them the stench of decay...");
+                    msg_print("寒风开始在你周围吹拂，夹杂着腐烂的恶臭……");
 
 
                     if (pet)
                     {
-                        msg_print("Ancient, long-dead forms arise from the ground to serve you!");
+                        msg_print("古老、早已死去的躯体从地下爬起，听候你的差遣！");
                     }
                     else
                     {
-                        msg_print("'The dead arise... to punish you for disturbing them!'");
+                        msg_print("'死者苏醒了……来惩罚你惊扰了他们！'");
                     }
 
                     virtue_add(VIRTUE_UNLIFE, 1);
@@ -3990,7 +3990,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 26:
-        if (name) return "Esoteria";
+        if (name) return "秘术";
         if (desc) return "Identifies an item. Or *identifies* an item at higher level.";
 
         {
@@ -4009,8 +4009,8 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 27:
-        if (name) return "Polymorph Vampire";
-        if (desc) return "Mimic a vampire for a while. Loses abilities of original race and gets abilities as a vampire.";
+        if (name) return "变形吸血鬼";
+        if (desc) return "暂时模仿吸血鬼。失去原本种族的能力，并获得吸血鬼的能力。";
 
         {
             int base = spell_power(10 + plev / 2);
@@ -4020,13 +4020,13 @@ static cptr do_death_spell(int spell, int mode)
             if (cast)
             {
                 set_mimic(base + randint1(base), MIMIC_VAMPIRE, FALSE);
-                if (p_ptr->mimic_form == MIMIC_NONE) msg_print("There is no effect.");
+                if (p_ptr->mimic_form == MIMIC_NONE) msg_print("毫无效果。");
             }
         }
         break;
 
     case 28:
-        if (name) return "Restore Life";
+        if (name) return "恢复生命";
         if (desc) return "Restore lost life force and experience.";
 
         {
@@ -4039,7 +4039,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 29:
-        if (name) return "Mass Genocide";
+        if (name) return "群体灭绝";
         if (desc) return "Eliminates all nearby monsters, exhausting you. Powerful or unique monsters may be able to resist.";
 
         {
@@ -4055,7 +4055,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 30:
-        if (name) return "Nether Storm";
+        if (name) return "地狱风暴";
         if (desc) return "Generates a huge ball of nether.";
 
         {
@@ -4074,7 +4074,7 @@ static cptr do_death_spell(int spell, int mode)
         break;
 
     case 31:
-        if (name) return "Wraithform";
+        if (name) return "幽灵形态";
         if (desc) return "Gives the ability to pass walls and reduces most damages by half.";
 
         {
@@ -4117,7 +4117,7 @@ static cptr do_trump_spell(int spell, int mode)
     switch (spell)
     {
     case 0:
-        if (name) return "Phase Door";
+        if (name) return "相位门";
         if (desc) return "Teleport short distance.";
 
         {
@@ -4135,19 +4135,19 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 1:
-        if (name) return "Trump Spiders";
+        if (name) return "王牌蜘蛛";
         if (desc) return "Summons spiders.";
 
         {
             if (cast || fail)
             {
-                msg_print("You concentrate on the trump of a spider...");
+                msg_print("你集中精神在一张蜘蛛王牌上……");
 
                 if (trump_summoning(1, !fail, y, x, 0, SUMMON_SPIDER, PM_ALLOW_GROUP))
                 {
                     if (fail)
                     {
-                        msg_print("The summoned spiders get angry!");
+                        msg_print("被召唤的蜘蛛发怒了！");
                     }
                 }
             }
@@ -4155,7 +4155,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 2:
-        if (name) return "Shuffle";
+        if (name) return "洗牌";
         if (desc) return "Causes random effects.";
 
         {
@@ -4163,7 +4163,7 @@ static cptr do_trump_spell(int spell, int mode)
 
             if (cast)
             {
-                if (TRUE || get_check("Are you sure you wish to shuffle?"))
+                if (TRUE || get_check("你确定要洗牌吗？"))
                     cast_shuffle();
                 else
                     return NULL;
@@ -4172,8 +4172,8 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 3:
-        if (name) return "Reset Recall";
-        if (desc) return "Resets the 'deepest' level for recall spell.";
+        if (name) return "重置召回";
+        if (desc) return "重置召回法术的目标“最深”层数。";
 
         {
             if (cast)
@@ -4184,7 +4184,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 4:
-        if (name) return "Teleport";
+        if (name) return "传送";
         if (desc) return "Teleport long distance.";
 
         {
@@ -4202,7 +4202,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 5:
-        if (name) return "Trump Spying";
+        if (name) return "王牌探知";
         if (desc) return "Gives telepathy for a while.";
 
         {
@@ -4219,7 +4219,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 6:
-        if (name) return "Teleport Away";
+        if (name) return "传送离开";
         if (desc) return "Teleports all monsters on the line away unless resisted.";
 
         {
@@ -4237,7 +4237,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 7:
-        if (name) return "Trump Animals";
+        if (name) return "王牌动物";
         if (desc) return "Summons an animal.";
 
         {
@@ -4245,13 +4245,13 @@ static cptr do_trump_spell(int spell, int mode)
             {
                 int type = (!fail ? SUMMON_ANIMAL_RANGER : SUMMON_ANIMAL);
 
-                msg_print("You concentrate on the trump of an animal...");
+                msg_print("你集中精神在一张动物王牌上……");
 
                 if (trump_summoning(1, !fail, y, x, 0, type, 0L))
                 {
                     if (fail)
                     {
-                        msg_print("The summoned animal gets angry!");
+                        msg_print("被召唤的动物发怒了！");
                     }
                 }
             }
@@ -4259,7 +4259,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 8:
-        if (name) return "Trump Reach";
+        if (name) return "王牌触及";
         if (desc) return "Pulls a distant item close to you.";
 
         {
@@ -4277,7 +4277,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 9:
-        if (name) return "Trump Kamikaze";
+        if (name) return "王牌神风特攻";
         if (desc) return "Summons monsters which explode by itself.";
 
         {
@@ -4304,13 +4304,13 @@ static cptr do_trump_spell(int spell, int mode)
                 else
                     type = SUMMON_KAMIKAZE;
 
-                msg_print("You concentrate on several trumps at once...");
+                msg_print("你同时集中精神在多张王牌上……");
 
                 if (trump_summoning(2 + randint0(plev / 7), !fail, y, x, 0, type, 0L))
                 {
                     if (fail)
                     {
-                        msg_print("The summoned creatures get angry!");
+                        msg_print("被召唤的生物发怒了！");
                     }
                 }
             }
@@ -4318,7 +4318,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 10:
-        if (name) return "Phantasmal Servant";
+        if (name) return "幻影仆从";
         if (desc) return "Summons a ghost.";
 
         {
@@ -4329,14 +4329,14 @@ static cptr do_trump_spell(int spell, int mode)
 
                 if (trump_summoning(1, !fail, y, x, (summon_lev * 3 / 2), SUMMON_PHANTOM, 0L))
                 {
-                    msg_print("'Your wish, master?'");
+                    msg_print("'您的愿望，主人？'");
                 }
             }
         }
         break;
 
     case 11:
-        if (name) return "Haste Monster";
+        if (name) return "加速怪物";
         if (desc) return "Hastes a monster.";
 
         {
@@ -4361,7 +4361,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 12:
-        if (name) return "Teleport Level";
+        if (name) return "传送楼层";
         if (desc) return "Teleport to up or down stairs in a moment.";
 
         {
@@ -4373,7 +4373,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 13:
-        if (name) return "Dimension Door";
+        if (name) return "任意门";
         if (desc) return "Teleport to given location.";
 
         {
@@ -4383,7 +4383,7 @@ static cptr do_trump_spell(int spell, int mode)
 
             if (cast)
             {
-                msg_print("You open a dimensional gate. Choose a destination.");
+                msg_print("你打开了一道次元门。选择一个目的地。");
 
                 if (!dimension_door(range)) return NULL;
             }
@@ -4391,7 +4391,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 14:
-        if (name) return "Word of Recall";
+        if (name) return "召回之语";
         if (desc) return "Recalls player from dungeon to town, or from town to the deepest level of dungeon.";
 
         {
@@ -4408,7 +4408,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 15:
-        if (name) return "Banish";
+        if (name) return "驱逐";
         if (desc) return "Teleports all monsters in sight away unless resisted.";
 
         {
@@ -4424,7 +4424,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 16:
-        if (name) return "Swap Position";
+        if (name) return "交换位置";
         if (desc) return "Swaps positions with a monster.";
 
         {
@@ -4448,19 +4448,19 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 17:
-        if (name) return "Trump Undead";
+        if (name) return "王牌不死生物";
         if (desc) return "Summons an undead monster.";
 
         {
             if (cast || fail)
             {
-                msg_print("You concentrate on the trump of an undead creature...");
+                msg_print("你集中精神在一张不死生物王牌上……");
 
                 if (trump_summoning(1, !fail, y, x, 0, SUMMON_UNDEAD, 0L))
                 {
                     if (fail)
                     {
-                        msg_print("The summoned undead creature gets angry!");
+                        msg_print("被召唤的不死生物发怒了！");
                     }
                 }
             }
@@ -4468,19 +4468,19 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 18:
-        if (name) return "Trump Reptiles";
+        if (name) return "王牌爬行动物";
         if (desc) return "Summons a hydra.";
 
         {
             if (cast || fail)
             {
-                msg_print("You concentrate on the trump of a reptile...");
+                msg_print("你集中精神在一张爬行动物王牌上……");
 
                 if (trump_summoning(1, !fail, y, x, 0, SUMMON_HYDRA, 0L))
                 {
                     if (fail)
                     {
-                        msg_print("The summoned reptile gets angry!");
+                        msg_print("被召唤的爬行动物发怒了！");
                     }
                 }
             }
@@ -4488,7 +4488,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 19:
-        if (name) return "Trump Monsters";
+        if (name) return "王牌怪物";
         if (desc) return "Summons some monsters.";
 
         {
@@ -4496,7 +4496,7 @@ static cptr do_trump_spell(int spell, int mode)
             {
                 int type;
 
-                msg_print("You concentrate on several trumps at once...");
+                msg_print("你同时集中精神在多张王牌上……");
 
                 if (p_ptr->pclass == CLASS_BEASTMASTER)
                     type = SUMMON_LIVING;
@@ -4507,7 +4507,7 @@ static cptr do_trump_spell(int spell, int mode)
                 {
                     if (fail)
                     {
-                        msg_print("The summoned creatures get angry!");
+                        msg_print("被召唤的生物发怒了！");
                     }
                 }
 
@@ -4516,19 +4516,19 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 20:
-        if (name) return "Trump Hounds";
+        if (name) return "王牌猎犬";
         if (desc) return "Summons a group of hounds.";
 
         {
             if (cast || fail)
             {
-                msg_print("You concentrate on the trump of a hound...");
+                msg_print("你集中精神在一张猎犬王牌上……");
 
                 if (trump_summoning(1, !fail, y, x, 0, SUMMON_HOUND, PM_ALLOW_GROUP))
                 {
                     if (fail)
                     {
-                        msg_print("The summoned hounds get angry!");
+                        msg_print("被召唤的猎犬发怒了！");
                     }
                 }
             }
@@ -4536,7 +4536,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 21:
-        if (name) return "Trump Branding";
+        if (name) return "王牌烙印";
         if (desc) return "Makes current weapon a Trump weapon.";
 
         {
@@ -4548,7 +4548,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 22:
-        if (name) return "Living Trump";
+        if (name) return "活体王牌";
         if (desc) return "Gives mutation which makes you teleport randomly or makes you able to teleport at will.";
 
         {
@@ -4566,26 +4566,26 @@ static cptr do_trump_spell(int spell, int mode)
                 /* Gain the mutation */
                 if (mut_gain(mutation))
                 {
-                    msg_print("You have turned into a Living Trump.");
+                    msg_print("你变成了一个活体王牌。");
                 }
             }
         }
         break;
 
     case 23:
-        if (name) return "Trump Cyberdemon";
+        if (name) return "王牌机械恶魔";
         if (desc) return "Summons a cyber demon.";
 
         {
             if (cast || fail)
             {
-                msg_print("You concentrate on the trump of a Cyberdemon...");
+                msg_print("你集中精神在一张机械恶魔王牌上……");
 
                 if (trump_summoning(1, !fail, y, x, 0, SUMMON_CYBER, 0L))
                 {
                     if (fail)
                     {
-                        msg_print("The summoned Cyberdemon gets angry!");
+                        msg_print("被召唤的机械恶魔发怒了！");
                     }
                 }
             }
@@ -4593,7 +4593,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 24:
-        if (name) return "Trump Divination";
+        if (name) return "王牌占卜";
         if (desc) return "Detects all monsters, traps, doors, stairs, treasures and items in your vicinity.";
 
         {
@@ -4609,7 +4609,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 25:
-        if (name) return "Trump Lore";
+        if (name) return "王牌学识";
         if (desc) return "*Identifies* an item.";
 
         {
@@ -4621,7 +4621,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 26:
-        if (name) return "Heal Monster";
+        if (name) return "治疗怪物";
         if (desc) return "Heal a monster.";
 
         {
@@ -4650,19 +4650,19 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 27:
-        if (name) return "Trump Dragon";
+        if (name) return "王牌龙";
         if (desc) return "Summons a dragon.";
 
         {
             if (cast || fail)
             {
-                msg_print("You concentrate on the trump of a dragon...");
+                msg_print("你集中精神在一张龙的王牌上……");
 
                 if (trump_summoning(1, !fail, y, x, 0, SUMMON_DRAGON, 0L))
                 {
                     if (fail)
                     {
-                        msg_print("The summoned dragon gets angry!");
+                        msg_print("被召唤的龙发怒了！");
                     }
                 }
             }
@@ -4670,7 +4670,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 28:
-        if (name) return "Trump Meteor";
+        if (name) return "王牌陨石";
         if (desc) return "Makes meteor balls fall down to nearby random locations.";
 
         {
@@ -4687,19 +4687,19 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 29:
-        if (name) return "Trump Demon";
+        if (name) return "王牌恶魔";
         if (desc) return "Summons a demon.";
 
         {
             if (cast || fail)
             {
-                msg_print("You concentrate on the trump of a demon...");
+                msg_print("你集中精神在一张恶魔王牌上……");
 
                 if (trump_summoning(1, !fail, y, x, 0, SUMMON_DEMON, 0L))
                 {
                     if (fail)
                     {
-                        msg_print("The summoned demon gets angry!");
+                        msg_print("被召唤的恶魔发怒了！");
                     }
                 }
             }
@@ -4707,19 +4707,19 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 30:
-        if (name) return "Trump Greater Undead";
+        if (name) return "王牌高阶不死生物";
         if (desc) return "Summons a greater undead.";
 
         {
             if (cast || fail)
             {
-                msg_print("You concentrate on the trump of a greater undead being...");
+                msg_print("你集中精神在一张高阶不死生物王牌上……");
                 /* May allow unique depend on level and dice roll */
                 if (trump_summoning(1, !fail, y, x, 0, SUMMON_HI_UNDEAD, PM_ALLOW_UNIQUE))
                 {
                     if (fail)
                     {
-                        msg_print("The summoned greater undead creature gets angry!");
+                        msg_print("被召唤的高阶不死生物发怒了！");
                     }
                 }
             }
@@ -4727,7 +4727,7 @@ static cptr do_trump_spell(int spell, int mode)
         break;
 
     case 31:
-        if (name) return "Trump Ancient Dragon";
+        if (name) return "王牌远古龙";
         if (desc) return "Summons an ancient dragon.";
 
         {
@@ -4740,14 +4740,14 @@ static cptr do_trump_spell(int spell, int mode)
                 else
                     type = SUMMON_HI_DRAGON;
 
-                msg_print("You concentrate on the trump of an ancient dragon...");
+                msg_print("你集中精神在一张远古龙王牌上……");
 
                 /* May allow unique depend on level and dice roll */
                 if (trump_summoning(1, !fail, y, x, 0, type, PM_ALLOW_UNIQUE))
                 {
                     if (fail)
                     {
-                        msg_print("The summoned ancient dragon gets angry!");
+                        msg_print("被召唤的远古龙发怒了！");
                     }
                 }
             }
@@ -4772,7 +4772,7 @@ static cptr do_arcane_spell(int spell, int mode)
     switch (spell)
     {
     case 0:
-        if (name) return "Zap";
+        if (name) return "发射法术";
         if (desc) return "Fires a bolt or beam of lightning.";
 
         {
@@ -4796,7 +4796,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 1:
-        if (name) return "Wizard Lock";
+        if (name) return "巫师之锁";
         if (desc) return "Locks a door.";
 
         {
@@ -4810,7 +4810,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 2:
-        if (name) return "Detect Invisibility";
+        if (name) return "探测隐形";
         if (desc) return "Detects all invisible monsters in your vicinity.";
 
         {
@@ -4826,7 +4826,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 3:
-        if (name) return "Detect Monsters";
+        if (name) return "探测怪物";
         if (desc) return "Detects all monsters in your vicinity unless invisible.";
 
         {
@@ -4842,7 +4842,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 4:
-        if (name) return "Blink";
+        if (name) return "闪烁";
         if (desc) return "Teleport short distance.";
 
         {
@@ -4860,7 +4860,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 5:
-        if (name) return "Light Area";
+        if (name) return "区域照明";
         if (desc) return "Lights up nearby area and the inside of a room permanently.";
 
         {
@@ -4892,7 +4892,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 7:
-        if (name) return "Cure Light Wounds";
+        if (name) return "治疗轻伤";
         if (desc) return "Heals cut and HP a little.";
 
         {
@@ -4928,7 +4928,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 9:
-        if (name) return "Phlogiston";
+        if (name) return "燃素";
         if (desc) return "Adds more turns of light to a lantern or torch.";
 
         {
@@ -4940,7 +4940,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 10:
-        if (name) return "Detect Treasure";
+        if (name) return "探测财宝";
         if (desc) return "Detects all treasures in your vicinity.";
 
         {
@@ -4957,7 +4957,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 11:
-        if (name) return "Detect Enchantment";
+        if (name) return "探测魔法物品";
         if (desc) return "Detects all magical items in your vicinity.";
 
         {
@@ -4973,7 +4973,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 12:
-        if (name) return "Detect Objects";
+        if (name) return "探测物品";
         if (desc) return "Detects all items in your vicinity.";
 
         {
@@ -4989,7 +4989,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 13:
-        if (name) return "Cure Poison";
+        if (name) return "解毒";
         if (desc) return "Relieves poisoning a bit. Completely cures low-level poisoning.";
 
         {
@@ -5001,7 +5001,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 14:
-        if (name) return "Resist Cold";
+        if (name) return "抵抗寒冷";
         if (desc) return "Gives resistance to cold.";
 
         {
@@ -5017,7 +5017,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 15:
-        if (name) return "Resist Fire";
+        if (name) return "抵抗火焰";
         if (desc) return "Gives resistance to fire.";
 
         {
@@ -5033,7 +5033,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 16:
-        if (name) return "Resist Lightning";
+        if (name) return "抵抗闪电";
         if (desc) return "Gives resistance to electricity.";
 
         {
@@ -5049,7 +5049,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 17:
-        if (name) return "Resist Acid";
+        if (name) return "抵抗酸液";
         if (desc) return "Gives resistance to acid.";
 
         {
@@ -5065,7 +5065,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 18:
-        if (name) return "Cure Medium Wounds";
+        if (name) return "治疗中伤";
         if (desc) return "Heals cut and HP more.";
 
         {
@@ -5083,7 +5083,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 19:
-        if (name) return "Teleport";
+        if (name) return "传送";
         if (desc) return "Teleport long distance.";
 
         {
@@ -5101,7 +5101,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 20:
-        if (name) return "Identify";
+        if (name) return "鉴定";
         if (desc) return "Identifies an item.";
 
         {
@@ -5113,7 +5113,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 21:
-        if (name) return "Stone to Mud";
+        if (name) return "化石为泥";
         if (desc) return "Turns one rock square to mud.";
 
         {
@@ -5133,7 +5133,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 22:
-        if (name) return "Ray of Light";
+        if (name) return "光之射线";
         if (desc) return "Fires a beam of light which damages to light-sensitive monsters.";
 
         {
@@ -5146,7 +5146,7 @@ static cptr do_arcane_spell(int spell, int mode)
             {
                 if (!get_fire_dir(&dir)) return NULL;
 
-                msg_print("A line of light appears.");
+                msg_print("一道光之射线出现了。");
 
                 lite_line(dir);
             }
@@ -5154,7 +5154,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 23:
-        if (name) return "Satisfy Hunger";
+        if (name) return "充饥";
         if (desc) return "Satisfies hunger.";
 
         {
@@ -5166,7 +5166,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 24:
-        if (name) return "See Invisible";
+        if (name) return "识破隐形";
         if (desc) return "Gives see invisible for a while.";
 
         {
@@ -5182,7 +5182,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 25:
-        if (name) return "Resist Poison";
+        if (name) return "抵抗毒素";
         if (desc) return "Gives resistance to poison.";
 
         {
@@ -5198,7 +5198,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 26:
-        if (name) return "Teleport Level";
+        if (name) return "传送楼层";
         if (desc) return "Teleport to up or down stairs in a moment.";
 
         {
@@ -5210,7 +5210,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 27:
-        if (name) return "Teleport Away";
+        if (name) return "传送离开";
         if (desc) return "Teleports all monsters on the line away unless resisted.";
 
         {
@@ -5228,13 +5228,13 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 28:
-        if (name) return "Recharging";
+        if (name) return "充能";
         if (desc)
         {
             if (p_ptr->pclass == CLASS_BLOOD_MAGE)
-                return "It attempts to recharge a device using your blood for power.";
+                return "它尝试消耗你的血液为一件装置充能。";
             else
-                return "It attempts to recharge a device using your mana for power.";
+                return "它尝试消耗你的法力为一件装置充能。";
         }
 
         {
@@ -5250,7 +5250,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 29:
-        if (name) return "Detection";
+        if (name) return "探测";
         if (desc) return "Detects all monsters, traps, doors, stairs, treasures and items in your vicinity.";
 
         {
@@ -5266,7 +5266,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 30:
-        if (name) return "Word of Recall";
+        if (name) return "召回之语";
         if (desc) return "Recalls player from dungeon to town, or from town to the deepest level of dungeon.";
 
         {
@@ -5283,7 +5283,7 @@ static cptr do_arcane_spell(int spell, int mode)
         break;
 
     case 31:
-        if (name) return "Clairvoyance";
+        if (name) return "透视";
         if (desc) return "Maps and lights whole dungeon level. Knows all objects location. And gives telepathy for a while.";
 
         {
@@ -5322,8 +5322,8 @@ bool craft_enchant(int max, int inc)
     bool         improved = FALSE;
     u32b         flgs[OF_ARRAY_SIZE];
 
-    prompt.prompt = "Enchant which item?";
-    prompt.error = "You have nothing to enchant.";
+    prompt.prompt = "附魔哪件物品？";
+    prompt.error = "你没有什么可附魔的。";
     prompt.filter = _can_enchant;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -5372,13 +5372,13 @@ bool craft_enchant(int max, int inc)
     }
 
 
-    msg_format("%s %s glow%s brightly!",
-            (prompt.obj->loc.where != INV_FLOOR) ? "Your" : "The", o_name,
+    msg_format("%s%s闪烁着明亮的光芒！",
+            (prompt.obj->loc.where != INV_FLOOR) ? "你的" : "这件", o_name,
             (prompt.obj->number > 1) ? "" : "s");
 
     if (!improved)
     {
-        msg_print("The enchantment failed.");
+        msg_print("附魔失败。");
         if (one_in_(3) && virtue_current(VIRTUE_ENCHANTMENT) < 100)
             virtue_add(VIRTUE_ENCHANTMENT, -1);
     }
@@ -5405,7 +5405,7 @@ static cptr do_craft_spell(int spell, int mode)
     switch (spell)
     {
     case 0:
-        if (name) return "Minor Enchantment";
+        if (name) return "次级附魔";
         if (desc) return "Attempts to increase +to-hit, +to-dam of a weapon, or to increase +AC of armor.";
 
         if (cast)
@@ -5416,7 +5416,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 1:
-        if (name) return "Regeneration";
+        if (name) return "再生";
         if (desc) return "Gives regeneration ability for a while.";
 
         {
@@ -5432,7 +5432,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 2:
-        if (name) return "Satisfy Hunger";
+        if (name) return "充饥";
         if (desc) return "Satisfies hunger.";
 
         {
@@ -5444,7 +5444,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 3:
-        if (name) return "Resist Cold";
+        if (name) return "抵抗寒冷";
         if (desc) return "Gives resistance to cold.";
 
         {
@@ -5460,7 +5460,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 4:
-        if (name) return "Resist Fire";
+        if (name) return "抵抗火焰";
         if (desc) return "Gives resistance to fire.";
 
         {
@@ -5476,7 +5476,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 5:
-        if (name) return "Heroism";
+        if (name) return "英雄气概";
         if (desc) return "Removes fear, and gives bonus to hit and 10 more HP for a while.";
 
         {
@@ -5492,7 +5492,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 6:
-        if (name) return "Resist Lightning";
+        if (name) return "抵抗闪电";
         if (desc) return "Gives resistance to electricity.";
 
         {
@@ -5508,7 +5508,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 7:
-        if (name) return "Resist Acid";
+        if (name) return "抵抗酸液";
         if (desc) return "Gives resistance to acid.";
 
         {
@@ -5524,7 +5524,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 8:
-        if (name) return "See Invisibility";
+        if (name) return "识破隐形";
         if (desc) return "Gives see invisible for a while.";
 
         {
@@ -5540,18 +5540,18 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 9:
-        if (name) return "Remove Curse";
+        if (name) return "移除诅咒";
         if (desc) return "Removes normal curses from equipped items.";
 
         if (cast)
         {
             if (remove_curse())
-                msg_print("You feel as if someone is watching over you.");
+                msg_print("你感觉好像有人在守护着你。");
         }
         break;
 
     case 10:
-        if (name) return "Resist Poison";
+        if (name) return "抵抗毒素";
         if (desc) return "Gives resistance to poison.";
 
         {
@@ -5567,7 +5567,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 11:
-        if (name) return "Berserk";
+        if (name) return "狂暴";
         if (desc) return "Gives bonus to hit and HP, immunity to fear for a while. But decreases AC.";
 
         {
@@ -5584,7 +5584,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 12:
-        if (name) return "Self Knowledge";
+        if (name) return "自我知识";
         if (desc) return "Gives you useful info regarding your current resistances, the powers of your weapon and maximum limits of your stats.";
 
         {
@@ -5596,7 +5596,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 13:
-        if (name) return "Identify";
+        if (name) return "鉴定";
         if (desc) return "Identifies an item.";
 
         {
@@ -5608,7 +5608,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 14:
-        if (name) return "Curing";
+        if (name) return "治愈";
         if (desc) return "It cures what ails you including fear, poison, stunning, cuts and hallucination. Serious poisoning may not be cured completely.";
         {
             if (cast)
@@ -5623,8 +5623,8 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 15:
-        if (name) return "Elemental Branding";
-        if (desc) return "Grants your attacks a temporary elemental brand of your choice.";
+        if (name) return "元素烙印";
+        if (desc) return "使你的攻击暂时附带你选择的元素烙印。";
 
         {
             int base = plev / 2;
@@ -5639,7 +5639,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 16:
-        if (name) return "Telepathy";
+        if (name) return "心灵感应";
         if (desc) return "Gives telepathy for a while.";
 
         {
@@ -5656,7 +5656,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 17:
-        if (name) return "Stone Skin";
+        if (name) return "石肤术";
         if (desc) return "Gives bonus to AC for a while.";
 
         {
@@ -5673,7 +5673,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 18:
-        if (name) return "Resistance";
+        if (name) return "抵抗";
         if (desc) return "Gives resistance to fire, cold, electricity, acid and poison for a while.";
 
         {
@@ -5689,7 +5689,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 19:
-        if (name) return "Haste Self";
+        if (name) return "自我加速";
         if (desc) return "Hastes you for a while.";
 
         {
@@ -5706,7 +5706,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 20:
-        if (name) return "Whirlwind Attack";
+        if (name) return "旋风斩";
         if (desc) return "Attacks all adjacent monsters.";
 
         {
@@ -5731,7 +5731,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 21:
-        if (name) return "Polish Shield";
+        if (name) return "打磨盾牌";
         if (desc) return "Makes your shield reflect missiles and bolt spells.";
         if (cast)
         {
@@ -5740,7 +5740,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 22:
-        if (name) return "Weaponmastery";
+        if (name) return "武器精通";
         if (desc) return "For a short time, your melee weapon becomes more deadly.";
         {
             int base = spell_power(3 + plev / 10);
@@ -5753,7 +5753,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 23:
-        if (name) return "Magical Armor";
+        if (name) return "魔法护甲";
         if (desc) return "Gives resistance to magic, bonus to AC, resistance to confusion, blindness, reflection, free action and levitation for a while.";
 
         {
@@ -5769,7 +5769,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 24:
-        if (name) return "Remove All Curse";
+        if (name) return "移除所有诅咒";
         if (desc) return "Removes normal and heavy curse from equipped items.";
 
         {
@@ -5777,15 +5777,15 @@ static cptr do_craft_spell(int spell, int mode)
             {
                 if (remove_all_curse())
                 {
-                    msg_print("You feel as if someone is watching over you.");
+                    msg_print("你感觉好像有人在守护着你。");
                 }
             }
         }
         break;
 
     case 25:
-        if (name) return "Simplification";
-        if (desc) return "Removes all of an item's magical attributes, including its status as an ego item or artifact. Magically improved ego items cannot be simplified.";
+        if (name) return "纯化";
+        if (desc) return "移除物品的所有魔法属性，包括其作为自我物品或神器的状态。经过魔法强化的自我物品无法被纯化。";
 
         {
             if (cast)
@@ -5796,7 +5796,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 26:
-        if (name) return "Knowledge True";
+        if (name) return "真实知识";
         if (desc) return "*Identifies* an item.";
 
         {
@@ -5808,7 +5808,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 27:
-        if (name) return "Enchantment";
+        if (name) return "附魔";
         if (desc) return "Attempts to increase +to-hit, +to-dam of a weapon, or to increase +AC of armor.";
 
         if (cast)
@@ -5819,7 +5819,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 28:
-        if (name) return "Crafting";
+        if (name) return "工艺";
         if (desc) return "Makes chosen weapon, armor or ammo an ego item.";
 
         if (cast)
@@ -5830,7 +5830,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 29:
-        if (name) return "Living Trump";
+        if (name) return "活体王牌";
         if (desc) return "Gives mutation which makes you teleport randomly or makes you able to teleport at will.";
 
         if (cast)
@@ -5843,12 +5843,12 @@ static cptr do_craft_spell(int spell, int mode)
                 mutation = MUT_TELEPORT_RND;
 
             if (mut_gain(mutation))
-                msg_print("You have turned into a Living Trump.");
+                msg_print("你变成了一个活体王牌。");
         }
         break;
 
     case 30:
-        if (name) return "Immunity";
+        if (name) return "免疫";
         if (desc) return "Gives an immunity to fire, cold, electricity or acid for a while.";
 
         {
@@ -5864,7 +5864,7 @@ static cptr do_craft_spell(int spell, int mode)
         break;
 
     case 31:
-        if (name) return "Mana Branding";
+        if (name) return "法力烙印";
         if (desc) return "Temporarily brands your weapon with force.";
 
         {
@@ -5898,7 +5898,7 @@ static cptr do_daemon_spell(int spell, int mode)
     switch (spell)
     {
     case 0:
-        if (name) return "Magic Missile";
+        if (name) return "魔法飞弹";
         if (desc) return "Fires a weak bolt of magic.";
 
         {
@@ -5922,7 +5922,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 1:
-        if (name) return "Detect Unlife";
+        if (name) return "探测非生命体";
         if (desc) return "Detects all nonliving monsters in your vicinity.";
 
         {
@@ -5938,7 +5938,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 2:
-        if (name) return "Evil Bless";
+        if (name) return "邪恶祝福";
         if (desc) return "Gives bonus to hit and AC for a few turns.";
 
         {
@@ -5954,7 +5954,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 3:
-        if (name) return "Resist Fire";
+        if (name) return "抵抗火焰";
         if (desc) return "Gives resistance to fire for a while.";
 
         {
@@ -5970,7 +5970,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 4:
-        if (name) return "Horrify";
+        if (name) return "惊骇";
         if (desc) return "Attempts to scare and stun a monster.";
 
         {
@@ -5989,7 +5989,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 5:
-        if (name) return "Nether Bolt";
+        if (name) return "地狱之矢";
         if (desc) return "Fires a bolt or beam of nether.";
 
         {
@@ -6013,7 +6013,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 6:
-        if (name) return "Summon Manes";
+        if (name) return "召唤劣魔";
         if (desc) return "Summons a manes.";
 
         {
@@ -6021,15 +6021,15 @@ static cptr do_daemon_spell(int spell, int mode)
             {
                 if (!summon_specific(SUMMON_WHO_PLAYER, py, px, spell_power(plev * 3 / 2), SUMMON_MANES, (PM_ALLOW_GROUP | PM_FORCE_PET)))
                 {
-                    msg_print("No Manes arrive.");
+                    msg_print("没有劣魔降临。");
                 }
             }
         }
         break;
 
     case 7:
-        if (name) return "Hellish Flame";
-        if (desc) return "Fires a ball of evil power. Hurts good monsters greatly.";
+        if (name) return "地狱之焰";
+        if (desc) return "发射一颗邪恶能量球。对善良阵营的怪物造成极大伤害。";
 
         {
             int dice = 3;
@@ -6065,7 +6065,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 8:
-        if (name) return "Dominate Demon";
+        if (name) return "支配恶魔";
         if (desc) return "Attempts to charm a demon.";
 
         {
@@ -6083,7 +6083,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 9:
-        if (name) return "Vision";
+        if (name) return "视界";
         if (desc) return "Maps nearby area.";
 
         {
@@ -6099,7 +6099,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 10:
-        if (name) return "Resist Nether";
+        if (name) return "抵抗地狱";
         if (desc) return "Gives resistance to nether for a while.";
 
         {
@@ -6115,7 +6115,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 11:
-        if (name) return "Plasma Bolt";
+        if (name) return "等离子之矢";
         if (desc) return "Fires a bolt or beam of plasma.";
 
         {
@@ -6139,7 +6139,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 12:
-        if (name) return "Fire Ball";
+        if (name) return "火球";
         if (desc) return "Fires a ball of fire.";
 
         {
@@ -6158,7 +6158,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 13:
-        if (name) return "Fire Branding";
+        if (name) return "火焰烙印";
         if (desc) return "Makes current weapon fire branded.";
 
         {
@@ -6170,7 +6170,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 14:
-        if (name) return "Nether Ball";
+        if (name) return "地狱球";
         if (desc) return "Fires a huge ball of nether.";
 
         {
@@ -6189,7 +6189,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 15:
-        if (name) return "Summon Demon";
+        if (name) return "召唤恶魔";
         if (desc) return "Summons a demon.";
 
         {
@@ -6204,21 +6204,21 @@ static cptr do_daemon_spell(int spell, int mode)
 
                 if (summon_specific(SUMMON_WHO_PLAYER, py, px, spell_power(plev*2/3+randint1(plev/2)), SUMMON_DEMON, mode))
                 {
-                    msg_print("The area fills with a stench of sulphur and brimstone.");
+                    msg_print("这片区域弥漫着硫磺和烈火的恶臭。");
 
 
                     if (pet)
                     {
-                        msg_print("'What is thy bidding... Master?'");
+                        msg_print("'您有何吩咐……主人？'");
                     }
                     else
                     {
-                        msg_print("'NON SERVIAM! Wretch! I shall feast on thy mortal soul!'");
+                        msg_print("'我绝不服从！可怜虫！我要吞噬你凡人的灵魂！'");
                     }
                 }
                 else
                 {
-                    msg_print("No demons arrive.");
+                    msg_print("没有恶魔降临。");
                 }
                 break;
             }
@@ -6226,7 +6226,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 16:
-        if (name) return "Devilish Eye";
+        if (name) return "恶魔之眼";
         if (desc) return "Gives telepathy for a while.";
 
         {
@@ -6243,7 +6243,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 17:
-        if (name) return "Devilish Cloak";
+        if (name) return "恶魔斗篷";
         if (desc) return "Gives resistance to fire, acid and poison as well as an aura of fire.";
 
         {
@@ -6265,7 +6265,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 18:
-        if (name) return "The Flow of Lava";
+        if (name) return "熔岩之流";
         if (desc) return "Generates a ball of fire centered on you which transforms floors to magma.";
 
         {
@@ -6283,7 +6283,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 19:
-        if (name) return "Plasma Ball";
+        if (name) return "等离子球";
         if (desc) return "Fires a ball of plasma.";
 
         {
@@ -6302,8 +6302,8 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 20:
-        if (name) return "Polymorph Demon";
-        if (desc) return "Mimic a demon for a while. Loses abilities of original race and gets abilities as a demon.";
+        if (name) return "变形恶魔";
+        if (desc) return "暂时模仿恶魔。失去原本种族的能力，并获得恶魔的能力。";
 
         {
             int base = spell_power(10 + plev / 2);
@@ -6313,13 +6313,13 @@ static cptr do_daemon_spell(int spell, int mode)
             if (cast)
             {
                 set_mimic(base + randint1(base), MIMIC_DEMON, FALSE);
-                if (p_ptr->mimic_form == MIMIC_NONE) msg_print("There is no effect.");
+                if (p_ptr->mimic_form == MIMIC_NONE) msg_print("毫无效果。");
             }
         }
         break;
 
     case 21:
-        if (name) return "Nether Wave";
+        if (name) return "地狱冲击波";
         if (desc) return "Damages all monsters in sight. Hurts good monsters greatly.";
 
         {
@@ -6334,7 +6334,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 22:
-        if (name) return "Kiss of Succubus";
+        if (name) return "魅魔之吻";
         if (desc) return "Fires a ball of nexus.";
 
         {
@@ -6352,14 +6352,14 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 23:
-        if (name) return "Doom Hand";
+        if (name) return "末日之手";
         if (desc) return "Attempt to mortally wound a target monster, draining a large proportion of their remaining health.";
 
         {
             if (cast)
             {
                 if (!get_fire_dir(&dir)) return NULL;
-                else msg_print("You invoke the Hand of Doom!");
+                else msg_print("你唤起了末日之手！");
 
                 fire_ball_hide(GF_HAND_DOOM, dir, spell_power(plev * 3), 0);
             }
@@ -6367,7 +6367,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 24:
-        if (name) return "Raise the Morale";
+        if (name) return "提振士气";
         if (desc) return "Gives bonus to hit and 10 more HP for a while.";
 
         {
@@ -6383,7 +6383,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 25:
-        if (name) return "Immortal Body";
+        if (name) return "不朽之躯";
         if (desc) return "Gives resistance to time for a while.";
 
         {
@@ -6399,7 +6399,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 26:
-        if (name) return "Insanity Circle";
+        if (name) return "疯狂法阵";
         if (desc) return "Generate balls of chaos, confusion and charm centered on you.";
 
         {
@@ -6419,7 +6419,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 27:
-        if (name) return "Explode Pets";
+        if (name) return "引爆宠物";
         if (desc) return "Makes all pets explode.";
 
         {
@@ -6431,7 +6431,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 28:
-        if (name) return "Summon Greater Demon";
+        if (name) return "召唤高阶恶魔";
         if (desc) return "Summons greater demon. It need to sacrifice a corpse of human ('p','h' or 't').";
 
         {
@@ -6443,8 +6443,8 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 29:
-        if (name) return "Hellfire";
-        if (desc) return "Fires a powerful ball of evil power. Hurts good monsters greatly.";
+        if (name) return "地狱之火";
+        if (desc) return "发射一颗强大的邪恶能量球。对善良阵营的怪物造成极大伤害。";
 
         {
             int dam = spell_power(666 + p_ptr->to_d_spell);
@@ -6463,7 +6463,7 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 30:
-        if (name) return "Send to Hell";
+        if (name) return "送入地狱";
         if (desc) return "Attempts to send a single monster directly to hell.";
 
         {
@@ -6481,8 +6481,8 @@ static cptr do_daemon_spell(int spell, int mode)
         break;
 
     case 31:
-        if (name) return "Polymorph Demonlord";
-        if (desc) return "Mimic a demon lord for a while. Loses abilities of original race and gets great abilities as a demon lord. Even hard walls can't stop your walking.";
+        if (name) return "变形恶魔领主";
+        if (desc) return "暂时模仿恶魔领主。失去原本种族的能力，并获得恶魔领主的强大能力。即使是坚硬的岩墙也无法阻挡你的脚步。";
 
         {
             int base = spell_power(15);
@@ -6492,7 +6492,7 @@ static cptr do_daemon_spell(int spell, int mode)
             if (cast)
             {
                 set_mimic(base + randint1(base), MIMIC_DEMON_LORD, FALSE);
-                if (p_ptr->mimic_form == MIMIC_NONE) msg_print("There is no effect.");
+                if (p_ptr->mimic_form == MIMIC_NONE) msg_print("毫无效果。");
             }
         }
         break;
@@ -6515,7 +6515,7 @@ static cptr do_crusade_spell(int spell, int mode)
     switch (spell)
     {
     case 0:
-        if (name) return "Punishment";
+        if (name) return "惩戒";
         if (desc) return "Fires a bolt or beam of lightning.";
 
         {
@@ -6539,7 +6539,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 1:
-        if (name) return "Detect Evil";
+        if (name) return "探测邪恶";
         if (desc) return "Detects all evil monsters in your vicinity.";
 
         {
@@ -6555,7 +6555,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 2:
-        if (name) return "Remove Fear";
+        if (name) return "移除恐惧";
         if (desc) return "Removes fear.";
 
         if (cast)
@@ -6563,7 +6563,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 3:
-        if (name) return "Scare Monster";
+        if (name) return "恐吓怪物";
         if (desc) return "Attempts to scare a monster.";
 
         {
@@ -6581,7 +6581,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 4:
-        if (name) return "Sanctuary";
+        if (name) return "避难所";
         if (desc) return "Attempts to sleep monsters in the adjacent squares.";
 
         {
@@ -6597,7 +6597,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 5:
-        if (name) return "Portal";
+        if (name) return "传送门";
         if (desc) return "Teleport medium distance.";
 
         {
@@ -6615,7 +6615,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 6:
-        if (name) return "Star Dust";
+        if (name) return "星尘";
         if (desc) return "Fires many bolts of light near the target.";
 
         {
@@ -6633,7 +6633,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 7:
-        if (name) return "Purify";
+        if (name) return "净化";
         if (desc) return "Heals cuts and stuns as well as reducing poison.";
 
         {
@@ -6647,7 +6647,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 8:
-        if (name) return "Scatter Evil";
+        if (name) return "驱散邪恶";
         if (desc) return "Attempts to teleport an evil monster away.";
 
         {
@@ -6664,8 +6664,8 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 9:
-        if (name) return "Holy Orb";
-        if (desc) return "Fires a ball of holy power. Hurts evil monsters greatly, but doesn't affect good monsters.";
+        if (name) return "神圣法球";
+        if (desc) return "发射一颗神圣能量球。对邪恶怪物造成极大伤害，但不会影响善良怪物。";
 
         {
             int dice = 3;
@@ -6696,7 +6696,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 10:
-        if (name) return "Exorcism";
+        if (name) return "驱魔";
         if (desc) return "Damages all undead and demons in sight, and scares all evil monsters in sight.";
 
         {
@@ -6715,7 +6715,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 11:
-        if (name) return "Remove Curse";
+        if (name) return "移除诅咒";
         if (desc) return "Removes normal curses from equipped items.";
 
         {
@@ -6723,14 +6723,14 @@ static cptr do_crusade_spell(int spell, int mode)
             {
                 if (remove_curse())
                 {
-                    msg_print("You feel as if someone is watching over you.");
+                    msg_print("你感觉好像有人在守护着你。");
                 }
             }
         }
         break;
 
     case 12:
-        if (name) return "Sense Unseen";
+        if (name) return "感知隐形";
         if (desc) return "Gives see invisible for a while.";
 
         {
@@ -6746,7 +6746,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 13:
-        if (name) return "Protection from Evil";
+        if (name) return "防护邪恶";
         if (desc) return "Gives aura which protect you from evil monster's physical attack.";
 
         {
@@ -6763,7 +6763,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 14:
-        if (name) return "Judgment Thunder";
+        if (name) return "制裁之雷";
         if (desc) return "Fires a powerful bolt of lightning.";
 
         {
@@ -6780,8 +6780,8 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 15:
-        if (name) return "Holy Word";
-        if (desc) return "Damages all evil monsters in sight, heals HP somewhat, and completely heals poison, stun and cut status.";
+        if (name) return "圣言";
+        if (desc) return "对视线内的所有邪恶怪物造成伤害，恢复部分生命值，并完全治愈中毒、震慑和割伤状态。";
 
         {
             int dam_sides = plev * 6;
@@ -6802,7 +6802,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 16:
-        if (name) return "Unbarring Ways";
+        if (name) return "开启通路";
         if (desc) return "Fires a beam which destroys traps and doors.";
 
         {
@@ -6816,7 +6816,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 17:
-        if (name) return "Arrest";
+        if (name) return "拘捕";
         if (desc) return "Attempts to paralyze an evil monster.";
 
         {
@@ -6833,8 +6833,8 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 18:
-        if (name) return "Angelic Cloak";
-        if (desc) return "Gives resistance to acid, cold and lightning. Gives aura of holy power which injures evil monsters which attacked you for a while.";
+        if (name) return "天使斗篷";
+        if (desc) return "获得对酸液、寒冷和闪电的抵抗力。并为你提供神圣力量的光环，在一段时间内对攻击你的邪恶怪物造成伤害。";
 
         {
             int base = 20;
@@ -6870,7 +6870,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 20:
-        if (name) return "Dispel Evil";
+        if (name) return "驱散邪恶";
         if (desc) return "Damages all evil monsters in sight.";
 
         {
@@ -6886,7 +6886,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 21:
-        if (name) return "Holy Blade";
+        if (name) return "神圣之刃";
         if (desc) return "Makes current weapon especially deadly against evil monsters.";
 
         {
@@ -6898,7 +6898,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 22:
-        if (name) return "Star Burst";
+        if (name) return "星爆";
         if (desc) return "Fires a huge ball of powerful light.";
 
         {
@@ -6919,7 +6919,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 23:
-        if (name) return "Summon Angel";
+        if (name) return "召唤天使";
         if (desc) return "Summons an angel.";
 
         {
@@ -6936,11 +6936,11 @@ static cptr do_crusade_spell(int spell, int mode)
                 {
                     if (pet)
                     {
-                        msg_print("'What is thy bidding... Master?'");
+                        msg_print("'您有何吩咐……主人？'");
                     }
                     else
                     {
-                        msg_print("Mortal! Repent of thy impiousness.");
+                        msg_print("凡人！为你的不敬忏悔吧。");
                     }
                 }
             }
@@ -6948,7 +6948,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 24:
-        if (name) return "Heroism";
+        if (name) return "英雄气概";
         if (desc) return "Removes fear, and gives bonus to hit and 10 more HP for a while.";
 
         {
@@ -6965,7 +6965,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 25:
-        if (name) return "Dispel Curse";
+        if (name) return "驱除诅咒";
         if (desc) return "Removes normal and heavy curse from equipped items.";
 
         {
@@ -6973,14 +6973,14 @@ static cptr do_crusade_spell(int spell, int mode)
             {
                 if (remove_all_curse())
                 {
-                    msg_print("You feel as if someone is watching over you.");
+                    msg_print("你感觉好像有人在守护着你。");
                 }
             }
         }
         break;
 
     case 26:
-        if (name) return "Banish Evil";
+        if (name) return "驱逐邪恶";
         if (desc) return "Teleports all evil monsters in sight away unless resisted.";
 
         {
@@ -6992,7 +6992,7 @@ static cptr do_crusade_spell(int spell, int mode)
             {
                 if (banish_evil(power))
                 {
-                    msg_print("The holy power banishes evil!");
+                    msg_print("神圣的力量驱逐了邪恶！");
 
                 }
             }
@@ -7000,7 +7000,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 27:
-        if (name) return "Armageddon";
+        if (name) return "末日审判";
         if (desc) return "Destroy everything in nearby area.";
 
         {
@@ -7015,7 +7015,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 28:
-        if (name) return "An Eye for an Eye";
+        if (name) return "以眼还眼";
         if (desc) return "Gives special aura for a while. When you are attacked by a monster, the monster are injured with same amount of damage as you take.";
 
         {
@@ -7031,7 +7031,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 29:
-        if (name) return "Wrath of the God";
+        if (name) return "神之愤怒";
         if (desc) return "Drops many balls of disintegration near the target.";
 
         {
@@ -7048,8 +7048,8 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 30:
-        if (name) return "Divine Intervention";
-        if (desc) return "Damages all adjacent monsters with holy power. Damages and attempt to slow, stun, confuse, scare and freeze all monsters in sight. And heals HP.";
+        if (name) return "神圣干预";
+        if (desc) return "以神圣力量对所有相邻怪物造成伤害。对视线内的所有怪物造成伤害，并尝试使其减速、震慑、困惑、恐惧和冻结。同时恢复生命值。";
 
         {
             int b_dam = spell_power(plev * 11);
@@ -7075,7 +7075,7 @@ static cptr do_crusade_spell(int spell, int mode)
         break;
 
     case 31:
-        if (name) return "Crusade";
+        if (name) return "圣战";
         if (desc) return "Attempts to charm all good monsters in sight, and scare all non-charmed monsters, and summons great number of knights, and gives heroism, bless, speed and protection from evil.";
         if (cast) cast_crusade();
         break;
@@ -7101,7 +7101,7 @@ static cptr do_music_spell(int spell, int mode)
     switch (spell)
     {
     case 0:
-        if (name) return "Song of Holding";
+        if (name) return "定身之歌";
         if (desc) return "Attempts to slow all monsters in sight.";
 
         /* Stop singing before start another */
@@ -7109,7 +7109,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You start humming a slow, steady melody...");
+            msg_print("你开始哼唱一段缓慢、平稳的旋律……");
             bard_start_singing(spell, MUSIC_SLOW);
         }
 
@@ -7126,7 +7126,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 1:
-        if (name) return "Song of Blessing";
+        if (name) return "祝福之歌";
         if (desc) return "Gives bonus to hit and AC for a few turns.";
 
         /* Stop singing before start another */
@@ -7134,7 +7134,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("The holy power of the Music of the Ainur enters you...");
+            msg_print("埃努大乐章的神圣力量进入了你的体内……");
             bard_start_singing(spell, MUSIC_BLESS);
         }
 
@@ -7142,14 +7142,14 @@ static cptr do_music_spell(int spell, int mode)
         {
             if (!p_ptr->blessed)
             {
-                msg_print("The prayer has expired.");
+                msg_print("祈祷的效果已经消失。");
             }
         }
 
         break;
 
     case 2:
-        if (name) return "Wrecking Note";
+        if (name) return "破坏音符";
         if (desc) return "Fires a bolt of sound.";
 
         /* Stop singing before start another */
@@ -7175,7 +7175,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 3:
-        if (name) return "Stun Pattern";
+        if (name) return "震慑旋律";
         if (desc) return "Attempts to stun all monsters in sight.";
 
         /* Stop singing before start another */
@@ -7183,7 +7183,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You weave a pattern of sounds to bewilder and daze...");
+            msg_print("你编织出一段音符来迷惑和震晕敌人……");
             bard_start_singing(spell, MUSIC_STUN);
         }
 
@@ -7202,7 +7202,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 4:
-        if (name) return "Flow of Life";
+        if (name) return "生命之流";
         if (desc) return "Heals HP a little.";
 
         /* Stop singing before start another */
@@ -7210,7 +7210,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("Life flows through you as you sing a song of healing...");
+            msg_print("当你唱起治愈之歌时，生命力流经你的全身……");
             bard_start_singing(spell, MUSIC_L_LIFE);
         }
 
@@ -7229,7 +7229,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 5:
-        if (name) return "Song of the Sun";
+        if (name) return "太阳之歌";
         if (desc) return "Lights up nearby area and the inside of a room permanently.";
 
         /* Stop singing before start another */
@@ -7244,7 +7244,7 @@ static cptr do_music_spell(int spell, int mode)
 
             if (cast)
             {
-                msg_print("Your uplifting song brings brightness to dark places...");
+                msg_print("你激昂的歌声为黑暗的地方带来了光明……");
 
                 lite_area(damroll(dice, sides), rad);
             }
@@ -7252,7 +7252,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 6:
-        if (name) return "Song of Fear";
+        if (name) return "恐惧之歌";
         if (desc) return "Attempts to scare all monsters in sight.";
 
         /* Stop singing before start another */
@@ -7260,7 +7260,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You start weaving a fearful pattern...");
+            msg_print("你开始编织出一段令人恐惧的旋律……");
             bard_start_singing(spell, MUSIC_FEAR);
         }
 
@@ -7278,7 +7278,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 7:
-        if (name) return "Heroic Ballad";
+        if (name) return "英雄战歌";
         if (desc) return "Removes fear, and gives bonus to hit and 10 more HP for a while.";
 
         /* Stop singing before start another */
@@ -7286,7 +7286,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You start singing a song of intense fighting...");
+            msg_print("你开始唱起一首激昂的战歌……");
 
             (void)hp_player(10);
             fear_clear_p();
@@ -7301,7 +7301,7 @@ static cptr do_music_spell(int spell, int mode)
         {
             if (!p_ptr->hero)
             {
-                msg_print("The heroism wears off.");
+                msg_print("英雄气概消失了。");
                 /* Recalculate hitpoints */
                 p_ptr->update |= (PU_HP);
             }
@@ -7310,7 +7310,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 8:
-        if (name) return "Clairaudience";
+        if (name) return "顺风耳";
         if (desc) return "Detects traps, doors and stairs in your vicinity. And detects all monsters at level 15, treasures and items at level 20. Maps nearby area at level 25. Lights and know the whole level at level 40. These effects occurs by turns while this song continues.";
 
         /* Stop singing before start another */
@@ -7318,7 +7318,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("Your quiet music sharpens your sense of hearing...");
+            msg_print("你宁静的音乐使你的听觉变得敏锐……");
 
             /* Hack -- Initialize the turn count */
             p_ptr->magic_num1[2] = 0;
@@ -7372,7 +7372,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 9:
-        if (name) return "Soul Shriek";
+        if (name) return "灵魂尖啸";
         if (desc) return "Inflicts psionic damage on all monsters in sight.";
 
         /* Stop singing before start another */
@@ -7380,7 +7380,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You start singing a song of soul in pain...");
+            msg_print("你开始唱起一首灵魂痛苦之歌……");
             bard_start_singing(spell, MUSIC_PSI);
         }
 
@@ -7402,7 +7402,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 10:
-        if (name) return "Song of Lore";
+        if (name) return "学识之歌";
         if (desc) return "Identifies all items which are in the adjacent squares.";
 
         /* Stop singing before start another */
@@ -7410,7 +7410,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You recall the rich lore of the world...");
+            msg_print("你回想起了这个世界丰富的学识……");
             bard_start_singing(spell, MUSIC_ID);
         }
 
@@ -7428,7 +7428,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 11:
-        if (name) return "Hiding Tune";
+        if (name) return "隐匿曲调";
         if (desc) return "Gives improved stealth.";
 
         /* Stop singing before start another */
@@ -7436,7 +7436,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("Your song carries you beyond the sight of mortal eyes...");
+            msg_print("你的歌声将你带离凡人视线之外……");
             bard_start_singing(spell, MUSIC_STEALTH);
         }
 
@@ -7444,14 +7444,14 @@ static cptr do_music_spell(int spell, int mode)
         {
             if (!p_ptr->tim_stealth)
             {
-                msg_print("You are no longer hided.");
+                msg_print("你不再隐匿了。");
             }
         }
 
         break;
 
     case 12:
-        if (name) return "Illusion Pattern";
+        if (name) return "幻象旋律";
         if (desc) return "Attempts to confuse all monsters in sight.";
 
         /* Stop singing before start another */
@@ -7459,7 +7459,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You weave a pattern of sounds to beguile and confuse...");
+            msg_print("你编织出一段音符来欺骗和困惑敌人……");
             bard_start_singing(spell, MUSIC_CONF);
         }
 
@@ -7477,7 +7477,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 13:
-        if (name) return "Doomcall";
+        if (name) return "厄运召唤";
         if (desc) return "Damages all monsters in sight with booming sound.";
 
         /* Stop singing before start another */
@@ -7485,7 +7485,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("The fury of the Downfall of Numenor lashes out...");
+            msg_print("努曼诺尔沦亡的狂怒爆发了……");
             bard_start_singing(spell, MUSIC_SOUND);
         }
 
@@ -7507,7 +7507,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 14:
-        if (name) return "Firiel's Song";
+        if (name) return "菲瑞尔之歌";
         if (desc) return "Resurrects nearby corpse and skeletons. And makes these your pets.";
 
         {
@@ -7516,7 +7516,7 @@ static cptr do_music_spell(int spell, int mode)
 
             if (cast)
             {
-                msg_print("The themes of life and revival are woven into your song...");
+                msg_print("生命与复苏的主题交织在你的歌声中……");
 
                 animate_dead(0, py, px);
             }
@@ -7524,7 +7524,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 15:
-        if (name) return "Fellowship Chant";
+        if (name) return "团契圣歌";
         if (desc) return "Attempts to charm all monsters in sight.";
 
         /* Stop singing before start another */
@@ -7532,7 +7532,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You weave a slow, soothing melody of imploration...");
+            msg_print("你编织出一段缓慢、舒缓的恳求旋律……");
             bard_start_singing(spell, MUSIC_CHARM);
         }
 
@@ -7551,7 +7551,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 16:
-        if (name) return "Sound of disintegration";
+        if (name) return "解离之音";
         if (desc) return "Makes you be able to burrow into walls. Objects under your feet evaporate.";
 
         /* Stop singing before start another */
@@ -7559,7 +7559,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You weave a violent pattern of sounds to break wall.");
+            msg_print("你编织出一段狂暴的音符来破坏墙壁。");
             bard_start_singing(spell, MUSIC_WALL);
         }
 
@@ -7573,7 +7573,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 17:
-        if (name) return "Finrod's Resistance";
+        if (name) return "芬罗德的抵抗";
         if (desc) return "Gives resistance to fire, cold, electricity, acid and poison.";
 
         /* Stop singing before start another */
@@ -7581,7 +7581,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You sing a song of perseverance against powers...");
+            msg_print("你唱起一首对抗强权的坚韧之歌……");
             bard_start_singing(spell, MUSIC_RESIST);
         }
 
@@ -7589,34 +7589,34 @@ static cptr do_music_spell(int spell, int mode)
         {
             if (!p_ptr->oppose_acid)
             {
-                msg_print("You feel less resistant to acid.");
+                msg_print("你对酸液的抵抗力减弱了。");
             }
 
             if (!p_ptr->oppose_elec)
             {
-                msg_print("You feel less resistant to electricity.");
+                msg_print("你对闪电的抵抗力减弱了。");
             }
 
             if (!p_ptr->oppose_fire)
             {
-                msg_print("You feel less resistant to fire.");
+                msg_print("你对火焰的抵抗力减弱了。");
             }
 
             if (!p_ptr->oppose_cold)
             {
-                msg_print("You feel less resistant to cold.");
+                msg_print("你对寒冷的抵抗力减弱了。");
             }
 
             if (!p_ptr->oppose_pois)
             {
-                msg_print("You feel less resistant to poison.");
+                msg_print("你对毒素的抵抗力减弱了。");
             }
         }
 
         break;
 
     case 18:
-        if (name) return "Hobbit Melodies";
+        if (name) return "霍比特旋律";
         if (desc) return "Hastes you.";
 
         /* Stop singing before start another */
@@ -7624,7 +7624,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You start singing joyful pop song...");
+            msg_print("你开始唱起欢快的流行歌曲……");
             bard_start_singing(spell, MUSIC_SPEED);
         }
 
@@ -7632,14 +7632,14 @@ static cptr do_music_spell(int spell, int mode)
         {
             if (!p_ptr->fast)
             {
-                msg_print("You feel yourself slow down.");
+                msg_print("你感觉自己变慢了。");
             }
         }
 
         break;
 
     case 19:
-        if (name) return "World Contortion";
+        if (name) return "世界扭曲";
         if (desc) return "Teleports all nearby monsters away unless resisted.";
 
         {
@@ -7653,7 +7653,7 @@ static cptr do_music_spell(int spell, int mode)
 
             if (cast)
             {
-                msg_print("Reality whirls wildly as you sing a dizzying melody...");
+                msg_print("当你唱起令人目眩的旋律时，现实开始疯狂旋转……");
 
                 project(0, rad, py, px, power, GF_AWAY_ALL, PROJECT_KILL);
             }
@@ -7661,7 +7661,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 20:
-        if (name) return "Dispelling chant";
+        if (name) return "驱散圣歌";
         if (desc) return "Damages all monsters in sight. Hurts evil monsters greatly.";
 
         /* Stop singing before start another */
@@ -7669,7 +7669,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You cry out in an ear-wracking voice...");
+            msg_print("你发出震耳欲聋的尖叫声……");
             bard_start_singing(spell, MUSIC_DISPEL);
         }
 
@@ -7688,7 +7688,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 21:
-        if (name) return "The Voice of Saruman";
+        if (name) return "萨鲁曼之声";
         if (desc) return "Attempts to slow and sleep all monsters in sight.";
 
         /* Stop singing before start another */
@@ -7696,7 +7696,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You start humming a gentle and attractive song...");
+            msg_print("你开始哼唱一首温柔而迷人的歌……");
             bard_start_singing(spell, MUSIC_SARUMAN);
         }
 
@@ -7715,7 +7715,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 22:
-        if (name) return "Song of the Tempest";
+        if (name) return "风暴之歌";
         if (desc) return "Fires a beam of sound.";
 
         {
@@ -7741,7 +7741,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 23:
-        if (name) return "Ambarkanta";
+        if (name) return "安巴坎塔";
         if (desc) return "Recreates current dungeon level.";
 
         {
@@ -7755,7 +7755,7 @@ static cptr do_music_spell(int spell, int mode)
 
             if (cast)
             {
-                msg_print("You sing of the primeval shaping of Middle-earth...");
+                msg_print("你歌唱着中土世界的太古重塑……");
 
                 alter_reality();
             }
@@ -7763,7 +7763,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 24:
-        if (name) return "Wrecking Pattern";
+        if (name) return "破坏旋律";
         if (desc) return "Shakes dungeon structure, and results in random swapping of floors and walls.";
 
         /* Stop singing before start another */
@@ -7771,7 +7771,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You weave a pattern of sounds to contort and shatter...");
+            msg_print("你编织出一段音符来扭曲和粉碎……");
             bard_start_singing(spell, MUSIC_QUAKE);
         }
 
@@ -7790,7 +7790,7 @@ static cptr do_music_spell(int spell, int mode)
 
 
     case 25:
-        if (name) return "Stationary Shriek";
+        if (name) return "停滞尖啸";
         if (desc) return "Attempts to freeze all monsters in sight.";
 
         /* Stop singing before start another */
@@ -7798,7 +7798,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You weave a very slow pattern which is almost likely to stop...");
+            msg_print("你编织出一段极其缓慢、几乎要停滞的旋律……");
             bard_start_singing(spell, MUSIC_STASIS);
         }
 
@@ -7816,7 +7816,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 26:
-        if (name) return "Endurance";
+        if (name) return "耐力";
         if (desc) return "Sets a glyph on the floor beneath you. Monsters cannot attack you if you are on a glyph, but can try to break glyph.";
 
         {
@@ -7825,7 +7825,7 @@ static cptr do_music_spell(int spell, int mode)
 
             if (cast)
             {
-                msg_print("The holy power of the Music is creating sacred field...");
+                msg_print("乐章的神圣力量正在创造神圣领域……");
 
                 warding_glyph();
             }
@@ -7833,7 +7833,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 27:
-        if (name) return "The Hero's Poem";
+        if (name) return "英雄诗篇";
         if (desc) return "Hastes you. Gives heroism. Damages all monsters in sight.";
 
         /* Stop singing before start another */
@@ -7841,7 +7841,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("You chant a powerful, heroic call to arms...");
+            msg_print("你吟唱起一声强大、英雄般的武装号召……");
             (void)hp_player(10);
 
             /* Recalculate hitpoints */
@@ -7854,14 +7854,14 @@ static cptr do_music_spell(int spell, int mode)
         {
             if (!p_ptr->hero)
             {
-                msg_print("The heroism wears off.");
+                msg_print("英雄气概消失了。");
                 /* Recalculate hitpoints */
                 p_ptr->update |= (PU_HP);
             }
 
             if (!p_ptr->fast)
             {
-                msg_print("You feel yourself slow down.");
+                msg_print("你感觉自己变慢了。");
             }
         }
 
@@ -7879,7 +7879,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 28:
-        if (name) return "Relief of Yavanna";
+        if (name) return "雅凡娜的慰藉";
         if (desc) return "Powerful healing song. Also heals cut and stun completely.";
 
         /* Stop singing before start another */
@@ -7887,7 +7887,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-            msg_print("Life flows through you as you sing the song...");
+            msg_print("当你唱起这首歌时，生命力流经你的全身……");
             bard_start_singing(spell, MUSIC_H_LIFE);
         }
 
@@ -7908,7 +7908,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 29:
-        if (name) return "Goddess' rebirth";
+        if (name) return "女神重生";
         if (desc) return "Restores all stats and experience.";
 
         {
@@ -7917,7 +7917,7 @@ static cptr do_music_spell(int spell, int mode)
 
             if (cast)
             {
-                msg_print("You strewed light and beauty in the dark as you sing. You feel refreshed.");
+                msg_print("当你歌唱时，你在黑暗中播撒光明与美丽。你感到神清气爽。");
                 (void)do_res_stat(A_STR);
                 (void)do_res_stat(A_INT);
                 (void)do_res_stat(A_WIS);
@@ -7931,7 +7931,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 30:
-        if (name) return "Wizardry of Sauron";
+        if (name) return "索伦的巫术";
         if (desc) return "Fires an extremely powerful tiny ball of sound.";
 
         {
@@ -7959,7 +7959,7 @@ static cptr do_music_spell(int spell, int mode)
         break;
 
     case 31:
-        if (name) return "Fingolfin's Challenge";
+        if (name) return "芬国昐的挑战";
         if (desc) return "Temporarily makes you invulnerable to most attacks. Consumes an extra turn when the invulnerability ends.";
 
         /* Stop singing before start another */
@@ -7967,7 +7967,7 @@ static cptr do_music_spell(int spell, int mode)
 
         if (cast)
         {
-                msg_print("You recall the valor of Fingolfin's challenge to the Dark Lord...");
+                msg_print("你回想起了芬国昐向黑魔王挑战时的英勇……");
 
                 /* Redraw map */
                 p_ptr->redraw |= (PR_MAP);
@@ -7985,7 +7985,7 @@ static cptr do_music_spell(int spell, int mode)
         {
             if (!p_ptr->invuln)
             {
-                msg_print("The invulnerability wears off.");
+                msg_print("无敌状态消失了。");
                 /* Redraw map */
                 p_ptr->redraw |= (PR_MAP);
 
@@ -8043,31 +8043,31 @@ static cptr do_hex_spell(int spell, int mode)
     {
     /*** 1st book (0-7) ***/
     case 0:
-        if (name) return "Evily blessing";
+        if (name) return "邪恶祝福";
         if (desc) return "Attempts to increase +to_hit of a weapon and AC";
         if (cast)
         {
             if (!p_ptr->blessed)
             {
-                msg_print("You feel righteous!");
+                msg_print("你感觉充满了正义感！");
             }
         }
         if (stop)
         {
             if (!p_ptr->blessed)
             {
-                msg_print("The prayer has expired.");
+                msg_print("祈祷的效果已经消失。");
             }
         }
         break;
 
     case 1:
-        if (name) return "Cure light wounds";
+        if (name) return "治疗轻伤";
         if (desc) return "Heals cut and HP a little.";
         if (info) return info_heal(1, 10, 0);
         if (cast)
         {
-            msg_print("You feel better and better.");
+            msg_print("你感觉越来越好了。");
         }
         if (cast || cont)
         {
@@ -8077,20 +8077,20 @@ static cptr do_hex_spell(int spell, int mode)
         break;
 
     case 2:
-        if (name) return "Demonic aura";
+        if (name) return "恶魔光环";
         if (desc) return "Gives fire aura and regeneration.";
         if (cast)
         {
-            msg_print("You have enveloped by fiery aura!");
+            msg_print("你被火焰光环包围了！");
         }
         if (stop)
         {
-            msg_print("Fiery aura disappeared.");
+            msg_print("火焰光环消失了。");
         }
         break;
 
     case 3:
-        if (name) return "Stinking mist";
+        if (name) return "恶臭迷雾";
         if (desc) return "Deals few damages of poison to all monsters in your sight.";
         power = plev / 2 + 5 + p_ptr->to_d_spell;
         if (info) return info_damage(1, power, 0);
@@ -8101,16 +8101,16 @@ static cptr do_hex_spell(int spell, int mode)
         break;
 
     case 4:
-        if (name) return "Extra might";
+        if (name) return "额外力量";
         if (desc) return "Attempts to increase your strength.";
         if (cast)
         {
-            msg_print("You feel you get stronger.");
+            msg_print("你感觉自己变强了。");
         }
         break;
 
     case 5:
-        if (name) return "Curse weapon";
+        if (name) return "诅咒武器";
         if (desc) return "Curses your weapon.";
         if (cast)
         {
@@ -8118,8 +8118,8 @@ static cptr do_hex_spell(int spell, int mode)
             char o_name[MAX_NLEN];
             u32b f[OF_ARRAY_SIZE];
 
-            prompt.prompt = "Which weapon do you curse?";
-            prompt.error = "You wield no weapons.";
+            prompt.prompt = "你要诅咒哪把武器？";
+            prompt.error = "你没有装备任何武器。";
             prompt.filter = item_tester_hook_weapon_except_bow;
             prompt.where[0] = INV_EQUIP;
 
@@ -8129,12 +8129,12 @@ static cptr do_hex_spell(int spell, int mode)
             object_desc(o_name, prompt.obj, OD_NAME_ONLY);
             obj_flags(prompt.obj, f);
 
-            if (!get_check(format("Do you curse %s, really?", o_name))) return FALSE;
+            if (!get_check(format("你真的要诅咒%s吗？", o_name))) return FALSE;
 
             if (!one_in_(3) &&
                 (object_is_artifact(prompt.obj) || have_flag(f, OF_BLESSED)))
             {
-                msg_format("%s resists the effect.", o_name);
+                msg_format("%s抵抗了效果。", o_name);
                 if (one_in_(3))
                 {
                     if (prompt.obj->to_d > 0)
@@ -8152,13 +8152,13 @@ static cptr do_hex_spell(int spell, int mode)
                         prompt.obj->to_a -= randint1(3) % 2;
                         if (prompt.obj->to_a < 0) prompt.obj->to_a = 0;
                     }
-                    msg_format("Your %s was disenchanted!", o_name);
+                    msg_format("你的%s被解除了魔法！", o_name);
                 }
             }
             else
             {
                 int power = 0;
-                msg_format("A terrible black aura blasts your %s!", o_name);
+                msg_format("一阵可怕的黑色光环冲击了你的%s！", o_name);
                 prompt.obj->curse_flags |= (OFC_CURSED);
 
                 if (object_is_artifact(prompt.obj) || object_is_ego(prompt.obj))
@@ -8173,7 +8173,7 @@ static cptr do_hex_spell(int spell, int mode)
                         add_flag(prompt.obj->flags, OF_AGGRAVATE);
                         add_flag(prompt.obj->flags, OF_VORPAL);
                         add_flag(prompt.obj->flags, OF_BRAND_VAMP);
-                        msg_print("Blood, Blood, Blood!");
+                        msg_print("血，鲜血，鲜血！");
                         power = 2;
                     }
                 }
@@ -8190,17 +8190,17 @@ static cptr do_hex_spell(int spell, int mode)
         break;
 
     case 6:
-        if (name) return "Evil detection";
+        if (name) return "邪恶探测";
         if (desc) return "Detects evil monsters.";
         if (info) return info_range(MAX_SIGHT);
         if (cast)
         {
-            msg_print("You attend to the presence of evil creatures.");
+            msg_print("你注意到了邪恶生物的存在。");
         }
         break;
 
     case 7:
-        if (name) return "Patience";
+        if (name) return "忍耐";
         if (desc) return "Bursts hell fire strongly after patients any damage while few turns.";
         power = MIN(200, p_ptr->magic_num1[2] * 2 + p_ptr->to_d_spell);
         if (info) return info_damage(0, 0, power);
@@ -8211,14 +8211,14 @@ static cptr do_hex_spell(int spell, int mode)
 
             if (p_ptr->magic_num2[2] > 0)
             {
-                msg_print("You are already patienting.");
+                msg_print("你已经在忍耐了。");
                 return NULL;
             }
 
             p_ptr->magic_num2[1] = 1;
             p_ptr->magic_num2[2] = r;
             p_ptr->magic_num1[2] = 0;
-            msg_print("You decide to patient all damages.");
+            msg_print("你决定忍受所有的伤害。");
             add = FALSE;
         }
         if (cont)
@@ -8229,7 +8229,7 @@ static cptr do_hex_spell(int spell, int mode)
 
             if ((p_ptr->magic_num2[2] <= 0) || (power >= 200))
             {
-                msg_print("Time for end of patience!");
+                msg_print("忍耐的时间结束了！");
                 if (power)
                 {
                     project(0, rad, py, px, power, GF_HELL_FIRE,
@@ -8237,7 +8237,7 @@ static cptr do_hex_spell(int spell, int mode)
                 }
                 if (p_ptr->wizard || easy_damage)
                 {
-                    msg_format("You return %d damages.", power);
+                    msg_format("你返还了%d点伤害。", power);
                 }
 
                 /* Reset */
@@ -8250,25 +8250,25 @@ static cptr do_hex_spell(int spell, int mode)
 
     /*** 2nd book (8-15) ***/
     case 8:
-        if (name) return "Ice armor";
+        if (name) return "寒冰装甲";
         if (desc) return "Gives cold aura and bonus to AC.";
         if (cast)
         {
-            msg_print("You have enveloped by ice armor!");
+            msg_print("你被寒冰装甲包围了！");
         }
         if (stop)
         {
-            msg_print("Ice armor disappeared.");
+            msg_print("寒冰装甲消失了。");
         }
         break;
 
     case 9:
-        if (name) return "Cure serious wounds";
+        if (name) return "治疗重伤";
         if (desc) return "Heals cut and HP more.";
         if (info) return info_heal(2, 10, 0);
         if (cast)
         {
-            msg_print("You feel better and better.");
+            msg_print("你感觉越来越好了。");
         }
         if (cast || cont)
         {
@@ -8278,8 +8278,8 @@ static cptr do_hex_spell(int spell, int mode)
         break;
 
     case 10:
-        if (name) return "Inhail potion";
-        if (desc) return "Quaffs a potion without canceling of casting a spell.";
+        if (name) return "吸入药水";
+        if (desc) return "喝下药水而不会中断施法。";
         if (cast)
         {
             p_ptr->magic_num1[0] |= (1L << HEX_INHAIL);
@@ -8290,7 +8290,7 @@ static cptr do_hex_spell(int spell, int mode)
         break;
 
     case 11:
-        if (name) return "Vampiric mist";
+        if (name) return "吸血迷雾";
         if (desc) return "Deals few damages of drain life to all monsters in your sight.";
         power = (plev / 2) + 5 + p_ptr->to_d_spell;
         if (info) return info_damage(1, power, 0);
@@ -8301,73 +8301,73 @@ static cptr do_hex_spell(int spell, int mode)
         break;
 
     case 12:
-        if (name) return "Swords to runeswords";
+        if (name) return "武器化为符文剑";
         if (desc) return "Gives vorpal ability to your weapon. Increases damages by your weapon according to curse of your weapon.";
         if (cast)
         {
             if (p_ptr->weapon_ct > 1)
-                msg_print("Your weapons glow bright black.");
+                msg_print("你的武器闪烁着明亮的黑光。");
             else
-                msg_print("Your weapon glows bright black.");
+                msg_print("你的武器闪烁着明亮的黑光。");
         }
         if (stop)
-            msg_format("Brightness of weapon%s disappeared.", (p_ptr->weapon_ct <= 1) ? "" : "s");
+            msg_format("武器%s的光芒消失了。", (p_ptr->weapon_ct <= 1) ? "" : "s");
         break;
 
     case 13:
-        if (name) return "Touch of confusion";
+        if (name) return "困惑之触";
         if (desc) return "Confuses a monster when you attack.";
         if (cast)
         {
-            msg_print("Your hands glow bright red.");
+            msg_print("你的双手闪烁着明亮的红光。");
         }
         if (stop)
         {
-            msg_print("Brightness on your hands disappeard.");
+            msg_print("你手上的光芒消失了。");
         }
         break;
 
     case 14:
-        if (name) return "Building up";
+        if (name) return "强化体格";
         if (desc) return "Attempts to increases your strength, dexterity and constitution.";
         if (cast)
         {
-            msg_print("You feel your body is developed more now.");
+            msg_print("你感觉自己的身体变得更强壮了。");
         }
         break;
 
     case 15:
-        if (name) return "Anti teleport barrier";
+        if (name) return "反传送结界";
         if (desc) return "Obstructs all teleportations by monsters in your sight.";
         power = plev * 3 / 2;
         if (info) return info_power(power);
         if (cast)
         {
-            msg_print("You feel anyone can not teleport except you.");
+            msg_print("你感觉除了你之外任何人都无法传送。");
         }
         break;
 
     /*** 3rd book (16-23) ***/
     case 16:
-        if (name) return "Cloak of shock";
+        if (name) return "冲击斗篷";
         if (desc) return "Gives lightning aura and a bonus to speed.";
         if (cast)
         {
-            msg_print("You have enveloped by electrical aura!");
+            msg_print("你被闪电光环包围了！");
         }
         if (stop)
         {
-            msg_print("Electrical aura disappeared.");
+            msg_print("闪电光环消失了。");
         }
         break;
 
     case 17:
-        if (name) return "Cure critical wounds";
+        if (name) return "治疗致命伤";
         if (desc) return "Heals cut and HP greatly.";
         if (info) return info_heal(4, 10, 0);
         if (cast)
         {
-            msg_print("You feel better and better.");
+            msg_print("你感觉越来越好了。");
         }
         if (cast || cont)
         {
@@ -8378,13 +8378,13 @@ static cptr do_hex_spell(int spell, int mode)
         break;
 
     case 18:
-        if (name) return "Recharging";
+        if (name) return "充能";
         if (desc)
         {
             if (p_ptr->pclass == CLASS_BLOOD_MAGE)
-                return "It attempts to recharge a device using your blood for power.";
+                return "它尝试消耗你的血液为一件装置充能。";
             else
-                return "It attempts to recharge a device using your mana for power.";
+                return "它尝试消耗你的法力为一件装置充能。";
         }
 
         power = plev * 2;
@@ -8397,11 +8397,11 @@ static cptr do_hex_spell(int spell, int mode)
         break;
 
     case 19:
-        if (name) return "Animate Dead";
+        if (name) return "操纵死尸";
         if (desc) return "Raises corpses and skeletons from dead.";
         if (cast)
         {
-            msg_print("You start to call deads.!");
+            msg_print("你开始呼唤死者！");
         }
         if (cast || cont)
         {
@@ -8410,7 +8410,7 @@ static cptr do_hex_spell(int spell, int mode)
         break;
 
     case 20:
-        if (name) return "Curse armor";
+        if (name) return "诅咒防具";
         if (desc) return "Curse a piece of armour that you wielding.";
         if (cast)
         {
@@ -8418,8 +8418,8 @@ static cptr do_hex_spell(int spell, int mode)
             char o_name[MAX_NLEN];
             u32b f[OF_ARRAY_SIZE];
 
-            prompt.prompt = "Which piece of armour do you curse?";
-            prompt.error = "You wield no piece of armours.";
+            prompt.prompt = "你要诅咒哪件防具？";
+            prompt.error = "你没有装备任何防具。";
             prompt.filter = object_is_armour;
             prompt.where[0] = INV_EQUIP;
 
@@ -8429,12 +8429,12 @@ static cptr do_hex_spell(int spell, int mode)
             object_desc(o_name, prompt.obj, OD_NAME_ONLY);
             obj_flags(prompt.obj, f);
 
-            if (!get_check(format("Do you curse %s, really?", o_name))) return FALSE;
+            if (!get_check(format("你真的要诅咒%s吗？", o_name))) return FALSE;
 
             if (!one_in_(3) &&
                 (object_is_artifact(prompt.obj) || have_flag(f, OF_BLESSED)))
             {
-                msg_format("%s resists the effect.", o_name);
+                msg_format("%s抵抗了效果。", o_name);
                 if (one_in_(3))
                 {
                     if (prompt.obj->to_d > 0)
@@ -8452,13 +8452,13 @@ static cptr do_hex_spell(int spell, int mode)
                         prompt.obj->to_a -= randint1(3) % 2;
                         if (prompt.obj->to_a < 0) prompt.obj->to_a = 0;
                     }
-                    msg_format("Your %s was disenchanted!", o_name);
+                    msg_format("你的%s被解除了魔法！", o_name);
                 }
             }
             else
             {
                 int power = 0;
-                msg_format("A terrible black aura blasts your %s!", o_name);
+                msg_format("一阵可怕的黑色光环冲击了你的%s！", o_name);
                 prompt.obj->curse_flags |= (OFC_CURSED);
 
                 if (object_is_artifact(prompt.obj) || object_is_ego(prompt.obj))
@@ -8474,7 +8474,7 @@ static cptr do_hex_spell(int spell, int mode)
                         add_flag(prompt.obj->flags, OF_RES_POIS);
                         add_flag(prompt.obj->flags, OF_RES_DARK);
                         add_flag(prompt.obj->flags, OF_RES_NETHER);
-                        msg_print("Blood, Blood, Blood!");
+                        msg_print("血，鲜血，鲜血！");
                         power = 2;
                     }
                 }
@@ -8488,7 +8488,7 @@ static cptr do_hex_spell(int spell, int mode)
         break;
 
     case 21:
-        if (name) return "Cloak of shadow";
+        if (name) return "阴影斗篷";
         if (desc) return "Gives aura of shadow.";
         if (cast)
         {
@@ -8497,18 +8497,18 @@ static cptr do_hex_spell(int spell, int mode)
 
             if (!slot)
             {
-                msg_print("You are not wearing a cloak.");
+                msg_print("你没有穿戴斗篷。");
                 return NULL;
             }
             o_ptr = equip_obj(slot);
             if (!object_is_cursed(o_ptr))
             {
-                msg_print("Your cloak is not cursed.");
+                msg_print("你的斗篷没有被诅咒。");
                 return NULL;
             }
             else
             {
-                msg_print("You have enveloped by shadow aura!");
+                msg_print("你被阴影光环包围了！");
             }
         }
         if (cont)
@@ -8524,12 +8524,12 @@ static cptr do_hex_spell(int spell, int mode)
         }
         if (stop)
         {
-            msg_print("Shadow aura disappeared.");
+            msg_print("阴影光环消失了。");
         }
         break;
 
     case 22:
-        if (name) return "Pains to mana";
+        if (name) return "痛苦化法";
         if (desc) return "Deals psychic damages to all monsters in sight, and drains some mana.";
         power = plev * 3 / 2 + p_ptr->to_d_spell;
         if (info) return info_damage(1, power, 0);
@@ -8540,30 +8540,30 @@ static cptr do_hex_spell(int spell, int mode)
         break;
 
     case 23:
-        if (name) return "Eye for an eye";
+        if (name) return "以眼还眼";
         if (desc) return "Returns same damage which you got to the monster which damaged you.";
         if (cast)
         {
-            msg_print("You wish strongly you want to revenge anything.");
+            msg_print("你产生了强烈的报复欲望。");
         }
         break;
 
     /*** 4th book (24-31) ***/
     case 24:
-        if (name) return "Anti multiply barrier";
+        if (name) return "反繁殖结界";
         if (desc) return "Obstructs all multiplying by monsters in entire floor.";
         if (cast)
         {
-            msg_print("You feel anyone can not already multiply.");
+            msg_print("你感觉任何怪物都无法再繁殖了。");
         }
         break;
 
     case 25:
-        if (name) return "Restore life";
-        if (desc) return "Restores life energy and status.";
+        if (name) return "恢复生命";
+        if (desc) return "恢复生命能量和状态。";
         if (cast)
         {
-            msg_print("You feel your life energy starting to return.");
+            msg_print("你感觉你的生命能量开始回归。");
         }
         if (cast || cont)
         {
@@ -8611,7 +8611,7 @@ static cptr do_hex_spell(int spell, int mode)
 
             if (!flag)
             {
-                msg_format("Finish casting '%^s'.", do_spell(REALM_HEX, HEX_RESTORE, SPELL_NAME));
+                msg_format("完成施放 '%^s'。", do_spell(REALM_HEX, HEX_RESTORE, SPELL_NAME));
                 p_ptr->magic_num1[0] &= ~(1L << HEX_RESTORE);
                 if (cont) p_ptr->magic_num2[0]--;
                 if (!p_ptr->magic_num2[0]) set_action(ACTION_NONE);
@@ -8626,15 +8626,15 @@ static cptr do_hex_spell(int spell, int mode)
         break;
 
     case 26:
-        if (name) return "Drain curse power";
+        if (name) return "吸取诅咒力量";
         if (desc) return "Drains curse on your weapon and heals SP a little.";
         if (cast)
         {
             obj_prompt_t prompt = {0};
             u32b f[OF_ARRAY_SIZE];
 
-            prompt.prompt = "Which cursed equipment do you drain mana from?";
-            prompt.error = "You have no cursed equipment.";
+            prompt.prompt = "你要从哪件被诅咒的装备中吸取法力？";
+            prompt.error = "你没有被诅咒的装备。";
             prompt.filter = object_is_cursed;
             prompt.where[0] = INV_EQUIP;
 
@@ -8655,14 +8655,14 @@ static cptr do_hex_spell(int spell, int mode)
             {
                 if (one_in_(7))
                 {
-                    msg_print("Heavy curse vanished away.");
+                    msg_print("沉重的诅咒消失了。");
                     prompt.obj->curse_flags = 0L;
                     prompt.obj->known_curse_flags = 0L;
                 }
             }
             else if ((prompt.obj->curse_flags & (OFC_CURSED)) && one_in_(3))
             {
-                msg_print("Curse vanished away.");
+                msg_print("诅咒消失了。");
                 prompt.obj->curse_flags = 0L;
                 prompt.obj->known_curse_flags = 0L;
             }
@@ -8672,21 +8672,21 @@ static cptr do_hex_spell(int spell, int mode)
         break;
 
     case 27:
-        if (name) return "Swords to vampires";
+        if (name) return "武器化为吸血剑";
         if (desc) return "Gives vampiric ability to your weapon.";
         if (cast)
         {
             if (p_ptr->weapon_ct > 1)
-                msg_print("Your weapons want more blood now.");
+                msg_print("你的武器现在渴望更多鲜血。");
             else
-                msg_print("Your weapon wants more blood now.");
+                msg_print("你的武器现在渴望更多鲜血。");
         }
         if (stop)
-            msg_format("Thirsty of weapon%s disappeared.", (p_ptr->weapon_ct <= 1) ? "" : "s");
+            msg_format("武器%s的嗜血消失了。", (p_ptr->weapon_ct <= 1) ? "" : "s");
         break;
 
     case 28:
-        if (name) return "Word of stun";
+        if (name) return "震慑之语";
         if (desc) return "Stuns all monsters in your sight.";
         if (cast || cont)
         {
@@ -8695,7 +8695,7 @@ static cptr do_hex_spell(int spell, int mode)
         break;
 
     case 29:
-        if (name) return "Moving into shadow";
+        if (name) return "潜入暗影";
         if (desc) return "Teleports you close to a monster.";
         if (cast)
         {
@@ -8719,7 +8719,7 @@ static cptr do_hex_spell(int spell, int mode)
                 if (!cave_empty_bold(y, x) || (cave[y][x].info & CAVE_ICKY) ||
                     (distance(y, x, py, px) > plev + 2))
                 {
-                    msg_print("Can not teleport to there.");
+                    msg_print("无法传送到那里。");
                     continue;
                 }
                 break;
@@ -8731,7 +8731,7 @@ static cptr do_hex_spell(int spell, int mode)
             }
             else
             {
-                msg_print("Oops!");
+                msg_print("哎呀！");
                 if (mut_present(MUT_ASTRAL_GUIDE))
                     energy_use /= 3;
                 teleport_player(30, 0L);
@@ -8742,18 +8742,18 @@ static cptr do_hex_spell(int spell, int mode)
         break;
 
     case 30:
-        if (name) return "Anti magic barrier";
-        if (desc) return "Obstructs all magic spell of monsters in your sight.";
+        if (name) return "反魔法结界";
+        if (desc) return "阻碍你视线内怪物的施法。";
         power = plev * 3 / 2;
         if (info) return info_power(power);
         if (cast)
         {
-            msg_print("You feel anyone can not cast spells except you.");
+            msg_print("你感觉除了你之外任何人都无法施法。");
         }
         break;
 
     case 31:
-        if (name) return "Revenge sentence";
+        if (name) return "复仇宣言";
         if (desc) return "Fires  a ball of hell fire to try revenging after few turns.";
         power = p_ptr->magic_num1[2] + p_ptr->to_d_spell;
         if (info) return info_damage(0, 0, power);
@@ -8765,13 +8765,13 @@ static cptr do_hex_spell(int spell, int mode)
 
             if (p_ptr->magic_num2[2] > 0)
             {
-                msg_print("You already pronounced your revenge.");
+                msg_print("你已经宣告了你的复仇。");
                 return NULL;
             }
 
             p_ptr->magic_num2[1] = 2;
             p_ptr->magic_num2[2] = r;
-            msg_format("You pronounce your revenge. %d turns left.", r - 1);
+            msg_format("你宣告了复仇。剩余 %d 回合。", r - 1);
             add = FALSE;
         }
         if (cont)
@@ -8788,7 +8788,7 @@ static cptr do_hex_spell(int spell, int mode)
 
                     do
                     {
-                        msg_print("Time to revenge!");
+                        msg_print("复仇的时刻到了！");
                     }
                     while (!get_fire_dir(&dir));
 
@@ -8796,12 +8796,12 @@ static cptr do_hex_spell(int spell, int mode)
 
                     if (p_ptr->wizard || easy_damage)
                     {
-                        msg_format("You return %d damages.", power);
+                        msg_format("你返还了 %d 点伤害。", power);
                     }
                 }
                 else
                 {
-                    msg_print("You are not in a mood for revenge.");
+                    msg_print("你现在没有心情复仇。");
                 }
                 p_ptr->magic_num1[2] = 0;
             }
@@ -8843,7 +8843,7 @@ static cptr do_armageddon_spell(int spell, int mode)
     {
     /* Book of Elements */
     case 0:
-        if (name) return "Lightning Bolt";
+        if (name) return "闪电之矢";
         if (desc) return "Fires a bolt or beam of electricity.";
 
         {
@@ -8865,7 +8865,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 1:
-        if (name) return "Frost Bolt";
+        if (name) return "冰霜之矢";
         if (desc) return "Fires a bolt or beam of cold.";
 
         {
@@ -8887,7 +8887,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 2:
-        if (name) return "Fire Bolt";
+        if (name) return "火之矢";
         if (desc) return "Fires a bolt or beam of fire.";
 
         {
@@ -8909,7 +8909,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 3:
-        if (name) return "Acid Bolt";
+        if (name) return "酸液之矢";
         if (desc) return "Fires a bolt or beam of acid.";
 
         {
@@ -8931,7 +8931,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 4:
-        if (name) return "Lightning Ball";
+        if (name) return "闪电球";
         if (desc) return "Fires a ball of electricity.";
 
         {
@@ -8948,7 +8948,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 5:
-        if (name) return "Frost Ball";
+        if (name) return "冰霜球";
         if (desc) return "Fires a ball of cold.";
 
         {
@@ -8965,7 +8965,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 6:
-        if (name) return "Fire Ball";
+        if (name) return "火球";
         if (desc) return "Fires a ball of fire.";
 
         {
@@ -8982,7 +8982,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 7:
-        if (name) return "Acid Ball";
+        if (name) return "酸液球";
         if (desc) return "Fires a ball of acid.";
 
         {
@@ -9001,7 +9001,7 @@ static cptr do_armageddon_spell(int spell, int mode)
 
     /* Earth, Wind and Fire */
     case 8:
-        if (name) return "Shard Bolt";
+        if (name) return "碎片之矢";
         if (desc) return "Fires a bolt or beam of shards.";
 
         {
@@ -9023,7 +9023,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 9:
-        if (name) return "Gravity Bolt";
+        if (name) return "重力之矢";
         if (desc) return "Fires a bolt or beam of gravity.";
 
         {
@@ -9045,7 +9045,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 10:
-        if (name) return "Plasma Bolt";
+        if (name) return "等离子之矢";
         if (desc) return "Fires a bolt or beam of plasma.";
 
         {
@@ -9067,7 +9067,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 11:
-        if (name) return "Meteor";
+        if (name) return "陨石";
         if (desc) return "Fires a meteor.";
 
         {
@@ -9084,7 +9084,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 12:
-        if (name) return "Thunderclap";
+        if (name) return "雷鸣爆";
         if (desc) return "Generates a ball of sound centered on you.";
 
         {
@@ -9095,14 +9095,14 @@ static cptr do_armageddon_spell(int spell, int mode)
 
             if (cast)
             {
-                msg_print("BOOM!");
+                msg_print("轰！");
                 project(0, rad, py, px, dam, GF_SOUND, PROJECT_KILL | PROJECT_ITEM);
             }
         }
         break;
 
     case 13:
-        if (name) return "Windblast";
+        if (name) return "狂风爆";
         if (desc) return "Fires a microburst of strong winds.";
 
         {
@@ -9119,7 +9119,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 14:
-        if (name) return "Hellstorm";
+        if (name) return "地狱风暴";
         if (desc) return "Generates a huge ball of fire centered on you.";
 
         {
@@ -9133,7 +9133,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 15:
-        if (name) return "Rocket";
+        if (name) return "火箭";
         if (desc) return "Fires a rocket.";
 
         {
@@ -9145,7 +9145,7 @@ static cptr do_armageddon_spell(int spell, int mode)
             if (cast)
             {
                 if (!get_fire_dir(&dir)) return NULL;
-                msg_print("You launch a rocket!");
+                msg_print("你发射了一枚火箭！");
                 fire_rocket(GF_ROCKET, dir, dam, rad);
             }
         }
@@ -9153,7 +9153,7 @@ static cptr do_armageddon_spell(int spell, int mode)
 
     /* Path of Destruction */
     case 16:
-        if (name) return "Ice Bolt";
+        if (name) return "寒冰之矢";
         if (desc) return "Fires a bolt of ice.";
 
         {
@@ -9174,7 +9174,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 17:
-        if (name) return "Water Ball";
+        if (name) return "水球";
         if (desc) return "Fires a ball of water.";
 
         {
@@ -9191,7 +9191,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 18:
-        if (name) return "Breathe Lightning";
+        if (name) return "喷吐闪电";
         if (desc) return "Breathes a cone of electricity at chosen target.";
 
         {
@@ -9208,7 +9208,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 19:
-        if (name) return "Breathe Frost";
+        if (name) return "喷吐冰霜";
         if (desc) return "Breathes a cone of cold at chosen target.";
 
         {
@@ -9225,7 +9225,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 20:
-        if (name) return "Breathe Fire";
+        if (name) return "喷吐火焰";
         if (desc) return "Breathes a cone of fire at chosen target.";
 
         {
@@ -9242,7 +9242,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 21:
-        if (name) return "Breathe Acid";
+        if (name) return "喷吐酸液";
         if (desc) return "Breathes a cone of acid at chosen target.";
 
         {
@@ -9259,7 +9259,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 22:
-        if (name) return "Breathe Plasma";
+        if (name) return "喷吐等离子";
         if (desc) return "Breathes a cone of plasma at chosen target.";
 
         {
@@ -9276,7 +9276,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 23:
-        if (name) return "Breathe Gravity";
+        if (name) return "喷吐重力";
         if (desc) return "Breathes a cone of gravity at chosen target.";
 
         {
@@ -9295,7 +9295,7 @@ static cptr do_armageddon_spell(int spell, int mode)
 
     /* Day of Ragnarok */
     case 24:
-        if (name) return "Mana Bolt";
+        if (name) return "法力之矢";
         if (desc) return "Fires a bolt of mana.";
 
         {
@@ -9316,7 +9316,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 25:
-        if (name) return "Plasma Ball";
+        if (name) return "等离子球";
         if (desc) return "Fires a ball of plasma.";
 
         {
@@ -9333,7 +9333,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 26:
-        if (name) return "Mana Ball";
+        if (name) return "法力球";
         if (desc) return "Fires a ball of pure mana.";
 
         {
@@ -9350,7 +9350,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 27:
-        if (name) return "Breathe Sound";
+        if (name) return "喷吐声波";
         if (desc) return "Breathes a cone of sound at chosen target.";
 
         {
@@ -9367,7 +9367,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 28:
-        if (name) return "Breathe Inertia";
+        if (name) return "喷吐迟缓";
         if (desc) return "Breathes a cone of inertia at chosen target.";
 
         {
@@ -9384,7 +9384,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 29:
-        if (name) return "Breathe Disintegration";
+        if (name) return "喷吐解离";
         if (desc) return "Breathes a cone of disintegration at chosen target.";
 
         {
@@ -9401,7 +9401,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 30:
-        if (name) return "Breathe Mana";
+        if (name) return "喷吐法力";
         if (desc) return "Breathes a cone of mana at chosen target.";
 
         {
@@ -9418,7 +9418,7 @@ static cptr do_armageddon_spell(int spell, int mode)
         }
         break;
     case 31:
-        if (name) return "Breathe Shards";
+        if (name) return "喷吐碎片";
         if (desc) return "Breathes a cone of shards at chosen target.";
 
         {
@@ -9476,6 +9476,8 @@ int get_realm_idx(cptr name)
     int i;
     for (i = 0; i < MAX_REALM; i++)
     {
+        if (strcmp(name, realm_internal_name(i)) == 0)
+            return i;
         if (strcmp(name, realm_names[i]) == 0)
             return i;
     }

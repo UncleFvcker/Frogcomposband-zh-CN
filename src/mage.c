@@ -12,7 +12,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.which_stat = A_INT;
         me.encumbrance.max_wgt = 430;
         me.encumbrance.weapon_pct = 100;
@@ -40,16 +40,8 @@ class_t *mage_get_class(void)
     skills_t bs = { 30,  40,  38,   3,  16,  20,  34,  20};
     skills_t xs = {  7,  15,  11,   0,   0,   0,   6,   7};
 
-        me.name = "Mage";
-        me.desc = "A Mage is a spellcaster who must live by his wits, as he cannot "
-                    "hope to simply hack his way through the dungeon like a warrior. "
-                    "A Mage always carries his spellbooks with him, but also relies "
-                    "on magical devices, which he can master easily. The primary "
-                    "spellcasting statistic of a Mage is Intelligence.\n\n"
-                    "Mages have few restrictions in choosing and learning spells; "
-                    "they can freely choose any two realms when a character is created, "
-                    "although their natural inclinations make Life magic fairly hard to learn. "
-                    "See <link:magic.txt> for more information on magic, realms and book spellcasting.";
+        me.name = "法师";
+        me.desc = "法师是一名必须依靠智慧生存的施法者，因为他不能指望像战士那样在地下城中一路砍杀。法师总是随身携带着法术书，但也依赖于魔法装置，而他可以轻松掌握它们。法师首要的施法属性是智力。\n\n法师在选择和学习法术上几乎没有限制；在创建角色时，他们可以自由选择任意两个魔法领域，尽管他们的天性使得生命魔法相当难学。请参阅 <link:magic.txt> 了解有关魔法、领域和书本施法的更多信息。";
 
         me.stats[A_STR] = -4;
         me.stats[A_INT] =  3;

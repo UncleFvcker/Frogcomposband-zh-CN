@@ -13,7 +13,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.which_stat = A_CHR;
         me.encumbrance.max_wgt = 430;
         me.encumbrance.weapon_pct = 50;
@@ -43,12 +43,8 @@ class_t *beastmaster_get_class(void)
     skills_t bs = { 20,  25,  32,   2,  18,  16,  52,  63};
     skills_t xs = {  7,  10,  10,   0,   0,   0,  14,  25};
 
-        me.name = "Beastmaster";
-        me.desc = "Beastmasters see the fierce creatures of the world as opportunities rather than threats, and their "
-                    "riding skills are almost unparalleled. Between their class powers and access to Trump magic, "
-                    "they have many ways to summon or charm living creatures to serve as "
-                    "their hands and feet. Beastmasters are some of the best shooters outside archery specialists, and their "
-                    "melee skills are good enough to get by on. Charisma determines the spellcasting prowess of a Beastmaster.";
+        me.name = "驯兽师";
+        me.desc = "驯兽师将世上凶猛的生物视为机遇而非威胁，他们的骑乘技巧几乎无人能及。结合他们的职业能力和使用的王牌（Trump）魔法，他们有许多方法可以召唤或魅惑活物，让其作为自己的手脚效劳。驯兽师是除了箭术专家之外最优秀的射手之一，而且他们的近战技巧也足以应付各种情况。魅力（Charisma）决定了驯兽师的施法能力。";
 
         me.stats[A_STR] =  1;
         me.stats[A_INT] = -1;

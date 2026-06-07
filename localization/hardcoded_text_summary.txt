@@ -1,0 +1,48 @@
+Hardcoded text extraction summary
+
+Source root: src
+Files scanned: 270
+All extracted text rows: 21754
+Priority rows (high/medium): 13401
+
+By priority:
+  high: 8994
+  low: 7708
+  medium: 5052
+
+By category:
+  display: 1695
+  file_ui: 18
+  message: 4320
+  name_desc: 2696
+  other: 8059
+  possible_name: 4683
+  prompt: 283
+
+Top files by extracted row count:
+ 1162  src/init1.c
+ 1104  src/do-spell.c
+ 1054  src/devices.c
+  739  src/gf.c
+  683  src/tables.c
+  579  src/mut_a.c
+  577  src/monspell.c
+  505  src/cmd4.c
+  487  src/xtra1.c
+  407  src/py_info.c
+  375  src/flavor.c
+  367  src/effects.c
+  362  src/obj_info.c
+  330  src/autopick.c
+  308  src/cmd1.c
+  302  src/spoilers.c
+  281  src/shop.c
+  276  src/bldg.c
+  266  src/py_birth.c
+  257  src/r_dragon.c
+
+Notes:
+- lib/help was not scanned; this export focuses on source hardcoded text under src.
+- Rows are occurrence-based, not deduplicated, so the file/line can be used for patching.
+- Preserve C printf placeholders such as %s/%d and game markup such as <color:y> when translating.
+- Rows marked likely technical should be reviewed before translation.

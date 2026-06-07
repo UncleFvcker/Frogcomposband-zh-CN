@@ -357,7 +357,7 @@ s32b _finalize_p(s32b p, u32b flgs[OF_ARRAY_SIZE], object_type *o_ptr, int optio
             p = p / 3;
             if (cost_calc_hook)
             {
-                sprintf(dbg_msg, "  * Hidden Power: p = %d", p);
+                sprintf(dbg_msg, "* 隐藏力量: p = %d", p);
                 cost_calc_hook(dbg_msg);
             }
         }
@@ -392,7 +392,7 @@ s32b _finalize_p(s32b p, u32b flgs[OF_ARRAY_SIZE], object_type *o_ptr, int optio
             p += xtra;
             if (cost_calc_hook)
             {
-                sprintf(dbg_msg, "  * Hidden Power: p = %d", p);
+                sprintf(dbg_msg, "* 隐藏力量: p = %d", p);
                 cost_calc_hook(dbg_msg);
             }
         }

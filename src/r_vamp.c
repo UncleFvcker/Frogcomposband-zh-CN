@@ -50,7 +50,7 @@ bool get_adjacent_target(int *x, int *y, int *mon_idx)
 
         if (!(*mon_idx))
         {
-            msg_print("There is no monster there.");
+            msg_print("那里没有怪物。");
             return FALSE;
         }
     }
@@ -88,19 +88,19 @@ static void _gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_VAMPIRE && new_level >= 25)
     {
         p_ptr->current_r_idx = MON_MASTER_VAMPIRE;
-        msg_print("You have evolved into a Master Vampire.");
+        msg_print("你进化成了吸血鬼大师(Master Vampire)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_MASTER_VAMPIRE && new_level >= 35)
     {
         p_ptr->current_r_idx = MON_VAMPIRE_LORD;
-        msg_print("You have evolved into a Vampire Lord.");
+        msg_print("你进化成了吸血鬼领主(Vampire Lord)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_VAMPIRE_LORD && new_level >= 45)
     {
         p_ptr->current_r_idx = MON_ELDER_VAMPIRE;
-        msg_print("You have evolved into an Elder Vampire.");
+        msg_print("你进化成了远古吸血鬼(Elder Vampire)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -117,10 +117,10 @@ static void _bite_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Vampiric Bite");
+        var_set_string(res, "吸血之咬");
         break;
     case SPELL_DESC:
-        var_set_string(res, "As a vampire, you must feed on fresh blood in order to sustain your unlife!");
+        var_set_string(res, "作为一名吸血鬼，你必须吸食新鲜的血液以维持你的不死生命！");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _bite_amt()));
@@ -129,7 +129,7 @@ static void _bite_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if ((d_info[dungeon_type].flags1 & DF1_NO_MELEE) || (no_melee_challenge))
         {
-            msg_print("Something prevents you from attacking.");
+            msg_print("某种力量阻止了你进行攻击。");
             return;
         }
         else
@@ -143,7 +143,7 @@ static void _bite_spell(int cmd, variant *res)
 
             var_set_bool(res, TRUE);
 
-            msg_print("You grin and bare your fangs...");
+            msg_print("你咧开嘴露出了獠牙……");
             amt = _bite_amt();
 
             vampiric_drain_hack = TRUE;
@@ -152,7 +152,7 @@ static void _bite_spell(int cmd, variant *res)
                 vampire_feed(amt);
             }
             else
-                msg_print("Yechh. That tastes foul.");
+                msg_print("呸。味道真恶心。");
             vampiric_drain_hack = FALSE;
         }
         break;
@@ -177,10 +177,10 @@ void _gaze_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Vampiric Gaze");
+        var_set_string(res, "吸血鬼凝视");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to dominate an intelligent foe causing stunning, confusion, fear or perhaps even enslavement.");
+        var_set_string(res, "尝试支配一个有智能的敌人，导致其震慑、困惑、恐惧，甚至是被奴役。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(_gaze_power()));
@@ -204,10 +204,10 @@ void _grasp_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Vampiric Grasp");
+        var_set_string(res, "吸血鬼之握");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Pulls a target creature to you.");
+        var_set_string(res, "将目标生物拉向你。");
         break;
     case SPELL_CAST:
     {
@@ -230,7 +230,7 @@ void _grasp_spell(int cmd, variant *res)
         m_ptr = &m_list[m_idx];
         monster_desc(m_name, m_ptr, 0);
         if (mon_save_tele_to(m_ptr, m_name, TRUE)) break;
-        msg_format("You grasp %s.", m_name);
+        msg_format("你抓住了 %s。", m_name);
         teleport_monster_to(m_idx, py, px, 100, TELEPORT_PASSIVE);
         mon_take_hit(m_idx, damroll(10, 10), DAM_TYPE_MELEE, &fear, extract_note_dies(real_r_ptr(m_ptr)));
         break;
@@ -282,15 +282,15 @@ static void _polymorph_undo_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Return to Vampire");
+        var_set_string(res, "变回吸血鬼");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You stop assuming your current form and revert to your natural, vampiric self.");
+        var_set_string(res, "你停止维持当前的形态并变回你自然的吸血鬼本体。");
         break;
     case SPELL_CAST:
         _set_mimic_form(MIMIC_NONE);
         equip_shuffle("@vampire");
-        msg_print("You revert to your natural form.");
+        msg_print("你变回了自然的形态。");
         var_set_bool(res, TRUE);
         break;
     default:
@@ -304,15 +304,15 @@ static void _polymorph_bat_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Polymorph Bat");
+        var_set_string(res, "化身蝙蝠");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You assume the form of a giant bat. This grants incredible speed, stealth and sensory awareness, but makes you extremely fragile. Also, bats have very restricted equipment options!");
+        var_set_string(res, "你化身为一只巨型蝙蝠。这赋予了你惊人的速度、潜行能力和感官敏锐度，但也让你变得极度脆弱。此外，蝙蝠的装备选择非常受限！");
         break;
     case SPELL_CAST:
         _set_mimic_form(MIMIC_BAT);
         equip_shuffle("@bat");
-        msg_print("You transform into a vampire bat!");
+        msg_print("你变成了一只吸血蝙蝠！");
         var_set_bool(res, TRUE);
         break;
     default:
@@ -326,15 +326,15 @@ static void _polymorph_mist_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Polymorph Mist");
+        var_set_string(res, "化身薄雾");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You lose your corporeal form to assume a cloud of evil sentient mist!");
+        var_set_string(res, "你失去了实体形态，化作一团有知觉的邪恶薄雾！");
         break;
     case SPELL_CAST:
         _set_mimic_form(MIMIC_MIST);
         equip_shuffle("@mist");
-        msg_print("You transform into vampiric mist!");
+        msg_print("你变成了吸血鬼薄雾！");
         var_set_bool(res, TRUE);
         break;
     default:
@@ -348,15 +348,15 @@ static void _polymorph_wolf_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Polymorph Wolf");
+        var_set_string(res, "化身巨狼");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You assume the form of a wolf, hungry for prey.");
+        var_set_string(res, "你化身为一只饥渴地寻找猎物的巨狼。");
         break;
     case SPELL_CAST:
         _set_mimic_form(MIMIC_WOLF);
         equip_shuffle("@wolf");
-        msg_print("You transform into a dire wolf!");
+        msg_print("你变成了一只恐狼！");
         var_set_bool(res, TRUE);
         break;
     default:
@@ -370,14 +370,14 @@ void _repose_of_the_dead_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Repose of the Dead");
+        var_set_string(res, "死者的安息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Sleep the sleep of the dead for a few rounds, during which time nothing can awaken you, except perhaps death. When (if?) you wake up, you will be thoroughly refreshed!");
+        var_set_string(res, "像死人一样沉睡几个回合，在此期间除了死亡外没有什么能唤醒你。当（如果？）你醒来时，你将会完全恢复精力！");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
-        if (!get_check("You will enter a deep slumber. Are you sure?")) return;
+        if (!get_check("你将进入深深的沉睡中。你确定吗？")) return;
         repose_of_the_dead = TRUE;
         set_paralyzed(4 + randint1(4), FALSE);
         var_set_bool(res, TRUE);
@@ -412,7 +412,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "dark power";
+        me.magic_desc = "暗黑力量";
         me.which_stat = A_CHR;
         me.encumbrance.max_wgt = 450;
         me.encumbrance.weapon_pct = 50;
@@ -503,7 +503,7 @@ race_t *mon_vampire_get_race(void)
 {
     static race_t me = {0};
     static bool init = FALSE;
-    static cptr titles[4] =  {"Vampire", "Master Vampire", "Vampire Lord", "Elder Vampire"};    
+    static cptr titles[4] =  {"吸血鬼", "吸血鬼大师", "吸血鬼领主", "远古吸血鬼"};    
     int         rank = 0;
 
     if (p_ptr->lev >= 25) rank++;
@@ -515,7 +515,7 @@ race_t *mon_vampire_get_race(void)
     skills_t bs = { 25,  37,  36,   0,  32,  25,  60,  35};
     skills_t xs = {  7,  12,  10,   0,   0,   0,  21,  11};
 
-        me.name = "Vampire";
+        me.name = "吸血鬼";
         me.desc = _desc;
 
         me.skills = bs;
@@ -576,7 +576,7 @@ void vampire_feed(int amt)
     if (p_ptr->food < PY_FOOD_FULL)
         hp_player(amt);
     else
-        msg_print("You were not hungry.");
+        msg_print("你并不饿。");
 
     /* Experimental: Scale the feeding asymptotically. Historically, vampiric feeding
         was too slow in the early game (low damage) hence tedious. But by the end game,
@@ -616,7 +616,7 @@ void vampire_check_light_status(void)
             int n = _light_penalty * _light_penalty * _light_penalty * MAX(1, dun_level/5);
             if (!fear_save_p(n))
             {
-                msg_print("You fear the light!");
+                msg_print("你害怕光芒！");
                 fear_add_p(FEAR_SCARED);
             }
         }
@@ -629,7 +629,7 @@ void vampire_take_light_damage(int amt)
 {
     if (!fear_save_p(amt))
     {
-        msg_print("You fear the light!");
+        msg_print("你害怕光芒！");
         fear_add_p(FEAR_SCARED);
     }
 
@@ -641,7 +641,7 @@ void vampire_take_light_damage(int amt)
         switch (randint1(12))
         {
         case 1: case 2: case 3: case 4: case 5:
-            msg_print("You feel your unlife force diminish.");
+            msg_print("你感到自己的不死之力在衰退。");
             lose_exp(100 + (p_ptr->exp / 100) * MON_DRAIN_LIFE);
             break;
 
@@ -655,13 +655,13 @@ void vampire_take_light_damage(int amt)
                 case 5: k = A_CON; act = "hale"; break;
                 case 6: k = A_CHR; act = "confident"; break;
             }
-            msg_format("You're not as %s as you used to be.", act);
+            msg_format("你不如以前那么%s了。", act);
             p_ptr->stat_cur[k] = (p_ptr->stat_cur[k] * 3) / 4;
             if (p_ptr->stat_cur[k] < 3) p_ptr->stat_cur[k] = 3;
             break;
 
         case 10:
-            msg_print("You're not as powerful as you used to be.");
+            msg_print("你不如以前那么强大了。");
             for (k = 0; k < 6; k++)
             {
                 p_ptr->stat_cur[k] = (p_ptr->stat_cur[k] * 7) / 8;
@@ -671,7 +671,7 @@ void vampire_take_light_damage(int amt)
 
         case 11: case 12:
             if (disenchant_player())
-                msg_print("You feel diminished!");
+                msg_print("你感到变得虚弱了！");
             break;
         }
 
@@ -717,7 +717,7 @@ static void _bat_calc_innate_attacks(void)
     calc_innate_blows(&a, 400);
 
     a.msg = "You bite.";
-    a.name = "Bite";
+    a.name = "撕咬";
 
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
 }
@@ -758,7 +758,7 @@ race_t *bat_get_race(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.name = "Vampire Bat";
+        me.name = "吸血蝙蝠";
         me.desc = "";
 
         me.stats[A_STR] = -3;
@@ -835,10 +835,8 @@ race_t *mist_get_race(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.name = "Vampiric Mist";
-        me.desc = "You are a cloud of evil, sentient mist. As such you are incorporeal and are "
-            "unable to attack enemies directly. Conversely, you are resistant to material damage "
-            "and may pass through walls. Probably, you should run away upon assuming this form.";
+        me.name = "吸血鬼薄雾";
+        me.desc = "你是一团邪恶且有感知的薄雾。因此你是无实体的，无法直接攻击敌人。相反，你对物理伤害有抗性，并且可以穿墙而过。也许，在呈现这个形态时你该赶紧逃跑。";
 
         me.stats[A_STR] = -3;
         me.stats[A_INT] = -3;
@@ -902,7 +900,7 @@ race_t *wolf_get_race(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.name = "Dire Wolf";
+        me.name = "恐狼";
         me.desc = "";
 
         me.life = 100;

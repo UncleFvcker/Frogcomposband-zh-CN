@@ -36,7 +36,7 @@ void do_cmd_go_up(void)
     /* Verify stairs */
     if (!have_flag(f_ptr->flags, FF_LESS))
     {
-        msg_print("I see no up staircase here.");
+        msg_print("我在这里没看到上行楼梯。");
 
         return;
     }
@@ -56,7 +56,7 @@ void do_cmd_go_up(void)
             extract_day_hour_min_imp(game_turn + 26, &new_day, &prev_hour, &prev_min);
             if (new_day != prev_day)
             {
-                msg_print("Horrors of the night block the staircase, driving you away!");
+                msg_print("黑夜中的恐怖怪物堵住了楼梯，将你赶走了！");
                 teleport_player(10, 0L);
                 return;
             }
@@ -97,9 +97,9 @@ void do_cmd_go_up(void)
 
     /* Success */
     if (up_num == dun_level)
-        msg_print("You go back to the surface.");
+        msg_print("你回到了地表。");
     else
-        msg_print("You enter a maze of up staircases.");
+        msg_print("你进入了错综复杂的上行楼梯。");
 
     /* Leaving */
     p_ptr->leaving = TRUE;
@@ -126,7 +126,7 @@ void do_cmd_go_down(void)
     /* Verify stairs */
     if (!have_flag(f_ptr->flags, FF_MORE))
     {
-        msg_print("I see no down staircase here.");
+        msg_print("我在这里没看到下行楼梯。");
 
         return;
     }
@@ -151,16 +151,16 @@ void do_cmd_go_down(void)
 
             if (only_downward() && (target_dungeon != DUNGEON_ANGBAND))
             {
-                msg_print("The entrance of this dungeon is closed!");
+                msg_print("这个地下城的入口已关闭！");
                 return;
             }
             if (!max_dlv[target_dungeon])
             {
                 if (d_info[target_dungeon].flags1 & DF1_RANDOM)
-                    msg_format("This is the entrance of %s (Danger level: ?)", d_name+d_info[target_dungeon].name);
+                    msg_format("这是%s的入口 (危险等级: ?)", d_name+d_info[target_dungeon].name);
                 else
-                    msg_format("This is the entrance of %s (Danger level: %d)", d_name+d_info[target_dungeon].name, d_info[target_dungeon].mindepth);
-                if (!get_check("Do you really go into this dungeon? ")) return;
+                    msg_format("这是%s的入口 (危险等级: %d)", d_name+d_info[target_dungeon].name, d_info[target_dungeon].mindepth);
+                if (!get_check("你真的要进入这个地下城吗？")) return;
             }
 
             /* Save old player position */
@@ -195,18 +195,18 @@ void do_cmd_go_down(void)
 
         if (fall_trap)
         {
-            msg_print("You deliberately jump through the trap door.");
+            msg_print("你故意跳进了暗门陷阱。");
         }
         else
         {
             /* Success */
             if (target_dungeon)
             {
-                msg_format("You entered %s.", d_text + d_info[dungeon_type].text);
+                msg_format("你进入了%s。", d_text + d_info[dungeon_type].text);
             }
             else
             {
-                msg_print("You enter a maze of down staircases.");
+                msg_print("你进入了错综复杂的下行楼梯。");
             }
         }
 
@@ -237,7 +237,7 @@ void do_cmd_go_down(void)
                   && one_in_(14) )
                 {
                     /* Hack:  No stair scum */
-                    msg_print("The stairs collapse behind you! You are trapped!!");
+                    msg_print("你身后的楼梯坍塌了！你被困住了！！");
                     dungeon_flags[target_dungeon] |= DUNGEON_NO_ENTRANCE;
                     prepare_change_floor_mode(CFM_SAVE_FLOORS | CFM_DOWN | CFM_RAND_PLACE);
                 }
@@ -439,7 +439,7 @@ static void chest_trap(int y, int x, s16b o_idx)
     /* Lose strength */
     if (trap & (CHEST_LOSE_STR))
     {
-        msg_print("A small needle has pricked you!");
+        msg_print("一根小细针扎了你一下！");
         take_hit(DAMAGE_NOESCAPE, damroll(1, 4), "a poison needle");
 
         (void)do_dec_stat(A_STR);
@@ -448,7 +448,7 @@ static void chest_trap(int y, int x, s16b o_idx)
     /* Lose constitution */
     if (trap & (CHEST_LOSE_CON))
     {
-        msg_print("A small needle has pricked you!");
+        msg_print("一根小细针扎了你一下！");
         take_hit(DAMAGE_NOESCAPE, damroll(1, 4), "a poison needle");
 
         (void)do_dec_stat(A_CON);
@@ -457,7 +457,7 @@ static void chest_trap(int y, int x, s16b o_idx)
     /* Poison */
     if (trap & (CHEST_POISON))
     {
-        msg_print("A puff of green gas surrounds you!");
+        msg_print("一团绿色的气体包围了你！");
         if (!res_save_default(RES_POIS))
             (void)set_poisoned(p_ptr->poisoned + 10 + randint1(20), FALSE);
     }
@@ -465,7 +465,7 @@ static void chest_trap(int y, int x, s16b o_idx)
     /* Paralyze */
     if (trap & (CHEST_PARALYZE))
     {
-        msg_print("A puff of yellow gas surrounds you!");
+        msg_print("一团黄色的气体包围了你！");
         if (!free_act_save_p(0))
             set_paralyzed(randint1(4), FALSE);
     }
@@ -474,7 +474,7 @@ static void chest_trap(int y, int x, s16b o_idx)
     if (trap & (CHEST_SUMMON))
     {
         int num = 2 + randint1(3);
-        msg_print("You are enveloped in a cloud of smoke!");
+        msg_print("你被一团烟雾吞没了！");
 
 
         for (i = 0; i < num; i++)
@@ -489,7 +489,7 @@ static void chest_trap(int y, int x, s16b o_idx)
     /* Elemental summon. */
     if (trap & (CHEST_E_SUMMON))
     {
-        msg_print("Elemental beings appear to protect their treasures!");
+        msg_print("元素生物出现来保护它们的财宝了！");
         for (i = 0; i < randint1(3) + 5; i++)
         {
             (void)summon_specific(0, y, x, mon_level, SUMMON_ELEMENTAL, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE | PM_NO_PET));
@@ -499,7 +499,7 @@ static void chest_trap(int y, int x, s16b o_idx)
     /* Force clouds, then summon birds. */
     if (trap & (CHEST_BIRD_STORM))
     {
-        msg_print("A storm of birds swirls around you!");
+        msg_print("一群飞鸟在你周围盘旋！");
 
         for (i = 0; i < randint1(3) + 3; i++)
             (void)fire_meteor(-1, GF_FORCE, y, x, o_ptr->pval / 5, 7);
@@ -516,7 +516,7 @@ static void chest_trap(int y, int x, s16b o_idx)
         /* Summon demons. */
         if (one_in_(4))
         {
-            msg_print("Demons materialize in clouds of fire and brimstone!");
+            msg_print("恶魔在烈火与硫磺的云雾中显现了！");
 
             for (i = 0; i < randint1(3) + 2; i++)
             {
@@ -528,7 +528,7 @@ static void chest_trap(int y, int x, s16b o_idx)
         /* Summon dragons. */
         else if (one_in_(3))
         {
-            msg_print("Draconic forms loom out of the darkness!");
+            msg_print("龙形的轮廓从黑暗中隐现！");
 
             for (i = 0; i < randint1(3) + 2; i++)
             {
@@ -539,7 +539,7 @@ static void chest_trap(int y, int x, s16b o_idx)
         /* Summon hybrids. */
         else if (one_in_(2))
         {
-            msg_print("Creatures strange and twisted assault you!");
+            msg_print("奇怪扭曲的生物袭击了你！");
 
             for (i = 0; i < randint1(5) + 3; i++)
             {
@@ -550,7 +550,7 @@ static void chest_trap(int y, int x, s16b o_idx)
         /* Summon vortices (scattered) */
         else
         {
-            msg_print("Vortices coalesce and wreak destruction!");
+            msg_print("漩涡汇聚起来，四处破坏！");
 
             for (i = 0; i < randint1(3) + 2; i++)
             {
@@ -566,7 +566,7 @@ static void chest_trap(int y, int x, s16b o_idx)
         int nasty_tricks_count = 4 + randint0(3);
 
         /* Message. */
-        msg_print("Hideous voices bid:  'Let the darkness have thee!'");
+        msg_print("可怕的声音命令道：‘让黑暗吞噬你吧！’");
 
         /* This is gonna hurt... */
         for (; nasty_tricks_count > 0; nasty_tricks_count--)
@@ -601,15 +601,15 @@ static void chest_trap(int y, int x, s16b o_idx)
     /* Aggravate monsters. */
     if (trap & (CHEST_ALARM))
     {
-        msg_print("An alarm sounds!");
+        msg_print("警报响了！");
         aggravate_monsters(0);
     }
 
     /* Explode */
     if ((trap & (CHEST_EXPLODE)) && o_ptr->k_idx)
     {
-        msg_print("There is a sudden explosion!");
-        msg_print("Everything inside the chest is destroyed!");
+        msg_print("突然发生了爆炸！");
+        msg_print("箱子里的一切都被摧毁了！");
 
         o_ptr->pval = 0;
         sound(SOUND_EXPLODE);
@@ -619,7 +619,7 @@ static void chest_trap(int y, int x, s16b o_idx)
     /* Scatter contents. */
     if ((trap & (CHEST_SCATTER)) && o_ptr->k_idx)
     {
-        msg_print("The contents of the chest scatter all over the dungeon!");
+        msg_print("箱子里的东西散落得满地牢都是！");
         chest_death(TRUE, y, x, o_idx);
         o_ptr->pval = 0;
     }
@@ -669,7 +669,7 @@ static bool do_cmd_open_chest(int y, int x, s16b o_idx)
         /* Success -- May still have traps */
         if (randint0(100) < j)
         {
-            msg_print("You have picked the lock.");
+            msg_print("你撬开了锁。");
 
             gain_exp(1);
             flag = TRUE;
@@ -681,7 +681,7 @@ static bool do_cmd_open_chest(int y, int x, s16b o_idx)
             /* We may continue repeating */
             more = TRUE;
             if (flush_failure) flush();
-            msg_print("You failed to pick the lock.");
+            msg_print("你没能撬开锁。");
 
         }
     }
@@ -855,7 +855,7 @@ static bool do_cmd_open_aux(int y, int x)
     if (!have_flag(f_ptr->flags, FF_OPEN))
     {
         /* Stuck */
-        msg_format("The %s appears to be stuck.", f_name + f_info[get_feat_mimic(c_ptr)].name);
+        msg_format("%s似乎卡住了。", f_name + f_info[get_feat_mimic(c_ptr)].name);
         if (travel.run) flush();
     }
 
@@ -882,7 +882,7 @@ static bool do_cmd_open_aux(int y, int x)
         if (randint0(100) < j)
         {
             /* Message */
-            msg_print("You have picked the lock.");
+            msg_print("你撬开了锁。");
 
             /* Open the door */
             cave_alter_feat(y, x, FF_OPEN);
@@ -901,7 +901,7 @@ static bool do_cmd_open_aux(int y, int x)
             if ((flush_failure) && (!travel.run)) flush();
 
             /* Message */
-            msg_print("You failed to pick the lock.");
+            msg_print("你没能撬开锁。");
 
 
             /* We may keep trying */
@@ -1005,7 +1005,7 @@ void do_cmd_open(void)
         if (!have_flag(f_info[feat].flags, FF_OPEN) && !o_idx)
         {
             /* Message */
-            msg_print("You see nothing there to open.");
+            msg_print("你没有看到那里有什么可以打开的。");
             if (p_ptr->confused) energy_use = 50;
         }
 
@@ -1016,7 +1016,7 @@ void do_cmd_open(void)
             energy_use = 100;
 
             /* Message */
-            msg_print("There is a monster in the way!");
+            msg_print("有怪物挡在路上！");
 
 
             /* Attack */
@@ -1078,7 +1078,7 @@ static bool do_cmd_close_aux(int y, int x)
             (closed_feat != old_feat) && !have_flag(f_info[closed_feat].flags, FF_DROP))
         {
             /* Message */
-            msg_print("There seems stuck.");
+            msg_print("那里似乎卡住了。");
         }
         else
         {
@@ -1089,7 +1089,7 @@ static bool do_cmd_close_aux(int y, int x)
             if (old_feat == c_ptr->feat)
             {
                 /* Message */
-                msg_print("The door appears to be broken.");
+                msg_print("这扇门似乎坏了。");
             }
             else
             {
@@ -1165,7 +1165,7 @@ void do_cmd_close(void)
         if (!have_flag(f_info[feat].flags, FF_CLOSE))
         {
             /* Message */
-            msg_print("You see nothing there to close.");
+            msg_print("你没有看到那里有什么可以关闭的。");
             if (p_ptr->confused) energy_use = 50; /* prevent free turns until the right direction is picked */
         }
 
@@ -1176,7 +1176,7 @@ void do_cmd_close(void)
             energy_use = 100;
 
             /* Message */
-            msg_print("There is a monster in the way!");
+            msg_print("有怪物挡在路上！");
 
             /* Attack */
             py_attack(y, x, 0);
@@ -1206,7 +1206,7 @@ static bool do_cmd_tunnel_test(int y, int x)
     if (!(c_ptr->info & CAVE_MARK))
     {
         /* Message */
-        msg_print("You see nothing there.");
+        msg_print("你什么也没看到。");
 
         /* Nope */
         return (FALSE);
@@ -1216,7 +1216,7 @@ static bool do_cmd_tunnel_test(int y, int x)
     if (!cave_have_flag_grid(c_ptr, FF_TUNNEL))
     {
         /* Message */
-        msg_print("You see nothing there to tunnel.");
+        msg_print("你没看到那里有什么可以挖掘的。");
 
         /* Nope */
         return (FALSE);
@@ -1268,13 +1268,13 @@ static bool do_cmd_tunnel_aux(int y, int x)
         /* Titanium */
         if (have_flag(mimic_f_ptr->flags, FF_PERMANENT))
         {
-            msg_print("This seems to be permanent rock.");
+            msg_print("这似乎是永久岩石。");
         }
 
         /* Map border (mimiccing Permanent wall) */
         else
         {
-            msg_print("You can't tunnel through that!");
+            msg_print("你无法挖掘那个！");
         }
     }
 
@@ -1285,7 +1285,7 @@ static bool do_cmd_tunnel_aux(int y, int x)
         if (p_ptr->skill_dig > randint0(20 * power))
         {
             /* Message */
-            msg_format("You have removed the %s.", name);
+            msg_format("你移除了%s。", name);
 
             /* Remove the feature */
             cave_alter_feat(y, x, FF_TUNNEL);
@@ -1296,7 +1296,7 @@ static bool do_cmd_tunnel_aux(int y, int x)
         else
         {
             /* Message, keep digging */
-            msg_format("You dig into the %s.", name);
+            msg_format("你挖进了%s。", name);
 
             more = TRUE;
         }
@@ -1309,10 +1309,10 @@ static bool do_cmd_tunnel_aux(int y, int x)
         /* Tunnel */
         if (p_ptr->skill_dig > power + randint0(40 * power))
         {
-            if (tree) msg_format("You have cleared away the %s.", name);
+            if (tree) msg_format("你清理了%s。", name);
             else
             {
-                msg_print("You have finished the tunnel.");
+                msg_print("你完成了挖掘。");
                 p_ptr->update |= (PU_FLOW);
             }
 
@@ -1335,14 +1335,14 @@ static bool do_cmd_tunnel_aux(int y, int x)
             if (tree)
             {
                 /* We may continue chopping */
-                msg_format("You chop away at the %s.", name);
+                msg_format("你砍向%s。", name);
                 /* Occasional Search XXX XXX */
                 if (randint0(100) < 25) search();
             }
             else
             {
                 /* We may continue tunnelling */
-                msg_format("You %stunnel into the %s.", more ? "" : "futilely attempt to ", name);
+                msg_format("你%s挖进%s。", more ? "" : "徒劳地试图", name);
             }
         }
     }
@@ -1414,13 +1414,13 @@ void do_cmd_tunnel(void)
         if (have_flag(f_info[feat].flags, FF_DOOR))
         {
             /* Message */
-            msg_print("You cannot tunnel through doors.");
+            msg_print("你无法挖掘门。");
         }
 
         /* No tunnelling through most features */
         else if (!have_flag(f_info[feat].flags, FF_TUNNEL))
         {
-            msg_print("You can't tunnel through that.");
+            msg_print("你无法挖掘那个。");
         }
 
         /* A monster is in the way */
@@ -1430,7 +1430,7 @@ void do_cmd_tunnel(void)
             energy_use = 100;
 
             /* Message */
-            msg_print("There is a monster in the way!");
+            msg_print("有怪物挡在路上！");
 
             /* Attack */
             py_attack(y, x, 0);
@@ -1484,7 +1484,7 @@ bool easy_open_door(int y, int x, int dir)
     /* Jammed door */
     if (!have_flag(f_ptr->flags, FF_OPEN))
     {
-        msg_format("The %s appears to be stuck.", f_name + f_info[get_feat_mimic(c_ptr)].name);
+        msg_format("%s似乎卡住了。", f_name + f_info[get_feat_mimic(c_ptr)].name);
     }
 
     /* Locked door */
@@ -1510,7 +1510,7 @@ bool easy_open_door(int y, int x, int dir)
         if (randint0(100) < j)
         {
             /* Message */
-            msg_print("You have picked the lock.");
+            msg_print("你撬开了锁。");
 
             /* Open the door */
             cave_alter_feat(y, x, FF_OPEN);
@@ -1529,7 +1529,7 @@ bool easy_open_door(int y, int x, int dir)
             if ((flush_failure) && (!travel.run)) flush();
 
             /* Message */
-            msg_print("You failed to pick the lock.");
+            msg_print("你没能撬开锁。");
 
         }
     }
@@ -1588,28 +1588,28 @@ static bool do_cmd_disarm_chest(int y, int x, s16b o_idx)
     /* Must find the trap first. */
     if (!object_is_known(o_ptr))
     {
-        msg_print("I don't see any traps.");
+        msg_print("我没看到任何陷阱。");
 
     }
 
     /* Already disarmed/unlocked */
     else if (o_ptr->pval <= 0)
     {
-        msg_print("The chest is not trapped.");
+        msg_print("箱子没有陷阱。");
 
     }
 
     /* No traps to find. */
     else if (!chest_traps[o_ptr->pval])
     {
-        msg_print("The chest is not trapped.");
+        msg_print("箱子没有陷阱。");
 
     }
 
     /* Success (get a lot of experience) */
     else if (randint0(100) < j)
     {
-        msg_print("You have disarmed the chest.");
+        msg_print("你解除了箱子的陷阱。");
 
         gain_exp(o_ptr->pval);
         o_ptr->pval = (0 - o_ptr->pval);
@@ -1621,14 +1621,14 @@ static bool do_cmd_disarm_chest(int y, int x, s16b o_idx)
         /* We may keep trying */
         more = TRUE;
         if (flush_failure) flush();
-        msg_print("You failed to disarm the chest.");
+        msg_print("你没能解除箱子的陷阱。");
 
     }
 
     /* Failure -- Set off the trap */
     else
     {
-        msg_print("You set off a trap!");
+        msg_print("你触发了陷阱！");
 
         sound(SOUND_FAIL);
         chest_trap(y, x, o_idx);
@@ -1696,7 +1696,7 @@ static bool do_cmd_disarm_aux(int y, int x, int dir)
     if (randint0(100) < j)
     {
         /* Message */
-        msg_format("You have disarmed the %s.", name);
+        msg_format("你解除了%s。", name);
 
         /* Reward */
         gain_exp(power);
@@ -1724,7 +1724,7 @@ static bool do_cmd_disarm_aux(int y, int x, int dir)
         if (flush_failure) flush();
 
         /* Message */
-        msg_format("You failed to disarm the %s.", name);
+        msg_format("你没能解除%s。", name);
 
         /* We may keep trying */
         more = TRUE;
@@ -1734,7 +1734,7 @@ static bool do_cmd_disarm_aux(int y, int x, int dir)
     else
     {
         /* Message */
-        msg_format("You set off the %s!", name);
+        msg_format("你触发了%s！", name);
 
 #ifdef ALLOW_EASY_DISARM /* TNB */
 
@@ -1832,7 +1832,7 @@ void do_cmd_disarm(void)
         if (!is_trap(feat) && !o_idx)
         {
             /* Message */
-            msg_print("You see nothing there to disarm.");
+            msg_print("你没看到那里有什么可以解除的。");
 
         }
 
@@ -1840,7 +1840,7 @@ void do_cmd_disarm(void)
         else if (c_ptr->m_idx && p_ptr->riding != c_ptr->m_idx)
         {
             /* Message */
-            msg_print("There is a monster in the way!");
+            msg_print("有怪物挡在路上！");
 
 
             /* Attack */
@@ -1899,7 +1899,7 @@ static bool do_cmd_bash_aux(int y, int x, int dir)
     energy_use = 100;
 
     /* Message */
-    msg_format("You smash into the %s!", name);
+    msg_format("你猛烈撞击%s！", name);
 
     /* Compare bash power to door power XXX XXX XXX */
     temp = (bash - (temp * 10));
@@ -1914,7 +1914,7 @@ static bool do_cmd_bash_aux(int y, int x, int dir)
     if (randint0(100) < temp)
     {
         /* Message */
-        msg_format("The %s crashes open!", name);
+        msg_format("%s被撞开了！", name);
 
         /* Sound */
         sound(have_flag(f_ptr->flags, FF_GLASS) ? SOUND_GLASS : SOUND_OPENDOOR);
@@ -1940,7 +1940,7 @@ static bool do_cmd_bash_aux(int y, int x, int dir)
          p_ptr->lev)
     {
         /* Message */
-        msg_format("The %s holds firm.", name);
+        msg_format("%s纹丝不动。", name);
 
 
         /* Allow repeated bashing */
@@ -1951,7 +1951,7 @@ static bool do_cmd_bash_aux(int y, int x, int dir)
     else
     {
         /* Message */
-        msg_print("You are off-balance.");
+        msg_print("你失去了平衡。");
 
 
         /* Hack -- Lose balance ala paralysis */
@@ -2025,7 +2025,7 @@ void do_cmd_bash(void)
         if (!have_flag(f_info[feat].flags, FF_BASH))
         {
             /* Message */
-            msg_print("You see nothing there to bash.");
+            msg_print("你没看到那里有什么可以撞击的。");
 
         }
 
@@ -2036,7 +2036,7 @@ void do_cmd_bash(void)
             energy_use = 100;
 
             /* Message */
-            msg_print("There is a monster in the way!");
+            msg_print("有怪物挡在路上！");
 
 
             /* Attack */
@@ -2154,7 +2154,7 @@ void do_cmd_alter(void)
         else
         {
             /* Oops */
-            msg_print("You attack the empty air.");
+            msg_print("你攻击了空气。");
 
         }
     }
@@ -2199,7 +2199,7 @@ void do_cmd_spike(void)
         if (!have_flag(f_info[feat].flags, FF_SPIKE))
         {
             /* Message */
-            msg_print("You see nothing there to spike.");
+            msg_print("你没看到那里有什么可以钉住的。");
 
         }
         /* Is a monster in the way? */
@@ -2209,7 +2209,7 @@ void do_cmd_spike(void)
             energy_use = 100;
 
             /* Message */
-            msg_print("There is a monster in the way!");
+            msg_print("有怪物挡在路上！");
 
             /* Attack */
             py_attack(y, x, 0);
@@ -2222,7 +2222,7 @@ void do_cmd_spike(void)
             obj_ptr spike;
             if (!slot)
             {
-                msg_print("You have no spikes.");
+                msg_print("你没有铁蒺藜。");
                 return;
             }
 
@@ -2230,7 +2230,7 @@ void do_cmd_spike(void)
             energy_use = 100;
 
             /* Successful jamming */
-            msg_format("You jam the %s with a spike.", f_name + f_info[feat].name);
+            msg_format("你用铁蒺藜卡住了%s。", f_name + f_info[feat].name);
 
             cave_alter_feat(y, x, FF_SPIKE);
 
@@ -2342,7 +2342,7 @@ void do_cmd_walk(bool pickup)
              && (one_in_(MAX(3, p_ptr->pspeed - 110)))))
         {
             /* Inform the player of his horrible fate :=) */
-            msg_print("You are ambushed!");
+            msg_print("你被伏击了！");
 
             /* Go into large wilderness view */
             p_ptr->oldpy = rand_range(15, MAX_HGT - 15);
@@ -2372,16 +2372,16 @@ void do_cmd_run(void)
 
     if ((!online_macros) && ((++run_count) == 4) && (!rogue_like_commands))
     {
-        msg_print("The game has detected multiple calls to the 'Run' command");
-        msg_print("without any calls to the 'Walk' command, a possible sign");
-        msg_print("of undesired autorunning. If you are playing on the angband.live");
-        msg_print("online server, you can turn on the online_macros option to");
-        msg_print("disable autorunning. (If your keyboard has a Num Lock key,");
-        msg_print("you should toggle it instead of online_macros.)\n\n");
-        msg_print("This message will not appear again, but you can toggle online_macros");
-        msg_print("at any time in the Input Options menu.");
+        msg_print("游戏检测到多次调用“奔跑(Run)”命令，");
+        msg_print("而没有任何“行走(Walk)”命令的调用，这可能是");
+        msg_print("意外自动奔跑的迹象。如果你在 angband.live");
+        msg_print("在线服务器上游玩，你可以打开 online_macros 选项来");
+        msg_print("禁用自动奔跑。(如果你的键盘有 Num Lock 键，");
+        msg_print("你应该切换它而不是 online_macros。)\n\n");
+        msg_print("此消息不会再次出现，但你可以随时在“输入选项(Input Options)”菜单中");
+        msg_print("切换 online_macros。");
         msg_print(NULL);
-        if (msg_prompt("Turn on the online_macros option? <color:y>[y/n]</color>", "ny", PROMPT_DEFAULT) == 'y')
+        if (msg_prompt("打开 online_macros 选项？<color:y>[y/n]</color>", "ny", PROMPT_DEFAULT) == 'y')
             online_macros = TRUE;
         run_count = 5;
         p_ptr->redraw |= (PR_MAP);
@@ -2545,14 +2545,14 @@ bool _travel_continue(void)
 void do_cmd_auto_explore(void)
 {
     if (!_travel_continue()) {
-        msg_print("Explore Done!");
+        msg_print("探索完毕！");
     }
 }
 
 void do_cmd_get(void)
 {
     if (!cave[py][px].o_idx)
-        msg_print("You see no objects here. Try <color:keypress>^G</color> to auto-get nearby objects.");
+        msg_print("你在这里没看到任何物品。按 <color:keypress>^G</color> 自动拾取附近物品。");
     (void)pack_get_floor();
 }
 void do_cmd_autoget(void)
@@ -2572,11 +2572,7 @@ void do_cmd_autoget(void)
         _travel_next_obj(TRAVEL_MODE_AMMO);
     else
     {
-        msg_print("<color:B>Warning:</color> You have specified neither the "
-            "<color:keyword>auto_get_ammo</color> nor the <color:keyword>"
-            "auto_get_objects</color> options. With neither option set, "
-            "<color:keypress>^G</color> behaves just like the normal "
-            "<color:keypress>g</color>et command.");
+        msg_print("<color:B>警告:</color> 你既没有指定 <color:keyword>auto_get_ammo</color> 选项，也没有指定 <color:keyword>auto_get_objects</color> 选项。在这两个选项都未设置的情况下，<color:keypress>^G</color> 的表现与普通的 <color:keypress>g</color> (拾取) 命令一样。");
     }
 }
 
@@ -2956,7 +2952,7 @@ bool do_cmd_fire_aux1(obj_ptr bow, obj_ptr arrows)
 
     if (!fear_allow_shoot())
     {
-        msg_print("You are too scared!");
+        msg_print("你太害怕了！");
         energy_use = bow_energy(bow->sval)/NUM_SHOTS;
         if (shoot_hack == SP_AWAY) shoot_hack = SP_NONE;
         return FALSE;
@@ -3098,7 +3094,7 @@ void do_cmd_fire_aux2(obj_ptr bow, obj_ptr arrows, int sx, int sy, int tx, int t
         /* Make sure there is ammo left over for this shot */
         if (!arrows->number)
         {
-            msg_print("Your ammo has run out. Time to reload!");
+            msg_print("你的弹药用光了。该装弹了！");
             break;
         }
 
@@ -3158,7 +3154,7 @@ void do_cmd_fire_aux2(obj_ptr bow, obj_ptr arrows, int sx, int sy, int tx, int t
                 c_ptr = &cave[ny][nx];
                 if (cave_have_flag_grid(c_ptr, FF_HURT_ROCK) && !c_ptr->m_idx)
                 {
-                    if (c_ptr->info & (CAVE_MARK)) msg_print("Wall rocks were shattered.");
+                    if (c_ptr->info & (CAVE_MARK)) msg_print("墙壁的岩石被粉碎了。");
                     c_ptr->info &= ~(CAVE_MARK);
                     p_ptr->update |= (PU_VIEW | PU_LITE | PU_FLOW | PU_MON_LITE);
                     cave_alter_feat(ny, nx, FF_HURT_ROCK);
@@ -3294,7 +3290,7 @@ void do_cmd_fire_aux2(obj_ptr bow, obj_ptr arrows, int sx, int sy, int tx, int t
 
                 if ((bow->name1 == ART_TUBER) && (r_ptr->d_char == 'B')) /* Hack - avoid harming birds with Tuber's bow */
                 {
-                    msg_print("Your bow twitches in your hands!");
+                    msg_print("你的弓在你手中抽动！");
                     hit = FALSE;
                 }
 
@@ -3339,7 +3335,7 @@ void do_cmd_fire_aux2(obj_ptr bow, obj_ptr arrows, int sx, int sy, int tx, int t
                     /* Handle unseen monster */
                     if (!visible)
                     {
-                        msg_format("The %s finds a mark.", o_name);
+                        msg_format("%s找到了目标。", o_name);
                     }
                     /* Handle visible monster */
                     else
@@ -3347,9 +3343,9 @@ void do_cmd_fire_aux2(obj_ptr bow, obj_ptr arrows, int sx, int sy, int tx, int t
                         char m_name[80];
                         monster_desc(m_name, m_ptr, 0);
                         if (ambush)
-                            cmsg_format(TERM_VIOLET, "You cruelly shoot %s!", m_name);
+                            cmsg_format(TERM_VIOLET, "你残忍地射击了%s！", m_name);
                         else
-                            msg_format("The %s hits %s.", o_name, m_name);
+                            msg_format("%s击中了%s。", o_name, m_name);
 
                         if (m_ptr->ml)
                         {
@@ -3365,7 +3361,7 @@ void do_cmd_fire_aux2(obj_ptr bow, obj_ptr arrows, int sx, int sy, int tx, int t
                             char m_name[80];
                             monster_desc(m_name, m_ptr, 0);
                             tdam = m_ptr->hp + 1;
-                            msg_format("Your shot hit a fatal spot of %s!", m_name);
+                            msg_format("你的射击击中了%s的要害！", m_name);
                         }
                         else
                             tdam = 1;
@@ -3378,7 +3374,7 @@ void do_cmd_fire_aux2(obj_ptr bow, obj_ptr arrows, int sx, int sy, int tx, int t
                             char m_name[MAX_NLEN];
                             monster_desc(m_name, m_ptr, 0);
                             tdam = m_ptr->hp + 1;
-                            msg_format("Your shot hit a fatal spot of %s!", m_name);
+                            msg_format("你的射击击中了%s的要害！", m_name);
                         }
                         else
                             tdam = 1;
@@ -3426,7 +3422,7 @@ void do_cmd_fire_aux2(obj_ptr bow, obj_ptr arrows, int sx, int sy, int tx, int t
                         {
                             tdam *= 3;
                         }
-                        if (0) msg_format("<color:B>%d damage</color>", tdam);
+                        if (0) msg_format("<color:B>%d 点伤害</color>", tdam);
                         if (tdam < 0) tdam = 0;
                         tdam = mon_damage_mod(m_ptr, tdam, FALSE);
                     }
@@ -3508,7 +3504,7 @@ void do_cmd_fire_aux2(obj_ptr bow, obj_ptr arrows, int sx, int sy, int tx, int t
                             {
                                 char m_name[80];
                                 monster_desc(m_name, m_ptr, 0);
-                                msg_format("%^s is put to sleep!", m_name);
+                                msg_format("%^s被催眠了！", m_name);
                                 set_monster_csleep(c_ptr->m_idx, 500);
                                 anger = FALSE;
                             }
@@ -3551,27 +3547,27 @@ void do_cmd_fire_aux2(obj_ptr bow, obj_ptr arrows, int sx, int sy, int tx, int t
                                         if (!is_pet(m_ptr))
                                         {
                                             set_pet(m_ptr);
-                                            msg_format("%^s is charmed!", m_name);
+                                            msg_format("%^s被魅惑了！", m_name);
                                             stick_to = FALSE;
                                         }
                                         else if (!is_friendly(m_ptr))
                                         {
                                             set_friendly_ingame(m_ptr);
-                                            msg_format("%^s suddenly becomes friendly.", m_name);
+                                            msg_format("%^s突然变得友好了。", m_name);
                                             stick_to = FALSE;
                                         }
                                     }
                                     else if (!is_pet(m_ptr) && !is_friendly(m_ptr))
                                     {
                                         set_friendly_ingame(m_ptr);
-                                        msg_format("%^s suddenly becomes friendly.", m_name);
+                                        msg_format("%^s突然变得友好了。", m_name);
                                         stick_to = FALSE;
                                     }
                                 }
                             }
 
                             if (stick_to)
-                                msg_format("%^s sticks to %s!",o_name, m_name);
+                                msg_format("%^s粘在了%s身上！",o_name, m_name);
                         }
 
                         if (fear && m_ptr->ml)
@@ -3579,7 +3575,7 @@ void do_cmd_fire_aux2(obj_ptr bow, obj_ptr arrows, int sx, int sy, int tx, int t
                             char m_name[80];
                             sound(SOUND_FLEE);
                             monster_desc(m_name, m_ptr, 0);
-                            msg_format("%^s flees in terror!", m_name);
+                            msg_format("%^s惊恐地逃跑了！", m_name);
                         }
 
                         set_target(m_ptr, py, px);
@@ -3635,7 +3631,7 @@ void do_cmd_fire_aux2(obj_ptr bow, obj_ptr arrows, int sx, int sy, int tx, int t
                 {
                     char m_name[80];
                     monster_desc(m_name, m_ptr, 0);
-                    msg_format("The %s misses %s.", o_name, m_name);
+                    msg_format("%s未命中%s。", o_name, m_name);
                 }
 
                 /* The following effects (piercing and bouncing) should
@@ -3693,7 +3689,7 @@ void do_cmd_fire_aux2(obj_ptr bow, obj_ptr arrows, int sx, int sy, int tx, int t
         if (return_ammo)
         {
             if (disturb_minor)
-                msg_format("The %s returns to your pack.", o_name);
+                msg_format("%s回到了你的背包。", o_name);
         }
         else if (stick_to)
         {
@@ -3704,7 +3700,7 @@ void do_cmd_fire_aux2(obj_ptr bow, obj_ptr arrows, int sx, int sy, int tx, int t
 
             if (!o_idx)
             {
-                msg_format("The %s has gone somewhere else.", o_name);
+                msg_format("%s飞到别的地方去了。", o_name);
                 if (object_is_fixed_artifact(&arrow))
                     a_info[arrow.name1].generated = FALSE;
                 if (random_artifacts && arrow.name3)
@@ -3755,14 +3751,14 @@ bool do_cmd_fire(void)
 
     if (!slot)
     {
-        msg_print("You have nothing to fire with.");
+        msg_print("你没有可用来射击的武器。");
         flush();
         return FALSE;
     }
 
     if (prace_is_(MIMIC_MIST))
     {
-        msg_print("You cannot shoot while incorporeal.");
+        msg_print("你在无形状态下无法射击。");
         flush();
         return FALSE;
     }
@@ -3771,14 +3767,14 @@ bool do_cmd_fire(void)
 
     if (bow->sval == SV_CRIMSON || bow->sval == SV_RAILGUN)
     {
-        msg_print("You should activate your Gun instead.");
+        msg_print("你应该激活(activate)你的枪，而不是射击(fire)。");
         flush();
         return FALSE;
     }
 
     if (bow->sval == SV_HARP || bow->sval == SV_FLUTE)
     {
-        msg_print("You play a soothing melody, but not much else happens.");
+        msg_print("你演奏了一首舒缓的旋律，但除此之外什么也没发生。");
         flush();
         return FALSE;
     }
@@ -3786,8 +3782,8 @@ bool do_cmd_fire(void)
     if (p_ptr->special_defense & KATA_MUSOU)
         set_action(ACTION_NONE);
 
-    prompt.prompt = "Fire which item?";
-    prompt.error = "You have nothing to fire.";
+    prompt.prompt = "射击哪件物品？";
+    prompt.error = "你没有可以射击的物品。";
     prompt.filter = obj_can_shoot;
     prompt.where[0] = INV_QUIVER;
     prompt.where[1] = INV_PACK;
@@ -3803,7 +3799,7 @@ bool do_cmd_fire(void)
             teleport_player(10 + (p_ptr->concent * 2), 0L);
         if (shoot_hack == SP_FINAL)
         {
-            msg_print("You experience a powerful recoil!");
+            msg_print("你感受到了强大的后坐力！");
             set_slow(p_ptr->slow + randint0(7) + 7, FALSE);
             set_stun(p_ptr->stun + randint1(25), FALSE);
         }
@@ -3990,7 +3986,7 @@ void travel_begin(int mode, int x, int y)
         than from the top level. It turns out that the Museum in Outpost is located on a scroll
         boundary, and the scroll fires on the last move of the travel flow, but is processed
         before travel_step checks that we are finished. */
-        msg_print("You are already there!!");
+        msg_print("你已经在那儿了！！");
         travel_cancel();
         return;
     }
@@ -4002,7 +3998,7 @@ void travel_begin(int mode, int x, int y)
             have_flag(f_ptr->flags, FF_CAN_DIG) ||
             (have_flag(f_ptr->flags, FF_DOOR) && cave[y][x].mimic)))
     {
-        msg_print("You cannot travel there!");
+        msg_print("你无法旅行到那里！");
         travel_cancel();
         return;
     }
@@ -4066,7 +4062,7 @@ void travel_wilderness_scroll(int new_x, int new_y)
     {
         travel_cancel();
         forget_travel_flow();
-        if (was_travelling) msg_print("<color:v>Oops!</color> The location you were travelling towards has scrolled off the screen.");
+        if (was_travelling) msg_print("<color:v>哎呀！</color> 你前往的目的地已经滚出了屏幕范围。");
         travel.x = 0;
         travel.y = 0;
     }
@@ -4187,8 +4183,8 @@ void do_cmd_get_nearest(void)
     {
         travel.y = old_y;
         travel.x = old_x;
-        if (!_itms) msg_print("You are not aware of any interesting unidentified items.");
-        else if (best >= TRAVEL_UNABLE) msg_print("You cannot find a route to any interesting object.");
+        if (!_itms) msg_print("你没有注意到任何有趣的未鉴定物品。");
+        else if (best >= TRAVEL_UNABLE) msg_print("你找不到前往任何有趣物品的路线。");
     }
 }
 

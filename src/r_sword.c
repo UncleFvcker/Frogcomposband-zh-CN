@@ -187,7 +187,7 @@ static bool _absorb(object_type *o_ptr)
     if (result)
     {
         p_ptr->update |= PU_BONUS;
-        msg_print("You grow stronger!");
+        msg_print("你变得更强了！");
     }
     return result;
 }
@@ -206,7 +206,7 @@ static bool _absorb_object(object_type *o_ptr)
             object_desc(o_name, o_ptr, OD_COLOR_CODED);
         }
         else object_desc(o_name, o_ptr, OD_NAME_ONLY | OD_COLOR_CODED);
-        msg_format("You attempt to drain power from %s.", o_name);
+        msg_format("你尝试从 %s 中吸取力量。", o_name);
 
         _absorb(o_ptr);
         return TRUE;
@@ -334,40 +334,40 @@ typedef struct {
 } _flag_info_t;
 
 static _flag_info_t _slay_flag_info[] = {
-    { OF_SLAY_EVIL, 64, "Slay Evil" },
-    { OF_SLAY_GOOD, 16, "Slay Good" },
-    { OF_SLAY_UNDEAD, 16, "Slay Undead" },
-    { OF_SLAY_DEMON, 16, "Slay Demon" },
-    { OF_SLAY_DRAGON, 16, "Slay Dragon" },
-    { OF_SLAY_HUMAN, 16, "Slay Human" },
-    { OF_SLAY_ANIMAL, 8, "Slay Animal" },
-    { OF_SLAY_ORC, 4, "Slay Orc" },
-    { OF_SLAY_TROLL, 8, "Slay Troll" },
-    { OF_SLAY_GIANT, 8, "Slay Giant" },
-    { OF_SLAY_LIVING, 8, "Slay Living" },
+    { OF_SLAY_EVIL, 64, "屠杀邪恶" },
+    { OF_SLAY_GOOD, 16, "屠杀善良" },
+    { OF_SLAY_UNDEAD, 16, "屠杀亡灵" },
+    { OF_SLAY_DEMON, 16, "屠杀恶魔" },
+    { OF_SLAY_DRAGON, 16, "屠杀龙类" },
+    { OF_SLAY_HUMAN, 16, "屠杀人类" },
+    { OF_SLAY_ANIMAL, 8, "屠杀动物" },
+    { OF_SLAY_ORC, 4, "屠杀兽人" },
+    { OF_SLAY_TROLL, 8, "屠杀巨魔" },
+    { OF_SLAY_GIANT, 8, "屠杀巨人" },
+    { OF_SLAY_LIVING, 8, "屠杀活物" },
 
-    { OF_BRAND_ACID, 24, "Brand Acid" },
-    { OF_BRAND_ELEC, 24, "Brand Elec" },
-    { OF_BRAND_FIRE, 24, "Brand Fire" },
-    { OF_BRAND_COLD, 24, "Brand Cold" },
-    { OF_BRAND_POIS, 24, "Brand Poison" },
-    { OF_BRAND_CHAOS, 32, "Chaotic" },
-    { OF_BRAND_VAMP, 32, "Vampiric" },
-    { OF_VORPAL, 16, "Vorpal" },
+    { OF_BRAND_ACID, 24, "强酸附魔" },
+    { OF_BRAND_ELEC, 24, "闪电附魔" },
+    { OF_BRAND_FIRE, 24, "火焰附魔" },
+    { OF_BRAND_COLD, 24, "寒冰附魔" },
+    { OF_BRAND_POIS, 24, "剧毒附魔" },
+    { OF_BRAND_CHAOS, 32, "混乱附魔" },
+    { OF_BRAND_VAMP, 32, "吸血附魔" },
+    { OF_VORPAL, 16, "斩首附魔" },
     { OF_VORPAL2, 32, "*Vorpal*" },
 
     /* Alt: These could be achieved from corresponding slay flags with enough essences */
-    { OF_KILL_EVIL, 16, "Kill Evil" },
-	{ OF_KILL_GOOD, 8, "Kill Good" },
-    { OF_KILL_UNDEAD, 8, "Kill Undead" },
-    { OF_KILL_DEMON, 8, "Kill Demon" },
-    { OF_KILL_DRAGON, 8, "Kill Dragon" },
-    { OF_KILL_HUMAN, 8, "Kill Human" },
-    { OF_KILL_ANIMAL, 8, "Kill Animal"},
-    { OF_KILL_ORC, 8, "Kill Orc" },
-    { OF_KILL_TROLL, 8, "Kill Troll" },
-    { OF_KILL_GIANT, 8, "Kill Giant" },
-	{ OF_KILL_LIVING, 8, "Kill Living" },
+    { OF_KILL_EVIL, 16, "抹杀邪恶" },
+	{ OF_KILL_GOOD, 8, "抹杀善良" },
+    { OF_KILL_UNDEAD, 8, "抹杀亡灵" },
+    { OF_KILL_DEMON, 8, "抹杀恶魔" },
+    { OF_KILL_DRAGON, 8, "抹杀龙类" },
+    { OF_KILL_HUMAN, 8, "抹杀人类" },
+    { OF_KILL_ANIMAL, 8, "抹杀动物"},
+    { OF_KILL_ORC, 8, "抹杀兽人" },
+    { OF_KILL_TROLL, 8, "抹杀巨魔" },
+    { OF_KILL_GIANT, 8, "抹杀巨人" },
+	{ OF_KILL_LIVING, 8, "抹杀活物" },
 
     { -1, 0, NULL}
 };
@@ -682,10 +682,10 @@ static void _absorb_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Absorb Weapon");
+        var_set_string(res, "吸收武器");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Destroys a single weapon, absorbing the essence of its power.");
+        var_set_string(res, "摧毁一把武器，吸收其力量的精华。");
         break;
     case SPELL_CAST:
     {
@@ -694,8 +694,8 @@ static void _absorb_spell(int cmd, variant *res)
         bool tunnettu;
 
         var_set_bool(res, FALSE);
-        prompt.prompt = "Absorb which item?";
-        prompt.error = "You have nothing to absorb.";
+        prompt.prompt = "吸收哪件物品？";
+        prompt.error = "你没有什么可以吸收的。";
         prompt.filter = object_is_melee_weapon;
         prompt.where[0] = INV_PACK;
         prompt.where[1] = INV_FLOOR;
@@ -706,7 +706,7 @@ static void _absorb_spell(int cmd, variant *res)
         tunnettu = (((obj_is_identified(prompt.obj)) || (prompt.obj->feeling == FEEL_AVERAGE)) && (obj_is_identified_fully(prompt.obj)));
         if (!tunnettu) obj_identify_fully(prompt.obj);
         object_desc(o_name, prompt.obj, OD_NAME_ONLY);
-        msg_format("You absorb the power of %s!", o_name);
+        msg_format("你吸收了 %s 的力量！", o_name);
 
         _absorb(prompt.obj);
 
@@ -727,10 +727,10 @@ static void _detect_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Weapons");
+        var_set_string(res, "探测武器");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Locate nearby weapons, animated or not.");
+        var_set_string(res, "定位附近的武器，无论其是否活化。");
         break;
     case SPELL_CAST:
     {
@@ -759,7 +759,7 @@ static void _detect_spell(int cmd, variant *res)
             detect = TRUE;
 
         if (detect)
-            msg_print("You sense your kind.");
+            msg_print("你感应到了你的同类。");
 
         var_set_bool(res, TRUE);
         break;
@@ -775,10 +775,10 @@ static void _judge_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Identify Weapon");
+        var_set_string(res, "鉴定武器");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Identifies a weapon.");
+        var_set_string(res, "鉴定一把武器。");
         break;
     case SPELL_CAST:
         if (p_ptr->lev >= 35)
@@ -851,7 +851,7 @@ static void _gain_level(int new_level)
         p_ptr->current_r_idx = MON_DEATH_SWORD;
         equip_on_change_race();
         _upgrade_weapon(TV_SWORD, SV_LONG_SWORD);
-        msg_print("You have evolved into a Death Sword.");
+        msg_print("你进化成了死亡之剑(Death Sword)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_DEATH_SWORD && new_level >= 25)
@@ -859,7 +859,7 @@ static void _gain_level(int new_level)
         p_ptr->current_r_idx = MON_POLEAXE_OF_ANIMATED_ATTACK;
         equip_on_change_race();
         _upgrade_weapon(TV_POLEARM, SV_BATTLE_AXE);
-        msg_print("You have evolved into a Poleaxe of Animated Attack.");
+        msg_print("你进化成了活体攻击战戟(Poleaxe of Animated Attack)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_POLEAXE_OF_ANIMATED_ATTACK && new_level >= 35)
@@ -867,7 +867,7 @@ static void _gain_level(int new_level)
         p_ptr->current_r_idx = MON_HELLBLADE;
         equip_on_change_race();
         _upgrade_weapon(TV_SWORD, SV_BLADE_OF_CHAOS);
-        msg_print("You have evolved into a Hellblade.");
+        msg_print("你进化成了地狱之刃(Hellblade)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_HELLBLADE && new_level >= 45)
@@ -875,7 +875,7 @@ static void _gain_level(int new_level)
         p_ptr->current_r_idx = MON_DEATH_SCYTHE;
         equip_on_change_race();
         _upgrade_weapon(TV_POLEARM, SV_DEATH_SCYTHE_HACK);
-        msg_print("You have evolved into a Death Scythe.");
+        msg_print("你进化成了死神镰刀(Death Scythe)。");
         p_ptr->redraw |= PR_MAP;
     }
 
@@ -886,17 +886,17 @@ static void _gain_level(int new_level)
         if (one_in_(15) && new_level < 45) /* Sorry, Mr. Death Scythe, but you are too powerful! */
         {
             o_ptr->dd++;
-            msg_print("You grow sharper!");
+            msg_print("你变得更加锋利了！");
         }
         else if (one_in_(2) || (new_level % 7) == 0)
         {
             o_ptr->to_d++;
-            msg_print("You grow more deadly!");
+            msg_print("你变得更加致命了！");
         }
         else
         {
             o_ptr->to_h++;
-            msg_print("You grow more accurate!");
+            msg_print("你变得更加精准了！");
         }
     }
 }
@@ -912,7 +912,7 @@ static void _dump_ability_flag(doc_ptr doc, int which, int threshold, cptr name)
     {
         if ((p_ptr->free_act) && (which == OF_FREE_ACT))
         {
-            doc_printf(doc, "   %-22.22s %5d %5d %4dx\n",
+            doc_printf(doc, "%-22.22s %5d %5d %4dx\n",
                 name,
                 n, 
                 threshold,
@@ -921,7 +921,7 @@ static void _dump_ability_flag(doc_ptr doc, int which, int threshold, cptr name)
         }
         else if ((p_ptr->see_inv) && (which == OF_SEE_INVIS))
         {
-            doc_printf(doc, "   %-22.22s %5d %5d %4dx\n",
+            doc_printf(doc, "%-22.22s %5d %5d %4dx\n",
                 name,
                 n, 
                 threshold,
@@ -956,38 +956,38 @@ static void _dump_bonus_flag(doc_ptr doc, int which, int power, int rep, cptr na
 static void _character_dump(doc_ptr doc)
 {
     int i;
-    doc_printf(doc, "<topic:Essences>=================================== <color:keypress>E</color>ssences ==================================\n\n");
-    doc_printf(doc, "   <color:G>%-22.22s Total  Need Bonus</color>\n", "Stats");
+    doc_printf(doc, "<topic:Essences>=================================== 精 华 (<color:keypress>E</color>) ==================================\n\n");
+    doc_printf(doc, "<color:G>%-22.22s 总计 需要 加成</color>\n", "属性");
     for (i = 0; i < 6; i++) /* Assume in order */
         _dump_bonus_flag(doc, OF_STR + i, 3, 1, stat_name_true[A_STR + i]);
 
-    doc_printf(doc, "\n   <color:G>%-22.22s Total  Need Bonus</color>\n", "Skills");
-    _dump_bonus_flag(doc, _ESSENCE_TO_HIT, 1, 1, "To Hit");
-    _dump_bonus_flag(doc, _ESSENCE_TO_DAM, 1, 1, "To Dam");
-    _dump_bonus_flag(doc, _ESSENCE_AC, 2, 10, "To AC");
-    _dump_bonus_flag(doc, OF_STEALTH, 2, 1, "Stealth");
-    _dump_bonus_flag(doc, OF_SPEED, 1, 6, "Speed");
+    doc_printf(doc, "\n <color:G>%-22.22s 总计 需要 加成</color>\n", "技能");
+    _dump_bonus_flag(doc, _ESSENCE_TO_HIT, 1, 1, "命中");
+    _dump_bonus_flag(doc, _ESSENCE_TO_DAM, 1, 1, "伤害");
+    _dump_bonus_flag(doc, _ESSENCE_AC, 2, 10, "护甲");
+    _dump_bonus_flag(doc, OF_STEALTH, 2, 1, "潜行");
+    _dump_bonus_flag(doc, OF_SPEED, 1, 6, "速度");
     if (_essences[OF_BLOWS])
     {
         int blows = _calc_amount(_essences[OF_BLOWS], _rank_decay(32), 1);
 
         blows = blows * _blows_mult();
         doc_printf(doc, "   %-22.22s %5d %5d %5.5s\n",
-            "Attacks",
+            "攻击次数",
             _essences[OF_BLOWS], 
             _calc_needed(_essences[OF_BLOWS], _rank_decay(32), 1),
             blows ? format("+%d.%2.2d", blows / 100, blows % 100) : ""
         );
     }
-    _dump_bonus_flag(doc, _ESSENCE_XTRA_DICE, _rank_decay(64), 1, "Extra Dice");
-    _dump_bonus_flag(doc, OF_LIFE, 7, 1, "Life");
-    _dump_bonus_flag(doc, OF_SEARCH, 2, 1, "Searching");
-    _dump_bonus_flag(doc, OF_INFRA, 2, 1, "Infravision");
-    _dump_bonus_flag(doc, OF_TUNNEL, 2, 1, "Digging");
-    _dump_bonus_flag(doc, OF_MAGIC_MASTERY, 2, 1, "Magic Mastery");
-    _dump_bonus_flag(doc, OF_LITE, 1, 1, "Light");
+    _dump_bonus_flag(doc, _ESSENCE_XTRA_DICE, _rank_decay(64), 1, "额外伤害骰");
+    _dump_bonus_flag(doc, OF_LIFE, 7, 1, "生命");
+    _dump_bonus_flag(doc, OF_SEARCH, 2, 1, "搜索");
+    _dump_bonus_flag(doc, OF_INFRA, 2, 1, "红外视力");
+    _dump_bonus_flag(doc, OF_TUNNEL, 2, 1, "挖掘");
+    _dump_bonus_flag(doc, OF_MAGIC_MASTERY, 2, 1, "魔法精通");
+    _dump_bonus_flag(doc, OF_LITE, 1, 1, "光照");
  
-    doc_printf(doc, "\n   <color:G>%-22.22s Total  Need Bonus</color>\n", "Slays");
+    doc_printf(doc, "\n <color:G>%-22.22s 总计 需要 加成</color>\n", "斩杀");
     for (i = 0; ; i++)
     {
         int j = _slay_flag_info[i].flag;
@@ -995,43 +995,43 @@ static void _character_dump(doc_ptr doc)
         _dump_ability_flag(doc, j, _slay_power(i), _slay_flag_info[i].name);
     }
 
-    doc_printf(doc, "\n   <color:G>%-22.22s Total  Need Bonus</color>\n", "Resistances");
+    doc_printf(doc, "\n <color:G>%-22.22s 总计 需要 加成</color>\n", "抗性");
     for (i = 0; i < RES_MAX; i++)
         _dump_bonus_flag(doc, res_get_object_flag(i), _res_power(i), 1, format("%^s", res_name(i)));
 
-    _dump_ability_flag(doc, OF_IM_ACID, 3, "Immune Acid");
-    _dump_ability_flag(doc, OF_IM_ELEC, 3, "Immune Elec");
-    _dump_ability_flag(doc, OF_IM_FIRE, 3, "Immune Fire");
-    _dump_ability_flag(doc, OF_IM_COLD, 3, "Immune Cold");
+    _dump_ability_flag(doc, OF_IM_ACID, 3, "强酸免疫");
+    _dump_ability_flag(doc, OF_IM_ELEC, 3, "闪电免疫");
+    _dump_ability_flag(doc, OF_IM_FIRE, 3, "火焰免疫");
+    _dump_ability_flag(doc, OF_IM_COLD, 3, "寒冰免疫");
 
-    doc_printf(doc, "\n   <color:G>%-22.22s Total  Need Bonus</color>\n", "Abilities");
-    _dump_ability_flag(doc, OF_FREE_ACT, _free_act_needed(), "Free Action");
-    _dump_ability_flag(doc, OF_SEE_INVIS, _see_invis_needed(), "See Invisible");
-    _dump_ability_flag(doc, OF_SLOW_DIGEST, 2, "Slow Digestion");
-    _dump_ability_flag(doc, OF_REGEN, 7, "Regeneration");
-    _dump_ability_flag(doc, OF_NO_MAGIC, 5, "Antimagic");
-    _dump_ability_flag(doc, OF_REFLECT, 3, "Reflection");
-    _dump_ability_flag(doc, OF_AURA_FIRE, 7, "Aura Fire");
-    _dump_ability_flag(doc, OF_AURA_ELEC, 7, "Aura Elec");
-    _dump_ability_flag(doc, OF_AURA_COLD, 7, "Aura Cold");
+    doc_printf(doc, "\n <color:G>%-22.22s 总计 需要 加成</color>\n", "能力");
+    _dump_ability_flag(doc, OF_FREE_ACT, _free_act_needed(), "自由行动");
+    _dump_ability_flag(doc, OF_SEE_INVIS, _see_invis_needed(), "识破隐形");
+    _dump_ability_flag(doc, OF_SLOW_DIGEST, 2, "缓慢消化");
+    _dump_ability_flag(doc, OF_REGEN, 7, "再生");
+    _dump_ability_flag(doc, OF_NO_MAGIC, 5, "反魔法");
+    _dump_ability_flag(doc, OF_REFLECT, 3, "反射");
+    _dump_ability_flag(doc, OF_AURA_FIRE, 7, "火焰光环");
+    _dump_ability_flag(doc, OF_AURA_ELEC, 7, "闪电光环");
+    _dump_ability_flag(doc, OF_AURA_COLD, 7, "寒冰光环");
     for (i = 0; i < 6; i++) /* Assume in order */
         _dump_ability_flag(doc, OF_SUST_STR + i, 5, format("Sustain %s", stat_name_true[A_STR + i]));
 
-    doc_printf(doc, "\n   <color:G>%-22.22s Total  Need Bonus</color>\n", "ESP");
-    _dump_ability_flag(doc, OF_TELEPATHY, 2, "Telepathy");
-    _dump_ability_flag(doc, OF_ESP_ANIMAL, 2, "ESP Animals");
-    _dump_ability_flag(doc, OF_ESP_UNDEAD, 2, "ESP Undead");
-    _dump_ability_flag(doc, OF_ESP_DEMON, 2, "ESP Demon");
-    _dump_ability_flag(doc, OF_ESP_ORC, 2, "ESP Orc");
-    _dump_ability_flag(doc, OF_ESP_TROLL, 2, "ESP Troll");
-    _dump_ability_flag(doc, OF_ESP_GIANT, 2, "ESP Giant");
-    _dump_ability_flag(doc, OF_ESP_DRAGON, 2, "ESP Dragon");
-    _dump_ability_flag(doc, OF_ESP_HUMAN, 2, "ESP Human");
-    _dump_ability_flag(doc, OF_ESP_EVIL, 2, "ESP Evil");
-    _dump_ability_flag(doc, OF_ESP_GOOD, 2, "ESP Good");
-    _dump_ability_flag(doc, OF_ESP_NONLIVING, 2, "ESP Nonliving");
-	_dump_ability_flag(doc, OF_ESP_LIVING, 2, "ESP Living");
-    _dump_ability_flag(doc, OF_ESP_UNIQUE, 2, "ESP Unique");
+    doc_printf(doc, "\n <color:G>%-22.22s 总计 需要 加成</color>\n", "侦测/心电感应");
+    _dump_ability_flag(doc, OF_TELEPATHY, 2, "心灵感应");
+    _dump_ability_flag(doc, OF_ESP_ANIMAL, 2, "侦测动物");
+    _dump_ability_flag(doc, OF_ESP_UNDEAD, 2, "侦测亡灵");
+    _dump_ability_flag(doc, OF_ESP_DEMON, 2, "侦测恶魔");
+    _dump_ability_flag(doc, OF_ESP_ORC, 2, "侦测兽人");
+    _dump_ability_flag(doc, OF_ESP_TROLL, 2, "侦测巨魔");
+    _dump_ability_flag(doc, OF_ESP_GIANT, 2, "侦测巨人");
+    _dump_ability_flag(doc, OF_ESP_DRAGON, 2, "侦测龙类");
+    _dump_ability_flag(doc, OF_ESP_HUMAN, 2, "侦测人类");
+    _dump_ability_flag(doc, OF_ESP_EVIL, 2, "侦测邪恶");
+    _dump_ability_flag(doc, OF_ESP_GOOD, 2, "侦测善良");
+    _dump_ability_flag(doc, OF_ESP_NONLIVING, 2, "侦测非活物");
+	_dump_ability_flag(doc, OF_ESP_LIVING, 2, "侦测活物");
+    _dump_ability_flag(doc, OF_ESP_UNIQUE, 2, "侦测独特怪物");
 
     doc_newline(doc);
 }
@@ -1043,8 +1043,8 @@ race_t *mon_sword_get_race(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[5] =  {"Broken Death Sword", "Death Sword", "Poleaxe of Animated Attack", 
-                                "Hellblade", "Death Scythe"};    
+    static cptr   titles[5] =  {"残破的死亡之剑", "死亡之剑", "活体攻击战戟", 
+                                "地狱之刃", "死神镰刀"};    
     int           rank = _rank();
 
     if (!init)
@@ -1055,17 +1055,8 @@ race_t *mon_sword_get_race(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.name = "Death-Sword";
-        me.desc = "Death-Swords are mighty weapons animated by magical means. As such, "
-                    "they are unable to use equipment the way other players can; instead, "
-                    "they simply are a weapon of their current form. But never fear: Death "
-                    "Swords have the power to absorb magical essences from the weapons they "
-                    "find, gaining power in the process.\n\n"
-                    "As a Death-Sword gains levels, it will evolve into stronger and stronger weapons. "
-                    "More advanced weapons require more essences to enchant, sometimes causing a "
-                    "temporary loss of abilities; but magical weapons also become easier to "
-                    "find as you descend deeper into the pits, and so any lost powers are usually "
-                    "quickly recovered.";
+        me.name = "死亡之剑";
+        me.desc = "死亡之剑是通过魔法手段活化的强大武器。因此，它们无法像其他玩家那样使用装备；相反，它们本身就是处于当前形态的武器。但不必担心：死亡之剑有能力从它们找到的武器中吸收魔法精华，并在此过程中获得力量。\n\n随着死亡之剑等级的提升，它将进化成越来越强大的武器。更高级的武器需要更多的精华来附魔，有时会导致能力的暂时丧失；但随着你深入地牢，魔法武器也会变得更容易找到，因此任何失去的力量通常很快就能恢复。";
 
         me.infra = 3;
         me.exp = 150;
@@ -1132,7 +1123,7 @@ bool sword_disenchant(void)
     if (result)
     {
         p_ptr->update |= PU_BONUS;
-        msg_print("You feel power draining from your body!");
+        msg_print("你感觉力量正在从体内流失！");
     }
     return result;
 }

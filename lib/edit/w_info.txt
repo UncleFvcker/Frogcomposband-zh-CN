@@ -1,105 +1,105 @@
-# File: w_info.txt
 
-# Defines the layout of the wilderness
 
-# W:F:letter:wilderness_type:level:town_number:road:name
 
-# Road Flags: Sum of NORTH 1, SOUTH 2, EAST 4, WEST 8
+
+
+
+
 
 ?:[EQU $WILDERNESS NORMAL]
 
-# Edge of the world
+
 W:F:#:0
 
-# Grass
+
 W:F:.:6:10
 
-# Dirt
+
 W:F:,:5:20
 
-# Desert
+
 W:F:D:8:30
 
-# Forest
+
 W:F:T:7:25
 
-# Very Shallow Water
+
 W:F:S:3:15
 
-# Shallow Water
+
 W:F:_:3:40
 
-# Dangerous Shallow Water
+
 W:F:V:3:60
 
-# Deep Water
+
 W:F:~:2:60
 
-# Mountain
+
 W:F:^:11:50
 
-# Mountain
+
 W:F:M:11:80
 
-# Icy Mountain
+
 W:F:g:12:50
 
-# Shallow Icy Mountain
+
 W:F:G:12:35
 
-# Volcano
+
 W:F:&:10:60
 
-# Shallow Volcano
+
 W:F:$:9:40
 
-# Swamp
+
 W:F:=:4:35
 
-# Pack Ice
+
 W:F:%:14:60
 
-# Pack Ice
+
 W:F:i:14:80
 
-# Snow
+
 W:F:s:13:20
 
-# Town 1 (7 is trees)
+
 W:E:1:6:0:1:1:Outpost
 
-# Town 2 (6 is grass)
+
 W:E:2:6:0:2:1:Telmora
 
-# Town 3
+
 W:E:3:6:0:3:1:Morivant
 
-# Town 4
+
 W:E:4:7:4:4:1:Angwil
 
-# Town 5
+
 W:E:5:6:0:5:1:Anambar
 
-# Town 6
+
 W:E:6:6:0:6:1:Thalos
 
-# Town 7 (11 is mountain)
+
 W:E:7:11:20:7:0:Zul
 
-# Grassland with road 
+
 W:F:*:6:3:0:1
 
-# Dirt with road
+
 W:F:!:5:3:0:1
 
-# Forest with road
+
 W:F:+:7:3:0:1
 
-# Snow with road
+
 W:F:-:13:3:0:1
 
 
-# Wilderness layout
+
 W:D:###################################################################################################
 W:D:#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%%%%%%%%%%%%%%iiii%%%%%%%%%%%%%%%%%%%%%%%~~____~~#
 W:D:#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%%%%%%%%%%%%%ii%%%%%%ssssgggss%%%%%%%~~~_,,,,_~#
@@ -167,24 +167,21 @@ W:D:#_TTTTTT___,,,,,_______________~~~~~~~~_____________________________~~~~~~~~
 W:D:#_________________________~~~~~~~~~~~~~~~________~~~~____________~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 W:D:###################################################################################################
 
-# Starting position
+
 W:P:52:28
 
 ?:[EQU $WILDERNESS NONE]
 
-# Edge of the world
+
 W:F:#:0
 
-# Town 1
+
 W:E:1:1:0:1:0:Town
 
-# Wilderness layout
+
 W:D:###
 W:D:#1#
 W:D:###
 
-# Starting position
+
 W:P:1:1
-
-?:1
-

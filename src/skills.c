@@ -59,7 +59,7 @@ skill_desc_t skills_describe(int amt, int div)
     if (div <= 0) div = 1;
     if (amt < 0)
     {
-        result.desc = "Very Bad";
+        result.desc = "极差";
         result.color = TERM_L_DARK;
     }
     else
@@ -69,51 +69,51 @@ skill_desc_t skills_describe(int amt, int div)
         {
         case 0:
         case 1:
-            result.desc = "Bad";
+            result.desc = "糟糕";
             result.color = TERM_RED;
             break;
         case 2:
         case 3:
-            result.desc = "Poor";
+            result.desc = "贫弱";
             result.color = TERM_L_RED;
             break;
         case 4:
         case 5:
-            result.desc = "Fair";
+            result.desc = "一般";
             result.color = TERM_ORANGE;
             break;
         case 6:
         case 7:
-            result.desc = "Good";
+            result.desc = "良好";
             result.color = TERM_YELLOW;
             break;
         case 8:
-            result.desc = "Very Good";
+            result.desc = "极好";
             result.color = TERM_YELLOW;
             break;
         case 9:
         case 10:
-            result.desc = "Excellent";
+            result.desc = "优秀";
             result.color = TERM_L_GREEN;
             break;
         case 11:
         case 12:
         case 13:
-            result.desc = "Superb";
+            result.desc = "卓越";
             result.color = TERM_GREEN;
             break;
         case 14:
         case 15:
         case 16:
         case 17:
-            result.desc = "Heroic";
+            result.desc = "英雄";
             result.color = TERM_BLUE;
             break;
         default:
         {
             int k = (n - 17) * 5 / 2;
-            if ((p_ptr->wizard) || (display_skill_num)) result.desc = "Amber";
-            else result.desc = format("Amber[%d]", k); /*Legendary is too long for tables */
+            if ((p_ptr->wizard) || (display_skill_num)) result.desc = "琥珀";
+            else result.desc = format("琥珀[%d]", k); /*Legendary is too long for tables */
             result.color = TERM_VIOLET;
             break;
         }
@@ -191,15 +191,14 @@ void skills_bow_gain(int sval, int rlvl)
         if (rlvl < _weapon_min_rlvl(p_ptr->lev))
         {
             if (p_ptr->wizard)
-                msg_format("<color:B>You must shoot level <color:R>%d</color> monsters to gain bow proficiency.</color>", _weapon_min_rlvl(p_ptr->lev));
+                msg_format("<color:B>你必须射击 <color:R>%d</color> 级的怪物才能提高弓箭熟练度。</color>", _weapon_min_rlvl(p_ptr->lev));
             return;
         }
         if (cur >= _weapon_max_skill(rlvl))
         {
             if (p_ptr->wizard)
             {
-                msg_format("<color:B>Against level <color:R>%d</color> foes, you can only train bow "
-                    "proficiency to <color:R>%d</color> (Current Skill: <color:R>%d</color>).</color>",
+                msg_format("<color:B>对抗 <color:R>%d</color> 级的敌人，你只能将弓箭熟练度训练至 <color:R>%d</color> （当前技能：<color:R>%d</color>）。</color>",
                     rlvl, _weapon_max_skill(rlvl), cur);
             }
             return;
@@ -223,7 +222,7 @@ void skills_bow_gain(int sval, int rlvl)
                 int k_idx = lookup_kind(TV_BOW, sval);
                 char buf[MAX_NLEN];
                 strip_name(buf, k_idx);
-                msg_format("<color:B>Your <color:R>%s</color> skills are improving.</color>", buf);
+                msg_format("<color:B>你的 <color:R>%s</color> 技能正在提升。</color>", buf);
                 p_ptr->update |= PU_BONUS;
             }
         }
@@ -386,15 +385,14 @@ void skills_weapon_gain(int tval, int sval, int rlvl)
         if (rlvl < _weapon_min_rlvl(p_ptr->lev))
         {
             if (p_ptr->wizard)
-                msg_format("<color:B>You must fight level <color:R>%d</color> monsters to gain weapon proficiency.</color>", _weapon_min_rlvl(p_ptr->lev));
+                msg_format("<color:B>你必须与 <color:R>%d</color> 级的怪物战斗才能提高武器熟练度。</color>", _weapon_min_rlvl(p_ptr->lev));
             return;
         }
         if (cur >= _weapon_max_skill(rlvl))
         {
             if (p_ptr->wizard)
             {
-                msg_format("<color:B>Against level <color:R>%d</color> foes, you can only train weapon "
-                    "proficiency to <color:R>%d</color> (Current Skill: <color:R>%d</color>).</color>",
+                msg_format("<color:B>对抗 <color:R>%d</color> 级的敌人，你只能将武器熟练度训练至 <color:R>%d</color> （当前技能：<color:R>%d</color>）。</color>",
                     rlvl, _weapon_max_skill(rlvl), cur);
             }
             return;
@@ -418,7 +416,7 @@ void skills_weapon_gain(int tval, int sval, int rlvl)
                 int k_idx = lookup_kind(tval, sval);
                 char buf[MAX_NLEN];
                 strip_name(buf, k_idx);
-                msg_format("<color:B>Your <color:R>%s</color> skills are improving.</color>", buf);
+                msg_format("<color:B>你的 <color:R>%s</color> 技能正在提升。</color>", buf);
                 p_ptr->update |= PU_BONUS;
             }
         }
@@ -463,15 +461,15 @@ static cptr _weapon_describe_aux(int skill, int max)
     buf[0] = '\0';
 
     if (skill < WEAPON_EXP_BEGINNER)
-        desc = "Unskilled";
+        desc = "生疏";
     else if (skill < WEAPON_EXP_SKILLED)
-        desc = "Beginner";
+        desc = "入门";
     else if (skill < WEAPON_EXP_EXPERT)
-        desc = "Skilled";
+        desc = "熟练";
     else if (skill < WEAPON_EXP_MASTER)
-        desc = "Expert";
+        desc = "专家";
     else
-        desc = "Master";
+        desc = "大师";
 
     if (skill == max)
     {
@@ -653,15 +651,15 @@ static void _skills_riding_gain(int inc)
         if (update/100 > current/100)
         {
             if (update <= 500)
-                cmsg_print(TERM_L_BLUE, "You are starting to get the hang of riding. Keep at it!");
+                cmsg_print(TERM_L_BLUE, "你开始掌握骑乘的窍门了。坚持下去！");
             else if (update <= 1000)
-                cmsg_print(TERM_L_BLUE, "You feel more comfortable while riding.");
+                cmsg_print(TERM_L_BLUE, "你觉得骑乘时更自如了。");
             else if (update <= 2000)
-                cmsg_print(TERM_L_BLUE, "You feel your riding improve.");
+                cmsg_print(TERM_L_BLUE, "你感觉你的骑乘技术提升了。");
             else if (update <= 5000)
-                cmsg_print(TERM_L_BLUE, "You are getting quite good at riding.");
+                cmsg_print(TERM_L_BLUE, "你的骑乘技术变得相当好了。");
             else
-                cmsg_print(TERM_L_BLUE, "Soon you will be a riding master!");
+                cmsg_print(TERM_L_BLUE, "很快你就会成为骑术大师！");
         }
     }
 }
@@ -876,7 +874,7 @@ void skills_innate_gain(cptr name, int rlvl)
         if (rlvl < _weapon_min_rlvl(p_ptr->lev))
         {
             if (p_ptr->wizard)
-                msg_format("<color:B>You must fight level <color:R>%d</color> monsters to gain weapon proficiency.</color>", _weapon_min_rlvl(p_ptr->lev));
+                msg_format("<color:B>你必须与 <color:R>%d</color> 级的怪物战斗才能提高武器熟练度。</color>", _weapon_min_rlvl(p_ptr->lev));
             return;
         }
 
@@ -884,8 +882,7 @@ void skills_innate_gain(cptr name, int rlvl)
         {
             if (p_ptr->wizard)
             {
-                msg_format("<color:B>Against level <color:R>%d</color> foes, you can only train weapon "
-                    "proficiency to <color:R>%d</color> (Current Skill: <color:R>%d</color>).</color>",
+                msg_format("<color:B>对抗 <color:R>%d</color> 级的敌人，你只能将武器熟练度训练至 <color:R>%d</color> （当前技能：<color:R>%d</color>）。</color>",
                     rlvl, _weapon_max_skill(rlvl), info->current);
             }
             return;
@@ -905,7 +902,7 @@ void skills_innate_gain(cptr name, int rlvl)
             new_bonus = _innate_calc_bonus_aux(info->current);
             if (old_bonus != new_bonus)
             {
-                msg_format("<color:B>Your <color:R>%s</color> skills are improving.</color>", name);
+                msg_format("<color:B>你的 <color:R>%s</color> 技能正在提升。</color>", name);
                 p_ptr->update |= PU_BONUS;
             }
         }
@@ -940,15 +937,15 @@ cptr skills_innate_describe_current(cptr name)
     buf[0] = '\0';
 
     if (current < WEAPON_EXP_BEGINNER)
-        desc = "Unskilled";
+        desc = "生疏";
     else if (current < WEAPON_EXP_SKILLED)
-        desc = "Beginner";
+        desc = "入门";
     else if (current < WEAPON_EXP_EXPERT)
-        desc = "Skilled";
+        desc = "熟练";
     else if (current < WEAPON_EXP_MASTER)
-        desc = "Expert";
+        desc = "专家";
     else
-        desc = "Master";
+        desc = "大师";
 
     if (current == skills_innate_max(name))
     {

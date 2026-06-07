@@ -49,15 +49,15 @@ void disciple_feeling(void)
         int verrokki2 = (karrot_level() * interpolate(karrot_level(), tbl, 3) / 100) - 2;
         if ((dun_level < verrokki1) || (dun_level < verrokki2))
         {
-             msg_print("Karrot considers this depth <color:y>uninteresting.</color>");
+             msg_print("Karrot 觉得这个深度<color:y>毫无吸引力。</color>");
         }
         else if (dun_level < verrokki2 + 2)
         {
-             msg_print("Karrot considers this depth <color:v>mildly interesting.</color>");
+             msg_print("Karrot 觉得这个深度<color:v>稍微有点意思。</color>");
         }
         else
         {
-             cmsg_print(TERM_VIOLET, "Karrot sees this as a worthy depth for you.");
+             cmsg_print(TERM_VIOLET, "Karrot 认为这是个值得你挑战的深度。");
         }
         return;
     }
@@ -68,15 +68,15 @@ void disciple_feeling(void)
         int verrokki2 = (p_ptr->max_plv * interpolate(p_ptr->max_plv, tbl, 2) / 100) - 2;
         if ((dun_level < verrokki1) || (dun_level < verrokki2))
         {
-             msg_print("Sohoglyth considers this depth <color:y>uninteresting.</color>");
+             msg_print("Sohoglyth 觉得这个深度<color:y>毫无吸引力。</color>");
         }
         else if (dun_level < verrokki2 + 2)
         {
-             msg_print("Sohoglyth considers this depth <color:v>mildly interesting.</color>");
+             msg_print("Sohoglyth 觉得这个深度<color:v>稍微有点意思。</color>");
         }
         else
         {
-             cmsg_print(TERM_VIOLET, "Sohoglyth sees this as a worthy depth for you.");
+             cmsg_print(TERM_VIOLET, "Sohoglyth 认为这是个值得你挑战的深度。");
         }
         return;
     }
@@ -116,7 +116,7 @@ class_t *disciple_get_class(int psubclass)
     {
         result->subname = "";
     }
-    result->name = "Disciple";
+    result->name = "门徒";
     result->desc = _desc;
 
     return result;

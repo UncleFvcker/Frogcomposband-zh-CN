@@ -14,31 +14,26 @@
 
 cptr realm_jouhou[VALID_REALM] =
 {
-"Life magic is very good for healing; it relies mostly on healing, protection and detection spells. Also life magic have a few attack spells as well. It said that some high level spell of life magic can disintegrate Undead monsters into ash.",
-"Sorcery is a `meta` realm, including enchantment and general spells. It provides superb protection spells, spells to enhance your odds in combat and, most importantly, a vast selection of spells for gathering information. However, Sorcery has one weakness: it has no spells to deal direct damage to your enemies.",
-"Nature magic makes you master of elements; it provides protection, detection, curing and attack spells. Nature also has a spell of Herbal Healing, which is the only powerful healing spell outside the realm of Life magic.",
+"生命魔法（Life magic）非常适合治疗；它主要依赖治疗、保护和探测法术。生命魔法也有一些攻击法术。据说，一些高等级的生命法术可以将不死怪物化为灰烬。",
+"咒术（Sorcery）是一个“元”领域，包括附魔和通用法术。它提供了一流的防护法术、增强战斗胜算的法术，以及最重要的——大量用于收集信息的法术。然而，咒术有一个弱点：它没有任何能对敌人造成直接伤害的法术。",
+"自然魔法（Nature magic）让你成为元素的大师；它提供保护、探测、治愈和攻击法术。自然魔法还有一个草药治疗法术，这是除了生命魔法领域之外唯一强大的治疗法术。",
 "There are few types of magic more unpredictable and difficult to control than Chaos magic. Chaos is the very element of unmaking, and the Chaos spells are the most terrible weapons of destruction imaginable. The caster can also call on the primal forces of Chaos to induce mutations in his/her opponents and even him/herself.",
-"There is no fouler nor more evil category of spells than the necromantic spells of Death Magic. These spells are relatively hard to learn, but at higher levels the spells give the caster power over living and the (un)dead, but the most powerful spells need his / her own blood as the focus, often hurting the caster in the process of casting.",
+"没有什么法术类别比死亡魔法（Death Magic）中的死灵法术更邪恶、更污秽了。这些法术相对难学，但在高等级时，法术赋予施法者凌驾于活物和亡灵之上的力量，然而最强大的法术需要用施法者自己的鲜血作为媒介，通常会在施法过程中伤害到施法者自己。",
 "Trump magic has, indeed, an admirable selection of teleportation spells. Since the Trump gateways can also be used to summon other creatures, Trump magic has an equally impressive selection of summoning spells. However, not all monsters appreciate being drawn to another place by Trump user.",
-"Arcane magic is a general purpose realm of magic. It attempts to encompass all 'useful' spells from all realms. This is the downside of Arcane magic: while Arcane does have all the necessary 'tool' spells for a dungeon delver, it has no ultra-powerful high level spells. As a consequence, all Arcane spellbooks can be bought in town. It should also be noted that the 'specialized' realms usually offer the same spell at a lower level and cost. ",
+"奥秘魔法（Arcane magic）是一个通用领域的魔法。它试图涵盖所有领域的“实用”法术。这也是奥秘魔法的缺点：虽然奥秘魔法确实拥有地下城探险者所需的所有“工具”法术，但它没有极其强大的高等级法术。因此，所有的奥秘法术书都可以在城镇中买到。还应该注意的是，“专精”领域通常会以更低的等级和消耗提供相同的法术。",
 "Craft magic can strengthen the caster or the equipments. These spells can greatly improve the caster's fighting ability. Using them against opponents directly is not possible.",
-"Demon is a very evil realm, same as Death. It provides various attack spells and devilish detection spells. at higher levels, Demon magic provides ability to dominate demons, and to polymorph yourself into a demon.",
+"恶魔魔法（Demon）与死亡魔法一样，是一个非常邪恶的领域。它提供各种攻击法术和恶魔般的探测法术。在高等级时，恶魔魔法提供支配恶魔的能力，以及将你自己变形为恶魔的能力。",
 "Crusade is a magic of 'Justice'. It includes damage spells, which are greatly effective against foul and evil monsters, but have poor effects against good monsters.",
-"Necromancy allows communication with and ultimately control over the deceased. All direct damage afforded by this realm requires the caster to touch his or her opponent. Any weapons or gloves will obstruct this macabre contact.",
-"Armageddon is the most deadly offensive realm. You won't be lacking for firepower here. "
-    "However, every spell is an offensive spell, so this realm suffers from a lack of any "
-    "utility spells.",
-"Experts in Law know many ways to confuse and hinder their enemies, to set and detect traps, to escape difficult situations and to win others to their side. However, they are somewhat lacking in direct offensive power.",
+"死灵魔法（Necromancy）允许你与死者沟通并最终控制他们。该领域提供的所有直接伤害法术都需要施法者触摸他或她的对手。任何武器或手套都会阻碍这种令人毛骨悚然的接触。",
+"毁灭魔法（Armageddon）是最致命的进攻领域。你在这里绝不会缺少火力。然而，因为每一个法术都是攻击法术，所以这个领域完全缺乏任何实用性的法术。",
+"律法魔法（Law）的专家知道许多方法来迷惑和阻碍敌人、设置和探测陷阱、逃离困境以及拉拢他人加入自己的阵营。然而，他们在直接攻击能力上略有欠缺。",
 "Music adepts affect the world around them by singing songs. There are two types of song; some have instant effects, while others have a continuous effect until SP runs out. But the latter type has a limit: only one song can be sung at a time.",
 "The books of Kendo describe about various combat techniques. When learning new techniques, you are required to carry the books, but once you memorizes them, you don't have to carry them. When using a technique, wielding a weapon is required.",
-"Hex is a very terrible realm. Spells gives continual effects when they are spelled continually like songs. Spells may obstract monsters' actions, may deal damages in sight, may revenge against enemies.",
+"诅咒魔法（Hex）是一个非常可怕的领域。当这些法术像歌曲一样被持续施放时，会产生持续的效果。法术可以阻碍怪物的行动、在视线内造成伤害，甚至对敌人进行复仇。",
 "The books of Rage describe various techniques. To learn a new technique, you must perform a ritual of rage, destroying the book in the process."
     " Once learned, you may use techniques without requiring the corresponding Rage book, but you will need to find many copies of each book in order"
     " to learn all of the techniques.",
-"Burglary is the preferred realm of rogues, allowing them to specialize in what they do best: Stealing! "
-    "This realm offers good detection and escapes, offers talents for picking pockets and setting traps, "
-    "and even allows for direct assassination of sleeping monsters. The books for this realm are only "
-    "available in the Black Market (or in the dungeon).",
+"行窃魔法（Burglary）是盗贼们的首选领域，这使他们能够专注于他们最擅长的事情：偷窃！该领域提供了良好的探测和逃脱能力，提供了扒窃和设置陷阱的天赋，甚至允许直接暗杀熟睡的怪物。该领域的法术书只能在黑市（或在地下城中）找到。",
 };
 
 

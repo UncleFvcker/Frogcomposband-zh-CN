@@ -83,10 +83,10 @@ static void _summon_orcs_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Orcs");
+        var_set_string(res, "召唤兽人");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Summons one or more orcs to your aid.");
+        var_set_string(res, "召唤一个或多个兽人来协助你。");
         break;
     case SPELL_CAST:
     {
@@ -111,19 +111,19 @@ static void _fighter_gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_SNAGA && new_level >= 10)
     {
         p_ptr->current_r_idx = MON_CAVE_ORC;
-        msg_print("You have evolved into a <color:G>Cave orc</color>.");
+        msg_print("你进化成了<color:G>洞穴兽人(Cave orc)</color>。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_CAVE_ORC && new_level >= 20)
     {
         p_ptr->current_r_idx = MON_URUK;
-        msg_print("You have evolved into an Uruk.");
+        msg_print("你进化成了强兽人(Uruk)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_URUK && new_level >= 30)
     {
         p_ptr->current_r_idx = MON_ORC_WARLORD;
-        msg_print("You have evolved into an <color:g>Orc warlord</color>.");
+        msg_print("你进化成了<color:g>兽人军阀(Orc warlord)</color>。");
         p_ptr->redraw |= PR_MAP;
     }
 
@@ -133,7 +133,7 @@ static race_t *_fighter_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[4] =  {"Snaga", "Cave orc", "Uruk", "Orc warlord"};
+    static cptr   titles[4] =  {"史纳加", "洞穴兽人", "强兽人", "兽人军阀"};
     int           rank = 0;
 
     if (p_ptr->max_plv >= 10) rank = MIN(3, p_ptr->max_plv / 10);
@@ -175,7 +175,7 @@ static race_t *_fighter_get_race_t(void)
     me.stats[A_CON] = rank;
     me.stats[A_CHR] = -5;
     me.boss_r_idx = MON_OTHROD;
-    if (birth_hack || spoiler_hack) me.subname = "Orc fighter";
+    if (birth_hack || spoiler_hack) me.subname = "兽人战士";
 
     return &me;
 }
@@ -200,10 +200,10 @@ void _orcish_curse_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Orcish Curse");
+        var_set_string(res, "兽人之咒");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Curses a single monster.");
+        var_set_string(res, "诅咒单一怪物。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(spell_power(3 + ((p_ptr->lev - 1) / 5)), 9 + (p_ptr->lev / 14), spell_power(p_ptr->to_d_spell)));
@@ -231,10 +231,10 @@ void _evil_curse_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Curse of Morgul");
+        var_set_string(res, "魔古尔之咒");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Powerfully curses a single monster.");
+        var_set_string(res, "强力诅咒单一怪物。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(spell_power(((p_ptr->lev + 59) / 5)), 9 + (p_ptr->lev / 14), spell_power(p_ptr->to_d_spell)));
@@ -262,10 +262,10 @@ void _sleep_monster_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Sleep Monster");
+        var_set_string(res, "催眠怪物");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to put a single monster to sleep.");
+        var_set_string(res, "尝试使一个怪物陷入睡眠。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(p_ptr->lev * 5 / 3));
@@ -290,10 +290,10 @@ void _confuse_monster_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Confuse Monster");
+        var_set_string(res, "困惑怪物");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to confuse a single monster.");
+        var_set_string(res, "尝试使一个怪物陷入混乱。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(p_ptr->lev * 5 / 3));
@@ -335,7 +335,7 @@ static caster_info * _shaman_caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.options = CASTER_USE_HP;
         me.which_stat = A_INT;
         init = TRUE;
@@ -348,7 +348,7 @@ static void _shaman_gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_ORC_SHAMAN && new_level >= 23)
     {
         p_ptr->current_r_idx = MON_ORC_WARLOCK;
-        msg_print("You have evolved into an <color:v>Orc warlock</color>.");
+        msg_print("你进化成了<color:v>兽人术士(Orc warlock)</color>。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -357,7 +357,7 @@ static race_t *_shaman_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[2] =  {"Orc shaman", "Orc warlock"};
+    static cptr   titles[2] =  {"兽人萨满", "兽人术士"};
     int           rank = 0;
 
     if (p_ptr->max_plv >= 23) rank++;
@@ -403,7 +403,7 @@ static race_t *_shaman_get_race_t(void)
     me.stats[A_CON] = -1;
     me.stats[A_CHR] = -5;
     me.boss_r_idx = MON_OTHROD;
-    if (birth_hack || spoiler_hack) me.subname = "Orc shaman";
+    if (birth_hack || spoiler_hack) me.subname = "兽人萨满";
 
     return &me;
 }
@@ -429,7 +429,7 @@ race_t *mon_orc_get_race(int psubrace)
         break;
     }
 
-    result->name = "Orc";
+    result->name = "兽人";
     result->desc = _desc;
     result->flags = RACE_IS_MONSTER;
     result->shop_adjust = 140;

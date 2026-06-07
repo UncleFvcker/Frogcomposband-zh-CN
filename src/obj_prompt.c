@@ -191,8 +191,8 @@ int obj_prompt(obj_prompt_ptr prompt)
                     char name[MAX_NLEN];
                     object_desc(name, obj, OD_COLOR_CODED);
                     doc_insert(context.doc, name);
-                    doc_insert(context.doc, "\n\nYou have no special knowledge about this item.\n");
-                    doc_insert(context.doc, "<color:B>[Press <color:y>Any Key</color> to Continue]</color>\n\n");
+                    doc_insert(context.doc, "\n\n你对这件物品没有特殊的了解。\n");
+                    doc_insert(context.doc, "<color:B>[按<color:y>任意键</color>继续]</color>\n\n");
                 }
                 else obj_display_doc(obj, context.doc);
                 _sync_doc(context.doc);
@@ -336,7 +336,7 @@ static void _display(obj_prompt_context_ptr context)
             inv_name(tab->inv));
     }
     if (context->prompt->flags & INV_SHOW_FAIL_RATES)
-        doc_printf(context->doc, "<tab:%d><color:r>Fail</color>", doc_width(context->doc) - 5);
+        doc_printf(context->doc, "<tab:%d><color:r>失败率</color>", doc_width(context->doc) - 5);
     doc_newline(context->doc);
 
     /* Active Tab */
@@ -362,7 +362,7 @@ static void _display(obj_prompt_context_ptr context)
         if (show_weights)
         {
             int wgt = inv_weight(tab->inv, NULL);
-            doc_printf(context->doc, "<tab:%d><color:R> %3d.%d lbs</color>",
+            doc_printf(context->doc, "<tab:%d><color:R> %3d.%d 磅</color>",
                 doc_width(context->doc) - 9, wgt/10, wgt%10);
         }
     }
@@ -370,7 +370,7 @@ static void _display(obj_prompt_context_ptr context)
     if (context->prompt->prompt)
         doc_printf(context->doc, "<color:y>%s</color> ", context->prompt->prompt);
     else
-        doc_insert(context->doc, "<color:y>Choice</color>: ");
+        doc_insert(context->doc, "<color:y>选择</color>:");
 
     doc_insert(context->doc, "</style>");
     _sync_doc(context->doc);
@@ -480,7 +480,7 @@ static int _basic_cmd(obj_prompt_context_ptr context, int cmd)
         if (context->prompt->help)
             doc_display_help(context->prompt->help, NULL);
         else
-            doc_display_help("context_obj_prompt.txt", "QuickRef");
+            doc_display_help("context_obj_prompt.txt", "快速参考");
         return OP_CMD_HANDLED;
     }
     return OP_CMD_SKIPPED;

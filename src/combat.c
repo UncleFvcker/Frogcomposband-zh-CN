@@ -936,7 +936,7 @@ s16b tot_dam_aux(object_type *o_ptr, int tdam, monster_type *m_ptr, s16b hand, i
                 if (!_slay.tester(r_ptr, m_ptr, FALSE)) continue;
                 if (chaos_slay == _slay.slay_flag)
                 {
-                    msg_format("Your %s %s %s.", o_name, _slay.is_slay ? "slays" : "is covered in", _slay.kill_desc);
+                    msg_format("你的 %s %s %s。", o_name, _slay.is_slay ? "斩杀了" : "包裹着", _slay.kill_desc);
                     obj_learn_slay(o_ptr, OF_BRAND_CHAOS, "has the <color:v>Mark of Chaos</color>");
                     _chaos = TRUE;
                 }
@@ -1000,7 +1000,7 @@ s16b tot_dam_aux(object_type *o_ptr, int tdam, monster_type *m_ptr, s16b hand, i
             /* 'light brand' */
             if (have_flag(flgs, OF_LITE) && (r_ptr->flags3 & RF3_HURT_LITE))
             {
-            	if (mult < KILL_MULT_HIGH / 8) msg_format("%^s cringes.", m_name_subject);
+            	if (mult < KILL_MULT_HIGH / 8) msg_format("%^s畏缩了。", m_name_subject);
             	if (mult == 10) mult = SLAY_MULT_BASIC / 10;
             	else if (mult < KILL_MULT_HIGH / 8) mult = MIN(KILL_MULT_HIGH / 8, mult + 10);
             }
@@ -1050,19 +1050,19 @@ s16b tot_dam_aux(object_type *o_ptr, int tdam, monster_type *m_ptr, s16b hand, i
                 switch (hissatsu_brand)
                 {
                 case OF_BRAND_ELEC:
-                        msg_format("%^s is <color:b>shocked</color>!", m_name_subject);
+                        msg_format("%^s被<color:b>电击</color>了！", m_name_subject);
                         break;
                 case OF_BRAND_ACID:
-                        msg_format("%^s is <color:g>dissolved</color>!", m_name_subject);
+                        msg_format("%^s被<color:g>溶解</color>了！", m_name_subject);
                         break;
                 case OF_BRAND_FIRE:
-                        msg_format("%^s is <color:r>burned</color>!", m_name_subject);
+                        msg_format("%^s被<color:r>烧伤</color>了！", m_name_subject);
                         break;
                 case OF_BRAND_COLD:
-                        msg_format("%^s is <color:W>frozen</color>!", m_name_subject);
+                        msg_format("%^s被<color:W>冻结</color>了！", m_name_subject);
                         break;
                 case OF_BRAND_POIS:
-                        msg_format("%^s is <color:G>poisoned</color>!", m_name_subject);
+                        msg_format("%^s<color:G>中毒</color>了！", m_name_subject);
                         break;
                 default: break;
                 /* Messages from Composband - possible future use
@@ -1166,15 +1166,15 @@ critical_t critical_shot(int weight, int plus)
         result.mul = 150 + k * 200 / 2000;
 
         if (result.mul < 200)
-            result.desc = "It was a <color:y>decent</color> shot!";
+            result.desc = "一次<color:y>尚可</color>的射击！";
         else if (result.mul < 240)
-            result.desc = "It was a <color:R>good</color> shot!";
+            result.desc = "一次<color:R>不错</color>的射击！";
         else if (result.mul < 270)
-            result.desc = "It was a <color:r>great</color> shot!";
+            result.desc = "一次<color:r>极好</color>的射击！";
         else if (result.mul < 300)
-            result.desc = "It was a <color:v>superb</color> shot!";
+            result.desc = "一次<color:v>绝佳</color>的射击！";
         else
-            result.desc = "It was a <color:v>*GREAT*</color> shot!";
+            result.desc = "一次<color:v>*伟大*</color>的射击！";
     }
 
     return result;
@@ -1199,17 +1199,17 @@ critical_t critical_throw(int weight, int plus)
 
         if (k < 400)
         {
-            result.desc = "It was a <color:y>good</color> hit!";
+            result.desc = "一次<color:y>不错</color>的打击！";
             result.mul = 150;
         }
         else if (k < 700)
         {
-            result.desc = "It was a <color:R>great</color> hit!";
+            result.desc = "一次<color:R>极好</color>的打击！";
             result.mul = 200;
         }
         else
         {
-            result.desc = "It was a <color:r>superb</color> hit!";
+            result.desc = "一次<color:r>绝佳</color>的打击！";
             result.mul = 250;
         }
     }
@@ -1324,27 +1324,27 @@ critical_t critical_norm(int weight, int plus, s16b meichuu, int mode, int hand)
 
         if (k < 400)
         {
-            result.desc = "It was a <color:y>good</color> hit!";
+            result.desc = "一次<color:y>不错</color>的打击！";
             result.mul = 200;
         }
         else if (k < 700)
         {
-            result.desc = "It was a <color:R>great</color> hit!";
+            result.desc = "一次<color:R>极好</color>的打击！";
             result.mul = 250;
         }
         else if (k < 900)
         {
-            result.desc = "It was a <color:r>superb</color> hit!";
+            result.desc = "一次<color:r>绝佳</color>的打击！";
             result.mul = 300;
         }
         else if (k < 1300)
         {
-            result.desc = "It was a <color:v>*GREAT*</color> hit!";
+            result.desc = "一次<color:v>*伟大*</color>的打击！";
             result.mul = 350;
         }
         else
         {
-            result.desc = "It was a <color:v>*SUPERB*</color> hit!";
+            result.desc = "一次<color:v>*无与伦比*</color>的打击！";
             result.mul = 400;
         }
     }
@@ -1647,17 +1647,17 @@ void display_weapon_info(doc_ptr doc, int hand)
     /* Column #1 */
     object_desc(o_name, o_ptr, OD_COLOR_CODED | OD_NAME_AND_ENCHANT);
     if (prace_is_(RACE_MON_SWORD))
-        doc_printf(cols[0], "<color:y> You    :</color> <indent><style:indent>%s</style></indent>\n", o_name);
+        doc_printf(cols[0], "<color:y> 你自己 :</color> <indent><style:indent>%s</style></indent>\n", o_name);
     else
-        doc_printf(cols[0], "<color:y> Hand #%d:</color> <indent><style:indent>%s</style></indent>\n", hand+1, o_name);
+        doc_printf(cols[0], "<color:y> 武器 #%d:</color> <indent><style:indent>%s</style></indent>\n", hand+1, o_name);
 
-    doc_printf(cols[0], " %-7.7s: %d.%d lbs\n", "Weight", o_ptr->weight/10, o_ptr->weight%10);
+    doc_printf(cols[0], "%-7.7s: %d.%d 磅\n", "重量(wgt)", o_ptr->weight/10, o_ptr->weight%10);
 
     if (object_is_(o_ptr, TV_SWORD, SV_POISON_NEEDLE)) /* special case */
     {
-        doc_insert(cols[0], " Blows  : 1.00\n");
-        doc_insert(cols[0], " Damage : 1\n");
-        doc_insert(cols[1], "<color:G>Accuracy</color>\n");
+        doc_insert(cols[0], "攻击次数 : 1.00\n");
+        doc_insert(cols[0], "伤害 : 1\n");
+        doc_insert(cols[1], "<color:G>精准度</color>\n");
         doc_printf(cols[1], "  %d%%", (1000 / MAX(1, p_ptr->weapon_ct) + 5) / 10);
         doc_insert_cols(doc, cols, 2, 1);
         doc_free(cols[0]);
@@ -1668,26 +1668,26 @@ void display_weapon_info(doc_ptr doc, int hand)
     if (weaponmaster_get_toggle() == TOGGLE_SHIELD_BASH)
     {
         assert(o_ptr->tval == TV_SHIELD);
-        doc_printf(cols[0], " %-7.7s: %dd%d (%+d,%+d)\n", "Bash", dd, ds, to_h, to_d);
-        doc_printf(cols[0], " %-7.7s: %s (%+d To Hit)\n",
-                    "Profic",
+        doc_printf(cols[0], "%-7.7s: %dd%d (%+d,%+d)\n", "盾击", dd, ds, to_h, to_d);
+        doc_printf(cols[0], "%-7.7s: %s (命中 %+d)\n",
+                    "熟练度",
                     skills_shield_describe_current(o_ptr->sval),
                     skills_shield_calc_bonus(o_ptr->sval));
     }
     else
     {
-        doc_printf(cols[0], " %-7.7s: %s (%+d To Hit)\n",
-                    "Profic",
+        doc_printf(cols[0], "%-7.7s: %s (命中 %+d)\n",
+                    "熟练度",
                     skills_weapon_describe_current(o_ptr->tval, o_ptr->sval),
                     skills_weapon_calc_bonus(o_ptr->tval, o_ptr->sval));
     }
-    doc_printf(cols[0], " %-7.7s: %d + %d = %d\n", "To Hit", to_h, p_ptr->weapon_info[hand].to_h, to_h + p_ptr->weapon_info[hand].to_h);
-    doc_printf(cols[0], " %-7.7s: %d + %d = %d\n", "To Dam", to_d, p_ptr->weapon_info[hand].to_d, to_d + p_ptr->weapon_info[hand].to_d);
-    doc_printf(cols[0], " %-7.7s: %d.%2.2d\n", "Blows", num_blow/100, num_blow%100);
+    doc_printf(cols[0], " %-7.7s: %d + %d = %d\n", "命中", to_h, p_ptr->weapon_info[hand].to_h, to_h + p_ptr->weapon_info[hand].to_h);
+    doc_printf(cols[0], " %-7.7s: %d + %d = %d\n", "伤害加成", to_d, p_ptr->weapon_info[hand].to_d, to_d + p_ptr->weapon_info[hand].to_d);
+    doc_printf(cols[0], " %-7.7s: %d.%2.2d\n", "攻击次数", num_blow/100, num_blow%100);
 
     if (p_ptr->weapon_info[hand].dual_wield_pct < 1000)
     {
-        doc_printf(cols[0], " %-7.7s: %d.%d%%\n", "Skill",
+        doc_printf(cols[0], " %-7.7s: %d.%d%%\n", "技能",
             p_ptr->weapon_info[hand].dual_wield_pct/ 10,
             p_ptr->weapon_info[hand].dual_wield_pct % 10);
     }
@@ -1695,26 +1695,26 @@ void display_weapon_info(doc_ptr doc, int hand)
     mult = mult * crit.mul / 100;
     to_d = to_d + crit.to_d/100 + p_ptr->weapon_info[hand].to_d;
 
-    doc_printf(cols[0], "<color:G> %-7.7s</color>\n", "Damage");
+    doc_printf(cols[0], "<color:G> %-7.7s</color>\n", "总计伤害");
 
     if (!have_flag(flgs, OF_BRAND_ORDER)
         && weaponmaster_get_toggle() != TOGGLE_ORDER_BLADE)
     {
         if (crit.to_d)
         {
-            doc_printf(cols[0], " %-7.7s: %d.%02dx + %d.%02d\n", "Crits",
+            doc_printf(cols[0], "%-7.7s: %d.%02dx + %d.%02d\n", "暴击",
                             crit.mul/100, crit.mul%100, crit.to_d/100, crit.to_d%100);
         }
         else
         {
-            doc_printf(cols[0], " %-7.7s: %d.%02dx (%d.%d%%)\n", "Crits",
+            doc_printf(cols[0], "%-7.7s: %d.%02dx (%d.%d%%)\n", "暴击",
                             crit.mul/100, crit.mul%100, crit_pct / 10, crit_pct % 10);
         }
     }
 
-    _display_weapon_slay(mult, norm_mult, FALSE, num_blow, dd, ds, to_d, "Normal", TERM_WHITE, cols[0]);
+    _display_weapon_slay(mult, norm_mult, FALSE, num_blow, dd, ds, to_d, "普通", TERM_WHITE, cols[0]);
     if (force)
-        _display_weapon_slay(mult, norm_mult, force, num_blow, dd, ds, to_d, "Force", TERM_L_BLUE, cols[0]);
+        _display_weapon_slay(mult, norm_mult, force, num_blow, dd, ds, to_d, "原力", TERM_L_BLUE, cols[0]);
     if (p_ptr->tim_slay_sentient)
         _display_weapon_slay(mult, SLAY_MULT_BASIC, force, num_blow, dd, ds, to_d, "Sent.", TERM_YELLOW, cols[0]);
 
@@ -1741,25 +1741,25 @@ void display_weapon_info(doc_ptr doc, int hand)
             loytyi = TRUE;
             if (display_weapon_mode == HISSATSU_ZANMA) (void)_zammaken_mult(&_slay_mult);
             else if (display_weapon_mode == HISSATSU_UNDEAD) _slay_mult = _hissatsu_undead_mult(_slay_mult, (_slay.slay_flag == OF_SLAY_UNDEAD) ? TRUE : FALSE);
-            _display_weapon_slay(mult, _slay_mult * 10, force, num_blow, dd, ds, to_d, (_slay.slay_flag == OF_BRAND_ELEC) ? "Elec" : _slay.kill_desc, _slay.is_slay ? TERM_YELLOW : TERM_RED, cols[0]);
+            _display_weapon_slay(mult, _slay_mult * 10, force, num_blow, dd, ds, to_d, (_slay.slay_flag == OF_BRAND_ELEC) ? "闪电" : _slay.kill_desc, _slay.is_slay ? TERM_YELLOW : TERM_RED, cols[0]);
         }
     }
 
     if (display_weapon_mode == HISSATSU_HAGAN)
     {
-        _display_weapon_slay(mult, _hagan_mult(10) * 10, force, num_blow, dd, ds, to_d, "Rock", TERM_UMBER, cols[0]);
-        if (loytyi) _display_weapon_slay(mult, _hagan_mult(11) * 10, force, num_blow, dd, ds, to_d, "Combine", TERM_UMBER, cols[0]);
+        _display_weapon_slay(mult, _hagan_mult(10) * 10, force, num_blow, dd, ds, to_d, "岩石", TERM_UMBER, cols[0]);
+        if (loytyi) _display_weapon_slay(mult, _hagan_mult(11) * 10, force, num_blow, dd, ds, to_d, "组合", TERM_UMBER, cols[0]);
     }
 
     if (display_weapon_mode == HISSATSU_ZANMA)
     {
-        doc_insert(cols[0], " Only affects evil demons, evil undead and evil nonliving.\n");
+        doc_insert(cols[0], "仅对邪恶恶魔、邪恶亡灵和邪恶非生物有效。\n");
     }
 
     if (p_ptr->weapon_info[hand].wield_how == WIELD_TWO_HANDS)
     {
         if (p_ptr->weapon_info[hand].omoi)
-            doc_insert(cols[0], " Your weapon requires two hands to wield properly.\n");
+            doc_insert(cols[0], "你的武器需要双手才能正确挥舞。\n");
     }
 
     if (p_ptr->weapon_info[hand].info)
@@ -1770,8 +1770,8 @@ void display_weapon_info(doc_ptr doc, int hand)
     }
 
     /* Column #1 */
-    doc_insert(cols[1], "<color:G>Accuracy</color>\n");
-    doc_insert(cols[1], " AC Hit\n");
+    doc_insert(cols[1], "<color:G>精准度</color>\n");
+    doc_insert(cols[1], "护甲 命中\n");
 
     doc_printf(cols[1], "%3d %2d%%\n", 25, hit_chance(hand, to_h, 25));
     doc_printf(cols[1], "%3d %2d%%\n", 50, hit_chance(hand, to_h, 50));
@@ -1795,34 +1795,34 @@ static cptr _effect_name(int which)
 {
     gf_info_ptr gf;
     if (p_ptr->current_r_idx == MON_AETHER_VORTEX)
-        return "Random";
+        return "随机";
 
     switch (which)
     {
-    case 0: case GF_MISSILE: return "Normal";
-    case GF_ACID: return "Acid";
-    case GF_ELEC: return "Elec";
-    case GF_FIRE: return "Fire";
-    case GF_COLD: return "Cold";
-    case GF_POIS: return "Poison";
-    case GF_NETHER: return "Nether";
-    case GF_NEXUS: return "Nexus";
-    case GF_LITE: return "Light";
-    case GF_CHAOS: return "Chaos";
-    case GF_SHARDS: return "Shards";
-    case GF_DISINTEGRATE: return "Disint";
-    case GF_DISENCHANT: return "Disench";
-    case GF_TIME: return "Time";
-    case GF_OLD_DRAIN: return "Drain";
-    case GF_OLD_CONF: return "Confuse";
-    case GF_CONFUSION: return "Confuse";
-    case GF_STUN: return "Stun";
-    case GF_DRAIN_MANA: return "Drain Mana";
-    case GF_TURN_ALL: return "Terrify";
+    case 0: case GF_MISSILE: return "普通";
+    case GF_ACID: return "酸";
+    case GF_ELEC: return "闪电";
+    case GF_FIRE: return "火";
+    case GF_COLD: return "冰";
+    case GF_POIS: return "毒";
+    case GF_NETHER: return "地狱";
+    case GF_NEXUS: return "时空";
+    case GF_LITE: return "光";
+    case GF_CHAOS: return "混沌";
+    case GF_SHARDS: return "碎片";
+    case GF_DISINTEGRATE: return "解离";
+    case GF_DISENCHANT: return "解除魔法";
+    case GF_TIME: return "时间";
+    case GF_OLD_DRAIN: return "吸取";
+    case GF_OLD_CONF: return "困惑";
+    case GF_CONFUSION: return "困惑";
+    case GF_STUN: return "震晕";
+    case GF_DRAIN_MANA: return "吸取法力";
+    case GF_TURN_ALL: return "恐惧";
     }
     gf = gf_lookup(which);
     if (gf) return gf->name;
-    return "Unknown";
+    return "未知";
 }
 
 void display_innate_attack_info(doc_ptr doc, int which)
@@ -1846,37 +1846,37 @@ void display_innate_attack_info(doc_ptr doc, int which)
 
     /* First Column */
     if (a->flags & INNATE_NO_DAM)
-        doc_printf(cols[0], "<color:y> %-7.7s</color>: Your %s\n", "Attack", a->name);
+        doc_printf(cols[0], "<color:y> %-7.7s</color>: 你的 %s\n", "攻击", a->name);
     else
-        doc_printf(cols[0], "<color:y> %-7.7s</color>: Your %s (%dd%d)\n", "Attack", a->name, dd, a->ds);
+        doc_printf(cols[0], "<color:y> %-7.7s</color>: 你的 %s (%dd%d)\n", "攻击", a->name, dd, a->ds);
 
     if (a->weight && !(a->flags & INNATE_NO_DAM) && p_ptr->prace != RACE_MON_BEHOLDER)
-        doc_printf(cols[0], " %-7.7s: %d.%d lbs\n", "Weight", a->weight/10, a->weight%10);
+        doc_printf(cols[0], "%-7.7s: %d.%d 磅\n", "重量", a->weight/10, a->weight%10);
 
     {
         cptr name = skills_innate_calc_name(a);
-        doc_printf(cols[0], " %-7.7s: %s (%+d To Hit)\n",
-                    "Profic",
+        doc_printf(cols[0], "%-7.7s: %s (命中 %+d)\n",
+                    "熟练度",
                     skills_innate_describe_current(name),
                     skills_innate_calc_bonus(name));
     }
 
-    doc_printf(cols[0], " %-7.7s: %d + %d = %d\n", "To Hit", a->to_h, p_ptr->to_h_m, to_h);
+    doc_printf(cols[0], " %-7.7s: %d + %d = %d\n", "命中", a->to_h, p_ptr->to_h_m, to_h);
 
     if (!(a->flags & INNATE_NO_DAM))
-        doc_printf(cols[0], " %-7.7s: %d + %d = %d\n", "To Dam", a->to_d, p_ptr->to_d_m, to_d);
+        doc_printf(cols[0], " %-7.7s: %d + %d = %d\n", "伤害加成", a->to_d, p_ptr->to_d_m, to_d);
 
-    doc_printf(cols[0], " %-7.7s: %d.%2.2d\n", "Blows", blows/100, blows%100);
+    doc_printf(cols[0], " %-7.7s: %d.%2.2d\n", "攻击次数", blows/100, blows%100);
 
     mult = 100;
 
     if (!(a->flags & INNATE_NO_DAM))
     {
-        doc_printf(cols[0], "<color:G> %-7.7s</color>\n", "Damage");
+        doc_printf(cols[0], "<color:G> %-7.7s</color>\n", "总计伤害");
         if (a->flags & INNATE_VORPAL)
         {
             mult = mult * 11 / 9;
-            doc_printf(cols[0], " %-7.7s: %d.%02dx\n", "Vorpal", mult/100, mult%100);
+            doc_printf(cols[0], "%-7.7s: %d.%02dx\n", "锋锐", mult/100, mult%100);
         }
     }
 
@@ -1921,9 +1921,9 @@ void display_innate_attack_info(doc_ptr doc, int which)
             }
         }
         if (crit.to_d)
-            doc_printf(cols[0], " %-7.7s: %d.%02dx + %d.%02d\n", "Crits", crit.mul/100, crit.mul%100, crit.to_d/100, crit.to_d%100);
+            doc_printf(cols[0], "%-7.7s: %d.%02dx + %d.%02d\n", "暴击", crit.mul/100, crit.mul%100, crit.to_d/100, crit.to_d%100);
         else
-            doc_printf(cols[0], " %-7.7s: %d.%02dx\n", "Crits", crit.mul/100, crit.mul%100);
+            doc_printf(cols[0], "%-7.7s: %d.%02dx\n", "暴击", crit.mul/100, crit.mul%100);
         crit.to_d /= 100;
         mult = mult * crit.mul / 100;
         to_d = to_d + crit.to_d;
@@ -1953,7 +1953,7 @@ void display_innate_attack_info(doc_ptr doc, int which)
 
     if (a->effect[0] == GF_OLD_CONF) /* Hack for Umber Hulk ... */
     {
-        doc_insert(cols[0], "<tab:10><color:B>Confuses</color>\n");
+        doc_insert(cols[0], "<tab:10><color:B>附带困惑</color>\n");
     }
     else if (!(a->flags & INNATE_NO_DAM))
     {
@@ -1984,53 +1984,53 @@ void display_innate_attack_info(doc_ptr doc, int which)
             switch (a->effect[i])
             {
             case GF_STEAL:
-                doc_printf(cols[0], "<tab:10><color:B>Steals%s</color>\n", xtra);
+                doc_printf(cols[0], "<tab:10><color:B>附带偷窃%s</color>\n", xtra);
                 break;
             case GF_OLD_SLOW:
-                doc_printf(cols[0], "<tab:10><color:U>Slows%s</color>\n", xtra);
+                doc_printf(cols[0], "<tab:10><color:U>附带减速%s</color>\n", xtra);
                 break;
             case GF_BABY_SLOW:
-                doc_printf(cols[0], "<tab:10><color:W>Slows%s</color>\n", xtra);
+                doc_printf(cols[0], "<tab:10><color:W>附带减速%s</color>\n", xtra);
                 break;
             case GF_OLD_CONF:
             case GF_BLIND:
-                doc_printf(cols[0], "<tab:10><color:u>Confuses%s</color>\n", xtra);
+                doc_printf(cols[0], "<tab:10><color:u>附带困惑%s</color>\n", xtra);
                 break;
             case GF_OLD_SLEEP:
-                doc_printf(cols[0], "<tab:10><color:b>Sleeps%s</color>\n", xtra);
+                doc_printf(cols[0], "<tab:10><color:b>附带催眠%s</color>\n", xtra);
                 break;
             case GF_STASIS:
             case GF_PARALYSIS:
-                doc_printf(cols[0], "<tab:10><color:r>Paralyzes%s</color>\n", xtra);
+                doc_printf(cols[0], "<tab:10><color:r>附带麻痹%s</color>\n", xtra);
                 break;
             case GF_DRAIN_MANA:
-                doc_printf(cols[0], "<tab:10><color:B>Drains Mana%s</color>\n", xtra);
+                doc_printf(cols[0], "<tab:10><color:B>吸取法力%s</color>\n", xtra);
                 break;
             case GF_DRAINING_TOUCH:
-                doc_printf(cols[0], "<tab:10><color:B>Steals Mana%s</color>\n", xtra);
+                doc_printf(cols[0], "<tab:10><color:B>偷窃法力%s</color>\n", xtra);
                 break;
             case GF_STUN:
-                doc_printf(cols[0], "<tab:10><color:B>Stuns%s</color>\n", xtra);
+                doc_printf(cols[0], "<tab:10><color:B>附带震晕%s</color>\n", xtra);
                 break;
             case GF_AMNESIA:
-                doc_printf(cols[0], "<tab:10><color:R>Causes Amnesia%s</color>\n", xtra);
+                doc_printf(cols[0], "<tab:10><color:R>导致失忆%s</color>\n", xtra);
                 break;
             case GF_TURN_ALL:
-                doc_printf(cols[0], "<tab:10><color:v>Terrifies%s</color>\n", xtra);
+                doc_printf(cols[0], "<tab:10><color:v>附带恐惧%s</color>\n", xtra);
                 break;
             case GF_QUAKE:
-                doc_printf(cols[0], "<tab:10><color:B>Shatters%s</color>\n", xtra);
+                doc_printf(cols[0], "<tab:10><color:B>附带粉碎%s</color>\n", xtra);
                 break;
             case GF_MISSILE: /* Full damage */
                 if ((!p) || (p == 100))
-                    doc_printf(cols[0], "<color:r>+%-7.7s</color>: %d\n", "Hurt", blows * (min + max)/200);
+                    doc_printf(cols[0], "<color:r>+%-7.7s</color>: %d\n", "伤害", blows * (min + max)/200);
                 else
-                    doc_printf(cols[0], "<color:r>+%-7.7s</color>: %d/%d%s\n", "Hurt", blows * (min + max)/200, (s32b)blows * (min + max) * p / 20000L, xtra);
+                    doc_printf(cols[0], "<color:r>+%-7.7s</color>: %d/%d%s\n", "伤害", blows * (min + max)/200, (s32b)blows * (min + max) * p / 20000L, xtra);
                 break;
             case GF_OLD_DRAIN:
                 if (i > 0)
                 {
-                    doc_printf(cols[0], "<tab:10><color:B>Drains Life%s</color>\n", xtra);
+                    doc_printf(cols[0], "<tab:10><color:B>吸取生命%s</color>\n", xtra);
                     break;
                 } /* Fall through */
             default:
@@ -2050,8 +2050,8 @@ void display_innate_attack_info(doc_ptr doc, int which)
         }
     }
     /* Second Column */
-    doc_insert(cols[1], "<color:G>Accuracy</color>\n");
-    doc_insert(cols[1], " AC Hit\n");
+    doc_insert(cols[1], "<color:G>精准度</color>\n");
+    doc_insert(cols[1], "护甲 命中\n");
 
     doc_printf(cols[1], "%3d %2d%%\n", 25, hit_chance_innate(to_h, 25));
     doc_printf(cols[1], "%3d %2d%%\n", 50, hit_chance_innate(to_h, 50));
@@ -2208,43 +2208,43 @@ static void _shooter_info_aux(doc_ptr doc, object_type *bow, object_type *arrow,
 
     /* First Column */
     object_desc(o_name, arrow, OD_OMIT_INSCRIPTION | OD_COLOR_CODED);
-    doc_printf(cols[0], "<color:u> Ammo #%-2d</color>: <indent><style:indent>%s</style></indent>\n", ct, o_name);
+    doc_printf(cols[0], "<color:u> 弹药 #%-2d</color>: <indent><style:indent>%s</style></indent>\n", ct, o_name);
 
     real_snipe = shoot_hack;
     if (display_shooter_mode) shoot_hack = display_shooter_mode;
-    doc_printf(cols[0], " %-8.8s: %d%%\n", "Breakage", breakage_chance(arrow));
+    doc_printf(cols[0], " %-8.8s: %d%%\n", "折损率", breakage_chance(arrow));
     shoot_hack = real_snipe;
-    doc_printf(cols[0], " %-8.8s: %d.%d lbs\n", "Weight", arrow->weight/10, arrow->weight%10);
-    doc_printf(cols[0], " %-8.8s: %d + %d = %d\n", "To Hit", to_h, to_h_bow + to_h_xtra, to_h + to_h_bow + to_h_xtra);
-    doc_printf(cols[0], " %-8.8s: %d (%s)\n", "To Dam", to_d, "Multiplier Applies");
-    doc_printf(cols[0], " %-8.8s: %d (%s)\n", "To Dam", to_d_bow + to_d_xtra, "Multiplier Does Not Apply");
-    doc_printf(cols[0], " <color:G>%-8.8s</color>\n", "Damage");
+    doc_printf(cols[0], "%-8.8s: %d.%d 磅\n", "重量", arrow->weight/10, arrow->weight%10);
+    doc_printf(cols[0], " %-8.8s: %d + %d = %d\n", "命中", to_h, to_h_bow + to_h_xtra, to_h + to_h_bow + to_h_xtra);
+    doc_printf(cols[0], " %-8.8s: %d (%s)\n", "伤害加成", to_d, "适用倍率");
+    doc_printf(cols[0], " %-8.8s: %d (%s)\n", "伤害加成", to_d_bow + to_d_xtra, "不适用倍率");
+    doc_printf(cols[0], " <color:G>%-8.8s</color>\n", "总计伤害");
 
     if (crit.to_d)
     {
-        doc_printf(cols[0], " %-8.8s: %d.%02dx + %d.%02d\n", "Crits",
+        doc_printf(cols[0], "%-8.8s: %d.%02dx + %d.%02d\n", "暴击",
                         crit.mul/100, crit.mul%100, crit.to_d/100, crit.to_d%100);
     }
     else
     {
-        doc_printf(cols[0], " %-8.8s: %d.%02dx (%d.%d%%)\n", "Crits",
+        doc_printf(cols[0], "%-8.8s: %d.%02dx (%d.%d%%)\n", "暴击",
                         crit.mul/100, crit.mul%100, crit_pct / 10, crit_pct % 10);
     }
 
     to_d_xtra = to_d_bow + to_d_xtra + crit.to_d/100;
 
-    _display_missile_slay(mult, 100, crit.mul, FALSE, num_fire, dd, ds, to_d, to_d_xtra, "Normal", TERM_WHITE, cols[0]);
+    _display_missile_slay(mult, 100, crit.mul, FALSE, num_fire, dd, ds, to_d, to_d_xtra, "普通", TERM_WHITE, cols[0]);
 
     if (p_ptr->tim_force && p_ptr->csp >= 1 + arrow->dd * arrow->ds / 2)
     {
         force = TRUE;
-        _display_missile_slay(mult, 100, crit.mul, force, num_fire, dd, ds, to_d, to_d_xtra, "Force", TERM_L_BLUE, cols[0]);
+        _display_missile_slay(mult, 100, crit.mul, force, num_fire, dd, ds, to_d, to_d_xtra, "原力", TERM_L_BLUE, cols[0]);
     }
 
     if (display_shooter_mode == SP_FINAL)
     {
         int snipe = sniper_multiplier(display_shooter_mode, arrow, NULL) * 10;
-        _display_missile_slay(mult, snipe, crit.mul, force, num_fire, dd, ds, to_d, to_d_xtra, "All", TERM_VIOLET, cols[0]);
+        _display_missile_slay(mult, snipe, crit.mul, force, num_fire, dd, ds, to_d, to_d_xtra, "全部", TERM_VIOLET, cols[0]);
     }
 
     i = 0;
@@ -2266,25 +2266,25 @@ static void _shooter_info_aux(doc_ptr doc, object_type *bow, object_type *arrow,
             _slay_mult = slay_tiers[_slay.tier - 1].archery_slay;
         if (_slay_mult != 100)
         {
-            _display_missile_slay(mult, _slay_mult, crit.mul, force, num_fire, dd, ds, to_d, to_d_xtra, (_slay.slay_flag == OF_BRAND_ELEC) ? "Elec" : _slay.kill_desc, _slay.is_slay ? TERM_YELLOW : TERM_RED, cols[0]);
+            _display_missile_slay(mult, _slay_mult, crit.mul, force, num_fire, dd, ds, to_d, to_d_xtra, (_slay.slay_flag == OF_BRAND_ELEC) ? "闪电" : _slay.kill_desc, _slay.is_slay ? TERM_YELLOW : TERM_RED, cols[0]);
         }
     }
 
     if (display_shooter_mode == SP_KILL_WALL)
     {
         int snipe = sniper_multiplier(display_shooter_mode, arrow, NULL) * 10;
-        _display_missile_slay(mult, snipe, crit.mul, force, num_fire, dd, ds, to_d, to_d_xtra, "HurtRock", TERM_VIOLET, cols[0]);
-        _display_missile_slay(mult, snipe, crit.mul, force, num_fire, dd, ds, to_d, to_d_xtra, "Nonliving", TERM_VIOLET, cols[0]);
+        _display_missile_slay(mult, snipe, crit.mul, force, num_fire, dd, ds, to_d, to_d_xtra, "碎石", TERM_VIOLET, cols[0]);
+        _display_missile_slay(mult, snipe, crit.mul, force, num_fire, dd, ds, to_d, to_d_xtra, "死物", TERM_VIOLET, cols[0]);
     }
     if (display_shooter_mode == SP_LITE)
     {
         int snipe = sniper_multiplier(display_shooter_mode, arrow, NULL) * 10;
-        _display_missile_slay(mult, snipe, crit.mul, force, num_fire, dd, ds, to_d, to_d_xtra, "HurtLite", TERM_VIOLET, cols[0]);
+        _display_missile_slay(mult, snipe, crit.mul, force, num_fire, dd, ds, to_d, to_d_xtra, "畏光", TERM_VIOLET, cols[0]);
     }
     /* Second Column */
     to_h = to_h + to_h_bow + to_h_xtra;
 
-    doc_insert(cols[1], " <color:G>AC Hit</color>\n");
+    doc_insert(cols[1], "<color:G>护甲 命中</color>\n");
     doc_printf(cols[1], "%3d %2d%%\n", 25, bow_hit_chance(to_h, 25));
     doc_printf(cols[1], "%3d %2d%%\n", 50, bow_hit_chance(to_h, 50));
     doc_printf(cols[1], "%3d %2d%%\n", 100, bow_hit_chance(to_h, 100));
@@ -2328,16 +2328,16 @@ void display_shooter_info(doc_ptr doc)
 
     /* Shooter */
     object_desc(o_name, bow_ptr, OD_OMIT_INSCRIPTION | OD_COLOR_CODED);
-    doc_printf(doc, " <color:y>Shooting</color>: <indent><style:indent>%s</style></indent>\n", o_name);
+    doc_printf(doc, "<color:y>射击武器</color>: <indent><style:indent>%s</style></indent>\n", o_name);
 
-    doc_printf(doc, " %-8.8s: %d'\n", "Range", (bow_range(bow_ptr) + 1) * 10);
-    doc_printf(doc, " %-8.8s: %d.%02d\n", "Shots", num_fire/100, num_fire%100);
-    doc_printf(doc, " %-8.8s: %d.%02dx\n", "Mult", mult/100, mult%100);
-    doc_printf(doc, " %-8.8s: %s (%+d To Hit)\n", "Profic", skills_bow_describe_current(bow_ptr->sval), skills_bow_calc_bonus(bow_ptr->sval));
-    doc_printf(doc, " %-8.8s: %d + %d = %d\n", "To Hit", to_h, p_ptr->shooter_info.dis_to_h, to_h + p_ptr->shooter_info.dis_to_h);
+    doc_printf(doc, " %-8.8s: %d'\n", "射程", (bow_range(bow_ptr) + 1) * 10);
+    doc_printf(doc, " %-8.8s: %d.%02d\n", "射击次数", num_fire/100, num_fire%100);
+    doc_printf(doc, "%-8.8s: %d.%02dx\n", "倍率", mult/100, mult%100);
+    doc_printf(doc, "%-8.8s: %s (命中 %+d)\n", "熟练度", skills_bow_describe_current(bow_ptr->sval), skills_bow_calc_bonus(bow_ptr->sval));
+    doc_printf(doc, " %-8.8s: %d + %d = %d\n", "命中", to_h, p_ptr->shooter_info.dis_to_h, to_h + p_ptr->shooter_info.dis_to_h);
     if (weaponmaster_is_(WEAPONMASTER_CROSSBOWS) && p_ptr->lev >= 15)
-        doc_printf(doc, " %-8.8s: %d (%s)\n", "To Dam", 1 + p_ptr->lev/10, "Multiplier Applies");
-    doc_printf(doc, " %-8.8s: %d (%s)\n", "Xtra Dam", p_ptr->shooter_info.dis_to_d + to_d, "Multiplier Does Not Apply");
+        doc_printf(doc, " %-8.8s: %d (%s)\n", "伤害加成", 1 + p_ptr->lev/10, "适用倍率");
+    doc_printf(doc, " %-8.8s: %d (%s)\n", "额外伤害", p_ptr->shooter_info.dis_to_d + to_d, "不适用倍率");
     doc_newline(doc);
 
     /* Ammo */

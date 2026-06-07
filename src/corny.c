@@ -258,7 +258,7 @@ static void _prt_gold(void)
     char tmp[10];
     char tmp_str[80];
 
-    prt("Gold Remaining: ", 23, 53);
+    prt("剩余金币:", 23, 53);
 
     big_num_display(p_ptr->au, tmp);
     sprintf(tmp_str, "%6.6s", tmp);
@@ -419,11 +419,11 @@ static void _process_implorington(obj_ptr obj)
             r_info[MON_IMPLORINGTON].ball_num = 0;
             empty_capture_ball(obj);
             amt *= 10;
-            msg_print("Thank you! We're looking forward to a quality discussion with the guy.");
+            msg_print("谢谢！我们非常期待能和那家伙来一场“有质量的谈话”。");
         }
         else
             obj->number = 0;
-        msg_format("You get %dgp.", amt);
+        msg_format("你获得了 %d 金币。", amt);
         p_ptr->au += amt;
         stats_on_gold_winnings(amt);
         obj_release(obj, 0);
@@ -443,17 +443,17 @@ static void _check_implorington(void)
 static void _wanted_poster(void)
 {
     _clear_bldg(4,18);
-    c_put_str(TERM_L_RED, "   WANTED FOR INSURANCE FRAUD:", 5, 15);
-    c_put_str(TERM_YELLOW,"        Implorington III      ", 6, 15);
-    c_put_str(TERM_GREEN, "         Also known as:       ", 8, 15);
-    c_put_str(TERM_GREEN, "         Muffin Murkley       ", 9, 15);
-    c_put_str(TERM_GREEN, "        Larry the Looter      ", 10, 15);
-    c_put_str(TERM_GREEN, "          Impy the Git        ", 11, 15);
-    c_put_str(TERM_GREEN, "The Fastest Teleport in the Deeps", 12, 15);
-    c_put_str(TERM_GREEN, "      That @$^%& White 'p'    ", 13, 15);
-    c_put_str(TERM_WHITE, "        Rewards offered:      ", 15, 15);
-    c_put_str(TERM_WHITE, "   catch alive ----   $250,000", 16, 15);
-    c_put_str(TERM_WHITE, "   corpse      ----    $25,000", 17, 15);
+    c_put_str(TERM_L_RED, "涉嫌保险诈骗通缉犯：", 5, 15);
+    c_put_str(TERM_YELLOW,"英普洛林顿三世", 6, 15);
+    c_put_str(TERM_GREEN, "又名：", 8, 15);
+    c_put_str(TERM_GREEN, "阴险的松饼", 9, 15);
+    c_put_str(TERM_GREEN, "“拾荒者”拉瑞", 10, 15);
+    c_put_str(TERM_GREEN, "“饭桶”小鬼", 11, 15);
+    c_put_str(TERM_GREEN, "深渊中最快的传送者", 12, 15);
+    c_put_str(TERM_GREEN, "那个 @$^%& 白色的 'p'", 13, 15);
+    c_put_str(TERM_WHITE, "悬赏金额：", 15, 15);
+    c_put_str(TERM_WHITE, "活捉 ---- $250,000", 16, 15);
+    c_put_str(TERM_WHITE, "尸体 ---- $25,000", 17, 15);
 }
 
 static void _cornucopia_ini_policies(int which)
@@ -533,9 +533,9 @@ static void _update_loan(int amount)
         p_ptr->au -= amount;
     }
     _fake_loan = _calculate_loan();
-    msg_print("Thank you for using Cornucopia services!");
-    if (_fake_loan) msg_format("You now owe us %d gold.", _fake_loan);
-    else msg_print("You have fully repaid your loan.");
+    msg_print("感谢您使用丰饶角(Cornucopia)银行的服务！");
+    if (_fake_loan) msg_format("您现在欠我们 %d 金币。", _fake_loan);
+    else msg_print("您已全额偿还了贷款。");
     p_ptr->redraw |= PR_GOLD;
     _prt_gold();
 }
@@ -554,9 +554,9 @@ static void _update_deposit(int amount)
     else _withdrawn += (0 - amount);
     _deposit_turn = game_turn;
     _fake_deposit = _calculate_deposit();
-    msg_print("Thank you for choosing Cornucopia!");
-    if (_fake_deposit) msg_format("You now have %d gold in your deposit account.", _fake_deposit);
-    else msg_print("Your deposit account is now empty.");
+    msg_print("感谢您选择丰饶角(Cornucopia)银行！");
+    if (_fake_deposit) msg_format("您的存款账户中现有 %d 金币。", _fake_deposit);
+    else msg_print("您的存款账户现在空了。");
     p_ptr->redraw |= PR_GOLD;
     _prt_gold();
 }
@@ -580,7 +580,7 @@ static void _suorita_korvaus(int amt)
     if (!amt) return; /* this can happen due to exposure limits */
     p_ptr->au += amt;
     _paid += amt;
-    msg_format("You collect %d gold pieces' worth of gold pieces.", amt);
+    msg_format("你收到了价值 %d 金币的赔偿金。", amt);
     p_ptr->redraw |= PR_GOLD;
     _prt_gold();
 }
@@ -590,7 +590,7 @@ static void _claim_compensation(int policy)
     if (INVALID_POLICY()) return;
     if (_my_policies[policy].compensation > _allowable())
     {
-        if (!get_check(format("Due to exposure limits, you can only claim %d gold now. You will forfeit any claim to the remaining %d gold if you do so. Proceed anyway? ", _allowable(), _my_policies[policy].compensation - _allowable()))) return;
+        if (!get_check(format("由于赔付额度限制，您现在只能索赔 %d 金币。如果您这样做，将放弃对剩余 %d 金币的任何索赔权利。仍然继续吗？", _allowable(), _my_policies[policy].compensation - _allowable()))) return;
     }
     _suorita_korvaus(pienempi(_my_policies[policy].compensation, _allowable()));
     _my_policies[policy].compensation = 0;
@@ -656,7 +656,7 @@ static int _cornucopia_komento_handler(building_type *bldg, int *amount, int amo
             if (*amount < 1) break;
             if (*amount < amount_min)
             {
-                msg_format("We feel a bit uncomfortable about the size of your loan. Please repay at least %d gold.", amount_min);
+                msg_format("我们对您的贷款数额感到有些不安。请至少偿还 %d 金币。", amount_min);
                 break;
             }
             *amount = MIN(*amount, amount_cap); /* paranoia */
@@ -693,7 +693,7 @@ static int _cornucopia_loan_interact(building_type *bldg)
     old_mode = !mode;
     if (p_ptr->au < amount_min)
     {
-        msg_format("Please return when you can show us at least %d gold.", amount_min);
+        msg_format("请在您能向我们展示至少 %d 金币时再来。", amount_min);
         return 0;
     }
     while (1)
@@ -706,13 +706,13 @@ static int _cornucopia_loan_interact(building_type *bldg)
         allow_mode_switch = ((mode || _loan) && ((s32b)_fake_loan < cap));
         if (allow_mode_switch)
         {
-            if (mode) c_prt(TERM_L_BLUE, "Press 'M' to extend your loan instead.", 17, 5);
-            else c_prt(TERM_L_BLUE, "Press 'M' to repay your loan instead.", 17, 5);
+            if (mode) c_prt(TERM_L_BLUE, "按 'M' 延长您的贷款。", 17, 5);
+            else c_prt(TERM_L_BLUE, "按 'M' 偿还您的贷款。", 17, 5);
         }
         if (mode)
         {
-            put_str(format("You owe us %d gold pieces.", _fake_loan), 7, 5);
-            prt(format("Pay back: %s", viesti), 8, 5);
+            put_str(format("您欠我们 %d 金币。", _fake_loan), 7, 5);
+            prt(format("偿还: %s", viesti), 8, 5);
             Term_gotoxy(15 + paikka, 8);
             amount_cap = MIN((s32b)_fake_loan, p_ptr->au);
         }
@@ -721,19 +721,19 @@ static int _cornucopia_loan_interact(building_type *bldg)
             int rivi = 7;
             if (_fake_loan)
             {
-                put_str(format("You currently owe us %d gold pieces.", _fake_loan), rivi++, 5);
-                put_str(format("We are willing to extend your loan by another %d gold.", cap - _fake_loan), rivi++, 5);
+                put_str(format("您目前欠我们 %d 金币。", _fake_loan), rivi++, 5);
+                put_str(format("我们愿意为您再延长 %d 金币的贷款。", cap - _fake_loan), rivi++, 5);
                 amount_cap = cap - _fake_loan;
             }
             else
             {
-                if (p_ptr->au < 3000) put_str(format("Strapped for cash? We're willing to loan you up to %d gold.", cap), rivi++, 5);
-                else if (p_ptr->au < 15000) put_str(format("Looking for a line of credit? We're willing to loan you %d gold.", cap), rivi++, 5);
-                else if (p_ptr->au < 100000) put_str(format("We know you can pay back, so we're willing to loan you %d gold.", cap), rivi++, 5);
-                else put_str(format("You being such a great hero, we're willing to loan you %d gold.", cap), rivi++, 5);
+                if (p_ptr->au < 3000) put_str(format("手头紧吗？我们最多愿意借给您 %d 金币。", cap), rivi++, 5);
+                else if (p_ptr->au < 15000) put_str(format("正在寻找信贷额度？我们愿意借给您 %d 金币。", cap), rivi++, 5);
+                else if (p_ptr->au < 100000) put_str(format("我们知道您还得起，所以我们愿意借给您 %d 金币。", cap), rivi++, 5);
+                else put_str(format("您是如此伟大的英雄，我们愿意借给您 %d 金币。", cap), rivi++, 5);
                 amount_cap = cap;
             }
-            put_str(format("Request: %s", viesti), rivi++, 5);
+            put_str(format("请求金额: %s", viesti), rivi++, 5);
             Term_gotoxy(14 + paikka, rivi - 1);
         }
         tulos = _cornucopia_komento_handler(bldg, &amount, amount_min, amount_cap, allow_mode_switch, &mode, _update_loan);
@@ -754,12 +754,12 @@ static int _cornucopia_deposit_interact(building_type *bldg)
     char viesti[12] = "0";
     if (_excessive_loan()) /* Note that this also runs _fake_update() for us */
     {
-        msg_print("Please reduce your loan to 300,000 gp or less.");
+        msg_print("请将您的贷款金额减至 300,000 金币或更少。");
         return 0;
     }
     if ((cap <= 0) && (!_deposit))
     {
-        msg_print("You can't afford to pay the 500gp deposit fee!");
+        msg_print("您负担不起 500 金币的存款手续费！");
         return 0;
     }
     if (cap <= 0) withdraw_mode = TRUE;
@@ -770,13 +770,13 @@ static int _cornucopia_deposit_interact(building_type *bldg)
         allow_mode_switch = (cap > 0) && (_deposit);
         if (allow_mode_switch)
         {
-            if (withdraw_mode) c_prt(TERM_L_BLUE, "Press 'M' to deposit money instead.", 17, 5);
-            else c_prt(TERM_L_BLUE, "Press 'M' to withdraw money instead.", 17, 5);
+            if (withdraw_mode) c_prt(TERM_L_BLUE, "按 'M' 存钱。", 17, 5);
+            else c_prt(TERM_L_BLUE, "按 'M' 取钱。", 17, 5);
         }
         if (withdraw_mode)
         {
-            prt(format("You have %d gold in your savings account.", _fake_deposit), 7, 5);
-            prt(format("Withdraw: %s", viesti), 8, 5);
+            prt(format("您的储蓄账户中有 %d 金币。", _fake_deposit), 7, 5);
+            prt(format("取款: %s", viesti), 8, 5);
             Term_gotoxy(15 + paikka, 8);
             amount_cap = _fake_deposit;
         }
@@ -786,14 +786,14 @@ static int _cornucopia_deposit_interact(building_type *bldg)
             amount_cap = p_ptr->au - MAX(500, p_ptr->au / 5001);
             if (_fake_deposit)
             {
-                prt(format("You currently have %d gold in your savings account.", _fake_deposit), rivi++, 5);
-                prt(format("Additional deposit: %s", viesti), rivi++, 5);
+                prt(format("您目前储蓄账户中有 %d 金币。", _fake_deposit), rivi++, 5);
+                prt(format("追加存款: %s", viesti), rivi++, 5);
                 Term_gotoxy(25 + paikka, rivi - 1);
             }
             else
             {
-                prt("Currently, you don't have any gold in your account.", rivi++, 5);
-                prt(format("New deposit: %s", viesti), rivi++, 5);
+                prt("目前，您的账户中没有任何金币。", rivi++, 5);
+                prt(format("新存款: %s", viesti), rivi++, 5);
                 Term_gotoxy(18 + paikka, rivi - 1);
             }
         }
@@ -859,14 +859,14 @@ static int _disen_insure_item(object_type *o_ptr, building_type *bldg)
     char viesti[12] = "0";
     if (!_value_cap)
     {
-        if (!p_ptr->au) msg_print("You don't have any money!");
-        else msg_print("This item is too worthless to be insured.");
+        if (!p_ptr->au) msg_print("你没有钱！");
+        else msg_print("这件物品太没有价值，无法投保。");
         return 0;
     }
     object_desc(o_name, o_ptr, OD_SINGULAR);
     _clear_bldg(4,18);
     c_put_str(tval_to_attr[o_ptr->tval], format("%-72.72s", o_name), 9, 5);
-    put_str("Compensation for damage to:   To-AC   To-Hit  To-Dam  Pval", 13, 5);
+    put_str("损坏赔偿项: 护甲 命中 伤害加成 Pval(附加属性)", 13, 5);
     if (_value_cap < 1000)
     {
         paikka_modifier--;
@@ -881,7 +881,7 @@ static int _disen_insure_item(object_type *o_ptr, building_type *bldg)
             if (!arvo) c_put_str(TERM_RED, "---- ", 14, 35 + 8 * i);
             else c_put_str(TERM_L_GREEN, format("%-5d", arvo), 14, 35 + 8 * i);
         }
-        prt(format("Insure item for (1-%d): %s", _value_cap, viesti), 10, 5);
+        prt(format("为物品投保 (1-%d): %s", _value_cap, viesti), 10, 5);
         Term_gotoxy(31 + paikka + paikka_modifier, 10);
 
         _fake_value = 0;
@@ -891,11 +891,11 @@ static int _disen_insure_item(object_type *o_ptr, building_type *bldg)
             int policy = _open_insurance_policy(o_ptr);
             if (INVALID_POLICY())
             {
-                msg_print("Failed to open new insurance policy!");
+                msg_print("未能开立新的保单！");
                 return 0;
             }
             else
-                msg_print("Thank you for purchasing a Cornucopia insurance policy!");
+                msg_print("感谢您购买丰饶角(Cornucopia)保险公司的保单！");
             _my_policies[policy].num_insured = 1;
             _my_policies[policy].disen_value = _fake_value;
             o_ptr->insured = (_my_policies[policy].i_idx * 100) + 1;
@@ -945,7 +945,7 @@ static int _destroy_insure_item(object_type *o_ptr, building_type *bldg)
         /* Check if the item's already fully insured */
         if ((vakuutettu > qty) || ((vakuutettu == qty) && (existing_policies == (allow_full ? 0x03 : 0x01))))
         {
-            msg_print("You cannot insure this item any further!");
+            msg_print("您不能再为此物品投保了！");
             return 0;
         }
         maksimi = MIN(qty, MIN(99 - ulkopuoliset, 99 + vakuutettu - _my_policies[policy].num_insured));
@@ -954,18 +954,18 @@ static int _destroy_insure_item(object_type *o_ptr, building_type *bldg)
     }
     if (qty < 1)
     {
-        msg_print("You cannot insure this item any further!");
+        msg_print("您不能再为此物品投保了！");
         return 0;
     }
     _clear_bldg(4,18);
     c_put_str(tval_to_attr[o_ptr->tval], format("%-69.69s", o_name), 8, 8);
-    put_str("[Space] to unselect a plan, [Enter] to buy this policy", 15, 5);
-    if (o_ptr->number > vakuutettu + 1) put_str("+/- or N/n to modify item quantity", 16, 5);
+    put_str("[空格] 取消选择计划，[回车] 购买此保单", 15, 5);
+    if (o_ptr->number > vakuutettu + 1) put_str("+/- 或 N/n 修改物品数量", 16, 5);
     vari = TERM_SLATE;
     if (valinta & 0x02) vari = TERM_L_BLUE;
     else if ((allow_full) && (p_ptr->au >= hinta + (arvo * replacement_mult))) vari = TERM_UMBER;
-    if (allow_full) c_prt(vari, format("b) Replacement Plan - Cost: %d", arvo * replacement_mult), 13, 5);
-    else c_prt(vari, "Replacement Plan - not available for this item", 13, 5);
+    if (allow_full) c_prt(vari, format("b) 包换计划 - 费用: %d", arvo * replacement_mult), 13, 5);
+    else c_prt(vari, "包换计划 - 不适用于此物品", 13, 5);
     while (1)
     {
         hinta = 0;
@@ -992,7 +992,7 @@ static int _destroy_insure_item(object_type *o_ptr, building_type *bldg)
             vari = TERM_SLATE;
             if (valinta & 0x01) vari = TERM_L_BLUE;
             else if (p_ptr->au >= (hinta + (arvo / div)) * (qty - vakuutettu)) vari = TERM_UMBER;
-            c_prt(vari, format("%sRegular Plan - Cost: %d%s - Pays: %d%s", allow_full ? "a) " : "", (arvo / div), ((qty > 1) ? "/item" : ""), (arvo * mult / div), ((qty > 1) ? "/item" : "")), 12, 5);
+            c_prt(vari, format("%s标准计划 - 费用: %d%s - 赔付: %d%s", allow_full ? "a) " : "", (arvo / div), ((qty > 1) ? "/件" : ""), (arvo * mult / div), ((qty > 1) ? "/件" : "")), 12, 5);
             update_bitflag &= ~0x02;
         }
         if (valinta & 0x01) c_put_str(vari, "SELECTED", 12, 67);
@@ -1005,7 +1005,7 @@ static int _destroy_insure_item(object_type *o_ptr, building_type *bldg)
         {
             vari = TERM_YELLOW;
             if (p_ptr->au < total_cost) vari = TERM_SLATE;
-            c_prt(vari, format("Cost of %s this policy: %d gp", (qty == vakuutettu) ? "keeping" : vakuutettu ? "upgrading to" : "buying", total_cost), 10, 20);
+            c_prt(vari, format("%s此保单的费用: %d 金币", (qty == vakuutettu) ? "保留" : vakuutettu ? "升级为" : "购买", total_cost), 10, 20);
         }
         if (allow_full)
         {
@@ -1014,7 +1014,7 @@ static int _destroy_insure_item(object_type *o_ptr, building_type *bldg)
                 vari = TERM_SLATE;
                 if (valinta & 0x02) vari = TERM_L_BLUE;
                 else if (p_ptr->au >= hinta + (arvo * replacement_mult)) vari = TERM_UMBER;
-                c_prt(vari, format("b) Replacement Plan - Cost: %d", arvo * replacement_mult), 13, 5);
+                c_prt(vari, format("b) 包换计划 - 费用: %d", arvo * replacement_mult), 13, 5);
                 update_bitflag &= ~0x04;
             }
             if (valinta & 0x02) c_put_str(vari, "SELECTED", 13, 67);
@@ -1087,18 +1087,18 @@ static int _destroy_insure_item(object_type *o_ptr, building_type *bldg)
                 if (!total_cost) break;
                 if (total_cost > p_ptr->au)
                 {
-                    msg_print("You don't have enough gold to buy this policy.");
+                    msg_print("你没有足够的金币来购买这份保单。");
                     break;
                 }
-                if (!get_check(format("Buy this policy for %d gold? ", total_cost))) return 0;
+                if (!get_check(format("花费 %d 金币购买此保单？", total_cost))) return 0;
                 policy = vakuutettu ? cornucopia_item_policy(o_ptr) : _open_insurance_policy(o_ptr);
                 if (INVALID_POLICY())
                 {
-                    msg_print("Failed to open new insurance policy!");
+                    msg_print("未能开立新的保单！");
                     return 0;
                 }
                 else
-                    msg_print("Thank you for purchasing a Cornucopia insurance policy!");
+                    msg_print("感谢您购买丰饶角(Cornucopia)保险公司的保单！");
                 _my_policies[policy].num_insured += (qty - vakuutettu); /* There may be other objects that are insured under this policy but aren't in this particular pile */
                 _my_policies[policy].disen_value = 0;
                 if (valinta & 0x01) _my_policies[policy].destroy_value = arvo * mult / div;
@@ -1122,8 +1122,8 @@ static int _insure_new_item(building_type *bldg)
 {
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Insure which item?";
-    prompt.error = "You have no items that can be insured.";
+    prompt.prompt = "为哪件物品投保？";
+    prompt.error = "你没有可以投保的物品。";
     prompt.filter = _allow_insurance;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -1149,7 +1149,7 @@ static void _cornucopia_cash_in(void)
     _check_implorington();
     if (_excessive_loan())
     {
-        msg_print("Please reduce your loan to 300,000 gp or less.");
+        msg_print("请将您的贷款金额减至 300,000 金币或更少。");
         return;
     }
     for (i = 0; i < MAX_POLICY; i++)
@@ -1163,12 +1163,12 @@ static void _cornucopia_cash_in(void)
             _claim_replacement(i);
             if (pack_overflow_count())
             {
-                msg_print("<color:v>Your pack is overflowing!</color> It's time for you to leave!");
+                msg_print("<color:v>你的背包已经装不下了！</color> 是时候离开了！");
                 return;
             }
         }
     }
-    if (!could_claim) msg_print("You cannot currently claim any rewards, replacement items or monetary compensation.");
+    if (!could_claim) msg_print("您目前无法索取任何奖励、替换物品或金钱赔偿。");
 }
 
 static void _policy_blurb(int i, int *rivi)
@@ -1178,7 +1178,7 @@ static void _policy_blurb(int i, int *rivi)
         if (!_my_policies[i].o_ptr || !_my_policies[i].o_ptr->k_idx)
         {
             /* Something's wrong */
-            c_prt(TERM_SLATE, format("%d)  software bug", i + 1), 5, (*rivi)++);
+            c_prt(TERM_SLATE, format("%d) 软件漏洞", i + 1), 5, (*rivi)++);
         }
         else
         {
@@ -1190,10 +1190,10 @@ static void _policy_blurb(int i, int *rivi)
             {
                 if (_my_policies[i].num_insured > 1)
                 {
-                     c_prt(TERM_L_UMBER, format("%d insured", _my_policies[i].num_insured), *rivi, 8);
-                     c_prt(TERM_RED, format("%d lost or destroyed", _my_policies[i].num_destroyed), (*rivi)++, 21);
+                     c_prt(TERM_L_UMBER, format("已投保 %d 件", _my_policies[i].num_insured), *rivi, 8);
+                     c_prt(TERM_RED, format("%d 件遗失或被毁", _my_policies[i].num_destroyed), (*rivi)++, 21);
                 }
-                else c_prt(TERM_RED, "Destroyed", (*rivi)++, 8);
+                else c_prt(TERM_RED, "被毁", (*rivi)++, 8);
             }
             if (_policy_allows_cash_in(i))
             {
@@ -1213,7 +1213,7 @@ static void _policy_blurb(int i, int *rivi)
                 }
                 if (_my_policies[i].restore_fully_korvaus)
                 {
-                    sprintf(tmp_val, "Unclaimed Copy");
+                    sprintf(tmp_val, "未领取的复制品");
                     c_prt(TERM_L_BLUE, tmp_val, *rivi, paikka);
                 }
                 if (strlen(tmp_val) > 2) *rivi += 1;
@@ -1221,7 +1221,7 @@ static void _policy_blurb(int i, int *rivi)
         }
     }
     else
-        c_prt(TERM_SLATE, format("%d)  empty", i + 1), (*rivi)++, 5);
+        c_prt(TERM_SLATE, format("%d) 空", i + 1), (*rivi)++, 5);
 }
 
 static bool _object_policy_matches(obj_ptr obj)
@@ -1275,7 +1275,7 @@ static int _interact_with_policy(int policy, building_type *bldg)
             _policy_blurb(policy, &rivi);
             if (_my_policies[policy].disen_value)
             {
-                c_put_str(TERM_YELLOW, "Compensation for damage to:   To-AC   To-Hit  To-Dam  Pval", rivi++, 5);
+                c_put_str(TERM_YELLOW, "损坏赔偿项: 护甲 命中 伤害加成 Pval(附加属性)", rivi++, 5);
                 for (i = _DISEN_START; i < _DISEN_TYPES; i++)
                 {
                     int arvo = _item_disenchantment_value_aux(_my_policies[policy].o_ptr, i, _my_policies[policy].disen_value);
@@ -1287,8 +1287,8 @@ static int _interact_with_policy(int policy, building_type *bldg)
             else if (((_my_policies[policy].destroy_value) || (_my_policies[policy].restore_fully)) && (_my_policies[policy].num_insured > _my_policies[policy].num_destroyed))
             {
                 bool singular = (_my_policies[policy].num_insured == 1);
-                if (_my_policies[policy].destroy_value) c_put_str(TERM_YELLOW, format("Compensation for destroyed item%s: %d gp%s%s", singular ? "" : "s", _my_policies[policy].destroy_value, singular ? "" : "/item", _my_policies[policy].restore_fully ? " and a copy" : ""), rivi++, 5);
-                else c_put_str(TERM_YELLOW, "Compensation for destroyed item: a copy", rivi++, 5);
+                if (_my_policies[policy].destroy_value) c_put_str(TERM_YELLOW, format("被毁物品的赔偿%s: %d 金币%s%s", singular ? "" : "s", _my_policies[policy].destroy_value, singular ? "" : "/件", _my_policies[policy].restore_fully ? "以及一件复制品" : ""), rivi++, 5);
+                else c_put_str(TERM_YELLOW, "被毁物品的赔偿: 一件复制品", rivi++, 5);
             }
             for (i = 0; i < 4; i++)
             {
@@ -1316,10 +1316,10 @@ static int _interact_with_policy(int policy, building_type *bldg)
                         {
                             case 0: /* Wipe policy */
                             {
-                                if (!get_check("Are you sure you want to cancel this policy? ")) break;
+                                if (!get_check("您确定要取消此保单吗？")) break;
                                 if ((_my_policies[policy].o_ptr) && (_my_policies[policy].o_ptr->k_idx)) obj_free(_my_policies[policy].o_ptr);
                                 _cornucopia_ini_policies(policy);
-                                msg_print("Policy cancelled.");
+                                msg_print("保单已取消。");
                                 return 0;
                             }
                             case 1: /* Claim compensation */
@@ -1333,7 +1333,7 @@ static int _interact_with_policy(int policy, building_type *bldg)
                                 _claim_replacement(policy);
                                 if (pack_overflow_count())
                                 {
-                                    msg_print("<color:v>Your pack is overflowing!</color> It's time for you to leave!");
+                                    msg_print("<color:v>你的背包已经装不下了！</color> 是时候离开了！");
                                     return 0;
                                 }
                                 if (!_policy_is_active2(policy)) return 0;
@@ -1413,7 +1413,7 @@ static int _cornucopia_insurance_interact(building_type *bldg)
     _clear_bldg(4,18);
     if (_excessive_loan())
     {
-        msg_print("Please reduce your loan to 300,000 gp or less.");
+        msg_print("请将您的贷款金额减至 300,000 金币或更少。");
         return 0;
     }
     while (1)
@@ -1424,8 +1424,8 @@ static int _cornucopia_insurance_interact(building_type *bldg)
         {
             int komento;
             bool lopeta = FALSE;
-            put_str("a) Insure new item", 7, 5);
-            put_str("b) View or modify existing insurance policies", 8, 5);
+            put_str("a) 为新物品投保", 7, 5);
+            put_str("b) 查看或修改现有的保单", 8, 5);
             while (!lopeta)
             {
                 Term_gotoxy(5, 6 + valinta);
@@ -1516,44 +1516,44 @@ void cornucopia_print_stats(doc_ptr doc)
     {
         s32b tulos;
         char vari = 'G';
-        doc_printf(doc, "  Loans    : <color:w>%8d</color>\n", _loaned);
-        doc_printf(doc, "  Interest : <color:w>%8d</color>\n", _fake_loan + _repaid - _loaned);
-        doc_printf(doc, "  Repaid   : <color:w>%8d</color>\n", _repaid);
+        doc_printf(doc, "贷款金额 : <color:w>%8d</color>\n", _loaned);
+        doc_printf(doc, "应付利息 : <color:w>%8d</color>\n", _fake_loan + _repaid - _loaned);
+        doc_printf(doc, "已偿还额 : <color:w>%8d</color>\n", _repaid);
         tulos = _loaned - _repaid;
         if (tulos < 0)
         {
             tulos = 0 - tulos;
             vari = 'R';
         }
-        doc_printf(doc, "  Unpaid   : <color:w>%8d</color> <color:%c>%8d</color>\n", _fake_loan, vari, tulos);
+        doc_printf(doc, "未偿还额 : <color:w>%8d</color> <color:%c>%8d</color>\n", _fake_loan, vari, tulos);
     }
     if (_deposited)
     {
         s32b tulos;
         char vari = 'G';
-        doc_printf(doc, "  Deposits : <color:w>%8d</color>\n", _deposited);
-        doc_printf(doc, "  Interest : <color:w>%8d</color>\n", _fake_deposit + _withdrawn - _deposited);
-        doc_printf(doc, "  Withdrawn: <color:w>%8d</color>\n", _withdrawn);
+        doc_printf(doc, "存款金额 : <color:w>%8d</color>\n", _deposited);
+        doc_printf(doc, "所得利息 : <color:w>%8d</color>\n", _fake_deposit + _withdrawn - _deposited);
+        doc_printf(doc, "已取款额 : <color:w>%8d</color>\n", _withdrawn);
         tulos = _withdrawn - _deposited;
         if (tulos < 0)
         {
             tulos = 0 - tulos;
             vari = 'R';
         }
-        doc_printf(doc, "  Remaining: <color:w>%8d</color> <color:%c>%8d</color>\n", _fake_deposit, vari, tulos);
+        doc_printf(doc, "剩余金额 : <color:w>%8d</color> <color:%c>%8d</color>\n", _fake_deposit, vari, tulos);
     }
     if (_received)
     {
         s32b tulos;
         char vari = 'G';
-        doc_printf(doc, "  Insurance: <color:w>%8d</color>\n", _received);
+        doc_printf(doc, "保险赔付 : <color:w>%8d</color>\n", _received);
         tulos = _paid - _received;
         if (tulos < 0)
         {
             tulos = 0 - tulos;
             vari = 'R';
         }
-        doc_printf(doc, "  Payout   : <color:w>%8d</color> <color:%c>%8d</color>\n", _paid, vari, tulos);
+        doc_printf(doc, "总计支出 : <color:w>%8d</color> <color:%c>%8d</color>\n", _paid, vari, tulos);
     }
 }
 

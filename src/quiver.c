@@ -7,7 +7,7 @@ static inv_ptr _inv = NULL;
 void quiver_init(void)
 {
    inv_free(_inv);
-   _inv = inv_alloc("Back", INV_QUIVER, QUIVER_MAX); 
+   _inv = inv_alloc("背部", INV_QUIVER, QUIVER_MAX); 
 }
 
 void quiver_display(doc_ptr doc, obj_p p, int flags)
@@ -61,7 +61,7 @@ void bag_carry(obj_ptr obj)
 
     if(!inv_can_combine(_inv, obj)) {
         if(ct + 1 > cap) {
-            msg_print("You cannot carry any more items in your bag.");
+            msg_print("你的背包已经装不下更多物品了。");
             return;
         }
     }

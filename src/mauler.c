@@ -55,7 +55,7 @@ static void _blast_obj(obj_ptr obj)
 {
     char o_name[MAX_NLEN];
     object_desc(o_name, obj, OD_OMIT_PREFIX | OD_COLOR_CODED);
-    msg_format("A terrible black aura blasts your %s!", o_name);
+    msg_format("可怕的黑色光环冲击了你的%s！", o_name);
     blast_object(obj);
     disturb(1, 0);
 }
@@ -85,12 +85,12 @@ void process_maul_of_vice(void)
     }
     else if (p_ptr->au < 1000)
     {
-        msg_print("***LOW GOLD WARNING!!!!***");
+        msg_print("***金币不足警告！！！***");
         disturb(1, 0);
     }
     else if (one_in_(111))
     {
-        msg_print("You feel your wealth draining away!");
+        msg_print("你感觉你的财富正在流失！");
     }
 }
 
@@ -102,7 +102,7 @@ bool do_blow(int type)
 
     if ((!p_ptr->weapon_ct) && (!attack_mode_allows_innate(type)))
     {
-        msg_print("You need to wield a weapon!");
+        msg_print("你需要装备一把武器！");
         return FALSE;
     }
 
@@ -134,7 +134,7 @@ bool do_blow(int type)
 
         if (!m_idx)
         {
-            msg_print("There is no monster there.");
+            msg_print("那里没有怪物。");
 
             /* Consume energy if we couldn't know there was no monster there */
             return (p_ptr->blind > 0);
@@ -181,10 +181,10 @@ static void _block_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Block");
+        var_set_string(res, "格挡");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique, you will gain an AC bonus based on the weight of your current weapon.");
+        var_set_string(res, "使用此技能时，你将根据当前装备武器的重量获得护甲等级(AC)加成。");
         break;
     default:
         _toggle_spell(MAULER_TOGGLE_BLOCK, cmd, res);
@@ -197,10 +197,10 @@ static void _close_in_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Close In");
+        var_set_string(res, "逼近");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Close in for the kill on a nearby monster.");
+        var_set_string(res, "逼近并击杀附近的怪物。");
         break;
     case SPELL_CAST:
     {
@@ -218,10 +218,10 @@ static void _critical_blow_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Critical Blow");
+        var_set_string(res, "致命一击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with a single devastating blow.");
+        var_set_string(res, "以毁灭性的一击攻击相邻的敌人。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(MAULER_CRITICAL_BLOW));
@@ -243,10 +243,10 @@ static void _crushing_blow_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Crushing Blow");
+        var_set_string(res, "粉碎打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with a single powerful blow.");
+        var_set_string(res, "以强力的一击攻击相邻的敌人。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(MAULER_CRUSHING_BLOW));
@@ -268,10 +268,10 @@ static void _detect_ferocity_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Ferocity");
+        var_set_string(res, "探测凶暴");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detects all monsters except mindless in your vicinity.");
+        var_set_string(res, "探测你附近除无心智(mindless)以外的所有怪物。");
         break;
     case SPELL_CAST:
         detect_monsters_mind(DETECT_RAD_DEFAULT);
@@ -288,10 +288,10 @@ static void _drain_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Drain");
+        var_set_string(res, "吸取");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique you will drain life from your foes. In addition, enemies will never fully recover from the wounds you inflict.");
+        var_set_string(res, "使用此技能时，你将从敌人身上吸取生命。此外，敌人将永远无法从你造成的创伤中完全恢复。");
         break;
     default:
         _toggle_spell(MAULER_TOGGLE_DRAIN, cmd, res);
@@ -304,16 +304,16 @@ static void _killing_spree_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Killing Spree");
+        var_set_string(res, "杀戮狂欢");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Engage in wanton destruction! During this time, any foe you slay will haste you, so seek to kill as many enemies as possible!");
+        var_set_string(res, "展开肆意的破坏！在此期间，你杀死的任何敌人都会使你加速，因此尽可能多地杀死敌人吧！");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
         if (p_ptr->tim_killing_spree)
         {
-            msg_print("You are already on a Killing Spree. Show some mercy!");
+            msg_print("你已经处于杀戮狂欢状态了。发发慈悲吧！");
             return;
         }
         set_tim_killing_spree(44, FALSE);
@@ -330,10 +330,10 @@ static void _knockback_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Knockback");
+        var_set_string(res, "击退");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with a single blow. If landed, your foe will be knocked back away from you.");
+        var_set_string(res, "以单次攻击打击相邻的敌人。如果命中，你的敌人将被击退。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(MAULER_KNOCKBACK));
@@ -355,10 +355,10 @@ static void _maul_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Maul");
+        var_set_string(res, "猛击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique you will maul your opponents.");
+        var_set_string(res, "使用此技能时，你将猛击你的对手。");
         break;
     default:
         _toggle_spell(MAULER_TOGGLE_MAUL, cmd, res);
@@ -371,10 +371,10 @@ void _scatter_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Scatter");
+        var_set_string(res, "溃散打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack all adjacent monsters with a single strike. If landed, your enemies will be scattered away from you.");
+        var_set_string(res, "以单次攻击打击所有相邻的怪物。如果命中，你的敌人将被击飞散开。");
         break;
     case SPELL_CAST:
     {
@@ -407,10 +407,10 @@ static void _shatter_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shatter");
+        var_set_string(res, "碎裂打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique, your weapon will cause earthquakes.");
+        var_set_string(res, "使用此技能时，你的武器将引发地震。");
         break;
     default:
         _toggle_spell(MAULER_TOGGLE_SHATTER, cmd, res);
@@ -423,10 +423,10 @@ static void _smash_wall_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Smash");
+        var_set_string(res, "粉碎");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Destroys adjacent targeted wall, door, tree, or trap.");
+        var_set_string(res, "摧毁相邻的目标墙壁、门、树木或陷阱。");
         break;
     case SPELL_CAST:
     {
@@ -476,10 +476,10 @@ static void _splatter_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Splatter");
+        var_set_string(res, "血肉横飞");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique, monsters will explode as you kill them.");
+        var_set_string(res, "使用此技能时，怪物在你击杀它们时会爆炸。");
         break;
     default:
         _toggle_spell(MAULER_TOGGLE_SPLATTER, cmd, res);
@@ -492,10 +492,10 @@ void stunning_blow_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Stunning Blow");
+        var_set_string(res, "震慑打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with a single blow aimed to stun.");
+        var_set_string(res, "以旨在震慑的单次攻击打击相邻的敌人。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(MAULER_STUNNING_BLOW));
@@ -517,10 +517,10 @@ static void _tunnel_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Tunnel");
+        var_set_string(res, "穿隧");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique you may move through walls.");
+        var_set_string(res, "使用此技能时，你可以穿过墙壁移动。");
         break;
     default:
         _toggle_spell(MAULER_TOGGLE_TUNNEL, cmd, res);
@@ -555,7 +555,7 @@ static spell_info *_get_spells(void)
 {
     if (!_weapon_check())
     {
-        msg_print("Rargh! You need to wield a single weapon with both hands to properly maul stuff!");
+        msg_print("吼啊！你需要双手握持一把武器才能好好地猛击东西！");
         return NULL;
     }
 
@@ -684,7 +684,7 @@ class_t *mauler_get_class(void)
     skills_t bs = { 25,  25,  35,   0,  14,   2,  70,  16 };
     skills_t xs = { 12,   9,  12,   0,   0,   0,  30,   6 };
 
-        me.name = "Mauler";
+        me.name = "破坏者";
         me.desc = 
         "The Mauler favors extremely heavy weapons, and possesses powerful abilities whose "
             "effectiveness depends on the weight of the weapon. While they only gain a limited "

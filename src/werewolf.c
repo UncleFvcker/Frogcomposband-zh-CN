@@ -16,7 +16,7 @@ void _werewolf_pack_init(void)
 {
     if ((_pack_initialized) && (!_do_init_pack)) return;
     inv_free(_werewolf_pack);
-    _werewolf_pack = inv_alloc("Satchel", INV_SPECIAL1, _MAX_PACK_SLOTS);
+    _werewolf_pack = inv_alloc("挎包", INV_SPECIAL1, _MAX_PACK_SLOTS);
     _pack_initialized = TRUE;
     _do_init_pack = FALSE;
 }
@@ -109,8 +109,8 @@ static void _birth(void)
     _werewolf_pack_init();
 
     _werewolf_form = 0;
-    skills_innate_init("Claw", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
-    skills_innate_init("Bite", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("利爪", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("撕咬", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
     py_birth_food();
     py_birth_light();
 }
@@ -134,7 +134,7 @@ void _werewolf_calc_innate_attacks(void)
         a.weight = 100;
         calc_innate_blows(&a, 300);
         a.msg = "You claw.";
-        a.name = "Claw";
+        a.name = "利爪";
 
         if (psion_combat()) psion_combat_innate_blows(&a);
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -154,7 +154,7 @@ void _werewolf_calc_innate_attacks(void)
 
         calc_innate_blows(&a, 300);
         a.msg = "You bite.";
-        a.name = "Bite";
+        a.name = "撕咬";
         if (psion_combat()) psion_combat_innate_blows(&a);
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -165,28 +165,28 @@ void werewolf_change_shape_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Change Shape");
+        var_set_string(res, "改变形态");
         break;
     case SPELL_DESC:
-        if (_werewolf_form == WEREWOLF_FORM_HUMAN) var_set_string(res, "Assume the shape of a wolf. Changing shape costs one turn.");
-        else var_set_string(res, "Assume the shape of a human. Changing shape costs one turn.");
+        if (_werewolf_form == WEREWOLF_FORM_HUMAN) var_set_string(res, "化为狼的形态。改变形态需要消耗一回合。");
+        else var_set_string(res, "化为人类的形态。改变形态需要消耗一回合。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
         if (p_ptr->cursed & 0x0000000F)
         {
-            msg_print("Your cursed equipment prevents you from changing shape!");
+            msg_print("你被诅咒的装备阻止了你改变形态！");
             break;
         }
         if (psion_weapon_graft())
         {
-            msg_print("You cannot change shape with a weapon fused to your arm!");
+            msg_print("武器与你的手臂融合时，你无法改变形态！");
             break;
         }
         _werewolf_form = 1 - _werewolf_form;
         _equip_on_change_form();
-        if (_werewolf_form == WEREWOLF_FORM_WOLF) msg_format("You turn into %s wolf!", ((one_in_(8)) && (p_ptr->food < PY_FOOD_ALERT)) ? "a ravenous" : "a");
-        else msg_format("You turn into %s human!", ((one_in_(8)) && (p_ptr->food < PY_FOOD_ALERT)) ? "a ravenous" : "a");
+        if (_werewolf_form == WEREWOLF_FORM_WOLF) msg_format("你变成了一只%s狼！", ((one_in_(8)) && (p_ptr->food < PY_FOOD_ALERT)) ? "极度饥饿的" : "a");
+        else msg_format("你变成了一个%s人类！", ((one_in_(8)) && (p_ptr->food < PY_FOOD_ALERT)) ? "极度饥饿的" : "a");
         if ((_werewolf_form == WEREWOLF_FORM_HUMAN) && (p_ptr->action == ACTION_STALK)) set_action(ACTION_NONE);
         var_set_bool(res, TRUE);
         handle_stuff();
@@ -360,7 +360,7 @@ void werewolf_check_midnight(void)
 {
     if ((_moon_is_full()) && (_werewolf_form == WEREWOLF_FORM_HUMAN))
     {
-        msg_print("You feel the full moon pulling you!");
+        msg_print("你感到满月在牵引着你！");
         cast_spell(werewolf_change_shape_spell);
         energy_use = 100;
     }
@@ -384,19 +384,19 @@ void werewolf_silver_effect(int power, bool allow_mitigation)
     {
         case 0:
         {
-            msg_print("The silver burns you!");
-            take_hit(DAMAGE_NOESCAPE, MIN(power, 32), "contact with silver");
+            msg_print("白银灼伤了你！");
+            take_hit(DAMAGE_NOESCAPE, MIN(power, 32), "接触白银");
             break;
         }
         case 1:
         {
-            msg_print("The silver hurts you!");
-            take_hit(DAMAGE_NOESCAPE, pienempi(randint1(power), 32), "contact with silver");
+            msg_print("白银伤害了你！");
+            take_hit(DAMAGE_NOESCAPE, pienempi(randint1(power), 32), "接触白银");
             break;
         }
         case 2:
         {
-            msg_print("The silver saps your energy away!");
+            msg_print("白银吸走了你的能量！");
             if (p_ptr->csp > 0)
             {
                 p_ptr->csp = 0;
@@ -407,7 +407,7 @@ void werewolf_silver_effect(int power, bool allow_mitigation)
         case 3:
         {
             int dam = randint1(MIN(40, power));
-            if (noppa == 3) msg_print("The silver saps your energy away!");
+            if (noppa == 3) msg_print("白银吸走了你的能量！");
             p_inc_minislow(MAX(1, dam / 8));
             break;
         }
@@ -415,21 +415,21 @@ void werewolf_silver_effect(int power, bool allow_mitigation)
         {
             if ((!p_ptr->unwell) || (p_ptr->unwell > UNWELL_EFFECTIVE_MAX))
             {
-                msg_print("The silver makes you feel ill!");
+                msg_print("白银让你感到恶心生病！");
                 set_unwell(UNWELL_EFFECTIVE_MAX, TRUE);
                 break;
             }
         } /* Fall through */
         case 5:
         {
-            if (!p_ptr->cut) msg_print("The silver tears your scars open!");
-            else msg_print("The silver burns your wounds!");
+            if (!p_ptr->cut) msg_print("白银撕裂了你的伤疤！");
+            else msg_print("白银灼烧了你的伤口！");
             set_cut(p_ptr->cut + power, FALSE);
             break;
         }
         case 6:
         {
-            msg_print("You are poisoned by the silver!");
+            msg_print("你被白银毒到了！");
             set_poisoned(p_ptr->poisoned + power, FALSE);
             break;
         }
@@ -462,7 +462,7 @@ static void _dump_satchel(doc_ptr doc)
     {
         char o_name[MAX_NLEN];
 
-        doc_insert(doc, "<topic:Satchel>============================= <color:keypress>S</color>hape-Shift Satchel =============================\n\n");
+        doc_insert(doc, "<topic:Satchel>============================= <color:keypress>S</color> 变身挎包 =============================\n\n");
         for (slot = 1; slot <= _MAX_PACK_SLOTS; slot++)
         {
             object_type *o_ptr = inv_obj(_werewolf_pack, slot);
@@ -506,15 +506,8 @@ race_t *werewolf_get_race(void)
         int sign = (_werewolf_form == WEREWOLF_FORM_HUMAN) ? -1 : 1;
         if (!init)
         {
-            me.name = "Werewolf";
-            me.desc = "Werewolves are fearsome hunters who can assume either human or wolf shape. "
-                    "They are exceptionally durable in both forms, and have great powers of "
-                    "regeneration, though they are infamously vulnerable to fire and silver, "
-                    "and are not particularly good at using magical spells or devices in either "
-                    "shape. While in wolf form, werewolves wield no weapons; instead, they "
-                    "attack with their teeth and claws. As werewolves wear different equipment "
-                    "in human form and wolf form, they use one inventory slot for a special "
-                    "satchel in which they keep the items not needed in their current shape.";
+            me.name = "狼人";
+            me.desc = "狼人是可怕的猎手，可以化为人类或狼的形态。他们在两种形态下都异常耐打，并拥有强大的再生能力，尽管他们出了名地惧怕火焰和白银，而且在任何形态下都不太擅长使用魔法法术或装置。在狼形态下，狼人不使用武器；相反，他们用牙齿和利爪进行攻击。由于狼人在人类形态和狼形态下穿着不同的装备，他们会使用一个物品栏槽位来放置一个特殊的挎包，在里面存放当前形态不需要的物品。";
 
             me.infra = 5;
             me.exp = 140;

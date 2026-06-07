@@ -185,15 +185,15 @@ static void _list(_choice_array_t *choices)
     case _DISPLAY_MODE_STATS:
                             /* [         1         2     ]   3         4         5         6         7       */
                             /* 01234567890123456789012345678901234567890123456789012345678901234567890123456 */
-        c_put_str(TERM_WHITE, "Name                       STR  INT  WIS  DEX  CON  CHR  Life  Body            ", row++, start_col);
+        c_put_str(TERM_WHITE, "名字 力量 智力 感知 敏捷 体质 魅力 生命 躯体", row++, start_col);
         c_put_str(TERM_WHITE, "===============================================================================", row++, start_col);
         break;
     case _DISPLAY_MODE_SKILLS:
-        c_put_str(TERM_WHITE, "Name                       Dsrm   Dvce   Save   Stlh  Srch  Prcp  Melee  Bows  ", row++, start_col);
+        c_put_str(TERM_WHITE, "名字 解陷 装置 豁免 潜行 搜索 察觉 近战 弓箭", row++, start_col);
         c_put_str(TERM_WHITE, "===============================================================================", row++, start_col);
         break;
     case _DISPLAY_MODE_EXTRA:
-        c_put_str(TERM_WHITE, "Name                       Lvl Max Mimic Learn Speed  AC Pseudo-Class          ", row++, start_col);
+        c_put_str(TERM_WHITE, "名字 等级 最大 模仿 学习 速度 AC 伪职业", row++, start_col);
         c_put_str(TERM_WHITE, "===============================================================================", row++, start_col);
         break;
     }
@@ -213,13 +213,13 @@ static void _list(_choice_array_t *choices)
             switch (current_type)
             {
             case _TYPE_NEW:
-                c_put_str(TERM_YELLOW, "New Form", row, start_col);
+                c_put_str(TERM_YELLOW, "新形态", row, start_col);
                 break;
             case _TYPE_KNOWN:
-                c_put_str(TERM_RED, "Known Forms", row, start_col);
+                c_put_str(TERM_RED, "已知形态", row, start_col);
                 break;
             case _TYPE_VISIBLE:
-                c_put_str(TERM_UMBER, "Visible Forms", row, start_col);
+                c_put_str(TERM_UMBER, "可见形态", row, start_col);
                 break;
             }
             row++;
@@ -234,7 +234,7 @@ static void _list(_choice_array_t *choices)
         {
             assert(choice->type == _TYPE_KNOWN);
             c_put_str((i == choices->current) ? TERM_L_BLUE : TERM_L_DARK,
-                  format(" %-23.23s", "Unused"),
+                  format(" %-23.23s", "未使用"),
                   row, start_col + 1
             );
         }
@@ -364,9 +364,9 @@ static void _list(_choice_array_t *choices)
     _clear_row(row++);
     _clear_row(row);
     if (choices->mode == _CHOOSE_MODE_BROWSE)
-        c_put_str(TERM_WHITE, "['?' to recall, '=' for more info, ESC to exit]", row++, start_col);
+        c_put_str(TERM_WHITE, "['?' 回忆, '=' 更多信息, ESC 退出]", row++, start_col);
     else
-        c_put_str(TERM_WHITE, "['?' to recall, '=' for more info, ESC to cancel, ENTER to select]", row++, start_col);
+        c_put_str(TERM_WHITE, "['?' 回忆, '=' 更多信息, ESC 取消, ENTER 选择]", row++, start_col);
     _clear_row(row);
 
     if (current_row)
@@ -383,7 +383,7 @@ static bool _confirm(_choice_array_t *choices, int which)
         _choice_t *choice = &choices->choices[which];
         if (choice->type != _TYPE_KNOWN)
         {
-            msg_print("Choose an existing slot for this new form.");
+            msg_print("为这个新形态选择一个现有的槽位。");
             return FALSE;
         }
         assert(0 <= choice->slot && choice->slot < _MAX_FORMS);
@@ -629,7 +629,7 @@ static int _choose_mimic_form(bool browse)
             r_idx = choices.choices[choices.current].r_idx;
     }
     else
-        msg_print("You see nothing to mimic.");
+        msg_print("你没看到可以模仿的东西。");
     return r_idx;
 }
 
@@ -681,7 +681,7 @@ static bool _memorize_form(int r_idx)
 
     if (_is_memorized(r_idx))
     {
-        msg_format("You already know this form (%s).", r_name + r_ptr->name);
+        msg_format("你已经掌握了这个形态(%s)。", r_name + r_ptr->name);
         return FALSE;
     }
 
@@ -689,7 +689,7 @@ static bool _memorize_form(int r_idx)
     if (i >= 0 && i < _MAX_FORMS)
     {
         _forms[i] = r_idx;
-        msg_format("You have learned this form (%s).", r_name + r_ptr->name);
+        msg_format("你学会了这个形态(%s)。", r_name + r_ptr->name);
         return TRUE;
     }
     return FALSE;
@@ -814,7 +814,7 @@ static void _dismiss_pets(void)
         {
             char name[MAX_NLEN];
             monster_desc(name, mon, MD_ASSUME_VISIBLE);
-            msg_format("%^s disappears.", name);
+            msg_format("%^s 消失了。", name);
             delete_monster_idx(i);
             ct++;
         }
@@ -831,13 +831,13 @@ static void _set_current_r_idx(int r_idx)
     disturb(1, 0);
     if (r_idx == MON_MIMIC && p_ptr->current_r_idx)
     {
-        msg_format("You stop mimicking %s.", r_name + r_info[p_ptr->current_r_idx].name);
+        msg_format("你停止模仿%s。", r_name + r_info[p_ptr->current_r_idx].name);
         set_invuln(0, TRUE); /* XXX dispel_player? */
         _dismiss_pets(); /* They no longer recognize you as their leader! */
     }
     possessor_set_current_r_idx(r_idx);
     if (r_idx != MON_MIMIC)
-        msg_format("You start mimicking %s.", r_name + r_info[p_ptr->current_r_idx].name);
+        msg_format("你开始模仿%s。", r_name + r_info[p_ptr->current_r_idx].name);
     /* Mimics shift forms often enough to be annoying if shapes
        have dramatically different body types (e.g. dragons vs humanoids).
        Inscribe gear with @mimic to autoequip on shifing. */
@@ -928,10 +928,10 @@ static void _browse_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Browse Forms");
+        var_set_string(res, "浏览形态");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Browse available forms without leaving your current form.");
+        var_set_string(res, "在不离开当前形态的情况下浏览可用的形态。");
         break;
     case SPELL_CAST:
         _choose_mimic_form(TRUE);
@@ -952,9 +952,9 @@ static void _mimic_spell(int cmd, variant *res)
     {
     case SPELL_NAME:
         if (p_ptr->current_r_idx == MON_MIMIC)
-            var_set_string(res, "Mimic");
+            var_set_string(res, "模仿");
         else
-            var_set_string(res, "Stop Mimicry");
+            var_set_string(res, "停止模仿");
         break;
     case SPELL_DESC:
         if (p_ptr->current_r_idx == MON_MIMIC)
@@ -967,7 +967,7 @@ static void _mimic_spell(int cmd, variant *res)
             string_free(s);
         }
         else
-            var_set_string(res, "Return to your native form.");
+            var_set_string(res, "返回你的原生形态。");
         break;
     case SPELL_CAST:
     {
@@ -984,12 +984,12 @@ static void _mimic_spell(int cmd, variant *res)
             r_ptr = &r_info[r_idx];
             pct = _mimic_chance(r_idx);
             if (pct <= 0)
-                msg_format("You are not powerful enough to mimic this form (%s: Lvl %d).", r_name + r_ptr->name, r_ptr->level);
+                msg_format("你不够强大，无法模仿这个形态 (%s: 等级 %d)。", r_name + r_ptr->name, r_ptr->level);
             else if (randint1(100) > pct)
             {
-                msg_print("<color:v>Failed!</color>");
+                msg_print("<color:v>失败！</color>");
                 if (0 || p_ptr->wizard)
-                    msg_format("<color:B>You have a <color:R>%d%%</color> chance to mimic this form.</color>", pct);
+                    msg_format("<color:B>你有 <color:R>%d%%</color> 的几率模仿这个形态。</color>", pct);
             }
             else
                 _set_current_r_idx(r_idx);
@@ -1044,7 +1044,7 @@ void _character_dump(doc_ptr doc)
         {
             if (first)
             {
-                doc_printf(doc, "<topic:LearnedForms>================================ <color:keypress>L</color>earned Forms ================================\n\n");
+                doc_printf(doc, "<topic:LearnedForms>================================ 已 学 会 的 形 态 (<color:keypress>L</color>) ================================\n\n");
                 first = FALSE;
             }
             doc_printf(doc, " %s\n", r_name + r_info[_forms[i]].name);
@@ -1064,20 +1064,8 @@ race_t *mon_mimic_get_race(void)
 
     if (!init)
     {
-        me.name = "Mimic";
-        me.desc = "Mimics are similar to Possessors; but instead of controlling the corpses of the "
-                    "vanquished, the mimic imitates those about them. This allows the mimic to assume "
-                    "the forms of foes they have yet to conquer, which is quite useful. However, there is "
-                    "a small catch: mimics can only copy what they see! This limitation forces a "
-                    "mimic to change forms much more often than a possessor would, as knowledge of their "
-                    "current body rapidly fades when the original is no longer about. Occasionally, the "
-                    "mimic is able to memorize a particular form well enough to use it again without the "
-                    "original body to imitate, though this does not happen very often and the mimic can "
-                    "only memorize a small number of forms. To have a chance of this, the mimic must be "
-                    "in the desired form when slaying the original.\n \n"
-                    "The stats, skills, spells, resistances and innate powers of a mimic are determined by the form they assume; "
-                    "be sure to check both the racial power command (<color:keypress>U</color>/<color:keypress>O</color>) and the magic command (<color:keypress>m</color>) after assuming a new body. "
-                    "The current form also determines the spell stat; for example, a novice priest mimic uses wisdom, while a novice mage mimic relies on intelligence.";
+        me.name = "模仿者";
+        me.desc = "模仿者类似于附身者；但模仿者不是控制被击败者的尸体，而是模仿他们周围的存在。这使得模仿者能够呈现出他们尚未征服的敌人的形态，这是非常实用的。然而，这里有一个小小的代价：模仿者只能复制他们看到的东西！这种限制迫使模仿者比附身者更频繁地改变形态，因为当本体不在附近时，他们对当前躯体的认知会迅速消退。偶尔，模仿者能够将特定形态记忆得足够好，以便在没有本体可模仿的情况下再次使用，尽管这种情况并不经常发生，而且模仿者只能记忆很少的形态。要有机会做到这一点，模仿者必须在杀死本体时处于所需的形态。\n \n模仿者的属性、技能、法术、抗性和天生能力由他们呈现的形态决定；在呈现新躯体后，一定要检查种族能力命令 (<color:keypress>U</color>/<color:keypress>O</color>) 和魔法命令 (<color:keypress>m</color>)。当前形态也决定了施法属性；例如，新手牧师的模仿形态使用感知，而新手魔法师的模仿形态则依赖智力。";
 
         me.exp = 250;
         me.shop_adjust = 110; /* Really should depend on current form */
@@ -1109,7 +1097,7 @@ void mimic_dispel_player(void)
     if (p_ptr->current_r_idx == MON_MIMIC) return;
 
     if (randint0(150) < p_ptr->skills.sav) /* Anti-magic gives 145 */
-        msg_print("You maintain your current form.");
+        msg_print("你维持了当前的形态。");
     else
         _set_current_r_idx(MON_MIMIC);
 }
@@ -1125,7 +1113,7 @@ void mimic_on_kill_monster(int r_idx)
 
     pct = _learn_chance(r_idx);
     if (0 || p_ptr->wizard)
-        msg_format("<color:B>You have a <color:R>%d%%</color> chance to learn this form.</color>", pct);
+        msg_format("<color:B>你有 <color:R>%d%%</color> 的几率学会这个形态。</color>", pct);
     if (randint0(100) < pct)
         _memorize_form(r_idx);
 }

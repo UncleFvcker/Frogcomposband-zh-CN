@@ -149,8 +149,8 @@ static char KEY_BOOSTED[] = "dice boosted";
 static char KEY_ICKY[] = "icky";
 
 static char KEY_UNREADABLE[] = "unreadable";
-static char KEY_REALM1[] = "first realm's";
-static char KEY_REALM2[] = "second realm's";
+static char KEY_REALM1[] = "第一领域的";
+static char KEY_REALM2[] = "第二领域的";
 static char KEY_FIRST[] = "first";
 static char KEY_SECOND[] = "second";
 static char KEY_THIRD[] = "third";
@@ -986,7 +986,7 @@ void autopick_load_pref(byte mode)
         if (err == 0 && disp_mes)
         {
             /* Success */
-            msg_format("Loaded '%s'.", buf);
+            msg_format("已加载 '%s'。", buf);
         }
     }
 
@@ -1003,7 +1003,7 @@ void autopick_load_pref(byte mode)
         if (err == 0 && disp_mes)
         {
             /* Success */
-            msg_format("Loaded '%s'.", buf);
+            msg_format("已加载 '%s'。", buf);
         }
         if ((!err) && (!streq(player_base, pref_save_base)))
         {
@@ -1031,7 +1031,7 @@ void autopick_load_pref(byte mode)
             if (err == 0 && disp_mes)
             {
                 /* Success */
-                msg_format("Loaded '%s'.", buf);
+                msg_format("已加载 '%s'。", buf);
             }
             if (!err) strcpy(pref_save_base, player_base); /* reduce file proliferation */
             if (!name_is_numbered(player_name)) break;
@@ -1055,7 +1055,7 @@ void autopick_load_pref(byte mode)
         if (err == 0 && disp_mes)
         {
             /* Success */
-            msg_format("Loaded '%s'.", buf);
+            msg_format("已加载 '%s'。", buf);
         }
     }
 
@@ -1064,8 +1064,8 @@ void autopick_load_pref(byte mode)
         char _fake_name[32];
         cptr *lines_list = NULL;
 
-        strcpy(_fake_name, get_class()->name);
-        if (streq("Monster", _fake_name)) strcpy(_fake_name, get_true_race()->name);
+        strcpy(_fake_name, get_class_internal_name(get_class()->id));
+        if (streq("Monster", _fake_name)) strcpy(_fake_name, get_race_internal_name(get_true_race()->id));
 
         /* Try a filename with class name */
         my_strcpy(buf, pickpref_filename(PT_WITH_OTHERNAME, _fake_name), sizeof(buf));
@@ -1075,7 +1075,7 @@ void autopick_load_pref(byte mode)
         if (err == 0 && disp_mes)
         {
             /* Success */
-            msg_format("Loaded '%s'.", buf);
+            msg_format("已加载 '%s'。", buf);
         }
         _LINES_LIST_INIT()
         _LINES_LIST_UPDATE()
@@ -1084,7 +1084,7 @@ void autopick_load_pref(byte mode)
     if (err && disp_mes)
     {
         /* Failed */
-        msg_print("Failed to reload autopick preference.");
+        msg_print("重新加载自动拾取偏好失败。");
     }
     else if ((!err) && (new_game))
     {
@@ -2274,7 +2274,7 @@ static void auto_destroy_obj(object_type *o_ptr, int autopick_idx)
     if (!destroy)
     {
         if (destroy_debug && !no_mogaminator && autopick_idx >= 0 && (autopick_list[autopick_idx].action & DONT_AUTOPICK))
-            msg_autopick(autopick_idx, "Leave");
+            msg_autopick(autopick_idx, "留下");
         return;
     }
     /* Now decided to destroy
@@ -2288,7 +2288,7 @@ static void auto_destroy_obj(object_type *o_ptr, int autopick_idx)
         object_desc(name, o_ptr, OD_COLOR_CODED);
 
         /* Message */
-        msg_format("You cannot auto-destroy %s.", name);
+        msg_format("你不能自动摧毁%s。", name);
 
         /* Done */
         return;
@@ -2300,12 +2300,12 @@ static void auto_destroy_obj(object_type *o_ptr, int autopick_idx)
     if (destroy_debug)
     {
         int idx = is_autopick(o_ptr);
-        msg_autopick(idx, "Destroy");
+        msg_autopick(idx, "摧毁");
     }
     if (o_ptr->k_idx)
     {
         object_desc(name, o_ptr, OD_COLOR_CODED);
-        msg_format("Auto-destroying %s.", name);
+        msg_format("自动摧毁%s。", name);
     }
     /* Note: It turns out to be convenient to delay destruction after
      * all. But rather than waiting until notice_stuff(), we need
@@ -2467,7 +2467,7 @@ static void _get_obj(obj_ptr obj)
         {
             int new_idx = is_autopick(obj); /* requery for destroy/pickup/inscribe once known */
             if (destroy_debug)
-                msg_autopick(idx, "AutoID");
+                msg_autopick(idx, "自动鉴定");
             if (new_idx >= 0)
                 idx = new_idx;
         }
@@ -2492,7 +2492,7 @@ static void _get_obj(obj_ptr obj)
         disturb(0,0);
 
         if (destroy_debug)
-            msg_autopick(idx, "Pickup");
+            msg_autopick(idx, "拾取");
 
         if (autopick_list[idx].action & DO_QUERY_AUTOPICK)
         {
@@ -2604,7 +2604,7 @@ static bool clear_auto_register(void)
         /* Close the preference file */
         fclose(pref_fff);
 
-        msg_format("Failed to create temporary file %s.", tmp_file);
+        msg_format("创建临时文件 %s 失败。", tmp_file);
         msg_print(NULL);
         return FALSE;
     }
@@ -2646,7 +2646,7 @@ static bool clear_auto_register(void)
 
     if (num)
     {
-        msg_format("Auto registered lines (%d lines) for previous character are remaining.", num);
+        msg_format("之前角色的自动注册行（%d行）仍然保留。", num);
         strcpy(buf, "These lines will be deleted. Are you sure? ");
 
         /* You can cancel it */
@@ -2655,7 +2655,7 @@ static bool clear_auto_register(void)
             okay = FALSE;
             autoregister = FALSE;
 
-            msg_print("Use cut & paste of auto picker editor (_) to keep old prefs.");
+            msg_print("使用自动拾取编辑器（_）的剪切和粘贴功能来保留旧的偏好设置。");
         }
     }
 
@@ -2698,7 +2698,7 @@ bool autopick_autoregister(object_type *o_ptr)
 
     if (no_mogaminator)
     {
-        msg_print("The Mogaminator is not currently active.");
+        msg_print("Mogaminator 当前未激活。");
         return FALSE;
     }
 
@@ -2714,7 +2714,7 @@ bool autopick_autoregister(object_type *o_ptr)
         else if (act & DONT_AUTOPICK) what = "leave on floor";
         else /* if (act & DO_QUERY_AUTOPICK) */ what = "query auto-pickup";
 
-        msg_format("The object is already registered to %s by the rule %s.", what, string_buffer(s));
+        msg_format("该物品已被注册为%s，根据规则%s。", what, string_buffer(s));
 
         string_free(s);
         return FALSE;
@@ -2731,7 +2731,7 @@ bool autopick_autoregister(object_type *o_ptr)
         object_desc(o_name, o_ptr, 0);
 
         /* Message */
-        msg_format("You cannot auto-destroy %s.", o_name);
+        msg_format("你不能自动摧毁%s。", o_name);
 
         /* Done */
         return FALSE;
@@ -2754,14 +2754,14 @@ bool autopick_autoregister(object_type *o_ptr)
         pref_fff = my_fopen(pref_file, "r");
         if (!pref_fff)
         {
-            msg_print("Initialize Mogaminator preferences first (press '_').");
+            msg_print("请先初始化 Mogaminator 偏好设置（按 '_'）。");
             return FALSE;
         }
         else
         {
             char buf[80];
             my_strcpy(buf, pickpref_filename(PT_WITH_PREFNAME, NULL), sizeof(buf));
-            msg_print("Mogaminator preferences initialized. Turn on the <color:o>no_mogaminator</color> option if you wish to deactivate the Mogaminator.");
+            msg_print("Mogaminator 偏好设置已初始化。如果你想停用 Mogaminator，请开启 <color:o>no_mogaminator</color> 选项。");
             process_autopick_file(buf);
             _inscribe_pack();
         }
@@ -2796,7 +2796,7 @@ bool autopick_autoregister(object_type *o_ptr)
 
     /* Failure */
     if (!pref_fff) {
-        msg_format("Failed to open %s.", pref_file);
+        msg_format("打开 %s 失败。", pref_file);
         msg_print(NULL);
 
         /* Failed */
@@ -3008,7 +3008,7 @@ static void describe_autopick(char *buff, autopick_type *entry)
     if (IS_FLG(FLG_SPECIAL))
     {
         body_str = "item";
-        which_str[which_n++] = "your race/class needs";
+        which_str[which_n++] = "你的种族/职业需求";
     }
 
     if (IS_FLG(FLG_UNUSABLE))
@@ -3119,14 +3119,14 @@ static void describe_autopick(char *buff, autopick_type *entry)
     if (IS_FLG(FLG_REALM1))
     {
         body_str = "spellbooks";
-        after_str[after_n++] = "of your first realm";
+        after_str[after_n++] = "你的第一领域的";
     }
 
     /*** Second realm spellbooks ***/
     if (IS_FLG(FLG_REALM2))
     {
         body_str = "spellbooks";
-        after_str[after_n++] = "of your second realm";
+        after_str[after_n++] = "你的第二领域的";
     }
 
     /*** First rank spellbooks ***/
@@ -3227,13 +3227,13 @@ static void describe_autopick(char *buff, autopick_type *entry)
 
     /* Describe action flag */
     if (act & DONT_AUTOPICK)
-        strcpy(buff, "Leave on floor ");
+        strcpy(buff, "留在地上");
     else if (act & DO_AUTODESTROY)
-        strcpy(buff, "Destroy ");
+        strcpy(buff, "摧毁");
     else if (act & DO_QUERY_AUTOPICK)
-        strcpy(buff, "Ask to pick up ");
+        strcpy(buff, "询问是否拾取");
     else
-        strcpy(buff, "Pick up ");
+        strcpy(buff, "拾取");
 
     if (act & DO_AUTO_ID)
         strcat(buff, "and automatically identify ");
@@ -3912,8 +3912,8 @@ static bool entry_from_choosed_object(autopick_type *entry)
 {
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Enter which item?";
-    prompt.error = "You have nothing to enter.";
+    prompt.prompt = "录入哪件物品？";
+    prompt.error = "你没有可以录入的物品。";
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
     prompt.where[2] = INV_QUIVER;
@@ -3935,8 +3935,8 @@ static byte get_object_for_search(object_type **o_handle, cptr *search_strp)
     char buf[MAX_NLEN+20];
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Enter which item?";
-    prompt.error = "You have nothing to enter.";
+    prompt.prompt = "录入哪件物品？";
+    prompt.error = "你没有可以录入的物品。";
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
     prompt.where[2] = INV_QUIVER;
@@ -4497,50 +4497,50 @@ enum {
 
 /* Manu names */
 
-static char MN_QUIT[] = "Quit without save";
+static char MN_QUIT[] = "不保存并退出";
 static char MN_SAVEQUIT[] = "Save & Quit";
-static char MN_REVERT[] = "Revert all changes";
-static char MN_LOAD[] = "Load preferences";
-static char MN_SAVE[] = "Save as";
-static char MN_HELP[] = "Help";
+static char MN_REVERT[] = "撤销所有更改";
+static char MN_LOAD[] = "加载偏好设置";
+static char MN_SAVE[] = "另存为";
+static char MN_HELP[] = "帮助";
 
-static char MN_MOVE[] =   "Move cursor";
+static char MN_MOVE[] =   "移动光标";
 static char MN_LEFT[] =   "Left     (Left Arrow key)";
 static char MN_DOWN[] =   "Down     (Down Arrow key)";
 static char MN_UP[] =     "Up       (Up Arrow key)";
 static char MN_RIGHT[] =  "Right    (Right Arrow key)";
-static char MN_BOL[] =    "Beginning of line";
-static char MN_EOL[] =    "End of line";
+static char MN_BOL[] =    "行首";
+static char MN_EOL[] =    "行尾";
 static char MN_PGUP[] =   "Page up  (PageUp key)";
 static char MN_PGDOWN[] = "Page down(PageDown key)";
 static char MN_TOP[] =    "Top      (Home key)";
 static char MN_BOTTOM[] = "Bottom   (End key)";
 
-static char MN_EDIT[] = "Edit";
-static char MN_CUT[] = "Cut";
-static char MN_COPY[] = "Copy";
-static char MN_PASTE[] = "Paste";
-static char MN_BLOCK[] = "Select block";
-static char MN_KILL_LINE[] = "Kill rest of line";
-static char MN_DELETE_CHAR[] = "Delete character";
-static char MN_BACKSPACE[] = "Backspace";
-static char MN_RETURN[] = "Return";
+static char MN_EDIT[] = "编辑";
+static char MN_CUT[] = "剪切";
+static char MN_COPY[] = "复制";
+static char MN_PASTE[] = "粘贴";
+static char MN_BLOCK[] = "选择块";
+static char MN_KILL_LINE[] = "删除行剩余部分";
+static char MN_DELETE_CHAR[] = "删除字符";
+static char MN_BACKSPACE[] = "退格";
+static char MN_RETURN[] = "回车";
 
-static char MN_SEARCH[] = "Search";
-static char MN_SEARCH_STR[] = "Search by string";
-static char MN_SEARCH_FORW[] = "Search forward";
-static char MN_SEARCH_BACK[] = "Search backward";
-static char MN_SEARCH_OBJ[] = "Search by inventory object";
-static char MN_SEARCH_DESTROYED[] = "Search by destroyed object";
+static char MN_SEARCH[] = "搜索";
+static char MN_SEARCH_STR[] = "按字符串搜索";
+static char MN_SEARCH_FORW[] = "向下搜索";
+static char MN_SEARCH_BACK[] = "向上搜索";
+static char MN_SEARCH_OBJ[] = "按背包物品搜索";
+static char MN_SEARCH_DESTROYED[] = "按已摧毁物品搜索";
 
 static char MN_INSERT[] = "Insert...";
-static char MN_INSERT_OBJECT[] = "Insert name of choosen object";
-static char MN_INSERT_DESTROYED[] = "Insert name of destroyed object";
-static char MN_INSERT_BLOCK[] = "Insert conditional block";
-static char MN_INSERT_MACRO[] = "Insert a macro definition";
-static char MN_INSERT_KEYMAP[] = "Insert a keymap definition";
+static char MN_INSERT_OBJECT[] = "插入所选物品名称";
+static char MN_INSERT_DESTROYED[] = "插入已摧毁物品名称";
+static char MN_INSERT_BLOCK[] = "插入条件块";
+static char MN_INSERT_MACRO[] = "插入宏定义";
+static char MN_INSERT_KEYMAP[] = "插入键位映射定义";
 
-static char MN_COMMAND_LETTER[] = "Action letter";
+static char MN_COMMAND_LETTER[] = "动作字母";
 static char MN_CL_AUTOPICK[] = "' ' (Pick up)";
 static char MN_CL_DESTROY[] = "'!' (Destroy)";
 static char MN_CL_LEAVE[] = "'~' (Leave on the floor)";
@@ -4836,7 +4836,7 @@ static int do_command_menu(int level, int start)
             /* The menu was shown */
             redraw = FALSE;
         }
-        c_prt(TERM_L_BLUE, format("(a-%c) Command:", menu_key + 'a' - 1), 0, 0);
+        c_prt(TERM_L_BLUE, format("(a-%c) 命令:", menu_key + 'a' - 1), 0, 0);
         key = inkey();
 
         if (key == ESCAPE) return 0;
@@ -5563,7 +5563,7 @@ static bool do_editor_command(text_body_type *tb, int com_id)
     case EC_QUIT:
         if (tb->changed)
         {
-            if (!get_check("Discard all changes and quit. Are you sure? ")) break;
+            if (!get_check("放弃所有更改并退出。你确定吗？")) break;
         }
         return QUIT_WITHOUT_SAVE;
 
@@ -5572,7 +5572,7 @@ static bool do_editor_command(text_body_type *tb, int com_id)
 
     case EC_REVERT:
         /* Revert to original */
-        if (!get_check("Discard all changes and revert to original file. Are you sure? ")) break;
+        if (!get_check("放弃所有更改并恢复到原文件。你确定吗？")) break;
 
         free_text_lines(tb->lines_list);
         tb->lines_list = read_pickpref_text_lines(&tb->filename_mode, NULL);
@@ -5589,7 +5589,7 @@ static bool do_editor_command(text_body_type *tb, int com_id)
             char lataa_minut[80];
             int pituus;
             strcpy(lataa_minut, pref_save_base);
-            if (!get_string("Load: ", lataa_minut, 78)) break;
+            if (!get_string("加载:", lataa_minut, 78)) break;
             pituus = strlen(lataa_minut);
 
             /* Identify format
@@ -5616,9 +5616,9 @@ static bool do_editor_command(text_body_type *tb, int com_id)
             char buf[80], temp[80];
             int pituus;
             if (!(tb->lines_list)) break;
-            strcpy(temp, get_class()->name);
-            if (streq("Monster", temp)) strcpy(temp, get_true_race()->name);
-            if (!get_string("Save as: ", temp, 78)) break;
+            strcpy(temp, get_class_internal_name(get_class()->id));
+            if (streq("Monster", temp)) strcpy(temp, get_race_internal_name(get_true_race()->id));
+            if (!get_string("另存为:", temp, 78)) break;
             pituus = strlen(temp);
 
             /* Identify format
@@ -6313,7 +6313,7 @@ static bool do_editor_command(text_body_type *tb, int com_id)
 
         /* Conditional Expression for Class and Race */
         sprintf(expression, "?:[AND [EQU $RACE %s] [EQU $CLASS %s] [GEQ $LEVEL %02d]]",
-            race_ptr->name, class_ptr->name, p_ptr->lev);
+            get_race_internal_name(race_ptr->id), get_class_internal_name(class_ptr->id), p_ptr->lev);
 
         tb->cx = 0;
         insert_return_code(tb);
@@ -6341,7 +6341,7 @@ static bool do_editor_command(text_body_type *tb, int com_id)
         Term_erase(0, tb->cy - tb->upper + 1, tb->wid);
 
         /* Prompt */
-        Term_putstr(0, tb->cy - tb->upper + 1, tb->wid - 1, TERM_YELLOW, "P:<Trigger key>: ");
+        Term_putstr(0, tb->cy - tb->upper + 1, tb->wid - 1, TERM_YELLOW, "P:<触发键>:");
         if (insert_macro_line(tb))
         {
             /* Prepare to input action */
@@ -6364,7 +6364,7 @@ static bool do_editor_command(text_body_type *tb, int com_id)
         Term_erase(0, tb->cy - tb->upper + 1, tb->wid);
 
         /* Prompt */
-        Term_putstr(0, tb->cy - tb->upper + 1, tb->wid - 1, TERM_YELLOW, format("C:%d:<Keypress>: ", (rogue_like_commands ? KEYMAP_MODE_ROGUE : KEYMAP_MODE_ORIG)));
+        Term_putstr(0, tb->cy - tb->upper + 1, tb->wid - 1, TERM_YELLOW, format("C:%d:<按键>:", (rogue_like_commands ? KEYMAP_MODE_ROGUE : KEYMAP_MODE_ORIG)));
 
         if (insert_keymap_line(tb))
         {
@@ -6678,7 +6678,7 @@ void do_cmd_edit_autopick(void)
         draw_text_editor(tb);
 
         /* Display header line */
-        c_prt(TERM_L_BLUE, "(^Q:Quit, ^W:Save&Quit, ESC:Menu, Other:Input text)", 0, 0);
+        c_prt(TERM_L_BLUE, "(^Q:退出, ^W:保存并退出, ESC:菜单, 其他:输入文本)", 0, 0);
         if (tb->changed)
             c_prt(TERM_YELLOW, "*", 0, 58);
 

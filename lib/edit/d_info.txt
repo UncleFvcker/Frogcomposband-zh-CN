@@ -1,34 +1,34 @@
-# File: d_info.txt
 
-# Do not modify this file unless you know exactly what you are doing,
-# unless you wish to risk possible system crashes and broken savefiles.
 
-# The dungeon type indexes are defined in "defines.h", and must not be
-# changed.
 
-# N:<index>:<name>
-# D:<long name>
-# W:<min depth>:<max depth>:<min player level>:<flags mode>:<min alloc>:<max alloc chance>:<obj good>:<obj great>:<pit>:<nest>
-# L:<floor1>:<%1>:<floor2>:<%2>:<floor3>:<%3>:<tunnel%>
-# A:<wall1>:<%1>:<wall2>:<%2>:<wall3>:<%3>:<outer wall>:<inner wall>:<stream1>:<stream2>
-# F:<flags>
-# M:<monster flags>
-# S:<monster spells>
 
-# Note on the MONSTER_DIV_ dungeon flag
-# It defines the percentage of monsters affected by the restrictions
-# so MONSTER_PERCENT_70 will create 70% of restricted monsters and 30%
-# of absolutely random monsters.
-# by default MONSTER_PERCENT_ is 0%
 
-# Note for <flags mode> :
-# 0 = No restriction
-# 1 = AND
-# 2 = NAND
-# 3 = OR
-# 4 = NOR
 
-### Wilderness(purely cosmetic, never used) ###
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 N:0:Wilderness
 D:wilderness
@@ -39,7 +39,7 @@ A:GRANITE:100:GRANITE:0:GRANITE:0:GRANITE:GRANITE:MAGMA_VEIN:QUARTZ_VEIN
 F:MONSTER_DIV_64
 
 
-### The principal dungeons, they were created by spliting the vanilla dungeon ###
+
 
 N:1:Angband
 D:the entrance to the Dungeon of Angband
@@ -90,7 +90,7 @@ F:MONSTER_DIV_10 | INITIAL_GUARDIAN_675 | FINAL_GUARDIAN_795 | FINAL_OBJECT_38_6
 F:CAVE | LAKE_LAVA | LAKE_TREE | LAKE_RUBBLE
 M:DRAGON | R_CHAR_dD
 
-# Vecna is there, guarding Soulsword
+
 N:6:Graveyard
 D:a hole to the Graveyard underground
 P:19:85
@@ -141,7 +141,7 @@ F:MONSTER_DIV_0 | WATER_RIVER | WINNER | BIG | GLASS_ROOM
 F:FINAL_GUARDIAN_1303
 M:GOOD
 
-# Wrath
+
 N:11:Numenor
 D:a submerged way to the lost land of Numenor
 P:27:30
@@ -161,7 +161,7 @@ A:GRANITE:100:GRANITE:0:GRANITE:0:GRANITE:GRANITE:NONE:NONE
 F:MONSTER_DIV_16 | ARENA | NO_CAVE | CURTAIN | GLASS_ROOM | INITIAL_GUARDIAN_497 | FINAL_GUARDIAN_882
 M:DEMON | R_CHAR_phHg
 
-# Cth and Razorback
+
 N:13:R'lyeh
 D:a way to R'lyeh
 P:3:40
@@ -295,10 +295,10 @@ A:PERMANENT:100:MOUNTAIN_WALL:0:GRANITE:0:PERMANENT:GRANITE:NONE:NONE
 F:NO_VAULT | BIG
 F:FINAL_GUARDIAN_1110 | FINAL_OBJECT_70_52 | INITIAL_GUARDIAN_691
 
-##################################################################
-# Random Dungeons for Wilderness Encounters                      #
-# Player gets a single level in the range [min, max] upon entry. #
-##################################################################
+
+
+
+
 
 N:26:Random Forest
 D:a path into an unknown forest
@@ -334,9 +334,9 @@ A:DEEP_WATER:80:SHALLOW_WATER:10:GRANITE:10:GRANITE:GRANITE:NONE:NONE
 F:MONSTER_DIV_0 | LAKE_WATER | WATER_RIVER | DESTROY | RANDOM | WILD_TYPE_2
 M:CAN_SWIM | CAN_FLY | AQUATIC | WILD_OCEAN
 
-##################################################################
-# Ooops ... More Fixed Dungeons!!                                #
-##################################################################
+
+
+
 
 N:30:Warrens
 D:an entrance to a warren
@@ -456,7 +456,7 @@ P:27:30
 W:55:65:30:3:14:160:80:30:0x0000:0x0000
 L:FLOOR:60:DEEP_WATER:20:SHALLOW_WATER:20:40
 A:DEEP_WATER:54:SHALLOW_WATER:45:SHALLOW_WATER:1:GRANITE:GRANITE:NONE:NONE
-#A:GRANITE:80:QUARTZ_VEIN:15:MAGMA_VEIN:5:GRANITE:GRANITE:QUARTZ_VEIN:QUARTZ_VEIN
+
 F:MONSTER_DIV_0 | LAKE_WATER
 F:INITIAL_GUARDIAN_740 | FINAL_GUARDIAN_1254 | FINAL_ARTIFACT_107
 M:CAN_SWIM | CAN_FLY | AQUATIC | WILD_OCEAN
@@ -478,4 +478,3 @@ F:FINAL_GUARDIAN_1391 | PANTHEON_4 | ALL_SHAFTS | LAKE_TREE
 F:MONSTER_DIV_4 | WATER_RIVER | CAVE | CAVERN | NO_DOORS | BIG
 F:FINAL_ARTIFACT_33 | INITIAL_GUARDIAN_793
 M:R_CHAR_n | HINDU | HINDU2
-

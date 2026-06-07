@@ -5,10 +5,10 @@ static void _charge_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Charge");
+        var_set_string(res, "冲锋");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attacks monster with your weapons normally, then move through counter side of the monster.");
+        var_set_string(res, "用你的武器正常攻击怪物，然后移动到怪物的另一侧。");
         break;
     case SPELL_CAST:
     {
@@ -16,7 +16,7 @@ static void _charge_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (p_ptr->riding)
         {
-            msg_print("You cannot do it when riding.");
+            msg_print("你在骑乘时无法这样做。");
             return;
         }
 
@@ -28,7 +28,7 @@ static void _charge_spell(int cmd, variant *res)
 
         if (!cave[y][x].m_idx)
         {
-            msg_print("There is no monster there.");
+            msg_print("那里没有怪物。");
             if (p_ptr->blind > 0) var_set_bool(res, TRUE);
             return;
         }
@@ -58,10 +58,10 @@ void _smash_trap_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Smash Trap");
+        var_set_string(res, "粉碎陷阱");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Sets off a trap, then destroy that trap.");
+        var_set_string(res, "触发一个陷阱，然后将其摧毁。");
         break;
     case SPELL_CAST:
     {
@@ -164,7 +164,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "brutal power";
+        me.magic_desc = "狂暴之力";
         me.which_stat = A_STR;
         me.options = CASTER_USE_HP;
         init = TRUE;
@@ -189,15 +189,8 @@ class_t *berserker_get_class(void)
     skills_t bs = {-100, -1000, -200, -100,  -100, -100, 120, -2000};
     skills_t xs = {   0,     0,    0,    0,     0,    0,  50,     0};
 
-        me.name = "Berserker";
-        me.desc = "A Berserker is a fearful fighter indeed, immune to fear and "
-                    "paralysis. At high levels, Berserkers can reflect bolt spells "
-                    "with their tough flesh. Furthermore, they can remove cursed equipment "
-                    "by force, and their special combat techniques are not affected by "
-                    "anti-magic barriers. Berserkers cannot, however, use any magical devices "
-                    "or read any scrolls, and are hopeless at all non-combat skills. To "
-                    "offset these great disadvantages, they gain an important class power - "
-                    "'Recall' - very early.";
+        me.name = "狂战士";
+        me.desc = "狂战士确实是令人畏惧的战士，对恐惧和麻痹免疫。在高等级时，狂战士可以用他们坚韧的肉体反射光束法术。此外，他们可以通过蛮力移除被诅咒的装备，而且他们的特殊战斗技巧不受反魔屏障的影响。然而，狂战士无法使用任何魔法装置或阅读任何卷轴，并且在所有非战斗技能上都无可救药。为了弥补这些巨大的劣势，他们很早就能获得一项重要的职业能力——“召回（Recall）”。";
 
         me.stats[A_STR] =   8;
         me.stats[A_INT] = -20;

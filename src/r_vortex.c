@@ -68,7 +68,7 @@ static void _display(rect_t r, int list[])
     for (i = 0; i < elem_ct; i++)
     {
         gf_info_ptr this_gf = gf_lookup(list[i*2]);
-        if (this_gf) doc_printf(doc, " %c) <color:%c>%s</color>%s\n", I2A(i), attr_to_attr_char(this_gf->color), this_gf->name, (i > elem_ct - 6) ? strpos("Time", this_gf->name) ? " (-50% power)" : " (-33% power)" : "");
+        if (this_gf) doc_printf(doc, " %c) <color:%c>%s</color>%s\n", I2A(i), attr_to_attr_char(this_gf->color), this_gf->name, (i > elem_ct - 6) ? strpos("时间", this_gf->name) ? "(-50% 威力)" : "(-33% 威力)" : "");
     }
     doc_insert(doc, "</style>");
     doc_sync_term(doc, doc_range_all(doc), doc_pos_create(r.x, r.y));
@@ -98,7 +98,7 @@ static int _random_weights(int list[])
         if (r.cx > 80)
             r.cx = 80;
         screen_save();
-        prt("Breathe which element?", 0, 0);
+        prt("喷吐哪种元素？", 0, 0);
         valinta = -1;
         while (!valmis)
         {
@@ -174,7 +174,7 @@ static int _rank(void)
 static cptr _mon_name(int r_idx)
 {
     if (r_idx == MON_CHAOS_VORTEX) /* This became a Death vortex, but we are being nostalgic ... */
-        return "Chaos vortex";
+        return "混沌漩涡";
     if (r_idx)
         return r_name + r_info[r_idx].name;
     return ""; /* Birth Menu */
@@ -196,7 +196,7 @@ static void _gain_level(int new_level)
     if (p_ptr->lev >= _tiers[tier + 1].level)
     {
         p_ptr->current_r_idx = _random(_tiers[tier+1].r_ids);
-        msg_format("You have evolved into a %s.", _mon_name(p_ptr->current_r_idx));
+        msg_format("你进化成了%s。", _mon_name(p_ptr->current_r_idx));
         equip_on_change_race();
         p_ptr->redraw |= PR_MAP | PR_BASIC;
     }
@@ -211,11 +211,11 @@ static void _birth(void)
     object_type forge;
 
     p_ptr->current_r_idx = _random(_tiers[0].r_ids);
-    msg_format("You are born a %s.", _mon_name(p_ptr->current_r_idx));
+    msg_format("你出生时就是个%s。", _mon_name(p_ptr->current_r_idx));
     p_ptr->redraw |= PR_MAP;
     equip_on_change_race();
 
-    skills_innate_init("Engulf", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("吞噬", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
     object_prep(&forge, lookup_kind(TV_RING, 0));
     forge.name2 = EGO_RING_COMBAT;
@@ -319,7 +319,7 @@ static void _calc_innate_attacks(void)
 
         calc_innate_blows(&a, (p_ptr->current_r_idx == MON_AETHER_VORTEX) ? 363 : 375);
         a.msg = "You engulf.";
-        a.name = "Engulf";
+        a.name = "吞噬";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -357,10 +357,10 @@ static void _breathe_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe");
+        var_set_string(res, "喷吐");
         break;
     case SPELL_DESC:
-        var_set_string(res, format("Breathes %s at your opponent.", _breath_desc()));
+        var_set_string(res, format("向你的对手喷吐%s。", _breath_desc()));
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _breath_amount()));
@@ -401,7 +401,7 @@ static void _breathe_spell(int cmd, variant *res)
         if (get_fire_dir(&dir))
         {
             if (!early_effect) e = _breath_effect();
-            msg_format("You breathe %s.", gf_name(e));
+            msg_format("你喷吐出%s。", gf_name(e));
             fire_ball(e, dir, voima, -1 - (p_ptr->lev / 20));
             var_set_bool(res, TRUE);
         }
@@ -418,10 +418,10 @@ static void _escape_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Elemental Escape");
+        var_set_string(res, "元素逃逸");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Flee amidst a maelstrom of the elements.");
+        var_set_string(res, "在一场元素大漩涡中逃离。");
         break;
     case SPELL_COST_EXTRA:
         _breathe_spell(cmd, res);
@@ -448,7 +448,7 @@ static void _explode_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Elemental Explosion");
+        var_set_string(res, "元素爆炸");
         break;
     case SPELL_DESC: {
         char buf[255];
@@ -465,7 +465,7 @@ static void _explode_spell(int cmd, variant *res)
     {
         int d = _breath_amount() * 2;
         int e = _breath_effect();
-        msg_format("You explode in %s.", gf_name(e));
+        msg_format("你在%s中爆炸。", gf_name(e));
         fire_ball(e, 0, d, 8);
         var_set_bool(res, TRUE);
         break;
@@ -481,10 +481,10 @@ static void _spin_away_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Spin Away");
+        var_set_string(res, "旋转远离");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Spin rapidly towards a random, nearby, visible location.");
+        var_set_string(res, "快速旋转至附近一个随机的可见位置。");
         break;
     default:
         strafing_spell(cmd, res);
@@ -497,10 +497,10 @@ static void _whirlwind_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Whirlwind");
+        var_set_string(res, "旋风");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Spin rapidly in place, attacking all adjacent monsters.");
+        var_set_string(res, "在原地快速旋转，攻击所有相邻的怪物。");
         break;
     default:
         massacre_spell(cmd, res);
@@ -513,10 +513,10 @@ static void _unleash_elements_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Unleash Elements");
+        var_set_string(res, "释放元素");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Unleash your breath uncontrollably and at random, though with devastating effect.");
+        var_set_string(res, "不受控制地随机释放你的喷吐，但具有毁灭性的效果。");
         break;
     case SPELL_COST_EXTRA:
         _breathe_spell(cmd, res);
@@ -775,26 +775,8 @@ race_t *mon_vortex_get_race(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.name = "Vortex";
-        me.desc = "Vortices are mindless whirlwinds of elemental forces twirling their way "
-                    "through the dungeon in search of prey. They are seldom confused "
-                    "and never blinded since they lack vision in the normal sense; indeed, they "
-                    "seem to be aware of their surroundings even without eyes, and need not wear a "
-                    "light source. They can be neither stunned nor cut, and their mindless "
-                    "nature renders them immune to fear. But, alas! they are hopeless with "
-                    "magical devices and somewhat weak in melee; and while they may breathe "
-                    "almost effortlessly, their breath attacks are not particularly strong.\n \n"
-                    "Vortices do not have normal bodies; rather, they are simply a rapidly "
-                    "spinning elemental mass. As such, they may incorporate objects into their "
-                    "rotating essence, gaining bonuses and protection in the process. "
-                    "The number of objects they may use increases with level, and there are no "
-                    "restrictions on the types of equipment they may 'wield' in each slot. "
-                    "While they may equip weapons this way, they cannot attack with them; instead, "
-                    "vortex melee relies on their innate ability to engulf nearby monsters in the "
-                    "whirling elements.\n \n"
-                    "Vortices evolve randomly, though all seem to end up with the evolutionary "
-                    "perfection of the Aether vortex. At level 50 they gain a special talent "
-                    "to augment their power.";
+        me.name = "漩涡";
+        me.desc = "漩涡是由元素力量组成的无意识旋风，它们在地牢中一路旋转寻找猎物。它们很少会困惑，也永远不会被致盲，因为它们缺乏正常意义上的视觉；事实上，即使没有眼睛，它们似乎也能察觉到周围的环境，且不需要佩戴光源。它们既不能被震慑也不能被割伤，其无意识的本性使它们免疫恐惧。但是，唉！它们在使用魔法装置方面毫无希望，在近战中也有些虚弱；虽然它们几乎毫不费力地就能进行喷吐，但它们的喷吐攻击并不是特别强。\n \n漩涡没有正常的身体；相反，它们只是一个快速旋转的元素质量团。因此，它们可以将物体吸入它们旋转的精华中，在此过程中获得加成和防护。它们可以使用的物体数量随着等级的增加而增加，而且它们在每个槽位可以“装备”的设备类型没有任何限制。虽然它们可以用这种方式装备武器，但它们不能用武器进行攻击；相反，漩涡的近战依赖于它们将附近怪物吞噬进旋转元素中的天生能力。\n \n漩涡的进化是随机的，尽管它们最终似乎都会达到以太漩涡(Aether vortex)这种进化的完美状态。在50级时，它们会获得一种特殊的天赋来增强它们的力量。";
 
         me.infra = 0;
         me.exp = 125;

@@ -10,6 +10,18 @@ static int       _msg_count = 0;
 static msg_ptr  *_msgs = NULL;
 static int       _msg_head = 0;
 static bool      _msg_append = FALSE;
+static char      _msg_recent[8][1024];
+static int       _msg_recent_head = 0;
+static int       _msg_recent_count = 0;
+
+static void _msg_recent_note(cptr msg)
+{
+    if (!msg) return;
+    strnfmt(_msg_recent[_msg_recent_head], sizeof(_msg_recent[_msg_recent_head]), "%s", msg);
+    _msg_recent_head = (_msg_recent_head + 1) % 8;
+    if (_msg_recent_count < 8)
+        _msg_recent_count++;
+}
 
 /* The Message "Line" */
 static rect_t    _msg_line_rect;
@@ -101,6 +113,26 @@ int msg_get_plain_text(int age, char *buffer, int max)
     }
     buffer[ct] = '\0';
     return ct;
+}
+
+int msg_recent_count(void)
+{
+    return _msg_recent_count;
+}
+
+int msg_recent_text(int age, char *buffer, int max)
+{
+    int i;
+
+    if (age < 0 || age >= _msg_recent_count)
+    {
+        if (max > 0) buffer[0] = '\0';
+        return 0;
+    }
+
+    i = (_msg_recent_head + 8 - (age + 1)) % 8;
+    strnfmt(buffer, max, "%s", _msg_recent[i]);
+    return strlen(buffer);
 }
 
 void msg_add(cptr str)
@@ -292,7 +324,7 @@ static void msg_line_flush(void)
 {
     if (auto_more_state == AUTO_MORE_PROMPT)
     {
-        doc_insert_text(_msg_line_doc, TERM_L_BLUE, "-more-");
+        doc_insert_text(_msg_line_doc, TERM_L_BLUE, "-继续-");
         msg_line_sync();
 
         for(;;)
@@ -440,7 +472,7 @@ bool msg_command(cptr prompt, char *cmd)
         *cmd = inkey();
 
     if (*cmd == ESCAPE)
-        cmsg_print(TERM_L_RED, "Cancelled");
+        cmsg_print(TERM_L_RED, "已取消");
     else
     {
         if (isprint(*cmd))
@@ -461,7 +493,7 @@ bool msg_input(cptr prompt, char *buf, int len)
     if (result)
         msg_print(buf);
     else
-        cmsg_print(TERM_L_RED, "Cancelled");
+        cmsg_print(TERM_L_RED, "已取消");
     msg_line_clear();
     return result;
 }
@@ -478,6 +510,9 @@ void cmsg_print(byte color, cptr msg)
             msg_line_flush();
         return;
     }
+
+    _msg_recent_note(msg);
+    game_log_note("message", msg);
 
     if (character_generated)
     {
@@ -590,7 +625,7 @@ bool msg_input_num(cptr prompt, int *num, int min, int max)
     sprintf(buf, "%d", MAX(min, MIN(max, *num)));
     msg_boundary();
     auto_more_state = AUTO_MORE_PROMPT;
-    msg_format("<color:y>%s <color:w>(%d to %d)</color>:</color> ", prompt, min, max);
+    msg_format("<color:y>%s <color:w>(%d 到 %d)</color>：</color>", prompt, min, max);
     result = askfor_aux(buf, 11, FALSE);
     if (result)
     {
@@ -605,7 +640,7 @@ bool msg_input_num(cptr prompt, int *num, int min, int max)
         cmsg_format(TERM_YELLOW, "%d", *num);
     }
     else
-        cmsg_print(TERM_L_RED, "Cancelled");
+        cmsg_print(TERM_L_RED, "已取消");
     msg_line_clear();
     return result;
 }

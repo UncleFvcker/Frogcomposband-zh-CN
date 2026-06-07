@@ -344,7 +344,7 @@ bool teleport_player_aux(int dis, u32b mode)
 
     if (p_ptr->anti_tele && !(mode & TELEPORT_NONMAGICAL))
     {
-        msg_print("A mysterious force prevents you from teleporting!");
+        msg_print("一股神秘的力量阻止了你传送！");
         equip_learn_flag(OF_NO_TELE);
         return FALSE;
     }
@@ -452,7 +452,7 @@ void teleport_player(int dis, u32b mode)
     if (!teleport_player_aux(dis, mode)) return;
     if (!dun_level) return; /* Wilderness scrolling ... */
 
-    if ((!mode) && (strpos("Alexander", player_name) == 1) && (one_in_(88))) msg_print("You feel a strange pulling sensation!");
+    if ((!mode) && (strpos("亚历山大", player_name) == 1) && (one_in_(88))) msg_print("你感觉到一种奇怪的拉扯感！");
 
     /* Monsters with teleport ability may follow the player */
     for (xx = -2; xx < 3; xx++)
@@ -546,7 +546,7 @@ void teleport_player_to(int ny, int nx, u32b mode)
 
     if (p_ptr->anti_tele && !(mode & TELEPORT_NONMAGICAL))
     {
-        msg_print("A mysterious force prevents you from teleporting!");
+        msg_print("一股神秘的力量阻止了你传送！");
         equip_learn_flag(OF_NO_TELE);
         return;
     }
@@ -565,7 +565,7 @@ void teleport_player_to(int ny, int nx, u32b mode)
         ++attempt;
         if (attempt >= max_attempts)
         {
-            msg_print("There is no effect!");
+            msg_print("没有任何效果！");
             return;
         }
 
@@ -638,12 +638,12 @@ void teleport_away_followable(int m_idx)
         {
             char mon_pron[MAX_NLEN];
             monster_desc(mon_pron, m_ptr, MD_PRON_VISIBLE | MD_PRON_HIDDEN | MD_OBJECTIVE);
-            if (get_check(format("Do you follow %s? ", mon_pron)))
+            if (get_check(format("你要跟随 %s 吗？", mon_pron)))
             {
                 if (one_in_(3))
                 {
                     teleport_player(200, TELEPORT_PASSIVE);
-                    msg_print("Failed!");
+                    msg_print("失败！");
                 }
                 else
                 {
@@ -651,7 +651,7 @@ void teleport_away_followable(int m_idx)
                      && p_ptr->duelist_target_idx == m_idx
                      && p_ptr->lev >= 30 )
                     {
-                        msg_print("You invoke Unending Pursuit ... The duel continues!");
+                        msg_print("你发动了“无尽追猎”……对决继续！");
                     }
                     teleport_player_to(m_ptr->fy, m_ptr->fx, 0L);
                 }
@@ -705,14 +705,14 @@ void teleport_level(int m_idx)
     /* No effect in some case */
     if (TELE_LEVEL_IS_INEFF(m_idx))
     {
-        if (see_m) msg_print("There is no effect.");
+        if (see_m) msg_print("没有任何效果。");
 
         return;
     }
 
     if ((m_idx <= 0) && p_ptr->anti_tele) /* To player */
     {
-        msg_print("A mysterious force prevents you from teleporting!");
+        msg_print("一股神秘的力量阻止了你传送！");
         equip_learn_flag(OF_NO_TELE);
         return;
     }
@@ -723,14 +723,14 @@ void teleport_level(int m_idx)
 
     if ((m_idx <= 0) && p_ptr->wizard)
     {
-        if (get_check("Force to go up? ")) go_up = TRUE;
-        else if (get_check("Force to go down? ")) go_up = FALSE;
+        if (get_check("强制向上？")) go_up = TRUE;
+        else if (get_check("强制向下？")) go_up = FALSE;
     }
 
     /* Down only */
     if (((only_downward()) && (m_idx <= 0) && (!quests_get_current())) || (dun_level <= d_info[dungeon_type].mindepth))
     {
-        if (see_m) msg_format("%^s sink%s through the floor.", m_name, (m_idx <= 0) ? "" : "s");
+        if (see_m) msg_format("%^s 穿过地板沉了下去%s。", m_name, (m_idx <= 0) ? "" : "s");
         if (m_idx <= 0) /* To player */
         {
             if (!dun_level)
@@ -767,7 +767,7 @@ void teleport_level(int m_idx)
     /* Up only */
     else if (quests_get_current() || (dun_level >= d_info[dungeon_type].maxdepth))
     {
-        if (see_m) msg_format("%^s rise%s up through the ceiling.", m_name, (m_idx <= 0) ? "" : "s");
+        if (see_m) msg_format("%^s 穿过天花板升了上去%s。", m_name, (m_idx <= 0) ? "" : "s");
 
 
         if (m_idx <= 0) /* To player */
@@ -783,7 +783,7 @@ void teleport_level(int m_idx)
     }
     else if (go_up)
     {
-        if (see_m) msg_format("%^s rise%s up through the ceiling.", m_name, (m_idx <= 0) ? "" : "s");
+        if (see_m) msg_format("%^s 穿过天花板升了上去%s。", m_name, (m_idx <= 0) ? "" : "s");
 
 
         if (m_idx <= 0) /* To player */
@@ -799,7 +799,7 @@ void teleport_level(int m_idx)
     }
     else
     {
-        if (see_m) msg_format("%^s sink%s through the floor.", m_name, (m_idx <= 0) ? "" : "s");
+        if (see_m) msg_format("%^s 穿过地板沉了下去%s。", m_name, (m_idx <= 0) ? "" : "s");
 
         if (m_idx <= 0) /* To player */
         {
@@ -843,7 +843,7 @@ int choose_dungeon(cptr note, int y, int x)
         if (max_dlv[DUNGEON_ANGBAND]) return DUNGEON_ANGBAND;
         else
         {
-            msg_format("You haven't entered %s yet.", d_name + d_info[DUNGEON_ANGBAND].name);
+            msg_format("你还没有进入过 %s。", d_name + d_info[DUNGEON_ANGBAND].name);
             msg_print(NULL);
             return 0;
         }
@@ -882,10 +882,10 @@ int choose_dungeon(cptr note, int y, int x)
 
     if (!num)
     {
-        put_str(" No dungeon is available.", y, x);
+        put_str("没有可用的地下城。", y, x);
     }
 
-    prt(format("%^s which dungeon?: ", note), 0, 0);
+    prt(format("%^s哪个地下城？：", note), 0, 0);
     while(1)
     {
         i = inkey();
@@ -921,7 +921,7 @@ bool recall_player(int turns, bool varmista)
 {
     if (!py_can_recall())
     {
-        msg_print("Nothing happens.");
+        msg_print("什么也没发生。");
         return TRUE;
     }
 
@@ -932,7 +932,7 @@ bool recall_player(int turns, bool varmista)
       && !p_ptr->word_recall
       && max_dlv[dungeon_type] > dun_level )
     {
-        if (get_check("Reset recall depth? "))
+        if (get_check("重置归还深度？"))
         {
             max_dlv[dungeon_type] = dun_level;
         }
@@ -950,14 +950,14 @@ bool recall_player(int turns, bool varmista)
         p_ptr->word_recall = turns;
         p_ptr->leaving_method = LEAVING_RECALL;
 
-        cmsg_print(TERM_L_BLUE, "The air about you becomes charged...");
+        cmsg_print(TERM_L_BLUE, "你周围的空气变得充满能量……");
 
         p_ptr->redraw |= (PR_STATUS);
     }
     else
     {
         p_ptr->word_recall = 0;
-        cmsg_print(TERM_L_BLUE, "A tension leaves the air around you...");
+        cmsg_print(TERM_L_BLUE, "你周围空气的紧张感消失了……");
 
         p_ptr->leaving_method = LEAVING_UNKNOWN;
         p_ptr->redraw |= (PR_STATUS);
@@ -983,7 +983,7 @@ bool reset_recall(void)
     /* Ironman option */
     if (only_downward())
     {
-        msg_print("Nothing happens.");
+        msg_print("什么也没发生。");
 
         return TRUE;
     }
@@ -1011,7 +1011,7 @@ bool reset_recall(void)
 
         max_dlv[select_dungeon] = dummy;
 
-        msg_format("Recall depth set to level %d (%d').", dummy, dummy * 50);
+        msg_format("归还深度设置为 %d 层 (%d')。", dummy, dummy * 50);
     }
     else
     {
@@ -1057,14 +1057,14 @@ bool apply_disenchant(int mode)
         }
         if (object_is_artifact(o_ptr) && (randint0(100) < 71))
         {
-            msg_format("Your %s resists disenchantment!", o_name);
+            msg_format("你的 %s 抵抗了祛魔！", o_name);
             return TRUE;
         }
 
         obj_flags(o_ptr, flgs);
         if (have_flag(flgs, OF_RES_DISEN))
         {
-            msg_format("Your %s resists disenchantment!", o_name);
+            msg_format("你的 %s 抵抗了祛魔！", o_name);
             obj_learn_flag(o_ptr, OF_RES_DISEN);
             return TRUE;
         }
@@ -1094,7 +1094,7 @@ bool apply_disenchant(int mode)
         if ((to_h != o_ptr->to_h) || (to_d != o_ptr->to_d) ||
             (to_a != o_ptr->to_a) || (pval != o_ptr->pval))
         {
-            msg_format("Your %s was disenchanted!", o_name);
+            msg_format("你的 %s 被祛魔了！", o_name);
             virtue_add(VIRTUE_HARMONY, 1);
             virtue_add(VIRTUE_ENCHANTMENT, -2);
             if (o_ptr->insured) cornucopia_item_disenchanted(o_ptr, to_a, to_h, to_d, pval);
@@ -1139,7 +1139,7 @@ void mutate_player(void)
         }
         if ((one_in_(5)) && (p_ptr->exp > 0))
         {
-            msg_print("You feel your memories fade.");
+            msg_print("你感觉你的记忆正在消退。");
             virtue_add(VIRTUE_KNOWLEDGE, -5);
             lose_exp(p_ptr->exp / (p_ptr->hold_life ? 24 : 8));
         }
@@ -1191,7 +1191,7 @@ void mutate_player(void)
 
     if (p_ptr->wizard)
     {
-        msg_format("<color:v>Swapped <color:R>%s</color> with <color:R>%s</color>.</color>",
+        msg_format("<color:v>将 <color:R>%s</color> 与 <color:R>%s</color> 交换了位置。</color>",
             stat_abbrev_true[ii], stat_abbrev_true[jj]);
     }
     p_ptr->update |= (PU_BONUS);
@@ -1225,7 +1225,7 @@ static void _nexus_travel(void)
     if (no_chris) return; /* paranoia */
     if (!py_on_surface() && !py_in_dungeon())
     {
-        msg_print("There is no effect.");
+        msg_print("没有任何效果。");
         return; /* paranoia wrt arena or town quests */
     }
     if (autosave_l) do_cmd_save_game(TRUE); /* XXX Sequence issue. Must be called first */
@@ -1268,7 +1268,7 @@ void apply_nexus(monster_type *m_ptr)
             {
                 if (randint0(100) < p_ptr->skills.sav)
                 {
-                    msg_print("You resist the effects!");
+                    msg_print("你抵抗了这些效果！");
 
                     break;
                 }
@@ -1283,22 +1283,22 @@ void apply_nexus(monster_type *m_ptr)
         {
             if (randint0(100) < p_ptr->skills.sav)
             {
-                msg_print("You resist the effects!");
+                msg_print("你抵抗了这些效果！");
                 break;
             }
             if (p_ptr->pclass == CLASS_WILD_TALENT)
             {
-                msg_print("Your body starts to scramble...");
+                msg_print("你的身体开始扭曲错乱……");
                 wild_talent_scramble();
             }
             else if (no_wilderness || no_chris || only_downward() || quest_id_current())
             {
-                if (!no_scrambling) msg_print("Your body starts to scramble...");
+                if (!no_scrambling) msg_print("你的身体开始扭曲错乱……");
                 mutate_player();
             }
             else
             {
-                msg_print("The world around you starts to scramble...");
+                msg_print("你周围的世界开始扭曲错乱……");
                 _nexus_travel();
             }
             break;
@@ -1325,22 +1325,22 @@ void phlogiston(void)
 
         if (o_ptr->xtra4 >= max_flog || !max_flog)
         {
-            msg_print("No more phlogiston can be put in this item.");
+            msg_print("这个物品无法再注入更多燃素了。");
             return;
         }
 
         o_ptr->xtra4 += (max_flog / 2);
-        msg_print("You add phlogiston to your light item.");
+        msg_print("你向你的光源物品注入了燃素。");
         if (o_ptr->xtra4 >= max_flog)
         {
             o_ptr->xtra4 = max_flog;
-            msg_print("Your light item is full.");
+            msg_print("你的光源物品已经满了。");
         }
 
         p_ptr->update |= PU_TORCH;
     }
     else
-        msg_print("Nothing happens.");
+        msg_print("什么也没发生。");
 }
 
 /*
@@ -1362,8 +1362,8 @@ bool brand_weapon(int brand_type)
     obj_prompt_t prompt = {0};
     bool         result = FALSE;
 
-    prompt.prompt = "Enchant which weapon?";
-    prompt.error = "You have nothing to enchant.";
+    prompt.prompt = "要附魔哪把武器？";
+    prompt.error = "你没有东西可以附魔。";
     prompt.filter = _can_brand_weapon;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -1395,7 +1395,7 @@ bool brand_weapon(int brand_type)
     else
     {
         if (flush_failure) flush();
-        msg_print("The Branding failed.");
+        msg_print("赋予烙印失败了。");
         virtue_add(VIRTUE_ENCHANTMENT, -2);
     }
     return TRUE;
@@ -1405,8 +1405,8 @@ bool brand_weapon_slaying(int brand_flag, int res_flag)
 {
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Enchant which weapon?";
-    prompt.error = "You have nothing to enchant.";
+    prompt.prompt = "要附魔哪把武器？";
+    prompt.error = "你没有东西可以附魔。";
     prompt.filter = _can_brand_weapon;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -1487,7 +1487,7 @@ static bool vanish_dungeon(void)
                     monster_desc(m_name, m_ptr, 0);
 
                     /* Dump a message */
-                    msg_format("%^s wakes up.", m_name);
+                    msg_format("%^s 醒了。", m_name);
                 }
             }
 
@@ -1626,27 +1626,27 @@ void call_the_(void)
     /* Prevent destruction of quest levels and town */
     else if (!py_in_dungeon())
     {
-        msg_print("The ground trembles.");
+        msg_print("地面在震颤。");
     }
 
     else
     {
         snoun = spell_category_name(mp_ptr->spell_book);
         sverb = spell_category_verb(mp_ptr->spell_book);
-        msg_format("You %s the %s too close to a wall!", sverb, snoun);
-        msg_print("There is a loud explosion!");
+        msg_format("你%s%s时离墙太近了！", sverb, snoun);
+        msg_print("发生了一声巨大的爆炸！");
 
         if (one_in_(666))
         {
-            if (!vanish_dungeon()) msg_print("The dungeon silences a moment.");
+            if (!vanish_dungeon()) msg_print("地下城沉寂了片刻。");
         }
         else
         {
             if (destroy_area(py, px, 15 + p_ptr->lev + randint0(11), 8 * p_ptr->lev))
-                msg_print("The dungeon collapses...");
+                msg_print("地下城正在坍塌……");
 
             else
-                msg_print("The dungeon trembles.");
+                msg_print("地下城在震颤。");
         }
 
         take_hit(DAMAGE_NOESCAPE, 100 + randint1(150), "a suicidal Call the Void");
@@ -1667,7 +1667,7 @@ void fetch(int dir, int wgt, bool require_los)
     /* Check to see if an object is already there */
     if ((cave[py][px].o_idx) || (!cave_drop_bold(py, px)))
     {
-        msg_print("You need empty floor under your feet to fetch.");
+        msg_print("你需要脚下有空地才能取物。");
 
         return;
     }
@@ -1680,7 +1680,7 @@ void fetch(int dir, int wgt, bool require_los)
 
         if (distance(py, px, ty, tx) > MAX_RANGE)
         {
-            msg_print("You can't fetch something that far away!");
+            msg_print("你无法取来那么远的东西！");
 
             return;
         }
@@ -1690,7 +1690,7 @@ void fetch(int dir, int wgt, bool require_los)
         /* We need an item to fetch */
         if (!c_ptr->o_idx)
         {
-            msg_print("There is no object at this place.");
+            msg_print("这里没有物品。");
 
             return;
         }
@@ -1698,7 +1698,7 @@ void fetch(int dir, int wgt, bool require_los)
         /* No fetching from vault */
         if (c_ptr->info & CAVE_ICKY)
         {
-            msg_print("The item slips from your control.");
+            msg_print("物品脱离了你的控制。");
 
             return;
         }
@@ -1708,13 +1708,13 @@ void fetch(int dir, int wgt, bool require_los)
         {
             if (!player_has_los_bold(ty, tx))
             {
-                msg_print("You have no direct line of sight to that location.");
+                msg_print("你和那个位置之间没有直接视线。");
 
                 return;
             }
             else if (!projectable(py, px, ty, tx))
             {
-                msg_print("You have no direct line of sight to that location.");
+                msg_print("你和那个位置之间没有直接视线。");
 
                 return;
             }
@@ -1743,7 +1743,7 @@ void fetch(int dir, int wgt, bool require_los)
     if (o_ptr->weight > wgt)
     {
         /* Too heavy to 'fetch' */
-        msg_print("The object is too heavy.");
+        msg_print("该物品太重了。");
 
         return;
     }
@@ -1756,7 +1756,7 @@ void fetch(int dir, int wgt, bool require_los)
     o_ptr->loc.x = (byte)px;
 
     object_desc(o_name, o_ptr, OD_NAME_ONLY);
-    msg_format("%^s %s through the air to your feet.", o_name, (o_ptr->number == 1) ? "flies" : "fly");
+    msg_format("%^s 飞到了你的脚边%s。", o_name, (o_ptr->number == 1) ? "``" : "``");
 
     note_spot(py, px);
     p_ptr->redraw |= PR_MAP;
@@ -1768,7 +1768,7 @@ void alter_reality(void)
     /* Ironman option */
     if (p_ptr->inside_arena || only_downward())
     {
-        msg_print("Nothing happens.");
+        msg_print("什么也没发生。");
         return;
     }
 
@@ -1777,7 +1777,7 @@ void alter_reality(void)
         int turns = randint0(21) + 15;
 
         p_ptr->alter_reality = turns;
-        msg_print("The view around you begins to change...");
+        msg_print("你周围的景象开始变化……");
 
         p_ptr->leaving_method = LEAVING_ALTER_REALITY;
         p_ptr->redraw |= (PR_STATUS);
@@ -1785,7 +1785,7 @@ void alter_reality(void)
     else
     {
         p_ptr->alter_reality = 0;
-        msg_print("The view around you got back...");
+        msg_print("你周围的景象恢复了原状……");
 
         p_ptr->leaving_method = LEAVING_UNKNOWN;
         p_ptr->redraw |= (PR_STATUS);
@@ -1842,9 +1842,9 @@ static bool _counter_allows_trap(int feature)
     }
     if (_trap_counter() > 10) /* Limit other classes to 11 traps */
     {
-        if (!one_in_(7)) msg_format("Something suddenly feels wrong, and you decide to not %s the %s.", s1, s2);
-        else if (one_in_(2)) msg_format("Something about what you're doing feels either not hunky or not dory. You are not quite sure which one it is, but get cold feet about %s the %s anyway.", s3, s2);
-        else msg_format("You have a brief vision of a fat, bearded humanoid in sweatpants and an old T-shirt, yelling <color:R>'No! Don't %s that %s! That would disturb the cosmic balance!'</color> You aren't entirely sure what just happened, but decide not to %s the %s.", s1, s2, s1, s2);
+        if (!one_in_(7)) msg_format("你突然觉得有些不对劲，于是决定不%s这个%s。", s1, s2);
+        else if (one_in_(2)) msg_format("你感觉自己正在做的事情非常不妥。虽然说不清到底是哪里不对，但你还是对%s这个%s打起了退堂鼓。", s3, s2);
+        else msg_format("你脑海中短暂闪过一个画面：一个穿着运动裤和旧T恤、留着胡子的胖大叔大喊着<color:R>“不！不要%s那个%s！那会打破宇宙的平衡！”</color> 你不太确定刚才发生了什么，但决定不去%s这个%s。", s1, s2, s1, s2);
         return FALSE;
     }
     return TRUE;
@@ -1858,7 +1858,7 @@ bool warding_glyph(void)
     /* XXX XXX XXX */
     if (!cave_clean_bold(py, px))
     {
-        msg_print("The object resists the spell.");
+        msg_print("物品抵抗了法术。");
 
         return FALSE;
     }
@@ -1885,7 +1885,7 @@ bool set_trap(int y, int x, int feature)
     if (!cave_clean_bold(y, x))
     {
         if (y == py && x == px) /* Hack: I only want the message sometimes ... */
-            msg_print("The object resists the spell.");
+            msg_print("物品抵抗了法术。");
         return FALSE;
     }
 
@@ -2012,7 +2012,7 @@ static bool _alchemy_aux(obj_ptr obj, bool force)
 
     if (object_is_shoukinkubi(obj))
     {
-        msg_format("You consider pulverising %s, but quickly decide against it.", o_name);
+        msg_format("你考虑过粉碎 %s，但很快打消了这个念头。", o_name);
         return FALSE;
     }
 
@@ -2029,7 +2029,7 @@ static bool _alchemy_aux(obj_ptr obj, bool force)
     /* Artifacts cannot be destroyed */
     if (!can_player_destroy_object(obj))
     {
-        msg_format("You fail to turn %s to gold!", o_name);
+        msg_format("你没能将 %s 变成金子！", o_name);
         return FALSE;
     }
 
@@ -2037,7 +2037,7 @@ static bool _alchemy_aux(obj_ptr obj, bool force)
 
     if (price <= 0)
     {
-        msg_format("You turn %s to fool's gold.", o_name);
+        msg_format("你把 %s 变成了愚人金（黄铁矿）。", o_name);
     }
     else
     {
@@ -2046,7 +2046,7 @@ static bool _alchemy_aux(obj_ptr obj, bool force)
         if (no_selling) price /= 3;
         price *= obj->number;
 
-        msg_format("You turn %s to %d %s worth of gold.", o_name, price, (price == 1) ? "coin's" : "coins'");
+        msg_format("你把 %s 变成了价值 %d 枚金币的金子%s。", o_name, price, (price == 1) ? "``" : "``");
 
         p_ptr->au += price;
         stats_on_gold_selling(price); /* ? */
@@ -2068,8 +2068,8 @@ bool alchemy(void)
     /* Hack -- force destruction */
     if (command_arg > 0) force = TRUE;
 
-    prompt.prompt = "Turn which item to gold?";
-    prompt.error = "You have nothing to turn to gold.";
+    prompt.prompt = "要把哪件物品变成金子？";
+    prompt.error = "你没有可以变成金子的物品。";
     prompt.filter = obj_exists; 
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -2111,7 +2111,7 @@ void break_curse(object_type *o_ptr)
 {
     if (object_is_cursed(o_ptr) && !(o_ptr->curse_flags & OFC_PERMA_CURSE) && !(o_ptr->curse_flags & OFC_HEAVY_CURSE) && (randint0(100) < 25))
     {
-        msg_print("The curse is broken!");
+        msg_print("诅咒被打破了！");
 
         o_ptr->curse_flags = 0L;
         o_ptr->known_curse_flags = 0L;
@@ -2277,8 +2277,8 @@ bool enchant_spell(int num_hit, int num_dam, int num_ac)
     bool         okay = FALSE;
     char         o_name[MAX_NLEN];
 
-    prompt.prompt = "Enchant which item?";
-    prompt.error = "You have nothing to enchant.";
+    prompt.prompt = "要附魔哪件物品？";
+    prompt.error = "你没有东西可以附魔。";
     prompt.filter = num_ac ? object_allow_enchant_armour : object_allow_enchant_weapon;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -2291,8 +2291,8 @@ bool enchant_spell(int num_hit, int num_dam, int num_ac)
 
     object_desc(o_name, prompt.obj, (OD_OMIT_PREFIX | OD_NAME_ONLY));
 
-    msg_format("%s %s glow%s brightly!",
-           (prompt.obj->loc.where != INV_FLOOR) ? "Your" : "The",
+    msg_format("%s%s发出了明亮的光芒%s！",
+           (prompt.obj->loc.where != INV_FLOOR) ? "你的" : "地上的",
            o_name,
            (prompt.obj->number > 1) ? "" : "s");
 
@@ -2304,7 +2304,7 @@ bool enchant_spell(int num_hit, int num_dam, int num_ac)
     if (!okay)
     {
         if (flush_failure) flush();
-        msg_print("The enchantment failed.");
+        msg_print("附魔失败了。");
 
         if (one_in_(3) && virtue_current(VIRTUE_ENCHANTMENT) < 100)
             virtue_add(VIRTUE_ENCHANTMENT, -1);
@@ -2345,8 +2345,8 @@ bool artifact_scroll(void)
     bool         okay = FALSE;
     char         o_name[MAX_NLEN];
 
-    prompt.prompt = "Enchant which item?";
-    prompt.error = "You have nothing to enchant.";
+    prompt.prompt = "要附魔哪件物品？";
+    prompt.error = "你没有东西可以附魔。";
     prompt.filter = item_tester_hook_nameless_weapon_armour;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -2359,40 +2359,40 @@ bool artifact_scroll(void)
     object_desc(o_name, prompt.obj, (OD_OMIT_PREFIX | OD_NAME_ONLY));
 
     /* Describe */
-    msg_format("The %s radiate%s a blinding light!", o_name,
+    msg_format("%s 散发出耀眼的光芒%s！", o_name,
           ((prompt.obj->number > 1) ? "" : "s"));
 
     if (object_is_artifact(prompt.obj))
     {
-        msg_format("The %s %s already %s!",
+        msg_format("%s 已经 %s 了%s！",
             o_name, ((prompt.obj->number > 1) ? "are" : "is"),
             ((prompt.obj->number > 1) ? "artifacts" : "an artifact"));
     }
 
     else if (object_is_ego(prompt.obj))
     {
-        msg_format("The %s %s already %s!",
+        msg_format("%s 已经 %s 了%s！",
             o_name, ((prompt.obj->number > 1) ? "are" : "is"),
             ((prompt.obj->number > 1) ? "ego items" : "an ego item"));
     }
 
     else if (prompt.obj->xtra3)
     {
-        msg_format("The %s %s already %s!",
+        msg_format("%s 已经 %s 了%s！",
             o_name, ((prompt.obj->number > 1) ? "are" : "is"),
             ((prompt.obj->number > 1) ? "customized items" : "a customized item"));
     }
 
     else if (have_flag(prompt.obj->flags, OF_NO_REMOVE))
     {
-        msg_print("You are quite special already!");
+        msg_print("你已经非常特别了！");
     }
     else
     {
         if (prompt.obj->number > 1)
         {
-            msg_print("Not enough energy to enchant more than one object!");
-            msg_format("%d of your %s %s destroyed!",(prompt.obj->number)-1, o_name, (prompt.obj->number>2?"were":"was"));
+            msg_print("能量不足以附魔超过一件物品！");
+            msg_format("你的 %d 件 %s 被摧毁了%s！",(prompt.obj->number)-1, o_name, (prompt.obj->number>2?"``":"``"));
             prompt.obj->number = 1;
         }
 
@@ -2414,7 +2414,7 @@ bool artifact_scroll(void)
         if (flush_failure) flush();
 
         /* Message */
-        msg_print("The enchantment failed.");
+        msg_print("附魔失败了。");
 
         return (FALSE);
     }
@@ -2489,8 +2489,8 @@ bool ident_spell(object_p p)
     bool         old_known;
 
     _hack_obj_p = p;
-    prompt.prompt = "Identify which item?";
-    prompt.error = "All items are identified.";
+    prompt.prompt = "要鉴定哪件物品？";
+    prompt.error = "所有物品均已鉴定。";
     prompt.filter = item_tester_hook_identify;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -2507,7 +2507,7 @@ bool ident_spell(object_p p)
 
     object_desc(o_name, prompt.obj, OD_COLOR_CODED);
 
-    msg_format("You identify %s.", o_name);
+    msg_format("你鉴定了 %s。", o_name);
     autopick_alter_obj(prompt.obj, destroy_identify && !old_known);
     obj_release(prompt.obj, OBJ_RELEASE_QUIET | OBJ_RELEASE_ID);
     return TRUE;
@@ -2523,8 +2523,8 @@ bool mundane_spell(bool only_equip)
 {
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Use which item?";
-    prompt.error = "You have nothing you can use.";
+    prompt.prompt = "使用哪件物品？";
+    prompt.error = "你没有可以使用的东西。";
     if (only_equip)
         prompt.filter = object_is_weapon_armour_ammo;
     prompt.where[0] = INV_PACK;
@@ -2541,28 +2541,28 @@ bool mundane_spell(bool only_equip)
         char o_name[MAX_NLEN];
         object_desc(o_name, prompt.obj, (OD_OMIT_PREFIX | OD_NAME_ONLY | OD_SINGULAR));
         
-        msg_format("The masterful craftsmanship of the %s resists mundanization!", o_name);
+        msg_format("%s 精湛的工艺抵抗了平凡化！", o_name);
         return FALSE;
     }
 
     if (object_is_dragon_armor(prompt.obj))
     {
-        if (!get_check("All resists on this object will be lost. Proceed anyway? ")) return FALSE;
+        if (!get_check("该物品上的所有抗性都将丢失。确定要继续吗？")) return FALSE;
     }
 
     if (prompt.obj->name1 == ART_HAND_OF_VECNA || prompt.obj->name1 == ART_EYE_OF_VECNA)
     {
-        msg_print("There is no effect.");
+        msg_print("没有任何效果。");
         return TRUE;
     }
 
     if (have_flag(prompt.obj->flags, OF_NO_REMOVE))
     {
-        msg_print("Failed! You will never be average!");
+        msg_print("失败！你永远不可能变成平庸之辈！");
         return TRUE;
     }
 
-    msg_print("There is a bright flash of light!");
+    msg_print("出现了一道明亮的闪光！");
     {
         obj_loc_t loc = prompt.obj->loc;
         s16b next_o_idx = prompt.obj->next_o_idx;
@@ -2625,8 +2625,8 @@ bool identify_fully(object_p p)
     bool         old_known;
 
     _hack_obj_p = p;
-    prompt.prompt = "*Identify* which item?";
-    prompt.error = "You have nothing to *identify*.";
+    prompt.prompt = "要*完全鉴定*哪件物品？";
+    prompt.error = "你没有需要*完全鉴定*的物品。";
     prompt.filter = item_tester_hook_identify_fully;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -2646,7 +2646,7 @@ bool identify_fully(object_p p)
       && prompt.obj->sval == SV_CORPSE )
     {
         if (!(r_info[prompt.obj->pval].r_xtra1 & MR1_POSSESSOR))
-            msg_print("You learn more about this body.");
+            msg_print("你对这具身体有了更多了解。");
         lore_do_probe(prompt.obj->pval);
     }
 
@@ -2710,7 +2710,7 @@ static void _recharge_aux(object_type *o_ptr, int amt, int power, bool from_play
          * Remember, you're lucky if you find just one wand of rockets all game long!
          * I plan on removing the town recharging service to compensate for this
          * generosity, though. */
-         msg_print("Failed!");
+         msg_print("失败！");
          if ((from_player) && (device_sp(o_ptr) > 0)) device_decrease_sp(o_ptr, device_sp(o_ptr));
          return;
     }
@@ -2746,14 +2746,14 @@ bool recharge_from_player(int power)
 
     if (amt == 0) 
     {
-        msg_format("Failed! You don't have enough %s!", resource);
+        msg_format("失败！你没有足够的 %s！", resource);
         return FALSE;
     }
 
     /* Get destination device */
     _obj_recharge_src_ptr = NULL;
-    prompt.prompt = "Recharge which item?";
-    prompt.error = "You have nothing to recharge.";
+    prompt.prompt = "要为哪件物品充能？";
+    prompt.error = "你没有可以充能的物品。";
     prompt.filter = _obj_recharge_dest;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -2785,8 +2785,8 @@ static obj_ptr _get_recharge_src(void)
 {
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Pick a source device?";
-    prompt.error = "You need a source device to power the recharging.";
+    prompt.prompt = "选择一个作为充能源的魔法装置？";
+    prompt.error = "你需要一个作为充能源的魔法装置来提供能量。";
     prompt.filter = _obj_recharge_src;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -2801,8 +2801,8 @@ static obj_ptr _get_recharge_dest(obj_ptr src)
 
     _obj_recharge_src_ptr = src;
 
-    prompt.prompt = "Recharge which item?";
-    prompt.error = "You have nothing to recharge.";
+    prompt.prompt = "要为哪件物品充能？";
+    prompt.error = "你没有可以充能的物品。";
     prompt.filter = _obj_recharge_dest;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -2850,7 +2850,7 @@ bool recharge_from_device(int power)
             char name[MAX_NLEN];
 
             object_desc(name, src_ptr, OD_OMIT_PREFIX | OD_COLOR_CODED);
-            msg_format("Recharging consumes your %s!", name);
+            msg_format("充能消耗了你的 %s！", name);
 
             obj_zero(src_ptr);
             obj_release(src_ptr, OBJ_RELEASE_QUIET);
@@ -2870,8 +2870,8 @@ bool bless_weapon(void)
     char         o_name[MAX_NLEN];
     byte         success_chance = 1;
 
-    prompt.prompt = "Bless which weapon?";
-    prompt.error = "You have no weapon to bless.";
+    prompt.prompt = "要祝福哪把武器？";
+    prompt.error = "你没有可祝福的武器。";
     prompt.filter = object_is_weapon;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -2888,13 +2888,13 @@ bool bless_weapon(void)
         if (((prompt.obj->curse_flags & OFC_HEAVY_CURSE) && (randint1(100) < 33)) ||
             (prompt.obj->curse_flags & OFC_PERMA_CURSE))
         {
-            msg_format("The black aura on %s %s disrupts the blessing!",
+            msg_format("%s%s身上的黑色光环扰乱了祝福！",
                 (prompt.obj->loc.where != INV_FLOOR) ? "your" : "the", o_name);
 
             return TRUE;
         }
 
-        msg_format("A malignant aura leaves %s %s.",
+        msg_format("一股恶意的光环离开了 %s%s。",
             (prompt.obj->loc.where != INV_FLOOR) ? "your" : "the", o_name);
 
         /* Uncurse it */
@@ -2918,8 +2918,8 @@ bool bless_weapon(void)
      */
     if (have_flag(flgs, OF_BLESSED))
     {
-        msg_format("%s %s %s blessed already.",
-            ((prompt.obj->loc.where != INV_FLOOR) ? "Your" : "The"), o_name,
+        msg_format("%s%s已经受过祝福了%s。",
+            ((prompt.obj->loc.where != INV_FLOOR) ? "你的" : "地上的"), o_name,
             ((prompt.obj->number > 1) ? "were" : "was"));
 
         return TRUE;
@@ -2937,8 +2937,8 @@ bool bless_weapon(void)
     if (one_in_(success_chance))
     {
         /* Describe */
-        msg_format("%s %s shine%s!",
-            ((prompt.obj->loc.where != INV_FLOOR) ? "Your" : "The"), o_name,
+        msg_format("%s%s闪耀着光芒%s！",
+            ((prompt.obj->loc.where != INV_FLOOR) ? "你的" : "地上的"), o_name,
             ((prompt.obj->number > 1) ? "" : "s"));
 
         add_flag(prompt.obj->flags, OF_BLESSED);
@@ -2949,7 +2949,7 @@ bool bless_weapon(void)
     {
         bool dis_happened = FALSE;
 
-        msg_print("The unholy powers of the weapon resist your blessing!");
+        msg_print("武器中的邪恶力量抵抗了你的祝福！");
 
         /* Disenchant tohit */
         if (prompt.obj->to_h > 0)
@@ -2980,10 +2980,10 @@ bool bless_weapon(void)
 
         if (dis_happened)
         {
-            msg_print("There is a static feeling in the air...");
+            msg_print("空气中弥漫着静电的感觉……");
 
-            msg_format("%s %s %s disenchanted!",
-                ((prompt.obj->loc.where != INV_FLOOR) ? "Your" : "The"), o_name,
+            msg_format("%s%s被祛除了魔法%s！",
+                ((prompt.obj->loc.where != INV_FLOOR) ? "你的" : "地上的"), o_name,
                 ((prompt.obj->number > 1) ? "were" : "was"));
 
         }
@@ -3010,8 +3010,8 @@ bool polish_shield(void)
     u32b         flgs[OF_ARRAY_SIZE];
     char         o_name[MAX_NLEN];
 
-    prompt.prompt = "Polish which shield?";
-    prompt.error = "You have no shield to polish.";
+    prompt.prompt = "要擦亮哪面盾牌？";
+    prompt.error = "你没有可擦亮的盾牌。";
     prompt.filter = object_is_shield; 
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -3026,8 +3026,8 @@ bool polish_shield(void)
     if (!object_is_artifact(prompt.obj) && !object_is_ego(prompt.obj) &&
         !object_is_cursed(prompt.obj) && (prompt.obj->sval != SV_MIRROR_SHIELD))
     {
-        msg_format("%s %s shine%s!",
-            ((prompt.obj->loc.where != INV_FLOOR) ? "Your" : "The"), o_name,
+        msg_format("%s%s闪耀着光芒%s！",
+            ((prompt.obj->loc.where != INV_FLOOR) ? "你的" : "地上的"), o_name,
             ((prompt.obj->number > 1) ? "" : "s"));
         prompt.obj->name2 = EGO_SHIELD_REFLECTION;
         enchant(prompt.obj, randint0(3) + 4, ENCH_TOAC);
@@ -3038,7 +3038,7 @@ bool polish_shield(void)
     else
     {
         if (flush_failure) flush();
-        msg_print("Failed.");
+        msg_print("失败了。");
         virtue_add(VIRTUE_ENCHANTMENT, -2);
     }
     android_calc_exp();
@@ -3509,22 +3509,22 @@ void print_spells(int target_spell, byte *spells, int num, rect_t display, int u
     int             vaikeustaso;
 
     if (((use_realm <= REALM_NONE) || (use_realm > MAX_REALM)) && p_ptr->wizard)
-        msg_print("Warning! print_spells called with null realm");
+        msg_print("警告！在领域为空时调用了 print_spells");
 
 
     /* Title the list */
     if (use_realm == REALM_HISSATSU)
-        strcpy(buf,"  Lvl  SP");
+        strcpy(buf,"等级 消耗");
     else
     {
         if (caster_ptr && ((caster_ptr->options & CASTER_USE_HP) || ((p_ptr->pclass == CLASS_NINJA_LAWYER) && (use_realm != REALM_LAW))))
-            strcpy(buf,"Profic Lvl  HP Fail Desc");
+            strcpy(buf,"熟练 等级 生命 失败 描述");
         else
-            strcpy(buf,"Profic Lvl  SP Fail Desc");
+            strcpy(buf,"熟练 等级 消耗 失败 描述");
     }
 
     Term_erase(display.x, display.y, display.cx);
-    put_str("Name", display.y, display.x + 5);
+    put_str("名称", display.y, display.x + 5);
     put_str(buf, display.y, display.x + 29);
 
     if ((p_ptr->pclass == CLASS_SORCERER) || (p_ptr->pclass == CLASS_RED_MAGE)) increment = 0;
@@ -3911,12 +3911,12 @@ static bool _damage_obj(obj_ptr obj, int p1, int p2, int which_res, bool mon_att
         object_desc(o_name, obj, OD_OMIT_PREFIX | OD_COLOR_CODED);
 
         if (amt < obj->number)
-            msg_format("%d of your %s %s destroyed!",
+            msg_format("你的 %d 件 %s 被摧毁了%s！",
                         amt, o_name, (amt > 1) ? "were" : "was");
         else if (obj->number == 1)
-            msg_format("Your %s %s destroyed!", o_name, object_plural(obj) ? "were" : "was"/* "Your Black Clothes were destroyed" */);
+            msg_format("你的 %s 被摧毁了%s！", o_name, object_plural(obj) ? "``" : "``"/* "Your Black Clothes were destroyed" */);
         else
-            msg_format("All of your %s were destroyed!", o_name);
+            msg_format("你所有的 %s 都被摧毁了！", o_name);
 
         if ((alert_device_gone) && (object_is_device(obj))) warn_player = TRUE;
         if ((alert_insc_gone) && (obj_is_inscribed(obj))) warn_player = TRUE;
@@ -4013,12 +4013,12 @@ int minus_ac(void)
         if (have_flag(flgs, OF_IGNORE_ACID))
         {
             if (disturb_minor)
-                msg_format("Your %s %s unaffected!", o_name, object_plural(o_ptr) ? "are" : "is");
+                msg_format("你的 %s 没有受到影响%s！", o_name, object_plural(o_ptr) ? "``" : "``");
             obj_learn_flag(o_ptr, OF_IGNORE_ACID);
             return TRUE;
         }
 
-        msg_format("Your %s %s damaged!", o_name, object_plural(o_ptr) ? "are" : "is");
+        msg_format("你的 %s 受损了%s！", o_name, object_plural(o_ptr) ? "``" : "``");
         o_ptr->to_a--;
         p_ptr->update |= PU_BONUS;
         p_ptr->window |= PW_EQUIP;
@@ -4033,8 +4033,8 @@ bool rustproof(void)
     obj_prompt_t prompt = {0};
     char         o_name[MAX_NLEN];
 
-    prompt.prompt = "Rustproof which piece of armour?";
-    prompt.error = "You have nothing to rustproof.";
+    prompt.prompt = "要为哪件护甲做防锈处理？";
+    prompt.error = "你没有可以做防锈处理的物品。";
     prompt.filter = object_is_armour;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -4050,14 +4050,14 @@ bool rustproof(void)
 
     if ((prompt.obj->to_a < 0) && !object_is_cursed(prompt.obj))
     {
-        msg_format("%s %s look%s as good as new!",
-            ((prompt.obj->loc.where != INV_FLOOR) ? "Your" : "The"), o_name,
+        msg_format("%s%s焕然一新%s！",
+            ((prompt.obj->loc.where != INV_FLOOR) ? "你的" : "地上的"), o_name,
             ((prompt.obj->number > 1) ? "" : "s"));
         prompt.obj->to_a = 0;
     }
 
-    msg_format("%s %s %s now protected against corrosion.",
-        ((prompt.obj->loc.where != INV_FLOOR) ? "Your" : "The"), o_name,
+    msg_format("%s%s现在可以防腐蚀了%s。",
+        ((prompt.obj->loc.where != INV_FLOOR) ? "你的" : "地上的"), o_name,
         ((prompt.obj->number > 1) ? "are" : "is"));
 
     android_calc_exp();
@@ -4129,12 +4129,12 @@ bool curse_armor(int slot)
 
     if (object_is_artifact(o_ptr) && (randint0(100) < 50))
     {
-        msg_format("A %s tries to %s, but your %s resists the effects!",
+        msg_format("%s 试图 %s，但你的 %s 抵抗了该效果！",
                "terrible black aura", "surround your armor", o_name);
     }
     else
     {
-        msg_format("A terrible black aura blasts your %s!", o_name);
+        msg_format("一股可怕的黑色光环冲击了你的 %s！", o_name);
         virtue_add(VIRTUE_ENCHANTMENT, -5);
         blast_object(o_ptr);
         o_ptr->curse_flags |= OFC_CURSED;
@@ -4162,12 +4162,12 @@ bool curse_weapon(bool force, int slot)
     /* Attempt a saving throw */
     if (object_is_artifact(o_ptr) && (randint0(100) < 50) && !force)
     {
-        msg_format("A %s tries to %s, but your %s resists the effects!",
+        msg_format("%s 试图 %s，但你的 %s 抵抗了该效果！",
                "terrible black aura", "surround your weapon", o_name);
     }
     else
     {
-        if (!force) msg_format("A terrible black aura blasts your %s!", o_name);
+        if (!force) msg_format("一股可怕的黑色光环冲击了你的 %s！", o_name);
         virtue_add(VIRTUE_ENCHANTMENT, -5);
         blast_object(o_ptr);
         o_ptr->curse_flags |= OFC_CURSED;
@@ -4302,9 +4302,9 @@ bool dimension_door(int rng)
     if (dimension_door_aux(x, y, rng)) return TRUE;
 
     if (p_ptr->pclass == CLASS_TIME_LORD)
-        msg_print("You fail to exit the temporal plane correctly!");
+        msg_print("你没能正确地离开时间位面！");
     else
-        msg_print("You fail to exit the astral plane correctly!");
+        msg_print("你没能正确地离开星界位面！");
 
     return TRUE;
 }
@@ -4318,12 +4318,12 @@ bool eat_magic(int power)
 
     if (p_ptr->pclass == CLASS_RUNE_KNIGHT)
     {
-        msg_print("You are not allowed to Eat Magic!");
+        msg_print("你不被允许吞噬魔法！");
         return FALSE;
     }
 
-    prompt.prompt = "Drain which item?";
-    prompt.error = "You have nothing to drain.";
+    prompt.prompt = "要吸取哪件物品？";
+    prompt.error = "你没有可吸取的物品。";
     prompt.filter = _obj_recharge_src;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -4351,12 +4351,12 @@ bool eat_magic(int power)
 
         if (drain)
         {
-            msg_format("Failed! Your %s is completely drained.", name);
+            msg_format("失败！你的 %s 已经被完全吸干了。", name);
             device_decrease_sp(prompt.obj, device_sp(prompt.obj));
         }
         else
         {
-            msg_format("Failed! Your %s is destroyed.", name);
+            msg_format("失败！你的 %s 被摧毁了。", name);
             prompt.obj->number--;
             obj_release(prompt.obj, OBJ_RELEASE_QUIET);
         }

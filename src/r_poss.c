@@ -404,9 +404,9 @@ void possessor_attack(point_t where, bool *fear, bool *mdeath, int mode)
         if (p_ptr->afraid && !fear_allow_melee(foe->id))
         {
             if (foe->ml)
-                cmsg_format(TERM_VIOLET, "You are too afraid to attack %s!", m_name_object);
+                cmsg_format(TERM_VIOLET, "你太害怕了，不敢攻击 %s！", m_name_object);
             else
-                cmsg_format(TERM_VIOLET, "There is something scary in your way!");
+                cmsg_format(TERM_VIOLET, "你前进的路上有可怕的东西！");
             return;
         }
 
@@ -416,7 +416,7 @@ void possessor_attack(point_t where, bool *fear, bool *mdeath, int mode)
             skill -= skill * MIN(100, p_ptr->stun) / 150;
         if (test_hit_norm(skill, ac, foe->ml))
         {
-            msg_format("You %s %s.", _hit_msg(blow), m_name_object);
+            msg_format("你%s了 %s。", _hit_msg(blow), m_name_object);
             for (j = 0; j < MAX_MON_BLOW_EFFECTS; j++)
             {
                 mon_effect_ptr effect = &blow->effects[j];
@@ -440,13 +440,13 @@ void possessor_attack(point_t where, bool *fear, bool *mdeath, int mode)
                         dam *= m;
                         switch (m)
                         {
-                        case 2: msg_format("You <color:U>gouge</color> %s!", m_name_object); break;
-                        case 3: msg_format("You <color:y>maim</color> %s!", m_name_object); break;
-                        case 4: msg_format("You <color:R>carve</color> %s!", m_name_object); break;
-                        case 5: msg_format("You <color:r>cleave</color> %s!", m_name_object); break;
-                        case 6: msg_format("You <color:v>smite</color> %s!", m_name_object); break;
-                        case 7: msg_format("You <color:v>eviscerate</color> %s!", m_name_object); break;
-                        default: msg_format("You <color:v>shred</color> %s!", m_name_object); break;
+                        case 2: msg_format("你<color:U>凿击</color>了 %s！", m_name_object); break;
+                        case 3: msg_format("你<color:y>致残</color>了 %s！", m_name_object); break;
+                        case 4: msg_format("你<color:R>割裂</color>了 %s！", m_name_object); break;
+                        case 5: msg_format("你<color:r>劈砍</color>了 %s！", m_name_object); break;
+                        case 6: msg_format("你<color:v>猛击</color>了 %s！", m_name_object); break;
+                        case 7: msg_format("你<color:v>开膛</color>了 %s！", m_name_object); break;
+                        default: msg_format("你<color:v>撕碎</color>了 %s！", m_name_object); break;
                         }
                     }
                     dam += p_ptr->to_d_m; /* XXX Need to subtract out later for non-damage effects */
@@ -490,7 +490,7 @@ void possessor_attack(point_t where, bool *fear, bool *mdeath, int mode)
                 case RBE_VAMP:
                     if (monster_living(foe_race) && gf_affect_m(GF_WHO_PLAYER, foe, GF_OLD_DRAIN, dam, GF_AFFECT_ATTACK))
                     {
-                        msg_format("You <color:D>drain life</color> from %s!", m_name_object);
+                        msg_format("你从 %s 身上<color:D>吸取生命</color>！", m_name_object);
                         hp_player(dam);
                         /* XXX limit amt per turn? */
                     }
@@ -505,7 +505,7 @@ void possessor_attack(point_t where, bool *fear, bool *mdeath, int mode)
         }
         else
         {
-            msg_print("You miss.");
+            msg_print("你没打中。");
         }
         if (mode == WEAPONMASTER_RETALIATION) break;
     }
@@ -514,7 +514,7 @@ void possessor_attack(point_t where, bool *fear, bool *mdeath, int mode)
     if (steal_ct && !*mdeath)
     {
         if (mon_save_p(foe->r_idx, A_DEX))
-            msg_print("You fail to run away!");
+            msg_print("你没能逃脱！");
         else
             teleport_player(25 + p_ptr->lev/2, 0);
     }
@@ -528,13 +528,13 @@ void possessor_cast(void)
     mon_race_ptr race = &r_info[(p_ptr->pclass == CLASS_BLUE_MAGE) ? MON_SEXY_SWIMSUIT : p_ptr->current_r_idx];
     if (!race->spells)
     {
-        if (p_ptr->pclass == CLASS_BLUE_MAGE) msg_print("You have not learned any spells yet.");
-        else msg_print("Your current body has no spells.");
+        if (p_ptr->pclass == CLASS_BLUE_MAGE) msg_print("你还没有学会任何法术。");
+        else msg_print("你当前的躯体没有法术。");
         return;
     }
     if (p_ptr->confused)
     {
-        msg_print("You are too confused.");
+        msg_print("你太困惑了。");
         return;
     }
     if (pelko()) return;
@@ -556,13 +556,13 @@ static void _possess_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Possess");
+        var_set_string(res, "附身");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Enter the corpse of a new body, gaining the powers and abilities of that form.");
+        var_set_string(res, "进入一具新躯体的尸骸中，获得该形态的力量和能力。");
         break;
     case SPELL_INFO:
-        var_set_string(res, format("Lvl %d", _calc_level(p_ptr->max_plv) + 5));
+        var_set_string(res, format("等级 %d", _calc_level(p_ptr->max_plv) + 5));
         break;
     case SPELL_CAST:
     {
@@ -574,7 +574,7 @@ static void _possess_spell(int cmd, variant *res)
 
         if (p_ptr->current_r_idx != MON_POSSESSOR_SOUL)
         {
-            msg_print("You must leave your current body first. Be careful!");
+            msg_print("你必须先离开当前的躯体。小心！");
             return;
         }
 
@@ -584,8 +584,8 @@ static void _possess_spell(int cmd, variant *res)
             return;
         }*/
 
-        prompt.prompt = "Possess which corpse?";
-        prompt.error = "You have nothing to possess.";
+        prompt.prompt = "附身哪具尸骸？";
+        prompt.error = "你没有什么可以附身的。";
         prompt.filter = _obj_can_possess;
         prompt.where[0] = INV_PACK;
         prompt.where[1] = INV_FLOOR;
@@ -597,12 +597,12 @@ static void _possess_spell(int cmd, variant *res)
         object_desc(name, prompt.obj, OD_NAME_ONLY | OD_SINGULAR);
         if (r_ptr->level > _calc_level(p_ptr->max_plv) + 5)
         {
-            msg_format("You are not powerful enough to possess %s (Lvl %d).",
+            msg_format("你不够强大，无法附身 %s (等级 %d)。",
                 name, r_ptr->level);
             return;
         }
 
-        msg_format("You possess %s.", name);
+        msg_format("你附身了 %s。", name);
         if (p_ptr->current_r_idx != MON_POSSESSOR_SOUL)
         {
             if (p_ptr->lev <= 10 || one_in_(3))
@@ -615,7 +615,7 @@ static void _possess_spell(int cmd, variant *res)
                 drop_near(&forge, -1, py, px);
             }
             else
-                msg_print("Your previous body quickly decays!");
+                msg_print("你之前的躯体迅速腐烂了！");
         }
 
         possessor_set_current_r_idx(prompt.obj->pval);
@@ -634,22 +634,22 @@ static void _unpossess_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Unpossess");
+        var_set_string(res, "解除附身");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Leave your current body, returning to your native form. Your current body may be destroyed in the process.");
+        var_set_string(res, "离开你当前的躯体，返回你的原生形态。在这个过程中你当前的躯体可能会被摧毁。");
         break;
     case SPELL_CAST:
     {
         var_set_bool(res, FALSE);
         if (p_ptr->current_r_idx == MON_POSSESSOR_SOUL) return; /* paranoia */
 
-        if (get_check("Your current body may be destroyed. Are you sure? "))
+        if (get_check("你当前的躯体可能会被摧毁。你确定吗？"))
         {
             int old_r_idx = p_ptr->current_r_idx;
             monster_race *old_r_ptr = &r_info[old_r_idx];
 
-            msg_print("You leave your current body!");
+            msg_print("你离开了当前的躯体！");
             if (p_ptr->lev <= 10 || one_in_(3))
             {
                 object_type forge;
@@ -660,7 +660,7 @@ static void _unpossess_spell(int cmd, variant *res)
                 drop_near(&forge, -1, py, px);
             }
             else
-                msg_print("Your previous body quickly decays!");
+                msg_print("你之前的躯体迅速腐烂了！");
 
             possessor_set_current_r_idx(MON_POSSESSOR_SOUL);
             var_set_bool(res, TRUE);
@@ -722,7 +722,7 @@ caster_info *possessor_caster_info(void)
     if (p_ptr->current_r_idx == MON_MIMIC)
     {
         info.which_stat = r_ptr->body.spell_stat;
-        info.magic_desc = "power";
+        info.magic_desc = "力量";
         info.options = 0;
         info.encumbrance.max_wgt = 450;
         info.encumbrance.weapon_pct = 0;
@@ -1238,21 +1238,8 @@ race_t *mon_possessor_get_race(void)
 
     if (!init)
     {
-        me.name = "Possessor";
-        me.desc = "The Possessor is an odd creature, completely harmless in its natural form. However, they "
-                    "are capable of possessing the corpses of monsters they have slain, and gain powers and "
-                    "abilities based on their current body. As such, they can become quite powerful indeed! "
-                    "Unfortunately, not every type of monster will drop a corpse, and getting suitable corspes "
-                    "to inhabit can be difficult. If the possessor ever leaves their current body, all of "
-                    "their equipment will be removed (except a light source) and they will temporarily return "
-                    "to their native, vulnerable state. Finally, leaving their current body will destroy that "
-                    "corpse most of the time, so the possessor should only do so if they have a better corpse "
-                    "on hand (and also only if there are no monsters nearby!). Possessors normally have full "
-                    "control of the body they inhabit; but at very low health this control becomes hard to "
-                    "maintain, and a possessor who suffers serious damage has a small chance of being ejected from the body.\n \n"
-                    "The stats, skills, spells, resistances and innate powers of a possessor are determined by the body they inhabit; "
-                    "be sure to check both the racial power command (<color:keypress>U</color>/<color:keypress>O</color>) and the magic command (<color:keypress>m</color>) after possessing a new body. "
-                    "The current body also determines the spell stat; for example, a novice priest possessor uses wisdom, while a novice mage possessor relies on intelligence.";
+        me.name = "附身者";
+        me.desc = "附身者是一种古怪的生物，在自然形态下完全无害。然而，它们能够附身于被它们杀死的怪物尸体上，并根据当前躯体获得相应的力量和能力。因此，它们可以变得非常强大！不幸的是，并非所有种类的怪物都会掉落尸体，因此获得合适的尸骸来栖身可能很困难。如果附身者离开他们当前的躯体，他们所有的装备（除了光源）都将被移除，并暂时回到他们原生、脆弱的状态。最后，离开当前躯体通常会摧毁那具尸骸，因此附身者只有在手头有更好的尸骸时（并且附近没有怪物时！）才应该这样做。附身者通常完全控制它们居住的身体；但在极低的生命值下，这种控制变得难以维持，遭受严重伤害的附身者有很小的几率被从躯体中弹出。\n \n附身者的属性、技能、法术、抗性和天生能力由他们占据的躯干决定；在附身新躯体后，一定要检查种族能力命令 (<color:keypress>U</color>/<color:keypress>O</color>) 和魔法命令 (<color:keypress>m</color>)。当前的身体也决定了施法属性；例如，新手牧师的附身躯干使用感知，而新手魔法师的附身躯干则依赖智力。";
 
         me.exp = 250;
         me.shop_adjust = 110; /* Really should depend on current form */
@@ -1305,7 +1292,7 @@ void possessor_on_take_hit(void)
             int old_r_idx = p_ptr->current_r_idx;
             monster_race *old_r_ptr = &r_info[old_r_idx];
 
-            msg_print("You can no longer maintain your current body!");
+            msg_print("你再也无法维持当前的躯干了！");
             if (one_in_(3))
             {
                 object_type forge;
@@ -1316,7 +1303,7 @@ void possessor_on_take_hit(void)
                 drop_near(&forge, -1, py, px);
             }
             else
-                msg_print("Your previous body quickly decays!");
+                msg_print("你之前的躯体迅速腐烂了！");
 
             possessor_set_current_r_idx(MON_POSSESSOR_SOUL);
             p_ptr->chp = p_ptr->mhp; /* Be kind. This effect is nasty! */
@@ -1324,7 +1311,7 @@ void possessor_on_take_hit(void)
         }
         else
         {
-            msg_print("You struggle to maintain possession of your current body!");
+            msg_print("你挣扎着试图维持对当前躯干的占据！");
         }
     }
 }
@@ -1413,7 +1400,7 @@ void possessor_explode(int dam)
         else
             possessor_set_current_r_idx(MON_POSSESSOR_SOUL);
 
-        take_hit(DAMAGE_NOESCAPE, dam, "Exploding");
+        take_hit(DAMAGE_NOESCAPE, dam, "爆炸");
         set_stun(p_ptr->stun + 10, FALSE);
     }
 }
@@ -1430,14 +1417,14 @@ void possessor_character_dump(doc_ptr doc)
         mon_race_ptr race = &r_info[p_ptr->current_r_idx];
         bool old_use_graphics = use_graphics;
         use_graphics = FALSE;
-        doc_printf(doc, "<topic:CurrentForm>================================ <color:keypress>C</color>urrent Form =================================\n\n");
+        doc_printf(doc, "<topic:CurrentForm>================================ 当 前 的 形 态 (<color:keypress>C</color>) =================================\n\n");
         mon_display_possessor(race, doc);
         doc_newline(doc);
         use_graphics = old_use_graphics;
     }
-    doc_printf(doc, "<topic:RecentForms>================================ <color:keypress>R</color>ecent Forms =================================\n\n");
+    doc_printf(doc, "<topic:RecentForms>================================ 最 近 的 形 态 (<color:keypress>R</color>) =================================\n\n");
     doc_insert(doc, "<style:table>");
-    doc_printf(doc, "<color:G>%-33.33s CL Day  Time  DL %-28.28s</color>\n", "Most Recent Forms", "Location");
+    doc_printf(doc, "<color:G>%-33.33s 等级 日期 时间 DL %-28.28s</color>\n", "最近的形态", "地点");
 
     while (p && ct < 100)
     {

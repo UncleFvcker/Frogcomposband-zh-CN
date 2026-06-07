@@ -17,19 +17,19 @@ bool can_do_cmd_cast(void)
 {
     if (dun_level && (d_info[dungeon_type].flags1 & DF1_NO_MAGIC))
     {
-        msg_print("The dungeon absorbs all attempted magic!");
+        msg_print("地牢吸收了所有尝试施展的魔法！");
         msg_print(NULL);
         return FALSE;
     }
     else if (p_ptr->anti_magic)
     {
-        msg_print("An anti-magic shell disrupts your magic!");
+        msg_print("一个反魔法护罩扰乱了你的魔法！");
         equip_learn_flag(OF_NO_MAGIC);
         return FALSE;
     }
     else if (IS_SHERO())
     {
-        msg_format("You cannot think directly!");
+        msg_format("你无法直线思考！");
         return FALSE;
     }
     else

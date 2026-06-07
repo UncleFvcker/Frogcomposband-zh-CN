@@ -25,7 +25,7 @@ void _dragon_pack_init(void)
 {
     if (_pack_initialized) return;
     inv_free(_dragon_pack);
-    _dragon_pack = inv_alloc("Extra", INV_SPECIAL2, _MAX_PACK_SLOTS);
+    _dragon_pack = inv_alloc("额外", INV_SPECIAL2, _MAX_PACK_SLOTS);
     _pack_initialized = TRUE;
 }
 
@@ -118,13 +118,13 @@ static void _generate_storm_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Storm Winds");
+        var_set_string(res, "风暴之风");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam));
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a ball of storm winds at your chosen target.");
+        var_set_string(res, "向你选择的目标发射一团风暴之风。");
         break;
     case SPELL_CAST:
     {
@@ -147,13 +147,13 @@ static void _confuse_monster_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Confuse Monster");
+        var_set_string(res, "混乱怪物");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(pow));
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to confuse a monster.");
+        var_set_string(res, "尝试使单个怪物陷入混乱。");
         break;
     case SPELL_CAST:
     {
@@ -176,13 +176,13 @@ static void _sleep_monster_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Sleep Monster");
+        var_set_string(res, "催眠怪物");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(pow));
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to put a single monster to sleep.");
+        var_set_string(res, "尝试使单个怪物陷入沉睡。");
         break;
     case SPELL_CAST:
     {
@@ -206,13 +206,13 @@ static void _mana_bolt_spell(int cmd, variant *res)
     switch (cmd)
     {
         case SPELL_NAME:
-        var_set_string(res, "Mana Bolt");
+        var_set_string(res, "法力箭");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(spell_power(dice), sides, spell_power(p_ptr->to_d_spell + p_ptr->lev)));
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a bolt of mana.");
+        var_set_string(res, "发射一枚法力箭矢。");
         break;
     case SPELL_CAST:
     {
@@ -235,13 +235,13 @@ static void _polymorph_dragon_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        if (no_poly) var_set_string(res, "Word of Destruction");
-        else var_set_string(res, "Dragon Polymorph");
+        if (no_poly) var_set_string(res, "毁灭之语");
+        else var_set_string(res, "化身巨龙");
         break;
     case SPELL_DESC:
-        if (no_poly) var_set_string(res, "Destroys everything nearby.");
-        else if (p_ptr->mimic_form == MIMIC_DRAGON) var_set_string(res, "Reverts you back into your normal shape.");
-        else var_set_string(res, "Transforms you into a fire-breathing dragon.");
+        if (no_poly) var_set_string(res, "摧毁附近的一切。");
+        else if (p_ptr->mimic_form == MIMIC_DRAGON) var_set_string(res, "使你变回原本的形态。");
+        else var_set_string(res, "将你变成一只喷吐火焰的巨龙。");
         break;
     case SPELL_INFO:
         if (!no_poly) var_set_string(res, info_duration(500, 500));
@@ -259,7 +259,7 @@ static void _polymorph_dragon_spell(int cmd, variant *res)
         else if (p_ptr->mimic_form == MIMIC_NONE) set_mimic(500 + randint1(500), MIMIC_DRAGON, FALSE);
         else
         {
-            msg_print("You are already polymorphed!");
+            msg_print("你已经处于变形状态！");
             break;
         }
         var_set_bool(res, TRUE);
@@ -275,13 +275,13 @@ static void _device_focus_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Device Focus");
+        var_set_string(res, "装置专注");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Channels your magic through a device, generating a powerful mana attack but sometimes destroying the device and hurting you.");
+        var_set_string(res, "将你的魔法引导通过一个装置，产生强大的法力攻击，但有时会摧毁该装置并伤害到你。");
         break;
     case SPELL_INFO:
-        var_set_string(res, "dam 7*power");
+        var_set_string(res, "伤害 7*力量");
         break;
     case SPELL_CAST:
     {
@@ -290,8 +290,8 @@ static void _device_focus_spell(int cmd, variant *res)
 
         var_set_bool(res, FALSE);
 
-        prompt.prompt = "Focus on which device?";
-        prompt.error = "You have nothing to focus on.";
+        prompt.prompt = "对哪个装置使用专注？";
+        prompt.error = "你没有可以专注的装置。";
         prompt.filter = object_is_device;
         prompt.where[0] = INV_PACK;
         prompt.where[1] = INV_FLOOR;
@@ -307,7 +307,7 @@ static void _device_focus_spell(int cmd, variant *res)
         {
             char o_name[MAX_NLEN];
             object_desc(o_name, prompt.obj, OD_OMIT_PREFIX | OD_COLOR_CODED);
-            msg_format("Your %s explodes!", o_name);
+            msg_format("你的%s爆炸了！", o_name);
             obj_zero(prompt.obj);
             obj_release(prompt.obj, OBJ_RELEASE_QUIET);
             take_hit(DAMAGE_NOESCAPE, 20, "an exploding device");
@@ -325,10 +325,10 @@ static void _force_field_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Force Field");
+        var_set_string(res, "力场");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Installs a temporary force field around your weapon, adding 1 damage die and causing the weapon's attacks to stun. The force field does not work if you are dual-wielding, and disappears if you unwield your weapon.");
+        var_set_string(res, "在你的武器周围设置一个临时力场，增加 1 个伤害骰，并使该武器的攻击附带震慑效果。力场在你双持武器时不起作用，且如果你卸下武器，力场会消失。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(35, 35));
@@ -348,13 +348,13 @@ static void _thundershadow_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shadow Projection");
+        var_set_string(res, "暗影投射");
         break;
     case SPELL_INFO:
-        var_set_string(res, format("dam %dd6/zap", 8 + p_ptr->lev / 3));
+        var_set_string(res, format("伤害 %dd6/次电击", 8 + p_ptr->lev / 3));
         break;
     case SPELL_DESC:
-        var_set_string(res, "Projects your shadow to a nearby location. Your shadow will conduct lightning and zap any monster who touches it; however, you will also take damage if a monster successfully eliminates the shadow (15 if the shadow explodes, 30 if it is destroyed and 60 if it is dispelled).");
+        var_set_string(res, "将你的暗影投射到附近的位置。你的暗影会传导闪电，并电击任何接触到它的怪物；然而，如果怪物成功消除了暗影，你也会受到伤害（暗影爆炸受 15 点伤害，被摧毁受 30 点伤害，被净化受 60 点伤害）。");
         break;
     case SPELL_CAST:
     {
@@ -373,13 +373,13 @@ static void _thundershadow_spell(int cmd, variant *res)
         }
         if (!cave_naked_bold(ty, tx))
         {
-            msg_print("You can only project your shadow onto an empty square!");
+            msg_print("你只能将暗影投射到空地上！");
             return;
         }
         etaisyys = distance(ty, tx, py, px);
         if (etaisyys > MAX_RANGE)
         {
-            msg_print("You cannot project your shadow that far!");
+            msg_print("你无法将暗影投射到那么远！");
             return;
         }
 
@@ -388,7 +388,7 @@ static void _thundershadow_spell(int cmd, variant *res)
         /* This costs time and HP whether successful or not */
         if ((!los(ty, tx, py, px)) && (!one_in_(etaisyys)))
         {
-            msg_print("You try to project your shadow without line of sight, but your attempt fails.");
+            msg_print("你试图在没有视线的情况下投射暗影，但你的尝试失败了。");
             return;
         }
 
@@ -459,7 +459,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.which_stat = A_INT;
         me.min_fail = 0;
         me.min_level = 1;
@@ -552,7 +552,7 @@ static void _give_reward(int monesko)
         }
         object_origins(q_ptr, ORIGIN_PATRON);
         obj_identify_fully(q_ptr);
-        msg_format("The voice of Karrot echoes through the dungeon: <color:v>Behold, my %s, how generously I reward thee!</color>", p_ptr->psex == SEX_FEMALE ? "daughter" : "son");
+        msg_format("卡罗特的声音在地下城中回荡：<color:v>看吧，吾%s，吾对汝等之赏赐何等丰厚！</color>", p_ptr->psex == SEX_FEMALE ? "女" : "儿");
         (void)drop_near(q_ptr, -1, py, px);
     }    
 }
@@ -662,7 +662,7 @@ void karrot_quest_finished(quest_ptr q, bool success)
     if (!success)
     {
         int i, monesko = 0;
-        msg_print("The voice of Karrot roars: <color:v>I am disappointed in thee, mortal.</color>");
+        msg_print("卡罗特的声音咆哮道：<color:v>凡人，吾对汝非常失望。</color>");
         for (i = 0; i < _tq; i++)
         {
             if ((_kt_quests[i].completed_turn) && (_kt_quests[i].killed != _kt_quests[i].goal_ct)) monesko++;
@@ -670,7 +670,7 @@ void karrot_quest_finished(quest_ptr q, bool success)
         if ((randint0(50) < monesko) && (_kt_quests[_tq].killed < _kt_quests[_tq].goal_ct / 2))
         {
             bool punished = FALSE;
-            msg_print("You feel a sudden surge of power as Karrot gathers his will to punish you...");
+            msg_print("你感到一股突如其来的力量涌动，卡罗特正汇聚其意志来惩罚你……");
             while (!punished) /* This isn't going to be pretty... */
             {
                 if (one_in_(3))
@@ -681,7 +681,7 @@ void karrot_quest_finished(quest_ptr q, bool success)
                 }
                 if (one_in_(3))
                 {
-                    msg_print("You are punched by an invisible fist!");
+                    msg_print("你被一只无形的拳头击中了！");
                     take_hit(DAMAGE_NOESCAPE, MIN(p_ptr->lev * 4, p_ptr->mhp * 2 / 5), "the wrath of Karrot");
                     set_stun(p_ptr->stun + 10, FALSE);
                     punished = TRUE;
@@ -692,7 +692,7 @@ void karrot_quest_finished(quest_ptr q, bool success)
                     if (slot) curse_armor(slot);
                     else
                     {
-                        msg_print("You are punched by an invisible fist!");
+                        msg_print("你被一只无形的拳头击中了！");
                         take_hit(DAMAGE_NOESCAPE, MIN(p_ptr->lev * 5, p_ptr->mhp / 2), "the wrath of Karrot");
                         set_stun(p_ptr->stun + 10, FALSE);
                     }
@@ -708,7 +708,7 @@ void karrot_quest_finished(quest_ptr q, bool success)
                     }
                     else
                     {
-                        msg_print("You are punched by an invisible fist!");
+                        msg_print("你被一只无形的拳头击中了！");
                         take_hit(DAMAGE_NOESCAPE, MIN(p_ptr->lev * 4, p_ptr->mhp * 2 / 5), "the wrath of Karrot");
                         set_stun(p_ptr->stun + 10, FALSE);
                     }
@@ -747,7 +747,7 @@ void karrot_quest_finished(quest_ptr q, bool success)
         /* No need to create stairs because purple quests allow normal stair generation
          * (indeed, generating stairs would be risky because purple quests can appear
          * at the bottom of a dungeon) */
-        cmsg_print(TERM_L_BLUE, "You just completed your quest!");
+        cmsg_print(TERM_L_BLUE, "你刚刚完成了任务！");
         msg_add_tiny_screenshot(50, 24);
         p_ptr->redraw |= PR_DEPTH;
 
@@ -933,15 +933,15 @@ bool karrot_replace_art(object_type *o_ptr)
                 case 3: kuvaus = "beloved"; break;
                 default: kuvaus = "precious"; break;
             }
-            msg_format("The voice of Karrot booms out: <color:v>I am pleased with thee, my %s; thou hast done well to recover my %s %s!</color>", p_ptr->psex == SEX_FEMALE ? "daughter" : "son", kuvaus, o_name);
+            msg_format("卡罗特的声音如雷鸣般响起：<color:v>吾甚悦，吾%s；汝成功寻回了吾之%s%s，干得好！</color>", p_ptr->psex == SEX_FEMALE ? "女" : "儿", kuvaus, o_name);
             no_karrot_hack = TRUE;
             obj_identify_fully(o_ptr);
             object_desc(o_name, o_ptr, OD_COLOR_CODED);
             if (forge.name1 == ART_UROG)
             {
-                cmsg_print(TERM_VIOLET, "Thou art my most favored servant, first among my Disciples; take now upon thyself the sword of Destiny, for none are more worthy to wield it.");
+                cmsg_print(TERM_VIOLET, "汝乃吾最受恩宠之仆，众门徒之首；即刻领受命运之剑吧，无人比汝更配挥舞此剑。");
             }
-            msg_format("Karrot claims %s, and gives you a reward for your good work.", o_name);
+            msg_format("卡罗特拿走了%s，并为了你出色的工作给予了你奖励。", o_name);
             forge.level = o_ptr->level;
             object_origins(&forge, ORIGIN_PATRON);
             obj_identify_fully(&forge);
@@ -1041,7 +1041,7 @@ static void _dump_satchel(doc_ptr doc)
     {
         char o_name[MAX_NLEN];
 
-        doc_insert(doc, "<topic:Satchel>============================ <color:keypress>S</color>hape-Shift Equipment ============================\n\n");
+        doc_insert(doc, "<topic:Satchel>============================ 变形装备 (<color:keypress>S</color>) ============================\n\n");
         for (slot = 1; slot <= _MAX_PACK_SLOTS; slot++)
         {
             object_type *o_ptr = inv_obj(_dragon_pack, slot);
@@ -1064,7 +1064,7 @@ static void _dump_satchel(doc_ptr doc)
 static void _dump_quests(doc_ptr doc)
 {
     int i;
-    doc_insert(doc, "<topic:Purple Quests>================================ <color:keypress>P</color>urple Quests ================================\n\n");
+    doc_insert(doc, "<topic:Purple Quests>================================ 紫色任务 (<color:keypress>P</color>) ================================\n\n");
     for (i = 0; i < _q_idx; i++)
     {
         int vari = TERM_L_GREEN;
@@ -1078,31 +1078,31 @@ static void _dump_quests(doc_ptr doc)
             char name[MAX_NLEN];
             strcpy(name, r_name + r_ptr->name);
             plural_aux(name);
-            doc_printf(doc, "%2d) <indent><style:indent><color:%c>%s, Level %d - Kill %d %s\n", i + 1, attr_to_attr_char(vari), d_name + d_info[_kt_quests[i].dungeon].name, _kt_quests[i].level, _kt_quests[i].goal_ct, name);
+            doc_printf(doc, "%2d) <indent><style:indent><color:%c>%s, 楼层 %d - 击杀 %d 只 %s\n", i + 1, attr_to_attr_char(vari), d_name + d_info[_kt_quests[i].dungeon].name, _kt_quests[i].level, _kt_quests[i].goal_ct, name);
         }
         else
-            doc_printf(doc, "%2d) <indent><style:indent><color:%c>%s, Level %d - Kill %s\n", i + 1, attr_to_attr_char(vari), d_name + d_info[_kt_quests[i].dungeon].name, _kt_quests[i].level, r_name + r_ptr->name);
+            doc_printf(doc, "%2d) <indent><style:indent><color:%c>%s, 楼层 %d - 击杀 %s\n", i + 1, attr_to_attr_char(vari), d_name + d_info[_kt_quests[i].dungeon].name, _kt_quests[i].level, r_name + r_ptr->name);
         switch (vari)
         {
             case TERM_YELLOW:
-                doc_printf(doc, "In Progress\n");
+                doc_printf(doc, "进行中\n");
                 break;
             case TERM_RED:
                 extract_day_hour_min_imp(_kt_quests[i].completed_turn, &day, &hour, &min);
-                doc_printf(doc, "Failed: Day %d, %d:%02d, at CL %d", day, hour, min, _kt_quests[i].completed_lev);
-                if (_kt_quests[i].goal_ct > 1) doc_printf(doc, " (%d kills)", _kt_quests[i].killed);
+                doc_printf(doc, "失败：第 %d 天，%d:%02d，玩家等级 %d", day, hour, min, _kt_quests[i].completed_lev);
+                if (_kt_quests[i].goal_ct > 1) doc_printf(doc, "(已击杀 %d)", _kt_quests[i].killed);
                 doc_printf(doc, "\n");
                 break;
             default:
                 extract_day_hour_min_imp(_kt_quests[i].completed_turn, &day, &hour, &min);
-                doc_printf(doc, "Completed: Day %d, %d:%02d, at CL %d\n", day, hour, min, _kt_quests[i].completed_lev);
+                doc_printf(doc, "完成：第 %d 天，%d:%02d，玩家等级 %d\n", day, hour, min, _kt_quests[i].completed_lev);
                 break;
         }
         doc_printf(doc, "</color></style></indent>\n");
     }
     if (p_ptr->wizard)
     {
-        doc_printf(doc, "\n Score: %d\n", _karrot_happy_score());
+        doc_printf(doc, "\n 分数：%d\n", _karrot_happy_score());
     }
 }
 
@@ -1120,10 +1120,10 @@ static void _dragon_breathe_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe");
+        var_set_string(res, "喷吐");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes fire at your opponent.");
+        var_set_string(res, "向你的对手喷吐火焰。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, puhallus));
@@ -1137,7 +1137,7 @@ static void _dragon_breathe_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (get_fire_dir(&dir))
         {
-            msg_print("You breathe fire!");
+            msg_print("你喷吐了火焰！");
             fire_ball(GF_FIRE, dir, puhallus, -1 - (p_ptr->lev / 20));
             var_set_bool(res, TRUE);
         }
@@ -1175,7 +1175,7 @@ static void _dragon_calc_innate_attacks(void)
         a.weight = 100 + l;
         calc_innate_blows(&a, 400);
         a.msg = "You claw.";
-        a.name = "Claw";
+        a.name = "抓";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -1197,7 +1197,7 @@ static void _dragon_calc_innate_attacks(void)
         else
             a.blows = 100;
         a.msg = "You bite.";
-        a.name = "Bite";
+        a.name = "咬";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -1248,7 +1248,7 @@ race_t *karrot_dragon_get_race(void)
 
         me.infra = 5;
         me.exp = 250;
-        me.name = "Dragon";
+        me.name = "龙";
         me.desc = "";
             
         me.calc_bonuses = _dragon_calc_bonuses;
@@ -1278,7 +1278,7 @@ class_t *karrot_get_class(void)
     skills_t bs = { 23,  33,  39,   3,  32,  16,  56,  46};
     skills_t xs = {  9,  12,  11,   0,   0,   0,  15,  14};
 
-        me.name = "Karrot";
+        me.name = "卡罗特";
         me.subdesc = "Karrot is a proud and ambitious Purple, convinced that it is his destiny "
                     "to one day rule the universe; but rather than getting personally involved, "
                     "he has assigned to his Disciples the task of eliminating any potential "

@@ -157,7 +157,7 @@ static bool _absorb(object_type *o_ptr)
         object_desc(o_name, o_ptr, OD_COLOR_CODED);
     }
     else object_desc(o_name, o_ptr, OD_NAME_ONLY | OD_COLOR_CODED);
-    msg_format("You attempt to drain power from %s.", o_name);
+    msg_format("你尝试从 %s 中吸取力量。", o_name);
 
     /* No absorbing the same artifact repeatedly... */
     if (o_ptr->name1) 
@@ -203,7 +203,7 @@ static bool _absorb(object_type *o_ptr)
     if (result)
     {
         p_ptr->update |= PU_BONUS;
-        msg_print("You grow stronger!");
+        msg_print("你变得更强了！");
         _update_object(target_slot);
     }
     return result;
@@ -283,23 +283,23 @@ typedef struct {
 } _flag_info_t;
 
 static _flag_info_t _slay_flag_info[] = {
-    { OF_SLAY_EVIL, 2, "Slay Evil" },
-    { OF_SLAY_GOOD, 2, "Slay Good" },
-    { OF_SLAY_UNDEAD, 2, "Slay Undead" },
-    { OF_SLAY_DEMON, 2, "Slay Demon" },
-    { OF_SLAY_DRAGON, 2, "Slay Dragon" },
-    { OF_SLAY_HUMAN, 2, "Slay Human" },
-    { OF_SLAY_ANIMAL, 2, "Slay Animal" },
-    { OF_SLAY_ORC, 2, "Slay Orc" },
-    { OF_SLAY_TROLL, 2, "Slay Troll" },
-    { OF_SLAY_GIANT, 2, "Slay Giant" },
-    { OF_SLAY_LIVING, 2, "Slay Living" },
+    { OF_SLAY_EVIL, 2, "屠杀邪恶" },
+    { OF_SLAY_GOOD, 2, "屠杀善良" },
+    { OF_SLAY_UNDEAD, 2, "屠杀亡灵" },
+    { OF_SLAY_DEMON, 2, "屠杀恶魔" },
+    { OF_SLAY_DRAGON, 2, "屠杀龙类" },
+    { OF_SLAY_HUMAN, 2, "屠杀人类" },
+    { OF_SLAY_ANIMAL, 2, "屠杀动物" },
+    { OF_SLAY_ORC, 2, "屠杀兽人" },
+    { OF_SLAY_TROLL, 2, "屠杀巨魔" },
+    { OF_SLAY_GIANT, 2, "屠杀巨人" },
+    { OF_SLAY_LIVING, 2, "屠杀活物" },
 
-    { OF_BRAND_ACID, 2, "Brand Acid" },
-    { OF_BRAND_ELEC, 2, "Brand Elec" },
-    { OF_BRAND_FIRE, 2, "Brand Fire" },
-    { OF_BRAND_COLD, 2, "Brand Cold" },
-    { OF_BRAND_VAMP, 2, "Vampirism" },
+    { OF_BRAND_ACID, 2, "强酸附魔" },
+    { OF_BRAND_ELEC, 2, "闪电附魔" },
+    { OF_BRAND_FIRE, 2, "火焰附魔" },
+    { OF_BRAND_COLD, 2, "寒冰附魔" },
+    { OF_BRAND_VAMP, 2, "吸血附魔" },
 
     { -1, 0, NULL}
 };
@@ -716,18 +716,18 @@ static void _absorb_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Absorb Powers");
+        var_set_string(res, "吸收力量");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Destroys a single set of gloves, boots or body armour, absorbing the essence of its power.");
+        var_set_string(res, "摧毁一副手套、一双靴子或一件身体护甲，吸收其力量的精华。");
         break;
     case SPELL_CAST:
     {
         obj_prompt_t prompt = {0};
 
         var_set_bool(res, FALSE);
-        prompt.prompt = "Absorb the powers of which item?";
-        prompt.error = "You have nothing to absorb.";
+        prompt.prompt = "吸收哪件物品的力量？";
+        prompt.error = "你没有什么可以吸收的。";
         prompt.filter = _object_is_rag_usable;
         prompt.where[0] = INV_PACK;
         prompt.where[1] = INV_FLOOR;
@@ -754,10 +754,10 @@ static void _detect_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Armour");
+        var_set_string(res, "探测护甲");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Locate nearby gloves, boots and body armour.");
+        var_set_string(res, "定位附近的手套、靴子和身体护甲。");
         break;
     case SPELL_CAST:
     {
@@ -786,7 +786,7 @@ static void _detect_spell(int cmd, variant *res)
             detect = TRUE;
 
         if (detect)
-            msg_print("You sense your kind.");
+            msg_print("你感应到了你的同类。");
 
         var_set_bool(res, TRUE);
         break;
@@ -802,10 +802,10 @@ static void _judge_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Identify Armour");
+        var_set_string(res, "鉴定护甲");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Identifies gloves, boots or body armour.");
+        var_set_string(res, "鉴定手套、靴子或身体护甲。");
         break;
     case SPELL_CAST:
         if (p_ptr->lev >= 35)
@@ -872,7 +872,7 @@ static void _gain_level(int new_level)
     else
     {
         object_type *o_ptr = equip_obj(equip_find_first(object_is_body_armour));
-        msg_print("You have evolved into a Sexy Swimsuit.");
+        msg_print("你进化成了性感泳装(Sexy Swimsuit)。");
         p_ptr->current_r_idx = MON_SEXY_SWIMSUIT;
         o_ptr->k_idx = lookup_kind(TV_SOFT_ARMOR, SV_ABUNAI_MIZUGI);
         o_ptr->sval = SV_ABUNAI_MIZUGI;
@@ -912,7 +912,7 @@ static void _dump_flag(doc_ptr doc, int which, cptr name, bool is_resist)
             if ((_essences[i][which] >= threshold[i]) || (lisays >= huippu))
             {
                 if (is_ability) sprintf(buf[i], "     Y");
-                else sprintf(buf[i], "    Max");
+                else sprintf(buf[i], "最大");
             }
             else sprintf(buf[i], "%5d/%-5d", _essences[i][which], threshold[i]);
         }
@@ -921,7 +921,7 @@ static void _dump_flag(doc_ptr doc, int which, cptr name, bool is_resist)
         if (bonus > 0)
         {
             if ((is_resist) || (which == OF_HOLD_LIFE) || (which == OF_FREE_ACT) || (which == OF_SEE_INVIS))
-                doc_printf(doc, "   %dx\n", bonus);
+                doc_printf(doc, "%dx\n", bonus);
             else doc_printf(doc, "   %+d\n", bonus);
         }
         else doc_printf(doc, "\n");
@@ -931,27 +931,27 @@ static void _dump_flag(doc_ptr doc, int which, cptr name, bool is_resist)
 static void _character_dump(doc_ptr doc)
 {
     int i;
-    doc_printf(doc, "<topic:Essences>=================================== <color:keypress>E</color>ssences ==================================\n\n");
-    doc_printf(doc, "   <color:G>%-22.22s    Rag       Gloves       Boots     Bonus</color>\n", "Stats");
+    doc_printf(doc, "<topic:Essences>=================================== 精 华 (<color:keypress>E</color>) ==================================\n\n");
+    doc_printf(doc, "<color:G>%-22.22s 破布 手套 靴子 加成</color>\n", "属性");
     for (i = 0; i < MAX_STATS; i++) /* Assume in order */
         _dump_flag(doc, OF_STR + i, stat_name_true[A_STR + i], FALSE);
 
-    doc_printf(doc, "\n   <color:G>%-22.22s    Rag       Gloves       Boots     Bonus</color>\n", "Skills");
-    _dump_flag(doc, _ESSENCE_TO_HIT, "To Hit", FALSE);
-    _dump_flag(doc, _ESSENCE_TO_DAM, "To Dam", FALSE);
-    _dump_flag(doc, _ESSENCE_AC, "To AC", FALSE);
-    _dump_flag(doc, OF_STEALTH, "Stealth", FALSE);
-    _dump_flag(doc, OF_SPEED, "Speed", FALSE);
-    _dump_flag(doc, OF_BLOWS, "Attacks", FALSE);
-    _dump_flag(doc, OF_LIFE, "Life", FALSE);
-    _dump_flag(doc, OF_SEARCH, "Searching", FALSE);
-    _dump_flag(doc, OF_INFRA, "Infravision", FALSE);
-    _dump_flag(doc, OF_TUNNEL, "Digging", FALSE);
-    _dump_flag(doc, OF_MAGIC_MASTERY, "Magic Mastery", FALSE);
-    _dump_flag(doc, OF_DEVICE_POWER, "Device Power", FALSE);
-    _dump_flag(doc, OF_LITE, "Light", FALSE);
+    doc_printf(doc, "\n <color:G>%-22.22s 破布 手套 靴子 加成</color>\n", "技能");
+    _dump_flag(doc, _ESSENCE_TO_HIT, "命中", FALSE);
+    _dump_flag(doc, _ESSENCE_TO_DAM, "伤害", FALSE);
+    _dump_flag(doc, _ESSENCE_AC, "护甲", FALSE);
+    _dump_flag(doc, OF_STEALTH, "潜行", FALSE);
+    _dump_flag(doc, OF_SPEED, "速度", FALSE);
+    _dump_flag(doc, OF_BLOWS, "攻击次数", FALSE);
+    _dump_flag(doc, OF_LIFE, "生命", FALSE);
+    _dump_flag(doc, OF_SEARCH, "搜索", FALSE);
+    _dump_flag(doc, OF_INFRA, "红外视力", FALSE);
+    _dump_flag(doc, OF_TUNNEL, "挖掘", FALSE);
+    _dump_flag(doc, OF_MAGIC_MASTERY, "魔法精通", FALSE);
+    _dump_flag(doc, OF_DEVICE_POWER, "装置威力", FALSE);
+    _dump_flag(doc, OF_LITE, "光照", FALSE);
  
-    doc_printf(doc, "\n   <color:G>%-22.22s    Rag       Gloves       Boots     Bonus</color>\n", "Slays");
+    doc_printf(doc, "\n <color:G>%-22.22s 破布 手套 靴子 加成</color>\n", "斩杀");
     for (i = 0; ; i++)
     {
         int j = _slay_flag_info[i].flag;
@@ -959,49 +959,49 @@ static void _character_dump(doc_ptr doc)
         _dump_flag(doc, j, _slay_flag_info[i].name, FALSE);
     }
 
-    doc_printf(doc, "\n   <color:G>%-22.22s    Rag       Gloves       Boots     Bonus</color>\n", "Resistances");
+    doc_printf(doc, "\n <color:G>%-22.22s 破布 手套 靴子 加成</color>\n", "抗性");
     for (i = 0; i < RES_MAX; i++)
         _dump_flag(doc, res_get_object_flag(i), format("%^s", res_name(i)), TRUE);
 
-    _dump_flag(doc, OF_IM_ACID, "Immune Acid", FALSE);
-    _dump_flag(doc, OF_IM_ELEC, "Immune Elec", FALSE);
-    _dump_flag(doc, OF_IM_FIRE, "Immune Fire", FALSE);
-    _dump_flag(doc, OF_IM_COLD, "Immune Cold", FALSE);
+    _dump_flag(doc, OF_IM_ACID, "强酸免疫", FALSE);
+    _dump_flag(doc, OF_IM_ELEC, "闪电免疫", FALSE);
+    _dump_flag(doc, OF_IM_FIRE, "火焰免疫", FALSE);
+    _dump_flag(doc, OF_IM_COLD, "寒冰免疫", FALSE);
 
-    doc_printf(doc, "\n   <color:G>%-22.22s    Rag       Gloves       Boots     Bonus</color>\n", "Abilities");
-    _dump_flag(doc, OF_FREE_ACT, "Free Action", FALSE);
-    _dump_flag(doc, OF_SEE_INVIS, "See Invisible", FALSE);
-    _dump_flag(doc, OF_SLOW_DIGEST, "Slow Digestion", FALSE);
-    _dump_flag(doc, OF_REGEN, "Regeneration", FALSE);
-    _dump_flag(doc, OF_LEVITATION, "Levitation", FALSE);
-    _dump_flag(doc, OF_NO_MAGIC, "Antimagic", FALSE);
-    _dump_flag(doc, OF_LORE2, "Auto-Identify", FALSE);
-    _dump_flag(doc, OF_REFLECT, "Reflection", FALSE);
-    _dump_flag(doc, OF_HOLD_LIFE, "Hold Life", FALSE);
-    _dump_flag(doc, OF_MAGIC_RESISTANCE, "Resist Magic", FALSE);
-    _dump_flag(doc, OF_AURA_FIRE, "Aura Fire", FALSE);
-    _dump_flag(doc, OF_AURA_ELEC, "Aura Elec", FALSE);
-    _dump_flag(doc, OF_AURA_COLD, "Aura Cold", FALSE);
-    _dump_flag(doc, OF_AURA_SHARDS, "Aura Shards", FALSE);
-    _dump_flag(doc, OF_AURA_REVENGE, "Revenge", FALSE);
+    doc_printf(doc, "\n <color:G>%-22.22s 破布 手套 靴子 加成</color>\n", "能力");
+    _dump_flag(doc, OF_FREE_ACT, "自由行动", FALSE);
+    _dump_flag(doc, OF_SEE_INVIS, "识破隐形", FALSE);
+    _dump_flag(doc, OF_SLOW_DIGEST, "缓慢消化", FALSE);
+    _dump_flag(doc, OF_REGEN, "再生", FALSE);
+    _dump_flag(doc, OF_LEVITATION, "漂浮", FALSE);
+    _dump_flag(doc, OF_NO_MAGIC, "反魔法", FALSE);
+    _dump_flag(doc, OF_LORE2, "自动鉴定", FALSE);
+    _dump_flag(doc, OF_REFLECT, "反射", FALSE);
+    _dump_flag(doc, OF_HOLD_LIFE, "维持生命", FALSE);
+    _dump_flag(doc, OF_MAGIC_RESISTANCE, "抵抗魔法", FALSE);
+    _dump_flag(doc, OF_AURA_FIRE, "火焰光环", FALSE);
+    _dump_flag(doc, OF_AURA_ELEC, "闪电光环", FALSE);
+    _dump_flag(doc, OF_AURA_COLD, "寒冰光环", FALSE);
+    _dump_flag(doc, OF_AURA_SHARDS, "碎片光环", FALSE);
+    _dump_flag(doc, OF_AURA_REVENGE, "复仇", FALSE);
     for (i = 0; i < 6; i++) /* Assume in order */
         _dump_flag(doc, OF_SUST_STR + i, format("Sustain %s", stat_name_true[A_STR + i]), FALSE);
 
-    doc_printf(doc, "\n   <color:G>%-22.22s    Rag       Gloves       Boots     Bonus</color>\n", "ESP");
-    _dump_flag(doc, OF_TELEPATHY, "Telepathy", FALSE);
-    _dump_flag(doc, OF_ESP_ANIMAL, "ESP Animals", FALSE);
-    _dump_flag(doc, OF_ESP_UNDEAD, "ESP Undead", FALSE);
-    _dump_flag(doc, OF_ESP_DEMON, "ESP Demon", FALSE);
-    _dump_flag(doc, OF_ESP_ORC, "ESP Orc", FALSE);
-    _dump_flag(doc, OF_ESP_TROLL, "ESP Troll", FALSE);
-    _dump_flag(doc, OF_ESP_GIANT, "ESP Giant", FALSE);
-    _dump_flag(doc, OF_ESP_DRAGON, "ESP Dragon", FALSE);
-    _dump_flag(doc, OF_ESP_HUMAN, "ESP Human", FALSE);
-    _dump_flag(doc, OF_ESP_EVIL, "ESP Evil", FALSE);
-    _dump_flag(doc, OF_ESP_GOOD, "ESP Good", FALSE);
-    _dump_flag(doc, OF_ESP_NONLIVING, "ESP Nonliving", FALSE);
-    _dump_flag(doc, OF_ESP_LIVING, "ESP Living", FALSE);
-    _dump_flag(doc, OF_ESP_UNIQUE, "ESP Unique", FALSE);
+    doc_printf(doc, "\n <color:G>%-22.22s 破布 手套 靴子 加成</color>\n", "侦测/心电感应");
+    _dump_flag(doc, OF_TELEPATHY, "心灵感应", FALSE);
+    _dump_flag(doc, OF_ESP_ANIMAL, "侦测动物", FALSE);
+    _dump_flag(doc, OF_ESP_UNDEAD, "侦测亡灵", FALSE);
+    _dump_flag(doc, OF_ESP_DEMON, "侦测恶魔", FALSE);
+    _dump_flag(doc, OF_ESP_ORC, "侦测兽人", FALSE);
+    _dump_flag(doc, OF_ESP_TROLL, "侦测巨魔", FALSE);
+    _dump_flag(doc, OF_ESP_GIANT, "侦测巨人", FALSE);
+    _dump_flag(doc, OF_ESP_DRAGON, "侦测龙类", FALSE);
+    _dump_flag(doc, OF_ESP_HUMAN, "侦测人类", FALSE);
+    _dump_flag(doc, OF_ESP_EVIL, "侦测邪恶", FALSE);
+    _dump_flag(doc, OF_ESP_GOOD, "侦测善良", FALSE);
+    _dump_flag(doc, OF_ESP_NONLIVING, "侦测非活物", FALSE);
+    _dump_flag(doc, OF_ESP_LIVING, "侦测活物", FALSE);
+    _dump_flag(doc, OF_ESP_UNIQUE, "侦测独特怪物", FALSE);
 
     doc_newline(doc);
 }
@@ -1022,16 +1022,8 @@ race_t *mon_armor_get_race(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.name = "Filthy Rag";
-        me.desc = "A pile of dirty, old, timeworn clothing, brought to life and sentience "
-                    "by magic (or perhaps just by accumulating enough micro-organisms) and "
-                    "filled with a strong desire to get back at all those clean, polished, "
-                    "fashionable plate mails. Something, likely a thick layer of grime, has "
-                    "permanently attached an old pair of boots and two plain leather gloves "
-                    "to the original rag, allowing it to walk about and punch enemies. If "
-                    "you think the thing looks ugly now, just wait until it's found some "
-                    "other protective armour and has had the time to take it apart and "
-                    "absorb its magical qualities...";
+        me.name = "破布";
+        me.desc = "一堆又脏又旧、饱经风霜的衣服，在魔法的作用下（或者仅仅是因为积聚了足够的微生物）获得了生命和意识，并且充满了报复那些干净、光亮、时髦的板甲的强烈欲望。某种东西，很可能是一层厚厚的污垢，将一双旧靴子和两只普通的皮手套永久地粘附在最初的破布上，使它能够四处走动并痛打敌人。如果你觉得这东西现在看起来很丑，那就等它找到其他的防护护甲，并有时间将其拆解吸收掉其中的魔法属性之后再说吧……";
 
         me.infra = 2;
         me.exp = 110;
@@ -1056,7 +1048,7 @@ race_t *mon_armor_get_race(void)
         init = TRUE;
     }
 
-    me.subname = (p_ptr->current_r_idx == MON_SEXY_SWIMSUIT) ? "Sexy Swimsuit" : NULL;
+    me.subname = (p_ptr->current_r_idx == MON_SEXY_SWIMSUIT) ? "性感泳装" : NULL;
     me.stats[A_STR] = -1;
     me.stats[A_INT] = -1;
     me.stats[A_WIS] = -1;

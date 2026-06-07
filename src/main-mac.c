@@ -4193,7 +4193,7 @@ static bool select_savefile(bool all)
 		&defaultLocation);
 
 	/* Oops */
-	if (err != noErr) quit("Unable to allocate descriptor");
+	if (err != noErr) quit("无法分配描述符");
 
 	/* We are indifferent to signature and file types */
 	if (all)
@@ -7090,7 +7090,7 @@ int main(void)
 		/* Check for existence of Carbon */
 		err = Gestalt(gestaltCarbonVersion, &response);
 
-		if (err != noErr) quit("This program requires Carbon API");
+		if (err != noErr) quit("该程序需要 Carbon API");
 	}
 
 #else
@@ -7276,7 +7276,7 @@ int main(void)
 
 
 	/* Prompt the user */
-	prt("[Choose 'New' or 'Open' from the 'File' menu]", 23, 15);
+	prt("[请从“文件”菜单中选择“新建”或“打开”]", 23, 15);
 
 	/* Flush the prompt */
 	Term_fresh();

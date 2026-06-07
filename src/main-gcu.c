@@ -1575,7 +1575,7 @@ errr init_gcu(int argc, char *argv[])
             {
                 i++;
                 if (i >= argc)
-                    quit("Missing size specifier for -spacer");
+                    quit("缺少 -spacer 的大小说明符");
                 sscanf(argv[i], "%dx%d", &spacer_cx, &spacer_cy);
             }
             else if (strcmp(argv[i], "-right") == 0 || strcmp(argv[i], "-left") == 0)

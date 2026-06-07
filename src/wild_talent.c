@@ -5,10 +5,10 @@ void burning_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Burning Strike");
+        var_set_string(res, "燃烧打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attacks a monster with more damage unless it has resistance to fire.");
+        var_set_string(res, "对怪物造成更多伤害，除非它对火焰有抗性。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(HISSATSU_FIRE));
@@ -24,10 +24,10 @@ void lightning_eagle_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Lightning Eagle");
+        var_set_string(res, "闪电飞鹰");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attacks a monster with more damage unless it has resistance to electricity.");
+        var_set_string(res, "对怪物造成更多伤害，除非它对闪电有抗性。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(HISSATSU_ELEC));
@@ -350,9 +350,9 @@ typedef struct {
 } group_choice;
 
 group_choice _groups[] =  {
-    { "Wild Beginnings", "Your early wild talents. Perhaps these are not so awe inspiring, but they will allow you to survive early on.", 0, 7, TERM_GREEN},
-    { "Wild Musings", "Your middle powers, more useful and destructive.", 8, 16, TERM_L_UMBER},
-    { "Wild Destructions", "Your most powerful wild talents. Death!  Destruction!  Devastation!  Monsters tremble in fear before the awesomeness of your power!", 17, _MAX_TALENTS - 1, TERM_RED},
+    { "狂野初始", "Your early wild talents. Perhaps these are not so awe inspiring, but they will allow you to survive early on.", 0, 7, TERM_GREEN},
+    { "狂野冥想", "Your middle powers, more useful and destructive.", 8, 16, TERM_L_UMBER},
+    { "狂野毁灭", "你最强大的狂野天赋。死亡！破坏！毁灭！怪物们在你可怕的力量面前颤抖！", 17, _MAX_TALENTS - 1, TERM_RED},
 };
 
 static void _spell_menu_fn(int cmd, int which, vptr cookie, variant *res)
@@ -377,7 +377,7 @@ int wild_talent_get_spells(power_info *spells)
 {
     int idx = -1;
     int ct = 0;
-    menu_t menu = { "Use which group of talents?", "Browse which group of talents?", NULL,
+    menu_t menu = { "使用哪组天赋？", "浏览哪组天赋？", NULL,
                     _spell_menu_fn, _groups, 3, 0};
     int max = MAX_SPELLS;
     
@@ -395,7 +395,7 @@ int wild_talent_get_spells(power_info *spells)
 
     ct += _get_spells_imp(spells + ct, max - ct, _groups[idx].min_slot, _groups[idx].max_slot);
     if (ct == 0)
-        msg_print("You don't know any of those talents yet!");
+        msg_print("你还没有掌握那些天赋中的任何一个！");
     return ct;
 }
 
@@ -414,14 +414,14 @@ int group_idx = -1;
 
         if (!talent->spell.fn)
         {
-            msg_print("BUG: Where is your talent?!");
+            msg_print("BUG：你的天赋去哪了？！");
             return;
         }
 
         var_init(&name);
         (talent->spell.fn)(SPELL_NAME, &name);
 
-        msg_format("<color:B>You gain the power of <color:R>%s</color> %s.</color>", var_get_string(&name), talent->gain_desc);
+        msg_format("<color:B>你获得了 <color:R>%s</color> 的力量 %s。</color>", var_get_string(&name), talent->gain_desc);
         p_ptr->magic_num1[group_idx] = idx + 1;
 
         var_clear(&name);
@@ -523,7 +523,7 @@ void wild_talent_scramble(void)
     for (i = 0; i <= _MAX_TALENTS; ++i)
         p_ptr->magic_num1[i] = 0;
 
-    msg_print("You feel wild forces of randomness enter your body!");
+    msg_print("你感到狂野的随机力量进入了你的身体！");
 
     /* Regain new talents */
     for (i = 1; i <= p_ptr->max_plv; ++i)
@@ -581,8 +581,8 @@ static void _character_dump(doc_ptr doc)
         var_init(&name);
         var_init(&info);
 
-        doc_printf(doc, "<topic:WildTalent>================================= <color:keypress>W</color>ild Talents ================================\n\n");
-        doc_printf(doc, "<color:G>%-23.23s Lv Stat Cost Fail Info</color>\n", "");
+        doc_printf(doc, "<topic:WildTalent>================================= <color:keypress>W</color> 狂野天赋 ================================\n\n");
+        doc_printf(doc, "<color:G>%-23.23s 等级 属性 消耗 失败率 信息</color>\n", "");
         for (i = 0; i < ct; ++i)
         {
             spell_info *spell = &spells[i].spell;
@@ -612,7 +612,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "wild spell";
+        me.magic_desc = "狂野法术";
         me.encumbrance.max_wgt = 450;
         me.encumbrance.weapon_pct = 0;
         me.encumbrance.enc_wgt = 800;
@@ -639,17 +639,8 @@ class_t *wild_talent_get_class(void)
     skills_t bs = { 30,  25,  31,   2,  24,  16,  56,  50 };
     skills_t xs = {  8,  11,  10,   0,   0,   0,  18,  18 };
 
-        me.name = "Wild-Talent";
-        me.desc = "Wild-Talents gain random talents and abilities as they "
-                  "level up. They are good fighters, and decent with magical devices, "
-                  "but their true forte is their vast array of potential random "
-                  "powers. Except you never know what those might be!\n \n"
-                  "Wild-Talents do not have a spell stat. Instead, each ability that "
-                  "they gain requires its own individual stat for the purposes of fail rate "
-                  "calculation; for example, Tossing a Boulder requires Strength, "
-                  "while Magic Missile requires Intelligence. Each spell requires mana "
-                  "to cast, but the amount of mana available is not influenced by any "
-                  "particular stat and is determined simply by experience.";
+        me.name = "狂野天赋者";
+        me.desc = "狂野天赋者在升级时会获得随机的天赋和能力。他们是优秀的战士，并且在使用魔法装置方面表现不错，但他们真正的强项在于其庞大的潜在随机能力库。只是你永远不知道这些能力会是什么！\n \n狂野天赋者没有统一的施法属性。相反，他们获得的每一项能力都需要其单独的属性来计算失败率；例如，“投掷巨石”需要力量，而“魔法飞弹”需要智力。每个法术都需要消耗法力来施放，但可用的法力值总数不受任何特定属性的影响，而是完全由经验值决定。";
         
         me.stats[A_STR] = -1;
         me.stats[A_INT] =  1;

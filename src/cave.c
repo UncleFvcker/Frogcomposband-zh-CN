@@ -1837,7 +1837,7 @@ static cptr simplify_list[][2] =
     {"^Rod of "   , "-"},
     {"^Staff of " , "_"},
     {"^Potion of ", "!"},
-    {" Spellbook ",""},
+    {"法术书",""},
     {"^Book of ",   ""},
     {" Magic [",   "["},
     {" Book [",    "["},
@@ -2224,7 +2224,7 @@ void do_cmd_view_map(void)
     screen_save();
 
     /* Note */
-    prt("Please wait...", 0, 0);
+    prt("请稍候……", 0, 0);
 
     /* Flush */
     Term_fresh();
@@ -2282,7 +2282,7 @@ void do_cmd_view_map(void)
     }
     else
     {
-        put_str("Hit any key to continue", 23, 30);
+        put_str("按任意键继续", 23, 30);
         move_cursor(cy, cx);
         inkey();
     }
@@ -3287,11 +3287,11 @@ void update_mon_lite(void)
         {
             if (p_ptr->monlite)
             {
-                msg_print("Your mantle of shadow becomes thin.");
+                msg_print("你的暗影披风变薄了。");
             }
             else
             {
-                msg_print("Your mantle of shadow is restored to its original darkness.");
+                msg_print("你的暗影披风恢复了原本的黑暗。");
             }
         }
     }
@@ -4760,7 +4760,7 @@ void cave_alter_feat(int y, int x, int action)
 
         if (found && character_dungeon && player_can_see_bold(y, x) && cave[y][x].o_idx)
         {
-            msg_print("You have found something!");
+            msg_print("你发现了一些东西！");
         }
     }
 
@@ -4815,21 +4815,21 @@ void hit_mon_trap(int y, int x, int m_idx)
         byte kipu = 0;
         if ((mon_race_has_dispel(r_ptr)) || (m_ptr->r_idx == MON_JUSTSHORN))
         {
-            msg_format("%^s dispels your shadow!", m_name);
+            msg_format("%^s驱散了你的暗影！", m_name);
             kipu = 4;
         }
         else if ((r_ptr->flagsr & RFR_IM_ELEC) || (randint1(BREAK_MON_TRAP * p_ptr->lev / 40) <= r_ptr->level))
         {
-            msg_format("%^s destroys your shadow!", m_name);
+            msg_format("%^s摧毁了你的暗影！", m_name);
             kipu = 2;
         }
         else
         {
-            msg_format("%^s is hit by lightning!", m_name);
+            msg_format("%^s被闪电击中了！", m_name);
             project(PROJECT_WHO_PLAYER, 0, m_ptr->fy, m_ptr->fx, damroll(8 + p_ptr->lev / 3, 6), GF_ELEC, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP));
             if ((randint1(300) < r_ptr->level) || (one_in_(9)))
             {
-                msg_print("Your shadow explodes!");
+                msg_print("你的暗影爆炸了！");
                 kipu = 1;
             }
         }
@@ -4849,17 +4849,17 @@ void hit_mon_trap(int y, int x, int m_idx)
                 {
                 case 1: /* Sleep */
                     if (m_ptr->ml)
-                        msg_format("%^s is hit by a small dart.", m_name);
+                        msg_format("%^s被一支小飞镖击中了。", m_name);
                     project(PROJECT_WHO_TRAP, 1, m_ptr->fy, m_ptr->fx, p_ptr->lev, GF_OLD_SLEEP, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP));
                     break;
                 case 2: /* Confuse */
                     if (m_ptr->ml)
-                        msg_format("A gas of scintillating colors surrounds %s!", m_name);
+                        msg_format("五彩闪烁的气体包围了%s！", m_name);
                     project(PROJECT_WHO_TRAP, 3, y, x, p_ptr->lev, GF_OLD_CONF, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP));
                     break;
                 case 3: /* Slow */
                     if (m_ptr->ml)
-                        msg_format("%^s is hit by a small dart.", m_name);
+                        msg_format("%^s被一支小飞镖击中了。", m_name);
                     project(PROJECT_WHO_TRAP, 1, m_ptr->fy, m_ptr->fx, p_ptr->lev, GF_OLD_SLOW, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP));
                     break;
                 case 4: /* Teleport */
@@ -4867,12 +4867,12 @@ void hit_mon_trap(int y, int x, int m_idx)
                     {
                         mon_lore_r(m_ptr, RFR_RES_TELE);
                         if (m_ptr->ml)
-                            msg_format("%^s resists teleportation.", m_name);
+                            msg_format("%^s抵抗了传送。", m_name);
                     }
                     else
                     {
                         if (m_ptr->ml)
-                            msg_format("%^s disappears.", m_name);
+                            msg_format("%^s消失了。", m_name);
                         teleport_away(m_idx, 100, TELEPORT_PASSIVE);
                     }
                     break;
@@ -4882,12 +4882,12 @@ void hit_mon_trap(int y, int x, int m_idx)
                         if (r_ptr->flags7 & RF7_CAN_FLY)
                         {
                             if (m_ptr->ml)
-                                msg_format("%^s flies over the trap door.", m_name);
+                                msg_format("%^s飞过了暗门陷阱。", m_name);
                         }
                         else
                         {
                             if (m_ptr->ml)
-                                msg_format("%^s falls through the trap door.", m_name);
+                                msg_format("%^s掉进了暗门陷阱。", m_name);
                             delete_monster_idx(m_idx);
                         }
                         break;
@@ -4895,7 +4895,7 @@ void hit_mon_trap(int y, int x, int m_idx)
                     /* vvv=== Fall Thru: No Trapdoors in the Arena or Fixed Town Quests */
                 case 6: case 7: case 8: case 9: /* Arrow Trap */
                     if (m_ptr->ml)
-                        msg_format("%^s is hit by an arrow.", m_name);
+                        msg_format("%^s被一支箭击中了。", m_name);
                     project(PROJECT_WHO_TRAP, 1, m_ptr->fy, m_ptr->fx, p_ptr->lev/2 + damroll(5, 5), GF_MISSILE, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP));
                     break;
                 }
@@ -4906,22 +4906,22 @@ void hit_mon_trap(int y, int x, int m_idx)
                 {
                 case 1: /* Seeker Bolt */
                     if (m_ptr->ml)
-                        msg_format("%^s is hit by a seeker bolt.", m_name);
+                        msg_format("%^s被一支追踪弩箭击中了。", m_name);
                     project(PROJECT_WHO_TRAP, 1, m_ptr->fy, m_ptr->fx, 4*(damroll(6, 5) + p_ptr->lev/2), GF_MISSILE, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     break;
                 case 2: /* Sound Ball */
                     if (m_ptr->ml)
-                        msg_format("%^s is hit by a ball of sound.", m_name);
+                        msg_format("%^s被一个音波球击中了。", m_name);
                     project(PROJECT_WHO_TRAP, 2, y, x, 2*(damroll(10, 10) + p_ptr->lev), GF_SOUND, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     break;
                 case 3: /* Shard Ball */
                     if (m_ptr->ml)
-                        msg_format("%^s is hit by a large rock.", m_name);
+                        msg_format("%^s被一块大石头击中了。", m_name);
                     project(PROJECT_WHO_TRAP, 2, y, x, damroll(10, 10) + 3*p_ptr->lev, GF_SHARDS, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     break;
                 case 4: /* Elemental Balls */
                     if (m_ptr->ml)
-                        msg_format("%^s is hit by a shower of elements.", m_name);
+                        msg_format("%^s被一阵元素弹雨击中了。", m_name);
                     project(PROJECT_WHO_TRAP, 2, y, x, 2*(damroll(7, 7) + p_ptr->lev/2), GF_FIRE, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     project(PROJECT_WHO_TRAP, 2, y, x, 2*(damroll(7, 7) + p_ptr->lev/2), GF_COLD, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     project(PROJECT_WHO_TRAP, 2, y, x, 2*(damroll(7, 7) + p_ptr->lev/2), GF_ELEC, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
@@ -4930,7 +4930,7 @@ void hit_mon_trap(int y, int x, int m_idx)
                     break;
                 case 5: /* Disintegration Ball */
                     if (m_ptr->ml)
-                        msg_format("%^s is hit by a disintegration ball.", m_name);
+                        msg_format("%^s被一个分解球击中了。", m_name);
                     project(PROJECT_WHO_TRAP, 5, y, x, 2*(damroll(10, 10) + 3*p_ptr->lev), GF_DISINTEGRATE, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     break;
                 case 6: /* Stasis */
@@ -4939,8 +4939,8 @@ void hit_mon_trap(int y, int x, int m_idx)
                 case 7: /* Piranha Trap */
                 {
                     int i, num;
-                    if (p_ptr->inside_arena) msg_print("Your trap explodes, and suddenly the room is filled with water!");
-                    else msg_print("Your trap explodes and suddenly the room is filled with water and piranhas!");
+                    if (p_ptr->inside_arena) msg_print("你的陷阱爆炸了，房间里突然充满了水！");
+                    else msg_print("你的陷阱爆炸了，房间里突然充满了水和食人鱼！");
                     project(PROJECT_WHO_TRAP, 10, y, x, 100, GF_DISINTEGRATE, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     project(PROJECT_WHO_TRAP, 10, y, x, 1, GF_WATER_FLOW, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP  | PROJECT_HIDE));
 
@@ -4959,22 +4959,22 @@ void hit_mon_trap(int y, int x, int m_idx)
                 {
                 case 1: /* Seeker Bolt */
                     if (m_ptr->ml)
-                        msg_format("%^s is hit by a seeker bolt.", m_name);
+                        msg_format("%^s被一支追踪弩箭击中了。", m_name);
                     project(PROJECT_WHO_TRAP, 1, m_ptr->fy, m_ptr->fx, 2*(damroll(6, 5) + p_ptr->lev/3), GF_MISSILE, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     break;
                 case 2: /* Sound Ball */
                     if (m_ptr->ml)
-                        msg_format("%^s is hit by a ball of sound.", m_name);
+                        msg_format("%^s被一个音波球击中了。", m_name);
                     project(PROJECT_WHO_TRAP, 2, y, x, damroll(8, 7) + (p_ptr->lev / 2), GF_SOUND, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     break;
                 case 3: /* Shard Ball */
                     if (m_ptr->ml)
-                        msg_format("%^s is hit by a large rock.", m_name);
+                        msg_format("%^s被一块大石头击中了。", m_name);
                     project(PROJECT_WHO_TRAP, randint1(2), y, x, damroll(8, 8) + p_ptr->lev, GF_SHARDS, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     break;
                 case 4: /* Elemental Balls */
                     if (m_ptr->ml)
-                        msg_format("%^s is hit by a shower of elements.", m_name);
+                        msg_format("%^s被一阵元素弹雨击中了。", m_name);
                     project(PROJECT_WHO_TRAP, randint1(2), y, x, (damroll(4, 6) + p_ptr->lev/5), GF_FIRE, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     project(PROJECT_WHO_TRAP, randint1(2), y, x, (damroll(4, 6) + p_ptr->lev/5), GF_COLD, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     project(PROJECT_WHO_TRAP, randint1(2), y, x, (damroll(4, 6) + p_ptr->lev/5), GF_ELEC, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
@@ -4983,7 +4983,7 @@ void hit_mon_trap(int y, int x, int m_idx)
                     break;
                 case 5: /* Disintegration Ball */
                     if (m_ptr->ml)
-                        msg_format("%^s is hit by a disintegration ball.", m_name);
+                        msg_format("%^s被一个分解球击中了。", m_name);
                     project(PROJECT_WHO_TRAP, 5, y, x, (damroll(7, 7) + p_ptr->lev), GF_DISINTEGRATE, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     break;
                 case 6: /* Stasis */
@@ -4992,8 +4992,8 @@ void hit_mon_trap(int y, int x, int m_idx)
                 case 7: /* Piranha Trap */
                 {
                     int i, num;
-                    if (p_ptr->inside_arena) msg_print("Your trap explodes, and suddenly the room is filled with water!");
-                    else msg_print("Your trap explodes and suddenly the room is filled with water and piranhas!");
+                    if (p_ptr->inside_arena) msg_print("你的陷阱爆炸了，房间里突然充满了水！");
+                    else msg_print("你的陷阱爆炸了，房间里突然充满了水和食人鱼！");
                     project(PROJECT_WHO_TRAP, 10, y, x, 50, GF_DISINTEGRATE, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     project(PROJECT_WHO_TRAP, 10, y, x, 1, GF_WATER_FLOW, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP  | PROJECT_HIDE));
 
@@ -5022,7 +5022,7 @@ void hit_mon_trap(int y, int x, int m_idx)
                 case 1: /* Bird Trap */
                 {
                     int i, num;
-                    msg_format("Your trap explodes and suddenly a storm of birds swirls around %s!", m_name);
+                    msg_format("你的陷阱爆炸了，突然有一群飞鸟在%s周围盘旋！", m_name);
                     project(PROJECT_WHO_TRAP, 10, y, x, 100, GF_DISINTEGRATE, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
 
                     num = 1 + p_ptr->lev/10;
@@ -5035,7 +5035,7 @@ void hit_mon_trap(int y, int x, int m_idx)
                 case 2: /* Hell Trap */
                 {
                     int i, num;
-                    msg_print("Your trap explodes and suddenly the room is filled with fire and brimstone!");
+                    msg_print("你的陷阱爆炸了，房间里突然充满了烈火与硫磺！");
                     project(PROJECT_WHO_TRAP, 10, y, x, 100, GF_DISINTEGRATE, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     project(PROJECT_WHO_TRAP, 10, y, x, 1, GF_LAVA_FLOW, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP  | PROJECT_HIDE));
 
@@ -5049,7 +5049,7 @@ void hit_mon_trap(int y, int x, int m_idx)
                 case 3: /* Heavenly Trap */
                 {
                     int i, num;
-                    msg_print("Your trap explodes and suddenly the room is filled with a heavenly choir singing!");
+                    msg_print("你的陷阱爆炸了，房间里突然充满了圣洁的合唱声！");
                     project(PROJECT_WHO_TRAP, 10, y, x, 100, GF_DISINTEGRATE, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
 
                     num = 1 + p_ptr->lev/10;
@@ -5061,18 +5061,18 @@ void hit_mon_trap(int y, int x, int m_idx)
                 }
                 case 4: /* Mana Storm */
                     if (m_ptr->ml)
-                        msg_format("%^s is hit by a mana storm.", m_name);
+                        msg_format("%^s被一阵法力风暴击中了。", m_name);
                     project(PROJECT_WHO_TRAP, 5, y, x, 2*400, GF_DISINTEGRATE, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     break;
                 case 5: /* Rocket */
                     if (m_ptr->ml)
-                        msg_format("%^s is hit by a Rocket.", m_name);
+                        msg_format("%^s被一枚火箭弹击中了。", m_name);
                     project(PROJECT_WHO_TRAP, 5, y, x, 2*400, GF_SHARDS, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
                     break;
                 case 6: /* Dragon Trap */
                 {
                     int i, num;
-                    msg_format("Your trap explodes and suddenly ancient dragons surround %s!", m_name);
+                    msg_format("你的陷阱爆炸了，突然有远古巨龙包围了%s！", m_name);
                     project(PROJECT_WHO_TRAP, 10, y, x, 100, GF_DISINTEGRATE, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
 
                     num = 1 + p_ptr->lev/10;
@@ -5086,19 +5086,19 @@ void hit_mon_trap(int y, int x, int m_idx)
             }
             else if ((have_flag(f_info[c_ptr->mimic].flags, FF_SEMI_PUN)) || ((have_flag(f_info[c_ptr->mimic].flags, FF_ROGUE_TRAP_3)) && (p_ptr->inside_arena)))
             {
-                msg_format("An invisible hand slaps %s with a large trout!", m_name);
+                msg_format("一只无形的手用一条大鳟鱼扇了%s一巴掌！", m_name);
                 project(PROJECT_WHO_TRAP, 0, m_ptr->fy, m_ptr->fx, p_ptr->lev + 32, GF_FORCE, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP ));
             }
             else
             {
-                msg_print("The rune explodes!");
+                msg_print("符文爆炸了！");
                 project(PROJECT_WHO_TRAP, 2, y, x, 2 * (p_ptr->lev + damroll(7, 7)), GF_MANA, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP));
             }
         }
     }
     else
     {
-        msg_print("Your trap was disarmed.");
+        msg_print("你的陷阱被解除了。");
     }
 
     /* Forget the trap */
@@ -5208,7 +5208,7 @@ bool projectable(int y1, int x1, int y2, int x2)
         bool result2 = _projectable(y2, x2, y1, x1);
         if (result != result2)
         {
-            msg_format("WARNING: (%d,%d) and (%d,%d) are not symmetric under projectable()!", y1, x1, y2, x2);
+            msg_format("警告: (%d,%d) 和 (%d,%d) 在 projectable() 函数下不对称！", y1, x1, y2, x2);
         }
     }
 #endif

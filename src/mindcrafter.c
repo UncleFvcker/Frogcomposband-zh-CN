@@ -5,30 +5,30 @@ void _precognition_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Precognition");
+        var_set_string(res, "预知");
         break;
     case SPELL_DESC:
     {
         if (p_ptr->lev < 5)
-            var_set_string(res, "Detects visible monsters in your vicinity.");
+            var_set_string(res, "探测你附近可见的怪物。");
         else if (p_ptr->lev < 15)
-            var_set_string(res, "Detects visible monsters, traps, and doors in your vicinity.");
+            var_set_string(res, "探测你附近可见的怪物、陷阱和门。");
         else if (p_ptr->lev < 20)
-            var_set_string(res, "Detects monsters, traps, and doors in your vicinity.");
+            var_set_string(res, "探测你附近的怪物、陷阱和门。");
         else if (p_ptr->lev < 25)
-            var_set_string(res, "Detects monsters, traps, and doors in your vicinity and maps nearby area.");
+            var_set_string(res, "探测你附近的怪物、陷阱和门，并绘制附近区域的地图。");
         else if (p_ptr->lev < 30)
-            var_set_string(res, "Detects monsters, traps, and doors in your vicinity and maps nearby area. Grants temporary ESP.");
+            var_set_string(res, "探测你附近的怪物、陷阱和门，并绘制附近区域的地图。提供临时的心灵感应(ESP)。");
         else if (p_ptr->lev < 40)
-            var_set_string(res, "Detects monsters, traps, doors, stairs and objects in your vicinity and maps nearby area. Grants temporary ESP.");
+            var_set_string(res, "探测你附近的怪物、陷阱、门、楼梯和物品，并绘制附近区域的地图。提供临时的心灵感应(ESP)。");
         else if (p_ptr->lev < 45)
-            var_set_string(res, "Detects monsters, traps, doors, stairs and objects in your vicinity and maps nearby area.");
+            var_set_string(res, "探测你附近的怪物、陷阱、门、楼梯和物品，并绘制附近区域的地图。");
         else
-            var_set_string(res, "Detects monsters, traps, doors, stairs and objects in your vicinity and maps the entire level.");
+            var_set_string(res, "探测你附近的怪物、陷阱、门、楼梯和物品，并绘制整个楼层的地图。");
         break;
     }
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Detects monsters (L1), traps and doors (L5), invisible monsters (L15) and items (L30). Gives magic mapping (L20) and telepathy (L25). Enlightens level (L45).");
+        var_set_string(res, "探测怪物(1级)，陷阱和门(5级)，隐形怪物(15级)和物品(30级)。提供魔法测绘(20级)和心灵感应(25级)。启明整个楼层(45级)。");
         break;
     case SPELL_CAST:
     {
@@ -59,7 +59,7 @@ void _precognition_spell(int cmd, variant *res)
         if ((p_ptr->lev > 24) && (p_ptr->lev < 40))
             set_tim_esp(p_ptr->lev + randint1(p_ptr->lev), FALSE);
 
-        if (!b) msg_print("You feel safe.");
+        if (!b) msg_print("你感到很安全。");
 
         var_set_bool(res, TRUE);
         break;
@@ -95,13 +95,13 @@ void _neural_blast_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Neural Blast");
+        var_set_string(res, "神经爆破");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a beam or ball which inflicts psionic damage.");
+        var_set_string(res, "发射造成灵能伤害的射线或球体。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Fires a beam or ball (Radius 0) which inflicts (3 + (L-1)/4)d(3 + L/15) psionic damage.");
+        var_set_string(res, "发射造成 (3 + (L-1)/4)d(3 + L/15) 灵能伤害的射线或球体(半径0)。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(spell_power(3 + ((p_ptr->lev - 1) / 4)), 3 + p_ptr->lev / 15, spell_power(p_ptr->to_d_spell)));
@@ -135,21 +135,21 @@ void _minor_displacement_spell(int cmd, variant *res)
     {
     case SPELL_NAME:
         if (p_ptr->lev >= 45)
-            var_set_string(res, "Dimension Door");
+            var_set_string(res, "任意门");
         else
-            var_set_string(res, "Minor Displacement");
+            var_set_string(res, "微级位移");
         break;
     case SPELL_SPOIL_NAME:
-        var_set_string(res, "Minor Displacement");
+        var_set_string(res, "微级位移");
         break;
     case SPELL_DESC:
         if (p_ptr->lev >= 45)
-            var_set_string(res, "Attempts to teleport to a specific location.");
+            var_set_string(res, "尝试传送到指定位置。");
         else
-            var_set_string(res, "Teleports a short distance.");
+            var_set_string(res, "传送一小段距离。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Teleports the player (Range 10). At L45, gives dimension door instead (Range L/2 + 10).");
+        var_set_string(res, "传送玩家(范围10)。在45级时，改为任意门(范围L/2 + 10)。");
         break;
     case SPELL_CAST:
     {
@@ -181,13 +181,13 @@ void _major_displacement_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Major Displacement");
+        var_set_string(res, "宏级位移");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Teleports a long distance.");
+        var_set_string(res, "传送很长一段距离。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Teleports the player (Range L*5).");
+        var_set_string(res, "传送玩家(范围L*5)。");
         break;
     case SPELL_CAST:
     {
@@ -206,13 +206,13 @@ void _domination_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Domination");
+        var_set_string(res, "支配");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Stuns, confuses, scares or charms a monster. From level 30, attempts to charm all monsters in sight.");
+        var_set_string(res, "震慑、混乱、恐吓或魅惑一只怪物。从30级起，尝试魅惑视线内的所有怪物。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Stuns, confuses, scares or charms a monster. Or attempts to charm all monsters in sight at L30.");
+        var_set_string(res, "震慑、混乱、恐吓或魅惑一只怪物。或者在30级时尝试魅惑视线内的所有怪物。");
         break;
     case SPELL_CAST:
     {
@@ -242,13 +242,13 @@ void _pulverise_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Pulverise");
+        var_set_string(res, "念力粉碎");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a ball which hurts monsters with telekinesis.");
+        var_set_string(res, "发射一个使用念力伤害怪物的球体。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Fires a ball (Radius 0 or (L-20)/8 + 1) of Telekinesis (Damage (8 + (L-5)/4)d8).");
+        var_set_string(res, "发射一个念力球体(半径0 或 (L-20)/8 + 1) (伤害 (8 + (L-5)/4)d8)。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(spell_power(8 + ((p_ptr->lev - 5) / 4)), 8, spell_power(p_ptr->to_d_spell)));
@@ -284,14 +284,13 @@ void _character_armor_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Character Armour");
+        var_set_string(res, "躯体装甲");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Turns your skin to stone and provides temporary resistance to the elements. "
-                              "More resistances are given at higher levels.");
+        var_set_string(res, "使你的皮肤像石头一样坚硬，并提供对元素的临时抵抗。更高等级会提供更多的抗性。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Gives Stone Skin, Resist Acid (L15), Resist Fire (L20), Resist Cold (L25), Resist Lightning (L30) and Resist Poison (L35).");
+        var_set_string(res, "提供石肤术，抗酸(15级)、抗火(20级)、抗寒(25级)、抗电(30级)和抗毒(35级)。");
         break;
     case SPELL_CAST:
     {
@@ -316,13 +315,13 @@ void _psychometry_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Psychometry");
+        var_set_string(res, "精神测量");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Returns a feeling about an item. Identifies the item at level 20 and above.");
+        var_set_string(res, "反馈关于一件物品的感觉。20级及以上时直接鉴定该物品。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Pseudo-identifies an object. At L20, identifies an object instead.");
+        var_set_string(res, "伪鉴定一件物品。在20级时，改为直接鉴定物品。");
         break;
     case SPELL_CAST:
     {
@@ -343,26 +342,25 @@ void _mind_wave_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mind Wave");
+        var_set_string(res, "精神波");
         break;
     case SPELL_DESC:
-        var_set_string(res, "At low levels, generates a ball of psionic energy centered on you. "
-                              "At level 25 and above, inflicts psionic damage on all monsters in line of sight.");
+        var_set_string(res, "低等级时，以你为中心产生一个灵能球。25级及以上时，对视线内的所有怪物造成灵能伤害。");
         break;
 
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Generates a ball (Radius 2 + L/10) of psionic energy (Damage L*3). At L25, damages all monsters in line of sight instead (Damage 1d(L*((L-5)/10 + 1))).");
+        var_set_string(res, "产生一个灵能球(半径 2 + L/10) (伤害 L*3)。在25级时，改为对视线内所有怪物造成伤害(伤害 1d(L*((L-5)/10 + 1)))。");
         break;
 
     case SPELL_INFO:
         if (p_ptr->lev < 25)
-            var_set_string(res, format("dam %d", spell_power(p_ptr->lev * 3 / 2 + p_ptr->to_d_spell)));
+            var_set_string(res, format("伤害 %d", spell_power(p_ptr->lev * 3 / 2 + p_ptr->to_d_spell)));
         else
             var_set_string(res, info_damage(1, p_ptr->lev * ((p_ptr->lev - 5) / 10 + 1), spell_power(p_ptr->to_d_spell)));
         break;
     case SPELL_CAST:
     {
-        msg_print("Mind-warping forces emanate from your brain!");
+        msg_print("扭曲心智的力量从你的大脑中散发出来！");
 
         if (p_ptr->lev < 25)
         {
@@ -388,14 +386,13 @@ void _adrenaline_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Adrenaline Channeling");
+        var_set_string(res, "肾上腺素引导");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Removes fear and stunning. Gives heroism and speed. Heals HP a little unless "
-                              "you already have heroism and temporary speed boost.");
+        var_set_string(res, "解除恐惧和震慑。提供英雄气概和速度。除非你已经拥有英雄气概和临时速度提升，否则稍微恢复生命值。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Removes stun. Heals 10 + 1d(L*3/2). Grants heroism and haste.");
+        var_set_string(res, "解除震慑。恢复 10 + 1d(L*3/2) 点生命值。提供英雄气概和加速。");
         break;
     case SPELL_CAST:
     {
@@ -424,13 +421,13 @@ void _telekinesis_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Telekinesis");
+        var_set_string(res, "念力");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Pulls a distant item close to you.");        
+        var_set_string(res, "将远处的物品拉到你身边。");        
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Fetch a nearby object (Weight <= L*15).");
+        var_set_string(res, "取回附近的物品(重量 <= L*15)。");
         break;
     case SPELL_CAST:
     {
@@ -453,14 +450,13 @@ void _psychic_drain_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Psychic Drain");
+        var_set_string(res, "精神吸取");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a ball which damages monsters and absorbs their mind power. "
-                            "A successful absorption also consumes some of your own energy, costing an additional 0.01 to 1.50 turns.");
+        var_set_string(res, "发射一个伤害怪物并吸收其心智力量的球体。成功的吸收也会消耗你自己的一些能量，额外消耗 0.01 到 1.50 个回合。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Drain target monster (Damage (L/2)d6) to regain 5d(damage)/4 spell points. But this spell also consumes 1d150 extra energy.");
+        var_set_string(res, "吸取目标怪物(伤害 (L/2)d6)以恢复 5d(伤害)/4 点法力值。但这道法术也会额外消耗 1d150 能量。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(spell_power(p_ptr->lev/2), 6, spell_power(p_ptr->to_d_spell)));
@@ -490,10 +486,10 @@ void psycho_spear_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Psycho-Spear");
+        var_set_string(res, "精神之矛");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a beam of pure energy which penetrates invulnerability globes.");
+        var_set_string(res, "发射一束纯粹的能量射线，能够穿透无敌屏障。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(1, spell_power(p_ptr->lev * 3), spell_power(p_ptr->lev * 3 + p_ptr->to_d_spell)));
@@ -518,10 +514,10 @@ void _psycho_storm_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Psycho-Storm");
+        var_set_string(res, "精神风暴");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a large ball of pure mental energy.");
+        var_set_string(res, "发射一个由纯粹精神能量组成的巨大球体。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(10, spell_power(10), spell_power(p_ptr->lev * 5 + p_ptr->to_d_spell)));
@@ -602,17 +598,17 @@ static void _on_fail(const spell_info *spell)
 
         if (b < 5)
         {
-            msg_print("Oh, no! Your mind has gone blank!");
+            msg_print("哦，不！你的大脑一片空白！");
             lose_all_info();
         }
         else if (b < 15)
         {
-            msg_print("Weird visions seem to dance before your eyes...");
+            msg_print("奇怪的幻象似乎在你眼前舞动……");
             set_image(p_ptr->image + 5 + randint1(10), FALSE);
         }
         else if (b < 45)
         {
-            msg_print("Your brain is addled!");
+            msg_print("你的大脑混乱了！");
             set_confused(p_ptr->confused + randint1(8), FALSE);
         }
         else if (b < 90)
@@ -621,7 +617,7 @@ static void _on_fail(const spell_info *spell)
         }
         else
         {
-            msg_print("Your mind unleashes its power in an uncontrollable storm!");
+            msg_print("你的心智释放出不可控制的风暴力量！");
 
             project(PROJECT_WHO_UNCTRL_POWER, 2 + p_ptr->lev / 10, py, px, p_ptr->lev * 2,
                 GF_MANA, PROJECT_JUMP | PROJECT_KILL | PROJECT_GRID | PROJECT_ITEM);
@@ -665,19 +661,8 @@ class_t *mindcrafter_get_class(void)
     skills_t bs = { 30,  33,  38,   3,  22,  16,  48,  40 };
     skills_t xs = { 10,  11,  10,   0,   0,   0,  12,  17 };
 
-        me.name = "Mindcrafter";
-        me.desc = "Mindcrafters rely not on book magic, but on the powers of the mind. "
-                    "These mind powers are specific to this class, and range "
-                    "from extrasensory perception to psychic attacks and the mental domination "
-                    "of others. Most mind powers become accessible fairly early, but gain in "
-                    "strength with more experience. Wisdom determines a Mindcrafter's ability to "
-                    "use mind powers.\n \n"
-                    "Mindcrafters' combat skills are reasonably good but far from outstanding; "
-                    "a combination of physical and mental attacks often works better "
-                    "for them than either one alone. A seasoned mindcrafter is very hard to "
-                    "confuse, and can effortlessly detect the minds of others. Mindcrafters "
-                    "have a class power, 'Clear Mind', which allows them to rapidly regenerate "
-                    "mana."; 
+        me.name = "心灵术士";
+        me.desc = "心灵术士不依靠书本魔法，而是依靠心灵的力量。这些心灵力量是该职业所特有的，从超感官知觉到精神攻击，再到对他人的精神支配。大多数心灵力量在很早的时候就能获得，并随着经验的增加而变得更强。感知决定了心灵术士使用心灵力量的能力。\n \n心灵术士的战斗技能相当不错，但远非杰出；物理攻击和心灵攻击的结合通常比单一的攻击更适合他们。一个经验丰富的心灵术士很难被混乱，并且能毫不费力地探测他人的心灵。心灵术士拥有一个职业能力“清晰心智(Clear Mind)”，允许他们快速恢复法力。"; 
         me.stats[A_STR] = -1;
         me.stats[A_INT] =  0;
         me.stats[A_WIS] =  3;

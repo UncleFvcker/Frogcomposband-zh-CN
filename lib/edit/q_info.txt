@@ -1,26 +1,26 @@
-# File: q_info.txt
-#
-# Do not modify this file unless you know exactly what you are doing
-# and you wish to risk possible system crashes and broken savefiles.
-#
 
-########################################################################
-# FrogComposband Quests (cf quest.h and quest.c)
-#
-# N:id:lvl:name
-# T:type flags
-# W:where to find quest?
-# G:goal of quest?
-# F:quest file with map, descriptions and rewards
-#
-# Use lower case for all string lookups
-########################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 N:1:5:The Thieves' Hideout (Outpost)
 T:TOWN | GENERATE
 F:q_thieves.txt
 
-# Hardcoded as quest 2 in quest.h
+
 N:2:15:The Sewer (Outpost)
 T:TOWN | GENERATE | SUBSTITUTE_87 | DANGER_LEVEL_18
 F:q_sewer.txt
@@ -88,7 +88,7 @@ F:q_doom1.txt
 
 N:20:25:Vapor Quest (Outpost)
 T:TOWN | GENERATE
-#F:q_vapor.txt
+
 F:q_vapor2.txt
 
 N:21:55:Doom Quest II (Angwil)
@@ -159,9 +159,9 @@ N:36:38:The Sand Pit (Angwil)
 T:TOWN | GENERATE | SUBSTITUTE_91
 F:q_worms.txt
 
-########################################################################
-# Random Quests ... assigned in quests_on_birth()
-########################################################################
+
+
+
 N:40:10:Random 1
 T:RANDOM | RETAKE
 W:angband
@@ -212,9 +212,9 @@ T:RANDOM | RETAKE
 W:angband
 G:KILL(*)
 
-#####################################################################
-# New Quests adapted from Kangband (and new FrogComposband quests)
-#####################################################################
+
+
+
 
 N:50:5:Trouble at Home (Outpost)
 T:TOWN | GENERATE
@@ -242,7 +242,7 @@ N:55:50:The Underground City (Morivant)
 T:TOWN | GENERATE | DANGER_LEVEL_55
 F:q_underground.txt
 
-# hardcoded as quest 60 in obj.c
+
 N:60:27:Clear the Tunnels (Anambar)
 T:TOWN | GENERATE | SUBSTITUTE_99
 F:q_orcs2.txt
@@ -325,9 +325,9 @@ N:78:60:The Volcano (Telmora)
 T:TOWN | GENERATE | SUBSTITUTE_96
 F:q_volc.txt
 
-#####################################################################
-# Fighters guild quests
-#####################################################################
+
+
+
 
 N:56:30:Troll Slayer (Morivant)
 T:TOWN
@@ -335,21 +335,21 @@ W:orc
 G:KILL(^olog$, 10)
 F:q_trollslayer.txt
 
-# Obsoleted but retained for savefile compatibility
+
 N:57:35:Giant Slayer (Morivant)
 T:TOWN
 W:giant
 G:KILL(lesser titan, 10)
 F:q_giantslayer.txt
 
-# Obsoleted but retained for savefile compatibility
+
 N:58:38:Dragon Slayer (Morivant)
 T:TOWN
 W:lonely
 G:KILL(ancient gold, 10)
 F:q_drag_old.txt
 
-# Obsoleted but retained for savefile compatibility
+
 N:59:45:Demon Slayer (Morivant)
 T:TOWN
 W:angband
@@ -374,14 +374,14 @@ W:giant
 G:KILL(lesser titan, 10)
 F:q_giantslayer.txt
 
-# Placeholder for all side quests from Karrot or the Troika
-# Hardcoded as quest 82 in quest.h
+
+
 
 N:82:0:Purple Quest
 T:PURPLE
 G:KILL(*)
 
-# Alternative quests
+
 
 N:83:50:The Treachery of Lord Bovin (Anambar)
 T:TOWN | GENERATE | DANGER_LEVEL_55
@@ -455,5 +455,3 @@ F:q_stable.txt
 N:99:27:The Treasure of Scary Rock (Anambar)
 T:TOWN | GENERATE
 F:q_scary.txt
-
-# vim: filetype=qi :

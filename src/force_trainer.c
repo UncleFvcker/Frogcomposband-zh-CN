@@ -7,11 +7,11 @@ static void _small_force_ball_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Small Force Ball");
+        var_set_string(res, "小型原力弹");
         break;
     case SPELL_DESC:
     {        
-        var_set_string(res, "Fires a very small energy ball.");
+        var_set_string(res, "发射一颗非常小的能量弹。");
         break;
     }
     case SPELL_INFO:
@@ -50,10 +50,10 @@ static void _flying_technique_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Flying Technique");
+        var_set_string(res, "舞空术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gives levitation a while.");
+        var_set_string(res, "暂时获得漂浮能力。");
         break;
     case SPELL_CAST:
     {
@@ -72,10 +72,10 @@ static void _kamehameha_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Kamehameha");
+        var_set_string(res, "龟派气功");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a short energy beam.");
+        var_set_string(res, "发射一道短程能量光束。");
         break;
     case SPELL_INFO:
     {
@@ -113,10 +113,10 @@ static void _magic_resistance_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Magic Resistance");
+        var_set_string(res, "魔法抗性");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gives magic resistance for a while.");
+        var_set_string(res, "暂时获得魔法抗性。");
         break;
     case SPELL_CAST:
     {
@@ -136,21 +136,21 @@ static void _improve_force_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Improve Force");
+        var_set_string(res, "强化原力");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Improves spirit energy power temporarily. Improved spirit energy will be more and more powerful or have longer duration. Too many improving results in uncontrollable explosion of spirit energy.");
+        var_set_string(res, "暂时强化精神能量。被强化的精神能量会变得越来越强大或持续时间更长。强化次数过多会导致精神能量不可控制地爆炸。");
         break;
     case SPELL_CAST:
     {
-        msg_print("You improved the Force.");
+        msg_print("你强化了原力。");
         p_ptr->magic_num1[0] += (70 + p_ptr->lev);
         p_ptr->update |= (PU_BONUS);
         if (randint1(p_ptr->magic_num1[0]) > (p_ptr->lev * 4 + 120))
         {
-            msg_print("The Force exploded!");
+            msg_print("原力爆炸了！");
             fire_ball(GF_MANA, 0, p_ptr->magic_num1[0] / 2, 10);
-            take_hit(DAMAGE_LOSELIFE, p_ptr->magic_num1[0] / 2, "Explosion of the Force");
+            take_hit(DAMAGE_LOSELIFE, p_ptr->magic_num1[0] / 2, "原力爆炸");
             p_ptr->magic_num1[0] = 0;
             p_ptr->update |= (PU_BONUS);
             var_set_bool(res, FALSE); /* no energy consumed?? */
@@ -179,10 +179,10 @@ static void _aura_of_force_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Aura of Force");
+        var_set_string(res, "原力光环");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gives aura which damages all monsters which attacked you for a while.");
+        var_set_string(res, "产生一个光环，在一段时间内对所有攻击你的怪物造成伤害。");
         break;
     case SPELL_CAST:
     {
@@ -201,10 +201,10 @@ static void _shock_power_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shock Power");
+        var_set_string(res, "冲击力场");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Damages an adjacent monster, and blow it away.");
+        var_set_string(res, "对相邻的怪物造成伤害，并将其吹飞。");
         break;
     case SPELL_INFO:
     {
@@ -242,7 +242,7 @@ static void _shock_power_spell(int cmd, variant *res)
 
             if (randint1(r_ptr->level * 3 / 2) > randint0(dam / 2) + dam/2)
             {
-                msg_format("%^s was not blown away.", m_name);
+                msg_format("%^s没有被吹飞。", m_name);
             }
             else
             {
@@ -259,7 +259,7 @@ static void _shock_power_spell(int cmd, variant *res)
                 }
                 if ((ty != oy) || (tx != ox))
                 {
-                    msg_format("You blow %s away!", m_name);
+                    msg_format("你将 %s 吹飞了！", m_name);
 
                     cave[oy][ox].m_idx = 0;
                     cave[ty][tx].m_idx = m_idx;
@@ -289,10 +289,10 @@ static void _large_force_ball_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Large Force Ball");
+        var_set_string(res, "大型原力弹");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a large energy ball.");
+        var_set_string(res, "发射一颗巨大的能量弹。");
         break;
     case SPELL_INFO:
     {
@@ -329,10 +329,10 @@ static void _summon_ghost_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Ghost");
+        var_set_string(res, "召唤幽灵");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Summons ghosts.");
+        var_set_string(res, "召唤幽灵。");
         break;
     case SPELL_CAST:
     {
@@ -343,9 +343,9 @@ static void _summon_ghost_spell(int cmd, variant *res)
             if (summon_specific(-1, py, px, p_ptr->lev, SUMMON_PHANTOM, PM_FORCE_PET))
                 success = TRUE;
         if (success)
-            msg_print("'Your wish, master?'");
+            msg_print("“有什么吩咐，大师？”");
         else
-            msg_print("Nothing happen.");
+            msg_print("什么也没发生。");
         var_set_bool(res, TRUE);
         break;
     }
@@ -360,10 +360,10 @@ static void _exploding_flame_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Exploding Flame");
+        var_set_string(res, "爆裂火焰");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generates a huge ball of flame centered on you.");
+        var_set_string(res, "以你为中心产生一个巨大的火球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(100 + p_ptr->lev + _force_boost() + p_ptr->to_d_spell)));
@@ -390,10 +390,10 @@ static void _super_kamehameha_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Super Kamehameha");
+        var_set_string(res, "超级龟派气功");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a long, powerful energy beam.");
+        var_set_string(res, "发射一道远程、强大的能量光束。");
         break;
     case SPELL_INFO:
     {
@@ -430,10 +430,10 @@ static void _light_speed_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Light Speed");
+        var_set_string(res, "光速移动");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gives extremely fast speed.");
+        var_set_string(res, "提供极快的移动速度。");
         break;
     case SPELL_CAST:
     {
@@ -563,7 +563,7 @@ static void _on_fail(const spell_info *spell)
     /* reset force counter for all spells *except* Improve Force */
     if (spell->fn != _improve_force_spell && p_ptr->magic_num1[0])
     {
-        msg_print("Your improved Force has gone away...");
+        msg_print("你强化的原力消退了……");
         p_ptr->magic_num1[0] = 0;
         p_ptr->update |= (PU_BONUS);
     }
@@ -608,7 +608,7 @@ static void _character_dump(doc_ptr doc)
 {
     spellbook_character_dump(doc);
 
-    doc_insert(doc, "<color:r>Realm:</color> <color:B>Force</color>\n");
+    doc_insert(doc, "<color:r>领域：</color> <color:B>原力</color>\n");
     py_dump_spells_aux(doc);
 }
 
@@ -623,24 +623,8 @@ class_t *force_trainer_get_class(void)
     skills_t bs = { 30,  34,  38,   4,  32,  24,  50,  40 };
     skills_t xs = { 10,  11,  11,   0,   0,   0,  14,  15 };
 
-        me.name = "Force-Trainer";
-        me.desc = "A Force-Trainer is a master of the spiritual Force. They prefer "
-                    "fighting with neither weapon nor armor. They are not as good "
-                    "fighters as are Monks, but they can use both magic and the "
-                    "spiritual Force. Wielding weapons or wearing heavy armor disturbs "
-                    "use of the Force. Wisdom is a Force-Trainer's primary stat.\n \n"
-                    "Force-Trainers use both spellbook magic and the special spiritual "
-                    "power called the Force. They can select a realm from Life, "
-                    "Nature, Craft, Death, and Crusade. To use The Force, you select "
-                    "it just as if it were spellbook 'F'; which means you need to press "
-                    "'m' and then 'F' to select the Force. The most important spell of "
-                    "the Force is 'Improve Force'; each time a Force-Trainer activates "
-                    "it, their Force power becomes more powerful, and their attack "
-                    "power in bare-handed melee fighting is increased temporarily. The "
-                    "strengthened Force can be released at one stroke when a "
-                    "Force-Trainer activates some other Force spell, typically an attack "
-                    "spell. They have a class power - 'Clear Mind' - which allows them "
-                    "to rapidly regenerate their mana.";
+        me.name = "原力行者";
+        me.desc = "原力行者是精神原力的大师。他们倾向于不使用武器也不穿戴护甲进行战斗。他们的肉搏能力不如武僧，但他们能够同时使用魔法和精神原力。挥舞武器或穿戴重型护甲会干扰原力的使用。感知是原力行者的首要属性。\n \n原力行者既使用法术书魔法，也使用被称为“原力”的特殊精神力量。他们可以从生命、自然、工匠、死亡和圣战领域中选择一个。要使用原力，你可以像选择法术书 'F' 一样选择它；这意味着你需要按 'm' 然后按 'F' 来选择原力。原力最重要的法术是“强化原力”；原力行者每次激活它时，他们的原力就会变得更强，并且他们在徒手近战中的攻击力会暂时增加。当原力行者激活其他原力法术（通常是攻击法术）时，被强化的原力可以一举释放出来。他们有一个职业能力 —— “明镜止水” —— 可以让他们迅速恢复法力。";
         
         me.stats[A_STR] =  0;
         me.stats[A_INT] = -1;

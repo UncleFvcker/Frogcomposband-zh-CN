@@ -210,7 +210,7 @@ Boast of England
 Red Rose Knight
 Unholy cow
 Turtle
-Q
+
 Red Baron
 Giddy goon
 Vogon
@@ -288,7 +288,7 @@ Killdozer
 Killer tomato
 Lurking fear
 Madball
-M.U.L.E.
+
 Magnetic monster
 Mixed-up zombie
 Mixed-up goose
@@ -322,7 +322,7 @@ Unknown terror
 Unnamable
 Unmentionable
 Womaneater
-E.T.
+
 Toxic Avenger
 Onslaught
 Pacman

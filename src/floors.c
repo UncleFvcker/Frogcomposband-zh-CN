@@ -58,11 +58,11 @@ void init_saved_floors(bool force)
         {
             if (!force)
             {
-                msg_print("Error: There are old temporal files.");
-                msg_print("Make sure you are not running two game processes simultaneously.");
-                msg_print("If the temporal files are garbages of old crashed process, ");
-                msg_print("you can delete it safely.");
-                if (!get_check("Do you delete old temporal files? ")) quit("Aborted.");
+                msg_print("错误：存在旧的临时文件。");
+                msg_print("请确保你没有同时运行两个游戏进程。");
+                msg_print("如果这些临时文件是旧的崩溃进程产生的垃圾，");
+                msg_print("你可以安全地删除它们。");
+                if (!get_check("你要删除旧的临时文件吗？")) quit("已中止。");
                 force = TRUE;
             }
         }
@@ -460,7 +460,7 @@ static void preserve_pet(void)
                 /* Acquire the monster name */
                 monster_desc(m_name, m_ptr, 0);
 
-                msg_format("%^s disappears!", m_name);
+                msg_format("%^s消失了！", m_name);
             }
 
             /* Delete the monster */
@@ -600,7 +600,7 @@ static void place_pet(void)
             char m_name[80];
 
             monster_desc(m_name, m_ptr, 0);
-            msg_format("You have lost sight of %s.", m_name);
+            msg_format("你失去了 %s 的踪迹。", m_name);
 
             /* Pre-calculated in precalc_cur_num_of_pet(), but need to decrease */
             if (r_ptr->cur_num) inc_cur_num(m_ptr, -1);
@@ -1046,7 +1046,7 @@ void leave_floor(void)
     /* Hack */
     if ((p_ptr->no_air) && (!dun_level) && (!(get_race()->flags & RACE_IS_NONLIVING)))
     {
-        msg_print("You feel a welcome breeze as you return to the world of air!");
+        msg_print("当你回到充满空气的世界时，你感到一阵令人愉悦的微风！");
         p_ptr->no_air = 0;
         no_air_monster = 0;
 
@@ -1347,7 +1347,7 @@ void change_floor(void)
             if (sf_ptr->last_visit)
             {
                 /* Temporal file is broken? */
-                msg_print("The staircases come to a dead end...");
+                msg_print("楼梯通向了一条死路……");
 
                 /* Create simple dead end */
                 build_dead_end();
@@ -1416,11 +1416,11 @@ void change_floor(void)
         {
             if (!p_ptr->blind)
             {
-                msg_print("Suddenly the stairs are blocked!");
+                msg_print("突然，楼梯被堵住了！");
             }
             else
             {
-                msg_print("You hear some noises.");
+                msg_print("你听到了一些声响。");
             }
         }
 
@@ -1506,14 +1506,14 @@ void stair_creation(bool down_only)
     if (py_on_surface() || (!up && !down) || !quests_allow_all_spells())
     {
         /* arena or quest */
-        msg_print("There is no effect!");
+        msg_print("没有效果！");
         return;
     }
 
     /* Artifacts resists */
     if (!cave_valid_bold(py, px))
     {
-        msg_print("The object resists the spell.");
+        msg_print("该物品抵抗了法术。");
 
         return;
     }

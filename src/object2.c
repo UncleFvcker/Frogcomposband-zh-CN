@@ -337,7 +337,7 @@ void compact_objects(int size)
     if (size)
     {
         /* Message */
-        msg_print("Compacting objects...");
+        msg_print("正在压缩物品...");
 
 
         /* Redraw map */
@@ -561,7 +561,7 @@ s16b o_pop(void)
 
 
     /* Warn the player (except during dungeon creation) */
-    if (character_dungeon) msg_print("Too many objects!");
+    if (character_dungeon) msg_print("物品太多了！");
 
 
     /* Oops */
@@ -1550,14 +1550,14 @@ void object_mention(object_type *o_ptr)
     if (object_is_fixed_artifact(o_ptr))
     {
         /* Silly message */
-        msg_format("Artifact (%s)", o_name);
+        msg_format("神器 (%s)", o_name);
 
     }
 
     /* Random Artifact */
     else if (o_ptr->art_name)
     {
-        msg_print("Random artifact");
+        msg_print("随机神器");
 
     }
 
@@ -1565,7 +1565,7 @@ void object_mention(object_type *o_ptr)
     else if (object_is_ego(o_ptr))
     {
         /* Silly message */
-        msg_format("Ego-item (%s)", o_name);
+        msg_format("Ego物品 (%s)", o_name);
 
     }
 
@@ -1573,7 +1573,7 @@ void object_mention(object_type *o_ptr)
     else
     {
         /* Silly message */
-        msg_format("Object (%s)", o_name);
+        msg_format("物品 (%s)", o_name);
 
     }
 }
@@ -1885,7 +1885,7 @@ static void a_m_aux_4(object_type *o_ptr, int level, int power, int mode)
 
             if (cheat_peek)
             {
-                msg_format("Figurine of %s, depth +%d%s",
+                msg_format("%s的微缩模型，深度 +%d%s",
 
                               r_name + r_ptr->name, check - 1,
                               !object_is_cursed(o_ptr) ? "" : " {cursed}");
@@ -1945,7 +1945,7 @@ static void a_m_aux_4(object_type *o_ptr, int level, int power, int mode)
 
             if (cheat_peek)
             {
-                msg_format("Corpse of %s, depth +%d",
+                msg_format("%s的尸体，深度 +%d",
 
                               r_name + r_ptr->name, check - 1);
             }
@@ -1977,7 +1977,7 @@ static void a_m_aux_4(object_type *o_ptr, int level, int power, int mode)
 
             if (cheat_peek)
             {
-                msg_format("Statue of %s", r_name + r_ptr->name);
+                msg_format("%s的雕像", r_name + r_ptr->name);
 
             }
             obj_identify(o_ptr);
@@ -4090,7 +4090,7 @@ s16b drop_near(object_type *j_ptr, int chance, int y, int x)
 
     if (object_is_(j_ptr, TV_POTION, SV_POTION_BLOOD))
     {
-        msg_print("The potion goes sour.");
+        msg_print("药水变质了。");
         j_ptr->sval = SV_POTION_SALT_WATER;
         j_ptr->k_idx = lookup_kind(TV_POTION, SV_POTION_SALT_WATER);
         object_origins(j_ptr, ORIGIN_BLOOD);
@@ -4111,12 +4111,12 @@ s16b drop_near(object_type *j_ptr, int chance, int y, int x)
     if (!object_is_artifact(j_ptr) && (randint0(100) < chance))
     {
         /* Message */
-        cmsg_format(TERM_L_RED, "The %s disappear%s.",
+        cmsg_format(TERM_L_RED, "%s消失了。",
                o_name, plural ? "" : "s");
 
 
         /* Debug */
-        if (p_ptr->wizard) msg_print("(breakage)");
+        if (p_ptr->wizard) msg_print("(破碎)");
 
         /* Track destruction for insurance policy */
         if (j_ptr->insured) obj_zero(j_ptr);
@@ -4235,12 +4235,12 @@ s16b drop_near(object_type *j_ptr, int chance, int y, int x)
         if (!character_dungeon) return (0);
 
         /* Message */
-        msg_format("The %s disappear%s.",
+        msg_format("%s消失了。",
                o_name, (plural ? "" : "s"));
 
 
         /* Debug */
-        if (p_ptr->wizard) msg_print("(no floor space)");
+        if (p_ptr->wizard) msg_print("(地面没有空间)");
 
 
         /* Failure */
@@ -4287,10 +4287,10 @@ s16b drop_near(object_type *j_ptr, int chance, int y, int x)
         if (!candidates)
         {
             /* Message */
-            msg_format("The %s disappear%s.", o_name, (plural ? "" : "s"));
+            msg_format("%s消失了。", o_name, (plural ? "" : "s"));
 
             /* Debug */
-            if (p_ptr->wizard) msg_print("(no floor space)");
+            if (p_ptr->wizard) msg_print("(地面没有空间)");
 
             /* Mega-Hack -- preserve artifacts */
             if (preserve_mode)
@@ -4380,12 +4380,12 @@ s16b drop_near(object_type *j_ptr, int chance, int y, int x)
     if (!done && !o_idx)
     {
         /* Message */
-        msg_format("The %s disappear%s.",
+        msg_format("%s消失了。",
                o_name, (plural ? "" : "s"));
 
 
         /* Debug */
-        if (p_ptr->wizard) msg_print("(too many objects)");
+        if (p_ptr->wizard) msg_print("(物品过多)");
 
 
         /* Hack -- Preserve artifacts */
@@ -4444,7 +4444,7 @@ s16b drop_near(object_type *j_ptr, int chance, int y, int x)
     /* Message when an object falls under the player */
     if (chance && player_bold(by, bx))
     {
-        msg_print("You feel something roll beneath your feet.");
+        msg_print("你感觉有什么东西在你脚下滚动。");
 
     }
 
@@ -4635,7 +4635,7 @@ void place_trap(int y, int x)
 
     #if 0
     if (p_ptr->wizard)
-        msg_format("<color:r>Trap:</color> %s", f_tag + f_info[c_ptr->feat].tag);
+        msg_format("<color:r>陷阱:</color> %s", f_tag + f_info[c_ptr->feat].tag);
     #endif
 }
 
@@ -4751,14 +4751,14 @@ bool process_warning(int xx, int yy)
 
         if (o_ptr) object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
         else strcpy(o_name, "body"); /* Warning ability without item */
-        msg_format("Your %s pulsates!", o_name);
+        msg_format("你的%s正在脉动！", o_name);
         if (o_ptr) obj_learn_flag(o_ptr, OF_WARNING);
         disturb(0, 0);
         c_ptr->info |= (CAVE_MARK | CAVE_AWARE);
         c_ptr->info &= ~CAVE_UNSAFE;
         disclose_grid(yy, xx);
         lite_spot(yy, xx);
-        return get_check("Do you really want to go ahead? ");
+        return get_check("你真的要继续吗？");
     }
 
     return TRUE;

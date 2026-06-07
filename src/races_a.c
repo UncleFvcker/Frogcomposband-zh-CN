@@ -26,12 +26,8 @@ race_t *amberite_get_race(void)
 
     if (!init)
     {
-        me.name = "Amberite";
-        me.desc = "The Amberites are a reputedly immortal race, who are endowed with numerous "
-                    "advantages in addition to their longevity. They are very tough and their "
-                    "constitution cannot be reduced, and their ability to recover from wounds "
-                    "surpasses most other races. Having seen virtually everything, very "
-                    "little is new to them, and so they gain levels relatively slowly.";
+        me.name = "安珀人";
+        me.desc = "安珀人被认为是一个不朽的种族，除了寿命悠长之外，他们还被赋予了许多优势。他们非常坚韧，体质无法被降低，他们从伤痛中恢复的能力超过了大多数其他种族。由于几乎见识过一切，很少有事物对他们来说是新鲜的，因此他们升级的速度相对较慢。";
 
         me.stats[A_STR] =  1;
         me.stats[A_INT] =  2;
@@ -247,18 +243,8 @@ race_t *android_get_race(void)
 
     if (!init)
     {
-        me.name = "Android";
-        me.desc = "An android is an artificial creation with a body of machinery. Their intelligence "
-                    "almost matches that of organic races, though their wisdom is no better than that of "
-                    "Golems. Of course, their mechanical body offers great physical advantages, far "
-                    "surpassing the powers of man. Uniquely among all races, Androids do not acquire "
-                    "experience from killing monsters, but rather gain in power as they attach new "
-                    "equipment to their frame. Rings, amulets, and lights do not influence growth. "
-                    "Androids are resistant to poison and immune to life-draining attacks; moreover, "
-                    "because of their hard metallic bodies, they get a bonus to AC. Androids have "
-                    "electronic circuits throughout their body, and so must beware of electric shocks. "
-                    "They gain very little nutrition from the food of mortals, but can use flasks "
-                    "of oil as their energy source.";
+        me.name = "人造人";
+        me.desc = "人造人是用机械躯体创造出的人工产物。他们的智力几乎与有机种族相当，尽管他们的感知并不比魔像好多少。当然，他们的机械躯体提供了巨大的物理优势，远远超过人类的力量。在所有种族中，唯独人造人不会从杀怪中获取经验，而是随着他们将新装备安装到自己的身躯上而获得力量的提升。戒指、护身符和光源不影响其成长。人造人对毒素有抗性，免疫吸取生命的攻击；此外，由于他们坚硬的金属身躯，他们能获得护甲(AC)加成。人造人全身布满电子电路，因此必须小心电击。他们从凡人的食物中获得的营养极少，但可以使用油瓶作为能量来源。";
 
         me.stats[A_STR] =  3;
         me.stats[A_INT] = -1;
@@ -316,12 +302,8 @@ race_t *archon_get_race(void)
 
     if (!init)
     {
-        me.name = "Archon";
-        me.desc = "Archons are a higher class of angels. They are good at all skills, and are strong, "
-                    "wise, and a favorite with any people. They are able to see the unseen, and "
-                    "their wings allow them to safely fly over traps and other dangerous places. However, "
-                    "belonging to a higher plane as they do, the experiences of this world do not leave "
-                    "a strong impression on them and they gain levels slowly.";
+        me.name = "神圣使者";
+        me.desc = "神圣使者是天使中的更高阶层。他们精通所有的技能，强壮、睿智，并且受到所有人的喜爱。他们能够看穿隐形事物，他们的翅膀使他们能够安全地飞越陷阱和其他危险的地方。然而，因为属于更高的位面，这个世界的经历无法在他们身上留下深刻的印记，因此他们升级很慢。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] =  0;
@@ -398,13 +380,8 @@ race_t *balrog_get_race(void)
 
     if (!init)
     {
-        me.name = "Balrog";
-        me.desc = "Balrogs are a higher class of demons. They are strong, intelligent and tough, but "
-                    "lacking in wisdom and not suitable for priesthood. Balrogs are resistant to "
-                    "fire and nether, and have a firm hold on their life force; they also soon learn "
-                    "to see invisible things. They are good at almost all skills except stealth. They gain "
-                    "very little nutrition from the food of mortals, and need human corpses as sacrifices "
-                    "to regain their vitality.";
+        me.name = "炎魔";
+        me.desc = "炎魔是恶魔中的更高阶层。他们强壮、聪明、坚韧，但缺乏感知，不适合成为牧师。炎魔对火焰和虚空有抗性，并且能够牢牢掌控自己的生命力；他们也能很快学会识破隐形。除了潜行之外，他们擅长几乎所有的技能。他们从凡人的食物中获得的营养极少，需要献祭人类的尸体才能恢复活力。";
 
         me.stats[A_STR] =  4;
         me.stats[A_INT] =  2;
@@ -480,12 +457,8 @@ race_t *barbarian_get_race(void)
 
     if (!init)
     {
-        me.name = "Barbarian";
-        me.desc = "Barbarians are hardy men of the north; they are fierce in combat, and their wrath "
-                    "is feared throughout the world. Combat is their life: they feel no fear, and they "
-                    "learn to enter battle frenzy at will even sooner than half-trolls. Barbarians are, "
-                    "however, suspicious of magic, which makes magic devices fairly hard for them to use. "
-                    "Barbarians gain a demigod talent at level 30.";
+        me.name = "野蛮人";
+        me.desc = "野蛮人是来自北方的坚韧人类；他们在战斗中无比勇猛，他们的愤怒令全世界畏惧。战斗就是他们的生活：他们不知恐惧为何物，而且他们比半巨魔更早地学会了随意进入战斗狂暴状态。然而，野蛮人对魔法充满怀疑，这使得魔法装置对他们来说相当难用。野蛮人在30级时获得一项半神天赋。";
 
         me.stats[A_STR] =  3;
         me.stats[A_INT] = -2;
@@ -527,7 +500,7 @@ static void _beastman_gain_level(int new_level)
 {
     if (one_in_(5))
     {
-        msg_print("You feel different...");
+        msg_print("你感觉不太一样了……");
         mut_gain_random(NULL);
     }
 }
@@ -554,16 +527,8 @@ race_t *beastman_get_race(void)
 
     if (!init)
     {
-        me.name = "Beastman";
-        me.desc = "This race is a blasphemous abomination produced by Chaos. It is not an independent "
-                    "race but rather a humanoid creature, most often a human, twisted by Chaos; or else "
-                    "a nightmarish crossbreed of a human and a beast. All Beastmen are accustomed "
-                    "to Chaos so much that they are untroubled by confusion and sound, although raw "
-                    "Logrus can still hurt them. Beastmen revel in chaos, as it twists them "
-                    "more and more. Beastmen are subject to mutations: when they have been created, "
-                    "they receive a random mutation, and have a small chance to gain more mutations "
-                    "every time they advance a level. Unlike normal races, Beastmen can have many "
-                    "mutations without ill effects on their regeneration.";
+        me.name = "混沌兽人";
+        me.desc = "这个种族是混沌产生的亵渎可憎之物。它并非一个独立的种族，而是一种被混沌扭曲的类人生物，通常是人类；或者是一种人类与野兽梦魇般的混血产物。所有的混沌兽人都极为习惯混沌，以至于他们不受困惑和声音的困扰，尽管纯粹的混沌之源(Logrus)仍然能伤害他们。混沌兽人沉迷于混沌之中，因为混沌会越来越深地扭曲他们。混沌兽人极易发生变异：当他们被创建时，会获得一个随机变异，并且每次升级时都有很小的几率获得更多的变异。与普通种族不同，混沌兽人可以拥有许多变异，而不会对他们的再生能力产生负面影响。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] = -2;
@@ -606,16 +571,16 @@ static void _boit_vomit_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Vomit");
+        var_set_string(res, "呕吐");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Ejects the contents of your stomach, making you extremely hungry and curing poison. Vomiting on an already empty stomach hurts a bit.");
+        var_set_string(res, "吐出你胃里的东西，使你变得极度饥饿并解除中毒状态。在空腹状态下呕吐会有点疼。");
         break;
     case SPELL_FLAGS:
         var_set_int(res, PWR_AFRAID | PWR_CONFUSED);
         break;
     case SPELL_CAST:
-        msg_print("You throw up!");
+        msg_print("你吐了！");
         if (p_ptr->food < PY_FOOD_FAINT + 24)
         {
             take_hit(DAMAGE_NOESCAPE, 10, "vomiting on an empty stomach");
@@ -653,11 +618,8 @@ race_t *boit_get_race(void)
 
     if (!init)
     {
-        me.name = "Boit";
-        me.desc = "Boits are small bipedal creatures covered in yellow, lilac, brown or green "
-                    "fur, distantly related to the Yeeks. Boits move speedily, and can eject "
-                    "the contents of their stomachs at will, but they are not particularly "
-                    "well-suited for melee, ranged combat, use of magical devices, or spellcasting.";
+        me.name = "波伊特";
+        me.desc = "波伊特是一种体型较小、双足行走、身上覆盖着黄色、淡紫色、棕色或绿色毛皮的生物，与伊克人有远亲关系。波伊特移动迅速，并且可以随心所欲地吐出胃里的东西，但它们并不特别适合近战、远程战斗、使用魔法装置或施展法术。";
 
         me.stats[A_STR] = -1;
         me.stats[A_INT] = -2;
@@ -696,7 +658,7 @@ race_t *boit_get_race(void)
 static void _centaur_birth(void)
 {
     equip_on_change_race();
-    skills_innate_init("Hooves", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("马蹄", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
     py_birth_food();
     py_birth_light();
 }
@@ -706,10 +668,10 @@ void jump_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Jump");
+        var_set_string(res, "跳跃");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Leap a short distance, clearing any intervening monsters or obstacles.");
+        var_set_string(res, "向前跳跃一段短距离，越过任何中间的怪物或障碍物。");
         break;
     case SPELL_CAST:
     {
@@ -722,17 +684,17 @@ void jump_spell(int cmd, variant *res)
 
         if (distance(y, x, py, px) > len)
         {
-            msg_print("You can't jump that far.");
+            msg_print("你跳不了那么远。");
             return;
         }
         if (!los(py, px, y, x))
         {
-            msg_print("You can't see that location.");
+            msg_print("你看不见那个位置。");
             return;
         }
         if (!cave_player_teleportable_bold(y, x, 0L))
         {
-            msg_print("You can't leap there!");
+            msg_print("你无法跳跃到那里！");
             return;
         }
         teleport_player_to(y, x, 0L);
@@ -792,7 +754,7 @@ static void _centaur_calc_innate_attacks(void)
     a.weight = 150;
     calc_innate_blows(&a, 200);
     a.msg = "You kick.";
-    a.name = "Hooves";
+    a.name = "马蹄";
 
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
 }
@@ -804,14 +766,8 @@ race_t *centaur_get_race(void)
 
     if (!init)
     {
-        me.name = "Centaur";
-        me.desc = "Centaurs are creatures with the head, arms and torso of a human combined with the "
-                    "body and legs of a horse. As such, they are able to move more quickly as "
-                    "they gain experience and are capable of leaping great distances. Centaurs are "
-                    "skilled in fighting and archery and can attack monsters with their hooves in "
-                    "addition to normal melee weapons; but lacking normal feet, they cannot wear boots. "
-                    "Being at home in the forests of the world, Centaurs "
-                    "are able to move quickly through foliage.";
+        me.name = "半人马";
+        me.desc = "半人马拥有人类的头部、手臂和躯干，并结合了马的身体和腿。因此，随着经验的增长，他们能够移动得更快，并且有能力跳跃很长的距离。半人马精通格斗和箭术，除了常规的近战武器外，还能用蹄子攻击怪物；但由于没有正常人的脚，他们无法穿靴子。作为世界森林中的原住民，半人马能够快速穿越树叶等植被。";
 
         me.stats[A_STR] =  3;
         me.stats[A_INT] = -2;
@@ -872,11 +828,8 @@ race_t *cyclops_get_race(void)
 
     if (!init)
     {
-        me.name = "Cyclops";
-        me.desc = "With but one eye, a Cyclops can see more than many with two eyes. They are "
-                    "headstrong, and loud noises bother them very little. They are not quite "
-                    "qualified for the magic using professions, but as a certain Mr. Ulysses "
-                    "can testify, their accuracy with thrown rocks can be deadly!";
+        me.name = "独眼巨人";
+        me.desc = "虽然只有一只眼睛，但独眼巨人看到的比许多双眼健全的人还要多。他们固执己见，巨大的噪音也很少能干扰到他们。他们不太适合使用魔法的职业，但正如某位尤利西斯先生可以作证的那样，他们投掷石块的精准度可能是致命的！";
 
         me.stats[A_STR] =  4;
         me.stats[A_INT] = -3;
@@ -937,12 +890,8 @@ race_t *dark_elf_get_race(void)
 
     if (!init)
     {
-        me.name = "Dark-Elf";
-        me.desc = "A cave-dwelling race unhampered by darkness attacks, dark-elves have more "
-                    "in common with Nibelungs than with other elves. They have a great capacity "
-                    "for magic and spellcasting, and learn the Magic Missile spell at a low level "
-                    "regardless of their class. With their keen sight, they soon acquire the "
-                    "ability to see invisible things.";
+        me.name = "黑暗精灵";
+        me.desc = "作为一个不受黑暗攻击阻碍的穴居种族，黑暗精灵与尼伯龙根人的共同点比与其他精灵的共同点还要多。他们在魔法和施法方面有着极高的天赋，无论其职业为何，都能在低等级时学会“魔法飞弹”法术。凭借敏锐的视力，他们很快就能获得识破隐形事物的能力。";
 
         me.stats[A_STR] = -1;
         me.stats[A_INT] =  3;
@@ -1072,10 +1021,10 @@ static void _draconian_breathe_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe");
+        var_set_string(res, "喷吐");
         break;
     case SPELL_DESC:
-        var_set_string(res, format("Breathes %s at your opponent.", _draconian_breath_desc()));
+        var_set_string(res, format("向你的对手喷吐%s。", _draconian_breath_desc()));
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _draconian_breath_amount()));
@@ -1093,7 +1042,7 @@ static void _draconian_breathe_spell(int cmd, variant *res)
             int dam = _draconian_breath_amount();
             var_set_bool(res, FALSE);
             if (e < 0) return;
-            msg_format("You breathe %s.", gf_name(e));
+            msg_format("你喷吐出%s。", gf_name(e));
             _draconian_do_breathe(e, dir, dam);
             var_set_bool(res, TRUE);
         }
@@ -1317,7 +1266,7 @@ static void _draconian_calc_innate_attacks(void)
         a.weight = 100 + l;
         calc_innate_blows(&a, 400);
         a.msg = "You claw.";
-        a.name = "Claw";
+        a.name = "爪击";
 
         if (p_ptr->pclass == CLASS_MONK || p_ptr->pclass == CLASS_FORCETRAINER)
         {
@@ -1354,7 +1303,7 @@ static void _draconian_calc_innate_attacks(void)
         else
             a.blows = 100;
         a.msg = "You bite.";
-        a.name = "Bite";
+        a.name = "撕咬";
 
         if (p_ptr->pclass == CLASS_MONK || p_ptr->pclass == CLASS_FORCETRAINER)
         {
@@ -1374,7 +1323,7 @@ static void _draconian_gain_power(void)
         p_ptr->draconian_power = idx;
         if (idx == MUT_DRACONIAN_METAMORPHOSIS)
         {
-            msg_print("You are transformed into a dragon!");
+            msg_print("你变成了一条巨龙！");
             equip_on_change_race();
         }
     }
@@ -1399,13 +1348,8 @@ race_t *draconian_get_race(int psubrace)
 
     if (!init)
     {
-        me.name = "Draconian";
-        me.desc = "Draconians are a humanoid race with dragon-like attributes. There are several "
-                    "subtypes of draconians with different resistances, breaths and attributes; "
-                    "for example, Red Draconians are resistant to fire which they may also breathe "
-                    "at will, while White Draconians breathe and resist cold instead. All draconians "
-                    "levitate. In addition, when they mature enough, they may choose a special "
-                    "draconian power.";
+        me.name = "龙裔";
+        me.desc = "龙裔是一个具有类似龙类特征的类人种族。龙裔有几个亚种，拥有不同的抗性、喷吐能力和属性；例如，红龙裔对火焰有抗性，并且能随意喷吐火焰，而白龙裔则喷吐和抵抗寒冰。所有的龙裔都能漂浮。此外，当他们足够成熟时，他们可以选择一种特殊的龙裔力量。";
 
         me.base_hp = 22;
 
@@ -1450,7 +1394,7 @@ race_t *draconian_get_race(int psubrace)
         switch (psubrace)
         {
         case DRACONIAN_RED:
-            me.subname = "Red";
+            me.subname = "红色";
             me.subdesc = "Red Draconians have an affinity for fire, which they both breathe at will and resist. "
                          "Together with their White kin, they are the strongest in combat of the draconians; "
                          "but they are not so good with magic, and their stealth is quite poor. Should they choose "
@@ -1466,7 +1410,7 @@ race_t *draconian_get_race(int psubrace)
             me.shop_adjust = 115;
             break;
         case DRACONIAN_WHITE:
-            me.subname = "White";
+            me.subname = "白色";
             me.subdesc = "White Draconians have an affinity for frost, which they both breathe at will and resist. "
                          "Together with their Red kin, they are the strongest in combat of the draconians; "
                          "but they are not so good with magic, and their stealth is quite poor. Should they choose "
@@ -1482,7 +1426,7 @@ race_t *draconian_get_race(int psubrace)
             me.shop_adjust = 115;
             break;
         case DRACONIAN_BLUE:
-            me.subname = "Blue";
+            me.subname = "蓝色";
             me.subdesc = "Blue Draconians have an affinity for lightning, which they both breathe at will "
                          "and resist. They are strong in combat, but not so good with magic or stealth. "
                          "Should they choose the power of Dragon Skin, they will gain a shocking aura as well. "
@@ -1496,7 +1440,7 @@ race_t *draconian_get_race(int psubrace)
             me.shop_adjust = 110;
             break;
         case DRACONIAN_BLACK:
-            me.subname = "Black";
+            me.subname = "黑色";
             me.subdesc = "Black Draconians have an affinity for acid, which they both breathe at will "
                          "and resist. They are strong in combat, but not so good with magic or stealth. "
                          "With the power of Dragon Strike, their blows will corrode their enemies.";
@@ -1508,14 +1452,14 @@ race_t *draconian_get_race(int psubrace)
             me.shop_adjust = 110;
             break;
         case DRACONIAN_GREEN:
-            me.subname = "Green";
+            me.subname = "绿色";
             me.subdesc = "Green Draconians have an affinity for poison, which they both breathe at will "
                          "and resist. They are average in all respects among the draconians. With the "
                          "power of Dragon Strike, their blows will poison their enemies.";
             me.exp += 15;
             break;
         case DRACONIAN_BRONZE:
-            me.subname = "Bronze";
+            me.subname = "青铜";
             me.subdesc = "Bronze Draconians are the most intelligent of their kind, and the best with "
                          "magic as well. They are seldom confused, though the same may not be said of "
                          "their enemies. With the power of Dragon Strike, even the melee attacks of "
@@ -1528,7 +1472,7 @@ race_t *draconian_get_race(int psubrace)
             me.shop_adjust = 100;
             break;
         case DRACONIAN_CRYSTAL:
-            me.subname = "Crystal";
+            me.subname = "水晶";
             me.subdesc = "Hard of skin, the Crystal Draconian is difficult to hit in melee; but their agility "
                          "suffers, and they are not the brightest of their kind. They resist shards, which they "
                          "may also breathe on command. With the power of Dragon Skin, they gain an aura of "
@@ -1544,7 +1488,7 @@ race_t *draconian_get_race(int psubrace)
             me.exp += 60;
             break;
         case DRACONIAN_GOLD:
-            me.subname = "Gold";
+            me.subname = "金色";
             me.subdesc = "The wisest of their kind, Gold Draconians are resilient in the face of magical "
                          "attacks. They are resistant to sound, which they may also breathe at will, stunning "
                          "their opponents. With the power of Dragon Strike, even their melee attacks will "
@@ -1557,7 +1501,7 @@ race_t *draconian_get_race(int psubrace)
             me.shop_adjust = 95;
             break;
         case DRACONIAN_SHADOW:
-            me.subname = "Shadow";
+            me.subname = "阴影";
             me.subdesc = "Lithe, stealthy and nimble, the Shadow Draconian is seldom seen in this world. "
                          "They are resistant to the forces of nether, which they may also breathe. They are the "
                          "weakest of the draconians, and the poorest in melee; but they are better than average "
@@ -1620,12 +1564,8 @@ race_t *dunadan_get_race(void)
 
     if (!init)
     {
-        me.name = "Dunadan";
-        me.desc = "Dunedain are a race of hardy men from the West. This elder race surpasses human "
-                    "abilities in every field; however, being men of the world, "
-                    "very little is new to them, and levels are very hard for them to gain. Dunedain "
-                    "gain one demigod talent at level 30. Their constitution "
-                    "is exceptionally good and cannot be reduced.";
+        me.name = "登丹人";
+        me.desc = "登丹人是来自西方的坚韧人类种族。这个古老的种族在各个领域都超越了普通人类的能力；然而，作为见多识广的人，很少有事物对他们来说是新鲜的，因此他们极难提升等级。登丹人在30级时获得一项半神天赋。他们的体质特别好，无法被降低。";
 
         me.stats[A_STR] =  1;
         me.stats[A_INT] =  2;
@@ -1685,11 +1625,8 @@ race_t *dwarf_get_race(void)
 
     if (!init)
     {
-        me.name = "Dwarf";
-        me.desc = "Dwarves are the headstrong miners and fighters of legend. They tend to be strong and tough, "
-                    "but lack agility. Because they are so headstrong and also somewhat wise, dwarves are "
-                    "relatively resistant to evil curses cast on them. They are very good at fighting, searching "
-                    "and perception, and resist being blinded, but infamously have miserable stealth.";
+        me.name = "矮人";
+        me.desc = "矮人是传说中固执的矿工和战士。他们往往强壮而坚韧，但缺乏敏捷。由于他们非常固执并且也有几分智慧，矮人对施加在他们身上的邪恶诅咒相对较有抵抗力。他们非常擅长战斗、搜索和察觉，并能抵抗致盲，但他们的潜行能力之差是出了名的。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] = -2;
@@ -1766,14 +1703,8 @@ race_t *einheri_get_race(void)
 
     if (!init)
     {
-        me.name = "Einheri";
-        me.desc = "Dead heroes returning to the mortal world for one last fight, Einherjar are highly "
-                    "skilled in hand-to-hand combat and start with the ability to enter a battle frenzy; "
-                    "however, they are also passably good at using devices, and do not necessarily make "
-                    "weak magic users. Already having one lifetime's adventures behind them, Einherjar are "
-                    "very strong at the beginning but learn new things slowly. Like other undead races, they "
-                    "are immune to life draining. Einherjar have one serious weakness: magical healing only "
-                    "has a partial effect on them, healing them half as much as it would any other race.";
+        me.name = "英灵战士";
+        me.desc = "作为返回凡间进行最后一场战斗的已故英雄，英灵战士在肉搏战中技艺高超，并且一开始就拥有进入战斗狂暴的能力；不过，他们在使用装置方面也还过得去，而且不一定是弱小的魔法使用者。由于已经经历了一生一次的冒险，英灵战士在游戏初期非常强大，但学习新事物的速度很慢。与其他不死种族一样，他们免疫吸取生命的攻击。英灵战士有一个严重的弱点：魔法治疗对他们只有部分效果，治疗量只有其他种族的一半。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] =  0;
@@ -1840,13 +1771,8 @@ race_t *ent_get_race(void)
 
     if (!init)
     {
-        me.name = "Ent";
-        me.desc = "The Ents are a powerful race dating from the beginning of the world, oldest of all "
-                    "animals or plants who inhabit Arda. Spirits of the land, they guard the forests "
-                    "of Middle-earth. Being much like trees, they are strong but very clumsy, and "
-                    "highly susceptible to fire. Ents gain nourishment from drinking water; "
-                    "the food of mortals is of little use to them. Ents have the special ability to "
-                    "summon the trees of the forest to their side.";
+        me.name = "树人";
+        me.desc = "树人是一个从世界伊始就存在的强大种族，是居住在阿尔达（Arda）的所有动植物中最古老的。作为这片土地的精灵，他们守护着中土世界的森林。由于非常像树木，他们强壮但非常笨拙，并且极易受到火焰的伤害。树人通过喝水来获取营养；凡人的食物对他们几乎没有用处。树人拥有召唤森林中的树木来到他们身边的特殊能力。";
 
         me.skills.dis = -5;
         me.skills.dev =  1;
@@ -1915,13 +1841,8 @@ race_t *gnome_get_race(void)
 
     if (!init)
     {
-        me.name = "Gnome";
-        me.desc = "Gnomes are smaller than dwarves but larger than hobbits; and like hobbits, they "
-                    "live in the earth in burrow-like homes. Gnomes make excellent mages, and have very "
-                    "good saving throws. They are naturally skilled at most things, but not very strong "
-                    "or good at hand-to-hand fighting. Gnomes have fair infra-vision, allowing them to "
-                    "detect warm-blooded creatures at a distance. They are also intrinsically protected "
-                    "against paralysis.";
+        me.name = "侏儒";
+        me.desc = "侏儒比矮人小，但比霍比特人大；和霍比特人一样，他们住在地下地洞般的房子里。侏儒是优秀的魔法师，并且拥有非常好的豁免判定。他们天生擅长大多数事情，但不是很强壮，也不擅长肉搏战。侏儒拥有相当不错的红外视力，使他们能够在远处探测到温血生物。他们天生免疫麻痹。";
 
         me.stats[A_STR] = -1;
         me.stats[A_INT] =  2;
@@ -2000,16 +1921,8 @@ race_t *golem_get_race(void)
 
     if (!init)
     {
-        me.name = "Golem";
-        me.desc = "A Golem is an artificial creature, built from a lifeless raw material like clay, "
-                    "and awakened to life. They are nearly mindless, making them useless for "
-                    "professions which rely on magic, but as warriors they are very tough. They "
-                    "are resistant to poison and paralysis and can see invisible things. "
-                    "At higher levels, they also become resistant to attacks which threaten to "
-                    "drain away their life force. Golems gain very little nutrition from ordinary "
-                    "food, but can absorb mana from staves and wands as their power source. Golems "
-                    "also gain a natural armor class bonus from their tough body. Golems become "
-                    "slower with age.";
+        me.name = "魔像";
+        me.desc = "魔像是一种人造生物，由黏土等无生命的原材料制成并被唤醒了生命。他们几乎没有心智，因此无法从事依赖魔法的职业，但作为战士他们非常坚韧。他们对毒素和麻痹有抗性，并且能识破隐形。在更高等级时，他们还会对试图吸取他们生命力的攻击产生抗性。魔像从普通食物中获得的营养极少，但可以吸收法杖和魔杖中的法力作为他们的能量来源。魔像坚硬的身躯也能为他们提供天然的护甲加成。随着年龄的增长，魔像的动作会变得迟缓。";
 
         me.stats[A_STR] =  4;
         me.stats[A_INT] = -5;
@@ -2070,10 +1983,8 @@ race_t *half_giant_get_race(void)
 
     if (!init)
     {
-        me.name = "Half-Giant";
-		me.desc = "Half-giants' limited intelligence makes it difficult for them to become full spellcasters, "
-					"but with their huge strength they make excellent warriors. Their thick skin makes "
-					"them resistant to shards, and like half-trolls, they have their strength sustained.";
+        me.name = "半巨人";
+		me.desc = "半巨人有限的智力使他们很难成为纯粹的施法者，但凭借他们巨大的力量，他们能成为优秀的战士。他们厚实的皮肤使他们对碎片有抗性，并且像半巨魔一样，他们的力量属性可以维持不降。";
 
         me.stats[A_STR] =  4;
         me.stats[A_INT] = -2;
@@ -2142,13 +2053,8 @@ race_t *half_orc_get_race(void)
 
 	if (!init)
 	{
-		me.name = "Half-Orc";
-		me.desc = "Half-orcs make excellent warriors, but are terrible at magic. "
-			"They are as bad as dwarves at stealth, and horrible at searching, "
-			"disarming, and perception. Being accustomed to living underground, "
-                        "half-orcs are resistant to darkness attacks. Half-orcs are quite ugly, "
-                        "and so tend to pay more for goods in town. The human part of their "
-			"heritage allows them to select a talent at level 30.";
+		me.name = "半兽人";
+		me.desc = "半兽人能成为出色的战士，但在魔法方面非常糟糕。他们在潜行方面和矮人一样差，在搜索、解除陷阱和察觉方面更是惨不忍睹。由于习惯了地下生活，半兽人对黑暗攻击有抗性。半兽人长得很丑，因此在城里买东西往往要花更多的钱。他们人类血统的那一部分允许他们在30级时选择一项天赋。";
 
 		me.stats[A_STR] = 2;
 		me.stats[A_INT] = -1;
@@ -2206,12 +2112,8 @@ race_t *half_titan_get_race(void)
 
     if (!init)
     {
-        me.name = "Half-Titan";
-        me.desc = "Half-mortal descendants of the mighty titans, these immensely powerful creatures "
-                    "put almost any other race to shame. They may lack the fascinating special powers "
-                    "some other races have, but their enhanced attributes more than make up for that. "
-                    "They learn to estimate the strengths of their foes, and their love for law and "
-                    "order makes them resistant to the effects of Chaos.";
+        me.name = "半泰坦";
+        me.desc = "作为强大的泰坦神族的半凡人后代，这些无比强大的生物让几乎所有其他种族都自愧不如。他们可能缺乏其他种族拥有的一些迷人的特殊能力，但他们超强的属性足以弥补这一点。他们懂得如何评估敌人的实力，而他们对法律和秩序的热爱使他们对混沌的效果具有抗性。";
 
         me.stats[A_STR] =  5;
         me.stats[A_INT] =  1;
@@ -2269,12 +2171,8 @@ race_t *half_troll_get_race(void)
 
     if (!init)
     {
-        me.name = "Half-Troll";
-        me.desc = "Half-trolls are incredibly strong, and have more hit points than most other races. "
-                    "They are very stupid, and bad at searching, disarming, perception, and stealth; "
-                    "but they make excellent fighters despite their poor agility. They are so ugly that a "
-                    "half-orc grimaces in their presence. They also happen to be fun to run... "
-                    "Half-trolls always have their strength sustained, and their regeneration is exceptionally fast.";
+        me.name = "半巨魔";
+        me.desc = "半巨魔非常强壮，并且比大多数其他种族拥有更多的生命值。他们非常愚蠢，不擅长搜索、解除陷阱、察觉和潜行；但尽管他们敏捷度很差，他们仍然是出色的战士。他们是如此之丑，以至于连半兽人看到他们都会做鬼脸。玩这个种族碰巧也很有趣……半巨魔的力量属性总是能维持不降，而且他们的生命再生速度极快。";
 
         me.stats[A_STR] =  4;
         me.stats[A_INT] = -4;
@@ -2327,13 +2225,8 @@ race_t *high_elf_get_race(void)
 
     if (!init)
     {
-        me.name = "High-Elf";
-        me.desc = "High-elves are a race of immortal beings dating from the beginning of time. "
-                    "They are masters of all skills, and are strong and intelligent, although "
-                    "their wisdom is sometimes suspect. High-elves begin their lives able to "
-                    "see the unseen, and resist light effects just like regular elves. However, "
-                    "there are few things that they have not seen already, so new levels are "
-                    "quite hard for them to gain.";
+        me.name = "高等精灵";
+        me.desc = "高等精灵是一个从时间伊始就存在的不朽种族。他们精通所有的技能，强壮而聪明，尽管他们的感知有时值得怀疑。高等精灵从出生起就能看穿隐形事物，并且像普通精灵一样抵抗光照效果。然而，很少有事物是他们没有见过的，因此他们很难提升新的等级。";
 
         me.stats[A_STR] =  1;
         me.stats[A_INT] =  3;
@@ -2380,13 +2273,8 @@ race_t *hobbit_get_race(void)
 
     if (!init)
     {
-        me.name = "Hobbit";
-        me.desc = "Hobbits (or Halflings) have exceptional stealth and are very good at bows "
-                    "and throwing; indeed, they are generally well-suited for the adventuring life. "
-                    "Yet their small size is a handicap at times; they are not very good at melee "
-                    "fighting, and cannot suffer as many hard hits as larger races. Hobbits are "
-                    "known for their love of good cooking, and have an almost miraculous ability "
-                    "to find food in the dark depths of the dungeon.";
+        me.name = "霍比特人";
+        me.desc = "霍比特人（或半身人）拥有卓越的潜行能力，并且非常擅长弓箭和投掷；事实上，他们通常很适合冒险生活。然而，他们的小个子有时也是一种障碍；他们不太擅长近战，而且不能像体型较大的种族那样承受严重的打击。霍比特人以热爱美食而闻名，并且拥有一种近乎奇迹般的能力，可以在地牢黑暗的深处找到食物。";
 
         me.stats[A_STR] = -2;
         me.stats[A_INT] =  1;
@@ -2459,13 +2347,8 @@ race_t *human_get_race(void)
 
     if (!init)
     {
-        me.name = "Human";
-        me.desc = "Humans are average at everything, and tend to gain levels rapidly due "
-                    "to their short life spans. No racial adjustments or intrinsics occur "
-                    "to characters choosing human. Humans receive one special talent at "
-                    "level 20, which helps make up for their apparent mediocrity; but at "
-                    "level 35 they acquire a special human weakness. See "
-                    "<link:Demigods.txt#Weaknesses> for more information.";
+        me.name = "人类";
+        me.desc = "人类在各方面都很平庸，但由于寿命较短，他们往往能迅速提升等级。选择人类的角色没有任何种族属性调整或天生能力。人类在20级时会获得一项特殊天赋，这有助于弥补他们明显的平庸；但在35级时，他们会获得一个特殊的人类弱点。有关更多信息，请参阅 <link:Demigods.txt#Weaknesses>。";
 
         me.stats[A_STR] =  0;
         me.stats[A_INT] =  0;
@@ -2523,11 +2406,8 @@ race_t *imp_get_race(void)
 
     if (!init)
     {
-        me.name = "Imp";
-        me.desc = "A demon-creature from the nether-world, naturally resistant to fire attacks, "
-                    "and capable of learning fire bolt and fire ball attacks. They are little "
-                    "loved by other races, but can perform fairly well in most professions. "
-                    "As they advance levels, they gain the ability to perceive invisible creatures.";
+        me.name = "小恶魔";
+        me.desc = "来自下界的恶魔生物，天生对火焰攻击有抗性，并且能够学习火焰箭和火球术攻击。他们不被其他种族所喜爱，但在大多数职业中都能表现得相当好。随着等级的提升，他们将获得察觉隐形生物的能力。";
 
         me.stats[A_STR] =  0;
         me.stats[A_INT] = -1;

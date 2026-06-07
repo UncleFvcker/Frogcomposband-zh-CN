@@ -6,7 +6,7 @@ void absconding_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Absconding");
+        var_set_string(res, "潜逃");
         break;
     default:
         teleport_spell(cmd, res);
@@ -19,7 +19,7 @@ static void _ancient_knowledge_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Ancient Knowledge");
+        var_set_string(res, "远古知识");
         break;
     default:
         identify_spell(cmd, res);
@@ -32,10 +32,10 @@ static void _bind_monster_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Bind Monster");
+        var_set_string(res, "束缚怪物");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempt to freeze a monster.");
+        var_set_string(res, "尝试冻结一只怪物。");
         break;
     case SPELL_CAST:
     {
@@ -57,10 +57,10 @@ void bunshin_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Bunshin");
+        var_set_string(res, "分身术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Creates shadows of yourself, giving you a 1 in 3 chance to completely evade any attacks.");
+        var_set_string(res, "创造你的影子分身，让你有三分之一的几率完全避开任何攻击。");
         break;
     case SPELL_CAST:
         set_multishadow(6+randint1(6), FALSE);
@@ -77,10 +77,10 @@ static void _chain_hook_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Chain Hook");
+        var_set_string(res, "锁镰");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Teleport a monster to a place adjacent to you.");
+        var_set_string(res, "将一只怪物传送到你相邻的位置。");
         break;
     case SPELL_CAST:
     {
@@ -101,7 +101,7 @@ static void _chain_hook_spell(int cmd, variant *res)
         if (!projectable(py, px, target_row, target_col)) return;
         m_ptr = &m_list[m_idx];
         monster_desc(m_name, m_ptr, 0);
-        msg_format("You pull back %s.", m_name);
+        msg_format("你把%s拉了过来。", m_name);
 
         path_n = project_path(path_g, MAX_RANGE, target_row, target_col, py, px, 0);
         ty = target_row, tx = target_col;
@@ -151,17 +151,17 @@ static void _detect_near_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Near");
+        var_set_string(res, "近距侦测");
         break;
     case SPELL_DESC:
         if (p_ptr->lev >= 45)
-            var_set_string(res, "Detects nearby monsters, traps, doors, stairs and objects. Maps the entire level.");
+            var_set_string(res, "侦测附近的怪物、陷阱、门、楼梯和物品。映射整个楼层。");
         else if (p_ptr->lev >= 15)
-            var_set_string(res, "Detects nearby monsters, traps, doors, stairs and objects.");
+            var_set_string(res, "侦测附近的怪物、陷阱、门、楼梯和物品。");
         else if (p_ptr->lev >= 5)
-            var_set_string(res, "Detects nearby monsters, traps, doors and stairs.");
+            var_set_string(res, "侦测附近的怪物、陷阱、门和楼梯。");
         else 
-            var_set_string(res, "Detects nearby monsters.");
+            var_set_string(res, "侦测附近的怪物。");
         break;
     case SPELL_CAST:
         if (p_ptr->lev >= 45)
@@ -192,10 +192,10 @@ void floating_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Floating");
+        var_set_string(res, "浮空术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gives levitation for a while.");
+        var_set_string(res, "暂时提供飘浮能力。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(20, 20));
@@ -215,7 +215,7 @@ static void _glyph_of_explosion_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Glyph of Explosion");
+        var_set_string(res, "爆裂符文");
         break;
     default:
         explosive_rune_spell(cmd, res);
@@ -230,10 +230,10 @@ void hide_in_flame_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Hide in Flame");
+        var_set_string(res, "火遁");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generate a fire ball and teleport in a time. Gives resistance to fire for a while.");
+        var_set_string(res, "生成一个火球并同时进行传送。暂时提供火抗性。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam/2));
@@ -255,7 +255,7 @@ void hide_in_leaves_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Hide in Leaves");
+        var_set_string(res, "木遁");
         break;
     default:
         phase_door_spell(cmd, res);
@@ -268,10 +268,10 @@ void hide_in_mist_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Hide in Mist");
+        var_set_string(res, "雾遁");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generates huge balls of poison, drain life and confusion, then teleports 30 squares.");
+        var_set_string(res, "生成巨大的毒素、生命吸取和混乱球，然后传送 30 格。");
         break;
     case SPELL_CAST:
         fire_ball(GF_POIS, 0, 75+p_ptr->lev*2/3, p_ptr->lev/5+2);
@@ -291,7 +291,7 @@ void hit_and_away_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Hit and Away");
+        var_set_string(res, "一击脱离");
         break;
     default:
         panic_hit_spell(cmd, res);
@@ -304,15 +304,15 @@ void kawarimi_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Kawarimi");
+        var_set_string(res, "替身术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Teleport as you receive an attack. Might be able to teleport just before receiving damages at higher level.");
+        var_set_string(res, "在受到攻击时传送。在更高等级时，可能可以在受到伤害之前传送。");
         break;
     case SPELL_CAST:
         if (!(p_ptr->special_defense & NINJA_KAWARIMI))
         {
-            msg_print("You are now prepared to evade any attacks.");
+            msg_print("你现在已经准备好避开任何攻击了。");
             p_ptr->special_defense |= NINJA_KAWARIMI;
             p_ptr->redraw |= PR_STATUS;
         }
@@ -329,10 +329,10 @@ void nyusin_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Nyusin");
+        var_set_string(res, "瞬身术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Steps close to a monster and attacks at a time.");
+        var_set_string(res, "瞬间靠近怪物并同时发动攻击。");
         break;
     case SPELL_CAST:
         var_set_bool(res, rush_attack(5, NULL));
@@ -348,7 +348,7 @@ void quick_walk_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Quick Walk");
+        var_set_string(res, "缩地");
         break;
     case SPELL_DESC:
         var_set_string(res, "");
@@ -372,10 +372,10 @@ static void _rengoku_kaen_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Rengoku-Kaen");
+        var_set_string(res, "炼狱火炎");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires some number of beams of fire, nether or plasma in random directions.");
+        var_set_string(res, "向随机方向发射若干道火、地狱或等离子射线。");
         break;
     case SPELL_CAST:
     {
@@ -411,10 +411,10 @@ static void _smoke_ball_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Smoke Ball");
+        var_set_string(res, "烟雾弹");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Releases a confusion ball which doesn't inflict any damage.");
+        var_set_string(res, "释放一个不造成任何伤害的混乱球。");
         break;
     case SPELL_CAST:
     {
@@ -438,10 +438,10 @@ void syuriken_spreading_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Syuriken Spreading");
+        var_set_string(res, "手里剑散射");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Shoots 8 iron Spikes in 8 random directions.");
+        var_set_string(res, "向 8 个随机方向发射 8 枚铁蒺藜。");
         break;
     case SPELL_CAST:
     {
@@ -452,8 +452,8 @@ void syuriken_spreading_spell(int cmd, variant *res)
             py_throw_t context = {0}; /* better reset for each shot! */
             if (!slot)
             {
-                if (!i) msg_print("You have no Iron Spikes.");
-                else msg_print("You have no more Iron Spikes.");
+                if (!i) msg_print("你没有铁蒺藜。");
+                else msg_print("你没有多余的铁蒺藜了。");
                 break;
             }
             context.dir = DIR_RANDOM;
@@ -604,21 +604,8 @@ class_t *ninja_get_class(void)
     skills_t bs = { 45,  24,  36,   8,  48,  32,  70,  35 };
     skills_t xs = { 15,  10,  10,   0,   0,   0,  25,  11 };
 
-        me.name = "Ninja";
-        me.desc = "A Ninja is a fearful assassin lurking in darkness. He or she can "
-                    "navigate effectively with no light source, catch enemies by surprise, "
-                    "and kill with a single blow. Ninjas can use Ninjutsu, and are "
-                    "good at locating hidden traps and doors, disarming traps and "
-                    "picking locks. Since heavy armors, heavy weapons, or shields will "
-                    "restrict their motion greatly, they prefer light clothes, and "
-                    "become faster and more stealthy as they gain levels. A Ninja "
-                    "knows no fear and, at high level, becomes almost immune to poison "
-                    "and able to see invisible things. Dexterity determines a Ninja's "
-                    "ability to use Ninjutsu.\n \n"
-                    "A Ninja can use Ninjutsu for lurking and surprise attacks. They "
-                    "gain more Ninjutsu techniques as they gain levels. They have a "
-                    "class power - 'Quick Walk' - which makes their walking speed "
-                    "extremely fast.";
+        me.name = "忍者";
+        me.desc = "忍者是潜伏在黑暗中可怕的刺客。他们能在没有光源的情况下有效导航，对敌人进行出其不意的袭击，并能一击必杀。忍者可以使用忍术，擅长寻找隐藏的陷阱和门、解除陷阱以及撬锁。由于重甲、重型武器或盾牌会极大地限制他们的行动，他们更喜欢轻便的衣服，并在升级时变得更快、更隐蔽。忍者无所畏惧，在高级别时几乎对毒素免疫，并能看到隐形的事物。敏捷决定了忍者使用忍术的能力。\n\n忍者可以使用忍术进行潜伏和奇袭。随着等级的提升，他们会获得更多的忍术技巧。他们拥有一项职业能力——“缩地(Quick Walk)”——可以让他们行走的速度极快。";
 
         me.stats[A_STR] =  0;
         me.stats[A_INT] = -1;

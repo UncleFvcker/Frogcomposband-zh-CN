@@ -33,7 +33,7 @@ static int _max_concentration(void)
 void reset_concentration(bool msg)
 {
     if (msg)
-        msg_print("You stop concentrating.");
+        msg_print("你停止了专注。");
 
     p_ptr->concent = 0;
     reset_concent = FALSE;
@@ -52,7 +52,7 @@ static void _concentrate(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Concentration");
+        var_set_string(res, "专注");
         break;
     case SPELL_DESC:
         var_set_string(res,
@@ -61,14 +61,14 @@ static void _concentrate(int cmd, variant *res)
             "In addition, you will land more critical shots as your aim improves.");
         break;
     case SPELL_INFO:
-        var_set_string(res, format("(%d of %d)", p_ptr->concent, _max_concentration()));
+        var_set_string(res, format("(%d / %d)", p_ptr->concent, _max_concentration()));
         break;
     case SPELL_CAST: {
         int max = _max_concentration();
         if (p_ptr->concent < max)
         {
             p_ptr->concent++;
-            msg_format("You concentrate deeply (<color:%c>%dx</color>).",
+            msg_format("你进行了深度专注 (<color:%c>%dx</color>)。",
                 p_ptr->concent == max ? 'r' : 'B',
                 p_ptr->concent);
             p_ptr->update |= PU_BONUS;
@@ -76,7 +76,7 @@ static void _concentrate(int cmd, variant *res)
             p_ptr->update |= PU_MONSTERS;
         }
         else
-            msg_format("You maintain maximum focus (<color:r>%dx</color>).", p_ptr->concent);
+            msg_format("你保持了最大程度的专注 (<color:r>%dx</color>)。", p_ptr->concent);
         reset_concent = FALSE;
         var_set_bool(res, TRUE);
         break; }
@@ -208,7 +208,7 @@ static bool _do_shot(int which)
     bool result = FALSE;
     if (!equip_find_obj(TV_BOW, SV_ANY))
     {
-        msg_print("You need to wield a bow!");
+        msg_print("你需要装备一把弓！");
         return FALSE;
     }
     shoot_hack = which;
@@ -254,7 +254,7 @@ static void _shining_arrow(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shining Arrow");
+        var_set_string(res, "闪耀之箭");
         break;
     case SPELL_DESC:
         var_set_string(res,
@@ -271,10 +271,10 @@ static void _shoot_and_away(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shoot and Away");
+        var_set_string(res, "射击撤退");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Shoot at target and then blink away in a single move.");
+        var_set_string(res, "在一个动作内向目标射击然后闪现离开。");
         break;
     default:
         _default(SP_AWAY, cmd, res);
@@ -285,10 +285,10 @@ static void _disarming_shot(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Disarming Shot");
+        var_set_string(res, "除陷射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Shoot an arrow able to shatter traps.");
+        var_set_string(res, "射出一只能粉碎陷阱的箭矢。");
         break;
     default:
         _default(SP_KILL_TRAP, cmd, res);
@@ -299,10 +299,10 @@ static void _burning_shot(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Burning Shot");
+        var_set_string(res, "燃烧射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Deals extra damage of fire.");
+        var_set_string(res, "造成额外的火焰伤害。");
         break;
     default:
         _default(SP_FIRE, cmd, res);
@@ -313,10 +313,10 @@ static void _shatter(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shatter");
+        var_set_string(res, "碎岩射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Shoot an arrow able to shatter rocks.");
+        var_set_string(res, "射出一只能粉碎岩石的箭矢。");
         break;
     default:
         _default(SP_KILL_WALL, cmd, res);
@@ -327,10 +327,10 @@ static void _freezing_shot(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Freezing Shot");
+        var_set_string(res, "冰冻射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Deals extra damage of cold.");
+        var_set_string(res, "造成额外的寒冷伤害。");
         break;
     default:
         _default(SP_COLD, cmd, res);
@@ -341,10 +341,10 @@ static void _knockback(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Knockback");
+        var_set_string(res, "击退射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "A powerful shot that knocks an enemy target backwards.");
+        var_set_string(res, "将敌方目标向后击退的强力射击。");
         break;
     default:
         _default(SP_RUSH, cmd, res);
@@ -355,10 +355,10 @@ static void _piercing_shot(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Piercing Shot");
+        var_set_string(res, "穿透射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "An arrow pierces some monsters.");
+        var_set_string(res, "箭矢能穿透某些怪物。");
         break;
     default:
         _default(SP_PIERCE, cmd, res);
@@ -369,10 +369,10 @@ static void _evil_shot(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Evil Shot");
+        var_set_string(res, "邪恶射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Deals more damage to good monsters.");
+        var_set_string(res, "对善良怪物造成更多伤害。");
         break;
     default:
         _default(SP_EVILNESS, cmd, res);
@@ -383,10 +383,10 @@ static void _holy_shot(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Holy Shot");
+        var_set_string(res, "神圣射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Deals more damage to evil monsters.");
+        var_set_string(res, "对邪恶怪物造成更多伤害。");
         break;
     default:
         _default(SP_HOLYNESS, cmd, res);
@@ -397,10 +397,10 @@ static void _exploding_shot(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Exploding Shot");
+        var_set_string(res, "爆炸射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "An arrow explodes when it hits a monster.");
+        var_set_string(res, "箭矢在击中怪物时会爆炸。");
         break;
     default:
         _default(SP_EXPLODE, cmd, res);
@@ -411,10 +411,10 @@ static void _double_shot(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Double Shot");
+        var_set_string(res, "双重射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Shoot arrows twice.");
+        var_set_string(res, "连续射出两箭。");
         break;
     default:
         _default(SP_DOUBLE, cmd, res);
@@ -425,10 +425,10 @@ static void _thunder_shot(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Thunder Shot");
+        var_set_string(res, "雷霆射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Deals great extra damage of lightning.");
+        var_set_string(res, "造成大量的额外闪电伤害。");
         break;
     default:
         _default(SP_ELEC, cmd, res);
@@ -439,10 +439,10 @@ static void _needle_shot(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Needle Shot");
+        var_set_string(res, "针刺射击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Deals quick death or 1 damage.");
+        var_set_string(res, "造成瞬间死亡或仅有 1 点伤害。");
         break;
     default:
         _default(SP_NEEDLE, cmd, res);
@@ -453,10 +453,10 @@ static void _saint_stars_arrow(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Saint Stars Arrow");
+        var_set_string(res, "圣星之箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Deals great damage to all monsters, and some side effects to you.");
+        var_set_string(res, "对所有怪物造成巨大伤害，但会给你带来一些副作用。");
         break;
     default:
         _default(SP_FINAL, cmd, res);
@@ -519,16 +519,8 @@ class_t *sniper_get_class(void)
     skills_t bs = { 25,  24,  28,   5,  32,  18,  35,  72};
     skills_t xs = { 12,  10,  10,   0,   0,   0,  12,  28};
 
-        me.name = "Sniper";
-        me.desc = "Snipers are specialists in marksmanship, but not like archers who "
-                    "fire off arrow after arrow in swift succession. They don't just "
-                    "increase accuracy and power of shots by concentration, they can use "
-                    "fearsome archery techniques.\n \n"
-                    "What they require is powerful bows or crossbows, good quality "
-                    "ammunition and the fortitude to bear up without flinching under " 
-                    "any situation.\n \n"
-                    "Snipers know their enemies well and can shoot them from the shadows. "
-                    "They have no time for magic.";
+        me.name = "狙击手";
+        me.desc = "狙击手是枪法方面的专家，但他们不像弓箭手那样迅速地一箭接一箭连射。他们不仅通过专注来提高射击的精度和威力，而且还能使用可怕的箭术技巧。\n \n他们需要的是强大的弓或弩，优质的弹药，以及在任何情况下都能不退缩地坚持下去的坚韧。\n \n狙击手非常了解他们的敌人，并且可以从暗处射击他们。他们没有时间去学魔法。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] = -1;

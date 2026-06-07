@@ -62,21 +62,21 @@ static int _smith_plusses(object_type *o_ptr)
 
         if (object_is_melee_weapon(o_ptr) || object_is_ammo(o_ptr))
         {
-            doc_insert(_doc, " <color:y>x</color>/<color:y>X</color>) Adjust damage dice\n");
-            doc_insert(_doc, " <color:y>y</color>/<color:y>Y</color>) Adjust damage sides\n");
+            doc_insert(_doc, "<color:y>x</color>/<color:y>X</color>) 调整伤害骰数\n");
+            doc_insert(_doc, "<color:y>y</color>/<color:y>Y</color>) 调整伤害面数\n");
         }
         else if (o_ptr->tval == TV_BOW)
-            doc_insert(_doc, " <color:y>x</color>/<color:y>X</color>) Adjust multiplier\n");
+            doc_insert(_doc, "<color:y>x</color>/<color:y>X</color>) 调整倍率\n");
         else
-            doc_insert(_doc, " <color:y>x</color>/<color:y>X</color>) Adjust base AC\n");
+            doc_insert(_doc, "<color:y>x</color>/<color:y>X</color>) 调整基础护甲(AC)\n");
         if (!object_is_ammo(o_ptr))
-            doc_insert(_doc, " <color:y>a</color>/<color:y>A</color>) Adjust AC bonus\n");
-        doc_insert(_doc, " <color:y>h</color>/<color:y>H</color>) Adjust melee accuracy\n");
-        doc_insert(_doc, " <color:y>d</color>/<color:y>D</color>) Adjust melee damage\n");
+            doc_insert(_doc, "<color:y>a</color>/<color:y>A</color>) 调整护甲(AC)加成\n");
+        doc_insert(_doc, "<color:y>h</color>/<color:y>H</color>) 调整近战命中\n");
+        doc_insert(_doc, "<color:y>d</color>/<color:y>D</color>) 调整近战伤害\n");
 
         doc_newline(_doc);
-        doc_insert(_doc, " <color:y>RET</color>) Accept changes\n");
-        doc_insert(_doc, " <color:y>ESC</color>) Cancel changes\n");
+        doc_insert(_doc, "<color:y>回车</color>) 接受更改\n");
+        doc_insert(_doc, "<color:y>ESC</color>) 取消更改\n");
         doc_newline(_doc);
 
         Term_load();
@@ -187,14 +187,14 @@ static int _smith_stats(object_type *o_ptr)
         {
             doc_printf(_doc, "   <color:y>%c</color>) %s\n", I2A(i), stat_name_true[i]);
         }
-        doc_insert(_doc, " <color:y>p</color>/<color:y>P</color>) Adjust pval\n");
+        doc_insert(_doc, "<color:y>p</color>/<color:y>P</color>) 调整属性附加值(pval)\n");
         doc_newline(_doc);
-        doc_insert(_doc, "      Use SHIFT+choice to toggle decrement flag\n");
-        doc_insert(_doc, "      Use CTRL+choice to toggle sustain flag\n");
+        doc_insert(_doc, "使用 SHIFT+选项 切换减益标志\n");
+        doc_insert(_doc, "使用 CTRL+选项 切换维持标志\n");
 
         doc_newline(_doc);
-        doc_insert(_doc, " <color:y>RET</color>) Accept changes\n");
-        doc_insert(_doc, " <color:y>ESC</color>) Cancel changes\n");
+        doc_insert(_doc, "<color:y>回车</color>) 接受更改\n");
+        doc_insert(_doc, "<color:y>ESC</color>) 取消更改\n");
         doc_newline(_doc);
 
         Term_load();
@@ -279,21 +279,21 @@ typedef struct { /* Bonuses need to support DEC_* flags */
 } _flagx_info_t, *_flagx_info_ptr;
 
 static _flagx_info_t _bonus_flags[] = {
-    { OF_BLOWS, OF_DEC_BLOWS, "Attack Speed", _blows_p },
-    { OF_MAGIC_MASTERY, OF_DEC_MAGIC_MASTERY, "Device Skill" },
-    { OF_DEVICE_POWER, OF_INVALID, "Device Power" },
-    { OF_TUNNEL, OF_INVALID, "Digging" },
-    { OF_XTRA_MIGHT, OF_INVALID, "Extra Might", _shots_p },
-    { OF_XTRA_SHOTS, OF_INVALID, "Extra Shots", _shots_p },
-    { OF_INFRA, OF_INVALID, "Infravision" },
-    { OF_LIFE, OF_DEC_LIFE, "Life Rating" },
-    { OF_MAGIC_RESISTANCE, OF_INVALID, "Magic Resistance" },
-    { OF_SEARCH, OF_INVALID, "Searching" },
-    { OF_SPEED, OF_DEC_SPEED, "Speed" },
-    { OF_SPELL_POWER, OF_DEC_SPELL_POWER, "Spell Power" },
-    { OF_SPELL_CAP, OF_DEC_SPELL_CAP, "Spell Capacity" },
-    { OF_STEALTH, OF_DEC_STEALTH, "Stealth" },
-    { OF_WEAPONMASTERY, OF_INVALID, "Weaponmastery", _weaponmastery_p },
+    { OF_BLOWS, OF_DEC_BLOWS, "攻击速度", _blows_p },
+    { OF_MAGIC_MASTERY, OF_DEC_MAGIC_MASTERY, "装置技能" },
+    { OF_DEVICE_POWER, OF_INVALID, "装置强度" },
+    { OF_TUNNEL, OF_INVALID, "挖掘" },
+    { OF_XTRA_MIGHT, OF_INVALID, "额外威力", _shots_p },
+    { OF_XTRA_SHOTS, OF_INVALID, "额外射击", _shots_p },
+    { OF_INFRA, OF_INVALID, "红外视力" },
+    { OF_LIFE, OF_DEC_LIFE, "生命评级" },
+    { OF_MAGIC_RESISTANCE, OF_INVALID, "魔法抗性" },
+    { OF_SEARCH, OF_INVALID, "搜索" },
+    { OF_SPEED, OF_DEC_SPEED, "速度" },
+    { OF_SPELL_POWER, OF_DEC_SPELL_POWER, "法术强度" },
+    { OF_SPELL_CAP, OF_DEC_SPELL_CAP, "法术容量" },
+    { OF_STEALTH, OF_DEC_STEALTH, "潜行" },
+    { OF_WEAPONMASTERY, OF_INVALID, "武器专精", _weaponmastery_p },
     { OF_INVALID }
 };
 
@@ -342,12 +342,12 @@ static int _smith_bonuses(object_type *o_ptr)
         doc_free(cols[0]);
         doc_free(cols[1]);
 
-        doc_insert(_doc, " <color:y>p</color>/<color:y>P</color>) Adjust pval\n");
-        doc_insert(_doc, "   (*)Use SHIFT+choice to toggle decrement flag\n");
+        doc_insert(_doc, "<color:y>p</color>/<color:y>P</color>) 调整属性附加值(pval)\n");
+        doc_insert(_doc, "(*)使用 SHIFT+选项 切换减益标志\n");
 
         doc_newline(_doc);
-        doc_insert(_doc, " <color:y>RET</color>) Accept changes\n");
-        doc_insert(_doc, " <color:y>ESC</color>) Cancel changes\n");
+        doc_insert(_doc, "<color:y>回车</color>) 接受更改\n");
+        doc_insert(_doc, "<color:y>ESC</color>) 取消更改\n");
         doc_newline(_doc);
 
         Term_load();
@@ -436,8 +436,8 @@ static int _smith_flags(object_type* o_ptr, _flag_info_ptr flags)
         doc_free(cols[0]);
         doc_free(cols[1]);
 
-        doc_insert(_doc, " <color:y>RET</color>) Accept changes\n");
-        doc_insert(_doc, " <color:y>ESC</color>) Cancel changes\n");
+        doc_insert(_doc, "<color:y>回车</color>) 接受更改\n");
+        doc_insert(_doc, "<color:y>ESC</color>) 取消更改\n");
         doc_newline(_doc);
 
         Term_load();
@@ -468,22 +468,22 @@ static int _smith_flags(object_type* o_ptr, _flag_info_ptr flags)
 }
 
 static _flag_info_t _ability_flags[] = {
-    { OF_FREE_ACT, "Free Action" },
-    { OF_SEE_INVIS, "See Invisible" },
-    { OF_HOLD_LIFE, "Hold Life" },
-    { OF_SLOW_DIGEST, "Slow Digestion" },
-    { OF_REGEN, "Regeneration" },
-    { OF_DUAL_WIELDING, "Dual Wielding", object_is_gloves },
-    { OF_NO_MAGIC, "Antimagic" },
-    { OF_WARNING, "Warning" },
-    { OF_LEVITATION, "Levitation" },
-    { OF_REFLECT, "Reflection" },
-    { OF_AURA_FIRE, "Aura Fire" },
-    { OF_AURA_ELEC, "Aura Elec" },
-    { OF_AURA_COLD, "Aura Cold" },
-    { OF_AURA_SHARDS, "Aura Shards" },
-    { OF_AURA_REVENGE, "Aura Revenge" },
-    { OF_LITE, "Extra Light" },
+    { OF_FREE_ACT, "行动自由" },
+    { OF_SEE_INVIS, "识破隐形" },
+    { OF_HOLD_LIFE, "维持生命" },
+    { OF_SLOW_DIGEST, "消化缓慢" },
+    { OF_REGEN, "生命再生" },
+    { OF_DUAL_WIELDING, "双持武器", object_is_gloves },
+    { OF_NO_MAGIC, "反魔法" },
+    { OF_WARNING, "警戒" },
+    { OF_LEVITATION, "浮空" },
+    { OF_REFLECT, "反弹" },
+    { OF_AURA_FIRE, "火焰光环" },
+    { OF_AURA_ELEC, "闪电光环" },
+    { OF_AURA_COLD, "冰霜光环" },
+    { OF_AURA_SHARDS, "碎片光环" },
+    { OF_AURA_REVENGE, "复仇光环" },
+    { OF_LITE, "额外发光" },
     { OF_INVALID }
 };
 
@@ -493,20 +493,20 @@ static int _smith_abilities(object_type *o_ptr)
 }
 
 static _flag_info_t _telepathy_flags[] = {
-    { OF_TELEPATHY,     "Telepathy" },
-    { OF_ESP_ANIMAL,    "Sense Animals" },
-    { OF_ESP_UNDEAD,    "Sense Undead" },
-    { OF_ESP_DEMON,     "Sense Demon" },
-    { OF_ESP_ORC,       "Sense Orc" },
-    { OF_ESP_TROLL,     "Sense Troll" },
-    { OF_ESP_GIANT,     "Sense Giant" },
-    { OF_ESP_DRAGON,    "Sense Dragon" },
-    { OF_ESP_HUMAN,     "Sense Human" },
-    { OF_ESP_EVIL,      "Sense Evil" },
-    { OF_ESP_GOOD,      "Sense Good" },
-    { OF_ESP_NONLIVING, "Sense Nonliving" },
-	{ OF_ESP_LIVING,    "Sense Living" },
-    { OF_ESP_UNIQUE,    "Sense Unique" },
+    { OF_TELEPATHY,     "全局心感" },
+    { OF_ESP_ANIMAL,    "感应动物" },
+    { OF_ESP_UNDEAD,    "感应死灵" },
+    { OF_ESP_DEMON,     "感应恶魔" },
+    { OF_ESP_ORC,       "感应兽人" },
+    { OF_ESP_TROLL,     "感应巨魔" },
+    { OF_ESP_GIANT,     "感应巨人" },
+    { OF_ESP_DRAGON,    "感应龙类" },
+    { OF_ESP_HUMAN,     "感应人类" },
+    { OF_ESP_EVIL,      "感应邪恶" },
+    { OF_ESP_GOOD,      "感应善良" },
+    { OF_ESP_NONLIVING, "感应非活物" },
+	{ OF_ESP_LIVING,    "感应活物" },
+    { OF_ESP_UNIQUE,    "感应Unique" },
     { OF_INVALID }
 };
 
@@ -516,28 +516,28 @@ static int _smith_telepathies(object_type *o_ptr)
 }
 
 static _flag_info_t _slay_flags[] = {
-    { OF_SLAY_EVIL,   "Slay Evil" },
-    { OF_SLAY_GOOD,   "Slay Good" },
-    { OF_SLAY_LIVING, "Slay Living" },
-    { OF_SLAY_UNDEAD, "Slay Undead" },
-    { OF_SLAY_DEMON,  "Slay Demon" },
-    { OF_SLAY_DRAGON, "Slay Dragon" },
-    { OF_SLAY_HUMAN,  "Slay Human" },
-    { OF_SLAY_ANIMAL, "Slay Animal" },
-    { OF_SLAY_ORC,    "Slay Orc" },
-    { OF_SLAY_TROLL,  "Slay Troll" },
-    { OF_SLAY_GIANT,  "Slay Giant" },
-    { OF_KILL_EVIL,   "Kill Evil" },
-	{ OF_KILL_GOOD,   "Kill Good" },
-	{ OF_KILL_LIVING, "Kill Living" },
-    { OF_KILL_UNDEAD, "Kill Undead" },
-    { OF_KILL_DEMON,  "Kill Demon" },
-    { OF_KILL_DRAGON, "Kill Dragon" },
-    { OF_KILL_HUMAN,  "Kill Human" },
-    { OF_KILL_ANIMAL, "Kill Animal" },
-    { OF_KILL_ORC,    "Kill Orc" },
-    { OF_KILL_TROLL,  "Kill Troll" },
-    { OF_KILL_GIANT,  "Kill Giant" },
+    { OF_SLAY_EVIL,   "屠杀邪恶" },
+    { OF_SLAY_GOOD,   "屠杀善良" },
+    { OF_SLAY_LIVING, "屠杀活物" },
+    { OF_SLAY_UNDEAD, "屠杀死灵" },
+    { OF_SLAY_DEMON,  "屠杀恶魔" },
+    { OF_SLAY_DRAGON, "屠杀龙类" },
+    { OF_SLAY_HUMAN,  "屠杀人类" },
+    { OF_SLAY_ANIMAL, "屠杀动物" },
+    { OF_SLAY_ORC,    "屠杀兽人" },
+    { OF_SLAY_TROLL,  "屠杀巨魔" },
+    { OF_SLAY_GIANT,  "屠杀巨人" },
+    { OF_KILL_EVIL,   "克星：邪恶" },
+	{ OF_KILL_GOOD,   "克星：善良" },
+	{ OF_KILL_LIVING, "克星：活物" },
+    { OF_KILL_UNDEAD, "克星：死灵" },
+    { OF_KILL_DEMON,  "克星：恶魔" },
+    { OF_KILL_DRAGON, "克星：龙类" },
+    { OF_KILL_HUMAN,  "克星：人类" },
+    { OF_KILL_ANIMAL, "克星：动物" },
+    { OF_KILL_ORC,    "克星：兽人" },
+    { OF_KILL_TROLL,  "克星：巨魔" },
+    { OF_KILL_GIANT,  "克星：巨人" },
     { OF_INVALID }
 };
 
@@ -547,17 +547,17 @@ static int _smith_slays(object_type *o_ptr)
 }
 
 static _flag_info_t _brand_flags[] = {
-    { OF_BRAND_ACID,    "Brand Acid" },
-    { OF_BRAND_ELEC,    "Brand Elec" },
-    { OF_BRAND_FIRE,    "Brand Fire" },
-    { OF_BRAND_COLD,    "Brand Cold" },
-    { OF_BRAND_POIS,    "Brand Poison" },
-    { OF_BRAND_MANA,    "Brand Mana", object_is_melee_weapon },
-    { OF_BRAND_CHAOS,   "Chaotic", object_is_melee_weapon },
-    { OF_BRAND_VAMP,    "Vampiric" },
-    { OF_IMPACT,        "Impact", object_is_melee_weapon },
-    { OF_STUN,          "Stun", object_is_melee_weapon },
-    { OF_VORPAL,        "Vorpal", object_is_melee_weapon },
+    { OF_BRAND_ACID,    "强酸烙印" },
+    { OF_BRAND_ELEC,    "闪电烙印" },
+    { OF_BRAND_FIRE,    "火焰烙印" },
+    { OF_BRAND_COLD,    "冰霜烙印" },
+    { OF_BRAND_POIS,    "毒素烙印" },
+    { OF_BRAND_MANA,    "法力烙印", object_is_melee_weapon },
+    { OF_BRAND_CHAOS,   "混乱", object_is_melee_weapon },
+    { OF_BRAND_VAMP,    "吸血" },
+    { OF_IMPACT,        "冲击", object_is_melee_weapon },
+    { OF_STUN,          "震慑", object_is_melee_weapon },
+    { OF_VORPAL,        "斩首", object_is_melee_weapon },
     { OF_VORPAL2,       "*Vorpal*", object_is_melee_weapon },
     { OF_INVALID }
 };
@@ -637,7 +637,7 @@ static char _score_color(int score)  /* XXX duplicated in wizard2.c */
 void wiz_create_objects(obj_create_f creator, u32b mode)
 {
     doc_ptr doc = doc_alloc(120);
-    inv_ptr inv = inv_alloc("Temp", INV_PACK, 0);
+    inv_ptr inv = inv_alloc("临时", INV_PACK, 0);
     int     i;
 
     statistics_hack = TRUE;
@@ -669,7 +669,7 @@ void wiz_create_objects(obj_create_f creator, u32b mode)
     doc_insert(doc, "</style>");
     statistics_hack = FALSE;
 
-    doc_display(doc, "Objects", 0);
+    doc_display(doc, "物品", 0);
     inv_free(inv);
     doc_free(doc);
 }
@@ -708,22 +708,22 @@ static int _smith_reroll(object_type *o_ptr)
         doc_clear(_doc);
         obj_display_smith(&copy, _doc);
 
-        doc_insert(_doc, "   <color:y>w</color>) Awful\n");
-        doc_insert(_doc, "   <color:y>b</color>) Bad\n");
-        doc_insert(_doc, "   <color:y>a</color>) Average*\n");
-        doc_insert(_doc, "   <color:y>g</color>) Good*\n");
-        doc_insert(_doc, "   <color:y>e</color>) Excellent*\n");
-        doc_insert(_doc, "   <color:y>r</color>) Random Artifact*\n");
+        doc_insert(_doc, "<color:y>w</color>) 糟糕(Awful)\n");
+        doc_insert(_doc, "<color:y>b</color>) 劣质(Bad)\n");
+        doc_insert(_doc, "<color:y>a</color>) 普通(Average)*\n");
+        doc_insert(_doc, "<color:y>g</color>) 良好(Good)*\n");
+        doc_insert(_doc, "<color:y>e</color>) 优秀(Excellent)*\n");
+        doc_insert(_doc, "<color:y>r</color>) 随机神器(Random Artifact)*\n");
         if (o_ptr->name1 || o_ptr->name3)
-            doc_insert(_doc, "   <color:y>X</color>) Replacement Artifact\n");
+            doc_insert(_doc, "<color:y>X</color>) 替代神器(Replacement Artifact)\n");
 
         doc_newline(_doc);
-        doc_printf(_doc, "   <color:y>m</color>) Min Score = %d\n", min);
+        doc_printf(_doc, "<color:y>m</color>) 最小分数 = %d\n", min);
 
-        doc_insert(_doc, "\n   (*)SHIFT+choice to view statistics\n");
+        doc_insert(_doc, "\n (*)SHIFT+选项 以查看统计信息\n");
         doc_newline(_doc);
-        doc_insert(_doc, " <color:y>RET</color>) Accept changes\n");
-        doc_insert(_doc, " <color:y>ESC</color>) Cancel changes\n");
+        doc_insert(_doc, "<color:y>回车</color>) 接受更改\n");
+        doc_insert(_doc, "<color:y>ESC</color>) 取消更改\n");
         doc_newline(_doc);
 
         Term_load();
@@ -740,7 +740,7 @@ static int _smith_reroll(object_type *o_ptr)
         {
             char buf[51];
             sprintf(buf, "%d", min);
-            if (get_string("Min Score: ", buf, 50))
+            if (get_string("最小分数：", buf, 50))
             {
                 min = atoi(buf);
                 if (min < 0) min = 0;
@@ -795,12 +795,12 @@ static int _smith_resistances(object_type *o_ptr)
         doc_free(cols[0]);
         doc_free(cols[1]);
 
-        doc_insert(_doc, "      SHIFT+choice toggle vulnerability\n");
-        doc_insert(_doc, "   (*)CTRL+choice toggle immunity\n");
+        doc_insert(_doc, "SHIFT+选项 切换易伤标志\n");
+        doc_insert(_doc, "(*)CTRL+选项 切换免疫标志\n");
 
         doc_newline(_doc);
-        doc_insert(_doc, " <color:y>RET</color>) Accept changes\n");
-        doc_insert(_doc, " <color:y>ESC</color>) Cancel changes\n");
+        doc_insert(_doc, "<color:y>回车</color>) 接受更改\n");
+        doc_insert(_doc, "<color:y>ESC</color>) 取消更改\n");
         doc_newline(_doc);
 
         Term_load();
@@ -903,7 +903,7 @@ static device_effect_info_ptr _choose_effect(object_type *o_ptr)
 
         doc_clear(_doc);
         /*obj_display_smith(o_ptr, _doc);*/
-        doc_insert(_doc, "   <color:G>Choose an Effect:</color>\n");
+        doc_insert(_doc, "<color:G>选择一个效果：</color>\n");
 
         for (i = 0; ; i++)
         {
@@ -967,17 +967,17 @@ static int _smith_device_effect(object_type *o_ptr)
         doc_clear(_doc);
         obj_display_smith(&copy, _doc);
 
-        doc_insert(_doc, "   <color:y>e</color>) Change effect\n");
+        doc_insert(_doc, "<color:y>e</color>) 更改效果\n");
 
-        doc_insert(_doc, " <color:y>p</color>/<color:y>P</color>) Adjust power\n");
-        doc_insert(_doc, " <color:y>m</color>/<color:y>M</color>) Adjust mana\n");
-        doc_insert(_doc, " <color:y>l</color>/<color:y>L</color>) Adjust effect level\n");
-        doc_insert(_doc, " <color:y>c</color>/<color:y>C</color>) Adjust effect cost\n");
-        doc_insert(_doc, "   <color:y>r</color>) Recharge\n");
+        doc_insert(_doc, "<color:y>p</color>/<color:y>P</color>) 调整强度(power)\n");
+        doc_insert(_doc, "<color:y>m</color>/<color:y>M</color>) 调整法力\n");
+        doc_insert(_doc, "<color:y>l</color>/<color:y>L</color>) 调整效果等级\n");
+        doc_insert(_doc, "<color:y>c</color>/<color:y>C</color>) 调整效果消耗\n");
+        doc_insert(_doc, "<color:y>r</color>) 充能\n");
 
         doc_newline(_doc);
-        doc_insert(_doc, " <color:y>RET</color>) Accept changes\n");
-        doc_insert(_doc, " <color:y>ESC</color>) Cancel changes\n");
+        doc_insert(_doc, "<color:y>回车</color>) 接受更改\n");
+        doc_insert(_doc, "<color:y>ESC</color>) 取消更改\n");
         doc_newline(_doc);
 
         Term_load();
@@ -1070,16 +1070,16 @@ static int _smith_device_bonus(object_type *o_ptr)
         doc_clear(_doc);
         obj_display_smith(&copy, _doc);
 
-        doc_insert(_doc, "   <color:y>q</color>) Quickness\n");
-        doc_insert(_doc, "   <color:y>p</color>) Power\n");
-        doc_insert(_doc, "   <color:y>e</color>) Easy Use\n");
-        doc_insert(_doc, "   <color:y>r</color>) Regeneration\n");
-        doc_insert(_doc, "   <color:y>h</color>) Hold Charges\n");
-        doc_insert(_doc, " <color:y>x</color>/<color:y>X</color>) Adjust amount of bonus\n");
+        doc_insert(_doc, "<color:y>q</color>) 快捷(Quickness)\n");
+        doc_insert(_doc, "<color:y>p</color>) 威力(Power)\n");
+        doc_insert(_doc, "<color:y>e</color>) 易用(Easy Use)\n");
+        doc_insert(_doc, "<color:y>r</color>) 再生(Regeneration)\n");
+        doc_insert(_doc, "<color:y>h</color>) 维持充能(Hold Charges)\n");
+        doc_insert(_doc, "<color:y>x</color>/<color:y>X</color>) 调整加成数量\n");
 
         doc_newline(_doc);
-        doc_insert(_doc, " <color:y>RET</color>) Accept changes\n");
-        doc_insert(_doc, " <color:y>ESC</color>) Cancel changes\n");
+        doc_insert(_doc, "<color:y>回车</color>) 接受更改\n");
+        doc_insert(_doc, "<color:y>ESC</color>) 取消更改\n");
         doc_newline(_doc);
 
         Term_load();
@@ -1148,18 +1148,18 @@ static bool _brands_p(object_type *o_ptr)
 }
 
 static _command_t _commands[] = {
-    { 'p', "Plusses", _smith_plusses, object_is_weapon_armour_ammo },
-    { 's', "Stats", _smith_stats, object_is_wearable },
-    { 'b', "Bonuses", _smith_bonuses, object_is_wearable },
-    { 'r', "Resistances", _smith_resistances, object_is_wearable },
-    { 'a', "Abilities", _smith_abilities, object_is_wearable },
-    { 't', "Telepathies", _smith_telepathies, object_is_wearable },
-    { 'S', "Slays", _smith_slays, _slays_p },
-    { 'B', "Brands", _smith_brands, _brands_p },
+    { 'p', "附加加成", _smith_plusses, object_is_weapon_armour_ammo },
+    { 's', "属性", _smith_stats, object_is_wearable },
+    { 'b', "特殊加成", _smith_bonuses, object_is_wearable },
+    { 'r', "抗性", _smith_resistances, object_is_wearable },
+    { 'a', "能力", _smith_abilities, object_is_wearable },
+    { 't', "心灵感应", _smith_telepathies, object_is_wearable },
+    { 'S', "屠杀", _smith_slays, _slays_p },
+    { 'B', "烙印", _smith_brands, _brands_p },
 /*  { 'A', "Activation", _smith_activation, object_is_wearable },*/
-    { 'e', "Effects", _smith_device_effect, object_is_device },
-    { 'b', "Bonuses", _smith_device_bonus, object_is_device },
-    { 'R', "Re-roll", _smith_reroll },
+    { 'e', "效果", _smith_device_effect, object_is_device },
+    { 'b', "特殊加成", _smith_device_bonus, object_is_device },
+    { 'R', "重新生成", _smith_reroll },
 /*  { 'i', "Ignore", _smith_ignore },*/
     { 0 }
 };
@@ -1193,8 +1193,8 @@ static int _smith_object_aux(object_type *o_ptr)
         }
 
         doc_newline(_doc);
-        doc_insert(_doc, " <color:y>RET</color>) Accept changes\n");
-        doc_insert(_doc, " <color:y>ESC</color>) Cancel changes\n");
+        doc_insert(_doc, "<color:y>回车</color>) 接受更改\n");
+        doc_insert(_doc, "<color:y>ESC</color>) 取消更改\n");
         doc_newline(_doc);
         Term_load();
         doc_sync_term(_doc, doc_range_all(_doc), doc_pos_create(r.x, r.y));
@@ -1252,8 +1252,8 @@ void wiz_obj_smith(void)
     obj_t        copy;
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Smith which object?";
-    prompt.error = "You have nothing to work with.";
+    prompt.prompt = "锻造哪件物品？";
+    prompt.error = "你没有可以处理的东西。";
     prompt.filter = _smith_p;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;

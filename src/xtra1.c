@@ -647,190 +647,190 @@ static struct {
     cptr lstr;
 } bar[]
 = {
-    {TERM_YELLOW, "Ts", "Tsuyoshi"},
-    {TERM_VIOLET, "Ha", "Halluc"},
-    {TERM_L_DARK, "Bl", "Blind"},
-    {TERM_RED, "Pa", "Paralyzed"},
-    {TERM_VIOLET, "Cf", "Confused"},
-    {TERM_GREEN, "Po", "Poisoned"},
-    {TERM_YELLOW, "Af", "Afraid"},
-    {TERM_L_BLUE, "Lv", "Levit"},
-    {TERM_SLATE, "Rf", "Reflect"},
-    {TERM_SLATE, "Pw", "PassWall"},
-    {TERM_L_DARK, "Wr", "Wraith"},
-    {TERM_SLATE, "Ev", "PrtEvl"},
-    {TERM_VIOLET, "Kw", "Kawarimi"},
-    {TERM_YELLOW, "Md", "MgcArm"},
-    {TERM_L_UMBER, "Eh", "Expand"},
-    {TERM_WHITE, "Ss", "StnSkn"},
-    {TERM_L_BLUE, "Ms", "MltShdw"},
-    {TERM_SLATE, "Rm", "ResMag"},
-    {TERM_YELLOW, "Ul", "Ultima"},
-    {TERM_YELLOW, "Iv", "Invuln"},
-    {TERM_L_GREEN, "IAc", "ImmAcid"},
-    {TERM_GREEN, "Ac", "Acid"},
-    {TERM_L_BLUE, "IEl", "ImmElec"},
-    {TERM_BLUE, "El", "Elec"},
-    {TERM_L_RED, "IFi", "ImmFire"},
-    {TERM_RED, "Fi", "Fire"},
-    {TERM_WHITE, "ICo", "ImmCold"},
-    {TERM_SLATE, "Co", "Cold"},
-    {TERM_GREEN, "Po", "Pois"},
-    {TERM_L_DARK, "Nt", "Nthr"},
-    {TERM_L_BLUE, "Ti", "Time"},
-    {TERM_L_DARK, "Mr", "Mirr"},
-    {TERM_L_RED, "SFi", "SFire"},
-    {TERM_WHITE, "Fo", "Force"},
-    {TERM_WHITE, "Ho", "Holy"},
-    {TERM_VIOLET, "Ee", "EyeEye"},
-    {TERM_WHITE, "Bs", "Bless"},
-    {TERM_WHITE, "He", "Hero"},
-    {TERM_RED, "Br", "Berserk"},
-    {TERM_L_RED, "BFi", "BFire"},
-    {TERM_WHITE, "BCo", "BCold"},
-    {TERM_L_BLUE, "BEl", "BElec"},
-    {TERM_SLATE, "BAc", "BAcid"},
-    {TERM_L_GREEN, "BPo", "BPois"},
-    {TERM_RED, "TCf", "TchCnf"},
-    {TERM_L_BLUE, "Se", "SInv"},
-    {TERM_ORANGE, "Te", "Telepa"},
-    {TERM_L_BLUE, "Rg", "Regen"},
-    {TERM_L_RED, "If", "Infr"},
-    {TERM_UMBER, "Sl", "Stealth"},
-    {TERM_L_DARK, "Hd", "Hiding"},
-    {TERM_L_BLUE, "Rc", "Recall"},
-    {TERM_WHITE, "Al", "Alter"},
+    {TERM_YELLOW, "Ts", "刚强"},
+    {TERM_VIOLET, "Ha", "幻觉"},
+    {TERM_L_DARK, "Bl", "失明"},
+    {TERM_RED, "Pa", "麻痹"},
+    {TERM_VIOLET, "Cf", "混乱"},
+    {TERM_GREEN, "Po", "中毒"},
+    {TERM_YELLOW, "Af", "恐惧"},
+    {TERM_L_BLUE, "Lv", "浮空"},
+    {TERM_SLATE, "Rf", "反弹"},
+    {TERM_SLATE, "Pw", "穿墙"},
+    {TERM_L_DARK, "Wr", "怨灵"},
+    {TERM_SLATE, "Ev", "防邪"},
+    {TERM_VIOLET, "Kw", "替身"},
+    {TERM_YELLOW, "Md", "魔甲"},
+    {TERM_L_UMBER, "Eh", "变大"},
+    {TERM_WHITE, "Ss", "石肤"},
+    {TERM_L_BLUE, "Ms", "多影"},
+    {TERM_SLATE, "Rm", "抗魔"},
+    {TERM_YELLOW, "Ul", "终防"},
+    {TERM_YELLOW, "Iv", "无敌"},
+    {TERM_L_GREEN, "免酸", "酸免疫"},
+    {TERM_GREEN, "Ac", "酸抗"},
+    {TERM_L_BLUE, "免电", "电免疫"},
+    {TERM_BLUE, "El", "电抗"},
+    {TERM_L_RED, "免火", "火免疫"},
+    {TERM_RED, "Fi", "火抗"},
+    {TERM_WHITE, "免冷", "冷免疫"},
+    {TERM_SLATE, "Co", "冷抗"},
+    {TERM_GREEN, "Po", "毒抗"},
+    {TERM_L_DARK, "Nt", "虚空"},
+    {TERM_L_BLUE, "Ti", "时抗"},
+    {TERM_L_DARK, "Mr", "镜面"},
+    {TERM_L_RED, "火盾", "火焰护盾"},
+    {TERM_WHITE, "Fo", "力场"},
+    {TERM_WHITE, "Ho", "神圣"},
+    {TERM_VIOLET, "Ee", "以眼还眼"},
+    {TERM_WHITE, "Bs", "祝福"},
+    {TERM_WHITE, "He", "英雄"},
+    {TERM_RED, "Br", "狂暴"},
+    {TERM_L_RED, "火印", "火焰烙印"},
+    {TERM_WHITE, "冷印", "冰霜烙印"},
+    {TERM_L_BLUE, "电印", "闪电烙印"},
+    {TERM_SLATE, "酸印", "强酸烙印"},
+    {TERM_L_GREEN, "毒印", "毒素烙印"},
+    {TERM_RED, "触惑", "接触混乱"},
+    {TERM_L_BLUE, "Se", "破隐"},
+    {TERM_ORANGE, "Te", "心感"},
+    {TERM_L_BLUE, "Rg", "再生"},
+    {TERM_L_RED, "If", "红外"},
+    {TERM_UMBER, "Sl", "潜行"},
+    {TERM_L_DARK, "Hd", "躲藏"},
+    {TERM_L_BLUE, "Rc", "召回"},
+    {TERM_WHITE, "Al", "改变"},
     /* Hex */
-    {TERM_WHITE, "SCo", "SCold"},
-    {TERM_BLUE, "SEl", "SElec"},
-    {TERM_L_DARK, "SSh", "SShadow"},
-    {TERM_YELLOW, "EMi", "ExMight"},
-    {TERM_RED, "Gi", "Giant"},
-    {TERM_L_DARK, "AMl", "AntiMulti"},
-    {TERM_ORANGE, "AT", "AntiTele"},
-    {TERM_RED, "AM", "AntiMagic"},
-    {TERM_SLATE, "Pa", "Patience"},
-    {TERM_SLATE, "Rv", "Revenge"},
-    {TERM_L_DARK, "Rs", "RuneSword"},
-    {TERM_RED, "Vm", "Vampiric"},
-    {TERM_WHITE, "Cu", "Cure"},
-    {TERM_L_DARK, "ET", "EvilTele"},
-    {TERM_VIOLET, "Ch", "Chaotic"},
-    {TERM_ORANGE, "Sh", "Shield"},
-    {TERM_YELLOW, "Sk", "Seek"},
-    {TERM_RED, "Rv", "Revenge"},
-    {TERM_L_BLUE, "Si", "Sight"},
-    {TERM_WHITE, "Fs", "Feast"},
-    {TERM_VIOLET, "NS", "No Spells"},
-    {TERM_YELLOW, "Q", "Quick"},
-    {TERM_L_BLUE, "Sp", "Special"},
+    {TERM_WHITE, "冷盾", "冰霜护盾"},
+    {TERM_BLUE, "电盾", "闪电护盾"},
+    {TERM_L_DARK, "影盾", "暗影护盾"},
+    {TERM_YELLOW, "威力", "额外威力"},
+    {TERM_RED, "Gi", "巨人"},
+    {TERM_L_DARK, "防多", "反多重攻击"},
+    {TERM_ORANGE, "AT", "反传送"},
+    {TERM_RED, "AM", "反魔法"},
+    {TERM_SLATE, "Pa", "耐心"},
+    {TERM_SLATE, "Rv", "复仇"},
+    {TERM_L_DARK, "Rs", "符文剑"},
+    {TERM_RED, "Vm", "吸血"},
+    {TERM_WHITE, "Cu", "治疗"},
+    {TERM_L_DARK, "ET", "邪恶心感"},
+    {TERM_VIOLET, "Ch", "混乱"},
+    {TERM_ORANGE, "Sh", "盾防"},
+    {TERM_YELLOW, "Sk", "追踪"},
+    {TERM_RED, "Rv", "复仇"},
+    {TERM_L_BLUE, "Si", "视野"},
+    {TERM_WHITE, "Fs", "盛宴"},
+    {TERM_VIOLET, "NS", "无法施法"},
+    {TERM_YELLOW, "Q", "快速"},
+    {TERM_L_BLUE, "Sp", "特殊"},
     {TERM_YELLOW, "", "Duelist Target Goes Here!"},
-    {TERM_L_BLUE, "Rn", "Shoot on Run"},
-    {TERM_L_BLUE, "Rp", "Rapid Shot"},
-    {TERM_L_BLUE, "FD", "Flying Dagger"},
-    {TERM_L_BLUE, "Sw", "Shadow"},
-    {TERM_L_BLUE, "Fz", "Frenzy"},
+    {TERM_L_BLUE, "Rn", "跑动射击"},
+    {TERM_L_BLUE, "Rp", "急速射击"},
+    {TERM_L_BLUE, "FD", "飞刀"},
+    {TERM_L_BLUE, "Sw", "暗影"},
+    {TERM_L_BLUE, "Fz", "狂热"},
     {TERM_L_UMBER, "/o", "/Orc"},
-    {TERM_L_BLUE, "Fc", "Force"},
-    {TERM_L_BLUE, "DS", "Defensive Stance"},
-    {TERM_UMBER, "SB", "Stone Bones"},
-    {TERM_L_BLUE, "Tr", "Trade Blows"},
-    {TERM_L_BLUE, "Pw", "Power Attack"},
-    {TERM_RED, "Vs", "Exposed"},
-    {TERM_RED, "BB", "Burning Blade"},
-    {TERM_BLUE, "IB", "Ice Blade"},
-    {TERM_YELLOW, "TB", "Thunder Blade"},
-    {TERM_RED, "Bl", "Blood Blade"},
-    {TERM_WHITE, "HB", "Holy Blade"},
-    {TERM_ORANGE, "OB", "Order Blade"},
-    {TERM_GREEN, "WB", "Wild Blade"},
-    {TERM_L_BLUE, "MS", "Many Strike"},
-    {TERM_L_BLUE, "PS", "Piercing Strike"},
-    {TERM_L_BLUE, "Trp", "Trip"},
-    {TERM_UMBER, "En", "Entrenched"},
-    {TERM_RED, "EW", "Enlarge"},
-    {TERM_L_RED, "Fl", "Flurry"},
+    {TERM_L_BLUE, "Fc", "力场"},
+    {TERM_L_BLUE, "DS", "防御姿态"},
+    {TERM_UMBER, "SB", "石骨"},
+    {TERM_L_BLUE, "Tr", "以伤换伤"},
+    {TERM_L_BLUE, "强攻", "强力攻击"},
+    {TERM_RED, "Vs", "破绽"},
+    {TERM_RED, "BB", "燃烧之刃"},
+    {TERM_BLUE, "IB", "冰霜之刃"},
+    {TERM_YELLOW, "TB", "雷霆之刃"},
+    {TERM_RED, "Bl", "鲜血之刃"},
+    {TERM_WHITE, "HB", "神圣之刃"},
+    {TERM_ORANGE, "OB", "秩序之刃"},
+    {TERM_GREEN, "WB", "狂野之刃"},
+    {TERM_L_BLUE, "MS", "多重打击"},
+    {TERM_L_BLUE, "PS", "穿透打击"},
+    {TERM_L_BLUE, "绊倒", "绊倒"},
+    {TERM_UMBER, "En", "掘壕"},
+    {TERM_RED, "EW", "变大"},
+    {TERM_L_RED, "Fl", "疾风"},
     {TERM_RED, "Fl", "FLURRY"},
-    {TERM_UMBER, "Str", "Undertaker"},
-    {TERM_ORANGE, "Sc", "Stoicism"},
-    {TERM_YELLOW, "At", "Mortician"},
-    {TERM_L_BLUE, "SB", "Shield Bash"},
-    {TERM_L_BLUE, "Bw", "Bulwark"},
-    {TERM_RED, "Rt", "Rite"},
-    {TERM_WHITE, "Gft", "Graft"},
-    {TERM_YELLOW, "Cl", "Clarity"},
-    {TERM_L_DARK, "Bl", "Blending"},
-    {TERM_ORANGE, "Sh", "Shielding"},
-    {TERM_RED, "Ct", "Combat"},
-    {TERM_VIOLET, "Ft", "Fortress"},
-    {TERM_GREEN, "MS", "Mindspring"},
-    {TERM_YELLOW, "Fs", "Foresight"},
-    {TERM_L_DARK, "Dis", "Disenchant"},
-    {TERM_L_BLUE, "Rct", "Reaction"},
-    {TERM_YELLOW, "RC", "Curses"},
-    {TERM_RED, "Fy", "Fury"},
-    {TERM_GREEN, "Tn", "Turning"},
-    {TERM_GREEN, "Fs", "Fasting"},
-    {TERM_YELLOW, "(Str", "SustStr"},
-    {TERM_YELLOW, "(Int", "SustInt"},
-    {TERM_YELLOW, "(Wis", "SustWis"},
-    {TERM_YELLOW, "(Dex", "SustDex"},
-    {TERM_YELLOW, "(Con", "SustCon"},
-    {TERM_YELLOW, "(Chr", "SustChr"},
-    {TERM_YELLOW, "(HL", "HLife"},
-    {TERM_WHITE, "Tr", "Transcendence"},
-    {TERM_L_BLUE, "ST", "StopTime"},
-    {TERM_L_DARK, "DS", "Stealth"},
-    {TERM_L_BLUE, "ND", "Dodge"},
-    {TERM_UMBER, "SS", "Snipe"},
-    {TERM_L_BLUE, "Bl", "Block"},
-    {TERM_RED, "Dr", "Drain"},
-    {TERM_YELLOW, "Qk", "Quake"},
-    {TERM_RED, "Ml", "Maul"},
-    {TERM_VIOLET, "KS", "Spree"},
-    {TERM_L_DARK, "Tn", "Tunnel"},
-    {TERM_YELLOW, "QW", "Quickwalk"},
-    {TERM_L_BLUE, "IP", "InvenProt"},
-    {TERM_VIOLET, "IP", "InvenProt"},
-    {TERM_L_BLUE, "Wp", "Weapon"},
-    {TERM_VIOLET, "Dv", "Device"},
-    {TERM_RED, "*", "Splatter"},
-    {TERM_L_BLUE, "ST", "STime"},
-    {TERM_YELLOW, "2", "DblMove"},
-    {TERM_L_BLUE, "RS", "Ready"},
-    {TERM_L_BLUE, "PA", "Pierce"},
-    {TERM_L_BLUE, "RR", "Reload"},
-    {TERM_L_BLUE, "Ex", "Explode"},
-    {TERM_L_BLUE, "OD", "Overdraw"},
-    {TERM_RED, "Ay", "Archery"},
-    {TERM_L_BLUE, "Sl", "Stealth"},
-    {TERM_L_BLUE, "Fs", "Fast"},
-    {TERM_L_BLUE, "Rl", "Retaliate"},
-    {TERM_L_BLUE, "Of", "Offense"},
-    {TERM_L_BLUE, "Df", "Defense"},
-    {TERM_L_BLUE, "Bl", "Blink"},
-    {TERM_L_GREEN, "DT", "DTrap"},
-    {TERM_YELLOW, "DT", "DTrap"},
-    {TERM_YELLOW, "Lt", "Light"},
-    {TERM_L_DARK, "Dk", "Dark"},
-    {TERM_UMBER, "SSh", "SShards"},
-    {TERM_L_BLUE, "Dom", "Dominate"},
-    {TERM_RED, "[M", "Disruption"},
-    {TERM_YELLOW, "Dr", "Drain"},
-    {TERM_L_BLUE, "Ctr", "Canter"},
-    {TERM_RED, "Glp", "Gallop"},
-    {TERM_YELLOW, "Hl", "Healing"},
-    {TERM_VIOLET, "Chg", "Heroic Charge"},
-    {TERM_YELLOW, "$$", "Hoarding"},
-    {TERM_L_BLUE, "Aim", "Aim"},
-    {TERM_GREEN, "Spn", "Spin"},
-    {TERM_SLATE, "uHP", "Grit"},
-    {TERM_YELLOW, "uAU", "Grease"},
-    {TERM_L_GREEN, "uXP", "Glory"},
-    {TERM_L_RED, "Upk", "Upkeep"},
-    {TERM_ORANGE, "Flb", "Filibuster"},
-    {TERM_L_WHITE, "Unw", "Unwell"},
-    {TERM_ORANGE, "Fld", "ForceField"},
+    {TERM_UMBER, "葬", "送葬"},
+    {TERM_ORANGE, "Sc", "坚忍"},
+    {TERM_YELLOW, "At", "殓尸"},
+    {TERM_L_BLUE, "SB", "盾击"},
+    {TERM_L_BLUE, "Bw", "壁垒"},
+    {TERM_RED, "Rt", "仪式"},
+    {TERM_WHITE, "移", "移植"},
+    {TERM_YELLOW, "Cl", "清明"},
+    {TERM_L_DARK, "Bl", "融入"},
+    {TERM_ORANGE, "Sh", "护盾"},
+    {TERM_RED, "Ct", "战斗"},
+    {TERM_VIOLET, "Ft", "要塞"},
+    {TERM_GREEN, "MS", "心智泉"},
+    {TERM_YELLOW, "Fs", "预知"},
+    {TERM_L_DARK, "祛魔", "祛魔"},
+    {TERM_L_BLUE, "反应", "反应"},
+    {TERM_YELLOW, "RC", "诅咒"},
+    {TERM_RED, "Fy", "狂怒"},
+    {TERM_GREEN, "Tn", "驱退"},
+    {TERM_GREEN, "Fs", "辟谷"},
+    {TERM_YELLOW, "(Str", "维力"},
+    {TERM_YELLOW, "(Int", "维智"},
+    {TERM_YELLOW, "(Wis", "维感"},
+    {TERM_YELLOW, "(Dex", "维敏"},
+    {TERM_YELLOW, "(Con", "维体"},
+    {TERM_YELLOW, "(Chr", "维魅"},
+    {TERM_YELLOW, "(HL", "维生"},
+    {TERM_WHITE, "Tr", "超凡"},
+    {TERM_L_BLUE, "ST", "时停"},
+    {TERM_L_DARK, "DS", "潜行"},
+    {TERM_L_BLUE, "ND", "闪避"},
+    {TERM_UMBER, "SS", "狙击"},
+    {TERM_L_BLUE, "Bl", "格挡"},
+    {TERM_RED, "Dr", "吸取"},
+    {TERM_YELLOW, "Qk", "地震"},
+    {TERM_RED, "Ml", "重击"},
+    {TERM_VIOLET, "KS", "连杀"},
+    {TERM_L_DARK, "Tn", "挖掘"},
+    {TERM_YELLOW, "QW", "快步"},
+    {TERM_L_BLUE, "IP", "护包"},
+    {TERM_VIOLET, "IP", "护包"},
+    {TERM_L_BLUE, "Wp", "武器"},
+    {TERM_VIOLET, "Dv", "装置"},
+    {TERM_RED, "*", "飞溅"},
+    {TERM_L_BLUE, "ST", "缓时"},
+    {TERM_YELLOW, "2", "连动"},
+    {TERM_L_BLUE, "RS", "准备"},
+    {TERM_L_BLUE, "PA", "穿透"},
+    {TERM_L_BLUE, "RR", "装填"},
+    {TERM_L_BLUE, "Ex", "爆炸"},
+    {TERM_L_BLUE, "OD", "满弓"},
+    {TERM_RED, "Ay", "箭术"},
+    {TERM_L_BLUE, "Sl", "潜行"},
+    {TERM_L_BLUE, "Fs", "加速"},
+    {TERM_L_BLUE, "Rl", "反击"},
+    {TERM_L_BLUE, "Of", "攻击"},
+    {TERM_L_BLUE, "Df", "防御"},
+    {TERM_L_BLUE, "Bl", "闪烁"},
+    {TERM_L_GREEN, "DT", "探陷"},
+    {TERM_YELLOW, "DT", "探陷"},
+    {TERM_YELLOW, "Lt", "照明"},
+    {TERM_L_DARK, "Dk", "黑暗"},
+    {TERM_UMBER, "碎盾", "碎片护盾"},
+    {TERM_L_BLUE, "支配", "支配"},
+    {TERM_RED, "[M", "扰乱"},
+    {TERM_YELLOW, "Dr", "吸取"},
+    {TERM_L_BLUE, "慢跑", "慢跑"},
+    {TERM_RED, "疾驰", "疾驰"},
+    {TERM_YELLOW, "Hl", "治疗"},
+    {TERM_VIOLET, "冲锋", "英雄冲锋"},
+    {TERM_YELLOW, "$$", "囤积"},
+    {TERM_L_BLUE, "瞄准", "瞄准"},
+    {TERM_GREEN, "旋斩", "旋转"},
+    {TERM_SLATE, "uHP", "毅力"},
+    {TERM_YELLOW, "uAU", "润滑"},
+    {TERM_L_GREEN, "uXP", "荣耀"},
+    {TERM_L_RED, "维护", "维护"},
+    {TERM_ORANGE, "阻挠", "阻挠"},
+    {TERM_L_WHITE, "不适", "不适"},
+    {TERM_ORANGE, "力场", "力场"},
     {TERM_WHITE, "/p", "/Human"},
     {TERM_L_UMBER, "/P", "/Giant"},
     {TERM_L_WHITE, "/T", "/Troll"},
@@ -838,11 +838,11 @@ static struct {
     {TERM_L_RED, "/U", "/Demon"},
     {TERM_SLATE, "/L", "/Undead"},
     {TERM_L_GREEN, "/Z", "/Animal"},
-    {TERM_ORANGE, "|St", "Stun"},
-    {TERM_L_WHITE, "|S", "Vorpal"},
-    {TERM_L_ORANGE, "Pt", "Poet"},
-    {TERM_YELLOW, "Id", "Auto-ID"},
-    {TERM_VIOLET, "NA", "No Air"},
+    {TERM_ORANGE, "|St", "震慑"},
+    {TERM_L_WHITE, "|S", "斩首"},
+    {TERM_L_ORANGE, "Pt", "诗人"},
+    {TERM_YELLOW, "Id", "自动鉴定"},
+    {TERM_VIOLET, "NA", "无气"},
     {0, NULL, NULL}
 };
 
@@ -935,7 +935,7 @@ static void prt_status(void)
     {
         ADD_FLG(BAR_KAWARIMI);
         if (prace_is_(RACE_MON_SPIDER))
-            bar[BAR_KAWARIMI].lstr = "PhaseShield";
+            bar[BAR_KAWARIMI].lstr = "相位盾";
     }
 
     /* Oppose Acid */
@@ -1429,7 +1429,7 @@ static void prt_level(void)
     }
     else
     {
-        put_str("Level ", r.y + ROW_LEVEL, r.x + COL_LEVEL);
+        put_str("等级", r.y + ROW_LEVEL, r.x + COL_LEVEL);
         c_put_str(TERM_YELLOW, tmp, r.y + ROW_LEVEL, r.x + COL_LEVEL + 6);
 
     }
@@ -1464,13 +1464,13 @@ static void prt_exp(void)
 
     if (p_ptr->exp >= p_ptr->max_exp)
     {
-        if (p_ptr->prace == RACE_ANDROID) put_str("Cst ", r.y + ROW_EXP, r.x + COL_EXP);
-        else put_str("EXP ", r.y + ROW_EXP, r.x + COL_EXP);
+        if (p_ptr->prace == RACE_ANDROID) put_str("消耗", r.y + ROW_EXP, r.x + COL_EXP);
+        else put_str("经验", r.y + ROW_EXP, r.x + COL_EXP);
         c_put_str(TERM_L_GREEN, out_val, r.y + ROW_EXP, r.x + COL_EXP + 4);
     }
     else
     {
-        put_str("Exp ", r.y + ROW_EXP, r.x + COL_EXP);
+        put_str("经验", r.y + ROW_EXP, r.x + COL_EXP);
         c_put_str(TERM_YELLOW, out_val, r.y + ROW_EXP, r.x + COL_EXP + 4);
     }
 }
@@ -1488,7 +1488,7 @@ static void prt_gold(void)
     sprintf(out_val, "%8.8s", tmp);
 
 
-    put_str("AU ", r.y + ROW_GOLD, r.x + COL_GOLD);
+    put_str("金币", r.y + ROW_GOLD, r.x + COL_GOLD);
     c_put_str(TERM_L_GREEN, out_val, r.y + ROW_GOLD, r.x + COL_GOLD + 4);
 }
 
@@ -1502,7 +1502,7 @@ static void prt_ac(void)
     char tmp[32];
     rect_t r = ui_char_info_rect();
 
-    put_str("AC ", r.y + ROW_AC, r.x + COL_AC);
+    put_str("护甲", r.y + ROW_AC, r.x + COL_AC);
     sprintf(tmp, "%5d", p_ptr->dis_ac + p_ptr->dis_to_a);
     c_put_str(TERM_L_GREEN, tmp, r.y + ROW_AC, r.x + COL_AC + 7);
 
@@ -1524,7 +1524,7 @@ static void prt_pool(void)
     }
     big_num_display(pool, tmp);
     sprintf(out_val, "%7.7s", tmp);
-    put_str("Pool ", r.y + ROW_POOL, r.x + COL_POOL);
+    put_str("法池", r.y + ROW_POOL, r.x + COL_POOL);
     c_put_str(TERM_L_GREEN, out_val, r.y + ROW_POOL, r.x + COL_POOL + 5);
 }
 
@@ -1576,7 +1576,7 @@ static void prt_sp(void)
 
     if (elemental_is_(ELEMENTAL_WATER))
     {
-        put_str("Flow", r.y + ROW_CURSP, r.x + COL_CURSP);
+        put_str("心流", r.y + ROW_CURSP, r.x + COL_CURSP);
         sprintf(tmp, "%3d%%", water_flow_rate());
         if (p_ptr->csp > 800) color = TERM_WHITE;
         else if (p_ptr->csp > 600) color = TERM_L_BLUE;
@@ -1632,11 +1632,11 @@ static void prt_depth(void)
     if (!dun_level)
     {
         if (p_ptr->wild_mode)
-            sprintf(buf, "%s", "Surface");
+            sprintf(buf, "%s", "地表");
         else if (p_ptr->inside_arena)
-            sprintf(buf, "%s", "Arena");
+            sprintf(buf, "%s", "竞技场");
         else if (p_ptr->inside_battle)
-            sprintf(buf, "%s", "Monster Arena");
+            sprintf(buf, "%s", "怪物竞技场");
         else if (p_ptr->town_num)
             sprintf(buf, "%s", town_name(p_ptr->town_num));
         else if ((wilderness[p_ptr->wilderness_y][p_ptr->wilderness_x].entrance) && ((p_ptr->total_winner) ||
@@ -1647,7 +1647,7 @@ static void prt_depth(void)
     }
     else if (quests_get_current() && !dungeon_type)
     {
-        sprintf(buf, "Quest: L%d", quests_get_current()->danger_level);
+        sprintf(buf, "任务：L%d", quests_get_current()->danger_level);
         /* Level is "special" until completed */
         if (quests_get_current()->status < QS_COMPLETED)
             attr = TERM_L_BLUE;
@@ -1720,12 +1720,12 @@ static void prt_state(void)
         {
             case ACTION_GLITTER:
             {
-                strcpy(text, "Lure");
+                strcpy(text, "引诱");
                 break;
             }
             case ACTION_SEARCH:
             {
-                strcpy(text, "Sear");
+                strcpy(text, "搜寻");
                 break;
             }
             case ACTION_REST:
@@ -1786,13 +1786,13 @@ static void prt_state(void)
             }
             case ACTION_LEARN:
             {
-                strcpy(text, "Lear");
+                strcpy(text, "学习");
                 if (new_mane) attr = TERM_L_RED;
                 break;
             }
             case ACTION_FISH:
             {
-                strcpy(text, "Fish");
+                strcpy(text, "钓鱼");
                 break;
             }
             case ACTION_KAMAE:
@@ -1820,22 +1820,22 @@ static void prt_state(void)
             }
             case ACTION_SING:
             {
-                strcpy(text, "Sing");
+                strcpy(text, "唱歌");
                 break;
             }
             case ACTION_QUICK_WALK:
             {
-                strcpy(text, "Fast");
+                strcpy(text, "加速");
                 break;
             }
             case ACTION_SPELL:
             {
-                strcpy(text, "Spel");
+                strcpy(text, "施法");
                 break;
             }
             case ACTION_STALK:
             {
-                strcpy(text, "Stlk");
+                strcpy(text, "潜伏");
                 break;
             }
             default:
@@ -1910,7 +1910,7 @@ static bool prt_speed(int row, int col)
     else if (p_ptr->riding)
     {
         attr = TERM_GREEN;
-        strcpy(buf, "Riding");
+        strcpy(buf, "骑乘");
     }
     else
         return FALSE;
@@ -1946,19 +1946,19 @@ static void prt_fear(int row, int col)
     switch (lvl)
     {
     case FEAR_UNEASY:
-        c_put_str(TERM_L_UMBER, "Uneasy", row, col);
+        c_put_str(TERM_L_UMBER, "不安", row, col);
         break;
     case FEAR_NERVOUS:
-        c_put_str(TERM_YELLOW, "Nervous", row, col);
+        c_put_str(TERM_YELLOW, "紧张", row, col);
         break;
     case FEAR_SCARED:
-        c_put_str(TERM_ORANGE, "Scared", row, col);
+        c_put_str(TERM_ORANGE, "害怕", row, col);
         break;
     case FEAR_TERRIFIED:
-        c_put_str(TERM_RED,    "Terrified", row, col);
+        c_put_str(TERM_RED,    "惊恐", row, col);
         break;
     case FEAR_PETRIFIED:
-        c_put_str(TERM_VIOLET, "Petrified", row, col);
+        c_put_str(TERM_VIOLET, "骇僵", row, col);
         break;
     }
 }
@@ -1966,19 +1966,19 @@ static void prt_fear(int row, int col)
 static void prt_food(int row, int col)
 {
     if (p_ptr->food < PY_FOOD_FAINT)
-        c_put_str(TERM_RED, "Faint", row, col);
+        c_put_str(TERM_RED, "虚脱", row, col);
 
     else if (p_ptr->food < PY_FOOD_WEAK)
-        c_put_str(TERM_ORANGE, "Weak", row, col);
+        c_put_str(TERM_ORANGE, "虚弱", row, col);
 
     else if (p_ptr->food < PY_FOOD_ALERT)
-        c_put_str(TERM_YELLOW, "Hungry", row, col);
+        c_put_str(TERM_YELLOW, "饥饿", row, col);
 
     else if (p_ptr->food < PY_FOOD_MAX)
-        c_put_str(TERM_L_GREEN, "Full", row, col);
+        c_put_str(TERM_L_GREEN, "吃饱", row, col);
 
     else
-        c_put_str(TERM_GREEN, "Gorged", row, col);
+        c_put_str(TERM_GREEN, "过饱", row, col);
 }
 
 static void prt_effects(void)
@@ -1998,11 +1998,11 @@ static void prt_effects(void)
     {
         byte a = TERM_L_DARK;
         if (p_ptr->cursed & OFC_PERMA_CURSE)
-            c_put_str(a, "*CURSED*", row++, col);
+            c_put_str(a, "*被诅咒*", row++, col);
         else if (p_ptr->cursed & OFC_HEAVY_CURSE)
             c_put_str(a, "CURSED", row++, col);
         else
-            c_put_str(a, "Cursed", row++, col);
+            c_put_str(a, "被诅咒", row++, col);
     }
 
     if (p_ptr->mimic_form != MIMIC_NONE)
@@ -2027,14 +2027,14 @@ static void prt_effects(void)
         c_put_str(TERM_ORANGE, buf, row++, col);
     }
     if (monk_armour_aux)
-        c_put_str(TERM_RED, "Heavy Armor", row++, col);
+        c_put_str(TERM_RED, "沉重防具", row++, col);
     if (p_ptr->cumber_glove)
-        c_put_str(TERM_RED, "Encumbrance", row++, col);
+        c_put_str(TERM_RED, "负重过大", row++, col);
     for (i = 0; i < MAX_HANDS; i++)
     {
         if (p_ptr->weapon_info[i].heavy_wield)
         {
-            c_put_str(TERM_RED, "Heavy Wield", row++, col);
+            c_put_str(TERM_RED, "沉重持握", row++, col);
             break;
         }
     }
@@ -2042,15 +2042,15 @@ static void prt_effects(void)
     {
         if (p_ptr->weapon_info[i].icky_wield)
         {
-            c_put_str(TERM_GREEN, "Icky Wield", row++, col);
+            c_put_str(TERM_GREEN, "武器排斥", row++, col);
             break;
         }
     }
     if (((prace_is_(RACE_MON_MUMMY)) || (player_is_ninja)) &&
          (p_ptr->cur_lite > 0))
-        c_put_str(TERM_YELLOW, "Icky Light", row++, col);
+        c_put_str(TERM_YELLOW, "光源排斥", row++, col);
     if (p_ptr->shooter_info.heavy_shoot)
-        c_put_str(TERM_RED, "Heavy Shoot", row++, col);
+        c_put_str(TERM_RED, "沉重射击", row++, col);
     if (p_ptr->cut)
         prt_cut(row++, col);
     if (p_ptr->stun)
@@ -2058,18 +2058,18 @@ static void prt_effects(void)
     if (p_ptr->afraid)
         prt_fear(row++, col);
     if (p_ptr->image)
-        c_put_str(TERM_VIOLET, "Hallucinate", row++, col);
+        c_put_str(TERM_VIOLET, "产生幻觉", row++, col);
     if (p_ptr->blind)
-        c_put_str(TERM_L_DARK, "Blind", row++, col);
+        c_put_str(TERM_L_DARK, "处于失明", row++, col);
     if (p_ptr->paralyzed)
-        c_put_str(TERM_RED, "Paralyzed", row++, col);
+        c_put_str(TERM_RED, "处于麻痹", row++, col);
     if (p_ptr->confused)
-        c_put_str(TERM_VIOLET, "Confused", row++, col);
+        c_put_str(TERM_VIOLET, "处于混乱", row++, col);
     if (p_ptr->poisoned)
     {
         char tmp[20];
         sprintf(tmp, "%d", p_ptr->poisoned);
-        c_put_str(TERM_GREEN, "Poison:", row, col);
+        c_put_str(TERM_GREEN, "中毒：", row, col);
         c_put_str(TERM_L_GREEN, tmp, row, col + 7);
         row++;
     }
@@ -2084,14 +2084,14 @@ static void prt_effects(void)
         else if (pct < 70) color = TERM_L_RED;
         else if (pct < 90) color = TERM_YELLOW;
         else color = TERM_L_UMBER;
-        c_put_str(TERM_WHITE, "Life:", row, col);
+        c_put_str(TERM_WHITE, "生命：", row, col);
         c_put_str(color, tmp, row, col + 6);
         row++;
     }
     if (p_ptr->food >= PY_FOOD_FULL || p_ptr->food < PY_FOOD_ALERT)
         prt_food(row++, col);
     if (p_ptr->wizard)
-        c_put_str(TERM_L_BLUE, "Wizard", row++, col);
+        c_put_str(TERM_L_BLUE, "巫师模式", row++, col);
     if (p_ptr->pclass == CLASS_SKILLMASTER)
     {
         int amt = skillmaster_new_skills();
@@ -2134,7 +2134,7 @@ static void prt_effects(void)
             Term_erase(col, row++, r.cx);
         }
         c_put_str(TERM_ORANGE, "?", row, col);
-        c_put_str(TERM_L_GREEN, " for help  ", row++, col + 1);
+        c_put_str(TERM_L_GREEN, "获取帮助", row++, col + 1);
     }
     if ((show_energy_cost) && (!p_ptr->wizard) && (row < Term->hgt - 1))
     {
@@ -2146,8 +2146,8 @@ static void prt_effects(void)
         {
             Term_erase(col, row++, r.cx);
         }
-        if (energy_cost_hack >= 10000) c_put_str(attr, format("Energy:%-3dK", 0 - (energy_cost_hack / 1000)), row++, col);
-        else c_put_str(attr, format("Energy:%-5d", 0 - energy_cost_hack), row++, col);
+        if (energy_cost_hack >= 10000) c_put_str(attr, format("能量:%-3dK", 0 - (energy_cost_hack / 1000)), row++, col);
+        else c_put_str(attr, format("能量:%-5d", 0 - energy_cost_hack), row++, col);
     }
 //    if (row < Term->hgt - 1) c_put_str(TERM_WHITE, format("Quarks:%d", quark__num), row++, col);
 }
@@ -2960,8 +2960,8 @@ static void calc_spells(void)
             }
 
             /* Message */
-            msg_format("You have forgotten the %s of %s.", p,
-            do_spell(which, j%32, SPELL_NAME));
+            msg_format("你忘记了%s的%s。",
+                do_spell(which, j%32, SPELL_NAME), p);
 
 
             /* One more can be learned */
@@ -3018,8 +3018,8 @@ static void calc_spells(void)
             }
 
             /* Message */
-            msg_format("You have forgotten the %s of %s.", p,
-                   do_spell(which, j%32, SPELL_NAME));
+            msg_format("你忘记了%s的%s。",
+                   do_spell(which, j%32, SPELL_NAME), p);
 
 
             /* One more can be learned */
@@ -3091,8 +3091,8 @@ static void calc_spells(void)
             }
 
             /* Message */
-            msg_format("You have remembered the %s of %s.",
-                   p, do_spell(which, j%32, SPELL_NAME));
+            msg_format("你记起了%s的%s。",
+                   do_spell(which, j%32, SPELL_NAME), p);
 
 
             /* One less can be learned */
@@ -3260,9 +3260,9 @@ static void _report_encumbrance(void)
     if (p_ptr->old_cumber_glove != p_ptr->cumber_glove)
     {
         if (p_ptr->cumber_glove)
-            msg_print("Your covered hands feel unsuitable for spellcasting.");
+            msg_print("你覆盖着护手的手感觉不适合施法。");
         else
-            msg_print("Your hands feel more suitable for spellcasting.");
+            msg_print("你的手感觉更适合施法了。");
         p_ptr->old_cumber_glove = p_ptr->cumber_glove;
         p_ptr->redraw |= PR_EFFECTS;
     }
@@ -3270,9 +3270,9 @@ static void _report_encumbrance(void)
     if (p_ptr->old_cumber_armor != p_ptr->cumber_armor)
     {
         if (p_ptr->cumber_armor)
-            msg_print("The weight of your equipment encumbers your movement.");
+            msg_print("你装备的重量妨碍了你的移动。");
         else
-            msg_print("You feel able to move more freely.");
+            msg_print("你感觉能更自由地移动了。");
         p_ptr->old_cumber_armor = p_ptr->cumber_armor;
     }
 }
@@ -5357,11 +5357,11 @@ void calc_bonuses(void)
     if (p_ptr->old_heavy_shoot != p_ptr->shooter_info.heavy_shoot)
     {
         if (p_ptr->shooter_info.heavy_shoot)
-            msg_print("You have trouble wielding such a heavy bow.");
+            msg_print("你很难使用这么重的弓。");
         else if (equip_find_obj(TV_BOW, SV_ANY))
-            msg_print("You have no trouble wielding your bow.");
+            msg_print("你使用弓不再有困难了。");
         else
-            msg_print("You feel relieved to put down your heavy bow.");
+            msg_print("放下沉重的弓让你松了一口气。");
 
         p_ptr->old_heavy_shoot = p_ptr->shooter_info.heavy_shoot;
         p_ptr->redraw |= PR_EFFECTS;
@@ -5372,11 +5372,11 @@ void calc_bonuses(void)
         if (p_ptr->old_heavy_wield[i] != p_ptr->weapon_info[i].heavy_wield)
         {
             if (p_ptr->weapon_info[i].heavy_wield)
-                msg_print("You have trouble wielding such a heavy weapon.");
+                msg_print("你很难使用这么重的武器。");
             else if (p_ptr->weapon_info[i].wield_how != WIELD_NONE)
-                msg_print("You have no trouble wielding your weapon.");
+                msg_print("你使用武器不再有困难了。");
             else
-                msg_print("You feel relieved to put down your heavy weapon.");
+                msg_print("放下沉重的武器让你松了一口气。");
 
             p_ptr->old_heavy_wield[i] = p_ptr->weapon_info[i].heavy_wield;
             p_ptr->redraw |= PR_EFFECTS;
@@ -5385,11 +5385,11 @@ void calc_bonuses(void)
         if (p_ptr->old_riding_wield[i] != p_ptr->weapon_info[i].riding_wield)
         {
             if (p_ptr->weapon_info[i].riding_wield)
-                msg_print("This weapon is not suitable for use while riding.");
+                msg_print("这把武器不适合在骑乘时使用。");
             else if (!p_ptr->riding)
-                msg_print("This weapon was not suitable for use while riding.");
+                msg_print("这把武器曾不适合在骑乘时使用。");
             else if (p_ptr->weapon_info[i].wield_how != WIELD_NONE)
-                msg_print("This weapon is suitable for use while riding.");
+                msg_print("这把武器适合在骑乘时使用。");
 
             p_ptr->old_riding_wield[i] = p_ptr->weapon_info[i].riding_wield;
         }
@@ -5402,18 +5402,18 @@ void calc_bonuses(void)
             }
             else if (p_ptr->weapon_info[i].icky_wield)
             {
-                if (!icky_lock) msg_print("You do not feel comfortable with your weapon.");
+                if (!icky_lock) msg_print("你觉得手里的武器用起来不顺手。");
                 icky_lock = TRUE;
                 if (hack_mind)
                     virtue_add(VIRTUE_FAITH, -1);
             }
             else if (p_ptr->weapon_info[i].wield_how != WIELD_NONE)
             {
-                if (!icky_lock) msg_print("You feel comfortable with your weapon.");
+                if (!icky_lock) msg_print("你觉得手里的武器用起来顺手了。");
                 icky_lock = TRUE;
             }
             else
-                msg_print("You feel more comfortable after removing your weapon.");
+                msg_print("卸下武器后，你感觉舒服多了。");
 
             p_ptr->old_icky_wield[i] = p_ptr->weapon_info[i].icky_wield;
             p_ptr->redraw |= PR_EFFECTS;
@@ -5423,9 +5423,9 @@ void calc_bonuses(void)
     if (p_ptr->riding && (p_ptr->old_riding_ryoute != p_ptr->riding_ryoute))
     {
         if (p_ptr->riding_ryoute)
-            msg_print("You are using all hands for fighting and you can't control your mount.");
+            msg_print("你在战斗中占用了双手，无法控制你的坐骑。");
         else
-            msg_print("You begin to control your mount with one hand.");
+            msg_print("你开始用一只手控制你的坐骑。");
 
         p_ptr->old_riding_ryoute = p_ptr->riding_ryoute;
     }
@@ -5441,16 +5441,16 @@ void calc_bonuses(void)
     {
         if (prace_is_(RACE_TOMTE) && (tomte_heavy_armor() > 0))
         {
-            msg_print("The weight of your helmet squeezes your head.");
+            msg_print("头盔的重量挤压着你的头。");
         }
         else if (heavy_armor())
         {
-            msg_print("The weight of your armor disrupts your balance.");
+            msg_print("盔甲的重量破坏了你的平衡。");
             if (hack_mind)
                 virtue_add(VIRTUE_HARMONY, -1);
         }
         else
-            msg_print("You regain your balance.");
+            msg_print("你恢复了平衡。");
 
         monk_notify_aux = monk_armour_aux;
         p_ptr->redraw |= PR_EFFECTS;

@@ -75,6 +75,7 @@ struct doc_char_s
 {
     char c;
     byte a; /* attribute */
+    u32b uc; /* Unicode codepoint for UTF-8 text */
 };
 typedef struct doc_char_s doc_char_t, *doc_char_ptr;
 

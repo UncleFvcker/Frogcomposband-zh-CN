@@ -112,27 +112,8 @@ class_t *priest_get_class(void)
     skills_t bs = { 25,  28,  40,   2,  16,   8,  48,  35};
     skills_t xs = {  7,  11,  12,   0,   0,   0,  13,  11};
 
-        me.name = "Priest";
-        me.desc = "A Priest is a character devoted to serving a higher power. They "
-                    "explore the dungeon in the service of their God. They are fairly "
-                    "familiar with magical devices, which they believe act as foci for divine "
-                    "intervention in the natural order of things.\n \n"
-                    "There are two types of priests: Good and Evil. If the priest chooses Life "
-                    "or Crusade as their first realm, they will follow the path of good; "
-                    "as such, they may not choose an evil realm for their second realm. Good "
-                    "priests abhor bloodshed, and therefore are not comfortable with edged weapons, "
-                    "although they eventually learn to bless such weapons and then use them without disrupting their prayers. "
-                    "Should a priest choose Death or Daemon as their first realm, however, "
-                    "they will serve an evil god; evil priests actually enjoy shedding blood, and "
-                    "suffer no such weapon restrictions. Of course, evil priests abhor good things, "
-                    "and are unable to choose Life or Crusade for their second realm.\n \n"
-                    "Good priests have a strong affinity for Life prayers, and learn them very well, even better "
-                    "than a High-Mage. Conversely, evil priests favor prayers of Death, and receive "
-                    "strong bonuses when choosing this foul realm. Otherwise, priests learn magic less "
-                    "efficiently than a Mage would; but their greater stamina and combat skills compensate for this. "
-                    "Priests, unlike Mages, cannot choose to study specific spells; rather, they "
-                    "are granted new prayers by the whim of their deity, presumably in accordance with "
-                    "some greater divine plan. The primary stat for a priest is Wisdom.";
+        me.name = "牧师";
+        me.desc = "牧师是致力于侍奉更高力量的角色。他们为了侍奉神明而探索地下城。他们对魔法装置相当熟悉，因为他们认为这些装置是神明干预自然秩序的焦点。\n\n牧师分为两种：善良和邪恶。如果牧师选择生命或圣战作为他们的第一领域，他们将走上善良的道路；因此，他们不能选择邪恶领域作为他们的第二领域。善良的牧师厌恶流血，所以不习惯使用带刃的武器，尽管他们最终会学会祝福这些武器，从而在不干扰祈祷的情况下使用它们。然而，如果牧师选择死亡或恶魔作为他们的第一领域，他们将侍奉邪神；邪恶的牧师实际上喜欢流血，并且不受这种武器限制。当然，邪恶的牧师厌恶善良的事物，无法选择生命或圣战作为他们的第二领域。\n\n善良的牧师对生命祈祷有着强烈的亲和力，并且能学得非常好，甚至比高等法师学得还要好。相反，邪恶的牧师偏爱死亡祈祷，并在选择这个邪恶领域时获得强大的加成。除此之外，牧师学习魔法的效率不如法师；但他们更强的体力和战斗技能弥补了这一点。与法师不同，牧师不能选择学习特定的法术；相反，他们是由神明的心血来潮而赐予新的祈祷，这大概是符合某种更宏大的神圣计划。牧师的主要属性是感知。";
 
         me.stats[A_STR] = -1;
         me.stats[A_INT] = -3;

@@ -22,7 +22,7 @@ race_t *clay_golem_get_race(void)
 
     if (!init)
     {
-        me.name = "Clay-Golem";
+        me.name = "黏土魔像";
         me.desc = "";
 
         me.stats[A_STR] =  2;
@@ -92,7 +92,7 @@ race_t *colossus_get_race(void)
 
     if (!init)
     {
-        me.name = "Colossus";
+        me.name = "巨像";
         me.desc = "";
 
         me.stats[A_STR] =  7;
@@ -163,7 +163,7 @@ race_t *demon_get_race(void)
 
     if (!init)
     {
-        me.name = "Demon";
+        me.name = "恶魔";
         me.desc = "";
 
         me.stats[A_STR] =  5;
@@ -259,7 +259,7 @@ race_t *demon_lord_get_race(void)
 
     if (!init)
     {
-        me.name = "Demon-Lord";
+        me.name = "恶魔领主";
         me.desc = "";
 
         me.stats[A_STR] = 10;
@@ -321,7 +321,7 @@ race_t *iron_golem_get_race(void)
 
     if (!init)
     {
-        me.name = "Iron-Golem";
+        me.name = "钢铁魔像";
         me.desc = "";
 
         me.stats[A_STR] =  3;
@@ -364,10 +364,8 @@ race_t *mangy_leper_get_race(void)
 
     if (!init)
     {
-        me.name = "Mangy Leper";
-        me.desc = "Mangy Lepers are humans who have contracted a horrible wasting disease. "
-                    "You cannot help but feel disgusted as your body rots before your very "
-                    "eyes.";
+        me.name = "疥癣麻风病人";
+        me.desc = "疥癣麻风病人是感染了可怕的消耗性疾病的人类。当你看着自己的身体在你眼前腐烂时，你忍不住感到恶心。";
         
         me.stats[A_STR] = -1;
         me.stats[A_INT] =  0;
@@ -428,7 +426,7 @@ race_t *mithril_golem_get_race(void)
 
     if (!init)
     {
-        me.name = "Mithril-Golem";
+        me.name = "秘银魔像";
         me.desc = "";
 
         me.stats[A_STR] =  5;
@@ -479,10 +477,8 @@ race_t *small_kobold_get_race(void)
 
     if (!init)
     {
-        me.name = "Small Kobold";
-        me.desc = "Small Kobolds are a the runts of the kobold race, often relegated to the "
-                    "performance of menial tasks deemed unworthy of their larger, more "
-                    "respectable brethren.";
+        me.name = "小狗头人";
+        me.desc = "小狗头人是狗头人种族中的矮子，经常被贬去执行那些被认为不配由他们体型更大、更受尊敬的同胞去做的卑微任务。";
 
         me.stats[A_STR] =  0;
         me.stats[A_INT] = -2;
@@ -558,7 +554,7 @@ race_t *vampire_lord_get_race(void)
 
     if (!init)
     {
-        me.name = "Vampire";
+        me.name = "吸血鬼";
         me.desc = "";
 
         me.stats[A_STR] =  4;

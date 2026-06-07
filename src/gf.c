@@ -4,161 +4,161 @@
 #include <assert.h>
 
 static gf_info_t _gf_tbl[GF_COUNT] = {
-    { GF_NONE, "None", TERM_L_DARK, RES_INVALID, "NONE", 0},
+    { GF_NONE, "无", TERM_L_DARK, RES_INVALID, "NONE", 0},
 
     /* Elemental Effects */
-    { GF_ACID, "Acid", TERM_GREEN, RES_ACID, "ACID", GFF_ATTACK },
-    { GF_ELEC, "Lightning", TERM_BLUE, RES_ELEC, "ELEC", GFF_ATTACK },
-    { GF_FIRE, "Fire", TERM_RED, RES_FIRE, "FIRE", GFF_ATTACK },
-    { GF_COLD, "Frost", TERM_L_WHITE, RES_COLD, "COLD", GFF_ATTACK },
-    { GF_POIS, "Poison", TERM_L_GREEN, RES_POIS, "POIS", GFF_ATTACK },
-    { GF_LITE, "Light", TERM_YELLOW, RES_LITE, "LITE", GFF_ATTACK },
-    { GF_DARK, "Darkness", TERM_L_DARK, RES_DARK, "DARK", GFF_ATTACK },
-    { GF_CONFUSION, "Confusion", TERM_L_UMBER, RES_CONF, "CONFUSION", GFF_ATTACK | GFF_STATUS },
-    { GF_NETHER, "Nether", TERM_L_DARK, RES_NETHER, "NETHER", GFF_ATTACK },
-    { GF_NEXUS, "Nexus", TERM_VIOLET, RES_NEXUS, "NEXUS", GFF_ATTACK },
-    { GF_SOUND, "Sound", TERM_ORANGE, RES_SOUND, "SOUND", GFF_ATTACK },
-    { GF_SHARDS, "Shards", TERM_L_UMBER, RES_SHARDS, "SHARDS", GFF_ATTACK },
-    { GF_CHAOS, "Chaos", TERM_VIOLET, RES_CHAOS, "CHAOS", GFF_ATTACK | GFF_STATUS },
-    { GF_DISENCHANT, "Disenchantment", TERM_VIOLET, RES_DISEN, "DISENCHANT", GFF_ATTACK },
-    { GF_TIME, "Time", TERM_L_BLUE, RES_TIME, "TIME", GFF_ATTACK | GFF_STATUS },
+    { GF_ACID, "酸液", TERM_GREEN, RES_ACID, "ACID", GFF_ATTACK },
+    { GF_ELEC, "闪电", TERM_BLUE, RES_ELEC, "ELEC", GFF_ATTACK },
+    { GF_FIRE, "火焰", TERM_RED, RES_FIRE, "FIRE", GFF_ATTACK },
+    { GF_COLD, "寒冰", TERM_L_WHITE, RES_COLD, "COLD", GFF_ATTACK },
+    { GF_POIS, "毒素", TERM_L_GREEN, RES_POIS, "POIS", GFF_ATTACK },
+    { GF_LITE, "闪光", TERM_YELLOW, RES_LITE, "LITE", GFF_ATTACK },
+    { GF_DARK, "黑暗", TERM_L_DARK, RES_DARK, "DARK", GFF_ATTACK },
+    { GF_CONFUSION, "混乱", TERM_L_UMBER, RES_CONF, "CONFUSION", GFF_ATTACK | GFF_STATUS },
+    { GF_NETHER, "地狱", TERM_L_DARK, RES_NETHER, "NETHER", GFF_ATTACK },
+    { GF_NEXUS, "时空", TERM_VIOLET, RES_NEXUS, "NEXUS", GFF_ATTACK },
+    { GF_SOUND, "音波", TERM_ORANGE, RES_SOUND, "SOUND", GFF_ATTACK },
+    { GF_SHARDS, "碎片", TERM_L_UMBER, RES_SHARDS, "SHARDS", GFF_ATTACK },
+    { GF_CHAOS, "混沌", TERM_VIOLET, RES_CHAOS, "CHAOS", GFF_ATTACK | GFF_STATUS },
+    { GF_DISENCHANT, "解除魔法", TERM_VIOLET, RES_DISEN, "DISENCHANT", GFF_ATTACK },
+    { GF_TIME, "时间", TERM_L_BLUE, RES_TIME, "TIME", GFF_ATTACK | GFF_STATUS },
 
-    { GF_MANA, "Mana", TERM_L_BLUE, RES_INVALID, "MANA", GFF_ATTACK },
-    { GF_GRAVITY, "Gravity", TERM_L_UMBER, RES_INVALID, "GRAVITY", GFF_ATTACK | GFF_STATUS },
-    { GF_INERT, "Inertia", TERM_L_UMBER, RES_INVALID, "INERTIA", GFF_ATTACK | GFF_STATUS },
-    { GF_PLASMA, "Plasma", TERM_L_RED, RES_INVALID, "PLASMA", GFF_ATTACK | GFF_STATUS },
-    { GF_FORCE, "Force", TERM_L_BLUE, RES_INVALID, "FORCE", GFF_ATTACK | GFF_STATUS },
-    { GF_NUKE, "Toxic Waste", TERM_L_GREEN, RES_POIS, "NUKE", GFF_ATTACK },
-    { GF_DISINTEGRATE, "Disintegration", TERM_L_DARK, RES_INVALID, "DISINTEGRATE", GFF_ATTACK | GFF_TERRAIN },
-    { GF_STORM, "Storm Winds", TERM_BLUE, RES_INVALID, "STORM", GFF_ATTACK | GFF_STATUS },
-    { GF_HOLY_FIRE, "Holy Fire", TERM_YELLOW, RES_INVALID, "HOLY_FIRE", GFF_ATTACK },
-    { GF_HELL_FIRE, "Hell Fire", TERM_L_DARK, RES_INVALID, "HELL_FIRE", GFF_ATTACK },
-    { GF_ICE, "Ice", TERM_L_WHITE, RES_COLD, "ICE", GFF_ATTACK | GFF_STATUS },
-    { GF_WATER, "Water", TERM_L_BLUE, RES_INVALID, "WATER", GFF_ATTACK | GFF_STATUS },
-    { GF_ROCKET, "Rocket", TERM_RED, RES_SHARDS, "ROCKET", GFF_ATTACK },
-    { GF_METEOR, "Meteor", TERM_RED, RES_INVALID, "METEOR", GFF_ATTACK },
-    { GF_ROCK, "Rock", TERM_L_UMBER, RES_INVALID, "ROCK", GFF_ATTACK | GFF_STATUS },
-    { GF_ARROW, "Arrow", TERM_L_UMBER, RES_INVALID, "ARROW", GFF_ATTACK },
-    { GF_MISSILE, "Missile", TERM_L_UMBER, RES_INVALID, "MISSILE", GFF_ATTACK },
+    { GF_MANA, "法力", TERM_L_BLUE, RES_INVALID, "MANA", GFF_ATTACK },
+    { GF_GRAVITY, "重力", TERM_L_UMBER, RES_INVALID, "GRAVITY", GFF_ATTACK | GFF_STATUS },
+    { GF_INERT, "惯性", TERM_L_UMBER, RES_INVALID, "INERTIA", GFF_ATTACK | GFF_STATUS },
+    { GF_PLASMA, "等离子", TERM_L_RED, RES_INVALID, "PLASMA", GFF_ATTACK | GFF_STATUS },
+    { GF_FORCE, "原力", TERM_L_BLUE, RES_INVALID, "FORCE", GFF_ATTACK | GFF_STATUS },
+    { GF_NUKE, "有毒废料", TERM_L_GREEN, RES_POIS, "NUKE", GFF_ATTACK },
+    { GF_DISINTEGRATE, "分解", TERM_L_DARK, RES_INVALID, "DISINTEGRATE", GFF_ATTACK | GFF_TERRAIN },
+    { GF_STORM, "风暴", TERM_BLUE, RES_INVALID, "STORM", GFF_ATTACK | GFF_STATUS },
+    { GF_HOLY_FIRE, "神圣之火", TERM_YELLOW, RES_INVALID, "HOLY_FIRE", GFF_ATTACK },
+    { GF_HELL_FIRE, "地狱之火", TERM_L_DARK, RES_INVALID, "HELL_FIRE", GFF_ATTACK },
+    { GF_ICE, "寒冰", TERM_L_WHITE, RES_COLD, "ICE", GFF_ATTACK | GFF_STATUS },
+    { GF_WATER, "水", TERM_L_BLUE, RES_INVALID, "WATER", GFF_ATTACK | GFF_STATUS },
+    { GF_ROCKET, "火箭", TERM_RED, RES_SHARDS, "ROCKET", GFF_ATTACK },
+    { GF_METEOR, "陨石", TERM_RED, RES_INVALID, "METEOR", GFF_ATTACK },
+    { GF_ROCK, "岩石", TERM_L_UMBER, RES_INVALID, "ROCK", GFF_ATTACK | GFF_STATUS },
+    { GF_ARROW, "箭矢", TERM_L_UMBER, RES_INVALID, "ARROW", GFF_ATTACK },
+    { GF_MISSILE, "飞弹", TERM_L_UMBER, RES_INVALID, "MISSILE", GFF_ATTACK },
 
     /* Curses */
-    { GF_CAUSE_1, "Wounding Curse", TERM_RED, RES_INVALID, "CAUSE_1", GFF_ATTACK },
-    { GF_CAUSE_2, "Evil Curse", TERM_RED, RES_INVALID, "CAUSE_2", GFF_ATTACK },
-    { GF_CAUSE_3, "Mighty Curse", TERM_RED, RES_INVALID, "CAUSE_3", GFF_ATTACK },
-    { GF_CAUSE_4, "Death Curse", TERM_RED, RES_INVALID, "CAUSE_4", GFF_ATTACK },
-    { GF_HAND_DOOM, "Hand of Doom", TERM_VIOLET, RES_INVALID, "HAND_DOOM", GFF_ATTACK },
-    { GF_BLOOD_CURSE, "Blood Curse", TERM_VIOLET, RES_INVALID, "BLOOD_CURSE", 0 },
+    { GF_CAUSE_1, "创伤诅咒", TERM_RED, RES_INVALID, "CAUSE_1", GFF_ATTACK },
+    { GF_CAUSE_2, "邪恶诅咒", TERM_RED, RES_INVALID, "CAUSE_2", GFF_ATTACK },
+    { GF_CAUSE_3, "强力诅咒", TERM_RED, RES_INVALID, "CAUSE_3", GFF_ATTACK },
+    { GF_CAUSE_4, "死亡诅咒", TERM_RED, RES_INVALID, "CAUSE_4", GFF_ATTACK },
+    { GF_HAND_DOOM, "毁灭之手", TERM_VIOLET, RES_INVALID, "HAND_DOOM", GFF_ATTACK },
+    { GF_BLOOD_CURSE, "鲜血诅咒", TERM_VIOLET, RES_INVALID, "BLOOD_CURSE", 0 },
 
     /* Mental Attacks */
-    { GF_PSY_SPEAR, "Psycho-Spear", TERM_L_BLUE, RES_INVALID, "PSY_SPEAR", GFF_ATTACK },
-    { GF_PSI, "Psionics", TERM_L_BLUE, RES_INVALID, "PSI", GFF_ATTACK | GFF_STATUS },
-    { GF_PSI_DRAIN, "Psionic Drain", TERM_L_BLUE, RES_INVALID, "PSI_DRAIN", GFF_ATTACK | GFF_STATUS },
-    { GF_PSI_EGO_WHIP, "Ego Whip", TERM_L_BLUE, RES_INVALID, "PSI_EGO_WHIP", GFF_ATTACK | GFF_STATUS },
-    { GF_PSI_BRAIN_SMASH, "Brain Smash", TERM_L_BLUE, RES_INVALID, "PSI_BRAIN_SMASH", GFF_ATTACK | GFF_STATUS },
-    { GF_PSI_STORM, "Psycho-Storm", TERM_L_BLUE, RES_INVALID, "PSI_STORM", GFF_ATTACK | GFF_STATUS },
-    { GF_TELEKINESIS, "Pulverise", TERM_L_BLUE, RES_INVALID, "TELEKINESIS", GFF_ATTACK | GFF_STATUS },
-    { GF_DOMINATION, "Domination", TERM_RED, RES_INVALID, "DOMINATION", GFF_STATUS },
-    { GF_SUBJUGATION, "Subjugation", TERM_RED, RES_INVALID, "SUBJUGATION", GFF_STATUS },
-    { GF_DRAIN_MANA, "Drain Mana", TERM_L_BLUE, RES_INVALID, "DRAIN_MANA", GFF_STATUS },
-    { GF_MIND_BLAST, "Mind Blast", TERM_L_BLUE, RES_INVALID, "MIND_BLAST", GFF_ATTACK | GFF_STATUS },
-    { GF_BRAIN_SMASH, "Brain Smash", TERM_L_BLUE, RES_INVALID, "BRAIN_SMASH", GFF_ATTACK | GFF_STATUS },
-    { GF_AMNESIA, "Amnesia", TERM_L_DARK, RES_INVALID, "AMNESIA", GFF_STATUS },
+    { GF_PSY_SPEAR, "心灵长矛", TERM_L_BLUE, RES_INVALID, "PSY_SPEAR", GFF_ATTACK },
+    { GF_PSI, "心灵异能", TERM_L_BLUE, RES_INVALID, "PSI", GFF_ATTACK | GFF_STATUS },
+    { GF_PSI_DRAIN, "心灵吸取", TERM_L_BLUE, RES_INVALID, "PSI_DRAIN", GFF_ATTACK | GFF_STATUS },
+    { GF_PSI_EGO_WHIP, "本我鞭笞", TERM_L_BLUE, RES_INVALID, "PSI_EGO_WHIP", GFF_ATTACK | GFF_STATUS },
+    { GF_PSI_BRAIN_SMASH, "粉碎大脑", TERM_L_BLUE, RES_INVALID, "PSI_BRAIN_SMASH", GFF_ATTACK | GFF_STATUS },
+    { GF_PSI_STORM, "心灵风暴", TERM_L_BLUE, RES_INVALID, "PSI_STORM", GFF_ATTACK | GFF_STATUS },
+    { GF_TELEKINESIS, "念力粉碎", TERM_L_BLUE, RES_INVALID, "TELEKINESIS", GFF_ATTACK | GFF_STATUS },
+    { GF_DOMINATION, "支配", TERM_RED, RES_INVALID, "DOMINATION", GFF_STATUS },
+    { GF_SUBJUGATION, "降服", TERM_RED, RES_INVALID, "SUBJUGATION", GFF_STATUS },
+    { GF_DRAIN_MANA, "吸取法力", TERM_L_BLUE, RES_INVALID, "DRAIN_MANA", GFF_STATUS },
+    { GF_MIND_BLAST, "心灵震爆", TERM_L_BLUE, RES_INVALID, "MIND_BLAST", GFF_ATTACK | GFF_STATUS },
+    { GF_BRAIN_SMASH, "大脑粉碎", TERM_L_BLUE, RES_INVALID, "BRAIN_SMASH", GFF_ATTACK | GFF_STATUS },
+    { GF_AMNESIA, "失忆", TERM_L_DARK, RES_INVALID, "AMNESIA", GFF_STATUS },
 
     /* Status Effects */
-    { GF_BLIND, "Blind", TERM_L_DARK, RES_INVALID, "BLIND", GFF_STATUS },
-    { GF_OLD_CLONE, "Clone", TERM_RED, RES_INVALID, "OLD_CLONE", 0 },
-    { GF_OLD_POLY, "Polymorph", TERM_RED, RES_INVALID, "OLD_POLY", GFF_STATUS },
-    { GF_OLD_HEAL, "Heal", TERM_WHITE, RES_INVALID, "OLD_HEAL", GFF_STATUS },
-    { GF_STAR_HEAL, "Heal", TERM_WHITE, RES_INVALID, "STAR_HEAL", GFF_STATUS },
-    { GF_OLD_SPEED, "Haste", TERM_L_RED, RES_INVALID, "OLD_SPEED", GFF_STATUS },
-    { GF_OLD_SLOW, "Slow", TERM_L_UMBER, RES_INVALID, "OLD_SLOW", GFF_STATUS },
-    { GF_OLD_CONF, "Confuse", TERM_L_UMBER, RES_INVALID, "OLD_CONF", GFF_STATUS },
-    { GF_OLD_SLEEP, "Sleep", TERM_BLUE, RES_INVALID, "OLD_SLEEP", GFF_STATUS },
-    { GF_OLD_DRAIN, "Drain", TERM_L_DARK, RES_INVALID, "OLD_DRAIN", GFF_STATUS },
-    { GF_STASIS, "Freeze", TERM_BLUE, RES_INVALID, "STASIS", GFF_STATUS },
-    { GF_STASIS_EVIL, "Freeze Evil", TERM_BLUE, RES_INVALID, "STASIS_EVIL", GFF_STATUS },
-    { GF_PARALYSIS, "Paralyze", TERM_VIOLET, RES_INVALID, "PARALYZE", GFF_STATUS },
-    { GF_STUN, "Stun", TERM_L_BLUE, RES_INVALID, "STUN", GFF_STATUS },
-    { GF_ELDRITCH, "Eldritch Horror", TERM_VIOLET, RES_INVALID, "ELDRITCH", GFF_STATUS },
-    { GF_ANTIMAGIC, "Anti-magic", TERM_RED, RES_INVALID, "ANTIMAGIC", GFF_STATUS },
-    { GF_CRUSADE, "Crusade", TERM_WHITE, RES_INVALID, "CRUSADE", GFF_STATUS },
-    { GF_UNHOLY_WORD, "Unholy Word", TERM_L_DARK, RES_INVALID, "UNHOLY_WORD", GFF_STATUS },
-    { GF_UNLIFE, "Unlife", TERM_L_DARK, RES_INVALID, "UNLIFE", GFF_STATUS },
+    { GF_BLIND, "致盲", TERM_L_DARK, RES_INVALID, "BLIND", GFF_STATUS },
+    { GF_OLD_CLONE, "克隆", TERM_RED, RES_INVALID, "OLD_CLONE", 0 },
+    { GF_OLD_POLY, "变形", TERM_RED, RES_INVALID, "OLD_POLY", GFF_STATUS },
+    { GF_OLD_HEAL, "治疗", TERM_WHITE, RES_INVALID, "OLD_HEAL", GFF_STATUS },
+    { GF_STAR_HEAL, "星之治疗", TERM_WHITE, RES_INVALID, "STAR_HEAL", GFF_STATUS },
+    { GF_OLD_SPEED, "加速", TERM_L_RED, RES_INVALID, "OLD_SPEED", GFF_STATUS },
+    { GF_OLD_SLOW, "减速", TERM_L_UMBER, RES_INVALID, "OLD_SLOW", GFF_STATUS },
+    { GF_OLD_CONF, "混乱", TERM_L_UMBER, RES_INVALID, "OLD_CONF", GFF_STATUS },
+    { GF_OLD_SLEEP, "睡眠", TERM_BLUE, RES_INVALID, "OLD_SLEEP", GFF_STATUS },
+    { GF_OLD_DRAIN, "吸取", TERM_L_DARK, RES_INVALID, "OLD_DRAIN", GFF_STATUS },
+    { GF_STASIS, "静止", TERM_BLUE, RES_INVALID, "STASIS", GFF_STATUS },
+    { GF_STASIS_EVIL, "静止邪恶", TERM_BLUE, RES_INVALID, "STASIS_EVIL", GFF_STATUS },
+    { GF_PARALYSIS, "麻痹", TERM_VIOLET, RES_INVALID, "PARALYZE", GFF_STATUS },
+    { GF_STUN, "震慑", TERM_L_BLUE, RES_INVALID, "STUN", GFF_STATUS },
+    { GF_ELDRITCH, "不可名状之恐惧", TERM_VIOLET, RES_INVALID, "ELDRITCH", GFF_STATUS },
+    { GF_ANTIMAGIC, "反魔法", TERM_RED, RES_INVALID, "ANTIMAGIC", GFF_STATUS },
+    { GF_CRUSADE, "圣战", TERM_WHITE, RES_INVALID, "CRUSADE", GFF_STATUS },
+    { GF_UNHOLY_WORD, "邪恶真言", TERM_L_DARK, RES_INVALID, "UNHOLY_WORD", GFF_STATUS },
+    { GF_UNLIFE, "反生命", TERM_L_DARK, RES_INVALID, "UNLIFE", GFF_STATUS },
 
     /* Terrain Effects */
-    { GF_LITE_WEAK, "Light", TERM_YELLOW, RES_INVALID, "LITE_WEAK", GFF_ATTACK | GFF_TERRAIN },
-    { GF_DARK_WEAK, "Dark", TERM_L_DARK, RES_INVALID, "DARK_WEAK", GFF_ATTACK | GFF_TERRAIN },
-    { GF_KILL_WALL, "Stone to Mud", TERM_L_UMBER, RES_INVALID, "KILL_WALL", GFF_ATTACK | GFF_TERRAIN },
-    { GF_KILL_DOOR, "Door Destruction", TERM_RED, RES_INVALID, "KILL_DOOR", GFF_TERRAIN },
-    { GF_KILL_TRAP, "Trap Destruction", TERM_RED, RES_INVALID, "KILL_TRAP", GFF_TERRAIN },
-    { GF_REMOVE_OBSTACLE, "Remove Obstacle", TERM_RED, RES_INVALID, "REMOVE_OBSTACLE", GFF_TERRAIN },
-    { GF_MAKE_DOOR, "Door Creation", TERM_L_BLUE, RES_INVALID, "MAKE_DOOR", GFF_TERRAIN },
-    { GF_MAKE_TRAP, "Trap Creation", TERM_L_RED, RES_INVALID, "MAKE_TRAP", GFF_TERRAIN },
-    { GF_MAKE_TREE, "Forest Creation", TERM_L_GREEN, RES_INVALID, "MAKE_TREE", GFF_TERRAIN },
-    { GF_MAKE_GLYPH, "Glyph of Warding", TERM_L_BLUE, RES_INVALID, "MAKE_GLYPH", GFF_TERRAIN },
-    { GF_MAKE_WALL, "Wall Creation", TERM_SLATE, RES_INVALID, "MAKE_WALL", GFF_TERRAIN },
-    { GF_JAM_DOOR, "Wizard Lock", TERM_RED, RES_INVALID, "JAM_DOOR", GFF_TERRAIN },
-    { GF_WATER_FLOW, "Flow of Water", TERM_BLUE, RES_INVALID, "WATER_FLOW", GFF_STATUS | GFF_TERRAIN },
-    { GF_WATER2, "Flow of Water", TERM_BLUE, RES_INVALID, "WATER2", GFF_STATUS | GFF_TERRAIN },
-    { GF_LAVA_FLOW, "Flow of Lava", TERM_RED, RES_INVALID, "LAVA_FLOW", GFF_TERRAIN },
-    { GF_WEB, "Web Spinning", TERM_SLATE, RES_INVALID, "WEB", GFF_TERRAIN },
-    { GF_QUAKE, "Earthquake", TERM_L_UMBER, RES_INVALID, "QUAKE", GFF_TERRAIN },
+    { GF_LITE_WEAK, "弱光", TERM_YELLOW, RES_INVALID, "LITE_WEAK", GFF_ATTACK | GFF_TERRAIN },
+    { GF_DARK_WEAK, "弱暗", TERM_L_DARK, RES_INVALID, "DARK_WEAK", GFF_ATTACK | GFF_TERRAIN },
+    { GF_KILL_WALL, "化石为泥", TERM_L_UMBER, RES_INVALID, "KILL_WALL", GFF_ATTACK | GFF_TERRAIN },
+    { GF_KILL_DOOR, "破坏门", TERM_RED, RES_INVALID, "KILL_DOOR", GFF_TERRAIN },
+    { GF_KILL_TRAP, "破坏陷阱", TERM_RED, RES_INVALID, "KILL_TRAP", GFF_TERRAIN },
+    { GF_REMOVE_OBSTACLE, "移除障碍", TERM_RED, RES_INVALID, "REMOVE_OBSTACLE", GFF_TERRAIN },
+    { GF_MAKE_DOOR, "创造门", TERM_L_BLUE, RES_INVALID, "MAKE_DOOR", GFF_TERRAIN },
+    { GF_MAKE_TRAP, "创造陷阱", TERM_L_RED, RES_INVALID, "MAKE_TRAP", GFF_TERRAIN },
+    { GF_MAKE_TREE, "创造森林", TERM_L_GREEN, RES_INVALID, "MAKE_TREE", GFF_TERRAIN },
+    { GF_MAKE_GLYPH, "守护结界", TERM_L_BLUE, RES_INVALID, "MAKE_GLYPH", GFF_TERRAIN },
+    { GF_MAKE_WALL, "创造墙壁", TERM_SLATE, RES_INVALID, "MAKE_WALL", GFF_TERRAIN },
+    { GF_JAM_DOOR, "巫师之锁", TERM_RED, RES_INVALID, "JAM_DOOR", GFF_TERRAIN },
+    { GF_WATER_FLOW, "流水", TERM_BLUE, RES_INVALID, "WATER_FLOW", GFF_STATUS | GFF_TERRAIN },
+    { GF_WATER2, "流水", TERM_BLUE, RES_INVALID, "WATER2", GFF_STATUS | GFF_TERRAIN },
+    { GF_LAVA_FLOW, "流岩", TERM_RED, RES_INVALID, "LAVA_FLOW", GFF_TERRAIN },
+    { GF_WEB, "结网", TERM_SLATE, RES_INVALID, "WEB", GFF_TERRAIN },
+    { GF_QUAKE, "地震", TERM_L_UMBER, RES_INVALID, "QUAKE", GFF_TERRAIN },
 
     /* Turning, Dispelling, Controlling, etc */
-    { GF_AWAY_UNDEAD, "Banish Undead", TERM_L_BLUE, RES_INVALID, "AWAY_UNDEAD", GFF_STATUS },
-    { GF_AWAY_EVIL, "Banish Evil", TERM_L_BLUE, RES_INVALID, "AWAY_EVIL", GFF_STATUS },
-    { GF_AWAY_ALL, "Banishment", TERM_L_BLUE, RES_INVALID, "AWAY_ALL", GFF_STATUS },
-    { GF_ISOLATION, "Isolation", TERM_L_BLUE, RES_INVALID, "ISOLATION", GFF_STATUS },
-    { GF_TURN_UNDEAD, "Turn Undead", TERM_RED, RES_INVALID, "TURN_UNDEAD", GFF_STATUS },
-    { GF_TURN_EVIL, "Turn Evil", TERM_RED, RES_INVALID, "TURN_EVIL", GFF_STATUS },
-    { GF_TURN_ALL, "Turn Monsters", TERM_RED, RES_INVALID, "TURN_ALL", GFF_STATUS },
-    { GF_DISP_UNDEAD, "Dispel Undead", TERM_L_RED, RES_INVALID, "DISP_UNDEAD", GFF_ATTACK },
-    { GF_DISP_EVIL, "Dispel Evil", TERM_L_RED, RES_INVALID, "DISP_EVIL", GFF_ATTACK },
-    { GF_DISP_GOOD, "Dispel Good", TERM_L_RED, RES_INVALID, "DISP_GOOD", GFF_ATTACK },
-    { GF_DISP_DEMON, "Dispel Demon", TERM_L_RED, RES_INVALID, "DISP_DEMON", GFF_ATTACK },
-    { GF_DISP_LIVING, "Dispel Living", TERM_L_RED, RES_INVALID, "DISP_LIVING", GFF_ATTACK },
-    { GF_DISP_ALL, "Dispel Monsters", TERM_L_RED, RES_INVALID, "DISP_ALL", GFF_ATTACK },
-    { GF_CONTROL_UNDEAD, "Enslave Undead", TERM_L_BLUE, RES_INVALID, "CONTROL_UNDEAD", GFF_STATUS },
-    { GF_CONTROL_DEMON, "Dominate Demon", TERM_L_BLUE, RES_INVALID, "CONTROL_DEMON", GFF_STATUS },
-    { GF_CONTROL_ANIMAL, "Charm Animal", TERM_L_BLUE, RES_INVALID, "CONTROL_ANIMAL", GFF_STATUS },
-    { GF_CONTROL_LIVING, "Charm Living", TERM_L_BLUE, RES_INVALID, "CONTROL_LIVING", GFF_STATUS },
-    { GF_CONTROL_PACT_MONSTER, "Control Pact Monster", TERM_L_BLUE, RES_INVALID, "CONTROL_PACT_MONSTER", GFF_STATUS },
-    { GF_CHARM, "Charm Monster", TERM_L_BLUE, RES_INVALID, "CHARM", GFF_STATUS },
-    { GF_CHARM_RING_BEARER, "Charm Ring Bearer", TERM_L_BLUE, RES_INVALID, "CHARM_RING_BEARER", GFF_STATUS },
-    { GF_CAPTURE, "Capture Monster", TERM_L_BLUE, RES_INVALID, "CAPTURE", GFF_STATUS },
-    { GF_ANIM_DEAD, "Raise Dead", TERM_L_DARK, RES_INVALID, "ANIM_DEAD", GFF_STATUS },
-    { GF_DEATH_RAY, "Death Ray", TERM_L_DARK, RES_INVALID, "DEATH_RAY", GFF_STATUS },
-    { GF_GENOCIDE, "Genocide", TERM_L_DARK, RES_INVALID, "GENOCIDE", GFF_STATUS },
+    { GF_AWAY_UNDEAD, "放逐死灵", TERM_L_BLUE, RES_INVALID, "AWAY_UNDEAD", GFF_STATUS },
+    { GF_AWAY_EVIL, "放逐邪恶", TERM_L_BLUE, RES_INVALID, "AWAY_EVIL", GFF_STATUS },
+    { GF_AWAY_ALL, "放逐术", TERM_L_BLUE, RES_INVALID, "AWAY_ALL", GFF_STATUS },
+    { GF_ISOLATION, "隔离", TERM_L_BLUE, RES_INVALID, "ISOLATION", GFF_STATUS },
+    { GF_TURN_UNDEAD, "驱散死灵", TERM_RED, RES_INVALID, "TURN_UNDEAD", GFF_STATUS },
+    { GF_TURN_EVIL, "驱散邪恶", TERM_RED, RES_INVALID, "TURN_EVIL", GFF_STATUS },
+    { GF_TURN_ALL, "驱散怪物", TERM_RED, RES_INVALID, "TURN_ALL", GFF_STATUS },
+    { GF_DISP_UNDEAD, "净化死灵", TERM_L_RED, RES_INVALID, "DISP_UNDEAD", GFF_ATTACK },
+    { GF_DISP_EVIL, "净化邪恶", TERM_L_RED, RES_INVALID, "DISP_EVIL", GFF_ATTACK },
+    { GF_DISP_GOOD, "净化善良", TERM_L_RED, RES_INVALID, "DISP_GOOD", GFF_ATTACK },
+    { GF_DISP_DEMON, "净化恶魔", TERM_L_RED, RES_INVALID, "DISP_DEMON", GFF_ATTACK },
+    { GF_DISP_LIVING, "净化活物", TERM_L_RED, RES_INVALID, "DISP_LIVING", GFF_ATTACK },
+    { GF_DISP_ALL, "净化怪物", TERM_L_RED, RES_INVALID, "DISP_ALL", GFF_ATTACK },
+    { GF_CONTROL_UNDEAD, "奴役死灵", TERM_L_BLUE, RES_INVALID, "CONTROL_UNDEAD", GFF_STATUS },
+    { GF_CONTROL_DEMON, "支配恶魔", TERM_L_BLUE, RES_INVALID, "CONTROL_DEMON", GFF_STATUS },
+    { GF_CONTROL_ANIMAL, "魅惑动物", TERM_L_BLUE, RES_INVALID, "CONTROL_ANIMAL", GFF_STATUS },
+    { GF_CONTROL_LIVING, "魅惑活物", TERM_L_BLUE, RES_INVALID, "CONTROL_LIVING", GFF_STATUS },
+    { GF_CONTROL_PACT_MONSTER, "控制契约怪物", TERM_L_BLUE, RES_INVALID, "CONTROL_PACT_MONSTER", GFF_STATUS },
+    { GF_CHARM, "魅惑怪物", TERM_L_BLUE, RES_INVALID, "CHARM", GFF_STATUS },
+    { GF_CHARM_RING_BEARER, "魅惑持戒者", TERM_L_BLUE, RES_INVALID, "CHARM_RING_BEARER", GFF_STATUS },
+    { GF_CAPTURE, "捕获怪物", TERM_L_BLUE, RES_INVALID, "CAPTURE", GFF_STATUS },
+    { GF_ANIM_DEAD, "唤起死灵", TERM_L_DARK, RES_INVALID, "ANIM_DEAD", GFF_STATUS },
+    { GF_DEATH_RAY, "死亡射线", TERM_L_DARK, RES_INVALID, "DEATH_RAY", GFF_STATUS },
+    { GF_GENOCIDE, "灭绝", TERM_L_DARK, RES_INVALID, "GENOCIDE", GFF_STATUS },
 
     /* Object Effects */
-    { GF_IDENTIFY, "Identify", TERM_L_BLUE, RES_INVALID, "IDENTIFY", GFF_UTILITY },
+    { GF_IDENTIFY, "鉴定", TERM_L_BLUE, RES_INVALID, "IDENTIFY", GFF_UTILITY },
 
     /* Class Specific */
-    { GF_PHOTO, "Photograph", TERM_YELLOW, RES_INVALID, "PHOTO", 0 },
-    { GF_ATTACK, "Attack", TERM_RED, RES_INVALID, "ATTACK", GFF_ATTACK },
-    { GF_ENGETSU, "Moon Dazzling", TERM_YELLOW, RES_INVALID, "ENGETSU", GFF_STATUS },
-    { GF_SEEKER, "Seeker Ray", TERM_YELLOW, RES_INVALID, "SEEKER", GFF_ATTACK },
-    { GF_SUPER_RAY, "Super Ray", TERM_YELLOW, RES_INVALID, "SUPER_RAY", GFF_ATTACK },
-    { GF_BLOOD, "Blood", TERM_RED, RES_INVALID, "BLOOD", GFF_ATTACK },
-    { GF_ELDRITCH_STUN, "Eldritch Stun", TERM_L_BLUE, RES_INVALID, "ELDRITCH_STUN", GFF_STATUS },
-    { GF_ELDRITCH_DRAIN, "Eldritch Drain", TERM_L_DARK, RES_INVALID, "ELDRITCH_DRAIN", GFF_STATUS },
-    { GF_ELDRITCH_DISPEL, "Eldritch Dispel", TERM_L_RED, RES_INVALID, "ELDRITCH_DISPEL", GFF_STATUS },
-    { GF_ELDRITCH_CONFUSE, "Eldritch Confuse", TERM_L_UMBER, RES_INVALID, "ELDRITCH_CONFUSE", GFF_STATUS },
-    { GF_ELDRITCH_HOWL, "Eldritch Howl", TERM_L_DARK, RES_INVALID, "ELDRITCH_HOWL", GFF_STATUS },
-    { GF_ENTOMB, "Entomb", TERM_L_UMBER, RES_INVALID, "ENTOMB", GFF_STATUS | GFF_TERRAIN },
-    { GF_MANA_CLASH, "Mana Clash", TERM_L_BLUE, RES_INVALID, "MANA_CLASH", GFF_ATTACK },
-    { GF_PHARAOHS_CURSE, "Pharaoh's Curse", TERM_VIOLET, RES_INVALID, "PHARAOHS_CURSE", GFF_ATTACK },
-    { GF_DRAINING_TOUCH, "Draining Touch", TERM_L_DARK, RES_INVALID, "DRAINING_TOUCH", GFF_ATTACK },
-    { GF_DEATH_TOUCH, "Touch of Death", TERM_L_DARK, RES_INVALID, "DEATH_TOUCH", GFF_STATUS },
-    { GF_STEAL, "Steal", TERM_WHITE, RES_INVALID, "STEAL", GFF_STATUS },
+    { GF_PHOTO, "拍照", TERM_YELLOW, RES_INVALID, "PHOTO", 0 },
+    { GF_ATTACK, "攻击", TERM_RED, RES_INVALID, "ATTACK", GFF_ATTACK },
+    { GF_ENGETSU, "偃月幻惑", TERM_YELLOW, RES_INVALID, "ENGETSU", GFF_STATUS },
+    { GF_SEEKER, "追踪射线", TERM_YELLOW, RES_INVALID, "SEEKER", GFF_ATTACK },
+    { GF_SUPER_RAY, "超级射线", TERM_YELLOW, RES_INVALID, "SUPER_RAY", GFF_ATTACK },
+    { GF_BLOOD, "鲜血", TERM_RED, RES_INVALID, "BLOOD", GFF_ATTACK },
+    { GF_ELDRITCH_STUN, "惊骇震慑", TERM_L_BLUE, RES_INVALID, "ELDRITCH_STUN", GFF_STATUS },
+    { GF_ELDRITCH_DRAIN, "惊骇吸取", TERM_L_DARK, RES_INVALID, "ELDRITCH_DRAIN", GFF_STATUS },
+    { GF_ELDRITCH_DISPEL, "惊骇净化", TERM_L_RED, RES_INVALID, "ELDRITCH_DISPEL", GFF_STATUS },
+    { GF_ELDRITCH_CONFUSE, "惊骇混乱", TERM_L_UMBER, RES_INVALID, "ELDRITCH_CONFUSE", GFF_STATUS },
+    { GF_ELDRITCH_HOWL, "惊骇嚎叫", TERM_L_DARK, RES_INVALID, "ELDRITCH_HOWL", GFF_STATUS },
+    { GF_ENTOMB, "活埋", TERM_L_UMBER, RES_INVALID, "ENTOMB", GFF_STATUS | GFF_TERRAIN },
+    { GF_MANA_CLASH, "法力碰撞", TERM_L_BLUE, RES_INVALID, "MANA_CLASH", GFF_ATTACK },
+    { GF_PHARAOHS_CURSE, "法老的诅咒", TERM_VIOLET, RES_INVALID, "PHARAOHS_CURSE", GFF_ATTACK },
+    { GF_DRAINING_TOUCH, "吸取之触", TERM_L_DARK, RES_INVALID, "DRAINING_TOUCH", GFF_ATTACK },
+    { GF_DEATH_TOUCH, "死亡之触", TERM_L_DARK, RES_INVALID, "DEATH_TOUCH", GFF_STATUS },
+    { GF_STEAL, "偷窃", TERM_WHITE, RES_INVALID, "STEAL", GFF_STATUS },
 
     /* New */
-    { GF_SLOW, "Slow", TERM_ORANGE, RES_INVALID, "SLOW", GFF_STATUS },
-    { GF_CHICKEN, "Chicken", TERM_YELLOW, RES_INVALID, "CHICKEN", GFF_ATTACK | GFF_STATUS },
-    { GF_BOMB, "Bomb", TERM_SLATE, RES_INVALID, "BOMB", GFF_ATTACK | GFF_STATUS },
-    { GF_AIR, "Air", TERM_L_BLUE, RES_INVALID, "AIR", GFF_ATTACK | GFF_STATUS },
-    { GF_BABY_SLOW, "Slow", TERM_SLATE, RES_INVALID, "BABY_SLOW", GFF_STATUS },
-    { GF_GAIN_EXP, "Experience", TERM_L_GREEN, RES_INVALID, "GAIN_EXP", GFF_STATUS },
+    { GF_SLOW, "减速", TERM_ORANGE, RES_INVALID, "SLOW", GFF_STATUS },
+    { GF_CHICKEN, "胆怯", TERM_YELLOW, RES_INVALID, "CHICKEN", GFF_ATTACK | GFF_STATUS },
+    { GF_BOMB, "炸弹", TERM_SLATE, RES_INVALID, "BOMB", GFF_ATTACK | GFF_STATUS },
+    { GF_AIR, "空气", TERM_L_BLUE, RES_INVALID, "AIR", GFF_ATTACK | GFF_STATUS },
+    { GF_BABY_SLOW, "减速", TERM_SLATE, RES_INVALID, "BABY_SLOW", GFF_STATUS },
+    { GF_GAIN_EXP, "经验", TERM_L_GREEN, RES_INVALID, "GAIN_EXP", GFF_STATUS },
 };
 
 typedef struct {
@@ -374,7 +374,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
         switch (who)
         {
         case PROJECT_WHO_UNCTRL_POWER:
-            strcpy(m_name_real, "uncontrollable power storm");
+            strcpy(m_name_real, "无法控制的能量风暴");
             break;
 
         case PROJECT_WHO_GLASS_SHARDS:
@@ -399,8 +399,8 @@ int gf_affect_p(int who, int type, int dam, int flags)
         dam = res_calc_dam(RES_ACID, dam);
         if (dam)
         {
-            if (touch) msg_print("You are <color:G>dissolved</color>!");
-            else if (fuzzy) msg_print("You are hit by acid!");
+            if (touch) msg_print("你被<color:G>溶解</color>了！");
+            else if (fuzzy) msg_print("你被酸液击中了！");
             if (!bunshin_save)
             {
                 if (!res_save_default(RES_ACID) && one_in_(stat_drain_odds))
@@ -416,8 +416,8 @@ int gf_affect_p(int who, int type, int dam, int flags)
         dam = res_calc_dam(RES_FIRE, dam);
         if (dam)
         {
-            if (touch) msg_print("You are <color:r>burned</color>!");
-            else if (fuzzy) msg_print("You are hit by fire!");
+            if (touch) msg_print("你被<color:r>烧伤</color>了！");
+            else if (fuzzy) msg_print("你被火焰击中了！");
             if (!bunshin_save)
             {
                 if (!res_save_default(RES_FIRE) && one_in_(stat_drain_odds))
@@ -432,8 +432,8 @@ int gf_affect_p(int who, int type, int dam, int flags)
         dam = res_calc_dam(RES_COLD, dam);
         if (dam)
         {
-            if (touch) msg_print("You are <color:W>frozen</color>!");
-            else if (fuzzy) msg_print("You are hit by cold!");
+            if (touch) msg_print("你被<color:W>冻住</color>了！");
+            else if (fuzzy) msg_print("你被寒气击中了！");
             if (!bunshin_save)
             {
                 if (!res_save_default(RES_COLD) && one_in_(stat_drain_odds))
@@ -448,8 +448,8 @@ int gf_affect_p(int who, int type, int dam, int flags)
         dam = res_calc_dam(RES_ELEC, dam);
         if (dam)
         {
-            if (touch) msg_print("You are <color:b>shocked</color>!");
-            else if (fuzzy) msg_print("You are hit by lightning!");
+            if (touch) msg_print("你遭到了<color:b>电击</color>！");
+            else if (fuzzy) msg_print("你被闪电击中了！");
             if (!bunshin_save)
             {
                 if (!res_save_default(RES_ELEC) && one_in_(stat_drain_odds))
@@ -463,14 +463,14 @@ int gf_affect_p(int who, int type, int dam, int flags)
     case GF_POIS:
         if (bunshin_save)
         {
-            msg_print("The attack hits Shadow. You are unharmed!");
+            msg_print("攻击击中了暗影。你毫发无伤！");
             break;
         }
         dam = res_calc_dam(RES_POIS, dam);
         if (dam)
         {
-            if (touch) msg_print("You are <color:G>poisoned</color>!");
-            else if (fuzzy) msg_print("You are hit by poison!");
+            if (touch) msg_print("你<color:G>中毒</color>了！");
+            else if (fuzzy) msg_print("你被毒素击中了！");
             /* Moving damage from immediate to delayed can't simply leave the
              * value unchanged, else this is a monster nerf! We can scale everything
              * in r_info and BR_POIS, but that is tedious and I'm unsure what a good
@@ -485,21 +485,21 @@ int gf_affect_p(int who, int type, int dam, int flags)
     case GF_NUKE:
         if (bunshin_save)
         {
-            msg_print("The attack hits Shadow. You are unharmed!");
+            msg_print("攻击击中了暗影。你毫发无伤！");
             break;
         }
         dam = res_calc_dam(RES_POIS, dam);
         if (dam)
         {
-            if (touch) msg_print("You are <color:G>irradiated</color>!");
-            else if (fuzzy) msg_print("You are hit by radiation!");
+            if (touch) msg_print("你遭到了<color:G>辐射</color>！");
+            else if (fuzzy) msg_print("你被辐射击中了！");
             dam = dam*7/4;
             set_poisoned(p_ptr->poisoned + dam, FALSE);
             if (!res_save_default(RES_POIS))
             {
                 if (one_in_(5))
                 {
-                    msg_print("You undergo a freakish metamorphosis!");
+                    msg_print("你发生了畸形的变异！");
                     if (one_in_(4))
                         do_poly_self();
                     else
@@ -512,33 +512,33 @@ int gf_affect_p(int who, int type, int dam, int flags)
         break;
     case GF_MISSILE:
     case GF_BLOOD:  /* Monsters can't do this ... */
-        if (fuzzy) msg_print("You are hit by something!");
+        if (fuzzy) msg_print("你被某物击中了！");
         result = take_hit(damage_type, dam, m_name_real);
         break;
     case GF_HOLY_FIRE:
-        if (touch) msg_format("You are <color:y>%s</color>!", p_ptr->align < -10 ? "*immolated*" : "immolated");
-        else if (fuzzy) msg_print("You are hit by something!");
+        if (touch) msg_format("你被<color:y>%s</color>了！", p_ptr->align < -10 ? "*焚烧*" : "焚烧");
+        else if (fuzzy) msg_print("你被某物击中了！");
         dam = gf_holy_dam(dam);
         result = take_hit(damage_type, dam, m_name_real);
         break;
     case GF_HELL_FIRE:
-        if (touch) msg_format("You are <color:D>%s</color>!", p_ptr->align > 10 ? "*bedeviled*" : "bedeviled");
-        else if (fuzzy) msg_print("You are hit by something!");
+        if (touch) msg_format("你被<color:D>%s</color>了！", p_ptr->align > 10 ? "*邪魔缠身*" : "邪魔缠身");
+        else if (fuzzy) msg_print("你被某物击中了！");
         dam = gf_hell_dam(dam);
         result = take_hit(damage_type, dam, m_name_real);
         break;
     case GF_ARROW:
-        if (fuzzy) msg_print("You are hit by something sharp!");
+        if (fuzzy) msg_print("你被锐器击中了！");
         else if (equip_find_art(ART_ZANTETSU))
         {
-            msg_print("You cut down the arrow!");
+            msg_print("你斩断了箭矢！");
             break;
         }
         result = take_hit(damage_type, dam, m_name_real);
         break;
     case GF_PLASMA:
-        if (touch) msg_print("You are <color:R>burned</color>!");
-        else if (fuzzy) msg_print("You are hit by something *HOT*!");
+        if (touch) msg_print("你被<color:R>烧伤</color>了！");
+        else if (fuzzy) msg_print("你被*高温*物体击中了！");
 
         /* Resist hack */
         if (prace_is_(RACE_MON_VORTEX) && p_ptr->current_r_idx == MON_PLASMA_VORTEX)
@@ -557,7 +557,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
     case GF_UNLIFE:
         if (bunshin_save)
         {
-            msg_print("The attack hits Shadow. You are unharmed!");
+            msg_print("攻击击中了暗影。你毫发无伤！");
             break;
         }
         if (!(get_race()->flags & RACE_IS_NONLIVING) && !life_save_p(rlev))
@@ -566,14 +566,14 @@ int gf_affect_p(int who, int type, int dam, int flags)
             if (touch && m_ptr)
             {
                 m_ptr->mpower += dam;
-                msg_format("<color:R>%^s grows more powerful!</color>", m_name_subject);
+                msg_format("<color:R>%^s变得更强大了！</color>", m_name_subject);
             }
         }
         break;
     case GF_NETHER: {
         int unlife;
-        if (touch) msg_print("You are <color:D>drained</color>!");
-        else if (fuzzy) msg_print("You are hit by nether forces!");
+        if (touch) msg_print("你被<color:D>吸取</color>了！");
+        else if (fuzzy) msg_print("你被地狱力量击中了！");
         dam = res_calc_dam(RES_NETHER, dam);
         unlife = dam*15/100;
         if (unlife)
@@ -586,7 +586,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
         break; }
     case GF_WATER:
     case GF_WATER2:
-        if (fuzzy) msg_print("You are hit by something wet!");
+        if (fuzzy) msg_print("你被湿漉漉的东西击中了！");
         if (!CHECK_MULTISHADOW())
         {
             if (!res_save_default(RES_SOUND))
@@ -598,8 +598,8 @@ int gf_affect_p(int who, int type, int dam, int flags)
         result = take_hit(damage_type, dam, m_name_real);
         break;
     case GF_CHAOS:
-        if (touch) msg_print("You are <color:v>unmade</color>!");
-        else if (fuzzy) msg_print("You are hit by a wave of anarchy!");
+        if (touch) msg_print("你被<color:v>解构</color>了！");
+        else if (fuzzy) msg_print("你被一阵无序之波击中了！");
         dam = res_calc_dam(RES_CHAOS, dam);
         if (!bunshin_save)
         {
@@ -611,7 +611,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
                 if (prace_is_(RACE_BEASTMAN)) count = 0;
                 if (one_in_(3 + count*count))
                 {
-                    msg_print("Your body is twisted by chaos!");
+                    msg_print("你的身体被混沌扭曲了！");
                     mut_gain_random(NULL);
                 }
                 if (p_ptr->pclass == CLASS_WILD_TALENT && one_in_(7))
@@ -632,7 +632,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
         update_smart_learn(who, RES_CHAOS);
         break;
     case GF_ROCK:
-        if (fuzzy) msg_print("You are hit by something solid!");
+        if (fuzzy) msg_print("你被坚硬的物体击中了！");
         if (one_in_(2))
         {
             if (!res_save_default(RES_SHARDS) && !CHECK_MULTISHADOW())
@@ -651,8 +651,8 @@ int gf_affect_p(int who, int type, int dam, int flags)
         result = take_hit(damage_type, dam, m_name_real);
         break;
     case GF_SHARDS:
-        if (touch) msg_print("You are <color:U>shredded</color>!");
-        else if (fuzzy) msg_print("You are hit by something sharp!");
+        if (touch) msg_print("你被<color:U>撕碎</color>了！");
+        else if (fuzzy) msg_print("你被锐器击中了！");
         dam = res_calc_dam(RES_SHARDS, dam);
         if (!res_save_default(RES_SHARDS) && !bunshin_save)
             set_cut(p_ptr->cut + dam, FALSE);
@@ -666,7 +666,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
             dam = 0;
             break;
         }
-        if (!touch && fuzzy) msg_print("You are hit by a loud noise!");
+        if (!touch && fuzzy) msg_print("你被巨大的噪音击中了！");
         /*if (touch) ... */
         dam = res_calc_dam(RES_SOUND, dam);
         if (!res_save_default(RES_SOUND) && !CHECK_MULTISHADOW())
@@ -681,8 +681,8 @@ int gf_affect_p(int who, int type, int dam, int flags)
     case GF_BOMB: /* combined sound and shards, but damage is weird */
     {
         int shard_dam, sound_dam;
-        if (touch) msg_print("You are <color:s>blasted</color>!");
-        else if (fuzzy) msg_print("There is an explosion! You are hit by shrapnel!"); /* If you want to complain about this terminology, write your own variant */
+        if (touch) msg_print("你被<color:s>炸飞</color>了！");
+        else if (fuzzy) msg_print("发生了爆炸！你被弹片击中了！"); /* If you want to complain about this terminology, write your own variant */
         _bomb_calc_dam(&dam, &shard_dam, &sound_dam, -1);
         if (!res_save_default(RES_SHARDS) && !bunshin_save)
             set_cut(p_ptr->cut + shard_dam, FALSE);
@@ -702,7 +702,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
         break;
     }
     case GF_CONFUSION:
-        if (!touch && fuzzy) msg_print("You are hit by something puzzling!");
+        if (!touch && fuzzy) msg_print("你被令人困惑的东西击中了！");
         /*if (touch) ... */
         dam = res_calc_dam(RES_CONF, dam);
         if (!res_save_default(RES_CONF) && !bunshin_save)
@@ -711,8 +711,8 @@ int gf_affect_p(int who, int type, int dam, int flags)
         update_smart_learn(who, RES_CONF);
         break;
     case GF_DISENCHANT:
-        if (touch) msg_print("You are <color:v>disenchanted</color>!");
-        else if (fuzzy) msg_print("You are hit by something static!");
+        if (touch) msg_print("你被<color:v>解除魔法</color>了！");
+        else if (fuzzy) msg_print("你被静止能量击中了！");
         dam = res_calc_dam(RES_DISEN, dam);
         if (!(flags & GF_AFFECT_SPELL) && !one_in_(5) && !bunshin_save)
         {
@@ -725,8 +725,8 @@ int gf_affect_p(int who, int type, int dam, int flags)
         update_smart_learn(who, RES_DISEN);
         break;
     case GF_NEXUS:
-        if (touch) msg_print("You are <color:v>scrambled</color>!");
-        else if (fuzzy) msg_print("You are hit by something strange!");
+        if (touch) msg_print("你被<color:v>扰乱</color>了！");
+        else if (fuzzy) msg_print("你被奇怪的东西击中了！");
         dam = res_calc_dam(RES_NEXUS, dam);
         if (!res_save_default(RES_NEXUS) && !bunshin_save)
             apply_nexus(m_ptr);
@@ -734,13 +734,13 @@ int gf_affect_p(int who, int type, int dam, int flags)
         update_smart_learn(who, RES_NEXUS);
         break;
     case GF_FORCE:
-        if (fuzzy) msg_print("You are hit by kinetic force!");
+        if (fuzzy) msg_print("你被动能击中了！");
         if (!res_save_default(RES_SOUND) && !bunshin_save)
             set_stun(p_ptr->stun + randint1(20), FALSE);
         result = take_hit(damage_type, dam, m_name_real);
         break;
     case GF_CHICKEN:
-        if (fuzzy) msg_print("You are hit by a chicken!");
+        if (fuzzy) msg_print("你被一只小鸡击中了！");
         if (!res_save_default(RES_SOUND) && !CHECK_MULTISHADOW())
             set_stun(p_ptr->stun + randint1(20), FALSE);
         if (!touch) inven_damage(who, set_cold_destroy, 2, RES_SOUND);
@@ -750,7 +750,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
         if (!touch) update_smart_learn(who, RES_SOUND);
         break;
     case GF_ROCKET:
-        if (fuzzy) msg_print("There is an explosion!");
+        if (fuzzy) msg_print("发生了爆炸！");
         dam = res_calc_dam(RES_SHARDS, dam);
         if (!res_save_default(RES_SOUND) && !CHECK_MULTISHADOW())
             set_stun(p_ptr->stun + randint1(20), FALSE);
@@ -761,8 +761,8 @@ int gf_affect_p(int who, int type, int dam, int flags)
         update_smart_learn(who, RES_SHARDS);
         break;
     case GF_INERT:
-        if (touch) msg_print("You are <color:W>decelerated</color>!");
-        else if (fuzzy) msg_print("You are hit by something slow!");
+        if (touch) msg_print("你被<color:W>减速</color>了！");
+        else if (fuzzy) msg_print("你被缓慢的物体击中了！");
         /*if (touch) ... */
         if (!bunshin_save)
         {
@@ -774,15 +774,15 @@ int gf_affect_p(int who, int type, int dam, int flags)
         break;
     case GF_SLOW:
     case GF_BABY_SLOW:
-        if (touch) msg_print("You are <color:W>slowed</color>!");
-        else if (fuzzy) msg_print("You are hit by something exhausting!");
+        if (touch) msg_print("你被<color:W>减速</color>了！");
+        else if (fuzzy) msg_print("你被令人筋疲力尽的东西击中了！");
         if (!bunshin_save)
             (void)p_inc_minislow(1);
         if (type != GF_BABY_SLOW) result = take_hit(damage_type, dam, m_name_real);
         break;
     case GF_LITE:
-        if (touch) msg_print("You are <color:y>dazzled</color>!");
-        else if (fuzzy) msg_print("You are hit by something!");
+        if (touch) msg_print("你被<color:y>致盲</color>了！");
+        else if (fuzzy) msg_print("你被某物击中了！");
         dam = res_calc_dam(RES_LITE, dam);
         if (!p_ptr->blind && !res_save_default(RES_LITE) && !res_save_default(RES_BLIND) && !bunshin_save)
             set_blind(p_ptr->blind + randint1(5) + 2, FALSE);
@@ -795,7 +795,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
         {
             p_ptr->wraith_form = 0;
             wild_reset_counter(WILD_WRAITH);
-            msg_print("The light forces you out of your incorporeal shadow form.");
+            msg_print("强光迫使你退出了无体的暗影形态。");
             p_ptr->redraw |= PR_MAP;
             p_ptr->update |= (PU_MONSTERS);
             p_ptr->window |= (PW_OVERHEAD | PW_DUNGEON);
@@ -804,8 +804,8 @@ int gf_affect_p(int who, int type, int dam, int flags)
         update_smart_learn(who, RES_LITE);
         break;
     case GF_DARK:
-        if (touch) msg_print("You are <color:D>benighted</color>!");
-        else if (fuzzy) msg_print("You are hit by something!");
+        if (touch) msg_print("你陷入了<color:D>黑暗</color>！");
+        else if (fuzzy) msg_print("你被某物击中了！");
         dam = res_calc_dam(RES_DARK, dam);
         if (!p_ptr->blind && !res_save_default(RES_DARK) && !res_save_default(RES_BLIND) && !bunshin_save)
             set_blind(p_ptr->blind + randint1(5) + 2, FALSE);
@@ -825,21 +825,21 @@ int gf_affect_p(int who, int type, int dam, int flags)
     case GF_AMNESIA:
         if (bunshin_save)
         {
-            msg_print("The attack hits Shadow. You are unharmed!");
+            msg_print("攻击击中了暗影。你毫发无伤！");
             break;
         }
         if (_plr_save(who, 0))
         {
-            if (!touch) msg_print("You resist the effects!");
+            if (!touch) msg_print("你抵抗了该效果！");
         }
         else if (lose_all_info())
         {
-            msg_print("Your memories fade away.");
+            msg_print("你的记忆逐渐消退。");
         }
         break;
     case GF_TIME:
-        if (touch) msg_print("You are <color:B>chronosmashed</color>!");
-        else if (fuzzy) msg_print("You are hit by a blast from the past!");
+        if (touch) msg_print("你遭到了<color:B>时间粉碎</color>！");
+        else if (fuzzy) msg_print("你被来自过去的冲击击中了！");
         if (!res_save_default(RES_TIME) && !bunshin_save)
         {
             int k;
@@ -848,7 +848,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
             {
             case 1: case 2: case 3: case 4: case 5:
                 if (p_ptr->prace == RACE_ANDROID) break;
-                msg_print("You feel life has clocked back.");
+                msg_print("你感觉生命倒流了。");
                 lose_exp(100 + (p_ptr->exp / 100) * MON_DRAIN_LIFE);
                 break;
 
@@ -862,13 +862,13 @@ int gf_affect_p(int who, int type, int dam, int flags)
                     case 5: k = A_CON; act = "hale"; break;
                     case 6: k = A_CHR; act = "confident"; break;
                 }
-                msg_format("You're not as %s as you used to be...", act);
+                msg_format("你不再像以前那样%s了……", act);
                 p_ptr->stat_cur[k] = (p_ptr->stat_cur[k] * 3) / 4;
                 if (p_ptr->stat_cur[k] < 3) p_ptr->stat_cur[k] = 3;
                 p_ptr->update |= (PU_BONUS);
                 break;
             case 10:
-                msg_print("You're not as powerful as you used to be...");
+                msg_print("你不再像以前那样强大了……");
                 for (k = 0; k < 6; k++)
                 {
                     p_ptr->stat_cur[k] = (p_ptr->stat_cur[k] * 7) / 8;
@@ -883,7 +883,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
         update_smart_learn(who, RES_TIME);
         break;
     case GF_AIR:
-        if (fuzzy) msg_print("You are hit by gale force winds!");
+        if (fuzzy) msg_print("你被烈风击中了！");
         if (!res_save_default(RES_SOUND) && !CHECK_MULTISHADOW())
             set_stun(p_ptr->stun + randint1(20), FALSE);
         if (p_ptr->levitation) dam -= (dam / 4);
@@ -891,7 +891,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
         break;
     case GF_STORM:
         if (p_ptr->no_air) set_no_air(0, TRUE);
-        msg_print("You are hit by a roaring tempest!");
+        msg_print("你被咆哮的风暴击中了！");
         if (!bunshin_save)
         {
             teleport_player(5, TELEPORT_PASSIVE);
@@ -906,10 +906,10 @@ int gf_affect_p(int who, int type, int dam, int flags)
         result = take_hit(damage_type, dam, m_name_real);
         break;
     case GF_GRAVITY:
-        if (touch) msg_print("You are <color:W>warped</color>!");
-        else if (fuzzy) msg_print("You are hit by something heavy!");
+        if (touch) msg_print("你被<color:W>扭曲</color>了！");
+        else if (fuzzy) msg_print("你被沉重的物体击中了！");
         /*if (touch) ... */
-        msg_print("Gravity warps around you.");
+        msg_print("重力在你周围扭曲。");
         if (!bunshin_save)
         {
             teleport_player(5, TELEPORT_PASSIVE);
@@ -929,7 +929,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
         result = take_hit(damage_type, dam, m_name_real);
         break;
     case GF_DISINTEGRATE:
-        if (fuzzy) msg_print("You are hit by pure energy!");
+        if (fuzzy) msg_print("你被纯粹的能量击中了！");
         /* Resist hack */
         if (prace_is_(RACE_MON_VORTEX) && p_ptr->current_r_idx == MON_DISINTEGRATE_VORTEX)
         {
@@ -939,13 +939,13 @@ int gf_affect_p(int who, int type, int dam, int flags)
         break;
     case GF_OLD_HEAL:
     case GF_STAR_HEAL:
-        if ((fuzzy) && (dam)) msg_print("You are hit by something invigorating!");
+        if ((fuzzy) && (dam)) msg_print("你被令人振奋的东西击中了！");
 
         hp_player(dam);
         break;
     case GF_GAIN_EXP:
         if (p_ptr->prace == RACE_ANDROID) break;
-        if (fuzzy) msg_print("You are hit by memories!");
+        if (fuzzy) msg_print("你被记忆击中了！");
         if (p_ptr->exp < PY_MAX_EXP)
         {
             s32b ee = MIN(dam, p_ptr->exp / 2 + 10);
@@ -953,37 +953,37 @@ int gf_affect_p(int who, int type, int dam, int flags)
             {
                 ee = ee * 5/3;
             }
-            msg_print("You feel more experienced.");
+            msg_print("你感觉经验更丰富了。");
             gain_exp(ee);
         }
         break;
     case GF_OLD_SPEED:
-        if (fuzzy) msg_print("You are hit by something!");
+        if (fuzzy) msg_print("你被某物击中了！");
 
         set_fast(p_ptr->fast + randint1(5), FALSE);
         break;
     case GF_OLD_SLOW:
         if (bunshin_save)
         {
-            msg_print("The attack hits Shadow. You are unharmed!");
+            msg_print("攻击击中了暗影。你毫发无伤！");
             break;
         }
-        if (fuzzy) msg_print("You are hit by something slow!");
+        if (fuzzy) msg_print("你被缓慢的物体击中了！");
         if (!free_act_save_p(MAX(rlev, dam)))
             set_slow(p_ptr->slow + randint0(4) + 4, FALSE);
         break;
     case GF_OLD_SLEEP:
         if (bunshin_save)
         {
-            msg_print("The attack hits Shadow. You are unharmed!");
+            msg_print("攻击击中了暗影。你毫发无伤！");
             break;
         }
         if (!free_act_save_p(rlev))
         {
-            if (fuzzy) msg_print("You fall asleep!");
+            if (fuzzy) msg_print("你睡着了！");
             if (ironman_nightmare)
             {
-                msg_print("A horrible vision enters your mind.");
+                msg_print("一个可怕的幻象侵入了你的脑海。");
 
                 /* Pick a nightmare */
                 get_mon_num_prep(get_nightmare, NULL);
@@ -1000,11 +1000,11 @@ int gf_affect_p(int who, int type, int dam, int flags)
     case GF_BLIND:
         if (bunshin_save)
         {
-            msg_print("The attack hits Shadow. You are unharmed!");
+            msg_print("攻击击中了暗影。你毫发无伤！");
             break;
         }
         if (res_save_default(RES_BLIND) || (!touch && _plr_save(who, 0)))
-            msg_print("You resist the effects!");
+            msg_print("你抵抗了该效果！");
         else
             set_blind(12 + randint0(4), FALSE);
         update_smart_learn(who, RES_BLIND);
@@ -1012,11 +1012,11 @@ int gf_affect_p(int who, int type, int dam, int flags)
     case GF_OLD_CONF:
         if (bunshin_save)
         {
-            msg_print("The attack hits Shadow. You are unharmed!");
+            msg_print("攻击击中了暗影。你毫发无伤！");
             break;
         }
         if (res_save_default(RES_CONF) || _plr_save(who, 0))
-            msg_print("You disbelieve the feeble spell.");
+            msg_print("你看穿了这个微弱的法术。");
         else
             set_confused(p_ptr->confused + randint0(4) + 4, FALSE);
         update_smart_learn(who, RES_CONF);
@@ -1024,21 +1024,21 @@ int gf_affect_p(int who, int type, int dam, int flags)
     case GF_TURN_ALL:
         if (bunshin_save)
         {
-            msg_print("The attack hits Shadow. You are unharmed!");
+            msg_print("攻击击中了暗影。你毫发无伤！");
             break;
         }
-        if (fuzzy) msg_print("Your will is shaken!");
+        if (fuzzy) msg_print("你的意志动摇了！");
         fear_scare_p(m_ptr);
         update_smart_learn(who, RES_FEAR);
         break;
     case GF_PARALYSIS:
         if (bunshin_save)
         {
-            msg_print("The attack hits Shadow. You are unharmed!");
+            msg_print("攻击击中了暗影。你毫发无伤！");
             break;
         }
         if (free_act_save_p(rlev) || (!touch && _plr_save(who, dam)))
-            msg_print("You resist the effects!");
+            msg_print("你抵抗了该效果！");
         else
             set_paralyzed(randint1(3), FALSE);
         update_smart_learn(who, SM_FREE_ACTION);
@@ -1046,22 +1046,22 @@ int gf_affect_p(int who, int type, int dam, int flags)
     case GF_MANA:
     case GF_SEEKER:
     case GF_SUPER_RAY:
-        if (fuzzy) msg_print("You are hit by pure magic!");
+        if (fuzzy) msg_print("你被纯粹的魔法击中了！");
         result = take_hit(damage_type, dam, m_name_real);
         break;
     case GF_PSY_SPEAR:
-        if ((fuzzy) || ((p_ptr->blind) && (bunshin_save))) msg_print("You are hit by an energy!");
+        if ((fuzzy) || ((p_ptr->blind) && (bunshin_save))) msg_print("你被一股能量击中了！");
         result = take_hit(DAMAGE_FORCE, dam, m_name_real);
         break;
     case GF_METEOR:
-        if (fuzzy) msg_print("Something falls from the sky on you!");
+        if (fuzzy) msg_print("有东西从天而降砸中你了！");
         result = take_hit(damage_type, dam, m_name_real);
         inven_damage(who, set_fire_destroy, 2, RES_FIRE);
         inven_damage(who, set_cold_destroy, 2, RES_SHARDS);
         break;
     case GF_ICE:
-        if (touch) msg_print("You are <color:W>frozen</color>!");
-        else if (fuzzy) msg_print("You are hit by something sharp and cold!");
+        if (touch) msg_print("你被<color:W>冻住</color>了！");
+        else if (fuzzy) msg_print("你被锋冷刺骨的东西击中了！");
         result = gf_affect_p(who, GF_COLD, dam, 0);
         if (!CHECK_MULTISHADOW())
         {
@@ -1074,22 +1074,22 @@ int gf_affect_p(int who, int type, int dam, int flags)
         update_smart_learn(who, RES_COLD);
         break;
     case GF_DEATH_RAY:
-        if (fuzzy) msg_print("You are hit by something extremely cold!");
+        if (fuzzy) msg_print("你被极寒之物击中了！");
         if (!(get_race()->flags & RACE_IS_NONLIVING))
             result = take_hit(damage_type, dam, m_name_real);
         break;
     case GF_DRAIN_MANA:
         if (bunshin_save)
         {
-            if (!touch) msg_print("The attack hits Shadow, you are unharmed!");
+            if (!touch) msg_print("攻击击中了暗影，你毫发无伤！");
         }
         else if (psion_mental_fortress())
         {
-            if (!touch) msg_print("Your mental fortress is impenetrable!");
+            if (!touch) msg_print("你的精神堡垒坚不可摧！");
         }
         else if (_mana_loss_save(r_ptr))
         {
-            if (!touch) msg_print("You keep your wits about you!");
+            if (!touch) msg_print("你保持着理智！");
         }
         else if ((p_ptr->csp) && (player_mana_drainable()))
         {
@@ -1098,8 +1098,8 @@ int gf_affect_p(int who, int type, int dam, int flags)
                 dam /= 2;
                 if (!dam) break;
             }
-            if (who > 0) msg_format("%^s draws psychic energy from you!", m_name);
-            else msg_print("Your psychic energy is drawn!");
+            if (who > 0) msg_format("%^s吸取了你的精神能量！", m_name);
+            else msg_print("你的精神能量被吸取了！");
             if (dam >= p_ptr->csp)
             {
                 dam = p_ptr->csp;
@@ -1116,7 +1116,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
             {
                 (void)hp_mon(m_ptr, 6 * dam, FALSE);
                 if (m_ptr->ml)
-                    msg_format("%^s appears healthier.", m_name);
+                    msg_format("%^s看起来更健康了。", m_name);
             }
         }
         break;
@@ -1125,12 +1125,12 @@ int gf_affect_p(int who, int type, int dam, int flags)
         {
             if (!touch)
             {
-                msg_print("You resist the effects!");
+                msg_print("你抵抗了该效果！");
             }
         }
         else if (!CHECK_MULTISHADOW())
         {
-            msg_print("Your mind is blasted by psionic energy.");
+            msg_print("你的心智遭到了心灵异能的冲击。");
 
             if (!res_save_default(RES_CONF))
                 set_confused(p_ptr->confused + randint0(4) + 4, FALSE);
@@ -1156,18 +1156,18 @@ int gf_affect_p(int who, int type, int dam, int flags)
         {
             if (!touch)
             {
-                msg_print("You resist the effects!");
+                msg_print("你抵抗了该效果！");
             }
         }
         else
         {
             if ((_mana_loss_save(r_ptr)) && (!CHECK_MULTISHADOW()))
             {
-                if (!touch) msg_print("You keep your wits about you!");
+                if (!touch) msg_print("你保持着理智！");
             }
             else if ((!CHECK_MULTISHADOW()) && (player_mana_drainable()))
             {
-                msg_print("Your mind is blasted by psionic energy.");
+                msg_print("你的心智遭到了心灵异能的冲击。");
                 if (touch)
                     p_ptr->csp -= 10;
                 else
@@ -1223,7 +1223,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
         {
             if (!touch)
             {
-                msg_print("You resist the effects!");
+                msg_print("你抵抗了该效果！");
             }
         }
         else
@@ -1237,7 +1237,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
         {
             if (!touch)
             {
-                msg_print("You resist the effects!");
+                msg_print("你抵抗了该效果！");
             }
         }
         else
@@ -1251,7 +1251,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
         {
             if (!touch)
             {
-                msg_print("You resist the effects!");
+                msg_print("你抵抗了该效果！");
             }
         }
         else
@@ -1265,7 +1265,7 @@ int gf_affect_p(int who, int type, int dam, int flags)
         {
             if (!touch)
             {
-                msg_print("You resist the effects!");
+                msg_print("你抵抗了该效果！");
             }
         }
         else
@@ -1279,14 +1279,14 @@ int gf_affect_p(int who, int type, int dam, int flags)
         {
             if (!touch)
             {
-                msg_print("You resist the effects!");
+                msg_print("你抵抗了该效果！");
             }
         }
         else
         {
             if (!CHECK_MULTISHADOW())
             {
-                msg_print("You feel your life fade away!");
+                msg_print("你感觉生命正在流逝！");
                 curse_equipment(40, 20);
             }
 
@@ -1298,18 +1298,18 @@ int gf_affect_p(int who, int type, int dam, int flags)
     case GF_OLD_POLY:
         if (bunshin_save)
         {
-            msg_print("The attack hits Shadow. You are unharmed!");
+            msg_print("攻击击中了暗影。你毫发无伤！");
             break;
         }
         if ( player_obviously_poly_immune(TRUE))
         {
             if (flags & GF_AFFECT_SPELL)
-                msg_print("You are unaffected!");
+                msg_print("你未受影响！");
         }
         else if (_plr_save(who, 0))
         {
             if (flags & GF_AFFECT_SPELL)
-                msg_print("You resist the effects!");
+                msg_print("你抵抗了该效果！");
         }
         else
         {
@@ -1598,7 +1598,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
             dam = dam * MIN(66, race->spells->freq) / 100;
         break;
     case GF_ACID:
-        if (touch && seen_msg) msg_format("%^s is <color:G>dissolved</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:G>溶解</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_IM_ACID)
@@ -1615,7 +1615,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         }
         break;
     case GF_ELEC:
-        if (touch && seen_msg) msg_format("%^s is <color:b>shocked</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s遭到了<color:b>电击</color>！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_IM_ELEC)
@@ -1632,7 +1632,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         }
         break;
     case GF_FIRE:
-        if (touch && seen_msg) msg_format("%^s is <color:r>burned</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:r>烧伤</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_IM_FIRE)
@@ -1655,7 +1655,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         }
         break;
     case GF_COLD:
-        if (touch && seen_msg) msg_format("%^s is <color:W>frozen</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:W>冻住</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_IM_COLD)
@@ -1679,7 +1679,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         break;
     case GF_POIS:
         if (touch && seen_msg && !(race->flagsr & RFR_IM_POIS))
-            msg_format("%^s is <color:G>poisoned</color>!", m_name);
+            msg_format("%^s<color:G>中毒</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_IM_POIS)
@@ -1697,7 +1697,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         }
         break;
     case GF_NUKE:
-        if (touch && seen_msg) msg_format("%^s is <color:G>irradiated</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s遭到了<color:G>辐射</color>！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_IM_POIS)
@@ -1715,7 +1715,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         else if (one_in_(3)) do_poly = TRUE;
         break;
     case GF_HELL_FIRE:
-        if (touch && seen_msg) msg_format("%^s is <color:D>%s</color>!", m_name, (race->flags3 & RF3_GOOD) ? "*burned*" : "burned");
+        if (touch && seen_msg) msg_format("%^s被<color:D>%s</color>了！", m_name, (race->flags3 & RF3_GOOD) ? "*焚烧*" : "烧伤");
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flags3 & RF3_GOOD)
@@ -1736,14 +1736,14 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         }
         else if (race->flags3 & RF3_EVIL)
         {
-            if (touch && seen_msg) msg_format("%^s is <color:D>*burned*</color>!", m_name);
+            if (touch && seen_msg) msg_format("%^s被<color:D>*焚烧*</color>了！", m_name);
             dam *= 2;
             if (!touch) note = " is hit hard.";
             mon_lore_3(mon, RF3_EVIL);
         }
         else
         {
-            if (touch && seen_msg) msg_format("%^s is <color:D>burned</color>!", m_name);
+            if (touch && seen_msg) msg_format("%^s被<color:D>烧伤</color>了！", m_name);
             dam *= 3; dam /= randint1(6) + 6;
         }
         break;
@@ -1752,7 +1752,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         _BABBLE_HACK()
         break;
     case GF_PLASMA:
-        if (touch && seen_msg) msg_format("%^s is <color:R>burned</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:R>烧伤</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_RES_PLAS)
@@ -1771,14 +1771,14 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         if (monster_living(race) /* && some sort of save */)
         {
             mon->mpower = MAX(MIN(100, mon->mpower), mon->mpower - dam);
-            if (seen_msg) msg_format("%^s grows less powerful.", m_name);
+            if (seen_msg) msg_format("%^s变得不那么强大了。", m_name);
             if (!(flags & GF_AFFECT_SPELL) && who == GF_WHO_PLAYER)
                 lp_player(dam);
             return TRUE; /* using note causes messages out of order */
         }
         return FALSE;
     case GF_NETHER:
-        if (touch && seen_msg) msg_format("%^s is <color:D>drained</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:D>吸取</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if ((race->flagsr & RFR_RES_NETH) || (race->flags3 & RF3_UNDEAD))
@@ -1822,7 +1822,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         else do_stun = mon_stun_amount(dam);
         break;
     case GF_CHAOS:
-        if (touch && seen_msg) msg_format("%^s is <color:v>unmade</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:v>解构</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_RES_CHAO)
@@ -1849,7 +1849,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         }
         break;
     case GF_SHARDS:
-        if (touch && seen_msg) msg_format("%^s is <color:U>shredded</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:U>撕碎</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_RES_SHAR)
@@ -1862,7 +1862,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
     case GF_BOMB:
     {
         int sound_dam = 0, shard_dam = 0;
-        if (touch && seen_msg) msg_format("%^s is <color:s>blasted</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:s>炸飞</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         _bomb_calc_dam(&dam, &sound_dam, &shard_dam, mon->id);
@@ -1873,7 +1873,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         }
         if (race->flagsr & RFR_RES_SOUN)
         {
-            note = (race->flagsr & RFR_RES_SHAR) ? " resists." : " resists somewhat.";
+            note = (race->flagsr & RFR_RES_SHAR) ? "抵抗了。" : "部分抵抗了。";
             mon_lore_r(mon, RFR_RES_SOUN);
         }
         else if (who == GF_WHO_PLAYER && mon_stun_save(race->level, sound_dam))
@@ -1943,7 +1943,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         /* More Powerful vs. Evil */
         if ((race->flags3 & RF3_EVIL) && one_in_(5))
         {
-            msg_print("You blast the forces of evil with great power!");
+            msg_print("你以强大的力量重创了邪恶势力！");
             dam = dam * 2;
 
             /* Attempt a Powerful Slow */
@@ -1982,7 +1982,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         }
         break;
     case GF_CONFUSION:
-        if (touch && seen_msg) msg_format("%^s is <color:U>baffled</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:U>困惑</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flags3 & RF3_NO_CONF)
@@ -2001,7 +2001,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         else do_conf = _gf_distance_mod(10 + randint1(15));
         break;
     case GF_DISENCHANT:
-        if (touch && seen_msg) msg_format("%^s is <color:v>disenchanted</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:v>解除魔法</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_RES_DISE)
@@ -2012,7 +2012,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         }
         break;
     case GF_NEXUS:
-        if (touch && seen_msg) msg_format("%^s is <color:v>scrambled</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:v>扰乱</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_RES_NEXU)
@@ -2036,7 +2036,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
             do_stun = mon_stun_amount(dam);
         break;
     case GF_INERT:
-        if (touch && seen_msg) msg_format("%^s is <color:W>decelerated</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:W>减速</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_RES_INER)
@@ -2061,7 +2061,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         break;
     case GF_SLOW:
     case GF_BABY_SLOW:
-        if (touch && seen_msg) msg_format("%^s is <color:W>slowed</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:W>减速</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_RES_INER)
@@ -2081,7 +2081,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         if (type == GF_BABY_SLOW) dam = 0; /* no real damage */
         break;
     case GF_GAIN_EXP:
-        if (touch && seen_msg) msg_format("%^s is <color:G>leveled</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:G>压扁</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
 
@@ -2098,7 +2098,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         dam = 0; /* no real damage */
         break;
     case GF_TIME:
-        if (touch && seen_msg) msg_format("%^s is <color:B>chronosmashed</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s遭到了<color:B>时间粉碎</color>！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_RES_TIME)
@@ -2211,7 +2211,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
     case GF_GRAVITY: {
         bool resist_tele = FALSE;
 
-        if (touch && seen_msg && type == GF_GRAVITY) msg_format("%^s is <color:W>warped</color>!", m_name);
+        if (touch && seen_msg && type == GF_GRAVITY) msg_format("%^s被<color:W>扭曲</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_RES_TELE)
@@ -2361,7 +2361,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         /* PSI only works if the monster can see you! -- RG */
         if (!(los(mon->fy, mon->fx, py, px)))
         {
-            if (seen_msg) msg_format("%^s can't see you, and isn't affected!", m_name);
+            if (seen_msg) msg_format("%^s看不到你，未受影响！", m_name);
             skipped = TRUE;
             break;
         }
@@ -2389,13 +2389,13 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
                 one_in_(2))
             {
                 note = NULL;
-                msg_format("%^s%s corrupted mind backlashes your attack!",
+                msg_format("%^s%s腐化的心智反噬了你的攻击！",
                     m_name, (seen ? "'s" : "s"));
 
                 /* Saving throw */
                 if ((randint0(100 + race->level / 2) < p_ptr->skills.sav) && !CHECK_MULTISHADOW())
                 {
-                    msg_print("You resist the effects!");
+                    msg_print("你抵抗了该效果！");
 
                 }
                 else
@@ -2478,13 +2478,13 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
                  (one_in_(2)))
             {
                 note = NULL;
-                msg_format("%^s%s corrupted mind backlashes your attack!",
+                msg_format("%^s%s腐化的心智反噬了你的攻击！",
                     m_name, (seen ? "'s" : "s"));
 
                 /* Saving throw */
                 if ((randint0(100 + race->level / 2) < p_ptr->skills.sav) && !CHECK_MULTISHADOW())
                 {
-                    msg_print("You resist the effects!");
+                    msg_print("你抵抗了该效果！");
                 }
                 else
                 {
@@ -2492,7 +2492,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
                     monster_desc(killer, mon, MD_IGNORE_HALLU | MD_ASSUME_VISIBLE | MD_INDEF_VISIBLE);
                     if ((!CHECK_MULTISHADOW()) && (player_mana_drainable()))
                     {
-                        msg_print("Your psychic energy is drained!");
+                        msg_print("你的精神能量被吸取了！");
 
                         p_ptr->csp -= damroll(5, dam) / 2;
                         if (p_ptr->csp < 0) p_ptr->csp = 0;
@@ -2508,7 +2508,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         {
             int b = damroll(5, dam) / 4;
             cptr str = (p_ptr->pclass == CLASS_MINDCRAFTER) ? "psychic energy" : "mana";
-            msg_format("You convert %s%s pain into %s!",
+            msg_format("你将%s%s痛苦转化为了%s！",
                 m_name, (seen ? "'s" : "s"), str);
 
             b = MIN(p_ptr->msp, p_ptr->csp + b);
@@ -2569,13 +2569,13 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
                 (one_in_(2)))
             {
                 note = NULL;
-                msg_format("%^s%s corrupted mind backlashes your attack!",
+                msg_format("%^s%s腐化的心智反噬了你的攻击！",
                     m_name, (seen ? "'s" : "s"));
 
                 /* Saving throw */
                 if (randint0(100 + race->level/2) < p_ptr->skills.sav)
                 {
-                    msg_print("You resist the effects!");
+                    msg_print("你抵抗了该效果！");
 
                 }
                 else
@@ -2651,7 +2651,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         }
         break; }
     case GF_ICE:
-        if (touch && seen_msg) msg_format("%^s is <color:W>frozen</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:W>冻住</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (who || !mon_save_p(mon->r_idx, A_NONE))
@@ -2779,7 +2779,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
 
         if ((mon->maxhp < mon->max_maxhp) || (mon->mpower < 1000))
         {
-            if (seen_msg) msg_format("%^s recovers %s vitality.", m_name, m_poss);
+            if (seen_msg) msg_format("%^s恢复了%s的生命力。", m_name, m_poss);
             mon->maxhp = mon->max_maxhp;
             mon->mpower = MAX(1000, mon->mpower);
         }
@@ -2799,17 +2799,17 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         (void)set_monster_csleep(mon->id, 0);
         if (MON_STUNNED(mon))
         {
-            if (seen_msg) msg_format("%^s is no longer stunned.", m_name);
+            if (seen_msg) msg_format("%^s不再被震慑了。", m_name);
             (void)set_monster_stunned(mon->id, 0);
         }
         if (MON_CONFUSED(mon))
         {
-            if (seen_msg) msg_format("%^s is no longer confused.", m_name);
+            if (seen_msg) msg_format("%^s不再困惑了。", m_name);
             (void)set_monster_confused(mon->id, 0);
         }
         if (MON_MONFEAR(mon))
         {
-            if (seen_msg) msg_format("%^s recovers %s courage.", m_name, m_poss);
+            if (seen_msg) msg_format("%^s恢复了%s的勇气。", m_name, m_poss);
             (void)set_monster_monfear(mon->id, 0);
         }
 
@@ -2900,17 +2900,17 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
             set_monster_csleep(mon->id, 0);
             if (MON_STUNNED(mon))
             {
-                if (seen_msg) msg_format("%^s is no longer stunned.", m_name);
+                if (seen_msg) msg_format("%^s不再被震慑了。", m_name);
                 set_monster_stunned(mon->id, 0);
             }
             if (MON_CONFUSED(mon))
             {
-                if (seen_msg) msg_format("%^s is no longer confused.", m_name);
+                if (seen_msg) msg_format("%^s不再困惑了。", m_name);
                 set_monster_confused(mon->id, 0);
             }
             if (MON_MONFEAR(mon))
             {
-                if (seen_msg) msg_format("%^s recovers %s courage.", m_name, m_poss);
+                if (seen_msg) msg_format("%^s恢复了%s的勇气。", m_name, m_poss);
                 set_monster_monfear(mon->id, 0);
             }
 
@@ -3023,7 +3023,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
                 }
                 else
                 {
-                    msg_format("%s bows to your will!", m_name);
+                    msg_format("%s屈服于你的意志！", m_name);
 
                     set_pet(mon);
                     attempts = 0;
@@ -3101,7 +3101,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         taso = MAX(taso, mon_difficulty);
         voima = randint1(dam);
 
-        if (p_ptr->wizard) msg_format("Charm power: %d/%d", voima, dam);
+        if (p_ptr->wizard) msg_format("魅惑力量：%d/%d", voima, dam);
 
         if ((race->flagsr & RFR_RES_ALL) || (mon->mflag2 & MFLAG2_NOPET) || p_ptr->inside_arena)
         {
@@ -3262,7 +3262,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         if (p_ptr->spin > 0) dam += MAX(25, dam * 2 / 5);
         if (p_ptr->uimapuku) dam = dam * 3 / 2;
         if (dam < 1) dam = 1;
-        msg_format("You stare into %s.", m_name_object);
+        msg_format("你凝视着%s。", m_name_object);
         if ((race->flagsr & RFR_RES_ALL) || (mon->mflag2 & MFLAG2_NOPET) || p_ptr->inside_arena)
         {
             note = " is immune.";
@@ -3407,7 +3407,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         else dam = 0;
         break;
     case GF_LITE:
-        if (touch && seen_msg) msg_format("%^s is <color:y>dazzled</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s被<color:y>目眩</color>了！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_RES_LITE)
@@ -3427,7 +3427,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         }
         break;
     case GF_DARK:
-        if (touch && seen_msg) msg_format("%^s is <color:D>benighted</color>!", m_name);
+        if (touch && seen_msg) msg_format("%^s陷入了<color:D>黑暗</color>！", m_name);
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
         if (race->flagsr & RFR_RES_DARK)
@@ -3765,7 +3765,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         }
         else
         {
-            msg_format("%^s is unaffected.", m_name);
+            msg_format("%^s未受影响。", m_name);
             dam = 0;
         }
         break;
@@ -3780,16 +3780,16 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
                 {
                     (void)hp_mon(caster_ptr, 6 * dam, FALSE);
                     monster_desc(killer, caster_ptr, 0);
-                    if (mon_show_msg(caster_ptr)) msg_format("%^s appears healthier.", killer);
+                    if (mon_show_msg(caster_ptr)) msg_format("%^s看起来更健康了。", killer);
                 }
             }
             else if (!no_harm)
             {
-                msg_format("You draw psychic energy from %s.", m_name_object);
+                msg_format("你从%s身上吸取了精神能量。", m_name_object);
                 hp_player(MIN(dam, mon->hp));
             }
         }
-        else if (seen_msg) msg_format("%^s is unaffected.", m_name);
+        else if (seen_msg) msg_format("%^s未受影响。", m_name);
         dam = 0;
         break;
     case GF_ANTIMAGIC: { /* Formerly restricted to rage-mage. But now, mon vs mon */
@@ -3819,7 +3819,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         }
         if (save)
         {
-            if (seen_msg) msg_format("%^s resists!", m_name);
+            if (seen_msg) msg_format("%^s抵抗了！", m_name);
             dam = 0;
             mon->anti_magic_ct = 0;
             return TRUE;
@@ -3828,7 +3828,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         {
             int dur = 2 + randint1(2);
             mon->anti_magic_ct = dur;
-            if (seen_msg) msg_format("%^s can no longer cast spells!", m_name);
+            if (seen_msg) msg_format("%^s无法再施法了！", m_name);
             dam = 0;
             return TRUE;
         }
@@ -3881,7 +3881,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         break;
     case GF_MIND_BLAST:
         if (seen) obvious = TRUE;
-        if (who == GF_WHO_PLAYER) msg_format("You gaze intently at %s.", m_name_object);
+        if (who == GF_WHO_PLAYER) msg_format("你专注地凝视着%s。", m_name_object);
         _BABBLE_HACK()
         if ((race->flags1 & RF1_UNIQUE) ||
              (race->flags3 & RF3_NO_CONF) ||
@@ -3915,7 +3915,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         break;
     case GF_BRAIN_SMASH:
         if (seen) obvious = TRUE;
-        if (who == GF_WHO_PLAYER) msg_format("You gaze intently at %s.", m_name_object);
+        if (who == GF_WHO_PLAYER) msg_format("你专注地凝视着%s。", m_name_object);
         _BABBLE_HACK()
         if ((race->flags1 & RF1_UNIQUE) ||
             /* (race->flags3 & RF3_NO_CONF) || */
@@ -3959,7 +3959,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         break;
     case GF_CAUSE_1:
         if (seen) obvious = TRUE;
-        if (!who) msg_format("You %s at %s and curse.", prace_is_(RACE_MON_BEHOLDER) ? "gaze" : "point", m_name);
+        if (!who) msg_format("你%s%s并施以诅咒。", prace_is_(RACE_MON_BEHOLDER) ? "凝视" : "指着", m_name);
         _BABBLE_HACK()
         if (randint0(100 + (caster_lev / 2)) < (race->level + 35))
         {
@@ -3969,7 +3969,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         break;
     case GF_CAUSE_2:
         if (seen) obvious = TRUE;
-        if (!who) msg_format("You %s at %s and curse horribly.", prace_is_(RACE_MON_BEHOLDER) ? "gaze" : "point", m_name);
+        if (!who) msg_format("你%s%s并施以可怕的诅咒。", prace_is_(RACE_MON_BEHOLDER) ? "凝视" : "指着", m_name);
         _BABBLE_HACK()
         if (randint0(100 + (caster_lev / 2)) < (race->level + 35))
         {
@@ -3979,7 +3979,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         break;
     case GF_CAUSE_3:
         if (seen) obvious = TRUE;
-        if (!who) msg_format("You point at %s, incanting terribly!", m_name);
+        if (!who) msg_format("你指着%s，念出了可怕的咒语！", m_name);
         _BABBLE_HACK()
         if (randint0(100 + (caster_lev / 2)) < (race->level + 35))
         {
@@ -3990,7 +3990,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
     case GF_CAUSE_4: {
         bool save = FALSE;
         if (seen) obvious = TRUE;
-        if (!who) msg_format("You %s at %s and scream the word, 'DIE!'.", prace_is_(RACE_MON_BEHOLDER) ? "gaze" : "point", m_name);
+        if (!who) msg_format("你%s%s并尖叫着：“死吧！”。", prace_is_(RACE_MON_BEHOLDER) ? "凝视" : "指着", m_name);
         _BABBLE_HACK()
         if (who == GF_WHO_PLAYER)
         {
@@ -4033,7 +4033,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         int nokori_hp;
         if (!quests_allow_all_spells() && !is_pet(mon))
         {
-            msg_print("Town quests only permit capturing of pets.");
+            msg_print("城镇任务只允许捕捉宠物。");
             skipped = TRUE;
             break;
         }
@@ -4045,7 +4045,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
           || (mon->smart & (1U << SM_CLONED))
           || mon->parent_m_idx )
         {
-            msg_format("%^s is immune.", m_name);
+            msg_format("%^s免疫该效果。", m_name);
             skipped = TRUE;
             break;
         }
@@ -4053,7 +4053,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
           || (race->flags7 & RF7_NAZGUL))
           && (!is_pet(mon)))
         {
-            msg_format("%^s cannot be captured now.", m_name);
+            msg_format("现在无法捕捉%^s。", m_name);
             skipped = TRUE;
             break;
         }
@@ -4069,13 +4069,13 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
 
         if (mon->hp >= nokori_hp)
         {
-            msg_format("You need to weaken %s more.", m_name);
+            msg_format("你需要进一步削弱%s。", m_name);
             skipped = TRUE;
         }
         else if (mon->hp <= randint0(nokori_hp))
         {
             if (mon->mflag2 & MFLAG2_CHAMELEON) choose_new_monster(mon->id, FALSE, MON_CHAMELEON);
-            msg_format("You capture %s!", m_name);
+            msg_format("你捕获了%s！", m_name);
             quests_on_kill_mon(mon);
             cap_mon = mon->r_idx;
             cap_mspeed = mon->mspeed;
@@ -4086,7 +4086,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
             {
                 if (rakuba(-1, FALSE))
                 {
-                    msg_format("You have fallen from %s.", m_name);
+                    msg_format("你从%s身上摔了下来。", m_name);
                 }
             }
             delete_monster_idx(mon->id);
@@ -4094,7 +4094,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         }
         else
         {
-            msg_format("You failed to capture %s.", m_name);
+            msg_format("你未能捕获%s。", m_name);
             skipped = TRUE;
         }
         break; }
@@ -4105,7 +4105,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         }
         if (dam == BEHOLDER_GAZE && !los(mon->fy, mon->fx, py, px))
         {
-            if (seen_msg) msg_format("%^s can't see you, and isn't affected!", m_name);
+            if (seen_msg) msg_format("%^s看不到你，未受影响！", m_name);
             skipped = TRUE;
             break;
         }
@@ -4215,7 +4215,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
 
         if (is_pet(mon) || is_friendly(mon))
         {
-            msg_print("Failed!");
+            msg_print("失败！");
             return FALSE;
         }
 
@@ -4234,14 +4234,14 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
     case GF_GENOCIDE:
         if (seen) obvious = TRUE;
         _BABBLE_HACK()
-        if (genocide_aux(mon->id, dam, !who, (race->level + 1) / 2, "Genocide One"))
+        if (genocide_aux(mon->id, dam, !who, (race->level + 1) / 2, "单一灭绝"))
         {
             if (seen_msg)
             {
                 if (dam == 666) /* Hack for Daemon flavored message */
-                    msg_format("%^s is sent directly to hell!", m_name);
+                    msg_format("%^s被直接送下了地狱！", m_name);
                 else
-                    msg_format("%^s disappeared!", m_name);
+                    msg_format("%^s消失了！", m_name);
             }
 
             virtue_add(VIRTUE_VITALITY, -1);
@@ -4250,7 +4250,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         skipped = TRUE;
         break;
     case GF_PHOTO:
-        if (!who) msg_format("You take a photograph of %s.", m_name);
+        if (!who) msg_format("你拍下了%s的照片。", m_name);
         /* Hurt by light */
         if ((race->flags3 & (RF3_HURT_LITE)) && (!no_harm))
         {
@@ -4554,7 +4554,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
 
             if (sad)
             {
-                msg_print("You feel sad for a moment.");
+                msg_print("你短暂地感到一阵悲伤。");
             }
         }
 
@@ -4578,7 +4578,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
     }
     else if (heal_leper)
     {
-        if (seen_msg) msg_print("The Mangy looking leper is healed!");
+        if (seen_msg) msg_print("满身疥癣的麻风病人被治愈了！");
         delete_monster_idx(mon->id);
     }
     /* If the player did it, give him experience, check fear */
@@ -4599,7 +4599,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
             }
         }
 
-        if ((ash_changed) && (attack_spell_hack != old_ash) && ((race->flags1 & RF1_NEVER_MOVE) || (!is_hostile(mon)) || ((note) && (strpos("is immune", note)))))
+        if ((ash_changed) && (attack_spell_hack != old_ash) && ((race->flags1 & RF1_NEVER_MOVE) || (!is_hostile(mon)) || ((note) && (strpos("免疫", note)))))
         { /* Useless after all */
             attack_spell_hack = old_ash;
         }
@@ -4722,7 +4722,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
 
                 /* Message */
                 if (seen_msg)
-                    msg_format("%^s flees in terror!", m_name);
+                    msg_format("%^s惊恐地逃跑了！", m_name);
             }
 
             /* Hack -- handle sleep */
@@ -4743,7 +4743,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
                 case 1: case 2:
                 if (!count)
                 {
-                    msg_print("The ground trembles...");
+                    msg_print("地面在颤抖……");
 
                     earthquake(ty, tx, 4 + randint0(4));
                     if (!one_in_(6)) break;
@@ -4752,7 +4752,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
                 if (!count)
                 {
                     int dam = damroll(10, 10);
-                    msg_print("A portal opens to a plane of raw mana!");
+                    msg_print("通往原始法力位面的传送门打开了！");
 
                     project(0, 8, ty,tx, dam, GF_MANA, curse_flg);
                     if (!one_in_(6)) break;
@@ -4760,14 +4760,14 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
                 case 9: case 10: case 11:
                 if (!count)
                 {
-                    msg_format("Space warps about %s!", m_name);
+                    msg_format("%s周围的空间扭曲了！", m_name);
 
                     if (mon->r_idx) teleport_away(mon->id, damroll(10, 10), TELEPORT_PASSIVE);
                     if (one_in_(13)) count += activate_hi_summon(ty, tx, TRUE);
                     if (!one_in_(6)) break;
                 }
                 case 12: case 13: case 14: case 15: case 16:
-                    msg_format("%^s feels a surge of energy!", m_name);
+                    msg_format("%^s感到能量涌动！", m_name);
 
                     project(0, 7, ty, tx, 50, GF_DISINTEGRATE, curse_flg);
                     if (!one_in_(6)) break;
@@ -4792,7 +4792,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
                 {
                     if (!count)
                     {
-                        msg_format("Time warps about %s!", m_name);
+                        msg_format("%s周围的时间扭曲了！", m_name);
 
                         project(0, 1, ty, tx, 50, GF_TIME, curse_flg);
                         break;

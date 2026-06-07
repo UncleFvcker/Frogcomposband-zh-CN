@@ -40,7 +40,7 @@ static bool _mirror_place(void)
 {
     if (!cave_clean_bold(py, px))
     {
-        msg_print("The object resists the spell.");
+        msg_print("该物品抵抗了法术。");
         return FALSE;
     }
 
@@ -59,13 +59,13 @@ static void _banishing_mirror_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Banishing Mirror");
+        var_set_string(res, "放逐之镜");
         break;
     case SPELL_DESC:
         if (_on_mirror)
-            var_set_string(res, "Quickly teleport away a nearby monster.");
+            var_set_string(res, "快速将附近的怪物传送走。");
         else
-            var_set_string(res, "Teleport away a nearby monster.");
+            var_set_string(res, "将附近的怪物传送走。");
         break;
     case SPELL_CAST:
     {
@@ -94,17 +94,17 @@ static void _binding_field_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Binding Field");
+        var_set_string(res, "束缚力场");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generates a magical triangle which damages all monsters in the area. The vertices of the triangle is you and two mirrors in sight.");
+        var_set_string(res, "产生一个魔法三角形，对该区域内的所有怪物造成伤害。三角形的顶点是你以及视线内的两面镜子。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam));
         break;
     case SPELL_CAST:
         if (!binding_field(dam))
-            msg_print("You were not able to choose suitable mirrors!");
+            msg_print("你无法选择合适的镜子！");
         var_set_bool(res, TRUE);
         break;
     default:
@@ -118,10 +118,10 @@ static void _break_mirrors_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Break Mirrors");
+        var_set_string(res, "打碎镜子");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Destroys all mirrors on the current levels. Monsters close to a mirror take damage.");
+        var_set_string(res, "摧毁当前楼层所有的镜子。靠近镜子的怪物会受到伤害。");
         break;
     case SPELL_CAST:
         remove_all_mirrors(TRUE);
@@ -142,13 +142,13 @@ static void _drip_of_light_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Drip of Light");
+        var_set_string(res, "光之滴");
         break;
     case SPELL_DESC:
         if (p_ptr->lev >= 10)
-            var_set_string(res, "Fires a beam of light or a bolt of light, depending on whether you are standing on a mirror.");
+            var_set_string(res, "发射一束光线或一支光箭，取决于你是否站在镜子上。");
         else
-            var_set_string(res, "Fires a bolt of light.");
+            var_set_string(res, "发射一支光箭。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(spell_power(dd), ds, spell_power(p_ptr->to_d_spell)));
@@ -179,10 +179,10 @@ static void _illusion_light_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Illusion Light");
+        var_set_string(res, "幻觉之光");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to slow, stun, confuse, scare, freeze all monsters in sight. This is more powerful if you are standing on a mirror.");
+        var_set_string(res, "尝试减速、震慑、混乱、恐吓或冻结视线内的所有怪物。如果你站在镜子上，此效果会更强大。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(power));
@@ -206,16 +206,16 @@ static void _make_mirror_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Make Mirror");
+        var_set_string(res, "制造镜子");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Makes a mirror under you.");
+        var_set_string(res, "在你脚下制造一面镜子。");
         break;
     case SPELL_CAST:
         if (_mirrors_ct() < _mirrors_max())
             _mirror_place();
         else
-            msg_print("There are too many mirrors to control!");
+            msg_print("镜子太多了，无法控制！");
         var_set_bool(res, TRUE);
         break;
     default:
@@ -233,10 +233,10 @@ static void _mirror_clashing_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mirror Clashing");
+        var_set_string(res, "镜面碎击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a ball of shards.");
+        var_set_string(res, "发射一个由碎片组成的球体。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(spell_power(dd), ds, spell_power(p_ptr->to_d_spell)));
@@ -261,7 +261,7 @@ static void _mirror_concentration_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mirror Concentration");
+        var_set_string(res, "镜之专注");
         break;
     case SPELL_DESC:
         var_set_string(res, "");
@@ -270,12 +270,12 @@ static void _mirror_concentration_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (total_friends)
         {
-            msg_print("You need to focus on your pets.");
+            msg_print("你需要专注于你的宠物。");
             return;
         }
         if (_on_mirror)
         {
-            msg_print("You feel your head clear a little.");
+            msg_print("你觉得头脑清醒了一点。");
 
             p_ptr->csp += (5 + p_ptr->lev * p_ptr->lev / 100);
             if (p_ptr->csp >= p_ptr->msp)
@@ -289,7 +289,7 @@ static void _mirror_concentration_spell(int cmd, variant *res)
         }
         else
         {
-            msg_print("You need to stand on a mirror to use this spell!");
+            msg_print("你需要站在镜子上才能使用这个法术！");
         }
         break;
     default:
@@ -303,10 +303,10 @@ static void _mirror_of_light_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mirror of Light");
+        var_set_string(res, "光之镜");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Lights up nearby area and the inside of a room permanently.");
+        var_set_string(res, "永久照亮附近区域和房间内部。");
         break;
     case SPELL_CAST:
         lite_area(damroll(2, p_ptr->lev/2), p_ptr->lev/10 + 1);
@@ -323,10 +323,10 @@ static void _mirror_of_recall_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mirror of Recall");
+        var_set_string(res, "召回之镜");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Recalls player from dungeon to town, or from town to the deepest level of dungeon.");
+        var_set_string(res, "将玩家从地下城召回城镇，或从城镇召回地下城最深的一层。");
         break;
     case SPELL_CAST:
         var_set_bool(res, word_of_recall(TRUE));
@@ -342,10 +342,10 @@ static void _mirror_of_ruffnor_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mirror of Ruffnor");
+        var_set_string(res, "拉夫诺之镜");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generates barrier which completely protect you from almost all damages. Takes a few your turns when the barrier breaks or duration time is exceeded.");
+        var_set_string(res, "产生一个屏障，几乎完全保护你免受所有伤害。当屏障破裂或持续时间超过时，会消耗你几个回合的时间。");
         break;
     case SPELL_CAST:
         set_invuln(spell_power(randint1(4) + 4), FALSE);
@@ -368,24 +368,24 @@ static void _mirror_of_seeing_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mirror of Seeing");
+        var_set_string(res, "洞察之镜");
         break;
     case SPELL_DESC:
         if (lvl >= 39)
-            var_set_string(res, "Detects monsters in your vicinity. Grants temporary ESP. Maps nearby area.");
+            var_set_string(res, "探测你附近的怪物。提供临时心灵感应(ESP)。绘制附近区域的地图。");
         else if (lvl >= 29)
-            var_set_string(res, "Detects monsters in your vicinity. Grants temporary ESP");
+            var_set_string(res, "探测你附近的怪物。提供临时心灵感应(ESP)");
         else if (lvl >= 19)
-            var_set_string(res, "Detects monsters in your vicinity.");
+            var_set_string(res, "探测你附近的怪物。");
         else if (lvl >= 5)
-            var_set_string(res, "Detects visible monsters in your vicinity.");
+            var_set_string(res, "探测你附近可见的怪物。");
         else
-            var_set_string(res, "Does nothing since you are too weak. Try standing on a mirror.");
+            var_set_string(res, "因为你太弱了而毫无效果。试着站在一面镜子上。");
         break;
     case SPELL_CAST:
     {
         if (lvl < 5)
-            msg_print("You need a mirror to concentrate!");
+            msg_print("你需要一面镜子来集中精神！");
 
         if (lvl >= 5)
             detect_monsters_normal(DETECT_RAD_DEFAULT);
@@ -410,13 +410,13 @@ static void _mirror_of_wandering_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mirror of Wandering");
+        var_set_string(res, "漂泊之镜");
         break;
     case SPELL_DESC:
         if (_on_mirror)
-            var_set_string(res, "Quickly teleport a long distance.");
+            var_set_string(res, "快速传送很长一段距离。");
         else
-            var_set_string(res, "Teleport a long distance.");
+            var_set_string(res, "传送很长一段距离。");
         break;
     case SPELL_CAST:
         teleport_player(p_ptr->lev*5, 0);
@@ -444,14 +444,14 @@ static void _mirror_shifting_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mirror Shifting");
+        var_set_string(res, "镜面穿梭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Recreates current dungeon level. Can only be used on a mirror.");
+        var_set_string(res, "重新生成当前地下城楼层。只能在镜子上使用。");
         break;
     case SPELL_CAST:
         if (!_on_mirror)
-            msg_print("You cannot find the World of the Mirror!");
+            msg_print("你无法找到镜之世界！");
         else
             alter_reality();
         var_set_bool(res, TRUE);
@@ -472,10 +472,10 @@ static void _mirror_sleeping_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mirror Sleeping");
+        var_set_string(res, "沉睡之镜");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generate balls which send monsters to sleep on all mirrors in the whole level.");
+        var_set_string(res, "在整个楼层的所有镜子上产生让怪物沉睡的球体。");
         break;
     case SPELL_CAST:
         _for_each_mirror(_mirror_sleeping_fn);
@@ -492,23 +492,23 @@ static void _mirror_tunnel_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mirror Tunnel");
+        var_set_string(res, "镜之隧道");
         break;
     case SPELL_DESC:
         if (_on_mirror)
-            var_set_string(res, "Quickly teleport to a given location.");
+            var_set_string(res, "快速传送到给定位置。");
         else
-            var_set_string(res, "Teleport to a given location.");
+            var_set_string(res, "传送到给定位置。");
         break;
     case SPELL_CAST:
     {
         int x = 0, y = 0;
         var_set_bool(res, FALSE);
 
-        msg_print("You go through the mirror world ...");
+        msg_print("你穿过了镜之世界……");
         if (!tgt_pt(&x, &y, p_ptr->lev / 2 + 10)) return;
         if (!dimension_door_aux(x, y, p_ptr->lev / 2 + 10))
-            msg_print("You fail to pass into the mirror plane correctly!");
+            msg_print("你未能正确进入镜像位面！");
 
         var_set_bool(res, TRUE);
         break;
@@ -535,10 +535,10 @@ static void _multi_shadow_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Multishadow");
+        var_set_string(res, "多重影身");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gives you a 1 in 3 chance to completely evade an attack.");
+        var_set_string(res, "给予你 1/3 的几率完全闪避一次攻击。");
         break;
     case SPELL_CAST:
         set_multishadow(6 + randint1(6), FALSE);
@@ -555,10 +555,10 @@ static void _robe_of_dust_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Robe of Dust");
+        var_set_string(res, "尘埃之袍");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gives aura of shards of mirror for a while, damaging any monster that attacks you in melee.");
+        var_set_string(res, "在一段时间内提供镜之碎片光环，伤害任何在近战中攻击你的怪物。");
         break;
     case SPELL_CAST:
         set_dustrobe(20+randint1(20),FALSE);
@@ -584,10 +584,10 @@ static void _seal_of_mirror_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Seal of Mirror");
+        var_set_string(res, "镜之封印");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Eliminates a monster on a mirror from current dungeon level.");
+        var_set_string(res, "将一只位于镜子上的怪物从当前地下城楼层抹除。");
         break;
     case SPELL_CAST:
         _for_each_mirror(_seal_of_mirror_fn);
@@ -607,10 +607,10 @@ static void _seeker_ray_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Seeker Ray");
+        var_set_string(res, "追踪射线");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a beam of mana. If the beam hit a mirror, it breaks that mirror and reflects toward another mirror.");
+        var_set_string(res, "发射一束法力射线。如果射线击中镜子，它会打破那面镜子，并向另一面镜子反射。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(spell_power(dd), ds, spell_power(p_ptr->to_d_spell)));
@@ -637,15 +637,15 @@ static void _shield_of_water_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shield of Water");
+        var_set_string(res, "水之盾");
         break;
     case SPELL_DESC:
         if (lvl >= 40)
-            var_set_string(res, "Gives a bonus to AC, reflection and magic resistance.");
+            var_set_string(res, "提供护甲等级(AC)、反射和魔法抗性的加成。");
         else if (lvl >= 32)
-            var_set_string(res, "Gives a bonus to AC and reflection.");
+            var_set_string(res, "提供护甲等级(AC)和反射的加成。");
         else
-            var_set_string(res, "Gives a bonus to AC.");
+            var_set_string(res, "提供护甲等级(AC)加成。");
         break;
     case SPELL_CAST:
         set_shield(20 + randint1(20), FALSE);
@@ -670,10 +670,10 @@ static void _super_ray_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Super Ray");
+        var_set_string(res, "超级射线");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a powerful beam of mana. If the beam hit a mirror, it breaks that mirror and fires 8 beams of mana to 8 different directions from that point.");
+        var_set_string(res, "发射一道强大的法力射线。如果射线击中镜子，它会打破那面镜子，并从该点向8个不同方向发射8道法力射线。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(dd, spell_power(ds), b));
@@ -698,13 +698,13 @@ static void _warped_mirror_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Warped Mirror");
+        var_set_string(res, "扭曲之镜");
         break;
     case SPELL_DESC:
         if (_on_mirror)
-            var_set_string(res, "Quickly teleport a short distance.");
+            var_set_string(res, "快速传送一小段距离。");
         else
-            var_set_string(res, "Teleport a short distance.");
+            var_set_string(res, "传送一小段距离。");
         break;
     case SPELL_CAST:
         teleport_player(10, 0);
@@ -778,7 +778,7 @@ static power_info *_get_powers(void)
 static void _character_dump(doc_ptr doc)
 {
     spellbook_character_dump(doc);
-    doc_insert(doc, "<color:r>Realm:</color> <color:B>Mirror Magic</color>\n");
+    doc_insert(doc, "<color:r>领域:</color> <color:B>镜之魔法</color>\n");
     py_dump_spells_aux(doc);
 }
 
@@ -805,17 +805,17 @@ static void _on_fail(const spell_info *spell)
         }
         else if (b <= 80)
         {
-            msg_print("Weird visions seem to dance before your eyes...");
+            msg_print("奇怪的幻象似乎在你眼前舞动……");
             teleport_player(10, TELEPORT_PASSIVE);
         }
         else if (b <= 95)
         {
-            msg_print("Your brain is addled!");
+            msg_print("你的大脑混乱了！");
             set_image(p_ptr->image + 5 + randint1(10), FALSE);
         }
         else
         {
-            msg_print("Your mind unleashes its power in an uncontrollable storm!");
+            msg_print("你的心智释放出不可控制的风暴力量！");
 
             project(PROJECT_WHO_UNCTRL_POWER, 2 + p_ptr->lev / 10, py, px, p_ptr->lev * 2,
                 GF_MANA, PROJECT_JUMP | PROJECT_KILL | PROJECT_GRID | PROJECT_ITEM);
@@ -859,20 +859,8 @@ class_t *mirror_master_get_class(void)
     skills_t bs = { 30,  33,  40,   3,  14,  16,  34,  30 };
     skills_t xs = { 10,  11,  12,   0,   0,   0,   6,  10 };
 
-        me.name = "Mirror-Master";
-        me.desc = "Mirror-Masters are spellcasters; like mages, they must live "
-                    "by their wits. They can create magical mirrors, which they use to "
-                    "support their special Mirror-Magic spells. Intelligence determines a "
-                    "Mirror-Master's spellcasting ability.\n \n"
-                    "Mirror-Masters gain more spells with experience, and their spells also "
-                    "become more powerful over time. Much of their magic relies on the "
-                    "careful placement of mirrors, which can be used for both offense "
-                    "and defense. Mirror-Masters' abilities are also enhanced by standing on a mirror; "
-                    "for example, they can perform quick teleports from there or rapidly regenerate their mana. "
-                    "Nevertheless, not all Mirror-Magic requires a physical mirror; many effects "
-                    "rely simply on light or mirror-shards, or on uncertainty, reflection and illusion. "
-                    "The maximum number of Mirrors which can be controlled simultaneously depends "
-                    "on the player's level; sometimes, unnecessary mirrors may need to be broken.";
+        me.name = "镜术士";
+        me.desc = "镜术士是施法者；像法师一样，他们必须依靠智慧生存。他们能创造魔法镜子，以此来辅助他们独特的镜之魔法(Mirror-Magic)法术。智力决定了镜术士的施法能力。\n \n镜术士随着经验的积累能获得更多的法术，他们的法术也会随着时间变得更加强大。他们的大部分魔法都依赖于镜子的精心摆放，这些镜子既可用于进攻也可用于防御。站在镜子上也会增强镜术士的能力；例如，他们可以从那里进行快速传送或快速恢复法力。然而，并非所有的镜之魔法都需要实体的镜子；许多效果仅仅依赖于光线、镜子碎片，或是依赖于不确定性、反射和幻觉。同时可控制的镜子最大数量取决于玩家的等级；有时，可能需要打碎不必要的镜子。";
 
         me.stats[A_STR] = -2;
         me.stats[A_INT] =  3;

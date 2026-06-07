@@ -119,7 +119,7 @@ inv_ptr inv_filter_floor(point_t loc, obj_p p)
     cave_type *c_ptr = &cave[loc.y][loc.x];
     int        this_o_idx, next_o_idx = 0;
 
-    result->name = "Floor";
+    result->name = "地面";
     result->type = INV_FLOOR;
     result->max = 0;
     result->flags = _FILTER;
@@ -719,7 +719,7 @@ void inv_display(inv_ptr inv, slot_t start, slot_t stop, obj_p p, doc_ptr doc, i
             else if (show_weights)
             {
                 int wgt = obj->weight * obj->number;
-                doc_printf(doc, "<tab:%d> %3d.%d lbs", doc_width(doc) - xtra, wgt/10, wgt%10);
+                doc_printf(doc, "<tab:%d> %3d.%d 磅", doc_width(doc) - xtra, wgt/10, wgt%10);
             }
             doc_newline(doc);
         }

@@ -42,9 +42,9 @@ cptr duelist_current_challenge(void)
         return current_challenge;
     }
     if (duelist_equip_error())
-        return "Talents Disrupted";
+        return "天赋被干扰";
 
-    return "No Current Challenge";
+    return "当前没有挑战";
 }
 
 int duelist_skill_sav(int m_idx)
@@ -90,13 +90,13 @@ bool duelist_issue_challenge(void)
     if (m_idx)
     {
         if (m_idx == p_ptr->duelist_target_idx)
-            msg_format("%^s has already been challenged.", duelist_current_challenge());
+            msg_format("%^s已经被挑战了。", duelist_current_challenge());
         else
         {
             /* of course, we must first set the target index before duelist_current_challenge()
                will return the correct text */
             p_ptr->duelist_target_idx = m_idx;
-            msg_format("You challenge %s to a duel!", duelist_current_challenge());
+            msg_format("你向%s提出决斗挑战！", duelist_current_challenge());
             set_monster_csleep(m_idx, 0);
             set_hostile(&m_list[m_idx]);
             result = TRUE;
@@ -105,7 +105,7 @@ bool duelist_issue_challenge(void)
     else if (p_ptr->duelist_target_idx)
     {
         p_ptr->duelist_target_idx = 0;
-        msg_print("You cancel your current challenge!");
+        msg_print("你取消了当前的挑战！");
     }
 
     p_ptr->redraw |= PR_STATUS;
@@ -149,7 +149,7 @@ _rush_result _rush_attack(int rng, _rush_type type)
 
     if (!p_ptr->duelist_target_idx)
     {
-        msg_print("You need to select a foe first (Mark Target).");
+        msg_print("你需要先选择一个敌人（标记目标）。");
         return result;
     }
 
@@ -164,14 +164,14 @@ _rush_result _rush_attack(int rng, _rush_type type)
     if (!m_list[p_ptr->duelist_target_idx].ml ||
         (type != _rush_phase && !los(ty, tx, py, px)))
     {
-        msg_format("%^s is not in your line of sight.", duelist_current_challenge());
+        msg_format("%^s不在你的视线范围内。", duelist_current_challenge());
         return result;
     }
 
     if (dis > rng)
     {
-        msg_format("Your foe is out of range (%d vs %d).", dis, rng);
-        if (!get_check("Charge anyway? ")) return result;
+        msg_format("你的敌人超出了范围（%d 对 %d）。", dis, rng);
+        if (!get_check("无论如何都要冲锋？")) return result;
     }
 
     project_length = rng;
@@ -228,7 +228,7 @@ _rush_result _rush_attack(int rng, _rush_type type)
 
         if (!c_ptr->m_idx)
         {
-            msg_print("Failed!");
+            msg_print("失败！");
             break;
         }
 
@@ -257,7 +257,7 @@ _rush_result _rush_attack(int rng, _rush_type type)
             }
             /* Normal Charge just attacks first monster on route */
             else
-                msg_format("There is %s in the way!", m_ptr->ml ? (tm_idx ? "another monster" : "a monster") : "someone");
+                msg_format("%s挡住了去路！", m_ptr->ml ? (tm_idx ? "另一只怪物" : "一只怪物") : "某人");
         }
 
         /* Attack the monster */
@@ -283,10 +283,10 @@ static void _acrobatic_charge_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Acrobatic Charge");
+        var_set_string(res, "杂技冲锋");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Move up to 7 squares and attack your marked foe, displacing any monsters in your way.");
+        var_set_string(res, "最多移动 7 格并攻击你标记的敌人，推开路线上的任何怪物。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _rush_attack(7, _rush_acrobatic) != _rush_cancelled);
@@ -302,10 +302,10 @@ static void _charge_target_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Charge");
+        var_set_string(res, "冲锋");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Move up to 5 squares and attack your marked foe.");
+        var_set_string(res, "最多移动 5 格并攻击你标记的敌人。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _rush_attack(5, _rush_normal) != _rush_cancelled);
@@ -321,10 +321,10 @@ static void _darting_duel_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Darting Duel");
+        var_set_string(res, "灵动决斗");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Move up to 5 squares and attack your marked foe. Strafe if you attack your foe.");
+        var_set_string(res, "最多移动 5 格并攻击你标记的敌人。如果你攻击了敌人，则进行一次侧步。");
         break;
     case SPELL_CAST:
         {
@@ -355,27 +355,27 @@ static void _disengage_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Disengage");
+        var_set_string(res, "脱离战斗");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You teleport (range 100), and prevent your marked foe from following, even if it's a monster that can normally follow teleportation. After the teleport, your foe is no longer marked.");
+        var_set_string(res, "你进行传送（距离 100），并阻止你标记的敌人跟随，即使它是通常可以跟随传送的怪物。传送后，你的敌人不再被标记。");
         break;
     case SPELL_CAST:
         if (!p_ptr->duelist_target_idx)
         {
-            msg_print("You need to mark your target first.");
+            msg_print("你需要先标记你的目标。");
             var_set_bool(res, FALSE);
         }
         else if (!m_list[p_ptr->duelist_target_idx].ml)
         {
-            msg_print("You may not disengage unless your foe is visible.");
+            msg_print("除非你的敌人是可见的，否则你无法脱离战斗。");
             var_set_bool(res, FALSE);
         }
         else
         {
             teleport_player(100, TELEPORT_DISENGAGE);
             p_ptr->duelist_target_idx = 0;
-            msg_print("You disengage from your current challenge.");
+            msg_print("你从当前的挑战中脱离了。");
             p_ptr->redraw |= PR_STATUS;
         
             var_set_bool(res, TRUE);
@@ -392,15 +392,15 @@ static void _isolation_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Isolation");
+        var_set_string(res, "孤立");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to teleport away all monsters in Line of Sight other than your marked foe.");
+        var_set_string(res, "尝试传送走视线内除你标记的敌人之外的所有怪物。");
         break;
     case SPELL_CAST:
         if (!p_ptr->duelist_target_idx)
         {
-            msg_print("You need to mark your target first.");
+            msg_print("你需要先标记你的目标。");
             var_set_bool(res, FALSE);
         }
         else
@@ -420,10 +420,10 @@ static void _mark_target_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mark Target");
+        var_set_string(res, "标记目标");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Mark selected monster as designated foe. You may only mark a single target at a time, and receive great benefits when fighting this target.");
+        var_set_string(res, "将选定的怪物标记为指定敌人。你一次只能标记一个目标，并在与该目标战斗时获得极大的增益。");
         break;
 
     case SPELL_INFO:
@@ -444,10 +444,10 @@ static void _phase_charge_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Phase Charge");
+        var_set_string(res, "相位冲锋");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Move up to 10 squares and attack your marked foe. Functions even if there are walls or closed doors between you and your target.");
+        var_set_string(res, "最多移动 10 格并攻击你标记的敌人。即使你和目标之间有墙壁或关着的门，该技能也有效。");
         break;
     case SPELL_CAST:
         var_set_bool(res, _rush_attack(10, _rush_phase) != _rush_cancelled);
@@ -463,10 +463,10 @@ void strafing_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Strafing");
+        var_set_string(res, "侧步");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Blink to a new location in the line of sight of your current location.");
+        var_set_string(res, "闪烁到当前视线内的一个新位置。");
         break;
     case SPELL_ENERGY:
         if (mut_present(MUT_ASTRAL_GUIDE))
@@ -542,13 +542,13 @@ static void _calc_bonuses(void)
             msg_print(msg);
             if (p_ptr->duelist_target_idx)
             {
-                msg_format("%^s is no longer your target.", duelist_current_challenge());
+                msg_format("%^s不再是你的目标了。", duelist_current_challenge());
                 p_ptr->duelist_target_idx = 0;
                 p_ptr->redraw |= PR_STATUS;
             }
         }
         else
-            msg_print("You regain your talents.");
+            msg_print("你恢复了天赋。");
     }
 
     p_ptr->redraw |= PR_STATUS;
@@ -606,22 +606,8 @@ class_t *duelist_get_class(void)
     skills_t bs = { 30,  21,  23,   3,  22,  16,  50,   0};
     skills_t xs = { 10,  10,  10,   0,   0,   0,  14,   0};
 
-        me.name = "Duelist";
-        me.desc = "The duelist is the ultimate one-on-one fighter, but finds himself at a severe "
-                  "disadvantage when facing numerous strong foes at once. To start a duel, the duelist "
-                  "first issues a challenge to his intended foe; of course, this will wake the monster "
-                  "up, as there is no honor in dueling a sleeping enemy! And while the duelist will "
-                  "honor the fight as a one-on-one affair, many monsters have no such scruples.\n \n"
-                  "Against a challenged foe the duelist is extremely strong, gaining bonuses to saving "
-                  "throws, armor class, damage reduction and combat prowess. On the other hand, due "
-                  "to the single-mindedness of their focus, the duelist is quite vulnerable to unchallenged "
-                  "opponents. Most of the special techniques of this class aim at enforcing the sanctity of the "
-                  "duel.\n \n"
-                  "The duelist only ever gains a single attack in combat, but they make the most of this "
-                  "blow by gaining enhanced effects as they gain experience. Able to wound, stun, and even "
-                  "hamstring their foes, the prowess of the duelist in a one-on-one encounter is legendary!\n \n"
-                  "Duelists favor light armors and weapons, and cannot equip a shield. They gain no extra bonus for "
-                  "wielding a weapon with both hands. For their techniques, the duelist relies on Dexterity.";
+        me.name = "决斗者";
+        me.desc = "决斗者是终极的一对一战士，但在同时面对众多强敌时会陷入严重的劣势。要开始决斗，决斗者首先要向预定的敌人发出挑战；当然，这会唤醒怪物，因为与沉睡的敌人决斗毫无荣誉可言！虽然决斗者会尊崇一对一战斗的荣誉，但许多怪物却没有这种顾忌。\n \n面对被挑战的敌人时，决斗者极其强大，会在豁免、护甲等级、伤害减免和战斗力上获得加成。另一方面，由于他们过度专注于单一目标，决斗者面对未被挑战的对手时相当脆弱。这个职业的大部分特殊技巧都是为了维持决斗的神圣性。\n \n决斗者在战斗中永远只能进行一次攻击，但他们通过获取经验来获得增强效果，从而充分利用这一击。凭借能够刺伤、震慑甚至挑断敌人脚筋的能力，决斗者在一对一遭遇战中的实力堪称传奇！\n \n决斗者偏好轻型护甲和武器，并且无法装备盾牌。双手持用武器时，他们也不会获得额外加成。在技巧方面，决斗者依赖敏捷。";
         me.stats[A_STR] =  2;
         me.stats[A_INT] =  1;
         me.stats[A_WIS] = -2;

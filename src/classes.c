@@ -11,6 +11,79 @@ bool class_is_deprecated(int i)
     return (i == CLASS_XXX12);
 }
 
+typedef struct {
+    cptr name;
+    int id;
+} _class_alias_t;
+
+static _class_alias_t _class_aliases[] = {
+        { "Alchemist", CLASS_ALCHEMIST },
+        { "Archaeologist", CLASS_ARCHAEOLOGIST },
+        { "Archer", CLASS_ARCHER },
+        { "Bard", CLASS_BARD },
+        { "Beastmaster", CLASS_BEASTMASTER },
+        { "Berserker", CLASS_BERSERKER },
+        { "Blood-Knight", CLASS_BLOOD_KNIGHT },
+        { "Blood-Mage", CLASS_BLOOD_MAGE },
+        { "Blue-Mage", CLASS_BLUE_MAGE },
+        { "Cavalry", CLASS_CAVALRY },
+        { "Chaos-Warrior", CLASS_CHAOS_WARRIOR },
+        { "Devicemaster", CLASS_DEVICEMASTER },
+        { "Disciple", CLASS_DISCIPLE },
+        { "Duelist", CLASS_DUELIST },
+        { "Force-Trainer", CLASS_FORCETRAINER },
+        { "Gray-Mage", CLASS_GRAY_MAGE },
+        { "High-Mage", CLASS_HIGH_MAGE },
+        { "Lawyer", CLASS_LAWYER },
+        { "Mage", CLASS_MAGE },
+        { "Magic-Eater", CLASS_MAGIC_EATER },
+        { "Mauler", CLASS_MAULER },
+        { "Mindcrafter", CLASS_MINDCRAFTER },
+        { "Mirror-Master", CLASS_MIRROR_MASTER },
+        { "Monk", CLASS_MONK },
+        { "Monster", CLASS_MONSTER },
+        { "Mystic", CLASS_MYSTIC },
+        { "Necromancer", CLASS_NECROMANCER },
+        { "Ninja", CLASS_NINJA },
+        { "Ninja-Lawyer", CLASS_NINJA_LAWYER },
+        { "Paladin", CLASS_PALADIN },
+        { "Politician", CLASS_POLITICIAN },
+        { "Priest", CLASS_PRIEST },
+        { "Psion", CLASS_PSION },
+        { "Rage-Mage", CLASS_RAGE_MAGE },
+        { "Ranger", CLASS_RANGER },
+        { "Red-Mage", CLASS_RED_MAGE },
+        { "Rogue", CLASS_ROGUE },
+        { "Rune-Knight", CLASS_RUNE_KNIGHT },
+        { "Samurai", CLASS_SAMURAI },
+        { "Scout", CLASS_SCOUT },
+        { "Skillmaster", CLASS_SKILLMASTER },
+        { "Sniper", CLASS_SNIPER },
+        { "Sorcerer", CLASS_SORCERER },
+        { "Time-Lord", CLASS_TIME_LORD },
+        { "Tourist", CLASS_TOURIST },
+        { "Warlock", CLASS_WARLOCK },
+        { "Warrior", CLASS_WARRIOR },
+        { "Warrior-Mage", CLASS_WARRIOR_MAGE },
+        { "Weaponsmith", CLASS_WEAPONSMITH },
+        { "Weaponmaster", CLASS_WEAPONMASTER },
+        { "Wild-Talent", CLASS_WILD_TALENT },
+        { "Yellow-Mage", CLASS_YELLOW_MAGE },
+        { NULL, -1 }
+};
+
+static int _lookup_class_alias(cptr name)
+{
+    int i;
+
+    for (i = 0; _class_aliases[i].name; i++)
+    {
+        if (strcmp(name, _class_aliases[i].name) == 0)
+            return _class_aliases[i].id;
+    }
+    return -1;
+}
+
 int lookup_class_idx(cptr name)
 {
     int i;
@@ -20,7 +93,23 @@ int lookup_class_idx(cptr name)
         if (strcmp(name, get_class_aux(i, 0)->name) == 0)
             return i;
     }
-    return -1;
+    return _lookup_class_alias(name);
+}
+
+cptr get_class_internal_name(int pclass)
+{
+    int i;
+    class_t *class_ptr;
+
+    for (i = 0; _class_aliases[i].name; i++)
+    {
+        if (_class_aliases[i].id == pclass)
+            return _class_aliases[i].name;
+    }
+    class_ptr = get_class_aux(pclass, 0);
+    if (class_ptr && class_ptr->name)
+        return class_ptr->name;
+    return "Unknown";
 }
 
 /* In general, the class index is given by player_type.pclass. However, for various

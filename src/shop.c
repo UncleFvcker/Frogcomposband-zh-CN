@@ -77,276 +77,276 @@ static bool _dragon_create(obj_ptr obj, u32b mode);
 
 static _type_t _types[] = 
 {
-    { SHOP_GENERAL, "General Store", _general_will_buy, _general_create,
-        {{  1, "Bilbo the Friendly",         200, 108, RACE_HOBBIT },
-         {  2, "Rincewind the Chicken",      200, 108, RACE_HUMAN },
-         {  3, "Snafu the Midget",           300, 107, RACE_GNOME },
-         {  4, "Lyar-el the Comely",         300, 107, RACE_DEMIGOD },
-         {  5, "Falilmawen the Friendly",    250, 108, RACE_HOBBIT },
-         {  6, "Voirin the Cowardly",        500, 108, RACE_HUMAN },
-         {  7, "Erashnak the Midget",        750, 107, RACE_BEASTMAN },
-         {  8, "Grug the Comely",           1000, 107, RACE_HALF_TITAN },
-         {  9, "Forovir the Cheap",          250, 108, RACE_HUMAN },
-         { 10, "Ellis the Fool",             500, 108, RACE_HUMAN },
-         { 11, "Filbert the Hungry",         750, 107, RACE_VAMPIRE },
-         { 12, "Fthnargl Psathiggua",       1000, 107, RACE_MIND_FLAYER },
-         { 13, "Eloise Long-Dead",           250, 108, RACE_SPECTRE },
-         { 14, "Fundi the Slow",             500, 108, RACE_ZOMBIE },
-         { 15, "Granthus",                   750, 107, RACE_SKELETON },
-         { 16, "Lorax the Suave",           1000, 107, RACE_VAMPIRE },
-         { 17, "Butch",                      250, 108, RACE_SNOTLING },
-         { 18, "Elbereth the Beautiful",     500, 108, RACE_HIGH_ELF },
-         { 19, "Sarleth the Sneaky",         750, 107, RACE_GNOME },
-         { 20, "Narlock",                   1000, 107, RACE_DWARF },
-         { 21, "Haneka the Small",           250, 108, RACE_GNOME },
-         { 22, "Loirin the Mad",             500, 108, RACE_HALF_GIANT },
-         { 23, "Wuto Poisonbreath",          750, 107, RACE_DRACONIAN },
-         { 24, "Araaka the Rotund",         1000, 107, RACE_DRACONIAN },
-         { 25, "Poogor the Dumb",            250, 108, RACE_BEASTMAN },
-         { 26, "Felorfiliand",               500, 108, RACE_DEMIGOD },
-         { 27, "Maroka the Aged",            750, 107, RACE_GNOME },
-         { 28, "Sasin the Bold",            1000, 107, RACE_HALF_GIANT },
-         { 29, "Abiemar the Peasant",        250, 108, RACE_HUMAN },
-         { 30, "Hurk the Poor",              500, 108, RACE_SNOTLING },
-         { 31, "Soalin the Wretched",        750, 107, RACE_ZOMBIE },
-         { 32, "Merulla the Humble",        1000, 107, RACE_DEMIGOD }}},
+    { SHOP_GENERAL, "杂货店", _general_will_buy, _general_create,
+        {{  1, "友善的比尔博",         200, 108, RACE_HOBBIT },
+         {  2, "胆小的灵斯风",      200, 108, RACE_HUMAN },
+         {  3, "侏儒斯纳夫",           300, 107, RACE_GNOME },
+         {  4, "清秀的莱亚尔",         300, 107, RACE_DEMIGOD },
+         {  5, "友善的法利尔玛文",    250, 108, RACE_HOBBIT },
+         {  6, "怯懦的沃瓦林",        500, 108, RACE_HUMAN },
+         {  7, "侏儒埃拉什纳克",        750, 107, RACE_BEASTMAN },
+         {  8, "清秀的格鲁格",           1000, 107, RACE_HALF_TITAN },
+         {  9, "吝啬的弗罗维尔",          250, 108, RACE_HUMAN },
+         { 10, "愚者埃利斯",             500, 108, RACE_HUMAN },
+         { 11, "饥饿的菲尔伯特",         750, 107, RACE_VAMPIRE },
+         { 12, "弗斯纳格·普萨提瓜",       1000, 107, RACE_MIND_FLAYER },
+         { 13, "死去多时的埃洛伊丝",           250, 108, RACE_SPECTRE },
+         { 14, "迟缓的芬迪",             500, 108, RACE_ZOMBIE },
+         { 15, "格兰图斯",                   750, 107, RACE_SKELETON },
+         { 16, "温文尔雅的洛拉克斯",           1000, 107, RACE_VAMPIRE },
+         { 17, "布奇",                      250, 108, RACE_SNOTLING },
+         { 18, "美丽的埃尔贝雷斯",     500, 108, RACE_HIGH_ELF },
+         { 19, "狡猾的萨尔莱斯",         750, 107, RACE_GNOME },
+         { 20, "纳洛克",                   1000, 107, RACE_DWARF },
+         { 21, "小个子哈内卡",           250, 108, RACE_GNOME },
+         { 22, "疯子洛伊林",             500, 108, RACE_HALF_GIANT },
+         { 23, "毒息乌托",          750, 107, RACE_DRACONIAN },
+         { 24, "圆胖的阿拉卡",         1000, 107, RACE_DRACONIAN },
+         { 25, "愚笨的普戈尔",            250, 108, RACE_BEASTMAN },
+         { 26, "费罗菲利安德",               500, 108, RACE_DEMIGOD },
+         { 27, "年迈的玛罗卡",            750, 107, RACE_GNOME },
+         { 28, "勇敢的萨辛",            1000, 107, RACE_HALF_GIANT },
+         { 29, "乡巴佬阿比玛",        250, 108, RACE_HUMAN },
+         { 30, "可怜的赫克",              500, 108, RACE_SNOTLING },
+         { 31, "悲惨的索亚林",        750, 107, RACE_ZOMBIE },
+         { 32, "谦卑的梅鲁拉",        1000, 107, RACE_DEMIGOD }}},
         
-    { SHOP_ARMORY, "Armory", _armory_will_buy, _armory_create,
-        {{  1, "Kon-Dar the Ugly",         15000, 115, RACE_SNOTLING },
-         {  2, "Darg-Low the Grim",        20000, 111, RACE_HUMAN },
-         {  3, "Decado the Handsome",      25000, 112, RACE_DUNADAN },
-         {  4, "Wieland the Smith",        40000, 112, RACE_DWARF },
-         {  5, "Stumpy the Blockhead",     15000, 113, RACE_ENT },
-         {  6, "Zeppo the Blacksmith",     25000, 111, RACE_HUMAN },
-         {  7, "Beamy Break-Axe",          30000, 112, RACE_ENT },
-         {  8, "Elo Dragonscale",          35000, 112, RACE_DEMIGOD },
-         {  9, "Delicatus",                20000, 115, RACE_SPRITE },
-         { 10, "Gruce the Huge",           20000, 111, RACE_HALF_GIANT },
-         { 11, "Animus",                   25000, 112, RACE_GOLEM },
-         { 12, "Malvus",                   30000, 112, RACE_HALF_TITAN },
-         { 13, "Selaxis",                  15000, 115, RACE_ZOMBIE },
-         { 14, "Deathchill",               20000, 111, RACE_SPECTRE },
-         { 15, "Drios the Faint",          25000, 112, RACE_SPECTRE },
-         { 16, "Bathric the Cold",         30000, 112, RACE_VAMPIRE },
-         { 17, "Vengella the Cruel",       15000, 115, RACE_HALF_TROLL },
-         { 18, "Wyrana the Mighty",        20000, 111, RACE_HUMAN },
-         { 19, "Yojo II",                  25000, 112, RACE_DWARF },
-         { 20, "Ranalar the Sweet",        30000, 112, RACE_AMBERITE },
-         { 21, "Horbag the Unclean",       15000, 115, RACE_SNOTLING },
-         { 22, "Elelen the Telepath",      25000, 111, RACE_DARK_ELF },
-         { 23, "Isedrelias",               30000, 112, RACE_SPRITE },
-         { 24, "Vegnar One-eye",           20000, 112, RACE_CYCLOPS },
-         { 25, "Rodish the Chaotic",       20000, 115, RACE_BEASTMAN },
-         { 26, "Hesin Swordmaster",        25000, 111, RACE_NIBELUNG },
-         { 27, "Elvererith the Cheat",     15000, 112, RACE_DARK_ELF },
-         { 28, "Zzathath the Imp",         30000, 112, RACE_IMP },
+    { SHOP_ARMORY, "防具店", _armory_will_buy, _armory_create,
+        {{  1, "丑陋的孔达尔",         15000, 115, RACE_SNOTLING },
+         {  2, "冷酷的达格罗",        20000, 111, RACE_HUMAN },
+         {  3, "英俊的德卡多",      25000, 112, RACE_DUNADAN },
+         {  4, "铁匠维兰德",        40000, 112, RACE_DWARF },
+         {  5, "木头人斯顿皮",     15000, 113, RACE_ENT },
+         {  6, "铁匠泽波",     25000, 111, RACE_HUMAN },
+         {  7, "碎斧者比米",          30000, 112, RACE_ENT },
+         {  8, "龙鳞埃洛",          35000, 112, RACE_DEMIGOD },
+         {  9, "德利卡图斯",                20000, 115, RACE_SPRITE },
+         { 10, "巨大的格鲁斯",           20000, 111, RACE_HALF_GIANT },
+         { 11, "阿尼姆斯",                   25000, 112, RACE_GOLEM },
+         { 12, "马尔乌斯",                   30000, 112, RACE_HALF_TITAN },
+         { 13, "塞拉克西斯",                  15000, 115, RACE_ZOMBIE },
+         { 14, "死亡深寒",               20000, 111, RACE_SPECTRE },
+         { 15, "虚弱的德里奥斯",          25000, 112, RACE_SPECTRE },
+         { 16, "冰冷的巴斯里克",         30000, 112, RACE_VAMPIRE },
+         { 17, "残酷的文吉拉",       15000, 115, RACE_HALF_TROLL },
+         { 18, "强大的维拉娜",        20000, 111, RACE_HUMAN },
+         { 19, "尤约二世",                  25000, 112, RACE_DWARF },
+         { 20, "甜美的拉纳拉",        30000, 112, RACE_AMBERITE },
+         { 21, "不洁的霍巴格",       15000, 115, RACE_SNOTLING },
+         { 22, "心灵感应者埃莱伦",      25000, 111, RACE_DARK_ELF },
+         { 23, "伊塞德雷利亚斯",               30000, 112, RACE_SPRITE },
+         { 24, "独眼维格纳",           20000, 112, RACE_CYCLOPS },
+         { 25, "混沌的罗迪什",       20000, 115, RACE_BEASTMAN },
+         { 26, "剑圣赫辛",        25000, 111, RACE_NIBELUNG },
+         { 27, "骗子埃尔维瑞斯",     15000, 112, RACE_DARK_ELF },
+         { 28, "小恶魔扎萨斯",         30000, 112, RACE_IMP },
          { 0 }}},
 
-    { SHOP_WEAPON, "Weapon Smiths", _weapon_will_buy, _weapon_create,
-        {{  1, "Arnold the Beastly",       15000, 115, RACE_BARBARIAN },
-         {  2, "Arndal Beast-Slayer",      20000, 110, RACE_HUMAN },
-         {  3, "Eddie Beast-Master",       25000, 115, RACE_SNOTLING },
-         {  4, "Oglign Dragon-Slayer",     50000, 112, RACE_DWARF },
-         {  5, "Drew the Skilled",         20000, 115, RACE_HUMAN },
-         {  6, "Orrax Dragonson",          20000, 110, RACE_DRACONIAN },
-         {  7, "Anthrax Disease-Carrier",  25000, 115, RACE_BEASTMAN },
-         {  8, "Arkhoth the Stout",        35000, 112, RACE_DWARF },
-         {  9, "Sarlyas the Rotten",       15000, 115, RACE_ZOMBIE },
-         { 10, "Tuethic Bare-Bones",       20000, 110, RACE_SKELETON },
-         { 11, "Bilious",                  25000, 115, RACE_BEASTMAN },
-         { 12, "Fasgul",                   30000, 112, RACE_ZOMBIE },
-         { 13, "Ellefris the Paladin",     15000, 115, RACE_BARBARIAN },
-         { 14, "K'trrik'k",                20000, 110, RACE_KLACKON },
-         { 15, "Drocus Spiderfriend",      25000, 115, RACE_DARK_ELF },
-         { 16, "Fungus Giant-Slayer",      40000, 112, RACE_DWARF },
-         { 17, "Delantha",                 20000, 115, RACE_DEMIGOD },
-         { 18, "Solvistani the Ranger",    25000, 110, RACE_WOOD_ELF },
-         { 19, "Xoril the Slow",           30000, 115, RACE_GOLEM },
-         { 20, "Aeon Flux",                25000, 112, RACE_TONBERRY },
-         { 21, "Nadoc the Strong",         20000, 115, RACE_HOBBIT },
-         { 22, "Eramog the Weak",          25000, 110, RACE_KOBOLD },
-         { 23, "Eowilith the Fair",        30000, 115, RACE_VAMPIRE },
-         { 24, "Huimog Balrog-Slayer",     30000, 112, RACE_SNOTLING },
-         { 25, "Peadus the Cruel",         15000, 115, RACE_HUMAN },
-         { 26, "Vamog Slayer",             20000, 110, RACE_OGRE },
-         { 27, "Hooshnak the Vicious",     25000, 115, RACE_BEASTMAN },
-         { 28, "Balenn War-Dancer",        30000, 112, RACE_BARBARIAN },
+    { SHOP_WEAPON, "武器店", _weapon_will_buy, _weapon_create,
+        {{  1, "野兽阿诺德",       15000, 115, RACE_BARBARIAN },
+         {  2, "屠兽者阿恩达尔",      20000, 110, RACE_HUMAN },
+         {  3, "兽王埃迪",       25000, 115, RACE_SNOTLING },
+         {  4, "屠龙者奥格林",     50000, 112, RACE_DWARF },
+         {  5, "熟练的德鲁",         20000, 115, RACE_HUMAN },
+         {  6, "龙之子奥拉克斯",          20000, 110, RACE_DRACONIAN },
+         {  7, "带病者炭疽",  25000, 115, RACE_BEASTMAN },
+         {  8, "粗壮的阿科斯",        35000, 112, RACE_DWARF },
+         {  9, "腐烂的萨尔里亚斯",       15000, 115, RACE_ZOMBIE },
+         { 10, "皮包骨的图西克",       20000, 110, RACE_SKELETON },
+         { 11, "暴躁的比利厄斯",                  25000, 115, RACE_BEASTMAN },
+         { 12, "法斯古尔",                   30000, 112, RACE_ZOMBIE },
+         { 13, "圣骑士埃勒弗里斯",     15000, 115, RACE_BARBARIAN },
+         { 14, "克特里克",                20000, 110, RACE_KLACKON },
+         { 15, "蜘蛛之友德罗库斯",      25000, 115, RACE_DARK_ELF },
+         { 16, "巨人杀手真菌",      40000, 112, RACE_DWARF },
+         { 17, "德兰莎",                 20000, 115, RACE_DEMIGOD },
+         { 18, "游侠索尔维斯塔尼",    25000, 110, RACE_WOOD_ELF },
+         { 19, "迟缓的佐里尔",           30000, 115, RACE_GOLEM },
+         { 20, "伊恩·弗莱克斯",                25000, 112, RACE_TONBERRY },
+         { 21, "强壮的纳多克",         20000, 115, RACE_HOBBIT },
+         { 22, "虚弱的埃拉莫格",          25000, 110, RACE_KOBOLD },
+         { 23, "美丽的埃奥维莉丝",        30000, 115, RACE_VAMPIRE },
+         { 24, "屠魔者胡伊莫格",     30000, 112, RACE_SNOTLING },
+         { 25, "残酷的皮杜斯",         15000, 115, RACE_HUMAN },
+         { 26, "杀手瓦莫格",             20000, 110, RACE_OGRE },
+         { 27, "邪恶的胡什纳克",     25000, 115, RACE_BEASTMAN },
+         { 28, "战舞者巴伦",        30000, 112, RACE_BARBARIAN },
          { 0 }}},
 
-    { SHOP_TEMPLE, "Temple", _temple_will_buy, _temple_create,
-        {{  1, "Ludwig the Humble",         5000, 109, RACE_DWARF },
-         {  2, "Gunnar the Paladin",       10000, 110, RACE_HALF_TROLL },
-         {  3, "Torin the Chosen",         25000, 107, RACE_HIGH_ELF },
-         {  4, "Sarastro the Wise",        30000, 109, RACE_HUMAN },
-         {  5, "Sir Parsival the Pure",    25000, 107, RACE_HIGH_ELF },
-         {  6, "Asenath the Holy",         30000, 109, RACE_HUMAN },
-         {  7, "McKinnon",                 10000, 109, RACE_HUMAN },
-         {  8, "Mistress Chastity",        15000, 110, RACE_HIGH_ELF },
-         {  9, "Hashnik the Druid",        25000, 107, RACE_HOBBIT },
-         { 10, "Finak",                    30000, 109, RACE_YEEK },
-         { 11, "Krikkik",                  10000, 109, RACE_KLACKON },
-         { 12, "Morival the Wild",         15000, 110, RACE_DEMIGOD },
-         { 13, "Hoshak the Dark",          25000, 107, RACE_IMP },
-         { 14, "Atal the Wise",            30000, 109, RACE_HUMAN },
-         { 15, "Ibenidd the Chaste",       10000, 109, RACE_HUMAN },
-         { 16, "Eridish",                  15000, 110, RACE_HALF_TROLL },
-         { 17, "Vrudush the Shaman",       25000, 107, RACE_OGRE },
-         { 18, "Haob the Berserker",       30000, 109, RACE_BARBARIAN },
-         { 19, "Proogdish the Youthful",   10000, 109, RACE_OGRE },
-         { 20, "Lumwise the Mad",          15000, 110, RACE_YEEK },
-         { 21, "Muirt the Virtuous",       25000, 107, RACE_KOBOLD },
-         { 22, "Dardobard the Weak",       30000, 109, RACE_SPECTRE },
+    { SHOP_TEMPLE, "神殿", _temple_will_buy, _temple_create,
+        {{  1, "谦逊的路德维希",         5000, 109, RACE_DWARF },
+         {  2, "圣骑士贡纳尔",       10000, 110, RACE_HALF_TROLL },
+         {  3, "天选者托林",         25000, 107, RACE_HIGH_ELF },
+         {  4, "智者萨拉斯特罗",        30000, 109, RACE_HUMAN },
+         {  5, "纯洁的帕西瓦尔爵士",    25000, 107, RACE_HIGH_ELF },
+         {  6, "神圣的阿塞纳丝",         30000, 109, RACE_HUMAN },
+         {  7, "麦金农",                 10000, 109, RACE_HUMAN },
+         {  8, "贞洁主母",        15000, 110, RACE_HIGH_ELF },
+         {  9, "德鲁伊哈什尼克",        25000, 107, RACE_HOBBIT },
+         { 10, "费纳克",                    30000, 109, RACE_YEEK },
+         { 11, "克里基克",                  10000, 109, RACE_KLACKON },
+         { 12, "狂野的莫里瓦尔",         15000, 110, RACE_DEMIGOD },
+         { 13, "黑暗的霍沙克",          25000, 107, RACE_IMP },
+         { 14, "智者阿塔尔",            30000, 109, RACE_HUMAN },
+         { 15, "纯洁的伊贝尼德",       10000, 109, RACE_HUMAN },
+         { 16, "埃里迪什",                  15000, 110, RACE_HALF_TROLL },
+         { 17, "萨满弗鲁杜什",       25000, 107, RACE_OGRE },
+         { 18, "狂战士哈奥布",       30000, 109, RACE_BARBARIAN },
+         { 19, "年轻的普鲁格迪什",   10000, 109, RACE_OGRE },
+         { 20, "疯子拉姆怀斯",          15000, 110, RACE_YEEK },
+         { 21, "贞洁的穆尔特",       25000, 107, RACE_KOBOLD },
+         { 22, "虚弱的达多巴德",       30000, 109, RACE_SPECTRE },
          { 0 }}},
 
-    { SHOP_ALCHEMIST, "Alchemy Shop", _alchemist_will_buy, _alchemist_create,
-        {{  1, "Mauser the Chemist",       10000, 111, RACE_HUMAN },
-         {  2, "Wizzle the Chaotic",       10000, 110, RACE_HOBBIT },
-         {  3, "Midas the Greedy",         15000, 116, RACE_GNOME },
-         {  4, "Ja-Far the Alchemist",     15000, 111, RACE_DEMIGOD },
-         {  5, "Kakalrakakal",             15000, 116, RACE_KLACKON },
-         {  6, "Jal-Eth the Alchemist",    15000, 111, RACE_DEMIGOD },
-         {  7, "Fanelath the Cautious",    10000, 111, RACE_DWARF },
-         {  8, "Runcie the Insane",        10000, 110, RACE_HUMAN },
-         {  9, "Grumbleworth",             15000, 116, RACE_GNOME },
-         { 10, "Flitter",                  15000, 111, RACE_SPRITE },
-         { 11, "Xarillus",                 10000, 111, RACE_HUMAN },
-         { 12, "Egbert the Old",           10000, 110, RACE_DWARF },
-         { 13, "Valindra the Proud",       15000, 116, RACE_HIGH_ELF },
-         { 14, "Taen the Alchemist",       15000, 111, RACE_HUMAN },
-         { 15, "Cayd the Sweet",           10000, 111, RACE_VAMPIRE },
-         { 16, "Fulir the Dark",           10000, 110, RACE_NIBELUNG },
-         { 17, "Domli the Humble",         15000, 116, RACE_DWARF },
-         { 18, "Yaarjukka Demonspawn",     15000, 111, RACE_IMP },
-         { 19, "Gelaraldor the Herbmaster",10000, 111, RACE_HIGH_ELF },
-         { 20, "Olelaldan the Wise",       10000, 110, RACE_BARBARIAN },
-         { 21, "Fthoglo the Demonicist",   15000, 116, RACE_IMP },
-         { 22, "Dridash the Alchemist",    15000, 111, RACE_SNOTLING },
-         { 23, "Nelir the Strong",         10000, 111, RACE_CYCLOPS },
-         { 24, "Lignus the Pungent",       10000, 110, RACE_SNOTLING },
-         { 25, "Tilba",                    15000, 116, RACE_HOBBIT },
-         { 26, "Myrildric the Wealthy",    15000, 111, RACE_HUMAN },
-         { 27, "Igor the Mixturemaker",    15000, 112, RACE_IGOR },
+    { SHOP_ALCHEMIST, "炼金店", _alchemist_will_buy, _alchemist_create,
+        {{  1, "药剂师毛瑟",       10000, 111, RACE_HUMAN },
+         {  2, "混沌的维兹尔",       10000, 110, RACE_HOBBIT },
+         {  3, "贪婪的迈达斯",         15000, 116, RACE_GNOME },
+         {  4, "炼金术士贾方",     15000, 111, RACE_DEMIGOD },
+         {  5, "卡卡尔拉卡卡尔",             15000, 116, RACE_KLACKON },
+         {  6, "炼金术士贾尔埃斯",    15000, 111, RACE_DEMIGOD },
+         {  7, "谨慎的法尼拉斯",    10000, 111, RACE_DWARF },
+         {  8, "疯癫的伦西",        10000, 110, RACE_HUMAN },
+         {  9, "格兰布尔沃斯",             15000, 116, RACE_GNOME },
+         { 10, "飞舞者",                  15000, 111, RACE_SPRITE },
+         { 11, "夏利卢斯",                 10000, 111, RACE_HUMAN },
+         { 12, "年迈的埃格伯特",           10000, 110, RACE_DWARF },
+         { 13, "高傲的瓦琳德拉",       15000, 116, RACE_HIGH_ELF },
+         { 14, "炼金术士塔恩",       15000, 111, RACE_HUMAN },
+         { 15, "甜美的凯德",           10000, 111, RACE_VAMPIRE },
+         { 16, "黑暗的伏里尔",           10000, 110, RACE_NIBELUNG },
+         { 17, "谦卑的东姆里",         15000, 116, RACE_DWARF },
+         { 18, "恶魔之子亚尔祖卡",     15000, 111, RACE_IMP },
+         { 19, "草药大师格拉拉多",10000, 111, RACE_HIGH_ELF },
+         { 20, "智者奥莱拉丹",       10000, 110, RACE_BARBARIAN },
+         { 21, "恶魔学家弗索格洛",   15000, 116, RACE_IMP },
+         { 22, "炼金术士德里达什",    15000, 111, RACE_SNOTLING },
+         { 23, "强壮的内利尔",         10000, 111, RACE_CYCLOPS },
+         { 24, "刺鼻的里格努斯",       10000, 110, RACE_SNOTLING },
+         { 25, "提尔巴",                    15000, 116, RACE_HOBBIT },
+         { 26, "富有的米瑞德里克",    15000, 111, RACE_HUMAN },
+         { 27, "调配师伊戈尔",    15000, 112, RACE_IGOR },
          { 0 }}},
 
-    { SHOP_MAGIC, "Magic Shop", _magic_will_buy, _magic_create,
-        {{  1, "Lo Pan the Sorcerer",      20000, 110, RACE_HUMAN },
-         {  2, "Buggerby the Great",       20000, 113, RACE_GNOME },
-         {  3, "The Wizard of Yendor",     30000, 110, RACE_HUMAN },
-         {  4, "Rjak the Necromancer",     30000, 110, RACE_DARK_ELF },
-         {  5, "Skidney the Sorcerer",     15000, 110, RACE_HUMAN },
-         {  6, "Kyria the Illusionist",    30000, 110, RACE_HUMAN },
-         {  7, "Nikki the Necromancer",    30000, 110, RACE_DARK_ELF },
-         {  8, "Solostoran",               15000, 110, RACE_SPRITE },
-         {  9, "Achshe the Tentacled",     20000, 113, RACE_MIND_FLAYER },
-         { 10, "Kaza the Noble",           30000, 110, RACE_HIGH_ELF },
-         { 11, "Fazzil the Dark",          30000, 110, RACE_DARK_ELF },
-         { 12, "Keldorn the Grand",        15000, 110, RACE_DWARF },
-         { 13, "Philanthropus",            20000, 113, RACE_HOBBIT },
-         { 14, "Agnar the Enchantress",    30000, 110, RACE_HUMAN },
-         { 15, "Buliance the Necromancer", 30000, 110, RACE_BEASTMAN },
-         { 16, "Vuirak the High-Mage",     15000, 110, RACE_BEASTMAN },
-         { 17, "Madish the Smart",         20000, 113, RACE_BEASTMAN },
-         { 18, "Falebrimbor",              30000, 110, RACE_HIGH_ELF },
-         { 19, "Felil-Gand the Subtle",    30000, 110, RACE_DARK_ELF },
-         { 20, "Thalegord the Shaman",     15000, 110, RACE_BARBARIAN },
-         { 21, "Cthoaloth the Mystic",     20000, 113, RACE_MIND_FLAYER },
-         { 22, "Ibeli the Illusionist",    30000, 110, RACE_SKELETON },
-         { 23, "Heto the Necromancer",     30000, 110, RACE_YEEK },
-         { 24, "Nils the Nifty",           30000, 110, RACE_TOMTE },
+    { SHOP_MAGIC, "魔法店", _magic_will_buy, _magic_create,
+        {{  1, "术士卢潘",      20000, 110, RACE_HUMAN },
+         {  2, "伟大的巴格比",       20000, 113, RACE_GNOME },
+         {  3, "延多尔的巫师",     30000, 110, RACE_HUMAN },
+         {  4, "死灵法师里贾克",     30000, 110, RACE_DARK_ELF },
+         {  5, "术士斯基德尼",     15000, 110, RACE_HUMAN },
+         {  6, "幻术师基莉亚",    30000, 110, RACE_HUMAN },
+         {  7, "死灵法师尼基",    30000, 110, RACE_DARK_ELF },
+         {  8, "索洛斯托兰",               15000, 110, RACE_SPRITE },
+         {  9, "多触手的阿什",     20000, 113, RACE_MIND_FLAYER },
+         { 10, "贵族卡扎",           30000, 110, RACE_HIGH_ELF },
+         { 11, "黑暗的法兹尔",          30000, 110, RACE_DARK_ELF },
+         { 12, "宏伟的凯东",        15000, 110, RACE_DWARF },
+         { 13, "菲兰索普斯",            20000, 113, RACE_HOBBIT },
+         { 14, "女巫阿格纳",    30000, 110, RACE_HUMAN },
+         { 15, "死灵法师布连斯", 30000, 110, RACE_BEASTMAN },
+         { 16, "高等法师乌伊拉克",     15000, 110, RACE_BEASTMAN },
+         { 17, "聪明的麦迪什",         20000, 113, RACE_BEASTMAN },
+         { 18, "法勒布林博",              30000, 110, RACE_HIGH_ELF },
+         { 19, "狡黠的菲利尔·甘德",    30000, 110, RACE_DARK_ELF },
+         { 20, "萨满萨勒戈德",     15000, 110, RACE_BARBARIAN },
+         { 21, "秘术师克苏阿洛斯",     20000, 113, RACE_MIND_FLAYER },
+         { 22, "幻术师伊贝利",    30000, 110, RACE_SKELETON },
+         { 23, "死灵法师赫托",     30000, 110, RACE_YEEK },
+         { 24, "俏皮的尼尔斯",           30000, 110, RACE_TOMTE },
          { 0 }}},
 
-    { SHOP_BLACK_MARKET, "Black Market", _black_market_will_buy, _black_market_create,
-        {{  1, "Gary Gygaz",               20000, 150, RACE_HALF_TROLL },
-         {  2, "Histor the Goblin",        20000, 150, RACE_SNOTLING },
-         {  3, "Quark the Ferengi",        30000, 150, RACE_DWARF },
+    { SHOP_BLACK_MARKET, "黑市", _black_market_will_buy, _black_market_create,
+        {{  1, "加里·盖加斯",               20000, 150, RACE_HALF_TROLL },
+         {  2, "哥布林希斯托",        20000, 150, RACE_SNOTLING },
+         {  3, "费伦吉人夸克",        30000, 150, RACE_DWARF },
          {  4, "Topi the Fair(?)",         30000, 150, RACE_HUMAN },
-         {  5, "Vhassa the Dead",          20000, 150, RACE_ZOMBIE },
-         {  6, "Kyn the Treacherous",      20000, 150, RACE_VAMPIRE },
-         {  7, "Bubonicus",                30000, 150, RACE_BEASTMAN },
-         {  8, "Corpselight",              30000, 150, RACE_SPECTRE },
-         {  9, "Parrish the Bloodthirsty", 20000, 150, RACE_VAMPIRE },
-         { 10, "Vile",                     20000, 150, RACE_SKELETON },
-         { 11, "Prentice the Trusted",     30000, 150, RACE_SKELETON },
-         { 12, "Griella Humanslayer",      30000, 150, RACE_IMP },
-         { 13, "Angel",                    20000, 150, RACE_VAMPIRE },
-         { 14, "Flotsam the Bloated",      20000, 150, RACE_ZOMBIE },
-         { 15, "Nieval",                   30000, 150, RACE_VAMPIRE },
-         { 16, "Anastasia the Luminous",   30000, 150, RACE_SPECTRE },
-         { 17, "Charity the Necromancer",  20000, 150, RACE_DARK_ELF },
-         { 18, "Pugnacious the Pugilist",  20000, 150, RACE_SNOTLING },
-         { 19, "Footsore the Lucky",       30000, 150, RACE_BEASTMAN },
-         { 20, "Sidria Lightfingered",     30000, 150, RACE_HUMAN },
-         { 21, "Riatho the Juggler",       20000, 150, RACE_HOBBIT },
-         { 22, "Janaaka the Shifty",       20000, 150, RACE_GNOME },
-         { 23, "Cina the Rogue",           30000, 150, RACE_GNOME },
-         { 24, "Arunikki Greatclaw",       30000, 150, RACE_DRACONIAN },
-         { 25, "Chaeand the Poor",         20000, 150, RACE_HUMAN },
-         { 26, "Afardorf the Brigand",     20000, 150, RACE_BARBARIAN },
-         { 27, "Lathaxl the Greedy",       30000, 150, RACE_MIND_FLAYER },
-         { 28, "Falarewyn",                30000, 150, RACE_SPRITE },
-         { 29, "Vosur the Wrinkled",       20000, 150, RACE_NIBELUNG },
-         { 30, "Araord the Handsome",      20000, 150, RACE_AMBERITE },
-         { 31, "Theradfrid the Loser",     30000, 150, RACE_HUMAN },
-         { 32, "One-Legged Eroolo",        30000, 150, RACE_OGRE }}},
+         {  5, "死者瓦萨",          20000, 150, RACE_ZOMBIE },
+         {  6, "奸诈的凯恩",      20000, 150, RACE_VAMPIRE },
+         {  7, "布博尼库斯",                30000, 150, RACE_BEASTMAN },
+         {  8, "尸光",              30000, 150, RACE_SPECTRE },
+         {  9, "嗜血的帕里什", 20000, 150, RACE_VAMPIRE },
+         { 10, "维尔",                     20000, 150, RACE_SKELETON },
+         { 11, "受信任的普伦蒂斯",     30000, 150, RACE_SKELETON },
+         { 12, "人类杀手格里拉",      30000, 150, RACE_IMP },
+         { 13, "安琪儿",                    20000, 150, RACE_VAMPIRE },
+         { 14, "臃肿的弗洛特萨姆",      20000, 150, RACE_ZOMBIE },
+         { 15, "涅瓦尔",                   30000, 150, RACE_VAMPIRE },
+         { 16, "闪耀的安娜斯塔西娅",   30000, 150, RACE_SPECTRE },
+         { 17, "死灵法师查瑞蒂",  20000, 150, RACE_DARK_ELF },
+         { 18, "好斗的拳击手",  20000, 150, RACE_SNOTLING },
+         { 19, "幸运的富特索尔",       30000, 150, RACE_BEASTMAN },
+         { 20, "轻手的希德里亚",     30000, 150, RACE_HUMAN },
+         { 21, "杂耍者里亚索",       20000, 150, RACE_HOBBIT },
+         { 22, "多变的贾纳卡",       20000, 150, RACE_GNOME },
+         { 23, "盗贼西娜",           30000, 150, RACE_GNOME },
+         { 24, "巨爪阿鲁尼基",       30000, 150, RACE_DRACONIAN },
+         { 25, "贫穷的查安德",         20000, 150, RACE_HUMAN },
+         { 26, "强盗阿法多夫",     20000, 150, RACE_BARBARIAN },
+         { 27, "贪婪的拉萨克斯尔",       30000, 150, RACE_MIND_FLAYER },
+         { 28, "法拉瑞温",                30000, 150, RACE_SPRITE },
+         { 29, "皱纹满面的沃苏尔",       20000, 150, RACE_NIBELUNG },
+         { 30, "英俊的阿拉奥德",      20000, 150, RACE_AMBERITE },
+         { 31, "失败者瑟拉德弗里德",     30000, 150, RACE_HUMAN },
+         { 32, "独腿艾鲁洛",        30000, 150, RACE_OGRE }}},
 
-    { SHOP_BOOK, "Bookstore", _book_will_buy, _book_create,
-        {{  1, "Dolaf the Greedy",         10000, 108, RACE_HUMAN },
-         {  2, "Odnar the Sage",           15000, 105, RACE_HIGH_ELF },
-         {  3, "Gandar the Neutral",       25000, 110, RACE_DARK_ELF },
-         {  4, "Ro-sha the Patient",       30000, 105, RACE_DEMIGOD },
-         {  5, "Randolph Carter",          15000, 108, RACE_HUMAN },
-         {  6, "Sarai the Swift",          15000, 108, RACE_HUMAN },
-         {  7, "Bodril the Seer",          20000, 105, RACE_HIGH_ELF },
-         {  8, "Veloin the Quiet",         25000, 110, RACE_ZOMBIE },
-         {  9, "Vanthylas the Learned",    30000, 105, RACE_MIND_FLAYER },
-         { 10, "Ossein the Literate",      15000, 108, RACE_SKELETON },
-         { 11, "Olvar Bookworm",           20000, 105, RACE_VAMPIRE },
-         { 12, "Shallowgrave",             25000, 110, RACE_ZOMBIE },
-         { 13, "Death Mask",               30000, 105, RACE_ZOMBIE },
-         { 14, "Asuunu the Learned",       15000, 108, RACE_MIND_FLAYER },
-         { 15, "Prirand the Dead",         20000, 105, RACE_ZOMBIE },
-         { 16, "Ronar the Iron",           25000, 110, RACE_GOLEM },
-         { 17, "Galil-Gamir",              35000, 105, RACE_HIGH_ELF },
-         { 18, "Rorbag Book-Eater",         5000, 108, RACE_KOBOLD },
-         { 19, "Kiriarikirk",              20000, 105, RACE_KLACKON },
-         { 20, "Rilin the Quiet",          25000, 110, RACE_DWARF },
-         { 21, "Isung the Lord",           30000, 105, RACE_HIGH_ELF },
+    { SHOP_BOOK, "书店", _book_will_buy, _book_create,
+        {{  1, "贪婪的多拉夫",         10000, 108, RACE_HUMAN },
+         {  2, "贤者奥德纳尔",           15000, 105, RACE_HIGH_ELF },
+         {  3, "中立的甘达尔",       25000, 110, RACE_DARK_ELF },
+         {  4, "耐心的罗-沙",       30000, 105, RACE_DEMIGOD },
+         {  5, "伦道夫·卡特",          15000, 108, RACE_HUMAN },
+         {  6, "迅捷的萨莱",          15000, 108, RACE_HUMAN },
+         {  7, "先知波德里尔",          20000, 105, RACE_HIGH_ELF },
+         {  8, "安静的维洛因",         25000, 110, RACE_ZOMBIE },
+         {  9, "博学的凡西拉斯",    30000, 105, RACE_MIND_FLAYER },
+         { 10, "识字的奥塞因",      15000, 108, RACE_SKELETON },
+         { 11, "书虫奥尔瓦",           20000, 105, RACE_VAMPIRE },
+         { 12, "浅坟",             25000, 110, RACE_ZOMBIE },
+         { 13, "死亡面具",               30000, 105, RACE_ZOMBIE },
+         { 14, "博学的阿苏努",       15000, 108, RACE_MIND_FLAYER },
+         { 15, "死者普里兰",         20000, 105, RACE_ZOMBIE },
+         { 16, "钢铁罗纳尔",           25000, 110, RACE_GOLEM },
+         { 17, "加利尔·伽米尔",              35000, 105, RACE_HIGH_ELF },
+         { 18, "食书者罗巴格",         5000, 108, RACE_KOBOLD },
+         { 19, "基里阿瑞科克",              20000, 105, RACE_KLACKON },
+         { 20, "安静的里林",          25000, 110, RACE_DWARF },
+         { 21, "领主伊松",           30000, 105, RACE_HIGH_ELF },
          { 0 }}},
 
-    { SHOP_JEWELER, "Jewelry Shop", _jeweler_will_buy, _jeweler_create,
-        {{  1, "Dalanna the Sweet",        20000, 108, RACE_HUMAN },
-         {  2, "Mesistrond",               15000, 105, RACE_DARK_ELF },
+    { SHOP_JEWELER, "珠宝店", _jeweler_will_buy, _jeweler_create,
+        {{  1, "甜美的达兰娜",        20000, 108, RACE_HUMAN },
+         {  2, "梅西斯特隆德",               15000, 105, RACE_DARK_ELF },
          {  3, "Mr. Biggles",              50000, 110, RACE_GNOME },
-         {  4, "Snivelsby",                10000, 108, RACE_SNOTLING },
-         {  5, "Grug",                     10000, 110, RACE_HALF_TROLL },
-         {  6, "Raphaella",                35000, 105, RACE_ARCHON },
-         {  7, "Sylphrana Lightfoot",      25000, 105, RACE_SPRITE },
-         {  8, "Helen the Beautiful",      20000, 110, RACE_DEMIGOD },
-         {  9, "Rattles Neverborn",        10000, 112, RACE_SKELETON },
-         { 10, "Trinkles the Stinky",      30000, 110, RACE_GNOME },
-         { 11, "Gaudella",                 15000, 105, RACE_HUMAN },
-         { 12, "Argwynna of the Wood",     40000, 105, RACE_WOOD_ELF },
-         { 13, "Mugbasha",                  5000, 120, RACE_KOBOLD },
-         { 14, "Billing",                  25000, 113, RACE_DWARF },
-         { 15, "Regen",                    20000, 111, RACE_NIBELUNG },
-         { 16, "Aulendil",                 25000, 110, RACE_HIGH_ELF },
+         {  4, "斯尼维尔斯比",                10000, 108, RACE_SNOTLING },
+         {  5, "格鲁格",                     10000, 110, RACE_HALF_TROLL },
+         {  6, "拉斐埃拉",                35000, 105, RACE_ARCHON },
+         {  7, "轻脚的西尔弗拉娜",      25000, 105, RACE_SPRITE },
+         {  8, "美丽的梅伦",      20000, 110, RACE_DEMIGOD },
+         {  9, "不生的拉特尔斯",        10000, 112, RACE_SKELETON },
+         { 10, "臭烘烘的特林克尔斯",      30000, 110, RACE_GNOME },
+         { 11, "高德拉",                 15000, 105, RACE_HUMAN },
+         { 12, "林中的阿尔格温娜",     40000, 105, RACE_WOOD_ELF },
+         { 13, "穆格巴沙",                  5000, 120, RACE_KOBOLD },
+         { 14, "比林",                  25000, 113, RACE_DWARF },
+         { 15, "雷根",                    20000, 111, RACE_NIBELUNG },
+         { 16, "奥兰迪尔",                 25000, 110, RACE_HIGH_ELF },
          { 0 }}},
 
-	{ SHOP_SHROOMERY, "Mushroom Store", _shroomery_will_buy, _shroomery_create,
-		 { { 1, "Mysticus",              50000, 110, RACE_GNOME },
-		 { 2, "Martin",                10000, 108, RACE_HUMAN },
-		 { 3, "Karl",                     10000, 110, RACE_HALF_TROLL },
-		 { 4, "Mycella",				25000, 105, RACE_SPRITE },
-		 { 5, "Gordo",					20000, 110, RACE_HOBBIT },
-		 { 6, "Agaria",					40000, 105, RACE_WOOD_ELF },
-		 { 7, "Dumush",                  5000, 120, RACE_KOBOLD },
+	{ SHOP_SHROOMERY, "蘑菇店", _shroomery_will_buy, _shroomery_create,
+		 { { 1, "米斯提库斯",              50000, 110, RACE_GNOME },
+		 { 2, "马丁",                10000, 108, RACE_HUMAN },
+		 { 3, "卡尔",                     10000, 110, RACE_HALF_TROLL },
+		 { 4, "米塞拉",				25000, 105, RACE_SPRITE },
+		 { 5, "戈多",					20000, 110, RACE_HOBBIT },
+		 { 6, "阿加里亚",					40000, 105, RACE_WOOD_ELF },
+		 { 7, "杜穆什",                  5000, 120, RACE_KOBOLD },
 		 { 0 } } },
 
-	{ SHOP_DRAGON, "Dragonskin Emporium", _dragon_will_buy, _dragon_create,
-		 { { 1, "Beowulf",              50000, 110, RACE_HUMAN },
-		 { 2, "George",                10000, 108, RACE_HUMAN },
-		 { 3, "Sigurd",                     10000, 110, RACE_HUMAN },
-		 { 4, "Conan",				25000, 105, RACE_BARBARIAN },
+	{ SHOP_DRAGON, "龙皮百货", _dragon_will_buy, _dragon_create,
+		 { { 1, "贝奥武夫",              50000, 110, RACE_HUMAN },
+		 { 2, "乔治",                10000, 108, RACE_HUMAN },
+		 { 3, "西格德",                     10000, 110, RACE_HUMAN },
+		 { 4, "柯南",				25000, 105, RACE_BARBARIAN },
 		 { 0 } } },
 
     { SHOP_NONE }
@@ -519,7 +519,7 @@ int calculate_obj_cookie_requirement(obj_ptr obj) {
 }
 
 /************************************************************************
- * The General Store
+ * The 杂货店
  ***********************************************************************/
 static bool _general_will_buy(obj_ptr obj)
 {
@@ -616,7 +616,7 @@ static bool _general_create(obj_ptr obj, u32b mode)
 }
 
 /************************************************************************
- * The Armory
+ * The 防具店
  ***********************************************************************/
 static bool _armory_will_buy(obj_ptr obj)
 {
@@ -649,7 +649,7 @@ static bool _armory_create(obj_ptr obj, u32b mode)
 }
 
 /************************************************************************
- * The Weapon Smiths
+ * The 武器店
  ***********************************************************************/
 static bool _weapon_will_buy(obj_ptr obj)
 {
@@ -765,7 +765,7 @@ static bool _weapon_create(obj_ptr obj, u32b mode)
 }
 
 /************************************************************************
- * The Temple
+ * The 神殿
  ***********************************************************************/
 static bool _temple_will_buy(obj_ptr obj)
 {
@@ -893,7 +893,7 @@ static bool _alchemist_stock_p(int k_idx)
 
     switch (k_info[k_idx].tval)
     {
-    /* Scrolls and Potions are also stocked by the Temple. */
+    /* Scrolls and Potions are also stocked by the 神殿. */
     case TV_SCROLL:
     case TV_POTION:
         if (!_temple_stock_p(k_idx))
@@ -918,7 +918,7 @@ static bool _alchemist_create(obj_ptr obj, u32b mode)
 }
 
 /************************************************************************
- * The Magic Shop
+ * The 魔法店
  ***********************************************************************/
 static bool _magic_will_buy(obj_ptr obj)
 {
@@ -1015,7 +1015,7 @@ static bool _magic_create(obj_ptr obj, u32b mode)
 }
 
 /************************************************************************
- * The Black Market
+ * The 黑市
  ***********************************************************************/
 static bool _black_market_will_buy(obj_ptr obj)
 {
@@ -1070,7 +1070,7 @@ static bool _black_market_create(obj_ptr obj, u32b mode)
 }
 
 /************************************************************************
- * The Bookstore
+ * The 书店
  ***********************************************************************/
 static bool _book_will_buy(obj_ptr obj)
 {
@@ -1191,7 +1191,7 @@ static bool _shroomery_create(obj_ptr obj, u32b mode)
 }
 
 /************************************************************************
-* The Dragon Emporium
+* The 龙鳞商店
 ***********************************************************************/
 
 static bool _dragon_will_buy(obj_ptr obj)
@@ -1258,7 +1258,7 @@ static void _change_owner(shop_ptr shop)
         {
             if (shop->owner)
             {
-                msg_format("<color:U>%s</color> retires.", shop->owner->name);
+                msg_format("<color:U>%s</color> 退休了。", shop->owner->name);
                 shop->owner->active = FALSE;
             }
             shop->owner = owner;
@@ -1562,14 +1562,12 @@ static void _loop(_ui_context_ptr context)
             default:
                 if (cmd < 256 && isprint(cmd))
                 {
-                    msg_format("Unrecognized command: <color:R>%c</color>. "
-                               "Press <color:keypress>?</color> for help.", cmd);
+                    msg_format("未识别的命令：<color:R>%c</color>。按 <color:keypress>?</color> 查看帮助。", cmd);
                 }
                 else if (KTRL('A') <= cmd && cmd <= KTRL('Z'))
                 {
                     cmd |= 0x40;
-                    msg_format("Unrecognized command: <color:R>^%c</color>. "
-                               "Press <color:keypress>?</color> for help.", cmd);
+                    msg_format("未识别的命令：<color:R>^%c</color>。按 <color:keypress>?</color> 查看帮助。", cmd);
                 }
             }
             ct = inv_count_slots(context->shop->inv, obj_exists);
@@ -1578,7 +1576,7 @@ static void _loop(_ui_context_ptr context)
                 _restock(context->shop, _stock_base(context->shop), TRUE);
                 context->top = 1;
                 if (one_in_(20)) _change_owner(context->shop);
-                msg_format("<color:U>%s</color> brings out some new stock.", context->shop->owner->name);
+                msg_format("<color:U>%s</color> 拿出了一些新存货。", context->shop->owner->name);
             }
             else
             {
@@ -1593,8 +1591,8 @@ static void _loop(_ui_context_ptr context)
         handle_stuff(); /* Plus 'C' to view character sheet */
         if ((shop_exit_hack) || (pack_overflow_count() > ((pack_is_full()) ? 0 : 1)))
         {
-            if (shop_exit_hack) msg_print("It's time for you to leave!");
-            else msg_print("<color:v>Your pack is overflowing!</color> It's time for you to leave!");
+            if (shop_exit_hack) msg_print("你该离开了！");
+            else msg_print("<color:v>你的背包已经满溢了！</color> 你该离开了！");
             msg_print(NULL);
             shop_exit_hack = FALSE;
             break;
@@ -1638,27 +1636,27 @@ static void _display(_ui_context_ptr context)
             int page_count = (max - 1) / context->page_size + 1;
             int page_current = (context->top - 1) / context->page_size + 1;
 
-            doc_printf(doc, "<color:B>(Page %d of %d)</color>\n", page_current, page_count);
+            doc_printf(doc, "<color:B>(第 %d/%d 页)</color>\n", page_current, page_count);
         }
     }
 
     big_num_display(p_ptr->au, buf);
-    doc_printf(doc, "Gold Remaining: <color:y>%s</color>\n\n", buf);
-    doc_insert(doc, "<color:keypress>b</color> to buy. ");
+    doc_printf(doc, "剩余金币: <color:y>%s</color>\n\n", buf);
+    doc_insert(doc, "<color:keypress>b</color> 购买。 ");
     if (no_selling)
-        doc_insert(doc, "<color:keypress>s</color> to give. ");
+        doc_insert(doc, "<color:keypress>s</color> 赠送。 ");
     else
-        doc_insert(doc, "<color:keypress>s</color> to sell. ");
+        doc_insert(doc, "<color:keypress>s</color> 出售。 ");
     doc_insert(doc, 
-        "<color:keypress>x</color> to begin examining items.\n"
-        "<color:keypress>B</color> to buyout inventory. "
-		"<color:keypress>S</color> to shuffle stock. "
-        "<color:keypress>R</color> to reserve an item.");
+        "<color:keypress>x</color> 查看物品。\n"
+        "<color:keypress>B</color> 买空库存。 "
+		"<color:keypress>S</color> 刷新库存。 "
+        "<color:keypress>R</color> 预订物品。");
     doc_newline(doc);
 
     doc_insert(doc,
-        "<color:keypress>Esc</color> to exit. "
-        "<color:keypress>?</color> for help.");
+        "<color:keypress>Esc</color> 离开。 "
+        "<color:keypress>?</color> 帮助。");
     doc_insert(doc, "</style>");
 
     Term_clear_rect(r);
@@ -1677,12 +1675,12 @@ static bool _buy_aux(shop_ptr shop, obj_ptr obj)
 
     if (!price)
     {
-        msg_print("I have no interest in your junk!");
+        msg_print("我对你的破烂没兴趣！");
         return FALSE;
     }
     if ((obj->tval == TV_CAPTURE) && (obj->pval > 0) && (r_info[obj->pval].ball_num))
     {
-        msg_print("I wouldn't take that if you paid me!");
+        msg_print("你倒贴我也不要！");
         return FALSE;
     }
     price = _buy_price(shop, price);
@@ -1690,9 +1688,9 @@ static bool _buy_aux(shop_ptr shop, obj_ptr obj)
 
     object_desc(name, obj, OD_COLOR_CODED);
     if (no_selling)
-        string_printf(s, "Really give %s? <color:y>[y/n]</color>", name);
+        string_printf(s, "确定赠送 %s？<color:y>[y/n]</color>", name);
     else
-        string_printf(s, "Really sell %s for <color:R>%d</color> gp? <color:y>[y/n]</color>", name, price);
+        string_printf(s, "确定出售 %s，获得 <color:R>%d</color> 金币？<color:y>[y/n]</color>", name, price);
     c = msg_prompt(string_buffer(s), "ny", PROMPT_YES_NO);
     string_free(s);
     if (c == 'n') return FALSE;
@@ -1720,9 +1718,9 @@ static bool _buy_aux(shop_ptr shop, obj_ptr obj)
     object_desc(name, obj, OD_COLOR_CODED);
 
     if (no_selling)
-        msg_format("You gave %s.", name);
+        msg_format("你赠送了 %s。", name);
     else
-        msg_format("You sold %s for <color:R>%d</color> gold.", name, price);
+        msg_format("你出售了 %s，获得 <color:R>%d</color> 金币。", name, price);
 
     if (shop->type->id == SHOP_BLACK_MARKET)
         virtue_add(VIRTUE_JUSTICE, -1);
@@ -1732,7 +1730,7 @@ static bool _buy_aux(shop_ptr shop, obj_ptr obj)
 
     if (object_is_(obj, TV_POTION, SV_POTION_BLOOD))
     {
-        msg_print("The potion goes sour.");
+        msg_print("药水变酸了。");
         obj->sval = SV_POTION_SALT_WATER;
         obj->k_idx = lookup_kind(TV_POTION, SV_POTION_SALT_WATER);
         object_origins(obj, ORIGIN_BLOOD);
@@ -1754,13 +1752,13 @@ static void _buy(_ui_context_ptr context)
 
     if (no_selling)
     {
-        prompt.prompt = "Give which item?";
-        prompt.error = "You have nothing to give.";
+        prompt.prompt = "赠送哪件物品？";
+        prompt.error = "你没有可赠送的物品。";
     }
     else
     {
-        prompt.prompt = "Sell which item?";
-        prompt.error = "You have nothing to sell.";
+        prompt.prompt = "出售哪件物品？";
+        prompt.error = "你没有可出售的物品。";
     }
     prompt.filter = context->shop->type->buy_p;
     prompt.where[0] = INV_PACK;
@@ -1774,7 +1772,7 @@ static void _buy(_ui_context_ptr context)
     if (prompt.obj->number > 1)
     {
         amt = prompt.obj->number;
-        if (!msg_input_num("Quantity", &amt, 1, prompt.obj->number)) return;
+        if (!msg_input_num("数量", &amt, 1, prompt.obj->number)) return;
     }
 
     if (amt < prompt.obj->number)
@@ -1817,7 +1815,7 @@ static void _examine(_ui_context_ptr context)
         slot_t  slot;
         obj_ptr obj;
 
-        if (!msg_command("<color:y>Examine which item <color:w>(<color:keypress>Esc</color> when done)</color>?</color>", &cmd)) break;
+        if (!msg_command("<color:y>查看哪件物品 <color:w>(完成按 <color:keypress>Esc</color>)</color>？</color>", &cmd)) break;
         if (cmd < 'a' || cmd > 'z') continue;
         slot = label_slot(cmd);
         slot = slot + context->top - 1;
@@ -1844,7 +1842,7 @@ static void _reserve_aux(shop_ptr shop, obj_ptr obj)
         if (maks > 1)
         {
             amt = maks;
-            if (!msg_input_num("Quantity", &amt, 1, maks)) return;
+            if (!msg_input_num("数量", &amt, 1, maks)) return;
         }
     }
 
@@ -1854,16 +1852,16 @@ static void _reserve_aux(shop_ptr shop, obj_ptr obj)
         if (amt == 1) mode |= OD_SINGULAR;
         object_desc(name, obj, mode);
         cost *= amt;
-        s = string_alloc_format("Reserve <color:%c>%d</color> %s for <color:R>%d</color> gp? <color:y>[y/n]</color>", tval_to_attr_char(obj->tval), amt, name, cost);
+        s = string_alloc_format("预订 <color:%c>%d</color> 个 %s，价格 <color:R>%d</color> 金币？<color:y>[y/n]</color>", tval_to_attr_char(obj->tval), amt, name, cost);
     }
     else if (maks < 0)
     {
         object_desc(name, obj, OD_COLOR_CODED);
-        s = string_alloc_format("Reserve %s for <color:R>%d</color> gp? <color:y>[y/n]</color>", name, cost);
+        s = string_alloc_format("预订 %s，价格 <color:R>%d</color> 金币？<color:y>[y/n]</color>", name, cost);
     }
     else
     {
-        msg_print("You don't have enough gold.");
+        msg_print("你的金币不够。");
         return;
     }
     c = msg_prompt(string_buffer(s), "ny", PROMPT_YES_NO);
@@ -1871,7 +1869,7 @@ static void _reserve_aux(shop_ptr shop, obj_ptr obj)
     if (c == 'n') return;
     if (cost > p_ptr->au)
     {
-        msg_print("You don't have enough gold.");
+        msg_print("你的金币不够。");
         return;
     }
     p_ptr->au -= cost;
@@ -1885,7 +1883,7 @@ static void _reserve_aux(shop_ptr shop, obj_ptr obj)
     object_desc(name, obj, OD_COLOR_CODED);
     obj->marked |= OM_RESERVED;
 
-    msg_format("Done! I'll hold on to %s for you. You may come back at any time to purchase it.", name);
+    msg_format("好了！我会替你保留 %s，你可以随时回来购买。", name);
 }
 
 static void _reserve(_ui_context_ptr context)
@@ -1896,7 +1894,7 @@ static void _reserve(_ui_context_ptr context)
         slot_t  slot;
         obj_ptr obj;
 
-        if (!msg_command("<color:y>Reserve which item <color:w>(<color:keypress>Esc</color> when done)</color>?</color>", &cmd)) break;
+        if (!msg_command("<color:y>预订哪件物品 <color:w>(完成按 <color:keypress>Esc</color>)</color>？</color>", &cmd)) break;
         if (cmd < 'a' || cmd > 'z') continue;
         slot = label_slot(cmd);
         slot = slot + context->top - 1;
@@ -1905,7 +1903,7 @@ static void _reserve(_ui_context_ptr context)
 
         if (obj->marked & OM_RESERVED)
         {
-            msg_print("You have already reserved that item. Choose another.");
+            msg_print("你已经预订了那件物品，请选择其他物品。");
             continue;
         }
         _reserve_aux(context->shop, obj);
@@ -1924,14 +1922,14 @@ static bool _sell_aux(shop_ptr shop, obj_ptr obj)
     price *= obj->number;
 
     object_desc(name, obj, OD_COLOR_CODED);
-    string_printf(s, "Really buy %s for <color:R>%d</color> gp? <color:y>[y/n]</color>", name, price);
+    string_printf(s, "确定购买 %s，价格 <color:R>%d</color> 金币？<color:y>[y/n]</color>", name, price);
     c = msg_prompt(string_buffer(s), "ny", PROMPT_YES_NO);
     string_free(s);
     if (c == 'n') return FALSE;
 
     if (price > p_ptr->au)
     {
-        msg_print("You do not have enough gold.");
+        msg_print("你的金币不够。");
         return FALSE;
     }
     p_ptr->au -= price;
@@ -1948,7 +1946,7 @@ static bool _sell_aux(shop_ptr shop, obj_ptr obj)
 
     /* Almost all origins are marked on item creation, but origin_store is
      * marked on purchase to avoid message spam and misleading messages
-     * ("bought from store" for items that have not yet been bought).
+     * ("从商店购买" for items that have not yet been bought).
      * However, we may be repurchasing an item that we previously sold, so
      * we need to avoid overwriting such items' original origins */
     if ((!obj->origin_type) || (obj->origin_type == ORIGIN_MIXED)) object_origins(obj, ORIGIN_STORE);
@@ -1963,7 +1961,7 @@ static bool _sell_aux(shop_ptr shop, obj_ptr obj)
         virtue_add(VIRTUE_NATURE, -1);
 
     pack_carry(obj);
-    /*msg_format("You have %s.", name);*/
+    /*msg_format("你获得了 %s。", name);*/
     return TRUE;
 }
 
@@ -1980,17 +1978,16 @@ static void _sell(_ui_context_ptr context)
 		if (context->shop->type->id == SHOP_SHROOMERY)
 		{
 			if (prace_is_(RACE_SNOTLING) || prace_is_(RACE_DOPPELGANGER)) {
-				msg_print("We don't serve your kind here.");
+				msg_print("这里不招待你这种客人。");
 				return;
 			}
 			if ((p_ptr->prace == RACE_SNOTLING) || (p_ptr->prace == RACE_DOPPELGANGER)) {
-				msg_print("I'm wise to your tricks. You can't have my mushrooms.");
+				msg_print("你的把戏我看穿了，蘑菇不会卖给你。");
 				return;
 			}
 		}
 
-        if (!msg_command("<color:y>Buy which item <color:w>(<color:keypress>Esc</color> "
-                         "to cancel)</color>?</color>", &cmd)) break;
+        if (!msg_command("<color:y>购买哪件物品 <color:w>(取消按 <color:keypress>Esc</color>)</color>？</color>", &cmd)) break;
         if (cmd < 'a' || cmd > 'z') continue;
         slot = label_slot(cmd);
         slot = slot + context->top - 1;
@@ -2006,10 +2003,10 @@ static void _sell(_ui_context_ptr context)
                 price = _sell_price(context->shop, price);
                 if ((price * maks) > p_ptr->au) maks = p_ptr->au / price;
             }
-            if ((maks > 1) && (!msg_input_num("Quantity", &amt, 1, maks))) continue;
+            if ((maks > 1) && (!msg_input_num("数量", &amt, 1, maks))) continue;
             else if (maks < 1)
             {
-                msg_print("You do not have enough gold.");
+                msg_print("你的金币不够。");
                 return;
             }
         }
@@ -2053,16 +2050,16 @@ static void _sellout(shop_ptr shop)
 	if (shop->type->id == SHOP_SHROOMERY)
 	{
 		if (prace_is_(RACE_SNOTLING) || prace_is_(RACE_DOPPELGANGER)) {
-			msg_print("We don't serve your kind here.");
+			msg_print("这里不招待你这种客人。");
 			return;
 		}
 		if (p_ptr->prace == RACE_DOPPELGANGER) {
-			msg_print("I'm wise to your tricks. You can't have my mushrooms.");
+			msg_print("你的把戏我看穿了，蘑菇不会卖给你。");
 			return;
 		}
 	}
 
-    if (1 && !get_check("Are you sure you want to buy the entire inventory of this store? "))
+    if (1 && !get_check("确定要买下这家店的全部库存吗？"))
         return;
 
     for (slot = 1; slot <= max; slot++)
@@ -2108,12 +2105,12 @@ static void _sellout(shop_ptr shop)
         }
         else
         {
-            msg_print("You have run out of gold.");
+            msg_print("你的金币用完了。");
             break;
         }
     }
 
-    msg_format("You spent <color:R>%d</color> gp.", total_price);
+    msg_format("你花费了 <color:R>%d</color> 金币。", total_price);
     if (prace_is_(RACE_MON_LEPRECHAUN))
         p_ptr->update |= (PU_BONUS | PU_HP | PU_MANA);
 
@@ -2313,13 +2310,13 @@ static void _shuffle_stock(shop_ptr shop)
         string_ptr s;
         char       c;
         if (shop->type->id == SHOP_BLACK_MARKET) cost *= 2;
-        s = string_alloc_format("Shuffle stock for <color:R>%d</color> gp? <color:y>[y/n]</color>", cost);
+        s = string_alloc_format("花 <color:R>%d</color> 金币刷新库存？<color:y>[y/n]</color>", cost);
         c = msg_prompt(string_buffer(s), "ny", PROMPT_YES_NO);
         string_free(s);
         if (c == 'n') return;
         if (cost > p_ptr->au)
         {
-            msg_print("You don't have enough gold.");
+            msg_print("你的金币不够。");
             return;
         }
         p_ptr->au -= cost;
@@ -2413,23 +2410,23 @@ static void _display_inv(doc_ptr doc, shop_ptr shop, slot_t top, int page_size)
 
     if (inv_loc(inv) == INV_MUSEUM) {
         doc_printf(doc, "<tab:%d>", doc_width(doc) - xtra+7);
-        doc_printf(doc, "<color:R>Cookie: %d</color>\n", p_ptr->cookie);
+        doc_printf(doc, "<color:R>饼干: %d</color>\n", p_ptr->cookie);
         doc_newline(doc);
     }
 
-    doc_insert(doc, "    Item Description");
+    doc_insert(doc, "    物品说明");
 
     if (xtra)
     {
         doc_printf(doc, "<tab:%d>", doc_width(doc) - xtra);
         if (show_weights)
-            doc_printf(doc, " %9.9s", "Weight");
+            doc_printf(doc, " %9.9s", "重量");
         if (show_prices)
-            doc_printf(doc, " %6.6s", "Price");
+            doc_printf(doc, " %6.6s", "价格");
         if (show_values)
-            doc_printf(doc, " %6.6s", "Score");
+            doc_printf(doc, " %6.6s", "评分");
         if (show_cookie)
-            doc_printf(doc, " %6.6s", "Cookie");
+            doc_printf(doc, " %6.6s", "饼干");
     }
     doc_newline(doc);
 
@@ -2468,7 +2465,7 @@ static void _display_inv(doc_ptr doc, shop_ptr shop, slot_t top, int page_size)
                 if (show_weights)
                 {
                     int wgt = obj->weight; /* single object only for home/shops */
-                    doc_printf(doc, " %3d.%d lbs", wgt/10, wgt%10);
+                    doc_printf(doc, "%3d.%d 磅", wgt/10, wgt%10);
                 }
                 if (show_prices || show_values || show_cookie)
                 {
@@ -2517,7 +2514,7 @@ void shop_display_inv(doc_ptr doc, inv_ptr inv, slot_t top, int page_size)
 /************************************************************************
  * Town
  ***********************************************************************/
-static cptr _names[] = { "Wilderness", "Outpost", "Telmora", "Morivant", "Angwil", "Anambar", "Thalos", "Zul", "Dungeon" };
+static cptr _names[] = { "荒野", "前哨站", "特尔莫拉", "莫里万特", "安格威尔", "阿南巴尔", "塔洛斯", "祖尔", "地牢" };
 
 struct town_s
 {
@@ -2991,7 +2988,7 @@ static errr _parse_town(char *line, int options)
 }
 room_ptr towns_get_map(void)
 {
-    room_ptr room = room_alloc("NotSureYet");
+    room_ptr room = room_alloc("尚未确定");
     _temp_room = room;
     if (parse_edit_file("t_info.txt", _parse_town, 0) != ERROR_SUCCESS)
     {

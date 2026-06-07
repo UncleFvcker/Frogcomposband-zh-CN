@@ -39,15 +39,19 @@ struct term_win
 
     byte **a;
     char **c;
+    u32b **uc;
 
     byte *va;
     char *vc;
+    u32b *vuc;
 
     byte **ta;
     char **tc;
+    u32b **utc;
 
     byte *vta;
     char *vtc;
+    u32b *vutc;
 };
 
 
@@ -262,6 +266,12 @@ struct term
 #define TERM_XTRA_LEVEL 12    /* Change the "soft" level (optional) */
 #define TERM_XTRA_DELAY 13    /* Delay some milliseconds (optional) */
 
+/*
+ * Unicode code point markers stored alongside the legacy byte character.
+ */
+#define TERM_UC_WIDE_TRAIL 0xFFFFFFFFUL
+#define TERM_UC_REPLACEMENT 0x0000FFFDUL
+
 
 /**** Available Variables ****/
 
@@ -319,5 +329,4 @@ extern errr term_init(term *t, int w, int h, int k);
 
 
 #endif
-
 

@@ -251,7 +251,7 @@ static void _scroll_cave(int dx, int dy)
 #if 1
     if (p_ptr->wizard)
     {
-        cmsg_format(TERM_VIOLET, "Scroll Cave (%d,%d)", dx, dy);
+        cmsg_format(TERM_VIOLET, "卷动洞穴 (%d,%d)", dx, dy);
         msg_boundary();
     }
 #endif
@@ -433,7 +433,7 @@ void wilderness_move_player(int old_x, int old_y)
     if (wilderness_scroll_lock)
     {
     #if 0
-        msg_format("Skip Scroll (%d,%d)", dx, dy);
+        msg_format("跳过卷动 (%d,%d)", dx, dy);
     #endif
         return;
     }
@@ -496,7 +496,7 @@ void wilderness_move_player(int old_x, int old_y)
     /* New players sometimes don't realize there's an overworld */
     if ((!overworld_visit) && (!p_ptr->town_num) && (!thrall_mode))
     {
-        msg_print("<color:B>TIP</color>: Press <color:keypress><</color> to enter the special global map, which helps you navigate the vast wilderness and reduces the chance of running into deadly monsters.\nType <color:keypress>?gj</color> to access the full in-game help on navigating and surviving in the wilderness.");
+        msg_print("<color:B>提示</color>：按 <color:keypress><</color> 键进入特殊的世界地图(global map)，这有助于你在广袤的荒野中导航，并降低遇到致命怪物的几率。\n输入 <color:keypress>?gj</color> 以访问关于在荒野中导航和生存的完整游戏内帮助。");
         msg_print(NULL);
         overworld_visit = TRUE;
     }
@@ -589,12 +589,12 @@ static bool _build_room(room_ptr room, transform_ptr xform, rect_t r, rect_t exc
 
     if (is_daytime() && room->type == ROOM_WILDERNESS && disturb_minor && !travel.run)
     {
-        msg_print("You've stumbled onto something interesting ...");
+        msg_print("你偶然发现了一些有趣的东西……");
         disturb(0, 0);
     }
     if (room->type == ROOM_AMBUSH)
     {
-        msg_print("Press <color:y>Space</color> to continue.");
+        msg_print("按 <color:y>空格键</color> 继续。");
         flush();
         for (;;)
         {
@@ -1629,12 +1629,12 @@ void wilderness_gen(void)
 
         if (dungeon_flags[wilderness[p_ptr->wilderness_y][p_ptr->wilderness_x].entrance] & DUNGEON_NO_ENTRANCE)
         {
-            msg_format("The %s entrance has collapsed.", d_name + d_info[wilderness[p_ptr->wilderness_y][p_ptr->wilderness_x].entrance].name);
+            msg_format("%s入口已经坍塌。", d_name + d_info[wilderness[p_ptr->wilderness_y][p_ptr->wilderness_x].entrance].name);
         }
         else if (((ent_cx - p_ptr->wilderness_dx) * (ent_cx - p_ptr->wilderness_dx) > 1) ||
             ((ent_cy - p_ptr->wilderness_dy) * (ent_cy - p_ptr->wilderness_dy) > 1))
         {
-            msg_format("The %s entrance doesn't appear to be within sight. Perhaps it's a bit further %s%s?",
+            msg_format("%s入口似乎不在视线内。也许在更靠%s%s一点的地方？",
             d_name + d_info[wilderness[p_ptr->wilderness_y][p_ptr->wilderness_x].entrance].name,
             ((ent_cy - p_ptr->wilderness_dy == -2) ? "north" : (ent_cy - p_ptr->wilderness_dy == 2) ? "south" : ""),
             (((ent_cx - p_ptr->wilderness_dx == -2) || (x2 - (p_ptr->wilderness_dx * WILD_SCROLL_CX + px) <= -44)) ? "west" : ((ent_cx - p_ptr->wilderness_dx == 2) || (x2 - (p_ptr->wilderness_dx * WILD_SCROLL_CX + px) >= 44)) ? "east" : ""));
@@ -1933,14 +1933,14 @@ static void init_terrain_table(int terrain, s16b feat_global, cptr fmt, ...)
         }
         else /* Paranoia */
         {
-            plog_fmt("Format error");
+            plog_fmt("格式错误");
         }
     }
 
     /* Paranoia */
     if (cur < MAX_FEAT_IN_TERRAIN)
     {
-        plog_fmt("Too few parameters");
+        plog_fmt("参数太少");
     }
 
     /* End the varargs stuff */
@@ -2085,7 +2085,7 @@ bool change_wild_mode(void)
 
     if (no_wilderness)
     {
-        msg_print("No global map.");
+        msg_print("没有世界地图。");
         return FALSE;
     }
 
@@ -2135,7 +2135,7 @@ bool change_wild_mode(void)
         /* Monster Awareness of the player is a TODO concept, not yet correctly implemented.
            At the moment, only the Ring player race uses this and there is a slight bug as well!
         if (!is_aware(m_ptr)) continue;*/
-        msg_print("You cannot enter the global map since there are some monsters nearby!");
+        msg_print("你无法进入世界地图，因为附近有怪物！");
         energy_use = 0;
         return FALSE;
     }

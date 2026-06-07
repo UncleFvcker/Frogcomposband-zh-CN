@@ -5,10 +5,10 @@ void cause_wounds_I_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Cause Light Wounds");
+        var_set_string(res, "造成轻伤");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to damage a single foe.");
+        var_set_string(res, "试图对单个敌人造成伤害。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(3, spell_power(8), spell_power(p_ptr->to_d_spell)));
@@ -33,10 +33,10 @@ void cause_wounds_II_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Cause Medium Wounds");
+        var_set_string(res, "造成中度伤");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to damage a single foe.");
+        var_set_string(res, "试图对单个敌人造成伤害。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(8, spell_power(8), spell_power(p_ptr->to_d_spell)));
@@ -61,10 +61,10 @@ void cause_wounds_III_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Cause Critical Wounds");
+        var_set_string(res, "造成重伤");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to damage a single foe.");
+        var_set_string(res, "试图对单个敌人造成伤害。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(10, spell_power(15), spell_power(p_ptr->to_d_spell)));
@@ -89,10 +89,10 @@ void cause_wounds_IV_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Cause Mortal Wounds");
+        var_set_string(res, "造成致命伤");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to damage a single foe.");
+        var_set_string(res, "试图对单个敌人造成伤害。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(15, spell_power(15), spell_power(p_ptr->to_d_spell)));
@@ -117,10 +117,10 @@ void clairvoyance_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Clairvoyance");
+        var_set_string(res, "千里眼");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Maps and lights whole dungeon level and gives telepathy for a while.");
+        var_set_string(res, "映射并照亮整个地下城层，并在一段时间内赋予心灵感应。");
         break;
     case SPELL_CAST:
         virtue_add(VIRTUE_KNOWLEDGE, 1);
@@ -144,13 +144,13 @@ void clear_mind_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Clear Mind");
+        var_set_string(res, "头脑清明");
         break;
     case SPELL_DESC:
         var_set_string(res, "");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Player regains 2+(L/30) SP. This won't work if the player has any pets.");
+        var_set_string(res, "玩家回复 2+(L/30) 点法力值(SP)。如果玩家有任何宠物，此技能将无效。");
         break;
     case SPELL_CAST:
     {
@@ -159,16 +159,16 @@ void clear_mind_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (total_friends)
         {
-            msg_print("You need to concentrate on your pets now.");
+            msg_print("你现在需要集中注意力在你的宠物上。");
             return;
         }
         if ((p_ptr->pclass == CLASS_RUNE_KNIGHT) || (p_ptr->pclass == CLASS_RAGE_MAGE))
         {
-            msg_print("Your mind remains cloudy.");
+            msg_print("你的头脑依然昏沉。");
             return;
         }
 
-        msg_print("You feel your head clear a little.");
+        msg_print("你觉得头脑清醒了一点。");
 
         amt = 2 + p_ptr->lev/30;
 
@@ -188,10 +188,10 @@ void confuse_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Confuse");
+        var_set_string(res, "困惑术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempt to confuse one or more monsters.");
+        var_set_string(res, "试图使一只或多只怪物陷入困惑。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(p_ptr->lev * 2));
@@ -219,22 +219,22 @@ void cold_touch_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Cold Touch");
+        var_set_string(res, "寒冷之触");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Freeze things with your icy fingers!");
+        var_set_string(res, "用你冰冷的手指冻结事物！");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(2 * p_ptr->lev)));
         break;
     case SPELL_GAIN_MUT:
-        msg_print("Your hands get very cold.");
+        msg_print("你的手变得非常冰冷。");
         break;
     case SPELL_LOSE_MUT:
-        msg_print("Your hands warm up.");
+        msg_print("你的手变暖和了。");
         break;
     case SPELL_MUT_DESC:
-        var_set_string(res, "You can freeze things with a touch.");
+        var_set_string(res, "你可以通过触碰来冻结事物。");
         break;
     case SPELL_CAST:
     {
@@ -254,7 +254,7 @@ void cold_touch_spell(int cmd, variant *res)
 
         if (!c_ptr->m_idx)
         {
-            msg_print("You wave your hands in the air.");
+            msg_print("你在空中挥动着双手。");
             break;
         }
         fire_bolt(GF_COLD, dir, spell_power(2 * p_ptr->lev));
@@ -272,13 +272,13 @@ void confusing_lights_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Confusing Lights");
+        var_set_string(res, "混乱之光");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Emits confusing lights, slowing, stunning, confusing, scaring and freezing nearby monsters.");
+        var_set_string(res, "散发出令人困惑的光芒，使附近的怪物减速、震慑、困惑、恐惧并冻结。");
         break;
     case SPELL_CAST:
-        msg_print("You glare nearby monsters with a dazzling array of confusing lights!");
+        msg_print("你用令人眼花缭乱的混乱之光照射附近的怪物！");
         slow_monsters(p_ptr->lev * 3);
         stun_monsters(5 + p_ptr->lev/5);
         confuse_monsters(p_ptr->lev * 3);
@@ -297,10 +297,10 @@ void crafting_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Crafting");
+        var_set_string(res, "工匠技艺");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Makes chosen weapon, armor or ammo an ego item.");
+        var_set_string(res, "使选定的武器、护甲或弹药成为高级(ego)物品。");
         break;
     case SPELL_CAST:
     {
@@ -310,8 +310,8 @@ void crafting_spell(int cmd, variant *res)
 
         var_set_bool(res, FALSE);
 
-        prompt.prompt = "Enchant which item?";
-        prompt.error = "You have nothing to enchant.";
+        prompt.prompt = "要附魔哪件物品？";
+        prompt.error = "你没有东西可以附魔。";
         prompt.filter = object_is_weapon_armour_ammo;
         prompt.where[0] = INV_PACK;
         prompt.where[1] = INV_EQUIP;
@@ -325,13 +325,13 @@ void crafting_spell(int cmd, variant *res)
 
         if (!object_is_nameless(prompt.obj))
         {
-            msg_print("You cannot enchant that item any further.");
+            msg_print("你无法对该物品进行进一步附魔了。");
             return;
         }
 
         if ((!object_is_ammo(prompt.obj)) && (prompt.obj->number > 1))
         {
-            msg_print("You cannot use Crafting on more than one item at a time.");
+            msg_print("你不能同时对多件物品使用工匠技艺。");
             return;
         }
 
@@ -339,20 +339,20 @@ void crafting_spell(int cmd, variant *res)
             (object_is_(prompt.obj, TV_SWORD, SV_RUNESWORD)) ||
             (object_is_(prompt.obj, TV_POLEARM, SV_DEATH_SCYTHE)))
         {
-            msg_print("You cannot enchant that item.");
+            msg_print("你无法附魔该物品。");
             return;
         }
 
         if (prompt.obj->number > 59)
         {
-            msg_print("You cannot use Crafting on more than 59 projectiles at a time.");
+            msg_print("你不能同时对超过 59 个投射物使用工匠技艺。");
             return;
         }
 
         if (prompt.obj->number > 30)
         {
             int mahis = ((prompt.obj->number * 20) - 597) / 6;
-            if (!get_check(format("The enchantment has %s %d%% chance to fail. Proceed anyway? ", ((mahis / 10) == 8) ? "an" : "a", mahis)))
+            if (!get_check(format("附魔有 %s %d%% 的几率失败。无论如何都要继续吗？", ((mahis / 10) == 8) ? "``" : "a", mahis)))
             return;
         }
         
@@ -384,13 +384,13 @@ void crafting_spell(int cmd, variant *res)
             }
         }
 
-        msg_format("The %s glow%s brightly!", o_name,
+        msg_format("%s 发出了明亮的光芒%s！", o_name,
                 ((prompt.obj->number > 1) ? "" : "s"));
 
         if (!okay)
         {
             if (flush_failure) flush();
-            msg_print("The enchantment failed.");
+            msg_print("附魔失败了。");
             if (one_in_(3)) virtue_add(VIRTUE_ENCHANTMENT, -1);
         }
         else
@@ -418,10 +418,10 @@ void create_darkness_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Create Darkness");
+        var_set_string(res, "制造黑暗");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Darken nearby area and inside of a room.");
+        var_set_string(res, "使附近的区域和房间内部变暗。");
         break;
     case SPELL_CAST:
         unlite_area(0, 3);
@@ -438,13 +438,13 @@ void create_food_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Create Food");
+        var_set_string(res, "制造食物");
         break;
     case SPELL_DESC:
         if (p_ptr->prace == RACE_HOBBIT)
-            var_set_string(res, "It's time for second breakfast!  Cook up a tasty meal.");
+            var_set_string(res, "是时候吃第二顿早餐了！做一顿美味的饭菜。");
         else
-            var_set_string(res, "Create a ration of tasty food.");
+            var_set_string(res, "制造一份美味的口粮。");
         break;
     case SPELL_CAST:
     {
@@ -469,10 +469,10 @@ void create_major_trap_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Create Major Trap");
+        var_set_string(res, "制造大型陷阱");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Sets a trap under you. This trap will have various effects on a passing monster.");
+        var_set_string(res, "在你的脚下设置一个陷阱。这个陷阱会对路过的怪物产生各种影响。");
         break;
     case SPELL_CAST:
         set_trap(py, px, feat_rogue_trap2);
@@ -489,10 +489,10 @@ void create_minor_trap_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Create Minor Trap");
+        var_set_string(res, "制造小型陷阱");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Sets a weak trap under you. This trap will have various weak effects on a passing monster.");
+        var_set_string(res, "在你的脚下设置一个微弱的陷阱。这个陷阱会对路过的怪物产生各种微弱的影响。");
         break;
     case SPELL_CAST:
         set_trap(py, px, feat_rogue_trap1);
@@ -509,10 +509,10 @@ void create_ultimate_trap_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Create Ultimate Trap");
+        var_set_string(res, "制造终极陷阱");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Sets an extremely powerful trap under you. This trap will have various strong effects on a passing monster.");
+        var_set_string(res, "在你的脚下设置一个极其强大的陷阱。这个陷阱会对路过的怪物产生各种强力的影响。");
         break;
     case SPELL_CAST:
         set_trap(py, px, feat_rogue_trap3);
@@ -529,10 +529,10 @@ void crusade_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Crusade");
+        var_set_string(res, "圣战");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to charm all good monsters in sight, and scare all non-charmed monsters, and summons great number of knights, and gives heroism, bless, speed and protection from evil.");
+        var_set_string(res, "试图魅惑视线内的所有善良怪物，并恐吓所有未被魅惑的怪物，召唤大量骑士，并提供英雄气概、祝福、加速和防护邪恶。");
         break;
     case SPELL_CAST:
     {
@@ -576,10 +576,10 @@ void cure_poison_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Cure Poison");
+        var_set_string(res, "治疗毒素");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Cure poison status.");
+        var_set_string(res, "治愈中毒状态。");
         break;
     case SPELL_CAST:
         set_poisoned(p_ptr->poisoned - MAX(100, p_ptr->poisoned / 5), TRUE);
@@ -596,10 +596,10 @@ void cure_wounds_I_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Cure Light Wounds");
+        var_set_string(res, "治疗轻伤");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Heals cut and HP a little.");
+        var_set_string(res, "治愈割伤并恢复少量生命值。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(2, spell_power(10), 0));
@@ -620,10 +620,10 @@ void cure_wounds_II_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Cure Medium Wounds");
+        var_set_string(res, "治疗中度伤");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Heals cut and HP more.");
+        var_set_string(res, "治愈割伤并恢复更多生命值。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(4, spell_power(10), 0));
@@ -644,10 +644,10 @@ void cure_wounds_III_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Cure Critical Wounds");
+        var_set_string(res, "治疗重伤");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Heals cut, stun and HP greatly.");
+        var_set_string(res, "治愈割伤、震慑并大量恢复生命值。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_heal(8, spell_power(10), 0));
@@ -669,10 +669,10 @@ void curing_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Curing");
+        var_set_string(res, "恢复术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "It heals you a bit and cures blindness, poison, confusion, stunning, cuts and hallucination.");
+        var_set_string(res, "它能治疗你一些生命值，并治愈失明、中毒、困惑、震慑、割伤和幻觉状态。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_heal(0, 0, spell_power(50)));
@@ -706,10 +706,10 @@ void darkness_storm_I_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Darkness Storm");
+        var_set_string(res, "黑暗风暴");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a huge ball of darkness.");
+        var_set_string(res, "发射一个巨大的黑暗法球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(_darkness_storm_I_dam() + p_ptr->to_d_spell)));
@@ -719,7 +719,7 @@ void darkness_storm_I_spell(int cmd, variant *res)
         int dir = 0;
         var_set_bool(res, FALSE);
         if (!get_fire_dir(&dir)) return;
-        msg_print("You invoke a darkness storm.");
+        msg_print("你唤起了一场黑暗风暴。");
         fire_ball(
             GF_DARK,
             dir,
@@ -745,10 +745,10 @@ void darkness_storm_II_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Darkness Storm");
+        var_set_string(res, "黑暗风暴");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a huge ball of darkness of unmatched power.");
+        var_set_string(res, "发射一个威力无与伦比的巨大黑暗法球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(_darkness_storm_II_dam() + p_ptr->to_d_spell)));
@@ -758,7 +758,7 @@ void darkness_storm_II_spell(int cmd, variant *res)
         int dir = 0;
         var_set_bool(res, FALSE);
         if (!get_fire_dir(&dir)) return;
-        msg_print("You invoke a darkness storm.");
+        msg_print("你唤起了一场黑暗风暴。");
         fire_ball(GF_DARK, dir,
             spell_power(_darkness_storm_II_dam() + p_ptr->to_d_spell),
             spell_power(4));
@@ -777,10 +777,10 @@ void day_of_the_dove_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Day of the Dove");
+        var_set_string(res, "和平之日");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to charm all monsters in sight.");
+        var_set_string(res, "试图魅惑视线内的所有怪物。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(power));
@@ -800,19 +800,19 @@ void dazzle_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dazzle");
+        var_set_string(res, "目眩术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Emits dazzling lights, stunning, confusing and scaring nearby monsters.");
+        var_set_string(res, "散发出令人目眩的光芒，震慑、困惑并恐吓附近的怪物。");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("You gain the ability to emit dazzling lights.");
+        msg_print("你获得了散发目眩之光的能力。");
         break;
     case SPELL_LOSE_MUT:
-        msg_print("You lose the ability to emit dazzling lights.");
+        msg_print("你失去了散发目眩之光的能力。");
         break;
     case SPELL_MUT_DESC:
-        var_set_string(res, "You can emit confusing, blinding radiation.");
+        var_set_string(res, "你可以散发出令人困惑的致盲辐射。");
         break;
     case SPELL_CAST:
         stun_monsters(5 + p_ptr->lev/5);
@@ -832,10 +832,10 @@ void detect_life_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Life");
+        var_set_string(res, "侦测生命");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Locate nearby living monsters.");
+        var_set_string(res, "定位附近活着的怪物。");
         break;
     case SPELL_CAST:
         detect_monsters_living(DETECT_RAD_DEFAULT, "You sense the presence of life around you.");
@@ -852,10 +852,10 @@ void detect_unlife_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Unlife");
+        var_set_string(res, "侦测非生命");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detects all nonliving monsters in your vicinity.");
+        var_set_string(res, "侦测你附近所有的非生命怪物。");
         break;
     case SPELL_CAST:
         detect_monsters_nonliving(DETECT_RAD_DEFAULT);
@@ -872,10 +872,10 @@ void demon_breath_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Fire/Nether");
+        var_set_string(res, "喷吐火焰/幽冥");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathe a powerful blast of either fire or nether at your opponent.");
+        var_set_string(res, "向你的对手喷吐出强大的火焰或幽冥冲击。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(p_ptr->lev * 3)));
@@ -889,7 +889,7 @@ void demon_breath_spell(int cmd, variant *res)
 
         stop_mouth();
 
-        msg_format("You breathe %s.", (type == GF_NETHER) ? "nether" : "fire");
+        msg_format("你喷吐出%s。", (type == GF_NETHER) ? "幽冥" : "火焰");
 
         fire_ball(type, dir, spell_power(p_ptr->lev * 3), -(p_ptr->lev / 15) - 1);
         var_set_bool(res, TRUE);
@@ -909,10 +909,10 @@ void destruction_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Word of Destruction");
+        var_set_string(res, "毁灭真言");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Destroys everything in your nearby vicinity ... except you, of course.");
+        var_set_string(res, "摧毁你附近的一切……当然，除了你之外。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(spell_power(p_ptr->lev * 4)));
@@ -939,19 +939,19 @@ void detect_curses_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Curses");
+        var_set_string(res, "侦测诅咒");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detected cursed items in your inventory.");
+        var_set_string(res, "侦测你物品栏中的受诅咒物品。");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("You can feel evil magics.");
+        msg_print("你能感觉到邪恶魔法。");
         break;
     case SPELL_LOSE_MUT:
-        msg_print("You can no longer feel evil magics.");
+        msg_print("你不再能感觉到邪恶魔法了。");
         break;
     case SPELL_MUT_DESC:
-        var_set_string(res, "You can feel the danger of evil magic.");
+        var_set_string(res, "你能感觉到邪恶魔法的危险。");
         break;
     case SPELL_CAST:
     {
@@ -975,10 +975,10 @@ void detect_doors_stairs_traps_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Doors & Traps");
+        var_set_string(res, "侦测门与陷阱");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detects doors, stairs, and traps in your vicinity.");
+        var_set_string(res, "侦测你附近的门、楼梯和陷阱。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_radius(rad));
@@ -1001,10 +1001,10 @@ void detect_evil_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Evil");
+        var_set_string(res, "侦测邪恶");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detects nearby evil monsters.");
+        var_set_string(res, "侦测附近的邪恶怪物。");
         break;
     case SPELL_CAST:
         detect_monsters_evil(DETECT_RAD_DEFAULT);
@@ -1021,10 +1021,10 @@ void detect_menace_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Ferocity");
+        var_set_string(res, "侦测凶意");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detects nearby menacing monsters. Only intelligent monsters are detected.");
+        var_set_string(res, "侦测附近具有威胁性的怪物。只能侦测到有智能的怪物。");
         break;
     case SPELL_CAST:
         detect_monsters_mind(DETECT_RAD_DEFAULT);
@@ -1041,10 +1041,10 @@ void detect_monsters_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Monsters");
+        var_set_string(res, "侦测怪物");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detects nearby monsters.");
+        var_set_string(res, "侦测附近的怪物。");
         break;
     case SPELL_CAST:
         detect_monsters_normal(DETECT_RAD_DEFAULT);
@@ -1062,10 +1062,10 @@ void detect_objects_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Objects");
+        var_set_string(res, "侦测物品");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detects nearby objects.");
+        var_set_string(res, "侦测附近的物品。");
         break;
     case SPELL_CAST:
         detect_objects_normal(DETECT_RAD_DEFAULT);
@@ -1085,10 +1085,10 @@ void detect_traps_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Traps");
+        var_set_string(res, "侦测陷阱");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detects traps in your vicinity.");
+        var_set_string(res, "侦测你附近的陷阱。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_radius(rad));
@@ -1109,10 +1109,10 @@ void detect_treasure_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Treasure");
+        var_set_string(res, "侦测宝藏");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detects nearby treasure.");
+        var_set_string(res, "侦测附近的宝藏。");
         break;
     case SPELL_CAST:
         detect_treasure(DETECT_RAD_DEFAULT);
@@ -1130,10 +1130,10 @@ void detection_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detection");
+        var_set_string(res, "侦测术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detects all monsters, traps, doors, stairs, treasures and items in your vicinity.");
+        var_set_string(res, "侦测你附近所有的怪物、陷阱、门、楼梯、宝藏和物品。");
         break;
     case SPELL_CAST:
         detect_all(DETECT_RAD_DEFAULT);
@@ -1150,10 +1150,10 @@ void dimension_door_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dimension Door");
+        var_set_string(res, "次元门");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Open a portal to another dimension and step to a nearby location with great precision.");
+        var_set_string(res, "打开一扇通往另一个维度的传送门，并极其精确地传送到附近的位置。");
         break;
     case SPELL_CAST:
         var_set_bool(res, dimension_door(p_ptr->lev / 2 + 10));
@@ -1176,10 +1176,10 @@ void disintegrate_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Disintegrate");
+        var_set_string(res, "分解术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a huge ball of disintegration.");
+        var_set_string(res, "发射一个巨大的分解法球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(p_ptr->lev + 70 + p_ptr->to_d_spell)));
@@ -1210,10 +1210,10 @@ void dispel_evil_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dispel Evil");
+        var_set_string(res, "驱散邪恶");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Damages all evil monsters in sight.");
+        var_set_string(res, "伤害视线内的所有邪恶怪物。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(1, sides, spell_power(p_ptr->to_d_spell)));
@@ -1234,10 +1234,10 @@ void dispel_life_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dispel Life");
+        var_set_string(res, "驱散生命");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Damages all living monsters in sight.");
+        var_set_string(res, "伤害视线内的所有活物怪物。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(1, ds, spell_power(p_ptr->to_d_spell)));
@@ -1257,10 +1257,10 @@ void dispel_magic_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dispel Magic");
+        var_set_string(res, "驱散魔法");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Dispels one monster, negating invulnerability spheres and temporary speed effects.");
+        var_set_string(res, "对单只怪物进行驱散，抵消其无敌护盾和暂时的加速效果。");
         break;
     case SPELL_CAST:
     {
@@ -1290,10 +1290,10 @@ void dispel_undead_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dispel Undead");
+        var_set_string(res, "驱散死灵");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Damages all undead monsters in sight.");
+        var_set_string(res, "伤害视线内的所有死灵怪物。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(dice, sides, spell_power(p_ptr->to_d_spell)));
@@ -1314,7 +1314,7 @@ void dominate_living_I_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dominate a Living Thing");
+        var_set_string(res, "支配活物");
         break;
     case SPELL_DESC:
         var_set_string(res, "");
@@ -1342,7 +1342,7 @@ void dominate_living_II_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dominate Living Things");
+        var_set_string(res, "群体支配活物");
         break;
     case SPELL_DESC:
         var_set_string(res, "");
@@ -1365,10 +1365,10 @@ void drain_mana_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Drain Mana");
+        var_set_string(res, "吸取法力");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to drain mana from chosen monster.");
+        var_set_string(res, "试图从选定的怪物身上吸取法力。");
         break;
     case SPELL_INFO:
         var_set_string(res, format("%d+d%d", spell_power(p_ptr->lev), spell_power(p_ptr->lev*3)));
@@ -1393,19 +1393,19 @@ void earthquake_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Earthquake");
+        var_set_string(res, "地震术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "The walls will tremble and the ground will shake.");
+        var_set_string(res, "墙壁会颤抖，大地会震动。");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("You gain the ability to wreck the dungeon.");
+        msg_print("你获得了破坏地下城的能力。");
         break;
     case SPELL_LOSE_MUT:
-        msg_print("You lose the ability to wreck the dungeon.");
+        msg_print("你失去了破坏地下城的能力。");
         break;
     case SPELL_MUT_DESC:
-        var_set_string(res, "You can bring down the dungeon around your ears.");
+        var_set_string(res, "你可以让你周围的地下城坍塌。");
         break;
     case SPELL_CAST:
         earthquake(py, px, 10);
@@ -1423,19 +1423,19 @@ void eat_magic_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Eat Magic");
+        var_set_string(res, "吞噬魔法");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Consumes magical devices to regain spell points.");
+        var_set_string(res, "消耗魔法装置以恢复法力值(SP)。");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("Your magic items look delicious.");
+        msg_print("你的魔法物品看起来很美味。");
         break;
     case SPELL_LOSE_MUT:
-        msg_print("Your magic items no longer look delicious.");
+        msg_print("你的魔法物品看起来不再美味了。");
         break;
     case SPELL_MUT_DESC:
-        var_set_string(res, "You can consume magic energy for your own use.");
+        var_set_string(res, "你可以吞噬魔法能量供自己使用。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
@@ -1457,19 +1457,19 @@ void eat_rock_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Eat Rock");
+        var_set_string(res, "吞噬岩石");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Consumes nearby rock.");
+        var_set_string(res, "吞噬附近的岩石。");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("The walls look delicious.");
+        msg_print("这些墙壁看起来很美味。");
         break;
     case SPELL_LOSE_MUT:
-        msg_print("The walls look unappetizing.");
+        msg_print("这些墙壁看起来令人倒胃口。");
         break;
     case SPELL_MUT_DESC:
-        var_set_string(res, "You can consume solid rock.");
+        var_set_string(res, "你可以吞噬坚固的岩石。");
         break;
     case SPELL_CAST:
     {
@@ -1491,12 +1491,12 @@ void eat_rock_spell(int cmd, variant *res)
 
         if (!have_flag(mimic_f_ptr->flags, FF_HURT_ROCK))
         {
-            msg_print("You cannot eat this feature.");
+            msg_print("你不能吃这个地形。");
             break;
         }
         else if (have_flag(f_ptr->flags, FF_PERMANENT))
         {
-            msg_format("Ouch!  This %s is harder than your teeth!",
+            msg_format("哎哟！这%s比你的牙齿还硬！",
                 f_name + mimic_f_ptr->name);
 
             break;
@@ -1504,18 +1504,18 @@ void eat_rock_spell(int cmd, variant *res)
         else if (c_ptr->m_idx)
         {
             monster_type *m_ptr = &m_list[c_ptr->m_idx];
-            msg_print("There's something in the way!");
+            msg_print("有东西挡在路上！");
             if (!m_ptr->ml || !is_pet(m_ptr)) py_attack(y, x, 0);
             break;
         }
         else if (have_flag(f_ptr->flags, FF_TREE))
         {
-            msg_print("You don't like the woody taste!");
+            msg_print("你不喜欢这种木头的味道！");
             break;
         }
         else if (have_flag(f_ptr->flags, FF_GLASS))
         {
-            msg_print("You don't like the glassy taste!");
+            msg_print("你不喜欢这种玻璃的味道！");
             break;
         }
         else if (have_flag(f_ptr->flags, FF_DOOR) || have_flag(f_ptr->flags, FF_CAN_DIG))
@@ -1538,7 +1538,7 @@ void eat_rock_spell(int cmd, variant *res)
                 set_food(MIN(p_ptr->food + 2000, PY_FOOD_MAX - 1));
             else
             {
-                msg_format("This %s is very filling!",
+                msg_format("这%s非常管饱！",
                     f_name + mimic_f_ptr->name);
 
                 set_food(p_ptr->food + 10000);
@@ -1565,7 +1565,7 @@ void evil_bless_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Evil Bless");
+        var_set_string(res, "邪恶祝福");
         break;
     default:
         bless_spell(cmd, res);
@@ -1580,10 +1580,10 @@ void evocation_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Evocation");
+        var_set_string(res, "退魔敕令");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Dispels, scares and banishes all monsters in view.");
+        var_set_string(res, "驱散、恐吓并放逐视线内的所有怪物。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam));
@@ -1605,10 +1605,10 @@ void minor_enchantment_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Minor Enchantment");
+        var_set_string(res, "次级附魔");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to enchant a weapon, ammo or armor.");
+        var_set_string(res, "尝试附魔一件武器、弹药或护甲。");
         break;
     case SPELL_CAST:
         var_set_bool(res, craft_enchant(2 + p_ptr->lev/5, 1));
@@ -1624,10 +1624,10 @@ void enchantment_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Enchantment");
+        var_set_string(res, "附魔");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to enchant a weapon, ammo or armor.");
+        var_set_string(res, "尝试附魔一件武器、弹药或护甲。");
         break;
     case SPELL_CAST:
         var_set_bool(res, craft_enchant(15, 3));
@@ -1644,10 +1644,10 @@ void enslave_undead_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Enslave Undead");
+        var_set_string(res, "奴役死灵");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to enslave an undead monster.");
+        var_set_string(res, "尝试奴役一只死灵怪物。");
         break;
     case SPELL_CAST:
     {
@@ -1674,13 +1674,13 @@ void explosive_rune_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Explosive Rune");
+        var_set_string(res, "爆炸符文");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Sets a rune which will explode on a passing monster.");
+        var_set_string(res, "放置一个会在怪物经过时爆炸的符文。");
         break;
     case SPELL_CAST:
-        msg_print("You carefully set an explosive rune...");
+        msg_print("你小心翼翼地布置了一个爆炸符文……");
         explosive_rune();
         var_set_bool(res, TRUE);
         break;
@@ -1695,10 +1695,10 @@ void eye_for_an_eye_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "An Eye for an Eye");
+        var_set_string(res, "以眼还眼");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gives special aura for a while. When you are attacked by a monster, the monster are injured with same amount of damage as you take.");
+        var_set_string(res, "在一段时间内赋予特殊光环。当你受到怪物攻击时，该怪物会受到与你承受的伤害相同的伤害。");
         break;
     case SPELL_CAST:
         set_tim_eyeeye(spell_power(randint1(10) + 10), FALSE);
@@ -1715,10 +1715,10 @@ void fire_ball_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Fire Ball");
+        var_set_string(res, "火球术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generate a Fire Ball on chosen target.");
+        var_set_string(res, "在选定的目标处生成一个火球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(3*p_ptr->lev/2 + 30 + p_ptr->to_d_spell)));
@@ -1751,10 +1751,10 @@ void fire_bolt_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Fire Bolt");
+        var_set_string(res, "火焰箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a bolt or beam of fire.");
+        var_set_string(res, "发射一发火焰箭或火焰射线。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(dd, spell_power(ds), spell_power(p_ptr->to_d_spell)));
@@ -1784,10 +1784,10 @@ void flow_of_lava_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "The Flow of Lava");
+        var_set_string(res, "熔岩流");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generates a ball of fire centered on you which transforms floors to magma.");
+        var_set_string(res, "以你为中心生成一个火球，将周围的地板转化为岩浆。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(55 + p_ptr->lev + p_ptr->to_d_spell)));
@@ -1808,10 +1808,10 @@ void force_branding_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Force Branding");
+        var_set_string(res, "原力烙印");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Temporarily brands your weapon with force.");
+        var_set_string(res, "暂时为你的武器赋予原力属性。");
         break;
     case SPELL_CAST:
     {
@@ -1831,10 +1831,10 @@ void frost_ball_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Frost Ball");
+        var_set_string(res, "霜冻球");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Generate a Frost Ball on chosen target.");
+        var_set_string(res, "在选定目标处生成一个霜冻球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(3*p_ptr->lev/2 + 25 + p_ptr->to_d_spell)));
@@ -1862,10 +1862,10 @@ void frost_bolt_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Frost Bolt");
+        var_set_string(res, "寒霜箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a bolt or beam of frost.");
+        var_set_string(res, "发射一发寒霜箭或寒霜射线。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(dd, spell_power(ds), spell_power(p_ptr->to_d_spell)));
@@ -1895,10 +1895,10 @@ void genocide_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Genocide");
+        var_set_string(res, "灭绝");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to remove from the level all monsters of a specified species, exhausting you.");
+        var_set_string(res, "试图将指定种类的所有怪物从当前层移除，此举会使你力竭。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(spell_power(p_ptr->lev*3)));
@@ -1920,10 +1920,10 @@ void glyph_of_warding_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Glyph of Warding");
+        var_set_string(res, "守护结界");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Sets a glyph on the floor beneath you. Monsters cannot attack you if you are on a glyph, but can try to break the glyph.");
+        var_set_string(res, "在你脚下的地板上设置一个结界。当你处于结界上时怪物无法攻击你，但它们可以尝试破坏结界。");
         break;
     case SPELL_CAST:
         warding_glyph();
@@ -1940,19 +1940,19 @@ void grow_mold_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Grow Mold");
+        var_set_string(res, "培育霉菌");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Surrounds yourself with moldy things.");
+        var_set_string(res, "用发霉的东西包围自己。");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("You feel a sudden affinity for mold.");
+        msg_print("你突然对霉菌产生了一种亲和感。");
         break;
     case SPELL_LOSE_MUT:
-        msg_print("You feel a sudden dislike for mold.");
+        msg_print("你突然对霉菌产生了一种反感。");
         break;
     case SPELL_MUT_DESC:
-        var_set_string(res, "You can cause mold to grow near you.");
+        var_set_string(res, "你可以使霉菌在你附近生长。");
         break;
     case SPELL_CAST:
     {

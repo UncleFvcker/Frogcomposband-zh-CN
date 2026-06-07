@@ -32,31 +32,31 @@ typedef struct
 
 static _curse_type _mummy_curses[_MAX_MUMMY_CURSE] =
 {
-    { OFC_NORMALITY, 10, "Dispel Magic", TERM_L_BLUE, "Light curse of power 1. Occasionally dispels temporary status buffs." },
-    { OFC_CALL_ANIMAL, 10, "Call Animals", TERM_GREEN, "Light curse of power 1. Occasionally summons hostile animals." },
-    { OFC_COWARDICE, 10, "Cowardice", TERM_YELLOW, "LIght curse of power 1. Occasionally makes you very afraid." },
-    { OFC_CATLIKE, 10, "Catlike Tread", TERM_RED, "Light curse of power 1. Reduces your stealth." },
-    { OFC_FAST_DIGEST, 10, "Fast Digestion", TERM_ORANGE, "Light curse of power 1. Increases your food consumption." },
-    { OFC_OPEN_WOUNDS, 10, "Open Wounds", TERM_RED, "Light curse of power 1. Reduces the speed of cut healing." },
-    { OFC_ADD_L_CURSE, 20, "Add Weak Curses", TERM_WHITE, "Light curse of power 1. Occasionally adds new light curses to your equipment." },
-    { OFC_LOW_AC, 20, "Low AC", TERM_L_RED, "Light curse of power 1. Reduces your AC." },
-    { OFC_LOW_MELEE, 20, "Miss Blows", TERM_L_GREEN, "Light curse of power 1. Reduces your melee accuracy." },
-    { OFC_DRAIN_HP, 20, "Drain HP", TERM_ORANGE, "Light curse of power 1. Occasionally drains your HP." },
-    { OFC_DRAIN_MANA, 20, "Drain Mana", TERM_L_BLUE, "Light curse of power 1. Occasionally drains your mana." },
-    { OFC_DRAIN_PACK, 20, "Drain Pack", TERM_GREEN, "Light curse of power 1. Occasionally drains your devices." },
-    { OFC_LOW_MAGIC, 20, "Induce Spell Fails", TERM_YELLOW, "Light curse of power 1. Increases your spell failure chance." },
-    { OFC_LOW_DEVICE, 20, "Induce Device Fails", TERM_YELLOW, "Light curse of power 1. Increases your device failure chance." },
-    { OFC_CALL_DEMON, 30, "Call Demons", TERM_L_RED, "Heavy curse of power 2. Occasionally summons hostile demons." },
-    { OFC_CALL_DRAGON, 30, "Call Dragons", TERM_L_GREEN, "Heavy curse of power 2. Occasionally summons hostile dragons." },
-    { OFC_TELEPORT, 30, "Random Teleportation", TERM_L_BLUE, "Heavy curse of power 2. Occasionally teleports you randomly." },
-    { OFC_DRAIN_EXP, 30, "Drain Experience", TERM_YELLOW, "Heavy curse of power 2. Occasionally drains your experience." },
-    { OFC_ADD_H_CURSE, 30, "Add Heavy Curses", TERM_BLUE, "Heavy curse of power 2. Occasionally adds new heavy curses to your equipment." },
-    { OFC_CRAPPY_MUT, 30, "Induce Mutations", TERM_L_RED, "Heavy curse of power 2. Occasionally causes harmful mutations." },
-    { OFC_AGGRAVATE, 40, "Aggravation", TERM_RED, "Heavy curse of power 3. Makes you aggravating." },
-    { OFC_DANGER, 40, "Invite Danger", TERM_L_RED, "Heavy curse of power 3. Causes you to meet more dangerous monsters." },
-    { OFC_BY_CURSE, 40, "Baby Foul Curse", TERM_PINK, "Heavy curse of power 3. Occasionally triggers the Baby Foul Curse." },
-    { OFC_TY_CURSE, 45, "*Ancient Foul Curse*", TERM_VIOLET, "Heavy curse of power 4. Occasionally triggers the Ancient Foul Curse." },
-    { OFC_PERMA_CURSE, 50, "Permanent Curse", TERM_VIOLET, "Permanent curse of power 1. Cannot be removed except by mundanizing the object. Prevents the removal and draining of Cursed and Heavily Cursed, but not of specific curses." },
+    { OFC_NORMALITY, 10, "驱散魔法", TERM_L_BLUE, "力量等级为1的轻度诅咒。偶尔会驱散临时的状态增益。" },
+    { OFC_CALL_ANIMAL, 10, "召唤动物", TERM_GREEN, "力量等级为1的轻度诅咒。偶尔会召唤出敌对的动物。" },
+    { OFC_COWARDICE, 10, "懦弱", TERM_YELLOW, "力量等级为1的轻度诅咒。偶尔会让你感到非常害怕。" },
+    { OFC_CATLIKE, 10, "猫之步", TERM_RED, "力量等级为1的轻度诅咒。降低你的潜行能力。" },
+    { OFC_FAST_DIGEST, 10, "快速消化", TERM_ORANGE, "力量等级为1的轻度诅咒。增加你的食物消耗速度。" },
+    { OFC_OPEN_WOUNDS, 10, "开放性伤口", TERM_RED, "力量等级为1的轻度诅咒。降低割伤的愈合速度。" },
+    { OFC_ADD_L_CURSE, 20, "增加弱诅咒", TERM_WHITE, "力量等级为1的轻度诅咒。偶尔会给你的装备增加新的轻度诅咒。" },
+    { OFC_LOW_AC, 20, "低护甲", TERM_L_RED, "力量等级为1的轻度诅咒。降低你的护甲等级(AC)。" },
+    { OFC_LOW_MELEE, 20, "攻击失误", TERM_L_GREEN, "力量等级为1的轻度诅咒。降低你的近战命中率。" },
+    { OFC_DRAIN_HP, 20, "吸取生命", TERM_ORANGE, "力量等级为1的轻度诅咒。偶尔会吸取你的生命值。" },
+    { OFC_DRAIN_MANA, 20, "吸取法力", TERM_L_BLUE, "力量等级为1的轻度诅咒。偶尔会吸取你的法力值。" },
+    { OFC_DRAIN_PACK, 20, "吸取背包", TERM_GREEN, "力量等级为1的轻度诅咒。偶尔会吸取你魔法装置的能量。" },
+    { OFC_LOW_MAGIC, 20, "诱发法术失败", TERM_YELLOW, "力量等级为1的轻度诅咒。增加你的法术失败率。" },
+    { OFC_LOW_DEVICE, 20, "诱发装置失败", TERM_YELLOW, "力量等级为1的轻度诅咒。增加你的魔法装置使用失败率。" },
+    { OFC_CALL_DEMON, 30, "召唤恶魔", TERM_L_RED, "力量等级为2的重度诅咒。偶尔会召唤出敌对的恶魔。" },
+    { OFC_CALL_DRAGON, 30, "召唤龙", TERM_L_GREEN, "力量等级为2的重度诅咒。偶尔会召唤出敌对的龙。" },
+    { OFC_TELEPORT, 30, "随机传送", TERM_L_BLUE, "力量等级为2的重度诅咒。偶尔会将你随机传送。" },
+    { OFC_DRAIN_EXP, 30, "吸取经验", TERM_YELLOW, "力量等级为2的重度诅咒。偶尔会吸取你的经验值。" },
+    { OFC_ADD_H_CURSE, 30, "增加重度诅咒", TERM_BLUE, "力量等级为2的重度诅咒。偶尔会给你的装备增加新的重度诅咒。" },
+    { OFC_CRAPPY_MUT, 30, "诱发变异", TERM_L_RED, "力量等级为2的重度诅咒。偶尔会引发有害的变异。" },
+    { OFC_AGGRAVATE, 40, "激怒", TERM_RED, "力量等级为3的重度诅咒。让你处于激怒怪物的状态。" },
+    { OFC_DANGER, 40, "招惹危险", TERM_L_RED, "力量等级为3的重度诅咒。导致你会遇到更危险的怪物。" },
+    { OFC_BY_CURSE, 40, "弱邪恶诅咒", TERM_PINK, "力量等级为3的重度诅咒。偶尔会触发弱邪恶诅咒效果。" },
+    { OFC_TY_CURSE, 45, "*远古邪恶诅咒*", TERM_VIOLET, "力量等级为4的重度诅咒。偶尔会触发远古邪恶诅咒效果。" },
+    { OFC_PERMA_CURSE, 50, "永久诅咒", TERM_VIOLET, "力量等级为1的永久诅咒。除了将物品变为世俗物品外无法被移除。防止普通诅咒和重度诅咒被移除或被吸取，但不防止特定诅咒的移除。" },
 };
 
 /* The first two are just the flaggy mask; Allergy has no effect on mummies
@@ -123,10 +123,10 @@ void _nether_ball_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Nether Ball");
+        var_set_string(res, "地狱球");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a large ball of nether.");
+        var_set_string(res, "发射一个巨大的地狱球。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam));
@@ -161,7 +161,7 @@ static bool _purge_curse_which(object_type *o_ptr)
     {
         if (o_ptr->curse_flags == (o_ptr->curse_flags & (OFC_PERMA_CURSE | OFC_HEAVY_CURSE | OFC_CURSED)))
         {
-            msg_format("Your %s %s no removable curses.", o_name, object_plural(o_ptr) ? "have" : "has");
+            msg_format("你的%s没有可移除的诅咒。", o_name, object_plural(o_ptr) ? "有" : "有");
             return FALSE;
         }
         o_ptr->curse_flags = OFC_PERMA_CURSE;
@@ -171,12 +171,12 @@ static bool _purge_curse_which(object_type *o_ptr)
         p_ptr->update |= PU_BONUS;
         p_ptr->window |= PW_EQUIP;
         p_ptr->redraw |= PR_EFFECTS;
-        msg_format("The curse on your %s is permanent. Lesser curses are stripped away.", o_name);
+        msg_format("你%s上的诅咒是永久的。较弱的诅咒已被剥离。", o_name);
         return TRUE;
     }
     else if (!mummy_can_remove(o_ptr))
     {
-        msg_format("You are not powerful enough to uncurse this object.");
+        msg_format("你不够强大，无法解开这件物品的诅咒。");
         return FALSE;
     }
     else if (o_ptr->curse_flags & OFC_HEAVY_CURSE)
@@ -188,7 +188,7 @@ static bool _purge_curse_which(object_type *o_ptr)
         p_ptr->update |= PU_BONUS;
         p_ptr->window |= PW_EQUIP;
         p_ptr->redraw |= PR_EFFECTS;
-        msg_format("You feel a heavy curse being lifted from your %s.", o_name);
+        msg_format("你感觉一个重度诅咒从你的%s上解除了。", o_name);
         return TRUE;
     }
     else if (o_ptr->curse_flags & OFC_CURSED)
@@ -200,7 +200,7 @@ static bool _purge_curse_which(object_type *o_ptr)
         p_ptr->update |= PU_BONUS;
         p_ptr->window |= PW_EQUIP;
         p_ptr->redraw |= PR_EFFECTS;
-        msg_format("You feel a curse being lifted from your %s.", o_name);
+        msg_format("你感觉一个诅咒从你的%s上解除了。", o_name);
         return TRUE;
     }
     else
@@ -212,8 +212,8 @@ static bool _purge_curse_which(object_type *o_ptr)
 static bool _purge_curse(void){
 
     obj_prompt_t prompt = {0};
-    prompt.prompt = "Uncurse which item?";
-    prompt.error = "There is nothing to uncurse.";
+    prompt.prompt = "解咒哪件物品？";
+    prompt.error = "没有什么可以解咒的。";
     prompt.filter = object_is_cursed;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -237,7 +237,7 @@ static void _mummy_menu_fn(int cmd, int which, vptr cookie, variant *res)
     }
     case MENU_TEXT:
     {
-        var_set_string(res, format("%-20.20s (Level %2d)", _mummy_curses[idx].desc, _mummy_curses[idx].lev));
+        var_set_string(res, format("%-20.20s (等级 %2d)", _mummy_curses[idx].desc, _mummy_curses[idx].lev));
         break;
     }
     case MENU_COLOR:
@@ -272,7 +272,7 @@ static bool _mummy_pick_curse(object_type *o_ptr)
 {
     int choices[_MAX_MUMMY_CURSE];
     int i, ct = 0;
-    menu_t menu = { "Add which curse?", "Browse which curse?", NULL,
+    menu_t menu = { "增加哪种诅咒？", "浏览哪种诅咒？", NULL,
                     _mummy_menu_fn, choices, 0, Term->hgt - 6};
 
     if ((!o_ptr) || (!o_ptr->k_idx)) return FALSE;
@@ -289,7 +289,7 @@ static bool _mummy_pick_curse(object_type *o_ptr)
 
     if (ct == 0)
     {
-        msg_print("You cannot add any further curses to this item at the moment.");
+        msg_print("目前你无法再给这件物品增加任何诅咒。");
         return FALSE;
     }
 
@@ -314,13 +314,13 @@ static bool _mummy_pick_curse(object_type *o_ptr)
 
             if (_curse->lev >= 30)
             {
-                msg_format("A terrible black aura blasts your %s!", o_name);
+                msg_format("一股可怕的黑色光环冲击了你的%s！", o_name);
                 o_ptr->curse_flags |= (OFC_HEAVY_CURSE | OFC_CURSED);
                 o_ptr->known_curse_flags |= (OFC_HEAVY_CURSE | OFC_CURSED);
             }
             else
             {
-                msg_format("A black aura surrounds your %s!", o_name);
+                msg_format("一股黑色光环包围了你的%s！", o_name);
                 o_ptr->curse_flags |= (OFC_CURSED);
                 o_ptr->known_curse_flags |= (OFC_CURSED);
             }
@@ -340,8 +340,8 @@ static bool _mummy_pick_curse(object_type *o_ptr)
 static bool _curse_item_aux(void)
 {
     obj_prompt_t prompt = {0};
-    prompt.prompt = "Curse which item?";
-    prompt.error = "There is nothing to curse.";
+    prompt.prompt = "诅咒哪件物品？";
+    prompt.error = "没有什么可以诅咒的。";
     prompt.filter = object_is_equipment;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -360,8 +360,8 @@ static bool _curse_item_aux(void)
 static void _purge_curse_spell(int cmd, variant *res)
 {
     switch (cmd){
-    case SPELL_NAME: var_set_string(res, "Purge Curse");break;
-    case SPELL_DESC: var_set_string(res, "Removes a curse from a single item. At high levels you can dispel even heavy curses."); break;
+    case SPELL_NAME: var_set_string(res, "清除诅咒");break;
+    case SPELL_DESC: var_set_string(res, "移除单件物品上的诅咒。在更高等级时，你甚至可以驱散重度诅咒。"); break;
     case SPELL_CAST: var_set_bool(res, _purge_curse()); break;
     default: default_spell(cmd, res);break;
     }
@@ -370,8 +370,8 @@ static void _purge_curse_spell(int cmd, variant *res)
 static void _curse_item_spell(int cmd, variant *res)
 {
     switch (cmd){
-    case SPELL_NAME: var_set_string(res, "Curse Item"); break;
-    case SPELL_DESC: var_set_string(res, "Curses a single item, consuming 3 turns."); break;
+    case SPELL_NAME: var_set_string(res, "诅咒物品"); break;
+    case SPELL_DESC: var_set_string(res, "诅咒单件物品，消耗3个回合。"); break;
     case SPELL_CAST: var_set_bool(res,_curse_item_aux()); break;
     case SPELL_ENERGY: var_set_int(res, 300); break;
     default: default_spell(cmd, res);break;}
@@ -436,14 +436,14 @@ static bool _inflict_curse_aux(int pow, monster_type *m_ptr, int m_idx, bool DoD
     }
 
     switch (highest_power){
-    case 1: msg_format("%^s is cursed.", m_name); break;
-    case 2: msg_format("An evil curse reaches out for %s.", m_name); break;
-    case 3: msg_format("%^s is subjected to an evil curse.", m_name); break;
-    case 4: msg_format("%^s takes a heavy toll from the curse.", m_name); break;
-    case 5: msg_format("%^s is blasted by a mighty curse!", m_name); break;
-    case 6: msg_format("<color:D>Black Omen!</color> A terrible fate awaits %s!", m_name); break;
-    case 7: msg_format("The hand of death reaches for %s!", m_name); break;
-    default: msg_format("A weak black aura briefly surrounds %s.", m_name); break;
+    case 1: msg_format("%^s 被诅咒了。", m_name); break;
+    case 2: msg_format("一个邪恶的诅咒向 %s 伸出魔爪。", m_name); break;
+    case 3: msg_format("%^s 受到了一种邪恶的诅咒。", m_name); break;
+    case 4: msg_format("%^s 因诅咒而付出了沉重的代价。", m_name); break;
+    case 5: msg_format("%^s 被一个强大的诅咒击中了！", m_name); break;
+    case 6: msg_format("<color:D>黑色凶兆！</color> 可怕的命运正等待着 %s！", m_name); break;
+    case 7: msg_format("死亡之手伸向了 %s！", m_name); break;
+    default: msg_format("一圈微弱的黑色光环短暂地包围了 %s。", m_name); break;
     }
 
     ct = 0;
@@ -508,9 +508,9 @@ static bool _inflict_curse(int pow){
     {
         monster_desc(m_name, m_ptr, 0);
 
-        if(pow==0) msg_format("<color:R>You curse %s.</color>", m_name);
-        else if (pow == 1) msg_format("<color:R>You curse %s.</color>", m_name);
-        else msg_format("<color:R>You curse %s.</color>", m_name);
+        if(pow==0) msg_format("<color:R>你诅咒了 %s。</color>", m_name);
+        else if (pow == 1) msg_format("<color:R>你诅咒了 %s。</color>", m_name);
+        else msg_format("<color:R>你诅咒了 %s。</color>", m_name);
         _inflict_curse_aux(pow, m_ptr, m_idx, TRUE);
         energy_use = 100;
         return TRUE;
@@ -523,7 +523,7 @@ static bool _blasphemy(void)
 {
     int i, afflicted = 0;
     monster_type *m_ptr;
-    msg_print("You utter an ancient and terrible word.");
+    msg_print("你吐出了一个古老而可怕的词语。");
 
     for (i = 1; i < m_max; i++)
     {
@@ -535,7 +535,7 @@ static bool _blasphemy(void)
         }
 
     }
-    if (afflicted == 0){ msg_print("Nobody hears it..."); return FALSE; }
+    if (afflicted == 0){ msg_print("没有人听到……"); return FALSE; }
     energy_use = 100;
     return TRUE;
 }
@@ -543,9 +543,9 @@ static bool _blasphemy(void)
 /* BLASPHEMY */
 static void _blasphemy_spell(int cmd, variant *res){
     switch (cmd){
-    case SPELL_NAME: var_set_string(res, "Blasphemy"); break;
-    case SPELL_INFO: var_set_string(res, format("%d*Curse + dam 0; dam %dd%d",  _get_curse_rolls(1), _curse_plev(), 8)); break;
-    case SPELL_DESC: var_set_string(res, "Utters an accursed word, inflicting a curse on all monsters in line of sight and generating a ball of nether centered on yourself."); break;
+    case SPELL_NAME: var_set_string(res, "亵渎"); break;
+    case SPELL_INFO: var_set_string(res, format("%d*诅咒 + 伤害 0; 伤害 %dd%d",  _get_curse_rolls(1), _curse_plev(), 8)); break;
+    case SPELL_DESC: var_set_string(res, "吐出一个被诅咒的词语，对视线内的所有怪物施加诅咒，并以自身为中心产生一个地狱球。"); break;
     case SPELL_CAST: 
         if (_blasphemy()){
             project(0, 4, py, px, damroll(_curse_plev(), 8), GF_NETHER, (PROJECT_FULL_DAM | PROJECT_KILL));
@@ -565,9 +565,9 @@ static int _curse_pow(int pow)
 static void _minor_curse(int cmd, variant *res)
 {
     switch (cmd){
-    case SPELL_NAME: var_set_string(res, "Lesser Curse"); break;
-    case SPELL_INFO: var_set_string(res, format("%d*Curse + dam %d", _get_curse_rolls(0), _curse_pow(0))); break;
-    case SPELL_DESC: var_set_string(res, "Invokes a minor curse on a single monster."); break;
+    case SPELL_NAME: var_set_string(res, "次级诅咒"); break;
+    case SPELL_INFO: var_set_string(res, format("%d*诅咒 + 伤害 %d", _get_curse_rolls(0), _curse_pow(0))); break;
+    case SPELL_DESC: var_set_string(res, "对单一怪物施加轻微的诅咒。"); break;
     case SPELL_COST_EXTRA: var_set_int(res, p_ptr->lev / 20); break;
     case SPELL_CAST: var_set_bool(res, _inflict_curse(0)); break;
     default:default_spell(cmd, res);break;}
@@ -577,9 +577,9 @@ static void _minor_curse(int cmd, variant *res)
 static void _curse_spell(int cmd, variant *res)
 {
     switch (cmd){
-    case SPELL_NAME: var_set_string(res, "Evil Curse"); break;
-    case SPELL_INFO: var_set_string(res, format("%d*Curse + dam %d", _get_curse_rolls(1), _curse_pow(1))); break;
-    case SPELL_DESC: var_set_string(res, "Invokes a curse on a single monster."); break;
+    case SPELL_NAME: var_set_string(res, "邪恶诅咒"); break;
+    case SPELL_INFO: var_set_string(res, format("%d*诅咒 + 伤害 %d", _get_curse_rolls(1), _curse_pow(1))); break;
+    case SPELL_DESC: var_set_string(res, "对单一怪物施加诅咒。"); break;
     case SPELL_COST_EXTRA: var_set_int(res, MIN(4, p_ptr->lev / 10)); break;
     case SPELL_CAST: var_set_bool(res, _inflict_curse(1)); break;
     default:default_spell(cmd, res); break;}
@@ -589,9 +589,9 @@ static void _curse_spell(int cmd, variant *res)
 static void _major_curse(int cmd, variant *res)
 {
     switch (cmd){
-    case SPELL_NAME: var_set_string(res, "Mighty Curse"); break;
-    case SPELL_INFO: var_set_string(res, format("%d*Curse + dam %d", _get_curse_rolls(2), _curse_pow(2))); break;
-    case SPELL_DESC: var_set_string(res, "Invokes a terrible curse on a single monster."); break;
+    case SPELL_NAME: var_set_string(res, "强力诅咒"); break;
+    case SPELL_INFO: var_set_string(res, format("%d*诅咒 + 伤害 %d", _get_curse_rolls(2), _curse_pow(2))); break;
+    case SPELL_DESC: var_set_string(res, "对单一怪物施加可怕的诅咒。"); break;
     case SPELL_COST_EXTRA: var_set_int(res, MIN(12, p_ptr->lev / 4)); break;
     case SPELL_CAST: var_set_bool(res,_inflict_curse(2)); break;
     default:default_spell(cmd, res); break;
@@ -616,11 +616,11 @@ static void _major_curse(int cmd, variant *res)
 static void _curse_of_impotence(int cmd, variant *res)
 {
     switch (cmd){
-    case SPELL_NAME: var_set_string(res, "Curse of Impotence"); break;
-    case SPELL_DESC: var_set_string(res, "Curses all creatures with impotence."); break;
+    case SPELL_NAME: var_set_string(res, "无力诅咒"); break;
+    case SPELL_DESC: var_set_string(res, "用无力感诅咒所有生物。"); break;
     case SPELL_CAST: 
         num_repro += MAX_REPRO; 
-        msg_print("You feel a tangible increase in abstinence...");
+        msg_print("你感到一种切实的节欲感在增加……");
         var_set_bool(res, TRUE);
         break;
     default:default_spell(cmd, res); break;
@@ -633,16 +633,16 @@ bool mummy_cast_antitele(void)
     var_init(&res);
     _toggle_spell(MUMMY_TOGGLE_ANTITELE, SPELL_CAST, &res);
     var_clear(&res);
-    if (_get_toggle() == MUMMY_TOGGLE_ANTITELE) msg_print("Everything is locked down in space.");
-    else msg_print("Dimensional anchoring vanishes.");
+    if (_get_toggle() == MUMMY_TOGGLE_ANTITELE) msg_print("空间中的一切都被封锁了。");
+    else msg_print("次元锚定消失了。");
     return TRUE;
 }
 
 static void _dimensional_anchor(int cmd, variant *res)
 {
     switch (cmd){
-    case SPELL_NAME: var_set_string(res, "Dimensional Lock"); break;
-    case SPELL_DESC: var_set_string(res, "Locks things in place, preventing almost all teleportation."); break;
+    case SPELL_NAME: var_set_string(res, "次元锁"); break;
+    case SPELL_DESC: var_set_string(res, "将事物锁定在原地，防止几乎所有的传送。"); break;
     case SPELL_CAST:{
         var_set_bool(res, mummy_cast_antitele());
         break;
@@ -654,13 +654,13 @@ static void _dimensional_anchor(int cmd, variant *res)
 static void _absorb_curse_pow(int cmd, variant *res)
 {
     switch (cmd){
-    case SPELL_NAME: var_set_string(res, "Absorb Curse Power"); break;
-    case SPELL_DESC: var_set_string(res, "Purges all curses from equipment to heal self. A successful casting consumes less time (down to 0.25 turns) at higher power."); break;
+    case SPELL_NAME: var_set_string(res, "吸收诅咒力量"); break;
+    case SPELL_DESC: var_set_string(res, "清除装备上的所有诅咒以治疗自己。在更高力量下，成功施放消耗的时间更少（最低降至0.25个回合）。"); break;
     case SPELL_INFO: var_set_string(res, info_heal(0, 0, _curse_boost_removable * 70)); break;
     case SPELL_CAST:{
         int old_cursepow = _curse_boost_removable;
-        if (old_cursepow == 0){ msg_print("You are not carrying any dispellable curses."); var_set_bool(res, FALSE); break; }
-        msg_print("You absorb the power of evil curses!");
+        if (old_cursepow == 0){ msg_print("你身上没有携带任何可驱散的诅咒。"); var_set_bool(res, FALSE); break; }
+        msg_print("你吸收了邪恶诅咒的力量！");
         hp_player(old_cursepow *70);
         remove_all_curse();
         if (old_cursepow >= 5)
@@ -681,14 +681,14 @@ static void _drain_curse_pow(int cmd, variant *res)
 {
     int pow = _curse_plev() / 2;
     switch (cmd){
-    case SPELL_NAME: var_set_string(res, "Drain Curse Power"); break;
-    case SPELL_DESC: var_set_string(res, "Drains cursed equipment to replenish mana."); break;
-    case SPELL_INFO: var_set_string(res, format("pow %d+1d%d", pow, pow)); break;
+    case SPELL_NAME: var_set_string(res, "吸取诅咒力量"); break;
+    case SPELL_DESC: var_set_string(res, "吸取被诅咒装备的能量以补充法力。"); break;
+    case SPELL_INFO: var_set_string(res, format("力量 %d+1d%d", pow, pow)); break;
     case SPELL_CAST:
     {
         obj_prompt_t prompt = {0};
-        prompt.prompt = "Drain which item?";
-        prompt.error = "You have no cursed equipment to drain.";
+        prompt.prompt = "吸取哪件物品？";
+        prompt.error = "你没有可吸取的受诅咒装备。";
         prompt.filter = object_is_cursed;
         prompt.where[0] = INV_EQUIP;
         obj_prompt(&prompt);
@@ -713,13 +713,13 @@ static void _drain_curse_pow(int cmd, variant *res)
 
 static void _umbra_spell(int cmd, variant *res){
     switch (cmd){
-    case SPELL_NAME: var_set_string(res, "Umbra"); break;
-    case SPELL_DESC: var_set_string(res, "Shrouds you in shadows, making you stealthier and mitigating the effects of aggravation."); break;
+    case SPELL_NAME: var_set_string(res, "暗影"); break;
+    case SPELL_DESC: var_set_string(res, "将你笼罩在阴影中，使你更具隐蔽性，并减轻激怒效果。"); break;
     case SPELL_INFO: var_set_string(res, info_duration(p_ptr->lev / 3 + _curse_boost_capped * 3, p_ptr->lev / 3 + _curse_boost_capped * 3)); break;
     case SPELL_CAST:
         if (p_ptr->cur_lite > 0)
         {
-            msg_print("You are carrying too much light to hide yourself in shadows!");
+            msg_print("你携带的光源太亮了，无法将自己隐藏在阴影中！");
             var_set_bool(res, FALSE);
         }
         set_tim_dark_stalker(spell_power(p_ptr->lev / 3 + _curse_boost_capped * 3 + randint1(p_ptr->lev / 3 + _curse_boost_capped * 3)), FALSE);
@@ -732,13 +732,13 @@ static void _umbra_spell(int cmd, variant *res){
 static void _assess_curses_spell(int cmd, variant *res)
 {
     switch (cmd){
-    case SPELL_NAME: var_set_string(res, "Assess Curses"); break;
-    case SPELL_DESC: var_set_string(res, "Analyzes the power of the evil enchantments surrounding you."); break;
+    case SPELL_NAME: var_set_string(res, "评估诅咒"); break;
+    case SPELL_DESC: var_set_string(res, "分析环绕着你的邪恶附魔的力量。"); break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
         if (_curse_boost < 1)
         {
-            msg_print("You do not currently receive any bonuses from cursed equipment.");
+            msg_print("你目前没有从被诅咒的装备中获得任何加成。");
             break;
         }
         else
@@ -746,12 +746,12 @@ static void _assess_curses_spell(int cmd, variant *res)
             int hat = _boost_cap();
             if (_curse_boost_capped == hat)
             {
-                msg_format("The curses on your equipment have a total power of <color:o>%d</color>, giving you a <color:o>Level %d</color> boost, the highest%s possible.", _curse_boost, _curse_boost_capped, (p_ptr->lev == 50) ? "" : "currently");
+                msg_format("你装备上的诅咒总力量为 <color:o>%d</color>，为你提供了 <color:o>等级 %d</color> 的提升，这是%s所能达到的最高加成。", _curse_boost, _curse_boost_capped, (p_ptr->lev == 50) ? "" : "目前");
             }
             else
             {
-                if (p_ptr->cur_lite > 0) msg_format("The curses on your equipment have a nominal total power of <color:o>%d</color>, but this is weakened by the permanent light around you. You receive a <color:o>Level %d</color> boost.", _curse_boost, _curse_boost_capped);
-                else msg_format("The curses on your equipment have a total power of <color:o>%d</color>, giving you a <color:o>Level %d</color> boost. With additional curses you could reach a boost of <color:o>Level %d</color>.", _curse_boost, _curse_boost_capped, hat);
+                if (p_ptr->cur_lite > 0) msg_format("你装备上诅咒的标称总力量为 <color:o>%d</color>，但这被你周围永久的光源削弱了。你获得了 <color:o>等级 %d</color> 的提升。", _curse_boost, _curse_boost_capped);
+                else msg_format("你装备上诅咒的总力量为 <color:o>%d</color>，为你提供了 <color:o>等级 %d</color> 的提升。若有更多诅咒，你的加成可达到 <color:o>等级 %d</color>。", _curse_boost, _curse_boost_capped, hat);
             }
             var_set_bool(res, TRUE);
         }
@@ -765,7 +765,7 @@ static void _assess_curses_spell(int cmd, variant *res)
 
 static bool _unleash(void)
 {    
-    msg_print("All malice is released!");
+    msg_print("所有的恶意都被释放了！");
 
     if(_curse_boost_removable >= 6) cast_destruction();
     if(_curse_boost_removable >= 5) project_hack(GF_BLOOD_CURSE, _curse_boost_removable * 25);
@@ -782,13 +782,13 @@ static bool _unleash(void)
 
 static void _unleash_spell(int cmd, variant *res){
     switch (cmd){
-    case SPELL_NAME: var_set_string(res, "Unleash Malice"); break;
-    case SPELL_DESC: var_set_string(res, "Releases the evil power of your equipment curses. Destroys the area at high powers. A successful casting consumes less time (down to 0.25 turns) at higher power."); break;
+    case SPELL_NAME: var_set_string(res, "释放恶意"); break;
+    case SPELL_DESC: var_set_string(res, "释放你装备上诅咒的邪恶力量。在高力量下会摧毁周围区域。在更高力量下，成功施放消耗的时间更少（最低降至0.25个回合）。"); break;
     case SPELL_INFO: {
         if (_curse_boost_removable > 2){
             if (_curse_boost_removable >= 5)
-            var_set_string(res, format("dam %dd25+%d; heal %d", _curse_boost_removable, _curse_boost_removable * 25, _curse_boost_removable * 50));
-            else var_set_string(res, format("dam %dd25; heal %d", _curse_boost_removable, _curse_boost_removable * 50));
+            var_set_string(res, format("伤害 %dd25+%d; 治疗 %d", _curse_boost_removable, _curse_boost_removable * 25, _curse_boost_removable * 50));
+            else var_set_string(res, format("伤害 %dd25; 治疗 %d", _curse_boost_removable, _curse_boost_removable * 50));
         }
         else var_set_string(res, "");
         break;
@@ -797,7 +797,7 @@ static void _unleash_spell(int cmd, variant *res){
         if (_curse_boost_removable > 2) var_set_bool(res, _unleash());
         else
         {
-            msg_print("There isn't enough malice in you... ");
+            msg_print("你体内的恶意不足……");
             var_set_bool(res, FALSE);
         }
         break;
@@ -883,11 +883,11 @@ static void _birth(void)
 
     p_ptr->current_r_idx = MON_ZOMBIE_H;
     equip_on_change_race();
-    skills_innate_init("Claw", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
-    skills_innate_init("Bite", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
-    skills_innate_init("Gaze", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
-    skills_innate_init("Crush", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
-    skills_innate_init("Hit", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("爪击", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("撕咬", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("凝视", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("粉碎", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("猛击", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
     object_prep(&forge, lookup_kind(TV_SOFT_ARMOR, SV_ROBE));
     py_birth_obj(&forge);
@@ -931,7 +931,7 @@ void _zombie_innate_attacks(void)
         calc_innate_blows(&a, 242);
         a.blows += py_prorata_level_aux(_curse_boost_capped*121/15, 1, 1, 0);
         a.msg = "You hit.";
-        a.name = "Hit";
+        a.name = "猛击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -957,7 +957,7 @@ void _ghoul_innate_attacks(void)
         calc_innate_blows(&a, 164);
         a.blows += py_prorata_level_aux(_curse_boost_capped*100/15, 1, 1, 0);
         a.msg = "You claw.";
-        a.name = "Claw";
+        a.name = "爪击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -978,7 +978,7 @@ void _ghoul_innate_attacks(void)
         calc_innate_blows(&a, 164);
         a.blows += py_prorata_level_aux(_curse_boost_capped*100/15, 1, 1, 0);
         a.msg = "You bite.";
-        a.name = "Bite";
+        a.name = "撕咬";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -1009,7 +1009,7 @@ void _sorc_innate_attacks(void)
         calc_innate_blows(&a, 200);
         a.blows += py_prorata_level_aux(_curse_boost_capped*121/15, 1, 1, 0);
         a.msg = "You claw.";
-        a.name = "Claw";
+        a.name = "爪击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -1029,7 +1029,7 @@ void _sorc_innate_attacks(void)
 
         a.blows = 100 + py_prorata_level_aux(_curse_boost_capped*100/15, 1, 1, 0);
         a.msg = "You gaze.";
-        a.name = "Gaze";
+        a.name = "凝视";
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
 }
@@ -1058,7 +1058,7 @@ void _draugr_innate_attacks(void)
 
         a.blows = 100 + py_prorata_level_aux(_curse_boost_capped*5, 1, 1, 0);
         a.msg = "You gaze.";
-        a.name = "Gaze";
+        a.name = "凝视";
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
     /* Bite */
@@ -1077,7 +1077,7 @@ void _draugr_innate_attacks(void)
         calc_innate_blows(&a, 150);
         a.blows += py_prorata_level_aux(_curse_boost_capped*5, 1, 1, 0);
         a.msg = "You bite.";
-        a.name = "Bite";
+        a.name = "撕咬";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -1099,7 +1099,7 @@ void _draugr_innate_attacks(void)
         a.weight = 250;
         a.blows = 100;
         a.msg = "You crush.";
-        a.name = "Crush";
+        a.name = "粉碎";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -1126,7 +1126,7 @@ void _gmum_innate_attacks(void)
         calc_innate_blows(&a, 242);
         a.blows += py_prorata_level_aux(_curse_boost_capped*121/15, 1, 1, 0);
         a.msg = "You claw.";
-        a.name = "Claw";
+        a.name = "爪击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -1148,7 +1148,7 @@ void _gmum_innate_attacks(void)
 
         a.blows = 200 + py_prorata_level_aux(_curse_boost_capped*121/15, 1, 1, 0);
         a.msg = "You gaze.";
-        a.name = "Gaze";
+        a.name = "凝视";
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
 }
@@ -1175,7 +1175,7 @@ void _king_innate_attacks(void)
         calc_innate_blows(&a, 242);
         a.blows += py_prorata_level_aux(_curse_boost_capped*121/15, 1, 1, 0);
         a.msg = "You claw.";
-        a.name = "Claw";
+        a.name = "爪击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -1199,7 +1199,7 @@ void _king_innate_attacks(void)
 
         a.blows = 200 + py_prorata_level_aux(_curse_boost_capped*121/15, 1, 1, 0);
         a.msg = "You gaze.";
-        a.name = "Gaze";
+        a.name = "凝视";
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
 }
@@ -1418,18 +1418,18 @@ static void _gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_ZOMBIE_H && new_level >= 10)
     {
         p_ptr->current_r_idx = MON_MUMMY_H;
-        msg_print("You have evolved into a Mummified human.");
+        msg_print("你进化成了木乃伊化人类(Mummified human)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_MUMMY_H && new_level >= 18)
     {
         p_ptr->current_r_idx = MON_GHOUL;
-        msg_print("You have evolved into a Ghoul.");
+        msg_print("你进化成了食尸鬼(Ghoul)。");
     }
     if ((p_ptr->current_r_idx == MON_MUMMY_H || p_ptr->current_r_idx == MON_GHOUL) && (new_level >= 27))
     {
         p_ptr->current_r_idx = MON_GREATER_MUMMY;
-        msg_print("You have evolved into a Greater mummy.");
+        msg_print("你进化成了高等木乃伊(Greater mummy)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_GREATER_MUMMY && new_level >= 36)
@@ -1437,19 +1437,19 @@ static void _gain_level(int new_level)
         if (one_in_(2))
         {
             p_ptr->current_r_idx = MON_DRAUGR;
-            msg_print("You have evolved into a Draugr.");
+            msg_print("你进化成了尸鬼(Draugr)。");
         }
         else
         {
             p_ptr->current_r_idx = MON_MUMMY_SORC;
-            msg_print("You have evolved into a Mummified sorcerer.");
+            msg_print("你进化成了木乃伊术士(Mummified sorcerer)。");
         }
         p_ptr->redraw |= PR_MAP;
     }
     if ((p_ptr->current_r_idx != MON_MUMMY_KING) && (new_level >= 45))
     {
         p_ptr->current_r_idx = MON_MUMMY_KING;
-        msg_print("You have evolved into a Mummy king.");
+        msg_print("你进化成了木乃伊王(Mummy king)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -1460,7 +1460,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "curse power";
+        me.magic_desc = "诅咒力量";
         me.which_stat = A_CHR;
         me.encumbrance.max_wgt = 420;
         me.encumbrance.weapon_pct = 50;
@@ -1490,24 +1490,8 @@ race_t *mon_mummy_get_race(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.name = "Mummy";
-        me.desc = "Zombies and mummies are among the most feared of all undead races. "
-                    "Evil curses are a mummy's bread and butter; not only can they hex their "
-                    "opponents, they can also curse and uncurse their own equipment at will; "
-                    "and the stronger and more numerous the curses they are wrapped in, the "
-                    "greater their magical powers. Of course, they will also have to cope "
-                    "with being cursed...\n\n"
-                    "You begin unlife as a humble Zombified human, with few curses or other "
-                    "abilities at your disposal; but soon you will evolve into a a "
-                    "Mummified human, and things really start picking up. Mummy evolution is "
-                    "somewhat random - you might find yourself a strong but stupid Draugr or a wily "
-                    "but weak Mummified sorcerer - but ultimately, you will combine strength "
-                    "and magic in the spine-chilling final form of a Mummy king.\n\n"
-                    "Being creatures of tombs and the night, zombies and mummies can easily see "
-                    "without a light; indeed, carrying a light source saps the dark energy of "
-                    "their curses. In melee, they prefer to rely on their innate attacks; "
-                    "equipping a weapon serves only to distract them from their real fighting "
-                    "skills, and is only a viable offensive option in the earliest parts of the game.";
+        me.name = "木乃伊";
+        me.desc = "僵尸和木乃伊是所有不死种族中最令人畏惧的存在之一。邪恶诅咒是木乃伊赖以生存的根本；它们不仅能对敌人施加恶咒，还能随意给自己的装备增加或解除诅咒；它们身上缠绕的诅咒越强、越多，其魔力就越强大。当然，它们也必须承受被诅咒的负面影响……\n\n你以卑微的僵尸化人类开始你的不死生涯，几乎没有诅咒或其他能力可用；但很快你就会进化成木乃伊化人类，情况将大有起色。木乃伊的进化在一定程度上是随机的——你可能会发现自己变成了强壮但愚笨的尸鬼，或者是狡猾但虚弱的木乃伊术士——但最终，你将在令人毛骨悚然的最终形态“木乃伊王”中把力量与魔法结合在一起。\n\n作为陵墓和黑夜的生物，僵尸和木乃伊在没有光的情况下也能看得很清楚；事实上，携带光源会削弱它们诅咒的黑暗能量。在近战中，它们更倾向于依赖自身的天生攻击；装备武器只会分散它们真正的战斗技巧，仅在游戏极初期算是一个可行的进攻选择。";
 
         me.infra = 5;
         me.exp = 135;

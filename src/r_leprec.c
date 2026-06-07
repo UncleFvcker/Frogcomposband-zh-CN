@@ -30,9 +30,9 @@ static cptr _desc =
 static void _birth(void)
 {
     p_ptr->current_r_idx = MON_CHEERFUL_LEPRECHAUN;
-    skills_innate_init("Greedy Hands", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("贪婪之手", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
-    msg_print("You feel the luck of the Irish!");
+    msg_print("你感受到了爱尔兰人的好运！");
     mut_gain(MUT_GOOD_LUCK);
     mut_lock(MUT_GOOD_LUCK);
 
@@ -82,7 +82,7 @@ static void _calc_innate_attacks(void)
         calc_innate_blows(&a, 300);
 
         a.msg = "You pilfer.";
-        a.name = "Greedy Hands";
+        a.name = "贪婪之手";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -120,10 +120,10 @@ void blink_toggle_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blinking Death");
+        var_set_string(res, "闪烁之死");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique, you will execute a short range, line of sight teleport after every action.");
+        var_set_string(res, "当使用这项技能时，你在每次行动后都会执行一次短距离视线范围内的传送。");
         break;
     default:
         _toggle_spell(LEPRECHAUN_TOGGLE_BLINK, cmd, res);
@@ -136,10 +136,10 @@ void _hoarding_toggle_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Hoarding");
+        var_set_string(res, "囤积");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique, any items you 'destroy' will be automatically converted into gold.");
+        var_set_string(res, "当使用这项技能时，任何被你“摧毁”的物品都会自动转化为金币。");
         break;
     default:
         _toggle_spell(LEPRECHAUN_TOGGLE_HOARDING, cmd, res);
@@ -155,10 +155,10 @@ void _fanaticism_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Fanaticism");
+        var_set_string(res, "狂热");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Summon many devoted leprechaun servants at chosen foe.");
+        var_set_string(res, "在选定敌人处召唤出许多忠诚的小妖精仆从。");
         break;
     case SPELL_CAST:
     {
@@ -205,7 +205,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "greedy power";
+        me.magic_desc = "贪婪力量";
         me.which_stat = A_DEX;
         me.options = CASTER_USE_AU;
         init = TRUE;
@@ -296,13 +296,13 @@ static void _gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_CHEERFUL_LEPRECHAUN && new_level >= 15)
     {
         p_ptr->current_r_idx = MON_MALICIOUS_LEPRECHAUN;
-        msg_print("You have evolved into a Malicious Leprechaun.");
+        msg_print("你进化成了恶意小妖精(Malicious Leprechaun)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_MALICIOUS_LEPRECHAUN && new_level >= 30)
     {
         p_ptr->current_r_idx = MON_DEATH_LEPRECHAUN;
-        msg_print("You have evolved into a Death Leprechaun.");
+        msg_print("你进化成了死亡小妖精(Death Leprechaun)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -347,7 +347,7 @@ bool leprechaun_steal(int m_idx)
 
         if (!loot.k_idx)
         {
-            msg_print("There is nothing to steal!");
+            msg_print("没有什么可偷的！");
         }
         else
         {
@@ -357,12 +357,12 @@ bool leprechaun_steal(int m_idx)
             object_desc(o_name, &loot, 0);
             if (mon_save_p(m_ptr->r_idx, A_DEX))
             {
-                msg_format("Oops! You drop %s.", o_name);
+                msg_format("哎呀！你掉了%s。", o_name);
                 drop_near(&loot, -1, py, px);
             }
             else if (loot.tval == TV_GOLD)
             {
-                msg_format("You steal %d gold pieces' worth of %s.", (int)loot.pval, o_name);
+                msg_format("你偷走了价值 %d 枚金币的%s。", (int)loot.pval, o_name);
                 sound(SOUND_SELL);
                 p_ptr->au += loot.pval;
                 stats_on_gold_find(loot.pval);
@@ -373,7 +373,7 @@ bool leprechaun_steal(int m_idx)
             else
             {
                 pack_carry(&loot);
-                msg_format("You steal %s.", o_name);
+                msg_format("你偷走了%s。", o_name);
             }
         }
     }
@@ -391,7 +391,7 @@ bool _destroy_object(object_type *o_ptr)
             char o_name[MAX_NLEN];
 
             object_desc(o_name, o_ptr, OD_COLOR_CODED);
-            msg_format("You turn %s to %d coins' worth of gold.", o_name, amt);
+            msg_format("你将%s变成了价值 %d 枚金币的黄金。", o_name, amt);
 
             p_ptr->au += amt;
             stats_on_gold_selling(amt); /* ? */
@@ -409,7 +409,7 @@ race_t *mon_leprechaun_get_race(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[3] =  {"Cheerful Leprechaun", "Malicious Leprechaun", "Death Leprechaun"};
+    static cptr   titles[3] =  {"开朗小妖精", "恶意小妖精", "死亡小妖精"};
     int           rank = 0;
 
     if (p_ptr->lev >= 15) rank++;
@@ -423,7 +423,7 @@ race_t *mon_leprechaun_get_race(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.name = "Leprechaun";
+        me.name = "小妖精";
         me.desc = _desc;
 
         me.infra = 5;

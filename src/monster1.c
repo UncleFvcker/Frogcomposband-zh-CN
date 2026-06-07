@@ -261,7 +261,7 @@ void roff_top(int r_idx)
     /* A title (use "The" for non-uniques) */
     if (!(r_ptr->flags1 & RF1_UNIQUE))
     {
-        Term_addstr(-1, TERM_WHITE, "The ");
+        Term_addstr(-1, TERM_WHITE, "这只");
     }
 
     /* Dump the name */
@@ -675,7 +675,7 @@ void set_hostile(monster_type *m_ptr)
             {
                 char m_name[80];                     
                 monster_desc(m_name, mon, 0);
-                msg_format("%^s gets angry!", m_name);
+                msg_format("%^s生气了！", m_name);
             }
             set_hostile(mon); /* We call ourselves from inside a loop because that's how awesome we are */
         }
@@ -695,7 +695,7 @@ void anger_monster(monster_type *m_ptr)
         char m_name[80];
 
         monster_desc(m_name, m_ptr, 0);
-        msg_format("%^s gets angry!", m_name);
+        msg_format("%^s生气了！", m_name);
 
         set_hostile(m_ptr);
 

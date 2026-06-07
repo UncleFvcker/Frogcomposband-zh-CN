@@ -40,7 +40,7 @@ static bool _summon_aux(int num, bool pet, int y, int x, int lev, int type, u32b
     }
 
     if (!success)
-        msg_print("Nobody answers your call for help.");
+        msg_print("没有人回应你的求救。");
 
     return success;
 }
@@ -69,9 +69,9 @@ static void _summon(int what, int num, bool fail)
         if (fail)
         {
             if (num == 1)
-                msg_print("The summoned monster gets angry!");
+                msg_print("召唤来的怪物被激怒了！");
             else
-                msg_print("The summoned monsters get angry!");
+                msg_print("召唤来的怪物们被激怒了！");
         }
     }
 }
@@ -85,10 +85,10 @@ void _heal_monster_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Heal Monster");
+        var_set_string(res, "治疗怪物");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to heal a chosen monster.");
+        var_set_string(res, "尝试治疗选定的怪物。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_heal(0, 0, heal));
@@ -121,10 +121,10 @@ void _summon_ancient_dragon_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Ancient Dragon");
+        var_set_string(res, "召唤远古龙");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon an ancient dragon for assistance.");
+        var_set_string(res, "尝试召唤一条远古龙来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -143,10 +143,10 @@ void _summon_ant_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Ants");
+        var_set_string(res, "召唤蚂蚁");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon ants for assistance.");
+        var_set_string(res, "尝试召唤蚂蚁来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -165,10 +165,10 @@ void _summon_balrog_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Balrog");
+        var_set_string(res, "召唤炎魔");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon a balrog for assistance.");
+        var_set_string(res, "尝试召唤一只炎魔来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -187,10 +187,10 @@ void _summon_clubber_demon_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Clubber Demon");
+        var_set_string(res, "召唤大头棒恶魔");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon a clubber demon for assistance.");
+        var_set_string(res, "尝试召唤一只大头棒恶魔来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -209,10 +209,10 @@ void _summon_dark_elf_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Dark Elf");
+        var_set_string(res, "召唤黑暗精灵");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon dark elves for assistance.");
+        var_set_string(res, "尝试召唤黑暗精灵来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -231,10 +231,10 @@ void _summon_demon_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Demon");
+        var_set_string(res, "召唤恶魔");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon a demon for assistance.");
+        var_set_string(res, "尝试召唤一只恶魔来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -253,10 +253,10 @@ void _summon_demon_summoner_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Demon Summoner");
+        var_set_string(res, "召唤恶魔召唤师");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon a demon summoner for assistance.");
+        var_set_string(res, "尝试召唤一名恶魔召唤师来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -275,10 +275,10 @@ void _summon_dragon_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Dragon");
+        var_set_string(res, "召唤龙");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon a dragon for assistance.");
+        var_set_string(res, "尝试召唤一条龙来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -297,10 +297,10 @@ void _summon_dragon_summoner_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Dragon Summoner");
+        var_set_string(res, "召唤龙语召唤师");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon a dragon summoner for assistance.");
+        var_set_string(res, "尝试召唤一名龙语召唤师来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -319,10 +319,10 @@ void _summon_elemental_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Elemental");
+        var_set_string(res, "召唤元素");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon an elemental for assistance.");
+        var_set_string(res, "尝试召唤一个元素生物来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -341,10 +341,10 @@ void _summon_giant_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Giant");
+        var_set_string(res, "召唤巨人");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon a giant for assistance.");
+        var_set_string(res, "尝试召唤一名巨人来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -363,10 +363,10 @@ void _summon_golem_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Golem");
+        var_set_string(res, "召唤魔像");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon a golem for assistance.");
+        var_set_string(res, "尝试召唤一具魔像来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -385,10 +385,10 @@ void _summon_high_dragon_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Greater Dragons");
+        var_set_string(res, "召唤高等龙");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon greater dragons for assistance.");
+        var_set_string(res, "尝试召唤多条高等龙来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -407,10 +407,10 @@ void _summon_high_demon_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Greater Demons");
+        var_set_string(res, "召唤高等恶魔");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon greater demons for assistance.");
+        var_set_string(res, "尝试召唤多只高等恶魔来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -429,10 +429,10 @@ void _summon_high_undead_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Greater Undead");
+        var_set_string(res, "召唤高等亡灵");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon greater undead for assistance.");
+        var_set_string(res, "尝试召唤高等亡灵来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -451,10 +451,10 @@ void _summon_hounds_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Hounds");
+        var_set_string(res, "召唤猎犬");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon hounds for assistance.");
+        var_set_string(res, "尝试召唤猎犬群来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -473,10 +473,10 @@ void _summon_lich_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Lich");
+        var_set_string(res, "召唤巫妖");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon a lich for assistance.");
+        var_set_string(res, "尝试召唤一名巫妖来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -495,10 +495,10 @@ void _summon_mature_dragon_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Mature Dragon");
+        var_set_string(res, "召唤成年龙");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon a mature dragon for assistance.");
+        var_set_string(res, "尝试召唤一条成年龙来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -517,10 +517,10 @@ void _summon_orc_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Orcs");
+        var_set_string(res, "召唤兽人");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon orcs for assistance.");
+        var_set_string(res, "尝试召唤兽人群来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -539,10 +539,10 @@ void _summon_spider_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Spiders");
+        var_set_string(res, "召唤蜘蛛");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon spiders for assistance.");
+        var_set_string(res, "尝试召唤蜘蛛群来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -561,10 +561,10 @@ void _summon_ultimate_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Ultimate");
+        var_set_string(res, "召唤终极怪物");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon the most powerful monsters for assistance.");
+        var_set_string(res, "尝试召唤最强大的怪物来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -583,10 +583,10 @@ void _summon_undead_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Undead");
+        var_set_string(res, "召唤亡灵");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon an undead for assistance.");
+        var_set_string(res, "尝试召唤一个亡灵来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -605,10 +605,10 @@ void _summon_undead_summoner_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Undead Summoner");
+        var_set_string(res, "召唤亡灵召唤师");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon an undead summoner for assistance.");
+        var_set_string(res, "尝试召唤一名亡灵召唤师来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -627,10 +627,10 @@ void _summon_wight_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Wight");
+        var_set_string(res, "召唤尸妖");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon a wight for assistance.");
+        var_set_string(res, "尝试召唤一只尸妖来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -649,10 +649,10 @@ void _summon_yeek_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Yeeks");
+        var_set_string(res, "召唤伊克人");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to summon yeeks for assistance.");
+        var_set_string(res, "尝试召唤伊克人来协助。");
         break;
     case SPELL_FAIL:
     case SPELL_CAST:
@@ -777,7 +777,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "quivering power";
+        me.magic_desc = "颤动力量";
         me.which_stat = A_CHR;
         me.encumbrance.max_wgt = 450;
         me.encumbrance.weapon_pct = 100;
@@ -902,7 +902,7 @@ static void _gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_QUYLTHULG && new_level >= 20)
     {
         p_ptr->current_r_idx = MON_NEXUS_QUYLTHULG;
-        msg_print("You have evolved into a Nexus Quylthulg.");
+        msg_print("你进化成了时空库尔苏格(Nexus Quylthulg)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_NEXUS_QUYLTHULG && new_level >= 30)
@@ -913,15 +913,15 @@ static void _gain_level(int new_level)
         {
         case 1:
             p_ptr->current_r_idx = MON_ROTTING_QUYLTHULG;
-            msg_print("You have evolved into a Rotting Quylthulg.");
+            msg_print("你进化成了腐烂库尔苏格(Rotting Quylthulg)。");
             break;
         case 2:
             p_ptr->current_r_idx = MON_DRACONIC_QUYLTHULG;
-            msg_print("You have evolved into a Draconic Quylthulg.");
+            msg_print("你进化成了龙裔库尔苏格(Draconic Quylthulg)。");
             break;
         case 3:
             p_ptr->current_r_idx = MON_DEMONIC_QUYLTHULG;
-            msg_print("You have evolved into a Demonic Quylthulg.");
+            msg_print("你进化成了恶魔库尔苏格(Demonic Quylthulg)。");
             break;
         }
         p_ptr->redraw |= PR_MAP;
@@ -929,19 +929,19 @@ static void _gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_ROTTING_QUYLTHULG && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_GREATER_ROTTING_QUYLTHULG;
-        msg_print("You have evolved into a Greater Rotting Quylthulg.");
+        msg_print("你进化成了高等腐烂库尔苏格(Greater Rotting Quylthulg)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_DRACONIC_QUYLTHULG && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_GREATER_DRACONIC_QUYLTHULG;
-        msg_print("You have evolved into a Greater Draconic Quylthulg.");
+        msg_print("你进化成了高等龙裔库尔苏格(Greater Draconic Quylthulg)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_DEMONIC_QUYLTHULG && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_GREATER_DEMONIC_QUYLTHULG;
-        msg_print("You have evolved into a Greater Demonic Quylthulg.");
+        msg_print("你进化成了高等恶魔库尔苏格(Greater Demonic Quylthulg)。");
         p_ptr->redraw |= PR_MAP;
     }
     if ( ( p_ptr->current_r_idx == MON_GREATER_DEMONIC_QUYLTHULG 
@@ -950,7 +950,7 @@ static void _gain_level(int new_level)
       && new_level >= 50 )
     {
         p_ptr->current_r_idx = MON_MASTER_QUYLTHULG;
-        msg_print("You have evolved into a Master Quylthulg.");
+        msg_print("你进化成了库尔苏格大师(Master Quylthulg)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -977,12 +977,8 @@ race_t *mon_quylthulg_get_race(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.name = "Quylthulg";
-        me.desc = "Quylthulgs are disgusting, quivering mounds of pulsating flesh, scarcely "
-                    "able to move about. Physically, they are pathetic. However, their ability "
-                    "to control others to do their bidding is legendary, and they are quite "
-                    "capable of fleeing when the going gets tough. Quylthulgs have no physical "
-                    "attacks.";
+        me.name = "库尔苏格";
+        me.desc = "库尔苏格是一堆令人作呕的、不断颤动和脉动的肉块，几乎无法移动。在身体上，它们非常可怜。然而，它们控制他人服从命令的能力是传说级别的，并且在情况不妙时它们非常擅长逃跑。库尔苏格没有任何物理攻击能力。";
 
         me.infra = 5;
         me.exp = 150;

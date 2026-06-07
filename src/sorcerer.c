@@ -45,7 +45,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.which_stat = A_CHR;
         me.encumbrance.max_wgt = 40;
         me.encumbrance.weapon_pct = 100;
@@ -83,15 +83,8 @@ class_t *sorcerer_get_class(void)
     skills_t bs = { 30,  48,  75,   2,  12,  22,   0,   0};
     skills_t xs = {  7,  18,  13,   0,   0,   0,   0,   0};
 
-        me.name = "Sorcerer";
-        me.desc = "Sorcerers are the all-around best magicians, being able to master "
-                    "all spells from almost any magic realm without needing to study them or "
-                    "gain proficiency with them. On the downside, they have by far the "
-                    "fewest hit points of any class; they are also the worst fighters in the "
-                    "dungeon, being unable to use any weapon but a Wizardstaff.\n \n"
-                    "Sorcerers have a class power - 'Eat Magic' - which absorbs mana from "
-                    "wands, staves or rods. Unlike other mages, they rely on Charisma as "
-                    "their spell stat.";
+        me.name = "巫师";
+        me.desc = "巫师是全能的最佳魔法师，能够精通几乎任何魔法领域的所有法术，而无需研究或提升熟练度。不利的一面是，他们是所有职业中生命值最少的；他们也是地下城中最糟糕的战士，除了巫师法杖外不能使用任何武器。\n \n巫师有一个职业能力——“吞噬魔法”——可以从魔杖、法杖或魔棒中吸收法力。与其他法师不同，他们依赖魅力作为他们的施法属性。";
 
         me.stats[A_STR] = -5;
         me.stats[A_INT] =  0;

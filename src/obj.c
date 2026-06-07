@@ -130,7 +130,7 @@ void obj_release(obj_ptr obj, int options)
     {
     case INV_FLOOR:
         if (!quiet)
-            msg_format("You see %s.", name);
+            msg_format("你看到了%s。", name);
         if (obj->number <= 0)
             delete_object_idx(obj->loc.slot);
         break;
@@ -138,16 +138,16 @@ void obj_release(obj_ptr obj, int options)
         if (obj->number <= 0)
         {
             if (!quiet)
-                msg_format("You are no longer wearing %s.", name);
+                msg_format("你不再穿着%s了。", name);
             equip_remove(obj->loc.slot);
         }
         else if (!quiet)
-            msg_format("You are wearing %s.", name);
+            msg_format("你正穿着%s。", name);
         p_ptr->window |= PW_EQUIP;
         break;
     case INV_PACK:
         if (!quiet && !delayed)
-            msg_format("You have %s in your pack.", name);
+            msg_format("你的背包里有%s。", name);
         if (obj->number <= 0)
             pack_remove(obj->loc.slot);
         else if (delayed)
@@ -160,9 +160,9 @@ void obj_release(obj_ptr obj, int options)
     case INV_QUIVER:
         if (!quiet && !delayed)
             if(equip_find_obj(TV_QUIVER, SV_QUIVER))
-                msg_format("You have %s in your quiver.", name);
+                msg_format("你的箭袋里有%s。", name);
             else
-                msg_format("You have %s in your bag.", name);
+                msg_format("你的包里有%s。", name);
         if (obj->number <= 0)
             quiver_remove(obj->loc.slot);
         else if (delayed)
@@ -854,9 +854,9 @@ void obj_delayed_describe(obj_ptr obj)
 
         object_desc(name, obj, OD_COLOR_CODED);
         if (obj->loc.where == INV_EQUIP) /* paranoia */
-            string_append_s(msg, "You are wearing");
+            string_append_s(msg, "你正穿着");
         else
-            string_append_s(msg, "You have");
+            string_append_s(msg, "你拥有");
         string_printf(msg, " %s", name);
         if (obj->loc.where == INV_QUIVER)
             string_append_s(msg, " in your quiver");
@@ -900,11 +900,11 @@ static int _inspector(obj_prompt_context_ptr context, int cmd)
             char name[MAX_NLEN];
             object_desc(name, obj, OD_COLOR_CODED);
             doc_insert(context->doc, name);
-            doc_insert(context->doc, "\n\nYou have no special knowledge about this item.\n");
+            doc_insert(context->doc, "\n\n你对这件物品没有特殊的了解。\n");
         }
         else
             obj_display_doc(obj, context->doc);
-        doc_insert(context->doc, "<color:B>[Press <color:y>Any Key</color> to Continue]</color>\n\n");
+        doc_insert(context->doc, "<color:B>[按<color:y>任意键</color>继续]</color>\n\n");
         Term_load();
         doc_sync_menu(context->doc);
         cmd = inkey();
@@ -917,8 +917,8 @@ void obj_inspect_ui(void)
 {
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Examine which item <color:w>(<color:keypress>Esc</color> to exit)</color>?";
-    prompt.error = "You have nothing to examine.";
+    prompt.prompt = "要检查哪件物品 <color:w>(按 <color:keypress>Esc</color> 退出)</color>？";
+    prompt.error = "你没有什么可以检查的。";
     prompt.filter = obj_exists;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -963,7 +963,7 @@ void bag_drop_ui(int which)
 {
     if(equip_find_obj(TV_QUIVER, SV_ANY) == 0)
     {
-        msg_print("You have no quiver or bag to drop items from.");
+        msg_print("你没有箭袋或包来丢弃物品。");
         return;
     }
 
@@ -975,8 +975,8 @@ void bag_drop_ui(int which)
     if(equip_find_obj(TV_QUIVER, SV_QUIVER))
         prompt.filter = obj_is_ammo;
 
-    prompt.prompt = "Which item to put in the bag?";
-    prompt.error = "You have nothing to put.";
+    prompt.prompt = "要把哪件物品放进包里？";
+    prompt.error = "你没有什么可以放进去的。";
     prompt.where[0] = INV_PACK;
     obj_prompt_add_special_packs(&prompt);
 
@@ -1020,8 +1020,8 @@ static int _inscriber(obj_prompt_context_ptr context, int cmd)
             strcpy(insc, "");
 
         doc_clear(context->doc);
-        doc_printf(context->doc, "Inscribing %s.\n", name);
-        doc_printf(context->doc, "Inscription: ");
+        doc_printf(context->doc, "正在铭刻 %s。\n", name);
+        doc_printf(context->doc, "铭文：");
         Term_load();
         doc_sync_menu(context->doc);
         if (askfor(insc, 80))
@@ -1035,8 +1035,8 @@ void obj_inscribe_ui(void)
 {
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Inscribe which item <color:w>(<color:keypress>Esc</color> to exit)</color>?";
-    prompt.error = "You have nothing to inscribe.";
+    prompt.prompt = "要铭刻哪件物品 <color:w>(按 <color:keypress>Esc</color> 退出)</color>？";
+    prompt.error = "你没有什么可以铭刻的。";
     prompt.filter = obj_exists;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -1067,8 +1067,8 @@ void obj_uninscribe_ui(void)
 {
     obj_prompt_t prompt = {0};
 
-    prompt.prompt = "Remove inscription from which item <color:w>(<color:keypress>Esc</color> to exit)</color>?";
-    prompt.error = "You have nothing to uninscribe.";
+    prompt.prompt = "要移除哪件物品上的铭文 <color:w>(按 <color:keypress>Esc</color> 退出)</color>？";
+    prompt.error = "你没有什么可以移除铭文的。";
     prompt.filter = obj_is_inscribed;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -1086,7 +1086,7 @@ static void _drop(obj_ptr obj)
 {
     char name[MAX_NLEN];
     object_desc(name, obj, OD_COLOR_CODED);
-    if (!silent_drop_hack) msg_format("You drop %s.", name);
+    if (!silent_drop_hack) msg_format("你丢下了%s。", name);
     drop_near(obj, 0, py, px);
     p_ptr->update |= PU_BONUS; /* Weight changed */
     if (obj->loc.where == INV_PACK)
@@ -1190,8 +1190,8 @@ void obj_destroy_ui(void)
         set_action(ACTION_NONE);
 
     /* Prompt for an object */
-    prompt.prompt = "Destroy which item?";
-    prompt.error = "You have nothing to destroy.";
+    prompt.prompt = "要摧毁哪件物品？";
+    prompt.error = "你没有什么可以摧毁的。";
     prompt.filter = _can_destroy;
     prompt.where[pos++] = INV_PACK;
     if (p_ptr->pclass == CLASS_RUNE_KNIGHT)
@@ -1238,7 +1238,7 @@ void obj_destroy_ui(void)
     if (!can_player_destroy_object(prompt.obj)) /* side effect: obj->sense = FEEL_SPECIAL */
     {
         object_desc(name, prompt.obj, OD_COLOR_CODED);
-        msg_format("You cannot destroy %s.", name);
+        msg_format("你无法摧毁%s。", name);
         return;
     }
     obj_destroy(prompt.obj, amt);
@@ -1276,12 +1276,12 @@ static void _destroy(obj_ptr obj)
         if (!handled && !silent)
         {
             if (obj->loc.where)
-                msg_print("Destroyed.");
+                msg_print("已摧毁。");
             else  /* Destroying part of a pile */
             {
                 char name[MAX_NLEN];
                 object_desc(name, obj, OD_COLOR_CODED);
-                msg_format("You destroy %s.", name);
+                msg_format("你摧毁了%s。", name);
             }
         }
     }
@@ -1341,13 +1341,13 @@ void obj_describe_charges(obj_ptr obj)
 
     if (charges == 1)
     {
-        msg_format("%s 1 charge remaining.",
-            obj->loc.where == INV_FLOOR ? "There is" : "You have");
+        msg_format("%s还剩 1 次充能。",
+            obj->loc.where == INV_FLOOR ? "这里有" : "你拥有");
     }
     else
     {
-        msg_format("%s %d charges remaining.",
-            obj->loc.where == INV_FLOOR ? "There are" : "You have",
+        msg_format("%s还剩 %d 次充能。",
+            obj->loc.where == INV_FLOOR ? "这里有" : "你拥有",
             charges);
     }
 }
@@ -1874,7 +1874,7 @@ void special1_drop(obj_ptr obj)
         strcpy(i_name, inv_name(special_pack));
         i_name[0] = tolower(i_name[0]);
         if (streq("ice Bag", i_name)) i_name[4] = tolower(i_name[4]);
-        msg_format("You no longer have %s in your %s.", o_name, i_name);
+        msg_format("你的%s里不再有%s了。", i_name, o_name);
     }
 
     obj_drop(obj, amt);
@@ -1907,7 +1907,7 @@ void special2_drop(obj_ptr obj)
         object_desc(o_name, obj, OD_COLOR_CODED);
         strcpy(i_name, inv_name(special_pack));
         i_name[0] = tolower(i_name[0]);
-        msg_format("You no longer have %s in your %s.", o_name, i_name);
+        msg_format("你的%s里不再有%s了。", i_name, o_name);
     }
 
     obj_drop(obj, amt);

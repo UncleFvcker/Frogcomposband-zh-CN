@@ -137,11 +137,8 @@ static personality_ptr _get_chaotic_personality(void)
 
     if (!init)
     {
-        me.name = "Chaotic";
-        me.desc = "Chaotic adventurers are servants of the Demon Lords of Chaos, and "
-                    "often receive a reward - or punishment - from their patrons when "
-                    "they gain a level. Their strengths and weaknesses are "
-                    "unpredictable; even their stat bonuses are subject to change.";	
+        me.name = "混乱";
+        me.desc = "混乱的冒险者是混沌恶魔领主的仆从，在他们升级时通常会收到来自庇护者的奖励——或惩罚。他们的长处和弱点是不可预测的；甚至他们的属性加成也可能会发生变化。";	
 
         me.life = 99;
         me.exp = 100;
@@ -164,11 +161,8 @@ static personality_ptr _get_combat_personality(void)
 
     if (!init)
     {
-        me.name = "Combat";
-        me.desc = "Combative adventurers favor melee and shooting at the expense "
-                    "of other skills such as disarming, device-skill, or saving throw; "
-                    "yet this personality has more subtlety to it than the raw, untempered "
-                    "muscle of Mighty.";
+        me.name = "好战";
+        me.desc = "好战的冒险者偏爱近战和射击，而牺牲了诸如解除陷阱、使用魔法装置或豁免等其他技能；然而，这种性格比“强壮”那种粗犷、未经锻炼的肌肉更具有微妙的技巧。";
 
         me.stats[A_STR] =  1;
         me.stats[A_INT] = -1;
@@ -213,11 +207,8 @@ static personality_ptr _get_craven_personality(void)
 
     if (!init)
     {
-        me.name = "Craven";
-        me.desc = "A Craven person is a coward, preferring to avoid a fight at any "
-                    "cost. Craven adventurers shoot and use devices well, their "
-                    "stealth is impressive, and they can move fast when not fighting; "
-                    "but their stats and other skills are somewhat wanting.";
+        me.name = "怯懦";
+        me.desc = "怯懦的人是个胆小鬼，他们宁愿不惜一切代价避免战斗。怯懦的冒险者射击和使用魔法装置的能力很好，他们的潜行能力令人印象深刻，而且在非战斗状态下移动速度很快；但是他们的属性和其他技能则有些欠缺。";
 
         me.stats[A_STR] = -1;
         me.stats[A_INT] =  1;
@@ -264,9 +255,8 @@ static personality_ptr _get_fearless_personality(void)
 
     if (!init)
     {
-        me.name = "Fearless";
-        me.desc = "Being Fearless raises your melee skills and force of personality, besides helping you "
-                    "resist fear; but your constitution and hit points are negatively affected.";
+        me.name = "无畏";
+        me.desc = "除了帮助你抵抗恐惧之外，无畏还能提升你的近战技能和人格力量（魅力）；但你的体质和生命值会受到负面影响。";
 
         me.stats[A_STR] =  1;
         me.stats[A_INT] =  0;
@@ -323,11 +313,8 @@ static personality_ptr _get_fragile_personality(void)
 
     if (!init)
     {
-        me.name = "Fragile";
-        me.desc = "As a Fragile adventurer, you lack both self-confidence and physical toughness. "
-                    "Due to your incredibly low stamina, you are quickly exhausted by melee, "
-                    "or ranged combat, or magical combat, or any other strenuous activity. (Maybe you "
-                    "should just stay at home, quietly reading some book that isn't too heavy.)";
+        me.name = "脆弱";
+        me.desc = "作为一名脆弱的冒险者，你缺乏自信和肉体韧性。由于你体力极差，你会很快在近战、远程战斗、魔法战斗或任何其他剧烈活动中精疲力竭。（也许你该待在家里，安安静静地读一些不那么重的书。）";
 
         me.stats[A_STR] = -3;
         me.stats[A_INT] =  0;
@@ -377,10 +364,8 @@ static personality_ptr _get_hasty_personality(void)
 
     if (!init)
     {
-        me.name = "Hasty";
-        me.desc = "A Hasty person endeavors to do all things quickly. Speed, "
-                    "rather than skill or care, is paramount, and the Hasty "
-                    "adventurer moves quickly through the dungeon, bungling much.";
+        me.name = "急躁";
+        me.desc = "急躁的人力求把所有事情都快速完成。速度高于技巧或谨慎，急躁的冒险者在地下城中飞速穿行，并且经常把事情搞砸。";
 
         me.stats[A_STR] =  0;
         me.stats[A_INT] = -1;
@@ -427,10 +412,8 @@ static personality_ptr _get_lazy_personality(void)
 
     if (!init)
     {
-        me.name = "Lazy";
-        me.desc = "A Lazy person has no good stats and can do no action well. "
-                    "All fail rates are negatively impacted. Yet some whisper "
-                    "that the less hard you work, the greater the reward...";
+        me.name = "懒惰";
+        me.desc = "懒惰的人没有好的属性，什么行动也做不好。所有的失败率都会受到负面影响。然而，有人传言说，通过做最少的事情而找到的每一件神器，可能会带来更加“懒惰”的奖励...";
 
         me.stats[A_STR] = -2;
         me.stats[A_INT] = -2;
@@ -475,10 +458,8 @@ static personality_ptr _get_lucky_personality(void)
 
     if (!init)
     {
-        me.name = "Lucky";
-        me.desc = "A Lucky adventurer has poor stats but, surprisingly, can do all "
-                    "things well. For some reason, good things seem to happen "
-                    "more often to lucky players.";
+        me.name = "幸运";
+        me.desc = "幸运的冒险者属性很差，但令人惊讶的是，他们能把所有事情都做好。出于某种原因，好事似乎更经常发生在幸运的玩家身上。";
 
         me.stats[A_STR] = -2;
         me.stats[A_INT] = -2;
@@ -520,10 +501,8 @@ static personality_ptr _get_mighty_personality(void)
 
     if (!init)
     {
-        me.name = "Mighty";
-        me.desc = "Mighty raises your physical stats, skills and stamina, but reduces "
-                    "your magical abilities and gives a slight penalty to your spell "
-                    "fail rates. It is the most warrior-like personality.";
+        me.name = "强壮";
+        me.desc = "强壮提升你的物理属性、技能和体力，但会降低你的魔法能力，并对你的法术失败率造成轻微的惩罚。这是最具有战士风格的性格。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] = -2;
@@ -587,10 +566,8 @@ static personality_ptr _get_munchkin_personality(void)
 
     if (!init)
     {
-        me.name = "Munchkin";
-        me.desc = "The Munchkin personality is for players who love being overpowered. "
-                    "It raises all your stats and skills; with this personality, you can "
-                    "win the game easily, but gain no honor in doing so.";
+        me.name = "芒奇金";
+        me.desc = "芒奇金性格是为那些喜欢数值碾压的玩家准备的。它会提升你所有的属性和技能；拥有这种性格，你可以轻松赢得游戏，但这样做不会获得任何荣誉。";
 
         me.stats[A_STR] = 3;
         me.stats[A_INT] = 3;
@@ -639,11 +616,8 @@ static personality_ptr _get_mundane_personality(void)
 
     if (!init)
     {
-        me.name = "Mundane";
-        me.desc = "Mundane adventurers have few talents to speak of, and "
-                    "are incapable of using spells and not very good with "
-                    "magical devices; but their anti-magic allows them to "
-                    "resist the effects of many dangerous curses.";
+        me.name = "平凡";
+        me.desc = "平凡的冒险者几乎没有什么天赋可言，并且无法使用法术，也不太擅长使用魔法装置；但是他们的反魔法能力使他们能够抵抗许多危险诅咒的影响。";
 
         me.stats[A_STR] = -1;
         me.stats[A_INT] = -1;
@@ -676,9 +650,8 @@ static personality_ptr _get_nimble_personality(void)
 
     if (!init)
     {
-        me.name = "Nimble";
-        me.desc = "Nimbleness is good for your skills and allows you to move less noisily; but your "
-                    "raw strength is somewhat lacking, and you cannot survive quite as many hits.";
+        me.name = "敏捷";
+        me.desc = "敏捷对你的技能有好处，并允许你移动时发出的噪音更小；但你缺乏一些原始的力量，且无法承受那么多次的打击。";
 
         me.stats[A_STR] = -1;
         me.stats[A_INT] =  1;
@@ -719,12 +692,8 @@ static personality_ptr _get_noble_personality(void)
 
     if (!init)
     {
-        me.name = "Noble";
-        me.desc = "As a Noble person, you have the benefits of an upper-class upbringing "
-                    "(at least, you consider them benefits). You start with extra "
-                    "money, and seem to have a relatively easy time acquiring even "
-                    "more money; but whether other aspects of the adventuring life "
-                    "will come to you as naturally remains to be seen.";
+        me.name = "高贵";
+        me.desc = "作为一个高贵的人，你享受着上流社会教养带来的好处（至少，你认为这是好处）。你开局就有额外的金钱，并且似乎相对容易获得更多的金钱；但是冒险生活的其他方面对你来说是否也能如此顺理成章，还有待观察。";
 
         me.stats[A_STR] = 0;
         me.stats[A_INT] = 0;
@@ -762,9 +731,8 @@ static personality_ptr _get_ordinary_personality(void)
 
     if (!init)
     {
-        me.name = "Ordinary";
-        me.desc = "An ordinary person is average in every respect, gaining neither "
-                    "skills, talents nor stat adjustments.";
+        me.name = "普通";
+        me.desc = "一个普通人在各方面都很平庸，既不会获得技能、天赋，也不会有属性调整。";
         me.life = 100;
         me.exp = 100;
 
@@ -791,11 +759,8 @@ static personality_ptr _get_patient_personality(void)
 
     if (!init)
     {
-        me.name = "Patient";
-        me.desc = "A Patient adventurer does everything with great care, but not always "
-                    "with great speed or confident hands. Patient characters are highly "
-                    "resilient, and their slow but measured movements make them relatively "
-                    "stealthy.";
+        me.name = "耐心";
+        me.desc = "耐心的冒险者做事非常谨慎，但并不总是拥有极快的速度或自信的手法。耐心的人物具有高度的韧性，他们缓慢而有条理的动作使他们相对较为隐秘。";
 
         me.stats[A_STR] =  0;
         me.stats[A_INT] =  0;
@@ -834,9 +799,8 @@ static personality_ptr _get_pious_personality(void)
 
     if (!init)
     {
-        me.name = "Pious";
-        me.desc = "Pious deepens your faith in your God. It makes your physical "
-                    "ability average, and your stats suitable for a priest.";
+        me.name = "虔诚";
+        me.desc = "虔诚加深了你对神明的信仰。它使你的物理能力平平，且使你的属性适合成为一名牧师。";
 
         me.stats[A_STR] =  0;
         me.stats[A_INT] = -1;
@@ -894,9 +858,8 @@ static personality_ptr _get_sexy_personality(void)
 
     if (!init)
     {
-        me.name = "Sexy";
-        me.desc = "Sexy adventurers have excellent stats and skills, but their haughty "
-                    "attitude aggravates all monsters.";
+        me.name = "性感";
+        me.desc = "性感的冒险者拥有出色的属性和技能，但他们傲慢的态度会激怒所有的怪物。";
 
         me.stats[A_STR] = 1;
         me.stats[A_INT] = 1;
@@ -940,11 +903,8 @@ static personality_ptr _get_shrewd_personality(void)
 
     if (!init)
     {
-        me.name = "Shrewd";
-        me.desc = "Being Shrewd does not give you an impressive physique, but good device handling "
-                    "embiggens the smallest man; this is the stereotypical Mage personality, "
-                    "yet can also help a warrior complement his weaknesses. "
-                    "Shrewdness has a direct positive influence on spell fail rates.";
+        me.name = "精明";
+        me.desc = "精明并不能赋予你令人印象深刻的体格，但良好的装置操作能力能让再矮小的人也变得强大；这是典型的法师性格，但也能帮助战士弥补自己的弱点。精明对法术失败率有直接的正面影响。";
 
         me.stats[A_STR] = -2;
         me.stats[A_INT] =  2;
@@ -992,10 +952,8 @@ static personality_ptr _get_sneaky_personality(void)
 
     if (!init)
     {
-        me.name = "Sneaky";
-        me.desc = "Sneaky adventurers are stealthy and at home with light stabbing "
-                    "weapons; but face-to-face combat with heavier weapons plays "
-                    "against their strengths.";
+        me.name = "阴险";
+        me.desc = "阴险的冒险者很隐秘，并且非常擅长使用轻型刺击武器；但是使用重型武器进行面对面的战斗则与他们的长处背道而驰。";
 
         me.stats[A_STR] = -3;
         me.stats[A_INT] =  1;
@@ -1135,11 +1093,11 @@ void split_shuffle(byte birth)
      p_ptr->update |= (PU_BONUS | PU_HP);
      if (muutos & 0x01)
      {
-         msg_print("Your thoughts are jolted...");
+         msg_print("你的思绪受到了冲击...");
      }
      if (muutos & 0x02)
      {
-         msg_format("You suddenly feel very %s!", ((_split_dominant == PERS_COMBAT) ? "Combative" : get_personality_aux(_split_dominant)->name));
+         msg_format("你突然感觉非常%s！", ((_split_dominant == PERS_COMBAT) ? "好战" : get_personality_aux(_split_dominant)->name));
      }
 }
 
@@ -1220,7 +1178,7 @@ void split_dump(doc_ptr doc, int mode)
     {
         case 0:
         {
-            doc_printf(doc, " Personality: <color:B>Split (%s)</color>\n", get_personality_aux(_split_dominant)->name);
+            doc_printf(doc, "性格 : <color:B>分裂 (%s)</color>\n", get_personality_aux(_split_dominant)->name);
             break;
         }
         case 1:
@@ -1228,7 +1186,7 @@ void split_dump(doc_ptr doc, int mode)
             byte i;
             char old_color = 'y';
             int edellinen = -1;
-            doc_printf(doc, " Personalities: <indent><color:G>%s; </color>", get_personality_aux(_split_dominant)->name);
+            doc_printf(doc, "副性格 : <indent><color:G>%s; </color>", get_personality_aux(_split_dominant)->name);
             for (i = 0; i < MAX_PERSONALITIES; i++)
             {
                 if (i == PERS_SPLIT) continue; /* paranoia */
@@ -1262,19 +1220,8 @@ static personality_ptr _get_split_personality(void)
 
     if (!init)
     {
-        me.name = "Split";
-        me.desc = "You have multiple personalities, and inherit the upsides and "
-                    "downsides of each. At all times, one of your personalities is "
-                    "dominant, and you receive the full effects of that personality; "
-                    "the remaining personalities are either partially suppressed "
-                    "or fully suppressed. A partially suppressed personality gives "
-                    "reduced stat and skill bonuses, and some other effects "
-                    "(like the walking speed bonus of Craven or the aggravation from "
-                    "Sexy) will be absent entirely, but other parts of the personality "
-                    "apply normally. A fully dormant personality has no effect on you "
-                    "at the moment, but may resurface later! Level gains, and the "
-                    "trauma of taking heavy damage, can cause previously suppressed "
-                    "personalities to become dominant and vice versa.";
+        me.name = "分裂";
+        me.desc = "你拥有多重人格，并继承了每个人格的优点和缺点。在任何时候，你的其中一个人格处于主导地位，你将获得该人格的全部效果；其余的人格要么被部分抑制，要么被完全抑制。部分抑制的人格会提供减少的属性和技能加成，并且某些其他效果（例如“怯懦”的行走速度加成或“性感”的激怒怪物）将完全消失，但人格的其他部分正常生效。完全休眠的人格目前对你没有任何影响，但以后可能会重新浮现！等级的提升以及受到严重伤害的创伤，可能会导致以前被抑制的人格占据主导地位，反之亦然。";
     } 
 
     if (_split_recalc_bonuses) 
@@ -1377,11 +1324,8 @@ static personality_ptr _get_unlucky_personality(void)
 
     if (!init)
     {
-        me.name = "Unlucky";
-        me.desc = "An Unlucky adventurer looks impressive on paper and "
-                    "should, by rights, have an easy time - but somehow "
-                    "their fights don't go quite so smoothly, and the items "
-                    "they most need never seem to drop.";
+        me.name = "不幸";
+        me.desc = "不幸的冒险者在纸面属性上看起来令人印象深刻，按理说应该能过得很轻松——但不知何故，他们的战斗进行得并不顺利，而且他们最需要的物品似乎永远也不会掉落。";
 
         me.stats[A_STR] = 2;
         me.stats[A_INT] = 2;
@@ -1491,4 +1435,3 @@ personality_ptr get_personality(void)
 {
     return get_personality_aux(p_ptr->personality);
 }
-

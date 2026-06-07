@@ -233,7 +233,7 @@ static void change_path(cptr info)
 		case 'e':
 		case 's':
 		{
-			quit_fmt("Restricted option '-d%s'", info);
+			quit_fmt("受限选项 '-d%s'", info);
 		}
 
 #else /* VERIFY_SAVEFILE */

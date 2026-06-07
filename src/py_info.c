@@ -42,16 +42,16 @@ static void _build_general1(doc_ptr doc)
     personality_ptr  pers_ptr = get_personality();
     bool             patron_listed = FALSE;
 
-    doc_printf(doc, " Name       : <color:B>%s</color>\n", player_name);
-    doc_printf(doc, " Sex        : <color:B>%s</color>\n", sex_info[p_ptr->psex].title);
+    doc_printf(doc, "名字 : <color:B>%s</color>\n", player_name);
+    doc_printf(doc, "性别 : <color:B>%s</color>\n", sex_info[p_ptr->psex].title);
     if (p_ptr->personality == PERS_SPLIT)
         split_dump(doc, 0);
-    else doc_printf(doc, " Personality: <color:B>%s</color>\n", pers_ptr->name);
+    else doc_printf(doc, "性格 : <color:B>%s</color>\n", pers_ptr->name);
 
     if (race_ptr->mimic)
-        doc_printf(doc, " Race       : <color:B>[%s]</color>\n", race_ptr->name);
+        doc_printf(doc, "种族 : <color:B>[%s]</color>\n", race_ptr->name);
     else
-        doc_printf(doc, " Race       : <color:B>%s</color>\n", race_ptr->name);
+        doc_printf(doc, "种族 : <color:B>%s</color>\n", race_ptr->name);
 
     if (race_ptr->subname)
     {
@@ -91,70 +91,70 @@ static void _build_general1(doc_ptr doc)
         }
 
         if (p_ptr->prace == RACE_MON_RING)
-            doc_printf(doc, " Controlling: <color:B>%-26.26s</color>\n", nimi);
+            doc_printf(doc, "控制 : <color:B>%-26.26s</color>\n", nimi);
         else if (p_ptr->prace == RACE_MON_MIMIC)
         {
             if (p_ptr->current_r_idx == MON_MIMIC)
-                doc_printf(doc, " Mimicking  : <color:B>%-26.26s</color>\n", "Nothing");
+                doc_printf(doc, "模仿 : <color:B>%-26.26s</color>\n", "无");
             else
-                doc_printf(doc, " Mimicking  : <color:B>%-26.26s</color>\n", nimi);
+                doc_printf(doc, "模仿 : <color:B>%-26.26s</color>\n", nimi);
         }
         else
-            doc_printf(doc, " Subrace    : <color:B>%-26.26s</color>\n", nimi);
+            doc_printf(doc, "分支种族 : <color:B>%-26.26s</color>\n", nimi);
     }
     else
-        doc_printf(doc, " Subrace    : <color:B>%-26.26s</color>\n", "None");
+        doc_printf(doc, "分支种族 : <color:B>%-26.26s</color>\n", "无");
 
-    doc_printf(doc, " Class      : <color:B>%s</color>\n", class_ptr->name);
+    doc_printf(doc, "职业 : <color:B>%s</color>\n", class_ptr->name);
 
     /* Assume Subclass and Magic are mutually exclusive ... */
     if (class_ptr->subname)
-        doc_printf(doc, " Subclass   : <color:B>%-26.26s</color>\n", class_ptr->subname);
+        doc_printf(doc, "副职业 : <color:B>%-26.26s</color>\n", class_ptr->subname);
     else if (p_ptr->prace == RACE_MON_DRAGON)
     {
         dragon_realm_ptr realm = dragon_get_realm(p_ptr->dragon_realm);
-        doc_printf(doc, " Realm      : <color:B>%-26.26s</color>\n", realm->name);
+        doc_printf(doc, "领域 : <color:B>%-26.26s</color>\n", realm->name);
     }
     else if ((p_ptr->realm1) && (p_ptr->pclass != CLASS_LAWYER) && (p_ptr->pclass != CLASS_NINJA_LAWYER))
     {
         if (p_ptr->realm2)
-            doc_printf(doc, " Realm      : <color:B>%s, %s</color>\n", realm_names[p_ptr->realm1], realm_names[p_ptr->realm2]);
+            doc_printf(doc, "领域 : <color:B>%s, %s</color>\n", realm_names[p_ptr->realm1], realm_names[p_ptr->realm2]);
         else
-            doc_printf(doc, " Realm      : <color:B>%s</color>\n", realm_names[p_ptr->realm1]);
+            doc_printf(doc, "领域 : <color:B>%s</color>\n", realm_names[p_ptr->realm1]);
     }
     else if ((p_ptr->pclass == CLASS_CHAOS_WARRIOR) || mut_present(MUT_CHAOS_GIFT))
     {
-        doc_printf(doc, " Patron     : <color:B>%s</color>\n", chaos_patrons[p_ptr->chaos_patron]);
+        doc_printf(doc, "庇护者 : <color:B>%s</color>\n", chaos_patrons[p_ptr->chaos_patron]);
         patron_listed = TRUE;
     }
     else
         doc_newline(doc);
 
     if (((p_ptr->pclass == CLASS_CHAOS_WARRIOR) || mut_present(MUT_CHAOS_GIFT)) && (!patron_listed))
-        doc_printf(doc, " Patron     : <color:B>%s</color>\n", chaos_patrons[p_ptr->chaos_patron]);
+        doc_printf(doc, "庇护者 : <color:B>%s</color>\n", chaos_patrons[p_ptr->chaos_patron]);
     else
         doc_newline(doc);
 
 
-    doc_printf(doc, " Level      : <color:G>%8d</color>\n", p_ptr->lev);
+    doc_printf(doc, "等级 : <color:G>%8d</color>\n", p_ptr->lev);
     if (p_ptr->prace == RACE_ANDROID)
     {
-        doc_printf(doc, " Construct  : <color:%c>%8d</color>\n", p_ptr->exp >= p_ptr->max_exp ? 'G' : 'y', p_ptr->exp);
+        doc_printf(doc, "构造进度 : <color:%c>%8d</color>\n", p_ptr->exp >= p_ptr->max_exp ? 'G' : 'y', p_ptr->exp);
         doc_newline(doc);
     }
     else
     {
-        doc_printf(doc, " Cur Exp    : <color:%c>%8d</color>\n", p_ptr->exp >= p_ptr->max_exp ? 'G' : 'y', p_ptr->exp);
-        doc_printf(doc, " Max Exp    : <color:G>%8d</color>\n", p_ptr->max_exp);
+        doc_printf(doc, "当前经验 : <color:%c>%8d</color>\n", p_ptr->exp >= p_ptr->max_exp ? 'G' : 'y', p_ptr->exp);
+        doc_printf(doc, "最大经验 : <color:G>%8d</color>\n", p_ptr->max_exp);
     }
-    doc_printf(doc, " Adv Exp    : <color:G>%8.8s</color>\n", p_ptr->lev >= PY_MAX_LEVEL ? "*****" : format("%d", exp_requirement(p_ptr->lev)));
+    doc_printf(doc, "升级需验 : <color:G>%8.8s</color>\n", p_ptr->lev >= PY_MAX_LEVEL ? "*****" : format("%d", exp_requirement(p_ptr->lev)));
     doc_newline(doc);
     doc_newline(doc);
 
-    doc_printf(doc, " Gold       : <color:G>%8d</color>\n", p_ptr->au);
-    doc_printf(doc, " Kills      : <color:G>%8d</color>\n", ct_kills());
-    doc_printf(doc, " Uniques    : <color:G>%8d</color>\n", ct_uniques(CTU_INCLUDE_SUPPRESSED | CTU_INCLUDE_RARE | CTU_COUNT_DEAD));
-    doc_printf(doc, " Artifacts  : <color:G>%8.8s</color>\n",
+    doc_printf(doc, "金币 : <color:G>%8d</color>\n", p_ptr->au);
+    doc_printf(doc, "击杀数 : <color:G>%8d</color>\n", ct_kills());
+    doc_printf(doc, "唯一怪 : <color:G>%8d</color>\n", ct_uniques(CTU_INCLUDE_SUPPRESSED | CTU_INCLUDE_RARE | CTU_COUNT_DEAD));
+    doc_printf(doc, "神器数 : <color:G>%8.8s</color>\n",
                             no_artifacts ? "N/A" : format("%d+%d" , ct_artifacts(), stats_rand_art_counts.found));
     doc_newline(doc);
 
@@ -162,12 +162,12 @@ static void _build_general1(doc_ptr doc)
         int day, hour, min;
         extract_day_hour_min(&day, &hour, &min);
 
-        doc_printf(doc, " Game Day   : <color:G>%8d</color>\n", day);
-        doc_printf(doc, " Game Time  : <color:G>%8.8s</color>\n", format("%d:%02d", hour, min));
+        doc_printf(doc, "游戏天数 : <color:G>%8d</color>\n", day);
+        doc_printf(doc, "游戏时间 : <color:G>%8.8s</color>\n", format("%d:%02d", hour, min));
     }
 
     update_playtime();
-    doc_printf(doc, " Play Time  : <color:G>%8.8s</color>\n",
+    doc_printf(doc, "游玩时间 : <color:G>%8.8s</color>\n",
                             format("%.2lu:%.2lu", playtime/(60*60), (playtime/60)%60));
 }
 
@@ -194,7 +194,7 @@ static void _build_general2(doc_ptr doc)
     char       buf[255];
     int        i;
 
-    doc_insert(doc, "   ========== Stats ==========\n");
+    doc_insert(doc, "========== 属性 ==========\n");
     for (i = 0; i < MAX_STATS; i++)
     {
         if (p_ptr->stat_use[i] < p_ptr->stat_top[i])
@@ -215,7 +215,7 @@ static void _build_general2(doc_ptr doc)
 
     string_clear(s);
     string_printf(s, "%d/%d", p_ptr->chp , p_ptr->mmhp);
-    doc_printf(doc, "<tab:9>HP   : <color:%c>%9.9s</color>\n",
+    doc_printf(doc, "<tab:9>HP : <color:%c>%9.9s</color>\n",
                     p_ptr->chp >= p_ptr->mhp ? 'G' :
                         p_ptr->chp > (p_ptr->mmhp * hitpoint_warn) / 10 ? 'y' : 'r',
                     string_buffer(s));
@@ -223,14 +223,14 @@ static void _build_general2(doc_ptr doc)
     string_clear(s);
     string_printf(s, "%d/%d", p_ptr->csp , p_ptr->msp);
     if (elemental_is_(ELEMENTAL_WATER))
-        doc_printf(doc, "<tab:9>Flow : <color:G>%9.9s</color>\n", string_buffer(s));
+        doc_printf(doc, "<tab:9>流派 : <color:G>%9.9s</color>\n", string_buffer(s));
     else
-        doc_printf(doc, "<tab:9>SP   : <color:%c>%9.9s</color>\n",
+        doc_printf(doc, "<tab:9>SP : <color:%c>%9.9s</color>\n",
                     p_ptr->csp >= p_ptr->msp ? 'G' :
                         p_ptr->csp > (p_ptr->msp * mana_warn) / 10 ? 'y' : 'r',
                     string_buffer(s));
 
-    doc_printf(doc, "<tab:9>AC   : <color:G>%9d</color>\n", p_ptr->dis_ac + p_ptr->dis_to_a);
+    doc_printf(doc, "<tab:9>AC : <color:G>%9d</color>\n", p_ptr->dis_ac + p_ptr->dis_to_a);
 
     /* Dump speed ... What a monster! */
     {
@@ -289,11 +289,11 @@ static void _build_general2(doc_ptr doc)
             string_printf(s, "%+d", speed);
         }
 
-        doc_printf(doc, "<tab:9>Speed: <color:%c>%9.9s</color>\n", attr_to_attr_char(attr), string_buffer(s));
+        doc_printf(doc, "<tab:9>速度 : <color:%c>%9.9s</color>\n", attr_to_attr_char(attr), string_buffer(s));
     }
 
     doc_newline(doc);
-    doc_insert(doc, "   ========== Skills =========\n");
+    doc_insert(doc, "========== 技能 =========\n");
 
     {
         skills_t skills = p_ptr->skills;
@@ -311,14 +311,14 @@ static void _build_general2(doc_ptr doc)
             skills.stl = -1; /* Force "Very Bad" */
 
         /* Display */
-        _display_skill(doc, "Melee", skills.thn, 12);
-        _display_skill(doc, "Archery", skills.thb, 12);
-        _display_skill(doc, "SavingThrow", skills.sav, 7);
-        _display_skill(doc, "Stealth", skills.stl, 1);
-        _display_skill(doc, "Perception", skills.fos, 6);
-        _display_skill(doc, "Searching", skills.srh, 6);
-        _display_skill(doc, "Disarming", skills.dis, 8);
-        _display_skill(doc, "Device", skills.dev, 7);
+        _display_skill(doc, "近战", skills.thn, 12);
+        _display_skill(doc, "箭术", skills.thb, 12);
+        _display_skill(doc, "豁免", skills.sav, 7);
+        _display_skill(doc, "潜行", skills.stl, 1);
+        _display_skill(doc, "察觉", skills.fos, 6);
+        _display_skill(doc, "搜索", skills.srh, 6);
+        _display_skill(doc, "解除陷阱", skills.dis, 8);
+        _display_skill(doc, "装置", skills.dev, 7);
     }
 
     string_free(s);
@@ -624,53 +624,53 @@ static void _build_flags1(doc_ptr doc, _flagzilla_ptr flagzilla)
 {
     int i;
     _equippy_chars(doc, 14);
-    _equippy_heading(doc, "Resistances", 14);
+    _equippy_heading(doc, "抗性", 14);
 
     for (i = RES_BEGIN; i < RES_END; i++)
         _build_res_flags(doc, i, flagzilla);
 
     doc_newline(doc);
     _equippy_chars(doc, 14);
-    _equippy_heading(doc, "Auras", 14);
-    _build_flags_aura(doc, "Aura Elec", OF_AURA_ELEC, flagzilla);
-    _build_flags_aura(doc, "Aura Fire", OF_AURA_FIRE, flagzilla);
-    _build_flags_aura(doc, "Aura Cold", OF_AURA_COLD, flagzilla);
-    _build_flags_aura(doc, "Aura Shards", OF_AURA_SHARDS, flagzilla);
-    _build_flags(doc, "Revenge", OF_AURA_REVENGE, OF_INVALID, flagzilla);
+    _equippy_heading(doc, "光环", 14);
+    _build_flags_aura(doc, "闪电光环", OF_AURA_ELEC, flagzilla);
+    _build_flags_aura(doc, "火焰光环", OF_AURA_FIRE, flagzilla);
+    _build_flags_aura(doc, "寒冷光环", OF_AURA_COLD, flagzilla);
+    _build_flags_aura(doc, "碎片光环", OF_AURA_SHARDS, flagzilla);
+    _build_flags(doc, "反击光环", OF_AURA_REVENGE, OF_INVALID, flagzilla);
 
     doc_newline(doc);
     _equippy_chars(doc, 14);
-    _equippy_heading(doc, "Slays", 14);
-    _build_slays_imp(doc, "Slay Evil", OF_SLAY_EVIL, OF_KILL_EVIL, flagzilla);
-    _build_slays_imp(doc, "Slay Undead", OF_SLAY_UNDEAD, OF_KILL_UNDEAD, flagzilla);
-    _build_slays_imp(doc, "Slay Demon", OF_SLAY_DEMON, OF_KILL_DEMON, flagzilla);
-    _build_slays_imp(doc, "Slay Dragon", OF_SLAY_DRAGON, OF_KILL_DRAGON, flagzilla);
-    _build_slays_imp(doc, "Slay Human", OF_SLAY_HUMAN, OF_KILL_HUMAN, flagzilla);
-    _build_slays_imp(doc, "Slay Animal", OF_SLAY_ANIMAL, OF_KILL_ANIMAL, flagzilla);
-    _build_slays_imp(doc, "Slay Orc", OF_SLAY_ORC, OF_KILL_ORC, flagzilla);
-    _build_slays_imp(doc, "Slay Troll", OF_SLAY_TROLL, OF_KILL_TROLL, flagzilla);
-    _build_slays_imp(doc, "Slay Giant", OF_SLAY_GIANT, OF_KILL_GIANT, flagzilla);
-    _build_slays_imp(doc, "Slay Good", OF_SLAY_GOOD, OF_KILL_GOOD, flagzilla);
-    _build_slays_imp(doc, "Slay Living", OF_SLAY_LIVING, OF_KILL_LIVING, flagzilla);
-    _build_slays_imp(doc, "Acid Brand", OF_BRAND_ACID, OF_INVALID, flagzilla);
-    _build_slays_imp(doc, "Elec Brand", OF_BRAND_ELEC, OF_INVALID, flagzilla);
-    _build_slays_imp(doc, "Fire Brand", OF_BRAND_FIRE, OF_INVALID, flagzilla);
-    _build_slays_imp(doc, "Cold Brand", OF_BRAND_COLD, OF_INVALID, flagzilla);
-    _build_slays_imp(doc, "Pois Brand", OF_BRAND_POIS, OF_INVALID, flagzilla);
-    _build_slays_imp(doc, "Mana Brand", OF_BRAND_MANA, OF_INVALID, flagzilla);
-    _build_slays_imp(doc, "Dark Brand", OF_BRAND_DARK, OF_INVALID, flagzilla);
-    _build_slays_imp(doc, "Sharpness", OF_VORPAL, OF_VORPAL2, flagzilla);
-    _build_slays_imp(doc, "Stunning", OF_STUN, OF_INVALID, flagzilla);
-    _build_slays_imp(doc, "Quake", OF_IMPACT, OF_INVALID, flagzilla);
-    _build_slays_imp(doc, "Vampiric", OF_BRAND_VAMP, OF_INVALID, flagzilla);
-    _build_slays_imp(doc, "Chaotic", OF_BRAND_CHAOS, OF_INVALID, flagzilla);
-    _build_flags(doc, "Extra Blows", OF_BLOWS, OF_DEC_BLOWS, flagzilla);
-    _build_flags(doc, "Extra Shots", OF_XTRA_SHOTS, OF_INVALID, flagzilla);
-    _build_flags(doc, "Extra Might", OF_XTRA_MIGHT, OF_INVALID, flagzilla);
-    _build_flags(doc, "Blessed", OF_BLESSED, OF_INVALID, flagzilla);
-    _build_flags(doc, "Riding", OF_RIDING, OF_INVALID, flagzilla);
-    _build_flags(doc, "Digging", OF_TUNNEL, OF_INVALID, flagzilla);
-    _build_flags(doc, "Throwing", OF_THROWING, OF_INVALID, flagzilla);
+    _equippy_heading(doc, "斩杀", 14);
+    _build_slays_imp(doc, "斩杀邪恶", OF_SLAY_EVIL, OF_KILL_EVIL, flagzilla);
+    _build_slays_imp(doc, "斩杀不死", OF_SLAY_UNDEAD, OF_KILL_UNDEAD, flagzilla);
+    _build_slays_imp(doc, "斩杀恶魔", OF_SLAY_DEMON, OF_KILL_DEMON, flagzilla);
+    _build_slays_imp(doc, "斩杀龙类", OF_SLAY_DRAGON, OF_KILL_DRAGON, flagzilla);
+    _build_slays_imp(doc, "斩杀人类", OF_SLAY_HUMAN, OF_KILL_HUMAN, flagzilla);
+    _build_slays_imp(doc, "斩杀动物", OF_SLAY_ANIMAL, OF_KILL_ANIMAL, flagzilla);
+    _build_slays_imp(doc, "斩杀兽人", OF_SLAY_ORC, OF_KILL_ORC, flagzilla);
+    _build_slays_imp(doc, "斩杀巨魔", OF_SLAY_TROLL, OF_KILL_TROLL, flagzilla);
+    _build_slays_imp(doc, "斩杀巨怪", OF_SLAY_GIANT, OF_KILL_GIANT, flagzilla);
+    _build_slays_imp(doc, "斩杀善良", OF_SLAY_GOOD, OF_KILL_GOOD, flagzilla);
+    _build_slays_imp(doc, "斩杀活物", OF_SLAY_LIVING, OF_KILL_LIVING, flagzilla);
+    _build_slays_imp(doc, "酸液烙印", OF_BRAND_ACID, OF_INVALID, flagzilla);
+    _build_slays_imp(doc, "闪电烙印", OF_BRAND_ELEC, OF_INVALID, flagzilla);
+    _build_slays_imp(doc, "火焰烙印", OF_BRAND_FIRE, OF_INVALID, flagzilla);
+    _build_slays_imp(doc, "寒冷烙印", OF_BRAND_COLD, OF_INVALID, flagzilla);
+    _build_slays_imp(doc, "毒素烙印", OF_BRAND_POIS, OF_INVALID, flagzilla);
+    _build_slays_imp(doc, "法力烙印", OF_BRAND_MANA, OF_INVALID, flagzilla);
+    _build_slays_imp(doc, "暗影烙印", OF_BRAND_DARK, OF_INVALID, flagzilla);
+    _build_slays_imp(doc, "锋锐", OF_VORPAL, OF_VORPAL2, flagzilla);
+    _build_slays_imp(doc, "震慑", OF_STUN, OF_INVALID, flagzilla);
+    _build_slays_imp(doc, "地震", OF_IMPACT, OF_INVALID, flagzilla);
+    _build_slays_imp(doc, "吸血", OF_BRAND_VAMP, OF_INVALID, flagzilla);
+    _build_slays_imp(doc, "混乱", OF_BRAND_CHAOS, OF_INVALID, flagzilla);
+    _build_flags(doc, "额外攻击", OF_BLOWS, OF_DEC_BLOWS, flagzilla);
+    _build_flags(doc, "额外射击", OF_XTRA_SHOTS, OF_INVALID, flagzilla);
+    _build_flags(doc, "额外威力", OF_XTRA_MIGHT, OF_INVALID, flagzilla);
+    _build_flags(doc, "受祝福", OF_BLESSED, OF_INVALID, flagzilla);
+    _build_flags(doc, "骑乘", OF_RIDING, OF_INVALID, flagzilla);
+    _build_flags(doc, "挖掘", OF_TUNNEL, OF_INVALID, flagzilla);
+    _build_flags(doc, "投掷", OF_THROWING, OF_INVALID, flagzilla);
 }
 
 static void _display_known_count(doc_ptr doc, int total, int flg)
@@ -698,38 +698,38 @@ static void _build_flags2(doc_ptr doc, _flagzilla_ptr flagzilla)
     int _tmp;
     s32b _regen = (s32b)p_ptr->regen * py_food_regen();
     _equippy_chars(doc, 14);
-    _equippy_heading(doc, "Abilities", 14);
+    _equippy_heading(doc, "能力", 14);
 
-    _build_flags(doc, "Speed", OF_SPEED, OF_DEC_SPEED, flagzilla);
+    _build_flags(doc, "速度", OF_SPEED, OF_DEC_SPEED, flagzilla);
 
-    _build_flags_imp(doc, "Free Act", OF_FREE_ACT, OF_INVALID, flagzilla);
+    _build_flags_imp(doc, "行动自如", OF_FREE_ACT, OF_INVALID, flagzilla);
     _display_known_count(doc, p_ptr->free_act, OF_FREE_ACT);
 
-    _build_flags_imp(doc, "See Invis", OF_SEE_INVIS, OF_INVALID, flagzilla);
+    _build_flags_imp(doc, "识破隐形", OF_SEE_INVIS, OF_INVALID, flagzilla);
     _display_known_count(doc, p_ptr->see_inv, OF_SEE_INVIS);
 
-    _build_flags(doc, "Warning", OF_WARNING, OF_INVALID, flagzilla);
-    _build_flags(doc, "Slow Digest", OF_SLOW_DIGEST, OF_INVALID, flagzilla);
+    _build_flags(doc, "危险预警", OF_WARNING, OF_INVALID, flagzilla);
+    _build_flags(doc, "减缓消化", OF_SLOW_DIGEST, OF_INVALID, flagzilla);
 
-    _build_flags_imp(doc, "Regenerate", OF_REGEN, OF_INVALID, flagzilla);
+    _build_flags_imp(doc, "快速恢复", OF_REGEN, OF_INVALID, flagzilla);
     doc_printf(doc, " %3d%%\n", p_ptr->regen);
 
-    _build_flags_imp(doc, " HP Regen", OF_INVALID, OF_SLOW_REGEN, flagzilla);
+    _build_flags_imp(doc, "生命再生", OF_INVALID, OF_SLOW_REGEN, flagzilla);
     doc_printf(doc, " %3d%%\n", _regen / PY_REGEN_NORMAL * mutant_regenerate_mod / 100);
 
-    _build_flags_imp(doc, " SP Regen", OF_REGEN_MANA, OF_INVALID, flagzilla);
+    _build_flags_imp(doc, "法力再生", OF_REGEN_MANA, OF_INVALID, flagzilla);
     if (p_ptr->msp) doc_printf(doc, " %3d%%", ((p_ptr->pclass == CLASS_RUNE_KNIGHT || p_ptr->pclass == CLASS_RAGE_MAGE || mimic_no_regen()) ? 0 : (p_ptr->mana_regen ? _regen * 2 : _regen) / PY_REGEN_NORMAL));
     doc_newline(doc);
 
-    _build_flags_imp(doc, "Hold Life", OF_HOLD_LIFE, OF_INVALID, flagzilla);
+    _build_flags_imp(doc, "保持生命", OF_HOLD_LIFE, OF_INVALID, flagzilla);
     _display_known_count(doc, p_ptr->hold_life, OF_HOLD_LIFE);
 
-    _build_flags(doc, "Levitation", OF_LEVITATION, OF_INVALID, flagzilla);
-    _build_flags(doc, "Perm Lite", OF_LITE, OF_DARKNESS, flagzilla);
-    _build_flags(doc, "Reflection", OF_REFLECT, OF_INVALID, flagzilla);
-    _build_flags(doc, "Nightvision", OF_NIGHT_VISION, OF_INVALID, flagzilla);
+    _build_flags(doc, "悬浮", OF_LEVITATION, OF_INVALID, flagzilla);
+    _build_flags(doc, "永久光明", OF_LITE, OF_DARKNESS, flagzilla);
+    _build_flags(doc, "反射", OF_REFLECT, OF_INVALID, flagzilla);
+    _build_flags(doc, "夜视", OF_NIGHT_VISION, OF_INVALID, flagzilla);
 
-    _build_flags_imp(doc, "Life Mult", OF_LIFE, OF_DEC_LIFE, flagzilla);
+    _build_flags_imp(doc, "生命乘数", OF_LIFE, OF_DEC_LIFE, flagzilla);
     _tmp = (p_ptr->life - adj_con_mhp[p_ptr->stat_ind[A_CON]]);
     if (_tmp != 0)
     {
@@ -737,11 +737,11 @@ static void _build_flags2(doc_ptr doc, _flagzilla_ptr flagzilla)
     }
     doc_newline(doc);
 
-    _build_flags(doc, "Dec Mana", OF_DEC_MANA, OF_INVALID, flagzilla);
-    _build_flags(doc, "Easy Spell", OF_EASY_SPELL, OF_INVALID, flagzilla);
-    _build_flags(doc, "Anti Magic", OF_NO_MAGIC, OF_INVALID, flagzilla);
+    _build_flags(doc, "减少法耗", OF_DEC_MANA, OF_INVALID, flagzilla);
+    _build_flags(doc, "简易施法", OF_EASY_SPELL, OF_INVALID, flagzilla);
+    _build_flags(doc, "反魔法", OF_NO_MAGIC, OF_INVALID, flagzilla);
 
-    _build_flags_imp(doc, "Magic Skill", OF_MAGIC_MASTERY, OF_DEC_MAGIC_MASTERY, flagzilla);
+    _build_flags_imp(doc, "魔法技能", OF_MAGIC_MASTERY, OF_DEC_MAGIC_MASTERY, flagzilla);
     if (p_ptr->device_power)
     {
         _tmp = device_power_aux(100, p_ptr->device_power) - 100;
@@ -749,67 +749,67 @@ static void _build_flags2(doc_ptr doc, _flagzilla_ptr flagzilla)
     }
     doc_newline(doc);
 
-    if (_build_flags_imp(doc, "Spell Power", OF_SPELL_POWER, OF_DEC_SPELL_POWER, flagzilla))
+    if (_build_flags_imp(doc, "法术强度", OF_SPELL_POWER, OF_DEC_SPELL_POWER, flagzilla))
     {
         _tmp = spell_power_aux(100, p_ptr->spell_power) - 100;
         doc_printf(doc, " %+3d%%", _tmp);
     }
     doc_newline(doc);
 
-    if (_build_flags_imp(doc, "Spell Cap", OF_SPELL_CAP, OF_DEC_SPELL_CAP, flagzilla))
+    if (_build_flags_imp(doc, "法术上限", OF_SPELL_CAP, OF_DEC_SPELL_CAP, flagzilla))
     {
         _tmp = spell_cap_aux(100, p_ptr->spell_cap) - 100;
         doc_printf(doc, " %+3d%%", _tmp);
     }
     doc_newline(doc);
 
-    if (_build_flags_imp(doc, "Magic Res", OF_MAGIC_RESISTANCE, OF_INVALID, flagzilla))
+    if (_build_flags_imp(doc, "魔法抗性", OF_MAGIC_RESISTANCE, OF_INVALID, flagzilla))
             doc_printf(doc, " %+3d%%", p_ptr->magic_resistance);
     doc_newline(doc);
 
-    if (_build_flags_imp(doc, "Infravision", OF_INFRA, OF_INVALID, flagzilla))
+    if (_build_flags_imp(doc, "红外视力", OF_INFRA, OF_INVALID, flagzilla))
         doc_printf(doc, " %3d'", p_ptr->see_infra * 10);
     doc_newline(doc);
 
-    _build_flags(doc, "Stealth", OF_STEALTH, OF_DEC_STEALTH, flagzilla);
-    _build_flags(doc, "Searching", OF_SEARCH, OF_INVALID, flagzilla);
+    _build_flags(doc, "潜行", OF_STEALTH, OF_DEC_STEALTH, flagzilla);
+    _build_flags(doc, "搜索", OF_SEARCH, OF_INVALID, flagzilla);
 
     doc_newline(doc);
     _equippy_chars(doc, 14);
-    _equippy_heading(doc, "Sustains", 14);
-    _build_flags(doc, "Sust Str", OF_SUST_STR, OF_INVALID, flagzilla);
-    _build_flags(doc, "Sust Int", OF_SUST_INT, OF_INVALID, flagzilla);
-    _build_flags(doc, "Sust Wis", OF_SUST_WIS, OF_INVALID, flagzilla);
-    _build_flags(doc, "Sust Dex", OF_SUST_DEX, OF_INVALID, flagzilla);
-    _build_flags(doc, "Sust Con", OF_SUST_CON, OF_INVALID, flagzilla);
-    _build_flags(doc, "Sust Chr", OF_SUST_CHR, OF_INVALID, flagzilla);
+    _equippy_heading(doc, "维持", 14);
+    _build_flags(doc, "维持力量", OF_SUST_STR, OF_INVALID, flagzilla);
+    _build_flags(doc, "维持智力", OF_SUST_INT, OF_INVALID, flagzilla);
+    _build_flags(doc, "维持感知", OF_SUST_WIS, OF_INVALID, flagzilla);
+    _build_flags(doc, "维持敏捷", OF_SUST_DEX, OF_INVALID, flagzilla);
+    _build_flags(doc, "维持体质", OF_SUST_CON, OF_INVALID, flagzilla);
+    _build_flags(doc, "维持魅力", OF_SUST_CHR, OF_INVALID, flagzilla);
 
     doc_newline(doc);
     _equippy_chars(doc, 14);
-    _equippy_heading(doc, "Detection", 14);
-    _build_flags(doc, "Telepathy", OF_TELEPATHY, OF_INVALID, flagzilla);
-    _build_flags(doc, "ESP Evil", OF_ESP_EVIL, OF_INVALID, flagzilla);
-    _build_flags(doc, "ESP Nonliv", OF_ESP_NONLIVING, OF_INVALID, flagzilla);
-	_build_flags(doc, "ESP Living", OF_ESP_LIVING, OF_INVALID, flagzilla);
-    _build_flags(doc, "ESP Good", OF_ESP_GOOD, OF_INVALID, flagzilla);
-    _build_flags(doc, "ESP Undead", OF_ESP_UNDEAD, OF_INVALID, flagzilla);
-    _build_flags(doc, "ESP Demon", OF_ESP_DEMON, OF_INVALID, flagzilla);
-    _build_flags(doc, "ESP Dragon", OF_ESP_DRAGON, OF_INVALID, flagzilla);
-    _build_flags(doc, "ESP Human", OF_ESP_HUMAN, OF_INVALID, flagzilla);
-    _build_flags(doc, "ESP Animal", OF_ESP_ANIMAL, OF_INVALID, flagzilla);
-    _build_flags(doc, "ESP Orc", OF_ESP_ORC, OF_INVALID, flagzilla);
-    _build_flags(doc, "ESP Troll", OF_ESP_TROLL, OF_INVALID, flagzilla);
-    _build_flags(doc, "ESP Giant", OF_ESP_GIANT, OF_INVALID, flagzilla);
+    _equippy_heading(doc, "感应", 14);
+    _build_flags(doc, "心灵感应", OF_TELEPATHY, OF_INVALID, flagzilla);
+    _build_flags(doc, "感应邪恶", OF_ESP_EVIL, OF_INVALID, flagzilla);
+    _build_flags(doc, "感应无生命", OF_ESP_NONLIVING, OF_INVALID, flagzilla);
+	_build_flags(doc, "感应活物", OF_ESP_LIVING, OF_INVALID, flagzilla);
+    _build_flags(doc, "感应善良", OF_ESP_GOOD, OF_INVALID, flagzilla);
+    _build_flags(doc, "感应不死", OF_ESP_UNDEAD, OF_INVALID, flagzilla);
+    _build_flags(doc, "感应恶魔", OF_ESP_DEMON, OF_INVALID, flagzilla);
+    _build_flags(doc, "感应龙类", OF_ESP_DRAGON, OF_INVALID, flagzilla);
+    _build_flags(doc, "感应人类", OF_ESP_HUMAN, OF_INVALID, flagzilla);
+    _build_flags(doc, "感应动物", OF_ESP_ANIMAL, OF_INVALID, flagzilla);
+    _build_flags(doc, "感应兽人", OF_ESP_ORC, OF_INVALID, flagzilla);
+    _build_flags(doc, "感应巨魔", OF_ESP_TROLL, OF_INVALID, flagzilla);
+    _build_flags(doc, "感应巨怪", OF_ESP_GIANT, OF_INVALID, flagzilla);
 
     doc_newline(doc);
     _equippy_chars(doc, 14);
-    _equippy_heading(doc, "Curses", 14);
-    _build_curse_flags(doc, "Cursed");
-    _build_flags(doc, "Rnd Tele", OF_TELEPORT, OF_INVALID, flagzilla);
-    _build_flags(doc, "No Tele", OF_NO_TELE, OF_INVALID, flagzilla);
-    _build_flags(doc, "Drain Exp", OF_DRAIN_EXP, OF_INVALID, flagzilla);
-    _build_flags(doc, "Aggravate", OF_AGGRAVATE, OF_INVALID, flagzilla);
-    _build_flags(doc, "TY Curse", OF_TY_CURSE, OF_INVALID, flagzilla);
+    _equippy_heading(doc, "诅咒", 14);
+    _build_curse_flags(doc, "被诅咒");
+    _build_flags(doc, "随机传送", OF_TELEPORT, OF_INVALID, flagzilla);
+    _build_flags(doc, "无法传送", OF_NO_TELE, OF_INVALID, flagzilla);
+    _build_flags(doc, "吸取经验", OF_DRAIN_EXP, OF_INVALID, flagzilla);
+    _build_flags(doc, "激怒怪物", OF_AGGRAVATE, OF_INVALID, flagzilla);
+    _build_flags(doc, "古神诅咒", OF_TY_CURSE, OF_INVALID, flagzilla);
 }
 
 static void _build_stats(doc_ptr doc, _flagzilla_ptr flagzilla)
@@ -832,7 +832,7 @@ static void _build_stats(doc_ptr doc, _flagzilla_ptr flagzilla)
 
     _equippy_chars(doc, 14);
     _equippy_heading_aux(doc, "", 14);
-    doc_insert(doc, "   Base  R  C  P  E  Total\n");
+    doc_insert(doc, "基础 种 职 性 装 总计\n");
 
     for (i = 0; i < MAX_STATS; i++)
     {
@@ -998,7 +998,7 @@ static void _build_equipment(doc_ptr doc)
         char o_name[MAX_NLEN];
         _flagzilla_ptr flagzilla = 0;
 
-        doc_insert(doc, "<topic:Equipment>============================= Character <color:keypress>E</color>quipment =============================\n\n");
+        doc_insert(doc, "<topic:Equipment>=============================== 角色装备(<color:keypress>E</color>) ===============================\n\n");
         for (slot = 1; slot <= equip_max(); slot++)
         {
             object_type *o_ptr = equip_obj(slot);
@@ -1052,7 +1052,7 @@ static void _build_melee(doc_ptr doc)
     if (possessor_can_attack() && !p_ptr->weapon_ct && !p_ptr->innate_attack_ct) return;
     {
         int i;
-        doc_insert(doc, "<topic:Melee>==================================== <color:keypress>M</color>elee ====================================\n\n");
+        doc_insert(doc, "<topic:Melee>==================================== 近战(<color:keypress>M</color>) ====================================\n\n");
         for (i = 0; i < MAX_HANDS; i++)
         {
             if (p_ptr->weapon_info[i].wield_how == WIELD_NONE) continue;
@@ -1073,7 +1073,7 @@ static void _build_shooting(doc_ptr doc)
 {
     if (equip_find_obj(TV_BOW, SV_ANY) && !prace_is_(RACE_MON_JELLY) && p_ptr->shooter_info.tval_ammo != TV_NO_AMMO)
     {
-        doc_insert(doc, "<topic:Shooting>=================================== <color:keypress>S</color>hooting ==================================\n\n");
+        doc_insert(doc, "<topic:Shooting>=================================== 射击(<color:keypress>S</color>) ==================================\n\n");
         display_shooter_info(doc);
     }
 }
@@ -1090,8 +1090,8 @@ void py_display_powers(doc_ptr doc, power_info *table, int ct)
     var_init(&vc);
     var_init(&vfm);
 
-    doc_printf(doc, "<topic:Powers>==================================== <color:keypress>P</color>owers ===================================\n\n");
-    doc_printf(doc, "<color:G>%-20.20s Lvl Cost Fail %-15.15s Cast Fail</color>\n", "", "Desc");
+    doc_printf(doc, "<topic:Powers>==================================== 能力(<color:keypress>P</color>) ===================================\n\n");
+    doc_printf(doc, "<color:G>%-20.20s 等级 消耗 失败率 %-15.15s 施放 失败率</color>\n", "", "描述");
     for (i = 0; i < ct; i++)
     {
         power_info     *power = &table[i];
@@ -1131,7 +1131,7 @@ static void _build_powers(doc_ptr doc)
 void py_display_spells(doc_ptr doc, power_info *table, int ct)
 {
     if (!ct) return;
-    doc_printf(doc, "<topic:Spells>=================================== <color:keypress>S</color>pells ====================================\n\n");
+    doc_printf(doc, "<topic:Spells>=================================== 法术(<color:keypress>S</color>) ====================================\n\n");
     py_display_spells_aux(doc, table, ct);
 }
 
@@ -1174,8 +1174,8 @@ void py_display_spells_aux(doc_ptr doc, power_info *table, int ct)
     var_init(&vfm);
 
     if (prace_is_(RACE_MON_MUMMY))
-        doc_printf(doc, "    <color:G>%-25.25s Lvl Cost Fail %-18.18s  Cast Fail</color>\n", "", "Desc");
-    else doc_printf(doc, "    <color:G>%-25.25s Lvl Cost Fail %-15.15s  Cast Fail</color>\n", "", "Desc");
+        doc_printf(doc, "<color:G>%-25.25s 等级 消耗 失败率 %-18.18s 施放 失败率</color>\n", "", "描述");
+    else doc_printf(doc, "<color:G>%-25.25s 等级 消耗 失败率 %-15.15s 施放 失败率</color>\n", "", "描述");
 
     for (i = 0; i < ct; i++)
     {
@@ -1230,8 +1230,8 @@ static void _build_race_history(doc_ptr doc)
         int i;
         const char *slaji = get_race_aux(p_ptr->start_race, 0)->name;
 
-        if (p_ptr->psex == p_ptr->start_sex) doc_printf(doc, "\n You were born as %s %s.\n", is_a_vowel(slaji[0]) ? "an" : "a", slaji);
-        else doc_printf(doc, "\n You were born as a %s %s.\n", p_ptr->start_sex == SEX_FEMALE ? "female" : "male", slaji);
+        if (p_ptr->psex == p_ptr->start_sex) doc_printf(doc, "\n 你出生时是一个%s%s。\n", is_a_vowel(slaji[0]) ? "an" : "a", slaji);
+        else doc_printf(doc, "\n 你出生时是一个%s%s。\n", p_ptr->start_sex == SEX_FEMALE ? "女性" : "男性", slaji);
         for (i = 0; i < MAX_RACES; i++)
         {
             if (p_ptr->start_race == i) continue;
@@ -1249,7 +1249,7 @@ static void _build_race_history(doc_ptr doc)
             }
             {
                 const char *laji = get_race_aux(i, 0)->name;
-                doc_printf(doc, " You were %s %s before.\n", is_a_vowel(laji[0]) ? "an" : "a", laji);
+                doc_printf(doc, "你以前是一个%s%s。\n", is_a_vowel(laji[0]) ? "an" : "a", laji);
             }
         }
         doc_newline(doc);
@@ -1298,7 +1298,7 @@ static void _build_uniques(doc_ptr doc)
         vec_ptr v = vec_alloc(NULL);
         int     ct_uniques_dead, ct_uniques_alive = 0;
 
-        doc_printf(doc, "<topic:Kills>================================ Monster <color:keypress>K</color>ills ================================\n\n");
+        doc_printf(doc, "<topic:Kills>================================ 怪物击杀(<color:keypress>K</color>) ================================\n\n");
 
         for (i = 0; i < max_r_idx; i++)
         {
@@ -1323,26 +1323,26 @@ static void _build_uniques(doc_ptr doc)
         ct_uniques_dead = vec_length(v);
         if (ct_uniques_dead)
         {
-            doc_printf(doc, "You have defeated %d %s including %d unique monster%s in total",
+            doc_printf(doc, "你总共击败了 %d 个%s，其中包括 %d 个唯一怪%s",
                 ct, ct == 1 ? "enemy" : "enemies",
                 ct_uniques_dead, ct_uniques_dead == 1 ? "" : "s");
 
             if ((coffee_break == SPEED_INSTA_COFFEE) && (p_ptr->lv_kills))
             {
-                doc_printf(doc, " and %d monster%s on this level. ", p_ptr->lv_kills, p_ptr->lv_kills == 1 ? "" : "s");
+                doc_printf(doc, "，以及这一层的 %d 个怪物%s。", p_ptr->lv_kills, p_ptr->lv_kills == 1 ? "" : "s");
             }
             else doc_printf(doc, ". ");
 
             if (ct_uniques_alive == 1)
-                doc_insert(doc, "There is 1 unique remaining.");
+                doc_insert(doc, "还剩下 1 个唯一怪。");
             else
-                doc_printf(doc, "There are %d uniques remaining.", ct_uniques_alive);
+                doc_printf(doc, "还剩下 %d 个唯一怪。", ct_uniques_alive);
 
             doc_insert(doc, "\n\n");
 
             vec_sort(v, (vec_cmp_f)_compare_monsters);
 
-            doc_printf(doc, "  <color:G>%-44.44s <color:R>%3s</color></color>\n", "Uniques", "Lvl");
+            doc_printf(doc, "  <color:G>%-44.44s <color:R>%3s</color></color>\n", "唯一怪", "等级");
             for (i = ct_uniques_dead - 1; i >= 0 && i >= ct_uniques_dead - 20; i--)
             {
                 monster_race *r_ptr = vec_get(v, i);
@@ -1350,7 +1350,7 @@ static void _build_uniques(doc_ptr doc)
             }
         }
         else
-            doc_printf(doc,"You have defeated %d %s.\n", ct, ct == 1 ? "enemy" : "enemies");
+            doc_printf(doc,"你击败了 %d 个%s。\n", ct, ct == 1 ? "敌人" : "敌人");
 
         doc_newline(doc);
 
@@ -1376,7 +1376,7 @@ static void _build_uniques(doc_ptr doc)
 
             vec_sort(v, (vec_cmp_f)_compare_monsters);
 
-            doc_printf(cols[0], "  <color:G>%-25.25s <color:R>%3s</color> %5s</color>\n", "Non-uniques", "Lvl", "Count");
+            doc_printf(cols[0], "  <color:G>%-25.25s <color:R>%3s</color> %5s</color>\n", "普通怪物", "等级", "数量");
             for (i = ct - 1; i >= 0 && i >= ct - 20; i--)
             {
                 monster_race *r_ptr = vec_get(v, i);
@@ -1385,7 +1385,7 @@ static void _build_uniques(doc_ptr doc)
             doc_newline(cols[0]);
 
             vec_sort(v, (vec_cmp_f)_compare_monsters_counts);
-            doc_printf(cols[1], "  <color:G>%-25.25s %3s <color:R>%5s</color></color>\n", "Non-uniques", "Lvl", "Count");
+            doc_printf(cols[1], "  <color:G>%-25.25s %3s <color:R>%5s</color></color>\n", "普通怪物", "等级", "数量");
             for (i = ct - 1; i >= 0 && i >= ct - 20; i--)
             {
                 monster_race *r_ptr = vec_get(v, i);
@@ -1406,7 +1406,7 @@ static void _build_virtues(doc_ptr doc)
 {
     if (enable_virtues)
     {	
-        doc_printf(doc, "<topic:Virtues>=================================== <color:keypress>V</color>irtues ===================================\n\n");
+        doc_printf(doc, "<topic:Virtues>=================================== 美德(<color:keypress>V</color>) ===================================\n\n");
         virtue_display(doc);
         doc_newline(doc);
     }	
@@ -1416,7 +1416,7 @@ static void _build_mutations(doc_ptr doc)
 {
     if (mut_count(NULL))
     {
-        doc_printf(doc, "<topic:Mutations>================================== <color:keypress>M</color>utations ==================================\n\n");
+        doc_printf(doc, "<topic:Mutations>================================== 突变(<color:keypress>M</color>) ==================================\n\n");
         mut_display(doc);
         doc_newline(doc);
     }
@@ -1440,8 +1440,8 @@ static void _build_pets(doc_ptr doc)
         /*if (!m_ptr->nickname && (p_ptr->riding != i)) continue;*/
         if (!pet)
         {
-            doc_printf(doc, "<topic:Pets>==================================== <color:keypress>P</color>ets =====================================\n\n");
-            doc_printf(doc, "  <color:G>Leading Pets</color>\n");
+            doc_printf(doc, "<topic:Pets>==================================== 宠物(<color:keypress>P</color>) =====================================\n\n");
+            doc_printf(doc, "<color:G>主要宠物</color>\n");
             pet = TRUE;
         }
         monster_desc(pet_name, m_ptr, MD_ASSUME_VISIBLE | MD_INDEF_VISIBLE | MD_NO_PET_ABBREV);
@@ -1450,16 +1450,16 @@ static void _build_pets(doc_ptr doc)
 
     if (pet_settings)
     {
-        doc_printf(doc, "\n  <color:G>Options</color>\n");
-        doc_printf(doc, "  Pets open doors:                    %s\n", (p_ptr->pet_extra_flags & PF_OPEN_DOORS) ? "ON" : "OFF");
-        doc_printf(doc, "  Pets pick up items:                 %s\n", (p_ptr->pet_extra_flags & PF_PICKUP_ITEMS) ? "ON" : "OFF");
-        doc_printf(doc, "  Allow teleport:                     %s\n", (p_ptr->pet_extra_flags & PF_TELEPORT) ? "ON" : "OFF");
-        doc_printf(doc, "  Allow cast attack spell:            %s\n", (p_ptr->pet_extra_flags & PF_ATTACK_SPELL) ? "ON" : "OFF");
-        doc_printf(doc, "  Allow cast summon spell:            %s\n", (p_ptr->pet_extra_flags & PF_SUMMON_SPELL) ? "ON" : "OFF");
-        doc_printf(doc, "  Allow involve player in area spell: %s\n", (p_ptr->pet_extra_flags & PF_BALL_SPELL) ? "ON" : "OFF");
+        doc_printf(doc, "\n <color:G>选项</color>\n");
+        doc_printf(doc, "宠物可以开门: %s\n", (p_ptr->pet_extra_flags & PF_OPEN_DOORS) ? "开启" : "关闭");
+        doc_printf(doc, "宠物可以拾取物品: %s\n", (p_ptr->pet_extra_flags & PF_PICKUP_ITEMS) ? "开启" : "关闭");
+        doc_printf(doc, "允许宠物传送: %s\n", (p_ptr->pet_extra_flags & PF_TELEPORT) ? "开启" : "关闭");
+        doc_printf(doc, "允许宠物施放攻击法术: %s\n", (p_ptr->pet_extra_flags & PF_ATTACK_SPELL) ? "开启" : "关闭");
+        doc_printf(doc, "允许宠物施放召唤法术: %s\n", (p_ptr->pet_extra_flags & PF_SUMMON_SPELL) ? "开启" : "关闭");
+        doc_printf(doc, "允许范围法术波及玩家: %s\n", (p_ptr->pet_extra_flags & PF_BALL_SPELL) ? "开启" : "关闭");
         if (p_ptr->wizard || easy_damage)
         {
-            doc_printf(doc, "  Riding Skill:                       %d\n", skills_riding_current());
+            doc_printf(doc, "骑乘技能: %d\n", skills_riding_current());
         }
 
         doc_newline(doc);
@@ -1504,18 +1504,18 @@ static void _build_allies(doc_ptr doc)
 
     if (ally_counter)
     {
-        doc_printf(doc, "<topic:Allies>=================================== <color:keypress>A</color>llies ====================================\n\n");
+        doc_printf(doc, "<topic:Allies>=================================== 盟友(<color:keypress>A</color>) ====================================\n\n");
 
         if ((!guardian_counter) || (ally_counter == 1))
         {
-            doc_printf(doc, "<color:w>%d unique%s allied with you:\n\n", ally_counter, (ally_counter == 1) ? "</color> is" : "s</color> are");
+            doc_printf(doc, "<color:w>%d 个唯一怪%s与你结盟：\n\n", ally_counter, (ally_counter == 1) ? "</color>" : "</color>");
         }
         else
         {
-            doc_printf(doc, "%d uniques, including <color:w>%d dungeon guardian%s</color> are allied with you:\n\n", ally_counter, guardian_counter, (guardian_counter == 1) ? "," : "s,");
+            doc_printf(doc, "%d 个唯一怪，包括 <color:w>%d 个地下城守卫%s</color> 与你结盟：\n\n", ally_counter, guardian_counter, (guardian_counter == 1) ? "," : "，");
         }
 
-        doc_printf(doc, "  <color:G>Uniques%39s</color>\n", "Lvl");
+        doc_printf(doc, "<color:G>唯一怪%39s</color>\n", "等级");
         vec_sort(v, (vec_cmp_f)_compare_monsters);
 
         for (i = ally_counter - 1; i >= 0; i--)
@@ -1547,7 +1547,7 @@ static void _build_allies(doc_ptr doc)
                     if ((!q_ptr) || (q_ptr->goal != QG_KILL_MON)) continue;
                     if (r_ptr->name == r_info[q_ptr->goal_idx].name)
                     {
-                        doc_printf(doc, " (Angband %d)", q_ptr->level);
+                        doc_printf(doc, "(安格班 %d)", q_ptr->level);
                         osuma = TRUE;
                     }
                 }
@@ -1568,7 +1568,7 @@ static void _build_inventory(doc_ptr doc)
     slot_t slot;
     char o_name[MAX_NLEN];
 
-    doc_printf(doc, "<topic:Inventory>============================= Character <color:keypress>I</color>nventory =============================\n\n");
+    doc_printf(doc, "<topic:Inventory>=============================== 角色物品栏(<color:keypress>I</color>) ==============================\n\n");
 
     for (slot = 1; slot <= pack_max(); slot++)
     {
@@ -1588,7 +1588,7 @@ static void _build_quiver(doc_ptr doc)
         slot_t slot;
         char o_name[MAX_NLEN];
 
-        doc_printf(doc, "<topic:vQuiver>============================== Character Qui<color:keypress>v</color>er ===============================\n\n");
+        doc_printf(doc, "<topic:vQuiver>=============================== 角色箭袋(<color:keypress>v</color>) ===============================\n\n");
 
         for (slot = 1; slot <= quiver_max(); slot++)
         {
@@ -1606,7 +1606,7 @@ static void _build_home(doc_ptr doc)
 {
     if (home_count(NULL))
     {
-        doc_printf(doc, "<topic:Home>================================ <color:keypress>H</color>ome Inventory ===============================\n");
+        doc_printf(doc, "<topic:Home>================================ 家里物品(<color:keypress>H</color>) ===============================\n");
         doc_newline(doc);
         home_display(doc, obj_exists, 0);
         doc_newline(doc);
@@ -1617,7 +1617,7 @@ static void _build_museum(doc_ptr doc)
 {
     if (museum_count(NULL))
     {
-        doc_printf(doc, "<topic:Museum>==================================== <color:keypress>M</color>useum ===================================\n");
+        doc_printf(doc, "<topic:Museum>==================================== 博物馆(<color:keypress>M</color>) ===================================\n");
         doc_newline(doc);
         museum_display(doc, obj_exists, 0);
         doc_newline(doc);
@@ -1962,25 +1962,25 @@ static void _kill_counts_imp(doc_ptr doc, _mon_p p, cptr text, int total)
 static void _build_mon_kill_stats(doc_ptr doc)
 {
     int total_kills = ct_kills_all();
-    doc_printf(doc, "  <color:G>Monsters             Kills   Pct</color>\n");
-    _kill_counts_imp(doc, _mon_is_animal, "Animals", total_kills);
-    _kill_counts_imp(doc, _mon_is_breeder, "Breeders", total_kills);
-    _kill_counts_imp(doc, _mon_is_demon, "Demons", total_kills);
-    _kill_counts_imp(doc, _mon_is_dragon, "Dragons", total_kills);
-    _kill_counts_imp(doc, _mon_is_giant, "Giants", total_kills);
-    _kill_counts_imp(doc, _mon_is_hound, "Hounds", total_kills);
-    _kill_counts_imp(doc, _mon_is_human, "Humans", total_kills);
-    _kill_counts_imp(doc, _mon_is_orc, "Orcs", total_kills);
-    _kill_counts_imp(doc, _mon_is_troll, "Trolls", total_kills);
-    _kill_counts_imp(doc, _mon_is_undead, "Undead", total_kills);
-    _kill_counts_imp(doc, _mon_is_unique, "Uniques", total_kills);
+    doc_printf(doc, "<color:G>怪物类别 击杀数 占比</color>\n");
+    _kill_counts_imp(doc, _mon_is_animal, "动物", total_kills);
+    _kill_counts_imp(doc, _mon_is_breeder, "增殖者", total_kills);
+    _kill_counts_imp(doc, _mon_is_demon, "恶魔", total_kills);
+    _kill_counts_imp(doc, _mon_is_dragon, "龙类", total_kills);
+    _kill_counts_imp(doc, _mon_is_giant, "巨怪", total_kills);
+    _kill_counts_imp(doc, _mon_is_hound, "猎犬", total_kills);
+    _kill_counts_imp(doc, _mon_is_human, "人类", total_kills);
+    _kill_counts_imp(doc, _mon_is_orc, "兽人", total_kills);
+    _kill_counts_imp(doc, _mon_is_troll, "巨魔", total_kills);
+    _kill_counts_imp(doc, _mon_is_undead, "不死生物", total_kills);
+    _kill_counts_imp(doc, _mon_is_unique, "唯一怪", total_kills);
     if (p_ptr->pclass == CLASS_WARLOCK)
-        _kill_counts_imp(doc, _mon_is_pact, "Pact", total_kills);
+        _kill_counts_imp(doc, _mon_is_pact, "契约怪物", total_kills);
     doc_newline(doc);
-    _kill_counts_imp(doc, _mon_is_evil, "Evil Monsters", total_kills);
-    _kill_counts_imp(doc, _mon_is_good, "Good Monsters", total_kills);
-    _kill_counts_imp(doc, _mon_is_neutral, "Neutral Monsters", total_kills);
-    doc_printf(doc, "\n  %-20.20s %5d\n", "Totals", total_kills);
+    _kill_counts_imp(doc, _mon_is_evil, "邪恶怪物", total_kills);
+    _kill_counts_imp(doc, _mon_is_good, "善良怪物", total_kills);
+    _kill_counts_imp(doc, _mon_is_neutral, "中立怪物", total_kills);
+    doc_printf(doc, "\n  %-20.20s %5d\n", "总计", total_kills);
 }
 
 static void _spell_count_imp(doc_ptr doc, cptr heading, int ct, int total)
@@ -2025,20 +2025,20 @@ static void _build_mon_spell_stats(doc_ptr doc, cptr heading, mon_race_p filter)
         }
     }
     if (!ct_total_moves) return;
-    doc_printf(doc, "  <color:G>%-20.20s Count   Pct</color>\n", heading);
-    _spell_count_imp(doc, "Observed", ct_spell_moves, ct_total_moves);
+    doc_printf(doc, "<color:G>%-20.20s 数量 占比</color>\n", heading);
+    _spell_count_imp(doc, "实际观察", ct_spell_moves, ct_total_moves);
     expected_freq = (double)total_freq/(ct_total_moves * 100.0);
     expected_spells = ct_total_moves * expected_freq; 
-    doc_printf(doc, "  %-20.20s %5d %5.1f%%\n", "Expected", expected_spells, expected_freq * 100.0);
-    _spell_count_imp(doc, "Failures", ct_spell_moves - ct_spells, ct_spell_moves);
-    _spell_count_imp(doc, "Summon", allocation[MST_SUMMON], ct_spell_moves);
-    _spell_count_imp(doc, "Heal", allocation[MST_HEAL], ct_spell_moves);
-    _spell_count_imp(doc, "Escape", allocation[MST_ESCAPE], ct_spell_moves);
-    _spell_count_imp(doc, "Offense",
+    doc_printf(doc, "  %-20.20s %5d %5.1f%%\n", "期望", expected_spells, expected_freq * 100.0);
+    _spell_count_imp(doc, "失败", ct_spell_moves - ct_spells, ct_spell_moves);
+    _spell_count_imp(doc, "召唤", allocation[MST_SUMMON], ct_spell_moves);
+    _spell_count_imp(doc, "治疗", allocation[MST_HEAL], ct_spell_moves);
+    _spell_count_imp(doc, "逃跑", allocation[MST_ESCAPE], ct_spell_moves);
+    _spell_count_imp(doc, "攻击",
         allocation[MST_BREATH] + allocation[MST_BALL] + allocation[MST_BOLT]
             + allocation[MST_BEAM] + allocation[MST_CURSE],
         ct_spell_moves);
-    _spell_count_imp(doc, "Other",
+    _spell_count_imp(doc, "其他",
         allocation[MST_BUFF] + allocation[MST_BIFF] + allocation[MST_ANNOY]
             + allocation[MST_TACTIC] + allocation[MST_WEIRD],
         ct_spell_moves);
@@ -2052,9 +2052,9 @@ static void _build_monster_stats(doc_ptr doc)
     cols[0] = doc_alloc(40);
     cols[1] = doc_alloc(40);
     _build_mon_kill_stats(cols[0]);
-    _build_mon_spell_stats(cols[1], "Spells", NULL);
+    _build_mon_spell_stats(cols[1], "法术", NULL);
     doc_newline(cols[1]);
-    _build_mon_spell_stats(cols[1], "Unique Spells", _is_unique);
+    _build_mon_spell_stats(cols[1], "专属法术", _is_unique);
     /*doc_newline(cols[1]);
     _build_mon_spell_stats(cols[1], "Hound Spells", _is_hound);
     doc_newline(cols[1]);
@@ -2092,7 +2092,7 @@ static void _build_monster_histogram(doc_ptr doc)
     }
     if (!total) return;
 
-    doc_insert(doc, "  <color:G>Level   Count</color>\n");
+    doc_insert(doc, "<color:G>等级 数量</color>\n");
     for (i = 0; i <= max_bucket; i++)
     {
         int min = i*5;
@@ -2115,21 +2115,21 @@ static void _build_statistics(doc_ptr doc)
     int i;
     counts_t totals = {0};
 
-    doc_printf(doc, "<topic:Statistics>================================== <color:keypress>S</color>tatistics =================================\n\n");
+    doc_printf(doc, "<topic:Statistics>================================== 统计(<color:keypress>S</color>) =================================\n\n");
 
     /* Gold */
-    doc_insert(doc, "             <color:y>    Gold</color>\n");
-    doc_printf(doc, "  Found    : <color:w>%8d</color>\n", stats_gold_counts.found);
+    doc_insert(doc, "<color:y> 金币</color>\n");
+    doc_printf(doc, "找到 : <color:w>%8d</color>\n", stats_gold_counts.found);
     if (!no_selling)
-        doc_printf(doc, "  Selling  : <color:w>%8d</color>\n", stats_gold_counts.selling);
+        doc_printf(doc, "售出 : <color:w>%8d</color>\n", stats_gold_counts.selling);
     else
-        doc_printf(doc, "  Alchemy  : <color:w>%8d</color>\n", stats_gold_counts.selling);
-    doc_printf(doc, "  Winnings : <color:w>%8d</color> <color:G>%8d</color>\n",
+        doc_printf(doc, "炼金 : <color:w>%8d</color>\n", stats_gold_counts.selling);
+    doc_printf(doc, "获胜赢取 : <color:w>%8d</color> <color:G>%8d</color>\n",
         stats_gold_counts.winnings,
         stats_gold_counts.found + stats_gold_counts.selling + stats_gold_counts.winnings);
-    doc_printf(doc, "  Purchases: <color:w>%8d</color>\n", stats_gold_counts.buying);
-    doc_printf(doc, "  Services : <color:w>%8d</color>\n", stats_gold_counts.services);
-    doc_printf(doc, "  Stolen   : <color:w>%8d</color> <color:R>%8d</color>\n",
+    doc_printf(doc, "购买 : <color:w>%8d</color>\n", stats_gold_counts.buying);
+    doc_printf(doc, "服务消费 : <color:w>%8d</color>\n", stats_gold_counts.services);
+    doc_printf(doc, "被偷走 : <color:w>%8d</color> <color:R>%8d</color>\n",
         stats_gold_counts.stolen,
         stats_gold_counts.buying + stats_gold_counts.services + stats_gold_counts.stolen);
     cornucopia_print_stats(doc);
@@ -2145,48 +2145,48 @@ static void _build_statistics(doc_ptr doc)
         totals.destroyed += k_info[i].counts.destroyed;
     }
 
-    doc_printf(doc, "  <color:R>Objects Found    :</color> %6d\n", totals.found);
-    doc_printf(doc, "  <color:R>Objects Bought   :</color> %6d\n", totals.bought);
-    doc_printf(doc, "  <color:R>Objects Destroyed:</color> %6d\n", totals.destroyed);
+    doc_printf(doc, "<color:R>找到物品 :</color> %6d\n", totals.found);
+    doc_printf(doc, "<color:R>买入物品 :</color> %6d\n", totals.bought);
+    doc_printf(doc, "<color:R>摧毁物品 :</color> %6d\n", totals.destroyed);
 
 
-    doc_printf(doc, "\n  <color:G>Equipment            Found Bought  Used  Dest</color>\n");
-    _group_counts_imp(doc, kind_is_weapon, "Weapons");
-    _group_counts_tval_imp(doc, TV_SHIELD, "Shields");
-    _group_counts_tval_imp(doc, TV_BOW, "Bows");
-    _group_counts_tval_imp(doc, TV_QUIVER, "Quivers");
-    _group_counts_tval_imp(doc, TV_RING, "Rings");
-    _group_counts_tval_imp(doc, TV_AMULET, "Amulets");
-    _group_counts_tval_imp(doc, TV_LITE, "Lights");
-    _group_counts_imp(doc, kind_is_body_armor, "Body Armor");
-    _group_counts_tval_imp(doc, TV_CLOAK, "Cloaks");
-    _group_counts_imp(doc, kind_is_helm, "Helmets");
-    _group_counts_tval_imp(doc, TV_GLOVES, "Gloves");
-    _group_counts_tval_imp(doc, TV_BOOTS, "Boots");
-    _group_counts_imp(doc, _kind_is_equipment, "Totals");
+    doc_printf(doc, "\n <color:G>装备分类 找到 买入 使用 摧毁</color>\n");
+    _group_counts_imp(doc, kind_is_weapon, "武器");
+    _group_counts_tval_imp(doc, TV_SHIELD, "盾牌");
+    _group_counts_tval_imp(doc, TV_BOW, "弓");
+    _group_counts_tval_imp(doc, TV_QUIVER, "箭袋");
+    _group_counts_tval_imp(doc, TV_RING, "戒指");
+    _group_counts_tval_imp(doc, TV_AMULET, "护身符");
+    _group_counts_tval_imp(doc, TV_LITE, "光源");
+    _group_counts_imp(doc, kind_is_body_armor, "身体护甲");
+    _group_counts_tval_imp(doc, TV_CLOAK, "披风");
+    _group_counts_imp(doc, kind_is_helm, "头盔");
+    _group_counts_tval_imp(doc, TV_GLOVES, "手套");
+    _group_counts_tval_imp(doc, TV_BOOTS, "靴子");
+    _group_counts_imp(doc, _kind_is_equipment, "总计");
 
-    doc_printf(doc, "\n  <color:G>Devices              Found Bought  Used  Dest</color>\n");
-    _group_counts_tval_imp(doc, TV_WAND, "Wands");
-    _group_counts_tval_imp(doc, TV_STAFF, "Staves");
-    _group_counts_tval_imp(doc, TV_ROD, "Rods");
-    _group_counts_tval_imp(doc, TV_POTION, "Potions");
-    _group_counts_tval_imp(doc, TV_SCROLL, "Scrolls");
-    _group_counts_imp(doc, _kind_is_device, "Totals");
+    doc_printf(doc, "\n <color:G>魔法装置 找到 买入 使用 摧毁</color>\n");
+    _group_counts_tval_imp(doc, TV_WAND, "魔杖");
+    _group_counts_tval_imp(doc, TV_STAFF, "法杖");
+    _group_counts_tval_imp(doc, TV_ROD, "魔棒");
+    _group_counts_tval_imp(doc, TV_POTION, "药水");
+    _group_counts_tval_imp(doc, TV_SCROLL, "卷轴");
+    _group_counts_imp(doc, _kind_is_device, "总计");
 
-    doc_printf(doc, "\n  <color:G>Other                Found Bought  Used  Dest</color>\n");
-    _group_counts_tval_imp(doc, TV_SHOT, "Shots");
-    _group_counts_tval_imp(doc, TV_ARROW, "Arrows");
-    _group_counts_tval_imp(doc, TV_BOLT, "Bolts");
+    doc_printf(doc, "\n <color:G>其他物品 找到 买入 使用 摧毁</color>\n");
+    _group_counts_tval_imp(doc, TV_SHOT, "弹丸");
+    _group_counts_tval_imp(doc, TV_ARROW, "箭矢");
+    _group_counts_tval_imp(doc, TV_BOLT, "弩箭");
     if (player_is_ninja)
-        _group_counts_tval_imp(doc, TV_SPIKE, "Syuriken");
-    _group_counts_imp(doc, _kind_is_spellbook, "Spellbooks");
-    _group_counts_tval_imp(doc, TV_FOOD, "Food");
-    _group_counts_imp(doc, _kind_is_corpse, "Corpses");
-    _group_counts_imp(doc, _kind_is_skeleton, "Skeletons");
-    _group_counts_tval_imp(doc, TV_CHEST, "Chests");
-    _group_counts_imp(doc, _kind_is_other, "Totals");
+        _group_counts_tval_imp(doc, TV_SPIKE, "铁蒺藜");
+    _group_counts_imp(doc, _kind_is_spellbook, "法术书");
+    _group_counts_tval_imp(doc, TV_FOOD, "食物");
+    _group_counts_imp(doc, _kind_is_corpse, "尸体");
+    _group_counts_imp(doc, _kind_is_skeleton, "骨骸");
+    _group_counts_tval_imp(doc, TV_CHEST, "箱子");
+    _group_counts_imp(doc, _kind_is_other, "总计");
 
-    doc_printf(doc, "\n  <color:G>Potions              Found Bought  Used  Dest</color>\n");
+    doc_printf(doc, "\n <color:G>药水种类 找到 买入 使用 摧毁</color>\n");
     _object_counts_imp(doc, TV_POTION, SV_POTION_CURE_CRITICAL);
     _object_counts_imp(doc, TV_POTION, SV_POTION_CURING);
     _object_counts_imp(doc, TV_POTION, SV_POTION_SPEED);
@@ -2205,9 +2205,9 @@ static void _build_statistics(doc_ptr doc)
     _object_counts_imp(doc, TV_POTION, SV_POTION_LIQUID_LOGRUS);
     _object_counts_imp(doc, TV_POTION, SV_POTION_NEW_LIFE);
     _object_counts_imp(doc, TV_POTION, SV_POTION_EXPERIENCE);
-    _group_counts_tval_imp(doc, TV_POTION, "Totals");
+    _group_counts_tval_imp(doc, TV_POTION, "总计");
 
-    doc_printf(doc, "\n  <color:G>Scrolls              Found Bought  Used  Dest</color>\n");
+    doc_printf(doc, "\n <color:G>卷轴种类 找到 买入 使用 摧毁</color>\n");
     _object_counts_imp(doc, TV_SCROLL, SV_SCROLL_PHASE_DOOR);
     _object_counts_imp(doc, TV_SCROLL, SV_SCROLL_WORD_OF_RECALL);
     _object_counts_imp(doc, TV_SCROLL, SV_SCROLL_IDENTIFY);
@@ -2227,9 +2227,9 @@ static void _build_statistics(doc_ptr doc)
     _object_counts_imp(doc, TV_SCROLL, SV_SCROLL_ACQUIREMENT);
     _object_counts_imp(doc, TV_SCROLL, SV_SCROLL_STAR_ACQUIREMENT);
     _object_counts_imp(doc, TV_SCROLL, SV_SCROLL_ARTIFACT);
-    _group_counts_tval_imp(doc, TV_SCROLL, "Totals");
+    _group_counts_tval_imp(doc, TV_SCROLL, "总计");
 
-    doc_printf(doc, "\n  <color:G>Wands                Found Bought  Used  Dest</color>\n");
+    doc_printf(doc, "\n <color:G>魔杖种类 找到 买入 使用 摧毁</color>\n");
     if (p_ptr->wizard)
     {
         for (i = 0; ; i++)
@@ -2256,9 +2256,9 @@ static void _build_statistics(doc_ptr doc)
         _device_counts_imp(doc, TV_WAND, EFFECT_ROCKET);
         _device_counts_imp(doc, TV_WAND, EFFECT_WALL_BUILDING);
     }
-    _group_counts_tval_imp(doc, TV_WAND, "Totals");
+    _group_counts_tval_imp(doc, TV_WAND, "总计");
 
-    doc_printf(doc, "\n  <color:G>Staves               Found Bought  Used  Dest</color>\n");
+    doc_printf(doc, "\n <color:G>法杖种类 找到 买入 使用 摧毁</color>\n");
     if (p_ptr->wizard)
     {
         for (i = 0; ; i++)
@@ -2287,9 +2287,9 @@ static void _build_statistics(doc_ptr doc)
         _device_counts_imp(doc, TV_STAFF, EFFECT_DARKNESS_STORM);
         _device_counts_imp(doc, TV_STAFF, EFFECT_RESTORE_MANA);
     }
-    _group_counts_tval_imp(doc, TV_STAFF, "Totals");
+    _group_counts_tval_imp(doc, TV_STAFF, "总计");
 
-    doc_printf(doc, "\n  <color:G>Rods                 Found Bought  Used  Dest</color>\n");
+    doc_printf(doc, "\n <color:G>魔棒种类 找到 买入 使用 摧毁</color>\n");
     if (p_ptr->wizard)
     {
         for (i = 0; ; i++)
@@ -2319,12 +2319,12 @@ static void _build_statistics(doc_ptr doc)
         _device_counts_imp(doc, TV_ROD, EFFECT_CLAIRVOYANCE);
         _device_counts_imp(doc, TV_ROD, EFFECT_BALL_LITE);
     }
-    _group_counts_tval_imp(doc, TV_ROD, "Totals");
+    _group_counts_tval_imp(doc, TV_ROD, "总计");
 
-    doc_printf(doc, "\n  <color:G>Spellbooks           Found Bought  Used  Dest</color>\n");
-    _group_counts_imp(doc, _kind_is_third_book, "Third Spellbooks");
-    _group_counts_imp(doc, _kind_is_fourth_book, "Fourth Spellbooks");
-    _group_counts_imp(doc, kind_is_book, "Totals");
+    doc_printf(doc, "\n <color:G>法术书种类 找到 买入 使用 摧毁</color>\n");
+    _group_counts_imp(doc, _kind_is_third_book, "第三法术书");
+    _group_counts_imp(doc, _kind_is_fourth_book, "第四法术书");
+    _group_counts_imp(doc, kind_is_book, "总计");
 
     /* Egos */
     WIPE(&totals, counts_t);
@@ -2336,17 +2336,17 @@ static void _build_statistics(doc_ptr doc)
         totals.destroyed += e_info[i].counts.destroyed;
     }
 
-    doc_printf(doc, "\n  <color:R>Egos Found    :</color> %6d\n", totals.found);
-    doc_printf(doc,   "  <color:R>Egos Bought   :</color> %6d\n", totals.bought);
-    doc_printf(doc,   "  <color:R>Egos Destroyed:</color> %6d\n", totals.destroyed);
+    doc_printf(doc, "\n <color:R>找到Ego装备 :</color> %6d\n", totals.found);
+    doc_printf(doc,   "<color:R>买入Ego装备 :</color> %6d\n", totals.bought);
+    doc_printf(doc,   "<color:R>摧毁Ego装备 :</color> %6d\n", totals.destroyed);
 
-    doc_printf(doc, "\n  <color:G>Egos                 Found Bought  Dest</color>\n");
-    _ego_counts_imp(doc, EGO_RING_SPEED, "Ring of Speed");
+    doc_printf(doc, "\n <color:G>特殊Ego装备 找到 买入 摧毁</color>\n");
+    _ego_counts_imp(doc, EGO_RING_SPEED, "速度戒指");
     _ego_counts_imp(doc, EGO_JEWELRY_DEFENDER, "Jewelry (Defender)");
-    _ego_counts_imp(doc, EGO_BOOTS_ELVENKIND, "Boots of Elvenkind");
-    _ego_counts_imp(doc, EGO_BOOTS_SPRITE, "Boots of the Sprite");
-    _ego_counts_imp(doc, EGO_BOOTS_SPEED, "Boots of Speed");
-    _ego_counts_imp(doc, EGO_BOOTS_FEANOR, "Boots of Feanor");
+    _ego_counts_imp(doc, EGO_BOOTS_ELVENKIND, "精灵之靴");
+    _ego_counts_imp(doc, EGO_BOOTS_SPRITE, "妖精之靴");
+    _ego_counts_imp(doc, EGO_BOOTS_SPEED, "速度之靴");
+    _ego_counts_imp(doc, EGO_BOOTS_FEANOR, "费诺之靴");
 
     doc_newline(doc);
     _build_monster_stats(doc);
@@ -2355,7 +2355,7 @@ static void _build_statistics(doc_ptr doc)
 
     if ((p_ptr->is_dead) || (p_ptr->knowledge & KNOW_HPRATE))
     {
-        doc_printf(doc, "  <color:G>Life Rating</color>: %s\n\n", life_rating_desc(TRUE));
+        doc_printf(doc, "<color:G>生命评分</color>: %s\n\n", life_rating_desc(TRUE));
     }
 }
 
@@ -2391,72 +2391,72 @@ void py_display_dungeons(doc_ptr doc)
         conquered = dungeon_conquered(d_ptr->id);
 
         if (conquered)
-            doc_printf(doc, "!<color:G>%-16s</color>: level %3d\n", d_name+d_ptr->name, max_dlv[d_ptr->id]);
+            doc_printf(doc, "!<color:G>%-16s</color>: 第 %3d 层\n", d_name+d_ptr->name, max_dlv[d_ptr->id]);
         else
-            doc_printf(doc, " %-16s: level %3d\n", d_name+d_ptr->name, max_dlv[d_ptr->id]);
+            doc_printf(doc, "%-16s: 第 %3d 层\n", d_name+d_ptr->name, max_dlv[d_ptr->id]);
     }
     vec_free(v);
     doc_newline(doc);
 
     if (p_ptr->is_dead)
     {
-        if ((p_ptr->total_winner) && ((strpos("Seppuku", p_ptr->died_from)) || (strpos("Ripe Old Age", p_ptr->died_from))))
+        if ((p_ptr->total_winner) && ((strpos("切腹", p_ptr->died_from)) || (strpos("寿终正寝", p_ptr->died_from))))
         {
-            doc_printf(doc, "<color:v>You %s after winning.</color>\n",
-                streq(p_ptr->died_from, "Seppuku") ? "did Seppuku" : "retired from the adventure");
+            doc_printf(doc, "<color:v>你在获胜后%s。</color>\n",
+                streq(p_ptr->died_from, "切腹自尽了") ? "did Seppuku" : "retired from the adventure");
         }
         else if (py_on_surface())
         {
-            doc_printf(doc, "You were killed by %s in %s.\n", p_ptr->died_from, map_name());
+            doc_printf(doc, "你在%s被%s杀死了。\n", map_name(), p_ptr->died_from);
         }
         else if (py_in_dungeon())
         {
-            doc_printf(doc, "You were killed by %s on level %d of %s.\n",
-                p_ptr->died_from, dun_level, map_name());
+            doc_printf(doc, "你在%s的第 %d 层被%s杀死了。\n",
+                map_name(), dun_level, p_ptr->died_from);
         }
         else if (quests_get_current())
         {
             cptr quest_name;
-            doc_printf(doc, "You were killed by %s in the quest '%s'.\n",
-                p_ptr->died_from, lyhytnimi(quests_get_current(), &quest_name));
+            doc_printf(doc, "你在任务“%s”中被%s杀死了。\n",
+                lyhytnimi(quests_get_current(), &quest_name), p_ptr->died_from);
             free((vptr)quest_name);
         }
         else /* ??? */
         {
-            doc_printf(doc, "You were killed by %s in %s.\n", p_ptr->died_from, map_name());
+            doc_printf(doc, "你在%s被%s杀死了。\n", map_name(), p_ptr->died_from);
         }
     }
     else if (character_dungeon)
     {
         if (py_on_surface())
-            doc_printf(doc, "Now, you are in %s.\n", map_name());
+            doc_printf(doc, "现在，你在%s。\n", map_name());
         else if (py_in_dungeon())
-            doc_printf(doc, "Now, you are exploring level %d of %s.\n", dun_level, map_name());
+            doc_printf(doc, "现在，你正在探索%s的第 %d 层。\n", map_name(), dun_level);
         else if (quests_get_current())
         {
             cptr quest_name;
-            doc_printf(doc, "Now, you are in the quest '%s'.\n", lyhytnimi(quests_get_current(), &quest_name));
+            doc_printf(doc, "现在，你正在执行任务“%s”。\n", lyhytnimi(quests_get_current(), &quest_name));
             free((vptr)quest_name);
         }
         else if (p_ptr->inside_arena)
-            doc_printf(doc, "Now, you are in the %s %s.\n", town_name(p_ptr->town_num), map_name());
+            doc_printf(doc, "现在，你在%s的%s里。\n", map_name(), town_name(p_ptr->town_num));
         else
-            doc_insert(doc, "Hmmm ... Where are you?");
+            doc_insert(doc, "嗯……你在哪里？");
     }
 
     if (p_ptr->last_message)
     {
         if (p_ptr->is_dead)
-            doc_printf(doc, "\n Last Message: %s\n", p_ptr->last_message);
+            doc_printf(doc, "\n 最后的信息: %s\n", p_ptr->last_message);
         else if (p_ptr->total_winner)
-            doc_printf(doc, "\n *Winning* Message: %s\n", p_ptr->last_message);
+            doc_printf(doc, "\n *获胜*的信息: %s\n", p_ptr->last_message);
     }
     doc_newline(doc);
 }
 
 static void _build_dungeons(doc_ptr doc)
 {
-    doc_printf(doc, "<topic:Dungeons>=================================== <color:keypress>D</color>ungeons ==================================\n\n");
+    doc_printf(doc, "<topic:Dungeons>================================== 地下城(<color:keypress>D</color>) =================================\n\n");
     py_display_dungeons(doc);
 }
 
@@ -2467,7 +2467,7 @@ static void _build_messages(doc_ptr doc)
     int current_turn = 0;
     int current_row = 0;
 
-    doc_insert(doc, "<topic:LastMessages>================================ <color:keypress>L</color>ast Messages ================================\n");
+    doc_insert(doc, "<topic:LastMessages>=============================== 最近的信息(<color:keypress>L</color>) ===============================\n");
     doc_insert(doc, "<style:normal>");
     for (i = MIN(msg_count() - 1, 30); i >= 0; i--)
     {
@@ -2496,12 +2496,12 @@ static void _build_messages(doc_ptr doc)
 /******************************** Options ************************************/
 static cptr _game_mode_text[GAME_MODE_MAX] = {
     "<color:G>Beginner</color>",
-    "Normal",
+    "普通",
     "XXX", 
     "<color:r>Monster</color>"
 };
 static cptr _game_speed_text[GAME_SPEED_MAX] = {
-    "Normal",
+    "普通",
     "<color:U>Coffeebreak</color>",
     "<color:U>Instant Coffee</color>"
 };
@@ -2509,71 +2509,71 @@ static cptr _game_speed_text[GAME_SPEED_MAX] = {
 static void _build_options(doc_ptr doc)
 {
     int i, loydetty = 0;
-    doc_printf(doc, "<topic:Options>=================================== <color:keypress>O</color>ptions ===================================\n\n");
+    doc_printf(doc, "<topic:Options>==================================== 选项(<color:keypress>O</color>) ===================================\n\n");
 
     if (game_mode != GAME_MODE_NORMAL)
-        doc_printf(doc, " Game Mode:          %s\n", _game_mode_text[game_mode]);
+        doc_printf(doc, "游戏模式: %s\n", _game_mode_text[game_mode]);
 
     if (coffee_break)
-        doc_printf(doc, " Game Speed:         %s\n", _game_speed_text[coffee_break]);
+        doc_printf(doc, "游戏速度: %s\n", _game_speed_text[coffee_break]);
 
     if ((p_ptr->coffee_lv_revisits) || (coffee_break && p_ptr->total_winner))
     {
         if (!p_ptr->coffee_lv_revisits)
-            doc_printf(doc, " Depth Revisits:     None\n");
+            doc_printf(doc, "深度重访: 无\n");
         else if (p_ptr->coffee_lv_revisits > 250)
-            doc_printf(doc, " Depth Revisits:     250+\n");
+            doc_printf(doc, "深度重访: 250+\n");
         else
-            doc_printf(doc, " Depth Revisits:     %d\n", p_ptr->coffee_lv_revisits);
+            doc_printf(doc, "深度重访: %d\n", p_ptr->coffee_lv_revisits);
     }
 
     if (thrall_mode)
-        doc_printf(doc, " Thrall Mode:        On\n");
+        doc_printf(doc, "奴役模式: 开启\n");
 
-    doc_printf(doc, " Preserve Mode:      %s\n", preserve_mode ? "On" : "Off");
+    doc_printf(doc, "保留模式: %s\n", preserve_mode ? "开启" : "关闭");
 
     if (small_level_type <= SMALL_LVL_MAX)
-         doc_printf(doc, " Level Size:         %s\n", lv_size_options[small_level_type]);
+         doc_printf(doc, "关卡大小: %s\n", lv_size_options[small_level_type]);
 
     if (easy_damage)
-		doc_printf(doc, " Easy Damage Info:   On\n");
+		doc_printf(doc, "简易伤害信息: 开启\n");
 
 	if (easy_id)
-		doc_printf(doc, " Easy Identify:      On\n");
+		doc_printf(doc, "简易鉴定: 开启\n");
 	
 	if (easy_lore)
-		doc_printf(doc, " Easy Lore:          On\n");
+		doc_printf(doc, "简易传说: 开启\n");
 
     if (no_wilderness)
-        doc_printf(doc, " Wilderness:         Off\n");
+        doc_printf(doc, "大地图: 关闭\n");
 
     if (ironman_shops)
-        doc_printf(doc, " No Shops:           On\n");
+        doc_printf(doc, "无商店: 开启\n");
 
     if ((ironman_downward) && (!coffee_break))
-        doc_printf(doc, " Diving Only:        On\n");
+        doc_printf(doc, "强制下潜: 开启\n");
 
     if (wacky_rooms)
-        doc_printf(doc, " Wacky Rooms:        On\n");
+        doc_printf(doc, "搞怪房间: 开启\n");
 
     if (melee_challenge)
-        doc_printf(doc, " Melee Challenge:    On\n");
+        doc_printf(doc, "纯近战挑战: 开启\n");
 
     if (no_melee_challenge)
-        doc_printf(doc, " No-Melee Challenge: On\n");
+        doc_printf(doc, "无近战挑战: 开启\n");
 
     if (increase_density)
-        doc_printf(doc, " Dense Small Levels: On\n");
+        doc_printf(doc, "密集小关卡: 开启\n");
 
     if (no_big_dungeons)
-        doc_printf(doc, " Large Dungeons:     Arena Only\n");
+        doc_printf(doc, "大型地下城: 仅限竞技场\n");
 
     if (ironman_nightmare)
-        doc_printf(doc, " <color:v>Nightmare Mode</color>:     On\n");
+        doc_printf(doc, "<color:v>噩梦模式</color>: 开启\n");
 
-    doc_printf(doc, " Arena Levels:       %s\n", empty_lv_description[generate_empty]);
+    doc_printf(doc, "竞技场关卡: %s\n", empty_lv_description[generate_empty]);
 
-    doc_printf(doc, " Pantheon%s          ", ((pantheon_count == 1) ? ": " : "s:"));
+    doc_printf(doc, "万神殿%s", ((pantheon_count == 1) ? ": " : ":"));
     for (i = 1; i < PANTHEON_MAX; i++)
     {
         if (is_active_pantheon(i))
@@ -2586,31 +2586,31 @@ static void _build_options(doc_ptr doc)
     doc_printf(doc, "\n");
 
     if (no_artifacts)
-        doc_printf(doc, " No Artifacts:       On\n");
+        doc_printf(doc, "无神器模式: 开启\n");
     else if (random_artifacts)
-        doc_printf(doc, " Random Artifacts:   %d%%\n", random_artifact_pct);
+        doc_printf(doc, "随机神器概率: %d%%\n", random_artifact_pct);
 
     if (no_egos)
-        doc_printf(doc, " No Egos:            On\n");
+        doc_printf(doc, "无Ego模式: 开启\n");
 
     if (reduce_uniques)
-        doc_printf(doc, " Reduce Uniques:     %d%%\n", reduce_uniques_pct);
+        doc_printf(doc, "减少唯一怪: %d%%\n", reduce_uniques_pct);
 
     if (no_selling)
-        doc_printf(doc, " No Selling:         On\n");
+        doc_printf(doc, "禁止售卖: 开启\n");
 
     if (comp_mode)
-        doc_printf(doc, " Competition Mode:   On\n");
+        doc_printf(doc, "竞赛模式: 开启\n");
 
     {
         int mult = score_mult();
-        doc_printf(doc, "\n Score Multiplier:   %d.%02d%%\n", mult / 100, mult % 100);
-        if (p_ptr->noscore) doc_printf(doc, " Adjusted Score:     %d\n", hof_score());
-        else doc_printf(doc, " Adjusted Score:     <color:B>%d</color>\n", hof_score());
+        doc_printf(doc, "\n 评分乘数: %d.%02d%%\n", mult / 100, mult % 100);
+        if (p_ptr->noscore) doc_printf(doc, "调整后评分: %d\n", hof_score());
+        else doc_printf(doc, "调整后评分: <color:B>%d</color>\n", hof_score());
     }
 
     if (p_ptr->noscore)
-        doc_printf(doc, "\n <color:v>You have done something illegal.</color>\n");
+        doc_printf(doc, "\n <color:v>你做了一些违规的事情(作弊)。</color>\n");
 
     doc_newline(doc);
 }
@@ -2618,7 +2618,7 @@ static void _build_options(doc_ptr doc)
 /****************************** Character Sheet ************************************/
 static void _build_quests(doc_ptr doc)
 {
-    doc_printf(doc, "<topic:uQuests>==================================== Q<color:keypress>u</color>ests ===================================\n\n");
+    doc_printf(doc, "<topic:uQuests>==================================== 任务(<color:keypress>u</color>) ===================================\n\n");
     quests_doc(doc);
 /*     if (!no_wilderness || !ironman_downward || coffee_break)*/
     {
@@ -2626,26 +2626,26 @@ static void _build_quests(doc_ptr doc)
         {
             if (p_ptr->arena_number <= ARENA_DEFEATED_OLD_VER)
             {
-                doc_printf(doc, "  <color:G>Arena</color>: <color:v>Defeated</color>\n");
+                doc_printf(doc, "<color:G>竞技场</color>: <color:v>被击败</color>\n");
             }
             else
             {
-                doc_printf(doc, "  <color:G>Arena</color>: <color:v>Defeated</color> by %s in the %d%s fight\n",
-                    r_name + r_info[arena_info[-1 - p_ptr->arena_number].r_idx].name,
-                    -p_ptr->arena_number, get_ordinal_number_suffix(-p_ptr->arena_number));
+                doc_printf(doc, "<color:G>竞技场</color>: 在第 %d%s 场战斗中 <color:v>被</color> %s <color:v>击败</color>\n",
+                    -p_ptr->arena_number, get_ordinal_number_suffix(-p_ptr->arena_number),
+                    r_name + r_info[arena_info[-1 - p_ptr->arena_number].r_idx].name);
             }
         }
         else if (p_ptr->arena_number > MAX_ARENA_MONS + 2)
         {
-            doc_printf(doc, "  <color:G>Arena</color>: <color:B>True Champion</color>\n");
+            doc_printf(doc, "<color:G>竞技场</color>: <color:B>真正的冠军</color>\n");
         }
         else if (p_ptr->arena_number > MAX_ARENA_MONS - 1)
         {
-            doc_printf(doc, "  <color:G>Arena</color>: <color:R>Champion</color>\n");
+            doc_printf(doc, "<color:G>竞技场</color>: <color:R>冠军</color>\n");
         }
         else
         {
-            doc_printf(doc, "  <color:G>Arena</color>: %2d Victor%s\n",
+            doc_printf(doc, "<color:G>竞技场</color>: %2d 场胜利%s\n",
                 p_ptr->arena_number > MAX_ARENA_MONS ? MAX_ARENA_MONS : p_ptr->arena_number,
                 p_ptr->arena_number != 1 ? "ies" : "y");
         }
@@ -2671,7 +2671,7 @@ static int _max_depth(void)
 
 static bool _is_retired(void)
 {
-    if (p_ptr->total_winner && p_ptr->is_dead && strcmp(p_ptr->died_from, "Ripe Old Age") == 0)
+    if (p_ptr->total_winner && p_ptr->is_dead && strcmp(p_ptr->died_from, "寿终正寝") == 0)
         return TRUE;
     return FALSE;
 }
@@ -2744,11 +2744,11 @@ void py_display_character_sheet(doc_ptr doc)
 {
     _add_html_header(doc);
 
-    doc_insert(doc, "<style:wide>  [FrogComposband <$:version> Character Dump]\n");
+    doc_insert(doc, "<style:wide> [FrogComposband <$:version> 角色信息转储]\n");
     if (p_ptr->total_winner)
-        doc_insert(doc, "              <color:B>***WINNER***</color>\n");
+        doc_insert(doc, "<color:B>***通关者***</color>\n");
     else if (p_ptr->is_dead)
-        doc_insert(doc, "              <color:v>***LOSER***</color>\n");
+        doc_insert(doc, "<color:v>***失败者***</color>\n");
     else
         doc_newline(doc);
     doc_newline(doc);
@@ -2796,7 +2796,7 @@ void py_display(void)
     py_display_character_sheet(d);
 
     screen_save();
-    doc_display(d, "Character Sheet", 0);
+    doc_display(d, "角色面板", 0);
     screen_load();
 
     doc_free(d);

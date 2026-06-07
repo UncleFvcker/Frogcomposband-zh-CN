@@ -31,10 +31,10 @@ static void _divide_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Divide");
+        var_set_string(res, "分裂");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Replicate yourself.");
+        var_set_string(res, "复制你自己。");
         break;
     case SPELL_CAST:
     {
@@ -67,7 +67,7 @@ static void _jelly_calc_innate_attacks(void)
         a.effect[0] = GF_ACID;
         calc_innate_blows(&a, 600);
         a.msg = "You shoot acid.";
-        a.name = "Pseudopod";
+        a.name = "伪足击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -101,7 +101,7 @@ race_t *_black_ooze_get_race_t(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.subname = "Black ooze";
+        me.subname = "黑泥";
 
         me.stats[A_STR] =  1;
         me.stats[A_INT] = -5;
@@ -151,7 +151,7 @@ race_t *_gelatinous_cube_get_race_t(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.subname = "Gelatinous cube";
+        me.subname = "凝胶方块";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] = -10;
@@ -208,7 +208,7 @@ race_t *_acidic_cytoplasm_get_race_t(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.subname = "Acidic cytoplasm";
+        me.subname = "酸性细胞质";
 
         me.stats[A_STR] =  3;
         me.stats[A_INT] = -7;
@@ -261,7 +261,7 @@ race_t *_shoggoth_get_race_t(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.subname = "Shoggoth";
+        me.subname = "修格斯";
 
         me.stats[A_STR] =  5;
         me.stats[A_INT] = -5;
@@ -287,7 +287,7 @@ static void _gain_level(int new_level)
       && new_level >= 14 )
     {
         p_ptr->current_r_idx = MON_GELATINOUS_CUBE;
-        msg_print("You have evolved into a Gelatinous Cube.");
+        msg_print("你进化成了凝胶方块(Gelatinous Cube)。");
         equip_on_change_race();
         p_ptr->redraw |= PR_MAP | PR_BASIC;
     }
@@ -295,7 +295,7 @@ static void _gain_level(int new_level)
            && new_level >= 28 )
     {
         p_ptr->current_r_idx = MON_ACIDIC_CYTOPLASM;
-        msg_print("You have evolved into an Acidic Cytoplasm.");
+        msg_print("你进化成了酸性细胞质(Acidic Cytoplasm)。");
         equip_on_change_race();
         p_ptr->redraw |= PR_MAP | PR_BASIC;
     }
@@ -303,7 +303,7 @@ static void _gain_level(int new_level)
            && new_level >= 42 )
     {
         p_ptr->current_r_idx = MON_SHOGGOTH;
-        msg_print("You have evolved into a Shoggoth.");
+        msg_print("你进化成了修格斯(Shoggoth)。");
         equip_on_change_race();
         p_ptr->redraw |= PR_MAP | PR_BASIC;
     }
@@ -316,7 +316,7 @@ static void _birth(void)
 
     p_ptr->current_r_idx = MON_BLACK_OOZE;
     equip_on_change_race();
-    skills_innate_init("Pseudopod", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("伪足击", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
     object_prep(&forge, lookup_kind(TV_RING, 0));
     forge.name2 = EGO_RING_COMBAT;
@@ -351,7 +351,7 @@ race_t *mon_jelly_get_race(void)
         result = (spoiler_hack ? _acidic_cytoplasm_get_race_t() : _black_ooze_get_race_t());
     }
 
-    result->name = "Jelly";
+    result->name = "胶质怪";
     result->desc = _desc;
     result->exp = 150;
     result->flags = RACE_IS_MONSTER /* | RACE_IS_ILLITERATE */;
@@ -392,7 +392,7 @@ bool jelly_eat_object(object_type *o_ptr)
         }
     }
     set_food(MIN(PY_FOOD_FULL - 1, p_ptr->food + o_ptr->weight * 50 * o_ptr->number));
-    msg_format("You assimilate %s into your gelatinous frame.", o_name);
+    msg_format("你将%s同化进了你那凝胶状的身躯。", o_name);
     /* TODO: Consider giving timed benefits based on what is absorbed.
        For example, TR_RES_FIRE might give temp fire resistance and 
        TR_SPEED might give temporary haste.

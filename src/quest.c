@@ -94,7 +94,7 @@ void quest_take(quest_ptr q)
     q->status = QS_TAKEN;
     q->seed = randint0(0x10000000);
     s = quest_get_description(q);
-    msg_format("<color:R>%s</color> (<color:U>Level %d</color>): %s",
+    msg_format("<color:R>%s</color> (<color:U>等级 %d</color>): %s",
         kayttonimi(q), q->danger_level, string_buffer(s));
     string_free(s);
 }
@@ -142,7 +142,7 @@ void quest_complete(quest_ptr q, point_t p)
             return;
         }
         /* Please don't let the code reach here... */
-        msg_print("Software bug detected - please report!");
+        msg_print("检测到软件漏洞 - 请报告此错误！");
         (void)inkey();
     }
     q->status = QS_COMPLETED;
@@ -155,7 +155,7 @@ void quest_complete(quest_ptr q, point_t p)
         p_ptr->fame += 50;
 
     if (!(q->flags & QF_NO_MSG))
-        cmsg_print(TERM_L_BLUE, "You just completed your quest!");
+        cmsg_print(TERM_L_BLUE, "你刚刚完成了你的任务！");
     msg_add_tiny_screenshot(50, 24);
 
     /* create stairs before the reward */
@@ -187,7 +187,7 @@ void quest_complete(quest_ptr q, point_t p)
         }
         y = ny; x = nx;
 
-        cmsg_print(TERM_L_BLUE, "A magical staircase appears...");
+        cmsg_print(TERM_L_BLUE, "一道魔法楼梯出现了……");
         /* The following check must use dungeon_type since it may not match
          * q->dungeon */
         if (((!coffee_break) && (!(d_info[dungeon_type].flags1 & DF1_ALL_SHAFTS))) || (dun_level == 99))
@@ -211,7 +211,7 @@ void quest_complete(quest_ptr q, point_t p)
             if (make_object(&forge, AM_GOOD | AM_GREAT | AM_TAILORED | AM_QUEST, ORIGIN_ANGBAND_REWARD))
                 drop_near(&forge, -1, p.y, p.x);
             else
-                msg_print("Software Bug ... you missed out on your reward!");
+                msg_print("软件漏洞……你错过了你的奖励！");
         }
         if ((coffee_break == SPEED_INSTA_COFFEE) && ((q->flags & QF_RANDOM) || (q->id == QUEST_OBERON)))
         {
@@ -255,9 +255,9 @@ void quest_complete(quest_ptr q, point_t p)
 
         if (p_ptr->personality == PERS_MUNCHKIN)
         {
-            cmsg_print(TERM_YELLOW, "YOU'RE WINNER ! ");
+            cmsg_print(TERM_YELLOW, "你是赢家 ！");
             msg_print(NULL);
-            msg_print("(Now do it with a real character.)");
+            msg_print("(现在用个真正的角色来试试吧。)");
             return;
         }
 
@@ -267,14 +267,14 @@ void quest_complete(quest_ptr q, point_t p)
         /* Redraw the "title" */
         if ((p_ptr->pclass == CLASS_CHAOS_WARRIOR) || mut_present(MUT_CHAOS_GIFT))
         {
-            msg_format("The voice of %s booms out:", chaos_patrons[p_ptr->chaos_patron]);
-            msg_print("'Thou art donst well, mortal!'");
+            msg_format("%s的声音如雷鸣般响起：", chaos_patrons[p_ptr->chaos_patron]);
+            msg_print("‘凡人，你干得不错！’");
         }
 
         /* Congratulations */
-        msg_print("*** CONGRATULATIONS ***");
-        msg_print("You have won the game!");
-        msg_print("You may retire (commit suicide) when you are ready.");
+        msg_print("*** 恭喜你 ***");
+        msg_print("你赢得了游戏！");
+        msg_print("准备好后你可以隐退(自杀)。");
         /*cf quest_complete: msg_add_tiny_screenshot(50, 24);*/
     }
 }
@@ -288,7 +288,7 @@ void quest_reward(quest_ptr q)
     assert(q->status == QS_COMPLETED);
 
     s = quest_get_description(q);
-    msg_format("<color:R>%s</color> (<color:U>Level %d</color>): %s",
+    msg_format("<color:R>%s</color> (<color:U>等级 %d</color>): %s",
         kayttonimi(q), q->danger_level, string_buffer(s));
     string_free(s);
 
@@ -312,7 +312,7 @@ void quest_fail(quest_ptr q)
     q->status = QS_FAILED;
     q->completed_lev = p_ptr->lev;
     q->completed_turn = game_turn;
-    msg_format("You have <color:v>failed</color> the quest: <color:R>%s</color>.", kayttonimi(q));
+    msg_format("你<color:v>失败</color>了任务：<color:R>%s</color>。", kayttonimi(q));
     virtue_add(VIRTUE_VALOUR, -2);
     if (!(q->flags & QF_PURPLE)) fame_on_failure();
     if (!(q->flags & QF_TOWN))
@@ -494,14 +494,14 @@ bool quest_post_generate(quest_ptr q)
         if ( !r_ptr->name  /* temp ... remove monsters without breaking savefiles */
           || ((r_ptr->flags1 & RF1_UNIQUE) && (mon_available_num(r_ptr) < 1)) )
         {
-            msg_print("It seems that this level was protected by someone before...");
+            msg_print("似乎这一层以前被某人保护过……");
             q->status = QS_FINISHED;
             return TRUE;
         }
         else if ((r_ptr->flags1 & RF1_UNIQUE) && (unique_is_friend(q->goal_idx)) && (!(q->flags & QF_PURPLE))) /* this can happen at least with Eric if you befriend him in his quest */
         {
             int i, ct = (q->level/(coffee_break ? 13 : 25)) + 1;
-            cmsg_format(TERM_L_BLUE, "Your friend %s, protector of this level, allows you free passage and gives you presents.", r_name + r_ptr->name);
+            cmsg_format(TERM_L_BLUE, "你的朋友，这层的保护者%s，允许你自由通行并送给了你礼物。", r_name + r_ptr->name);
             q->completed_lev = (prace_is_(RACE_ANDROID)) ? p_ptr->lev : p_ptr->max_plv;
             q->completed_turn = game_turn;
             q->status = QS_FINISHED;
@@ -512,7 +512,7 @@ bool quest_post_generate(quest_ptr q)
                 if (make_object(&forge, AM_GOOD | AM_GREAT | AM_TAILORED | AM_QUEST, ORIGIN_ANGBAND_REWARD))
                     pack_carry(&forge);
                 else
-                    msg_print("Software Bug ... you missed out on your reward!");
+                    msg_print("软件漏洞……你错过了你的奖励！");
             }
             return TRUE;
         }
@@ -571,7 +571,7 @@ bool quest_post_generate(quest_ptr q)
                                 m_list[hack_m_idx_ii].mflag2 |= MFLAG2_QUESTOR;
                             }
                         }
-                        if (!resolved) msg_print("Failed to mark questor correctly!");
+                        if (!resolved) msg_print("未能正确标记任务目标！");
                     }
                     else m_list[hack_m_idx_ii].mflag2 |= MFLAG2_QUESTOR;
                     break;
@@ -590,38 +590,38 @@ bool quest_post_generate(quest_ptr q)
                     char name[MAX_NLEN];
                     strcpy(name, r_name + r_ptr->name);
                     plural_aux(name);
-                    if (one_in_(2)) msg_format("The voice of Karrot booms out: <color:v>Behold, this level is the vile nest of %d %s! Destroy them all, my %s, and I shall be most pleased with thee.</color>", ct, name, p_ptr->psex == SEX_FEMALE ? "daughter" : "son");
-                    else msg_format("The voice of Karrot booms out: <color:v>Behold, this level is the vile nest of %d %s! Prove thyself, %s, and bring them down.</color>", ct, name, strlen(player_name) > 2 ? player_name : "my servant");
+                    if (one_in_(2)) msg_format("卡罗特(Karrot)的声音如雷鸣般响起：<color:v>看哪，这层是 %d 只 %s 的邪恶巢穴！将它们全部消灭，我的%s，我将对你无比满意。</color>", ct, name, p_ptr->psex == SEX_FEMALE ? "女儿" : "儿子");
+                    else msg_format("卡罗特(Karrot)的声音如雷鸣般响起：<color:v>看哪，这层是 %d 只 %s 的邪恶巢穴！证明你自己，%s，将它们全部击倒。</color>", ct, name, strlen(player_name) > 2 ? player_name : "我的仆人");
                 }
                 else
                 {
-                    msg_format("The voice of Karrot booms out: <color:v>Behold, this level is the foul home of %s! The Destiny that guideth us both hath brought thee here, my %s, that thou mightest slay this enemy and cleanse this place.</color>", r_name + r_ptr->name, p_ptr->psex == SEX_FEMALE ? "daughter" : "son");
+                    msg_format("卡罗特(Karrot)的声音如雷鸣般响起：<color:v>看哪，这层是 %s 的污秽巢穴！指引我们两人的命运将你带到了这里，我的%s，愿你能斩杀这个敌人并净化此地。</color>", r_name + r_ptr->name, p_ptr->psex == SEX_FEMALE ? "女儿" : "儿子");
                 }
             }
             else /* Assume Troika disciple... */
             {
                 if (ct == 1)
                 {
-                    msg_format("The voice of Sohoglyth booms out: <color:v>Slay now our vile enemy, %s, who dwelleth on this level!</color>", r_name + r_ptr->name);
+                    msg_format("索霍格利斯(Sohoglyth)的声音如雷鸣般响起：<color:v>现在去斩杀我们那盘踞在这一层的邪恶敌人，%s 吧！</color>", r_name + r_ptr->name);
                 }
                 else
                 {
                     char name[MAX_NLEN];
                     strcpy(name, r_name + r_ptr->name);
                     plural_aux(name);
-                    if (one_in_(19)) msg_format("The voice of Sohoglyth booms out: <color:v>Yo, dawg, there's like %d %s on this level, can has them killed plz?</color>", ct, name);
-                    else msg_format("The voice of Sohoglyth booms out: <color:v>Behold, this level is home to %d %s: kill them, and I shall reward thee well.</color>", ct, name);
+                    if (one_in_(19)) msg_format("索霍格利斯(Sohoglyth)的声音如雷鸣般响起：<color:v>哟，哥们，这层好像有 %d 只 %s，能顺手把它们给宰了吗，球球了？</color>", ct, name);
+                    else msg_format("索霍格利斯(Sohoglyth)的声音如雷鸣般响起：<color:v>看哪，这层是 %d 只 %s 的老巢：杀了它们，我会好好奖赏你的。</color>", ct, name);
                 }
             }
         }
         else if (ct == 1)
-            cmsg_format(TERM_VIOLET, "Beware, this level is protected by %s!", r_name + r_ptr->name);
+            cmsg_format(TERM_VIOLET, "小心，这一层由 %s 保护！", r_name + r_ptr->name);
         else
         {
             char name[MAX_NLEN];
             strcpy(name, r_name + r_ptr->name);
             plural_aux(name);
-            cmsg_format(TERM_VIOLET, "Be warned, this level is guarded by %d %s!", ct, name);
+            cmsg_format(TERM_VIOLET, "注意，这一层由 %d 只 %s 守卫！", ct, name);
         }
     }
     return TRUE;
@@ -644,7 +644,7 @@ static errr _parse_q_info(char *line, int options)
 
         if (num != 3 || !*zz[2])
         {
-            msg_print("Error: Invalid N: line. Syntax: N:id:lvl:name.");
+            msg_print("错误：无效的 N: 行。语法为：N:id:lvl:name。");
             return PARSE_ERROR_TOO_FEW_ARGUMENTS;
         }
 
@@ -688,7 +688,7 @@ static errr _parse_q_info(char *line, int options)
                 quest->substitute = fake_lev;
             else
             {
-                msg_format("Error: Invalid quest flag %s.", flag);
+                msg_format("错误：无效的任务标记 %s。", flag);
                 return PARSE_ERROR_INVALID_FLAG;
             }
         }
@@ -709,7 +709,7 @@ static errr _parse_q_info(char *line, int options)
 
         if (arg_ct < 1)
         {
-            msg_format("Error: Missing arguments to %s quest goal.", name);
+            msg_format("错误：%s 任务目标缺失参数。", name);
             return PARSE_ERROR_TOO_FEW_ARGUMENTS;
         }
 
@@ -728,7 +728,7 @@ static errr _parse_q_info(char *line, int options)
         }
         else
         {
-            msg_format("Error: Unknown quest goal %s. Try KILL(name[, ct]) or FIND(art).", name);
+            msg_format("错误：未知的任务目标 %s。尝试使用 KILL(怪物名[, 数量]) 或 FIND(神器名)。", name);
             return PARSE_ERROR_INVALID_FLAG;
         }
     }
@@ -738,7 +738,7 @@ static errr _parse_q_info(char *line, int options)
         quest->dungeon = parse_lookup_dungeon(line + 2, options);
         if (!quest->dungeon)
         {
-            msg_format("Error: Unknown dungeon %s. Consult d_info.txt.", line + 2);
+            msg_format("错误：未知的地下城 %s。请查阅 d_info.txt。", line + 2);
             return PARSE_ERROR_INVALID_FLAG;
         }
     }
@@ -1363,8 +1363,8 @@ void _dungeon_boss_death(mon_ptr mon)
                             effect_t e = {0};
                             e.type = ego_index;
                             sprintf(name, "%s", do_effect(&e, SPELL_NAME, 0));
-                            msg_format("Software Bug: %s is not a valid effect for this device.", name);
-                            msg_print("Generating a random device instead.");
+                            msg_format("软件漏洞：%s 不是此装置的有效效果。", name);
+                            msg_print("将转而生成一个随机装置。");
                         }
                         device_init(q_ptr, object_level, 0);
                     }
@@ -1385,7 +1385,7 @@ void _dungeon_boss_death(mon_ptr mon)
             /* Drop it in the dungeon */
             (void)drop_near(q_ptr, -1, mon->fy, mon->fx);
         }
-        cmsg_format(TERM_L_GREEN, "You have conquered %s!",d_name+d_info[dungeon_type].name);
+        cmsg_format(TERM_L_GREEN, "你征服了%s！",d_name+d_info[dungeon_type].name);
         virtue_add(VIRTUE_VALOUR, 5);
         msg_add_tiny_screenshot(50, 24);
     }
@@ -1488,13 +1488,12 @@ bool quests_check_leave(void)
             char       c;
             string_ptr s = string_alloc();
 
-            string_append_s(s, "<color:r>Warning,</color> you are about to leave the quest: <color:R>");
+            string_append_s(s, "<color:r>警告，</color>你即将离开任务：<color:R>");
             if ((q->flags & QF_RANDOM) && q->goal == QG_KILL_MON)
-                string_printf(s, "Kill %s", r_name + r_info[q->goal_idx].name);
+                string_printf(s, "击杀 %s\n", r_name + r_info[q->goal_idx].name);
             else
                 string_append_s(s, kayttonimi(q));
-            string_append_s(s, "</color>. You may return to this quest later though. "
-                               "Are you sure you want to leave? <color:y>[Y,n]</color>");
+            string_append_s(s, "</color>。不过你以后还可以回到这个任务。你确定要离开吗？<color:y>[Y,n]</color>");
             c = msg_prompt(string_buffer(s), "ny", PROMPT_YES_NO);
             string_free(s);
             if (c == 'n') return FALSE;
@@ -1504,13 +1503,12 @@ bool quests_check_leave(void)
             char       c;
             string_ptr s = string_alloc();
 
-            string_append_s(s, "<color:r>Warning,</color> you are about to leave the quest: <color:R>");
+            string_append_s(s, "<color:r>警告，</color>你即将离开任务：<color:R>");
             if ((q->flags & QF_RANDOM) && q->goal == QG_KILL_MON)
                 string_printf(s, "Kill %s", r_name + r_info[q->goal_idx].name);
             else
                 string_append_s(s, kayttonimi(q));
-            string_append_s(s, "</color>. <color:v>You will fail this quest if you leave!</color> "
-                               "Are you sure you want to leave? <color:y>[Y,n]</color>");
+            string_append_s(s, "</color>。<color:v>如果你离开，你将导致这个任务失败！</color>你确定要离开吗？<color:y>[Y,n]</color>");
             c = msg_prompt(string_buffer(s), "nY", PROMPT_NEW_LINE | PROMPT_ESCAPE_DEFAULT | PROMPT_CASE_SENSITIVE);
             string_free(s);
             if (c == 'n') return FALSE;
@@ -1534,13 +1532,13 @@ bool quests_check_ini_leave(cptr varoitus, cptr toimi, bool *kysyttiin)
 
         string_append_s(s, "<color:r>Warning,</color> you are about to ");
         string_append_s(s, varoitus);
-        string_append_s(s, " the quest: <color:R>");
+        string_append_s(s, "任务：<color:R>");
         if ((q->flags & QF_RANDOM) && q->goal == QG_KILL_MON)
             string_printf(s, "Kill %s", r_name + r_info[q->goal_idx].name);
         else
             string_append_s(s, kayttonimi(q));
-        string_append_s(s, "</color>. <color:v>You will fail this quest if you leave it before completing it!</color> "
-                          "Are you sure you want to ");
+        string_append_s(s, "</color>。<color:v>如果你在完成它之前离开，你将导致这个任务失败！</color>"
+                          "你确定要");
         string_append_s(s, toimi);
         string_append_s(s, "? <color:y>[Y,n]</color>");
         c = msg_prompt(string_buffer(s), "nY", PROMPT_NEW_LINE | PROMPT_ESCAPE_DEFAULT | PROMPT_CASE_SENSITIVE);
@@ -1617,10 +1615,7 @@ void quests_on_leave(void)
             if ((coffee_break) && (q->level < 99)) fail = TRUE;
             if ((q->flags & QF_RANDOM) && (!coffee_break))
             {
-                cptr p = "If you like, you may choose to intentionally fail this quest. "
-                    "Choose this option if you feel that you really cannot handle this opponent or "
-                    "would rather not wait until you can. <color:v>Fail this quest?</color> "
-                    "<color:y>[Y,n]</color>";
+                cptr p = "如果你愿意，你可以选择故意失败这个任务。如果你觉得自己实在无法应对这个对手，或者不想等到有能力再来，可以选择此选项。<color:v>放弃这个任务吗？</color> <color:y>[Y,n]</color>";
                 char c = msg_prompt(p, "nY", PROMPT_NEW_LINE | PROMPT_ESCAPE_DEFAULT | PROMPT_CASE_SENSITIVE);
                 if (c == 'Y') fail = TRUE;
             }
@@ -1688,18 +1683,18 @@ void quests_display(void)
 
     if (vec_length(v))
     {
-        doc_printf(doc, "  <color:B>Current Quests</color>\n");
+        doc_printf(doc, "<color:B>当前任务</color>\n");
         for (i = 0; i < vec_length(v); i++)
         {
             quest_ptr q = vec_get(v, i);
 
             /* Quest Name and Status */
-            doc_printf(doc, "  <color:%c>%s</color> (Lvl <color:U>%d</color>)\n",
+            doc_printf(doc, "<color:%c>%s</color> (<color:U>%d</color> 级)\n",
                 (q->status == QS_IN_PROGRESS) ? 'y' : 'R', kayttonimi(q), q->danger_level);
 
             /* Description. However, the QS_COMPLETED description is the 'reward' message */
             if (q->status == QS_COMPLETED)
-                doc_insert(doc, "    Quest Completed (Unrewarded)");
+                doc_insert(doc, "任务完成 (未领奖)");
             else
             {
                 if (q->goal == QG_KILL_MON)
@@ -1710,7 +1705,7 @@ void quests_display(void)
                         char name[MAX_NLEN];
                         strcpy(name, r_name + r_ptr->name);
                         plural_aux(name);
-                        doc_printf(doc, "    <indent>Kill %d %s (%d killed so far)</indent>\n",
+                        doc_printf(doc, "<indent>击杀 %d 个 %s (已击杀 %d 个)</indent>\n",
                             q->goal_count, name, q->goal_current);
                     }
                     else if (q->flags & (QF_RANDOM | QF_PURPLE))
@@ -1732,7 +1727,7 @@ void quests_display(void)
     quests_doc(doc);
 
     screen_save();
-    doc_display(doc, "Quests", 0);
+    doc_display(doc, "任务面板", 0);
     screen_load();
     doc_free(doc);
 }
@@ -1741,7 +1736,7 @@ static cptr _safe_r_name(int id)
 {
     mon_race_ptr r = &r_info[id];
     if (!r->name)
-        return "Monster Removed";
+        return "怪物已被移除";
     return r_name + r->name;
 }
 static void _quest_doc(quest_ptr q, doc_ptr doc)
@@ -1753,7 +1748,7 @@ static void _quest_doc(quest_ptr q, doc_ptr doc)
         {
             if (q->completed_lev == 0)
             {
-                doc_printf(doc, "  Kill %.44s <tab:53>DL%-3d <color:B>Cancelled</color>\n",
+                doc_printf(doc, "击杀 %.44s <tab:53>DL%-3d <color:B>已取消</color>\n",
                     _safe_r_name(q->goal_idx), q->danger_level);
             }
             else if (q->goal_count > 1)
@@ -1763,18 +1758,18 @@ static void _quest_doc(quest_ptr q, doc_ptr doc)
                 plural_aux(name);
                 extract_day_hour_min_imp(q->completed_turn, &day, &hour, &min);
                 if (strlen(name) > 29) {
-                    doc_printf(doc, "  Kill %d %.41s <tab:53>DL%-3d CL%-2d  Day %d, %d:%02d\n",
+                    doc_printf(doc, "击杀 %d 个 %.41s <tab:53>DL%-3d CL%-2d 第%d天，%d:%02d\n",
                         q->goal_count, name, q->goal_current, q->danger_level, q->completed_lev, day, hour, min);
                 }
                 else {
-                    doc_printf(doc, "  Kill %d %s (%d killed) <tab:53>DL%-3d CL%-2d  Day %d, %d:%02d\n",
+                    doc_printf(doc, "击杀 %d 个 %s (已杀 %d) <tab:53>DL%-3d CL%-2d 第%d天，%d:%02d\n",
                         q->goal_count, name, q->goal_current, q->danger_level, q->completed_lev, day, hour, min);
                 }
             }
             else
             {
                 extract_day_hour_min_imp(q->completed_turn, &day, &hour, &min);
-                doc_printf(doc, "  Kill %.44s <tab:53>DL%-3d CL%-2d  Day %d, %d:%02d\n",
+                doc_printf(doc, "击杀 %.44s <tab:53>DL%-3d CL%-2d 第%d天，%d:%02d\n",
                     _safe_r_name(q->goal_idx), q->danger_level, q->completed_lev, day, hour, min);
             }
         }
@@ -1782,7 +1777,7 @@ static void _quest_doc(quest_ptr q, doc_ptr doc)
     else
     {
         extract_day_hour_min_imp(q->completed_turn, &day, &hour, &min);
-        doc_printf(doc, "  %.49s <tab:53>DL%-3d CL%-2d  Day %d, %d:%02d\n",
+        doc_printf(doc, "%.49s <tab:53>DL%-3d CL%-2d 第%d天，%d:%02d\n",
             kayttonimi(q), q->danger_level, q->completed_lev, day, hour, min);
     }
 }
@@ -1795,7 +1790,7 @@ static void _quest_doc_noturn(quest_ptr q, doc_ptr doc)
         {
             if (q->completed_lev == 0)
             {
-                doc_printf(doc, "  Kill %s <tab:60>DL%3d <color:B>Cancelled</color>\n",
+                doc_printf(doc, "击杀 %s <tab:60>DL%3d <color:B>已取消</color>\n",
                     _safe_r_name(q->goal_idx), q->danger_level);
             }
             else if (q->goal_count > 1)
@@ -1803,12 +1798,12 @@ static void _quest_doc_noturn(quest_ptr q, doc_ptr doc)
                 char name[MAX_NLEN];
                 strcpy(name, _safe_r_name(q->goal_idx));
                 plural_aux(name);
-                doc_printf(doc, "  Kill %d %s (%d killed) <tab:60>DL%3d CL%2d\n",
+                doc_printf(doc, "击杀 %d 个 %s (已杀 %d) <tab:60>DL%3d CL%2d\n",
                     q->goal_count, name, q->goal_current, q->danger_level, q->completed_lev);
             }
             else
             {
-                doc_printf(doc, "  Kill %s <tab:60>DL%3d CL%2d\n",
+                doc_printf(doc, "击杀 %s <tab:60>DL%3d CL%2d\n",
                     _safe_r_name(q->goal_idx), q->danger_level, q->completed_lev);
             }
         }
@@ -1833,7 +1828,7 @@ void quests_doc(doc_ptr doc)
             quest_ptr quest = vec_get(v, i);
             if (quest->completed_turn < 1) show_turns = FALSE;
         }
-        doc_printf(doc, "  <color:G>Completed Quests</color>\n");
+        doc_printf(doc, "<color:G>已完成任务</color>\n");
         for (i = 0; i < vec_length(v); i++)
         {
             quest_ptr quest = vec_get(v, i);
@@ -1852,7 +1847,7 @@ void quests_doc(doc_ptr doc)
             quest_ptr quest = vec_get(v, i);
             if (quest->completed_turn < 1) show_turns = FALSE;
         }
-        doc_printf(doc, "  <color:r>Failed Quests</color>\n");
+        doc_printf(doc, "<color:r>已失败任务</color>\n");
         for (i = 0; i < vec_length(v); i++)
         {
             quest_ptr quest = vec_get(v, i);
@@ -2042,14 +2037,12 @@ void quests_wizard(void)
         default:
             if (cmd < 256 && isprint(cmd))
             {
-                msg_format("Unrecognized command: <color:R>%c</color>. "
-                           "Press <color:keypress>?</color> for help.", cmd);
+                msg_format("无法识别的命令：<color:R>%c</color>。按 <color:keypress>?</color> 获取帮助。", cmd);
             }
             else if (KTRL('A') <= cmd && cmd <= KTRL('Z'))
             {
                 cmd |= 0x40;
-                msg_format("Unrecognized command: <color:R>^%c</color>. "
-                           "Press <color:keypress>?</color> for help.", cmd);
+                msg_format("无法识别的命令：<color:R>^%c</color>。按 <color:keypress>?</color> 获取帮助。", cmd);
             }
         }
     }
@@ -2068,13 +2061,13 @@ static cptr _status_name(int status)
 {
     switch (status)
     {
-    case QS_UNTAKEN: return "Untaken";
-    case QS_TAKEN: return "Taken";
-    case QS_IN_PROGRESS: return "In Progress";
-    case QS_COMPLETED: return "Completed";
-    case QS_FINISHED: return "Finished";
-    case QS_FAILED: return "Failed";
-    case QS_FAILED_DONE: return "FailedDone";
+    case QS_UNTAKEN: return "未接取";
+    case QS_TAKEN: return "已接取";
+    case QS_IN_PROGRESS: return "进行中";
+    case QS_COMPLETED: return "已完成";
+    case QS_FINISHED: return "已结束";
+    case QS_FAILED: return "已失败";
+    case QS_FAILED_DONE: return "已失败(结)";
     }
     return "";
 }
@@ -2104,7 +2097,7 @@ static void _display_menu(_ui_context_ptr context)
     doc_clear(doc);
     doc_insert(doc, "<style:table>");
 
-    doc_printf(doc, "   <color:U>%-40.40s %-10.10s Lvl</color>\n", "Quest", "Status");
+    doc_printf(doc, "<color:U>%-40.40s %-10.10s 等级</color>\n", "任务名称", "状态");
     for (i = 0; i < context->page_size; i++)
     {
         int idx = context->top + i;
@@ -2140,7 +2133,7 @@ static void _display_menu(_ui_context_ptr context)
             int page_count = (max - 1) / context->page_size + 1;
             int page_current = context->top / context->page_size + 1;
 
-            doc_printf(doc, "<color:B>(Page %d of %d)</color>\n", page_current, page_count);
+            doc_printf(doc, "<color:B>(第 %d 页 / 共 %d 页)</color>\n", page_current, page_count);
         }
     }
 
@@ -2154,7 +2147,7 @@ static void _display_menu(_ui_context_ptr context)
         "<color:keypress>u</color> to set untaken.\n"
         "<color:keypress>?</color> to analyze quest file.\n");
 
-    doc_insert(doc, "<color:keypress>Esc</color> to exit.</style>");
+    doc_insert(doc, "按 <color:keypress>Esc</color> 退出。</style>");
 
     Term_clear_rect(r);
     doc_sync_term(doc,
@@ -2169,7 +2162,7 @@ static void _map_cmd(_ui_context_ptr context)
         char cmd;
         int  idx;
 
-        if (!msg_command("<color:y>View which quest map <color:w>(<color:keypress>Esc</color> to cancel)</color>?</color>", &cmd)) break;
+        if (!msg_command("<color:y>查看哪个任务的地图 <color:w>(<color:keypress>Esc</color> 取消)</color>？</color>", &cmd)) break;
         if (cmd == ESCAPE) break;
         if (cmd < 'a' || cmd > 'z') continue;
         idx = A2I(cmd);
@@ -2180,13 +2173,13 @@ static void _map_cmd(_ui_context_ptr context)
             room_ptr  map;
             if (!(quest->flags & QF_GENERATE) || !quest->file)
             {
-                msg_format("The <color:R>%s</color> quest has no map.", quest->name);
+                msg_format("<color:R>%s</color> 任务没有地图。", quest->name);
                 continue;
             }
             map = quest_get_map(quest);
             if (!map)
             {
-                msg_format("Unable to load the <color:R>%s</color> quest map.", quest->name);
+                msg_format("无法加载 <color:R>%s</color> 任务地图。", quest->name);
                 continue;
             }
             _display_map(map);
@@ -2295,7 +2288,7 @@ static void _status_cmd(_ui_context_ptr context, int status)
         int  idx;
 
         if (!msg_command(
-            format("<color:y>Change status to <color:B>%s</color> for which quest <color:w>(<color:keypress>Esc</color> to cancel)</color>?</color>",
+            format("<color:y>将哪个任务的状态更改为 <color:B>%s</color> <color:w>(<color:keypress>Esc</color> 取消)</color>？</color>",
                 _status_name(status)), &cmd)) break;
         if (cmd == ESCAPE) break;
         if (cmd < 'a' || cmd > 'z') continue;
@@ -2320,7 +2313,7 @@ static void _reward_cmd(_ui_context_ptr context)
         char cmd;
         int  idx;
 
-        if (!msg_command("<color:y>View which quest reward <color:w>(<color:keypress>Esc</color> when done)</color>?</color>", &cmd)) break;
+        if (!msg_command("<color:y>查看哪个任务的奖励 <color:w>(<color:keypress>Esc</color> 取消)</color>？</color>", &cmd)) break;
         if (cmd == ESCAPE) break;
         if (cmd < 'a' || cmd > 'z') continue;
         idx = A2I(cmd);
@@ -2355,13 +2348,13 @@ static void _reward_cmd(_ui_context_ptr context)
                 reward = quest_get_reward(quest);
 
                 if (!reward)
-                    msg_format("<color:R>%s</color> has no reward.", quest->name);
+                    msg_format("<color:R>%s</color> 没有奖励。", quest->name);
                 else
                 {
                     char name[MAX_NLEN];
                     obj_identify_fully(reward);
                     object_desc(name, reward, OD_COLOR_CODED);
-                    msg_format("<color:R>%s</color> gives %s.", quest->name, name);
+                    msg_format("<color:R>%s</color> 的奖励是 %s。", quest->name, name);
                     if (reward->name1)
                     {
                         a_info[reward->name1].generated = FALSE;
@@ -2387,7 +2380,7 @@ static void _analyze_cmd(_ui_context_ptr context)
         char cmd;
         int  idx;
 
-        if (!msg_command("<color:y>Analyze which quest file <color:w>(<color:keypress>Esc</color> to cancel)</color>?</color>", &cmd)) break;
+        if (!msg_command("<color:y>分析哪个任务文件 <color:w>(<color:keypress>Esc</color> 取消)</color>？</color>", &cmd)) break;
         if (cmd == ESCAPE) break;
         if (cmd < 'a' || cmd > 'z') continue;
         idx = A2I(cmd);
@@ -2397,7 +2390,7 @@ static void _analyze_cmd(_ui_context_ptr context)
             quest_ptr quest = vec_get(context->quests, idx);
             if (!quest->file || !strlen(quest->file))
             {
-                msg_format("<color:R>%s</color> has no quest file.", quest->name);
+                msg_format("<color:R>%s</color> 没有任务文件。", quest->name);
                 continue;
             }
             /* very hackish ... but very useful */

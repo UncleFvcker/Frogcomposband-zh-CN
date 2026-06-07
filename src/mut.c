@@ -508,7 +508,7 @@ void mut_do_cmd_knowledge(void)
 {
     doc_ptr doc = doc_alloc(80);
     mut_display(doc);
-    doc_display(doc, "Mutations", 0);
+    doc_display(doc, "变异", 0);
     doc_free(doc);
 }
 
@@ -584,7 +584,7 @@ int mut_gain_choice(mut_pred pred)
     int choices[MAX_MUTATIONS];
     int i;
     int ct = 0;
-    menu_t menu = { "Gain which mutation?", "Browse which mutation?", NULL,
+    menu_t menu = { "获得哪种变异？", "浏览哪种变异？", NULL,
                     _mut_menu_fn, choices, 0, Term->hgt - 6};
 
     for (i = 0; i < MAX_MUTATIONS; i++)
@@ -616,7 +616,7 @@ int mut_gain_choice(mut_pred pred)
                 return idx;
             }
         }
-        msg_print("Please make a choice!");
+        msg_print("请做出选择！");
     }
 
     /* return -1; unreachable */
@@ -667,7 +667,7 @@ bool mut_gain_random(mut_pred pred)
         virtue_add(VIRTUE_CHANCE, 1);
         return mut_gain(which);
     }
-    msg_print("You feel normal.");
+    msg_print("你感觉很正常。");
     return FALSE;
 }
 
@@ -877,7 +877,7 @@ void mut_lose_all(void)
     {
         int i;
         virtue_add(VIRTUE_CHANCE, -5);
-        msg_print("You are cured of all mutations.");
+        msg_print("你所有的变异都被治愈了。");
 
         for (i = 0; i < MUT_FLAG_SIZE; ++i)
             p_ptr->muta[i] = p_ptr->muta_lock[i];
@@ -939,7 +939,7 @@ void mut_name(int i, char* buf)
     if (i >= 0 && i < MAX_MUTATIONS)
         (_mutations[i].spell.fn)(SPELL_NAME, &v);
     else
-        var_set_string(&v, "None");
+        var_set_string(&v, "无");
 
     sprintf(buf, "%s", var_get_string(&v));
     var_clear(&v);

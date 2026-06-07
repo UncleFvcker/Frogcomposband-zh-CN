@@ -145,13 +145,13 @@ static char _speed_color(int speed)
 }
 static void _display_level(monster_race *r_ptr, doc_ptr doc)
 {
-    doc_insert(doc, "Level   : ");
+    doc_insert(doc, "等级 :");
     if (r_ptr->level == 0)
-        doc_insert(doc, "<color:G>Town</color>");
+        doc_insert(doc, "<color:G>城镇</color>");
     else if (_easy_lore(r_ptr) || r_ptr->r_tkills > 0)
     {
         if (r_ptr->max_level != 999)
-            doc_printf(doc, "<color:G>%d to %d</color>", r_ptr->level, r_ptr->max_level);
+            doc_printf(doc, "<color:G>%d 到 %d</color>", r_ptr->level, r_ptr->max_level);
         else
             doc_printf(doc, "<color:G>%d</color>", r_ptr->level);
     }
@@ -159,11 +159,11 @@ static void _display_level(monster_race *r_ptr, doc_ptr doc)
         doc_insert(doc, "<color:y>?</color>");
     doc_newline(doc);
     if (spoiler_hack)
-        doc_printf(doc, "Rarity  : <color:G>%d</color>\n", r_ptr->rarity);
+        doc_printf(doc, "稀有度 : <color:G>%d</color>\n", r_ptr->rarity);
 }
 static void _display_ac(monster_race *r_ptr, doc_ptr doc)
 {
-    doc_insert(doc, "AC      : ");
+    doc_insert(doc, "护甲 :");
     if (_know_armor_hp(r_ptr))
         doc_printf(doc, "<color:G>%d</color>", r_ptr->ac);
     else
@@ -172,7 +172,7 @@ static void _display_ac(monster_race *r_ptr, doc_ptr doc)
 }
 static void _display_hp(monster_race *r_ptr, doc_ptr doc)
 {
-    doc_insert(doc, "HP      : ");
+    doc_insert(doc, "生命 :");
     if (_know_armor_hp(r_ptr))
     {
         if ((r_ptr->flags1 & RF1_FORCE_MAXHP) || r_ptr->hside == 1)
@@ -193,16 +193,16 @@ static void _display_speed(monster_race *r_ptr, doc_ptr doc)
 {                        /* v~~~~~~byte */
     int speed = r_ptr->speed - 110;
     int rand = 0;
-    if (effective_speed) doc_printf(doc, "Speed: <color:%c>%d.%dx</color>", _speed_color(speed), SPEED_TO_ENERGY(r_ptr->speed) / 10, SPEED_TO_ENERGY(r_ptr->speed) % 10);
-    else doc_printf(doc, "Speed: <color:%c>%+d</color>", _speed_color(speed), speed);
+    if (effective_speed) doc_printf(doc, "速度: <color:%c>%d.%dx</color>", _speed_color(speed), SPEED_TO_ENERGY(r_ptr->speed) / 10, SPEED_TO_ENERGY(r_ptr->speed) % 10);
+    else doc_printf(doc, "速度: <color:%c>%+d</color>", _speed_color(speed), speed);
 
     if (r_ptr->flags1 & RF1_RAND_50) rand += 50;
     if (r_ptr->flags1 & RF1_RAND_25) rand += 25;
-    if (rand == 75) doc_insert(doc, " <color:r>Extremely Erratic</color>");
-    else if (rand == 50) doc_insert(doc, " <color:R>Somewhat Erratic</color>");
-    else if (rand == 25) doc_insert(doc, " <color:o>A Bit Erratic</color>");
+    if (rand == 75) doc_insert(doc, "<color:r>极其飘忽</color>");
+    else if (rand == 50) doc_insert(doc, "<color:R>有些飘忽</color>");
+    else if (rand == 25) doc_insert(doc, "<color:o>轻微飘忽</color>");
 
-    if (r_ptr->flags1 & RF1_NEVER_MOVE) doc_insert(doc, ", <color:u>Stationary</color>");
+    if (r_ptr->flags1 & RF1_NEVER_MOVE) doc_insert(doc, ", <color:u>静止</color>");
 
     doc_newline(doc);
 }
@@ -210,36 +210,36 @@ static void _display_alertness(monster_race *r_ptr, doc_ptr doc)
 {
     if (_know_alertness(r_ptr))
     {
-        doc_insert(doc, "Alert: ");
+        doc_insert(doc, "警戒:");
         if (r_ptr->sleep > 200)
-            doc_insert(doc, "<color:D>Ignores Intruders</color>");
+            doc_insert(doc, "<color:D>无视入侵者</color>");
         else if (r_ptr->sleep > 95)
-            doc_insert(doc, "<color:w>Very Inattentive</color>");
+            doc_insert(doc, "<color:w>非常不留心</color>");
         else if (r_ptr->sleep > 75)
-            doc_insert(doc, "<color:W>Inattentive</color>");
+            doc_insert(doc, "<color:W>不留心</color>");
         else if (r_ptr->sleep > 45)
-            doc_insert(doc, "<color:U>Overlooks</color>");
+            doc_insert(doc, "<color:U>容易忽略</color>");
         else if (r_ptr->sleep > 25)
-            doc_insert(doc, "<color:y>Unseeing</color>");
+            doc_insert(doc, "<color:y>熟视无睹</color>");
         else if (r_ptr->sleep > 10)
-            doc_insert(doc, "<color:y>Fairly Unseeing</color>");
+            doc_insert(doc, "<color:y>相当盲目</color>");
         else if (r_ptr->sleep > 5)
-            doc_insert(doc, "<color:o>Fairly Observant</color>");
+            doc_insert(doc, "<color:o>相当敏锐</color>");
         else if (r_ptr->sleep > 3)
-            doc_insert(doc, "<color:R>Observant</color>");
+            doc_insert(doc, "<color:R>敏锐</color>");
         else if (r_ptr->sleep > 1)
-            doc_insert(doc, "<color:r>Very Observant</color>");
+            doc_insert(doc, "<color:r>非常敏锐</color>");
         else if (r_ptr->sleep > 0)
-            doc_insert(doc, "<color:r>Vigilant</color>");
+            doc_insert(doc, "<color:r>警惕</color>");
         else
-            doc_insert(doc, "<color:v>Ever Vigilant</color>");
+            doc_insert(doc, "<color:v>时刻警惕</color>");
         doc_printf(doc, " <color:G>(%d')</color>\n", 10 * r_ptr->aaf);
     }
 }
 static void _display_type(monster_race *r_ptr, doc_ptr doc)
 {
     vec_ptr v = vec_alloc((vec_free_f)string_free);
-    doc_insert(doc, "Type : <indent><style:indent>");
+    doc_insert(doc, "类型 : <indent><style:indent>");
 
     if (r_ptr->flags2 & RF2_ELDRITCH_HORROR)
         vec_add(v, string_copy_s("<color:v>Sanity Blasting</color>"));
@@ -284,7 +284,7 @@ static void _display_type(monster_race *r_ptr, doc_ptr doc)
 }
 static void _display_basic(monster_race *r_ptr, doc_ptr doc)
 {
-    doc_printf(doc, "Name    : <indent><style:indent><color:B>%s</color> ", r_name + r_ptr->name);
+    doc_printf(doc, "名称 : <indent><style:indent><color:B>%s</color>", r_name + r_ptr->name);
     assert(r_ptr->d_char);
     doc_printf(doc, "(<color:%c>%c</color>", attr_to_attr_char(r_ptr->d_attr), r_ptr->d_char);
     if (use_graphics && (r_ptr->x_char != r_ptr->d_char || r_ptr->x_attr != r_ptr->d_attr))
@@ -354,7 +354,7 @@ static void _display_resists(monster_race *r_ptr, doc_ptr doc)
 
     if (vec_length(v))
     {
-        doc_insert(doc, "Resist  : <indent><style:indent>");
+        doc_insert(doc, "抵抗 : <indent><style:indent>");
         _print_list(v, doc, ',', '\0');
         doc_insert(doc, "</style></indent>\n");
         ct += vec_length(v);
@@ -391,7 +391,7 @@ static void _display_resists(monster_race *r_ptr, doc_ptr doc)
 
     if (vec_length(v))
     {
-        doc_insert(doc, "Immune  : <indent><style:indent>");
+        doc_insert(doc, "免疫 : <indent><style:indent>");
         _print_list(v, doc, ',', '\0');
         doc_insert(doc, "</style></indent>\n");
         ct += vec_length(v);
@@ -410,7 +410,7 @@ static void _display_resists(monster_race *r_ptr, doc_ptr doc)
 
     if (vec_length(v))
     {
-        doc_insert(doc, "Vuln    : <indent><style:indent>");
+        doc_insert(doc, "易伤 : <indent><style:indent>");
         _print_list(v, doc, ',', '\0');
         doc_insert(doc, "</style></indent>\n");
         ct += vec_length(v);
@@ -442,9 +442,9 @@ static void _display_frequency(monster_race *r_ptr, doc_ptr doc)
     {
         vec_ptr v = vec_alloc((vec_free_f)string_free);
 
-        doc_printf(doc, "Spells  : <indent><color:G>%d.%02d%%</color> ", pct/100, pct%100);
+        doc_printf(doc, "法术 : <indent><color:G>%d.%02d%%</color>", pct/100, pct%100);
         if (!spoiler_hack && r_ptr->r_spell_turns + r_ptr->r_move_turns > 0)
-            doc_printf(doc, "(%d of %d moves) ", r_ptr->r_spell_turns, r_ptr->r_spell_turns + r_ptr->r_move_turns);
+            doc_printf(doc, "(%d 次施法 / %d 次行动)", r_ptr->r_spell_turns, r_ptr->r_spell_turns + r_ptr->r_move_turns);
 
         if (r_ptr->flags2 & RF2_SMART)
             vec_add(v, string_copy_s("<color:y>Intelligent</color>"));
@@ -454,7 +454,7 @@ static void _display_frequency(monster_race *r_ptr, doc_ptr doc)
     }
     else
     {
-        doc_printf(doc, "Spells  : <color:y>?%%</color>");
+        doc_printf(doc, "法术 : <color:y>?%%</color>");
     }
     doc_newline(doc);
 }
@@ -522,7 +522,7 @@ static void _display_spells(monster_race *r_ptr, doc_ptr doc)
     _display_spell_group(r_ptr, spells->groups[MST_BREATH], v);
     if (vec_length(v))
     {
-        doc_insert(doc, "Breathe : <indent><style:indent>");
+        doc_insert(doc, "喷吐 : <indent><style:indent>");
         _print_list(v, doc, ',', '\0');
         doc_insert(doc, "</style></indent>\n");
         ct += vec_length(v);
@@ -536,7 +536,7 @@ static void _display_spells(monster_race *r_ptr, doc_ptr doc)
     _display_spell_group(r_ptr, spells->groups[MST_CURSE], v);
     if (vec_length(v))
     {
-        doc_insert(doc, "Offense : <indent><style:indent>");
+        doc_insert(doc, "攻击 : <indent><style:indent>");
         _print_list(v, doc, ',', '\0');
         doc_insert(doc, "</style></indent>\n");
         ct += vec_length(v);
@@ -547,7 +547,7 @@ static void _display_spells(monster_race *r_ptr, doc_ptr doc)
     _display_spell_group(r_ptr, spells->groups[MST_ANNOY], v);
     if (vec_length(v))
     {
-        doc_insert(doc, "Annoy   : <indent><style:indent>");
+        doc_insert(doc, "干扰 : <indent><style:indent>");
         _print_list(v, doc, ',', '\0');
         doc_insert(doc, "</style></indent>\n");
         ct += vec_length(v);
@@ -563,7 +563,7 @@ static void _display_spells(monster_race *r_ptr, doc_ptr doc)
     _display_spell_group(r_ptr, spells->groups[MST_WEIRD], v);
     if (vec_length(v))
     {
-        doc_insert(doc, "Defense : <indent><style:indent>");
+        doc_insert(doc, "防御 : <indent><style:indent>");
         _print_list(v, doc, ',', '\0');
         doc_insert(doc, "</style></indent>\n");
         ct += vec_length(v);
@@ -574,7 +574,7 @@ static void _display_spells(monster_race *r_ptr, doc_ptr doc)
     _display_spell_group(r_ptr, spells->groups[MST_SUMMON], v);
     if (vec_length(v))
     {
-        doc_insert(doc, "Summon  : <indent><style:indent>");
+        doc_insert(doc, "召唤 : <indent><style:indent>");
         _print_list(v, doc, ',', '\0');
         doc_insert(doc, "</style></indent>\n");
         ct += vec_length(v);
@@ -591,31 +591,31 @@ static cptr _method_desc(int method)
 {
     switch (method)
     {
-    case RBM_HIT:     return "Hit";
-    case RBM_TOUCH:   return "Touch";
-    case RBM_PUNCH:   return "Punch";
-    case RBM_KICK:    return "Kick";
-    case RBM_CLAW:    return "Claw";
-    case RBM_BITE:    return "Bite";
-    case RBM_STING:   return "Sting";
-    case RBM_SLASH:   return "Slash";
-    case RBM_BUTT:    return "Butt";
-    case RBM_CRUSH:   return "Crush";
-    case RBM_ENGULF:  return "Engulf";
-    case RBM_CHARGE:  return "Charge";
-    case RBM_CRAWL:   return "Crawl";
-    case RBM_DROOL:   return "Drool";
-    case RBM_SPIT:    return "Spit";
-    case RBM_EXPLODE: return "Explode";
-    case RBM_GAZE:    return "Gaze";
-    case RBM_WAIL:    return "Wail";
-    case RBM_SPORE:   return "Spores";
-    case RBM_BEG:     return "Beg";
-    case RBM_INSULT:  return "Insult";
-    case RBM_MOAN:    return "Moan";
-    case RBM_SHOW:    return "Sing";
+    case RBM_HIT:     return "击打";
+    case RBM_TOUCH:   return "触摸";
+    case RBM_PUNCH:   return "拳击";
+    case RBM_KICK:    return "踢击";
+    case RBM_CLAW:    return "爪击";
+    case RBM_BITE:    return "咬击";
+    case RBM_STING:   return "蛰刺";
+    case RBM_SLASH:   return "斩击";
+    case RBM_BUTT:    return "冲撞";
+    case RBM_CRUSH:   return "粉碎";
+    case RBM_ENGULF:  return "吞噬";
+    case RBM_CHARGE:  return "冲锋";
+    case RBM_CRAWL:   return "爬行";
+    case RBM_DROOL:   return "流涎";
+    case RBM_SPIT:    return "喷吐";
+    case RBM_EXPLODE: return "自爆";
+    case RBM_GAZE:    return "凝视";
+    case RBM_WAIL:    return "哀嚎";
+    case RBM_SPORE:   return "孢子";
+    case RBM_BEG:     return "乞讨";
+    case RBM_INSULT:  return "侮辱";
+    case RBM_MOAN:    return "呻吟";
+    case RBM_SHOW:    return "唱歌";
     }
-    return "Weird";
+    return "怪异";
 }
 static string_ptr _effect_desc(mon_race_ptr race, mon_effect_ptr effect)
 {
@@ -623,25 +623,25 @@ static string_ptr _effect_desc(mon_race_ptr race, mon_effect_ptr effect)
 
     switch (effect->effect)
     {
-    case RBE_HURT:        s = string_copy_s("Hurt"); break;
-    case RBE_DRAIN_CHARGES: s = string_copy_s("Drain Charges"); break;
-    case RBE_EAT_GOLD:    s = string_copy_s("Steal Gold"); break;
-    case RBE_EAT_ITEM:    s = string_copy_s("Steal Item"); break;
-    case RBE_EAT_FOOD:    s = string_copy_s("Steal Food"); break;
-    case RBE_EAT_LITE:    s = string_copy_s("Absorb Light"); break;
-    case RBE_LOSE_STR:    s = string_copy_s("Reduce Strength"); break;
-    case RBE_LOSE_INT:    s = string_copy_s("Reduce Intelligence"); break;
-    case RBE_LOSE_WIS:    s = string_copy_s("Reduce Wisdom"); break;
-    case RBE_LOSE_DEX:    s = string_copy_s("Reduce Dexterity"); break;
-    case RBE_LOSE_CON:    s = string_copy_s("Reduce Constitution"); break;
-    case RBE_LOSE_CHR:    s = string_copy_s("Reduce Charisma"); break;
-    case RBE_LOSE_ALL:    s = string_copy_s("Reduce All Stats"); break;
-    case RBE_SHATTER:     s = string_copy_s("Shatter"); break;
+    case RBE_HURT:        s = string_copy_s("伤害"); break;
+    case RBE_DRAIN_CHARGES: s = string_copy_s("吸取充能"); break;
+    case RBE_EAT_GOLD:    s = string_copy_s("偷取金钱"); break;
+    case RBE_EAT_ITEM:    s = string_copy_s("偷取物品"); break;
+    case RBE_EAT_FOOD:    s = string_copy_s("偷取食物"); break;
+    case RBE_EAT_LITE:    s = string_copy_s("吸收光亮"); break;
+    case RBE_LOSE_STR:    s = string_copy_s("降低力量"); break;
+    case RBE_LOSE_INT:    s = string_copy_s("降低智力"); break;
+    case RBE_LOSE_WIS:    s = string_copy_s("降低感知"); break;
+    case RBE_LOSE_DEX:    s = string_copy_s("降低敏捷"); break;
+    case RBE_LOSE_CON:    s = string_copy_s("降低体质"); break;
+    case RBE_LOSE_CHR:    s = string_copy_s("降低魅力"); break;
+    case RBE_LOSE_ALL:    s = string_copy_s("降低所有属性"); break;
+    case RBE_SHATTER:     s = string_copy_s("引发地震"); break;
     case RBE_DRAIN_EXP:   s = string_copy_s("<color:D>Lower Experience</color>"); break;
-    case RBE_DISEASE:     s = string_copy_s("Disease"); break;
+    case RBE_DISEASE:     s = string_copy_s("疾病"); break;
     case RBE_VAMP:        s = string_copy_s("<color:D>Vampiric</color>"); break;
     case RBE_CUT:         s = string_copy_s("<color:r>Cut</color>"); break;
-    case GF_MISSILE:      s = string_copy_s("Damage"); break;
+    case GF_MISSILE:      s = string_copy_s("伤害"); break;
     case GF_TURN_ALL:     s = string_copy_s("<color:r>Terrify</color>"); break;
     default:              s = string_copy_s(gf_name(effect->effect));
     }
@@ -672,12 +672,12 @@ static int _ct_known_attacks(monster_race *r_ptr)
 static void _display_attacks(monster_race *r_ptr, doc_ptr doc)
 {
     if (r_ptr->flags1 & RF1_NEVER_BLOW)
-        doc_insert(doc, "Attacks : <color:D>None</color>\n");
+        doc_insert(doc, "近战 : <color:D>无</color>\n");
     else if (_ct_known_attacks(r_ptr))
     {
         int i,j;
         /* XXX Damage display needs some rethinking ... */
-        doc_printf(doc, "Attacks : <color:G>%-7.7s Effects</color>\n", "Type");
+        doc_printf(doc, "近战 : <color:G>%s 效果</color>\n", "类型");
         for (i = 0; i < MAX_MON_BLOWS; i++)
         {
             mon_blow_ptr blow = &r_ptr->blows[i];
@@ -706,7 +706,7 @@ static void _display_attacks(monster_race *r_ptr, doc_ptr doc)
         }
     }
     else
-        doc_insert(doc, "Attacks : <color:y>?</color>\n");
+        doc_insert(doc, "近战 : <color:y>?</color>\n");
 
     doc_newline(doc);
 }
@@ -766,7 +766,7 @@ static void _display_other(monster_race *r_ptr, doc_ptr doc)
 
     if (vec_length(v))
     {
-        doc_insert(doc, "Info    : <indent><style:indent>");
+        doc_insert(doc, "信息 : <indent><style:indent>");
         _print_list(v, doc, ',', '\0');
         doc_insert(doc, "</style></indent>\n");
         ct += vec_length(v);
@@ -804,7 +804,7 @@ static void _display_other(monster_race *r_ptr, doc_ptr doc)
 
     if (vec_length(v))
     {
-        doc_insert(doc, "Auras   : <indent><style:indent>");
+        doc_insert(doc, "光环 : <indent><style:indent>");
         _print_list(v, doc, ',', '\0');
         doc_insert(doc, "</style></indent>\n");
         ct += vec_length(v);
@@ -846,25 +846,25 @@ static void _display_drops(monster_race *r_ptr, doc_ptr doc)
     if (ct_gold || ct_obj)
     {
         int ct = MAX(ct_gold, ct_obj);
-        cptr obj_text = (ct_obj > 1) ? "Objects" : "Object";
-        cptr gold_text = (ct_gold > 1) ? "Treasures" : "Treasure";
+        cptr obj_text = (ct_obj > 1) ? "多件物品" : "物品";
+        cptr gold_text = (ct_gold > 1) ? "多件财宝" : "财宝";
 
-        doc_insert(doc, "Drops   : ");
+        doc_insert(doc, "掉落 :");
 
         if (ct == 1)
             doc_insert(doc, "1 ");
         else if (ct == 2)
-            doc_insert(doc, "1 or 2 ");
+            doc_insert(doc, "1 或 2 件");
         else
-            doc_printf(doc, "Up to %d ", ct);
+            doc_printf(doc, "最多 %d 件", ct);
 
         if (r_ptr->flags1 & RF1_DROP_GREAT)
-            doc_insert(doc, "<color:v>Exceptional</color> ");
+            doc_insert(doc, "<color:v>极好的</color>");
         else if (r_ptr->flags1 & RF1_DROP_GOOD)
-            doc_insert(doc, "<color:r>Good</color> ");
+            doc_insert(doc, "<color:r>优秀的</color>");
 
         if (ct_gold && ct_obj)
-            doc_printf(doc, "%s or %s", obj_text, gold_text);
+            doc_printf(doc, "%s或%s", obj_text, gold_text);
         else if (ct_obj)
             doc_printf(doc, "%s", obj_text);
         else if (ct_gold)
@@ -878,22 +878,22 @@ static void _display_kills(monster_race *r_ptr, doc_ptr doc)
     if (r_ptr->flags1 & RF1_UNIQUE)
     {
         if (spoiler_hack)
-            doc_insert(doc, "Status  : <color:v>Unique</color>");
+            doc_insert(doc, "状态 : <color:v>唯一</color>");
         else
         {
-            doc_insert(doc, "Status  : ");
+            doc_insert(doc, "状态 :");
             if (r_ptr->max_num == 0)
-                doc_insert(doc, "<color:D>Dead</color>");
+                doc_insert(doc, "<color:D>死亡</color>");
             else if (mon_is_wanted(r_ptr->id))
-                doc_insert(doc, "<color:v>Wanted</color>");
+                doc_insert(doc, "<color:v>通缉</color>");
             else
-                doc_insert(doc, "<color:y>Alive</color>");
+                doc_insert(doc, "<color:y>存活</color>");
         }
         doc_newline(doc);
     }
     else if (!spoiler_hack)
     {
-        doc_printf(doc, "Kills   : <color:G>%d</color>\n", r_ptr->r_pkills);
+        doc_printf(doc, "击杀 : <color:G>%d</color>\n", r_ptr->r_pkills);
     }
 
     if (_easy_lore(r_ptr) || r_ptr->r_tkills)
@@ -909,7 +909,7 @@ static void _display_kills(monster_race *r_ptr, doc_ptr doc)
         }
 
         big_num_display(xp, buf);
-        doc_printf(doc, "Exp     : <color:G>%s</color> at CL%d\n", buf, plev);
+        doc_printf(doc, "经验 : <color:G>%s</color> (角色等级CL%d时)\n", buf, plev);
     }
 
     _display_drops(r_ptr, doc);
@@ -944,13 +944,13 @@ void mon_display_rect(monster_race *r_ptr, rect_t display)
     screen_save();
     if (doc_cursor(doc).y < display.cy - 3)
     {
-        doc_insert(doc, "\n<color:B>[Press Any Key to Continue]</color>\n\n");
+        doc_insert(doc, "\n<color:B>[按任意键继续]</color>\n\n");
         doc_sync_term(doc, doc_range_all(doc), doc_pos_create(display.x, display.y));
         inkey();
     }
     else
     {
-        doc_display_aux(doc, "Monster Info", 0, display);
+        doc_display_aux(doc, "怪物信息", 0, display);
     }
     screen_load();
 

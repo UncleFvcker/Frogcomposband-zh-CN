@@ -22,7 +22,7 @@ static cptr _rogue_pick_pocket(int power)
 
     if (!cave[y][x].m_idx)
     {
-        msg_print("There is no monster.");
+        msg_print("这里没有怪物。");
         return NULL;
     }
 
@@ -32,7 +32,7 @@ static cptr _rogue_pick_pocket(int power)
 
     if (!m_ptr->ml || p_ptr->image) /* Can't see it, so can't steal! */
     {
-        msg_print("There is no monster.");
+        msg_print("这里没有怪物。");
         return NULL;
     }
 
@@ -65,25 +65,25 @@ static cptr _rogue_pick_pocket(int power)
 
         if (!loot.k_idx)
         {
-            msg_print("There is nothing to steal!");
+            msg_print("没有什么可以偷的！");
         }
         else
         {
             object_desc(o_name, &loot, 0);
             if (mon_save_aux(m_ptr->r_idx, power))
             {
-                msg_format("Oops! You drop %s.", o_name);
+                msg_format("哎呀！你掉了 %s。", o_name);
                 drop_near(&loot, -1, y, x);
             }
             else if (loot.tval == TV_GOLD)
             {
                 if ((p_ptr->prace == RACE_WEREWOLF) && (strpos("silver", o_name)))
                 {
-                    msg_print("You steal some silver coins, but drop them immediately.");
+                    msg_print("你偷了一些银币，但立刻又把它们掉了。");
                     take_hit(DAMAGE_NOESCAPE, randint1(10), "contact with silver coins");
                 }
                 else {
-                    msg_format("You steal %d gold pieces' worth of %s.", (int)loot.pval, o_name);
+                    msg_format("你偷了价值 %d 金币的 %s。", (int)loot.pval, o_name);
                     sound(SOUND_SELL);
                     p_ptr->au += loot.pval;
                     stats_on_gold_find(loot.pval);
@@ -93,7 +93,7 @@ static cptr _rogue_pick_pocket(int power)
             else
             {
                 pack_carry(&loot);
-                msg_format("You steal %s.", o_name);
+                msg_format("你偷到了 %s。", o_name);
             }
         }
 
@@ -104,20 +104,20 @@ static cptr _rogue_pick_pocket(int power)
             if ( allow_ticked_off(r_ptr)
               && ((r_ptr->flags1 & RF1_UNIQUE) || mon_save_aux(m_ptr->r_idx, power)) )
             {
-                msg_format("%^s wakes up and looks very mad!", m_name);
+                msg_format("%^s 醒了过来，看起来非常生气！", m_name);
                 mon_anger(m_ptr);
             }
             else
-                msg_format("%^s wakes up.", m_name);
+                msg_format("%^s 醒了过来。", m_name);
         }
 
         if (loot.k_idx)
         {
             if (mon_save_aux(m_ptr->r_idx, power))
-                msg_print("You fail to run away!");
+                msg_print("你没能逃脱！");
             else
             {
-                if (p_ptr->lev < 35 || get_check("Run away?"))
+                if (p_ptr->lev < 35 || get_check("逃跑吗？"))
                     teleport_player(25 + p_ptr->lev/2, 0L);
             }
         }
@@ -127,25 +127,25 @@ static cptr _rogue_pick_pocket(int power)
         set_monster_csleep(m_idx, 0);
         if (allow_ticked_off(r_ptr))
         {
-            msg_format("Failed! %^s wakes up and looks very mad!", m_name);
+            msg_format("失败了！%^s 醒了过来，看起来非常生气！", m_name);
             mon_anger(m_ptr);
         }
         else
-            msg_format("Failed! %^s wakes up.", m_name);
+            msg_format("失败了！%^s 醒了过来。", m_name);
     }
     else if (allow_ticked_off(r_ptr))
     {
-        msg_format("Failed! %^s looks very mad!", m_name);
+        msg_format("失败了！%^s 看起来非常生气！", m_name);
         mon_anger(m_ptr);
     }
     else
     {
-        msg_print("Failed!");
+        msg_print("失败了！");
     }
 
     if (is_friendly(m_ptr) || is_pet(m_ptr))
     {
-        msg_format("%^s suddenly becomes hostile!", m_name);
+        msg_format("%^s 突然变得充满敌意！", m_name);
         set_hostile(m_ptr);
     }
     return "";
@@ -168,7 +168,7 @@ static cptr _rogue_negotiate(void)
 
     if (!m_idx)
     {
-        msg_print("There is no monster.");
+        msg_print("这里没有怪物。");
         return NULL;
     }
 
@@ -177,7 +177,7 @@ static cptr _rogue_negotiate(void)
 
     if (!m_ptr->ml || p_ptr->image)
     {
-        msg_print("There is no monster.");
+        msg_print("这里没有怪物。");
         return NULL;
     }
 
@@ -185,7 +185,7 @@ static cptr _rogue_negotiate(void)
 
     if (is_pet(m_ptr) || is_friendly(m_ptr))
     {
-        msg_format("%^s is already in your services.", m_name);
+        msg_format("%^s 已经在为你服务了。", m_name);
         return NULL;
     }
 
@@ -196,7 +196,7 @@ static cptr _rogue_negotiate(void)
 
     if (!(r_ptr->flags2 & RF2_THIEF))
     {
-        msg_format("%^s is not open to any sort of deal!", m_name);
+        msg_format("%^s 不接受任何形式的交易！", m_name);
     }
     else if (!mon_save_p(m_ptr->r_idx, A_CHR))
     {
@@ -207,9 +207,9 @@ static cptr _rogue_negotiate(void)
 
         if (p_ptr->au >= cost)
         {
-            msg_format("%^s says 'My services will cost you %d gold pieces.'", m_name, cost);
+            msg_format("%^s 说：“我的服务需要你支付 %d 枚金币。”", m_name, cost);
 
-            if (get_check("Do you pay?"))
+            if (get_check("你付款吗？"))
             {
                 sound(SOUND_SELL);
                 p_ptr->au -= cost;
@@ -218,12 +218,12 @@ static cptr _rogue_negotiate(void)
 
                 if (mon_save_p(m_ptr->r_idx, A_CHR))
                 {
-                    msg_format("%^s says 'Fool! Never trust a thief!'", m_name);
+                    msg_format("%^s 说：“蠢货！永远别相信一个盗贼！”", m_name);
                     mon_anger(m_ptr);
                 }
                 else
                 {
-                    msg_format("%^s says 'Deal!'", m_name);
+                    msg_format("%^s 说：“成交！”", m_name);
                     if (!(r_ptr->flags1 & RF1_UNIQUE) && !mon_save_p(m_ptr->r_idx, A_CHR))
                         set_pet(m_ptr);
                     else
@@ -232,18 +232,18 @@ static cptr _rogue_negotiate(void)
             }
             else
             {
-                msg_format("%^s says 'Scoundrel!'", m_name);
+                msg_format("%^s 说：“无赖！”", m_name);
                 mon_anger(m_ptr);
             }
         }
         else
         {
-            msg_format("%^s says 'Hah! You can't afford my help!", m_name);
+            msg_format("%^s 说：“哈！你可雇不起我帮忙！”", m_name);
         }
     }
     else
     {
-        msg_format("%^s is insulted you would ask such a question!", m_name);
+        msg_format("你居然问出这种问题，%^s 觉得受到了侮辱！", m_name);
         mon_anger(m_ptr);
     }
     return "";
@@ -271,7 +271,7 @@ cptr do_burglary_spell(int spell, int mode)
     {
     /* Burglar's Handbook */
     case 0:
-        if (name) return "Detect Traps";
+        if (name) return "探测陷阱";
         if (desc) return "Detects nearby traps.";
         if (info) return info_radius(rad);
         if (cast)
@@ -279,7 +279,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 1:
-        if (name) return "Disarm Traps";
+        if (name) return "解除陷阱";
         if (desc) return "Fires a beam which disarms traps.";
 
         if (cast)
@@ -290,7 +290,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 2:
-        if (name) return "Detect Treasure";
+        if (name) return "探测财宝";
         if (desc) return "Detects all treasures in your vicinity.";
         if (info) return info_radius(rad);
 
@@ -302,7 +302,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 3:
-        if (name) return "Detect Objects";
+        if (name) return "探测物品";
         if (desc) return "Detects all items in your vicinity.";
         if (info) return info_radius(rad);
 
@@ -311,7 +311,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 4:
-        if (name) return "See in the Dark";
+        if (name) return "黑暗视觉";
         if (desc) return "Gives infravision for a while.";
         {
             int base = spell_power(100);
@@ -324,7 +324,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 5:
-        if (name) return "Tread Softly";
+        if (name) return "轻声行走";
         if (desc) return "Grants enhanced stealth for a bit.";
         {
             int base = spell_power(50);
@@ -336,7 +336,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 6:
-        if (name) return "Minor Getaway";
+        if (name) return "小型逃遁";
         if (desc) return "Teleport medium distance.";
 
         {
@@ -354,7 +354,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 7:
-        if (name) return "Set Minor Trap";
+        if (name) return "设置小型陷阱";
         if (desc) return "Sets a weak trap under you. This trap will have various weak effects on a passing monster.";
 
         if (cast)
@@ -363,7 +363,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     /* Thieving Ways */
     case 8:
-        if (name) return "Map Escape Route";
+        if (name) return "标记逃跑路线";
         if (desc) return "Maps nearby area.";
         if (info) return info_radius(rad);
 
@@ -372,7 +372,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 9:
-        if (name) return "Pick Pocket";
+        if (name) return "妙手空空";
         if (desc) return "Attempt to steal an item or treasure from an adjacent monster.";
 
         if (cast)
@@ -380,7 +380,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 10:
-        if (name) return "Negotiate";
+        if (name) return "谈判";
         if (desc) return "Attempt to bargain for the services of a nearby thief.";
 
         if (cast)
@@ -388,7 +388,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 11:
-        if (name) return "Fetch Object";
+        if (name) return "取回物品";
         if (desc) return "Pulls a distant item close to you.";
 
         {
@@ -403,7 +403,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 12:
-        if (name) return "Eye for Danger";
+        if (name) return "危险感知";
         if (desc) return "Gives telepathy for a while.";
         {
             int base = 25;
@@ -417,7 +417,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 13:
-        if (name) return "Examine Loot";
+        if (name) return "检查战利品";
         if (desc) return "Identifies an item.";
 
         if (cast)
@@ -428,7 +428,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 14:
-        if (name) return "Set Major Trap";
+        if (name) return "设置大型陷阱";
         if (desc) return "Sets a trap under you. This trap will have various effects on a passing monster.";
 
         if (cast)
@@ -436,7 +436,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 15:
-        if (name) return "Make Haste";
+        if (name) return "加速";
         if (desc) return "Hastes you for a while.";
 
         {
@@ -452,7 +452,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     /* Great Escapes */
     case 16:
-        if (name) return "Create Stairs";
+        if (name) return "创造楼梯";
         if (desc) return "Creates a flight of stairs underneath you.";
 
         if (cast)
@@ -460,7 +460,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 17:
-        if (name) return "Panic Hit";
+        if (name) return "恐慌打击";
         if (desc) return "Attack an adjacent monster and attempt a getaway.";
 
         if (cast)
@@ -475,13 +475,13 @@ cptr do_burglary_spell(int spell, int mode)
             {
                 py_attack(y, x, 0);
                 if (randint0(p_ptr->skills.dis) < 7)
-                    msg_print("You failed to teleport.");
+                    msg_print("你没能成功传送。");
                 else
                     teleport_player(30, 0);
             }
             else
             {
-                msg_print("You don't see any monster in this direction");
+                msg_print("在这个方向你没看到任何怪物");
                 msg_print(NULL);
                 return NULL;
             }
@@ -489,21 +489,21 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 18:
-        if (name) return "Panic Shot";
+        if (name) return "恐慌射击";
         if (desc) return "Shoot a nearby monster and attempt a getaway.";
 
         if (cast)
         {
             if (!do_cmd_fire()) return NULL;
             if (randint0(p_ptr->skills.dis) < 7)
-                msg_print("You failed to teleport.");
+                msg_print("你没能成功传送。");
             else
                 teleport_player(30, 0);
         }
         break;
 
     case 19:
-        if (name) return "Panic Summons";
+        if (name) return "恐慌召唤";
         if (desc) return "Summon assistance and attempt a getaway.";
 
         if (cast)
@@ -511,14 +511,14 @@ cptr do_burglary_spell(int spell, int mode)
             trump_summoning(damroll(2, 3), !fail, py, px, 0, SUMMON_THIEF, PM_ALLOW_GROUP);
 
             if (randint0(p_ptr->skills.dis) < 7)
-                msg_print("You failed to teleport.");
+                msg_print("你没能成功传送。");
             else
                 teleport_player(30, 0);
         }
         break;
 
     case 20:
-        if (name) return "Panic Traps";
+        if (name) return "恐慌陷阱";
         if (desc) return "Set multiple weak traps and attempt a getaway.";
 
         if (cast)
@@ -535,14 +535,14 @@ cptr do_burglary_spell(int spell, int mode)
             }
 
             if (randint0(p_ptr->skills.dis) < 7)
-                msg_print("You failed to teleport.");
+                msg_print("你没能成功传送。");
             else
                 teleport_player(30, 0);
         }
         break;
 
     case 21:
-        if (name) return "Flee Level";
+        if (name) return "逃离楼层";
         if (desc) return "Flee your current level without delay.";
 
         if (cast)
@@ -552,7 +552,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 22:
-        if (name) return "New Beginnings";
+        if (name) return "新的开始";
         if (desc) return "Recreates current dungeon level after a short delay.";
         if (info) return info_delay(15, 20);
 
@@ -561,7 +561,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 23:
-        if (name) return "Major Getaway";
+        if (name) return "大型逃遁";
         if (desc) return "Teleport long distance with very little energy use.";
 
         {
@@ -579,7 +579,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     /* Book of Shadows */
     case 24:
-        if (name) return "Protect Loot";
+        if (name) return "保护战利品";
         if (desc) return "For a long time, items in your inventory will have a chance at resisting destruction.";
 
         {
@@ -594,7 +594,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 25:
-        if (name) return "Teleport To";
+        if (name) return "传送到";
         if (desc) return "Teleport a visible monster next to you without disturbing it.";
 
         if (cast)
@@ -613,13 +613,13 @@ cptr do_burglary_spell(int spell, int mode)
             m_ptr = &m_list[cave[target_row][target_col].m_idx];
             monster_desc(m_name, m_ptr, 0);
             if (mon_save_tele_to(m_ptr, m_name, TRUE)) break;
-            msg_format("You command %s to return.", m_name);
+            msg_format("你命令 %s 返回。", m_name);
             teleport_monster_to(cave[target_row][target_col].m_idx, py, px, 100, TELEPORT_PASSIVE);
         }
         break;
 
     case 26:
-        if (name) return "Master Thievery";
+        if (name) return "大师级盗窃";
         if (desc) return "The ultimate in thievery. With a light touch, you attempt to relieve monsters of their goods.";
 
         if (cast)
@@ -627,7 +627,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 27:
-        if (name) return "Shadow Storm";
+        if (name) return "暗影风暴";
         if (desc) return "Fires a huge ball of darkness.";
 
         {
@@ -645,7 +645,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 28:
-        if (name) return "Hide in Shadows";
+        if (name) return "隐匿于阴影";
         if (desc) return "You become shrouded in darkness, your torch light magically dimmed.";
         {
             int d = plev;
@@ -654,7 +654,7 @@ cptr do_burglary_spell(int spell, int mode)
             {
                 if (p_ptr->tim_superstealth)
                 {
-                    msg_print("You are already hiding in the shadows.");
+                    msg_print("你已经隐匿在阴影中了。");
                     return NULL;
                 }
                 set_tim_superstealth(spell_power(randint1(d) + d), FALSE);
@@ -663,7 +663,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 29:
-        if (name) return "Den of Thieves";
+        if (name) return "盗贼巢穴";
         if (desc) return "As a Thief Lord, you may summon assistance from your minions at will.";
         if (cast)
         {
@@ -687,7 +687,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 30:
-        if (name) return "Set Ultimate Trap";
+        if (name) return "设置终极陷阱";
         if (desc) return "Sets an extremely powerful trap under you. This trap will have various strong effects on a passing monster.";
 
         if (cast)
@@ -695,7 +695,7 @@ cptr do_burglary_spell(int spell, int mode)
         break;
 
     case 31:
-        if (name) return "Assassinate";
+        if (name) return "暗杀";
         if (desc) return "Attempt to instantly kill a sleeping monster.";
 
         if (cast)
@@ -714,13 +714,13 @@ cptr do_burglary_spell(int spell, int mode)
                     py_attack(y, x, ROGUE_ASSASSINATE);
                 else
                 {
-                    msg_print("This only works for sleeping monsters.");
+                    msg_print("这只对睡眠中的怪物有效。");
                     return NULL;
                 }
             }
             else
             {
-                msg_print("There is no monster.");
+                msg_print("这里没有怪物。");
                 return NULL;
             }
         }
@@ -747,7 +747,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.encumbrance.max_wgt = 400;
         me.encumbrance.weapon_pct = 33;
         me.encumbrance.enc_wgt = 1000;
@@ -792,26 +792,8 @@ class_t *rogue_get_class(void)
     skills_t bs = { 45,  37,  36,   5,  32,  24,  60,  60};
     skills_t xs = { 15,  12,  10,   0,   0,   0,  21,  14};
 
-        me.name = "Rogue";
-        me.desc = "A Rogue is a character who prefers to live by their cunning, yet is "
-                    "capable of fighting their way out of a tight spot when necessary. Rogues "
-                    "are good at locating secret doors and hidden traps, and are masters of "
-                    "trap-disarming and lockpicking. Their exceptional stealth allows "
-                    "rogues to sneak around sleeping creatures without having to fight; "
-                    "they can also backstab a fleeing monster or surprise an "
-                    "enemy with a telling first blow. Rogues are fairly good at ranged combat, "
-                    "and receive special bonuses when shooting with a sling.\n \n"
-                    "Rogues can select one realm - Sorcery, Death, Trump, Arcane, Craft, Law, "
-                    "or Burglary. Except for this last realm, rogues have certain limitations " 
-                    "on which spells they can learn, and they do not learn new spells very quickly. "
-                    "The Burglary realm is unique to the rogue, and the speciality of the class; it "
-                    "offers spells for setting traps, picking pockets, negotiating with "
-                    "other thieves, and escaping from a tight spot. Burglary rogues are "
-                    "agents of the Black Market and receive favorable pricing from "
-                    "that shop. Burglary rogues use Dexterity as their spellcasting stat, "
-                    "and can use this special art from the beginning of their adventures; rogues of other "
-                    "realms, however, rely on Intelligence and cannot learn magic spells before they "
-                    "reach level 5.";
+        me.name = "盗贼";
+        me.desc = "盗贼是喜欢依靠狡猾来生存的角色，但在必要时也有能力在困境中杀出一条血路。盗贼善于寻找密门和隐藏的陷阱，是解除陷阱和开锁的大师。他们非凡的潜行能力允许盗贼在沉睡的生物周围偷偷溜过而无需战斗；他们还可以背刺逃跑的怪物，或者用致命的第一击出其不意地袭击敌人。盗贼在远程战斗方面相当不错，并且在使用投石索射击时会获得特殊加成。\n \n盗贼可以选择一个魔法领域——咒术、死亡、王牌、奥秘、工匠、律法或行窃。除了最后一个领域外，盗贼在可以学习哪些法术上有一定的限制，并且他们学习新法术的速度不是很快。行窃(Burglary)领域是盗贼独有的，也是该职业的专长；它提供了用于设置陷阱、妙手空空、与其他盗贼谈判以及从困境中逃脱的法术。行窃盗贼是黑市的代理人，能从该商店获得优惠的价格。行窃盗贼使用敏捷作为他们的施法属性，并且可以从冒险一开始就使用这门特殊的艺术；然而，选择其他领域的盗贼依赖于智力，并且在达到5级之前无法学习魔法法术。";
 
         me.stats[A_STR] =  1;
         me.stats[A_INT] =  1;

@@ -112,7 +112,7 @@ cptr do_law_spell(int spell, int mode)
     {
     /* Attractions of Law */
     case 0:
-        if (name) return "Detect Money";
+        if (name) return "探测金钱";
         if (desc) return "Detects all treasures in your vicinity.";
         if (info) return info_radius(rad);
 
@@ -125,7 +125,7 @@ cptr do_law_spell(int spell, int mode)
 
 
     case 1:
-        if (name) return "Detect Traps";
+        if (name) return "探测陷阱";
         if (desc) return "Detects nearby traps.";
         if (info) return info_radius(rad);
         if (cast)
@@ -133,14 +133,14 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 2:
-        if (name) return "Satisfy Hunger";
+        if (name) return "满足饥饿";
         if (desc) return "Satisfies hunger.";
         if (cast)
             set_food(PY_FOOD_MAX - 1);
         break;
 
     case 3:
-        if (name) return "Detect Objects";
+        if (name) return "探测物品";
         if (desc) return "Detects all items in your vicinity.";
         if (info) return info_radius(rad);
 
@@ -149,7 +149,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 4:
-        if (name) return "Basic Trap";
+        if (name) return "基础陷阱";
         if (desc) return "Sets a trap under you. The trap will have a random weak effect on the monster that triggers it.";
 
         if (cast)
@@ -157,7 +157,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 5:
-        if (name) return "Disarm Traps";
+        if (name) return "解除陷阱";
         if (desc) return "Fires a beam which disarms traps.";
 
         if (cast)
@@ -169,7 +169,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 6:
         lisa = ((plev >= 45) && (lawyer_aptitude));
-        if (name) return "Identify";
+        if (name) return "鉴定";
         if (desc) return (lisa ? "Fully identifies an item." : "Identifies an item.");
 
         {
@@ -183,7 +183,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 7:
-        if (name) return "Dig";
+        if (name) return "挖掘";
         if (desc) return "Turns one rock square to mud.";
 
         {
@@ -205,7 +205,7 @@ cptr do_law_spell(int spell, int mode)
     /* Obstacle Coursebook */
     case 8:
         lisa = (plev >= 25);
-        if (name) return "Detect Monsters";
+        if (name) return "探测怪物";
         if (desc) return (lisa ? "Detects all monsters in your vicinity." : "Detects all monsters in your vicinity unless invisible.");
 
         {
@@ -222,7 +222,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 9:
-        if (name) return "Slow Monster";
+        if (name) return "减速怪物";
         if (desc) return "Attempts to slow a monster.";
 
         {
@@ -240,7 +240,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 10:
-        if (name) return "Confuse Monster";
+        if (name) return "混乱怪物";
         if (desc) return "Attempts to confuse a monster.";
 
         {
@@ -258,7 +258,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 11:
-        if (name) return "Scare Monster";
+        if (name) return "恐吓怪物";
         if (desc) return "Attempts to scare a monster.";
 
         {
@@ -276,7 +276,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 12:
-        if (name) return "Semicolon of Punishment";
+        if (name) return "惩戒分号";
         if (desc) return "Inscribes a semicolon of punishment on the floor beneath you.";
         if (info) return info_damage(0, 0, 32 + plev);
 
@@ -285,7 +285,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 13:
-        if (name) return "Confuse Everybody";
+        if (name) return "群体混乱";
         if (desc) return "Attempts to confuse all monsters in sight.";
 
         {
@@ -301,7 +301,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 14:
-        if (name) return "Create Doors";
+        if (name) return "创造门";
         if (desc) return "Creates doors on all surrounding squares.";
 
         if (cast)
@@ -313,7 +313,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 15:
-        if (name) return "Semicolon of Warding";
+        if (name) return "守护分号";
         if (desc) return "Inscribes a semicolon of warding on the floor beneath you.";
 
         {
@@ -326,7 +326,7 @@ cptr do_law_spell(int spell, int mode)
 
     /* Building Alternative Realities */
     case 16:
-        if (name) return "Charm Monster";
+        if (name) return "魅惑怪物";
         if (desc) return "Attempts to charm a monster.";
 
         if (cast)
@@ -339,7 +339,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 17:
-        if (name) return "Expert Trap";
+        if (name) return "专家陷阱";
         if (desc) return "Sets a trap under you. The trap will have a random effect on the monster that triggers it.";
 
         if (cast)
@@ -347,7 +347,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 18:
-        if (name) return "Getaway";
+        if (name) return "逃之夭夭";
         if (desc) return "Provides a random means of escape.";
         if (cast)
         {
@@ -373,7 +373,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 19:
-        if (name) return "Blame Undead";
+        if (name) return "嫁祸死灵";
         if (desc) return "Hurts all undead monsters in sight.";
 
         {
@@ -387,13 +387,13 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 20:
-        if (name) return "Probe";
+        if (name) return "探测术";
         if (desc) return "Reveals information about nearby monsters.";
         if (cast) probing();
         break;
 
     case 21:
-        if (name) return "Spin";
+        if (name) return "扭曲事实";
         if (desc) return "Provides temporary resistance to nether and makes charming effects more powerful.";
 
         {
@@ -409,7 +409,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 22:
-        if (name) return "Advanced Bloodsucking";
+        if (name) return "高级吸血";
         if (desc) return "Absorbs life from a nearby living creature.";
 
         {
@@ -432,7 +432,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 23:
-        if (name) return "Alter Reality";
+        if (name) return "改变现实";
         if (desc) return "Recreates the current dungeon level.";
 
         if (cast) { p_ptr->alter_reality = 2; do_alter_reality(); }
@@ -440,7 +440,7 @@ cptr do_law_spell(int spell, int mode)
 
     /* Acquiris Quodcumque Rapis */
     case 24:
-        if (name) return "Blink";
+        if (name) return "闪烁";
         if (desc) return "Teleport a short distance.";
 
         {
@@ -458,7 +458,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 25:
-        if (name) return "Tread Softly";
+        if (name) return "轻声潜行";
         if (desc) return "Grants enhanced stealth for a bit.";
         {
             int base = spell_power(50);
@@ -471,7 +471,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 26:
         lisa = ((plev >= 48) && (lawyer_aptitude));
-        if (name) return "Map Surroundings";
+        if (name) return "测绘周围";
         if (desc) return ((lisa) ? "Maps and detects the nearby area." : "Maps the nearby area.");
 
         {
@@ -488,7 +488,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 27:
-        if (name) return "Dig Deep";
+        if (name) return "深度挖掘";
         if (desc) return "Fires a beam of disintegration.";
 
         {
@@ -510,7 +510,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 28:
-        if (name) return "Unholy Rage";
+        if (name) return "邪恶狂暴";
         if (desc) return "Puts you in a temporary berserk rage and heals 75 HP.";
 
         {
@@ -528,7 +528,7 @@ cptr do_law_spell(int spell, int mode)
 
 
     case 29:
-        if (name) return "Subpoena";
+        if (name) return "传票";
         if (desc) return "Teleports a visible monster to you.";
 
         if (cast)
@@ -553,25 +553,25 @@ cptr do_law_spell(int spell, int mode)
                 if (r_ptr->flagsr & RFR_RES_ALL)
                 {
                     mon_lore_r(m_ptr, RFR_RES_TELE);
-                    msg_format("%^s is unaffected!", m_name);
+                    msg_format("%^s未受影响！", m_name);
                     break;
                 }
                 else if (r_ptr->level > (p_ptr->pclass == CLASS_LAWYER ? randint1(100) + plev : randint1(100)))
                 {
                     mon_lore_r(m_ptr, RFR_RES_TELE);
-                    msg_format("%^s resists!", m_name);
+                    msg_format("%^s抵抗了！", m_name);
                     break;
                 }
             }
             /* Wake it up */
             (void)set_monster_csleep(cave[target_row][target_col].m_idx, 0);
-            msg_format("You command %s to return.", m_name);
+            msg_format("你命令%s归来。", m_name);
             teleport_monster_to(cave[target_row][target_col].m_idx, py, px, 100, TELEPORT_PASSIVE);
         }
         break;
 
     case 30:
-        if (name) return "Teleport";
+        if (name) return "传送";
         if (desc) return "Teleport a long distance.";
 
         {
@@ -589,7 +589,7 @@ cptr do_law_spell(int spell, int mode)
         break;
 
     case 31:
-        if (name) return "Dazzle";
+        if (name) return "致盲";
         if (desc) return "Attempts to slow, stun, confuse, scare and freeze nearby monsters.";
 
         {
@@ -660,14 +660,8 @@ class_t *lawyer_get_class(void)
     skills_t bs = { 45,  33,  42,   3,  40,  32,  55,  40};
     skills_t xs = { 15,  11,  10,   0,   1,   0,  15,  12};
 
-        me.name = "Lawyer";
-        me.desc = "Known for his unsurpassed expertise in the mysterious realm of Law,"
-                  " the Lawyer has a comprehensive skillset that allows him to set and"
-                  " detect traps, to slow or mystify his enemies, to quietly escape or"
-                  " avoid dangerous fights, to acquire knowledge about the world around"
-                  " him, and to make friends and influence people. As he relies on his"
-                  " familiarity with Law and with tricks and approaches that have"
-                  " worked in the past, the lawyer uses Wisdom as his spellcasting stat.";
+        me.name = "律师";
+        me.desc = "律师以其在神秘的律法领域无与伦比的专业知识而闻名，拥有全面的技能组合，能够设置和探测陷阱，减速或迷惑敌人，悄无声息地逃脱或避开危险的战斗，获取有关周围世界的知识，以及结交朋友和影响他人。由于依赖于对律法的熟悉以及过去行之有效的技巧和方法，律师使用感知作为他的施法属性。";
 
         me.stats[A_STR] = -3;
         me.stats[A_INT] =  2;

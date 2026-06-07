@@ -45,37 +45,37 @@ void set_action(int typ)
         switch (prev_typ)
         {
         case ACTION_SEARCH:
-            msg_print("You no longer walk carefully.");
+            msg_print("你不再小心翼翼地行走了。");
             p_ptr->redraw |= PR_EFFECTS;
             break;
         case ACTION_REST:
             resting = 0;
             break;
         case ACTION_LEARN:
-            msg_print("You stop learning spells.");
+            msg_print("你停止了学习法术。");
             new_mane = FALSE;
             break;
         case ACTION_KAMAE:
-            msg_print("You stop assuming the posture.");
+            msg_print("你解除了架势。");
             p_ptr->special_defense &= ~(KAMAE_MASK);
             break;
         case ACTION_KATA:
-            msg_print("You stop assuming the posture.");
+            msg_print("你解除了架势。");
             p_ptr->special_defense &= ~(KATA_MASK);
             p_ptr->update |= (PU_MONSTERS);
             p_ptr->redraw |= (PR_STATUS);
             break;
         case ACTION_SING:
-            msg_print("You stop singing.");
+            msg_print("你停止了唱歌。");
             break;
         case ACTION_QUICK_WALK:
-            msg_print("You are no longer moving extremely fast.");
+            msg_print("你不再以极快的速度移动了。");
             break;
         case ACTION_SPELL:
-            msg_print("You stopped spelling all spells.");
+            msg_print("你停止了所有法术的施放。");
             break;
         case ACTION_STALK:
-            msg_print("You no longer stalk your prey.");
+            msg_print("你不再追踪你的猎物了。");
             break;
         }
     }
@@ -88,20 +88,20 @@ void set_action(int typ)
     switch (p_ptr->action)
     {
     case ACTION_SEARCH:
-        msg_print("You begin to walk carefully.");
+        msg_print("你开始小心翼翼地行走。");
         p_ptr->redraw |= PR_EFFECTS;
         break;
     case ACTION_LEARN:
-        msg_print("You begin to learn spells.");
+        msg_print("你开始学习法术。");
         break;
     case ACTION_FISH:
-        msg_print("You begin fishing...");
+        msg_print("你开始钓鱼……");
         break;
     case ACTION_QUICK_WALK:
-        msg_print("You begin to move extremely fast.");
+        msg_print("你开始以极快的速度移动。");
         break;
     case ACTION_STALK:
-        msg_print("You begin to stalk your prey.");
+        msg_print("你开始追踪你的猎物。");
         break;
     }
 
@@ -121,7 +121,7 @@ void interrupt_singing(bool take_energy)
         cptr str = (music_singing_any()) ? "singing" : "spelling";
         p_ptr->magic_num1[1] = p_ptr->magic_num1[0];
         p_ptr->magic_num1[0] = 0;
-        msg_format("Your %s is interrupted.", str);
+        msg_format("你的 %s 被打断了。", str);
         p_ptr->action = ACTION_NONE;
 
         /* Recalculate bonuses */
@@ -306,11 +306,11 @@ bool p_inc_minislow(int lisays)
 
     if (!p_ptr->minislow)
     {
-        msg_print("You no longer feel sluggish.");
+        msg_print("你不再感到迟缓了。");
     }
     else if (!vanha)
     {
-        msg_print("You feel very sluggish!");
+        msg_print("你感觉非常迟缓！");
     }
 
     /* Disturb */
@@ -761,7 +761,7 @@ void dispel_player(void)
     if (p_ptr->special_attack & ATTACK_CONFUSE)
     {
         p_ptr->special_attack &= ~(ATTACK_CONFUSE);
-        msg_print("Your hands stop glowing.");
+        msg_print("你的双手不再发光。");
     }
     interrupt_singing(TRUE);
 }
@@ -819,7 +819,7 @@ bool set_mimic(int v, int p, bool do_dec)
         }
         else if ((!p_ptr->tim_mimic) || (p_ptr->mimic_form != p))
         {
-            msg_print("You feel that your body changes.");
+            msg_print("你感觉自己的身体发生了改变。");
             if (p_ptr->prace == RACE_DOPPELGANGER) mimic_race(MIMIC_NONE, "suppress");
             p_ptr->mimic_form=p;
             notice = TRUE;
@@ -831,7 +831,7 @@ bool set_mimic(int v, int p, bool do_dec)
     {
         if (p_ptr->tim_mimic)
         {
-            msg_print("You are no longer transformed.");
+            msg_print("你退出了变形状态。");
             if (p_ptr->prace == RACE_DOPPELGANGER) 
             {
                 p_ptr->tim_mimic = v; 
@@ -891,11 +891,11 @@ bool set_blind(int v, bool do_dec)
         {
             if (p_ptr->prace == RACE_ANDROID)
             {
-                msg_print("You are blind!");
+                msg_print("你失明了！");
             }
             else
             {
-                msg_print("You are blind!");
+                msg_print("你失明了！");
             }
 
             notice = TRUE;
@@ -910,11 +910,11 @@ bool set_blind(int v, bool do_dec)
         {
             if (p_ptr->prace == RACE_ANDROID)
             {
-                msg_print("You can see again.");
+                msg_print("你的视力恢复了。");
             }
             else
             {
-                msg_print("You can see again.");
+                msg_print("你的视力恢复了。");
             }
 
             notice = TRUE;
@@ -953,7 +953,7 @@ bool set_blind(int v, bool do_dec)
 
 void lose_kata(void)
 {
-    msg_print("Your posture gets loose.");
+    msg_print("你的架势变得松懈了。");
     p_ptr->special_defense &= ~(KATA_MASK);
     p_ptr->update |= (PU_BONUS);
     p_ptr->update |= (PU_MONSTERS);
@@ -964,7 +964,7 @@ void lose_kata(void)
 
 void lose_kamae(void)
 {
-    msg_print("Your posture gets loose.");
+    msg_print("你的架势变得松懈了。");
     p_ptr->special_defense &= ~(KAMAE_MASK);
     p_ptr->update |= (PU_BONUS);
     p_ptr->redraw |= (PR_STATE);
@@ -989,11 +989,11 @@ bool set_confused(int v, bool do_dec)
         if ((p_ptr->confused > v) && (!do_dec)) return FALSE;
         if (!p_ptr->confused)
         {
-            msg_print("You are confused!");
+            msg_print("你陷入了困惑！");
 
             if (p_ptr->action == ACTION_LEARN)
             {
-                msg_print("You cannot continue Learning!");
+                msg_print("你无法继续学习法术了！");
                 new_mane = FALSE;
 
                 p_ptr->redraw |= (PR_STATE);
@@ -1025,7 +1025,7 @@ bool set_confused(int v, bool do_dec)
     {
         if (p_ptr->confused)
         {
-            msg_print("You feel less confused now.");
+            msg_print("你感觉没那么困惑了。");
 
             p_ptr->special_attack &= ~(ATTACK_SUIKEN);
             notice = TRUE;
@@ -1069,7 +1069,7 @@ bool set_poisoned(int v, bool do_dec)
         if ((p_ptr->poisoned > v) && (!do_dec)) return FALSE;
         if (!p_ptr->poisoned)
         {
-            msg_print("You are poisoned!");
+            msg_print("你中毒了！");
 
             notice = TRUE;
         }
@@ -1080,7 +1080,7 @@ bool set_poisoned(int v, bool do_dec)
     {
         if (p_ptr->poisoned)
         {
-            msg_print("You are no longer poisoned.");
+            msg_print("你不再中毒了。");
 
             notice = TRUE;
         }
@@ -1125,9 +1125,9 @@ bool set_paralyzed(int v, bool do_dec)
         if (!p_ptr->paralyzed)
         {
             if (repose_of_the_dead)
-                msg_print("You enter a deep sleep!");
+                msg_print("你陷入了沉睡！");
             else
-                msg_print("<color:v>You are paralyzed!</color>");
+                msg_print("<color:v>你被麻痹了！</color>");
 
             /* Sniper */
             if (p_ptr->concent) reset_concentration(TRUE);
@@ -1147,7 +1147,7 @@ bool set_paralyzed(int v, bool do_dec)
         {
             if (repose_of_the_dead)
             {
-                msg_print("You awake refreshed!");
+                msg_print("你醒来时感到神清气爽！");
                 restore_level();
                 lp_player(1000);
                 set_poisoned(0, TRUE);
@@ -1178,7 +1178,7 @@ bool set_paralyzed(int v, bool do_dec)
                 repose_of_the_dead = FALSE;
             }
             else
-                msg_print("<color:B>You can move again.</color>");
+                msg_print("<color:B>你可以再次移动了。</color>");
 
             notice = TRUE;
         }
@@ -1230,7 +1230,7 @@ bool set_image(int v, bool do_dec)
         if ((p_ptr->image > v) && (!do_dec)) return FALSE;
         if (!p_ptr->image)
         {
-            msg_print("Oh, wow! Everything looks so cosmic now!");
+            msg_print("哦，哇哦！一切看起来都如此迷幻！");
 
             /* Sniper */
             if (p_ptr->concent) reset_concentration(TRUE);
@@ -1252,7 +1252,7 @@ bool set_image(int v, bool do_dec)
     {
         if (p_ptr->image)
         {
-            msg_print("You can see clearly again.");
+            msg_print("你又能看清东西了。");
 
             notice = TRUE;
         }
@@ -1307,7 +1307,7 @@ bool set_tim_spurt(int v, bool do_dec)
         }
         else
         {
-            msg_print("You feel time slow down.");
+            msg_print("你感觉时间变慢了。");
             notice = TRUE;
         }
     }
@@ -1316,7 +1316,7 @@ bool set_tim_spurt(int v, bool do_dec)
     {
         if (p_ptr->tim_spurt)
         {
-            msg_print("You feel time speed up.");
+            msg_print("你感觉时间变快了。");
             notice = TRUE;
         }
     }
@@ -1359,7 +1359,7 @@ bool set_tim_blood_shield(int v, bool do_dec)
         }
         else
         {
-            msg_print("You are shielded in blood!");
+            msg_print("你被鲜血护盾包围了！");
             notice = TRUE;
         }
     }
@@ -1368,7 +1368,7 @@ bool set_tim_blood_shield(int v, bool do_dec)
     {
         if (p_ptr->tim_blood_shield)
         {
-            msg_print("Your blood shield vanishes.");
+            msg_print("你的鲜血护盾消失了。");
             notice = TRUE;
         }
     }
@@ -1411,7 +1411,7 @@ bool set_tim_blood_revenge(int v, bool do_dec)
         }
         else
         {
-            msg_print("Its time for bloody revenge!");
+            msg_print("是时候进行血腥复仇了！");
             notice = TRUE;
         }
     }
@@ -1420,7 +1420,7 @@ bool set_tim_blood_revenge(int v, bool do_dec)
     {
         if (p_ptr->tim_blood_revenge)
         {
-            msg_print("The time for bloody revenge has passed.");
+            msg_print("血腥复仇的时间过去了。");
             notice = TRUE;
         }
     }
@@ -1462,7 +1462,7 @@ bool set_tim_blood_seek(int v, bool do_dec)
         }
         else
         {
-            msg_print("Your weapon thirsts for life!");
+            msg_print("你的武器渴望着生命！");
             notice = TRUE;
         }
     }
@@ -1471,7 +1471,7 @@ bool set_tim_blood_seek(int v, bool do_dec)
     {
         if (p_ptr->tim_blood_seek)
         {
-            msg_print("Your weapon no longer thirsts for life.");
+            msg_print("你的武器不再渴望生命了。");
             notice = TRUE;
         }
     }
@@ -1514,7 +1514,7 @@ bool set_tim_blood_sight(int v, bool do_dec)
         }
         else
         {
-            msg_print("You sense life!");
+            msg_print("你感知到了生命！");
             notice = TRUE;
         }
     }
@@ -1523,7 +1523,7 @@ bool set_tim_blood_sight(int v, bool do_dec)
     {
         if (p_ptr->tim_blood_sight)
         {
-            msg_print("You no longer sense life.");
+            msg_print("你不再感知生命了。");
             notice = TRUE;
         }
     }
@@ -1567,7 +1567,7 @@ bool set_tim_blood_feast(int v, bool do_dec)
         }
         else
         {
-            msg_print("You begin to feast on blood!");
+            msg_print("你开始痛饮鲜血！");
             notice = TRUE;
         }
     }
@@ -1576,7 +1576,7 @@ bool set_tim_blood_feast(int v, bool do_dec)
     {
         if (p_ptr->tim_blood_feast)
         {
-            msg_print("You no longer feast on blood.");
+            msg_print("你不再痛饮鲜血了。");
             notice = TRUE;
         }
     }
@@ -1619,7 +1619,7 @@ bool set_tim_superstealth(int v, bool do_dec)
         }
         else
         {
-            msg_print("You can hide in shadows!");
+            msg_print("你可以潜藏于暗影中了！");
             notice = TRUE;
         }
     }
@@ -1628,7 +1628,7 @@ bool set_tim_superstealth(int v, bool do_dec)
     {
         if (p_ptr->tim_superstealth)
         {
-            msg_print("You can no longer hide in shadows.");
+            msg_print("你不再能潜藏于暗影中了。");
             if (!player_is_ninja)
                 set_superstealth(FALSE);
             notice = TRUE;
@@ -1675,7 +1675,7 @@ bool set_tim_no_spells(int v, bool do_dec)
     {
         if (!p_ptr->tim_no_spells)
         {
-            msg_print("You feel your magic blocked.");
+            msg_print("你感觉自己的魔法被阻断了。");
             notice = TRUE;
         }
     }
@@ -1684,7 +1684,7 @@ bool set_tim_no_spells(int v, bool do_dec)
     {
         if (p_ptr->tim_no_spells)
         {
-            msg_print("You feel your magic return.");
+            msg_print("你感觉自己的魔法恢复了。");
             notice = TRUE;
         }
     }
@@ -1777,7 +1777,7 @@ bool set_tim_force(int v, bool do_dec)
         }
         else
         {
-            msg_print("Your weapon seems very powerful.");
+            msg_print("你的武器似乎变得非常强大。");
             notice = TRUE;
         }
     }
@@ -1786,7 +1786,7 @@ bool set_tim_force(int v, bool do_dec)
     {
         if (p_ptr->tim_force)
         {
-            msg_print("Your weapon seems normal once again.");
+            msg_print("你的武器再次恢复了正常。");
             notice = TRUE;
         }
     }
@@ -1829,7 +1829,7 @@ bool set_tim_building_up(int v, bool do_dec)
         }
         else
         {
-            msg_print("You become gigantic!");
+            msg_print("你变得巨大无比！");
             notice = TRUE;
         }
     }
@@ -1838,7 +1838,7 @@ bool set_tim_building_up(int v, bool do_dec)
     {
         if (p_ptr->tim_building_up)
         {
-            msg_print("Your body reverts to normal size.");
+            msg_print("你的身体恢复了正常大小。");
             notice = TRUE;
         }
     }
@@ -1882,7 +1882,7 @@ bool set_tim_vicious_strike(int v, bool do_dec)
         }
         else
         {
-            msg_print("You feel greatly exposed by your last attack.");
+            msg_print("你感觉刚刚的攻击让你破绽百出。");
             notice = TRUE;
         }
     }
@@ -1891,7 +1891,7 @@ bool set_tim_vicious_strike(int v, bool do_dec)
     {
         if (p_ptr->tim_vicious_strike)
         {
-            msg_print("You no longer feel greatly exposed.");
+            msg_print("你不再感到破绽百出了。");
             notice = TRUE;
         }
     }
@@ -1934,7 +1934,7 @@ bool set_tim_enlarge_weapon(int v, bool do_dec)
         }
         else
         {
-            msg_print("You feel your weapon is much bigger.");
+            msg_print("你感觉你的武器变大了许多。");
             notice = TRUE;
         }
     }
@@ -1943,7 +1943,7 @@ bool set_tim_enlarge_weapon(int v, bool do_dec)
     {
         if (p_ptr->tim_enlarge_weapon)
         {
-            msg_print("Your weapon returns to normal.");
+            msg_print("你的武器恢复了正常。");
             notice = TRUE;
         }
     }
@@ -1986,7 +1986,7 @@ bool set_tim_field(int v, bool do_dec)
         }
         else
         {
-            msg_print("An invisible force field surrounds your weapon!");
+            msg_print("一层无形的力场包裹了你的武器！");
             notice = TRUE;
         }
     }
@@ -1995,7 +1995,7 @@ bool set_tim_field(int v, bool do_dec)
     {
         if (p_ptr->tim_field)
         {
-            msg_print("Your weapon is no longer surrounded by a force field.");
+            msg_print("你的武器不再被力场包裹了。");
             notice = TRUE;
         }
     }
@@ -2038,7 +2038,7 @@ bool set_tim_spell_reaction(int v, bool do_dec)
         }
         else
         {
-            msg_print("You feel ready for magical attacks.");
+            msg_print("你感觉已经准备好迎接魔法攻击了。");
             notice = TRUE;
         }
     }
@@ -2047,7 +2047,7 @@ bool set_tim_spell_reaction(int v, bool do_dec)
     {
         if (p_ptr->tim_spell_reaction)
         {
-            msg_print("You are no longer ready for magical attacks.");
+            msg_print("你不再准备好迎接魔法攻击了。");
             notice = TRUE;
         }
     }
@@ -2079,7 +2079,7 @@ bool set_tim_resist_curses(int v, bool do_dec)
         }
         else
         {
-            msg_print("You feel resistant to curses.");
+            msg_print("你感觉对诅咒产生了抵抗力。");
             notice = TRUE;
         }
     }
@@ -2088,7 +2088,7 @@ bool set_tim_resist_curses(int v, bool do_dec)
     {
         if (p_ptr->tim_resist_curses)
         {
-            msg_print("You are no longer resistant to curses.");
+            msg_print("你对诅咒的抵抗力消失了。");
             notice = TRUE;
         }
     }
@@ -2120,7 +2120,7 @@ bool set_tim_armor_of_fury(int v, bool do_dec)
         }
         else
         {
-            msg_print("You feel cloaked in rage.");
+            msg_print("你感觉被怒火附体了。");
             notice = TRUE;
         }
     }
@@ -2129,7 +2129,7 @@ bool set_tim_armor_of_fury(int v, bool do_dec)
     {
         if (p_ptr->tim_armor_of_fury)
         {
-            msg_print("You are no longer cloaked in rage.");
+            msg_print("你不再被怒火附体了。");
             notice = TRUE;
         }
     }
@@ -2161,7 +2161,7 @@ bool set_tim_spell_turning(int v, bool do_dec)
         }
         else
         {
-            msg_print("You begin to turn magical attacks.");
+            msg_print("你开始反射魔法攻击。");
             notice = TRUE;
         }
     }
@@ -2170,7 +2170,7 @@ bool set_tim_spell_turning(int v, bool do_dec)
     {
         if (p_ptr->tim_spell_turning)
         {
-            msg_print("You are no longer turn magical attacks.");
+            msg_print("你不再反射魔法攻击了。");
             notice = TRUE;
         }
     }
@@ -2203,7 +2203,7 @@ bool set_tim_blood_rite(int v, bool do_dec)
         }
         else
         {
-            msg_print("You invoke the ancient blood rite.");
+            msg_print("你唤起了古老的鲜血仪式。");
             notice = TRUE;
         }
     }
@@ -2212,7 +2212,7 @@ bool set_tim_blood_rite(int v, bool do_dec)
     {
         if (p_ptr->tim_blood_rite)
         {
-            msg_print("The blood rite has ended.");
+            msg_print("鲜血仪式结束了。");
             notice = TRUE;
         }
     }
@@ -2257,7 +2257,7 @@ bool set_fast(int v, bool do_dec)
         }
         else if (!IS_FAST() && !IS_LIGHT_SPEED())
         {
-            msg_print("You feel yourself moving much faster!");
+            msg_print("你感觉自己的移动速度快多了！");
 
             notice = TRUE;
             virtue_add(VIRTUE_PATIENCE, -1);
@@ -2270,7 +2270,7 @@ bool set_fast(int v, bool do_dec)
     {
         if (p_ptr->fast && !IS_LIGHT_SPEED() && !music_singing(MUSIC_SPEED) && !music_singing(MUSIC_SHERO))
         {
-            msg_print("You feel yourself slow down.");
+            msg_print("你感觉自己变慢了。");
 
             notice = TRUE;
         }
@@ -2319,7 +2319,7 @@ bool set_lightspeed(int v, bool do_dec)
         }
         else if (!p_ptr->lightspeed)
         {
-            msg_print("You feel yourself moving extremely fast!");
+            msg_print("你感觉自己正在极速移动！");
 
             notice = TRUE;
             virtue_add(VIRTUE_PATIENCE, -1);
@@ -2332,7 +2332,7 @@ bool set_lightspeed(int v, bool do_dec)
     {
         if (p_ptr->lightspeed)
         {
-            msg_print("You feel yourself slow down.");
+            msg_print("你感觉自己变慢了。");
 
             notice = TRUE;
         }
@@ -2381,7 +2381,7 @@ bool set_slow(int v, bool do_dec)
         }
         else if (!p_ptr->slow)
         {
-            msg_print("You feel yourself moving slower!");
+            msg_print("你感觉自己的移动速度变慢了！");
 
             notice = TRUE;
         }
@@ -2392,7 +2392,7 @@ bool set_slow(int v, bool do_dec)
     {
         if (p_ptr->slow)
         {
-            msg_print("You feel yourself speed up.");
+            msg_print("你感觉自己变快了。");
 
             notice = TRUE;
         }
@@ -2463,7 +2463,7 @@ bool set_unwell(int v, bool do_dec)
     {
         if (p_ptr->unwell)
         {
-            msg_print("You no longer feel unwell.");
+            msg_print("你不再感到不适了。");
 
             notice = TRUE;
         }
@@ -2475,7 +2475,7 @@ bool set_unwell(int v, bool do_dec)
     if ((!notice) && (old_eff != new_eff)) notice = TRUE;
     if ((new_eff) && (!old_eff))
     {
-        msg_print("You suddenly feel unwell!");
+        msg_print("你突然感到非常不适！");
     }
 
     /* Use the value */
@@ -2523,7 +2523,7 @@ bool set_no_air(int v, bool do_dec)
         }
         else if (!p_ptr->no_air)
         {
-            msg_print("Suddenly, the cave feels devoid of air!");
+            msg_print("突然，洞穴里似乎没有了空气！");
             notice = TRUE;
         }
     }
@@ -2533,7 +2533,7 @@ bool set_no_air(int v, bool do_dec)
     {
         if (p_ptr->no_air)
         {
-            msg_print("Air rushes back into the dungeon!");
+            msg_print("空气重新涌入了地下城！");
             no_air_monster = 0;
 
             notice = TRUE;
@@ -2581,7 +2581,7 @@ bool set_shield(int v, bool do_dec)
         }
         else if (!p_ptr->shield)
         {
-            msg_print("Your skin turns to stone.");
+            msg_print("你的皮肤变成了石头。");
 
             notice = TRUE;
         }
@@ -2592,7 +2592,7 @@ bool set_shield(int v, bool do_dec)
     {
         if (p_ptr->shield)
         {
-            msg_print("Your skin returns to normal.");
+            msg_print("你的皮肤恢复了正常。");
 
             notice = TRUE;
         }
@@ -2643,7 +2643,7 @@ bool set_tsubureru(int v, bool do_dec)
         }
         else if (!p_ptr->tsubureru)
         {
-            msg_print("Your body expands horizontally.");
+            msg_print("你的身体横向膨胀了。");
 
             notice = TRUE;
         }
@@ -2654,7 +2654,7 @@ bool set_tsubureru(int v, bool do_dec)
     {
         if (p_ptr->tsubureru)
         {
-            msg_print("Your body returns to normal.");
+            msg_print("你的身体恢复了正常。");
 
             notice = TRUE;
         }
@@ -2705,7 +2705,7 @@ bool set_magicdef(int v, bool do_dec)
         }
         else if (!p_ptr->magicdef)
         {
-            msg_print("You feel more resistant to magic.");
+            msg_print("你感觉对魔法有了更强的抵抗力。");
 
             notice = TRUE;
         }
@@ -2716,7 +2716,7 @@ bool set_magicdef(int v, bool do_dec)
     {
         if (p_ptr->magicdef)
         {
-            msg_print("You feel less resistant to magic.");
+            msg_print("你对魔法的抵抗力减弱了。");
 
             notice = TRUE;
         }
@@ -2767,7 +2767,7 @@ bool set_blessed(int v, bool do_dec)
         }
         else if (!IS_BLESSED())
         {
-            msg_print("You feel righteous!");
+            msg_print("你感觉充满了正义感！");
 
             notice = TRUE;
         }
@@ -2778,7 +2778,7 @@ bool set_blessed(int v, bool do_dec)
     {
         if (p_ptr->blessed && !music_singing(MUSIC_BLESS))
         {
-            msg_print("The prayer has expired.");
+            msg_print("祈祷的效果已经消失。");
 
             notice = TRUE;
         }
@@ -2828,7 +2828,7 @@ bool set_hero(int v, bool do_dec)
         }
         else if (!IS_HERO())
         {
-            msg_print("You feel like a hero!");
+            msg_print("你感觉自己像个英雄！");
 
             notice = TRUE;
         }
@@ -2839,7 +2839,7 @@ bool set_hero(int v, bool do_dec)
     {
         if (p_ptr->hero && !music_singing(MUSIC_HERO) && !music_singing(MUSIC_SHERO))
         {
-            msg_print("The heroism wears off.");
+            msg_print("英雄气概消失了。");
 
             notice = TRUE;
         }
@@ -2896,7 +2896,7 @@ bool set_shero(int v, bool do_dec)
         }
         else if (!p_ptr->shero)
         {
-            msg_print("You feel like a killing machine!");
+            msg_print("你感觉自己像一台杀戮机器！");
 
             notice = TRUE;
         }
@@ -2907,7 +2907,7 @@ bool set_shero(int v, bool do_dec)
     {
         if (p_ptr->shero)
         {
-            msg_print("You feel less Berserk.");
+            msg_print("你的狂暴平息了。");
 
             notice = TRUE;
         }
@@ -2963,7 +2963,7 @@ bool set_protevil(int v, bool do_dec)
         }
         else if (!p_ptr->protevil)
         {
-            msg_print("You feel safe from evil!");
+            msg_print("你感觉免受了邪恶的侵害！");
 
             notice = TRUE;
         }
@@ -2974,7 +2974,7 @@ bool set_protevil(int v, bool do_dec)
     {
         if (p_ptr->protevil)
         {
-            msg_print("You no longer feel safe from evil.");
+            msg_print("你不再感觉免受邪恶侵害了。");
 
             notice = TRUE;
         }
@@ -3020,7 +3020,7 @@ bool set_wraith_form(int v, bool do_dec)
         }
         else if (!p_ptr->wraith_form)
         {
-            msg_print("You leave the physical world and turn into a wraith-being!");
+            msg_print("你脱离了物质世界，变成了一个幽灵！");
 
             notice = TRUE;
 
@@ -3045,7 +3045,7 @@ bool set_wraith_form(int v, bool do_dec)
     {
         if (p_ptr->wraith_form)
         {
-            msg_print("You feel opaque.");
+            msg_print("你感觉身体变凝实了。");
 
             notice = TRUE;
 
@@ -3105,7 +3105,7 @@ bool set_invuln(int v, bool do_dec)
         }
         else if ((!IS_INVULN()) && (!p_ptr->ignore_invuln))
         {
-            msg_print("Invulnerability!");
+            msg_print("无敌！");
 
             notice = TRUE;
 
@@ -3130,7 +3130,7 @@ bool set_invuln(int v, bool do_dec)
     {
         if (p_ptr->invuln && !music_singing(MUSIC_INVULN))
         {
-            msg_print("The invulnerability wears off.");
+            msg_print("无敌状态消失了。");
 
             notice = TRUE;
 
@@ -3191,7 +3191,7 @@ bool set_tim_esp(int v, bool do_dec)
         }
         else if (!IS_TIM_ESP())
         {
-            msg_print("You feel your consciousness expand!");
+            msg_print("你感觉自己的意识在扩张！");
 
             notice = TRUE;
         }
@@ -3202,7 +3202,7 @@ bool set_tim_esp(int v, bool do_dec)
     {
         if (p_ptr->tim_esp && !music_singing(MUSIC_MIND))
         {
-            msg_print("Your consciousness contracts again.");
+            msg_print("你的意识再次收缩了。");
 
             notice = TRUE;
         }
@@ -3251,7 +3251,7 @@ bool set_tim_esp_magical(int v, bool do_dec)
         }
         else if (!p_ptr->tim_esp_magical)
         {
-            msg_print("You feel conscious of magical foes.");
+            msg_print("你感知到了魔法敌人。");
             notice = TRUE;
         }
     }
@@ -3261,7 +3261,7 @@ bool set_tim_esp_magical(int v, bool do_dec)
     {
         if (p_ptr->tim_esp_magical)
         {
-            msg_print("You are no longer conscious of magical foes.");
+            msg_print("你不再能感知魔法敌人了。");
             notice = TRUE;
         }
     }
@@ -3313,7 +3313,7 @@ bool set_tim_invis(int v, bool do_dec)
         }
         else if (!p_ptr->tim_invis)
         {
-            msg_print("Your eyes feel very sensitive!");
+            msg_print("你的眼睛感觉非常敏锐！");
 
             notice = TRUE;
         }
@@ -3324,7 +3324,7 @@ bool set_tim_invis(int v, bool do_dec)
     {
         if (p_ptr->tim_invis)
         {
-            msg_print("Your eyes feel less sensitive.");
+            msg_print("你的眼睛没那么敏锐了。");
 
             notice = TRUE;
         }
@@ -3377,7 +3377,7 @@ bool set_tim_infra(int v, bool do_dec)
         }
         else if (!IS_TIM_INFRA())
         {
-            msg_print("Your eyes begin to tingle!");
+            msg_print("你的眼睛开始刺痛！");
 
             notice = TRUE;
         }
@@ -3388,7 +3388,7 @@ bool set_tim_infra(int v, bool do_dec)
     {
         if (p_ptr->tim_infra && !wild_has_power(WILD_INFRAVISION))
         {
-            msg_print("Your eyes stop tingling.");
+            msg_print("你的眼睛不再刺痛了。");
 
             notice = TRUE;
         }
@@ -3440,7 +3440,7 @@ bool set_tim_poet(int v, bool do_dec)
         }
         else if (!p_ptr->tim_poet)
         {
-            msg_print("The wisdom of Kvasir flows through you!");
+            msg_print("克瓦希尔的智慧流经你的全身！");
 
             notice = TRUE;
         }
@@ -3451,7 +3451,7 @@ bool set_tim_poet(int v, bool do_dec)
     {
         if (p_ptr->tim_poet)
         {
-            msg_print("You stop feeling wise and eloquent.");
+            msg_print("你不再感到睿智和雄辩。");
 
             notice = TRUE;
         }
@@ -3503,7 +3503,7 @@ bool set_tim_understanding(int v, bool do_dec)
         }
         else if (!p_ptr->tim_understanding)
         {
-            msg_print("You feel like a loremaster!");
+            msg_print("你感觉自己像个大学者！");
             identify_pack();
 
             notice = TRUE;
@@ -3515,7 +3515,7 @@ bool set_tim_understanding(int v, bool do_dec)
     {
         if (p_ptr->tim_understanding)
         {
-            msg_print("You stop feeling like a loremaster.");
+            msg_print("你不再感觉自己像个大学者了。");
 
             notice = TRUE;
         }
@@ -3569,7 +3569,7 @@ bool set_tim_regen(int v, bool do_dec)
         }
         else if (!p_ptr->tim_regen)
         {
-            msg_print("You feel yourself regenerating quickly!");
+            msg_print("你感觉自己的身体正在快速再生！");
 
             notice = TRUE;
         }
@@ -3580,7 +3580,7 @@ bool set_tim_regen(int v, bool do_dec)
     {
         if (p_ptr->tim_regen)
         {
-            msg_print("You feel yourself regenerating slowly.");
+            msg_print("你感觉自己的再生速度变慢了。");
 
             notice = TRUE;
         }
@@ -3630,7 +3630,7 @@ bool set_tim_stealth(int v, bool do_dec)
         }
         else if (!IS_TIM_STEALTH())
         {
-            msg_print("You begin to walk silently!");
+            msg_print("你开始无声地行走！");
 
             notice = TRUE;
         }
@@ -3641,7 +3641,7 @@ bool set_tim_stealth(int v, bool do_dec)
     {
         if (p_ptr->tim_stealth && !music_singing(MUSIC_STEALTH))
         {
-            msg_print("You no longer walk silently.");
+            msg_print("你不再无声地行走了。");
 
             notice = TRUE;
         }
@@ -3679,7 +3679,7 @@ bool set_sanctuary(bool set)
     {
         if (!(p_ptr->special_defense & DEFENSE_SANCTUARY))
         {
-            msg_print("You claim Sanctuary!  Nothing can hurt you now!!");
+            msg_print("你躲进了避难所！现在没有什么能伤害你了！！");
             notice = TRUE;
             p_ptr->special_defense |= DEFENSE_SANCTUARY;
         }
@@ -3688,7 +3688,7 @@ bool set_sanctuary(bool set)
     {
         if (p_ptr->special_defense & DEFENSE_SANCTUARY)
         {
-            msg_print("You no longer feel safe.");
+            msg_print("你不再感到安全了。");
             notice = TRUE;
             p_ptr->special_defense &= ~(DEFENSE_SANCTUARY);
         }
@@ -3714,13 +3714,13 @@ bool set_superstealth(bool set)
             if (cave[py][px].info & CAVE_MNLT)
             {
                 if (disturb_minor)
-                    msg_print("<color:D>You are mantled in weak shadow from ordinary eyes.</color>");
+                    msg_print("<color:D>对凡人的眼睛来说，你被一层微弱的阴影笼罩着。</color>");
                 p_ptr->monlite = p_ptr->old_monlite = TRUE;
             }
             else
             {
                 if (disturb_minor)
-                    msg_print("<color:D>You are mantled in shadow from ordinary eyes!</color>");
+                    msg_print("<color:D>对凡人的眼睛来说，你完全被阴影笼罩着！</color>");
                 p_ptr->monlite = p_ptr->old_monlite = FALSE;
             }
 
@@ -3737,7 +3737,7 @@ bool set_superstealth(bool set)
         if (p_ptr->special_defense & NINJA_S_STEALTH)
         {
             if ((disturb_minor) && (!p_ptr->exit_bldg))
-                msg_print("<color:y>You are exposed to common sight once more.</color>");
+                msg_print("<color:y>你再次暴露在众人的视线中。</color>");
 
             notice = TRUE;
 
@@ -3781,7 +3781,7 @@ bool set_tim_levitation(int v, bool do_dec)
         }
         else if (!p_ptr->tim_levitation)
         {
-            msg_print("You begin to fly!");
+            msg_print("你开始飞翔！");
 
             notice = TRUE;
         }
@@ -3792,7 +3792,7 @@ bool set_tim_levitation(int v, bool do_dec)
     {
         if (p_ptr->tim_levitation)
         {
-            msg_print("You stop flying.");
+            msg_print("你停止了飞翔。");
 
             notice = TRUE;
         }
@@ -3842,7 +3842,7 @@ bool set_tim_sh_touki(int v, bool do_dec)
         }
         else if (!p_ptr->tim_sh_touki)
         {
-            msg_print("You have enveloped by the aura of the Force!");
+            msg_print("你被原力光环包围了！");
 
             notice = TRUE;
         }
@@ -3853,7 +3853,7 @@ bool set_tim_sh_touki(int v, bool do_dec)
     {
         if (p_ptr->tim_sh_touki)
         {
-            msg_print("Aura of the Force disappeared.");
+            msg_print("原力光环消失了。");
 
             notice = TRUE;
         }
@@ -3900,7 +3900,7 @@ bool set_tim_sh_fire(int v, bool do_dec)
         }
         else if (!p_ptr->tim_sh_fire)
         {
-            msg_print("You have enveloped by fiery aura!");
+            msg_print("你被火焰光环包围了！");
 
             notice = TRUE;
         }
@@ -3911,7 +3911,7 @@ bool set_tim_sh_fire(int v, bool do_dec)
     {
         if (p_ptr->tim_sh_fire)
         {
-            msg_print("Fiery aura disappeared.");
+            msg_print("火焰光环消失了。");
 
             notice = TRUE;
         }
@@ -3961,7 +3961,7 @@ bool set_tim_sh_holy(int v, bool do_dec)
         }
         else if (!p_ptr->tim_sh_holy)
         {
-            msg_print("You have enveloped by holy aura!");
+            msg_print("你被神圣光环包围了！");
 
             notice = TRUE;
         }
@@ -3972,7 +3972,7 @@ bool set_tim_sh_holy(int v, bool do_dec)
     {
         if (p_ptr->tim_sh_holy)
         {
-            msg_print("Holy aura disappeared.");
+            msg_print("神圣光环消失了。");
 
             notice = TRUE;
         }
@@ -4024,9 +4024,9 @@ bool set_tim_eyeeye(int v, bool do_dec)
         else if (!p_ptr->tim_eyeeye)
         {
             if (p_ptr->pclass == CLASS_BLOOD_KNIGHT)
-                msg_print("You feel like bloody revenge!");
+                msg_print("你渴望着血腥复仇！");
             else 
-                msg_print("You feel like a keeper of commandments!");
+                msg_print("你感觉自己就像戒律的守护者！");
 
             notice = TRUE;
         }
@@ -4038,9 +4038,9 @@ bool set_tim_eyeeye(int v, bool do_dec)
         if (p_ptr->tim_eyeeye)
         {
             if (p_ptr->pclass == CLASS_BLOOD_KNIGHT)
-                msg_print("You no longer feel like bloody revenge.");
+                msg_print("你不再渴望血腥复仇了。");
             else 
-                msg_print("You no longer feel like a keeper.");
+                msg_print("你不再感觉自己是个守护者了。");
 
             notice = TRUE;
         }
@@ -4091,7 +4091,7 @@ bool set_resist_magic(int v, bool do_dec)
         }
         else if (!p_ptr->resist_magic)
         {
-            msg_print("You have been protected from magic!");
+            msg_print("你受到了魔法防护！");
 
             notice = TRUE;
         }
@@ -4102,7 +4102,7 @@ bool set_resist_magic(int v, bool do_dec)
     {
         if (p_ptr->resist_magic)
         {
-msg_print("You are no longer protected from magic.");
+msg_print("你不再受到魔法防护了。");
 
             notice = TRUE;
         }
@@ -4152,7 +4152,7 @@ bool set_tim_reflect(int v, bool do_dec)
         }
         else if (!p_ptr->tim_reflect)
         {
-            msg_print("Your body becames smooth.");
+            msg_print("你的身体变得光滑了。");
 
             notice = TRUE;
         }
@@ -4163,7 +4163,7 @@ bool set_tim_reflect(int v, bool do_dec)
     {
         if (p_ptr->tim_reflect)
         {
-            msg_print("Your body is no longer smooth.");
+            msg_print("你的身体不再光滑了。");
 
             notice = TRUE;
         }
@@ -4213,7 +4213,7 @@ bool set_multishadow(int v, bool do_dec)
         }
         else if (!p_ptr->multishadow)
         {
-            msg_print("Your Shadow enveloped you.");
+            msg_print("你的暗影包围了你。");
 
             notice = TRUE;
         }
@@ -4224,7 +4224,7 @@ bool set_multishadow(int v, bool do_dec)
     {
         if (p_ptr->multishadow)
         {
-            msg_print("Your Shadow disappears.");
+            msg_print("你的暗影消失了。");
 
             notice = TRUE;
         }
@@ -4274,7 +4274,7 @@ bool set_dustrobe(int v, bool do_dec)
         }
         else if (!p_ptr->dustrobe)
         {
-            msg_print("You were enveloped by mirror shards.");
+            msg_print("你被镜之碎片包围了。");
 
             notice = TRUE;
         }
@@ -4285,7 +4285,7 @@ bool set_dustrobe(int v, bool do_dec)
     {
         if (p_ptr->dustrobe)
         {
-            msg_print("The mirror shards disappear.");
+            msg_print("镜之碎片消失了。");
 
             notice = TRUE;
         }
@@ -4335,7 +4335,7 @@ bool set_kabenuke(int v, bool do_dec)
         }
         else if (!p_ptr->kabenuke)
         {
-            msg_print("You became ethereal form.");
+            msg_print("你变成了灵体形态。");
 
             notice = TRUE;
         }
@@ -4346,7 +4346,7 @@ bool set_kabenuke(int v, bool do_dec)
     {
         if (p_ptr->kabenuke)
         {
-            msg_print("You are no longer in an ethereal form.");
+            msg_print("你不再处于灵体形态了。");
 
             notice = TRUE;
         }
@@ -4393,7 +4393,7 @@ bool set_tsuyoshi(int v, bool do_dec)
         }
         else if (!p_ptr->tsuyoshi)
         {
-            msg_print("Brother OKURE!");
+            msg_print("OKURE兄弟！");
 
             notice = TRUE;
             virtue_add(VIRTUE_VITALITY, 2);
@@ -4405,7 +4405,7 @@ bool set_tsuyoshi(int v, bool do_dec)
     {
         if (p_ptr->tsuyoshi)
         {
-            msg_print("Your body had quickly shriveled.");
+            msg_print("你的身体迅速萎缩了。");
 
             (void)dec_stat(A_CON, 20, TRUE);
             (void)dec_stat(A_STR, 20, TRUE);
@@ -4454,27 +4454,27 @@ bool set_ele_attack(u32b attack_type, int v)
     if ((p_ptr->special_attack & (ATTACK_ACID)) && (attack_type != ATTACK_ACID))
     {
         p_ptr->special_attack &= ~(ATTACK_ACID);
-        msg_print("Your temporary acidic brand fades away.");
+        msg_print("你临时的酸液烙印消退了。");
     }
     if ((p_ptr->special_attack & (ATTACK_ELEC)) && (attack_type != ATTACK_ELEC))
     {
         p_ptr->special_attack &= ~(ATTACK_ELEC);
-        msg_print("Your temporary electrical brand fades away.");
+        msg_print("你临时的闪电烙印消退了。");
     }
     if ((p_ptr->special_attack & (ATTACK_FIRE)) && (attack_type != ATTACK_FIRE))
     {
         p_ptr->special_attack &= ~(ATTACK_FIRE);
-        msg_print("Your temporary fiery brand fades away.");
+        msg_print("你临时的火焰烙印消退了。");
     }
     if ((p_ptr->special_attack & (ATTACK_COLD)) && (attack_type != ATTACK_COLD))
     {
         p_ptr->special_attack &= ~(ATTACK_COLD);
-        msg_print("Your temporary frost brand fades away.");
+        msg_print("你临时的冰霜烙印消退了。");
     }
     if ((p_ptr->special_attack & (ATTACK_POIS)) && (attack_type != ATTACK_POIS))
     {
         p_ptr->special_attack &= ~(ATTACK_POIS);
-        msg_print("Your temporary poison brand fades away.");
+        msg_print("你临时的毒素烙印消退了。");
     }
 
     if ((v) && (attack_type))
@@ -4486,7 +4486,7 @@ bool set_ele_attack(u32b attack_type, int v)
         p_ptr->ele_attack = v;
 
         /* Message. */
-        msg_format("For a while, the blows you deal will %s",
+        msg_format("在一段时间内，你的攻击将附带%s",
                  ((attack_type == ATTACK_ACID) ? "melt with acid!" :
                   ((attack_type == ATTACK_ELEC) ? "shock your foes!" :
                    ((attack_type == ATTACK_FIRE) ? "burn with fire!" : 
@@ -4523,27 +4523,27 @@ bool set_ele_immune(u32b immune_type, int v)
     if ((p_ptr->special_defense & (DEFENSE_ACID)) && (immune_type != DEFENSE_ACID))
     {
         p_ptr->special_defense &= ~(DEFENSE_ACID);
-        msg_print("You are no longer immune to acid.");
+        msg_print("你不再免疫酸液了。");
     }
     if ((p_ptr->special_defense & (DEFENSE_ELEC)) && (immune_type != DEFENSE_ELEC))
     {
         p_ptr->special_defense &= ~(DEFENSE_ELEC);
-        msg_print("You are no longer immune to electricity.");
+        msg_print("你不再免疫闪电了。");
     }
     if ((p_ptr->special_defense & (DEFENSE_FIRE)) && (immune_type != DEFENSE_FIRE))
     {
         p_ptr->special_defense &= ~(DEFENSE_FIRE);
-        msg_print("You are no longer immune to fire.");
+        msg_print("你不再免疫火焰了。");
     }
     if ((p_ptr->special_defense & (DEFENSE_COLD)) && (immune_type != DEFENSE_COLD))
     {
         p_ptr->special_defense &= ~(DEFENSE_COLD);
-        msg_print("You are no longer immune to cold.");
+        msg_print("你不再免疫寒冷了。");
     }
     if ((p_ptr->special_defense & (DEFENSE_POIS)) && (immune_type != DEFENSE_POIS))
     {
         p_ptr->special_defense &= ~(DEFENSE_POIS);
-        msg_print("You are no longer immune to poison.");
+        msg_print("你不再免疫毒素了。");
     }
 
     if ((v) && (immune_type))
@@ -4555,7 +4555,7 @@ bool set_ele_immune(u32b immune_type, int v)
         p_ptr->ele_immune = v;
 
         /* Message. */
-        msg_format("For a while, You are immune to %s",
+        msg_format("在一段时间内，你免疫%s。",
                  ((immune_type == DEFENSE_ACID) ? "acid!" :
                   ((immune_type == DEFENSE_ELEC) ? "electricity!" :
                    ((immune_type == DEFENSE_FIRE) ? "fire!" : 
@@ -4600,7 +4600,7 @@ bool set_oppose_acid(int v, bool do_dec)
         }
         else if (!IS_OPPOSE_ACID())
         {
-            msg_print("You feel resistant to acid!");
+            msg_print("你感觉对酸液产生了抵抗力！");
 
             notice = TRUE;
         }
@@ -4611,7 +4611,7 @@ bool set_oppose_acid(int v, bool do_dec)
     {
         if (p_ptr->oppose_acid && !music_singing(MUSIC_RESIST) && !(p_ptr->special_defense & KATA_MUSOU))
         {
-            msg_print("You feel less resistant to acid.");
+            msg_print("你对酸液的抵抗力减弱了。");
 
             notice = TRUE;
         }
@@ -4659,7 +4659,7 @@ bool set_oppose_elec(int v, bool do_dec)
         }
         else if (!IS_OPPOSE_ELEC())
         {
-            msg_print("You feel resistant to electricity!");
+            msg_print("你感觉对闪电产生了抵抗力！");
 
             notice = TRUE;
         }
@@ -4670,7 +4670,7 @@ bool set_oppose_elec(int v, bool do_dec)
     {
         if (p_ptr->oppose_elec && !music_singing(MUSIC_RESIST) && !(p_ptr->special_defense & KATA_MUSOU))
         {
-            msg_print("You feel less resistant to electricity.");
+            msg_print("你对闪电的抵抗力减弱了。");
 
             notice = TRUE;
         }
@@ -4719,7 +4719,7 @@ bool set_oppose_fire(int v, bool do_dec)
         }
         else if (!IS_OPPOSE_FIRE())
         {
-            msg_print("You feel resistant to fire!");
+            msg_print("你感觉对火焰产生了抵抗力！");
 
             notice = TRUE;
         }
@@ -4730,7 +4730,7 @@ bool set_oppose_fire(int v, bool do_dec)
     {
         if (p_ptr->oppose_fire && !music_singing(MUSIC_RESIST) && !(p_ptr->special_defense & KATA_MUSOU))
         {
-            msg_print("You feel less resistant to fire.");
+            msg_print("你对火焰的抵抗力减弱了。");
 
             notice = TRUE;
         }
@@ -4778,7 +4778,7 @@ bool set_oppose_cold(int v, bool do_dec)
         }
         else if (!IS_OPPOSE_COLD())
         {
-            msg_print("You feel resistant to cold!");
+            msg_print("你感觉对寒冷产生了抵抗力！");
 
             notice = TRUE;
         }
@@ -4789,7 +4789,7 @@ bool set_oppose_cold(int v, bool do_dec)
     {
         if (p_ptr->oppose_cold && !music_singing(MUSIC_RESIST) && !(p_ptr->special_defense & KATA_MUSOU))
         {
-            msg_print("You feel less resistant to cold.");
+            msg_print("你对寒冷的抵抗力减弱了。");
 
             notice = TRUE;
         }
@@ -4838,7 +4838,7 @@ bool set_oppose_pois(int v, bool do_dec)
         }
         else if (!IS_OPPOSE_POIS())
         {
-            msg_print("You feel resistant to poison!");
+            msg_print("你感觉对毒素产生了抵抗力！");
 
             notice = TRUE;
         }
@@ -4849,7 +4849,7 @@ bool set_oppose_pois(int v, bool do_dec)
     {
         if (p_ptr->oppose_pois && !music_singing(MUSIC_RESIST) && !(p_ptr->special_defense & KATA_MUSOU))
         {
-            msg_print("You feel less resistant to poison.");
+            msg_print("你对毒素的抵抗力减弱了。");
 
             notice = TRUE;
         }
@@ -4908,7 +4908,7 @@ bool set_spin(int v, bool do_dec)
         }
         else if (!IS_SPINNING())
         {
-            msg_print("You start spinning stories!");
+            msg_print("你开始编造故事！");
 
             notice = TRUE;
         }
@@ -4919,7 +4919,7 @@ bool set_spin(int v, bool do_dec)
     {
         if (p_ptr->spin)
         {
-            msg_print("You stop putting your own spin on stories.");
+            msg_print("你停止了胡编乱造。");
 
             notice = TRUE;
         }
@@ -4958,42 +4958,42 @@ stun_info_t stun_info(int stun)
     if (stun >= STUN_KNOCKED_OUT)
     {
         result.level = STUN_KNOCKED_OUT;
-        result.name = "Knocked Out";  /* <== PR_EFFECTS */
+        result.name = "昏迷";  /* <== PR_EFFECTS */
         result.msg = "knocked out";   /* <== You have been %s */
         result.attr = TERM_VIOLET;
     }
     else if (stun >= STUN_MASSIVE)
     {
         result.level = STUN_MASSIVE;
-        result.name = "Massive Stun";
+        result.name = "重度震慑";
         result.msg = "massively stunned";
         result.attr = TERM_RED;
     }
     else if (stun >= STUN_HEAVY)
     {
         result.level = STUN_HEAVY;
-        result.name = "Heavy Stun";
+        result.name = "严重震慑";
         result.msg = "heavily stunned";
         result.attr = TERM_L_RED;
     }
     else if (stun >= STUN_MODERATE)
     {
         result.level = STUN_MODERATE;
-        result.name = "Stun";
+        result.name = "震慑";
         result.msg = "stunned";
         result.attr = TERM_ORANGE;
     }
     else if (stun >= STUN_LIGHT)
     {
         result.level = STUN_LIGHT;
-        result.name = "Light Stun";
+        result.name = "轻度震慑";
         result.msg = "lightly stunned";
         result.attr = TERM_YELLOW;
     }
     else if (stun >= STUN_DAZE)
     {
         result.level = STUN_DAZE;
-        result.name = "Dazed";
+        result.name = "眩晕";
         result.msg = "dazed";
         result.attr = TERM_L_UMBER;
     }
@@ -5026,10 +5026,10 @@ bool set_stun(int v, bool do_dec)
     /* Increase stun level */
     if (new_stun.level > old_stun.level)
     {
-        msg_format("You have been <color:%c>%s</color>.", attr_to_attr_char(new_stun.attr), new_stun.msg);
+        msg_format("你陷入了 <color:%c>%s</color> 状态。", attr_to_attr_char(new_stun.attr), new_stun.msg);
         if (randint1(1000) < v || one_in_(16))
         {
-            msg_print("A vicious blow hits your head.");
+            msg_print("一记狠击打中了你的头部。");
 
             if (one_in_(3))
             {
@@ -5058,11 +5058,11 @@ bool set_stun(int v, bool do_dec)
     else if (new_stun.level < old_stun.level)
     {
         if (old_stun.level == STUN_KNOCKED_OUT && new_stun.level > STUN_NONE)
-            msg_format("You are no longer <color:%c>%s</color>.", attr_to_attr_char(old_stun.attr), old_stun.msg); 
+            msg_format("你不再处于 <color:%c>%s</color> 状态。", attr_to_attr_char(old_stun.attr), old_stun.msg); 
 
         if  (new_stun.level == STUN_NONE)
         {
-            msg_format("You are no longer <color:%c>%s</color>.", attr_to_attr_char(old_stun.attr), old_stun.msg);
+            msg_format("你不再处于 <color:%c>%s</color> 状态。", attr_to_attr_char(old_stun.attr), old_stun.msg);
             if (disturb_state) disturb(0, 0);
         }
         notice = TRUE;
@@ -5097,43 +5097,43 @@ cut_info_t cut_info(int cut)
     if (cut >= CUT_MORTAL_WOUND)
     {
         result.level = CUT_MORTAL_WOUND;
-        result.desc = "Mortal Wound";
+        result.desc = "致命伤";
         result.attr = TERM_L_RED;
     }
     else if (cut >= CUT_DEEP_GASH)
     {
         result.level = CUT_DEEP_GASH;
-        result.desc = "Deep Gash";
+        result.desc = "极深伤口";
         result.attr = TERM_RED;
     }
     else if (cut >= CUT_SEVERE)
     {
         result.level = CUT_SEVERE;
-        result.desc = "Severe Cut";
+        result.desc = "严重割伤";
         result.attr = TERM_RED;
     }
     else if (cut >= CUT_NASTY)
     {
         result.level = CUT_NASTY;
-        result.desc = "Nasty Cut";
+        result.desc = "深度割伤";
         result.attr = TERM_ORANGE;
     }
     else if (cut >= CUT_BAD)
     {
         result.level = CUT_BAD;
-        result.desc = "Bad Cut";
+        result.desc = "重度割伤";
         result.attr = TERM_ORANGE;
     }
     else if (cut >= CUT_LIGHT)
     {
         result.level = CUT_LIGHT;
-        result.desc = "Light Cut";
+        result.desc = "轻度割伤";
         result.attr = TERM_YELLOW;
     }
     else if (cut >= CUT_GRAZE)
     {
         result.level = CUT_GRAZE;
-        result.desc = "Graze";
+        result.desc = "擦伤";
         result.attr = TERM_YELLOW;
     }
     else
@@ -5165,14 +5165,14 @@ bool set_cut(int v, bool do_dec)
     /* Increase cut */
     if (new_cut.level > old_cut.level)
     {
-        msg_format("You have been given a <color:%c>%s</color>.", attr_to_attr_char(new_cut.attr), new_cut.desc);
+        msg_format("你遭受了 <color:%c>%s</color>。", attr_to_attr_char(new_cut.attr), new_cut.desc);
         notice = TRUE;
     }
     /* Decrease cut */
     if (new_cut.level < old_cut.level)
     {
         if (new_cut.level == CUT_NONE)
-            msg_print("You are no longer bleeding.");
+            msg_print("你不再流血了。");
         notice = TRUE;
     }
 
@@ -5336,31 +5336,31 @@ bool set_food(int v)
         {
             /* Weak */
             case 1:
-            msg_print("You are still weak.");
+            msg_print("你仍然很虚弱。");
 
             break;
 
             /* Hungry */
             case 2:
-            msg_print("You are still hungry.");
+            msg_print("你仍然很饥饿。");
 
             break;
 
             /* Normal */
             case 3:
-            msg_print("You are no longer hungry.");
+            msg_print("你不再感到饥饿了。");
 
             break;
 
             /* Full */
             case 4:
-            msg_print("You are full!");
+            msg_print("你吃饱了！");
 
             break;
 
             /* Bloated */
             case 5:
-            msg_print("You have gorged yourself!");
+            msg_print("你吃撑了！");
             virtue_add(VIRTUE_HARMONY, -1);
             virtue_add(VIRTUE_PATIENCE, -1);
             virtue_add(VIRTUE_TEMPERANCE, -2);
@@ -5374,7 +5374,7 @@ bool set_food(int v)
 
     if ((v > p_ptr->food) && p_ptr->fasting)
     {
-        msg_print("You break your fast.");
+        msg_print("你打破了禁食。");
         p_ptr->redraw |= PR_STATUS;
         p_ptr->fasting = FALSE;
     }
@@ -5387,31 +5387,31 @@ bool set_food(int v)
         {
             /* Fainting / Starving */
             case 0:
-            msg_print("You are getting faint from hunger!");
+            msg_print("你快饿晕了！");
 
             break;
 
             /* Weak */
             case 1:
-            msg_print("You are getting weak from hunger!");
+            msg_print("你因为饥饿而变得虚弱！");
 
             break;
 
             /* Hungry */
             case 2:
-            msg_print("You are getting hungry.");
+            msg_print("你开始感到饥饿。");
 
             break;
 
             /* Normal */
             case 3:
-            msg_print("You are no longer full.");
+            msg_print("你不再感到饱腹。");
 
             break;
 
             /* Full */
             case 4:
-            msg_print("You are no longer gorged.");
+            msg_print("你不再感到撑了。");
 
             break;
         }
@@ -5760,7 +5760,7 @@ bool lp_player(int num)
             case 5: which = RACE_EINHERI; break;
             }
 
-            msg_print("<color:v>Your life force is exhausted!</color>");
+            msg_print("<color:v>你的生命力枯竭了！</color>");
             change_race(which, "");
             if (!(get_race()->flags & RACE_IS_NONLIVING)) /* race change failed for whatever reason, so instead of being undead we are now dead */
             {
@@ -5776,8 +5776,8 @@ bool lp_player(int num)
     }
     if (p_ptr->clp != old_clp)
     {
-        if (num < 0) msg_print("<color:D>You feel your life draining away!</color>");
-        else if (num > 0) msg_print("<color:B>You feel your life returning.</color>");
+        if (num < 0) msg_print("<color:D>你感觉自己的生命力正在流逝！</color>");
+        else if (num > 0) msg_print("<color:B>你感觉生命力回归了。</color>");
         p_ptr->update |= PU_HP;
         p_ptr->redraw |= PR_EFFECTS;
         notice = TRUE;
@@ -5886,7 +5886,7 @@ bool do_dec_stat(int stat)
     if (sust && (!ironman_nightmare || randint0(13)))
     {
         if (disturb_minor)
-            msg_format("You feel %s for a moment, but the feeling passes.", desc_stat_neg[stat]);
+            msg_format("你感到一阵短暂的%s，但这种感觉很快就过去了。", desc_stat_neg[stat]);
 
         equip_learn_flag(OF_SUST_STR + stat);
         return TRUE;
@@ -5896,7 +5896,7 @@ bool do_dec_stat(int stat)
     if (dec_stat(stat, 10, (ironman_nightmare && !randint0(13))))
     {
         /* Message */
-        msg_format("You feel very <color:r>%s</color>.", desc_stat_neg[stat]);
+        msg_format("你感到非常<color:r>%s</color>。", desc_stat_neg[stat]);
 
 
         /* Notice effect */
@@ -5917,7 +5917,7 @@ bool do_res_stat(int stat)
     if (res_stat(stat))
     {
         /* Message */
-        msg_format("You feel less %s.", desc_stat_neg[stat]);
+        msg_format("你感到%s减轻了。", desc_stat_neg[stat]);
 
 
         /* Notice */
@@ -5962,18 +5962,18 @@ bool do_inc_stat(int stat)
         {
             if ((!mut_present(MUT_BAD_LUCK)) || (!one_in_(2)))
             {
-                msg_format("You get the rare double stat boost! Wow! You feel incredibly %s!", desc_stat_pos[stat]);
+                msg_format("你获得了罕见的双重属性提升！哇哦！你感觉极其%s！", desc_stat_pos[stat]);
                 specmess = 6;
             }
             else
             {
-                msg_format("<color:G>You are blessed by Lady Luck and get the rare double stat boost!</color> Wow! You feel incredibly %s! To think you felt so weighed down by that black aura, by the people who called you a bringer of bad luck! It just goes to show, it's not the names they call you that matter, it's the willpower that helps you persevere until in these moments of sweet bliss, against all odds, you triumph!", desc_stat_pos[stat]);
+                msg_format("<color:G>你受到幸运女神的眷顾，获得了罕见的双重属性提升！</color> 哇哦！你感觉极其%s！想想你曾被那黑色光环压得喘不过气，被人们称为厄运使者！但这恰恰证明，别人怎么称呼你并不重要，重要的是帮助你坚持下去的意志力，直到这些甜蜜的时刻到来，排除万难，你终将获胜！", desc_stat_pos[stat]);
                 specmess = 12;
             }
         }        
         else /* Normal message */
         {
-            msg_format("Wow! You feel very %s!", desc_stat_pos[stat]);
+            msg_format("哇哦！你感觉非常%s！", desc_stat_pos[stat]);
         }
 
 
@@ -5985,7 +5985,7 @@ bool do_inc_stat(int stat)
     if (res)
     {
         /* Message */
-        msg_format("You feel less %s.", desc_stat_neg[stat]);
+        msg_format("你感到不再那么%s了。", desc_stat_neg[stat]);
 
 
         /* Notice */
@@ -6014,7 +6014,7 @@ bool restore_level(void)
 
     if (p_ptr->exp < max_exp)
     {
-        msg_print("You feel your life energies returning.");
+        msg_print("你感觉你的生命能量正在回归。");
         p_ptr->exp = max_exp;
         check_experience();
         return TRUE;
@@ -6046,7 +6046,7 @@ bool lose_all_info(void)
 {
     if (never_forget) 
     {
-        msg_print("You feel very forgetful for a moment, but the feeling passes.");
+        msg_print("你短暂地感到非常健忘，但这种感觉很快就过去了。");
         return FALSE;
     }
 
@@ -6078,19 +6078,19 @@ void do_poly_wounds(void)
 
     if (!(wounds || hit_p || Nasty_effect)) return;
 
-    msg_print("Your wounds are polymorphed into less serious ones.");
+    msg_print("你的伤口变异成了较轻的伤。");
 
     hp_player(change);
     if (Nasty_effect)
     {
         if (get_race()->flags & RACE_IS_NONLIVING)
         { /* Nonliving characters can't bleed but can suffer other bodily harm */
-            msg_print("You suffer a new injury!");
+            msg_print("你遭受了新的创伤！");
             take_hit(DAMAGE_LOSELIFE, change / 2, "a polymorphed wound");
         }
         else
         {
-            msg_print("A new wound was created!");
+            msg_print("产生了一道新的伤口！");
             take_hit(DAMAGE_LOSELIFE, change / 2, "a polymorphed wound");
 
             set_cut(change, FALSE);
@@ -6155,7 +6155,7 @@ void change_race(int new_race, cptr effect_msg)
         p_ptr->psubrace = 0;
     }
 
-    msg_format("You turn into %s %s%s!", (!effect_msg[0] && is_a_vowel(title[0]) ? "an" : "a"), effect_msg, title);
+    msg_format("你变成了%s %s%s！", (!effect_msg[0] && is_a_vowel(title[0]) ? "一个" : "a"), effect_msg, title);
 
     virtue_add(VIRTUE_CHANCE, 2);
 
@@ -6211,7 +6211,7 @@ void do_poly_self(void)
 {
     int power = p_ptr->lev;
 
-    msg_print("You feel a change coming over you...");
+    msg_print("你感觉自己身上发生了一些变化……");
 
     virtue_add(VIRTUE_CHANCE, 1);
 
@@ -6282,7 +6282,7 @@ void do_poly_self(void)
             power -= 10;
 
             if (!mut_lose_random(NULL))
-                msg_print("You feel oddly normal.");
+                msg_print("你感到一种奇怪的正常感。");
 
         }
 
@@ -6312,7 +6312,7 @@ void do_poly_self(void)
         /* Abomination! */
         power -= 20;
 
-        msg_print("Your internal organs are rearranged!");
+        msg_print("你的五脏六腑被重组了！");
 
         while (tmp < 6)
         {
@@ -6321,7 +6321,7 @@ void do_poly_self(void)
         }
         if (one_in_(6))
         {
-            msg_print("You find living difficult in your present form!");
+            msg_print("你发现以目前的形态很难活下去！");
             take_hit(DAMAGE_LOSELIFE, damroll(randint1(10), p_ptr->lev), "a lethal mutation");
 
             power -= 10;
@@ -6399,11 +6399,11 @@ int take_hit(int damage_type, int damage, cptr hit_from)
         {
             if (damage_type == DAMAGE_FORCE)
             {
-                msg_print("The attack cuts your shield of invulnerability open!");
+                msg_print("攻击切开了你的无敌护盾！");
             }
             else if (one_in_(PENETRATE_INVULNERABILITY))
             {
-                msg_print("The attack penetrates your shield of invulnerability!");
+                msg_print("攻击穿透了你的无敌护盾！");
             }
             else
             {
@@ -6415,11 +6415,11 @@ int take_hit(int damage_type, int damage, cptr hit_from)
         {
             if (damage_type == DAMAGE_FORCE)
             {
-                msg_print("The attack hits Shadow together with you!");
+                msg_print("攻击同时击中了暗影和作为本体的你！");
             }
             else if (damage_type == DAMAGE_ATTACK)
             {
-                msg_print("The attack hits Shadow, you are unharmed!");
+                msg_print("攻击击中了暗影，你毫发无伤！");
                 return 0;
             }
         }
@@ -6428,7 +6428,7 @@ int take_hit(int damage_type, int damage, cptr hit_from)
         {
             if (damage_type == DAMAGE_FORCE)
             {
-                msg_print("The attack cuts through your ethereal body!");
+                msg_print("攻击切穿了你的灵体！");
             }
             else
             {
@@ -6463,7 +6463,7 @@ int take_hit(int damage_type, int damage, cptr hit_from)
     
     /* Rage Mage: "Rage Fueled" */
     if ( p_ptr->pclass == CLASS_RAGE_MAGE
-      && (!hit_from || strcmp(hit_from, "Rage") != 0))
+      && (!hit_from || strcmp(hit_from, "狂怒") != 0))
     {
         rage_mage_rage_fueled(damage);
     }
@@ -6479,7 +6479,7 @@ int take_hit(int damage_type, int damage, cptr hit_from)
 
     
     if ((p_ptr->wizard || easy_damage) && (damage > 0))
-        msg_format("You take %d damage.", damage);
+        msg_format("你受到了 %d 点伤害。", damage);
 
     p_ptr->chp -= damage;
     if(damage_type == DAMAGE_GENO && p_ptr->chp < 0)
@@ -6532,17 +6532,17 @@ int take_hit(int damage_type, int damage, cptr hit_from)
         if (p_ptr->inside_arena)
         {
             cptr m_name = r_name+r_info[arena_info[p_ptr->arena_number].r_idx].name;
-            msg_format("You are beaten by %s.", m_name);
+            msg_format("你被 %s 击败了。", m_name);
             msg_print(NULL);
         }
         else if ((p_ptr->total_winner) && (unique_is_friend(MON_R_MACHINE)))
         {
-            msg_print(android ? "You are broken." : "You die.");
+            msg_print(android ? "你坏掉了。" : "你死了。");
             msg_print(NULL);
         }
         else
         {
-            bool seppuku = streq(hit_from, "Seppuku");
+            bool seppuku = streq(hit_from, "切腹");
             bool winning_seppuku = p_ptr->total_winner && seppuku;
 
             /* Note cause of death */
@@ -6576,7 +6576,7 @@ int take_hit(int damage_type, int damage, cptr hit_from)
             /* Hack -- Note death */
             if (!last_words)
             {
-                msg_print(android ? "You are broken." : "You die.");
+                msg_print(android ? "你坏掉了。" : "你死了。");
                 msg_print(NULL);
             }
             else
@@ -6592,7 +6592,7 @@ int take_hit(int damage_type, int damage, cptr hit_from)
 
                 do
                 {
-                    while (!get_string("Last word: ", death_message, 1024)) ;
+                    while (!get_string("遗言：", death_message, 1024)) ;
                 }
                 while (winning_seppuku && !get_check_strict("Are you sure? ", CHECK_NO_HISTORY));
 
@@ -6635,7 +6635,7 @@ int take_hit(int damage_type, int damage, cptr hit_from)
             }
             else
             {
-                cmsg_print(TERM_VIOLET, "*Ouch!*");
+                cmsg_print(TERM_VIOLET, "*哎哟！*");
                 flush();
             }
         }
@@ -6729,18 +6729,18 @@ int drain_exp(s32b drain, s32b slip, int hold_life_prob)
     {
         if (p_ptr->hold_life && (randint0(100) < hold_life_prob))
         {
-            msg_print("You keep hold of your life force!");
+            msg_print("你保持住了你的生命力！");
             return 0;
         }
     }
 
     if (p_ptr->hold_life)
     {
-        msg_print("You feel your life slipping away!");
+        msg_print("你感觉生命力正在溜走！");
         lose_exp(slip);
         return slip;
     }
-    msg_print("You feel your life draining away!");
+    msg_print("你感觉生命力正在流逝！");
     lose_exp(drain);
     return drain;
 }
@@ -6764,7 +6764,7 @@ bool set_ultimate_res(int v, bool do_dec)
         }
         else if (!p_ptr->ult_res)
         {
-            msg_print("You feel resistant!");
+            msg_print("你感觉到了抵抗力！");
 
             notice = TRUE;
         }
@@ -6775,7 +6775,7 @@ bool set_ultimate_res(int v, bool do_dec)
     {
         if (p_ptr->ult_res)
         {
-            msg_print("You feel less resistant.");
+            msg_print("你感觉抵抗力减弱了。");
 
             notice = TRUE;
         }
@@ -6821,7 +6821,7 @@ bool set_tim_res_nether(int v, bool do_dec)
         }
         else if (!p_ptr->tim_res_nether)
         {
-            msg_print("You feel nether resistant!");
+            msg_print("你感觉对地狱产生了抵抗力！");
 
             notice = TRUE;
         }
@@ -6832,7 +6832,7 @@ bool set_tim_res_nether(int v, bool do_dec)
     {
         if (p_ptr->tim_res_nether)
         {
-            msg_print("You feel less nether resistant");
+            msg_print("你对地狱的抵抗力减弱了。");
 
             notice = TRUE;
         }
@@ -6878,7 +6878,7 @@ bool set_tim_res_time(int v, bool do_dec)
         }
         else if (!p_ptr->tim_res_time)
         {
-            msg_print("You feel time resistant!");
+            msg_print("你感觉对时间产生了抵抗力！");
 
             notice = TRUE;
         }
@@ -6889,7 +6889,7 @@ bool set_tim_res_time(int v, bool do_dec)
     {
         if (p_ptr->tim_res_time)
         {
-            msg_print("You feel less time resistant");
+            msg_print("你对时间的抵抗力减弱了。");
 
             notice = TRUE;
         }
@@ -6935,7 +6935,7 @@ bool set_tim_res_disenchantment(int v, bool do_dec)
         }
         else if (!p_ptr->tim_res_disenchantment)
         {
-            msg_print("You feel resistant to disenchantment.");
+            msg_print("你感觉对解除魔法产生了抵抗力。");
             notice = TRUE;
         }
     }
@@ -6945,7 +6945,7 @@ bool set_tim_res_disenchantment(int v, bool do_dec)
     {
         if (p_ptr->tim_res_disenchantment)
         {
-            msg_print("You no longer resist disenchantment.");
+            msg_print("你不再抵抗解除魔法了。");
             notice = TRUE;
         }
     }
@@ -6973,18 +6973,18 @@ bool choose_ele_attack(void)
 
     num = (p_ptr->lev - 20) / 5;
 
-              c_prt(TERM_RED,    "        a) Fire Brand", 2, 14);
+              c_prt(TERM_RED,    "a) 火焰烙印", 2, 14);
 
-    if (num >= 2) c_prt(TERM_L_WHITE,"        b) Cold Brand", 3, 14);
+    if (num >= 2) c_prt(TERM_L_WHITE,"b) 寒冰烙印", 3, 14);
     else prt("", 3, 14);
 
-    if (num >= 3) c_prt(TERM_GREEN,  "        c) Poison Brand", 4, 14);
+    if (num >= 3) c_prt(TERM_GREEN,  "c) 毒素烙印", 4, 14);
     else prt("", 4, 14);
 
-    if (num >= 4) c_prt(TERM_L_DARK, "        d) Acid Brand", 5, 14);
+    if (num >= 4) c_prt(TERM_L_DARK, "d) 酸液烙印", 5, 14);
     else prt("", 5, 14);
 
-    if (num >= 5) c_prt(TERM_BLUE,   "        e) Elec Brand", 6, 14);
+    if (num >= 5) c_prt(TERM_BLUE,   "e) 闪电烙印", 6, 14);
     else prt("", 6, 14);
 
     prt("", 7, 14);
@@ -6992,7 +6992,7 @@ bool choose_ele_attack(void)
     prt("", 9, 14);
 
     prt("", 1, 0);
-    prt("        Choose a temporary elemental brand ", 1, 14);
+    prt("选择一个临时的元素烙印", 1, 14);
 
     choice = inkey();
 
@@ -7008,7 +7008,7 @@ bool choose_ele_attack(void)
         set_ele_attack(ATTACK_ELEC, p_ptr->lev/2 + randint1(p_ptr->lev/2));
     else
     {
-        msg_print("You cancel the temporary branding.");
+        msg_print("你取消了临时烙印。");
         screen_load();
         return FALSE;
     }
@@ -7028,13 +7028,13 @@ bool choose_ele_immune(int turn)
     /* Save screen */
     screen_save();
 
-    c_prt(TERM_RED,    "        a) Immune Fire", 2, 14);
+    c_prt(TERM_RED,    "a) 免疫火焰", 2, 14);
 
-    c_prt(TERM_L_WHITE,"        b) Immune Cold", 3, 14);
+    c_prt(TERM_L_WHITE,"b) 免疫寒冷", 3, 14);
 
-    c_prt(TERM_L_DARK, "        c) Immune Acid", 4, 14);
+    c_prt(TERM_L_DARK, "c) 免疫酸液", 4, 14);
 
-    c_prt(TERM_BLUE,   "        d) Immune Elec", 5, 14);
+    c_prt(TERM_BLUE,   "d) 免疫闪电", 5, 14);
 
 
     prt("", 6, 14);
@@ -7043,7 +7043,7 @@ bool choose_ele_immune(int turn)
     prt("", 9, 14);
 
     prt("", 1, 0);
-    prt("        Choose a temporary elemental immune ", 1, 14);
+    prt("选择一个临时的元素免疫", 1, 14);
 
     choice = inkey();
 
@@ -7057,7 +7057,7 @@ bool choose_ele_immune(int turn)
         set_ele_immune(DEFENSE_ELEC, turn);
     else
     {
-        msg_print("You cancel the temporary immune.");
+        msg_print("你取消了临时免疫。");
         screen_load();
         return FALSE;
     }
@@ -7084,7 +7084,7 @@ bool set_tim_sustain_str(int v, bool do_dec)
         }
         else
         {
-            msg_print("You feel your strength sustained.");
+            msg_print("你感觉你的力量得到了维持。");
             notice = TRUE;
         }
     }
@@ -7093,7 +7093,7 @@ bool set_tim_sustain_str(int v, bool do_dec)
     {
         if (p_ptr->tim_sustain_str)
         {
-            msg_print("Your strength is no longer sustained.");
+            msg_print("你的力量不再得到维持。");
             notice = TRUE;
         }
     }
@@ -7125,7 +7125,7 @@ bool set_tim_sustain_int(int v, bool do_dec)
         }
         else
         {
-            msg_print("You feel your intelligence sustained.");
+            msg_print("你感觉你的智力得到了维持。");
             notice = TRUE;
         }
     }
@@ -7134,7 +7134,7 @@ bool set_tim_sustain_int(int v, bool do_dec)
     {
         if (p_ptr->tim_sustain_int)
         {
-            msg_print("Your intelligence is no longer sustained.");
+            msg_print("你的智力不再得到维持。");
             notice = TRUE;
         }
     }
@@ -7166,7 +7166,7 @@ bool set_tim_sustain_wis(int v, bool do_dec)
         }
         else
         {
-            msg_print("You feel your wisdom sustained.");
+            msg_print("你感觉你的感知得到了维持。");
             notice = TRUE;
         }
     }
@@ -7175,7 +7175,7 @@ bool set_tim_sustain_wis(int v, bool do_dec)
     {
         if (p_ptr->tim_sustain_wis)
         {
-            msg_print("Your wisdom is no longer sustained.");
+            msg_print("你的感知不再得到维持。");
             notice = TRUE;
         }
     }
@@ -7207,7 +7207,7 @@ bool set_tim_sustain_dex(int v, bool do_dec)
         }
         else
         {
-            msg_print("You feel your dexterity sustained.");
+            msg_print("你感觉你的敏捷得到了维持。");
             notice = TRUE;
         }
     }
@@ -7216,7 +7216,7 @@ bool set_tim_sustain_dex(int v, bool do_dec)
     {
         if (p_ptr->tim_sustain_dex)
         {
-            msg_print("Your dexterity is no longer sustained.");
+            msg_print("你的敏捷不再得到维持。");
             notice = TRUE;
         }
     }
@@ -7248,7 +7248,7 @@ bool set_tim_sustain_con(int v, bool do_dec)
         }
         else
         {
-            msg_print("You feel your constitution sustained.");
+            msg_print("你感觉你的体质得到了维持。");
             notice = TRUE;
         }
     }
@@ -7257,7 +7257,7 @@ bool set_tim_sustain_con(int v, bool do_dec)
     {
         if (p_ptr->tim_sustain_con)
         {
-            msg_print("Your constitution is no longer sustained.");
+            msg_print("你的体质不再得到维持。");
             notice = TRUE;
         }
     }
@@ -7289,7 +7289,7 @@ bool set_tim_sustain_chr(int v, bool do_dec)
         }
         else
         {
-            msg_print("You feel your charisma sustained.");
+            msg_print("你感觉你的魅力得到了维持。");
             notice = TRUE;
         }
     }
@@ -7298,7 +7298,7 @@ bool set_tim_sustain_chr(int v, bool do_dec)
     {
         if (p_ptr->tim_sustain_chr)
         {
-            msg_print("Your charisma is no longer sustained.");
+            msg_print("你的魅力不再得到维持。");
             notice = TRUE;
         }
     }
@@ -7330,7 +7330,7 @@ bool set_tim_hold_life(int v, bool do_dec)
         }
         else
         {
-            msg_print("You feel a firm grip on your life force.");
+            msg_print("你感觉紧紧握住了自己的生命力。");
             notice = TRUE;
         }
     }
@@ -7339,7 +7339,7 @@ bool set_tim_hold_life(int v, bool do_dec)
     {
         if (p_ptr->tim_hold_life)
         {
-            msg_print("You lose your grip on your life force.");
+            msg_print("你失去了对生命力的掌控。");
             notice = TRUE;
         }
     }
@@ -7371,7 +7371,7 @@ bool set_tim_transcendence(int v, bool do_dec)
         }
         else
         {
-            msg_print("You transcend your lowly existence.");
+            msg_print("你超越了自身低微的存在。");
             notice = TRUE;
         }
     }
@@ -7380,7 +7380,7 @@ bool set_tim_transcendence(int v, bool do_dec)
     {
         if (p_ptr->tim_transcendence)
         {
-            msg_print("You are no longer transcendent.");
+            msg_print("你不再处于超越状态了。");
             notice = TRUE;
         }
     }
@@ -7413,11 +7413,11 @@ bool set_tim_dark_stalker(int v, bool do_dec)
         else
         {
             if (p_ptr->pclass == CLASS_ROGUE || p_ptr->pclass == CLASS_SKILLMASTER)
-                msg_print("You begin to tread softly.");
+                msg_print("你开始轻声细步地行走。");
             else if (p_ptr->pclass == CLASS_NECROMANCER || p_ptr->pclass == CLASS_RUNE_KNIGHT || prace_is_(RACE_MON_MUMMY))
-                msg_print("You are cloaked in darkness.");
+                msg_print("你被黑暗所笼罩。");
             else
-                msg_print("You begin to stalk your prey.");
+                msg_print("你开始追踪你的猎物。");
             notice = TRUE;
         }
     }
@@ -7427,11 +7427,11 @@ bool set_tim_dark_stalker(int v, bool do_dec)
         if (p_ptr->tim_dark_stalker)
         {
             if (p_ptr->pclass == CLASS_ROGUE || p_ptr->pclass == CLASS_SKILLMASTER)
-                msg_print("You no longer tread softly.");
+                msg_print("你不再轻声细步地行走了。");
             else if (p_ptr->pclass == CLASS_NECROMANCER || p_ptr->pclass == CLASS_RUNE_KNIGHT || prace_is_(RACE_MON_MUMMY))
-                msg_print("You are no longer cloaked in darkness.");
+                msg_print("你不再被黑暗笼罩了。");
             else
-                msg_print("You no longer stalk your prey.");
+                msg_print("你不再追踪你的猎物了。");
             notice = TRUE;
         }
     }
@@ -7463,7 +7463,7 @@ bool set_tim_nimble_dodge(int v, bool do_dec)
         }
         else
         {
-            msg_print("You begin to dodge enemy breaths.");
+            msg_print("你开始闪避敌人的喷吐。");
             notice = TRUE;
         }
     }
@@ -7472,7 +7472,7 @@ bool set_tim_nimble_dodge(int v, bool do_dec)
     {
         if (p_ptr->tim_nimble_dodge)
         {
-            msg_print("You no longer dodge enemy breaths.");
+            msg_print("你不再闪避敌人的喷吐了。");
             notice = TRUE;
         }
     }
@@ -7504,7 +7504,7 @@ bool set_tim_stealthy_snipe(int v, bool do_dec)
         }
         else
         {
-            msg_print("You are a stealthy sniper.");
+            msg_print("你化身为一名隐秘的狙击手。");
             notice = TRUE;
         }
     }
@@ -7513,7 +7513,7 @@ bool set_tim_stealthy_snipe(int v, bool do_dec)
     {
         if (p_ptr->tim_stealthy_snipe)
         {
-            msg_print("You are no longer a stealthy sniper.");
+            msg_print("你不再是隐秘的狙击手了。");
             notice = TRUE;
         }
     }
@@ -7545,7 +7545,7 @@ bool set_tim_killing_spree(int v, bool do_dec)
         }
         else
         {
-            msg_print("You go on a killing spree!");
+            msg_print("你开启了杀戮狂欢！");
             notice = TRUE;
         }
     }
@@ -7554,7 +7554,7 @@ bool set_tim_killing_spree(int v, bool do_dec)
     {
         if (p_ptr->tim_killing_spree)
         {
-            msg_print("You have seen enough blood and suffering for now.");
+            msg_print("你目前看够了鲜血与苦难。");
             notice = TRUE;
         }
     }
@@ -7586,7 +7586,7 @@ bool set_tim_slay_sentient(int v, bool do_dec)
         }
         else
         {
-            msg_print("Your weapon roars with thirsty glee!");
+            msg_print("你的武器发出了嗜血的欢啸！");
             notice = TRUE;
         }
     }
@@ -7595,7 +7595,7 @@ bool set_tim_slay_sentient(int v, bool do_dec)
     {
         if (p_ptr->tim_slay_sentient)
         {
-            msg_print("Your weapon returns to normal.");
+            msg_print("你的武器恢复了正常。");
             notice = TRUE;
         }
     }
@@ -7627,7 +7627,7 @@ bool set_tim_quick_walk(int v, bool do_dec)
         }
         else
         {
-            msg_print("You move with great haste.");
+            msg_print("你以极快的速度移动。");
             notice = TRUE;
         }
     }
@@ -7636,7 +7636,7 @@ bool set_tim_quick_walk(int v, bool do_dec)
     {
         if (p_ptr->tim_quick_walk)
         {
-            msg_print("You are no longer walking quickly.");
+            msg_print("你不再快步前行了。");
             notice = TRUE;
         }
     }
@@ -7669,9 +7669,9 @@ bool set_tim_inven_prot(int v, bool do_dec)
         else
         {
             if (p_ptr->pclass == CLASS_ROGUE)
-                msg_print("You feel your loot is safe.");
+                msg_print("你感觉你的战利品很安全。");
             else
-                msg_print("Your inventory seems safer now.");
+                msg_print("你的物品栏现在似乎更安全了。");
             notice = TRUE;
         }
     }
@@ -7681,9 +7681,9 @@ bool set_tim_inven_prot(int v, bool do_dec)
         if (p_ptr->tim_inven_prot)
         {
             if (p_ptr->pclass == CLASS_ROGUE)
-                msg_print("Your loot feels exposed once again.");
+                msg_print("你的战利品再次暴露在了危险之中。");
             else
-                msg_print("Your inventory is no longer protected.");
+                msg_print("你的物品栏不再受到保护了。");
             notice = TRUE;
         }
     }
@@ -7716,9 +7716,9 @@ bool set_tim_inven_prot2(int v, bool do_dec)
         else
         {
             if (p_ptr->pclass == CLASS_ROGUE)
-                msg_print("You feel your loot is safe.");
+                msg_print("你感觉你的战利品很安全。");
             else
-                msg_print("Your inventory seems safer now.");
+                msg_print("你的物品栏现在似乎更安全了。");
             notice = TRUE;
         }
     }
@@ -7728,11 +7728,11 @@ bool set_tim_inven_prot2(int v, bool do_dec)
         if (p_ptr->tim_inven_prot2)
         {
             if (p_ptr->pclass == CLASS_ROGUE)
-                msg_print("Your loot is no longer completely safe.");
+                msg_print("你的战利品不再绝对安全了。");
             else if (p_ptr->tim_inven_prot)
-                msg_print("Your inventory is no longer completely safe.");
+                msg_print("你的物品栏不再绝对安全了。");
             else
-                msg_print("Your inventory is no longer protected.");
+                msg_print("你的物品栏不再受到保护了。");
             notice = TRUE;
         }
     }
@@ -7762,7 +7762,7 @@ bool set_tim_sh_shards(int v, bool do_dec)
         }
         else if (!p_ptr->tim_sh_shards)
         {
-            msg_print("You are enveloped in shards!");
+            msg_print("你被碎片包围了！");
             notice = TRUE;
         }
     }
@@ -7770,7 +7770,7 @@ bool set_tim_sh_shards(int v, bool do_dec)
     {
         if (p_ptr->tim_sh_shards)
         {
-            msg_print("You are no longer enveloped in shards.");
+            msg_print("你不再被碎片包围了。");
             notice = TRUE;
         }
     }
@@ -7800,7 +7800,7 @@ bool set_tim_sh_domination(int v, bool do_dec)
         }
         else if (!p_ptr->tim_sh_domination)
         {
-            msg_print("Your presence becomes truly awe-inspiring!");
+            msg_print("你的存在变得真正令人敬畏！");
             notice = TRUE;
         }
     }
@@ -7808,7 +7808,7 @@ bool set_tim_sh_domination(int v, bool do_dec)
     {
         if (p_ptr->tim_sh_domination)
         {
-            msg_print("Your presence returns to normal.");
+            msg_print("你的存在感恢复了正常。");
             notice = TRUE;
         }
     }
@@ -7839,7 +7839,7 @@ bool set_tim_sh_elements(int v, bool do_dec)
         }
         else if (!p_ptr->tim_sh_elements)
         {
-            msg_print("You are enveloped in the elements!");
+            msg_print("你被元素包围了！");
             notice = TRUE;
         }
     }
@@ -7847,7 +7847,7 @@ bool set_tim_sh_elements(int v, bool do_dec)
     {
         if (p_ptr->tim_sh_elements)
         {
-            msg_print("Your elemental cloak has vanished.");
+            msg_print("你的元素斗篷消失了。");
             notice = TRUE;
         }
     }
@@ -7877,9 +7877,9 @@ bool set_tim_weaponmastery(int v, bool do_dec)
         else if (!p_ptr->tim_weaponmastery)
         {
             if (p_ptr->weapon_info[0].bare_hands)
-                msg_print("Your fists seem more powerful!");
+                msg_print("你的拳头似乎变得更强大了！");
             else
-                msg_print("Your weapon seems more powerful!");
+                msg_print("你的武器似乎变得更强大了！");
             notice = TRUE;
         }
     }
@@ -7888,9 +7888,9 @@ bool set_tim_weaponmastery(int v, bool do_dec)
         if (p_ptr->tim_weaponmastery)
         {
             if (p_ptr->weapon_info[0].bare_hands)
-                msg_print("Your fists return to normal.");
+                msg_print("你的拳头恢复了正常。");
             else
-                msg_print("Your weapon returns to normal.");
+                msg_print("你的武器恢复了正常。");
             notice = TRUE;
         }
     }
@@ -7922,7 +7922,7 @@ bool set_tim_device_power(int v, bool do_dec)
         }
         else
         {
-            msg_print("Your magical devices feel more powerful.");
+            msg_print("你的魔法装置感觉变得更强大了。");
             notice = TRUE;
         }
     }
@@ -7931,7 +7931,7 @@ bool set_tim_device_power(int v, bool do_dec)
     {
         if (p_ptr->tim_device_power)
         {
-            msg_print("Your magical devices return to normal.");
+            msg_print("你的魔法装置恢复了正常。");
             notice = TRUE;
         }
     }
@@ -7963,7 +7963,7 @@ bool set_tim_sh_time(int v, bool do_dec)
         }
         else
         {
-            msg_print("You are cloaked in time.");
+            msg_print("你被时间所隐蔽。");
             notice = TRUE;
         }
     }
@@ -7972,7 +7972,7 @@ bool set_tim_sh_time(int v, bool do_dec)
     {
         if (p_ptr->tim_sh_time)
         {
-            msg_print("You are no longer cloaked in time.");
+            msg_print("你不再被时间隐蔽了。");
             notice = TRUE;
         }
     }
@@ -8004,7 +8004,7 @@ bool set_tim_foresight(int v, bool do_dec)
         }
         else
         {
-            msg_print("You can see the future!");
+            msg_print("你能够预见未来了！");
             notice = TRUE;
         }
     }
@@ -8013,7 +8013,7 @@ bool set_tim_foresight(int v, bool do_dec)
     {
         if (p_ptr->tim_foresight)
         {
-            msg_print("You can no longer see the future.");
+            msg_print("你无法再预见未来了。");
             notice = TRUE;
         }
     }

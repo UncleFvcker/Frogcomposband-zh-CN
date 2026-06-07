@@ -34,7 +34,7 @@ N: 3:BIAS_FIRE
 'Spitting Fire'
 'Volcanic Geyser'
 of Prominence
-#of Allah
+
 
 N: 4:BIAS_COLD
 'Absolute Zero'
@@ -141,7 +141,7 @@ of Olorin
 of Mana
 of Ganesa
 of Saruman
-of Ea
+
 
 N:18:BIAS_WARRIOR
 N: 6:BIAS_STR

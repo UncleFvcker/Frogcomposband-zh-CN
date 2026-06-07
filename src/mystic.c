@@ -63,10 +63,10 @@ static void _acid_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Corrosive Blow");
+        var_set_string(res, "腐蚀打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with an acid blow.");
+        var_set_string(res, "用带酸效果的攻击打击相邻的对手。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(MYSTIC_ACID));
@@ -86,10 +86,10 @@ static void _cold_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Icy Fists");
+        var_set_string(res, "冰霜之拳");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with a freezing blow.");
+        var_set_string(res, "用带冻结效果的攻击打击相邻的对手。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(MYSTIC_COLD));
@@ -129,10 +129,10 @@ static void _crushing_blow_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Crushing Blow");
+        var_set_string(res, "粉碎打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with crushing blows for extra damage.");
+        var_set_string(res, "用粉碎性的攻击打击相邻的对手，造成额外伤害。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(MYSTIC_CRITICAL));
@@ -152,10 +152,10 @@ static void _defense_toggle_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Defensive Stance");
+        var_set_string(res, "防御架势");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique, you gain increased armor class at the expense of your fighting prowess.");
+        var_set_string(res, "使用此技巧时，你将获得更高的护甲等级，代价是降低你的战斗能力。");
         break;
     default:
         _toggle_spell(MYSTIC_TOGGLE_DEFENSE, cmd, res);
@@ -168,10 +168,10 @@ static void _elec_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Lightning Eagle");
+        var_set_string(res, "雷电猛禽");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with a shocking blow.");
+        var_set_string(res, "用带电击效果的攻击打击相邻的对手。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(MYSTIC_ELEC));
@@ -191,10 +191,10 @@ static void _fast_toggle_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Quick Approach");
+        var_set_string(res, "快速接近");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique, you will move with great haste.");
+        var_set_string(res, "使用此技巧时，你将以极快的速度移动。");
         break;
     default:
         _toggle_spell(MYSTIC_TOGGLE_FAST, cmd, res);
@@ -207,10 +207,10 @@ static void _fire_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Flaming Strike");
+        var_set_string(res, "烈焰打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with a flaming blow.");
+        var_set_string(res, "用带火焰效果的攻击打击相邻的对手。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(MYSTIC_FIRE));
@@ -230,10 +230,10 @@ static void _killing_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Touch of Death");
+        var_set_string(res, "死亡之触");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempt to kill an adjacent opponent with a single blow.");
+        var_set_string(res, "尝试用一击杀死相邻的对手。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(MYSTIC_KILL));
@@ -249,10 +249,10 @@ static void _knockout_blow_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Knockout Blow");
+        var_set_string(res, "击倒打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempt to knockout an adjacent opponent.");
+        var_set_string(res, "尝试击倒相邻的对手。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(MYSTIC_KNOCKOUT));
@@ -268,7 +268,7 @@ static void _mystic_insights_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mystic Insights");
+        var_set_string(res, "神秘洞察");
         break;
     default:
         probing_spell(cmd, res);
@@ -281,10 +281,10 @@ static void _offense_toggle_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Death Stance");
+        var_set_string(res, "死亡架势");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique, you concentrate all your mental efforts on offensive deadliness. As such, you become more exposed to enemy attacks.");
+        var_set_string(res, "使用此技巧时，你将所有精神力集中在进攻的致命性上。因此，你将更容易受到敌人的攻击。");
         break;
     default:
         _toggle_spell(MYSTIC_TOGGLE_OFFENSE, cmd, res);
@@ -297,10 +297,10 @@ static void _poison_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Serpent's Tongue");
+        var_set_string(res, "毒蛇之舌");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with a poisonous blow.");
+        var_set_string(res, "用带毒素效果的攻击打击相邻的对手。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(MYSTIC_POIS));
@@ -320,10 +320,10 @@ static void _retaliate_toggle_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Aura of Retaliation");
+        var_set_string(res, "反击光环");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique, you will retaliate when struck.");
+        var_set_string(res, "使用此技巧时，你将在被击中时进行反击。");
         break;
     default:
         _toggle_spell(MYSTIC_TOGGLE_RETALIATE, cmd, res);
@@ -336,10 +336,10 @@ static void _stealth_toggle_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Stealthy Approach");
+        var_set_string(res, "潜行接近");
         break;
     case SPELL_DESC:
-        var_set_string(res, "When using this technique, you will gain enhanced stealth.");
+        var_set_string(res, "使用此技巧时，你将获得增强的潜行能力。");
         break;
     default:
         _toggle_spell(MYSTIC_TOGGLE_STEALTH, cmd, res);
@@ -352,10 +352,10 @@ static void _stunning_blow_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Stunning Blow");
+        var_set_string(res, "震慑打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with stunning blows.");
+        var_set_string(res, "用带震慑效果的攻击打击相邻的对手。");
         break;
     case SPELL_CAST:
         var_set_bool(res, do_blow(MYSTIC_STUN));
@@ -371,10 +371,10 @@ static void _summon_hounds_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Hounds");
+        var_set_string(res, "召唤猎犬");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Summon hounds for assistance.");
+        var_set_string(res, "召唤猎犬来协助。");
         break;
     case SPELL_CAST:
     {
@@ -387,7 +387,7 @@ static void _summon_hounds_spell(int cmd, variant *res)
             ct += summon_specific(-1, py, px, l, SUMMON_HOUND, PM_FORCE_PET | PM_ALLOW_GROUP);
         }
         if (!ct)
-            msg_print("No hounds arrive.");
+            msg_print("没有猎犬到来。");
         var_set_bool(res, TRUE);
         break;
     }
@@ -402,10 +402,10 @@ static void _summon_spiders_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Spiders");
+        var_set_string(res, "召唤蜘蛛");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Summon spiders for assistance.");
+        var_set_string(res, "召唤蜘蛛来协助。");
         break;
     case SPELL_CAST:
     {
@@ -418,7 +418,7 @@ static void _summon_spiders_spell(int cmd, variant *res)
             ct += summon_specific(-1, py, px, l, SUMMON_SPIDER, PM_FORCE_PET | PM_ALLOW_GROUP);
         }
         if (!ct)
-            msg_print("No spiders arrive.");
+            msg_print("没有蜘蛛到来。");
         var_set_bool(res, TRUE);
         break;
     }
@@ -535,18 +535,8 @@ class_t *mystic_get_class(void)
     skills_t bs = { 45,  34,  36,   5,  32,  24,  64,  60};
     skills_t xs = { 15,  10,  10,   0,   0,   0,  18,  18};
 
-        me.name = "Mystic";
-        me.desc = "Mystics are masters of bare-handed fighting, like Monks. Unlike Monks, though, they "
-                  "do not learn normal spells; instead, they gain mystical powers with experience, "
-                  "and these powers directly influence their martial arts. In this respect, "
-                  "Mystics are somewhat similar to Samurai; indeed, they even concentrate to boost "
-                  "their mana like the Samurai. Mystics eschew weapons of any kind, and require "
-                  "the lightest of armors in order to practice their martial arts. As with other "
-                  "martial artists, their attack speed depends on their level and Dexterity; their "
-                  "mana and fail rates, though, are influenced by Charisma. Mystics are in tune with "
-                  "the natural forces around them, and may even summon animals to their aid when "
-                  "necessary. It is whispered that mystics have discovered a way to kill an opponent "
-                  "with a single touch; but they do not share this knowledge with novices.";
+        me.name = "神秘武者";
+        me.desc = "神秘武者是和武僧一样的徒手格斗大师。然而，与武僧不同的是，他们不学习普通的法术；相反，他们随着经验的积累获得神秘力量，而这些力量直接影响他们的武术。在这一点上，神秘武者有点类似于武士；事实上，他们甚至像武士一样通过集中精神来提升法力。神秘武者避讳任何类型的武器，并需要最轻便的护甲来练习他们的武术。与其他武术家一样，他们的攻击速度取决于他们的等级和敏捷；但他们的法力和法术失败率受魅力影响。神秘武者能与周围的自然力量产生共鸣，必要时甚至可以召唤动物来援助自己。有传言说，神秘武者已经发现了一种一击毙敌的方法；但他们不会与新手分享这门学问。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] = -1;

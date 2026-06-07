@@ -104,7 +104,7 @@ static void _display_name(object_type *o_ptr, doc_ptr doc)
     {
         doc_printf(doc, "%s\n", o_name);
     }
-    else doc_printf(doc, "%s%*c%2d.%d lbs\n", o_name, leveys - (strlen(o_name2) + 9), ' ', o_ptr->weight / 10, o_ptr->weight % 10);
+    else doc_printf(doc, "%s%*c%2d.%d 磅\n", o_name, leveys - (strlen(o_name2) + 9), ' ', o_ptr->weight / 10, o_ptr->weight % 10);
 }
 
 static void _selita_paikka(char *paikka_text, byte paikka, byte taso, byte origin)
@@ -135,7 +135,7 @@ static void _selita_paikka(char *paikka_text, byte paikka, byte taso, byte origi
     {
         if (!paikka)
         {
-            strcpy(paikka_text, "in a bizarre quest");
+            strcpy(paikka_text, "在一个离奇的任务中");
             return;
         }
         else
@@ -144,10 +144,10 @@ static void _selita_paikka(char *paikka_text, byte paikka, byte taso, byte origi
             cptr nimi;
             if ((!q) || (!q->id))
             {
-                strcpy(paikka_text, "in a bizarre quest");
+                strcpy(paikka_text, "在一个离奇的任务中");
                 return;
             }
-            strcpy(paikka_text, (origin == ORIGIN_QUEST_REWARD) ? "the quest '" : "in the quest '");
+            strcpy(paikka_text, (origin == ORIGIN_QUEST_REWARD) ? "任务“" : "在任务“");
             strcat(paikka_text, lyhytnimi(q, &nimi));
             free((vptr)nimi);
             strcat(paikka_text, "'");
@@ -218,184 +218,184 @@ bool display_origin(object_type *o_ptr, doc_ptr doc)
         case ORIGIN_FLOOR:
         case ORIGIN_QUEST:
         {
-            doc_printf(doc, "Found lying on the floor %s.", paikka_text);
+            doc_printf(doc, "%s时发现掉落在地上。", paikka_text);
             break;
         }
         case ORIGIN_DROP:
         case ORIGIN_QUEST_DROP:
         {
-            doc_printf(doc, "Dropped by %s %s.", pudottaja, paikka_text);
+            doc_printf(doc, "%s时由 %s 掉落。", paikka_text, pudottaja);
             break;
         }
         case ORIGIN_CHEST:
         {
-            doc_printf(doc, "Found in a chest %s.", paikka_text);
+            doc_printf(doc, "%s时在箱子里找到的。", paikka_text);
             break;
         }
         case ORIGIN_SPECIAL:
         {
-            doc_printf(doc, "Found lying on the floor of a special room %s.", paikka_text);
+            doc_printf(doc, "%s时发现掉落在一个特殊房间的地上。", paikka_text);
             break;
         }
         case ORIGIN_VAULT:
         {
-            doc_printf(doc, "Found lying on the floor in a vault %s.", paikka_text);
+            doc_printf(doc, "%s时发现掉落在一个宝库的地上。", paikka_text);
             break;
         }
         case ORIGIN_RUBBLE:
         {
-            doc_printf(doc, "Found under some rubble %s.", paikka_text);
+            doc_printf(doc, "%s时在碎石下找到的。", paikka_text);
             break;
         }
         case ORIGIN_ACQUIRE:
         {
             if ((o_ptr->tval == TV_FOOD) && (o_ptr->sval == SV_FOOD_RATION)) /* Produce Food/Create Food */
             {
-                if (p_ptr->prace == RACE_HOBBIT) doc_printf(doc, "Conjured forth by an expert cook %s.", paikka_text);
-                else doc_printf(doc, "Manna from heaven.");
+                if (p_ptr->prace == RACE_HOBBIT) doc_printf(doc, "%s时由专业厨师变出来的。", paikka_text);
+                else doc_printf(doc, "天赐之物。");
             }
             else
-                doc_printf(doc, "Conjured forth by magic %s.", paikka_text);
+                doc_printf(doc, "%s时通过魔法变出来的。", paikka_text);
             break;
         }
         case ORIGIN_STORE:
         {
-            doc_printf(doc, "Bought from a store %s.", paikka_text);
+            doc_printf(doc, "%s时从商店买到的。", paikka_text);
             break;
         }
         case ORIGIN_BIRTH:
         {
             if ((p_ptr->pclass == CLASS_MONSTER) && (have_flag(o_ptr->flags, OF_NO_REMOVE))) return FALSE; /* Hack - Death-Swords, Rings, Filthy Rags */
-            else if (!object_plural(o_ptr)) doc_printf(doc, "You can't remember ever not having it.");
-            else doc_printf(doc, "You can't remember ever not having them.");
+            else if (!object_plural(o_ptr)) doc_printf(doc, "你已经记不清是什么时候拥有它的了。");
+            else doc_printf(doc, "你已经记不清是什么时候拥有它们的了。");
             break;
         }
         case ORIGIN_DROP_UNKNOWN:
         {
-            doc_printf(doc, "Dropped by an unknown creature %s.", paikka_text);
+            doc_printf(doc, "%s时由未知的生物掉落。", paikka_text);
             break;
         }
         case ORIGIN_CHEAT:
         {
-            doc_printf(doc, "Created by a debug option.");
+            doc_printf(doc, "通过调试选项创建。");
             break;
         }
         case ORIGIN_QUEST_REWARD:
         {
-            doc_printf(doc, "Received as a reward for completing %s.", paikka_text);
+            doc_printf(doc, "作为完成%s的奖励获得。", paikka_text);
             break;
         }
         case ORIGIN_ANGBAND_REWARD:
         {
-            doc_printf(doc, "Dropped by the level guardian %s.", paikka_text);
+            doc_printf(doc, "%s时由楼层守卫掉落。", paikka_text);
             break;
         }
         case ORIGIN_ARENA_REWARD:
         {
-            if (!no_wilderness) doc_printf(doc, "Dropped by %s in the Thalos Arena.", pudottaja);
-            else doc_printf(doc, "Dropped by %s in the Arena.", pudottaja);
+            if (!no_wilderness) doc_printf(doc, "在萨罗斯(Thalos)竞技场由%s掉落。", pudottaja);
+            else doc_printf(doc, "在竞技场由%s掉落。", pudottaja);
             break;
         }
         case ORIGIN_NAGA:
         {
-            doc_printf(doc, "Received as a gift from Spiritnaga & Co. %s.", paikka_text);
+            doc_printf(doc, "%s时作为灵魂娜迦公司的礼物获得。", paikka_text);
             break;
         }
         case ORIGIN_PATTERN:
         {
-            doc_printf(doc, "Received from the Pattern %s.", paikka_text);
+            doc_printf(doc, "%s时从源质图印(Pattern)处获得。", paikka_text);
             break;
         }
         case ORIGIN_PLAYER_MADE:
         {
-            doc_printf(doc, "Your own handiwork.", paikka_text);
+            doc_printf(doc, "你自己亲手制作的作品。", paikka_text);
             break;
         }
         case ORIGIN_ART_CREATION:
         {
-            doc_printf(doc, "Magically improved by a scroll %s.", paikka_text);
+            doc_printf(doc, "%s时被卷轴魔法般地强化了。", paikka_text);
             break;
         }
         case ORIGIN_STOLEN:
         {
-            doc_printf(doc, "Stolen from %s %s.", pudottaja, paikka_text);
+            doc_printf(doc, "%s时从 %s 处偷来的。", paikka_text, pudottaja);
             break;
         }
         case ORIGIN_REFORGE:
         {
             if (p_ptr->dragon_realm == DRAGON_REALM_CRAFT)
             {
-                doc_printf(doc, "Reforged %s.", paikka_text);
+                doc_printf(doc, "%s时重铸的。", paikka_text);
                 break;
             }
-            if (!no_wilderness) doc_printf(doc, "Reforged in Morivant.");
-            else doc_printf(doc, "Reforged at the Fighters' Hall.");
+            if (!no_wilderness) doc_printf(doc, "在莫里万特重铸的。");
+            else doc_printf(doc, "在战士公会重铸的。");
             break;
         }
         case ORIGIN_GAMBLE:
         {
-            doc_printf(doc, "You won it in an object lottery.");
+            doc_printf(doc, "你在物品彩票中赢得了它。");
             break;
         }
         case ORIGIN_ENDLESS:
         {
-            doc_printf(doc, "Conjured forth by an endless quiver.");
+            doc_printf(doc, "由无尽箭袋变出来的。");
             break;
         }
         case ORIGIN_PATRON:
         {
             if (o_ptr->origin_xtra >= MAX_PATRON) /* bizarre patron */
-                 doc_printf(doc, "Received as a gift from your chaos patron %s.", paikka_text);
-            else if (disciple_is_(DISCIPLE_TROIKA)) doc_printf(doc, "Received as a gift from the Troika %s.", paikka_text);
-            else doc_printf(doc, "Received as a gift from %s %s.", chaos_patrons[o_ptr->origin_xtra], paikka_text);
+                 doc_printf(doc, "%s时作为你的混沌庇护者的礼物获得。", paikka_text);
+            else if (disciple_is_(DISCIPLE_TROIKA)) doc_printf(doc, "%s时作为三驾马车(Troika)的礼物获得。", paikka_text);
+            else doc_printf(doc, "%s时作为 %s 的礼物获得。", paikka_text, chaos_patrons[o_ptr->origin_xtra]);
             break;
         }
         case ORIGIN_PHOTO:
         {
-            doc_printf(doc, "Taken %s.", paikka_text);
+            doc_printf(doc, "%s时取得的。", paikka_text);
             break;
         }
         case ORIGIN_KAWARIMI:
         {
-            doc_printf(doc, "Left behind %s.", paikka_text);
+            doc_printf(doc, "%s时被遗留下来的。", paikka_text);
             break;
         }
         case ORIGIN_WANTED:
         {
-            doc_printf(doc, "Received as a reward for turning in the corpse of %s.", pudottaja);
+            doc_printf(doc, "作为上交%s尸体的奖励获得。", pudottaja);
             break;
         }
         case ORIGIN_CAN_OF_TOYS:
         {
-            doc_printf(doc, "Found in a Can of Toys %s.", paikka_text);
+            doc_printf(doc, "%s时在玩具罐里找到的。", paikka_text);
             break;
         }
         case ORIGIN_BLOOD:
         {
             if (object_is_(o_ptr, TV_POTION, SV_POTION_BLOOD))
-                doc_printf(doc, "Created from your own blood %s.", paikka_text);
+                doc_printf(doc, "%s时用你自己的鲜血创造出来的。", paikka_text);
             else
-                doc_printf(doc, "Resulted from %s going sour %s.", object_plural(o_ptr) ? "Potions of Blood" : "a Potion of Blood", paikka_text);
+                doc_printf(doc, "%s时由%s变质而来。", paikka_text, object_plural(o_ptr) ? "几瓶鲜血药水" : "一瓶鲜血药水");
             break;
         }
         case ORIGIN_CORNUCOPIA:
         {
-            doc_printf(doc, "Received from Cornucopia of Anambar as a replacement item.");
+            doc_printf(doc, "从阿南巴的丰饶之角获得的替换物品。");
             break;
         }
         case ORIGIN_CRAFTING:
         {
-            doc_printf(doc, "Crafted %s.", paikka_text);
+            doc_printf(doc, "%s时制作的。", paikka_text);
             break;
         }
         case ORIGIN_MUNDANITY:
         {
-            doc_printf(doc, "Mundanized %s.", paikka_text);
+            doc_printf(doc, "%s时被剥夺了魔法属性（凡化）。", paikka_text);
             break;
         }
         case ORIGIN_MYSTERY:
         {
-            doc_printf(doc, "Mysteriously dropped by %s %s.", pudottaja, paikka_text);
+            doc_printf(doc, "%s时神秘地由 %s 掉落。", paikka_text, pudottaja);
             break;
         }
     }
@@ -403,14 +403,14 @@ bool display_origin(object_type *o_ptr, doc_ptr doc)
     {
         int day = 0, hour = 0, min = 0;
         doc_printf(doc, "\n");
-        if (origin == ORIGIN_STORE) doc_printf(doc, "Purchased: ");
-        else if (origin == ORIGIN_PHOTO) doc_printf(doc, "Snapped: ");
-        else if (o_ptr->mitze_type & MITZE_REFORGE) doc_printf(doc, "Received: ");
-        else if (o_ptr->mitze_type & MITZE_ID) doc_printf(doc, "Identified: ");
-        else if (o_ptr->mitze_type & MITZE_PICKUP) doc_printf(doc, "Picked up: ");
+        if (origin == ORIGIN_STORE) doc_printf(doc, "购买时间:");
+        else if (origin == ORIGIN_PHOTO) doc_printf(doc, "拍摄时间:");
+        else if (o_ptr->mitze_type & MITZE_REFORGE) doc_printf(doc, "收到时间:");
+        else if (o_ptr->mitze_type & MITZE_ID) doc_printf(doc, "鉴定时间:");
+        else if (o_ptr->mitze_type & MITZE_PICKUP) doc_printf(doc, "拾取时间:");
         extract_day_hour_min_imp(o_ptr->mitze_turn, &day, &hour, &min);
-        doc_printf(doc, "Day %d, %d:%02d, at CL %d.", day, hour, min, o_ptr->mitze_level);
-        if (o_ptr->mitze_type & MITZE_MIXED) doc_printf(doc, "\n(Details may apply to the first item in a pile of similar items.)");
+        doc_printf(doc, "第%d天，%d:%02d，角色等级(CL) %d。", day, hour, min, o_ptr->mitze_level);
+        if (o_ptr->mitze_type & MITZE_MIXED) doc_printf(doc, "\n(详情可能仅适用于一堆相似物品中的第一件。)");
     }
 
     return TRUE;
@@ -442,19 +442,19 @@ struct _flag_info_s
 typedef struct _flag_info_s _flag_info_t, *_flag_info_ptr;
 static _flag_info_t _stats_flags[] =
 {
-    { OF_STR,           OF_DEC_STR,             "STR" },
-    { OF_INT,           OF_DEC_INT,             "INT" },
-    { OF_WIS,           OF_DEC_WIS,             "WIS" },
-    { OF_DEX,           OF_DEC_DEX,             "DEX" },
-    { OF_CON,           OF_DEC_CON,             "CON" },
-    { OF_CHR,           OF_DEC_CHR,             "CHR" },
-    { OF_SPEED,         OF_DEC_SPEED,           "Speed" },
+    { OF_STR,           OF_DEC_STR,             "力量" },
+    { OF_INT,           OF_DEC_INT,             "智力" },
+    { OF_WIS,           OF_DEC_WIS,             "感知" },
+    { OF_DEX,           OF_DEC_DEX,             "敏捷" },
+    { OF_CON,           OF_DEC_CON,             "体质" },
+    { OF_CHR,           OF_DEC_CHR,             "魅力" },
+    { OF_SPEED,         OF_DEC_SPEED,           "速度" },
     { OF_MAGIC_MASTERY, OF_DEC_MAGIC_MASTERY,   "Devices" },
-    { OF_STEALTH,       OF_DEC_STEALTH,         "Stealth" },
-    { OF_SEARCH,        OF_INVALID,             "Searching" },
-    { OF_INFRA,         OF_INVALID,             "Infravision" },
-    { OF_TUNNEL,        OF_INVALID,             "Digging" },
-    { OF_XTRA_SHOTS,    OF_INVALID,             "Shooting Speed" },
+    { OF_STEALTH,       OF_DEC_STEALTH,         "潜行" },
+    { OF_SEARCH,        OF_INVALID,             "搜索" },
+    { OF_INFRA,         OF_INVALID,             "红外视力" },
+    { OF_TUNNEL,        OF_INVALID,             "挖掘" },
+    { OF_XTRA_SHOTS,    OF_INVALID,             "射击速度" },
     { OF_INVALID,       OF_INVALID,             NULL }
 };
 
@@ -548,7 +548,7 @@ static void _display_stats(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], doc_ptr
     _build_bonus_list(o_ptr->pval, flgs, _stats_flags, v);
     if (vec_length(v) > 0)
     {
-        doc_printf(doc, "<color:G>%+d</color> to ", abs(o_ptr->pval));
+        doc_printf(doc, "<color:G>%+d</color> 的", abs(o_ptr->pval));
         _print_list(v, doc, ',', '\0');
         doc_newline(doc);
     }
@@ -558,7 +558,7 @@ static void _display_stats(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], doc_ptr
     _build_penalty_list(o_ptr->pval, flgs, _stats_flags, v);
     if (vec_length(v) > 0)
     {
-        doc_printf(doc, "<color:r>%+d</color> to ", -abs(o_ptr->pval));
+        doc_printf(doc, "<color:r>%+d</color> 的", -abs(o_ptr->pval));
         _print_list(v, doc, ',', '\0');
         doc_newline(doc);
     }
@@ -573,7 +573,7 @@ static void _ego_display_stats(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
     _build_bonus_list(1, flgs, _stats_flags, v);
     if (vec_length(v) > 0)
     {
-        doc_insert(doc, "<color:G>Increase</color> ");
+        doc_insert(doc, "<color:G>增加</color>");
         _print_list(v, doc, ',', '\0');
         doc_newline(doc);
     }
@@ -583,7 +583,7 @@ static void _ego_display_stats(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
     _build_penalty_list(1, flgs, _stats_flags, v);
     if (vec_length(v) > 0)
     {
-        doc_insert(doc, "<color:r>Decrease</color> ");
+        doc_insert(doc, "<color:r>减少</color>");
         _print_list(v, doc, ',', '\0');
         doc_newline(doc);
     }
@@ -593,12 +593,12 @@ static void _ego_display_stats(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
 
 static _flag_info_t _sustains_flags[] =
 {
-    { OF_SUST_STR, OF_INVALID, "STR" },
-    { OF_SUST_INT, OF_INVALID, "INT" },
-    { OF_SUST_WIS, OF_INVALID, "WIS" },
-    { OF_SUST_DEX, OF_INVALID, "DEX" },
-    { OF_SUST_CON, OF_INVALID, "CON" },
-    { OF_SUST_CHR, OF_INVALID, "CHR" },
+    { OF_SUST_STR, OF_INVALID, "力量" },
+    { OF_SUST_INT, OF_INVALID, "智力" },
+    { OF_SUST_WIS, OF_INVALID, "感知" },
+    { OF_SUST_DEX, OF_INVALID, "敏捷" },
+    { OF_SUST_CON, OF_INVALID, "体质" },
+    { OF_SUST_CHR, OF_INVALID, "魅力" },
     { OF_INVALID,  OF_INVALID, NULL }
 };
 
@@ -610,10 +610,10 @@ static void _display_sustains(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
     if (vec_length(v) > 0)
     {
         if (vec_length(v) == 6)
-            doc_insert(doc, "<color:B>Sustains All Stats</color>");
+            doc_insert(doc, "<color:B>维持所有属性</color>");
         else
         {
-            doc_insert(doc, "<color:B>Sustain</color> ");
+            doc_insert(doc, "<color:B>维持</color>");
             _print_list(v, doc, ',', '\0');
         }
         doc_newline(doc);
@@ -623,13 +623,13 @@ static void _display_sustains(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
 
 static _flag_info_t _other_flags[] =
 {
-    { OF_BLOWS,             OF_INVALID, "Attack Speed" },
+    { OF_BLOWS,             OF_INVALID, "攻击速度" },
 //    { OF_XTRA_SHOTS,        OF_INVALID, "Shooting Speed" },
-    { OF_DEVICE_POWER,      OF_INVALID, "Device Power" },
-    { OF_MAGIC_RESISTANCE,  OF_INVALID, "Magic Resistance" },
-    { OF_SPELL_POWER,       OF_INVALID, "Spell Power" },
-    { OF_SPELL_CAP,         OF_INVALID, "Spell Capacity" },
-    { OF_LIFE,              OF_INVALID, "Life Rating" },
+    { OF_DEVICE_POWER,      OF_INVALID, "装置能量" },
+    { OF_MAGIC_RESISTANCE,  OF_INVALID, "魔法抗性" },
+    { OF_SPELL_POWER,       OF_INVALID, "法术强度" },
+    { OF_SPELL_CAP,         OF_INVALID, "法术容量" },
+    { OF_LIFE,              OF_INVALID, "生命评级" },
     { OF_INVALID,           OF_INVALID, NULL }
 };
 static void _ego_display_other_pval(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
@@ -638,7 +638,7 @@ static void _ego_display_other_pval(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
     _build_bonus_list(1, flgs, _other_flags, v);
     if (vec_length(v) > 0)
     {
-        doc_insert(doc, "<color:G>Increase</color> ");
+        doc_insert(doc, "<color:G>增加</color>");
         _print_list(v, doc, ',', '\0');
         doc_newline(doc);
     }
@@ -660,7 +660,7 @@ static void _display_other_pval(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], do
         if (have_flag(flgs, OF_DEC_BLOWS))
             num -=  o_ptr->pval * 100;
 
-        doc_printf(doc, "<color:%c>%+d.%2.2d</color> to Attack Speed\n",
+        doc_printf(doc, "<color:%c>%+d.%2.2d</color> 攻击速度\n",
                     (net > 0) ? 'G' : 'r', num / 100, num % 100);
     }
 /*    if (have_flag(flgs, OF_XTRA_SHOTS))
@@ -674,14 +674,14 @@ static void _display_other_pval(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], do
     if (net)
     {
         int pct = device_power_aux(100, net) - 100;
-        doc_printf(doc, "<color:%c>%+d%%</color> to Device Power\n",
+        doc_printf(doc, "<color:%c>%+d%%</color> 装置能量\n",
                     (net > 0) ? 'G' : 'r', pct);
     }
 
     if (have_flag(flgs, OF_MAGIC_RESISTANCE))
     {
         int pct = o_ptr->pval * 5;
-        doc_printf(doc, "<color:%c>%+d%%</color> to Magic Resistance\n",
+        doc_printf(doc, "<color:%c>%+d%%</color> 魔法抗性\n",
                     (net > 0) ? 'G' : 'r', pct);
     }
 
@@ -689,7 +689,7 @@ static void _display_other_pval(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], do
     if (net)
     {
         int pct = spell_power_aux(100, net) - 100;
-        doc_printf(doc, "<color:%c>%+d%%</color> to Spell Power\n",
+        doc_printf(doc, "<color:%c>%+d%%</color> 法术强度\n",
                     (net > 0) ? 'G' : 'r', pct);
     }
 
@@ -697,7 +697,7 @@ static void _display_other_pval(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], do
     if (net)
     {
         int pct = spell_cap_aux(100, net) - 100;
-        doc_printf(doc, "<color:%c>%+d%%</color> to Spell Capacity\n",
+        doc_printf(doc, "<color:%c>%+d%%</color> 法术容量\n",
                     (net > 0) ? 'G' : 'r', pct);
     }
 
@@ -705,7 +705,7 @@ static void _display_other_pval(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], do
     if (net)
     {
         int pct = 3 * net;
-        doc_printf(doc, "<color:%c>%+d%%</color> to Life Multiplier\n",
+        doc_printf(doc, "<color:%c>%+d%%</color> 生命倍率\n",
                     (net > 0) ? 'G' : 'r', pct);
     }
 }
@@ -815,7 +815,7 @@ static void _display_slays(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
 
     if (vec_length(v))
     {
-        doc_insert(doc, "Slay ");
+        doc_insert(doc, "斩杀:");
         _print_list(v, doc, ',', '\0');
         doc_newline(doc);
     }
@@ -837,7 +837,7 @@ static void _display_resists(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
     }
     if (vec_length(v))
     {
-        doc_insert(doc, "Immunity to ");
+        doc_insert(doc, "免疫:");
         _print_list(v, doc, ',', '\0');
         doc_newline(doc);
     }
@@ -856,7 +856,7 @@ static void _display_resists(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
     }
     if (vec_length(v))
     {
-        doc_insert(doc, "Resist ");
+        doc_insert(doc, "抵抗:");
         _print_list(v, doc, ',', '\0');
         doc_newline(doc);
     }
@@ -875,7 +875,7 @@ static void _display_resists(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
     }
     if (vec_length(v))
     {
-        doc_insert(doc, "Vulnerability to ");
+        doc_insert(doc, "脆弱:");
         _print_list(v, doc, ',', '\0');
         doc_newline(doc);
     }
@@ -988,7 +988,7 @@ static void _display_auras(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
 
     if (vec_length(v))
     {
-        doc_insert(doc, "Aura of ");
+        doc_insert(doc, "光环:");
         _print_list(v, doc, ',', '\0');
         doc_newline(doc);
     }
@@ -1003,112 +1003,112 @@ static void _display_extra(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], doc_ptr
     switch (o_ptr->name2)
     {
     case EGO_AMMO_RETURNING:
-        doc_insert(doc, "It often returns to your pack after being fired.\n");
+        doc_insert(doc, "它在被发射后经常会回到你的背包中。\n");
         break;
     case EGO_AMMO_ENDURANCE:
-        doc_insert(doc, "It endures almost anything without being destroyed.\n");
+        doc_insert(doc, "它能承受几乎任何破坏而不会被摧毁。\n");
         break;
     case EGO_QUIVER_PHASE:
-        doc_insert(doc, "This quiver and its contents weigh absolutely nothing at all.\n");
+        doc_insert(doc, "这个箭袋及其里面的东西重量绝对为零。\n");
         break;
     case EGO_QUIVER_PROTECTION:
-        doc_insert(doc, "This quiver protects its contents from accidental destruction.\n");
+        doc_insert(doc, "这个箭袋能保护其里面的东西免遭意外破坏。\n");
         break;
     case EGO_QUIVER_HOLDING:
-        doc_insert(doc, "This quiver has an increased carrying capacity.\n");
+        doc_insert(doc, "这个箭袋拥有增加的携带容量。\n");
         break;
     }
 
     if (have_flag(flgs, OF_EASY_SPELL))
-        doc_insert(doc, "It affects your ability to cast spells.\n");
+        doc_insert(doc, "它会影响你施放法术的能力。\n");
 
     if (have_flag(flgs, OF_DEC_MANA))
     {
-        doc_insert(doc, "It decreases your mana consumption.\n");
+        doc_insert(doc, "它能减少你的法力消耗。\n");
     }
 
     net = _calc_net_bonus(o_ptr->pval, flgs, OF_WEAPONMASTERY, OF_INVALID);
     if (net)
     {
-        doc_printf(doc, "It %s the damage dice of your melee weapon.\n",
+        doc_printf(doc, "它%s你近战武器的伤害面骰。\n",
             (net > 0) ? "increases" : "<color:R>decreases</color>");
     }
 
     net = _calc_net_bonus(o_ptr->pval, flgs, OF_XTRA_MIGHT, OF_INVALID);
     if (net)
     {
-        doc_printf(doc, "It %s the multiplier of your bow.\n",
+        doc_printf(doc, "它%s你弓箭的倍率。\n",
             (net > 0) ? "increases" : "<color:R>decreases</color>");
     }
 
     switch (o_ptr->name1)
     {
     case ART_STONE_OF_NATURE:
-        doc_insert(doc, "It greatly enhances Nature magic.\n");
+        doc_insert(doc, "它极大地强化自然魔法。\n");
         break;
     case ART_STONE_OF_LIFE:
-        doc_insert(doc, "It greatly enhances Life magic.\n");
+        doc_insert(doc, "它极大地强化生命魔法。\n");
         break;
     case ART_STONE_OF_SORCERY:
-        doc_insert(doc, "It greatly enhances Sorcery magic.\n");
+        doc_insert(doc, "它极大地强化咒术魔法。\n");
         break;
     case ART_STONE_OF_CHAOS:
-        doc_insert(doc, "It greatly enhances Chaos magic.\n");
+        doc_insert(doc, "它极大地强化混沌魔法。\n");
         break;
     case ART_STONE_OF_DEATH:
-        doc_insert(doc, "It greatly enhances Death magic.\n");
+        doc_insert(doc, "它极大地强化死亡魔法。\n");
         break;
     case ART_STONE_OF_TRUMP:
-        doc_insert(doc, "It greatly enhances Trump magic.\n");
+        doc_insert(doc, "它极大地强化王牌魔法。\n");
         break;
     case ART_STONE_OF_DAEMON:
-        doc_insert(doc, "It greatly enhances Daemon magic.\n");
+        doc_insert(doc, "它极大地强化恶魔魔法。\n");
         break;
     case ART_STONE_OF_CRUSADE:
-        doc_insert(doc, "It greatly enhances Crusade magic.\n");
+        doc_insert(doc, "它极大地强化圣战魔法。\n");
         break;
     case ART_STONE_OF_CRAFT:
-        doc_insert(doc, "It greatly enhances Craft magic.\n");
+        doc_insert(doc, "它极大地强化工匠魔法。\n");
         break;
     case ART_STONE_OF_ARMAGEDDON:
-        doc_insert(doc, "It greatly enhances Armageddon magic.\n");
+        doc_insert(doc, "它极大地强化毁灭魔法。\n");
         break;
     case ART_STONEMASK:
-        doc_insert(doc, "It makes you turn into a vampire permanently.\n");
+        doc_insert(doc, "它会让你永久变成吸血鬼。\n");
         break;
     }
 
     if (object_is_(o_ptr, TV_SWORD, SV_POISON_NEEDLE))
-        doc_insert(doc, "It will attempt to kill a monster instantly.\n");
+        doc_insert(doc, "它会尝试瞬间杀死一只怪物。\n");
 
     if (object_is_(o_ptr, TV_POLEARM, SV_DEATH_SCYTHE))
-        doc_insert(doc, "It causes you to strike yourself sometimes.\nIt always penetrates invulnerability barriers.\n");
+        doc_insert(doc, "它有时会让你击中自己。\n它总是能穿透无敌屏障。\n");
 
     if (have_flag(flgs, OF_IGNORE_INVULN))
-        doc_insert(doc, "It negates invulnerability spheres.\n");
+        doc_insert(doc, "它能抵消无敌结界。\n");
 
     if (have_flag(flgs, OF_DUAL_WIELDING))
-        doc_insert(doc, "It affects your ability to hit when you are wielding two weapons.\n");
+        doc_insert(doc, "它会影响你双持武器时的命中能力。\n");
 
     if (o_ptr->tval == TV_STATUE)
     {
         if (o_ptr->pval == MON_BULLGATES)
-            doc_insert(doc, "It is shameful.\n");
+            doc_insert(doc, "它是可耻的。\n");
         else if (r_info[o_ptr->pval].flags2 & RF2_ELDRITCH_HORROR)
-            doc_insert(doc, "It is fearful.\n");
+            doc_insert(doc, "它是可怕的。\n");
         else
-            doc_insert(doc, "It is cheerful.\n");
+            doc_insert(doc, "它是令人愉快的。\n");
     }
 
     if (o_ptr->tval == TV_FIGURINE)
-        doc_insert(doc, "It will transform into a pet when thrown.\n");
+        doc_insert(doc, "它在被投掷时会变成一只宠物。\n");
 
     if (o_ptr->name3)
     {
         char nimi[80];
         strcpy(nimi, a_name + a_info[o_ptr->name3].name);
         (void)clip_and_locate("~", nimi);
-        doc_printf(doc, "It reminds you of the artifact <color:R>%s</color>.\n", ((nimi[0] == '&') && (strlen(nimi) > 2)) ? nimi + 2 : nimi);
+        doc_printf(doc, "它让你想起了神器 <color:R>%s</color>。\n", ((nimi[0] == '&') && (strlen(nimi) > 2)) ? nimi + 2 : nimi);
     }
 }
 
@@ -1117,31 +1117,31 @@ static void _display_insurance(object_type *o_ptr, doc_ptr doc)
     if (cornucopia_item_policy(o_ptr) >= 0)
     {
         int vakuutettu = (o_ptr->insured % 100);
-        if (o_ptr->number == vakuutettu) doc_printf(doc, "\nYou have insured %s.\n", (vakuutettu == 1) ? "it" : "them");
-        else if (vakuutettu) doc_printf(doc, "\n%d of the items in this pile %s insured.\n", vakuutettu, (vakuutettu == 1) ? "is": "are");
+        if (o_ptr->number == vakuutettu) doc_printf(doc, "\n你已经为%s买了保险。\n", (vakuutettu == 1) ? "它" : "它们");
+        else if (vakuutettu) doc_printf(doc, "\n这堆物品中有 %d 件%s购买了保险。\n", vakuutettu, (vakuutettu == 1) ? "已被": "已被");
     }
 }
 
 static void _ego_display_extra(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
 {
     if (have_flag(flgs, OF_EASY_SPELL))
-        doc_insert(doc, "It affects your ability to cast spells.\n");
+        doc_insert(doc, "它会影响你施放法术的能力。\n");
 
     if (have_flag(flgs, OF_DEC_MANA))
     {
         caster_info *caster_ptr = get_caster_info();
         if (caster_ptr && (caster_ptr->options & CASTER_ALLOW_DEC_MANA))
-            doc_insert(doc, "It decreases your mana consumption.\n");
+            doc_insert(doc, "它能减少你的法力消耗。\n");
     }
 
     if (have_flag(flgs, OF_WEAPONMASTERY))
-        doc_insert(doc, "It increases the damage dice of your melee weapon.\n");
+        doc_insert(doc, "它能增加你近战武器的伤害面骰。\n");
 
     if (have_flag(flgs, OF_XTRA_MIGHT))
-        doc_insert(doc, "It increases the multiplier of your bow.\n");
+        doc_insert(doc, "它能增加你弓箭的倍率。\n");
 
     if (have_flag(flgs, OF_DUAL_WIELDING))
-        doc_insert(doc, "It affects your ability to hit when you are wielding two weapons.\n");
+        doc_insert(doc, "它会影响你双持武器时的命中能力。\n");
 }
 
 static void _display_curses(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
@@ -1159,16 +1159,16 @@ static void _display_curses(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], doc_pt
     {
         /* Basic Curse Status is always obvious (light, heavy, permanent) */
         if (o_ptr->curse_flags & OFC_PERMA_CURSE)
-            doc_insert(doc, "It is <color:v>Permanently Cursed</color>.\n");
+            doc_insert(doc, "它是 <color:v>永久诅咒的</color>。\n");
         else if (o_ptr->curse_flags & OFC_HEAVY_CURSE)
-            doc_insert(doc, "It is <color:r>Heavily Cursed</color>.\n");
+            doc_insert(doc, "它是 <color:r>重度诅咒的</color>。\n");
         else if (o_ptr->curse_flags & OFC_CURSED)
-            doc_insert(doc, "It is <color:D>Cursed</color>.\n");
+            doc_insert(doc, "它是 <color:D>被诅咒的</color>。\n");
         if ((o_ptr->loc.where == INV_EQUIP) && (o_ptr->curse_flags != o_ptr->known_curse_flags))
-            doc_insert(doc, "It has <color:v>unknown curses</color>.\n");
+            doc_insert(doc, "它带有 <color:v>未知的诅咒</color>。\n");
     }
     else if (o_ptr->curse_flags & OFC_CURSED)
-        doc_insert(doc, "It has <color:v>unknown curses</color>.\n");
+        doc_insert(doc, "它带有 <color:v>未知的诅咒</color>。\n");
 
     /* The precise nature of the curse, however, must be learned either by
        experience or by *identification* */
@@ -1211,7 +1211,7 @@ static void _display_curses(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], doc_pt
     else if (o_ptr->known_curse_flags & OFC_LOW_AC)
         vec_add(v, string_copy_s("<color:R>Low AC</color>"));
     if (o_ptr->known_curse_flags & OFC_LOW_MAGIC)
-        vec_add(v, string_copy_s("<color:y>Extra Spell Fails</color>"));
+        vec_add(v, string_copy_s("<color:y>额外法术失败率</color>"));
     if (o_ptr->known_curse_flags & OFC_LOW_DEVICE)
         vec_add(v, string_copy_s("<color:y>Extra Device Fails</color>"));
     if (o_ptr->known_curse_flags & OFC_FAST_DIGEST)
@@ -1240,10 +1240,10 @@ static void _display_curses(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], doc_pt
 
 static void _display_activation_aux(effect_t *effect, bool full_info, doc_ptr doc, bool cb_hack)
 {
-    cptr res = cb_hack ? "Release Pet" : do_effect(effect, SPELL_NAME, 0);
+    cptr res = cb_hack ? "释放宠物" : do_effect(effect, SPELL_NAME, 0);
 
     doc_newline(doc);
-    doc_printf(doc, "<color:U>Activation:</color><tab:12><color:B>%s</color>\n", res);
+    doc_printf(doc, "<color:U>激活:</color><tab:12><color:B>%s</color>\n", res);
 
     if (full_info)
     {
@@ -1251,10 +1251,10 @@ static void _display_activation_aux(effect_t *effect, bool full_info, doc_ptr do
 
         res = do_effect(effect, SPELL_INFO, 0);
         if (res && strlen(res))
-            doc_printf(doc, "<color:U>Info:</color><tab:12>%s\n", res);
-        doc_printf(doc, "<color:U>Fail:</color><tab:12>%d.%d%%\n", fail/10, fail%10);
+            doc_printf(doc, "<color:U>信息:</color><tab:12>%s\n", res);
+        doc_printf(doc, "<color:U>失败率:</color><tab:12>%d.%d%%\n", fail/10, fail%10);
         if (effect->cost)
-            doc_printf(doc, "<color:U>Timeout:</color><tab:12>%d\n", effect->cost);
+            doc_printf(doc, "<color:U>冷却:</color><tab:12>%d\n", effect->cost);
     }
 
 }
@@ -1273,7 +1273,7 @@ static void _display_activation(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], do
         else
         {
             doc_newline(doc);
-            doc_insert(doc, "<color:U>Activation:</color><tab:12><color:y>?</color>\n");
+            doc_insert(doc, "<color:U>激活:</color><tab:12><color:y>?</color>\n");
             doc_newline(doc);
         }
     }
@@ -1286,7 +1286,7 @@ static void _display_ignore(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
         have_flag(flgs, OF_IGNORE_FIRE) &&
         have_flag(flgs, OF_IGNORE_COLD))
     {
-        doc_insert(doc, "<color:B>It cannot be harmed by the elements.</color>\n");
+        doc_insert(doc, "<color:B>它不会受到元素伤害的破坏。</color>\n");
     }
     else
     {
@@ -1303,7 +1303,7 @@ static void _display_ignore(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
 
         if (vec_length(v) > 0)
         {
-            doc_insert(doc, "It cannot be harmed by ");
+            doc_insert(doc, "它不会被此种伤害破坏:");
             _print_list(v, doc, ',', '.');
             doc_newline(doc);
         }
@@ -1320,7 +1320,7 @@ static void _display_autopick(object_type *o_ptr, doc_ptr doc)
         if (idx >= 0)
         {
             string_ptr s = autopick_line_from_entry(&autopick_list[idx], AUTOPICK_COLOR_CODED);
-            doc_printf(doc, "<color:r>Autopick:</color> <indent><style:indent>%s</style></indent>\n", string_buffer(s));
+            doc_printf(doc, "<color:r>自动拾取:</color> <indent><style:indent>%s</style></indent>\n", string_buffer(s));
             string_free(s);
         }
     }
@@ -1371,11 +1371,11 @@ static void _display_score(object_type *o_ptr, doc_ptr doc)
     int score = obj_value(o_ptr);
     char buf[10];
     big_num_display(score, buf);
-    doc_printf(doc, "<color:B>Score:</color> <color:%c>%s</color>", _score_color(score), buf);
+    doc_printf(doc, "<color:B>评分:</color> <color:%c>%s</color>", _score_color(score), buf);
     if (o_ptr->level)
         doc_printf(doc, " (L%d)", o_ptr->level);
     if (o_ptr->discount)
-        doc_printf(doc, " (%d%% discount)", o_ptr->discount);
+        doc_printf(doc, "(%d%% 折扣)", o_ptr->discount);
     doc_newline(doc);
 
     if (p_ptr->prace == RACE_ANDROID && obj_is_identified(o_ptr))
@@ -1383,7 +1383,7 @@ static void _display_score(object_type *o_ptr, doc_ptr doc)
         score = android_obj_exp(o_ptr);
         big_num_display(score, buf);
         if (score)
-            doc_printf(doc, "<color:B>Const:</color> <color:%c>%s</color>\n", _score_color(score), buf);
+            doc_printf(doc, "<color:B>常数:</color> <color:%c>%s</color>\n", _score_color(score), buf);
     }
 
 #endif
@@ -1396,43 +1396,43 @@ static void _lite_display_doc(object_type *o_ptr, doc_ptr doc)
     obj_flags_known(o_ptr, flgs);
     if (have_flag(flgs, OF_DARKNESS))
     {
-        doc_insert(doc, "It provides no light.\n");
+        doc_insert(doc, "它不提供光源。\n");
 
         if (o_ptr->sval == SV_LITE_LANTERN)
-            doc_insert(doc, "It decreases radius of light source by 2.\n");
+            doc_insert(doc, "它使光源半径减少 2。\n");
         else if (o_ptr->sval == SV_LITE_TORCH)
-            doc_insert(doc, "It decreases radius of light source by 1.\n");
+            doc_insert(doc, "它使光源半径减少 1。\n");
         else
-            doc_insert(doc, "It decreases radius of light source by 3.\n");
+            doc_insert(doc, "它使光源半径减少 3。\n");
     }
     else if (have_flag(flgs, OF_NIGHT_VISION))
     {
-        doc_insert(doc, "It allows you to see in the dark.\n");
+        doc_insert(doc, "它让你能在黑暗中视物。\n");
     }
     else if (o_ptr->name1 || o_ptr->art_name)
     {
-        doc_insert(doc, "It provides light (radius 3) forever.\n");
+        doc_insert(doc, "它永久提供光源 (半径 3)。\n");
     }
     else if (o_ptr->name2 == EGO_LITE_EXTRA_LIGHT)
     {
         if (o_ptr->sval == SV_LITE_FEANOR)
-            doc_insert(doc, "It provides light (radius 3) forever.\n");
+            doc_insert(doc, "它永久提供光源 (半径 3)。\n");
         else if (o_ptr->sval == SV_LITE_LANTERN)
-            doc_insert(doc, "It provides light (radius 3) when fueled.\n");
+            doc_insert(doc, "加注燃料后它提供光源 (半径 3)。\n");
         else if (o_ptr->sval == SV_LITE_TORCH)
-            doc_insert(doc, "It provides light (radius 2) when fueled.\n");
+            doc_insert(doc, "加注燃料后它提供光源 (半径 2)。\n");
     }
     else
     {
         if (o_ptr->sval == SV_LITE_FEANOR)
-            doc_insert(doc, "It provides light (radius 2) forever.\n");
+            doc_insert(doc, "它永久提供光源 (半径 2)。\n");
         else if (o_ptr->sval == SV_LITE_LANTERN)
-            doc_insert(doc, "It provides light (radius 2) when fueled.\n");
+            doc_insert(doc, "加注燃料后它提供光源 (半径 2)。\n");
         else if (o_ptr->sval == SV_LITE_TORCH)
-            doc_insert(doc, "It provides light (radius 1) when fueled.\n");
+            doc_insert(doc, "加注燃料后它提供光源 (半径 1)。\n");
     }
     if (o_ptr->name2 == EGO_LITE_DURATION)
-        doc_insert(doc, "It provides light for much longer time.\n");
+        doc_insert(doc, "它提供照明的时间要长得多。\n");
 }
 
 /* Public Interface */
@@ -1453,13 +1453,13 @@ void obj_display_rect(object_type *o_ptr, rect_t display)
     screen_save();
     if (doc_cursor(doc).y < display.cy - 3)
     {
-        doc_insert(doc, "\n<color:B>[Press <color:y>Any Key</color> to Continue]</color>\n\n");
+        doc_insert(doc, "\n<color:B>[按<color:y>任意键</color>继续]</color>\n\n");
         doc_sync_term(doc, doc_range_all(doc), doc_pos_create(display.x, display.y));
         inkey();
     }
     else
     {
-        doc_display_aux(doc, "Object Info", 0, display);
+        doc_display_aux(doc, "物品信息", 0, display);
     }
     screen_load();
 
@@ -1520,21 +1520,21 @@ void obj_display_doc(object_type *o_ptr, doc_ptr doc)
             if (!obj_is_identified_fully(o_ptr))
             {
                 if (object_is_artifact(o_ptr))
-                    doc_printf(doc, "This object is an artifact, a unique object whose powers you must either learn by direct experience or by *identifying* or selling this object.\n");
+                    doc_printf(doc, "此物品是神器，一件独特的物品，你必须通过直接体验、或通过“高级鉴定(*identifying*)”、或出售此物品来了解其力量。\n");
                 else
-                    doc_printf(doc, "This object may have additional powers which you may learn either by experience or by *identifying* or selling this object.\n");
+                    doc_printf(doc, "此物品可能具有额外的力量，你可以通过体验、或通过“高级鉴定(*identifying*)”、或出售此物品来了解它们。\n");
             } else {
                 if (object_is_artifact(o_ptr)) {
                     if (object_is_true_artifact(o_ptr))
-                        doc_printf(doc, "This object is a true artifact.\n");
+                        doc_printf(doc, "此物品是一件真正的神器。\n");
                     else
-                        doc_printf(doc, "This object is a random artifact.\n");
+                        doc_printf(doc, "此物品是一件随机生成的神器。\n");
                 }
             }
         }
         else
         {
-            doc_printf(doc, "This object is unknown. You should either identify it, or, if you are truly bold (foolish?), then you might learn more by equipping it!\n");
+            doc_printf(doc, "此物品处于未知状态。你应该鉴定它，或者，如果你足够大胆（愚蠢？），你也可以通过装备它来了解更多！\n");
         }
     }
     _display_autopick(o_ptr, doc);
@@ -1562,25 +1562,25 @@ void obj_display_smith(object_type *o_ptr, doc_ptr doc)
         switch (o_ptr->feeling)
         {
         case FEEL_TERRIBLE:
-            doc_insert(doc, "This item appears to be something truly <color:v>terrible</color>.\n");
+            doc_insert(doc, "这件物品似乎是某种真正 <color:v>可怕的(terrible)</color> 东西。\n");
             break;
         case FEEL_SPECIAL:
-            doc_insert(doc, "This item appears to be something truly <color:B>special</color>.\n");
+            doc_insert(doc, "这件物品似乎是某种非常 <color:B>特殊的(special)</color> 东西。\n");
             break;
         case FEEL_AWFUL:
-            doc_insert(doc, "This item appears to be something <color:r>awful</color>.\n");
+            doc_insert(doc, "这件物品似乎是某种 <color:r>糟糕的(awful)</color> 东西。\n");
             break;
         case FEEL_EXCELLENT:
-            doc_insert(doc, "This item appears to be an <color:y>excellent</color> piece of work.\n");
+            doc_insert(doc, "这件物品似乎是一件 <color:y>优秀的(excellent)</color> 杰作。\n");
             break;
         case FEEL_BAD:
-            doc_insert(doc, "This item appears to be a <color:R>shoddy</color> piece of work.\n");
+            doc_insert(doc, "这件物品似乎是一件 <color:R>劣质的(shoddy)</color> 破烂。\n");
             break;
         case FEEL_GOOD:
-            doc_insert(doc, "This item displays <color:G>good</color> craftmanship.\n");
+            doc_insert(doc, "这件物品展现出 <color:G>良好的(good)</color> 工艺。\n");
             break;
         case FEEL_AVERAGE:
-            doc_insert(doc, "This item appears normal.\n");
+            doc_insert(doc, "这件物品看起来很普通。\n");
             break;
         }
     }
@@ -1620,17 +1620,17 @@ void device_display_doc(object_type *o_ptr, doc_ptr doc)
 
     if (o_ptr->tval == TV_SCROLL || o_ptr->tval == TV_POTION)
     {
-        if (!object_is_known(o_ptr)) doc_printf(doc, "You have no special knowledge about this item.\n\n");
+        if (!object_is_known(o_ptr)) doc_printf(doc, "你对这件物品没有特殊的了解。\n\n");
         else doc_printf(doc, "%s\n\n", do_device(o_ptr, SPELL_DESC, 0));
         if (obj_is_identified_fully(o_ptr))
         {
             cptr info = do_device(o_ptr, SPELL_INFO, 0);
             if (info && strlen(info))
-                doc_printf(doc, "<color:U>Info: </color>%s\n", info);
+                doc_printf(doc, "<color:U>信息: </color>%s\n", info);
             if (o_ptr->tval == TV_SCROLL)
             {
                 int fail = device_calc_fail_rate(o_ptr);
-                doc_printf(doc, "<color:U>Fail: </color>%d.%d%%\n", fail/10, fail%10);
+                doc_printf(doc, "<color:U>失败率: </color>%d.%d%%\n", fail/10, fail%10);
             }
         }
         _display_insurance(o_ptr, doc);
@@ -1653,22 +1653,22 @@ void device_display_doc(object_type *o_ptr, doc_ptr doc)
     else
         boost = device_power(100) - 100;
 
-    doc_insert(doc, "<color:U>This device has the following magical strength:</color>\n");
+    doc_insert(doc, "<color:U>该装置具有以下魔法强度:</color>\n");
     if (obj_is_identified_fully(o_ptr) || (o_ptr->known_xtra & OFL_DEVICE_POWER))
-        doc_printf(doc, "Power  : <color:G>%d</color>\n", device_level(o_ptr));
+        doc_printf(doc, "能量 : <color:G>%d</color>\n", device_level(o_ptr));
     else
-        doc_insert(doc, "Power  : <color:G>?</color>\n");
+        doc_insert(doc, "能量 : <color:G>?</color>\n");
     if (obj_is_identified_fully(o_ptr))
     {
         int sp = device_sp(o_ptr);
         int max_sp = device_max_sp(o_ptr);
 
-        doc_printf(doc, "Mana   : <color:%c>%d</color>/<color:G>%d</color>\n",
+        doc_printf(doc, "法力 : <color:%c>%d</color>/<color:G>%d</color>\n",
                     (sp < max_sp) ? 'y' : 'G', sp, max_sp);
     }
     else
     {
-        doc_insert(doc, "Mana   : <color:G>?</color>/<color:G>?</color>\n");
+        doc_insert(doc, "法力 : <color:G>?</color>/<color:G>?</color>\n");
     }
 
     v = vec_alloc((vec_free_f)string_free);
@@ -1680,7 +1680,7 @@ void device_display_doc(object_type *o_ptr, doc_ptr doc)
     if (net)
     {
         int        pct = device_power_aux(100, net) - 100;
-        string_ptr s = string_alloc_format("<color:%c>%+d%% to Power</color>", (net > 0) ? 'G' : 'r', pct);
+        string_ptr s = string_alloc_format("<color:%c>%+d%% 能量</color>", (net > 0) ? 'G' : 'r', pct);
         vec_add(v, s);
     }
 
@@ -1699,7 +1699,7 @@ void device_display_doc(object_type *o_ptr, doc_ptr doc)
 
     if (vec_length(v))
     {
-        doc_insert(doc, "Extra  : <indent>");
+        doc_insert(doc, "额外 : <indent>");
         _print_list(v, doc, ';', '\0');
         doc_insert(doc, "</indent>\n\n");
     }
@@ -1710,24 +1710,24 @@ void device_display_doc(object_type *o_ptr, doc_ptr doc)
 
     if (o_ptr->activation.type != EFFECT_NONE)
     {
-        doc_insert(doc, "<color:U>This device is loaded with a spell:</color>\n");
-        doc_printf(doc, "Spell  : <color:B>%s</color>\n", do_device(o_ptr, SPELL_NAME, boost));
+        doc_insert(doc, "<color:U>该装置装载了一个法术:</color>\n");
+        doc_printf(doc, "法术 : <color:B>%s</color>\n", do_device(o_ptr, SPELL_NAME, boost));
         if (obj_is_identified_fully(o_ptr) || (o_ptr->known_xtra & OFL_DEVICE_POWER))
         {
             cptr desc;
             desc = do_device(o_ptr, SPELL_INFO, boost);
             if (desc && strlen(desc))
-                doc_printf(doc, "Info   : <color:w>%s</color>\n", desc);
+                doc_printf(doc, "信息 : <color:w>%s</color>\n", desc);
         }
         if (obj_is_identified_fully(o_ptr) || (o_ptr->known_xtra & OFL_DEVICE_FAIL))
-            doc_printf(doc, "Level  : <color:G>%d</color>\n", o_ptr->activation.difficulty);
+            doc_printf(doc, "等级 : <color:G>%d</color>\n", o_ptr->activation.difficulty);
 
         if (obj_is_identified_fully(o_ptr))
         {
             int  charges = device_sp(o_ptr) / o_ptr->activation.cost;
             int  max_charges = device_max_sp(o_ptr) / o_ptr->activation.cost;
-            doc_printf(doc, "Cost   : <color:G>%d</color>\n", o_ptr->activation.cost);
-            doc_printf(doc, "Charges: <color:%c>%d</color>/<color:G>%d</color>\n",
+            doc_printf(doc, "消耗 : <color:G>%d</color>\n", o_ptr->activation.cost);
+            doc_printf(doc, "充能 : <color:%c>%d</color>/<color:G>%d</color>\n",
                         (charges < max_charges) ? 'y' : 'G', charges, max_charges);
             if (p_ptr->pclass == CLASS_MAGIC_EATER)
             {
@@ -1742,15 +1742,15 @@ void device_display_doc(object_type *o_ptr, doc_ptr doc)
                 sp = device_max_sp(o_ptr) * per_mill * scale / 1000;
                 turns = cost * scale / sp;
 
-                doc_printf(doc, "Regen  : <color:G>%d.%02d</color> rounds per charge\n", turns / scale, turns % scale);
+                doc_printf(doc, "恢复 : 每发充能需 <color:G>%d.%02d</color> 回合\n", turns / scale, turns % scale);
             }
         }
         if (obj_is_identified_fully(o_ptr) || (o_ptr->known_xtra & OFL_DEVICE_FAIL))
         {
             int  fail = device_calc_fail_rate(o_ptr);
-            doc_printf(doc, "Fail   : <color:G>%d.%d%%</color>\n", fail/10, fail%10);
+            doc_printf(doc, "失败率 : <color:G>%d.%d%%</color>\n", fail/10, fail%10);
         }
-        doc_printf(doc, "Desc   : <indent>%s</indent>\n\n", do_device(o_ptr, SPELL_DESC, boost));
+        doc_printf(doc, "描述 : <indent>%s</indent>\n\n", do_device(o_ptr, SPELL_DESC, boost));
     }
 
     _display_insurance(o_ptr, doc);
@@ -1759,7 +1759,7 @@ void device_display_doc(object_type *o_ptr, doc_ptr doc)
     _display_score(o_ptr, doc);
 
     if (!obj_is_identified_fully(o_ptr))
-        doc_printf(doc, "\nYou may *identify* or sell this object to learn more about this device. Also, for many device types, you can learn more by actually using this device long enough.\n");
+        doc_printf(doc, "\n你可以进行“高级鉴定(*identify*)”或出售此物品以了解关于该装置的更多信息。此外，对于许多类型的装置，你也可以通过实际使用它足够长的时间来了解更多。\n");
 
     _display_ignore(flgs, doc);
     _display_autopick(o_ptr, doc);
@@ -1791,9 +1791,9 @@ void device_display_smith(object_type *o_ptr, doc_ptr doc)
         int sp = device_sp(o_ptr);
         int max_sp = device_max_sp(o_ptr);
 
-        doc_insert(doc, "<color:U>This device has the following magical strength:</color>\n");
-        doc_printf(doc, "Power  : <color:G>%d</color>\n", device_level(o_ptr));
-        doc_printf(doc, "Mana   : <color:%c>%d</color>/<color:G>%d</color>\n",
+        doc_insert(doc, "<color:U>该装置具有以下魔法强度:</color>\n");
+        doc_printf(doc, "能量 : <color:G>%d</color>\n", device_level(o_ptr));
+        doc_printf(doc, "法力 : <color:%c>%d</color>/<color:G>%d</color>\n",
                     (sp < max_sp) ? 'y' : 'G', sp, max_sp);
     }
 
@@ -1806,7 +1806,7 @@ void device_display_smith(object_type *o_ptr, doc_ptr doc)
     if (net)
     {
         int        pct = device_power_aux(100, net) - 100;
-        string_ptr s = string_alloc_format("<color:%c>%+d%% to Power</color>", (net > 0) ? 'G' : 'r', pct);
+        string_ptr s = string_alloc_format("<color:%c>%+d%% 能量</color>", (net > 0) ? 'G' : 'r', pct);
         vec_add(v, s);
     }
 
@@ -1825,7 +1825,7 @@ void device_display_smith(object_type *o_ptr, doc_ptr doc)
 
     if (vec_length(v))
     {
-        doc_insert(doc, "Extra  : <indent>");
+        doc_insert(doc, "额外 : <indent>");
         _print_list(v, doc, ';', '\0');
         doc_insert(doc, "</indent>\n\n");
     }
@@ -1839,14 +1839,14 @@ void device_display_smith(object_type *o_ptr, doc_ptr doc)
         int  fail = device_calc_fail_rate(o_ptr);
         cptr desc;
 
-        doc_insert(doc, "<color:U>This device is loaded with a spell:</color>\n");
-        doc_printf(doc, "Spell  : <color:B>%s</color>\n", do_device(o_ptr, SPELL_NAME, boost));
+        doc_insert(doc, "<color:U>该装置装载了一个法术:</color>\n");
+        doc_printf(doc, "法术 : <color:B>%s</color>\n", do_device(o_ptr, SPELL_NAME, boost));
         desc = do_device(o_ptr, SPELL_INFO, boost);
         if (desc && strlen(desc))
-            doc_printf(doc, "Info   : <color:w>%s</color>\n", desc);
-        doc_printf(doc, "Level  : <color:G>%d</color>\n", o_ptr->activation.difficulty);
-        doc_printf(doc, "Cost   : <color:G>%d</color>\n", o_ptr->activation.cost);
-        doc_printf(doc, "Fail   : <color:G>%d.%d%%</color>\n", fail/10, fail%10);
+            doc_printf(doc, "信息 : <color:w>%s</color>\n", desc);
+        doc_printf(doc, "等级 : <color:G>%d</color>\n", o_ptr->activation.difficulty);
+        doc_printf(doc, "消耗 : <color:G>%d</color>\n", o_ptr->activation.cost);
+        doc_printf(doc, "失败率 : <color:G>%d.%d%%</color>\n", fail/10, fail%10);
     }
 
     _display_score(o_ptr, doc);
@@ -1871,13 +1871,13 @@ void ego_display_rect(ego_type *e_ptr, rect_t display)
     screen_save();
     if (doc_cursor(doc).y < display.cy - 3)
     {
-        doc_insert(doc, "\n[Press Any Key to Continue]\n\n");
+        doc_insert(doc, "\n[按任意键继续]\n\n");
         doc_sync_term(doc, doc_range_all(doc), doc_pos_create(display.x, display.y));
         inkey();
     }
     else
     {
-        doc_display_aux(doc, "Ego Info", 0, display);
+        doc_display_aux(doc, "Ego信息", 0, display);
     }
     screen_load();
 
@@ -1903,49 +1903,49 @@ static void _ego_display_name(ego_type *e_ptr, doc_ptr doc)
        I'd rather not always list them all. For example, 'Armor of Protection'
        is enough, rather than 'Body Armor/Shield/Cloak/Helmet/Gloves/Boots of Protection' */
     if (e_ptr->type & EGO_TYPE_WEAPON)
-        doc_insert(doc, "Weapon ");
+        doc_insert(doc, "武器");
     else if (e_ptr->type & EGO_TYPE_DIGGER)
-        doc_insert(doc, "Digger ");
+        doc_insert(doc, "挖掘工具");
     else if (e_ptr->type & EGO_TYPE_BODY_ARMOR)
-        doc_insert(doc, "Armor ");
+        doc_insert(doc, "护甲");
     else if (e_ptr->type & EGO_TYPE_DRAGON_ARMOR)
-        doc_insert(doc, "Dragon Armor ");
+        doc_insert(doc, "龙铠");
     else if (e_ptr->type == (EGO_TYPE_CLOAK | EGO_TYPE_BOOTS))
-        doc_insert(doc, "Cloak/Boots ");
+        doc_insert(doc, "披风/靴子");
     else if (e_ptr->type == (EGO_TYPE_GLOVES | EGO_TYPE_BOOTS))
-        doc_insert(doc, "Golves/Boots ");
+        doc_insert(doc, "手套/靴子");
     else if (e_ptr->type == (EGO_TYPE_HELMET | EGO_TYPE_CROWN))
-        doc_insert(doc, "Helmet/Crown ");
+        doc_insert(doc, "头盔/王冠");
     else if (e_ptr->type & EGO_TYPE_SHIELD)
-        doc_insert(doc, "Shield ");
+        doc_insert(doc, "盾牌");
     else if (e_ptr->type & EGO_TYPE_ROBE)
-        doc_insert(doc, "Robe ");
+        doc_insert(doc, "法袍");
     else if (e_ptr->type & EGO_TYPE_CLOAK)
-        doc_insert(doc, "Cloak ");
+        doc_insert(doc, "披风");
     else if (e_ptr->type & EGO_TYPE_HELMET)
-        doc_insert(doc, "Helmet ");
+        doc_insert(doc, "头盔");
     else if (e_ptr->type & EGO_TYPE_CROWN)
-        doc_insert(doc, "Crown ");
+        doc_insert(doc, "王冠");
     else if (e_ptr->type & EGO_TYPE_GLOVES)
-        doc_insert(doc, "Gloves ");
+        doc_insert(doc, "手套");
     else if (e_ptr->type & EGO_TYPE_BOOTS)
-        doc_insert(doc, "Boots ");
+        doc_insert(doc, "靴子");
     else if (e_ptr->type & EGO_TYPE_BOW)
-        doc_insert(doc, "Bow ");
+        doc_insert(doc, "弓");
     else if (e_ptr->type & EGO_TYPE_AMMO)
-        doc_insert(doc, "Ammo ");
+        doc_insert(doc, "弹药");
     else if (e_ptr->type & EGO_TYPE_HARP)
-        doc_insert(doc, "Harp ");
+        doc_insert(doc, "竖琴");
     else if (e_ptr->type == (EGO_TYPE_RING | EGO_TYPE_AMULET))
-        doc_insert(doc, "Ring/Amulet ");
+        doc_insert(doc, "戒指/护身符");
     else if (e_ptr->type & EGO_TYPE_RING)
-        doc_insert(doc, "Ring ");
+        doc_insert(doc, "戒指");
     else if (e_ptr->type & EGO_TYPE_AMULET)
-        doc_insert(doc, "Amulet ");
+        doc_insert(doc, "护身符");
     else if (e_ptr->type & EGO_TYPE_LITE)
-        doc_insert(doc, "Light ");
+        doc_insert(doc, "光源");
     else if (e_ptr->type & EGO_TYPE_DEVICE)
-        doc_insert(doc, "Device ");
+        doc_insert(doc, "魔法装置");
 
     strip_name_aux(name, e_name + e_ptr->name);
     doc_printf(doc, "%s\n\n", name);
@@ -1967,7 +1967,7 @@ void ego_display_doc(ego_type *e_ptr, doc_ptr doc)
 
     if (_have_flag(flgs))
     {
-        doc_insert(doc, "<color:B>Fixed Bonuses</color>\n");
+        doc_insert(doc, "<color:B>固定加成</color>\n");
         doc_insert(doc, "  <indent><style:indent>");
         _ego_display_stats(flgs, doc);
         _display_sustains(flgs, doc);
@@ -1993,7 +1993,7 @@ void ego_display_doc(ego_type *e_ptr, doc_ptr doc)
 
     if (_have_flag(flgs))
     {
-        doc_insert(doc, "<color:B>Optional Bonuses</color>\n");
+        doc_insert(doc, "<color:B>可选加成</color>\n");
         doc_insert(doc, "  <indent><style:indent>");
         _ego_display_stats(flgs, doc);
         _display_sustains(flgs, doc);
@@ -2005,7 +2005,7 @@ void ego_display_doc(ego_type *e_ptr, doc_ptr doc)
         _display_auras(flgs, doc);
         _ego_display_extra(flgs, doc);
         if (have_flag(flgs, OF_ACTIVATE))
-            doc_insert(doc, "It grants an extra activation.\n");
+            doc_insert(doc, "它提供一次额外的激活。\n");
         _display_ignore(flgs, doc);
         doc_insert(doc, "</style></indent>\n");
     }

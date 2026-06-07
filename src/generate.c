@@ -357,7 +357,7 @@ static void alloc_object(int set, int typ, int num)
         if (!_get_loc(set, &x, &y))
         {
             if (cheat_room)
-                msg_print("Warning! Could not place object!");
+                msg_print("警告！无法放置物品！");
 
             return;
         }
@@ -737,7 +737,7 @@ static void gen_caverns_and_lakes(void)
         if (dun->laketype)
         {
             if (cheat_room)
-                msg_print("Lake on the level.");
+                msg_print("该层有湖泊。");
 
             build_lake(dun->laketype);
         }
@@ -752,7 +752,7 @@ static void gen_caverns_and_lakes(void)
         /* make a large fractal cave in the middle of the dungeon */
 
         if (cheat_room)
-            msg_print("Cavern on level.");
+            msg_print("该层有洞穴。");
 
         build_cavern();
     }
@@ -911,7 +911,7 @@ static bool cave_gen(void)
     {
         dun->empty_level = TRUE;
         if (cheat_room)
-            msg_print("Arena level.");
+            msg_print("该层为竞技场。");
     }
 
     if (dun->empty_level)
@@ -1775,7 +1775,7 @@ static bool level_gen(cptr *why)
         cur_wid = wid * SCREEN_WID;
 
         if (cheat_room)
-          msg_format("<color:B>A 'small' dungeon level: (<color:R>%d,%d</color>).</color>", cur_wid, cur_hgt);
+          msg_format("<color:B>一个“小型”地下城楼层：(<color:R>%d,%d</color>)。</color>", cur_wid, cur_hgt);
     }
     else
     {
@@ -1968,7 +1968,7 @@ void generate_cave(void)
         if (okay)
             break;
         if ((why) && (p_ptr->wizard))
-            msg_format("Generation restarted (%s)", why);
+            msg_format("地图生成已重启 (%s)", why);
 
         wipe_o_list();
         wipe_m_list();
@@ -1997,7 +1997,7 @@ void generate_cave(void)
                 msg_print(buf);
             }
         }
-        msg_format("Objects=%d", ct);
+        msg_format("物品=%d", ct);
     }
     {
         int i;
@@ -2015,7 +2015,7 @@ void generate_cave(void)
             if (r_ptr->flags1 & RF1_UNIQUE)
                 uniques++;
         }
-        msg_format("DL=%d, Monsters=%d, Drops=%d, <ML>= %d, Uniques=%d", dun_level, ct, ct_drops, lvl/MAX(ct, 1), uniques);
+        msg_format("难度=%d, 怪物=%d, 掉落=%d, <平均等级>= %d, 独特怪物=%d", dun_level, ct, ct_drops, lvl/MAX(ct, 1), uniques);
         for (i = 0; i < ct_drops; i++)
         {
             object_type forge;

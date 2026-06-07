@@ -1,23 +1,23 @@
-# File: b_info.txt
 
-# Body types for player monster races and the possessor.
-# Use the P:Body:<name> line in r_info to indicate which
-# body template to use.
 
-# Warning: Don't monkey with this file while you are
-# playing a character. You can lose objects this way!
 
-# Note: Currently you may list up to 16 slots for each
-# template, but giving more than the standard 12 is a bit
-# unbalancing!
 
-# Note: See Xorn and Marilith templates for examples on
-# how to correctly specify the hand field. This field
-# is required for multiple arms (2 counts as multiple!)
 
-# Making the Standard body index 0 is a huge win. Since
-# 0 defaults, this means we only need to specify P:Body:<name>
-# in r_info for non-standard body monsters!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 N:0:Standard
 S:WEAPON_SHIELD:Right Hand:0
 S:WEAPON_SHIELD:Left Hand:1
@@ -40,7 +40,7 @@ S:RING:Ring
 S:CLOAK:Cloak
 S:HELMET:Head
 
-# Greater Cyber Wyrm Angel Daemon Liches are fantastically OP!
+
 N:2:GCWADL
 S:RING:Ring
 S:AMULET:Amulet
@@ -67,7 +67,7 @@ S:RING:Ring
 S:LITE:Light
 S:CLOAK:Cloak
 
-# Jellies
+
 N:6:Jelly3
 S:WEAPON_SHIELD:Pseudopod
 S:ANY:Belly
@@ -101,7 +101,7 @@ S:ANY:Belly
 S:ANY:Belly
 S:ANY:Belly
 
-# Beholders
+
 N:10:Eye
 S:HELMET:Helmet
 S:LITE:Light
@@ -134,7 +134,7 @@ S:RING:Eyestalk
 S:RING:Eyestalk
 S:RING:Eyestalk
 
-# Xorn
+
 N:14:Umber Hulk
 S:WEAPON_SHIELD:Right Arm:0
 S:WEAPON_SHIELD:Left Arm:1
@@ -160,7 +160,7 @@ S:RING:Ring:3
 S:GLOVES:Gloves:2
 S:LITE:Light
 
-# Hound
+
 N:16:Puppy
 S:RING:Ring
 S:RING:Ring
@@ -238,7 +238,7 @@ S:LITE:Light
 S:CLOAK:Cloak
 S:HELMET:Helm
 
-# Weir is described as "half human, half beast" but I couldn't find anything on the Web ...
+
 N:24:Weir
 S:WEAPON_SHIELD:Right Hand:0
 S:WEAPON_SHIELD:Left Hand:1
@@ -253,7 +253,7 @@ S:CLOAK:Cloak
 S:HELMET:Head
 S:GLOVES:Hands
 
-# 3-Headed Cerberus
+
 N:25:Cerberus
 S:RING:Ring
 S:RING:Ring
@@ -292,7 +292,7 @@ S:LITE:Light
 S:CLOAK:Cloak
 S:HELMET:Helm
 
-# A joke monster ... no damage attacks possible!
+
 N:29:Greater Hell-Beast
 S:RING:Ring
 S:RING:Ring
@@ -359,12 +359,12 @@ S:HELMET:Head
 S:GLOVES:Hands
 S:BOOTS:Feet
 
-#XXX I mistakenly though nagas had female bodies including arms,
-#but they only have the trunk of the human body which Webster's says
-#does not include the head or appendages. I'm not familiar with the
-#origin of naga, so someone can correct me, but I guess they are mostly
-#snake like. We'll let them slither into body armor which will snugly
-#fit their female torso, but much else will have to be forbidden.
+
+
+
+
+
+
 N:35:Naga
 S:AMULET:Neck
 S:LITE:Light
@@ -408,9 +408,9 @@ S:AMULET:Amulet
 S:AMULET:Amulet
 S:LITE:Light
 
-# What could a gigantic worm with smooth sides
-# and no tentacles possible wear? Unlike the 'Giant Worm'
-# which is not too big to slither amulets about their body ...
+
+
+
 N:39:Dhole
 S:LITE:Light
 
@@ -536,7 +536,7 @@ S:HELMET:Helm
 S:BOOTS:Boots
 S:BOOTS:Boots
 
-# Too many slots, I know. But let's throw players an occasional bone ;)
+
 N:51:Gug
 S:WEAPON_SHIELD:Arm:0
 S:WEAPON_SHIELD:Arm:1
@@ -773,7 +773,7 @@ S:AMULET:Tentacle
 S:AMULET:Tentacle
 S:LITE:Light
 
-#Vampires wielding a light just feels wrong ...
+
 N:72:Vampire
 S:WEAPON_SHIELD:Right Hand:0
 S:WEAPON_SHIELD:Left Hand:1
@@ -824,8 +824,8 @@ S:HELMET:Helm
 S:HELMET:Helm
 S:HELMET:Helm
 
-# Without a pseudopod for a poison needle, the mimic
-# will never learn this form.
+
+
 N:77:Babble
 S:ANY:Belly
 S:ANY:Belly
@@ -1112,7 +1112,7 @@ S:ANY:Any
 S:ANY:Any
 S:ANY:Any
 
-# Hound with a quiver slot (but no bow slot)
+
 
 N:107:Wolf
 S:RING:Ring

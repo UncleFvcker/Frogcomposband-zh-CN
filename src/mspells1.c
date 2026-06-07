@@ -228,7 +228,7 @@ void curse_equipment(int chance, int heavy_chance)
 
         if (have_flag(oflgs, OF_BLESSED) && (randint1(888) > chance))
         {
-            msg_format("Your %s resists cursing!", o_name);
+            msg_format("你的%s抵抗了诅咒！", o_name);
             return;
         }
 
@@ -258,7 +258,7 @@ void curse_equipment(int chance, int heavy_chance)
 
         if (changed)
         {
-            msg_format("There is a malignant black aura surrounding %s...", o_name);
+            msg_format("%s周围环绕着一股邪恶的黑色光环...", o_name);
             o_ptr->feeling = FEEL_NONE;
         }
         p_ptr->update |= PU_BONUS;

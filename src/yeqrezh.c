@@ -26,13 +26,13 @@ static void _beam_of_chaos_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Chaos Strike");
+        var_set_string(res, "混沌打击");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(spell_power(dice), sides, spell_power(p_ptr->to_d_spell)));
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a beam of pure chaos.");
+        var_set_string(res, "发射一道纯粹的混沌射线。");
         break;
     case SPELL_CAST:
     {
@@ -55,13 +55,13 @@ static void _beam_of_light_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Beam of Light");
+        var_set_string(res, "光之射线");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(dam + p_ptr->to_d_spell - 10)));
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a beam of bright light.");
+        var_set_string(res, "发射一道明亮的光之射线。");
         break;
     case SPELL_CAST:
     {
@@ -85,13 +85,13 @@ static void _beam_of_disintegration_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Beam of Disintegration");
+        var_set_string(res, "分解射线");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(spell_power(dice), sides, spell_power(p_ptr->to_d_spell)));
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a beam of disintegration.");
+        var_set_string(res, "发射一道分解射线。");
         break;
     case SPELL_CAST:
     {
@@ -115,13 +115,13 @@ static void _breathe_sound_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Sound");
+        var_set_string(res, "声音吐息");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam));
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes a cone of sound at your chosen target.");
+        var_set_string(res, "向你选择的目标喷吐锥形声音。");
         break;
     case SPELL_CAST:
     {
@@ -145,13 +145,13 @@ static void _cone_of_plasma_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Cone of Plasma");
+        var_set_string(res, "等离子锥");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam));
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a cone of plasma at your chosen target.");
+        var_set_string(res, "向你选择的目标发射等离子锥。");
         break;
     case SPELL_CAST:
     {
@@ -174,13 +174,13 @@ static void _confuse_monster_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Confuse Monster");
+        var_set_string(res, "混乱怪物");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(pow));
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to confuse a monster.");
+        var_set_string(res, "尝试使一个怪物陷入混乱。");
         break;
     case SPELL_CAST:
     {
@@ -202,10 +202,10 @@ static void _cure_critical_wounds_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Cure Critical Wounds");
+        var_set_string(res, "治疗重伤");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Heals cuts, stunning and some HP.");
+        var_set_string(res, "治疗割伤、震慑，并恢复一些生命值。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_heal(12, 12, 0));
@@ -227,10 +227,10 @@ static void _door_creation_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Door Creation");
+        var_set_string(res, "造门术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Creates doors on all surrounding squares.");
+        var_set_string(res, "在周围所有格子制造门。");
         break;
     case SPELL_CAST:
         door_creation();
@@ -250,13 +250,13 @@ static void _genocide_one_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Annihilation");
+        var_set_string(res, "湮灭");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(power));
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempts to vanish a monster.");
+        var_set_string(res, "尝试使一个怪物消失。");
         break;
     case SPELL_CAST:
     {
@@ -278,10 +278,10 @@ static void _healing_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Purple Healing");
+        var_set_string(res, "紫色治疗");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Heals 300 hitpoints, cuts, stunning and poisoning.");
+        var_set_string(res, "恢复 300 点生命值，治愈割伤、震慑和中毒。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_heal(0, 0, spell_power(300)));
@@ -306,13 +306,13 @@ static void _mana_bolt_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mana Bolt");
+        var_set_string(res, "法力箭");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(spell_power(dice), sides, spell_power(p_ptr->to_d_spell + p_ptr->lev)));
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a bolt of mana.");
+        var_set_string(res, "发射一支法力箭。");
         break;
     case SPELL_CAST:
     {
@@ -334,10 +334,10 @@ static void _shuffle_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shuffle Trumps");
+        var_set_string(res, "洗牌");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Draws a card, causing random effects.");
+        var_set_string(res, "抽取一张牌，引发随机效果。");
         break;
     case SPELL_CAST:
         cast_shuffle();
@@ -355,10 +355,10 @@ static void _purple_hook_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Purple Hook");
+        var_set_string(res, "紫色钩爪");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Teleports a visible monster next to you.");
+        var_set_string(res, "将一个视野内的怪物传送到你身边。");
         break;
     case SPELL_CAST:
     {
@@ -376,7 +376,7 @@ static void _purple_hook_spell(int cmd, variant *res)
         m_ptr = &m_list[cave[target_row][target_col].m_idx];
         monster_desc(m_name, m_ptr, 0);
         if (mon_save_tele_to(m_ptr, m_name, TRUE)) break;
-        msg_format("You command %s to return.", m_name);
+        msg_format("你命令%s回来。", m_name);
         teleport_monster_to(cave[target_row][target_col].m_idx, py, px, 100, TELEPORT_PASSIVE);
         break;
     }
@@ -391,20 +391,20 @@ static void _rocket_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Rocket");
+        var_set_string(res, "火箭");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, spell_power(p_ptr->lev * 7 + p_ptr->to_d_spell)));
         break;
     case SPELL_DESC:
-        var_set_string(res, "Launches a rocket.");
+        var_set_string(res, "发射一枚火箭。");
         break;
     case SPELL_CAST:
     {
         int dir = 0;
         var_set_bool(res, FALSE);
         if (!get_fire_dir(&dir)) return;
-        msg_print("You launch a rocket!");
+        msg_print("你发射了一枚火箭！");
         fire_rocket(GF_ROCKET, dir, spell_power(p_ptr->lev * 7 + p_ptr->to_d_spell), 2);
         var_set_bool(res, TRUE);
         break;
@@ -420,10 +420,10 @@ static void _stalking_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Creep in Shadows");
+        var_set_string(res, "暗影潜行");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Temporarily grants enhanced stealth.");
+        var_set_string(res, "暂时赋予强化的潜行能力。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(30, 30));
@@ -443,10 +443,10 @@ static void _summon_trees_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Trees");
+        var_set_string(res, "召唤树木");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Surrounds you with verdure.");
+        var_set_string(res, "用翠绿环绕你。");
         break;
     case SPELL_CAST:
         tree_creation();
@@ -465,10 +465,10 @@ static void _ultimate_resistance_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Ultimate Resistance");
+        var_set_string(res, "终极抗性");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gives ultimate resistance, bonus to AC and speed.");
+        var_set_string(res, "赋予终极抗性，以及护甲和速度加成。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(25, 25));
@@ -493,10 +493,10 @@ static void _unbarring_ways_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Unbarring Ways");
+        var_set_string(res, "破除障碍");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a beam which destroys traps and doors.");
+        var_set_string(res, "发射一道射线，摧毁陷阱和门。");
         break;
     case SPELL_CAST:
     {
@@ -518,13 +518,13 @@ static void _word_of_banishment_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Word of Banishment");
+        var_set_string(res, "放逐之语");
         break;
     case SPELL_INFO:
-        var_set_string(res, "dist 125");
+        var_set_string(res, "距离 125");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Teleports away all monsters in sight unless resisted.");
+        var_set_string(res, "将视野内的所有怪物传送走，除非其抵抗。");
         break;
     case SPELL_CAST:
         banish_monsters(125);
@@ -541,10 +541,10 @@ static void _wall_of_stone_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Wall of Stone");
+        var_set_string(res, "石墙术");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Creates walls on all open, surrounding squares.");
+        var_set_string(res, "在周围所有空地上制造墙壁。");
         break;
     case SPELL_CAST:
         wall_stone();
@@ -563,13 +563,13 @@ static void _wrecking_yelp_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Wrecking Yelp");
+        var_set_string(res, "破坏之嚎");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(spell_power(dice), sides, spell_power(p_ptr->to_d_spell)));
         break;
     case SPELL_DESC:
-        var_set_string(res, "Emits a bolt of sound.");
+        var_set_string(res, "发射一束音波。");
         break;
     case SPELL_CAST:
     {
@@ -684,13 +684,13 @@ static void _device_mastery_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Device Mastery");
+        var_set_string(res, "装置精通");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("Yeqrezh gives you a device-handling lesson!");
+        msg_print("耶克列日给你上了一堂装置使用课！");
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, "Gives device skills equal to +1 Md.");
+        var_set_string(res, "赋予相当于 +1 装置精通(Md) 的装置技能。");
         break;
     case SPELL_CALC_BONUS:
         p_ptr->skills.dev += 8;
@@ -706,13 +706,13 @@ static void _easy_casting_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Easy Casting");
+        var_set_string(res, "轻松施法");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("Yeqrezh teaches you the art of <color:v>Easy Casting</color>!");
+        msg_print("耶克列日传授了你<color:v>轻松施法</color>的技艺！");
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, "Lowers spell fail rates by 4 percentage points.");
+        var_set_string(res, "降低 4 个百分点的法术失败率。");
         break;
     default:
         default_spell(cmd, res);
@@ -725,12 +725,12 @@ static void _essence_of_life_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Essence of Life");
+        var_set_string(res, "生命精华");
         break;
     case SPELL_GAIN_MUT:
         {
             object_type forge;
-            msg_print("Yeqrezh gives you a gift!");
+            msg_print("耶克列日送了你一份礼物！");
             object_prep(&forge, lookup_kind(TV_POTION, SV_POTION_LIFE));
             object_origins(&forge, ORIGIN_PATRON);
             forge.number = 3;
@@ -739,7 +739,7 @@ static void _essence_of_life_mut(int cmd, variant *res)
             break;
         }
     case SPELL_HELP_DESC:
-        var_set_string(res, "You will receive three potions of Life from Yeqrezh.");
+        var_set_string(res, "你将从耶克列日那里收到三瓶生命药水。");
         break;
     default:
         default_spell(cmd, res);
@@ -752,12 +752,12 @@ static void _notes_of_death_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Notes of Death");
+        var_set_string(res, "死亡笔记");
         break;
     case SPELL_GAIN_MUT:
         {
             object_type forge;
-            msg_print("Yeqrezh gives you a gift!");
+            msg_print("耶克列日送了你一份礼物！");
             object_prep(&forge, lookup_kind(TV_SCROLL, SV_SCROLL_MASS_GENOCIDE));
             object_origins(&forge, ORIGIN_PATRON);
             forge.number = 5;
@@ -766,7 +766,7 @@ static void _notes_of_death_mut(int cmd, variant *res)
             break;
         }
     case SPELL_HELP_DESC:
-        var_set_string(res, "You will receive five scrolls of Mass Genocide from Yeqrezh.");
+        var_set_string(res, "你将从耶克列日那里收到五张群体大屠杀卷轴。");
         break;
     default:
         default_spell(cmd, res);
@@ -779,13 +779,13 @@ static void _nervous_casting_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Nervous Casting");
+        var_set_string(res, "紧张施法");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("Your imagination starts running away!");
+        msg_print("你的想象力开始暴走！");
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, "Increases your spellpower by +15%, but makes you vulnerable to fear.");
+        var_set_string(res, "使你的法术强度提高 +15%，但会让你变得容易恐惧。");
         break;
     case SPELL_CALC_BONUS:
         p_ptr->spell_power += 2;
@@ -802,13 +802,13 @@ static void _object_lessons_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Object Lessons");
+        var_set_string(res, "实物教学");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("Yeqrezh gives you an object lesson!");
+        msg_print("耶克列日给你上了一堂实物教学课！");
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, "Allows you to sense the quality of distant objects and automatically identify all objects you walk over.");
+        var_set_string(res, "允许你感知远处物品的品质，并自动鉴定你踩到的所有物品。");
         break;
     case SPELL_CALC_BONUS:
         p_ptr->auto_id = TRUE;
@@ -825,13 +825,13 @@ static void _power_sorcery_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Power Sorcery");
+        var_set_string(res, "强力咒术");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("You pour your soul into your magic!");
+        msg_print("你将灵魂倾注到魔法中！");
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, "Increases your spellpower by +15%, but decreases your life multiplier by 3 points.");
+        var_set_string(res, "使你的法术强度提高 +15%，但会降低你 3 点生命乘数。");
         break;
     case SPELL_CALC_BONUS:
         p_ptr->spell_power += 2;
@@ -848,13 +848,13 @@ static void _purple_melee_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Purple Deadliness");
+        var_set_string(res, "紫色致命");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("You strike enemies with renewed strength!");
+        msg_print("你以焕发的力量打击敌人！");
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, "Gives +8 melee to-dam (not applied to innate attacks).");
+        var_set_string(res, "提供 +8 的近战伤害加成（不适用于天生攻击）。");
         break;
     case SPELL_CALC_BONUS:
     {
@@ -880,13 +880,13 @@ static void _purple_muscles_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Purple Muscles");
+        var_set_string(res, "紫色肌肉");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("You feel incredibly athletic!");
+        msg_print("你感觉自己健步如飞！");
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, "Gives +2 STR and +2 DEX.");
+        var_set_string(res, "提供 +2 力量（STR）和 +2 敏捷（DEX）。");
         break;
     case SPELL_CALC_BONUS:
         p_ptr->stat_add[A_STR] += 2;
@@ -903,13 +903,13 @@ static void _purple_prot_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Purple Protection");
+        var_set_string(res, "紫色防护");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("Yeqrezh surrounds you with an aura of protection!");
+        msg_print("耶克列日用防护光环环绕着你！");
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, "Gives +15 AC.");
+        var_set_string(res, "提供 +15 护甲（AC）。");
         break;
     case SPELL_CALC_BONUS:
         p_ptr->to_a += 15;
@@ -926,13 +926,13 @@ static void _purple_speed_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Purple Speed");
+        var_set_string(res, "紫色速度");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("You start moving faster!");
+        msg_print("你的移动速度变快了！");
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, "Gives +1 speed.");
+        var_set_string(res, "提供 +1 速度。");
         break;
     case SPELL_CALC_BONUS:
         p_ptr->pspeed += 1;
@@ -948,13 +948,13 @@ static void _purple_stealth_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Purple Stealth");
+        var_set_string(res, "紫色潜行");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("Yeqrezh teaches you the art of moving silently!");
+        msg_print("耶克列日传授了你无声移动的技艺！");
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, "Gives +4 stealth.");
+        var_set_string(res, "提供 +4 潜行。");
         break;
     case SPELL_CALC_BONUS:
         p_ptr->skills.stl += 4;
@@ -970,13 +970,13 @@ static void _purple_vitality_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Purple Vitality");
+        var_set_string(res, "紫色活力");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("Yeqrezh gives you amazing powers of recovery!");
+        msg_print("耶克列日赋予了你惊人的恢复能力！");
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, format("All healing effects will give %d%% more HP than normally.", (_talent_count(_YQ_HEAL) + 1) * 10));
+        var_set_string(res, format("所有治疗效果恢复的生命值将比平时多 %d%%。", (_talent_count(_YQ_HEAL) + 1) * 10));
         break;
     default:
         default_spell(cmd, res);
@@ -989,13 +989,13 @@ static void _rapid_shooting_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Rapid Shooting");
+        var_set_string(res, "急速射击");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("Yeqrezh teaches you the art of <color:v>Rapid Shooting</color>!");
+        msg_print("耶克列日传授了你<color:v>急速射击</color>的技艺！");
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, "Gives a shooting speed increase equal to +1 Xs.");
+        var_set_string(res, "提供相当于 +1 额外射击(Xs) 的射击速度加成。");
         break;
     case SPELL_CALC_BONUS:
         p_ptr->shooter_info.xtra_shot += 15;
@@ -1011,14 +1011,14 @@ static void _regen_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Speedy Recovery");
+        var_set_string(res, "快速恢复");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("You start regenerating rapidly.");
+        msg_print("你开始快速再生。");
         mut_lose(MUT_FLESH_ROT);
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, "Gives +100% regeneration.");
+        var_set_string(res, "提供 +100% 再生率。");
         break;
     case SPELL_CALC_BONUS:
         p_ptr->regen += 100;
@@ -1034,13 +1034,13 @@ static void _trump_shuffling_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Trump Shuffling");
+        var_set_string(res, "王牌洗牌");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("Yeqrezh teaches you the art of <color:o>Trump Shuffling</color>.");
+        msg_print("耶克列日传授了你<color:o>王牌洗牌</color>的技艺。");
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, "Gives you access to the Shuffle spell, and automatically gives Self Knowledge if the Judgement card is drawn.");
+        var_set_string(res, "使你能够使用“洗牌”法术，并在抽到“审判”牌时自动获得自我感知效果。");
         break;
     default:
         default_spell(cmd, res);
@@ -1053,12 +1053,12 @@ static void _wheel_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Lottery Tickets");
+        var_set_string(res, "彩票");
         break;
     case SPELL_GAIN_MUT:
         {
             object_type forge;
-            msg_print("Yeqrezh gives you a gift!");
+            msg_print("耶克列日送了你一份礼物！");
             object_prep(&forge, lookup_kind(TV_SCROLL, SV_SCROLL_STAR_ACQUIREMENT));
             object_origins(&forge, ORIGIN_PATRON);
             forge.number = 3;
@@ -1067,7 +1067,7 @@ static void _wheel_mut(int cmd, variant *res)
             break;
         }
     case SPELL_HELP_DESC:
-        var_set_string(res, "You will receive three scrolls of *Acquirement* from Yeqrezh.");
+        var_set_string(res, "你将从耶克列日那里收到三张*获取*卷轴。");
         break;
     default:
         default_spell(cmd, res);
@@ -1080,13 +1080,13 @@ static void _yellow_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Quick Spelling");
+        var_set_string(res, "敏捷施法");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("Yeqrezh teaches you the art of quick spelling!");
+        msg_print("耶克列日传授了你敏捷施法的技艺！");
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, format("Casting a spell will only consume %d%% of the usual time.", 93 - (7 * _talent_count(_YQ_YELLOW))));
+        var_set_string(res, format("施放法术只需消耗通常 %d%% 的时间。", 93 - (7 * _talent_count(_YQ_YELLOW))));
         break;
     default:
         default_spell(cmd, res);
@@ -1099,14 +1099,14 @@ static void _yeqrezh_memories_mut(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Yeqrezh's Memories");
+        var_set_string(res, "耶克列日的记忆");
         break;
     case SPELL_GAIN_MUT:
-        msg_print("Your mind fills with Yeqrezh's memories!");
+        msg_print("你的脑海中充满了耶克列日的记忆！");
         gain_exp(exp_requirement(p_ptr->max_plv + 4) - p_ptr->exp);
         break;
     case SPELL_HELP_DESC:
-        var_set_string(res, "Immediately gives another 5 character levels.");
+        var_set_string(res, "立即提升 5 个角色等级。");
         break;
     default:
         default_spell(cmd, res);
@@ -1123,27 +1123,27 @@ int hp_player_yeqrezh(int num)
 
 static dpl_mut _yeqrezh_muts[MAX_YEQREZH_MUT] =
 {
-    { _YQ_STRDEX, 0, "Purple Muscles", _purple_muscles_mut },
-    { _YQ_HEAL, _DPL_NO_BONUS, "Purple Vitality", _purple_vitality_mut },
-    { _YQ_SPEED, 0, "Purple Speed", _purple_speed_mut },
-    { _YQ_MELEE, 0, "Purple Deadliness", _purple_melee_mut },
-    { _YQ_STEALTH, 0, "Purple Stealth", _purple_stealth_mut },
-    { _YQ_STEEL, 0, "Purple Protection", _purple_prot_mut },
-    { _YQ_MD, 0, "Device Mastery", _device_mastery_mut },
-    { _YQ_XS, 0, "Rapid Shooting", _rapid_shooting_mut },
-    { _YQ_FELL, 0, "Power Sorcery", _power_sorcery_mut },
-    { _YQ_CRAVEN, 0, "Nervous Casting", _nervous_casting_mut },
-    { _YQ_EASY, 0, "Easy Casting", _easy_casting_mut },
-    { _YQ_YELLOW, _DPL_NO_BONUS, "Quick Spelling", _yellow_mut },
-    { _YQ_REGEN, 0, "Speedy Recovery", _regen_mut },
-    { _YQ_WHEEL, _DPL_QUICK_PAYOFF, "Lottery Tickets", _wheel_mut },
-    { _YQ_NOTES, _DPL_QUICK_PAYOFF, "Notes of Death", _notes_of_death_mut },
-    { _YQ_LIFE, _DPL_QUICK_PAYOFF, "Essence of Life", _essence_of_life_mut },
-    { _YQ_MEMO, (_DPL_LOW_LV | _DPL_NO_BONUS), "Yeqrezh's Memories", _yeqrezh_memories_mut },
-    { MUT_WEIRD_MIND, (_DPL_ONE_TIME | _DPL_GLOBAL_MUT), "Strange Mind", weird_mind_mut },
-    { MUT_STRONG_MIND, (_DPL_ONE_TIME | _DPL_GLOBAL_MUT), "Strong Mind", strong_mind_mut },
-    { _YQ_OBJECT, _DPL_ONE_TIME, "Object Lessons", _object_lessons_mut },
-    { _YQ_SHUFFLE, (_DPL_ONE_TIME | _DPL_NO_BONUS), "Trump Shuffling", _trump_shuffling_mut },
+    { _YQ_STRDEX, 0, "紫色肌肉", _purple_muscles_mut },
+    { _YQ_HEAL, _DPL_NO_BONUS, "紫色活力", _purple_vitality_mut },
+    { _YQ_SPEED, 0, "紫色速度", _purple_speed_mut },
+    { _YQ_MELEE, 0, "紫色致命", _purple_melee_mut },
+    { _YQ_STEALTH, 0, "紫色潜行", _purple_stealth_mut },
+    { _YQ_STEEL, 0, "紫色防护", _purple_prot_mut },
+    { _YQ_MD, 0, "装置精通", _device_mastery_mut },
+    { _YQ_XS, 0, "急速射击", _rapid_shooting_mut },
+    { _YQ_FELL, 0, "强力咒术", _power_sorcery_mut },
+    { _YQ_CRAVEN, 0, "紧张施法", _nervous_casting_mut },
+    { _YQ_EASY, 0, "轻松施法", _easy_casting_mut },
+    { _YQ_YELLOW, _DPL_NO_BONUS, "敏捷施法", _yellow_mut },
+    { _YQ_REGEN, 0, "快速恢复", _regen_mut },
+    { _YQ_WHEEL, _DPL_QUICK_PAYOFF, "彩票", _wheel_mut },
+    { _YQ_NOTES, _DPL_QUICK_PAYOFF, "死亡笔记", _notes_of_death_mut },
+    { _YQ_LIFE, _DPL_QUICK_PAYOFF, "生命精华", _essence_of_life_mut },
+    { _YQ_MEMO, (_DPL_LOW_LV | _DPL_NO_BONUS), "耶克记忆", _yeqrezh_memories_mut },
+    { MUT_WEIRD_MIND, (_DPL_ONE_TIME | _DPL_GLOBAL_MUT), "怪异思维", weird_mind_mut },
+    { MUT_STRONG_MIND, (_DPL_ONE_TIME | _DPL_GLOBAL_MUT), "坚韧思维", strong_mind_mut },
+    { _YQ_OBJECT, _DPL_ONE_TIME, "实物教学", _object_lessons_mut },
+    { _YQ_SHUFFLE, (_DPL_ONE_TIME | _DPL_NO_BONUS), "王牌洗牌", _trump_shuffling_mut },
 };
 
 static bool _yeqrezh_gain_spell(int slot);
@@ -1273,7 +1273,7 @@ static bool _yeqrezh_gain_spell(int slot)
     {
         while ((uusi < 0) && (ct > 0))
         {
-            uusi = choose_spell(spells, ct, "Learn", "spell", 1000, FALSE);
+            uusi = choose_spell(spells, ct, "学习", "法术", 1000, FALSE);
         }
     }
     if ((uusi < 0) || (uusi >= ct)) return FALSE;
@@ -1287,7 +1287,7 @@ static bool _yeqrezh_gain_spell(int slot)
         }
     }
     if (tosipaikka == _INVALID_SPELL) return FALSE;
-    msg_format("Yeqrezh teaches you the spell of <color:v>%s</color>.", get_spell_name(_yeqrezh_spells[tosipaikka].fn));
+    msg_format("耶克列日传授了你<color:v>%s</color>法术。", get_spell_name(_yeqrezh_spells[tosipaikka].fn));
     _yq_pick[slot] = tosipaikka;
     return TRUE;
 }
@@ -1368,7 +1368,7 @@ static int _yeqrezh_gain_talent(int slot)
     int choices[MAX_YEQREZH_MUT];
     int i, ct = 0;
     static bool _lock = FALSE;
-    menu_t menu = { "Gain which gift?", "Browse which gift?", NULL,
+    menu_t menu = { "获得哪一份礼物？", "查看哪一份礼物？", NULL,
                     _yeqrezh_menu_fn, choices, 0, Term->hgt - 6};
 
     if (_lock) return -1;
@@ -1427,7 +1427,7 @@ static int _yeqrezh_gain_talent(int slot)
                 return idx;
             }
         }
-        msg_print("Please make a choice!");
+        msg_print("请做出选择！");
     }
 
     _lock = FALSE;
@@ -1471,7 +1471,7 @@ static void _yeqrezh_gain_item(int new_level)
      { 49, TV_SCROLL, SV_SCROLL_ARTIFACT},
      { -1, -1, -1},
     };
-    msg_print("The voice of Yeqrezh booms out: <color:v>Nice work! I hope this gift will help you.</color>");
+    msg_print("耶克列日的声音隆隆响起：<color:v>干得漂亮！希望这份礼物能帮到你。</color>");
     if (one_in_(2))
     {
         int vtaso = object_level;
@@ -1600,7 +1600,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.which_stat = A_INT;
         me.encumbrance.max_wgt = 450;
         me.encumbrance.weapon_pct = 20;
@@ -1678,7 +1678,7 @@ static void _yeqrezh_character_dump(doc_ptr doc)
         if ((_yq_pick[i * 5 + 4] < 0) || (_yq_pick[i * 5 + 4] >= MAX_YEQREZH_MUT)) continue;
         loydetty++;
         if (loydetty == 1) doc_printf(doc, "\n");
-        doc_printf(doc, "Level %d gift: %s\n", (i + 1) * 10, _yeqrezh_muts[_yq_pick[i * 5 + 4]].nimi);
+        doc_printf(doc, "第 %d 级礼物：%s\n", (i + 1) * 10, _yeqrezh_muts[_yq_pick[i * 5 + 4]].nimi);
     }
     if (loydetty) doc_printf(doc, "\n");
 }
@@ -1693,7 +1693,7 @@ class_t *yeqrezh_get_class(void)
     skills_t bs = { 23,  25,  34,   3,  16,  20,  52,  52};
     skills_t xs = {  9,  10,  10,   0,   0,   0,  18,  18};
 
-        me.name = "Yeqrezh";
+        me.name = "耶克列日";
         me.subdesc = "Yeqrezh is the friendliest of the Purples, supportive of his Disciples "
                     "and willing to let them find their own way. Disciples of Yeqrezh will "
                     "learn 20 spells over the course of the game - one every two character "

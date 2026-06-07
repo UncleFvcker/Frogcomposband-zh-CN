@@ -31,8 +31,8 @@ static void _dragon_birth(void)
     object_type    forge;
 
     equip_on_change_race();
-    skills_innate_init("Claw", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
-    skills_innate_init("Bite", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("爪击", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("撕咬", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
     
     object_prep(&forge, lookup_kind(TV_RING, 0));
@@ -119,7 +119,7 @@ static int _choose_effect(int list[])
     }
 
     {
-        menu_t menu = { "Choose which effect?", NULL, NULL,
+        menu_t menu = { "选择哪个效果？", NULL, NULL,
                         _effect_menu_fn, list, ct, 0};
         
         i = menu_choose(&menu);
@@ -269,10 +269,10 @@ static void _breathe_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe");
+        var_set_string(res, "吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, format("Breathes %s at your opponent.", _breath_desc()));
+        var_set_string(res, format("向你的对手喷吐%s。", _breath_desc()));
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _breath_amount()));
@@ -290,7 +290,7 @@ static void _breathe_spell(int cmd, variant *res)
             int dam = _breath_amount();
             var_set_bool(res, FALSE);
             if (e < 0) return;
-            msg_format("You breathe %s.", gf_name(e));
+            msg_format("你喷吐出%s。", gf_name(e));
             _do_breathe(e, dir, dam);
             var_set_bool(res, TRUE);
         }
@@ -366,7 +366,7 @@ static void _calc_innate_attacks(void)
         a.weight = 100 + l;
         calc_innate_blows(&a, 400);
         a.msg = "You claw.";
-        a.name = "Claw";
+        a.name = "爪击";
 
         /*if (p_ptr->dragon_realm == DRAGON_REALM_ATTACK && p_ptr->lev >= 40)
             a.flags |= INNATE_VORPAL;*/
@@ -394,7 +394,7 @@ static void _calc_innate_attacks(void)
         else
             a.blows = 100;
         a.msg = "You bite.";
-        a.name = "Bite";
+        a.name = "撕咬";
 
         /*if (p_ptr->dragon_realm == DRAGON_REALM_ATTACK && p_ptr->lev >= 40)
             a.flags |= INNATE_VORPAL;*/
@@ -410,12 +410,12 @@ static void _calc_innate_attacks(void)
  * Dragon Realms
  **********************************************************************/
 static dragon_realm_t _realms[DRAGON_REALM_MAX] = {
-    { DRAGON_REALM_NONE, "None", 
+    { DRAGON_REALM_NONE, "无", 
         "",
     /*  S   I   W   D   C   C    Dsrm Dvce Save Stlh Srch Prcp Thn Thb  Life  Exp Attack Breath*/
       { 0,  0,  0,  0,  0,  0}, {   0,   0,   0,   0,   0,   0,  0,  0}, 100, 100,   100,   100, A_NONE},
 
-    { DRAGON_REALM_LORE, "Lore", 
+    { DRAGON_REALM_LORE, "传说", 
         "Dragons specializing in lore are seekers of knowledge. They are the most "
         "intelligent of dragonkind, and it is intellect that drives their magic. "
         "Armed with a vast array of detection and knowledge spells, dragons of lore "
@@ -425,28 +425,17 @@ static dragon_realm_t _realms[DRAGON_REALM_MAX] = {
     /*  S   I   W   D   C   C    Dsrm Dvce Save Stlh Srch Prcp Thn Thb  Life  Exp Attack Breath*/
       {-1, +3,  0, -1, -1,  0}, {   3,   8,   2,   0,   5,   5, -8,  0}, 100,  80,   100,   100, A_INT},
 
-    { DRAGON_REALM_BREATH, "Breath", 
-        "Dragon breath is the stuff of legends, and this realm seeks to enhance this most "
-        "powerful attribute of dragonkind. With this speciality, you will be able to shape "
-        "and control your breaths to maximize deadliness for a given situation. In addition, "
-        "dragons of this realm may choose their breath types if applicable, and breathing "
-        "becomes less costly as they mature. This focus requires great fortitude to master "
-        "and somewhat diminishes the dragon's defenses and melee.",
+    { DRAGON_REALM_BREATH, "吐息", 
+        "龙息是传说中令人敬畏的力量，而这个领域旨在强化龙族这一最强大的特性。掌握此专精后，你能够塑造并控制你的吐息，在不同情况下最大化其杀伤力。此外，该领域的龙如果条件允许，还可以选择它们的吐息类型，并且随着它们的成长，吐息消耗的精力也会减少。这种专注需要极大的毅力才能掌握，并在一定程度上削弱了龙的防御和近战能力。",
     /*  S   I   W   D   C   C    Dsrm Dvce Save Stlh Srch Prcp Thn Thb  Life  Exp Attack Breath*/
       { 0, -1, -1,  0, +3, +1}, {   0,   0,   3,  -1,   0,   0,  0,  0}, 103, 105,    90,   115, A_CON},
 
-    { DRAGON_REALM_ATTACK, "Attack", 
-        "Attack dragons seek melee supremacy above all else. This realm offers powerful attack "
-        "spells to support a race that is already among the melee elite, and the result tends to be "
-        "devastation and death. With this realm, the dragon may rend their opponents with "
-        "extra sharp claws, may snatch an adjacent opponent in their powerful jaws and then "
-        "toss them about like a rag doll, and may even augment their bite attacks with their "
-        "breath element! A rampaging dragon is a truly awe-inspiring sight, one that is "
-        "seldom witnessed, or perhaps just seldom survived. This focus values strength above all else.",
+    { DRAGON_REALM_ATTACK, "攻击", 
+        "攻击领域的龙追求近战的绝对霸权。该领域提供了强大的攻击法术来支持这个本来就已经是近战精英的种族，其结果往往是毁灭与死亡。在这个领域的支持下，龙可以用极其锋利的爪子撕裂对手，可以用强有力的巨颚抓起相邻的对手并像布娃娃一样把他们扔出去，甚至可以将它们的吐息元素附加在撕咬攻击上！一头横冲直撞的龙是真正令人敬畏的景象，很少有人能目睹，或者说，很少有人能在目睹后幸存下来。这种专注视力量高于一切。",
     /*  S   I   W   D   C   C    Dsrm Dvce Save Stlh Srch Prcp Thn Thb  Life  Exp Attack Breath*/
       {+3, -2, -2, +1, -1,  0}, {  -5,  -5,  -3,  -1,  -2,  -2, 15,  0},  97, 105,   115,    80, A_STR},
 
-    { DRAGON_REALM_CRAFT, "Craft", 
+    { DRAGON_REALM_CRAFT, "工匠", 
         "The most powerful magical items have long been believed forged by dragonflame. The "
         "craft dragon gains powers of enchantment, and may even reforge artifacts into the objects "
         "of their choosing! Otherwise, craft dragons are not particularly powerful, as they trade "
@@ -454,7 +443,7 @@ static dragon_realm_t _realms[DRAGON_REALM_MAX] = {
     /*  S   I   W   D   C   C    Dsrm Dvce Save Stlh Srch Prcp Thn Thb  Life  Exp Attack Breath*/
       {-1, -1, +3, -1, -1, -1}, {   3,  15,   3,   0,   0,   0, -5,  0}, 100,  95,   100,   100, A_WIS},
 
-    { DRAGON_REALM_ARMOR, "Armor", 
+    { DRAGON_REALM_ARMOR, "护甲", 
         "Dragon scales have thwarted many a would-be dragonslayer. Naturally tough and resistant, "
         "the dragon's armor is even further enhanced by this realm. This specialization gives enhanced "
         "armor class, reflection, resistance to cuts and stunning, resistance to poison "
@@ -465,7 +454,7 @@ static dragon_realm_t _realms[DRAGON_REALM_MAX] = {
     /*  S   I   W   D   C   C    Dsrm Dvce Save Stlh Srch Prcp Thn Thb  Life  Exp Attack Breath*/
       {-1, -1, -1, +3, +1, +1}, {  -2,  -3,   7,   1,   0,   0,-10,  0}, 102, 105,    90,    90, A_DEX},
 
-    { DRAGON_REALM_DOMINATION, "Domination", 
+    { DRAGON_REALM_DOMINATION, "支配", 
         "All dragons have a formidable presence and make fearsome opponents; but Domination dragons "
         "are truly a breed apart, seeking to bend and control the will of all they meet. Convinced "
         "of their right to rule, these dragons may subjugate the weak, terrify the uncertain, "
@@ -477,19 +466,12 @@ static dragon_realm_t _realms[DRAGON_REALM_MAX] = {
     /*  S   I   W   D   C   C    Dsrm Dvce Save Stlh Srch Prcp Thn Thb  Life  Exp Attack Breath*/
       {-1, -1, -1, -1, -1, +3}, {  -2,  -3,  -2,   0,   0,   0, -7,  0},  95, 105,    95,    90, A_CHR},
 
-    { DRAGON_REALM_CRUSADE, "Crusade", 
-        "Crusade dragons are on a mission to destroy the forces of evil. As such, this realm is only "
-        "available to Gold Dragons and Law Dragons. Being of a single focus, the Crusade dragon is not "
-        "as powerful in melee or breaths as other dragons, but their spells more than make up for this "
-        "deficit, at least against evil opponents. Crusade dragons can breathe holy elements "
-        "not normally accessible. At the sight of evil, they become enraged and may haste "
-        "for battle. They can even heal a bit; and ultimately they may smite the forces of evil with "
-        "holy power, both in melee and in breath. Strong in personality, dragons of this order "
-        "may summon like-minded kin for the final battles.",
+    { DRAGON_REALM_CRUSADE, "圣战", 
+        "圣战领域的龙肩负着毁灭邪恶势力的使命。因此，该领域仅对金龙和律法龙开放。由于目标专一，圣战龙在近战和吐息方面不如其他龙强大，但它们的法术足以弥补这一缺陷——至少在对抗邪恶敌人时是如此。圣战龙能够喷吐通常无法获得的神圣元素。一见到邪恶，它们就会被激怒并可能加速进入战斗。它们甚至能进行一些治疗；最终，它们可以在近战和吐息中用神圣力量惩击邪恶势力。这种龙个性坚毅，甚至能为最终的决战召唤志同道合的同族。",
     /*  S   I   W   D   C   C    Dsrm Dvce Save Stlh Srch Prcp Thn Thb  Life  Exp Attack Breath*/
       {+1, -1, -1, +1, -1, +2}, {  -5,   0,  -2,   0,  -2,  -2,  7,  0},  95, 107,    90,    90, A_CHR},
 
-    { DRAGON_REALM_DEATH, "Death", 
+    { DRAGON_REALM_DEATH, "死亡", 
         "Death dragons are enemies of life itself, seeking to destroy all living creatures. With this "
         "realm, the dragon may bend their breath weapon to suit their necromantic desires, eventually "
         "breathing mastery over both death and life. At high levels, the death dragon's melee attacks "
@@ -516,7 +498,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "dragon spell";
+        me.magic_desc = "龙之法术";
         me.encumbrance.max_wgt = 750;
         me.encumbrance.weapon_pct = 0;
         me.encumbrance.enc_wgt = 800;
@@ -548,10 +530,10 @@ static void _bolt_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Bolt");
+        var_set_string(res, "吐息箭");
         break;
     case SPELL_DESC:
-        var_set_string(res, format("Breathes a bolt of %s at your opponent. This is quicker, though less deadly, as you become more powerful.", _breath_desc()));
+        var_set_string(res, format("向你的对手喷吐一道%s箭。随着你变得更加强大，这种吐息的速度会变得更快，尽管它不如普通吐息致命。", _breath_desc()));
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, MAX(1, _breath_amount()/2)));
@@ -569,7 +551,7 @@ static void _bolt_spell(int cmd, variant *res)
             int dam = MAX(1, _breath_amount()/2);
             var_set_bool(res, FALSE);
             if (e < 0) return;
-            msg_format("You breathe %s.", gf_name(e));
+            msg_format("你喷吐出%s。", gf_name(e));
             fire_bolt(e, dir, dam);
             var_set_bool(res, TRUE);
         }
@@ -589,10 +571,10 @@ static void _beam_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Beam");
+        var_set_string(res, "射线吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, format("Breathes a beam of %s at your opponent. This is quicker as you become more powerful.", _breath_desc()));
+        var_set_string(res, format("向你的对手喷吐一道%s射线。随着你变得更加强大，这种吐息的速度会变得更快。", _breath_desc()));
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _breath_amount()));
@@ -610,7 +592,7 @@ static void _beam_spell(int cmd, variant *res)
             int dam = _breath_amount();
             var_set_bool(res, FALSE);
             if (e < 0) return;
-            msg_format("You breathe %s.", gf_name(e));
+            msg_format("你喷吐出%s。", gf_name(e));
             fire_beam(e, dir, dam);
             var_set_bool(res, TRUE);
         }
@@ -630,10 +612,10 @@ static void _cone_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Cone");
+        var_set_string(res, "锥形吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, format("Breathes a cone of %s at your opponent. This is quicker as you become more powerful.", _breath_desc()));
+        var_set_string(res, format("向你的对手喷吐锥形的%s。随着你变得更加强大，这种吐息的速度会变得更快。", _breath_desc()));
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _breath_amount()));
@@ -651,7 +633,7 @@ static void _cone_spell(int cmd, variant *res)
             int dam = _breath_amount();
             var_set_bool(res, FALSE);
             if (e < 0) return;
-            msg_format("You breathe %s.", gf_name(e));
+            msg_format("你喷吐出%s。", gf_name(e));
             fire_ball(e, dir, dam, -2);
             var_set_bool(res, TRUE);
         }
@@ -671,10 +653,10 @@ static void _split_beam_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Split Beam");
+        var_set_string(res, "分裂射线");
         break;
     case SPELL_DESC:
-        var_set_string(res, format("You breathe a beam of %s a two chosen targets, albeit with reduced damage.", _breath_desc()));
+        var_set_string(res, format("你向两个选定的目标喷吐%s射线，但伤害会有所降低。", _breath_desc()));
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, MAX(1, _breath_amount()/2)));
@@ -692,7 +674,7 @@ static void _split_beam_spell(int cmd, variant *res)
             int dam = MAX(1, _breath_amount()/2);
             var_set_bool(res, FALSE);
             if (e < 0) return;
-            msg_format("You breathe %s.", gf_name(e));
+            msg_format("你喷吐出%s。", gf_name(e));
             fire_beam(e, dir, dam);
             
             command_dir = 0; /* Code is buggy asking for a direction 2x in a single player action! */
@@ -715,10 +697,10 @@ static void _retreating_breath_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Retreating Breath");
+        var_set_string(res, "撤退吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, format("Breathes %s at your opponent and then take a movement.", _breath_desc()));
+        var_set_string(res, format("向你的对手喷吐%s，然后进行一次移动。", _breath_desc()));
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _breath_amount()));
@@ -736,7 +718,7 @@ static void _retreating_breath_spell(int cmd, variant *res)
             int dam = _breath_amount();
             var_set_bool(res, FALSE);
             if (e < 0) return;
-            msg_format("You breathe %s.", gf_name(e));
+            msg_format("你喷吐出%s。", gf_name(e));
             fire_ball(e, dir, dam, -2);
 
             command_dir = 0; /* Code is buggy asking for a direction 2x in a single player action! */
@@ -766,10 +748,10 @@ static void _deadly_breath_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Deadly Breath");
+        var_set_string(res, "致命吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, format("Breathes %s powerfully at your opponent.", _breath_desc()));
+        var_set_string(res, format("向你的对手进行强力的%s喷吐。", _breath_desc()));
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _breath_amount() * 125 / 100));
@@ -787,7 +769,7 @@ static void _deadly_breath_spell(int cmd, variant *res)
             int dam = _breath_amount() * 125 / 100;
             var_set_bool(res, FALSE);
             if (e < 0) return;
-            msg_format("You breathe %s.", gf_name(e));
+            msg_format("你喷吐出%s。", gf_name(e));
             fire_ball(e, dir, dam, -3);
             var_set_bool(res, TRUE);
         }
@@ -804,10 +786,10 @@ static void _star_ball_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Star Ball");
+        var_set_string(res, "星辰球");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Unleash your breath uncontrollably and at random, though with devastating effect.");
+        var_set_string(res, "不可控制地随机释放你的吐息，其效果具有毁灭性的破坏力。");
         break;
     case SPELL_COST_EXTRA:
         var_set_int(res, _breath_cost());
@@ -861,10 +843,10 @@ static void _detect_magic_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Magic");
+        var_set_string(res, "探测魔法");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Locate nearby magical objects.");
+        var_set_string(res, "定位附近的魔法物品。");
         break;
     case SPELL_CAST:
         detect_objects_magic(DETECT_RAD_DEFAULT);    
@@ -881,9 +863,9 @@ static obj_ptr _get_reforge_src(int max_power)
     obj_prompt_t prompt = {0};
     char buf[255];
 
-    sprintf(buf, "Use what artifact for reforging (Max Power = %d)? ", max_power);
+    sprintf(buf, "使用哪件神器进行重铸 (最大力量 = %d)？", max_power);
     prompt.prompt = buf;
-    prompt.error = "You have no artifacts to reforge.";
+    prompt.error = "你没有可用于重铸的神器。";
     prompt.filter = object_is_artifact;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -898,9 +880,9 @@ static obj_ptr _get_reforge_dest(int max_power)
     obj_prompt_t prompt = {0};
     char buf[255];
 
-    sprintf(buf, "Reforge which object (Max Power = %d)? ", max_power);
+    sprintf(buf, "重铸哪件物品 (最大力量 = %d)？", max_power);
     prompt.prompt = buf;
-    prompt.error = "You have nothing to reforge.";
+    prompt.error = "你没有可以重铸的物品。";
     prompt.filter = item_tester_hook_nameless_weapon_armour;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -917,10 +899,10 @@ static void _reforging_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Reforging");
+        var_set_string(res, "重铸");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Reforge a chosen artifact.");
+        var_set_string(res, "重铸一件选定的神器。");
         break;
     case SPELL_CAST:
     {
@@ -936,12 +918,12 @@ static void _reforging_spell(int cmd, variant *res)
         if (!src) return;
         if (!object_is_artifact(src)) /* paranoia */
         {
-            msg_print("You must choose an artifact for reforging.");
+            msg_print("你必须选择一件神器来进行重铸。");
             return;
         }
         if (obj_value_real(src) > src_max_power)
         {
-            msg_print("You are not powerful enough to reforge that item.");
+            msg_print("你现在的力量不足以重铸这件物品。");
             return;
         }
 
@@ -952,7 +934,7 @@ static void _reforging_spell(int cmd, variant *res)
             dest_max_power = 1000;
 
         object_desc(o_name, src, OD_NAME_ONLY);    
-        if (!get_check(format("Really use %s? (It will be destroyed!) ", o_name))) 
+        if (!get_check(format("确认要使用 %s 吗？(它将被摧毁！)", o_name))) 
             return;
 
         dest = _get_reforge_dest(dest_max_power);
@@ -960,37 +942,37 @@ static void _reforging_spell(int cmd, variant *res)
 
         if (dest->number > 1)
         {
-            msg_print("Don't be greedy! You may only reforge a single object.");
+            msg_print("不要贪心！你每次只能重铸一件物品。");
             return;
         }
 
         if (object_is_artifact(dest))
         {
-            msg_print("This item is already an artifact!");
+            msg_print("这件物品已经是神器了！");
             return;
         }
 
         if (object_is_ego(dest))
         {
-            msg_print("This item is already an ego item!");
+            msg_print("这件物品已经是Ego装备(名品)了！");
             return;
         }
 
         if (!equip_first_slot(dest))
         {
-            msg_print("You may only create items you can actually use.");
+            msg_print("你只能制造你实际能使用的物品。");
             return;
         }
 
         if (obj_value_real(dest) > dest_max_power)
         {
-            msg_print("This item is too powerful for the source artifact you have chosen.");
+            msg_print("对于你所选择的源神器来说，这件物品太过强大了。");
             return;
         }
 
         if (!reforge_artifact(src, dest, power))
         {
-            msg_print("The reforging failed!");
+            msg_print("重铸失败了！");
             return;
         }
 
@@ -1035,13 +1017,13 @@ static void _war_cry_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dragon's Roar");
+        var_set_string(res, "巨龙咆哮");
         break;
     case SPELL_DESC:
-        var_set_string(res, "You will roar out mightily, alerting all nearby monsters of your presence.");
+        var_set_string(res, "你将发出一声巨大的咆哮，提醒附近所有的怪物你的存在。");
         break;
     case SPELL_CAST:
-        msg_print("You roar out!");
+        msg_print("你咆哮了起来！");
         project_hack(GF_SOUND, randint1(p_ptr->lev));
         aggravate_monsters(0);
         var_set_bool(res, TRUE);
@@ -1057,10 +1039,10 @@ static void _rend_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Rend");
+        var_set_string(res, "撕裂");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with cutting blows.");
+        var_set_string(res, "对相邻的对手进行切割攻击。");
         break;
     case SPELL_CAST:
         p_ptr->innate_attack_lock = TRUE;
@@ -1096,7 +1078,7 @@ static void _rage_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Rage");
+        var_set_string(res, "狂暴");
         break;
     default:
         berserk_spell(cmd, res);
@@ -1109,10 +1091,10 @@ static void _three_way_attack_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "3-Way Attack");
+        var_set_string(res, "三向攻击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack in chosen direction, and to either side of chosen direction, in a single action.");
+        var_set_string(res, "在一次行动中，攻击选定方向，以及该方向的两侧。");
         break;
     case SPELL_CAST:
     {
@@ -1135,19 +1117,19 @@ static void _three_way_attack_spell(int cmd, variant *res)
         if (cave[y][x].m_idx)
             py_attack(y, x, 0);
         else
-            msg_print("You attack the empty air.");
+            msg_print("你攻击了空气。");
         y = py + ddy_cdd[(cdir + 7) % 8];
         x = px + ddx_cdd[(cdir + 7) % 8];
         if (cave[y][x].m_idx)
             py_attack(y, x, 0);
         else
-            msg_print("You attack the empty air.");
+            msg_print("你攻击了空气。");
         y = py + ddy_cdd[(cdir + 1) % 8];
         x = px + ddx_cdd[(cdir + 1) % 8];
         if (cave[y][x].m_idx)
             py_attack(y, x, 0);
         else
-            msg_print("You attack the empty air.");
+            msg_print("你攻击了空气。");
         var_set_bool(res, TRUE);
         break;
     }
@@ -1162,10 +1144,10 @@ static void _deadly_bite_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Deadly Bite");
+        var_set_string(res, "致命撕咬");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent as usual, but augment your bite attacks with your breath element.");
+        var_set_string(res, "像往常一样攻击相邻的对手，但会在你的撕咬攻击中附加你的吐息元素。");
         break;
     case SPELL_CAST:
         p_ptr->innate_attack_lock = TRUE;
@@ -1198,10 +1180,10 @@ static void _snatch_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Snatch");
+        var_set_string(res, "抓取");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempt to snatch an adjacent opponent in your jaws. If successful, you may toss the monster away from you.");
+        var_set_string(res, "尝试用巨颚抓取相邻的对手。如果成功，你可以将该怪物扔出去。");
         break;
     case SPELL_CAST:
         p_ptr->innate_attack_lock = TRUE;
@@ -1221,10 +1203,10 @@ static void _charge_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Charge");
+        var_set_string(res, "冲锋");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Charge a nearby monster and attack in a single action.");
+        var_set_string(res, "冲向附近的怪物并在一次行动中进行攻击。");
         break;
     case SPELL_CAST:
         var_set_bool(res, rush_attack(5, NULL));
@@ -1240,10 +1222,10 @@ static void _rapid_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Rapid Strike");
+        var_set_string(res, "连环打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with extra blows.");
+        var_set_string(res, "对相邻的对手进行额外的攻击。");
         break;
     case SPELL_CAST:
         p_ptr->innate_attack_lock = TRUE;
@@ -1279,10 +1261,10 @@ static void _power_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Power Strike");
+        var_set_string(res, "强力打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent opponent with more powerful blows.");
+        var_set_string(res, "用更加强力的攻击打击相邻的对手。");
         break;
     case SPELL_CAST:
         p_ptr->innate_attack_lock = TRUE;
@@ -1334,10 +1316,10 @@ static void _shard_skin_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shard Skin");
+        var_set_string(res, "碎片肌肤");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Temporarily gain an aura of shards which damages any monsters that strike you.");
+        var_set_string(res, "暂时获得一层碎片光环，对任何攻击你的怪物造成伤害。");
         break;
     case SPELL_CAST:
         set_tim_sh_shards(randint1(30) + 20, FALSE);
@@ -1354,10 +1336,10 @@ static void _dragon_cloak_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dragon Cloak");
+        var_set_string(res, "巨龙披风");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Temporarily gain protective elemental auras for a bit.");
+        var_set_string(res, "暂时获得多种保护性的元素光环。");
         break;
     case SPELL_CAST:
         set_tim_sh_elements(randint1(30) + 20, FALSE);
@@ -1374,10 +1356,10 @@ static void _magic_resistance_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Magic Resistance");
+        var_set_string(res, "魔法抗性");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Temporarily gain enhanced resistance to magic.");
+        var_set_string(res, "暂时提升对魔法的抗性。");
         break;
     case SPELL_CAST:
         set_resist_magic(randint1(30) + 20, FALSE);
@@ -1417,7 +1399,7 @@ static void _breathe_spell_aux(int effect, int cmd, variant *res)
         {
             int dam = _breath_amount();
 
-            msg_format("You breathe %s.", gf_name(effect));
+            msg_format("你喷吐出%s。", gf_name(effect));
             _do_breathe(effect, dir, dam);
 
             var_set_bool(res, TRUE);
@@ -1435,10 +1417,10 @@ static void _breathe_retribution_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Retribution");
+        var_set_string(res, "惩戒吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes lightning at chosen target.");
+        var_set_string(res, "向选定的目标喷吐闪电。");
         break;
     default:
         _breathe_spell_aux(GF_ELEC, cmd, res);
@@ -1451,10 +1433,10 @@ static void _breathe_light_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Light");
+        var_set_string(res, "光明吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes light at chosen target.");
+        var_set_string(res, "向选定目标喷吐光芒。");
         break;
     default:
         _breathe_spell_aux(GF_LITE, cmd, res);
@@ -1467,10 +1449,10 @@ static void _healing_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Healing");
+        var_set_string(res, "治疗");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Powerful healing magic:  heals hitpoints, cuts and stun.");
+        var_set_string(res, "强大的治疗魔法：恢复生命值，并治愈割伤和震慑状态。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_heal(0, 0, 200));
@@ -1492,10 +1474,10 @@ static void _breathe_holiness_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Holiness");
+        var_set_string(res, "神圣吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes holy fire at chosen target. This hurts evil monsters greatly, but non-evil monsters resist.");
+        var_set_string(res, "向选定的目标喷吐神圣之火。这会对邪恶怪物造成巨大的伤害，但非邪恶的怪物会抵抗它。");
         break;
     default:
         _breathe_spell_aux(GF_HOLY_FIRE, cmd, res);
@@ -1508,10 +1490,10 @@ static void _smite_evil_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Smite Evil");
+        var_set_string(res, "破邪斩");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack an adjacent evil opponent with holy fury!");
+        var_set_string(res, "以神圣的狂怒攻击相邻的邪恶对手！");
         break;
     case SPELL_CAST:
         p_ptr->innate_attack_lock = TRUE;
@@ -1549,10 +1531,10 @@ static void _breathe_poison_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Poison");
+        var_set_string(res, "毒素吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes poison at chosen target.");
+        var_set_string(res, "向选定的目标喷吐毒素。");
         break;
     default:
         _breathe_spell_aux(GF_POIS, cmd, res);
@@ -1565,10 +1547,10 @@ static void _breathe_fear_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Fear");
+        var_set_string(res, "恐惧吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes fear at chosen target.");
+        var_set_string(res, "向选定的目标喷吐恐惧。");
         break;
     default:
         _breathe_spell_aux(GF_ELDRITCH_HOWL, cmd, res);
@@ -1581,10 +1563,10 @@ static void _breathe_dark_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Darkness");
+        var_set_string(res, "黑暗吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes darkness at chosen target.");
+        var_set_string(res, "向选定的目标喷吐黑暗。");
         break;
     default:
         _breathe_spell_aux(GF_DARK, cmd, res);
@@ -1597,10 +1579,10 @@ static void _breathe_nether_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Nether");
+        var_set_string(res, "地狱吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes nether at chosen target.");
+        var_set_string(res, "向选定的目标喷吐地狱能量。");
         break;
     default:
         _breathe_spell_aux(GF_NETHER, cmd, res);
@@ -1613,10 +1595,10 @@ static void _breathe_reanimation_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Reanimation");
+        var_set_string(res, "复生吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes reanimation. Any corpses or skeletons hit by this breath may come back to life to serve you.");
+        var_set_string(res, "喷吐复生能量。任何被这种吐息击中的尸体或骨骸都可能复活并为你效劳。");
         break;
     case SPELL_INFO:
         break;
@@ -1634,10 +1616,10 @@ static void _breathe_vampirism_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Vampirism");
+        var_set_string(res, "吸血吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes vampirism. Any living creatures hit by this breath have their life energies stolen to regain your hitpoints.");
+        var_set_string(res, "喷吐吸血能量。任何被这种吐息击中的活物都会被吸取生命能量，以恢复你的生命值。");
         break;
     default:
         dragon_vamp_hack = TRUE;
@@ -1658,10 +1640,10 @@ static void _breathe_unholiness_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Unholiness");
+        var_set_string(res, "不洁吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes hell fire at chosen target.");
+        var_set_string(res, "向选定目标喷吐地狱火。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _breath_amount() * 3 / 2));
@@ -1677,7 +1659,7 @@ static void _breathe_unholiness_spell(int cmd, variant *res)
         {
             int dam = _breath_amount() * 3 / 2;
 
-            msg_print("You breathe hell fire.");
+            msg_print("你喷吐出地狱火。");
             fire_ball(GF_HELL_FIRE, dir, dam, -1 - (p_ptr->lev / 20));
 
             var_set_bool(res, TRUE);
@@ -1695,10 +1677,10 @@ static void _breathe_genocide_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Genocide");
+        var_set_string(res, "灭绝吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes genocide. Any monsters hit by this breath may be removed from the level, but you take damage for each monster so removed.");
+        var_set_string(res, "喷吐灭绝能量。任何被这种吐息击中的怪物都可能从当前层被移除，但每移除一个怪物你都会受到伤害。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(_breath_amount()));
@@ -1731,7 +1713,7 @@ static void _frightful_presence_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Frightful Presence");
+        var_set_string(res, "恐怖威压");
         break;
     default:
         scare_spell(cmd, res);
@@ -1744,7 +1726,7 @@ static void _detect_minions_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Minions");
+        var_set_string(res, "探测随从");
         break;
     default:
         detect_monsters_spell(cmd, res);
@@ -1757,7 +1739,7 @@ static void _baffling_presence_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Baffling Presence");
+        var_set_string(res, "迷惑威压");
         break;
     default:
         confuse_spell(cmd, res);
@@ -1770,10 +1752,10 @@ static void _enslave_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Enslave");
+        var_set_string(res, "奴役");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempt to force a single monster to serve you.");
+        var_set_string(res, "尝试强迫一个怪物为你效劳。");
         break;
     case SPELL_CAST:
     {
@@ -1808,10 +1790,10 @@ static void _breathe_subjugation_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Subjugation");
+        var_set_string(res, "征服吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes dominance at chosen target. Affected monsters may be forced to serve you or may be stunned or terrified by your awesome presence.");
+        var_set_string(res, "向选定的目标喷吐支配之力。受影响的怪物可能会被迫为你效劳，或者被你可怕的威压所震慑或惊吓。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(subjugation_power()));
@@ -1827,7 +1809,7 @@ static void _breathe_subjugation_spell(int cmd, variant *res)
         {
             int dam = subjugation_power();
 
-            msg_print("You breathe subjugation.");
+            msg_print("你喷吐出征服之力。");
             _do_breathe(GF_SUBJUGATION, dir, dam);
 
             var_set_bool(res, TRUE);
@@ -1845,10 +1827,10 @@ static void _aura_of_domination_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Aura of Domination");
+        var_set_string(res, "支配光环");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Temporarily gain an aura of domination which attempts to enslave, terrify or stun any monster that strikes you.");
+        var_set_string(res, "暂时获得一层支配光环，它会试图奴役、惊吓或震慑任何攻击你的怪物。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_duration(10, 20));
@@ -1868,15 +1850,15 @@ static void _banish_summons_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Banish Summons");
+        var_set_string(res, "驱逐召唤物");
         break;
     case SPELL_DESC:
-        var_set_string(res, "All enemy summons in view are returned to where they came.");
+        var_set_string(res, "将视野内所有敌方的召唤物送回它们来的地方。");
         break;
     case SPELL_CAST:
     {
         int i;
-        msg_print("You shatter all oaths of allegiance!");
+        msg_print("你粉碎了所有的效忠誓言！");
         for (i = 1; i < m_max; i++)
         {
             monster_type *m_ptr = &m_list[i];
@@ -2092,10 +2074,10 @@ void dragon_reach_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Reach");
+        var_set_string(res, "触及攻击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Reach out and bite a distant monster.");
+        var_set_string(res, "伸长脖子撕咬远处的怪物。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_range(2 + p_ptr->lev/40));
@@ -2123,10 +2105,10 @@ void dragon_tail_sweep_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Tail Sweep");
+        var_set_string(res, "扫尾");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Sweep your tail in a semicircle clockwise from chosen direction. Monsters, if hit, may be flung back a square or two.");
+        var_set_string(res, "从选定方向开始，顺时针呈半圆形挥动你的尾巴。如果怪物被击中，可能会被击退一两格。");
         break;
     case SPELL_CAST:
         /* Hack: Replace normal tooth and claw attacks with a tail attack */
@@ -2143,7 +2125,7 @@ void dragon_tail_sweep_spell(int cmd, variant *res)
             a.weight = 100 + l;
             a.blows = 100;
             a.msg = "You hit.";
-            a.name = "Tail";
+            a.name = "尾击";
 
             p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
         }     
@@ -2164,13 +2146,13 @@ void dragon_wing_storm_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Wing Storm");
+        var_set_string(res, "风翼风暴");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This talent uses your wings to create massive wind gusts. Nearby foes are damaged, stunned, and blown about.");
+        var_set_string(res, "这项天赋利用你的双翼制造巨大的阵风。附近的敌人会受到伤害、被震慑，并被吹飞。");
         break;
     case SPELL_CAST:
-        msg_print("You bring your wings down powerfully!");
+        msg_print("你强有力地挥下双翼！");
         project(0, 5, py, px, randint1(p_ptr->lev * 3), GF_STORM, PROJECT_KILL | PROJECT_ITEM);
         var_set_bool(res, TRUE);
         break;
@@ -2208,37 +2190,37 @@ static power_info _steel_get_powers[] = {
 
 static _elemental_info_t _elemental_info[5] = { /* relies on #define DRAGON_RED 0 ... */
     { {167, 563, 589, 644, 756},
-      {"Baby Red Dragon", "Young Red Dragon", "Mature Red Dragon", "Ancient Red Dragon", "Great Hell Wyrm"},
-      RES_FIRE, "Red Dragon",
+      {"红龙宝宝", "幼年红龙", "成年红龙", "远古红龙", "地狱巨龙"},
+      RES_FIRE, "红龙",
         "Red Dragons are elemental dragons of fire, and the second-strongest fighters among "
         "dragons. Their fiery breaths are the stuff of legends with damage unsurpassed. Even their "
         "bites are likely to burn their opponents, further enhancing their deadliness in melee. "
         "As the Red Dragon matures, it becomes more and more resistant to fire, eventually gaining "
         "total immunity." },
     { {164, 460, 549, 617, 741},
-      {"Baby White Dragon", "Young White Dragon", "Mature White Dragon", "Ancient White Dragon", "Great Ice Wyrm"},
-      RES_COLD, "White Dragon",
+      {"白龙宝宝", "幼年白龙", "成年白龙", "远古白龙", "寒冰巨龙"},
+      RES_COLD, "白龙",
         "White Dragons are to cold what Red Dragons are to fire. Their melee is awe-inspiring, "
         "and their icy breath can be felt even in their bite. Together with Red Dragons, they "
         "have the deadliest breaths among dragonkind; and they become more and more "
         "resistant to cold as they mature, eventually attaining immunity." },
     { {163, 459, 560, 601, 728},
-      {"Baby Blue Dragon", "Young Blue Dragon", "Mature Blue Dragon", "Ancient Blue Dragon", "Great Storm Wyrm"},
-      RES_ELEC, "Blue Dragon",
+      {"蓝龙宝宝", "幼年蓝龙", "成年蓝龙", "远古蓝龙", "风暴巨龙"},
+      RES_ELEC, "蓝龙",
         "Blue Dragons are elemental dragons of lightning. Their breaths are as "
         "strong as those of their Red and White brethren, their melee somewhat weaker but still mighty, "
         "and their bites eventually shock their foes. Blue Dragons become more and more "
         "resistant to lightning as they mature, eventually gaining total immunity." },
     { {166, 546, 592, 624, 1066},
-      {"Baby Black Dragon", "Young Black Dragon", "Mature Black Dragon", "Ancient Black Dragon", "Great Bile Wyrm"},
-      RES_ACID, "Black Dragon",
+      {"黑龙宝宝", "幼年黑龙", "成年黑龙", "远古黑龙", "强酸巨龙"},
+      RES_ACID, "黑龙",
         "Black Dragons are to acid what Blue Dragons are to lightning. Their breaths are as strong "
         "as those of their Red, White and Blue kin; and fewer monsters resist acid, giving them an extra "
         "opening. As the Black Dragon matures, its bites become corrosive, and it grows more resistant to acid "
         "until it reaches immunity." },
     { {165, 461, 561, 618, 890},
-      {"Baby Green Dragon", "Young Green Dragon", "Mature Green Dragon", "Ancient Green Dragon", "Great Venom Wyrm"},
-      RES_POIS, "Green Dragon",
+      {"绿龙宝宝", "幼年绿龙", "成年绿龙", "远古绿龙", "剧毒巨龙"},
+      RES_POIS, "绿龙",
         "Green Dragons are elemental dragons of venom. They are not quite as strong as Red or White dragons, "
         "but are still fearsome opponents. As they mature, their bites poison their enemies. "
         "Green Dragons become more and more resistant to poison over time, eventually achieving immunity." },
@@ -2305,25 +2287,25 @@ static void _elemental_gain_level(int new_level) {
     if (p_ptr->current_r_idx == _elemental_info[p_ptr->psubrace].r_idx[0] && new_level >= 10)
     {
         p_ptr->current_r_idx = _elemental_info[p_ptr->psubrace].r_idx[1];
-        msg_format("You have evolved into a %s.", _elemental_info[p_ptr->psubrace].r_name[1]);
+        msg_format("你进化成了%s。", _elemental_info[p_ptr->psubrace].r_name[1]);
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == _elemental_info[p_ptr->psubrace].r_idx[1] && new_level >= 20)
     {
         p_ptr->current_r_idx = _elemental_info[p_ptr->psubrace].r_idx[2];
-        msg_format("You have evolved into a %s.", _elemental_info[p_ptr->psubrace].r_name[2]);
+        msg_format("你进化成了%s。", _elemental_info[p_ptr->psubrace].r_name[2]);
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == _elemental_info[p_ptr->psubrace].r_idx[2] && new_level >= 30)
     {
         p_ptr->current_r_idx = _elemental_info[p_ptr->psubrace].r_idx[3];
-        msg_format("You have evolved into an %s.", _elemental_info[p_ptr->psubrace].r_name[3]);
+        msg_format("你进化成了%s。", _elemental_info[p_ptr->psubrace].r_name[3]);
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == _elemental_info[p_ptr->psubrace].r_idx[3] && new_level >= 40)
     {
         p_ptr->current_r_idx = _elemental_info[p_ptr->psubrace].r_idx[4];
-        msg_format("You have evolved into a %s.", _elemental_info[p_ptr->psubrace].r_name[4]);
+        msg_format("你进化成了%s。", _elemental_info[p_ptr->psubrace].r_name[4]);
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -2436,13 +2418,13 @@ static void _nether_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_SHADOW_DRAKE && new_level >= 30)
     {
         p_ptr->current_r_idx = MON_DEATH_DRAKE;
-        msg_print("You have evolved into a Death Drake.");
+        msg_print("你进化成了死亡龙(Death Drake)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_DEATH_DRAKE && new_level >= 45)
     {
         p_ptr->current_r_idx = MON_SPECTRAL_WYRM;
-        msg_print("You have evolved into a Spectral Wyrm.");
+        msg_print("你进化成了幽灵巨龙(Spectral Wyrm)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -2451,7 +2433,7 @@ static race_t *_nether_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[3] =  {"Shadow Drake", "Death Drake", "Spectral Wyrm"};    
+    static cptr   titles[3] =  {"暗影龙", "死亡龙", "幽灵巨龙"};    
     int           rank = 0;
 
     if (p_ptr->lev >= 30) rank++;
@@ -2483,7 +2465,7 @@ static race_t *_nether_get_race_t(void)
     }
 
     if (spoiler_hack || birth_hack)
-        me.subname = "Shadow Drake";
+        me.subname = "暗影龙";
     else
         me.subname = titles[rank];
     me.stats[A_STR] =  0 + 2*rank;
@@ -2541,7 +2523,7 @@ static void _law_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_LAW_DRAKE && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_GREAT_WYRM_OF_LAW;
-        msg_print("You have evolved into a Great Wyrm of Law.");
+        msg_print("你进化成了律法巨龙(Great Wyrm of Law)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -2549,7 +2531,7 @@ static race_t *_law_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[2] =  {"Law Drake", "Great Wyrm of Law"};    
+    static cptr   titles[2] =  {"律法龙", "律法巨龙"};    
     int           rank = 0;
 
     if (p_ptr->lev >= 40) rank++;
@@ -2579,7 +2561,7 @@ static race_t *_law_get_race_t(void)
     }
 
     if (spoiler_hack || birth_hack)
-        me.subname = "Law Drake";
+        me.subname = "律法龙";
     else
         me.subname = titles[rank];
 
@@ -2638,7 +2620,7 @@ static void _chaos_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_CHAOS_DRAKE && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_GREAT_WYRM_OF_CHAOS;
-        msg_print("You have evolved into a Great Wyrm of Chaos.");
+        msg_print("你进化成了混沌巨龙(Great Wyrm of Chaos)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -2646,7 +2628,7 @@ static race_t *_chaos_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[2] =  {"Chaos Drake", "Great Wyrm of Chaos"};    
+    static cptr   titles[2] =  {"混沌龙", "混沌巨龙"};    
     int           rank = 0;
 
     if (p_ptr->lev >= 40) rank++;
@@ -2677,7 +2659,7 @@ static race_t *_chaos_get_race_t(void)
     }
 
     if (spoiler_hack || birth_hack)
-        me.subname = "Chaos Drake";
+        me.subname = "混沌龙";
     else
         me.subname = titles[rank];
     me.stats[A_STR] =  0 + 5*rank;
@@ -2735,7 +2717,7 @@ static void _balance_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_BALANCE_DRAKE && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_GREAT_WYRM_OF_BALANCE;
-        msg_print("You have evolved into a Great Wyrm of Balance.");
+        msg_print("你进化成了平衡巨龙(Great Wyrm of Balance)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -2743,7 +2725,7 @@ static race_t *_balance_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[2] =  {"Balance Drake", "Great Wyrm of Balance"};    
+    static cptr   titles[2] =  {"平衡龙", "平衡巨龙"};    
     int           rank = 0;
 
     if (p_ptr->lev >= 40) rank++;
@@ -2772,7 +2754,7 @@ static race_t *_balance_get_race_t(void)
     }
 
     if (spoiler_hack || birth_hack)
-        me.subname = "Balance Drake";
+        me.subname = "平衡龙";
     else
         me.subname = titles[rank];
     me.stats[A_STR] =  0 + 4*rank;
@@ -2834,13 +2816,13 @@ static void _ethereal_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_PSEUDO_DRAGON && new_level >= 20)
     {
         p_ptr->current_r_idx = MON_ETHEREAL_DRAKE;
-        msg_print("You have evolved into an Ethereal Drake.");
+        msg_print("你进化成了以太龙(Ethereal Drake)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_ETHEREAL_DRAKE && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_ETHEREAL_DRAGON;
-        msg_print("You have evolved into an Ethereal Dragon.");
+        msg_print("你进化成了以太巨龙(Ethereal Dragon)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -2848,7 +2830,7 @@ static race_t *_ethereal_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[3] =  {"Pseudo Dragon", "Ethereal Drake", "Ethereal Dragon"};    
+    static cptr   titles[3] =  {"伪龙", "以太龙", "以太巨龙"};    
     int           rank = 0;
 
     if (p_ptr->lev >= 20) rank++;
@@ -2881,7 +2863,7 @@ static race_t *_ethereal_get_race_t(void)
     }
 
     if (spoiler_hack || birth_hack)
-        me.subname = "Ethereal Drake";
+        me.subname = "以太龙";
     else
         me.subname = titles[rank];
 
@@ -2953,7 +2935,7 @@ static void _crystal_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_CRYSTAL_DRAKE && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_GREAT_CRYSTAL_DRAKE;
-        msg_print("You have evolved into a Great Crystal Drake.");
+        msg_print("你进化成了水晶巨龙(Great Crystal Drake)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -2961,7 +2943,7 @@ static race_t *_crystal_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[2] =  {"Crystal Drake", "Great Crystal Drake"};    
+    static cptr   titles[2] =  {"水晶龙", "水晶巨龙"};    
     int           rank = 0;
 
     if (p_ptr->lev >= 40) rank++;
@@ -2991,7 +2973,7 @@ static race_t *_crystal_get_race_t(void)
     }
 
     if (spoiler_hack || birth_hack)
-        me.subname = "Crystal Drake";
+        me.subname = "水晶龙";
     else
         me.subname = titles[rank];
 
@@ -3048,13 +3030,13 @@ static void _bronze_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_YOUNG_BRONZE_DRAGON && new_level >= 20)
     {
         p_ptr->current_r_idx = MON_MATURE_BRONZE_DRAGON;
-        msg_print("You have evolved into a Mature Bronze Dragon.");
+        msg_print("你进化成了成年青铜龙(Mature Bronze Dragon)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_MATURE_BRONZE_DRAGON && new_level >= 30)
     {
         p_ptr->current_r_idx = MON_ANCIENT_BRONZE_DRAGON;
-        msg_print("You have evolved into an Ancient Bronze Dragon.");
+        msg_print("你进化成了远古青铜龙(Ancient Bronze Dragon)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -3062,7 +3044,7 @@ static race_t *_bronze_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[3] =  {"Young Bronze Dragon", "Mature Bronze Dragon", "Ancient Bronze Dragon"};    
+    static cptr   titles[3] =  {"幼年青铜龙", "成年青铜龙", "远古青铜龙"};    
     int           rank = 0;
 
     if (p_ptr->lev >= 20) rank++;
@@ -3093,7 +3075,7 @@ static race_t *_bronze_get_race_t(void)
     }
 
     if (spoiler_hack || birth_hack)
-        me.subname = "Bronze Dragon";
+        me.subname = "青铜龙";
     else
         me.subname = titles[rank];
 
@@ -3151,13 +3133,13 @@ static void _gold_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_YOUNG_GOLD_DRAGON && new_level >= 20)
     {
         p_ptr->current_r_idx = MON_MATURE_GOLD_DRAGON;
-        msg_print("You have evolved into a Mature Gold Dragon.");
+        msg_print("你进化成了成年金龙(Mature Gold Dragon)。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_MATURE_GOLD_DRAGON && new_level >= 30)
     {
         p_ptr->current_r_idx = MON_ANCIENT_GOLD_DRAGON;
-        msg_print("You have evolved into an Ancient Gold Dragon.");
+        msg_print("你进化成了远古金龙(Ancient Gold Dragon)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -3165,7 +3147,7 @@ static race_t *_gold_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[3] =  {"Young Gold Dragon", "Mature Gold Dragon", "Ancient Gold Dragon"};    
+    static cptr   titles[3] =  {"幼年金龙", "成年金龙", "远古金龙"};    
     int           rank = 0;
 
     if (p_ptr->lev >= 20) rank++;
@@ -3196,7 +3178,7 @@ static race_t *_gold_get_race_t(void)
     }
 
     if (spoiler_hack || birth_hack)
-        me.subname = "Gold Dragon";
+        me.subname = "金龙";
     else
         me.subname = titles[rank];
 
@@ -3269,7 +3251,7 @@ static void _steel_gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_STONE_DRAGON && new_level >= 40)
     {
         p_ptr->current_r_idx = MON_STEEL_DRAGON;
-        msg_print("You have evolved into a Steel Dragon.");
+        msg_print("你进化成了钢龙(Steel Dragon)。");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -3277,7 +3259,7 @@ static race_t *_steel_get_race_t(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[2] =  {"Stone Dragon", "Steel Dragon"};    
+    static cptr   titles[2] =  {"石龙", "钢龙"};    
     int           rank = 0;
 
     if (p_ptr->lev >= 40) rank++;
@@ -3311,7 +3293,7 @@ static race_t *_steel_get_race_t(void)
     }
 
     if (spoiler_hack || birth_hack)
-        me.subname = "Steel Dragon";
+        me.subname = "钢龙";
     else
         me.subname = titles[rank];
 
@@ -3390,7 +3372,7 @@ race_t *mon_dragon_get_race(int psubrace)
         result->get_spells_fn = NULL;
     }
 
-    result->name = "Dragon";
+    result->name = "龙";
     result->desc = _desc;
     result->flags = RACE_IS_MONSTER;
     result->calc_innate_attacks = _calc_innate_attacks;

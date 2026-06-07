@@ -49,10 +49,10 @@ static void _anti_magic_ray_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Antimagic Ray");
+        var_set_string(res, "反魔法射线");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Block spells from a chosen foe.");
+        var_set_string(res, "封锁选定敌人的法术。");
         break;
     case SPELL_CAST:
     {
@@ -74,10 +74,10 @@ static void _armor_of_fury_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Armor of Fury");
+        var_set_string(res, "狂怒之甲");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Whenever a monster attacks you with magic, they may become slowed and stunned.");
+        var_set_string(res, "每当怪物用魔法攻击你时，它们可能会被减速并被震慑。");
         break;
     case SPELL_CAST:
         set_tim_armor_of_fury(25 + randint1(25), FALSE);
@@ -94,7 +94,7 @@ static void _barbarian_lore_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Barbarian Lore");
+        var_set_string(res, "野蛮人传说");
         break;
     default:
         identify_spell(cmd, res);
@@ -107,10 +107,10 @@ static void _barbaric_resistance_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Barbaric Resistance");
+        var_set_string(res, "野蛮抗性");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Grants temporary protection from the elements.");
+        var_set_string(res, "赋予免受元素伤害的临时保护。");
         break;
     case SPELL_CAST:
     {
@@ -141,10 +141,10 @@ static void _crude_mapping_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Crude Mapping");
+        var_set_string(res, "粗略绘图");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Maps the dungeon in your vicinity.");
+        var_set_string(res, "绘制你附近的地牢地图。");
         break;
     case SPELL_CAST:
         map_area(DETECT_RAD_DEFAULT); /* Was 14, but that was just plain annoying! */
@@ -188,7 +188,7 @@ static bool _detect_objects_ego(int range)
     }
 
     if (detect)
-        msg_print("You sense the presence of magic objects!");
+        msg_print("你感应到了魔法物品的存在！");
 
     return detect;
 }
@@ -198,10 +198,10 @@ static void _detect_magic_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Magic");
+        var_set_string(res, "探测魔法");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detects nearby magic users and items.");
+        var_set_string(res, "探测附近的魔法使用者和物品。");
         break;
     case SPELL_CAST:
         detect_monsters_magical(DETECT_RAD_DEFAULT);
@@ -219,10 +219,10 @@ static void _detect_magical_foes_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Magical Foes");
+        var_set_string(res, "探测魔法敌人");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Detects nearby magic users.");
+        var_set_string(res, "探测附近的魔法使用者。");
         break;
     case SPELL_CAST:
         detect_monsters_magical(DETECT_RAD_DEFAULT);
@@ -241,7 +241,7 @@ static void _evasive_leap_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Evasive Leap");
+        var_set_string(res, "规避跳跃");
         break;
     case SPELL_ENERGY:
         if (p_ptr->shero)
@@ -260,10 +260,10 @@ static void _focus_rage_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Focus Rage");
+        var_set_string(res, "专注狂怒");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Damage yourself and regain spell points.");
+        var_set_string(res, "伤害你自己并恢复法力值。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, 10 + p_ptr->lev/2));
@@ -271,7 +271,7 @@ static void _focus_rage_spell(int cmd, variant *res)
     case SPELL_FAIL:
     {
         int hp = 10 + p_ptr->lev/2;
-        take_hit(DAMAGE_NOESCAPE, hp, "Rage");
+        take_hit(DAMAGE_NOESCAPE, hp, "狂怒");
         var_set_bool(res, TRUE);
         break;
     }
@@ -283,10 +283,10 @@ static void _focus_rage_spell(int cmd, variant *res)
 
         if (p_ptr->chp < hp)
         {
-            if (!get_check("Really? This will kill you!")) return;
+            if (!get_check("真的吗？这会杀死你！")) return;
         }
 
-        take_hit(DAMAGE_NOESCAPE, hp, "Rage");
+        take_hit(DAMAGE_NOESCAPE, hp, "狂怒");
         sp_player(hp);
 
         _unclear_mind = FALSE; /* Hack to avoid automatic mana drain for this action */
@@ -304,10 +304,10 @@ static void _force_brand_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Force Brand");
+        var_set_string(res, "原力附魔");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Temporarily brands your weapon with force.");
+        var_set_string(res, "暂时为你的武器附魔上原力。");
         break;
     case SPELL_CAST:
     {
@@ -329,10 +329,10 @@ static void _greater_focus_rage_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Focus *Rage*");
+        var_set_string(res, "专注*狂怒*");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Damage yourself and regain spell points.");
+        var_set_string(res, "伤害你自己并恢复法力值。");
         break;
     case SPELL_INFO:
         if (p_ptr->shero)
@@ -345,7 +345,7 @@ static void _greater_focus_rage_spell(int cmd, variant *res)
         int hp = 10 + p_ptr->lev;
         if (p_ptr->shero)
             hp = 2 * p_ptr->lev;
-        take_hit(DAMAGE_NOESCAPE, hp, "Rage");
+        take_hit(DAMAGE_NOESCAPE, hp, "狂怒");
         var_set_bool(res, TRUE);
         break;
     }
@@ -360,10 +360,10 @@ static void _greater_focus_rage_spell(int cmd, variant *res)
 
         if (p_ptr->chp < hp)
         {
-            if (!get_check("Really? This will kill you!")) return;
+            if (!get_check("真的吗？这会杀死你！")) return;
         }
 
-        take_hit(DAMAGE_NOESCAPE, hp, "Rage");
+        take_hit(DAMAGE_NOESCAPE, hp, "狂怒");
         sp_player(hp * 2);
 
         _unclear_mind = FALSE; /* Hack to avoid automatic mana drain for this action */
@@ -381,10 +381,10 @@ static void _greater_shout_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Greater Shout");
+        var_set_string(res, "高等怒吼");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Projects a cone of sound at a chosen foe.");
+        var_set_string(res, "向选定的敌人投射一个锥形的声波。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(p_ptr->lev - 10, 8, 0));
@@ -409,10 +409,10 @@ static void _mana_clash_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mana Clash");
+        var_set_string(res, "法力碰撞");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fires a ball at chosen target. Only spellcasters will be damaged.");
+        var_set_string(res, "向选定目标发射一个能量球。只有施法者才会受到伤害。");
         break;
     case SPELL_CAST:
     {
@@ -441,10 +441,10 @@ static void _rage_strike_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Ragestrike");
+        var_set_string(res, "狂怒打击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Fire a ball of pure rage at chosen foe, striking with everything you've got!");
+        var_set_string(res, "向选定的敌人发射一个纯粹由狂怒构成的能量球，用你所有的一切进行打击！");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, _rage_strike_dam()));
@@ -460,13 +460,13 @@ static void _rage_strike_spell(int cmd, variant *res)
 
         if (p_ptr->chp < 100)
         {
-            if (!get_check("Really? This will kill you!")) return;
+            if (!get_check("真的吗？这会杀死你！")) return;
         }
 
         if (!get_fire_dir(&dir)) return;
 
         fire_ball(GF_MISSILE, dir, _rage_strike_dam(), 0);
-        take_hit(DAMAGE_NOESCAPE, 100, "Rage");
+        take_hit(DAMAGE_NOESCAPE, 100, "狂怒");
         if (!p_ptr->shero)
             set_stun(99, FALSE); /* 100 is Knocked Out */
 
@@ -485,7 +485,7 @@ static void _rage_sustenance_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Rage Sustenance");
+        var_set_string(res, "狂怒维持");
         break;
     default:
         satisfy_hunger_spell(cmd, res);
@@ -498,10 +498,10 @@ static void _resist_curses_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Resist Curses");
+        var_set_string(res, "抵抗诅咒");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Grants temporary magical resistance.");
+        var_set_string(res, "赋予临时的魔法抗性。");
         break;
     case SPELL_CAST:
         set_tim_resist_curses(20 + randint1(20), FALSE);
@@ -518,10 +518,10 @@ static void _resist_disenchantment_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Resist Disenchantment");
+        var_set_string(res, "抵抗解除附魔");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Grants temporary resistance to disenchantment.");
+        var_set_string(res, "赋予临时的抵抗解除附魔能力。");
         break;
     case SPELL_CAST:
         set_tim_res_disenchantment(10 + randint1(10), FALSE);
@@ -640,10 +640,10 @@ static void _shatter_device_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shatter Device");
+        var_set_string(res, "粉碎装置");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Destroy a magical device in your inventory for various effects.");
+        var_set_string(res, "摧毁你物品栏中的一个魔法装置以获得各种效果。");
         break;
     case SPELL_CAST:
     {
@@ -651,8 +651,8 @@ static void _shatter_device_spell(int cmd, variant *res)
 
         var_set_bool(res, FALSE);
 
-        prompt.prompt = "Shatter which device?";
-        prompt.error = "You have nothing to shatter.";
+        prompt.prompt = "粉碎哪个装置？";
+        prompt.error = "你没有什么可以粉碎的。";
         prompt.filter = object_is_device;
         prompt.where[0] = INV_PACK;
         prompt.where[1] = INV_FLOOR;
@@ -664,20 +664,20 @@ static void _shatter_device_spell(int cmd, variant *res)
 
         if (prompt.obj->activation.type == EFFECT_NONE)
         {
-            msg_print("Nothing happens.");
+            msg_print("什么也没有发生。");
         }
         else if (prompt.obj->activation.type == EFFECT_DESTRUCTION)
         {
             if (destroy_area(py, px, 15 + p_ptr->lev + randint0(11), 4 * p_ptr->lev))
-                msg_print("The dungeon collapses...");
+                msg_print("地牢坍塌了……");
             else
-                msg_print("The dungeon trembles.");
+                msg_print("地牢在颤抖。");
         }
         else if ( prompt.obj->activation.type == EFFECT_HEAL_CURING
                || prompt.obj->activation.type == EFFECT_HEAL_CURING_HERO
                || prompt.obj->activation.type == EFFECT_RESTORING )
         {
-            msg_print("You feel life flow through your body!");
+            msg_print("你感觉生命流过你的身体！");
             restore_level();
             lp_player(1000);
             (void)set_poisoned(0, TRUE);
@@ -723,10 +723,10 @@ static void _shout_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Shout");
+        var_set_string(res, "怒吼");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Projects a cone of sound at a chosen foe.");
+        var_set_string(res, "向选定的敌人投射一个锥形的声波。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(3 + (p_ptr->lev-1)/5, 4, 0));
@@ -751,10 +751,10 @@ static void _smash_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Smash");
+        var_set_string(res, "猛击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Destroys adjacent door, trap or wall.");
+        var_set_string(res, "摧毁相邻的门、陷阱或墙壁。");
         break;
     case SPELL_CAST:
     {
@@ -793,10 +793,10 @@ static void _spell_reaction_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Spell Reaction");
+        var_set_string(res, "法术反击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Grants temporary speed whenever you are targetted by a magical attack.");
+        var_set_string(res, "每当你成为魔法攻击的目标时，赋予临时的速度加成。");
         break;
     case SPELL_CAST:
         set_tim_spell_reaction(30 + randint1(30), FALSE);
@@ -813,10 +813,10 @@ static void _spell_turning_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Spell Turning");
+        var_set_string(res, "法术反转");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Whenever you are the target of magic there is a chance of returning the spell to the caster.");
+        var_set_string(res, "每当你成为魔法的目标时，都有几率将法术反弹给施法者。");
         break;
     case SPELL_CAST:
         set_tim_spell_turning(20 + randint1(20), FALSE);
@@ -833,17 +833,17 @@ static void _dispel_curse_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Dispel Curses");
+        var_set_string(res, "驱散诅咒");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Dispels any weak curses placed on your equipment, with a chance to dispel strong curses.");
+        var_set_string(res, "驱散你装备上的任何弱诅咒，并有几率驱散强诅咒。");
         break;
     case SPELL_SPOIL_DESC:
-        var_set_string(res, "Dispels all weak curses placed on your equipment, with a 1 in 3 chance to dispel heavy curses as well.");
+        var_set_string(res, "驱散你装备上所有的弱诅咒，并有三分之一的几率驱散重度诅咒。");
         break;
     case SPELL_CAST:
-        if (one_in_(3) ? remove_all_curse() : remove_curse()) msg_print("You dispel the evil magic!");
-        else msg_print("Nothing happens.");
+        if (one_in_(3) ? remove_all_curse() : remove_curse()) msg_print("你驱散了邪恶魔法！");
+        else msg_print("什么也没有发生。");
         var_set_bool(res, TRUE);
         break;
     default:
@@ -857,10 +857,10 @@ static void _summon_horde_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Summon Horde");
+        var_set_string(res, "召唤部落");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Summons Warriors of the Dawn for assistance.");
+        var_set_string(res, "召唤黎明战士来协助。");
         break;
     case SPELL_CAST:
     {
@@ -889,7 +889,7 @@ static void _veterans_blessing_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Veteran's Blessing");
+        var_set_string(res, "老兵祝福");
         break;
     default:
         heroism_spell(cmd, res);
@@ -902,7 +902,7 @@ static void _whirlwind_attack_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Whirlwind Attack");
+        var_set_string(res, "旋风攻击");
         break;
     default:
         massacre_spell(cmd, res);
@@ -924,7 +924,7 @@ typedef struct {
 } book_t;
 
 static book_t _books[4] = {
-    { "Anger Management",
+    { "情绪管理",
         {{ 1,  2, 30, _shout_spell},
          { 2,  2, 25, _detect_magical_foes_spell},
          { 3,  3, 30, _smash_spell},
@@ -934,7 +934,7 @@ static book_t _books[4] = {
          { 8, 10, 50, _rage_sustenance_spell},
          {12,  6, 35, _veterans_blessing_spell}}
     },
-    { "Northern Frights",
+    { "北方惊魂",
         {{15,  8, 45, _crude_mapping_spell},
          {18, 18, 50, _resist_disenchantment_spell},
          {20, 30, 55, awesome_blow_spell},
@@ -944,7 +944,7 @@ static book_t _books[4] = {
          {27, 20, 55, _resist_curses_spell},
          {28, 23, 70, _detect_magic_spell}}
     },
-    { "The Sound and the Fury",
+    { "喧哗与骚动",
         {{10, 12, 35, berserk_spell},
          {25, 16, 60, sterility_spell},
          {26, 20, 80, _barbaric_resistance_spell},
@@ -954,7 +954,7 @@ static book_t _books[4] = {
          {38, 30, 50, dispel_magic_spell},
          {40, 60, 85, _mana_clash_spell}}
     },
-    { "Dire Ire",
+    { "极度愤怒",
         {{30, 25, 75, _barbarian_lore_spell},
          {32, 15, 65, earthquake_spell},
          {35,  0, 90, _greater_focus_rage_spell},
@@ -998,7 +998,7 @@ static void _learn_spell(int book, int spell)
     p_ptr->update |= PU_SPELLS;
     p_ptr->redraw |= PR_EFFECTS;
 
-    msg_format("You have learned the technique of %s.", get_spell_name(_books[book].spells[spell].fn));
+    msg_format("你学会了“%s”的技艺。", get_spell_name(_books[book].spells[spell].fn));
 }
 
 static bool _gain_spell(int book)
@@ -1036,14 +1036,14 @@ static bool _gain_spell(int book)
 
     if (lct == 0)
     {
-        if (ct) msg_print("You may not learn any techniques from that book right now.");
-        else msg_print("You have already learned all techniques described in that book.");
+        if (ct) msg_print("你现在无法从那本书中学习任何技艺。");
+        else msg_print("你已经学会了那本书中描述的所有技艺。");
         return FALSE;
     }    
 
     while (1)
     {
-        which = choose_spell(spells, ct, "Learn", "rage", 1000, FALSE);
+        which = choose_spell(spells, ct, "学习", "rage", 1000, FALSE);
         if ((which >= 0) && (which < ct))
         {
             if (spells[which].spell.level > p_ptr->lev)
@@ -1068,22 +1068,22 @@ void rage_mage_gain_spell(void)
 
     if (p_ptr->blind || no_lite())
     {
-        msg_print("You cannot see!");
+        msg_print("你看不见！");
         return;
     }
     if (p_ptr->confused)
     {
-        msg_print("You are too confused!");
+        msg_print("你太困惑了！");
         return;
     }
     if (!p_ptr->new_spells)
     {
-        msg_print("You cannot learn any new techniques!");
+        msg_print("你不能学习任何新技艺！");
         return;
     }
 
-    prompt.prompt = "Study which book?";
-    prompt.error = "You have no books that you can read.";
+    prompt.prompt = "学习哪本书？";
+    prompt.error = "你没有可以阅读的书。";
     prompt.filter = _is_rage_book;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
@@ -1097,7 +1097,7 @@ void rage_mage_gain_spell(void)
 
         object_desc(o_name, prompt.obj, OD_SINGULAR);
 
-        msg_format("<color:%c>%^s</color> is destroyed.", tval_to_attr_char(prompt.obj->tval), o_name);
+        msg_format("<color:%c>%^s</color> 被摧毁了。", tval_to_attr_char(prompt.obj->tval), o_name);
         prompt.obj->number--;
         obj_release(prompt.obj, 0);
 
@@ -1209,7 +1209,7 @@ static spell_info *_get_spells(void)
 {
     int idx = -1;
     int ct = 0;
-    menu_t menu = { "Use which group?", NULL, NULL,
+    menu_t menu = { "使用哪一类？", NULL, NULL,
                     _book_menu_fn, _books, 4, 0 };
     static spell_info spells[10];
 
@@ -1219,7 +1219,7 @@ static spell_info *_get_spells(void)
     ct = _get_spells_imp(spells, idx, FALSE);
     if (ct == 0)
     {
-        msg_print("You don't know any of those techniques yet!");
+        msg_print("你还不懂其中的任何技艺！");
         return NULL;
     }
     spells[8].fn = NULL;
@@ -1266,23 +1266,8 @@ class_t *rage_mage_get_class(void)
     skills_t bs = { 20,  20,  40,  -1,  12,   2,  50,  30 };
     skills_t xs = {  7,   8,  15,   0,   0,   0,  15,  15 };
 
-        me.name = "Rage-Mage";
-        me.desc = "Rage-Mages are part of a secret sect, originally founded by Barbarians in "
-                    "response to their natural foes, the mages. With the passing of time, other "
-                    "races have also begun to study these arts.\n\n"
-                    "Rage techniques are learned from books, but differ from normal spells in many ways. "
-                    "First of all, the Rage-Mage must perform a special Ritual of Anger to "
-                    "learn a power, and this ritual destroys the book; as a result, it may take "
-                    "a long time for the Rage-Mage to learn all of their high-level powers. "
-                    "Books are required only for learning; the powers, once learned, can be "
-                    "used without them.\n\n"
-                    "Another unique aspect of Rage-Mages concerns their mana pool. Rage-Mage "
-                    "mana, unlike that of normal spellcasters, does not regenerate on its own; "
-                    "in fact, it actually decreases rapidly each turn, meaning Rage-Mages had "
-                    "better use their powers quickly while they still can. A Rage-Mage gains "
-                    "mana whenever he is the target of a magical spell; indeed, magic makes a "
-                    "Rage-Mage very angry! Rage-Mages can also fuel their mana by hurting "
-                    "those around them, which can be quite effective in crowded situations.";
+        me.name = "狂怒法师";
+        me.desc = "狂怒法师是一个秘密教派的一部分，最初由野蛮人为了对抗他们的天敌——魔法师而创立。随着时间的推移，其他种族也开始研究这些技艺。\n\n狂怒技艺是从书中学习的，但在许多方面与普通法术不同。首先，狂怒法师必须执行一种特殊的“愤怒仪式”来学习力量，而这个仪式会摧毁书籍；因此，狂怒法师可能需要很长时间才能学会他们所有的高级力量。书籍仅用于学习；力量一旦学会，就可以在没有书的情况下使用。\n\n狂怒法师的另一个独特之处在于他们的法力池。与普通施法者不同，狂怒法师的法力不会自行恢复；事实上，它实际上会在每个回合迅速减少，这意味着狂怒法师最好在还能使用力量时迅速使用它们。每当狂怒法师成为魔法法术的目标时，他就会获得法力；的确，魔法会让狂怒法师非常愤怒！狂怒法师还可以通过伤害周围的人来补充法力，这在拥挤的情况下会非常有效。";
         me.stats[A_STR] =  3;
         me.stats[A_INT] = -2;
         me.stats[A_WIS] = -2;

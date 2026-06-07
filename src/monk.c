@@ -151,7 +151,7 @@ void monk_display_attack_info(doc_ptr doc, int hand)
     cols[1] = doc_alloc(35);
 
     /* First Column */
-    doc_printf(cols[0], "<color:G>%-14.14s %6s %5s %6s</color>\n", "Attack", "Dice", "Pct", "Dam");
+    doc_printf(cols[0], "<color:G>%-14.14s %6s %5s %6s</color>\n", "攻击", "骰子", "概率%", "伤害");
 
     _get_attack_counts(tot, counts, hand);
     for (i = 0; i < MAX_MA; i++)
@@ -175,11 +175,11 @@ void monk_display_attack_info(doc_ptr doc, int hand)
                                 dam/10, dam%10);
     }
 
-    doc_printf(cols[0], "<tab:8>%20s %3d.%1d\n", "Total:", tot_dam/10, tot_dam%10);
+    doc_printf(cols[0], "<tab:8>%20s %3d.%1d\n", "总计:", tot_dam/10, tot_dam%10);
 
     crit.mul = tot_mul/tot;
     crit.to_d = tot_to_d*10/tot;
-    doc_printf(cols[0], "<tab:8>%20s %3d.%02dx\n", "Criticals:", crit.mul/100, crit.mul%100);
+    doc_printf(cols[0], "<tab:8>%20s %3d.%02dx\n", "暴击:", crit.mul/100, crit.mul%100);
 
     /* Account for criticals in all that follows ... */
     tot_dam = tot_dam * crit.mul/100;
@@ -193,16 +193,16 @@ void monk_display_attack_info(doc_ptr doc, int hand)
     tot_dam = (tot_dam * (class_melee_mult() * race_melee_mult(FALSE) / 100) + 50) / 100;
     to_d = (to_d * (class_melee_mult() * race_melee_mult(FALSE) / 100) + 50) / 100;
 
-    doc_printf(cols[0], "<tab:8>%20s %3d.%1d +%3d\n", "One Strike:", tot_dam/10, tot_dam%10, to_d/10);
+    doc_printf(cols[0], "<tab:8>%20s %3d.%1d +%3d\n", "单次打击:", tot_dam/10, tot_dam%10, to_d/10);
 
     /* Second Column */
     if (p_ptr->monk_lvl < p_ptr->lev)
-        doc_printf(cols[1], "<color:y> Your Fists</color> (L%d)\n", p_ptr->monk_lvl);
+        doc_printf(cols[1], "<color:y> 你的双拳</color> (%d级)\n", p_ptr->monk_lvl);
     else
-        doc_insert(cols[1], "<color:y>Your Fists</color>\n");
+        doc_insert(cols[1], "<color:y>你的双拳</color>\n");
 
-    doc_printf(cols[1], "Number of Blows: %d.%2.2d\n", blows/100, blows%100);
-    doc_printf(cols[1], "To Hit:  0  50 100 150 200 (AC)\n");
+    doc_printf(cols[1], "攻击次数: %d.%2.2d\n", blows/100, blows%100);
+    doc_printf(cols[1], "命中率: 0 50 100 150 200 (AC)\n");
     doc_printf(cols[1], "        %2d  %2d  %2d  %2d  %2d (%%)\n",
         hit_chance(0, 0, 0),
         hit_chance(0, 0, 50),
@@ -212,70 +212,70 @@ void monk_display_attack_info(doc_ptr doc, int hand)
     );
 
     doc_newline(cols[1]);
-    doc_insert(cols[1], "<color:y>Average Damage:</color>\n");
-    doc_printf(cols[1], " One Strike: %d.%1d\n", (tot_dam + to_d)/10, (tot_dam + to_d)%10);
+    doc_insert(cols[1], "<color:y>平均伤害:</color>\n");
+    doc_printf(cols[1], "单次打击: %d.%1d\n", (tot_dam + to_d)/10, (tot_dam + to_d)%10);
 
     /* Note: blows are scaled by 100. tot_dam and to_d by 10. So we divide by 1000 to recover the integer part ... */
-    doc_printf(cols[1], " One Attack: %d\n", blows*(tot_dam + to_d)/1000);
+    doc_printf(cols[1], "单轮攻击: %d\n", blows*(tot_dam + to_d)/1000);
 
     if (p_ptr->tim_force)
     {
         int hit = _calc_damage_per_hit(tot_dam, to_d, 10, TRUE);
-        doc_printf(cols[1], " <color:B>     Force</color>: %d\n", blows * hit / 1000);
+        doc_printf(cols[1], "<color:B> 原力</color>: %d\n", blows * hit / 1000);
     }
     if (display_weapon_mode == MYSTIC_ACID)
     {
         int hit = _calc_damage_per_hit(tot_dam, to_d + 50, 20, p_ptr->tim_force);
-        doc_printf(cols[1], " <color:r>      Acid</color>: %d\n", blows * hit / 1000);
+        doc_printf(cols[1], "<color:r> 酸</color>: %d\n", blows * hit / 1000);
     }
     else if (have_flag(p_ptr->weapon_info[hand].flags, OF_BRAND_ACID))
     {
         int hit = _calc_damage_per_hit(tot_dam, to_d, 17, p_ptr->tim_force);
-        doc_printf(cols[1], " <color:r>      Acid</color>: %d\n", blows * hit / 1000);
+        doc_printf(cols[1], "<color:r> 酸</color>: %d\n", blows * hit / 1000);
     }
 
     if (display_weapon_mode == MYSTIC_FIRE)
     {
         int hit = _calc_damage_per_hit(tot_dam, to_d + 30, 17, p_ptr->tim_force);
-        doc_printf(cols[1], " <color:r>      Fire</color>: %d\n", blows * hit / 1000);
+        doc_printf(cols[1], "<color:r> 火</color>: %d\n", blows * hit / 1000);
     }
     else if (have_flag(p_ptr->weapon_info[hand].flags, OF_BRAND_FIRE))
     {
         int hit = _calc_damage_per_hit(tot_dam, to_d, 17, p_ptr->tim_force);
-        doc_printf(cols[1], " <color:r>      Fire</color>: %d\n", blows * hit / 1000);
+        doc_printf(cols[1], "<color:r> 火</color>: %d\n", blows * hit / 1000);
     }
 
     if (display_weapon_mode == MYSTIC_COLD)
     {
         int hit = _calc_damage_per_hit(tot_dam, to_d + 30, 17, p_ptr->tim_force);
-        doc_printf(cols[1], " <color:r>      Cold</color>: %d\n", blows * hit / 1000);
+        doc_printf(cols[1], "<color:r> 寒</color>: %d\n", blows * hit / 1000);
     }
     else if (have_flag(p_ptr->weapon_info[hand].flags, OF_BRAND_COLD))
     {
         int hit = _calc_damage_per_hit(tot_dam, to_d, 17, p_ptr->tim_force);
-        doc_printf(cols[1], " <color:r>      Cold</color>: %d\n", blows * hit / 1000);
+        doc_printf(cols[1], "<color:r> 寒</color>: %d\n", blows * hit / 1000);
     }
 
     if (display_weapon_mode == MYSTIC_ELEC)
     {
         int hit = _calc_damage_per_hit(tot_dam, to_d + 70, 25, p_ptr->tim_force);
-        doc_printf(cols[1], " <color:r>      Elec</color>: %d\n", blows * hit / 1000);
+        doc_printf(cols[1], "<color:r> 电</color>: %d\n", blows * hit / 1000);
     }
     else if (have_flag(p_ptr->weapon_info[hand].flags, OF_BRAND_ELEC))
     {
         int hit = _calc_damage_per_hit(tot_dam, to_d, 17, p_ptr->tim_force);
-        doc_printf(cols[1], " <color:r>      Elec</color>: %d\n", blows * hit / 1000);
+        doc_printf(cols[1], "<color:r> 电</color>: %d\n", blows * hit / 1000);
     }
 
     if (display_weapon_mode == MYSTIC_POIS)
     {
         int hit = _calc_damage_per_hit(tot_dam, to_d + 30, 17, p_ptr->tim_force);
-        doc_printf(cols[1], " <color:r>      Pois</color>: %d\n", blows * hit / 1000);
+        doc_printf(cols[1], "<color:r> 毒</color>: %d\n", blows * hit / 1000);
     }
     else if (have_flag(p_ptr->weapon_info[hand].flags, OF_BRAND_POIS))
     {
         int hit = _calc_damage_per_hit(tot_dam, to_d, 17, p_ptr->tim_force);
-        doc_printf(cols[1], " <color:r>      Pois</color>: %d\n", blows * hit / 1000);
+        doc_printf(cols[1], "<color:r> 毒</color>: %d\n", blows * hit / 1000);
     }
 
     doc_insert_cols(doc, cols, 2, 0);
@@ -291,12 +291,12 @@ static bool _monk_check_spell(void)
         return TRUE;
     if (!p_ptr->weapon_info[0].bare_hands && !p_ptr->weapon_info[1].bare_hands)
     {
-        msg_print("You need to fight bare handed.");
+        msg_print("你需要空手战斗。");
         return FALSE;
     }
     if (p_ptr->riding)
     {
-        msg_print("You need to get off your pet.");
+        msg_print("你需要从宠物身上下来。");
         return FALSE;
     }
     return TRUE;
@@ -315,17 +315,17 @@ static bool choose_kamae(void)
 
     if (p_ptr->confused)
     {
-        msg_print("You are too confused.");
+        msg_print("你太困惑了。");
         return FALSE;
     }
 
     screen_save();
 
     Term_erase(display.x, display.y, display.cx);
-    put_str("Choose Form: ", display.y, display.x + 1);
+    put_str("选择架势：", display.y, display.x + 1);
 
     Term_erase(display.x, display.y + 1, display.cx);
-    put_str(" a) No form", display.y + 1, display.x + 1);
+    put_str("a) 无架势", display.y + 1, display.x + 1);
 
     for (i = 0; i < MAX_KAMAE; i++)
     {
@@ -350,7 +350,7 @@ static bool choose_kamae(void)
             if (p_ptr->action == ACTION_KAMAE)
                 set_action(ACTION_NONE);
             else
-                msg_print("You are not assuming a posture.");
+                msg_print("你并没有摆出任何架势。");
             screen_load();
             return TRUE;
         }
@@ -378,13 +378,13 @@ static bool choose_kamae(void)
     set_action(ACTION_KAMAE);
 
     if (p_ptr->special_defense & (KAMAE_GENBU << new_kamae))
-        msg_print("You reassume a posture.");
+        msg_print("你重新摆出架势。");
     else
     {
         p_ptr->special_defense &= ~(KAMAE_MASK);
         p_ptr->update |= (PU_BONUS);
         p_ptr->redraw |= (PR_STATE);
-        msg_format("You assume a posture of %s form.",kamae_shurui[new_kamae].desc);
+        msg_format("你摆出了%s的架势。",kamae_shurui[new_kamae].desc);
         p_ptr->special_defense |= (KAMAE_GENBU << new_kamae);
     }
     p_ptr->redraw |= PR_STATE;
@@ -397,10 +397,10 @@ void monk_double_attack_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Double Attack");
+        var_set_string(res, "双重攻击");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attack twice at an adjacent enemy. This action consumes double the normal energy.");
+        var_set_string(res, "对相邻敌人进行两次攻击。此动作消耗双倍的能量。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
@@ -414,8 +414,8 @@ void monk_double_attack_spell(int cmd, variant *res)
             x = px + ddx[dir];
             if (cave[y][x].m_idx)
             {
-                if (one_in_(2)) msg_print("Ahhhtatatatatatatatatatatatatatataatatatatattaaaaa!!!!");
-                else msg_print("Oraoraoraoraoraoraoraoraoraoraoraoraoraoraoraoraora!!!!");
+                if (one_in_(2)) msg_print("啊啊啊哒哒哒哒哒哒哒哒哒哒哒哒哒哒哒哒哒哒哒！！！！");
+                else msg_print("欧拉欧拉欧拉欧拉欧拉欧拉欧拉欧拉欧拉欧拉欧拉欧拉！！！！");
 
                 py_attack(y, x, 0);
                 if (cave[y][x].m_idx)
@@ -426,7 +426,7 @@ void monk_double_attack_spell(int cmd, variant *res)
             }
             else
             {
-                msg_print("You don't see any monster in this direction");
+                msg_print("你没有在这个方向看到任何怪物");
                 msg_print(NULL);
             }
             var_set_bool(res, TRUE);
@@ -446,7 +446,7 @@ void monk_posture_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Assume a Posture");
+        var_set_string(res, "摆出架势");
         break;
     case SPELL_DESC:
         var_set_string(res, "");
@@ -722,23 +722,8 @@ class_t *monk_get_class(void)
     skills_t bs = { 45,  30,  36,   5,  32,  24,  64,  60};
     skills_t xs = { 15,  10,  10,   0,   0,   0,  18,  18};
 
-        me.name = "Monk";
-        me.desc = "Monks are very different from most other classes in that they prefer "
-                    "to fight unarmed; while they can use a few select weapons reasonably "
-                    "well, their training in martial arts makes them more powerful with "
-                    "no weapons. Monks also gain bonuses from empty armor slots; to gain the "
-                    "resistances necessary for survival, some kind of armor will still be "
-                    "eventually needed, but if the armor is too heavy it will severely "
-                    "disturb the Monk's martial arts maneuvers. As the Monk gains levels, more "
-                    "powerful forms of unarmed attack will become available, and the defensive bonuses "
-                    "for having empty armor slots likewise increase.\n\n"
-                    "The various sects of monks are devoted to different areas of "
-                    "magic; they select one realm from Life, Nature, Craft, Trump and Death. "
-                    "Wisdom determines their spellcasting ability.\n\n"
-                    "Monks have two class powers, 'Assume a Posture' and "
-                    "'Double Attack'; they can choose different postures for "
-                    "different situations, and use powerful combinations of attacks for "
-                    "the finishing blow.";
+        me.name = "武僧";
+        me.desc = "武僧与大多数其他职业截然不同，因为他们更喜欢空手战斗；虽然他们可以相当熟练地使用一些特定的武器，但他们的武术训练使他们在不使用武器时更加强大。武僧还能从空置的护甲槽中获得加成；为了获得生存必需的抗性，最终还是需要装备某种护甲，但如果护甲太重，就会严重干扰武僧的武术动作。随着武僧等级的提升，更强大的徒手攻击形式将变得可用，空置护甲槽的防御加成也会随之增加。\n\n各个流派的武僧致力于不同领域的魔法；他们会从生命、自然、工匠、王牌和死亡中选择一个领域。感知决定了他们的施法能力。\n\n武僧拥有两项职业能力：“摆出架势(Assume a Posture)”和“双重攻击(Double Attack)”；他们可以根据不同情况选择不同的架势，并使用强大的组合攻击给予敌人致命一击。";
 
         me.stats[A_STR] =  1;
         me.stats[A_INT] = -1;

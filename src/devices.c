@@ -252,7 +252,7 @@ static void _do_identify_aux(obj_ptr obj)
         p_ptr->notice |= PN_CARRY;
         break;
     case INV_FLOOR:
-        msg_format("On the ground: %s.", name);
+        msg_format("在地上: %s。", name);
         break;
     }
     autopick_alter_obj(obj, destroy_identify && !old_known);
@@ -288,8 +288,8 @@ static bool _do_identify(void)
 
     assert(device_used_charges == 0);
 
-    prompt.prompt = "Identify which item <color:w>(<color:keypress>*</color> for all)</color>?";
-    prompt.error = "All items are identified.";
+    prompt.prompt = "鉴定哪件物品 <color:w>(<color:keypress>*</color> 鉴定全部)</color>？";
+    prompt.error = "所有物品均已鉴定。";
     prompt.filter = obj_is_unknown;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -363,7 +363,7 @@ static cptr _do_potion(int sval, int mode)
         if (desc) return "It is just water.";
         if (cast)
         {
-            msg_print("You feel less thirsty.");
+            msg_print("你觉得不那么渴了。");
             device_noticed = TRUE;
         }
         break;
@@ -371,7 +371,7 @@ static cptr _do_potion(int sval, int mode)
         if (desc) return "It tastes sweet.";
         if (cast)
         {
-            msg_print("You feel less thirsty.");
+            msg_print("你觉得不那么渴了。");
             device_noticed = TRUE;
         }
         break;
@@ -379,7 +379,7 @@ static cptr _do_potion(int sval, int mode)
         if (desc) return "It tastes weird.";
         if (cast)
         {
-            msg_print("You feel less thirsty.");
+            msg_print("你觉得不那么渴了。");
             device_noticed = TRUE;
         }
         break;
@@ -398,7 +398,7 @@ static cptr _do_potion(int sval, int mode)
             if (( !(get_race()->flags & RACE_IS_NONLIVING)
               && !prace_is_(RACE_MON_JELLY) ) || prace_is_(RACE_EINHERI))
             {
-                msg_print("The potion makes you vomit!");
+                msg_print("这药水让你作呕！");
                 set_food(PY_FOOD_STARVE - 1);
                 set_paralyzed(randint1(4), FALSE);
                 set_poisoned(0, TRUE);
@@ -456,8 +456,8 @@ static cptr _do_potion(int sval, int mode)
                     else wiz_dark();
                     teleport_player_aux(100, TELEPORT_NONMAGICAL | TELEPORT_PASSIVE);
                     wiz_dark();
-                    msg_print("You wake up somewhere with a sore head...");
-                    msg_print("You can't remember a thing, or how you got here!");
+                    msg_print("你头痛欲裂地在某个地方醒来……");
+                    msg_print("你什么都不记得了，也不知道自己是怎么到这里来的！");
                 }
             }
         }
@@ -468,11 +468,11 @@ static cptr _do_potion(int sval, int mode)
         {
             if (!free_act_save_p(0))
             {
-                msg_print("You fall asleep.");
+                msg_print("你睡着了。");
 
                 if (ironman_nightmare)
                 {
-                    msg_print("A horrible vision enters your mind.");
+                    msg_print("一个可怕的幻象进入了你的脑海。");
                     get_mon_num_prep(get_nightmare, NULL);
                     have_nightmare(get_mon_num(MAX_DEPTH));
                     get_mon_num_prep(NULL, NULL);
@@ -518,7 +518,7 @@ static cptr _do_potion(int sval, int mode)
                     break;
                 case 3:
                     virtue_add(VIRTUE_CHANCE, -5);
-                    msg_print("You feel less powerful!");
+                    msg_print("你觉得力量变弱了！");
                     dec_stat(A_DEX, 10, TRUE);
                     dec_stat(A_WIS, 10, TRUE);
                     dec_stat(A_CON, 10, TRUE);
@@ -564,7 +564,7 @@ static cptr _do_potion(int sval, int mode)
                     virtue_add(VIRTUE_CHANCE, 1);
                     virtue_add(VIRTUE_VITALITY, 1);
                     virtue_add(VIRTUE_UNLIFE, -5);
-                    msg_print("You feel life flow through your body!");
+                    msg_print("你感觉生命力在你的体内流淌！");
                     restore_level();
                     lp_player(1000);
                     set_poisoned(0, TRUE);
@@ -589,7 +589,7 @@ static cptr _do_potion(int sval, int mode)
                     break;
                 default:
                     virtue_add(VIRTUE_CHANCE, -10);
-                    msg_print("Massive explosions rupture your body!");
+                    msg_print("剧烈的爆炸撕裂了你的身体！");
                     take_hit(DAMAGE_NOESCAPE, damroll(11, 66), "a potion of Liquid Logrus");
 
                     set_stun(MAX(p_ptr->stun, STUN_MASSIVE), FALSE);
@@ -605,7 +605,7 @@ static cptr _do_potion(int sval, int mode)
         {
             if (!p_ptr->hold_life && (p_ptr->exp > 0))
             {
-                msg_print("You feel your memories fade.");
+                msg_print("你感觉自己的记忆正在消退。");
                 virtue_add(VIRTUE_KNOWLEDGE, -5);
                 lose_exp(p_ptr->exp / 4);
                 device_noticed = TRUE;
@@ -628,7 +628,7 @@ static cptr _do_potion(int sval, int mode)
         if (desc) return "You take damage and it decreases all your stats permanently when you quaff it.";
         if (cast)
         {
-            msg_print("Your nerves and muscles feel weak and lifeless!");
+            msg_print("你的神经和肌肉感觉软弱无力！");
             take_hit(DAMAGE_LOSELIFE, damroll(10, 10), "a potion of Ruination");
 
             dec_stat(A_DEX, 25, TRUE);
@@ -686,7 +686,7 @@ static cptr _do_potion(int sval, int mode)
         if (desc) return "It explodes in your mouth when you quaff it.";
         if (cast)
         {
-            msg_print("Massive explosions rupture your body!");
+            msg_print("剧烈的爆炸撕裂了你的身体！");
             take_hit(DAMAGE_NOESCAPE, damroll(50, 20), "a potion of Detonation");
 
             set_stun(MAX(p_ptr->stun, STUN_MASSIVE), FALSE);
@@ -700,7 +700,7 @@ static cptr _do_potion(int sval, int mode)
         {
             virtue_add(VIRTUE_VITALITY, -1);
             virtue_add(VIRTUE_UNLIFE, 5);
-            msg_print("A feeling of Death flows through your body.");
+            msg_print("一种死亡的感觉流遍你的全身。");
             take_hit(DAMAGE_LOSELIFE, 5000, "a potion of Death");
             device_noticed = TRUE;
         }
@@ -906,7 +906,7 @@ static cptr _do_potion(int sval, int mode)
         {
             virtue_add(VIRTUE_VITALITY, 1);
             virtue_add(VIRTUE_UNLIFE, -5);
-            msg_print("You feel life flow through your body!");
+            msg_print("你感觉生命力在你的体内流淌！");
             restore_level();
             lp_player(1000);
             set_poisoned(0, TRUE);
@@ -938,10 +938,10 @@ static cptr _do_potion(int sval, int mode)
             int amt = _potion_power(damroll(3, 6) + 3);
 
             if ((p_ptr->pclass == CLASS_RUNE_KNIGHT) || (p_ptr->pclass == CLASS_RAGE_MAGE))
-                msg_print("You are unaffected.");
+                msg_print("你不受影响。");
             else if (sp_player(amt))
             {
-                msg_print("You feel your mind clear.");
+                msg_print("你感觉头脑清醒了。");
                 device_noticed = TRUE;
             }
 		if (set_confused(0, TRUE)) device_noticed = TRUE;
@@ -955,10 +955,10 @@ static cptr _do_potion(int sval, int mode)
             int amt = _potion_power(damroll(10, 10) + 15);
 
             if ((p_ptr->pclass == CLASS_RUNE_KNIGHT) || (p_ptr->pclass == CLASS_RAGE_MAGE))
-                msg_print("You are unaffected.");
+                msg_print("你不受影响。");
             else if (sp_player(amt))
             {
-                msg_print("You feel your mind clear.");
+                msg_print("你感觉头脑清醒了。");
                 device_noticed = TRUE;
             }
 			if (set_confused(0, TRUE)) device_noticed = TRUE;
@@ -1097,7 +1097,7 @@ static cptr _do_potion(int sval, int mode)
         {
             virtue_add(VIRTUE_KNOWLEDGE, 1);
             virtue_add(VIRTUE_ENLIGHTENMENT, 1);
-            msg_print("An image of your surroundings forms in your mind...");
+            msg_print("你脑海中浮现出周围环境的影像……");
             wiz_lite(p_ptr->tim_superstealth > 0);
             device_noticed = TRUE;
         }
@@ -1106,7 +1106,7 @@ static cptr _do_potion(int sval, int mode)
         if (desc) return (p_ptr->pclass == CLASS_ALCHEMIST) ? "It maps, lights permanently and detects all items on the entire level, increases your intelligence and wisdom, detects all traps, doors, stairs, treasures in your vicinity, identifies all items in pack, provides temporary telepathy and gives information about yourself when you quaff it." : "It maps, lights permanently and detects all items on the entire level, increases your intelligence and wisdom, detects all traps, doors, stairs, treasures in your vicinity, identifies all items in pack and gives information about yourself when you quaff it.";
         if (cast)
         {
-            msg_print("You begin to feel more enlightened...");
+            msg_print("你开始觉得受到了启示……");
             virtue_add(VIRTUE_KNOWLEDGE, 1);
             virtue_add(VIRTUE_ENLIGHTENMENT, 2);
             msg_print(NULL);
@@ -1128,7 +1128,7 @@ static cptr _do_potion(int sval, int mode)
         if (desc) return "It gives information about yourself when you quaff it.";
         if (cast)
         {
-            msg_print("You begin to know yourself a little better...");
+            msg_print("你开始对自己有了更深入的了解……");
             msg_print(NULL);
             self_knowledge();
             device_noticed = TRUE;
@@ -1150,7 +1150,7 @@ static cptr _do_potion(int sval, int mode)
                     max = max * 5/3;
                 }
                 if (ee > max) ee = max;
-                msg_print("You feel more experienced.");
+                msg_print("你感觉自己更有经验了。");
                 gain_exp(ee);
                 device_noticed = TRUE;
             }
@@ -1228,7 +1228,7 @@ static cptr _do_potion(int sval, int mode)
         if (desc) return "It decreases your strength and constitution permanently and makes you hallucinate when you quaff it.";
         if (cast)
         {
-            msg_print("Brother OKURE!");
+            msg_print("OKURE 兄弟！");
             msg_print(NULL);
             p_ptr->tsuyoshi = 1;
             set_tsuyoshi(0, TRUE);
@@ -1284,7 +1284,7 @@ static cptr _do_potion(int sval, int mode)
         }
         break;
     case SV_POTION_STONE_SKIN:
-        if (desc) return "It temporarily turns your skin to stone, granting enhanced armor class, when you quaff it.";
+        if (desc) return "当你喝下它时，它会暂时将你的皮肤变成石头，从而提高你的护甲等级。";
         if (info) return format("dur d%d+%d", _potion_power(20), _potion_power(20));
         if (cast)
         {
@@ -1326,7 +1326,7 @@ static cptr _do_scroll(int sval, int mode)
         if (desc) return "It aggravates monsters in your vicinity when you read it.";
         if (cast)
         {
-            msg_print("There is a high pitched humming noise.");
+            msg_print("发出了一阵尖锐的嗡嗡声。");
             aggravate_monsters(0);
             device_noticed = TRUE;
         }
@@ -1390,7 +1390,7 @@ static cptr _do_scroll(int sval, int mode)
         }
         break;
     case SV_SCROLL_SUMMON_KIN:
-        if (desc) return "It summons a monster corresponding to your race as your pet when you read it.";
+        if (desc) return "当你阅读它时，它会召唤一个与你种族相同的怪物作为你的宠物。";
         if (cast)
         {
             if (p_ptr->inside_arena && !prace_is_(RACE_MON_QUYLTHULG) && !_scroll_check_no_effect(sval)) return NULL;
@@ -1471,7 +1471,7 @@ static cptr _do_scroll(int sval, int mode)
         {
             if (remove_curse())
             {
-                msg_print("You feel as if someone is watching over you.");
+                msg_print("你感觉好像有人在守护着你。");
                 device_noticed = TRUE;
             }
         }
@@ -1481,7 +1481,7 @@ static cptr _do_scroll(int sval, int mode)
         if (cast)
         {
             if (remove_all_curse())
-                msg_print("You feel as if someone is watching over you.");
+                msg_print("你感觉好像有人在守护着你。");
             device_noticed = TRUE;
         }
         break;
@@ -1534,7 +1534,7 @@ static cptr _do_scroll(int sval, int mode)
         }
         break;
     case SV_SCROLL_MUNDANITY:
-        if (desc) return "This removes the ego or artifact status and all enchantment of an item. As a bonus, if you have a stack of them, the extras are destroyed.";
+        if (desc) return "这会消除一件物品的 Ego 或神器状态及其所有附魔。作为“附赠”，如果你对一整叠物品使用，多余的物品将会被摧毁。";
         if (cast)
         {
             if (!mundane_spell(FALSE)) return NULL;
@@ -1634,11 +1634,11 @@ static cptr _do_scroll(int sval, int mode)
         {
             if (p_ptr->prace == RACE_MON_RING) /* no melee attacks */
             {
-                msg_print("There is no effect.");
+                msg_print("毫无效果。");
             }
             else if (!(p_ptr->special_attack & ATTACK_CONFUSE))
             {
-                msg_print("Your hands begin to glow.");
+                msg_print("你的双手开始发光。");
                 p_ptr->special_attack |= ATTACK_CONFUSE;
                 p_ptr->redraw |= (PR_STATUS);
             }
@@ -1678,7 +1678,7 @@ static cptr _do_scroll(int sval, int mode)
             if (destroy_area(py, px, 13 + randint0(5), _scroll_power(2000)))
                 device_noticed = TRUE;
             else
-                msg_print("The ground trembles...");
+                msg_print("大地在颤抖……");
         }
         break;
     case SV_SCROLL_DISPEL_UNDEAD:
@@ -1695,7 +1695,7 @@ static cptr _do_scroll(int sval, int mode)
         {
             if (!class_uses_spell_scrolls(p_ptr->pclass))
             {
-                msg_print("There is no effect.");
+                msg_print("毫无效果。");
             }
             else
             {
@@ -1788,8 +1788,8 @@ static cptr _do_scroll(int sval, int mode)
             }
 
             if (err) strcpy(Rumor, "Some rumors are wrong.");
-            msg_format("<color:B>There is a message on the scroll. It says:</color> %s", Rumor);
-            msg_print("The scroll disappears in a puff of smoke!");
+            msg_format("<color:B>卷轴上有一条留言，写着：</color> %s", Rumor);
+            msg_print("卷轴在一阵烟雾中消失了！");
             device_noticed = TRUE;
         }
         break;
@@ -1820,7 +1820,7 @@ static cptr _do_scroll(int sval, int mode)
                 bool stop_ty = FALSE;
                 int count = 0;
 
-                cmsg_print(TERM_VIOLET, "The scroll has an ancient, foul curse!");
+                cmsg_print(TERM_VIOLET, "这张卷轴带有一种古老而邪恶的诅咒！");
                 curse_equipment(100, 50);
                 do
                 {
@@ -1830,17 +1830,17 @@ static cptr _do_scroll(int sval, int mode)
             }
             else if (n < 12)
             {
-                msg_print("Ooops! That didn't work at all!");
+                msg_print("哎呀！那一点用都没有！");
                 destroy_area(py, px, 13 + randint0(5), 300);
             }
             else if (n < 17)
             {
-                msg_print("You faintly hear crazy laughter for a moment.");
+                msg_print("你隐约听到了一阵疯狂的笑声。");
                 summon_cyber(-1, py, px);
             }
             else if (n < 27)
             {
-                msg_print("The scroll explodes violently!");
+                msg_print("卷轴猛烈地爆炸了！");
                 project(0, 10, py, px, 300, GF_MANA, PROJECT_KILL | PROJECT_ITEM);
             }
             else if (n < 50)
@@ -1871,7 +1871,7 @@ static cptr _do_scroll(int sval, int mode)
         }
         break;
     case SV_SCROLL_RESET_RECALL:
-        if (desc) return "It resets the dungeon level for recall spell when you read it.";
+        if (desc) return "当你阅读它时，它会重置召回法术的目标地下城层数。";
         if (cast)
         {
             device_noticed = TRUE;
@@ -3486,17 +3486,17 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     switch (effect->type)
     {
     case EFFECT_NONE:
-        if (name) return "Nothing";
+        if (name) return "无";
         if (desc) return "It does absolutely nothing at all.";
         if (cast)
         {
-            msg_print("Nothing happens.");
+            msg_print("什么也没发生。");
             device_noticed = TRUE;
         }
         break;
     /* Detection */
     case EFFECT_LITE_AREA:
-        if (name) return "Illumination";
+        if (name) return "照明";
         if (desc) return "It lights up nearby area or current room permanently.";
         if (info) return info_damage(2 + effect->power/20, _BOOST(15), 0);
         if (value) return format("%d", 300);
@@ -3508,7 +3508,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_LITE_MAP_AREA:
-        if (name) return "Magic Mapping and Illumination";
+        if (name) return "魔法探知与照明";
         if (desc) return "It maps your vicinity and lights up your current room.";
         if (info) return info_damage(2 + effect->power/20, _BOOST(15), 0);
         if (value) return format("%d", 1300);
@@ -3521,7 +3521,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_ENLIGHTENMENT:
-        if (name) return "Enlightenment";
+        if (name) return "启示";
         if (desc) return "It maps your vicinity.";
         if (value) return format("%d", 1000);
         if (color) return format("%d", TERM_L_BLUE);
@@ -3532,7 +3532,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_CLAIRVOYANCE:
-        if (name) return "Clairvoyance";
+        if (name) return "透视";
         if (desc) return "It maps, lights permanently and detects all items on the entire level.";
         if (value) return format("%d", 10000);
         if (color) return format("%d", TERM_ORANGE);
@@ -3548,7 +3548,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_DETECT_TRAPS:
-        if (name) return "Detect Traps";
+        if (name) return "探测陷阱";
         if (desc) return "It detects all traps in your vicinity.";
         if (value) return format("%d", 300);
         if (color) return format("%d", TERM_L_BLUE);
@@ -3559,7 +3559,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_DETECT_MONSTERS:
-        if (name) return "Detect Monsters";
+        if (name) return "探测怪物";
         if (desc) return "It detects all visible monsters in your vicinity.";
         if (value) return format("%d", 500);
         if (color) return format("%d", TERM_L_BLUE);
@@ -3570,7 +3570,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_DETECT_OBJECTS:
-        if (name) return "Detect Objects";
+        if (name) return "探测物品";
         if (desc) return "It detects all objects in your vicinity.";
         if (value) return format("%d", 500);
         if (color) return format("%d", TERM_L_BLUE);
@@ -3581,7 +3581,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_DETECT_ALL:
-        if (name) return "Detection";
+        if (name) return "探测";
         if (desc) return "It detects all traps, doors, stairs, treasures, items and monsters in your vicinity.";
         if (value) return format("%d", 2000);
         if (color) return format("%d", TERM_ORANGE);
@@ -3592,7 +3592,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_DETECT_GOLD:
-        if (name) return "Detect Treasure";
+        if (name) return "探测宝藏";
         if (desc) return "It detects all treasures in your vicinity when you use it.";
         if (value) return format("%d", 300);
         if (color) return format("%d", TERM_YELLOW);
@@ -3605,7 +3605,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_DETECT_INVISIBLE:
-        if (name) return "Detect Invisible";
+        if (name) return "探测隐形";
         if (desc) return "It detects all invisible monsters in your vicinity when you use it.";
         if (value) return format("%d", 300);
         if (color) return format("%d", TERM_L_BLUE);
@@ -3629,7 +3629,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_DETECT_EVIL:
-        if (name) return "Detect Evil";
+        if (name) return "探测邪恶";
         if (desc) return "It detects all evil monsters in your vicinity when you use it.";
         if (value) return format("%d", 500);
         if (color) return format("%d", TERM_L_DARK);
@@ -3642,7 +3642,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
 
     /* Utility */
     case EFFECT_PHASE_DOOR:
-        if (name) return "Phase Door";
+        if (name) return "相位门";
         if (desc) return "It teleports you a short distance.";
         if (value) return format("%d", 1000);
         if (cast)
@@ -3654,7 +3654,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_TELEPORT:
-        if (name) return "Teleport";
+        if (name) return "传送";
         if (desc) return "It teleports you a long distance.";
         if (value) return format("%d", 1500);
         if (cast)
@@ -3668,7 +3668,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_TELEPORT_AWAY:
-        if (name) return "Teleport Other";
+        if (name) return "传送他人";
         if (desc) return "It fires a beam that teleports all affected monsters away.";
         if (info) return format("dist %d", MAX_SIGHT * 5);
         if (value) return format("%d", 1500);
@@ -3679,7 +3679,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_STRAFING:
-        if (name) return "Strafing";
+        if (name) return "扫射";
         if (desc) return "It teleports you to a nearby visible location.";
         if (value) return format("%d", 1500);
         if (cast)
@@ -3691,7 +3691,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_DIMENSION_DOOR:
-        if (name) return "Dimension Door";
+        if (name) return "任意门";
         if (desc) return "It teleports you to a chosen location.";
         if (info) return info_range(_BOOST(effect->power / 2 + 10));
         if (value) return format("%d", 10000);
@@ -3702,7 +3702,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_ESCAPE:
-        if (name) return "Getaway";
+        if (name) return "逃脱";
         if (desc) return "It provides a random means of escape.";
         if (value) return format("%d", 2000);
         if (cast)
@@ -3729,7 +3729,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_RECALL:
-        if (name) return "Recall";
+        if (name) return "召回";
         if (desc) return "It recalls you to the surface, or back into a dungeon you have entered.";
         if (value) return format("%d", 1000);
         if (color) return format("%d", TERM_L_BLUE);
@@ -3741,7 +3741,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         break;
 
     case EFFECT_STONE_TO_MUD:
-        if (name) return "Stone to Mud";
+        if (name) return "化石为泥";
         if (desc) return "It turns a door, rock, or wall to mud.";
         if (value) return format("%d", 1000);
         if (color) return format("%d", TERM_L_UMBER);
@@ -3752,23 +3752,23 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_EARTHQUAKE:
-        if (name) return "Earthquake";
+        if (name) return "地震";
         if (desc) return "It causes a massive earthquake nearby.";
         if (value) return format("%d", 1000);
         if (color) return format("%d", TERM_L_UMBER);
         if (cast)
         {
             if (!earthquake(py, px, _extra(effect, 10)))
-                msg_print("The ground trembles.");
+                msg_print("大地在颤抖。");
             device_noticed = TRUE;
         }
         break;
     case EFFECT_DESTRUCTION:
     {
         int power = _extra(effect, 150 + _power_curve_offset(400, effect->power, 50));
-        if (name) return "Destruction";
+        if (name) return "破坏";
         if (desc) return "It destroys everything nearby.";
-        if (info) return format("power %d", _BOOST(power));
+        if (info) return format("强度 %d", _BOOST(power));
         if (value) return format("%d", power * 8 + ((100 - (MIN(100, 8000 / power))) * 125));
         if (color) return format("%d", TERM_RED);
         if (cost) return format("%d", power/15);
@@ -3777,16 +3777,16 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             if (destroy_area(py, px, 13 + randint0(5), _BOOST(power)))
                 device_noticed = TRUE;
             else
-                msg_print("The ground trembles...");
+                msg_print("大地在颤抖……");
         }
         break;
     }
     case EFFECT_GENOCIDE:
     {
         int power = _extra(effect, effect->power * 3);
-        if (name) return "Genocide";
+        if (name) return "灭绝";
         if (desc) return "Attempts to remove from the level all monsters of a specified species, exhausting you.";
-        if (info) return format("power %d", _BOOST(power));
+        if (info) return format("强度 %d", _BOOST(power));
         if (value) return format("%d", power*50);
         if (color) return format("%d", TERM_L_DARK);
         if (cast)
@@ -3799,9 +3799,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_MASS_GENOCIDE:
     {
         int power = _extra(effect, 100 + effect->power * 3);
-        if (name) return "Mass Genocide";
+        if (name) return "群体灭绝";
         if (desc) return "Attempts to eliminate all nearby monsters, exhausting you.";
-        if (info) return format("power %d", _BOOST(power));
+        if (info) return format("强度 %d", _BOOST(power));
         if (value) return format("%d", power*60);
         if (color) return format("%d", TERM_L_DARK);
         if (cast)
@@ -3814,9 +3814,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_RECHARGE_FROM_DEVICE:
     {
         int power = _extra(effect, 100);
-        if (name) return "Recharging";
+        if (name) return "充能";
         if (desc) return "It attempts to recharge a magical device using the mana of a source device.";
-        if (info) return format("power %d", _BOOST(power));
+        if (info) return format("强度 %d", _BOOST(power));
         if (value) return format("%d", power*30);
         if (color) return format("%d", TERM_L_BLUE);
         if (cast)
@@ -3831,7 +3831,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         int power = _extra(effect, 100 + effect->power);
         if (name) return "*Recharging*";
         if (desc) return "It attempts to recharge a magical device using your mana as the source.";
-        if (info) return format("power %d", _BOOST(power));
+        if (info) return format("强度 %d", _BOOST(power));
         if (value) return format("%d", power*30);
         if (color) return format("%d", TERM_L_BLUE);
         if (cast)
@@ -3842,7 +3842,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         break;
     }
     case EFFECT_ENCHANTMENT:
-        if (name) return "Enchantment";
+        if (name) return "附魔";
         if (desc) return "It attempts to enchant a weapon, ammo or armor.";
         if (value) return format("%d", 5000);
         if (cast)
@@ -3854,7 +3854,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_IDENTIFY:
-        if (name) return "Identify";
+        if (name) return "鉴定";
         if (desc) return "It identifies an item.";
         if (value) return format("%d", 500);
         if (cast)
@@ -3874,7 +3874,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_PROBING:
-        if (name) return "Probing";
+        if (name) return "探知";
         if (desc) return "It probes all visible monsters' alignment, HP, AC, speed, current experience and true character.";
         if (value) return format("%d", 1000);
         if (color) return format("%d", TERM_L_BLUE);
@@ -3884,7 +3884,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_RUNE_EXPLOSIVE:
-        if (name) return "Explosive Rune";
+        if (name) return "爆炸符文";
         if (desc) return "It sets a rune which will explode on a passing monster.";
         if (value) return format("%d", 500);
         if (color) return format("%d", TERM_L_RED);
@@ -3894,7 +3894,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_RUNE_PROTECTION:
-        if (name) return "Rune of Protection";
+        if (name) return "保护符文";
         if (desc) return "It creates a glyph that inhibits monsters from attacking you.";
         if (value) return format("%d", 5000);
         if (color) return format("%d", TERM_L_GREEN);
@@ -3904,7 +3904,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_SATISFY_HUNGER:
-        if (name) return "Satisfy Hunger";
+        if (name) return "充饥";
         if (desc) return "It fills your belly with nourishing victuals.";
         if (value) return format("%d", 500);
         if (color) return format("%d", TERM_L_GREEN);
@@ -3914,7 +3914,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_DESTROY_TRAP:
-        if (name) return "Trap and Door Destruction";
+        if (name) return "破坏陷阱与门";
         if (desc) return "It destroys all traps and doors in adjacent squares.";
         if (value) return format("%d", 500);
         if (color) return format("%d", TERM_L_RED);
@@ -3924,7 +3924,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_DESTROY_TRAPS:
-        if (name) return "Unbarring Ways";
+        if (name) return "开启通路";
         if (desc) return "It fires a beam which destroys traps and doors.";
         if (value) return format("%d", 1000);
         if (color) return format("%d", TERM_L_RED);
@@ -3935,7 +3935,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_WHIRLWIND_ATTACK:
-        if (name) return "Whirlwind Attack";
+        if (name) return "旋风斩";
         if (desc) return "It causes you to attack all adjacent monsters in a single turn.";
         if (value) return format("%d", 5000);
         if (color) return format("%d", TERM_BLUE);
@@ -3961,7 +3961,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_LIST_UNIQUES:
-        if (name) return "List Uniques";
+        if (name) return "列出唯一怪物";
         if (desc) return "It lists all uniques on the current level.";
         if (value) return format("%d", 12000);
         if (color) return format("%d", TERM_ORANGE);
@@ -3980,7 +3980,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_LIST_ARTIFACTS:
-        if (name) return "List Artifacts";
+        if (name) return "列出神器";
         if (desc) return "It lists all artifacts on the current level.";
         if (value) return format("%d", 15000);
         if (color) return format("%d", TERM_ORANGE);
@@ -4008,16 +4008,16 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BANISH_EVIL:
     {
         int power = _extra(effect, 100);
-        if (name) return "Banish Evil";
+        if (name) return "驱逐邪恶";
         if (desc) return "It attempts to teleport all visible evil monsters away.";
-        if (info) return format("dist %d", _BOOST(power));
+        if (info) return format("距离 %d", _BOOST(power));
         if (value) return format("%d", 50*power);
         if (color) return format("%d", TERM_L_DARK);
         if (cast)
         {
             if (banish_evil(_BOOST(power)))
             {
-                msg_print("The holy power banishes evil!");
+                msg_print("神圣的力量驱逐了邪恶！");
                 device_noticed = TRUE;
             }
         }
@@ -4026,9 +4026,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BANISH_ALL:
     {
         int power = _extra(effect, 150);
-        if (name) return "Banish";
+        if (name) return "驱逐";
         if (desc) return "It teleports all monsters in sight away unless resisted.";
-        if (info) return format("dist %d", _BOOST(power));
+        if (info) return format("距离 %d", _BOOST(power));
         if (value) return format("%d", 70*power);
         if (color) return format("%d", TERM_L_BLUE);
         if (cast)
@@ -4041,7 +4041,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_TELEKINESIS:
     {
         int weight = effect->power * 7;
-        if (name) return "Telekinesis";
+        if (name) return "隔空取物";
         if (desc) return "It pulls a distant item close to you.";
         if (info) return info_weight(_BOOST(weight));
         if (value) return format("%d", 8*weight);
@@ -4055,7 +4055,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         break;
     }
     case EFFECT_ALCHEMY:
-        if (name) return "Alchemy";
+        if (name) return "炼金术";
         if (desc) return "It turns an item into gold.";
         if (value) return format("%d", 2000);
         if (color) return format("%d", TERM_YELLOW);
@@ -4066,7 +4066,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_SELF_KNOWLEDGE:
-        if (name) return "Self Knowledge";
+        if (name) return "自我知识";
         if (desc) return "It reveals information about your stats, resistances and life rating.";
         if (value) return format("%d", 2500);
         if (color) return format("%d", TERM_L_BLUE);
@@ -4079,9 +4079,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_GENOCIDE_ONE:
     {
         int power = _extra(effect, 50 + effect->power * 3);
-        if (name) return "Annihilation";
+        if (name) return "湮灭";
         if (desc) return "It removes a monster from current dungeon level unless resisted when you use it.";
-        if (info) return format("power %d", _BOOST(power));
+        if (info) return format("强度 %d", _BOOST(power));
         if (value) return format("%d", power*50);
         if (color) return format("%d", TERM_L_DARK);
         if (cast)
@@ -4096,9 +4096,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_STONE_SKIN:
     {
         int power = _extra(effect, 20);
-        if (name) return "Stone Skin";
-        if (desc) return "It temporarily turns your skin to stone, granting enhanced armor class.";
-        if (info) return format("dur d%d+%d", _BOOST(power), _BOOST(power));
+        if (name) return "石肤术";
+        if (desc) return "它会暂时将你的皮肤变成石头，从而提高你的护甲等级。";
+        if (info) return format("持续 d%d+%d", _BOOST(power), _BOOST(power));
         if (value) return format("%d", 4000 + 50*power);
         if (color) return format("%d", TERM_L_UMBER);
         if (cast)
@@ -4111,9 +4111,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_RESIST_ACID:
     {
         int power = _extra(effect, 20);
-        if (name) return "Resist Acid";
+        if (name) return "抗酸";
         if (desc) return "It grants temporary acid resistance.";
-        if (info) return format("dur d%d+%d", _BOOST(power), _BOOST(power));
+        if (info) return format("持续 d%d+%d", _BOOST(power), _BOOST(power));
         if (value) return format("%d", 1000 + 25*power);
         if (color) return format("%d", res_color(RES_ACID));
         if (cast)
@@ -4126,9 +4126,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_RESIST_ELEC:
     {
         int power = _extra(effect, 20);
-        if (name) return "Resist Lightning";
+        if (name) return "抗电";
         if (desc) return "It grants temporary lightning resistance.";
-        if (info) return format("dur d%d+%d", _BOOST(power), _BOOST(power));
+        if (info) return format("持续 d%d+%d", _BOOST(power), _BOOST(power));
         if (value) return format("%d", 1000 + 25*power);
         if (color) return format("%d", res_color(RES_ELEC));
         if (cast)
@@ -4141,9 +4141,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_RESIST_FIRE:
     {
         int power = _extra(effect, 20);
-        if (name) return "Resist Fire";
+        if (name) return "抗火";
         if (desc) return "It grants temporary fire resistance.";
-        if (info) return format("dur d%d+%d", _BOOST(power), _BOOST(power));
+        if (info) return format("持续 d%d+%d", _BOOST(power), _BOOST(power));
         if (value) return format("%d", 1000 + 25*power);
         if (color) return format("%d", res_color(RES_FIRE));
         if (cast)
@@ -4156,9 +4156,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_RESIST_COLD:
     {
         int power = _extra(effect, 20);
-        if (name) return "Resist Cold";
+        if (name) return "抗寒";
         if (desc) return "It grants temporary cold resistance.";
-        if (info) return format("dur d%d+%d", _BOOST(power), _BOOST(power));
+        if (info) return format("持续 d%d+%d", _BOOST(power), _BOOST(power));
         if (value) return format("%d", 1000 + 25*power);
         if (color) return format("%d", res_color(RES_COLD));
         if (cast)
@@ -4171,9 +4171,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_RESIST_POIS:
     {
         int power = _extra(effect, 20);
-        if (name) return "Resist Poison";
+        if (name) return "抗毒";
         if (desc) return "It grants temporary poison resistance.";
-        if (info) return format("dur d%d+%d", _BOOST(power), _BOOST(power));
+        if (info) return format("持续 d%d+%d", _BOOST(power), _BOOST(power));
         if (value) return format("%d", 2500 + 25*power);
         if (color) return format("%d", res_color(RES_POIS));
         if (cast)
@@ -4186,9 +4186,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_RESISTANCE:
     {
         int power = _extra(effect, 20);
-        if (name) return "Resistance";
+        if (name) return "元素抵抗";
         if (desc) return "It grants temporary resistance to the elements and poison.";
-        if (info) return format("dur d%d+%d", _BOOST(power), _BOOST(power));
+        if (info) return format("持续 d%d+%d", _BOOST(power), _BOOST(power));
         if (value) return format("%d", 5000 + 25*power);
         if (color) return format("%d", TERM_ORANGE);
         if (cast)
@@ -4201,9 +4201,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_PROT_EVIL:
     {
         int power = _extra(effect, 100);
-        if (name) return "Protection from Evil";
+        if (name) return "防护邪恶";
         if (desc) return "It gives temporary melee protection from evil creatures.";
-        if (info) return format("dur d%d+%d", 25, _BOOST(power));
+        if (info) return format("持续 d%d+%d", 25, _BOOST(power));
         if (value) return format("%d", 2000 + 10*power);
         if (color) return format("%d", TERM_L_DARK);
         if (cast)
@@ -4214,7 +4214,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         break;
     }
     case EFFECT_HOLY_GRAIL:
-        if (name) return "Healing and Magic Resistance";
+        if (name) return "治疗与魔法抗性";
         if (desc) return "It heals you and gives temporary resistance to magic.";
         if (info) return format("dur d%d+%d", 50, _BOOST(50));
         if (value) return format("%d", 5000);
@@ -4230,9 +4230,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BLESS:
     {
         int power = _extra(effect, 24);
-        if (name) return "Holy Prayer";
+        if (name) return "神圣祈祷";
         if (desc) return "It blesses you temporarily when you read it.";
-        if (info) return format("dur d%d+%d", _BOOST(power), 6);
+        if (info) return format("持续 d%d+%d", _BOOST(power), 6);
         if (value) return format("%d", 1000 + 25*power);
         if (color) return format("%d", TERM_WHITE);
         if (cast)
@@ -4245,9 +4245,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_HEROISM:
     {
         int power = _extra(effect, 25);
-        if (name) return "Heroism";
+        if (name) return "英雄气概";
         if (desc) return "It grants temporary heroism.";
-        if (info) return format("dur d%d+%d", _BOOST(power), _BOOST(power));
+        if (info) return format("持续 d%d+%d", _BOOST(power), _BOOST(power));
         if (value) return format("%d", 1500 + 25*power);
         if (color) return format("%d", TERM_L_RED);
         if (cast)
@@ -4260,9 +4260,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BERSERK:
     {
         int power = _extra(effect, 25);
-        if (name) return "Berserk";
+        if (name) return "狂暴";
         if (desc) return "It causes you to enter a berserk rage, granting enhanced combat prowess but diminished stealth and skills.";
-        if (info) return format("dur d%d+%d", _BOOST(power), _BOOST(power));
+        if (info) return format("持续 d%d+%d", _BOOST(power), _BOOST(power));
         if (value) return format("%d", 1500 + 25*power);
         if (color) return format("%d", TERM_RED);
         if (cast)
@@ -4277,9 +4277,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_SPEED:
     {
         int power = _extra(effect, 20);
-        if (name) return "Speed";
+        if (name) return "加速";
         if (desc) return "It grants a temporary speed boost.";
-        if (info) return format("dur d%d+%d", _BOOST(power), _BOOST(power));
+        if (info) return format("持续 d%d+%d", _BOOST(power), _BOOST(power));
         if (value) return format("%d", 2500 + 25*power);
         if (color) return format("%d", TERM_L_RED);
         if (cast)
@@ -4292,9 +4292,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_SPEED_HERO:
     {
         int power = _extra(effect, effect->power/2);
-        if (name) return "Heroic Speed";
+        if (name) return "英雄极速";
         if (desc) return "It grants temporary speed and heroism.";
-        if (info) return format("dur d%d+%d", _BOOST(power), _BOOST(power));
+        if (info) return format("持续 d%d+%d", _BOOST(power), _BOOST(power));
         if (value) return format("%d", 5000 + 25*power);
         if (color) return format("%d", TERM_L_RED);
         if (cast)
@@ -4308,9 +4308,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_SPEED_HERO_BLESS:
     {
         int power = _extra(effect, 15);
-        if (name) return "Heroic Song";
+        if (name) return "英雄之歌";
         if (desc) return "It grants temporary speed, blessing and heroism.";
-        if (info) return format("dur d%d+%d", _BOOST(power), _BOOST(power));
+        if (info) return format("持续 d%d+%d", _BOOST(power), _BOOST(power));
         if (value) return format("%d", 5000 + 30*power);
         if (color) return format("%d", TERM_L_RED);
         if (cast)
@@ -4325,9 +4325,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_LIGHT_SPEED:
     {
         int power = _extra(effect, 16);
-        if (name) return "Light Speed";
+        if (name) return "光速";
         if (desc) return "It temporarily grants you impossible powers of motion.";
-        if (info) return format("dur %d", _BOOST(power));
+        if (info) return format("持续 %d", _BOOST(power));
         if (value) return format("%d", 5000 + 500*power);
         if (color) return format("%d", TERM_VIOLET);
         if (cast)
@@ -4340,9 +4340,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_ENLARGE_WEAPON:
     {
         int power = _extra(effect, 7);
-        if (name) return "Enlarge Weapon";
+        if (name) return "武器巨大化";
         if (desc) return "It temporarily increases the damage dice of your melee weapon.";
-        if (info) return format("dur %d", _BOOST(power));
+        if (info) return format("持续 %d", _BOOST(power));
         if (value) return format("%d", 2000 + 250*power);
         if (color) return format("%d", TERM_ORANGE);
         if (cast)
@@ -4355,9 +4355,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_TELEPATHY:
     {
         int power = _extra(effect, 30);
-        if (name) return "Telepathy";
-        if (desc) return "It grants you the power of telepathy temporarily.";
-        if (info) return format("dur d%d+%d", _BOOST(power), _BOOST(25));
+        if (name) return "心灵感应";
+        if (desc) return "它会暂时赋予你心灵感应的能力。";
+        if (info) return format("持续 d%d+%d", _BOOST(power), _BOOST(25));
         if (value) return format("%d", 2000 + 50*power);
         if (color) return format("%d", TERM_L_BLUE);
         if (cast)
@@ -4370,9 +4370,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_WRAITHFORM:
     {
         int power = _extra(effect, 25);
-        if (name) return "Wraithform";
+        if (name) return "幽灵形态";
         if (desc) return "It turns you int a wraith, giving the ability to pass through walls as well as reducing the amount of physical damage sustained from attacks.";
-        if (info) return format("dur d%d+%d", _BOOST(power), _BOOST(power));
+        if (info) return format("持续 d%d+%d", _BOOST(power), _BOOST(power));
         if (value) return format("%d", 10000 + 100*power);
         if (color) return format("%d", TERM_L_DARK);
         if (cast)
@@ -4385,9 +4385,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_INVULNERABILITY:
     {
         int power = _extra(effect, 8);
-        if (name) return "Globe of Invulnerability";
+        if (name) return "无敌结界";
         if (desc) return "It generates barrier which completely protect you from almost all damages. Takes a few your turns when the barrier breaks or duration time is exceeded.";
-        if (info) return format("dur d%d+%d", _BOOST(power), _BOOST(power));
+        if (info) return format("持续 d%d+%d", _BOOST(power), _BOOST(power));
         if (value) return format("%d", 10000 + 500*power);
         if (color) return format("%d", TERM_L_BLUE);
         if (cast)
@@ -4400,7 +4400,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
 
     /* Pets */
     case EFFECT_SUMMON_MONSTERS:
-        if (name) return "Summon Monsters";
+        if (name) return "召唤怪物";
         if (desc) return "It attempts to summon monsters for assistance.";
         if (value) return format("%d", 1000);
         if (cast)
@@ -4412,7 +4412,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             {
                 if ((hostile) && (summon_specific(SUMMON_WHO_PLAYER, py, px, dun_level + 5, 0, PM_NO_PET | PM_NO_KAGE | PM_ALLOW_GROUP)))
                 {
-                    msg_print("You get the feeling that something's wrong...");
+                    msg_print("你感觉有些不对劲……");
                     device_noticed = TRUE;
                 }
                 else if (summon_specific(SUMMON_WHO_PLAYER, py, px, dun_level, 0, PM_FORCE_PET | PM_ALLOW_GROUP | PM_NO_SUMMONERS))
@@ -4423,7 +4423,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_SUMMON_HOUNDS:
-        if (name) return "Summon Hounds";
+        if (name) return "召唤猎犬";
         if (desc) return "It attempts to summon hounds for assistance.";
         if (value) return format("%d", 1200);
         if (cast)
@@ -4435,7 +4435,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             {
                 if ((hostile) && (summon_specific(SUMMON_WHO_PLAYER, py, px, dun_level + 5, SUMMON_HOUND, PM_NO_PET | PM_NO_KAGE | PM_ALLOW_GROUP)))
                 {
-                    msg_print("You get the feeling that something's wrong...");
+                    msg_print("你感觉有些不对劲……");
                     device_noticed = TRUE;
                 }
                 else if (summon_specific(SUMMON_WHO_PLAYER, py, px, dun_level, SUMMON_HOUND, PM_FORCE_PET | PM_ALLOW_GROUP))
@@ -4446,7 +4446,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_SUMMON_ANTS:
-        if (name) return "Summon Ants";
+        if (name) return "召唤蚂蚁";
         if (desc) return "It attempts to summon ants for assistance.";
         if (value) return format("%d", 1200);
         if (cast)
@@ -4458,7 +4458,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             {
                 if ((hostile) && (summon_specific(SUMMON_WHO_PLAYER, py, px, dun_level + 5, SUMMON_ANT, PM_NO_PET | PM_NO_KAGE | PM_ALLOW_GROUP)))
                 {
-                    msg_print("You get the feeling that something's wrong...");
+                    msg_print("你感觉有些不对劲……");
                     device_noticed = TRUE;
                 }
                 else if (summon_specific(SUMMON_WHO_PLAYER, py, px, dun_level, SUMMON_ANT, PM_FORCE_PET | PM_ALLOW_GROUP))
@@ -4469,7 +4469,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_SUMMON_HYDRAS:
-        if (name) return "Summon Hydras";
+        if (name) return "召唤多头蛇";
         if (desc) return "It attempts to summon hydras for assistance.";
         if (value) return format("%d", 1200);
         if (cast)
@@ -4481,7 +4481,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             {
                 if ((hostile) && (summon_specific(SUMMON_WHO_PLAYER, py, px, dun_level + 5, SUMMON_REPTILE, PM_NO_PET | PM_NO_KAGE | PM_ALLOW_GROUP)))
                 {
-                    msg_print("You get the feeling that something's wrong...");
+                    msg_print("你感觉有些不对劲……");
                     device_noticed = TRUE;
                 }
                 else if (summon_specific(SUMMON_WHO_PLAYER, py, px, dun_level, SUMMON_HYDRA, PM_FORCE_PET | PM_ALLOW_GROUP))
@@ -4492,7 +4492,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_SUMMON_OCTOPUS:
-        if (name) return "Summon Octopus";
+        if (name) return "召唤章鱼";
         if (desc) return "It attempts to summon octopi for assistance.";
         if (value) return format("%d", 1200);
         if (cast)
@@ -4507,33 +4507,33 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_SUMMON_DAWN:
-        if (name) return "Summon Legion of the Dawn";
+        if (name) return "召唤黎明军团";
         if (desc) return "It attempts to summon Warriors of the Dawn for assistance.";
         if (value) return format("%d", 2500);
         if (cast)
         {
             if (summon_specific(SUMMON_WHO_PLAYER, py, px, dun_level, SUMMON_DAWN, (PM_ALLOW_GROUP | PM_FORCE_PET)))
             {
-                msg_print("You summon the Legion of the Dawn.");
+                msg_print("你召唤了黎明军团。");
                 device_noticed = TRUE;
             }
         }
         break;
     case EFFECT_SUMMON_PHANTASMAL:
-        if (name) return "Summon Phantasmal Servant";
+        if (name) return "召唤幻影仆从";
         if (desc) return "It attempts to summon a single Phantasmal Servant for assistance.";
         if (value) return format("%d", 1000);
         if (cast)
         {
             if (summon_specific(SUMMON_WHO_PLAYER, py, px, dun_level, SUMMON_PHANTOM, (PM_ALLOW_GROUP | PM_FORCE_PET)))
             {
-                msg_print("You summon a phantasmal servant.");
+                msg_print("你召唤了一个幻影仆从。");
                 device_noticed = TRUE;
             }
         }
         break;
     case EFFECT_SUMMON_ELEMENTAL:
-        if (name) return "Summon Elemental";
+        if (name) return "召唤元素";
         if (desc) return "It attempts to conjure a single elemental to serve you.";
         if (value) return format("%d", 1000);
         if (cast)
@@ -4549,16 +4549,16 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             if (summon_specific(who, py, px, lvl, SUMMON_ELEMENTAL, mode))
             {
                 device_noticed = TRUE;
-                msg_print("An elemental materializes...");
+                msg_print("一个元素实体化了……");
                 if (pet)
-                    msg_print("It seems obedient to you.");
+                    msg_print("它似乎对你很服从。");
                 else
-                    msg_print("You fail to control it!");
+                    msg_print("你未能控制住它！");
             }
         }
         break;
     case EFFECT_SUMMON_DRAGON:
-        if (name) return "Summon Dragon";
+        if (name) return "召唤龙";
         if (desc) return "It attempts to summon a single dragon for assistance.";
         if (value) return format("%d", 1500);
         if (cast)
@@ -4568,7 +4568,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_SUMMON_UNDEAD:
-        if (name) return "Summon Undead";
+        if (name) return "召唤不死生物";
         if (desc) return "It attempts to summon a single undead monster to serve you.";
         if (value) return format("%d", 1500);
         if (color) return format("%d", TERM_L_DARK);
@@ -4586,16 +4586,16 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             if (summon_specific(who, py, px, lvl, type, mode))
             {
                 device_noticed = TRUE;
-                msg_print("Cold winds begin to blow around you, carrying with them the stench of decay...");
+                msg_print("寒风开始在你周围吹拂，夹杂着腐烂的恶臭……");
                 if (pet)
-                    msg_print("Ancient, long-dead forms arise from the ground to serve you!");
+                    msg_print("古老、早已死去的躯体从地下爬起，听候你的差遣！");
                 else
-                    msg_print("'The dead arise... to punish you for disturbing them!'");
+                    msg_print("'死者苏醒了……来惩罚你惊扰了他们！'");
             }
         }
         break;
     case EFFECT_SUMMON_DEMON:
-        if (name) return "Summon Demon";
+        if (name) return "召唤恶魔";
         if (desc) return "It attempts to summon a single demon to serve you.";
         if (value) return format("%d", 1500);
         if (color) return format("%d", TERM_RED);
@@ -4612,16 +4612,16 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             if (summon_specific(who, py, px, lvl, SUMMON_DEMON, mode))
             {
                 device_noticed = TRUE;
-                msg_print("The area fills with a stench of sulphur and brimstone.");
+                msg_print("这片区域弥漫着硫磺和烈火的恶臭。");
                 if (pet)
-                    msg_print("'What is thy bidding... Master?'");
+                    msg_print("'您有何吩咐……主人？'");
                 else
-                    msg_print("'NON SERVIAM! Wretch! I shall feast on thy mortal soul!'");
+                    msg_print("'我绝不服从！可怜虫！我要吞噬你凡人的灵魂！'");
             }
         }
         break;
     case EFFECT_SUMMON_CYBERDEMON:
-        if (name) return "Summon Cyberdemon";
+        if (name) return "召唤机械恶魔";
         if (desc) return "It attempts to summon a single Cyberdemon for assistance.";
         if (value) return format("%d", 7500);
         if (color) return format("%d", TERM_VIOLET);
@@ -4632,7 +4632,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_SUMMON_ANGEL:
-        if (name) return "Summon Angel";
+        if (name) return "召唤天使";
         if (desc) return "It attempts to summon a single angel for assistance.";
         if (value) return format("%d", 5000);
         if (color) return format("%d", TERM_YELLOW);
@@ -4643,7 +4643,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_SUMMON_KRAKEN:
-        if (name) return "Summon Kraken";
+        if (name) return "召唤海怪";
         if (desc) return "It attempts to summon powerful kraken for assistance.";
         if (value) return format("%d", 5000);
         if (color) return format("%d", TERM_BLUE);
@@ -4657,16 +4657,16 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             for (i = 0; i < num; i++)
                 ct += summon_specific(SUMMON_WHO_PLAYER, py, px, dun_level, SUMMON_KRAKEN, PM_FORCE_PET);
             if (!ct)
-                msg_print("No help arrives.");
+                msg_print("没有援军到来。");
         }
         break;
 
     case EFFECT_CHARM_ANIMAL:
     {
         int lvl = _extra(effect, effect->power);
-        if (name) return "Charm Animal";
+        if (name) return "魅惑动物";
         if (desc) return "It attempts to charm a single animal.";
-        if (info) return format("power %d", _BOOST(lvl));
+        if (info) return format("强度 %d", _BOOST(lvl));
         if (value) return format("%d", 10*_extra(effect, 50));
         if (cast)
         {
@@ -4679,9 +4679,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_CHARM_DEMON:
     {
         int lvl = _extra(effect, effect->power);
-        if (name) return "Dominate Demon";
+        if (name) return "支配恶魔";
         if (desc) return "It attempts to dominate a single demon.";
-        if (info) return format("power %d", _BOOST(lvl));
+        if (info) return format("强度 %d", _BOOST(lvl));
         if (value) return format("%d", 15*_extra(effect, 50));
         if (cast)
         {
@@ -4694,9 +4694,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_CHARM_UNDEAD:
     {
         int lvl = _extra(effect, effect->power);
-        if (name) return "Enslave Undead";
+        if (name) return "奴役不死生物";
         if (desc) return "It attempts to enslave a single undead monster.";
-        if (info) return format("power %d", _BOOST(lvl));
+        if (info) return format("强度 %d", _BOOST(lvl));
         if (value) return format("%d", 15*_extra(effect, 50));
         if (cast)
         {
@@ -4709,9 +4709,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_CHARM_MONSTER:
     {
         int lvl = _extra(effect, effect->power);
-        if (name) return "Charm Monster";
+        if (name) return "魅惑怪物";
         if (desc) return "It attempts to charm a single monster.";
-        if (info) return format("power %d", _BOOST(lvl));
+        if (info) return format("强度 %d", _BOOST(lvl));
         if (value) return format("%d", 15*_extra(effect, 50));
         if (cast)
         {
@@ -4722,7 +4722,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         break;
     }
     case EFFECT_RETURN_PETS:
-        if (name) return "Return Pets";
+        if (name) return "召回宠物";
         if (desc) return "It calls your pets back to you.";
         if (value) return format("%d", 500);
         if (cast)
@@ -4758,7 +4758,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         break;
 
     case EFFECT_CAPTURE_PET:
-        if (name) return "Capture Pet";
+        if (name) return "捕获宠物";
         if (desc) return "It attempts to capture targetted monster.";
         if (value) return format("%d", 500);
         if (cast)
@@ -4771,7 +4771,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
 
     /* Healing and Recovery */
     case EFFECT_RESTORE_STATS:
-        if (name) return "Restore Stats";
+        if (name) return "恢复属性";
         if (desc) return "It restores your stats.";
         if (value) return format("%d", 5000);
         if (color) return format("%d", TERM_L_GREEN);
@@ -4786,7 +4786,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_RESTORE_EXP:
-        if (name) return "Restore Life";
+        if (name) return "恢复生命";
         if (desc) return "It restores your life and experience.";
         if (value) return format("%d", 1000);
         if (color) return format("%d", TERM_L_GREEN);
@@ -4797,7 +4797,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_RESTORING:
-        if (name) return "Restoring";
+        if (name) return "恢复";
         if (desc) return "It restores your stats, life and experience.";
         if (value) return format("%d", 6000);
         if (color) return format("%d", TERM_L_GREEN);
@@ -4816,7 +4816,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_HEAL:
     {
         int amt = _extra(effect, 25 + effect->power);
-        if (name) return (amt < 100) ? "Cure Wounds" : "Healing";
+        if (name) return (amt < 100) ? "治疗伤势" : "治疗";
         if (desc) return "It heals your hitpoints and cures cuts.";
         if (info) return info_heal(0, 0, _BOOST(amt));
         if (value) return format("%d", 15*amt);
@@ -4839,7 +4839,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     }
     case EFFECT_CURING:
     {
-        if (name) return "Curing";
+        if (name) return "治愈";
         if (desc) return "It cures blindness, confusion, stunning, cuts and hallucination and reduces poisoning.";
         if (value) return format("%d", 1000);
         if (color) return format("%d", TERM_L_GREEN);
@@ -4861,12 +4861,12 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         int amt = _extra(effect, 30 + 4*effect->power);
         if (amt < 100)
         {
-            if (name) return "Cure Wounds";
+            if (name) return "治疗伤势";
             if (desc) return "It heals your hitpoints and cures blindness and cuts.";
         }
         else
         {
-            if (name) return "Healing";
+            if (name) return "治疗";
             if (desc) return "It heals your hitpoints and cures your ailments.";
         }
         if (info) return info_heal(0, 0, _BOOST(amt));
@@ -4896,7 +4896,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_HEAL_CURING_HERO:
     {
         int amt = _extra(effect, 300 + _power_curve_offset(477, effect->power, 70));
-        if (name) return "Angelic Healing";
+        if (name) return "天使治愈";
         if (desc) return "It heals your hitpoints, cures what ails you, and makes you heroic.";
         if (info) return info_heal(0, 0, _BOOST(amt));
         /* XXX The following is too low for -AngelicHealing, but avoids over-valuing Lohengrin */
@@ -4918,7 +4918,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         break;
     }
     case EFFECT_RESTORE_MANA:
-        if (name) return "Restore Mana";
+        if (name) return "恢复法力";
         if (desc) return "It completely restores your mana. It also partially recharges any devices in your pack.";
         if (value) return format("%d", 10000);
         if (color) return format("%d", TERM_L_BLUE);
@@ -4929,7 +4929,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_CURE_POIS:
-        if (name) return "Cure Poison";
+        if (name) return "解毒";
         if (desc) return "It reduces poisoning.";
         if (value) return format("%d", 500);
         if (color) return format("%d", res_color(RES_POIS));
@@ -4940,7 +4940,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_CURE_FEAR:
-        if (name) return "Boldness";
+        if (name) return "无畏";
         if (desc) return "It restores your courage.";
         if (value) return format("%d", 750);
         if (color) return format("%d", res_color(RES_FEAR));
@@ -4954,7 +4954,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_CURE_FEAR_POIS:
-        if (name) return "Cure Fear and Poison";
+        if (name) return "消除恐惧与解毒";
         if (desc) return "It reduces poisoning and restores your courage in battle.";
         if (value) return format("%d", 1250);
         if (color) return format("%d", res_color(RES_FEAR));
@@ -4970,7 +4970,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_REMOVE_CURSE:
-        if (name) return "Remove Curse";
+        if (name) return "移除诅咒";
         if (desc) return "It removes normal curses from equipped items.";
         if (value) return format("%d", 1000);
         if (color) return format("%d", TERM_L_GREEN);
@@ -4978,7 +4978,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         {
             if (remove_curse())
             {
-                msg_print("You feel as if someone is watching over you.");
+                msg_print("你感觉好像有人在守护着你。");
                 device_noticed = TRUE;
             }
         }
@@ -4992,7 +4992,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         {
             if (remove_all_curse())
             {
-                msg_print("You feel as if someone is watching over you.");
+                msg_print("你感觉好像有人在守护着你。");
                 device_noticed = TRUE;
             }
         }
@@ -5000,7 +5000,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_CLARITY:
     {
         int amt = _extra(effect, effect->cost);
-        if (name) return "Clarity";
+        if (name) return "清明";
         if (desc) return "It clears your mind, restoring some mana.";
         if (info) return format("%dsp", _BOOST(amt));
         if (value) return format("%d", 1000 + 50*amt);
@@ -5008,10 +5008,10 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         if (cast)
         {
             if ((p_ptr->pclass == CLASS_RUNE_KNIGHT) || (p_ptr->pclass == CLASS_RAGE_MAGE))
-                msg_print("You are unaffected.");
+                msg_print("你不受影响。");
             else if (sp_player(_BOOST(amt)))
             {
-                msg_print("You feel your mind clear.");
+                msg_print("你感觉头脑清醒了。");
                 device_noticed = TRUE;
             }
         }
@@ -5020,7 +5020,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_GREAT_CLARITY: /* FYI: This is a separate effect from EFFECT_CLARITY for purposes */
     {                          /*      of statistics tracking, which is by effect id. */
         int amt = _extra(effect, effect->cost);
-        if (name) return "Great Clarity";
+        if (name) return "高等清明";
         if (desc) return "It clears your mind, restoring some mana.";
         if (info) return format("%dsp", _BOOST(amt));
         if (value) return format("%d", 1000 + 50*amt);
@@ -5028,10 +5028,10 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         if (cast)
         {
             if ((p_ptr->pclass == CLASS_RUNE_KNIGHT) || (p_ptr->pclass == CLASS_RAGE_MAGE))
-                msg_print("You are unaffected.");
+                msg_print("你不受影响。");
             else if (sp_player(_BOOST(amt)))
             {
-                msg_print("You feel your mind clear.");
+                msg_print("你感觉头脑清醒了。");
                 device_noticed = TRUE;
             }
         }
@@ -5043,7 +5043,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 2 + effect->power/10);
         int ds = 6;
-        if (name) return "Magic Missile";
+        if (name) return "魔法飞弹";
         if (desc) return "It fires a weak bolt of magic.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 20*_avg_damroll(dd, ds));
@@ -5059,7 +5059,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 6 + effect->power/7);
         int ds = 8;
-        if (name) return "Acid Bolt";
+        if (name) return "酸之矢";
         if (desc) return "It fires a bolt of acid.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 30*_avg_damroll(dd, ds));
@@ -5076,7 +5076,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 4 + effect->power/9);
         int ds = 8;
-        if (name) return "Lightning Bolt";
+        if (name) return "闪电之矢";
         if (desc) return "It fires a bolt of lightning.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 25*_avg_damroll(dd, ds));
@@ -5093,7 +5093,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 7 + effect->power/6);
         int ds = 8;
-        if (name) return "Fire Bolt";
+        if (name) return "火之矢";
         if (desc) return "It fires a bolt of fire.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 25*_avg_damroll(dd, ds));
@@ -5110,7 +5110,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 5 + effect->power/8);
         int ds = 8;
-        if (name) return "Frost Bolt";
+        if (name) return "冰霜之矢";
         if (desc) return "It fires a bolt of frost.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 25*_avg_damroll(dd, ds));
@@ -5127,7 +5127,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 5 + effect->power/8);
         int ds = 8;
-        if (name) return "Poison Dart";
+        if (name) return "毒镖";
         if (desc) return "It fires a poison dart.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 20*_avg_damroll(dd, ds));
@@ -5144,7 +5144,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 5 + effect->power/8);
         int ds = 8;
-        if (name) return "Light Bolt";
+        if (name) return "光之矢";
         if (desc) return "It fires a bolt of light.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 30*_avg_damroll(dd, ds));
@@ -5161,7 +5161,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 5 + effect->power/8);
         int ds = 8;
-        if (name) return "Dark Bolt";
+        if (name) return "暗之矢";
         if (desc) return "It fires a bolt of darkness.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 30*_avg_damroll(dd, ds));
@@ -5178,7 +5178,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 5 + effect->power/8);
         int ds = 8;
-        if (name) return "Confusion Bolt";
+        if (name) return "困惑之矢";
         if (desc) return "It fires a bolt of confusion.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 25*_avg_damroll(dd, ds));
@@ -5195,7 +5195,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 10 + effect->power/6);
         int ds = 8;
-        if (name) return "Nether Bolt";
+        if (name) return "地狱之矢";
         if (desc) return "It fires a bolt of nether.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 20*_avg_damroll(dd, ds));
@@ -5212,7 +5212,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 7 + effect->power/6);
         int ds = 8;
-        if (name) return "Nexus Bolt";
+        if (name) return "时空之矢";
         if (desc) return "It fires a bolt of nexus.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 35*_avg_damroll(dd, ds));
@@ -5229,7 +5229,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 7 + effect->power/6);
         int ds = 8;
-        if (name) return "Sound Bolt";
+        if (name) return "音波之矢";
         if (desc) return "It fires a bolt of sound.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 45*_avg_damroll(dd, ds));
@@ -5246,7 +5246,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 7 + effect->power/5);
         int ds = 8;
-        if (name) return "Shard Bolt";
+        if (name) return "碎片之矢";
         if (desc) return "It fires a bolt of shards.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 45*_avg_damroll(dd, ds));
@@ -5263,7 +5263,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 7 + effect->power/6);
         int ds = 8;
-        if (name) return "Chaos Bolt";
+        if (name) return "混沌之矢";
         if (desc) return "It fires a bolt of chaos.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 35*_avg_damroll(dd, ds));
@@ -5280,7 +5280,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 7 + effect->power/6);
         int ds = 8;
-        if (name) return "Disenchantment Bolt";
+        if (name) return "解除魔法之矢";
         if (desc) return "It fires a bolt of disenchantment.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 35*_avg_damroll(dd, ds));
@@ -5297,7 +5297,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 7 + effect->power/6);
         int ds = 8;
-        if (name) return "Time Bolt";
+        if (name) return "时间之矢";
         if (desc) return "It fires a bolt of time.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 45*_avg_damroll(dd, ds));
@@ -5315,7 +5315,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         int dd = 1;
         int ds = _extra(effect, _power_curve(400, effect->power));
         int base = 20;
-        if (name) return "Water Bolt";
+        if (name) return "水之矢";
         if (desc) return "It fires a bolt of water.";
         if (info) return info_damage(dd, _BOOST(ds), _BOOST(base));
         if (value) return format("%d", 40*(_avg_damroll(dd, ds) + base));
@@ -5334,7 +5334,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         int dd = 1;
         int ds = _extra(effect, _power_curve(500, effect->power));
         int base = 50;
-        if (name) return "Mana Bolt";
+        if (name) return "法力之矢";
         if (desc) return "It fires a powerful bolt of mana.";
         if (info) return info_damage(dd, _BOOST(ds), _BOOST(base));
         if (value) return format("%d", 40*(_avg_damroll(dd, ds) + base));
@@ -5353,7 +5353,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         int dd = 1;
         int ds = _extra(effect, _power_curve(400, effect->power));
         int base = 30;
-        if (name) return "Ice Bolt";
+        if (name) return "寒冰之矢";
         if (desc) return "It fires a bolt of ice.";
         if (info) return info_damage(dd, _BOOST(ds), _BOOST(base));
         if (value) return format("%d", 40*(_avg_damroll(dd, ds) + base));
@@ -5372,7 +5372,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         int dd = 1;
         int ds = _extra(effect, _power_curve(400, effect->power));
         int base = 40;
-        if (name) return "Plasma Bolt";
+        if (name) return "等离子之矢";
         if (desc) return "It fires a bolt of plasma.";
         if (info) return info_damage(dd, _BOOST(ds), _BOOST(base));
         if (value) return format("%d", 40*(_avg_damroll(dd, ds) + base));
@@ -5393,7 +5393,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 6);
         int ds = 8;
-        if (name) return "Moonbeam";
+        if (name) return "月光射线";
         if (desc) return "It fires a beam of weak light, damaging light-sensitive creatures.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 20*_avg_damroll(dd, ds));
@@ -5401,7 +5401,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         if (cast)
         {
             if (!get_fire_dir(&dir)) return NULL;
-            msg_print("A line of pale shimmering light appears.");
+            msg_print("一道苍白微光的射线出现了。");
             project_hook(GF_LITE_WEAK, dir, _BOOST(damroll(dd, ds)), PROJECT_BEAM | PROJECT_GRID | PROJECT_KILL);
             device_noticed = TRUE;
         }
@@ -5410,7 +5410,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BEAM_LITE:
     {
         int dam = _extra(effect, 10 + _power_curve(275, effect->power));
-        if (name) return "Beam of Light";
+        if (name) return "光之射线";
         if (desc) return "It fires a powerful beam of light.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 40*dam);
@@ -5419,7 +5419,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         if (cast)
         {
             if (!get_fire_dir(&dir)) return NULL;
-            msg_print("A line of pure white light appears.");
+            msg_print("一道纯白的射线出现了。");
             fire_beam(GF_LITE, dir, _BOOST(dam));
             device_noticed = TRUE;
         }
@@ -5429,7 +5429,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 9 + effect->power/8);
         int ds = 8;
-        if (name) return "Beam of Gravity";
+        if (name) return "重力射线";
         if (desc) return "It fires a beam of gravity.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 55*_avg_damroll(dd, ds));
@@ -5446,7 +5446,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 9 + effect->power/8);
         int ds = 8;
-        if (name) return "Beam of Disintegration";
+        if (name) return "解离射线";
         if (desc) return "It fires a beam of disintegration.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 40*_avg_damroll(dd, ds));
@@ -5462,7 +5462,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BEAM_ACID:
     {
         int dam = _extra(effect, 5 + _power_curve(270, effect->power));
-        if (name) return "Shoot Acid";
+        if (name) return "射出酸液";
         if (desc) return "It fires a beam of acid.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 35*dam);
@@ -5479,7 +5479,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BEAM_ELEC:
     {
         int dam = _extra(effect, 5 + _power_curve(250, effect->power));
-        if (name) return "Lightning Strike";
+        if (name) return "闪电打击";
         if (desc) return "It fires a beam of lightning.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 30*dam);
@@ -5496,7 +5496,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BEAM_FIRE:
     {
         int dam = _extra(effect, 5 + _power_curve(280, effect->power));
-        if (name) return "Line of Fire";
+        if (name) return "火焰射线";
         if (desc) return "It fires a beam of fire.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 30*dam);
@@ -5513,7 +5513,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BEAM_COLD:
     {
         int dam = _extra(effect, 5 + _power_curve(260, effect->power));
-        if (name) return "Ray of Cold";
+        if (name) return "寒冰射线";
         if (desc) return "It fires a beam of frost.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 30*dam);
@@ -5531,7 +5531,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 7 + effect->power/6);
         int ds = 8;
-        if (name) return "Sound Strike";
+        if (name) return "音波打击";
         if (desc) return "It fires a beam of sound.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 50*_avg_damroll(dd, ds));
@@ -5549,7 +5549,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 7 + effect->power/6);
         int ds = 8;
-        if (name) return "Chaos Strike";
+        if (name) return "混沌打击";
         if (desc) return "It fires a beam of chaos.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 40*_avg_damroll(dd, ds));
@@ -5568,7 +5568,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_ACID:
     {
         int dam = _extra(effect, 20 + _power_curve(300, effect->power));
-        if (name) return "Acid Ball";
+        if (name) return "酸之球";
         if (desc) return "It fires a ball of acid.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 35*dam);
@@ -5585,7 +5585,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_ELEC:
     {
         int dam = _extra(effect, 20 + _power_curve(250, effect->power));
-        if (name) return "Lightning Ball";
+        if (name) return "闪电球";
         if (desc) return "It fires a ball of lightning.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 30*dam);
@@ -5602,7 +5602,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_FIRE:
     {
         int dam = _extra(effect, 20 + _power_curve(350, effect->power));
-        if (name) return "Fire Ball";
+        if (name) return "火球";
         if (desc) return "It fires a ball of fire.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 30*dam);
@@ -5619,7 +5619,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_COLD:
     {
         int dam = _extra(effect, 20 + _power_curve(275, effect->power));
-        if (name) return "Frost Ball";
+        if (name) return "冰霜球";
         if (desc) return "It fires a ball of frost.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 30*dam);
@@ -5636,7 +5636,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_POIS:
     {
         int dam = _extra(effect, 12 + effect->power/4);
-        if (name) return "Stinking Cloud";
+        if (name) return "臭气云";
         if (desc) return "It fires a ball of poison.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 20*dam);
@@ -5652,7 +5652,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_LITE:
     {
         int dam = _extra(effect, 200 + _power_curve_offset(350, effect->power, 80));
-        if (name) return "Star Burst";
+        if (name) return "星爆";
         if (desc) return "It fires a huge ball of powerful light.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 50*dam);
@@ -5669,7 +5669,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_DARK:
     {
         int dam = _extra(effect, 100 + 7*effect->power/2);
-        if (name) return "Darkness Storm";
+        if (name) return "黑暗风暴";
         if (desc) return "It fires a huge ball of darkness.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 50*dam);
@@ -5686,7 +5686,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_CONF:
     {
         int dam = _extra(effect, 30 + effect->power);
-        if (name) return "Confusion Ball";
+        if (name) return "困惑球";
         if (desc) return "It fires a ball of confusion.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 30*dam);
@@ -5702,7 +5702,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_NETHER:
     {
         int dam = _extra(effect, 125 + _power_curve_offset(250, effect->power, 30));
-        if (name) return "Nether Ball";
+        if (name) return "地狱球";
         if (desc) return "It fires a ball of nether.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 25*dam);
@@ -5719,7 +5719,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_NEXUS:
     {
         int dam = _extra(effect, 100 + _power_curve_offset(200, effect->power, 40));
-        if (name) return "Nexus Ball";
+        if (name) return "时空球";
         if (desc) return "It fires a ball of nexus.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 40*dam);
@@ -5736,7 +5736,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_SOUND:
     {
         int dam = _extra(effect, 70 + _power_curve_offset(280, effect->power, 40));
-        if (name) return "Sound Ball";
+        if (name) return "音波球";
         if (desc) return "It fires a ball of sound.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 50*dam);
@@ -5753,7 +5753,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_SHARDS:
     {
         int dam = _extra(effect, 175 + _power_curve_offset(325, effect->power, 75));
-        if (name) return "Shard Ball";
+        if (name) return "碎片球";
         if (desc) return "It fires a ball of shards.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 50*dam);
@@ -5770,7 +5770,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_CHAOS:
     {
         int dam = _extra(effect, 150 + _power_curve_offset(350, effect->power, 70));
-        if (name) return "Invoke Logrus";
+        if (name) return "唤起洛格鲁斯";
         if (desc) return "It fires a huge ball of chaos.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 40*dam);
@@ -5787,7 +5787,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_DISEN:
     {
         int dam = _extra(effect, 90 + _power_curve_offset(250, effect->power, 40));
-        if (name) return "Disenchantment Ball";
+        if (name) return "解除魔法球";
         if (desc) return "It fires a ball of disenchantment.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 40*dam);
@@ -5804,7 +5804,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_TIME:
     {
         int dam = _extra(effect, 50 + effect->power);
-        if (name) return "Time Ball";
+        if (name) return "时间球";
         if (desc) return "It fires a ball of time.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 50*dam);
@@ -5820,7 +5820,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_WATER:
     {
         int dam = _extra(effect, 150 + _power_curve_offset(200, effect->power, 50));
-        if (name) return "Whirlpool";
+        if (name) return "漩涡";
         if (desc) return "It fires a huge ball of water.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 45*dam);
@@ -5837,7 +5837,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_MANA:
     {
         int dam = _extra(effect, 150 + _power_curve_offset(300, effect->power, 60));
-        if (name) return "Mana Ball";
+        if (name) return "法力球";
         if (desc) return "It fires a powerful ball of mana.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 50*dam);
@@ -5854,7 +5854,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BALL_DISINTEGRATE:
     {
         int dam = _extra(effect, 150 + _power_curve_offset(200, effect->power, 50));
-        if (name) return "Disintegrate";
+        if (name) return "解离";
         if (desc) return "It fires a powerful ball of disintegration.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 45*dam);
@@ -5873,7 +5873,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_ACID:
     {
         int dam = _extra(effect, 100 + effect->power*3);
-        if (name) return "Breathe Acid";
+        if (name) return "喷吐酸液";
         if (desc) return "It breathes acid.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 40*dam);
@@ -5889,7 +5889,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_ELEC:
     {
         int dam = _extra(effect, 70 + effect->power*3);
-        if (name) return "Breathe Lightning";
+        if (name) return "喷吐闪电";
         if (desc) return "It breathes lightning.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 35*dam);
@@ -5905,7 +5905,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_FIRE:
     {
         int dam = _extra(effect, 160 + _power_curve_offset(300, effect->power, 40));
-        if (name) return "Dragon's Flame";
+        if (name) return "龙之火焰";
         if (desc) return "It breathes fire.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 35*dam);
@@ -5922,7 +5922,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_COLD:
     {
         int dam = _extra(effect, 150 + _power_curve_offset(300, effect->power, 40));
-        if (name) return "Dragon's Frost";
+        if (name) return "龙之寒霜";
         if (desc) return "It breathes frost.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 35*dam);
@@ -5939,7 +5939,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_POIS:
     {
         int dam = _extra(effect, 60 + effect->power*2);
-        if (name) return "Breathe Poison";
+        if (name) return "喷吐毒气";
         if (desc) return "It breathes poison.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 30*dam);
@@ -5955,7 +5955,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_LITE:
     {
         int dam = _extra(effect, 50 + effect->power*2);
-        if (name) return "Breathe Light";
+        if (name) return "喷吐强光";
         if (desc) return "It breathes light.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 40*dam);
@@ -5971,7 +5971,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_DARK:
     {
         int dam = _extra(effect, 50 + effect->power*2);
-        if (name) return "Breathe Darkness";
+        if (name) return "喷吐黑暗";
         if (desc) return "It breathes darkness.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 40*dam);
@@ -5987,7 +5987,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_CONF:
     {
         int dam = _extra(effect, 50 + effect->power*2);
-        if (name) return "Breathe Confusion";
+        if (name) return "喷吐困惑气体";
         if (desc) return "It breathes confusion.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 35*dam);
@@ -6003,7 +6003,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_NETHER:
     {
         int dam = _extra(effect, 100 + effect->power*3);
-        if (name) return "Breathe Nether";
+        if (name) return "喷吐地狱气体";
         if (desc) return "It breathes nether.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 30*dam);
@@ -6019,7 +6019,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_NEXUS:
     {
         int dam = _extra(effect, 50 + effect->power*2);
-        if (name) return "Breathe Nexus";
+        if (name) return "喷吐时空力量";
         if (desc) return "It breathes nexus.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 45*dam);
@@ -6035,7 +6035,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_SOUND:
     {
         int dam = _extra(effect, 50 + effect->power*2);
-        if (name) return "Breathe Sound";
+        if (name) return "喷吐音波";
         if (desc) return "It breathes sound.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 55*dam);
@@ -6051,7 +6051,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_SHARDS:
     {
         int dam = _extra(effect, 100 + effect->power*2);
-        if (name) return "Breathe Shards";
+        if (name) return "喷吐碎片";
         if (desc) return "It breathes shards.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 55*dam);
@@ -6067,7 +6067,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_CHAOS:
     {
         int dam = _extra(effect, 75 + effect->power*2);
-        if (name) return "Breathe Chaos";
+        if (name) return "喷吐混沌";
         if (desc) return "It breathes chaos.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 45*dam);
@@ -6083,7 +6083,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_DISEN:
     {
         int dam = _extra(effect, 50 + effect->power*2);
-        if (name) return "Breathe Disenchantment";
+        if (name) return "喷吐解除魔法能量";
         if (desc) return "It breathes disenchantment.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 45*dam);
@@ -6099,7 +6099,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
 	case EFFECT_BREATHE_INERTIA:
 	{
 		int dam = _extra(effect, 50 + effect->power * 2);
-		if (name) return "Breathe Inertia";
+		if (name) return "喷吐惰性";
 		if (desc) return "It breathes inertia.";
 		if (info) return info_damage(0, 0, _BOOST(dam));
 		if (value) return format("%d", 35 * dam);
@@ -6114,7 +6114,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
 	case EFFECT_BREATHE_WATER:
 	{
 		int dam = _extra(effect, 41 + effect->power * 7 / 4);
-		if (name) return "Tsunami";
+		if (name) return "海啸";
 		if (desc) return "It fires a torrent of water.";
 		if (info) return info_damage(0, 0, _BOOST(dam));
 		if (value) return format("%d", 30 * dam);
@@ -6130,7 +6130,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_TIME:
     {
         int dam = _extra(effect, 50 + effect->power*2);
-        if (name) return "Breathe Time";
+        if (name) return "喷吐时间力量";
         if (desc) return "It breathes time.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 55*dam);
@@ -6146,7 +6146,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_ONE_MULTIHUED:
     {
         int dam = _extra(effect, 170 + _power_curve_offset(300, effect->power, 40));
-        if (name) return "Dragon's Breath";
+        if (name) return "龙之喷吐";
         if (desc) return "It breathes acid, lightning, fire, frost or poison.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 40*dam);
@@ -6164,7 +6164,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             int which = randint0(5);
 
             if (!get_fire_dir(&dir)) return NULL;
-            msg_format("It breathes %s.", _choices[which].desc);
+            msg_format("它喷吐出%s。", _choices[which].desc);
             fire_ball(_choices[which].type, dir, _BOOST(dam), -2);
             device_noticed = TRUE;
         }
@@ -6173,7 +6173,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_ONE_CHAOS:
     {
         int dam = _extra(effect, 75 + effect->power*2);
-        if (name) return "Breathe";
+        if (name) return "喷吐";
         if (desc) return "It breathes chaos or disenchantment.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 45*dam);
@@ -6187,7 +6187,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             int which = randint0(2);
 
             if (!get_fire_dir(&dir)) return NULL;
-            msg_format("It breathes %s.", _choices[which].desc);
+            msg_format("它喷吐出%s。", _choices[which].desc);
             fire_ball(_choices[which].type, dir, _BOOST(dam), -2);
             device_noticed = TRUE;
         }
@@ -6196,7 +6196,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_ONE_LAW:
     {
         int dam = _extra(effect, 100 + effect->power*2);
-        if (name) return "Breathe";
+        if (name) return "喷吐";
         if (desc) return "It breathes sound or shards.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 55*dam);
@@ -6210,7 +6210,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             int which = randint0(2);
 
             if (!get_fire_dir(&dir)) return NULL;
-            msg_format("It breathes %s.", _choices[which].desc);
+            msg_format("它喷吐出%s。", _choices[which].desc);
             fire_ball(_choices[which].type, dir, _BOOST(dam), -2);
             device_noticed = TRUE;
         }
@@ -6219,7 +6219,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_ONE_BALANCE:
     {
         int dam = _extra(effect, 100 + effect->power*2);
-        if (name) return "Breathe";
+        if (name) return "喷吐";
         if (desc) return "It breathes sound, shards, chaos or disenchantment.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 55*dam);
@@ -6235,7 +6235,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             int which = randint0(4);
 
             if (!get_fire_dir(&dir)) return NULL;
-            msg_format("It breathes %s.", _choices[which].desc);
+            msg_format("它喷吐出%s。", _choices[which].desc);
             fire_ball(_choices[which].type, dir, _BOOST(dam), -2);
             device_noticed = TRUE;
         }
@@ -6244,7 +6244,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_ONE_SHINING:
     {
         int dam = _extra(effect, 50 + effect->power*2);
-        if (name) return "Breathe";
+        if (name) return "喷吐";
         if (desc) return "It breathes light or darkness.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 40*dam);
@@ -6258,7 +6258,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             int which = randint0(2);
 
             if (!get_fire_dir(&dir)) return NULL;
-            msg_format("It breathes %s.", _choices[which].desc);
+            msg_format("它喷吐出%s。", _choices[which].desc);
             fire_ball(_choices[which].type, dir, _BOOST(dam), -2);
             device_noticed = TRUE;
         }
@@ -6267,7 +6267,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_BREATHE_ELEMENTS:
     {
         int dam = _extra(effect, 100 + effect->power*2);
-        if (name) return "Breathe Elements";
+        if (name) return "喷吐元素";
         if (desc) return "It breathes the elements.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 55*dam);
@@ -6285,7 +6285,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_DISPEL_EVIL:
     {
         int dam = _extra(effect, 50 + _power_curve_offset(250, effect->power, 50));
-        if (name) return "Dispel Evil";
+        if (name) return "驱散邪恶";
         if (desc) return "It damages all evil monsters in sight.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 30*dam);
@@ -6301,7 +6301,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_DISPEL_EVIL_HERO:
     {
         int dam = _extra(effect, 2*effect->power);
-        if (name) return "Dispel Evil";
+        if (name) return "驱散邪恶";
         if (desc) return "It damages all evil monsters in sight and grants temporary heroism.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 500 + 30*dam);
@@ -6319,7 +6319,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_DISPEL_GOOD:
     {
         int dam = _extra(effect, 2*effect->power);
-        if (name) return "Dispel Good";
+        if (name) return "驱散善良";
         if (desc) return "It damages all good monsters in sight.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 20*dam);
@@ -6335,7 +6335,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_DISPEL_LIFE:
     {
         int dam = _extra(effect, 50 + _power_curve_offset(250, effect->power, 50));
-        if (name) return "Dispel Life";
+        if (name) return "驱散生命";
         if (desc) return "It damages all living monsters in sight.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 30*dam);
@@ -6351,7 +6351,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_DISPEL_DEMON:
     {
         int dam = _extra(effect, 100 + _power_curve_offset(400, effect->power, 50));
-        if (name) return "Dispel Demons";
+        if (name) return "驱散恶魔";
         if (desc) return "It damages all demonic monsters in sight.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 20*dam);
@@ -6367,7 +6367,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_DISPEL_UNDEAD:
     {
         int dam = _extra(effect, 100 + _power_curve_offset(400, effect->power, 50));
-        if (name) return "Dispel Undead";
+        if (name) return "驱散不死生物";
         if (desc) return "It damages all undead monsters in sight.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 20*dam);
@@ -6383,7 +6383,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_DISPEL_MONSTERS:
     {
         int dam = _extra(effect, 50 + _power_curve_offset(200, effect->power, 50));
-        if (name) return "Dispel Monsters";
+        if (name) return "驱散怪物";
         if (desc) return "It damages all monsters in sight.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 40*dam);
@@ -6399,7 +6399,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_DRAIN_LIFE:
     {
         int dam = _extra(effect, 50 + effect->power/2);
-        if (name) return "Vampirism";
+        if (name) return "吸血";
         if (desc) return "It fires a bolt that steals life from a foe when you use it.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 35*dam);
@@ -6419,7 +6419,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_STAR_BALL:
     {
         int dam = _extra(effect, 150);
-        if (name) return "Star Ball";
+        if (name) return "星之球";
         if (desc) return "It fires a multitude of lightning balls in random open directions.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 50*dam);
@@ -6448,7 +6448,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_WRATH_OF_GOD:
     {
         int dam = _extra(effect, 25 + effect->power*3/2);
-        if (name) return "Wrath of the God";
+        if (name) return "神之愤怒";
         if (desc) return "It drops many balls of disintegration near the target.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 50*dam);
@@ -6461,7 +6461,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_ROCKET:
     {
         int dam = _extra(effect, 200 + _power_curve_offset(300, effect->power, 60));
-        if (name) return "Rocket";
+        if (name) return "火箭";
         if (desc) return "It fires a rocket.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 50*dam);
@@ -6479,7 +6479,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
         int dd = _extra(effect, 15 + effect->power/5);
         int ds = 13;
-        if (name) return "Meteor";
+        if (name) return "陨石";
         if (desc) return "It fires a meteor when you use it.";
         if (info) return info_damage(_BOOST(dd), ds, 0);
         if (value) return format("%d", 40*_avg_damroll(dd, ds));
@@ -6495,7 +6495,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_MANA_STORM:
     {
         int dam = _extra(effect, 375 + _power_curve_offset(200, effect->power, 80));
-        if (name) return "Mana Storm";
+        if (name) return "法力风暴";
         if (desc) return "It produces a huge mana ball centered on you.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 45*dam);
@@ -6503,7 +6503,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         if (cost) return format("%d", dam/10);
         if (cast)
         {
-            msg_print("Mighty magics rend your enemies!");
+            msg_print("强大的魔法撕裂了你的敌人！");
             project(0, 5, py, px,
                 _BOOST(dam*2),
                 GF_MANA, PROJECT_KILL | PROJECT_ITEM | PROJECT_GRID);
@@ -6514,14 +6514,14 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_CONFUSING_LITE:
     {
         int pow = _extra(effect, effect->power*2);
-        if (name) return "Confusing Lights";
+        if (name) return "困惑之光";
         if (desc) return "It emits dazzling lights which slow, stun, confuse, scare and even freeze nearby monsters.";
-        if (info) return format("power %d", pow);
+        if (info) return format("强度 %d", pow);
         if (value) return format("%d", 60*pow);
         if (color) return format("%d", res_color(RES_CONF));
         if (cast)
         {
-            msg_print("You glare nearby monsters with a dazzling array of confusing lights!");
+            msg_print("你用令人目眩的困惑之光照射附近的怪物！");
             pow = _BOOST(pow);
             slow_monsters(pow);
             stun_monsters(5 + pow/10);
@@ -6535,7 +6535,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_ARROW:
     {
         int dam = _extra(effect, 70 + effect->power);
-        if (name) return "Magic Arrow";
+        if (name) return "魔法箭";
         if (desc) return "It fires a powerful magical arrow.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 30*dam);
@@ -6552,7 +6552,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_HOLINESS:
     {
         int dam = _extra(effect, effect->power*2);
-        if (name) return "Holiness";
+        if (name) return "神圣";
         if (desc) return "It does damage to all evil monsters in sight, gives temporary protection from lesser evil creature, cures poison, stunning, cuts, removes fear and heals you when you use it.";
         if (info) return info_power(_BOOST(dam));
         if (value) return format("%d", 5000 + 30*dam);
@@ -6570,7 +6570,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_STARBURST:
     {
         int dam = _extra(effect, 375 + _power_curve_offset(200, effect->power, 80));
-        if (name) return "Star Burst";
+        if (name) return "星爆";
         if (desc) return "It produces a huge ball of light centered on you.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 45*dam);
@@ -6591,7 +6591,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_DARKNESS_STORM:
     {
         int dam = _extra(effect, 375 + _power_curve_offset(200, effect->power, 80));
-        if (name) return "Darkness Storm";
+        if (name) return "黑暗风暴";
         if (desc) return "It produces a huge ball of darkness centered on you.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 45*dam);
@@ -6612,7 +6612,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_PESTICIDE:
     {
         int dam = _extra(effect, 4);
-        if (name) return "Pesticide";
+        if (name) return "杀虫剂";
         if (desc) return "It does slight damage to all monsters in sight when you zap it.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 250);
@@ -6626,13 +6626,13 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     }
     /* Misc */
     case EFFECT_POLY_SELF:
-        if (name) return "Polymorph";
+        if (name) return "变形";
         if (desc) return "It mutates you. Warning: You might not like the results!";
         if (value) return format("%d", 500);
         if (color) return format("%d", TERM_RED);
         if (cast)
         {
-            if (get_check("This might be risky. Are you sure? "))
+            if (get_check("这可能有风险。你确定吗？"))
             {
                 do_poly_self();
                 device_noticed = TRUE;
@@ -6640,7 +6640,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_ANIMATE_DEAD:
-        if (name) return "Animate Dead";
+        if (name) return "操纵死尸";
         if (desc) return "It raises corpses and skeletons nearby you from dead and makes them your pet when you use it.";
         if (value) return format("%d", 750);
         if (color) return format("%d", TERM_L_DARK);
@@ -6653,9 +6653,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_SCARE_MONSTERS:
     {
         int pow = _extra(effect, effect->power*3);
-        if (name) return "Terrify Monsters";
+        if (name) return "恐吓怪物";
         if (desc) return "It attempts to frighten all nearby visible monsters.";
-        if (info) return format("power %d", pow);
+        if (info) return format("强度 %d", pow);
         if (value) return format("%d", 10*pow);
         if (color) return format("%d", TERM_L_RED);
         if (cast)
@@ -6668,9 +6668,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_SLEEP_MONSTERS:
     {
         int pow = _extra(effect, effect->power*3);
-        if (name) return "Sleep Monsters";
+        if (name) return "催眠怪物";
         if (desc) return "It attempts to sleep all nearby visible monsters.";
-        if (info) return format("power %d", pow);
+        if (info) return format("强度 %d", pow);
         if (value) return format("%d", 15*pow);
         if (color) return format("%d", TERM_BLUE);
         if (cast)
@@ -6683,9 +6683,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_SLOW_MONSTERS:
     {
         int pow = _extra(effect, effect->power*3);
-        if (name) return "Slow Monsters";
+        if (name) return "减速怪物";
         if (desc) return "It attempts to slow all nearby visible monsters.";
-        if (info) return format("power %d", pow);
+        if (info) return format("强度 %d", pow);
         if (value) return format("%d", 15*pow);
         if (color) return format("%d", TERM_SLATE);
         if (cast)
@@ -6698,9 +6698,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_STASIS_MONSTERS:
     {
         int pow = _extra(effect, effect->power*3);
-        if (name) return "Freeze Monsters";
+        if (name) return "冻结怪物";
         if (desc) return "It attempts to freeze all nearby visible monsters.";
-        if (info) return format("power %d", pow);
+        if (info) return format("强度 %d", pow);
         if (value) return format("%d", 30*pow);
         if (color) return format("%d", TERM_BLUE);
         if (cast)
@@ -6713,9 +6713,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_EYE_HYPNO:
     {
         int pow = _extra(effect, effect->power*2);
-        if (name) return "Hypnotize";
+        if (name) return "催眠";
         if (desc) return "It attempts to freeze and charm all nearby visible monsters.";
-        if (info) return format("power %d", pow);
+        if (info) return format("强度 %d", pow);
         if (value) return format("%d", 125*pow);
         if (color) return format("%d", TERM_L_GREEN);
         if (cast)
@@ -6729,9 +6729,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_CONFUSE_MONSTERS:
     {
         int pow = _extra(effect, effect->power*3);
-        if (name) return "Confuse Monsters";
+        if (name) return "困惑怪物";
         if (desc) return "It attempts to confuse all nearby visible monsters.";
-        if (info) return format("power %d", pow);
+        if (info) return format("强度 %d", pow);
         if (value) return format("%d", 15*pow);
         if (color) return format("%d", res_color(RES_CONF));
         if (cast)
@@ -6742,7 +6742,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         break;
     }
     case EFFECT_FISHING:
-        if (name) return "Fishing";
+        if (name) return "钓鱼";
         if (desc) return "It allows you to relax and unwind from the pressures of adventuring.";
         if (value) return format("%d", 100);
         if (cast)
@@ -6754,14 +6754,14 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             tsuri_dir = dir;
             if (!cave_have_flag_bold(y, x, FF_WATER))
             {
-                msg_print("There is no fishing place.");
+                msg_print("这里没有可以钓鱼的地方。");
                 break;
             }
             else if (cave[y][x].m_idx)
             {
                 char m_name[MAX_NLEN];
                 monster_desc(m_name, &m_list[cave[y][x].m_idx], 0);
-                msg_format("%^s is standing in your way.", m_name);
+                msg_format("%^s挡住了你的路。", m_name);
                 energy_use = 0;
                 break;
             }
@@ -6771,7 +6771,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_CHARGE:
-        if (name) return "Charge";
+        if (name) return "冲锋";
         if (desc) return "If riding, you charge a chosen foe doing extra damage.";
         if (value) return format("%d", 5000);
         if (color) return format("%d", TERM_L_RED);
@@ -6782,7 +6782,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
                At the moment, only the Heavy Lance 'Impaler' has this effect. */
             if (!p_ptr->riding)
             {
-                msg_print("You need to be mounted in order to charge.");
+                msg_print("你必须在骑乘状态下才能冲锋。");
                 return NULL;
             }
             charged = rush_attack(7, NULL);
@@ -6790,7 +6790,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_PIERCING_SHOT:
-        if (name) return "Piercing Shot";
+        if (name) return "穿透射击";
         if (desc) return "It shoots a bolt through multiple foes.";
         if (value) return format("%d", 1500);
         if (color) return format("%d", TERM_L_RED);
@@ -6806,7 +6806,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_ENDLESS_QUIVER: /* should only be on a quiver ... */
-        if (name) return "Endless Quiver";
+        if (name) return "无尽箭袋";
         if (desc) return "Your quiver will refill with average ammo.";
         if (value) return format("%d", 1500);
         if (color) return format("%d", TERM_L_RED);
@@ -6824,16 +6824,16 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             object_origins(&forge, ORIGIN_ENDLESS);
 
             if (!forge.number)
-                msg_print("Your quiver is full.");
+                msg_print("你的箭袋满了。");
             else
             {
-                msg_print("Your quiver refills.");
+                msg_print("你的箭袋重新装满了。");
                 quiver_carry(&forge);
             }
         }
         break;
     case EFFECT_WALL_BUILDING:
-        if (name) return "Wall Building";
+        if (name) return "造墙术";
         if (desc) return "It creates a wall of stone.";
         if (value) return format("%d", 50000);
         if (color) return format("%d", TERM_UMBER);
@@ -6847,9 +6847,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_SLEEP_MONSTER:
     {
         int power = _extra(effect, 10 + effect->power);
-        if (name) return "Sleep Monster";
+        if (name) return "催眠单一怪物";
         if (desc) return "It puts a monster to sleep when you use it.";
-        if (info) return format("power %d", _BOOST(power));
+        if (info) return format("强度 %d", _BOOST(power));
         if (value) return format("%d", 10*power);
         if (color) return format("%d", TERM_BLUE);
         if (cast)
@@ -6863,9 +6863,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_SLOW_MONSTER:
     {
         int power = _extra(effect, MAX(10, effect->power * 2 - 6));
-        if (name) return "Slow Monster";
+        if (name) return "减速单一怪物";
         if (desc) return "It slows a monster down when you use it.";
-        if (info) return format("power %d", _BOOST(power));
+        if (info) return format("强度 %d", _BOOST(power));
         if (value) return format("%d", 15 * power);
         if (color) return format("%d", TERM_SLATE);
         if (cast)
@@ -6880,9 +6880,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     {
 //        int power = _extra(effect, MIN(98, MAX(21, effect->power * 7 - 52)));
         int power = _extra(effect, MIN(105, 25 + _power_curve_offset(75, effect->power + 75, 80)));
-        if (name) return "Confuse Monster";
+        if (name) return "困惑单一怪物";
         if (desc) return "It confuses a monster when you use it.";
-        if (info) return format("power %d", _BOOST(power));
+        if (info) return format("强度 %d", _BOOST(power));
         if (value) return format("%d", 15*power);
         if (color) return format("%d", res_color(RES_CONF));
         if (cast)
@@ -6896,9 +6896,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_SCARE_MONSTER:
     {
         int power = _extra(effect, 10 + effect->power);
-        if (name) return "Scare Monster";
+        if (name) return "恐吓单一怪物";
         if (desc) return "It scares a monster when you use it.";
-        if (info) return format("power %d", _BOOST(power));
+        if (info) return format("强度 %d", _BOOST(power));
         if (value) return format("%d", 10*power);
         if (color) return format("%d", res_color(RES_FEAR));
         if (cast)
@@ -6910,7 +6910,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         break;
     }
     case EFFECT_POLYMORPH:
-        if (name) return "Polymorph";
+        if (name) return "变形";
         if (desc) return "It changes a monster into another when you use it.";
         if (value) return format("%d", 500);
         if (color) return format("%d", TERM_ORANGE);
@@ -6924,7 +6924,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_STARLITE:
     {
         int dd = _extra(effect, 6 + effect->power / 10);
-        if (name) return "Starlight";
+        if (name) return "星光";
         if (desc) return "It fires multiple beams of weak light in random open directions when you use it.";
         if (value) return format("%d", 750);
         if (color) return format("%d", TERM_YELLOW);
@@ -6951,16 +6951,16 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         break;
     }
     case EFFECT_NOTHING:
-        if (name) return "Nothing";
+        if (name) return "无";
         if (desc) return "It is your food.";
         if (value) return format("%d", 1);
         if (cast)
-            msg_print("What a pity ... You are wasting your food!");
+            msg_print("真可惜……你正在浪费食物！");
         break;
 
     /* Bad Effects */
     case EFFECT_AGGRAVATE:
-        if (name) return "Aggravate Monsters";
+        if (name) return "激怒怪物";
         if (desc) return "It aggravates nearby monsters.";
         if (value) return format("%d", 100); /* This actually *can* be useful ... */
         if (color) return format("%d", TERM_L_DARK);
@@ -6973,7 +6973,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_HEAL_MONSTER:
     {
         int dd = _extra(effect, 10 + effect->power / 10);
-        if (name) return "Heal Monster";
+        if (name) return "治疗怪物";
         if (desc) return "It heals a monster when you use it.";
         if (info) return format("heal %dd10", dd);
         if (value) return format("%d", dd / 2);
@@ -6993,7 +6993,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         break;
     }
     case EFFECT_HASTE_MONSTER:
-        if (name) return "Haste Monster";
+        if (name) return "加速怪物";
         if (desc) return "It hastes a monster when you use it.";
         if (color) return format("%d", TERM_VIOLET);
         if (value) return format("%d", 15);
@@ -7012,7 +7012,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_HASTE_MONSTERS:
-        if (name) return "Haste Monsters";
+        if (name) return "加速群体怪物";
         if (desc) return "It hastes all monsters in sight when you use it.";
         if (color) return format("%d", TERM_VIOLET);
         if (cast)
@@ -7022,7 +7022,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_CLONE_MONSTER:
-        if (name) return "Clone Monster";
+        if (name) return "克隆怪物";
         if (desc) return "It clones a non-unique monster when you use it.";
         if (value) return format("%d", 10);
         if (cast)
@@ -7033,7 +7033,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_DARKNESS:
-        if (name) return "Darkness";
+        if (name) return "黑暗";
         if (desc) return "It darkens nearby area or current room and blinds you when you use it.";
         if (color) return format("%d", TERM_L_DARK);
         if (cast)
@@ -7048,7 +7048,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_SUMMON_ANGRY_MONSTERS:
-        if (name) return "Summoning";
+        if (name) return "召唤";
         if (desc) return "It summons several monsters as enemies when you use it.";
         if (color) return format("%d", TERM_RED);
         if (cast)
@@ -7063,7 +7063,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_SLOWNESS:
-        if (name) return "Slowness";
+        if (name) return "迟缓";
         if (desc) return "It slows you down temporarily when you use it.";
         if (color) return format("%d", TERM_UMBER);
         if (cast)
@@ -7075,7 +7075,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
 
     /* Specific Artifacts ... Try to minimize! */
     case EFFECT_JEWEL:
-        if (name) return "Clairvoyance and Recall";
+        if (name) return "透视与召回";
         if (desc) return "It maps, lights permanently and detects all items on the entire level.";
         if (value) return format("%d", 10000);
         if (color) return format("%d", TERM_VIOLET);
@@ -7084,18 +7084,18 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             virtue_add(VIRTUE_KNOWLEDGE, 1);
             virtue_add(VIRTUE_ENLIGHTENMENT, 1);
             wiz_lite(p_ptr->tim_superstealth > 0);
-            msg_print("The Jewel drains your vitality...");
+            msg_print("这颗宝石吸取了你的生命力……");
             take_hit(DAMAGE_LOSELIFE, damroll(3, 8), "the Jewel of Judgement");
             detect_traps(DETECT_RAD_DEFAULT, TRUE);
             detect_doors(DETECT_RAD_DEFAULT);
             detect_stairs(DETECT_RAD_DEFAULT);
-            if (get_check("Activate recall? "))
+            if (get_check("激活召回？"))
                 word_of_recall(TRUE);
             device_noticed = TRUE;
         }
         break;
     case EFFECT_HERMES:
-        if (name) return "Haste and Dimension Door";
+        if (name) return "加速与任意门";
         if (desc) return "It hastes you and teleports you to a chosen nearby location.";
         if (value) return format("%d", 15000);
         if (cast)
@@ -7105,7 +7105,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_ARTEMIS:
-        if (name) return "Create Arrows";
+        if (name) return "制造箭矢";
         if (desc) return "It magically creates arrows out of thin air!";
         if (value) return format("%d", 7500);
         if (cast)
@@ -7122,14 +7122,14 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             forge.discount = 99;
 
             object_desc(o_name, &forge, 0);
-            msg_format("It creates %s.", o_name);
+            msg_format("它制造出了%s。", o_name);
 
             pack_carry(&forge);
             device_noticed = TRUE;
         }
         break;
     case EFFECT_DEMETER:
-        if (name) return "Flame of Demeter";
+        if (name) return "德墨忒尔之焰";
         if (desc) return "It heals you and satiates your hunger.";
         if (info) return info_heal(0, 0, _BOOST(500));
         if (value) return format("%d", 10000);
@@ -7140,7 +7140,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_EYE_VECNA:
-        if (name) return "Eye of Vecna";
+        if (name) return "维克那之眼";
         if (desc) return "It opens your eyes to visions of all that surrounds you.";
         if (value) return format("%d", 10000);
         if (cast)
@@ -7151,7 +7151,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_ONE_RING:
-        if (name) return "Something Weird";
+        if (name) return "怪异之物";
         if (desc) return "It does something completely unpredictable and probably rather bad.";
         if (value) return format("%d", 1000);
         if (cast)
@@ -7169,12 +7169,12 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         {
             int dur;
             if (!get_fire_dir(&dir)) return NULL;
-            msg_print("You breathe the elements.");
+            msg_print("你喷吐出元素。");
 
             fire_ball(GF_MISSILE, dir, _BOOST(300), 4);
             device_noticed = TRUE;
 
-            msg_print("Your armor glows many colours...");
+            msg_print("你的盔甲闪烁着五颜六色的光芒……");
 
             dur = _BOOST(randint1(50) + 50);
 
@@ -7184,7 +7184,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_MITO_KOUMON:
-        if (name) return "Reveal Identity";
+        if (name) return "揭示身份";
         if (desc) return "It reveals your true identity.";
         if (value) return format("%d", 1000);
         if (cast)
@@ -7195,14 +7195,14 @@ cptr do_effect(effect_t *effect, int mode, int boost)
 
             if (summon_named_creature(0, py, px, MON_SUKE, PM_FORCE_PET))
             {
-                msg_print("Suke-san appears.");
-                kakusan = "Suke-san";
+                msg_print("助三出现了。");
+                kakusan = "助三";
                 count++;
             }
             if (summon_named_creature(0, py, px, MON_KAKU, PM_FORCE_PET))
             {
-                msg_print("Kaku-san appears.");
-                kakusan = "Kaku-san";
+                msg_print("格三出现了。");
+                kakusan = "格三";
                 count++;
             }
             if (!count)
@@ -7220,7 +7220,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             }
             if (count)
             {
-                msg_format("%^s says 'WHO do you think this person is! Bow your head, down your knees!'", kakusan);
+                msg_format("%^s说：‘你以为这位大人是谁！还不快快跪下叩头！’", kakusan);
 
                 sukekaku = TRUE;
                 stun_monsters(15);
@@ -7233,7 +7233,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_BLOODY_MOON:
-        if (name) return "Change Zokusei";
+        if (name) return "改变属性";
         if (desc) return "It changes its slays and resistances.";
         if (value) return format("%d", 5000);
         if (cast)
@@ -7254,14 +7254,14 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_SACRED_KNIGHTS:
-        if (name) return "Dispel Curse and Probing";
+        if (name) return "驱除诅咒与探知";
         if (desc) return "It removes all normal curses from your equipment and probes nearby monsters.";
         if (value) return format("%d", 5000);
         if (cast)
         {
             if (remove_all_curse())
             {
-                msg_print("You feel as if someone is watching over you.");
+                msg_print("你感觉好像有人在守护着你。");
                 device_noticed = TRUE;
             }
             if (probing())
@@ -7271,7 +7271,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_GONG:
     {
         int dam = _extra(effect, 3*effect->power);
-        if (name) return "Bang a Gong";
+        if (name) return "敲锣";
         if (desc) return "It makes some very loud noise.";
         if (info) return info_damage(0, 0, _BOOST(dam));
         if (value) return format("%d", 50*dam);
@@ -7285,12 +7285,12 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         break;
     }
     case EFFECT_MURAMASA:
-        if (name) return "Gain Strength";
+        if (name) return "增强力量";
         if (desc) return "It attempts to increase your strength, but is destroyed upon failure.";
         if (value) return format("%d", 5000);
         if (cast)
         {
-            if (get_check("Are you sure?!"))
+            if (get_check("你确定吗？！"))
             {
                 msg_print("");
                 do_inc_stat(A_STR);
@@ -7304,7 +7304,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
                     int slot = equip_find_art(ART_MURAMASA);
                     if (slot)
                     {
-                        msg_print("The Muramasa is destroyed!");
+                        msg_print("村正被摧毁了！");
                         curse_weapon(TRUE, slot);
                     }
                 }
@@ -7312,14 +7312,14 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         }
         break;
     case EFFECT_EXPERTSEXCHANGE: /* adapted from Frogspawn */
-        if (name) return "Change Sex";
+        if (name) return "改变性别";
         if (desc) return "It changes your biological gender.";
         if (value) return format("%d", 100);
         if (cast)
         {
             if ((prace_is_(RACE_MON_POSSESSOR)) || (prace_is_(RACE_MON_MIMIC)))
             {
-                msg_print("Nothing happens. Maybe you should just try another body?");
+                msg_print("什么也没发生。也许你应该直接换一具身体试试？");
                 break;
             }
             p_ptr->psex = (SEX_MALE + SEX_FEMALE) - p_ptr->psex;
@@ -7327,37 +7327,37 @@ cptr do_effect(effect_t *effect, int mode, int boost)
             {
                 mut_lose(MUT_IMPOTENCE);
                 take_hit(DAMAGE_NOESCAPE, 10, "sex reassignment");
-                msg_print("Congratulations! You are now a female!");
+                msg_print("恭喜你！你现在是女性了！");
                 switch (randint0(7))
                 {
-                    case 0: msg_print("(Well, that was quick, and didn't hurt. Much.)"); break;
-                    case 1: msg_print("(Time to start kicking ass.)"); break;
-                    case 2: msg_print("(Already you hate those chauvinist male pigs.)"); break;
-                    case 3: msg_print("(Your remaining inner dirty male is already getting ideas...)"); break;
-                    case 4: msg_print("(At last you can think clearly, without all those weird hormones flowing through your body.)"); break;
-                    case 5: msg_print("(The unfair sex! You've looked forward to this!)"); break;
-                    default: msg_print("(You miss your old body a bit, but you've never been afraid to experiment.)"); break;
+                    case 0: msg_print("(好吧，还挺快的，而且也不疼。不怎么疼。)"); break;
+                    case 1: msg_print("(是时候开始大显身手了。)"); break;
+                    case 2: msg_print("(你已经开始讨厌那些大男子主义的沙文猪了。)"); break;
+                    case 3: msg_print("(你内心残存的那个肮脏男人已经开始动歪脑筋了……)"); break;
+                    case 4: msg_print("(终于，你能够清晰地思考了，而没有那些奇怪的荷尔蒙在你体内流窜。)"); break;
+                    case 5: msg_print("(不公平的性别！你可是期待已久了！)"); break;
+                    default: msg_print("(你有点想念以前的身体，但你从来不怕做实验。)"); break;
                 }
             }
             else
             {
                 if ((one_in_(12)) && (p_ptr->prace != RACE_ENT))
                 {
-                    msg_print("Congratulations! You are now an Ent!");
+                    msg_print("恭喜你！你现在是个树人了！");
                     msg_print(NULL);
-                    msg_print("Nah, just kidding. You are now a male.");
+                    msg_print("不，开玩笑的。你现在是男性了。");
                     break;
                 }
-                else msg_print("Congratulations! You are now a male!");
+                else msg_print("恭喜你！你现在是男性了！");
                 switch (randint0(7))
                 {
-                    case 0: msg_print("(Well, that was quick. You'll make them suffer now.)"); break;
-                    case 1: msg_print("(You feel testosterone flowing through your body. Time to pillage!)"); break;
-                    case 2: msg_print("(Who are you going to boss around now?)"); break;
-                    case 3: msg_print("RAAAAAAAARRH!"); break;
-                    case 4: msg_print("You feel very strong! (Maybe that's just you, though? Either that, or your stats haven't updated properly.)"); break;
-                    case 5: msg_print("(You hope other males will stop pestering you now.)"); break;
-                    default: msg_print("(They'd better pay you a hundred gold pieces for every eighty you earn now.)"); break;
+                    case 0: msg_print("(好吧，还挺快的。现在轮到你让他们受苦了。)"); break;
+                    case 1: msg_print("(你感觉睾酮在你体内流淌。是时候劫掠一番了！)"); break;
+                    case 2: msg_print("(你现在要去对谁发号施令呢？)"); break;
+                    case 3: msg_print("吼啊啊啊啊啊啊！"); break;
+                    case 4: msg_print("你感觉非常强壮！(也许这只是你的错觉？要么就是你的属性还没正确更新。)"); break;
+                    case 5: msg_print("(你希望其他雄性现在能停止纠缠你了。)"); break;
+                    default: msg_print("(现在，你每赚八十个金币，他们最好付给你一百个。)"); break;
                 }
             }
             device_noticed = TRUE;
@@ -7366,16 +7366,16 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_STUNNING_KICK:
     {
         int pow = effect->power * 2;
-        if (name) return "Stunning Stomp";
+        if (name) return "致晕践踏";
         if (desc) return "Forcefully stuns an adjacent monster with a powerful stomp.";
-        if (info) return format("power %d", pow);
+        if (info) return format("强度 %d", pow);
         if (value) return format("%d", 125*MAX(0, pow - 25));
         if (color) return format("%d", TERM_L_GREEN);
         if (cast)
         {
             if ((d_info[dungeon_type].flags1 & DF1_NO_MELEE) || (no_melee_challenge))
             {
-                msg_print("Something prevents you from attacking.");
+                msg_print("有什么东西阻止了你攻击。");
                 break;
             }
             else
@@ -7395,7 +7395,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     }
     case EFFECT_RAMA_ARROW:
     {
-        if (name) return "Mighty Arrow";
+        if (name) return "强力之箭";
         if (desc) return "Fires a single arrow with extra might, tripling the normal damage.";
         if (info) return "dam x3";
         if (value) return format("%d", 10000);
@@ -7403,7 +7403,7 @@ cptr do_effect(effect_t *effect, int mode, int boost)
         if (cast)                         {
             if (melee_challenge)
             {
-                msg_print("You are reminded of your solemn vow to rely on melee only.");
+                msg_print("你想起了你仅依赖近战的庄严誓言。");
                 break;
             }
             else
@@ -7420,9 +7420,9 @@ cptr do_effect(effect_t *effect, int mode, int boost)
     case EFFECT_UNFOCUS_RAGE:
     {
         int pow = _extra(effect, effect->power * 2);
-        if (name) return "Unfocus Rage";
+        if (name) return "狂怒解除";
         if (desc) return ((p_ptr->pclass == CLASS_RAGE_MAGE) ? "Removes fear, removes berserk strength and converts up to 200 SP to HP." : "Removes fear and berserk strength.");
-        if ((info) && (p_ptr->pclass == CLASS_RAGE_MAGE)) return format("power %d", pow);
+        if ((info) && (p_ptr->pclass == CLASS_RAGE_MAGE)) return format("强度 %d", pow);
         if (value) return format("%d", 2500);
         if (color) return format("%d", TERM_YELLOW);
         if (cast)

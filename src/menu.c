@@ -110,8 +110,8 @@ static int _choose(menu_ptr menu)
     if (menu->browse_prompt)
     {
         allow_browse = TRUE;
-        sprintf(choose_prompt, "%s (Type '?' to browse)", menu->choose_prompt);
-        sprintf(browse_prompt, "%s (Type '?' to choose)", menu->browse_prompt);
+        sprintf(choose_prompt, "%s (按 ? 浏览说明)", menu->choose_prompt);
+        sprintf(browse_prompt, "%s (按 ? 返回选择)", menu->browse_prompt);
     }
     else
     {

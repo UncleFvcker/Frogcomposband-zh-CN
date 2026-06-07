@@ -215,7 +215,7 @@ BOOL ReadDIB(HWND hWnd, LPSTR lpFileName, DIBINIT *pInfo)
     if (fh == -1)
     {
         wsprintf(str, "Can't open file '%s'", (LPSTR)lpFileName);
-        MessageBox(NULL, str, "Error", MB_ICONSTOP | MB_OK);
+        MessageBox(NULL, str, "错误", MB_ICONSTOP | MB_OK);
         return (FALSE);
     }
 

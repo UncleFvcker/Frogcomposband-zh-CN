@@ -4,7 +4,7 @@ static void _birth(void)
 {
     p_ptr->current_r_idx = MON_GAZER;
     equip_on_change_race();
-    skills_innate_init("Gaze", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("凝视", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
     py_birth_food();
     py_birth_light();
@@ -79,7 +79,7 @@ static void _calc_innate_attacks(void)
             a.blows = 100 + MIN(300, 300 * pow / 60);
         }
         a.msg = "You gaze.";
-        a.name = "Gaze";
+        a.name = "凝视";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -90,10 +90,10 @@ static void _gaze_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Gaze");
+        var_set_string(res, "凝视");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Gaze at a nearby monster for various effects.");
+        var_set_string(res, "凝视附近的怪物，产生各种效果。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_range(6 + _rank()));
@@ -127,10 +127,10 @@ static void _vision_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Vision");
+        var_set_string(res, "视野");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Maps your nearby location.");
+        var_set_string(res, "映射附近的地图。");
         break;
     case SPELL_CAST:
         map_area(DETECT_RAD_MAP);
@@ -179,7 +179,7 @@ static spell_info _ultimate_beholder_spells[] = {
 static spell_info *_get_spells(void) {
     if (p_ptr->blind)
     {
-        msg_print("You can't see!");
+        msg_print("你看不见！");
         return NULL;
     }
 
@@ -305,21 +305,21 @@ static void _gain_level(int new_level) {
     if (p_ptr->current_r_idx == MON_GAZER && new_level >= 10)
     {
         p_ptr->current_r_idx = MON_SPECTATOR;
-        msg_print("You have evolved into a Spectator.");
+        msg_print("你进化成了旁观者(Spectator)。");
         equip_on_change_race();
         p_ptr->redraw |= PR_MAP | PR_BASIC;
     }
     if (p_ptr->current_r_idx == MON_SPECTATOR && new_level >= 25)
     {
         p_ptr->current_r_idx = MON_BEHOLDER;
-        msg_print("You have evolved into a Beholder.");
+        msg_print("你进化成了眼魔(Beholder)。");
         equip_on_change_race();
         p_ptr->redraw |= PR_MAP | PR_BASIC;
     }
     if (p_ptr->current_r_idx == MON_BEHOLDER && new_level >= 35)
     {
         p_ptr->current_r_idx = MON_UNDEAD_BEHOLDER;
-        msg_print("You have evolved into an Undead Beholder.");
+        msg_print("你进化成了不死眼魔(Undead Beholder)。");
         equip_on_change_race();
         lp_player(1000); /* undead - no life drain */
         p_ptr->redraw |= PR_MAP | PR_BASIC;
@@ -328,7 +328,7 @@ static void _gain_level(int new_level) {
     {
         p_ptr->current_r_idx = MON_ULTIMATE_BEHOLDER;
         p_ptr->psex = SEX_FEMALE;
-        msg_print("You have evolved into an Ultimate Beholder.");
+        msg_print("你进化成了终极眼魔(Ultimate Beholder)。");
         equip_on_change_race();
         p_ptr->redraw |= PR_MAP | PR_BASIC;
     }
@@ -339,7 +339,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "power";
+        me.magic_desc = "力量";
         me.which_stat = A_INT;
         me.encumbrance.max_wgt = 100;
         me.encumbrance.weapon_pct = 100;
@@ -357,7 +357,7 @@ race_t *mon_beholder_get_race(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[5] =  {"Gazer", "Spectator", "Beholder", "Undead Beholder", "Ultimate Beholder"};
+    static cptr   titles[5] =  {"凝视者", "旁观者", "眼魔", "不死眼魔", "终极眼魔"};
     int           rank = _rank();
 
     if (!init)
@@ -365,24 +365,8 @@ race_t *mon_beholder_get_race(void)
     skills_t bs = { 30,  50,  47,   7,  20,  20,  40,  20};
     skills_t xs = { 10,  20,  15,   1,  20,  20,  16,   7};
 
-        me.name = "Beholder";
-        me.desc = "Beholders are floating orbs of flesh with a single central eye surrounded by "
-                    "numerous smaller eyestalks. They attack with their gaze which often confuses or "
-                    "even paralyzes their foes. They are unable to wield normal weapons or armor, but "
-                    "may equip a single ring on each of their eyestalks, and the number of eyestalks "
-                    "increases as the beholder evolves.\n \n"
-                    "Beholders gain powers as they evolve, including some strong offensive spells; "
-                    "but their primary offense will always be their powerful gaze. Intelligence is their "
-                    "spell stat, and beholders are quite intelligent indeed. Their searching and "
-                    "perception are legendary, and they are quite capable with magical devices. "
-                    "However, they are not very strong and must be careful when surrounded by "
-                    "foes.\n \n"
-                    "The attack of the beholder is unique. Since their gaze is not a normal physical "
-                    "attack, they receive no benefit to melee from their Strength and Dexterity. Also, "
-                    "the number of attacks is determined by level rather than the normal way: in this "
-                    "respect, they resemble monks. Finally, the beholder need not be next to their foes "
-                    "in order to attack with melee; they may gaze at distant monsters, though the range "
-                    "of their gaze is somewhat restricted, and prolonged long-distant gazing will tire them out.";
+        me.name = "眼魔";
+        me.desc = "眼魔是漂浮的肉球，中央长有一只大眼睛，周围环绕着许多长在眼柄上的小眼睛。它们用凝视进行攻击，通常会使敌人混乱甚至瘫痪。它们无法使用普通的武器或护甲，但可以在每个眼柄上装备一枚戒指，并且眼柄的数量会随着眼魔的进化而增加。\n \n随着眼魔的进化，它们会获得更强大的力量，包括一些强力的攻击性法术；但它们的主要攻击手段始终是强大的凝视。智力是它们的施法属性，而眼魔确实非常聪明。它们的搜索和察觉能力是传说级别的，并且非常擅长使用魔法装置。然而，它们并不算强壮，在被敌人包围时必须小心。\n \n眼魔的攻击方式很独特。因为凝视不是普通的物理攻击，它们无法从力量和敏捷中获得近战加成。此外，攻击次数是由等级决定的，而不是通常的方式：在这方面，它们类似于武僧。最后，眼魔不需要靠近敌人就能进行“近战”攻击；它们可以凝视远处的怪物，尽管其凝视的范围受到一定限制，而且长时间的远距离凝视会使它们疲惫不堪。";
 
         me.skills = bs;
         me.extra_skills = xs;

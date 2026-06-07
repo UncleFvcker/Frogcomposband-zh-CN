@@ -103,8 +103,8 @@ void home_init(void)
     inv_free(_home);
     inv_free(_museum);
 
-    _home = inv_alloc("Home", INV_HOME, 0);
-    _museum = inv_alloc("Museum", INV_MUSEUM, 0);
+    _home = inv_alloc("家", INV_HOME, 0);
+    _museum = inv_alloc("博物馆", INV_MUSEUM, 0);
 }
 
 inv_ptr home_filter(obj_p p)
@@ -241,7 +241,7 @@ static void _drop_aux(obj_ptr obj, _ui_context_ptr context);
 
 bool _fetch_museum_data(_ui_context_ptr context)
 {
-    _museum = inv_alloc("Museum", INV_MUSEUM, 0);
+    _museum = inv_alloc("博物馆", INV_MUSEUM, 0);
     //  make http post request
     http_response_t response;
     bool success = make_http_request("http://111.229.130.78:5000/frogcomposbandnet/share_room/list/v2", NULL, &response);
@@ -369,7 +369,7 @@ void museum_ui(void)
     _ui_context_t context = {0};
     int success = _fetch_museum_data(&context);
     if (!success){
-        msg_format("<color:R>Failed to fetch museum data.</color>");
+        msg_format("<color:R>获取博物馆数据失败。</color>");
         return;
     }
 
@@ -416,7 +416,7 @@ static void _ui(_ui_context_ptr context)
             case 'x': _examine(context); break;
             case 'r': _remove(context); break;
             case '?':
-                doc_display_help("context_home.txt", inv_loc(context->inv) == INV_MUSEUM ? "Museum" : NULL);
+                doc_display_help("context_home.txt", inv_loc(context->inv) == INV_MUSEUM ? "博物馆" : NULL);
                 Term_clear_rect(ui_shop_msg_rect());
                 break;
             case SKEY_PGDOWN: case '3': case ' ':
@@ -439,14 +439,12 @@ static void _ui(_ui_context_ptr context)
             default:
                 if (cmd < 256 && isprint(cmd))
                 {
-                    msg_format("Unrecognized command: <color:R>%c</color>. "
-                               "Press <color:keypress>?</color> for help.", cmd);
+                    msg_format("未识别的命令：<color:R>%c</color>。按 <color:keypress>?</color> 获取帮助。", cmd);
                 }
                 else if (KTRL('A') <= cmd && cmd <= KTRL('Z'))
                 {
                     cmd |= 0x40;
-                    msg_format("Unrecognized command: <color:R>^%c</color>. "
-                               "Press <color:keypress>?</color> for help.", cmd);
+                    msg_format("未识别的命令：<color:R>^%c</color>。按 <color:keypress>?</color> 获取帮助。", cmd);
                 }
             }
             ct = inv_count_slots(context->inv, obj_exists);
@@ -463,8 +461,8 @@ static void _ui(_ui_context_ptr context)
         handle_stuff(); /* Plus 'C' to view character sheet */
         if ((shop_exit_hack) || (pack_overflow_count() > ((pack_is_full()) ? 0 : 1)))
         {
-            if (shop_exit_hack) msg_print("It's time for you to leave!");
-            else msg_print("<color:v>Your pack is overflowing!</color> It's time for you to leave!");
+            if (shop_exit_hack) msg_print("你该离开了！");
+            else msg_print("<color:v>你的背包满了！</color>你该离开了！");
             msg_print(NULL);
             shop_exit_hack = FALSE;
             break;
@@ -502,7 +500,7 @@ static void _display(_ui_context_ptr context)
             int page_count = (max - 1) / context->page_size + 1;
             int page_current = (context->top - 1) / context->page_size + 1;
 
-            doc_printf(doc, "<color:B>(Page %d of %d)</color>\n", page_current, page_count);
+            doc_printf(doc, "<color:B>(第 %d 页，共 %d 页)</color>\n", page_current, page_count);
         }
         else
             doc_newline(doc);
@@ -520,8 +518,8 @@ static void _display(_ui_context_ptr context)
             "<color:keypress>?</color> for help.");
         }
     else {
-        doc_insert(doc, "<color:keypress>d</color> to donate an item. "
-                        "<color:keypress>g</color> to get an item. ");
+        doc_insert(doc, "按 <color:keypress>d</color> 捐赠物品。"
+                        "按 <color:keypress>g</color> 取出物品。");
         doc_insert(doc,
             "<color:keypress>x</color> to begin examining items.\n"
             "<color:keypress>Esc</color> to exit. "
@@ -563,7 +561,7 @@ static void _get(_ui_context_ptr context)
 
         if (obj->number > 1)
         {
-            if (!msg_input_num("Quantity", &amt, 1, obj->number)) continue;
+            if (!msg_input_num("数量", &amt, 1, obj->number)) continue;
         }
 
         int cookie_requirement = calculate_obj_cookie_requirement(obj);
@@ -572,11 +570,11 @@ static void _get(_ui_context_ptr context)
         if (inv_loc(context->inv) == INV_MUSEUM)
         {
             if(p_ptr->cookie < cookie_requirement) {
-                msg_print("<color:R>You have no enough cookies to get this item.</color>");
+                msg_print("<color:R>你没有足够的代币(Cookie)来获取此物品。</color>");
                 continue;
             }
             if(!_sync_get(obj)) {
-                msg_print("<color:R>Failed to get item from museum. Please try again later.</color>");
+                msg_print("<color:R>从博物馆获取物品失败。请稍后再试。</color>");
                 continue;
             }
             p_ptr->cookie -= cookie_requirement;
@@ -613,7 +611,7 @@ static void _drop_aux(obj_ptr obj, _ui_context_ptr context)
     char name[MAX_NLEN];
     if (object_is_(obj, TV_POTION, SV_POTION_BLOOD))
     {
-        msg_print("The potion goes sour.");
+        msg_print("药水变酸了。");
         obj->sval = SV_POTION_SALT_WATER;
         obj->k_idx = lookup_kind(TV_POTION, SV_POTION_SALT_WATER);
         object_origins(obj, ORIGIN_BLOOD);
@@ -622,7 +620,7 @@ static void _drop_aux(obj_ptr obj, _ui_context_ptr context)
     object_desc(name, obj, OD_COLOR_CODED);
     if (inv_loc(context->inv) == INV_MUSEUM)
     {
-        msg_format("You donate %s.", name);
+        msg_format("你捐赠了%s。", name);
 
         museum_carry(obj);
         inv_sort(_museum);
@@ -630,7 +628,7 @@ static void _drop_aux(obj_ptr obj, _ui_context_ptr context)
     }
     else
     {
-        msg_format("You drop %s.", name);
+        msg_format("你丢下了%s。", name);
         home_carry(obj);
         inv_sort(_home);
     }
@@ -644,13 +642,13 @@ static void _drop(_ui_context_ptr context)
 
     if (inv_loc(context->inv) == INV_MUSEUM)
     {
-        prompt.prompt = "Donate which item?";
-        prompt.error = "You have nothing to donate.";
+        prompt.prompt = "捐赠哪件物品？";
+        prompt.error = "你没有可捐赠的物品。";
     }
     else
     {
-        prompt.prompt = "Drop which item?";
-        prompt.error = "You have nothing to drop.";
+        prompt.prompt = "丢下哪件物品？";
+        prompt.error = "你没有可丢下的物品。";
     }
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
@@ -662,7 +660,7 @@ static void _drop(_ui_context_ptr context)
 
     if (obj_is_true_art(prompt.obj) && inv_loc(context->inv) == INV_MUSEUM)
     {
-        msg_print("You cannot donate true artifacts to the museum.");
+        msg_print("你不能将真正的神器捐赠给博物馆。");
         return;
     }
 
@@ -670,7 +668,7 @@ static void _drop(_ui_context_ptr context)
     {
         if (prompt.obj->tval == TV_QUIVER && quiver_count(NULL))
         {
-            msg_print("Your quiver still holds ammo. Remove all the ammo from your quiver first.");
+            msg_print("你的箭袋里还有弹药。请先取出箭袋里的所有弹药。");
             return;
         }
         if (!equip_can_takeoff(prompt.obj)) return;
@@ -693,12 +691,12 @@ static void _drop(_ui_context_ptr context)
 
     if (prompt.obj->number > 1)
     {
-        if (!msg_input_num("Quantity", &amt, 1, prompt.obj->number)) return;
+        if (!msg_input_num("数量", &amt, 1, prompt.obj->number)) return;
     }
 
     if (inv_loc(context->inv) == INV_MUSEUM)
         if (!_sync_drop(context, prompt.obj)) {
-            msg_print("<color:R>Failed to donate item to museum. Please try again later.</color>");
+            msg_print("<color:R>捐赠物品至博物馆失败。请稍后再试。</color>");
             return;
         }
 
@@ -707,7 +705,7 @@ static void _drop(_ui_context_ptr context)
     {
         char name[MAX_NLEN];
         object_desc(name, prompt.obj, OD_COLOR_CODED);
-        msg_format("You are no longer wearing %s.", name);
+        msg_format("你不再穿戴%s。", name);
         p_ptr->update |= PU_BONUS | PU_TORCH | PU_MANA;
         p_ptr->redraw |= PR_EQUIPPY;
         p_ptr->window |= PW_EQUIP;        
@@ -761,7 +759,7 @@ static void _remove(_ui_context_ptr context)
 {
     if (inv_loc(context->inv) == INV_MUSEUM)
     {
-        msg_print("<color:R>You cannot remove items from the museum.</color>");
+        msg_print("<color:R>你不能从博物馆中取出物品。</color>");
         return;
     }
 
@@ -786,7 +784,7 @@ static void _remove(_ui_context_ptr context)
         if (!can_player_destroy_object(obj))
         {
             object_desc(name, obj, OD_COLOR_CODED);
-            msg_format("You cannot destroy %s.", name);
+            msg_format("你不能破坏%s。", name);
             continue;
         }
         inv_remove(context->inv, slot);
@@ -794,4 +792,3 @@ static void _remove(_ui_context_ptr context)
         _display(context);
     }
 }
-

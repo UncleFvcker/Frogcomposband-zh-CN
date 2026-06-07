@@ -1166,13 +1166,13 @@ static errr rd_dungeon(savefile_ptr file)
         note("Too many object entries!");
         break;
     case 152:
-        note("Object allocation error");
+        note("物品分配错误");
         break;
     case 161:
         note("Too many monster entries!");
         break;
     case 162:
-        note("Monster allocation error");
+        note("怪物分配错误");
         break;
     case 171:
         note("Dungeon data of saved floors are broken!");
@@ -1224,13 +1224,13 @@ static errr rd_savefile_new_aux(savefile_ptr file)
     sf_saves = savefile_read_u16b(file);
 
     rd_randomizer(file);
-    if (arg_fiddle) note("Loaded Randomizer Info");
+    if (arg_fiddle) note("已加载随机生成器信息");
 
     rd_options(file);
-    if (arg_fiddle) note("Loaded Option Flags");
+    if (arg_fiddle) note("已加载选项标志");
 
     msg_on_load(file);
-    if (arg_fiddle) note("Loaded Messages");
+    if (arg_fiddle) note("已加载消息日志");
 
     for (i = 0; i < max_r_idx; i++)
     {
@@ -1277,7 +1277,7 @@ static errr rd_savefile_new_aux(savefile_ptr file)
         if (header & 0x02)
             rd_lore_aux(file, race);
     }
-    if (arg_fiddle) note("Loaded Monster Memory");
+    if (arg_fiddle) note("已加载怪物记忆");
 
 
     /* Object Memory */
@@ -1358,11 +1358,11 @@ static errr rd_savefile_new_aux(savefile_ptr file)
             art->known_flags[b] = savefile_read_u32b(file);
         }
     }
-    if (arg_fiddle) note("Loaded Object Memory");
+    if (arg_fiddle) note("已加载物品记忆");
 
     p_ptr->quest_seed = 0; /* paranoia */
     quests_load(file); /* quests must load after monster lore ... see above */
-    if (arg_fiddle) note("Loaded Quests");
+    if (arg_fiddle) note("已加载任务");
 
     p_ptr->wilderness_x = savefile_read_s32b(file);
     p_ptr->wilderness_y = savefile_read_s32b(file);
@@ -1396,14 +1396,14 @@ static errr rd_savefile_new_aux(savefile_ptr file)
         a_ptr->found = savefile_read_byte(file);
         a_ptr->floor_id = savefile_read_s16b(file);
     }
-    if (arg_fiddle) note("Loaded Artifacts");
+    if (arg_fiddle) note("已加载神器");
 
 
     rd_extra(file);
 
     if (p_ptr->energy_need < -999) world_player = TRUE;
 
-    if (arg_fiddle) note("Loaded extra information");
+    if (arg_fiddle) note("已加载额外信息");
 
     /* Read the player_hp array */
     tmp16u = savefile_read_u16b(file);
@@ -1477,7 +1477,7 @@ static errr rd_savefile_new_aux(savefile_ptr file)
         note("Restoring Dungeon...");
         if (rd_dungeon(file))
         {
-            note("Error reading dungeon data");
+            note("读取地下城数据时发生错误");
             return (34);
         }
         handle_tmp_indices(FALSE, FALSE);
@@ -1489,14 +1489,14 @@ static errr rd_savefile_new_aux(savefile_ptr file)
     o_v_check = savefile_read_u32b(file);
     if (o_v_check != n_v_check)
     {
-        note("Invalid checksum");
+        note("无效的校验和");
         return (11);
     }
     n_x_check = file->x_check;
     o_x_check = savefile_read_u32b(file);
     if (o_x_check != n_x_check)
     {
-        note("Invalid encoded checksum");
+        note("无效的编码校验和");
         return (11);
     }
 
@@ -1584,7 +1584,7 @@ bool load_floor(saved_floor_type *sf_ptr, u32b mode)
 
     if (!ok)
     {
-        msg_print("Software bug in load_floor: All is *not* OK!");
+        msg_print("load_floor 中的软件错误：一切都*不*正常！");
     }
 
     return TRUE;

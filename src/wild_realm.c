@@ -23,91 +23,91 @@ typedef struct {
    if desired. */
 void _wild_infravision_on(void) {
     if (!IS_TIM_INFRA())
-        msg_print("Your eyes begin to tingle!");
+        msg_print("你的眼睛开始感到刺痛！");
 }
 
 void _wild_infravision_off(void) {
     if (p_ptr->tim_infra)
         set_tim_infra(0, TRUE);
     if (!IS_TIM_INFRA())
-        msg_print("Your eyes stop tingling.");
+        msg_print("你的眼睛不再刺痛了。");
 }
 
 void _wild_bless_on(void) {
     if (!IS_BLESSED())
-        msg_print("You feel righteous!");
+        msg_print("你感到充满正气！");
 }
 
 void _wild_bless_off(void) {
     if (p_ptr->blessed)
         set_blessed(0, TRUE);
     if (!IS_BLESSED())
-        msg_print("The prayer has expired.");
+        msg_print("祈祷效果已结束。");
 }
 
 void _wild_berserk_on(void) {
     if (!IS_SHERO())
-        msg_print("You feel like a killing machine!");
+        msg_print("你感觉自己像一台杀戮机器！");
 }
 
 void _wild_berserk_off(void) {
     if (p_ptr->shero)
         set_shero(0, TRUE);
     if (!IS_SHERO())
-        msg_print("You feel less Berserk.");
+        msg_print("你感觉没那么狂暴了。");
 }
 
 void _wild_speed_on(void) {
     if (!IS_FAST() && !IS_LIGHT_SPEED())
-        msg_print("You feel yourself moving much faster!");
+        msg_print("你感觉自己移动得快多了！");
 }
 
 void _wild_speed_off(void) {
     if (p_ptr->fast)
         set_fast(0, TRUE);
     if (!IS_FAST() && !IS_LIGHT_SPEED())
-        msg_print("You feel yourself slow down.");
+        msg_print("你感觉自己慢了下来。");
 }
 
 void _wild_esp_on(void) {
     if (!IS_TIM_ESP())
-        msg_print("You feel your consciousness expand!");
+        msg_print("你感觉你的意识在扩张！");
 }
 
 void _wild_esp_off(void) {
     if (p_ptr->tim_esp)
         set_tim_esp(0, TRUE);
     if (!IS_TIM_ESP())
-        msg_print("Your consciousness contracts again.");
+        msg_print("你的意识再次收缩。");
 }
 
 void _wild_prot_evil_on(void) {
     if (!IS_PROT_EVIL())
-        msg_print("You feel safe from evil!");
+        msg_print("你感到免受邪恶的侵害！");
 }
 
 void _wild_prot_evil_off(void) {
     if (p_ptr->protevil)
         set_protevil(0, TRUE);
     if (!IS_PROT_EVIL())
-        msg_print("You no longer feel safe from evil.");
+        msg_print("你不再感到免受邪恶侵害。");
 }
 
 void _wild_magic_resist_on(void) {
     if (!IS_RESIST_MAGIC())
-        msg_print("You feel resistant to magic!");
+        msg_print("你感到对魔法有抗性！");
 }
 
 void _wild_magic_resist_off(void) {
     if (p_ptr->resist_magic)
         set_resist_magic(0, TRUE);
     if (!IS_RESIST_MAGIC())
-        msg_print("You no longer feel resistant to magic.");
+        msg_print("你不再感到对魔法有抗性。");
 }
 
 void _wild_resist_on(void) {
     if (!IS_RESIST())
-        msg_print("You feel resistant to the elements!");
+        msg_print("你感到对元素有抗性！");
 }
 
 void _wild_resist_off(void) {
@@ -122,67 +122,67 @@ void _wild_resist_off(void) {
     if (p_ptr->oppose_pois)
         set_oppose_pois(0, TRUE);
     if (!IS_RESIST())
-        msg_print("You no longer feel resistant to the elements.");
+        msg_print("你不再感到对元素有抗性。");
 }
 
 void _wild_stone_skin_on(void) {
     if (!IS_STONE_SKIN())
-        msg_print("Your skin turns to stone!");
+        msg_print("你的皮肤变成了石头！");
 }
 
 void _wild_stone_skin_off(void) {
     if (p_ptr->shield)
         set_shield(0, TRUE);
     if (!IS_STONE_SKIN())
-        msg_print("Your skin turns to normal.");
+        msg_print("你的皮肤恢复了正常。");
 }
 
 void _wild_passwall_on(void) {
     if (!IS_PASSWALL())
-        msg_print("You take on an ethereal form!");
+        msg_print("你呈现出虚无的形态！");
 }
 
 void _wild_passwall_off(void) {
     if (p_ptr->kabenuke)
         set_kabenuke(0, TRUE);
     if (!IS_PASSWALL())
-        msg_print("You are no longer ethereal.");
+        msg_print("你不再是虚无的了。");
 }
 
 void _wild_revenge_on(void) {
     if (!IS_REVENGE())
-        msg_print("You feel like a keeper of commandments!");
+        msg_print("你感觉自己像是一个戒律的守护者！");
 }
 
 void _wild_revenge_off(void) {
     if (p_ptr->tim_eyeeye)
         set_tim_eyeeye(0, TRUE);
     if (!IS_REVENGE())
-        msg_print("You feel like letting bygones be bygones.");
+        msg_print("你觉得应该让过去的事情都过去吧。");
 }
 
 void _wild_invulnerability_on(void) {
     if (!IS_INVULN())
-        msg_print("Invulnerability!");
+        msg_print("无敌！");
 }
 
 void _wild_invulnerability_off(void) {
     if (p_ptr->invuln)
         set_invuln(0, TRUE);
     if (!IS_INVULN())
-        msg_print("The invulnerability wears off.");    /* no energy penalty */
+        msg_print("无敌效果消失了。");    /* no energy penalty */
 }
 
 void _wild_wraith_on(void) {
     if (!IS_WRAITH())
-        msg_print("You leave the physical world and turn into a wraith-being!");
+        msg_print("你离开了物质世界，变成了一个怨灵(wraith)实体！");
 }
 
 void _wild_wraith_off(void) {
     if (p_ptr->wraith_form)
         set_wraith_form(0, TRUE);
     if (!IS_WRAITH())
-        msg_print("You feel opaque.");
+        msg_print("你感觉自己变得不透明了。");
 }
 
 _counter_type _types[] = {

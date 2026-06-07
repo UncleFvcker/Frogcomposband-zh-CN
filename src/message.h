@@ -29,6 +29,8 @@ extern void     msg_on_save(savefile_ptr file);
 extern int      msg_count(void);
 extern msg_ptr  msg_get(int age);
 extern int      msg_get_plain_text(int age, char *buffer, int max);
+extern int      msg_recent_count(void);
+extern int      msg_recent_text(int age, char *buffer, int max);
 
 extern void msg_add(cptr msg);
 extern void cmsg_add(byte color, cptr msg);

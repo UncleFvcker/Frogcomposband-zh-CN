@@ -30,7 +30,7 @@ class_t *monster_get_class(void)
 
     if (!init)
     {
-        me.name = "Monster";
+        me.name = "怪物";
         me.desc = "";
         me.life = 100;
         me.exp = 100;

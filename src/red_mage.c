@@ -5,7 +5,7 @@ void _double_magic_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Double Magic");
+        var_set_string(res, "双重施法");
         break;
     case SPELL_DESC:
         var_set_string(res, "");
@@ -38,7 +38,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.which_stat = A_INT;
         me.encumbrance.max_wgt = 430;
         me.encumbrance.weapon_pct = 33;
@@ -71,16 +71,8 @@ class_t *red_mage_get_class(void)
     skills_t bs = { 20,  34,  34,   1,  16,  10,  56,  25};
     skills_t xs = {  7,  11,  11,   0,   0,   0,  18,  11};
 
-        me.name = "Red-Mage";
-        me.desc = "Red-Mages make better fighters than most mages, and are also "
-                    "versatile spellcasters who can use many realms without needing "
-                    "to specialize in only one or two. The downside of this wide scope is "
-                    "that Red-Mages' magic is fairly shallow; they have high fail rates, "
-                    "minimum levels and mana costs, and are limited to the first two "
-                    "spellbooks in each realm except for Arcane.\n\n"
-                    "Red-Mages have a class power, 'Double Magic', which allows them to "
-                    "cast two spells at once. As with regular mages, their spellcasting stat "
-                    "is Intelligence.";
+        me.name = "红魔道士";
+        me.desc = "红魔道士是比大多数魔法师更优秀的战士，他们也是多才多艺的施法者，可以使用许多魔法领域，而无需只专精于一两个。这种广泛涉猎的缺点是，红魔道士的魔法相当肤浅；他们有很高的失败率、最低等级要求和法力消耗，并且除了奥秘领域外，其他每个领域都受限于前两本法术书。\n\n红魔道士拥有一项职业能力——“双重施法”，允许他们同时施展两个法术。与普通魔法师一样，他们的施法属性是智力(Intelligence)。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] =  2;

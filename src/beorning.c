@@ -11,7 +11,7 @@ void _beorning_pack_init(void)
 {
     if ((_pack_initialized) && (!_do_init_pack)) return;
     inv_free(_beorning_pack);
-    _beorning_pack = inv_alloc("Satchel", INV_SPECIAL1, _MAX_PACK_SLOTS);
+    _beorning_pack = inv_alloc("行囊", INV_SPECIAL1, _MAX_PACK_SLOTS);
     _pack_initialized = TRUE;
     _do_init_pack = FALSE;
 }
@@ -107,7 +107,7 @@ static void _birth(void)
     _beorning_pack_init();
 
     _beorning_form = 0;
-    skills_innate_init("Claw", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("爪击", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
     py_birth_food();
     py_birth_light();
 }
@@ -131,7 +131,7 @@ void _beorning_calc_innate_attacks(void)
         a.weight = 100;
         calc_innate_blows(&a, 386 + (l * 2));
         a.msg = "You claw.";
-        a.name = "Claw";
+        a.name = "爪击";
 
         if (psion_combat()) psion_combat_innate_blows(&a);
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -143,22 +143,22 @@ void beorning_change_shape_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Change Skin");
+        var_set_string(res, "变形");
         break;
     case SPELL_DESC:
-        if (_beorning_form == BEORNING_FORM_HUMAN) var_set_string(res, "Assume the shape of a bear. Changing shape costs two turns.");
-        else var_set_string(res, "Assume the shape of a human. Changing shape costs two turns.");
+        if (_beorning_form == BEORNING_FORM_HUMAN) var_set_string(res, "变身为熊形态。变形需要消耗两个回合。");
+        else var_set_string(res, "变身为人类形态。变形需要消耗两个回合。");
         break;
     case SPELL_CAST:
         if (p_ptr->cursed & 0x0000000F)
         {
-            msg_print("Your cursed equipment prevents you from changing shape!");
+            msg_print("你被诅咒的装备阻止了你变形！");
             var_set_bool(res, FALSE);
             break;
         }
         if (psion_weapon_graft())
         {
-            msg_print("You cannot change shape with a weapon fused to your arm!");
+            msg_print("当武器与你的手臂融合时，你无法变形！");
             var_set_bool(res, FALSE);
             break;
         }
@@ -166,10 +166,10 @@ void beorning_change_shape_spell(int cmd, variant *res)
         _beorning_equip_on_change_form();
         if (_beorning_form == BEORNING_FORM_BEAR)
         {
-            msg_format("You turn into a bear!");
+            msg_format("你变成了一只熊！");
             stop_mouth();
         }
-        else msg_format("You turn into a human!");
+        else msg_format("你变回了人类！");
         var_set_bool(res, TRUE);
         handle_stuff();
         break;
@@ -187,10 +187,10 @@ void _bear_swipe_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Swipe");
+        var_set_string(res, "横扫");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Strike all adjacent monsters with one swiping blow.");
+        var_set_string(res, "用一次横扫攻击击中所有相邻的怪物。");
         break;
     case SPELL_CAST:
     {
@@ -223,10 +223,10 @@ void _bear_charge_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Mauling Charge");
+        var_set_string(res, "猛扑冲锋");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Charge at a nearby monster.");
+        var_set_string(res, "向附近的怪物冲锋。");
         break;
     case SPELL_CAST:
         var_set_bool(res, rush_attack((p_ptr->lev >= 40 ? 3 : 2), NULL));
@@ -242,10 +242,10 @@ void _bear_sniff_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Sniff");
+        var_set_string(res, "嗅探");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempt to smell nearby monsters.");
+        var_set_string(res, "尝试嗅探附近的怪物。");
         break;
     case SPELL_CAST:
         detect_monsters_living(DETECT_RAD_DEFAULT, "You smell nearby monsters.");
@@ -262,10 +262,10 @@ void _raging_swipe_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Raging Swipe");
+        var_set_string(res, "狂暴横扫");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Strike all adjacent monsters with a mighty blow, attempting to knock them back.");
+        var_set_string(res, "用一次强力攻击击中所有相邻怪物，并尝试将它们击退。");
         break;
     case SPELL_CAST:
     {
@@ -407,7 +407,7 @@ static void _dump_satchel(doc_ptr doc)
     {
         char o_name[MAX_NLEN];
 
-        doc_insert(doc, "<topic:Satchel>============================= <color:keypress>S</color>hape-Shift Satchel =============================\n\n");
+        doc_insert(doc, "<topic:Satchel>============================= 变形行囊 (<color:keypress>S</color>) =============================\n\n");
         for (slot = 1; slot <= _MAX_PACK_SLOTS; slot++)
         {
             object_type *o_ptr = inv_obj(_beorning_pack, slot);
@@ -451,15 +451,8 @@ race_t *beorning_get_race(void)
     {
         if (!init)
         {
-            me.name = "Beorning";
-            me.desc = "Beornings are a hardy, northern race of men, renowned for their ability "
-                    "to assume the shape of a bear. Bear-formed Beornings greatly resemble "
-                    "Berserkers: they are extremely strong in melee and very hard to kill, but "
-                    "incapable of reading scrolls, casting spells or using magical devices. "
-                    "Man-shaped Beornings are still stronger in combat than a regular human, "
-                    "but somewhat lacking in magical skills.\n\nThe equipment slots available "
-                    "to a Beorning depend on their shape, and like Werewolves, they carry a "
-                    "special satchel for keeping the items not needed in their current shape.";
+            me.name = "比翁人";
+            me.desc = "比翁人是一个坚韧的北方人类种族，以其化身熊形的能力而闻名。熊形态的比翁人非常类似于狂战士：他们在近战中极其强壮且非常难被杀死，但无法阅读卷轴、施展法术或使用魔法装置。人类形态的比翁人在战斗中仍比普通人类更强，但在魔法技能方面略有欠缺。\n\n比翁人可用的装备槽位取决于他们的形态，而且像狼人一样，他们携带一个特殊的行囊，用于存放在当前形态下不需要的物品。";
 
             me.infra = 5;
             me.exp = 140;

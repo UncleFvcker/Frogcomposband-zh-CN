@@ -30,8 +30,8 @@ static void _birth(void)
     object_type forge;
 
     p_ptr->current_r_idx = MON_PUMPKIN_MAN;
-    skills_innate_init("Squash", WEAPON_EXP_BEGINNER, WEAPON_EXP_SKILLED);
-    skills_innate_init("Bite", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("重压", WEAPON_EXP_BEGINNER, WEAPON_EXP_SKILLED);
+    skills_innate_init("撕咬", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
     object_prep(&forge, lookup_kind(TV_SWORD, SV_DAGGER));
     py_birth_obj(&forge);
@@ -59,7 +59,7 @@ static void _calc_innate_attacks(void)
 
         a.blows = 100;
         a.msg = "You squash.";
-        a.name = "Squash";
+        a.name = "重压";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -75,7 +75,7 @@ static void _calc_innate_attacks(void)
         if (p_ptr->lev >= 40) a.effect[1] = GF_OLD_DRAIN;
         calc_innate_blows(&a, 450);
         a.msg = "You bite.";
-        a.name = "Bite";
+        a.name = "撕咬";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -86,7 +86,7 @@ static void _gain_level(int new_level)
     if (p_ptr->current_r_idx == MON_PUMPKIN_MAN && new_level >= PUMP_LEVEL)
     {
         p_ptr->current_r_idx = MON_DEATH_PUMPKIN;
-        msg_print("You have evolved into a Death pumpkin.");
+        msg_print("你进化成了死亡南瓜(Death pumpkin)。");
         equip_on_change_race();
         p_ptr->redraw |= PR_MAP | PR_BASIC;
     }
@@ -148,10 +148,10 @@ void _pumpkin_breathe_light_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Breathe Light");
+        var_set_string(res, "光明吐息");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Breathes bright light at your chosen target.");
+        var_set_string(res, "向你选择的目标喷吐强光。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_damage(0, 0, dam));
@@ -162,7 +162,7 @@ void _pumpkin_breathe_light_spell(int cmd, variant *res)
         var_set_bool(res, FALSE);
         if (!get_fire_dir(&dir)) return;
 
-        msg_print("You breathe light.");
+        msg_print("你喷吐出光芒。");
         fire_ball(GF_LITE, dir, dam, -3);
 
         var_set_bool(res, TRUE);
@@ -200,7 +200,7 @@ race_t *mon_pumpkin_get_race(void)
         me.infra = 2;
         me.shop_adjust = 110;
 
-        me.name = "Pumpkin";
+        me.name = "南瓜怪";
         me.desc = _desc;
         me.calc_innate_attacks = _calc_innate_attacks;
         me.birth = _birth;

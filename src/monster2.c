@@ -425,7 +425,7 @@ void compact_monsters(int size)
     int        cur_lev, cur_dis, chance;
 
     /* Message (only if compacting) */
-    if (size) msg_print("Compacting monsters...");
+    if (size) msg_print("正在压缩怪物...");
 
 
     /* Compact at least 'size' objects */
@@ -755,8 +755,8 @@ void pack_on_slay_monster(int m_idx)
                      if (d_ptr->initial_guardian == m_ptr->r_idx)
                      {
                          dungeon_flags[j] |= DUNGEON_NO_GUARDIAN;
-                         msg_print("A <color:r>software bug</color> has been detected!");
-                         msg_print("This bug will likely have <color:G>no effects</color> on your game whatsoever, but please report it to the maintainer anyway. (Or, alternatively, yell at Gwarl.)");
+                         msg_print("检测到一个<color:r>软件漏洞(Bug)</color>！");
+                         msg_print("这个Bug可能对你的游戏<color:G>没有任何影响</color>，但无论如何请向维护者报告。（或者，你可以去冲 Gwarl 大喊大叫。）");
                          msg_print(NULL);
                          break;
                      }
@@ -834,7 +834,7 @@ s16b m_pop(void)
 
 
     /* Warn the player (except during dungeon creation) */
-    if (character_dungeon) msg_print("Too many monsters!");
+    if (character_dungeon) msg_print("怪物太多了！");
 
 
     /* Try not to crash */
@@ -1922,7 +1922,7 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
 
     /* Mode of MD_TRUE_NAME will reveal Chameleon's true name */
     if (mode & MD_TRUE_NAME) name = (r_name + real_r_ptr(m_ptr)->name);
-    else if ((m_ptr->mflag2 & MFLAG2_FUZZY) && (!(mode & MD_IGNORE_HALLU))) name = "Monster";
+    else if ((m_ptr->mflag2 & MFLAG2_FUZZY) && (!(mode & MD_IGNORE_HALLU))) name = "怪物";
     else name = (r_name + r_ptr->name);
 
     /* Are we hallucinating? (Idea from Nethack...) */
@@ -2372,8 +2372,8 @@ void sanity_blast(monster_type *m_ptr, bool necro)
         if (p_ptr->image)
         {
             /* Something silly happens... */
-            msg_format("You behold the %s visage of %s!",
-                funny_desc[randint0(MAX_SAN_FUNNY)], m_name);
+            msg_format("你看到了%s那%s的面容！",
+                m_name, funny_desc[randint0(MAX_SAN_FUNNY)]);
 
 
             if (one_in_(3))
@@ -2386,8 +2386,8 @@ void sanity_blast(monster_type *m_ptr, bool necro)
         }
 
         /* Something frightening happens... */
-        msg_format("You behold the %s visage of %s!",
-            horror_desc[randint0(MAX_SAN_HORROR)], m_name);
+        msg_format("你看到了%s那%s的面容！",
+            m_name, horror_desc[randint0(MAX_SAN_HORROR)]);
 
         mon_lore_aux_2(r_ptr, RF2_ELDRITCH_HORROR);
 
@@ -2405,7 +2405,7 @@ void sanity_blast(monster_type *m_ptr, bool necro)
     }
     else
     {
-        msg_print("Your sanity is shaken by reading the Necronomicon!");
+        msg_print("阅读《死灵之书》动摇了你的理智！");
 
     }
 
@@ -2462,7 +2462,7 @@ void sanity_blast(monster_type *m_ptr, bool necro)
     {
 
         if (lose_all_info())
-            msg_print("You forget everything in your utmost terror!");
+            msg_print("在极度的恐慌中，你忘记了一切！");
 
         return;
     }
@@ -2507,7 +2507,7 @@ void sanity_blast(monster_type *m_ptr, bool necro)
                            every trip down to the dungeon, or you could just try to find more Int/Wis to
                            compensate. A guaranteed 12% fail rate penalty on spells is a bit too harsh ...
                            */
-                        msg_print("You feel like a moron for a moment, but it passes.");
+                        msg_print("你有一瞬间觉得自己像个白痴，但这种感觉很快就过去了。");
                         happened = TRUE;
                     }
                 }
@@ -3241,9 +3241,9 @@ void choose_new_monster(int m_idx, bool born, int r_idx)
     {
         char m_name[80];
         monster_desc(m_name, m_ptr, 0);
-        msg_format("Suddenly, %s transforms!", old_m_name);
+        msg_format("突然，%s变形了！", old_m_name);
         if (!(r_ptr->flags7 & RF7_RIDING))
-            if (rakuba(0, TRUE)) msg_format("You have fallen from %s.", m_name);
+            if (rakuba(0, TRUE)) msg_format("你从%s身上摔了下来。", m_name);
     }
 
     /* Extract the monster base speed */
@@ -3449,7 +3449,7 @@ int place_monster_one(int who, int y, int x, int r_idx, int pack_idx, u32b mode)
             /* Describe observable breakage */
             if (c_ptr->info & CAVE_MARK)
             {
-                msg_print("The rune of protection is broken!");
+                msg_print("保护符文被破坏了！");
 
             }
 
@@ -3474,14 +3474,14 @@ int place_monster_one(int who, int y, int x, int r_idx, int pack_idx, u32b mode)
         if (r_ptr->flags1 & (RF1_UNIQUE))
         {
             /* Message for cheaters */
-            if (cheat_hear && 0) msg_format("Deep Unique (%s).", name);
+            if (cheat_hear && 0) msg_format("深层唯一怪 (%s)。", name);
         }
 
         /* Normal monsters */
         else
         {
             /* Message for cheaters */
-            if (cheat_hear && 0) msg_format("Deep Monster (%s).", name);
+            if (cheat_hear && 0) msg_format("深层怪物 (%s)。", name);
         }
     }
 
@@ -3489,7 +3489,7 @@ int place_monster_one(int who, int y, int x, int r_idx, int pack_idx, u32b mode)
     else if (r_ptr->flags1 & (RF1_UNIQUE))
     {
         /* Unique monsters induce message */
-        if (cheat_hear && 0) msg_format("Unique (%s).", name);
+        if (cheat_hear && 0) msg_format("唯一怪 (%s)。", name);
 
     }
 
@@ -3825,12 +3825,12 @@ int place_monster_one(int who, int y, int x, int r_idx, int pack_idx, u32b mode)
             if (o_ptr)
             {
                 object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
-                msg_format("%s glows %s.", o_name, color);
+                msg_format("%s发出%s的光芒。", o_name, color);
                 obj_learn_flag(o_ptr, OF_WARNING);
             }
             else
             {
-                msg_format("An %s image forms in your mind.");
+                msg_format("一个%s的图像在你的脑海中形成。");
             }
         }
     }
@@ -4383,7 +4383,7 @@ bool alloc_monster(int dis, u32b mode)
     {
         if (cheat_xtra || cheat_hear)
         {
-            msg_print("Warning! Could not allocate a new monster. Small level?");
+            msg_print("警告！无法分配新怪物。楼层太小了？");
 
         }
 
@@ -4409,7 +4409,7 @@ bool alloc_monster(int dis, u32b mode)
     {
         if (alloc_horde(y, x))
         {
-            if (cheat_hear) msg_format("Monster horde (%c).", summon_kin_type);
+            if (cheat_hear) msg_format("怪物群 (%c)。", summon_kin_type);
 
             return (TRUE);
         }
@@ -4548,7 +4548,7 @@ bool summon_specific(int who, int y1, int x1, int lev, int type, u32b mode)
     {
         if (p_ptr->anti_summon && !one_in_(3))
         {
-            msg_format("The summoning is blocked!");
+            msg_format("召唤被阻止了！");
             return FALSE;
         }
     }
@@ -4590,7 +4590,7 @@ bool summon_specific(int who, int y1, int x1, int lev, int type, u32b mode)
         _ignore_depth_hack = TRUE;
 
     /* Hack - preserve old level of summoning in the Vault */
-    if ((quest_id_current()) && (strpos("The Vault", quests_get_current()->name) == 1)) summon_level -= 5;
+    if ((quest_id_current()) && (strpos("地下金库", quests_get_current()->name) == 1)) summon_level -= 5;
 
     /* Activate danger hack */
     _danger_hack = TRUE;
@@ -4675,7 +4675,7 @@ bool summon_named_creature (int who, int oy, int ox, int r_idx, u32b mode)
     if (p_ptr->inside_arena) return FALSE;
     if (p_ptr->anti_summon && !one_in_(3))
     {
-        msg_format("The summoning is blocked!");
+        msg_format("召唤被阻止了！");
         return FALSE;
     }
     if (!mon_scatter(r_idx, &y, &x, oy, ox, 2)) return FALSE;
@@ -4789,7 +4789,7 @@ void message_pain(int m_idx, int dam)
     /* Notice non-damage */
     if ((dam == 0) || (melee_challenge)) /* Assume only called from spells/ranged attacks */
     {
-        msg_format("%^s is unharmed.", m_name);
+        msg_format("%^s毫发无损。", m_name);
 
         return;
     }
@@ -4805,19 +4805,19 @@ void message_pain(int m_idx, int dam)
     if (my_strchr(",ejmvwQ", r_ptr->d_char))
     {
         if (percentage > 95)
-            msg_format("%^s barely notices.", m_name);
+            msg_format("%^s几乎没注意到。", m_name);
         else if (percentage > 75)
-            msg_format("%^s flinches.", m_name);
+            msg_format("%^s退缩了一下。", m_name);
         else if (percentage > 50)
-            msg_format("%^s squelches.", m_name);
+            msg_format("%^s发出了嘎吱声。", m_name);
         else if (percentage > 35)
-            msg_format("%^s quivers in pain.", m_name);
+            msg_format("%^s痛苦地颤抖着。", m_name);
         else if (percentage > 20)
-            msg_format("%^s writhes about.", m_name);
+            msg_format("%^s来回扭动着。", m_name);
         else if (percentage > 10)
-            msg_format("%^s writhes in agony.", m_name);
+            msg_format("%^s痛苦地扭动着。", m_name);
         else
-            msg_format("%^s jerks limply.", m_name);
+            msg_format("%^s软弱无力地抽搐着。", m_name);
 
     }
 
@@ -4826,19 +4826,19 @@ void message_pain(int m_idx, int dam)
     else if (my_strchr("l", r_ptr->d_char))
     {
         if (percentage > 95)
-            msg_format("%^s barely notices.", m_name);
+            msg_format("%^s几乎没注意到。", m_name);
         else if (percentage > 75)
-            msg_format("%^s flinches.", m_name);
+            msg_format("%^s退缩了一下。", m_name);
         else if (percentage > 50)
-            msg_format("%^s hesitates.", m_name);
+            msg_format("%^s犹豫了一下。", m_name);
         else if (percentage > 35)
-            msg_format("%^s quivers in pain.", m_name);
+            msg_format("%^s痛苦地颤抖着。", m_name);
         else if (percentage > 20)
-            msg_format("%^s writhes about.", m_name);
+            msg_format("%^s来回扭动着。", m_name);
         else if (percentage > 10)
-            msg_format("%^s writhes in agony.", m_name);
+            msg_format("%^s痛苦地扭动着。", m_name);
         else
-            msg_format("%^s jerks limply.", m_name);
+            msg_format("%^s软弱无力地抽搐着。", m_name);
     }
 
 
@@ -4846,19 +4846,19 @@ void message_pain(int m_idx, int dam)
     else if (my_strchr("g#+<>", r_ptr->d_char))
     {
         if (percentage > 95)
-            msg_format("%^s ignores the attack.", m_name);
+            msg_format("%^s无视了攻击。", m_name);
         else if (percentage > 75)
-            msg_format("%^s shrugs off the attack.", m_name);
+            msg_format("%^s对攻击不屑一顾。", m_name);
         else if (percentage > 50)
-            msg_format("%^s roars thunderously.", m_name);
+            msg_format("%^s发出雷鸣般的咆哮。", m_name);
         else if (percentage > 35)
-            msg_format("%^s rumbles.", m_name);
+            msg_format("%^s发出隆隆声。", m_name);
         else if (percentage > 20)
-            msg_format("%^s grunts.", m_name);
+            msg_format("%^s发出咕噜声。", m_name);
         else if (percentage > 10)
-            msg_format("%^s hesitates.", m_name);
+            msg_format("%^s犹豫了一下。", m_name);
         else
-            msg_format("%^s crumples.", m_name);
+            msg_format("%^s瘫倒在地。", m_name);
     }
 
 
@@ -4866,19 +4866,19 @@ void message_pain(int m_idx, int dam)
     else if (my_strchr("JMR", r_ptr->d_char) || !isalpha(r_ptr->d_char))
     {
         if (percentage > 95)
-            msg_format("%^s barely notices.", m_name);
+            msg_format("%^s几乎没注意到。", m_name);
         else if (percentage > 75)
-            msg_format("%^s hisses.", m_name);
+            msg_format("%^s发出嘶嘶声。", m_name);
         else if (percentage > 50)
-            msg_format("%^s rears up in anger.", m_name);
+            msg_format("%^s愤怒地直立起来。", m_name);
         else if (percentage > 35)
-            msg_format("%^s hisses furiously.", m_name);
+            msg_format("%^s愤怒地发出嘶嘶声。", m_name);
         else if (percentage > 20)
-            msg_format("%^s writhes about.", m_name);
+            msg_format("%^s来回扭动着。", m_name);
         else if (percentage > 10)
-            msg_format("%^s writhes in agony.", m_name);
+            msg_format("%^s痛苦地扭动着。", m_name);
         else
-            msg_format("%^s jerks limply.", m_name);
+            msg_format("%^s软弱无力地抽搐着。", m_name);
     }
 
 
@@ -4886,19 +4886,19 @@ void message_pain(int m_idx, int dam)
     else if (my_strchr("f", r_ptr->d_char))
     {
         if (percentage > 95)
-            msg_format("%^s shrugs off the attack.", m_name);
+            msg_format("%^s对攻击不屑一顾。", m_name);
         else if (percentage > 75)
-            msg_format("%^s roars.", m_name);
+            msg_format("%^s咆哮着。", m_name);
         else if (percentage > 50)
-            msg_format("%^s growls angrily.", m_name);
+            msg_format("%^s愤怒地低吼。", m_name);
         else if (percentage > 35)
-            msg_format("%^s hisses with pain.", m_name);
+            msg_format("%^s痛苦地发出嘶嘶声。", m_name);
         else if (percentage > 20)
-            msg_format("%^s mewls in pain.", m_name);
+            msg_format("%^s痛苦地哀鸣。", m_name);
         else if (percentage > 10)
-            msg_format("%^s hisses in agony.", m_name);
+            msg_format("%^s痛苦万分地发出嘶嘶声。", m_name);
         else
-            msg_format("%^s mewls pitifully.", m_name);
+            msg_format("%^s可怜地哀鸣。", m_name);
     }
 
 
@@ -4906,24 +4906,24 @@ void message_pain(int m_idx, int dam)
     else if (my_strchr("acFIKS", r_ptr->d_char))
     {
         if (percentage > 95)
-            msg_format("%^s ignores the attack.", m_name);
+            msg_format("%^s无视了攻击。", m_name);
         else if (percentage > 75)
-            msg_format("%^s chitters.", m_name);
+            msg_format("%^s叽叽喳喳叫着。", m_name);
 
         else if (percentage > 50)
-            msg_format("%^s scuttles about.", m_name);
+            msg_format("%^s四处乱窜。", m_name);
 
         else if (percentage > 35)
-            msg_format("%^s twitters.", m_name);
+            msg_format("%^s发出唧唧声。", m_name);
 
         else if (percentage > 20)
-            msg_format("%^s jerks in pain.", m_name);
+            msg_format("%^s痛苦地抽搐着。", m_name);
 
         else if (percentage > 10)
-            msg_format("%^s jerks in agony.", m_name);
+            msg_format("%^s痛苦万分地抽搐着。", m_name);
 
         else
-            msg_format("%^s twitches.", m_name);
+            msg_format("%^s抽动了一下。", m_name);
 
     }
 
@@ -4932,25 +4932,25 @@ void message_pain(int m_idx, int dam)
     else if (my_strchr("B", r_ptr->d_char))
     {
         if (percentage > 95)
-            msg_format("%^s chirps.", m_name);
+            msg_format("%^s发出啁啾声。", m_name);
 
         else if (percentage > 75)
-            msg_format("%^s twitters.", m_name);
+            msg_format("%^s发出唧唧声。", m_name);
 
         else if (percentage > 50)
-            msg_format("%^s squawks.", m_name);
+            msg_format("%^s发出尖叫。", m_name);
 
         else if (percentage > 35)
-            msg_format("%^s chatters.", m_name);
+            msg_format("%^s喋喋不休地叫着。", m_name);
 
         else if (percentage > 20)
-            msg_format("%^s jeers.", m_name);
+            msg_format("%^s发出嘲笑声。", m_name);
 
         else if (percentage > 10)
-            msg_format("%^s flutters about.", m_name);
+            msg_format("%^s到处扑腾。", m_name);
 
         else
-            msg_format("%^s squeaks.", m_name);
+            msg_format("%^s发出吱吱声。", m_name);
 
     }
 
@@ -4959,25 +4959,25 @@ void message_pain(int m_idx, int dam)
     else if (my_strchr("duDLUW", r_ptr->d_char))
     {
         if (percentage > 95)
-            msg_format("%^s ignores the attack.", m_name);
+            msg_format("%^s无视了攻击。", m_name);
 
         else if (percentage > 75)
-            msg_format("%^s flinches.", m_name);
+            msg_format("%^s退缩了一下。", m_name);
 
         else if (percentage > 50)
-            msg_format("%^s hisses in pain.", m_name);
+            msg_format("%^s痛苦地发出嘶嘶声。", m_name);
 
         else if (percentage > 35)
-            msg_format("%^s snarls with pain.", m_name);
+            msg_format("%^s痛苦地龇牙咧嘴。", m_name);
 
         else if (percentage > 20)
-            msg_format("%^s roars with pain.", m_name);
+            msg_format("%^s痛苦地咆哮着。", m_name);
 
         else if (percentage > 10)
-            msg_format("%^s gasps.", m_name);
+            msg_format("%^s喘息着。", m_name);
 
         else
-            msg_format("%^s snarls feebly.", m_name);
+            msg_format("%^s微弱地龇起牙。", m_name);
 
     }
 
@@ -4986,25 +4986,25 @@ void message_pain(int m_idx, int dam)
     else if (my_strchr("s", r_ptr->d_char))
     {
         if (percentage > 95)
-            msg_format("%^s ignores the attack.", m_name);
+            msg_format("%^s无视了攻击。", m_name);
 
         else if (percentage > 75)
-            msg_format("%^s shrugs off the attack.", m_name);
+            msg_format("%^s对攻击不屑一顾。", m_name);
 
         else if (percentage > 50)
-            msg_format("%^s rattles.", m_name);
+            msg_format("%^s嘎嘎作响。", m_name);
 
         else if (percentage > 35)
-            msg_format("%^s stumbles.", m_name);
+            msg_format("%^s踉跄了一下。", m_name);
 
         else if (percentage > 20)
-            msg_format("%^s rattles.", m_name);
+            msg_format("%^s嘎嘎作响。", m_name);
 
         else if (percentage > 10)
-            msg_format("%^s staggers.", m_name);
+            msg_format("%^s蹒跚不稳。", m_name);
 
         else
-            msg_format("%^s clatters.", m_name);
+            msg_format("%^s哗啦作响。", m_name);
 
     }
 
@@ -5013,25 +5013,25 @@ void message_pain(int m_idx, int dam)
     else if (my_strchr("z", r_ptr->d_char))
     {
         if (percentage > 95)
-            msg_format("%^s ignores the attack.", m_name);
+            msg_format("%^s无视了攻击。", m_name);
 
         else if (percentage > 75)
-            msg_format("%^s shrugs off the attack.", m_name);
+            msg_format("%^s对攻击不屑一顾。", m_name);
 
         else if (percentage > 50)
-            msg_format("%^s groans.", m_name);
+            msg_format("%^s呻吟着。", m_name);
 
         else if (percentage > 35)
-            msg_format("%^s moans.", m_name);
+            msg_format("%^s哀叹着。", m_name);
 
         else if (percentage > 20)
-            msg_format("%^s hesitates.", m_name);
+            msg_format("%^s犹豫了一下。", m_name);
 
         else if (percentage > 10)
-            msg_format("%^s grunts.", m_name);
+            msg_format("%^s发出咕噜声。", m_name);
 
         else
-            msg_format("%^s staggers.", m_name);
+            msg_format("%^s蹒跚不稳。", m_name);
 
     }
 
@@ -5041,25 +5041,25 @@ void message_pain(int m_idx, int dam)
 
     {
         if (percentage > 95)
-            msg_format("%^s ignores the attack.", m_name);
+            msg_format("%^s无视了攻击。", m_name);
 
         else if (percentage > 75)
-            msg_format("%^s shrugs off the attack.", m_name);
+            msg_format("%^s对攻击不屑一顾。", m_name);
 
         else if (percentage > 50)
-            msg_format("%^s moans.", m_name);
+            msg_format("%^s哀叹着。", m_name);
 
         else if (percentage > 35)
-            msg_format("%^s wails.", m_name);
+            msg_format("%^s哀嚎着。", m_name);
 
         else if (percentage > 20)
-            msg_format("%^s howls.", m_name);
+            msg_format("%^s长嚎着。", m_name);
 
         else if (percentage > 10)
-            msg_format("%^s moans softly.", m_name);
+            msg_format("%^s轻声哀叹。", m_name);
 
         else
-            msg_format("%^s sighs.", m_name);
+            msg_format("%^s叹息着。", m_name);
 
     }
 
@@ -5068,19 +5068,19 @@ void message_pain(int m_idx, int dam)
     else if (my_strchr("CZ", r_ptr->d_char))
     {
         if (percentage > 95)
-            msg_format("%^s shrugs off the attack.", m_name);
+            msg_format("%^s对攻击不屑一顾。", m_name);
         else if (percentage > 75)
-            msg_format("%^s snarls with pain.", m_name);
+            msg_format("%^s痛苦地龇牙咧嘴。", m_name);
         else if (percentage > 50)
-            msg_format("%^s yelps in pain.", m_name);
+            msg_format("%^s痛苦地叫唤着。", m_name);
         else if (percentage > 35)
-            msg_format("%^s howls in pain.", m_name);
+            msg_format("%^s痛苦地长嚎。", m_name);
         else if (percentage > 20)
-            msg_format("%^s howls in agony.", m_name);
+            msg_format("%^s极度痛苦地长嚎。", m_name);
         else if (percentage > 10)
-            msg_format("%^s writhes in agony.", m_name);
+            msg_format("%^s痛苦地扭动着。", m_name);
         else
-            msg_format("%^s yelps feebly.", m_name);
+            msg_format("%^s微弱地叫唤着。", m_name);
 
     }
 
@@ -5088,19 +5088,19 @@ void message_pain(int m_idx, int dam)
     else if (my_strchr("Xbilqrt", r_ptr->d_char))
     {
         if (percentage > 95)
-            msg_format("%^s ignores the attack.", m_name);
+            msg_format("%^s无视了攻击。", m_name);
         else if (percentage > 75)
-            msg_format("%^s grunts with pain.", m_name);
+            msg_format("%^s痛苦地发出咕噜声。", m_name);
         else if (percentage > 50)
-            msg_format("%^s squeals in pain.", m_name);
+            msg_format("%^s痛苦地尖叫着。", m_name);
         else if (percentage > 35)
-            msg_format("%^s shrieks in pain.", m_name);
+            msg_format("%^s痛苦地尖声惊叫。", m_name);
         else if (percentage > 20)
-            msg_format("%^s shrieks in agony.", m_name);
+            msg_format("%^s极度痛苦地尖声惊叫。", m_name);
         else if (percentage > 10)
-            msg_format("%^s writhes in agony.", m_name);
+            msg_format("%^s痛苦地扭动着。", m_name);
         else
-            msg_format("%^s cries out feebly.", m_name);
+            msg_format("%^s微弱地呼喊着。", m_name);
 
     }
 
@@ -5108,19 +5108,19 @@ void message_pain(int m_idx, int dam)
     else
     {
         if (percentage > 95)
-            msg_format("%^s shrugs off the attack.", m_name);
+            msg_format("%^s对攻击不屑一顾。", m_name);
         else if (percentage > 75)
-            msg_format("%^s grunts with pain.", m_name);
+            msg_format("%^s痛苦地发出咕噜声。", m_name);
         else if (percentage > 50)
-            msg_format("%^s cries out in pain.", m_name);
+            msg_format("%^s痛苦地呼喊着。", m_name);
         else if (percentage > 35)
-            msg_format("%^s screams in pain.", m_name);
+            msg_format("%^s痛苦地惨叫。", m_name);
         else if (percentage > 20)
-            msg_format("%^s screams in agony.", m_name);
+            msg_format("%^s极度痛苦地惨叫。", m_name);
         else if (percentage > 10)
-            msg_format("%^s writhes in agony.", m_name);
+            msg_format("%^s痛苦地扭动着。", m_name);
         else
-            msg_format("%^s cries out feebly.", m_name);
+            msg_format("%^s微弱地呼喊着。", m_name);
 
     }
 }
@@ -5212,10 +5212,10 @@ bool player_place(int y, int x)
     /* Now we're really getting desperate */
     if ((!player_can_enter(cave[y][x].feat, 0)) || (cave[y][x].m_idx != 0)) 
     {
-        msg_print("Failed to place player - attempting desperation teleport...");
+        msg_print("未能放置玩家 - 尝试孤注一掷的传送...");
         teleport_player(200, 0L);
     }
-    if ((!player_can_enter(cave[py][px].feat, 0)) || (cave[py][px].m_idx != 0)) { msg_print("Failed."); return FALSE; }
+    if ((!player_can_enter(cave[py][px].feat, 0)) || (cave[py][px].m_idx != 0)) { msg_print("失败了。"); return FALSE; }
 
 
     /* Success */

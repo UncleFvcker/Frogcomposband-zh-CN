@@ -6,22 +6,22 @@ static void _blood_rite_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Blood Rite");
+        var_set_string(res, "鲜血仪式");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Temporarily increase the cost and effectiveness of your spells.");
+        var_set_string(res, "暂时增加你法术的消耗和效果。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
         if (p_ptr->tim_blood_rite)
         {
-            msg_print("The Blood Rite is already active.");
+            msg_print("鲜血仪式已经处于激活状态。");
             return;
         }
         if ((get_race()->flags & RACE_IS_NONLIVING) || (p_ptr->no_cut))
         {
-            if (get_true_race()->flags & RACE_IS_NONLIVING) msg_print("You can no longer use blood magic!");
-            else msg_print("You cannot use blood magic while transformed into a nonliving creature.");
+            if (get_true_race()->flags & RACE_IS_NONLIVING) msg_print("你不能再使用鲜血魔法了！");
+            else msg_print("在变成非生命生物时，你无法使用鲜血魔法。");
             return;
         }
         set_tim_blood_rite(10, FALSE);
@@ -62,7 +62,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "blood spell";
+        me.magic_desc = "鲜血法术";
         me.which_stat = A_INT;
         /* Note: Even though we use HP for casting, encumbrance matters.
          * See mod_spell_chance* in spells3.c */
@@ -93,15 +93,8 @@ class_t *blood_mage_get_class(void)
     skills_t bs = { 30,  40,  38,   3,  16,  20,  34,  20};
     skills_t xs = {  7,  15,  11,   0,   0,   0,   6,   7};
 
-        me.name = "Blood-Mage";
-        me.desc = "A Blood-Mage is similar to a normal mage in his selection and "
-                    "variety of spells, but differs in that he has no separate "
-                    "mana pool; instead, spells are powered by hit points. "
-                    "Moreover, due to the Blood-Mage's abnormal constitution, "
-                    "all healing is much less effective than normal; indeed, Blood-Mages "
-                    "completely eschew healing spells to not disrupt the flow "
-                    "of blood that is the essence of their power. They shun the realm of "
-                    "Life as anathema to all they hold sacred.";
+        me.name = "血法师";
+        me.desc = "血法师在法术的选择和种类上与普通法师相似，不同之处在于他们没有独立的法力池；取而代之的是，法术由生命值驱动。此外，由于血法师异常的体质，所有的治疗效果都比平常低得多；事实上，血法师完全避开了治疗法术，以免破坏作为他们力量精华的血液流动。他们将生命魔法领域视为对他们神圣之物的诅咒而避之不及。";
 
         me.stats[A_STR] = -4;
         me.stats[A_INT] =  3;

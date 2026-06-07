@@ -26,9 +26,9 @@ static void _birth(void)
 
     p_ptr->current_r_idx = MON_CENTIPEDE_WHITE;
     equip_on_change_race();
-    skills_innate_init("Bite", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
-    skills_innate_init("Sting", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
-    skills_innate_init("Crawl", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("撕咬", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("蛰刺", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
+    skills_innate_init("爬行", WEAPON_EXP_BEGINNER, WEAPON_EXP_MASTER);
 
 
     object_prep(&forge, lookup_kind(TV_RING, 0));
@@ -69,35 +69,35 @@ static void _gain_level(int new_level)
     {
         p_ptr->current_r_idx = MON_CENTIPEDE_GREEN;
         equip_on_change_race();
-        msg_print("You have evolved into a metallic green centipede.");
+        msg_print("你进化成了金属绿蜈蚣。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_CENTIPEDE_GREEN && new_level >= 14)
     {
         p_ptr->current_r_idx = MON_CENTIPEDE_BLUE;
         equip_on_change_race();
-        msg_print("You have evolved into a metallic blue centipede.");
+        msg_print("你进化成了金属蓝蜈蚣。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_CENTIPEDE_BLUE && new_level >= 21)
     {
         p_ptr->current_r_idx = MON_CENTIPEDE_RED;
         equip_on_change_race();
-        msg_print("You have evolved into a metallic red centipede.");
+        msg_print("你进化成了金属红蜈蚣。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_CENTIPEDE_RED && new_level >= 28)
     {
         p_ptr->current_r_idx = MON_CENTIPEDE_CLEAR;
         equip_on_change_race();
-        msg_print("You have evolved into a giant clear centipede.");
+        msg_print("你进化成了巨型透明蜈蚣。");
         p_ptr->redraw |= PR_MAP;
     }
     if (p_ptr->current_r_idx == MON_CENTIPEDE_CLEAR && new_level >= 35 && player_is_monster_king())
     {
         p_ptr->current_r_idx = MON_CENTIPEDE_MULTIHUED;
         equip_on_change_race();
-        msg_print("You have evolved into The Multi-hued Centipede! There can only be one, you know ...");
+        msg_print("你进化成了斑斓蜈蚣！你知道的，这世上只能有一只……");
         p_ptr->redraw |= PR_MAP;
     }
 }
@@ -121,7 +121,7 @@ static void _calc_innate_attacks(void)
         a.effect[0] = GF_MISSILE;
         a.blows = 100;
         a.msg = "You bite.";
-        a.name = "Bite";
+        a.name = "撕咬";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -140,7 +140,7 @@ static void _calc_innate_attacks(void)
             a.effect[1] = GF_POIS;
         a.blows = 100;
         a.msg = "You sting.";
-        a.name = "Sting";
+        a.name = "蛰刺";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -159,7 +159,7 @@ static void _calc_innate_attacks(void)
         a.effect[0] = GF_MISSILE;
         calc_innate_blows(&a, 100 + 50*r);
         a.msg = "You crawl.";
-        a.name = "Crawl";
+        a.name = "爬行";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -191,9 +191,9 @@ race_t *mon_centipede_get_race(void)
     static race_t me = {0};
     static bool   init = FALSE;
     int           r = _rank();
-    static cptr   titles[6] =  {"Giant white centipede", "Metallic green centipede",
-                                "Metallic blue centipede", "Metallic red centipede",
-                                "Giant clear centipede", "The Multi-hued Centipede"};
+    static cptr   titles[6] =  {"巨型白蜈蚣", "金属绿蜈蚣",
+                                "金属蓝蜈蚣", "金属红蜈蚣",
+                                "巨型透明蜈蚣", "斑斓蜈蚣"};
 
     if (!init)
     {           /* dis, dev, sav, stl, srh, fos, thn, thb */
@@ -203,7 +203,7 @@ race_t *mon_centipede_get_race(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.name = "Centipede";
+        me.name = "蜈蚣";
         me.desc = _desc;
 
         me.infra = 5;

@@ -602,7 +602,7 @@ term *angband_term[8];
  */
 char angband_term_name[8][16] =
 {
-    "Main",
+    "主菜单",
     "Term-1",
     "Term-2",
     "Term-3",
@@ -690,7 +690,7 @@ char angband_sound_name[SOUND_MAX][16] =
     "rocket",
     "n_kill",
     "u_kill",
-    "quest",
+    "任务",
     "heal",
     "x_heal",
     "bite",
@@ -1292,11 +1292,11 @@ bool reset_concent = FALSE;   /* Concentration reset flag */
  * several places compares them to r_ptr->rflags3 */
 pantheon_type pant_list[PANTHEON_MAX] =
 {
-    { 0, 0, 0, "BUGGY", "Bug", "Software Bugs"},
-    { PANTHEON_OLYMPIAN, RF3_OLYMPIAN, RF3_OLYMPIAN2, "Olympian", "Oly", "Olympians"},
-    { PANTHEON_EGYPTIAN, RF3_EGYPTIAN, RF3_EGYPTIAN2, "Egyptian", "Egy", "Egyptian gods"},
-    { PANTHEON_NORSE, RF3_NORSE, RF3_NORSE2, "Norse", "Nor", "Aesir"},
-    { PANTHEON_HINDU, RF3_HINDU, RF3_HINDU2, "Hindu", "Ind", "Hindu deities"},
+    { 0, 0, 0, "BUGGY", "漏", "软件漏洞"},
+    { PANTHEON_OLYMPIAN, RF3_OLYMPIAN, RF3_OLYMPIAN2, "奥林匹斯", "奥", "奥林匹斯诸神"},
+    { PANTHEON_EGYPTIAN, RF3_EGYPTIAN, RF3_EGYPTIAN2, "埃及", "埃", "埃及诸神"},
+    { PANTHEON_NORSE, RF3_NORSE, RF3_NORSE2, "北欧", "北", "阿萨神族"},
+    { PANTHEON_HINDU, RF3_HINDU, RF3_HINDU2, "印度", "印", "印度诸神"},
 };
 
 byte summon_pantheon_hack = 0;

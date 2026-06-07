@@ -13,7 +13,7 @@ static size_t _write_callback(void *contents, size_t size, size_t nmemb, void *u
     char *ptr = realloc(mem->data, mem->size + realsize + 1);
     if (!ptr) {
         /* Out of memory */
-        msg_print("<color:r>Error: Not enough memory for HTTP response</color>");
+        msg_print("<color:r>错误：HTTP 响应内存不足</color>");
         return 0;
     }
     
@@ -188,7 +188,7 @@ bool make_http_post(const char *url, const char *json_data, http_response_t *res
 /* Stub implementation when libcurl is not available */
 bool make_http_request(const char *url, const char *post_data, http_response_t *response)
 {
-    msg_print("<color:r>Network features are not available. libcurl was not found during compilation.</color>");
+    msg_print("<color:r>网络功能不可用。编译时未找到 libcurl。</color>");
     
     if (response) {
         response->data = NULL;
@@ -199,9 +199,9 @@ bool make_http_request(const char *url, const char *post_data, http_response_t *
 }
 
 /* Stub implementation of POST when libcurl is not available */
-bool make_http_post(const char *url, const char *post_data, char **headers, http_response_t *response)
+bool make_http_post(const char *url, const char *post_data, http_response_t *response)
 {
-    msg_print("<color:r>Network features are not available. libcurl was not found during compilation.</color>");
+    msg_print("<color:r>网络功能不可用。编译时未找到 libcurl。</color>");
     
     if (response) {
         response->data = NULL;

@@ -292,7 +292,7 @@ static bool _absorb(object_type *o_ptr)
         effect_t e = obj_get_effect(o_ptr);
         if ((!_effects[e.type]) && (_is_ring_effect(e.type)))
         {
-            msg_format("You have gained the power of '%s'.", do_effect(&e, SPELL_NAME, 0));
+            msg_format("你获得了“%s”的力量。", do_effect(&e, SPELL_NAME, 0));
         }
         _effects[e.type]++;
         result = TRUE;
@@ -301,7 +301,7 @@ static bool _absorb(object_type *o_ptr)
     if (result)
     {
         p_ptr->update |= PU_BONUS;
-        msg_print("You grow stronger!");
+        msg_print("你变得更强了！");
     }
     return result;
 }
@@ -318,7 +318,7 @@ static bool _absorb_object(object_type *o_ptr)
             object_desc(o_name, o_ptr, OD_COLOR_CODED);
         }
         else object_desc(o_name, o_ptr, OD_NAME_ONLY | OD_COLOR_CODED);
-        msg_format("You attempt to drain power from %s.", o_name);
+        msg_format("你尝试从 %s 中吸取力量。", o_name);
         _absorb(o_ptr);
         return TRUE;
     }
@@ -528,9 +528,9 @@ static void _gain_one_effect(int list[])
     effect_t e = {0};
     e.type = _random(list);
     if (!_effects[e.type])
-        msg_format("You have gained the power of '%s'.", do_effect(&e, SPELL_NAME, 0));
+        msg_format("你获得了“%s”的力量。", do_effect(&e, SPELL_NAME, 0));
     else
-        msg_format("Your power of '%s' has grown stronger.", do_effect(&e, SPELL_NAME, 0));
+        msg_format("你的“%s”力量变得更强了。", do_effect(&e, SPELL_NAME, 0));
     _effects[e.type]++;
 }
 
@@ -586,10 +586,10 @@ static void _absorb_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Absorb Jewelry");
+        var_set_string(res, "吸收珠宝");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Destroys a single piece of jewelry, absorbing the essence of its power.");
+        var_set_string(res, "摧毁一件珠宝，吸收其力量的精华。");
         break;
     case SPELL_CAST:
     {
@@ -598,8 +598,8 @@ static void _absorb_spell(int cmd, variant *res)
         bool tunnettu;
 
         var_set_bool(res, FALSE);
-        prompt.prompt = "Absorb which item?";
-        prompt.error = "You have nothing to absorb.";
+        prompt.prompt = "吸收哪件物品？";
+        prompt.error = "你没有什么可以吸收的。";
         prompt.filter = object_is_jewelry;
         prompt.where[0] = INV_PACK;
         prompt.where[1] = INV_FLOOR;
@@ -610,7 +610,7 @@ static void _absorb_spell(int cmd, variant *res)
         tunnettu = (((obj_is_identified(prompt.obj)) || (prompt.obj->feeling == FEEL_AVERAGE)) && (obj_is_identified_fully(prompt.obj)));
         if (!tunnettu) obj_identify_fully(prompt.obj);
         object_desc(o_name, prompt.obj, OD_NAME_ONLY);
-        msg_format("You absorb the power of %s!", o_name);
+        msg_format("你吸收了 %s 的力量！", o_name);
         _absorb(prompt.obj);
 
         prompt.obj->number = 0;
@@ -630,10 +630,10 @@ static void _detect_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Detect Jewelry");
+        var_set_string(res, "探测珠宝");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Locate nearby jewelry, animated or not.");
+        var_set_string(res, "定位附近的珠宝，无论其是否活化。");
         break;
     case SPELL_CAST:
     {
@@ -662,7 +662,7 @@ static void _detect_spell(int cmd, variant *res)
             detect = TRUE;
 
         if (detect)
-            msg_print("You sense your kind.");
+            msg_print("你感应到了你的同类。");
 
         var_set_bool(res, TRUE);
         break;
@@ -678,10 +678,10 @@ static void _judge_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Identify Jewelry");
+        var_set_string(res, "鉴定珠宝");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Identifies a piece of jewelry.");
+        var_set_string(res, "鉴定一件珠宝。");
         break;
     case SPELL_CAST:
         if (p_ptr->lev >= 35)
@@ -700,16 +700,16 @@ static void _glitter_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Glitter");
+        var_set_string(res, "闪耀");
         break;
     case SPELL_DESC:
-        var_set_string(res, "This spell makes yourself irresistible to potential ring bearers.");
+        var_set_string(res, "这个法术让你对潜在的佩戒者产生不可抗拒的吸引力。");
         break;
     case SPELL_CAST:
         var_set_bool(res, FALSE);
         if (p_ptr->riding)
         {
-            msg_print("You already have a ring bearer.");
+            msg_print("你已经有了一个佩戒者。");
             return;
         }
         set_action(ACTION_GLITTER);
@@ -730,10 +730,10 @@ static void _charm_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        var_set_string(res, "Charm Ring Bearer");
+        var_set_string(res, "魅惑佩戒者");
         break;
     case SPELL_DESC:
-        var_set_string(res, "Attempt to dominate a single ring bearer.");
+        var_set_string(res, "尝试支配一名佩戒者。");
         break;
     case SPELL_INFO:
         var_set_string(res, info_power(_charm_power()));
@@ -774,7 +774,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "spell";
+        me.magic_desc = "法术";
         me.which_stat = A_INT;
         me.encumbrance.max_wgt = 430;
         me.encumbrance.weapon_pct = 100;
@@ -889,7 +889,7 @@ static _group_t _groups[] = {
         { EFFECT_MANA_STORM,          45,  60, 75 },
         { EFFECT_NONE } } },
 
-    { "Buff", 'B', TERM_YELLOW,
+    { "增益", 'B', TERM_YELLOW,
       { { EFFECT_BLESS,                5,   3, 35 },
         { EFFECT_HEROISM,             12,   5, 45 },
         { EFFECT_TELEPATHY,           15,   7, 50 },
@@ -947,7 +947,7 @@ static _group_t _groups[] = {
         { EFFECT_CLAIRVOYANCE,        45,  50, 70 },
         { EFFECT_NONE } } },
 
-    { "Teleportations", 'T', TERM_L_BLUE,
+    { "传送", 'T', TERM_L_BLUE,
       { { EFFECT_PHASE_DOOR,           3,   3, 35 },
         { EFFECT_TELEPORT,            12,   7, 45 },
         { EFFECT_STRAFING,            15,   8, 55 },
@@ -960,7 +960,7 @@ static _group_t _groups[] = {
         { EFFECT_DIMENSION_DOOR,      43,  50, 70 },
         { EFFECT_NONE } } },
 
-    { "Utility", 'U', TERM_L_BLUE, 
+    { "实用", 'U', TERM_L_BLUE, 
       { { EFFECT_SATISFY_HUNGER,       5,   5, 35 },
         { EFFECT_STONE_TO_MUD,        15,  10, 50 },
         { EFFECT_DESTROY_TRAP,        20,  12, 50 },
@@ -978,7 +978,7 @@ static _group_t _groups[] = {
         { EFFECT_MASS_GENOCIDE,       47,  75, 85 },
         { EFFECT_NONE } } },
 
-    { "Summoning", 'S', TERM_UMBER,
+    { "召唤", 'S', TERM_UMBER,
       { { EFFECT_SUMMON_ANTS,         20,  15, 45 },        
         { EFFECT_SUMMON_ELEMENTAL,    23,  20, 45 },
         { EFFECT_SUMMON_PHANTASMAL,   25,  25, 45 },
@@ -996,7 +996,7 @@ static _group_t _groups[] = {
         { EFFECT_SUMMON_CYBERDEMON,   50, 100, 75 },
         { EFFECT_NONE } } },
 
-    { "Other", 'O', TERM_UMBER,
+    { "其他", 'O', TERM_UMBER,
       { { EFFECT_AGGRAVATE,           10,   3, 35 },
         { EFFECT_POLY_SELF,           20,  10, 40 },
         { EFFECT_SCARE_MONSTERS,      22,  15, 45 },
@@ -1163,7 +1163,7 @@ static void _group_menu_fn(int cmd, int which, vptr cookie, variant *res)
 static _group_ptr _prompt_group(void)
 {
     int        idx = -1;
-    menu_t     menu = { "Use which type of spell?", NULL, NULL,
+    menu_t     menu = { "使用哪种类型的法术？", NULL, NULL,
                         _group_menu_fn, NULL, _groups_count(), 0};
 
     idx = menu_choose(&menu);
@@ -1240,7 +1240,7 @@ static _spell_t _prompt_spell(_spell_ptr spells)
 
     if (!ct_avail)
     {
-        msg_print("You haven't absorbed any of these effects yet.");
+        msg_print("你还没有吸收过任何这些效果。");
     }
     else
     {
@@ -1283,7 +1283,7 @@ void ring_cast(void)
 
     if (p_ptr->confused)
     {
-        msg_print("You are too confused!");
+        msg_print("你太困惑了！");
         return;
     }
 
@@ -1295,12 +1295,12 @@ void ring_cast(void)
 
     if (spell.level > p_ptr->lev)
     {
-        msg_print("You can't use that spell yet!");
+        msg_print("你还不能使用那个法术！");
         return;
     }
     if (spell.cost > p_ptr->csp)
     {
-        msg_print("You do not have enough mana to use this power.");
+        msg_print("你没有足够的法力来使用这个能力。");
         return;
     }
 
@@ -1311,7 +1311,7 @@ void ring_cast(void)
     if (randint0(100) < spell.fail)
     {
         if (flush_failure) flush();
-        msg_format("You failed to get the spell off!");
+        msg_format("你没能施放出法术！");
         if (prompt_on_failure) msg_print(NULL);
         sound(SOUND_FAIL);
     }
@@ -1636,7 +1636,7 @@ static void _dump_ability_flag(doc_ptr doc, int which, int threshold, cptr name)
     {
         if ((p_ptr->free_act) && (which == OF_FREE_ACT))
         {
-            doc_printf(doc, "   %-22.22s %5d %5d %4dx\n",
+            doc_printf(doc, "%-22.22s %5d %5d %4dx\n",
                 name,
                 n, 
                 threshold,
@@ -1645,7 +1645,7 @@ static void _dump_ability_flag(doc_ptr doc, int which, int threshold, cptr name)
         }
         else if ((p_ptr->see_inv) && (which == OF_SEE_INVIS))
         {
-            doc_printf(doc, "   %-22.22s %5d %5d %4dx\n",
+            doc_printf(doc, "%-22.22s %5d %5d %4dx\n",
                 name,
                 n, 
                 threshold,
@@ -1684,7 +1684,7 @@ static void _dump_missing_effects(doc_ptr doc)
     if (vec_length(v))
     {
         int i;
-        doc_insert(doc, "\n   <color:r>Missing Effects</color>\n");
+        doc_insert(doc, "\n <color:r>缺失的效果</color>\n");
         for (i = 0; i < vec_length(v); i++)
         {
             effect_t effect = {0};
@@ -1723,7 +1723,7 @@ static void _dump_effects(doc_ptr doc)
 
                 if (!ct)
                 {
-                    doc_printf(doc, "\n   <color:G>%-30.30s  Ct Lvl Cst Fail Info</color>\n", g->name);
+                    doc_printf(doc, "\n <color:G>%-30.30s 次数 等级 消耗 失败 信息</color>\n", g->name);
                 }
                 doc_printf(doc, "   %s\n", buf);
                 ct++;
@@ -1737,68 +1737,68 @@ static void _dump_effects(doc_ptr doc)
 static void _character_dump(doc_ptr doc)
 {
     int i;
-    doc_printf(doc, "<topic:Essences>=================================== <color:keypress>E</color>ssences ==================================\n\n");
-    doc_printf(doc, "   <color:G>%-22.22s Total  Need Bonus</color>\n", "Stats");
+    doc_printf(doc, "<topic:Essences>=================================== 精 华 (<color:keypress>E</color>) ==================================\n\n");
+    doc_printf(doc, "<color:G>%-22.22s 总计 需要 加成</color>\n", "属性");
     for (i = 0; i < 6; i++) /* Assume in order */
         _dump_bonus_flag(doc, OF_STR + i, 2, 1, stat_name_true[A_STR + i]);
 
-    doc_printf(doc, "\n   <color:G>%-22.22s Total  Need Bonus</color>\n", "Skills");
-    _dump_bonus_flag(doc, _ESSENCE_AC, 1, 15, "To AC");
-    _dump_bonus_flag(doc, OF_STEALTH, 2, 1, "Stealth");
-    _dump_bonus_flag(doc, OF_SPEED, 1, 5, "Speed");
-    _dump_bonus_flag(doc, OF_LIFE, 7, 1, "Life");
-    _dump_bonus_flag(doc, OF_SEARCH, 2, 1, "Searching");
-    _dump_bonus_flag(doc, OF_INFRA, 2, 1, "Infravision");
-    _dump_bonus_flag(doc, OF_TUNNEL, 2, 1, "Digging");
-    _dump_bonus_flag(doc, OF_LITE, 1, 1, "Light");
-    _dump_bonus_flag(doc, OF_MAGIC_MASTERY, 2, 1, "Magic Mastery");
-    _dump_bonus_flag(doc, OF_DEVICE_POWER, 2, 1, "Device Power");
-    _dump_bonus_flag(doc, OF_SPELL_POWER, 2, 1, "Spell Power");
-    _dump_bonus_flag(doc, OF_SPELL_CAP, 2, 1, "Spell Capacity");
+    doc_printf(doc, "\n <color:G>%-22.22s 总计 需要 加成</color>\n", "技能");
+    _dump_bonus_flag(doc, _ESSENCE_AC, 1, 15, "护甲");
+    _dump_bonus_flag(doc, OF_STEALTH, 2, 1, "潜行");
+    _dump_bonus_flag(doc, OF_SPEED, 1, 5, "速度");
+    _dump_bonus_flag(doc, OF_LIFE, 7, 1, "生命");
+    _dump_bonus_flag(doc, OF_SEARCH, 2, 1, "搜索");
+    _dump_bonus_flag(doc, OF_INFRA, 2, 1, "红外视力");
+    _dump_bonus_flag(doc, OF_TUNNEL, 2, 1, "挖掘");
+    _dump_bonus_flag(doc, OF_LITE, 1, 1, "光照");
+    _dump_bonus_flag(doc, OF_MAGIC_MASTERY, 2, 1, "魔法精通");
+    _dump_bonus_flag(doc, OF_DEVICE_POWER, 2, 1, "装置威力");
+    _dump_bonus_flag(doc, OF_SPELL_POWER, 2, 1, "法术威力");
+    _dump_bonus_flag(doc, OF_SPELL_CAP, 2, 1, "法术容量");
  
-    doc_printf(doc, "\n   <color:G>%-22.22s Total  Need Bonus</color>\n", "Resistances");
+    doc_printf(doc, "\n <color:G>%-22.22s 总计 需要 加成</color>\n", "抗性");
     for (i = 0; i < RES_MAX; i++)
         _dump_bonus_flag(doc, res_get_object_flag(i), _res_power(i), 1, format("%^s", res_name(i)));
 
-    _dump_ability_flag(doc, OF_IM_ACID, 2, "Immune Acid");
-    _dump_ability_flag(doc, OF_IM_ELEC, 2, "Immune Elec");
-    _dump_ability_flag(doc, OF_IM_FIRE, 2, "Immune Fire");
-    _dump_ability_flag(doc, OF_IM_COLD, 2, "Immune Cold");
+    _dump_ability_flag(doc, OF_IM_ACID, 2, "强酸免疫");
+    _dump_ability_flag(doc, OF_IM_ELEC, 2, "闪电免疫");
+    _dump_ability_flag(doc, OF_IM_FIRE, 2, "火焰免疫");
+    _dump_ability_flag(doc, OF_IM_COLD, 2, "寒冰免疫");
 
-    doc_printf(doc, "\n   <color:G>%-22.22s Total  Need Bonus</color>\n", "Abilities");
-    _dump_ability_flag(doc, OF_FREE_ACT, _free_act_needed(), "Free Action");
-    _dump_ability_flag(doc, OF_SEE_INVIS, _see_invis_needed(), "See Invisible");
-    _dump_ability_flag(doc, OF_LEVITATION, 2, "Levitation");
-    _dump_ability_flag(doc, OF_SLOW_DIGEST, 2, "Slow Digestion");
-    _dump_ability_flag(doc, OF_HOLD_LIFE, 7, "Hold Life");
-    _dump_ability_flag(doc, OF_REGEN, 7, "Regeneration");
-    _dump_bonus_flag(doc, OF_DEC_MANA, 1, 1, "Economical Mana");
-    _dump_ability_flag(doc, OF_EASY_SPELL, 7, "Wizardry");
-    _dump_ability_flag(doc, OF_REFLECT, 7, "Reflection");
-    _dump_ability_flag(doc, OF_AURA_FIRE, 7, "Aura Fire");
-    _dump_ability_flag(doc, OF_AURA_ELEC, 7, "Aura Elec");
-    _dump_ability_flag(doc, OF_AURA_COLD, 7, "Aura Cold");
-    _dump_ability_flag(doc, OF_AURA_SHARDS, 7, "Aura Shards");
+    doc_printf(doc, "\n <color:G>%-22.22s 总计 需要 加成</color>\n", "能力");
+    _dump_ability_flag(doc, OF_FREE_ACT, _free_act_needed(), "自由行动");
+    _dump_ability_flag(doc, OF_SEE_INVIS, _see_invis_needed(), "识破隐形");
+    _dump_ability_flag(doc, OF_LEVITATION, 2, "漂浮");
+    _dump_ability_flag(doc, OF_SLOW_DIGEST, 2, "缓慢消化");
+    _dump_ability_flag(doc, OF_HOLD_LIFE, 7, "维持生命");
+    _dump_ability_flag(doc, OF_REGEN, 7, "再生");
+    _dump_bonus_flag(doc, OF_DEC_MANA, 1, 1, "节省法力");
+    _dump_ability_flag(doc, OF_EASY_SPELL, 7, "巫术");
+    _dump_ability_flag(doc, OF_REFLECT, 7, "反射");
+    _dump_ability_flag(doc, OF_AURA_FIRE, 7, "火焰光环");
+    _dump_ability_flag(doc, OF_AURA_ELEC, 7, "闪电光环");
+    _dump_ability_flag(doc, OF_AURA_COLD, 7, "寒冰光环");
+    _dump_ability_flag(doc, OF_AURA_SHARDS, 7, "碎片光环");
     for (i = 0; i < 6; i++) /* Assume in order */
         _dump_ability_flag(doc, OF_SUST_STR + i, 5, format("Sustain %s", stat_name_true[A_STR + i]));
 
-    doc_printf(doc, "\n   <color:G>%-22.22s Total  Need Bonus</color>\n", "ESP");
-    _dump_ability_flag(doc, OF_TELEPATHY, 2, "Telepathy");
-    _dump_ability_flag(doc, OF_ESP_ANIMAL, 2, "ESP Animals");
-    _dump_ability_flag(doc, OF_ESP_UNDEAD, 2, "ESP Undead");
-    _dump_ability_flag(doc, OF_ESP_DEMON, 2, "ESP Demon");
-    _dump_ability_flag(doc, OF_ESP_ORC, 2, "ESP Orc");
-    _dump_ability_flag(doc, OF_ESP_TROLL, 2, "ESP Troll");
-    _dump_ability_flag(doc, OF_ESP_GIANT, 2, "ESP Giant");
-    _dump_ability_flag(doc, OF_ESP_DRAGON, 2, "ESP Dragon");
-    _dump_ability_flag(doc, OF_ESP_HUMAN, 2, "ESP Human");
-    _dump_ability_flag(doc, OF_ESP_EVIL, 2, "ESP Evil");
-    _dump_ability_flag(doc, OF_ESP_GOOD, 2, "ESP Good");
-    _dump_ability_flag(doc, OF_ESP_NONLIVING, 2, "ESP Nonliving");
-	_dump_ability_flag(doc, OF_ESP_LIVING, 2, "ESP Living");
-    _dump_ability_flag(doc, OF_ESP_UNIQUE, 2, "ESP Unique");
+    doc_printf(doc, "\n <color:G>%-22.22s 总计 需要 加成</color>\n", "侦测/心电感应");
+    _dump_ability_flag(doc, OF_TELEPATHY, 2, "心灵感应");
+    _dump_ability_flag(doc, OF_ESP_ANIMAL, 2, "侦测动物");
+    _dump_ability_flag(doc, OF_ESP_UNDEAD, 2, "侦测亡灵");
+    _dump_ability_flag(doc, OF_ESP_DEMON, 2, "侦测恶魔");
+    _dump_ability_flag(doc, OF_ESP_ORC, 2, "侦测兽人");
+    _dump_ability_flag(doc, OF_ESP_TROLL, 2, "侦测巨魔");
+    _dump_ability_flag(doc, OF_ESP_GIANT, 2, "侦测巨人");
+    _dump_ability_flag(doc, OF_ESP_DRAGON, 2, "侦测龙类");
+    _dump_ability_flag(doc, OF_ESP_HUMAN, 2, "侦测人类");
+    _dump_ability_flag(doc, OF_ESP_EVIL, 2, "侦测邪恶");
+    _dump_ability_flag(doc, OF_ESP_GOOD, 2, "侦测善良");
+    _dump_ability_flag(doc, OF_ESP_NONLIVING, 2, "侦测非活物");
+	_dump_ability_flag(doc, OF_ESP_LIVING, 2, "侦测活物");
+    _dump_ability_flag(doc, OF_ESP_UNIQUE, 2, "侦测独特怪物");
 
-    doc_printf(doc, "\n<topic:Spells>==================================== <color:keypress>S</color>pells ===================================\n");
+    doc_printf(doc, "\n<topic:Spells>==================================== 法 术 (<color:keypress>S</color>) ===================================\n");
     _dump_effects(doc);
 
     doc_newline(doc);
@@ -1820,18 +1820,8 @@ race_t *mon_ring_get_race(void)
         me.skills = bs;
         me.extra_skills = xs;
 
-        me.name = "Ring";
-        me.desc = "Rings are sentient creatures animated by magical means.\n \n"
-                    "Rings cannot wear normal equipment; rather, they simply are a ring, "
-                    "magically enchanted. Rings have a small arsenal of innate powers. Since the ring "
-                    "is unable to move on its own, it will need to lure a nearby monster "
-                    "into wearing it. Magic rings tend to corrupt their owners, and over time, "
-                    "the ring-bearer will find that his will is not his own!\n \n"
-                    "Rings can absorb magic from the jewelry (rings or amulets) that they find, "
-                    "and gain resistances, attributes and additional spells this way. "
-                    "Rings have no physical attacks; instead, they may blast enemies with mighty "
-                    "spells (once absorbed, of course), or they may simply lie back and let their "
-                    "current bearer do the fighting for them.";
+        me.name = "戒指";
+        me.desc = "戒指是通过魔法手段活化的有感知的生物。\n \n戒指不能穿戴普通装备；相反，它们本身就是一枚被魔法附魔的戒指。戒指拥有一小部分天生能力。由于戒指无法自行移动，它需要诱惑附近的怪物戴上它。魔法戒指往往会腐化它们的主人，随着时间的推移，佩戒者会发现自己的意志已不再属于自己！\n \n戒指可以从找到的珠宝（戒指或护身符）中吸收魔法，并通过这种方式获得抗性、属性和额外的法术。戒指没有任何物理攻击能力；相反，它们可以用强大的法术轰击敌人（当然，前提是已经吸收了法术），或者它们可以简单地躺平，让当前的佩戒者替它们战斗。";
 
         me.stats[A_STR] = -3;
         me.stats[A_INT] =  4;
@@ -1887,7 +1877,7 @@ bool ring_disenchant(void)
     bool result = FALSE;
     if (!res_save(RES_DISEN, 44) && _drain_essences(20))
     {
-        msg_print("You feel power draining from your body!");
+        msg_print("你感觉力量正在从体内流失！");
         result = TRUE;
     }
     return result;
@@ -1948,12 +1938,12 @@ bool ring_dominate_m(int m_idx)
         monster_desc(m_name, m_ptr, 0);
         if (_mon_save_p(m_ptr))
         {
-            msg_format("%^s sees you for what you truly are!", m_name);
+            msg_format("%^s 看穿了你的真面目！", m_name);
             m_ptr->mflag2 |= MFLAG2_AWARE;
         }
         else if (m_ptr->parent_m_idx)
         {
-            msg_format("%^s glances down at you, but seems to have doubts.", m_name);
+            msg_format("%^s 低头瞥了你一眼，但似乎有些怀疑。", m_name);
             return TRUE; /* partial success */
         }
         else
@@ -1963,13 +1953,13 @@ bool ring_dominate_m(int m_idx)
 
             switch (randint1(5))
             {
-            case 1: msg_format("%^s says, 'My Precious!'", m_name); break;
-            case 2: msg_format("%^s says, 'Look! A Pretty!'", m_name); break;
-            case 3: msg_format("%^s says, 'Hark! What have we here?'", m_name); break;
-            case 4: msg_format("%^s says, 'Finally! A lucky drop at last!'", m_name); break;
-            case 5: msg_format("%^s says, 'This better be a Ring of Speed!'", m_name); break;
+            case 1: msg_format("%^s 说道：“我的宝贝！”", m_name); break;
+            case 2: msg_format("%^s 说道：“看！一个小可爱！”", m_name); break;
+            case 3: msg_format("%^s 说道：“听！我们在这里发现了什么？”", m_name); break;
+            case 4: msg_format("%^s 说道：“终于！终于出了个好东西！”", m_name); break;
+            case 5: msg_format("%^s 说道：“这最好是一枚速度戒指！”", m_name); break;
             }
-            msg_format("%^s picks you up.", m_name);
+            msg_format("%^s 把你捡了起来。", m_name);
             p_ptr->riding = m_idx;
             if (p_ptr->riding == p_ptr->health_who) health_track(0);
             set_action(ACTION_NONE);
@@ -2033,7 +2023,7 @@ void ring_process_m(int m_idx)
             }
             if (sn && sy && sx)
             {
-                cmsg_format(TERM_VIOLET, "%^s removes you in disgust.", m_name);
+                cmsg_format(TERM_VIOLET, "%^s 厌恶地把你摘了下来。", m_name);
                 oy = py;
                 ox = px;
                 py = sy;
@@ -2054,7 +2044,7 @@ void ring_process_m(int m_idx)
                 handle_stuff();
 
                 /* This can be quite jarring when it happens out of the blue! */ 
-                msg_print("Press Space to continue.");
+                msg_print("按空格键继续。");
                 flush();
                 for (;;)
                 {

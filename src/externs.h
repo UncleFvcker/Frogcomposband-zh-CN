@@ -89,6 +89,8 @@ extern u32b fake_spell_flags[4];
 extern s32b realm_choices1[];
 extern s32b realm_choices2[];
 extern cptr realm_names[];
+extern cptr realm_internal_names[];
+extern cptr realm_internal_name(int realm);
 extern int chest_traps[64];
 extern cptr color_names[32];
 extern cptr stat_names[6];
@@ -1780,6 +1782,9 @@ extern errr fd_chop(int fd, huge n);
 extern errr fd_read(int fd, char *buf, huge n);
 extern errr fd_write(int fd, cptr buf, huge n);
 extern errr fd_close(int fd);
+extern void game_log_event(cptr tag, cptr fmt, ...);
+extern void game_log_note(cptr tag, cptr msg);
+extern void game_log_dump_recent(FILE *out, int max_lines);
 extern void flush(void);
 extern void bell(void);
 extern void sound(int num);
@@ -2414,6 +2419,7 @@ extern personality_ptr get_personality(void);
 
 /* races.c */
 extern int get_race_idx(cptr name);
+extern cptr get_race_internal_name(int prace);
 extern bool prace_is_(int which);
 extern race_t *get_race(void);      /* Actual Race (cf Mimics) */
 extern race_t *get_true_race(void); /* True Race */
@@ -2639,6 +2645,7 @@ extern class_t *get_class(void);
 extern class_t *get_class_aux(int pclass, int psubclass);
 extern bool class_is_deprecated(int i);
 extern int lookup_class_idx(cptr name);
+extern cptr get_class_internal_name(int pclass);
 extern int get_class_idx(void);
 extern caster_info *get_caster_info(void);
 extern int get_spell_stat(void);
@@ -2768,6 +2775,7 @@ extern void     nonlethal_ty_substitute(bool do_dec);
 extern class_t *devicemaster_get_class(int psubclass);
 extern bool     devicemaster_desperation;
 extern cptr     devicemaster_speciality_name(int psubclass);
+extern cptr     devicemaster_internal_speciality_name(int psubclass);
 extern cptr     devicemaster_speciality_desc(int psubclass);
 extern bool     devicemaster_is_speciality(object_type *o_ptr);
 extern class_t *force_trainer_get_class(void);
@@ -3003,6 +3011,7 @@ extern void weaponmaster_do_readied_shot(monster_type *m_ptr);
 extern int shoot_hack;
 extern int shoot_count;
 extern cptr weaponmaster_speciality_name(int psubclass);
+extern cptr weaponmaster_internal_speciality_name(int psubclass);
 
 /* spoilers.c */
 extern void generate_spoilers(void);

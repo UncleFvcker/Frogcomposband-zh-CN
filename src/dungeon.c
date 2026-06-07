@@ -19,6 +19,11 @@
 static bool load = TRUE;
 static int wild_regen = 20;
 
+static void startup_trace(cptr step)
+{
+    game_log_event("startup", "%s", step ? step : "(null)");
+}
+
 /*
  * Return a "feeling" (or NULL) about an item. Method 1 (Heavy).
  *
@@ -121,14 +126,14 @@ static void _sense_obj(obj_ptr obj)
     msg_boundary();
     if (obj->loc.where == INV_EQUIP)
     {
-        msg_format("You feel the %s (%c) you are wearing %s %s...",
+        msg_format("你感觉你穿着的 %s (%c) %s了 %s……",
                name, slot_label(obj->loc.slot),
                !object_plural(obj) ? "is" : "are",
                    game_inscriptions[feel]);
     }
     else
     {
-        msg_format("You feel the %s (%c) in your %s %s %s...",
+        msg_format("你感觉你%s里的 %s (%c) %s了 %s……",
                name, slot_label(obj->loc.slot),
                obj->loc.where == INV_QUIVER ? "quiver" : "pack", 
                !object_plural(obj) ? "is" : "are",
@@ -306,7 +311,7 @@ static void pattern_teleport(void)
     if (!dungeon_type) return;
 
     /* Ask for level */
-    if (get_check("Teleport level? "))
+    if (get_check("传送楼层？"))
 
     {
         char    ppp[80];
@@ -343,12 +348,12 @@ static void pattern_teleport(void)
         /* Extract request */
         command_arg = atoi(tmp_val);
     }
-    else if (get_check("Normal teleport? "))
+    else if (get_check("正常传送？"))
     {
         teleport_player(200, 0L);
         return;
     }
-    else if (((coffee_break) || (!ironman_downward)) && (get_check("Recall? ")))
+    else if (((coffee_break) || (!ironman_downward)) && (get_check("召回？")))
     {
         recall_player(1, FALSE);
         return;
@@ -365,7 +370,7 @@ static void pattern_teleport(void)
     if (command_arg > max_level) command_arg = max_level;
 
     /* Accept request */
-    msg_format("You teleport to dungeon level %d.", command_arg);
+    msg_format("你传送到了地下城第 %d 层。", command_arg);
 
     if (autosave_l) do_cmd_save_game(TRUE);
 
@@ -396,8 +401,8 @@ static void wreck_the_pattern(void)
         return;
     }
 
-    msg_print("You bleed on the Pattern!");
-    msg_print("Something terrible happens!");
+    msg_print("你在图案上流血了！");
+    msg_print("可怕的事情发生了！");
 
     if (!IS_INVULN())
         take_hit(DAMAGE_NOESCAPE, damroll(10, 8), "corrupting the Pattern");
@@ -455,7 +460,7 @@ static bool pattern_effect(void)
 
         cave_set_feat(py, px, feat_pattern_old);
 
-        msg_print("This section of the Pattern looks less powerful.");
+        msg_print("这部分图案看起来能量减弱了。");
 
         /*
          * We could make the healing effect of the
@@ -955,7 +960,7 @@ void notice_lite_change(object_type *o_ptr)
     else if (o_ptr->xtra4 == 0)
     {
         disturb(0, 0);
-        msg_print("Your light has gone out!");
+        msg_print("你的光源熄灭了！");
 
         /* We now know how many turns of light it has - zero */
         if ((!obj_is_identified(o_ptr)) && (o_ptr->ident & IDENT_SENSE)
@@ -976,7 +981,7 @@ void notice_lite_change(object_type *o_ptr)
             && (game_turn % (TURNS_PER_TICK*2)))
         {
             if (disturb_minor) disturb(0, 0);
-            msg_print("Your light is growing faint.");
+            msg_print("你的光源正在变得微弱。");
 
         }
     }
@@ -985,7 +990,7 @@ void notice_lite_change(object_type *o_ptr)
     else if ((o_ptr->xtra4 < 100) && (!(o_ptr->xtra4 % 10)))
     {
         if (disturb_minor) disturb(0, 0);
-        msg_print("Your light is growing faint.");
+        msg_print("你的光源正在变得微弱。");
 
     }
 }
@@ -1002,7 +1007,7 @@ void fame_on_failure(void)
 void gain_cookie(int amt)
 {
     p_ptr->cookie += amt;
-    msg_format("<color:R>You got %d cookie%s.</color>", amt, (amt == 1) ? "" : "s");
+    msg_format("<color:R>你获得了 %d 块饼干。</color>", amt, (amt == 1) ? "" : "s");
 }
 
 void gain_fame(int amt)
@@ -1042,7 +1047,7 @@ byte coffeebreak_recall_level(bool laskuri)
     {
         if (p_ptr->coffee_lv_revisits == ((coffee_break == SPEED_INSTA_COFFEE) ? 1 : 2)) /* warn the player about J's increasing mpower */
         {
-            msg_print("You have a brief vision of a red-faced, overweight humanoid with an unkempt beard, yelling <color:R>'Get to it already! The longer you bum around, the stronger the Serpent grows!'</color> You aren't sure who this strange apparition is, but given how tense and irritable he appears, you hope he's not the ultimate supreme deity.");
+            msg_print("你短暂地看到了一个满面红光、体型肥胖且胡须凌乱的类人生物，他大吼道：<color:R>“快点行动！你游手好闲得越久，大蛇就越强大！”</color> 你不确定这个奇怪的幻影是谁，但考虑到他看起来如此紧张暴躁，你希望他不是最终的至高神。");
         }
         p_ptr->coffee_lv_revisits++;
     }
@@ -1069,8 +1074,8 @@ bool psychometry(void)
     byte         feel;
     bool         okay = FALSE;
 
-    prompt.prompt = "Meditate on which item?";
-    prompt.error = "You have nothing appropriate.";
+    prompt.prompt = "冥想哪件物品？";
+    prompt.error = "你没有合适的物品。";
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_EQUIP;
     prompt.where[2] = INV_QUIVER;
@@ -1082,7 +1087,7 @@ bool psychometry(void)
     /* It is fully known, no information needed */
     if (object_is_known(prompt.obj))
     {
-        msg_print("You cannot find out anything more about that.");
+        msg_print("你无法发现关于它的更多信息。");
 
         return TRUE;
     }
@@ -1096,12 +1101,12 @@ bool psychometry(void)
     /* Skip non-feelings */
     if (!feel)
     {
-        msg_format("You do not perceive anything unusual about the %s.", o_name);
+        msg_format("你没有察觉到 %s 有什么异常之处。", o_name);
 
         return TRUE;
     }
 
-    msg_format("You feel that the %s %s %s...",
+    msg_format("你感觉 %s %s %s……",
                o_name, ((!object_plural(prompt.obj)) ? "is" : "are"),
                game_inscriptions[feel]);
 
@@ -1182,11 +1187,11 @@ void recharged_notice(object_type *o_ptr, unsigned char neula)
 
             /* Notify the player */
             if (o_ptr->number > 1)
-                msg_format("Your %s are recharged.", o_name);
+                msg_format("你的 %s 充能完毕了。", o_name);
             else if (neula != '!')
-                msg_format("Your %s now has %c charge%s.", o_name, neula, (neula == '1') ? "" : "s");
+                msg_format("你的 %s 现在有 %c 发充能。", o_name, neula, (neula == '1') ? "" : "s");
             else
-                msg_format("Your %s is recharged.", o_name);
+                msg_format("你的 %s 充能完毕了。", o_name);
 
             disturb(0, 0);
 
@@ -1226,17 +1231,17 @@ void do_alter_reality(void)
     /* Determine the level */
     if ((only_downward()) || (p_ptr->inside_arena) || ((!dungeon_type) && (quests_get_current())))
     {
-        msg_print("The world seems to change for a moment!");
+        msg_print("世界似乎在那一瞬间改变了！");
         p_ptr->alter_reality = 0;
     }
     else
     {
         if (p_ptr->alter_reality) /* Mega-hack - law */
         {
-            msg_print("You reject this reality and substitute your own!");
+            msg_print("你拒绝这个现实，并用自己的现实取而代之！");
             p_ptr->alter_reality = 0;
         } 
-        else msg_print("The world changes!");
+        else msg_print("世界改变了！");
 
         /*
          * Clear all saved floors
@@ -1331,7 +1336,7 @@ static void process_world_aux_hp_and_sp(void)
         {
             if ((cave[py][px].info & (CAVE_GLOW | CAVE_MNDK)) == CAVE_GLOW)
             {
-                msg_print("The sun's rays scorch your undead flesh!");
+                msg_print("阳光灼伤了你亡灵的肉体！");
                 take_hit(DAMAGE_NOESCAPE, 1, "sunlight");
                 cave_no_regen = TRUE;
             }
@@ -1350,7 +1355,7 @@ static void process_world_aux_hp_and_sp(void)
                 char ouch [MAX_NLEN+40];
 
                 object_desc(o_name, lite, OD_OMIT_PREFIX | OD_NAME_ONLY);
-                msg_format("The %s scorches your undead flesh!", o_name);
+                msg_format("%s灼伤了你亡灵的肉体！", o_name);
                 cave_no_regen = TRUE;
                 object_desc(o_name, lite, OD_NAME_ONLY);
                 sprintf(ouch, "wielding %s", o_name);
@@ -1381,13 +1386,13 @@ static void process_world_aux_hp_and_sp(void)
 
             if (p_ptr->levitation)
             {
-                msg_print("The heat burns you!");
+                msg_print("高温烧伤了你！");
                 take_hit(DAMAGE_NOESCAPE, damage, format("flying over %s", f_name + f_info[get_feat_mimic(&cave[py][px])].name));
             }
             else
             {
                 cptr name = f_name + f_info[get_feat_mimic(&cave[py][px])].name;
-                msg_format("The %s burns you!", name);
+                msg_format("%s烧伤了你！", name);
                 take_hit(DAMAGE_NOESCAPE, damage, name);
             }
 
@@ -1422,8 +1427,8 @@ static void process_world_aux_hp_and_sp(void)
 
 			if ((p_ptr->levitation) && ((a_damage > 0) || (p_damage > 0)))
 			{
-				if (a_damage) msg_print("You are burned by toxic fumes!");
-				else msg_print("You are poisoned by toxic fumes!");
+				if (a_damage) msg_print("你被有毒气体烧伤了！");
+				else msg_print("你被有毒气体毒到了！");
 				take_hit(DAMAGE_NOESCAPE, a_damage, format("flying over %s", f_name + f_info[get_feat_mimic(&cave[py][px])].name));
 				if ((p_damage > 0) && (a_damage == 0) && (!p_ptr->poisoned)) /* big fat hack - avoid message duplication */
 				{
@@ -1435,7 +1440,7 @@ static void process_world_aux_hp_and_sp(void)
 			else if ((a_damage > 0) || (p_damage > 0))
 			{
 				cptr name = f_name + f_info[get_feat_mimic(&cave[py][px])].name;
-				msg_format("The %s burns you!", name);
+				msg_format("%s烧伤了你！", name);
 				take_hit(DAMAGE_NOESCAPE, a_damage, name);
 				set_poisoned(p_ptr->poisoned + p_damage, FALSE);
 			}
@@ -1453,7 +1458,7 @@ static void process_world_aux_hp_and_sp(void)
         if (py_total_weight() > weight_limit())
         {
             /* Take damage */
-            msg_print("You are drowning!");
+            msg_print("你溺水了！");
             take_hit(DAMAGE_NOESCAPE, randint1(p_ptr->lev), "drowning");
 
             cave_no_regen = TRUE;
@@ -1463,7 +1468,7 @@ static void process_world_aux_hp_and_sp(void)
     if (((have_flag(f_ptr->flags, FF_SNOW)) || (have_flag(f_ptr->flags, FF_SLIPPERY))) &&
         (p_ptr->resist[RES_COLD] <= 0))
     {
-        msg_print("You are freezing!");
+        msg_print("你要冻僵了！");
         if (one_in_(10)) take_hit(DAMAGE_NOESCAPE, 1, "freezing");
         if (one_in_(50)) set_unwell(75 + randint1(25), TRUE);
         cave_no_regen = TRUE;
@@ -1478,8 +1483,8 @@ static void process_world_aux_hp_and_sp(void)
 
             if (dam > 0)
             {
-                msg_print("It's hot!");
-                take_hit(DAMAGE_NOESCAPE, dam, "Fire aura");
+                msg_print("好烫！");
+                take_hit(DAMAGE_NOESCAPE, dam, "火焰光环");
             }
         }
         if (r_info[m_list[p_ptr->riding].r_idx].flags2 & RF2_AURA_ELEC)
@@ -1489,8 +1494,8 @@ static void process_world_aux_hp_and_sp(void)
 
             if (dam > 0)
             {
-                msg_print("It hurts!");
-                take_hit(DAMAGE_NOESCAPE, dam, "Elec aura");
+                msg_print("好痛！");
+                take_hit(DAMAGE_NOESCAPE, dam, "闪电光环");
             }
         }
         if (r_info[m_list[p_ptr->riding].r_idx].flags3 & RF3_AURA_COLD)
@@ -1499,8 +1504,8 @@ static void process_world_aux_hp_and_sp(void)
             dam = res_calc_dam(RES_COLD, dam);
             if (dam > 0)
             {
-                msg_print("It's cold!");
-                take_hit(DAMAGE_NOESCAPE, dam, "Cold aura");
+                msg_print("好冷！");
+                take_hit(DAMAGE_NOESCAPE, dam, "寒冰光环");
             }
         }
     }
@@ -1528,7 +1533,7 @@ static void process_world_aux_hp_and_sp(void)
                     dam = 0;
                 else
                 {
-                    msg_print("Your molecules feel disrupted!");
+                    msg_print("你感觉你的分子被瓦解了！");
                     dam_desc = "density";
                     if (p_ptr->prace == RACE_SPECTRE && dam > p_ptr->chp)
                         dam = p_ptr->chp;
@@ -1536,7 +1541,7 @@ static void process_world_aux_hp_and_sp(void)
             }
             else
             {
-                msg_print("You are being crushed!");
+                msg_print("你快被压碎了！");
                 dam_desc = "solid rock";
             }
 
@@ -1622,11 +1627,11 @@ static void process_world_aux_hp_and_sp(void)
         {
             while (upkeep_factor > 100)
             {
-                msg_print("Too many pets to control at once!");
+                msg_print("同时要控制的宠物太多了！");
                 msg_print(NULL);
                 do_cmd_pet_dismiss();
                 upkeep_factor = calculate_upkeep();
-                msg_format("Upkeep: %d%% mana.", upkeep_factor);
+                msg_format("维持消耗：法力上限的 %d%%。", upkeep_factor);
                 msg_print(NULL);
             }
         }
@@ -2242,7 +2247,7 @@ static void process_world_aux_curse(void)
             {
                 o_ptr = equip_obj(i_keep);
                 object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
-                msg_format("Your %s %s activating teleportation.", o_name, object_plural(o_ptr) ? "are" : "is");
+                msg_format("你的 %s %s激活传送。", o_name, object_plural(o_ptr) ? "正在" : "正在");
                 if (get_check_strict("Teleport? ", CHECK_OKAY_CANCEL))
                 {
                     disturb(0, 0);
@@ -2250,7 +2255,7 @@ static void process_world_aux_curse(void)
                 }
                 else
                 {
-                    msg_format("You can inscribe {.} on your %s to disable random teleportation. ", o_name);
+                    msg_format("你可以在你的 %s 上铭刻 {.} 来禁用随机传送。", o_name);
                     disturb(1, 0);
                 }
                 obj_learn_flag(o_ptr, OF_TELEPORT);
@@ -2269,7 +2274,7 @@ static void process_world_aux_curse(void)
         {
             int count = 0;
             if ((prace_is_(RACE_MON_MUMMY)) && (mummy_ty_protection()))
-                msg_print("You suppress the foul curse lashing at you!");
+                msg_print("你压制住了向你袭来的恶毒诅咒！");
             else
                 (void)activate_ty_curse(FALSE, &count);
             equip_learn_curse(OFC_TY_CURSE);
@@ -2291,7 +2296,7 @@ static void process_world_aux_curse(void)
             }
             if (osui)
             {
-                msg_print("You feel awfully normal...");
+                msg_print("你感觉异常的正常……");
                 equip_learn_curse(OFC_NORMALITY);
             }
         }
@@ -2299,7 +2304,7 @@ static void process_world_aux_curse(void)
         /* Allergy */
         if ((p_ptr->cursed & OFC_ALLERGY) && (!p_ptr->unwell) && (one_in_(888)) && (!get_race()->flags & RACE_IS_NONLIVING))
         {
-            msg_print("Your eyes suddenly feel very itchy...");
+            msg_print("你的眼睛突然感觉很痒……");
             disturb(0,0);
             set_unwell(70, TRUE);
             equip_learn_curse(OFC_ALLERGY);
@@ -2307,7 +2312,7 @@ static void process_world_aux_curse(void)
 
         if ((p_ptr->cursed & OFC_CRAPPY_MUT) && (one_in_(1500)))
         {
-            msg_print("You mutate!");
+            msg_print("你变异了！");
             mut_gain_random(mut_bad_pred);
             disturb(0,0);
             equip_learn_curse(OFC_CRAPPY_MUT);
@@ -2341,7 +2346,7 @@ static void process_world_aux_curse(void)
                 object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
 
                 o_ptr->curse_flags |= new_curse;
-                msg_format("There is a malignant black aura surrounding your %s...", o_name);
+                msg_format("你的 %s 周围环绕着一圈恶毒的黑色光环……", o_name);
 
                 o_ptr->feeling = FEEL_NONE;
 
@@ -2365,7 +2370,7 @@ static void process_world_aux_curse(void)
                 object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
 
                 o_ptr->curse_flags |= new_curse;
-                msg_format("There is a malignant black aura surrounding your %s...", o_name);
+                msg_format("你的 %s 周围环绕着一圈恶毒的黑色光环……", o_name);
 
                 o_ptr->feeling = FEEL_NONE;
 
@@ -2383,7 +2388,7 @@ static void process_world_aux_curse(void)
                 object_type *o_ptr = choose_cursed_obj_name(OFC_CALL_ANIMAL);
 
                 object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
-                msg_format("Your %s %s attracted an animal!", o_name, object_plural(o_ptr) ? "have" : "has");
+                msg_format("你的 %s 吸引了一只动物！", o_name, object_plural(o_ptr) ? "刚刚" : "刚刚");
 
                 disturb(0, 0);
                 obj_learn_curse(o_ptr, OFC_CALL_ANIMAL);
@@ -2398,7 +2403,7 @@ static void process_world_aux_curse(void)
                 object_type *o_ptr = choose_cursed_obj_name(OFC_CALL_DEMON);
 
                 object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
-                msg_format("Your %s %s attracted a demon!", o_name, object_plural(o_ptr) ? "have" : "has");
+                msg_format("你的 %s 吸引了一只恶魔！", o_name, object_plural(o_ptr) ? "刚刚" : "刚刚");
 
                 disturb(0, 0);
                 obj_learn_curse(o_ptr, OFC_CALL_DEMON);
@@ -2414,7 +2419,7 @@ static void process_world_aux_curse(void)
                 object_type *o_ptr = choose_cursed_obj_name(OFC_CALL_DRAGON);
 
                 object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
-                msg_format("Your %s %s attracted a dragon!", o_name, object_plural(o_ptr) ? "have" : "has");
+                msg_format("你的 %s 吸引了一条龙！", o_name, object_plural(o_ptr) ? "刚刚" : "刚刚");
 
                 disturb(0, 0);
                 obj_learn_curse(o_ptr, OFC_CALL_DRAGON);
@@ -2425,7 +2430,7 @@ static void process_world_aux_curse(void)
             if (!fear_save_p(fear_threat_level()))
             {
                 disturb(0, 0);
-                msg_print("It's so dark... so scary!");
+                msg_print("太黑了……太可怕了！");
 
                 fear_add_p(FEAR_SCARED);
                 equip_learn_curse(OFC_COWARDICE);
@@ -2448,7 +2453,7 @@ static void process_world_aux_curse(void)
             object_type *o_ptr = choose_cursed_obj_name(OFC_DRAIN_HP);
 
             object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
-            msg_format("Your %s %s HP from you!", o_name, object_plural(o_ptr) ? "drain" : "drains");
+            msg_format("你的 %s 吸取了你的生命值！", o_name, object_plural(o_ptr) ? "刚刚" : "刚刚");
             take_hit(DAMAGE_LOSELIFE, MIN(p_ptr->lev*2, 100), "an equipment curse");
             obj_learn_curse(o_ptr, OFC_DRAIN_HP);
         }
@@ -2459,7 +2464,7 @@ static void process_world_aux_curse(void)
             object_type *o_ptr = choose_cursed_obj_name(OFC_DRAIN_MANA);
 
             object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
-            msg_format("Your %s %s mana from you!", o_name, object_plural(o_ptr) ? "drain" : "drains");
+            msg_format("你的 %s 吸取了你的法力！", o_name, object_plural(o_ptr) ? "刚刚" : "刚刚");
             p_ptr->csp -= MIN(p_ptr->lev, 50);
             if (p_ptr->csp < 0)
             {
@@ -2480,7 +2485,7 @@ static void process_world_aux_curse(void)
                 object_type *o_ptr = choose_cursed_obj_name(OFC_DRAIN_PACK);
 
                 object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
-                msg_format("Your %s %s a strange sizzling sound...", o_name, object_plural(o_ptr) ? "make" : "makes");
+                msg_format("你的 %s 发出了奇怪的嘶嘶声……", o_name, object_plural(o_ptr) ? "刚刚" : "刚刚");
                 obj_learn_curse(o_ptr, OFC_DRAIN_PACK);
             }
         }
@@ -2494,9 +2499,9 @@ static void process_world_aux_curse(void)
         {
             object_type *o_ptr = equip_obj(slot);
             if (object_is_known(o_ptr))
-                msg_print("The Jewel of Judgement drains life from you!");
+                msg_print("审判宝石吸取了你的生命！");
             else
-                msg_print("Something drains life from you!");
+                msg_print("有什么东西吸取了你的生命！");
             take_hit(DAMAGE_LOSELIFE, MIN(p_ptr->lev, 50), "the Jewel of Judgement");
         }
     }
@@ -2514,10 +2519,10 @@ static void process_world_aux_curse(void)
             p_ptr->update |= PU_BONUS;
 
             msg_boundary();
-            cmsg_print(TERM_VIOLET, "You behold the Eye of Sauron!");
+            cmsg_print(TERM_VIOLET, "你注视着索伦之眼！");
             if (one_in_(2))
             {
-                msg_print("You feel your life draining away...");
+                msg_print("你感觉自己的生命正在流逝……");
                 lose_exp(p_ptr->exp / 16);
             }
             while (one_in_(2))
@@ -2526,7 +2531,7 @@ static void process_world_aux_curse(void)
             }
             if (one_in_(2))
             {
-                msg_print("You forget yourself in utter terror!");
+                msg_print("你在极度的恐惧中失去了理智！");
                 lose_all_info();
             }
             if (one_in_(2))
@@ -2543,9 +2548,9 @@ static void process_world_aux_curse(void)
         {
             object_type *o_ptr = equip_obj(slot);
             if (object_is_known(o_ptr))
-                msg_print("The Hand of Vecna strangles you!");
+                msg_print("维克那之手扼住了你的喉咙！");
             else
-                msg_print("The Hand strangles you!");
+                msg_print("那只手扼住了你的喉咙！");
             take_hit(DAMAGE_LOSELIFE, MIN(p_ptr->lev, 50), "the Hand of Vecna");
         }
     }
@@ -2557,9 +2562,9 @@ static void process_world_aux_curse(void)
         {
             object_type *o_ptr = equip_obj(slot);
             if (object_is_known(o_ptr))
-                msg_print("The Eye of Vecna causes mental anquish!");
+                msg_print("维克那之眼造成了精神上的极度痛苦！");
             else
-                msg_print("The Eye causes mental anquish!");
+                msg_print("那只眼睛造成了精神上的极度痛苦！");
 
             p_ptr->csp -= MIN(p_ptr->lev, 50);
             if (p_ptr->csp < 0)
@@ -2674,7 +2679,7 @@ void process_world_aux_movement(void)
             /* Determine the level */
             if (py_on_surface())
             {
-                cmsg_print(TERM_YELLOW, "You feel yourself yanked downwards!");
+                cmsg_print(TERM_YELLOW, "你感觉自己被猛地往下拉！");
                 set_dungeon_type(p_ptr->recall_dungeon);
                 dun_level = max_dlv[dungeon_type];
                 if (dun_level < 1) dun_level = 1;
@@ -2727,7 +2732,7 @@ void process_world_aux_movement(void)
             }
             else
             {
-                cmsg_print(TERM_YELLOW, "You feel yourself yanked upwards!");
+                cmsg_print(TERM_YELLOW, "你感觉自己被猛地往上拉！");
                 if (dungeon_type) p_ptr->recall_dungeon = dungeon_type;
 
                 dun_level = 0;
@@ -3023,7 +3028,7 @@ static void process_world(void)
 
         if (number_mon == 0)
         {
-            msg_print("They have killed each other at the same time.");
+            msg_print("它们同归于尽了。");
             msg_print(NULL);
             p_ptr->energy_need = 0;
             battle_monsters();
@@ -3036,21 +3041,21 @@ static void process_world(void)
             wm_ptr = &m_list[win_m_idx];
 
             monster_desc(m_name, wm_ptr, 0);
-            msg_format("%^s is the winner!", m_name);
+            msg_format("%^s获胜了！", m_name);
             /* Hack: Make sure the player sees this one! */
             auto_more_state = AUTO_MORE_PROMPT;
             msg_print(NULL);
 
             if (win_m_idx == (sel_monster+1))
             {
-                msg_print("Congratulations.");
-                msg_format("You received %d gold.", battle_odds);
+                msg_print("恭喜。");
+                msg_format("你获得了 %d 金币。", battle_odds);
                 p_ptr->au += battle_odds;
                 stats_on_gold_winnings(battle_odds);
             }
             else
             {
-                msg_print("You lost gold.");
+                msg_print("你输掉了金币。");
             }
             msg_print(NULL);
             p_ptr->energy_need = 0;
@@ -3058,7 +3063,7 @@ static void process_world(void)
         }
         else if (game_turn - old_turn == 150*TURNS_PER_TICK)
         {
-            msg_format("This battle has ended in a draw.");
+            msg_format("这场战斗以平局告终。");
             p_ptr->au += kakekin;
             stats_on_gold_winnings(kakekin);
             msg_print(NULL);
@@ -3095,8 +3100,8 @@ static void process_world(void)
                 closing_flag++;
 
                 /* Message */
-                msg_print("The gates to ANGBAND are closing...");
-                msg_print("Please finish up and/or save your game.");
+                msg_print("安格班(ANGBAND)的大门正在关闭……");
+                msg_print("请完成游戏和/或保存进度。");
 
             }
 
@@ -3104,7 +3109,7 @@ static void process_world(void)
             else
             {
                 /* Message */
-                msg_print("The gates to ANGBAND are now closed.");
+                msg_print("安格班(ANGBAND)的大门现在已关闭。");
 
 
                 /* Stop playing */
@@ -3125,7 +3130,7 @@ static void process_world(void)
 
     if (mon_fight && !ignore_unview)
     {
-        msg_print("You hear noise.");
+        msg_print("你听到了噪音。");
     }
 
     /*** Handle the wilderness/town (sunshine) ***/
@@ -3147,7 +3152,7 @@ static void process_world(void)
                 int y, x;
 
                 /* Message */
-                msg_print("The sun has risen.");
+                msg_print("太阳升起了。");
 
                 if (!p_ptr->wild_mode)
                 {
@@ -3178,7 +3183,7 @@ static void process_world(void)
                 int y, x;
 
                 /* Message */
-                msg_print("The sun has fallen.");
+                msg_print("太阳落山了。");
 
                 if (!p_ptr->wild_mode)
                 {
@@ -3291,19 +3296,19 @@ static void process_world(void)
             switch (min / 15)
             {
             case 0:
-                msg_print("You hear a distant bell toll ominously.");
+                msg_print("你听到远处的钟声发出不祥的鸣响。");
                 break;
 
             case 1:
-                msg_print("A distant bell sounds twice.");
+                msg_print("远处的钟响了两次。");
                 break;
 
             case 2:
-                msg_print("A distant bell sounds three times.");
+                msg_print("远处的钟响了三次。");
                 break;
 
             case 3:
-                msg_print("A distant bell tolls four times.");
+                msg_print("远处的钟响了四次。");
                 break;
             }
         }
@@ -3314,7 +3319,7 @@ static void process_world(void)
             int count = 0;
 
             disturb(1, 0);
-            msg_print("A distant bell tolls many times, fading into a deathly silence.");
+            msg_print("远处的钟声鸣响了许多次，逐渐消散在死一般的沉寂中。");
 
             activate_ty_curse(FALSE, &count);
         }
@@ -3370,7 +3375,7 @@ static void process_world(void)
             if (!p_ptr->paralyzed && (randint0(100) < 10))
             {
                 /* Message */
-                msg_print("You faint from the lack of food.");
+                msg_print("你因为缺乏食物而饿晕了。");
 
                 disturb(1, 0);
 
@@ -3437,21 +3442,21 @@ static bool enter_wizard_mode(void)
         /* Wizard mode is not permitted */
         if (!allow_debug_opts || arg_wizard)
         {
-            msg_print("Wizard mode is not permitted.");
+            msg_print("不允许使用巫师模式。");
             return FALSE;
         }
         else
         {
 #ifndef ALLOW_WIZARD
-            msg_print("Wizard mode is only permitted in special builds (#define ALLOW_WIZARD in z-config.h).");
+            msg_print("巫师模式仅在特殊编译版本中允许使用（在 z-config.h 中包含 #define ALLOW_WIZARD）。");
             return FALSE;
 #endif
         }
 
         /* Mention effects */
-        msg_print("Wizard mode is for debugging and experimenting.");
-        msg_print("The game will not be scored if you enter wizard mode.");
-        if (!get_check("Are you sure you want to enter wizard mode? "))
+        msg_print("巫师模式用于调试和实验。");
+        msg_print("如果你进入巫师模式，本场游戏将不会计入得分。");
+        if (!get_check("你确定要进入巫师模式吗？"))
         {
             return (FALSE);
         }
@@ -3478,14 +3483,14 @@ static bool enter_debug_mode(void)
         /* Debug mode is not permitted */
         if (!allow_debug_opts)
         {
-            msg_print("Use of debug command is not permitted.");
+            msg_print("不允许使用调试命令。");
             return FALSE;
         }
 
         /* Mention effects */
-        msg_print("The debug commands are for debugging and experimenting.");
-        msg_print("The game will not be scored if you use debug commands.");
-        if (!get_check("Are you sure you want to use debug commands? "))
+        msg_print("调试命令用于调试和实验。");
+        msg_print("如果你使用调试命令，本场游戏将不会计入得分。");
+        if (!get_check("你确定要使用调试命令吗？"))
         {
             return (FALSE);
         }
@@ -3533,13 +3538,13 @@ static void _dispatch_command(int old_now_turn)
             if (p_ptr->wizard)
             {
                 p_ptr->wizard = FALSE;
-                msg_print("Wizard mode off.");
+                msg_print("巫师模式关闭。");
 
             }
             else if (enter_wizard_mode())
             {
                 p_ptr->wizard = TRUE;
-                msg_print("Wizard mode on.");
+                msg_print("巫师模式开启。");
 
             }
 
@@ -3775,7 +3780,7 @@ static void _dispatch_command(int old_now_turn)
 
                 if (p_ptr->food < PY_FOOD_WEAK)
                 {
-                    msg_print("You must eat something here.");
+                    msg_print("你必须在这里吃点东西。");
                     break;
                 }
 
@@ -3839,7 +3844,7 @@ static void _dispatch_command(int old_now_turn)
         case 'G':
         {
             if (p_ptr->pclass == CLASS_SORCERER || p_ptr->pclass == CLASS_RED_MAGE)
-                msg_print("You don't have to learn spells!");
+                msg_print("你不需要学习法术！");
             else if (p_ptr->pclass == CLASS_SKILLMASTER)
                 skillmaster_gain_skill();
             else if (p_ptr->pclass == CLASS_SAMURAI)
@@ -3852,7 +3857,7 @@ static void _dispatch_command(int old_now_turn)
                 gray_mage_gain_spell();
             else if (p_ptr->pclass == CLASS_PSION)
             {
-                msg_print("You can only gain spells at certain levels.");
+                msg_print("你只能在特定等级获得法术。");
             }
             else
                 do_cmd_study();
@@ -3908,17 +3913,17 @@ static void _dispatch_command(int old_now_turn)
             if (p_ptr->wild_mode) break;
             if (p_ptr->pclass == CLASS_WARRIOR || p_ptr->pclass == CLASS_ARCHER || p_ptr->pclass == CLASS_CAVALRY)
             {
-                msg_print("You cannot cast spells!");
+                msg_print("你无法施放法术！");
             }
             else if (p_ptr->tim_no_spells)
             {
-                msg_print("Your spells are blocked!");
+                msg_print("你的法术被阻断了！");
                 flush();
                 /*energy_use = 100;*/
             }
             else if ((beorning_is_(BEORNING_FORM_BEAR)) && (p_ptr->pclass != CLASS_DUELIST) && (p_ptr->pclass != CLASS_RAGE_MAGE))
             {
-                msg_print("You cannot use magic in bear shape!");
+                msg_print("你无法在熊形态下使用魔法！");
                 flush();
             }
             else if ( dun_level && (d_info[dungeon_type].flags1 & DF1_NO_MAGIC)
@@ -3932,7 +3937,7 @@ static void _dispatch_command(int old_now_turn)
                    && p_ptr->prace  != RACE_MON_MIMIC)
             {
                 if (flush_failure) flush();
-                msg_print("The dungeon absorbs all attempted magic!");
+                msg_print("地下城吸收了所有尝试施放的魔法！");
                 msg_print(NULL);
             }
             else if ( p_ptr->anti_magic
@@ -3960,7 +3965,7 @@ static void _dispatch_command(int old_now_turn)
                     which_power = "prayer";
 
                 if (flush_failure) flush();
-                msg_format("An anti-magic shell disrupts your %s!", which_power);
+                msg_format("一层反魔法护盾干扰了你的 %s！", which_power);
                 equip_learn_flag(OF_NO_MAGIC);
                 energy_use = 0;
             }
@@ -3968,7 +3973,7 @@ static void _dispatch_command(int old_now_turn)
              && p_ptr->pclass != CLASS_ALCHEMIST && ((!beorning_is_(BEORNING_FORM_BEAR) || (p_ptr->pclass != CLASS_DUELIST))))
             {
                 if (flush_failure) flush();
-                msg_format("You cannot think clearly!");
+                msg_format("你的大脑无法清晰思考！");
                 energy_use = 0;
             }
             else
@@ -4021,7 +4026,7 @@ static void _dispatch_command(int old_now_turn)
                 }
                 if (spell_problem & PWR_AFRAID)
                 {
-                    msg_print("You tremble in fear!");
+                    msg_print("你恐惧得浑身发抖！");
                     if (energy_use < 100) energy_use = 100;
                     if (p_ptr->pclass == CLASS_ALCHEMIST) energy_use = alchemist_infusion_energy_use();
                 }
@@ -4064,7 +4069,7 @@ static void _dispatch_command(int old_now_turn)
                     do_cmd_activate();
                 else
                 {
-                    msg_print("The arena absorbs the attempted activation!");
+                    msg_print("竞技场吸收了尝试激活的能量！");
                     msg_print(NULL);
                 }
             }
@@ -4110,7 +4115,7 @@ static void _dispatch_command(int old_now_turn)
             {
                 if (p_ptr->inside_arena && !devicemaster_is_(DEVICEMASTER_WANDS))
                 {
-                    msg_print("The arena absorbs the energy of magical devices!");
+                    msg_print("竞技场吸收了魔法装置的能量！");
                     msg_print(NULL);
                 }
                 else
@@ -4128,7 +4133,7 @@ static void _dispatch_command(int old_now_turn)
             {
                 if (p_ptr->inside_arena && !devicemaster_is_(DEVICEMASTER_RODS))
                 {
-                    msg_print("The arena absorbs the energy of magical devices!");
+                    msg_print("竞技场吸收了魔法装置的能量！");
                     msg_print(NULL);
                 }
                 else
@@ -4146,7 +4151,7 @@ static void _dispatch_command(int old_now_turn)
             {
                 if (p_ptr->inside_arena && !devicemaster_is_(DEVICEMASTER_POTIONS) && p_ptr->pclass != CLASS_ALCHEMIST)
                 {
-                    msg_print("The arena absorbs the energy of magical potions!");
+                    msg_print("竞技场吸收了魔法药水的能量！");
                     msg_print(NULL);
                 }
                 else
@@ -4164,7 +4169,7 @@ static void _dispatch_command(int old_now_turn)
             {
                 if (p_ptr->inside_arena && !devicemaster_is_(DEVICEMASTER_SCROLLS))
                 {
-                    msg_print("The arena absorbs the energy of magical scrolls!");
+                    msg_print("竞技场吸收了魔法卷轴的能量！");
                     msg_print(NULL);
                 }
                 else
@@ -4182,7 +4187,7 @@ static void _dispatch_command(int old_now_turn)
             {
                 if (p_ptr->inside_arena && !devicemaster_is_(DEVICEMASTER_STAVES))
                 {
-                    msg_print("The arena absorbs the energy of magical devices!");
+                    msg_print("竞技场吸收了魔法装置的能量！");
                     msg_print(NULL);
                 }
                 else
@@ -4198,7 +4203,7 @@ static void _dispatch_command(int old_now_turn)
             {
                 if ((do_cmd_power() & PWR_AFRAID) && (energy_use < 100))
                 {
-                    msg_print("You tremble in fear!");
+                    msg_print("你恐惧得浑身发抖！");
                     energy_use = 100;
                 }
             }
@@ -4439,7 +4444,7 @@ static void _dispatch_command(int old_now_turn)
 
         case 'J':
         {
-            if ((!p_ptr->wild_mode) && (travel.x) && (travel.y) && ((px != travel.x) || (py != travel.y)) && (in_bounds(travel.y, travel.x)) && (get_check("Resume travelling? ")))
+            if ((!p_ptr->wild_mode) && (travel.x) && (travel.y) && ((px != travel.x) || (py != travel.y)) && (in_bounds(travel.y, travel.x)) && (get_check("继续旅行？")))
             travel_begin(TRAVEL_MODE_NORMAL, travel.x, travel.y);
             break;
         }
@@ -4455,10 +4460,10 @@ static void _dispatch_command(int old_now_turn)
                 if (get_rnd_line("error.txt", 0, error_m) == ERROR_SUCCESS)
                     msg_print(error_m);
                 else
-                    msg_print("Unknown command. Type <color:y>?</color> for help.");
+                    msg_print("未知的命令。输入 <color:y>?</color> 查看帮助。");
             }
             else
-                msg_print("Unknown command. Type <color:y>?</color> for help.");
+                msg_print("未知的命令。输入 <color:y>?</color> 查看帮助。");
 
             break;
         }
@@ -4649,13 +4654,13 @@ static void process_player(void)
                 {
                     char m_name[80];
                     monster_desc(m_name, &m_list[cave[y][x].m_idx], 0);
-                    msg_format("You have a good catch!", m_name);
+                    msg_format("你钓到了个好东西！", m_name);
                     success = TRUE;
                 }
             }
             if (!success)
             {
-                msg_print("Damn!  The fish stole your bait!");
+                msg_print("该死！鱼把你的鱼饵偷吃了！");
             }
             disturb(0, 0);
         }
@@ -4685,7 +4690,7 @@ static void process_player(void)
                 disturb(0, 0);
 
                 /* Hack -- Show a Message */
-                msg_print("Canceled.");
+                msg_print("已取消。");
 
             }
         }
@@ -4705,7 +4710,7 @@ static void process_player(void)
 
             /* Acquire the monster name */
             monster_desc(m_name, m_ptr, 0);
-            msg_format("You have waked %s up.", m_name);
+            msg_format("你唤醒了 %s。", m_name);
         }
 
         if (MON_STUNNED(m_ptr))
@@ -4720,7 +4725,7 @@ static void process_player(void)
                 monster_desc(m_name, m_ptr, 0);
 
                 /* Dump a message */
-                msg_format("%^s is no longer stunned.", m_name);
+                msg_format("%^s不再被震慑了。", m_name);
             }
         }
 
@@ -4736,7 +4741,7 @@ static void process_player(void)
                 monster_desc(m_name, m_ptr, 0);
 
                 /* Dump a message */
-                msg_format("%^s is no longer confused.", m_name);
+                msg_format("%^s不再困惑了。", m_name);
             }
         }
 
@@ -4752,7 +4757,7 @@ static void process_player(void)
                 monster_desc(m_name, m_ptr, 0);
 
                 /* Dump a message */
-                msg_format("%^s is no longer afraid.", m_name);
+                msg_format("%^s不再害怕了。", m_name);
             }
         }
 
@@ -5018,7 +5023,7 @@ static void process_player(void)
                 if ((!poison_warning_hack) || ((int)poison_warning_hack < (MIN(255, (p_ptr->poisoned + 9) / 10))) || (p_ptr->poisoned / 4 > p_ptr->chp))
                 {
                     msg_boundary();
-                    msg_format("<color:G>*** POISON WARNING! ***</color>");
+                    msg_format("<color:G>*** 中毒警告！ ***</color>");
                     if ((!poison_warning_hack) || (p_ptr->poisoned / 4 > p_ptr->chp)) msg_print(NULL);
                 }
                 poison_warning_hack = MIN(255, (p_ptr->poisoned + 9) / 10);
@@ -5068,7 +5073,7 @@ static void process_player(void)
                 if (amt > p_ptr->poisoned)
                     amt = p_ptr->poisoned;
                 if (0 || p_ptr->wizard)
-                    msg_format("<color:G> %d Poison Damage</color>", amt);
+                    msg_format("<color:G> %d 点毒素伤害</color>", amt);
                 if (!IS_INVULN())
                     take_hit(DAMAGE_NOESCAPE, amt, "poison");
                 set_poisoned(p_ptr->poisoned - amt, TRUE);
@@ -5097,9 +5102,9 @@ static void process_player(void)
                 int dmg = ((NO_AIR_MAX - p_ptr->no_air) * energy_use + (divisor * 2 - 1)) / divisor;
                 if (dmg < 10)
                 {
-                    msg_print("You cannot breathe!");
+                    msg_print("你无法呼吸！");
                 }
-                else msg_print("You feel weak from the lack of oxygen...");
+                else msg_print("你因缺氧而感到虚弱……");
                 take_hit(DAMAGE_NOESCAPE, dmg, "oxygen deprivation");
             }
 
@@ -5127,7 +5132,7 @@ static void process_player(void)
                 if (p_ptr->wizard)
                 {
                     rect_t r = ui_char_info_rect();
-                    c_put_str(TERM_WHITE, format("E:%3d/%3d", amt, energy_use), r.y + r.cy - 2, r.x);
+                    c_put_str(TERM_WHITE, format("精:%3d/%3d", amt, energy_use), r.y + r.cy - 2, r.x);
 //                    c_put_str(TERM_WHITE, format("E:%3d/%3d", amt, p_ptr->energy_need + amt), r.y + r.cy - 2, r.x);
                 }
                 else if (show_energy_cost)
@@ -5145,7 +5150,7 @@ static void process_player(void)
             if ((p_ptr->wizard) && (p_ptr->word_recall))
             {
                 rect_t r = ui_char_info_rect();
-                c_put_str(TERM_WHITE, format("R:%3d", p_ptr->word_recall - 1), r.y + r.cy - 3, r.x);
+                c_put_str(TERM_WHITE, format("召:%3d", p_ptr->word_recall - 1), r.y + r.cy - 3, r.x);
             }
 
             /* Hack -- constant hallucination */
@@ -5222,7 +5227,7 @@ static void process_player(void)
                 p_ptr->redraw |= (PR_MAP | PR_STATUS);
                 p_ptr->update |= (PU_MONSTERS);
                 p_ptr->window |= (PW_OVERHEAD | PW_DUNGEON);
-                msg_print("You feel time flowing around you once more.");
+                msg_print("你感觉时间再次在你的周围流动。");
                 msg_print(NULL);
                 world_player = FALSE;
                 p_ptr->energy_need = ENERGY_NEED();
@@ -5389,7 +5394,7 @@ static void dungeon(bool load_game)
         }
         else
         {
-            msg_format("Ready..Fight!");
+            msg_format("准备……战斗！");
             msg_print(NULL);
         }
     }
@@ -5604,13 +5609,13 @@ static void load_all_pref_files(bool new_game)
     load_user_pref_files();
 
     /* Access the "race" pref file */
-    sprintf(buf, "%s.prf", get_true_race()->name);
+    sprintf(buf, "%s.prf", get_race_internal_name(get_true_race()->id));
 
     /* Process that file */
     process_pref_file(buf);
 
     /* Access the "class" pref file */
-    sprintf(buf, "%s.prf", get_class()->name);
+    sprintf(buf, "%s.prf", get_class_internal_name(get_class()->id));
 
     /* Process that file */
     process_pref_file(buf);
@@ -5649,7 +5654,7 @@ static void load_all_pref_files(bool new_game)
     /* Access the "realm 1" pref file */
     if (p_ptr->realm1 != REALM_NONE)
     {
-        sprintf(buf, "%s.prf", realm_names[p_ptr->realm1]);
+        sprintf(buf, "%s.prf", realm_internal_name(p_ptr->realm1));
 
         /* Process that file */
         process_pref_file(buf);
@@ -5658,7 +5663,7 @@ static void load_all_pref_files(bool new_game)
     /* Access the "realm 2" pref file */
     if (p_ptr->realm2 != REALM_NONE)
     {
-        sprintf(buf, "%s.prf", realm_names[p_ptr->realm2]);
+        sprintf(buf, "%s.prf", realm_internal_name(p_ptr->realm2));
 
         /* Process that file */
         process_pref_file(buf);
@@ -6320,7 +6325,7 @@ void play_game(bool new_game)
             if (!py || !px)
             {
                 quest_ptr qp = quests_get_current();
-                msg_print("What a strange player location. Regenerate the dungeon floor.");
+                msg_print("玩家的出生位置真奇怪。正在重新生成地下城楼层。");
                 if (qp && qp->id) qp->status = QS_TAKEN;
                 enter_quest = FALSE;
                 if (qp) /* Broken quest - force exit */
@@ -6342,27 +6347,37 @@ void play_game(bool new_game)
 
     /* Character is now "complete" */
     character_generated = TRUE;
+    startup_trace("character_generated");
 
     /* Hack -- Character is no longer "icky" */
     character_icky = FALSE;
 
     /* Start game */
     p_ptr->playing = TRUE;
+    startup_trace("playing_true");
 
     /* Reset the visual mappings */
+    startup_trace("before_reset_visuals");
     reset_visuals();
+    startup_trace("after_reset_visuals");
 
     /* Load the "pref" files */
+    startup_trace("before_load_all_pref_files");
     load_all_pref_files(new_game);
+    startup_trace("after_load_all_pref_files");
 
     /* Turn on easy mimics */
     toggle_easy_mimics(easy_mimics);
+    startup_trace("after_toggle_easy_mimics");
 
+    startup_trace("before_term_react_window_stuff");
     Term_xtra(TERM_XTRA_REACT, 0);
     p_ptr->window |= (PW_INVEN | PW_EQUIP | PW_SPELL);
     p_ptr->window |= (PW_MESSAGE | PW_OVERHEAD | PW_DUNGEON | PW_MONSTER_LIST | PW_OBJECT_LIST | PW_MONSTER | PW_OBJECT);
     window_stuff();
+    startup_trace("after_window_stuff");
     viewport_verify_aux(VIEWPORT_FORCE_CENTER);
+    startup_trace("after_viewport_verify");
 
     /* Give startup outfit (after loading pref files) */
     if (new_game)
@@ -6371,32 +6386,26 @@ void play_game(bool new_game)
         race_t *race_ptr = get_race();
         personality_ptr pers_ptr = get_personality();
 
+        startup_trace("before_do_cmd_redraw");
         do_cmd_redraw();  /* Not sure why this is required?! */
+        startup_trace("after_do_cmd_redraw");
 
         if (thrall_mode)
-        msg_print("<color:B>Welcome!</color> You begin your adventure deep in the dungeon, "
-                  "a runaway slave of this dark pit's demonic masters. Your attempts to "
-                  "gather supplies for your escape have been detected, and now everybody "
-                  "is on high alert... \n"
-                  "This is the message line where important information is "
-                  "communicated to you while you play the game. "
-                  "Press <color:y>SPACE</color> every time you see a <color:B>-more-</color> prompt and "
-                  "you are finished reading the current messages. "
-                  "Press <color:y>CTRL+P</color> to review recent messages. "
-                  "You may press <color:y>?</color> at any time for help.\n\n");
-        else msg_print("<color:B>Welcome!</color> You begin life in the town where you may purchase "
-                  "supplies for the dangers that await you.\n"
-                  "This is the message line where important information is "
-                  "communicated to you while you play the game. "
-                  "Press <color:y>SPACE</color> every time you see a <color:B>-more-</color> prompt and "
-                  "you are finished reading the current messages. "
-                  "Press <color:y>CTRL+P</color> to review recent messages. "
-                  "You may press <color:y>?</color> at any time for help.\n\n");
+        msg_print("<color:B>欢迎！</color> 你在地下城深处开始了你的冒险，你是这个黑暗深坑中恶魔主人的逃奴。你为逃跑收集补给的企图已经被发现了，现在所有人都处于高度戒备状态……\n这就是你在玩游戏时传达重要信息的提示行。每当看到 <color:B>-more-</color> （更多）提示并且你已经读完当前信息时，请按 <color:y>SPACE</color> 键（空格键）。按 <color:y>CTRL+P</color> 可以回顾最近的信息。你可以随时按 <color:y>?</color> 键获取帮助。\n\n");
+        else msg_print("<color:B>欢迎！</color> 你的生活从城镇开始，你可以在这里购买补给，以应对前方等待着你的危险。\n这就是你在玩游戏时传达重要信息的提示行。每当看到 <color:B>-more-</color> （更多）提示并且你已经读完当前信息时，请按 <color:y>SPACE</color> 键（空格键）。按 <color:y>CTRL+P</color> 可以回顾最近的信息。你可以随时按 <color:y>?</color> 键获取帮助。\n\n");
+        startup_trace("after_welcome_message");
         msg_boundary();
+        startup_trace("after_msg_boundary");
 
+        startup_trace("before_skills_on_birth");
         skills_on_birth();   /* Hack: Skills must init before racial birth for monster race innate proficiency! */
+        startup_trace("after_skills_on_birth");
         if (pers_ptr->birth) /* Hack: Personality goes first for the Sexy Whip! */
+        {
+            startup_trace("before_personality_birth");
             pers_ptr->birth();
+            startup_trace("after_personality_birth");
+        }
 
         /* birth functions should handle this
         player_outfit();*/
@@ -6405,20 +6414,32 @@ void play_game(bool new_game)
          * equipment and spellbooks while the race birth function
          * should give starting food and light (in general) */
         if (class_ptr->birth)
+        {
+            startup_trace("before_class_birth");
             class_ptr->birth();
+            startup_trace("after_class_birth");
+        }
 
         if (race_ptr->birth)
+        {
+            startup_trace("before_race_birth");
             race_ptr->birth();
+            startup_trace("after_race_birth");
+        }
         else
         {
             /* most races won't need a special birth function, so
              * give standard food and light by default */
+            startup_trace("before_default_birth_food_light");
             py_birth_food();
             py_birth_light();
+            startup_trace("after_default_birth_food_light");
         }
         if ((coffee_break) && (!thrall_mode) && (p_ptr->pclass != CLASS_BERSERKER)) py_birth_obj_aux(TV_SCROLL, SV_SCROLL_WORD_OF_RECALL, (game_mode == GAME_MODE_BEGINNER) ? 10 : 1);
+        startup_trace("after_coffee_break_recall");
         if (thrall_mode)
         {
+            startup_trace("before_thrall_birth_items");
             if (p_ptr->pclass == CLASS_BERSERKER)
             {
                 py_birth_obj_aux(TV_POTION, SV_POTION_ENLIGHTENMENT, 10);
@@ -6435,17 +6456,26 @@ void play_game(bool new_game)
                 device_init_fixed(&forge, EFFECT_DETECT_ALL);
                 py_birth_obj(&forge);
             }
+            startup_trace("after_thrall_birth_items");
 
             /* Start with no gold */
             p_ptr->au = 0;
+            startup_trace("after_thrall_gold");
         }
 
+        startup_trace("before_spell_stats_on_birth");
         spell_stats_on_birth();
+        startup_trace("after_spell_stats_on_birth");
 
         stats_on_gold_find(p_ptr->au); /* Found? Inherited? What's the difference? */
+        startup_trace("after_stats_on_gold_find");
 
         if (class_ptr->gain_level) /* Gain CL1 (e.g. Chaos Warriors) */
+        {
+            startup_trace("before_class_gain_level");
             (class_ptr->gain_level)(p_ptr->lev);
+            startup_trace("after_class_gain_level");
+        }
     }
 
 
@@ -6457,6 +6487,7 @@ void play_game(bool new_game)
     if (p_ptr->chp < 0) p_ptr->is_dead = TRUE;
 
     if (p_ptr->prace == RACE_ANDROID) android_calc_exp();
+    startup_trace("after_android_calc_exp_check");
 
     if (new_game && ((p_ptr->pclass == CLASS_CAVALRY) || (p_ptr->pclass == CLASS_BEASTMASTER)))
     {
@@ -6465,6 +6496,7 @@ void play_game(bool new_game)
         int my = (no_wilderness) ? py - 1 : py + 1;
         int mx = px;
         monster_race *r_ptr = &r_info[pet_r_idx];
+        startup_trace("before_initial_pet");
         if (!monster_can_enter(my, mx, r_ptr, 0)) /* Find empty place for initial pet */
         {
             int dmy, dmx, ties = 0, paras = 1000, etaisyys = 1;
@@ -6501,13 +6533,16 @@ void play_game(bool new_game)
         m_ptr->hp = r_ptr->hdice*(r_ptr->hside+1)/2;
         energy_need_hack = SPEED_TO_ENERGY(m_ptr->mspeed);
         m_ptr->energy_need = ENERGY_NEED() + ENERGY_NEED();
+        startup_trace("after_initial_pet");
     }
 
     /* Process */
     while (TRUE)
     {
         /* Process the level */
+        startup_trace("before_dungeon_loop");
         dungeon(load_game);
+        startup_trace("after_dungeon_loop");
 
         /* Handle "p_ptr->notice" */
         notice_stuff();
@@ -6574,7 +6609,7 @@ void play_game(bool new_game)
             else
             {
                 /* Mega-Hack -- Allow player to cheat death */
-                if (((p_ptr->total_winner) && (unique_is_friend(MON_R_MACHINE))) || ((p_ptr->wizard || cheat_live) && !get_check("Die? ")))
+                if (((p_ptr->total_winner) && (unique_is_friend(MON_R_MACHINE))) || ((p_ptr->wizard || cheat_live) && !get_check("确定要死吗？")))
                 {
                     quest_ptr qp = quests_get_current();
                     bool was_in_dung = (dun_level > 0);
@@ -6584,7 +6619,7 @@ void play_game(bool new_game)
                     if (!no_cheat)
                     {
                         p_ptr->noscore |= 0x0001;
-                        msg_print("You invoke wizard mode and cheat death.");
+                        msg_print("你启用了巫师模式并骗过了死亡。");
                         msg_print(NULL);
                     }
 
@@ -6602,7 +6637,7 @@ void play_game(bool new_game)
                     if (p_ptr->word_recall)
                     {
                         /* Message */
-                        msg_print("A tension leaves the air around you...");
+                        msg_print("你周围空气中的紧张感消失了……");
 
                         msg_print(NULL);
 
@@ -6630,7 +6665,7 @@ void play_game(bool new_game)
                     }
 
                     /* Note cause of death XXX XXX XXX */
-                    if (!no_cheat) (void)strcpy(p_ptr->died_from, "Cheating death");
+                    if (!no_cheat) (void)strcpy(p_ptr->died_from, "死里逃生");
 
                     /* Do not die */
                     p_ptr->is_dead = FALSE;
@@ -6681,7 +6716,7 @@ void play_game(bool new_game)
 
                     if (no_cheat)
                     {
-                        msg_print("You are resurrected!");
+                        msg_print("你复活了！");
                         set_dungeon_type(DUNGEON_HEAVEN);
                         dun_level = d_info[dungeon_type].maxdepth;
                     }

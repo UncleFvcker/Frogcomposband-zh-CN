@@ -290,7 +290,7 @@ void build_streamer(int feat, int chance)
                         {
                             char o_name[MAX_NLEN];
                             object_desc(o_name, o_ptr, (OD_NAME_ONLY | OD_STORE));
-                            msg_format("Artifact (%s) was deleted by streamer.", o_name);
+                            msg_format("神器（%s）被地形流覆盖而消失。", o_name);
                         }
                     }
                     else if (random_artifacts && o_ptr->name3)
@@ -302,12 +302,12 @@ void build_streamer(int feat, int chance)
                         {
                             char o_name[MAX_NLEN];
                             object_desc(o_name, o_ptr, (OD_NAME_ONLY | OD_STORE));
-                            msg_format("Artifact (%s) was deleted by streamer.", o_name);
+                            msg_format("神器（%s）被地形流覆盖而消失。", o_name);
                         }
                     }
                     else if (cheat_peek && o_ptr->art_name)
                     {
-                        msg_print("One of the random artifacts was deleted by streamer.");
+                        msg_print("一件随机神器被地形流覆盖而消失。");
                     }
                 }
 
@@ -342,7 +342,7 @@ void build_streamer(int feat, int chance)
         {
             if (cheat_room)
             {
-                msg_print("Warning! Could not place streamer!");
+                msg_print("警告！无法生成地形流！");
 
             }
             return;
@@ -422,7 +422,7 @@ void destroy_level(void)
     int y1, x1, n;
 
     /* Note destroyed levels */
-    if (cheat_room) msg_print("Destroyed Level");
+    if (cheat_room) msg_print("毁灭的楼层");
 
     /* Drop a few epi-centers (usually about two) */
     for (n = 0; n < randint1(5); n++)
