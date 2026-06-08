@@ -552,7 +552,7 @@ static void do_cmd_options_cheat(cptr info)
 
     int        i, k = 0, n = CHEAT_MAX;
 
-    char    buf[80];
+    char    buf[1024];
 
 
     /* Clear screen */
@@ -835,10 +835,11 @@ static void do_cmd_options_autosave(cptr info)
  */
 void do_cmd_options_aux(int page, cptr info)
 {
+    enum { MAX_OPTIONS_PER_PAGE = 128 };
     int     ch;
     int     i, k = 0, n = 0, l;
-    int     opt[40];
-    char    buf[80];
+    int     opt[MAX_OPTIONS_PER_PAGE];
+    char    buf[1024];
     bool    browse_only = (page == OPT_PAGE_BIRTH) && character_generated &&
                           (!p_ptr->wizard || !allow_debug_opts);
     bool    scroll_mode;
@@ -848,13 +849,20 @@ void do_cmd_options_aux(int page, cptr info)
 /*    browse_only = FALSE; */
 
     /* Lookup the options */
-    for (i = 0; i < 40; i++) opt[i] = 0;
+    for (i = 0; i < MAX_OPTIONS_PER_PAGE; i++) opt[i] = 0;
 
     /* Scan the options */
     for (i = 0; option_info[i].o_desc; i++)
     {
         /* Notice options on this "page" */
-        if (option_info[i].o_page == page) opt[n++] = i;
+        if (option_info[i].o_page == page)
+        {
+            if (n >= MAX_OPTIONS_PER_PAGE)
+            {
+                quit_fmt("Too many options on option page %d", page);
+            }
+            opt[n++] = i;
+        }
     }
 
     scroll_mode = (n > bottom_opt);
@@ -888,66 +896,66 @@ void do_cmd_options_aux(int page, cptr info)
             /* Display the option text */
             if (option_info[opt[i]].o_var == &random_artifacts)
             {
-                sprintf(buf, "%-48s: ", option_info[opt[i]].o_desc);
+                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
                 if (random_artifacts)
-                    sprintf(buf + strlen(buf), "%d%% ", random_artifact_pct);
+                    strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%d%% ", random_artifact_pct);
                 else
                     strcat(buf, "no  ");
-                sprintf(buf + strlen(buf), "(%.19s)", option_info[opt[i]].o_text);
+                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "(%.19s)", option_info[opt[i]].o_text);
             }
             else if (option_info[opt[i]].o_var == &ironman_empty_levels)
             {
-                sprintf(buf, "%-48s: ", option_info[opt[i]].o_desc);
-                sprintf(buf + strlen(buf), "%s", empty_lv_description[generate_empty]);
+                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
+                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%s", empty_lv_description[generate_empty]);
             }
             else if (option_info[opt[i]].o_var == &reduce_uniques)
             {
-                sprintf(buf, "%-48s: ", option_info[opt[i]].o_desc);
+                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
                 if (reduce_uniques)
-                    sprintf(buf + strlen(buf), "%d%% ", reduce_uniques_pct);
+                    strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%d%% ", reduce_uniques_pct);
                 else
                     strcat(buf, "no  ");
-                sprintf(buf + strlen(buf), "(%.19s)", option_info[opt[i]].o_text);
+                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "(%.19s)", option_info[opt[i]].o_text);
             }
             else if (option_info[opt[i]].o_var == &obj_list_width)
             {
-                sprintf(buf, "%-48s: ", option_info[opt[i]].o_desc);
-                sprintf(buf + strlen(buf), "%-3d ", object_list_width);
-                sprintf(buf + strlen(buf), "(%.19s)", option_info[opt[i]].o_text);
+                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
+                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%-3d ", object_list_width);
+                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "(%.19s)", option_info[opt[i]].o_text);
             }
             else if (option_info[opt[i]].o_var == &mon_list_width)
             {
-                sprintf(buf, "%-48s: ", option_info[opt[i]].o_desc);
-                sprintf(buf + strlen(buf), "%-3d ", monster_list_width);
-                sprintf(buf + strlen(buf), "(%.19s)", option_info[opt[i]].o_text);
+                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
+                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%-3d ", monster_list_width);
+                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "(%.19s)", option_info[opt[i]].o_text);
             }
             else if (option_info[opt[i]].o_var == &single_pantheon)
             {
-                sprintf(buf, "%-48s: ", option_info[opt[i]].o_desc);
-                sprintf(buf + strlen(buf), "%d / %d", pantheon_count, PANTHEON_MAX - 1);
+                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
+                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%d / %d", pantheon_count, PANTHEON_MAX - 1);
             }
             else if (option_info[opt[i]].o_var == &guaranteed_pantheon)
             {
-                sprintf(buf, "%-48s: ", option_info[opt[i]].o_desc);
+                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
                 if (pantheon_count == PANTHEON_MAX - 1)
                 {
                     strcat(buf, "全部");
                 }
                 else if ((game_pantheon) && (game_pantheon < PANTHEON_MAX))
                 {
-                    sprintf(buf + strlen(buf), "%.3s ", pant_list[game_pantheon].short_name);
+                    strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%.3s ", pant_list[game_pantheon].short_name);
                 }
                 else
                     strcat(buf, "无");
             }
             else if (option_info[opt[i]].o_var == &always_small_levels)
             {
-                sprintf(buf, "%-48s: ", option_info[opt[i]].o_desc);
-                sprintf(buf + strlen(buf), "%s ", lv_size_options[small_level_type]);
+                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
+                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%s ", lv_size_options[small_level_type]);
             }
             else
             {
-                sprintf(buf, "%-48s: %s (%.19s)",
+                strnfmt(buf, sizeof(buf), "%-48s: %s (%.19s)",
                     option_info[opt[i]].o_desc,
                     (*option_info[opt[i]].o_var ? "是" : "no "),
                     option_info[opt[i]].o_text);

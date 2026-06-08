@@ -129,6 +129,24 @@
 #define IDM_WINDOW_FONT_6        216
 #define IDM_WINDOW_FONT_7        217
 
+#define IDM_WINDOW_FONT_CJK_0    280
+#define IDM_WINDOW_FONT_CJK_1    281
+#define IDM_WINDOW_FONT_CJK_2    282
+#define IDM_WINDOW_FONT_CJK_3    283
+#define IDM_WINDOW_FONT_CJK_4    284
+#define IDM_WINDOW_FONT_CJK_5    285
+#define IDM_WINDOW_FONT_CJK_6    286
+#define IDM_WINDOW_FONT_CJK_7    287
+
+#define IDM_WINDOW_BG_0          290
+#define IDM_WINDOW_BG_1          291
+#define IDM_WINDOW_BG_2          292
+#define IDM_WINDOW_BG_3          293
+#define IDM_WINDOW_BG_4          294
+#define IDM_WINDOW_BG_5          295
+#define IDM_WINDOW_BG_6          296
+#define IDM_WINDOW_BG_7          297
+
 #define IDM_WINDOW_POS_0        220
 #define IDM_WINDOW_POS_1        221
 #define IDM_WINDOW_POS_2        222
@@ -392,10 +410,12 @@ struct _term_data
     bool bizarre;
 
     cptr font_want;
+    cptr cjk_font_want;
 
     cptr font_file;
 
     HFONT font_id;
+    HFONT cjk_font_id;
 
     uint font_wid;
     uint font_hgt;
@@ -406,8 +426,11 @@ struct _term_data
     uint map_tile_wid;
     uint map_tile_hgt;
 
+    COLORREF bg_color;
+
     bool map_active;
     LOGFONT lf;
+    LOGFONT cjk_lf;
 
     bool posfix;
 };
@@ -422,6 +445,7 @@ struct _term_data
  * An array of term_data's
  */
 static term_data data[MAX_TERM_DATA];
+static void term_data_redraw(term_data *td);
 
 /*
  * Hack -- global "window creation" pointer
@@ -461,7 +485,8 @@ static HINSTANCE hInstance;
 /*
  * Private Chinese font bundled next to the executable.
  */
-#define WIN_DEFAULT_FONT_FACE "YouYuan"
+#define WIN_DEFAULT_LATIN_FONT_FACE "Consolas"
+#define WIN_DEFAULT_CJK_FONT_FACE "YouYuan"
 #define WIN_FONT_RESOURCE_FLAGS 0
 
 static const char *private_font_files[] =
@@ -1338,6 +1363,10 @@ static void save_prefs_aux(int i)
     strcpy(buf, td->lf.lfFaceName[0]!='\0' ? td->lf.lfFaceName : "Courier");
 
     WritePrivateProfileString(sec_name, "Font", buf, ini_file);
+    WritePrivateProfileString(sec_name, "FontLatin", buf, ini_file);
+
+    strcpy(buf, td->cjk_lf.lfFaceName[0]!='\0' ? td->cjk_lf.lfFaceName : WIN_DEFAULT_CJK_FONT_FACE);
+    WritePrivateProfileString(sec_name, "FontCJK", buf, ini_file);
 
     wsprintf(buf, "%d", td->lf.lfWidth);
     WritePrivateProfileString(sec_name, "FontWid", buf, ini_file);
@@ -1345,6 +1374,9 @@ static void save_prefs_aux(int i)
     WritePrivateProfileString(sec_name, "FontHgt", buf, ini_file);
     wsprintf(buf, "%d", td->lf.lfWeight);
     WritePrivateProfileString(sec_name, "FontWgt", buf, ini_file);
+
+    wsprintf(buf, "%lu", (unsigned long)td->bg_color);
+    WritePrivateProfileString(sec_name, "BackgroundColor", buf, ini_file);
 
     /* Bizarre */
     strcpy(buf, td->bizarre ? "1" : "0");
@@ -1461,8 +1493,10 @@ static void load_prefs_aux(int i)
         td->visible = (GetPrivateProfileInt(sec_name, "Visible", td->visible, ini_file) != 0);
     }
 
-    /* Desired font, with default */
-    GetPrivateProfileString(sec_name, "Font", WIN_DEFAULT_FONT_FACE, tmp, 127, ini_file);
+    /* Desired Latin font, with compatibility fallback to the old Font key */
+    GetPrivateProfileString(sec_name, "FontLatin", "", tmp, 127, ini_file);
+    if (!tmp[0])
+        GetPrivateProfileString(sec_name, "Font", WIN_DEFAULT_LATIN_FONT_FACE, tmp, 127, ini_file);
 
 
     /* Bizarre */
@@ -1470,10 +1504,21 @@ static void load_prefs_aux(int i)
 
     /* Analyze font, save desired font name */
     td->font_want = z_string_make(tmp);
+
+    /* Desired CJK font */
+    GetPrivateProfileString(sec_name, "FontCJK", WIN_DEFAULT_CJK_FONT_FACE, tmp, 127, ini_file);
+    td->cjk_font_want = z_string_make(tmp);
+
     hgt = 15; wid = 0;
     td->lf.lfWidth  = GetPrivateProfileInt(sec_name, "FontWid", wid, ini_file);
     td->lf.lfHeight = GetPrivateProfileInt(sec_name, "FontHgt", hgt, ini_file);
     td->lf.lfWeight = GetPrivateProfileInt(sec_name, "FontWgt", 0, ini_file);
+
+    td->cjk_lf.lfWidth  = td->lf.lfWidth;
+    td->cjk_lf.lfHeight = td->lf.lfHeight;
+    td->cjk_lf.lfWeight = td->lf.lfWeight;
+
+    td->bg_color = (COLORREF)GetPrivateProfileInt(sec_name, "BackgroundColor", RGB(0, 0, 0), ini_file);
 
 
     /* Tile size */
@@ -1884,21 +1929,41 @@ static void term_window_resize(term_data *td)
 }
 
 
+static void term_delete_fonts(term_data *td)
+{
+    if (td->font_id)
+    {
+        DeleteObject(td->font_id);
+        td->font_id = 0;
+    }
+    if (td->cjk_font_id)
+    {
+        DeleteObject(td->cjk_font_id);
+        td->cjk_font_id = 0;
+    }
+}
+
+static void term_sync_cjk_font(term_data *td)
+{
+    td->cjk_lf.lfWidth = td->lf.lfWidth;
+    td->cjk_lf.lfHeight = td->lf.lfHeight;
+    td->cjk_lf.lfWeight = td->lf.lfWeight;
+    td->cjk_lf.lfPitchAndFamily = FIXED_PITCH | FF_DONTCARE;
+    if (!td->cjk_lf.lfFaceName[0])
+        strncpy(td->cjk_lf.lfFaceName, WIN_DEFAULT_CJK_FONT_FACE, LF_FACESIZE);
+}
+
 /*
- * Force the use of a new "font file" for a term_data
+ * Force the use of new fonts for a term_data.
  *
- * This function may be called before the "window" is ready
- *
- * This function returns zero only if everything succeeds.
- *
- * Note that the "font name" must be capitalized!!!
+ * The Latin font controls cell metrics and tile size. The CJK font is kept
+ * at the same requested size and is only selected while drawing wide text.
  */
 static errr term_force_font(term_data *td, cptr path)
 {
     int wid, hgt;
 
-    /* Forget the old font (if needed) */
-    if (td->font_id) DeleteObject(td->font_id);
+    term_delete_fonts(td);
 
     /* Unused */
     (void)path;
@@ -1908,6 +1973,9 @@ static errr term_force_font(term_data *td, cptr path)
     wid = td->lf.lfWidth;
     hgt = td->lf.lfHeight;
     if (!td->font_id) return (1);
+
+    term_sync_cjk_font(td);
+    td->cjk_font_id = CreateFontIndirect(&(td->cjk_lf));
 
     /* Hack -- Unknown size */
     if (!wid || !hgt)
@@ -1939,34 +2007,81 @@ static errr term_force_font(term_data *td, cptr path)
 
 
 /*
- * Allow the user to change the font for this window.
+ * Allow the user to change the Latin or CJK font for this window.
  */
-static void term_change_font(term_data *td)
+static void term_change_font(term_data *td, bool cjk)
 {
     CHOOSEFONT cf;
+    LOGFONT lf;
 
     memset(&cf, 0, sizeof(cf));
+    lf = cjk ? td->cjk_lf : td->lf;
+    if (cjk)
+    {
+        lf.lfWidth = td->lf.lfWidth;
+        lf.lfHeight = td->lf.lfHeight;
+        lf.lfWeight = td->lf.lfWeight;
+    }
+
     cf.lStructSize = sizeof(cf);
     cf.Flags = CF_SCREENFONTS | CF_NOVERTFONTS | CF_INITTOLOGFONTSTRUCT;
-    cf.lpLogFont = &(td->lf);
+    cf.lpLogFont = &lf;
 
     if (ChooseFont(&cf))
     {
-        /* Force the font */
+        if (cjk)
+        {
+            td->cjk_lf = lf;
+            term_sync_cjk_font(td);
+        }
+        else
+        {
+            td->lf = lf;
+        }
+
         term_force_font(td, NULL);
 
-        /* Assume not bizarre */
-        td->bizarre = TRUE;
+        if (!cjk)
+        {
+            /* Assume not bizarre */
+            td->bizarre = TRUE;
 
-        /* Reset the tile info */
-        td->tile_wid = td->font_wid;
-        td->tile_hgt = td->font_hgt;
+            /* Reset the tile info */
+            td->tile_wid = td->font_wid;
+            td->tile_hgt = td->font_hgt;
 
-        /* Analyze the font */
-        term_getsize(td);
+            /* Analyze the font */
+            term_getsize(td);
 
-        /* Resize the window */
-        term_window_resize(td);
+            /* Resize the window */
+            term_window_resize(td);
+        }
+        else
+        {
+            term_data_redraw(td);
+        }
+    }
+}
+
+/*
+ * Allow the user to change the background color for this window.
+ */
+static void term_change_background(term_data *td)
+{
+    static COLORREF custom_colors[16];
+    CHOOSECOLOR cc;
+
+    memset(&cc, 0, sizeof(cc));
+    cc.lStructSize = sizeof(cc);
+    cc.hwndOwner = td->w ? td->w : data[0].w;
+    cc.rgbResult = td->bg_color;
+    cc.lpCustColors = custom_colors;
+    cc.Flags = CC_FULLOPEN | CC_RGBINIT;
+
+    if (ChooseColor(&cc))
+    {
+        td->bg_color = cc.rgbResult;
+        term_data_redraw(td);
     }
 }
 
@@ -2298,7 +2413,7 @@ static errr Term_xtra_win_clear(void)
     rc.bottom = rc.top + td->rows * td->tile_hgt;
 
     /* Erase it */
-    SetBkColor(hdc, RGB(0, 0, 0));
+    SetBkColor(hdc, td->bg_color);
     SelectObject(hdc, td->font_id);
     ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rc, NULL, 0, NULL);
     _update_rect_enlarge(td, &rc);
@@ -2577,7 +2692,7 @@ static errr Term_wipe_win(int x, int y, int n)
     rc.bottom = rc.top + td->tile_hgt;
 
     hdc = td->hDC;
-    SetBkColor(hdc, RGB(0, 0, 0));
+    SetBkColor(hdc, td->bg_color);
     SelectObject(hdc, td->font_id);
     ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rc, NULL, 0, NULL);
     _update_rect_enlarge(td, &rc);
@@ -2617,6 +2732,11 @@ static bool _win_codepoint_is_wide(u32b cp)
     if (cp >= 0xFFE0 && cp <= 0xFFE6) return TRUE;
     if (cp >= 0x20000 && cp <= 0x3FFFD) return TRUE;
     return FALSE;
+}
+
+static bool _win_codepoint_uses_cjk_font(u32b cp)
+{
+    return _win_codepoint_is_wide(cp);
 }
 
 /*
@@ -2660,7 +2780,7 @@ static errr Term_text_win(int x, int y, int n, byte a, const char *s)
     hdc = td->hDC;
 
     /* Background color */
-    SetBkColor(hdc, RGB(0, 0, 0));
+    SetBkColor(hdc, td->bg_color);
 
     /* Foreground color */
     if (colors16)
@@ -2728,6 +2848,8 @@ static errr Term_text_win(int x, int y, int n, byte a, const char *s)
             wlen = _win_codepoint_to_utf16(cp, wbuf);
             if (wlen)
             {
+                HFONT font = (_win_codepoint_uses_cjk_font(cp) && td->cjk_font_id) ? td->cjk_font_id : td->font_id;
+                SelectObject(hdc, font);
                 ExtTextOutW(hdc, cell.left, cell.top, ETO_CLIPPED, &cell, wbuf, wlen, NULL);
                 _update_rect_enlarge(td, &cell);
             }
@@ -3069,6 +3191,9 @@ static void init_windows(void)
         strncpy(td->lf.lfFaceName, td->font_want, LF_FACESIZE);
         td->lf.lfCharSet = DEFAULT_CHARSET;
         td->lf.lfPitchAndFamily = FIXED_PITCH | FF_DONTCARE;
+        strncpy(td->cjk_lf.lfFaceName, td->cjk_font_want, LF_FACESIZE);
+        td->cjk_lf.lfCharSet = DEFAULT_CHARSET;
+        td->cjk_lf.lfPitchAndFamily = FIXED_PITCH | FF_DONTCARE;
         /* Activate the chosen font */
         term_force_font(td, NULL);
         td->tile_wid = td->font_wid;
@@ -3234,10 +3359,27 @@ static void setup_menus(void)
     {
         EnableMenuItem(hm, IDM_WINDOW_FONT_0 + i,
                    MF_BYCOMMAND | MF_DISABLED | MF_GRAYED);
+        EnableMenuItem(hm, IDM_WINDOW_FONT_CJK_0 + i,
+                   MF_BYCOMMAND | MF_DISABLED | MF_GRAYED);
 
         if (data[i].visible)
         {
             EnableMenuItem(hm, IDM_WINDOW_FONT_0 + i,
+                       MF_BYCOMMAND | MF_ENABLED);
+            EnableMenuItem(hm, IDM_WINDOW_FONT_CJK_0 + i,
+                       MF_BYCOMMAND | MF_ENABLED);
+        }
+    }
+
+    /* Menu "Window::Background Color" */
+    for (i = 0; i < MAX_TERM_DATA; i++)
+    {
+        EnableMenuItem(hm, IDM_WINDOW_BG_0 + i,
+                   MF_BYCOMMAND | MF_DISABLED | MF_GRAYED);
+
+        if (data[i].visible)
+        {
+            EnableMenuItem(hm, IDM_WINDOW_BG_0 + i,
                        MF_BYCOMMAND | MF_ENABLED);
         }
     }
@@ -3603,7 +3745,49 @@ static void process_menus(WORD wCmd)
 
             td = &data[i];
 
-            term_change_font(td);
+            term_change_font(td, FALSE);
+
+            break;
+        }
+
+        /* Window CJK fonts */
+        case IDM_WINDOW_FONT_CJK_0:
+        case IDM_WINDOW_FONT_CJK_1:
+        case IDM_WINDOW_FONT_CJK_2:
+        case IDM_WINDOW_FONT_CJK_3:
+        case IDM_WINDOW_FONT_CJK_4:
+        case IDM_WINDOW_FONT_CJK_5:
+        case IDM_WINDOW_FONT_CJK_6:
+        case IDM_WINDOW_FONT_CJK_7:
+        {
+            i = wCmd - IDM_WINDOW_FONT_CJK_0;
+
+            if ((i < 0) || (i >= MAX_TERM_DATA)) break;
+
+            td = &data[i];
+
+            term_change_font(td, TRUE);
+
+            break;
+        }
+
+        /* Window background color */
+        case IDM_WINDOW_BG_0:
+        case IDM_WINDOW_BG_1:
+        case IDM_WINDOW_BG_2:
+        case IDM_WINDOW_BG_3:
+        case IDM_WINDOW_BG_4:
+        case IDM_WINDOW_BG_5:
+        case IDM_WINDOW_BG_6:
+        case IDM_WINDOW_BG_7:
+        {
+            i = wCmd - IDM_WINDOW_BG_0;
+
+            if ((i < 0) || (i >= MAX_TERM_DATA)) break;
+
+            td = &data[i];
+
+            term_change_background(td);
 
             break;
         }
@@ -4837,8 +5021,9 @@ static void hook_quit(cptr str)
     /* Destroy all windows */
     for (i = MAX_TERM_DATA - 1; i >= 0; --i)
     {
-        term_force_font(&data[i], NULL);
+        term_delete_fonts(&data[i]);
         if (data[i].font_want) z_string_free(data[i].font_want);
+        if (data[i].cjk_font_want) z_string_free(data[i].cjk_font_want);
         if (data[i].w) DestroyWindow(data[i].w);
         if (data[i].hDC) DeleteDC(data[i].hDC);
         if (data[i].hBitmap) DeleteObject(data[i].hBitmap);

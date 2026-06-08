@@ -29,14 +29,41 @@ ANGBAND MENU
 
         POPUP "字体(&F)"
         {
-            MENUITEM "Term-0 window", 210
-            MENUITEM "Term-1 window", 211
-            MENUITEM "Term-2 window", 212
-            MENUITEM "Term-3 window", 213
-            MENUITEM "Term-4 window", 214
-            MENUITEM "Term-5 window", 215
-            MENUITEM "Term-6 window", 216
-            MENUITEM "Term-7 window", 217
+            POPUP "英文字体"
+            {
+                MENUITEM "Term-0 window", 210
+                MENUITEM "Term-1 window", 211
+                MENUITEM "Term-2 window", 212
+                MENUITEM "Term-3 window", 213
+                MENUITEM "Term-4 window", 214
+                MENUITEM "Term-5 window", 215
+                MENUITEM "Term-6 window", 216
+                MENUITEM "Term-7 window", 217
+            }
+
+            POPUP "中文字体"
+            {
+                MENUITEM "Term-0 window", 280
+                MENUITEM "Term-1 window", 281
+                MENUITEM "Term-2 window", 282
+                MENUITEM "Term-3 window", 283
+                MENUITEM "Term-4 window", 284
+                MENUITEM "Term-5 window", 285
+                MENUITEM "Term-6 window", 286
+                MENUITEM "Term-7 window", 287
+            }
+        }
+
+        POPUP "背景颜色"
+        {
+            MENUITEM "Term-0 window", 290
+            MENUITEM "Term-1 window", 291
+            MENUITEM "Term-2 window", 292
+            MENUITEM "Term-3 window", 293
+            MENUITEM "Term-4 window", 294
+            MENUITEM "Term-5 window", 295
+            MENUITEM "Term-6 window", 296
+            MENUITEM "Term-7 window", 297
         }
 
         POPUP "总在最前"
