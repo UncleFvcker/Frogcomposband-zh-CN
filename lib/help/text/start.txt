@@ -24,7 +24,7 @@ Welcome to the Online Help System
     [q] User Preference Files
     [r] The Speed System
     [s] The Proficiency System
-    [t] The Mogaminator
+    [t] 墨家明器
     [u] Subwindows
 
     (?) Help System Commands

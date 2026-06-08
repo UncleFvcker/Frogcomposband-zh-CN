@@ -1454,7 +1454,7 @@ option_fields[OPT_NUM] =
     { '6', "自动销毁选项", 8 },
     { '7', "列表显示选项", 9 },
 
-    { 'p', "Mogaminator 偏好", 11 },
+    { 'p', "墨家明器偏好", 11 },
     { 'd', "基础延迟系数", 12 },
     { 'h', "生命警告阈值", 13 },
     { 'm', "法力颜色阈值", 14 },
@@ -7371,11 +7371,11 @@ static void do_cmd_knowledge_autopick(void)
 
     if (no_mogaminator)
     {
-        doc_insert(doc, "你已禁用 Mogaminator(自动物品管理)。\n");
+        doc_insert(doc, "你已禁用墨家明器。\n");
     }
     else if (!max_autopick)
     {
-        doc_insert(doc, "你尚未启用 Mogaminator(自动物品管理)。\n");
+        doc_insert(doc, "你尚未启用墨家明器。\n");
     }
     else if (max_autopick == 1)
     {
@@ -7385,7 +7385,7 @@ static void do_cmd_knowledge_autopick(void)
     {
         doc_printf(doc, "有 %d 条用于自动物品管理的注册规则。\n", max_autopick);
     }
-    doc_insert(doc, "Mogaminator 帮助见 <link:editor.txt>。\n\n");
+    doc_insert(doc, "墨家明器帮助见 <link:editor.txt>。\n\n");
 
     if (!no_mogaminator)
     {
@@ -7427,7 +7427,7 @@ static void do_cmd_knowledge_autopick(void)
         }
     }
 
-    doc_display(doc, "Mogaminator 偏好", 0);
+    doc_display(doc, "墨家明器偏好", 0);
     doc_free(doc);
 }
 

@@ -80,7 +80,7 @@ Original Keyset
    !  Enter a user pref command           ^A  (special - wizard command)
    @  Interact with macros                ^B  (unused)
    #  (unused)                            ^C  (special - break)
-   $  Reload Mogaminator prefs            ^D  (unused)
+   $  Reload 墨家明器 prefs            ^D  (unused)
    %  Interact with visuals               ^E  Interact with macros
    ^  (special - control key)             ^F  Repeat level feeling
    &  Interact with colors                ^G  Auto-Get nearby objects
@@ -92,7 +92,7 @@ Original Keyset
    [  Display monster list                ^M  (special - return)
    ]  Display object list                 ^N  (unused)
    -  Walk (flip pickup)                  ^O  Display object list
-   _  Edit/activate Mogaminator prefs     ^P  Show previous messages
+   _  Edit/activate 墨家明器 prefs     ^P  Show previous messages
    +  Alter adjacent grid                 ^Q  Display quest info
    =  Set options                         ^R  Redraw the screen
    ;  Walk                                ^S  Save and don't quit
@@ -144,7 +144,7 @@ Roguelike Keyset
    !  Enter a user pref command           ^A  (special - wizard command)
    @  Interact with macros                ^B  (tunnel - south west)
    #  Toggle search mode                  ^C  (special - break)
-   $  Reload Mogaminator prefs            ^D  Destroy item
+   $  Reload 墨家明器 prefs            ^D  Destroy item
    %  Interact with visuals               ^E  Travel to interesting item
    ^  (special - control key)             ^F  Repeat level feeling
    &  Interact with colors                ^G  Auto-Get nearby objects
@@ -156,7 +156,7 @@ Roguelike Keyset
    [  Display monster list                ^M  (tunnel - south)
    ]  Display object list                 ^N  (tunnel - south east)
    -  Walk (flip pickup)                  ^O  (unused)
-   _  Edit/activate Mogaminator prefs     ^P  Show previous messages
+   _  Edit/activate 墨家明器 prefs     ^P  Show previous messages
    +  Alter adjacent grid                 ^Q  Display quest info
    =  Set options                         ^R  Redraw the screen
    ;  Walk                                ^S  Save and don't quit
@@ -275,8 +275,8 @@ missing.
 
 Inscriptions are added with the Z/{ command, and can be used for many 
 other purposes besides item labeling (see [d] for more detail). The 
-Mogaminator often automatically applies standard inscriptions to items; 
-the three books of the above example were inscribed by the Mogaminator. 
+墨家明器 often automatically applies standard inscriptions to items; 
+the three books of the above example were inscribed by the 墨家明器. 
 Note that inscriptions are always based on the underlying keyset, which 
 for the most part is the same as the original keyset; so if you want a 
 staff to be labeled 'y' in the "Use a Staff" prompt, you should 

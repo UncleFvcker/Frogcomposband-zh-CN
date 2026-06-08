@@ -49,10 +49,10 @@
 此命令可让你详细检查物品，列出你已查明的任何物品特殊能力，说明该物品是否仍然具有隐藏的力量，并显示该物品的重量和估计价值。同样地，在此处可以使用 <color:keypress>/</color> 在你的背包、装备和其他相关库存之间切换。这是一个对于神器和 Ego 物品特别方便的命令。</indent>
 
   <indent><color:U>拾取物品 (<color:keypress>g</color>)</color>
-此命令将拾取位于玩家同一图块上的任何物品（受 Mogaminator 插件规则影响）。为方便起见，拾取物品不消耗时间。</indent>
+此命令将拾取位于玩家同一图块上的任何物品（受 墨家明器 插件规则影响）。为方便起见，拾取物品不消耗时间。</indent>
 
   <indent><color:U>自动拾取物品 (<color:keypress>^G</color>)</color>
-此命令将拾取位于玩家同一图块上的任何物品（受 Mogaminator 插件规则影响）。此外，此命令还将自动行走到视线内并拾取其他物品。启用 <color:keyword>auto_get_objects</color> 选项后，任何注册为自动拾取或自动摧毁的物品都符合自动拾取的条件。如果你觉得这太多了（也许你喜欢在战斗后亲自打扫战场？），<color:keyword>auto_get_ammo</color> 选项只适用于刻有 <color:keypress>=g</color> 铭文的物品；这通常是你的弹药，或者可能是忍者的铁蒺藜。
+此命令将拾取位于玩家同一图块上的任何物品（受 墨家明器 插件规则影响）。此外，此命令还将自动行走到视线内并拾取其他物品。启用 <color:keyword>auto_get_objects</color> 选项后，任何注册为自动拾取或自动摧毁的物品都符合自动拾取的条件。如果你觉得这太多了（也许你喜欢在战斗后亲自打扫战场？），<color:keyword>auto_get_ammo</color> 选项只适用于刻有 <color:keypress>=g</color> 铭文的物品；这通常是你的弹药，或者可能是忍者的铁蒺藜。
 
 自动拾取行走将在没有更多符合条件的可见物品时停止；或者当你的背包满了时；或者如果你因任何原因受到干扰（例如一只讨厌的龙醒来并决定对你喷吐）。自动拾取比通过物品列表行走更安全但也更局限；由于必须可见才符合条件，自动拾取通常只能清理单个房间，而物品列表和 <color:keypress>H</color>/<color:keypress>^E</color> 命令允许进行长距离的自动旅行，甚至可能深入险境（尽管当不好的事情发生时这些旅程也会停止）。</indent>
 
@@ -71,15 +71,15 @@
 <topic:Movement><style:heading>移动命令 (Movement Commands)</style>
 
   <indent><color:U>行走 (带拾取) (<color:keypress>;</color>)</color>
-在指定方向上移动一步。你要进入的方格不能被墙壁或门挡住。如果设置了 <color:keyword>always_pickup</color> 选项，你将拾取目标网格中的任何物品。此命令可以带有重复计数并且需要一个方向。你也可以使用“原版”方向键（两种按键集皆可）或“Roguelike”方向键（Roguelike 按键集）朝某个方向行走（它们被按键映射到此命令）。如果激活了 Mogaminator 或简易自动摧毁器，指定的物品将被拾取或摧毁。</indent>
+在指定方向上移动一步。你要进入的方格不能被墙壁或门挡住。如果设置了 <color:keyword>always_pickup</color> 选项，你将拾取目标网格中的任何物品。此命令可以带有重复计数并且需要一个方向。你也可以使用“原版”方向键（两种按键集皆可）或“Roguelike”方向键（Roguelike 按键集）朝某个方向行走（它们被按键映射到此命令）。如果激活了 墨家明器 或简易自动摧毁器，指定的物品将被拾取或摧毁。</indent>
 
   <indent><color:U>行走 (翻转拾取) (<color:keypress>-</color>)</color>
-这与正常的移动一样，只是“拾取物品”选项被反转了。换句话说，当且仅当没有设置 <color:keyword>always_pickup</color> 时你才会捡起东西。此命令可以带有重复计数并且需要一个方向。如果激活了 Mogaminator 或简易自动摧毁器，指定的物品将被拾取或摧毁。
+这与正常的移动一样，只是“拾取物品”选项被反转了。换句话说，当且仅当没有设置 <color:keyword>always_pickup</color> 时你才会捡起东西。此命令可以带有重复计数并且需要一个方向。如果激活了 墨家明器 或简易自动摧毁器，指定的物品将被拾取或摧毁。
 
 这也是故意走入陷阱的命令。</indent>
 
   <indent><color:U>跑步 (<color:keypress>.</color>) 或 (<color:keypress>,</color>)</color>
-此命令将在指定方向上移动，沿着走廊的任何弯道，直到你必须在两个方向之间做出“选择”或受到干扰。你可以通过设置干扰选项来配置什么会干扰你。跑步需要一个方向。默认情况下 <color:keypress>Shift+DIR (方向)</color> 被映射为 <color:keypress>.DIR (向某方向跑)</color>，尽管使用原版按键集时在某些平台上可能会遇到技术限制。如果激活了 Mogaminator 或简易自动摧毁器，指定的物品将被拾取或摧毁。</indent>
+此命令将在指定方向上移动，沿着走廊的任何弯道，直到你必须在两个方向之间做出“选择”或受到干扰。你可以通过设置干扰选项来配置什么会干扰你。跑步需要一个方向。默认情况下 <color:keypress>Shift+DIR (方向)</color> 被映射为 <color:keypress>.DIR (向某方向跑)</color>，尽管使用原版按键集时在某些平台上可能会遇到技术限制。如果激活了 墨家明器 或简易自动摧毁器，指定的物品将被拾取或摧毁。</indent>
 
   <indent><color:U>上楼梯 (<color:keypress><</color>)</color>
 如果你站在上行楼梯或竖井上，则向上攀爬。在荒野中，除非附近有警觉的怪物，否则切换全局地图模式。
@@ -92,7 +92,7 @@
 每个楼层总是至少有两个下行楼梯，除了任务楼层（在杀死任务怪物之前没有）和地下城的底层。下楼梯将把你带到一个新的地下城楼层（相关说明请参阅“上楼梯”）。</indent>
 
   <indent><color:U>旅行至最近的有趣物品 (<color:keypress>H</color> 或 <color:keypress>^E</color>)</color>
-定位并自动前往最近的、满足以下条件的已知物品：未鉴定、或者未被伪鉴定、或者被感知为神器/Ego物品、并且未被活动的 Mogaminator 视为不值得拾取的物品，同时已有一条已知的映射路线。这对于在清理完地下城楼层后，或者在杀死将战利品掉落得到处都是的高级怪物后，快速定位你忘记捡起或鉴定的物品非常方便。</indent>
+定位并自动前往最近的、满足以下条件的已知物品：未鉴定、或者未被伪鉴定、或者被感知为神器/Ego物品、并且未被活动的 墨家明器 视为不值得拾取的物品，同时已有一条已知的映射路线。这对于在清理完地下城楼层后，或者在杀死将战利品掉落得到处都是的高级怪物后，快速定位你忘记捡起或鉴定的物品非常方便。</indent>
 
   <indent><color:U>恢复旅行 (<color:keypress>J</color>) 或 (<color:keypress>(</color>)</color>
 恢复之前在到达目标前被中断的旅程。此命令也可以在怪物和物品列表中用于开始新的旅程；出于此目的，Roguelike 按键集也使用 <color:keypress>J</color> 键。</indent>
@@ -100,7 +100,7 @@
 <topic:Resting><style:heading>休息命令 (Resting Commands)</style>
 
   <indent><color:U>原地停留 (带拾取) (<color:keypress>,</color>) 或 (<color:keypress>.</color>)</color>
-在同一方格停留一回合。如果你正常拾取遇到的物品，你将捡起你站在上面的任何东西。此命令可以带有重复计数。你也可以使用“5”键（两种按键集）。如果激活了 Mogaminator 或简易自动摧毁器，指定的物品将被拾取或摧毁。</indent>
+在同一方格停留一回合。如果你正常拾取遇到的物品，你将捡起你站在上面的任何东西。此命令可以带有重复计数。你也可以使用“5”键（两种按键集）。如果激活了 墨家明器 或简易自动摧毁器，指定的物品将被拾取或摧毁。</indent>
 
   <indent><color:U>休息 (<color:keypress>R</color>)</color>
 休息比反复原地停留对你更好，并且可以被设置为在特定时间后或满足各种条件时自动停止。无论如何，当发生任何干扰事件或你按下任何键时，你都会醒来。如果没有指定计数，此命令会要求输入一个计数；该计数默认为特殊值 <color:keypress>&</color>，这意味着“休息直到完全康复”。也接受另一个特殊值 <color:keypress>*</color> 代表“休息直到HP/SP全满”。</indent>
@@ -263,7 +263,7 @@
   |            #...#                                                 |
   |            ###<color:s>%</color>#                                                 |
 </style>
-如果 Mogaminator 活动，指定物品可以显示在此地图上；但这是一个过时的功能，因为直接使用 <color:keypress>]</color> 物品列表总是更方便。</indent>
+如果 墨家明器 活动，指定物品可以显示在此地图上；但这是一个过时的功能，因为直接使用 <color:keypress>]</color> 物品列表总是更方便。</indent>
 
   <indent><color:U>在地图上定位玩家 (<color:keypress>L</color>) 或 (<color:keypress>W</color>)</color>
 此命令让你滚动你的地图，查看当前地下城楼层的所有扇区，直到你按 ESC，此时地图将根据需要重新以玩家为中心。要滚动地图，只需按任何“方向”键即可。顶行将显示扇区位置，以及与你当前扇区的偏移量。此命令不消耗时间。</indent>
@@ -367,11 +367,11 @@
   <indent><color:U>与颜色交互 (<color:keypress>&</color>)</color>
 允许用户与颜色进行交互。此命令仅在某些系统上有效。</indent>
  
-  <indent><color:U>重载 Mogaminator 偏好       (<color:keypress>$</color>)</color>
-此命令将为 Mogaminator 重新加载 "pickpref.prf" 和 "pickpref-<<playername>>.prf"；仅当你在游戏期间使用外部文本编辑器编辑过这些文件时才需要使用。</indent>
+  <indent><color:U>重载 墨家明器 偏好       (<color:keypress>$</color>)</color>
+此命令将为 墨家明器 重新加载 "pickpref.prf" 和 "pickpref-<<playername>>.prf"；仅当你在游戏期间使用外部文本编辑器编辑过这些文件时才需要使用。</indent>
 
-  <indent><color:U>编辑 Mogaminator 偏好       (<color:keypress>_</color>)</color>
-允许你编辑拾取偏好，并在 Mogaminator 尚未激活时将其激活。<color:keypress>ESC</color> 键将在此编辑器中打开菜单。你可以从命令菜单中查看和使用所有编辑命令。按 <color:keypress>^Q</color> 或 <color:keypress>^W</color> 退出编辑器。</indent>
+  <indent><color:U>编辑 墨家明器 偏好       (<color:keypress>_</color>)</color>
+允许你编辑拾取偏好，并在 墨家明器 尚未激活时将其激活。<color:keypress>ESC</color> 键将在此编辑器中打开菜单。你可以从命令菜单中查看和使用所有编辑命令。按 <color:keypress>^Q</color> 或 <color:keypress>^W</color> 退出编辑器。</indent>
 
 <topic:Help><style:heading>帮助命令 (Help)</style>
 
@@ -507,8 +507,8 @@
   与宏交互                    <color:keypress>@</color>
   与视觉效果交互              <color:keypress>%</color>
   与颜色交互                  <color:keypress>&</color>
-  重载 Mogaminator 偏好       <color:keypress>$</color>
-  编辑 Mogaminator 偏好       <color:keypress>_</color>
+  重载 墨家明器 偏好       <color:keypress>$</color>
+  编辑 墨家明器 偏好       <color:keypress>_</color>
 
 <color:U>帮助命令 (Help)            原版 (Orig)     Roguelike</color>
   帮助                        <color:keypress>?</color>

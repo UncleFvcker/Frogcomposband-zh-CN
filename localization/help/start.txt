@@ -24,7 +24,7 @@
     <link:pref_contents.txt> 用户偏好设定文件 (User Preference Files)
     <link:speedsys_contents.txt> 速度系统 (The Speed System)
     <link:prof_contents.txt> 熟练度系统 (The Proficiency System)
-    <link:editor_contents.txt> 莫加米编辑器 (The Mogaminator)
+    <link:editor_contents.txt> 墨家明器
     <link:subwin.txt> 子窗口 (Subwindows)
 
     <color:y>(?) 帮助系统命令 (Help System Commands)</color>

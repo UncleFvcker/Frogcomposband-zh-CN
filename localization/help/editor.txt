@@ -1,13 +1,13 @@
-<style:title>物品自动处理系统 (The Mogaminator)</style>
+<style:title>物品自动处理系统 (墨家明器)</style>
 
-<color:keyword>The Mogaminator (莫加米纳特 / 物品自动处理系统)</color> 是一个基于规则的物品自动处理系统，你可以使用 <color:keypress>_</color> 命令来激活或修改它。通过这个系统，你可以决定哪些物品被拾取、哪些被销毁、哪些自动鉴定，以及哪些在物品列表中显示为<color:keyword>需要的 (wanted)</color>。你可以根据自己的喜好自动为物品铭刻，甚至可以输入条件语句来处理不同种族和职业的偏好。或者，你也可以只保留默认的 Mogaminator 规则，它已经做到了以上所有的事情！
+<color:keyword>墨家明器</color> 是一个基于规则的物品自动处理系统，你可以使用 <color:keypress>_</color> 命令来激活或修改它。通过这个系统，你可以决定哪些物品被拾取、哪些被销毁、哪些自动鉴定，以及哪些在物品列表中显示为<color:keyword>需要的 (wanted)</color>。你可以根据自己的喜好自动为物品铭刻，甚至可以输入条件语句来处理不同种族和职业的偏好。或者，你也可以只保留默认的 墨家明器 规则，它已经做到了以上所有的事情！
 
 本文档以教程的方式介绍这个系统，假设你对它一无所知。详细的参考资料将在本文档的底部提供（如果你实在等不及了，请参阅 <link:editor.txt#Reference>！）。
 
 该系统以其原作者，Hengband 开发者 Mogami 的名字命名。
 
 <topic:Review><style:heading>物品知识回顾</style>
-毫无疑问：游戏会生成海量的物品。有些很有价值，有些一文不值，而有些只在特定情况下有用……莫加米系统将帮你理清那堆积如山的战利品。
+毫无疑问：游戏会生成海量的物品。有些很有价值，有些一文不值，而有些只在特定情况下有用……墨家明器将帮你理清那堆积如山的战利品。
 
 首先，快速回顾一下 <link:objects.txt#Knowledge> 中详细解释的内容。当你找到一件物品时，它通常是<color:keyword>未鉴定的 (unidentified)</color>，但你可能拥有（或很快会收到）对该物品品质的粗略<color:keyword>感知 (sense)</color>，这被称为<color:keyword>物品感知 (object feeling)</color>或<color:keyword>伪鉴定 (pseudo-ID)</color>。如果该物品看起来很有前途，你可能想<color:keyword>鉴定 (identify)</color>它以揭示其基本属性，或者甚至进行<color:keyword>全面鉴定 (*Identify*)</color>来揭示其特殊属性。
 
@@ -21,13 +21,13 @@
 
 <topic:ManagingObjects><style:heading>管理物品</style>
 
-管理物品有三种方法：手动管理，使用简易销毁器（参见下文的 <link:editor.txt#EasyDestroyer>），以及使用莫加米系统 (The Mogaminator)。莫加米系统比简易销毁器强大得多，后者只是简单地销毁物品（通常是垃圾）。<color:y>只有当你开启了 </color><color:keyword>always_pickup (自动拾取)</color> <color:y>选项时，莫加米系统和简易销毁器才应该同时使用。</color>
+管理物品有三种方法：手动管理，使用简易销毁器（参见下文的 <link:editor.txt#EasyDestroyer>），以及使用墨家明器。墨家明器比简易销毁器强大得多，后者只是简单地销毁物品（通常是垃圾）。<color:y>只有当你开启了 </color><color:keyword>always_pickup (自动拾取)</color> <color:y>选项时，墨家明器和简易销毁器才应该同时使用。</color>
 
-什么是<color:keyword>莫加米系统 (The Mogaminator)</color>？基本上，它是一个基于规则的系统，每当你遇到某种类型的物品时，都会采取给定的行动。默认行动是<color:keyword>拾取 (pick up)</color>，当你不指定其他替代行动时，就会使用这个操作；但莫加米系统也能为你销毁垃圾，并自动鉴定和铭刻物品。让我们来讨论一下基本知识。
+什么是<color:keyword>墨家明器</color>？基本上，它是一个基于规则的系统，每当你遇到某种类型的物品时，都会采取给定的行动。默认行动是<color:keyword>拾取 (pick up)</color>，当你不指定其他替代行动时，就会使用这个操作；但墨家明器也能为你销毁垃圾，并自动鉴定和铭刻物品。让我们来讨论一下基本知识。
 
 <topic:BasicUsage><style:heading>基本用法</style>
 
-按下 <color:keypress>_</color> 可以激活莫加米系统，这也会呼出一个游戏内的编辑器，你可以在这里管理你的偏好。它看起来可能像这样：
+按下 <color:keypress>_</color> 可以激活墨家明器，这也会呼出一个游戏内的编辑器，你可以在这里管理你的偏好。它看起来可能像这样：
 <style:screenshot> <indent>
 <color:B>(^Q:退出, ^W:保存退出, ESC:菜单, 其它:输入文本)</color>          (0,0)               
 <color:G>#########################################</color>                                       
@@ -55,18 +55,18 @@ mushroom of restoring<color:U>#!E</color>
 <color:B>-------------------------------------------------------------------------------</color>
 This line is a comment. (这一行是一条注释。)
 </indent></style>
-如果你是新手，你可能想尽快逃离这种复杂性。请注意屏幕的顶行，它告诉你如何退出：<color:keypress>^Q</color>（你也可以通过 <color:keypress>ESC</color> 菜单退出）。想立刻退出的心情是可以理解的，事实上这<color:G>完全没问题：只需按下</color> <color:keypress>_</color> <color:G>就能打开莫加米系统，并用默认的偏好初始化它</color>，因此即使你不再做任何乱动，它也能很好地完成工作。（如果你非常懒，你可以在这里停止阅读，并在接下来的游戏中愉快地使用默认偏好玩耍！）
+如果你是新手，你可能想尽快逃离这种复杂性。请注意屏幕的顶行，它告诉你如何退出：<color:keypress>^Q</color>（你也可以通过 <color:keypress>ESC</color> 菜单退出）。想立刻退出的心情是可以理解的，事实上这<color:G>完全没问题：只需按下</color> <color:keypress>_</color> <color:G>就能打开墨家明器，并用默认的偏好初始化它</color>，因此即使你不再做任何乱动，它也能很好地完成工作。（如果你非常懒，你可以在这里停止阅读，并在接下来的游戏中愉快地使用默认偏好玩耍！）
 
 <topic:WhatHappened><color:U>那么发生了什么？</color>
 
-随着莫加米系统现在开启，你会发现你遇到的大部分垃圾都被自动销毁了。例如，当你在地下城中劈砍杀戮时留下的所有尸体和骨架……除了那些你<color:keyword>需要的悬赏尸体 (wanted corpses)</color>，它们会被自动拾取！
+随着墨家明器现在开启，你会发现你遇到的大部分垃圾都被自动销毁了。例如，当你在地下城中劈砍杀戮时留下的所有尸体和骨架……除了那些你<color:keyword>需要的悬赏尸体 (wanted corpses)</color>，它们会被自动拾取！
 
 这是一个良好的开端；但你可能仍然会遇到你认为无用的物品。例如，假设你在杂货店买了一盏提灯；现在你就不再真正关心火把了。使用 <color:keypress>k</color> 销毁命令（或在 Roguelike 键位中使用 <color:keypress>^D</color>），你会得到如下提示：
   真的要销毁 <color:y>木火把 {未鉴定}</color> 吗? <color:y>[y/n/A(自动)]</color>
 
 注意那个 <color:keypress>A</color>uto (自动) 选项。选择它，你会收到一条物品已被销毁的消息，并且“你不喜欢火把”这一事实会被系统记住。下一次你的角色移动到火把上面时，它会被自动销毁。
 
-这就是莫加米系统的一种简单用法：在遇到物品时不断将其注册为自动销毁，战利品山就会变得更容易管理；但我们稍后会看到，<color:keyword>自动拾取</color>比自动销毁更好。
+这就是墨家明器的一种简单用法：在遇到物品时不断将其注册为自动销毁，战利品山就会变得更容易管理；但我们稍后会看到，<color:keyword>自动拾取</color>比自动销毁更好。
 
 <topic:CorrectingMistakes><style:heading>糟糕，我把速度戒指自动销毁了！</style>
 
@@ -138,7 +138,7 @@ mushroom of restoring<color:U>#!E</color>
 </style>
 宾果！你甚至可以通过在物品列表中按下 <color:keypress>J</color> 来<color:keyword>自动寻路</color>前往那些美味的药水。还有比这更容易的吗？
 
-概括地说，添加 "cure critical wounds" 这一行告诉莫加米系统拾取任何名称中包含 "cure critical wounds" 的物品。你不必打这么多字——打 "crit" 也许同样有效——但你打的字越少，你的新规则就越有可能匹配到其它物品。例如，"cure" 会匹配轻伤治疗药水 (Cure Light Wounds)、严重治疗药水 (Cure Serious Wounds) 以及重伤治疗药水 (Cure Critical Wounds)，甚至包括治疗伤患法杖 (Staves of Cure Wounds)。有时这没问题，但在其它情况下，最好多打几个字。
+概括地说，添加 "cure critical wounds" 这一行告诉墨家明器拾取任何名称中包含 "cure critical wounds" 的物品。你不必打这么多字——打 "crit" 也许同样有效——但你打的字越少，你的新规则就越有可能匹配到其它物品。例如，"cure" 会匹配轻伤治疗药水 (Cure Light Wounds)、严重治疗药水 (Cure Serious Wounds) 以及重伤治疗药水 (Cure Critical Wounds)，甚至包括治疗伤患法杖 (Staves of Cure Wounds)。有时这没问题，但在其它情况下，最好多打几个字。
 
 <topic:IntroRulesEvents><style:heading>规则与事件简介</style>
 
@@ -160,7 +160,7 @@ mushroom of restoring<color:U>#!E</color>
 <color:keypress>;</color>  拾取提示 (Prompt to pick up)
 <color:keypress>~</color>  留在地板上 (Leave on the floor)
 
-这些是主要动作。如果规则不以 <color:keypress>!</color>、<color:keypress>;</color> 或 <color:keypress>~</color> 开头，则默认执行拾取动作。请注意，如果开启了 <color:keyword>always_pickup (自动拾取)</color> 选项，那么 <color:keypress>;</color> 和 <color:keypress>~</color> 将被覆盖；除非同时也开启了 <color:keyword>leave_mogaminator (保留莫加米纳特)</color> 选项，否则甚至连 <color:keypress>!</color> 都会被覆盖。
+这些是主要动作。如果规则不以 <color:keypress>!</color>、<color:keypress>;</color> 或 <color:keypress>~</color> 开头，则默认执行拾取动作。请注意，如果开启了 <color:keyword>always_pickup (自动拾取)</color> 选项，那么 <color:keypress>;</color> 和 <color:keypress>~</color> 将被覆盖；除非同时也开启了 <color:keyword>leave_mogaminator (保留墨家明器)</color> 选项，否则甚至连 <color:keypress>!</color> 都会被覆盖。
 
 此外，还有以下附加的动作字母以增强主要动作：
 
@@ -413,15 +413,15 @@ This line is a comment.
 
 <topic:EasyDestroyer><style:heading>简易销毁器 (The Easy Destroyer)</style>
 
-如果读完了上面的所有内容后，你决定觉得莫加米系统对你来说太难处理了，你可以转而使用一个更简单的系统来管理物品：<color:keyword>简易销毁器 (Easy Destroyer)</color>。此系统通过游戏选项配置（参见 <link:option.txt#AutoDestroyer>）；选项 <color:keyword>destroy_items</color> 可以开启或关闭简易销毁器。<color:v>当且仅当</color>你开启了 <color:keyword>always_pickup (自动拾取)</color> 选项时，才推荐将莫加米系统和简易销毁器同时使用。
+如果读完了上面的所有内容后，你决定觉得墨家明器对你来说太难处理了，你可以转而使用一个更简单的系统来管理物品：<color:keyword>简易销毁器 (Easy Destroyer)</color>。此系统通过游戏选项配置（参见 <link:option.txt#AutoDestroyer>）；选项 <color:keyword>destroy_items</color> 可以开启或关闭简易销毁器。<color:v>当且仅当</color>你开启了 <color:keyword>always_pickup (自动拾取)</color> 选项时，才推荐将墨家明器和简易销毁器同时使用。
 
-如果你开启了莫加米系统但却不喜欢它的行为方式，你可以使用 <color:keyword>no_mogaminator</color> 选项来完全关闭它，或者使用 <color:keyword>leave_mogaminator (保留莫加米纳特)</color> 选项将物品销毁限制在纯粹的垃圾上。开启 <color:keyword>always_pickup (自动拾取)</color> 选项也会禁用莫加米系统的物品销毁功能，但仍允许简易销毁器工作。
+如果你开启了墨家明器但却不喜欢它的行为方式，你可以使用 <color:keyword>no_mogaminator</color> 选项来完全关闭它，或者使用 <color:keyword>leave_mogaminator (保留墨家明器)</color> 选项将物品销毁限制在纯粹的垃圾上。开启 <color:keyword>always_pickup (自动拾取)</color> 选项也会禁用墨家明器的物品销毁功能，但仍允许简易销毁器工作。
 
 <topic:Reference><style:heading>参考表格</style>
 
-本节将给出关于莫加米系统所有关键语法细节。（请注意：要在系统中起效，你必须使用**英文**的规则关键字进行编写！）但首先，那些偏好文件究竟存放在哪里呢？默认的全局偏好是由 `lib/pref/pickpref.prf` 初始化的；因此如果你想为所有角色编辑默认偏好，就去编辑这个文件。你也可以在 `/lib/user/pickpref-UserDefault.prf` 创建你自己的个人默认偏好；这样的好处是你无需覆盖原始的全局默认值，并且如果你开始讨厌你的更改，也可以轻松地恢复。（使用个人默认偏好的另一个优点是，你可以在游戏内设置并编辑它们，而对于全局偏好这是做不到的。）
+本节将给出关于墨家明器所有关键语法细节。（请注意：要在系统中起效，你必须使用**英文**的规则关键字进行编写！）但首先，那些偏好文件究竟存放在哪里呢？默认的全局偏好是由 `lib/pref/pickpref.prf` 初始化的；因此如果你想为所有角色编辑默认偏好，就去编辑这个文件。你也可以在 `/lib/user/pickpref-UserDefault.prf` 创建你自己的个人默认偏好；这样的好处是你无需覆盖原始的全局默认值，并且如果你开始讨厌你的更改，也可以轻松地恢复。（使用个人默认偏好的另一个优点是，你可以在游戏内设置并编辑它们，而对于全局偏好这是做不到的。）
 
-一旦你激活了莫加米系统，你的偏好会存储在一个系统特定的独立文件中。在 Windows 系统上，它们将存储在 `lib/user/pickpref-<color:o>NAME</color>.prf`；而在 Linux 系统上，它们可能会被转移到 `~/.angband/FrogComposband/pickpref-<color:o>NAME</color>.prf`（在游戏目录结构之外）。这里，`<color:o>NAME</color>` 处会被替换为你玩家当前的名字。所以，如果你想使用外部文本编辑器编辑你角色的偏好设置，这就是你需要更改的文件。通常，直接使用游戏内的编辑器会更简单；但如果你在游玩期间用外部编辑器编辑了偏好文件，一定要确保使用 <color:keypress>$</color> 命令强迫游戏重新加载偏好文件。
+一旦你激活了墨家明器，你的偏好会存储在一个系统特定的独立文件中。在 Windows 系统上，它们将存储在 `lib/user/pickpref-<color:o>NAME</color>.prf`；而在 Linux 系统上，它们可能会被转移到 `~/.angband/FrogComposband/pickpref-<color:o>NAME</color>.prf`（在游戏目录结构之外）。这里，`<color:o>NAME</color>` 处会被替换为你玩家当前的名字。所以，如果你想使用外部文本编辑器编辑你角色的偏好设置，这就是你需要更改的文件。通常，直接使用游戏内的编辑器会更简单；但如果你在游玩期间用外部编辑器编辑了偏好文件，一定要确保使用 <color:keypress>$</color> 命令强迫游戏重新加载偏好文件。
 
 承诺过的参考表格就在下面……享受吧！
 

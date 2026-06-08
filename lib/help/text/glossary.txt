@@ -46,7 +46,7 @@ description of the White Aura and Black Aura mutations, which provide
 good luck and bad luck respectively.
 
 auto-destroyer: A system for automatically destroying items; either the 
-Mogaminator or the easy auto-destroyer.
+墨家明器 or the easy auto-destroyer.
 
 average object: An object without any magical enchantments or curses.
 
@@ -349,7 +349,7 @@ clawing to harm enemies in melee, but most normal player races can also
 acquire innate attacks through a mutation.
 
 inscription: 1) Text appended to an object's description by the player 
-or automatically by the Mogaminator, it can be either pure flavoring or 
+or automatically by the 墨家明器, it can be either pure flavoring or 
 give instructions to the game about how to treat that item. See [h]. 2) 
 Anything appended to an object description, including the standard item 
 attribute abbreviations.
@@ -439,7 +439,7 @@ only two generally available brands that can stack with another brand.
 melee: Armed or unarmed hand-to-hand combat. Melee skill: your talent 
 for such combat. Melee weapon: a weapon used in melee.
 
-Mogaminator: The auto-picker; the system for automatically picking up, 
+墨家明器: The auto-picker; the system for automatically picking up, 
 destroying, identifying, inscribing or leaving on the floor particular 
 items based on your pick-up preferences. Editable through the '_' 
 command. So named for its original author, Hengband developer Mogami.
@@ -468,7 +468,7 @@ class, personality or equipment. Permanent or locked mutations: demigod
 talents, other racial talents, and class- or personality-guaranteed 
 mutations such as the White Aura from Lucky personality.
 
-nameless: A Mogaminator keyword for a non-ego, non-artifact item that 
+nameless: A 墨家明器 keyword for a non-ego, non-artifact item that 
 does not have a Weaponsmith essence on it.
 
 nexus: An element, seldom deadly but often highly annoying due to its 
@@ -543,7 +543,7 @@ experience with a spell. Riding proficiency, dual-wielding proficiency,
 martial arts proficiency.
 
 pseudo-ID: Pseudo-identify; the system for giving object feelings; the 
-object feelings so given. "At level 20, the Mogaminator starts 
+object feelings so given. "At level 20, the 墨家明器 starts 
 automatically destroying all weapons and shooters that pseudo-ID as 
 {average}."
 

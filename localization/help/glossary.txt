@@ -18,7 +18,7 @@
 
 <color:keyword>aura</color>: 光环；1) 怪物周身的元素护套，当怪物在近战中被击中时造成少量元素伤害；或玩家周身类似的元素护套，对怪物造成伤害。2) 对白光环 (White Aura) 和黑光环 (Black Aura) 突变的描述，分别提供好运和厄运。
 
-<color:keyword>auto-destroyer</color>: 自动销毁器；自动销毁物品的系统；包括 Mogaminator (自动捡拾销毁系统) 或简易自动销毁器。
+<color:keyword>auto-destroyer</color>: 自动销毁器；自动销毁物品的系统；包括 墨家明器 (自动捡拾销毁系统) 或简易自动销毁器。
 
 <color:keyword>average object</color>: 一般物品；没有任何魔法附魔或诅咒的物品。
 
@@ -162,7 +162,7 @@
 
 <color:keyword>innate attack</color>: 天生攻击；不基于装备武器或武术的玩家近战攻击。许多怪物模式的玩家种族没有近战武器槽，依靠撕咬或爪击等天生攻击在近战中伤害敌人，但大多数正常玩家种族也可以通过突变获得天生攻击。
 
-<color:keyword>inscription</color>: 铭刻；1) 由玩家或 Mogaminator (自动捡拾器) 自动附加到物品描述上的文本，它可以纯粹是风味描述，也可以给游戏提供关于如何处理该物品的指令。参见 <link:objects.txt#Inscriptions>。2) 附加到物品描述后的任何内容，包括标准的物品属性缩写。
+<color:keyword>inscription</color>: 铭刻；1) 由玩家或 墨家明器 (自动捡拾器) 自动附加到物品描述上的文本，它可以纯粹是风味描述，也可以给游戏提供关于如何处理该物品的指令。参见 <link:objects.txt#Inscriptions>。2) 附加到物品描述后的任何内容，包括标准的物品属性缩写。
 
 <color:keyword>inventory</color>: 背包/物品栏；1) 背包内的物品栏，你角色目前携带的物品列表，通过 'i' 命令访问；引申为背包本身。2) 任何类似物品列表：商店库存、家里库存。
 
@@ -202,7 +202,7 @@
 
 <color:keyword>melee</color>: 近战；武装或徒手的近身格斗。Melee skill (近战技能)：你在这类战斗中的天赋。Melee weapon (近战武器)：近战中使用的武器。
 
-<color:keyword>Mogaminator</color>: Mogami自动捡拾器；一个基于你的拾取偏好设置自动拾取、销毁、鉴定、铭刻或将特定物品留在地上的系统。通过 '_' 命令编辑。以其最初的作者，Hengband 开发者 Mogami 命名。
+<color:keyword>墨家明器</color>: 墨家明器；一个基于你的拾取偏好设置自动拾取、销毁、鉴定、铭刻或将特定物品留在地上的系统。通过 '_' 命令编辑。以其最初的作者，Hengband 开发者 Mogami 命名。
 
 <color:keyword>monster</color>: 怪物；游戏中遇到的任何生物，敌对或友方。
 
@@ -216,7 +216,7 @@
 
 <color:keyword>mutation</color>: 突变；列在角色面板“突变”部分的玩家属性，无论是正面还是负面。<color:o>可移除 (Removable)</color> 或 <color:o>未锁定突变 (unlocked mutations)</color>：在游戏过程中获得，可通过各种方式移除，并且与角色的种族、职业、性格或装备无关。<color:o>永久 (Permanent)</color> 或 <color:o>锁定突变 (locked mutations)</color>：半神天赋、其他种族天赋以及职业或性格保证的突变，例如“幸运 (Lucky)”性格带来的白光环。
 
-<color:keyword>nameless</color>: 无名物品；Mogaminator (自动捡拾器) 的关键词，指代一件没有武器匠 (Weaponsmith) 精华，且不是词缀或神器的物品。
+<color:keyword>nameless</color>: 无名物品；墨家明器 (自动捡拾器) 的关键词，指代一件没有武器匠 (Weaponsmith) 精华，且不是词缀或神器的物品。
 
 <color:keyword>nexus</color>: 枢纽/时空碎裂；一种元素伤害，很少致命，但因为其副作用（打乱属性/随机传送）通常非常惹人厌。
 
@@ -248,7 +248,7 @@
 
 <color:keyword>proficiency</color>: 熟练度；你对特定任务或物品的掌握程度。Weapon proficiency (武器熟练度)：来自使用特定武器经验的准确度加成。Spell proficiency (法术熟练度)：来自施放法术经验的法力消耗和失败率加成。还有骑乘熟练度、双持熟练度和武术熟练度。
 
-<color:keyword>pseudo-ID</color>: 伪鉴定 (Pseudo-identify)；给予物品感觉的系统；或者指其所给出的物品感觉。“在 20 级时，Mogaminator 会开始自动销毁所有伪鉴定为 {一般/average} 的近战和远程武器。”
+<color:keyword>pseudo-ID</color>: 伪鉴定 (Pseudo-identify)；给予物品感觉的系统；或者指其所给出的物品感觉。“在 20 级时，墨家明器 会开始自动销毁所有伪鉴定为 {一般/average} 的近战和远程武器。”
 
 <color:keyword>pval</color>: pval 加成/修正值 (Bonus size value)。物品上任何属性、技能和能力加成（或惩罚）大小的指示器；例如，一顶提供速度、力量、敏捷、体质各 +3 并使智力 -3 的力量铁盔，其 pval 为 3。
 

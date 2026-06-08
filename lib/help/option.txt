@@ -140,7 +140,7 @@
 激活<color:keyword>roguelike</color>键位集，这是一种将按键映射到底层游戏命令的替代方式。推荐键盘上没有数字小键盘 (numpad) 的玩家使用 roguelike 键位集（详情见 <link:command.txt#RogueKeyset>）。
 
 <topic:always_pickup><color:U>默认捡起物品 (Pick things up by default)</color> <color:D>(always_pickup)</color>
-告诉游戏，走到物品上时应尝试捡起它。否则，手动捡起物品要求你使用 <color:keypress>g</color> 命令，或者在行走时使用 <color:keypress>-</color> 命令。此选项会禁用 Mogaminator 的自动销毁功能，所以它通常与 <color:keyword>destroy_items</color> (简易自动销毁器) 以及 <color:keyword>leave_mogaminator</color> (如果捡起所有东西感觉太夸张的话) 结合使用。
+告诉游戏，走到物品上时应尝试捡起它。否则，手动捡起物品要求你使用 <color:keypress>g</color> 命令，或者在行走时使用 <color:keypress>-</color> 命令。此选项会禁用 墨家明器 的自动销毁功能，所以它通常与 <color:keyword>destroy_items</color> (简易自动销毁器) 以及 <color:keyword>leave_mogaminator</color> (如果捡起所有东西感觉太夸张的话) 结合使用。
 
 <topic:online_macros><color:U>在宏中用步行 (Walk) 替换跑步 (Run)</color> <color:D>(online_macros)</color>
 如果开启此选项，所有跑步宏将根据适当情况被解释为步行宏或方向宏。此选项用于补偿 angband.live 服务器异常的默认偏好，在离线游玩时是不必要的。（关闭 Numlock 是解决 angband.live 上此问题的另一种方法；它通常是更好的解决方案，但有时可能不适用或引入额外的复杂性。）
@@ -202,7 +202,7 @@
 启用此选项后，每当你在以前绘制的区域之外跑步时，游戏都会尝试自动绘制你周围环境的地图。与 <color:keyword>auto_detect_traps</color> 不同，标记为已映射的区域与未标记区域没有视觉指示。当你调用魔法绘图时，游戏会绘制你周围的环境，并且还会在效果区域内的每个图块上设置一个标志。当你的玩家从如此标记的图块跑到没有如此标记的图块时，游戏会尝试通过定位合适的卷轴或装置并自动为你使用它来进行自动绘图。如果你在旅行时总是跑步，那么此选项和 <color:keyword>auto_detect_traps</color> 配合得最好。当你进入一个新楼层时，手动探测陷阱并绘制你周围的环境。如果你在旅行时总是跑步，游戏将在该层剩余时间里自动处理探测的繁琐工作。
 
 <topic:numpad_as_cursorkey><color:U>在编辑器模式下使用数字小键盘作为光标键</color> <color:D>(numpad_as_cursorkey)</color>
-如果此选项开启，在编辑任何文本（例如 Mogaminator 偏好或宏操作）时，数字小键盘的键被解释为光标移动键而不是数字。如果此选项关闭，数字小键盘的键被解释为向文本中添加数字。
+如果此选项开启，在编辑任何文本（例如 墨家明器 偏好或宏操作）时，数字小键盘的键被解释为光标移动键而不是数字。如果此选项关闭，数字小键盘的键被解释为向文本中添加数字。
 
 <topic:use_pack_slots><color:U>在其他物品栏中保留背包槽位标签</color> <color:D>(use_pack_slots)</color>
 如果此选项开启，物品栏物品将在所有物品提示中具有相同的默认标签键；例如，如果一个卷轴是你背包中的第九个物品，因此在显示物品栏命令中被标记为 <color:B>i)</color>，那么在阅读卷轴命令中它也将被标记为 <color:B>i)</color>，即使你没有其他卷轴。如果此选项关闭，每个物品提示都会重新计算标签，仅计算相关物品；该卷轴对于显示物品栏来说仍然是 <color:B>i)</color>，但在阅读卷轴提示中它可能会变成 <color:B>a)</color>。关闭此选项可降低物品在连续调用同一命令之间意外更改标签的风险；该卷轴只可能因为添加了另一个卷轴而被挤到 <color:B>b)</color>，药水或法术书的出现（或消失）对其标签没有影响。（无论哪种方式，确保物品保留其预期槽位的唯一完全可靠的方法是相应地铭刻它们；详情请参阅 <link:objects.txt#Inscriptions>。）
@@ -379,7 +379,7 @@
 如果开启此选项，玩家在跑步时会紧贴已知的拐角转向。这会导致更快的跑步速度，但增加了撞入潜伏怪物的机会。
 
 <topic:travel_ignore_items><color:U>旅行时忽略已鉴定的物品 (Ignore identified items while travelling)</color> <color:D>(travel_ignore_items)</color>
-开启此选项后，所有已鉴定的物品（除了一些极其贵重的物品，以及能够堆叠到已携带物品堆中的物品）在旅行时都会被 Mogaminator 忽略。关闭此选项后，Mogaminator 可能会尝试拾取在旅行期间踩过的已鉴定物品，这有时是好事，但经常会烦人地打断旅行。
+开启此选项后，所有已鉴定的物品（除了一些极其贵重的物品，以及能够堆叠到已携带物品堆中的物品）在旅行时都会被 墨家明器 忽略。关闭此选项后，墨家明器 可能会尝试拾取在旅行期间踩过的已鉴定物品，这有时是好事，但经常会烦人地打断旅行。
 
 <topic:check_abort><color:U>检查用户是否中止自动输入 (Check for user abort of automated input)</color> <color:D>(check_abort)</color>
 如果关闭此选项，用户无法取消或打断自动处理的命令（如休息、跑步、旅行或重复的命令）。这有点危险，但在某些系统上能使游戏更有效率。
@@ -444,16 +444,16 @@
 <topic:destroy_items><color:U>使用简易自动销毁器 (Use easy auto-destroyer)</color> <color:D>(destroy_items)</color>
 此选项开启和关闭简易自动销毁器。如果启用，简易自动销毁器将销毁所有物品，除非该物品受到下面讨论的一个或多个 <color:keyword>leave_*</color> 选项的保护。
 
-<style:note>注意：<color:keyword>简易自动销毁器 (Easy Auto-Destroyer)</color>是 <link:editor.txt> 中讨论的功能齐全的 <color:keyword>Mogaminator</color> (高级自动销毁器) 的简化版本。它是为那些觉得完整版使用起来太复杂的人设计的。但是，你真的应该只使用其中一个；如果你正在使用 Mogaminator，那么你不应同时启用简易自动销毁器，<color:B>除非</color>你开启了 <color:keyword>always_pickup</color> (总是拾取) 选项。</style>
+<style:note>注意：<color:keyword>简易自动销毁器 (Easy Auto-Destroyer)</color>是 <link:editor.txt> 中讨论的功能齐全的 <color:keyword>墨家明器</color> (高级自动销毁器) 的简化版本。它是为那些觉得完整版使用起来太复杂的人设计的。但是，你真的应该只使用其中一个；如果你正在使用 墨家明器，那么你不应同时启用简易自动销毁器，<color:B>除非</color>你开启了 <color:keyword>always_pickup</color> (总是拾取) 选项。</style>
 
 <topic:destroy_feeling><color:U>感知到物品时应用自动销毁 (Apply auto-destroy on sensing an item)</color> <color:D>(destroy_feeling)</color>
-如果开启此选项，Mogaminator 和简易自动销毁器都会在玩家感知到物品质量时（即每当伪鉴定生效时）采取行动。
+如果开启此选项，墨家明器 和简易自动销毁器都会在玩家感知到物品质量时（即每当伪鉴定生效时）采取行动。
 
 <topic:destroy_identify><color:U>鉴定物品时应用自动销毁 (Apply auto-destroy on identifying an item)</color> <color:D>(destroy_identify)</color>
-如果开启此选项，Mogaminator 和简易自动销毁器都会在玩家用法术或魔法装置鉴定物品时采取行动。通过城镇服务鉴定物品不会触发自动销毁。
+如果开启此选项，墨家明器 和简易自动销毁器都会在玩家用法术或魔法装置鉴定物品时采取行动。通过城镇服务鉴定物品不会触发自动销毁。
 
-<topic:destroy_debug><color:U>列出应用 Mogaminator 时使用的规则</color> <color:D>(destroy_debug)</color>
-这是 Mogaminator 的一个调试选项。如果启用此选项，则会在消息中报告 Mogaminator 执行操作时应用的规则；例如：<style:screenshot>
+<topic:destroy_debug><color:U>列出应用 墨家明器 时使用的规则</color> <color:D>(destroy_debug)</color>
+这是 墨家明器 的一个调试选项。如果启用此选项，则会在消息中报告 墨家明器 执行操作时应用的规则；例如：<style:screenshot>
   <indent>You have 26 charges remaining. <color:B>(AutoID</color><color:B>:</color>~?<color:G>unidentified </color><color:R>rods</color><color:B>)</color> You see <color:v>a </color>
 <color:v>Rod: </color><color:W>Frost Ball</color><color:v> (</color><color:y>1/3 charges</color><color:v>)</color>. <color:B>(Destroy:</color>(!<color:R>rods</color>:frost ball$<color:B>)</color>
 Auto-destroying.</indent>
@@ -464,11 +464,11 @@ Auto-destroying.</indent>
   <color:B>Score:</color> <color:D>100</color>                                            
   <color:r>Autopick:</color> ~<color:G>first realm's first </color><color:R>spellbooks</color><color:U>#@ma!k</color>                                         </indent></style>
 
-<topic:no_mogaminator><color:U>永远不应用 Mogaminator</color> <color:D>(no_mogaminator)</color>
-此选项停用 Mogaminator。（如果 Mogaminator 从一开始就未被激活，则此选项多余。）
+<topic:no_mogaminator><color:U>永远不应用 墨家明器</color> <color:D>(no_mogaminator)</color>
+此选项停用 墨家明器。（如果 墨家明器 从一开始就未被激活，则此选项多余。）
 
-<topic:leave_mogaminator><color:U>留下 Mogaminator 想要销毁的物品</color> <color:D>(leave_mogaminator)</color>
-开启此选项后，Mogaminator 从不销毁物品（简易自动销毁器仍然可以销毁物品），但即使开启了 <color:keyword>always_pickup</color> 选项，Mogaminator 想要销毁的物品在踩过时也不会被自动拾取。
+<topic:leave_mogaminator><color:U>留下 墨家明器 想要销毁的物品</color> <color:D>(leave_mogaminator)</color>
+开启此选项后，墨家明器 从不销毁物品（简易自动销毁器仍然可以销毁物品），但即使开启了 <color:keyword>always_pickup</color> 选项，墨家明器 想要销毁的物品在踩过时也不会被自动拾取。
 
 <topic:check_full_pack><color:U>如果背包已满，则限制拾取提示</color> <color:D>(check_full_pack)</color>
 开启此选项后，当你走到放有多个物品的格子上且背包已满时，你将不会看到拾取提示；取而代之，你将自动拾取（并放下）所有这些物品。如果 <color:keyword>always_pickup</color> 未开启，此选项无效。

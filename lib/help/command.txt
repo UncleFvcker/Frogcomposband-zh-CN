@@ -48,7 +48,7 @@
    !  输入用户偏好命令                        ^A  (特殊 - 巫师命令)
    @  与宏交互                                <color:D>^B  (未使用)</color>
    <color:D>#  (未使用)</color>                                ^C  (特殊 - 中断)
-   $  重载 Mogaminator 偏好                 <color:D>^D  (未使用)</color>
+   $  重载 墨家明器 偏好                 <color:D>^D  (未使用)</color>
    %  与视觉效果交互                          ^E  与宏交互
    ^  (特殊 - 控制键 Ctrl)                     ^F  重复楼层感知
    &  与颜色交互                              ^G  自动拾取附近物品
@@ -60,7 +60,7 @@
    [  显示怪物列表                            ^M  (特殊 - 回车)
    ]  显示物品列表                            <color:D>^N  (未使用)</color>
    -  行走 (翻转拾取)                          ^O  显示物品列表
-   _  编辑 Mogaminator 偏好                  ^P  显示历史消息
+   _  编辑 墨家明器 偏好                  ^P  显示历史消息
    <color:y>+  与相邻网格交互</color>                          <color:y>^Q  显示任务信息</color>
    =  设置选项                                ^R  重绘屏幕
    ;  行走                                    ^S  保存但不退出
@@ -112,7 +112,7 @@
    !  输入用户偏好命令                        ^A  (特殊 - 巫师命令)
    @  与宏交互                                ^B  (挖 - 西南)
    #  切换搜索模式                            ^C  (特殊 - 中断)
-   $  重载 Mogaminator 偏好                 ^D  摧毁物品
+   $  重载 墨家明器 偏好                 ^D  摧毁物品
    %  与视觉效果交互                          ^E  旅行至有趣物品
    ^  (特殊 - 控制键 Ctrl)                     ^F  重复楼层感知
    &  与颜色交互                              ^G  自动拾取附近物品
@@ -124,7 +124,7 @@
    <color:y>[  显示怪物列表</color>                            ^M  (挖 - 南)
    <color:y>]  显示物品列表</color>                            ^N  (挖 - 东南)
    -  行走 (翻转拾取)                          <color:D>^O  (未使用)</color>
-   _  编辑 Mogaminator 偏好                  ^P  显示历史消息
+   _  编辑 墨家明器 偏好                  ^P  显示历史消息
    <color:y>+  与相邻网格交互</color>                          <color:y>^Q  显示任务信息</color>
    =  设置选项                                ^R  重绘屏幕
    ;  行走                                    ^S  保存但不退出
@@ -204,7 +204,7 @@
 
 这种物品铭刻方式的优点在于，即使列表中添加或移除了其他物品，它们也能保留其固定的标签。例如请注意，示例物品栏中的三本书分别铭刻了 <color:keyword>@mb</color> 到 <color:keyword>@md</color>；这使得它们在 <color:keypress>m</color> 施法菜单中能保持其通常的、“预期的”标签，尽管这里第一本书（通常该排在 '<color:keypress>a</color>' 的书）丢失了。
 
-你可以使用 <color:keypress>Z</color>/<color:keypress>{</color> 命令来添加铭刻，除了给物品固定标签外，它们还可以用于许多其他目的（有关更多详细信息，请参阅 <link:objects.txt#Inscriptions>）。Mogaminator 插件通常会自动对物品应用标准铭刻；上述示例中的三本书就是由 Mogaminator 铭刻的。请注意，铭刻始终基于<color:keyword>底层按键集 (underlying keyset)</color>，在很大程度上它等同于原版按键集；因此，如果你想在“使用法杖 (Use a Staff)”提示中将某根法杖标记为 '<color:keypress>y</color>'，你应该将其铭刻为 <color:keyword>@uy</color>（注：原版中使用法杖是 u 键）而不是 <color:keyword>@Zy</color>（Roguelike 按键集中的 Z 键），即使你正使用的是 Roguelike 按键集。
+你可以使用 <color:keypress>Z</color>/<color:keypress>{</color> 命令来添加铭刻，除了给物品固定标签外，它们还可以用于许多其他目的（有关更多详细信息，请参阅 <link:objects.txt#Inscriptions>）。墨家明器 插件通常会自动对物品应用标准铭刻；上述示例中的三本书就是由 墨家明器 铭刻的。请注意，铭刻始终基于<color:keyword>底层按键集 (underlying keyset)</color>，在很大程度上它等同于原版按键集；因此，如果你想在“使用法杖 (Use a Staff)”提示中将某根法杖标记为 '<color:keypress>y</color>'，你应该将其铭刻为 <color:keyword>@uy</color>（注：原版中使用法杖是 u 键）而不是 <color:keyword>@Zy</color>（Roguelike 按键集中的 Z 键），即使你正使用的是 Roguelike 按键集。
 
 <style:note>注意：许多物品选择菜单允许你从几个不同的物品栏/库存中选择物品，你可以通过按 <color:keypress>/</color> 在它们之间进行切换。在上面丢弃 (<color:keypress>d</color>rop) 的例子中，默认的物品栏是你的背包，但你可以使用 <color:keypress>/</color> 来改为从你的装备栏或箭袋中选择物品。</style>
 

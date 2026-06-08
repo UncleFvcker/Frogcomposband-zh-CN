@@ -206,10 +206,129 @@ static char KEY_SKELETONS[] = "残骸";
 
 static bool _inscribe_pack_hack = FALSE;
 
-#define MATCH_KEY(KEY) (!strncmp(ptr, KEY, sizeof(KEY)-1)\
-     ? (ptr += sizeof(KEY)-1, (' '==*ptr) ? ptr++ : 0, TRUE) : FALSE)
-#define MATCH_KEY2(KEY) (!strncmp(ptr, KEY, sizeof(KEY)-1)\
-     ? (prev_ptr = ptr, ptr += sizeof(KEY)-1, (' '==*ptr) ? ptr++ : 0, TRUE) : FALSE)
+static cptr _keyword_parse_alias(cptr key)
+{
+    if (key == KEY_ALL) return "all";
+
+    if (key == KEY_UNSENSED) return "unsensed";
+    if (key == KEY_UNIDENTIFIED) return "unidentified";
+    if (key == KEY_IDENTIFIED) return "identified";
+    if (key == KEY_STAR_IDENTIFIED) return "*identified*";
+    if (key == KEY_UNAWARE) return "unaware";
+
+    if (key == KEY_AVERAGE) return "average";
+    if (key == KEY_GOOD) return "good";
+    if (key == KEY_CURSED) return "cursed";
+    if (key == KEY_EGO) return "ego";
+    if (key == KEY_ARTIFACT) return "artifact";
+    if (key == KEY_NAMELESS) return "nameless";
+    if (key == KEY_RARE) return "rare";
+    if (key == KEY_COMMON) return "common";
+    if (key == KEY_WORTHLESS) return "worthless";
+
+    if (key == KEY_BOOSTED) return "dice boosted";
+    if (key == KEY_ICKY) return "icky";
+
+    if (key == KEY_UNREADABLE) return "unreadable";
+    if (key == KEY_REALM1) return "first realm's";
+    if (key == KEY_REALM2) return "second realm's";
+    if (key == KEY_FIRST) return "first";
+    if (key == KEY_SECOND) return "second";
+    if (key == KEY_THIRD) return "third";
+    if (key == KEY_FOURTH) return "fourth";
+
+    if (key == KEY_COLLECTING) return "collecting";
+    if (key == KEY_SPECIAL) return "special";
+    if (key == KEY_UNUSABLE) return "unusable";
+    if (key == KEY_WANTED) return "wanted";
+    if (key == KEY_UNIQUE) return "unique";
+    if (key == KEY_HUMAN) return "human";
+
+    if (key == KEY_MORE_DICE) return "more dice than";
+    if (key == KEY_MORE_BONUS) return "more bonus than";
+    if (key == KEY_MORE_LEVEL) return "more level than";
+    if (key == KEY_MORE_WEIGHT) return "more weight than";
+    if (key == KEY_MORE_CHARGES) return "more charges than";
+    if (key == KEY_MORE_VALUE) return "more value than";
+
+    if (key == KEY_ITEMS) return "items";
+
+    if (key == KEY_WEAPONS) return "weapons";
+    if (key == KEY_FAVORITE_WEAPONS) return "favorite weapons";
+    if (key == KEY_HAFTED) return "hafted weapons";
+    if (key == KEY_DIGGERS) return "diggers";
+
+    if (key == KEY_SHOOTERS) return "shooters";
+    if (key == KEY_AMMO) return "ammo";
+
+    if (key == KEY_ARMORS) return "armors";
+    if (key == KEY_SHIELDS) return "shields";
+    if (key == KEY_SUITS) return "suits";
+    if (key == KEY_CLOAKS) return "cloaks";
+    if (key == KEY_HELMS) return "helms";
+    if (key == KEY_GLOVES) return "gloves";
+    if (key == KEY_BOOTS) return "boots";
+
+    if (key == KEY_LIGHTS) return "lights";
+    if (key == KEY_RINGS) return "rings";
+    if (key == KEY_AMULETS) return "amulets";
+
+    if (key == KEY_SPELLBOOKS) return "spellbooks";
+
+    if (key == KEY_WANDS) return "wands";
+    if (key == KEY_STAVES) return "staves";
+    if (key == KEY_RODS) return "rods";
+    if (key == KEY_POTIONS) return "potions";
+    if (key == KEY_SCROLLS) return "scrolls";
+
+    if (key == KEY_JUNKS) return "junk";
+    if (key == KEY_CORPSES) return "corpses";
+    if (key == KEY_SKELETONS) return "skeletons";
+
+    return NULL;
+}
+
+static bool _match_keyword(cptr *ptr_p, cptr key)
+{
+    cptr candidates[2];
+    int i;
+
+    candidates[0] = key;
+    candidates[1] = _keyword_parse_alias(key);
+
+    for (i = 0; i < 2; i++)
+    {
+        cptr candidate = candidates[i];
+        size_t len;
+
+        if (!candidate) continue;
+        len = strlen(candidate);
+        if (!strncmp(*ptr_p, candidate, len))
+        {
+            *ptr_p += len;
+            if (' ' == **ptr_p) (*ptr_p)++;
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+static bool _match_keyword2(cptr *ptr_p, cptr *prev_ptr_p, cptr key)
+{
+    cptr prev = *ptr_p;
+
+    if (_match_keyword(ptr_p, key))
+    {
+        *prev_ptr_p = prev;
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+#define MATCH_KEY(KEY) _match_keyword(&ptr, KEY)
+#define MATCH_KEY2(KEY) _match_keyword2(&ptr, &prev_ptr, KEY)
 
 #define ADD_FLG(FLG) (entry->flag[FLG / 32] |= (1L << (FLG % 32)))
 #define REM_FLG(FLG) (entry->flag[FLG / 32] &= ~(1L << (FLG % 32)))
@@ -2709,7 +2828,7 @@ bool autopick_autoregister(object_type *o_ptr)
 
     if (no_mogaminator)
     {
-        msg_print("Mogaminator 当前未激活。");
+        msg_print("墨家明器当前未激活。");
         return FALSE;
     }
 
@@ -2765,14 +2884,14 @@ bool autopick_autoregister(object_type *o_ptr)
         pref_fff = my_fopen(pref_file, "r");
         if (!pref_fff)
         {
-            msg_print("请先初始化 Mogaminator 偏好设置（按 '_'）。");
+            msg_print("请先初始化墨家明器偏好设置（按 '_'）。");
             return FALSE;
         }
         else
         {
             char buf[80];
             my_strcpy(buf, pickpref_filename(PT_WITH_PREFNAME, NULL), sizeof(buf));
-            msg_print("Mogaminator 偏好设置已初始化。如果你想停用 Mogaminator，请开启 <color:o>no_mogaminator</color> 选项。");
+            msg_print("墨家明器偏好设置已初始化。如果你想停用墨家明器，请开启 <color:o>no_mogaminator</color> 选项。");
             process_autopick_file(buf);
             _inscribe_pack();
         }
@@ -3377,14 +3496,14 @@ static cptr *read_text_lines(cptr filename)
 static void prepare_default_pickpref(bool silent)
 {
     static char *messages[] = {
-        "你首次激活了莫加明器(Mogaminator，自动拾取编辑器)。",
+        "你首次激活了墨家明器。",
         "由于尚未创建用户偏好设置，",
         "现已从 lib/pref/pickpref.prf 载入默认设置。",
         NULL
     };
 
     static char *usermessages[] = {
-        "从 lib/user/UserDefault.prf 载入了莫加明器的用户偏好设置。",
+        "从 lib/user/UserDefault.prf 载入了墨家明器的用户偏好设置。",
         NULL
     };
 

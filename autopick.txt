@@ -1,7 +1,7 @@
 # autopick.txt for Hengband
 
 Note: The Autopicker has been extensively modified for PosChengband and
-rechristened 'The Mogaminator' as homage to its original developer. It
+rechristened '墨家明器' as homage to its original developer. It
 has also been extensively documented in the in-game help file: editor.txt.
 (Press ? for help while playing and choose the appropriate option). You
 can also view the helpfiles in your favorite browser by opening the file

@@ -2570,13 +2570,13 @@ option_type option_info[] =
     "destroy_identify",             "鉴定物品时应用自动销毁" },
 
     { &destroy_debug,               FALSE, OPT_PAGE_AUTODESTROY, 7, 10,
-    "destroy_debug",                "在应用 Mogaminator 时列出使用的规则" },
+    "destroy_debug",                "在应用墨家明器时列出使用的规则" },
 
     { &no_mogaminator,              FALSE, OPT_PAGE_AUTODESTROY, 7, 11,
-    "no_mogaminator",               "从不应用 Mogaminator" },
+    "no_mogaminator",               "从不应用墨家明器" },
 
     { &leave_mogaminator,           FALSE, OPT_PAGE_AUTODESTROY, 7, 12,
-    "leave_mogaminator",            "保留 Mogaminator 想要销毁的物品" },
+    "leave_mogaminator",            "保留墨家明器想要销毁的物品" },
 
     { &check_full_pack,             TRUE, OPT_PAGE_AUTODESTROY, 2, 15,
     "check_full_pack",              "背包已满时限制拾取提示" },

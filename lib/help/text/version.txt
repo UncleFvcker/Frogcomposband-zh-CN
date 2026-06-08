@@ -215,7 +215,7 @@ CON/equipment-based HP multipliers
 
 * Trap warnings now reveal the trap
 
-* The Mogaminator is now applied to items on shop-ID and museum-ID
+* 墨家明器 is now applied to items on shop-ID and museum-ID
 
 * The in-game high score list now adjusts scores for options and 
 accomplishments (this does not apply retroactively)
@@ -305,7 +305,7 @@ for reporting)
 * Burdening was not checked properly after eating food; this has been 
 fixed
 
-* The option to never apply the Mogaminator also turned off the easy 
+* The option to never apply the 墨家明器 also turned off the easy 
 auto-destroyer; this has been fixed
 
 * Fixed typos in outlying makefiles that caused problems if "make 
@@ -322,7 +322,7 @@ quiver; this has been fixed
 not apply to incremental slowing; this has been fixed (thanks to ster 
 and Marty for reporting)
 
-* Arrow keys could not be used for Mogaminator or option menu 
+* Arrow keys could not be used for 墨家明器 or option menu 
 navigation on angband.live; this has been fixed
 
 * Quests were not properly flagged as completed on Troika disciples if 
@@ -431,7 +431,7 @@ rating modifier)
 cannot be damaged by the player's melee")
 
 * Added new option to leave on the floor all items marked for 
-destruction by the Mogaminator (even if always_pickup is on)
+destruction by the 墨家明器 (even if always_pickup is on)
 
 * Added new option (on by default) to ignore all identified items while 
 travelling
@@ -445,7 +445,7 @@ uniques turned in
 for the purposes of the object list command's Wanted Objects section 
 (in every other case the entry still works normally). This allows 
 picking up all items with always_pickup off (which may be desirable to 
-e.g. not override Mogaminator autodestruction) without cluttering the 
+e.g. not override 墨家明器 autodestruction) without cluttering the 
 Wanted Objects list
 
 * Added Tetsubo and Baseball Bat as favored weapons for Club 
@@ -564,14 +564,14 @@ in the monster and object lists (thanks to bostock for suggesting)
 - the game now looks for pref files of characters with lower numerals 
 if no pref files are present for the current incarnation
 
-* Improved Mogaminator functionality
+* Improved 墨家明器 functionality
 - look for pickpref-[classname].prf, or pickpref-[racename].prf on 
 monsters (thanks to grodrigues for suggesting this)
 - look for pickpref-UserDefault.prf (local default pickprefs)
 - allowed Save As of current preferences (thanks to grodrigues and 
 OmniNegro for suggesting this)
-- inscribe pack objects when Mogaminator is first activated (at birth 
-if Mogaminator is active from the beginning)
+- inscribe pack objects when 墨家明器 is first activated (at birth 
+if 墨家明器 is active from the beginning)
 - apply the improved handling of numbers and Roman numerals in player 
 names
 
@@ -1413,12 +1413,12 @@ multipliers, except in the character sheet)
 make them more appropriate (thanks to Mocht and CyclopsSlayer for 
 reporting issues)
 
-* The Mogaminator now supports the "more charges than" item descriptor 
+* 墨家明器 now supports the "more charges than" item descriptor 
 (e.g. "staves more charges than 15:cure wounds#@uu!sdk" picks up staves 
 of cure wounds with at least 16 charges, and inscribes them with 
 @uu!sdk)
 
-* The Mogaminator now supports loading other characters' preference 
+* 墨家明器 now supports loading other characters' preference 
 files (including pickpref.prf, the default preference file)
 
 * Pets take a bit longer to feel neglected now
@@ -1679,15 +1679,15 @@ of that race have been killed. (Copied from Frogspawn; replaces the
 previous exp reduction formula that only applied to breeders and kicked 
 in after 400 kills)
 
-* The Mogaminator now accepts "icky" as an adjective (so "!icky" means 
+* 墨家明器 now accepts "icky" as an adjective (so "!icky" means 
 "destroy all icky items", and "!nameless icky weapons" means "destroy 
-all icky melee weapons that aren't ego or artifact"). The Mogaminator 
+all icky melee weapons that aren't ego or artifact"). 墨家明器 
 defines icky items as either weapons that trigger icky wield, or gloves 
 that trigger encumbrance. It is possible that the "icky" keyword 
 doesn't work correctly for some classes yet; any such reports will be 
 appreciated (thanks to BobZero for this suggestion)
 
-* Added an option to deactivate the Mogaminator (thanks to BobZero for 
+* Added an option to deactivate the 墨家明器 (thanks to BobZero for 
 this suggestion)
 
 * It is now possible to inscribe a weapon with !? to request 

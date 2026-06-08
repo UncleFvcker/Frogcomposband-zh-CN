@@ -20,7 +20,7 @@
 
 <color:keyword>城镇任务 (Town quests)</color> (<link:town.txt#TownQuests>) 也是获取贵重物品的好来源；通常，你不仅能在任务本身中找到有用的东西，还能在出色完成工作后得到一件不错的物品作为奖励。最后，地下城中有一个地方必定会生成优秀的地板掉落物：<color:keyword>宝库 (treasure vaults)</color>。宝库通常防守严密，既有陷阱，也有极度危险的怪物——但正如任何一个喜欢冒险的霍比特人会告诉你的那样，潜行和行窃依然能大显身手……
 
-走到物品上方并使用 <color:keypress>g</color>et (拾取) 命令可以捡起物品。开启 <color:keyword>always_pickup (始终拾取)</color> 选项可以让你在不消耗额外回合的情况下自动拾取物品——事实上，这允许你移动到一个方格并在同一回合内捡起那里的物品！但不加区分地把所有东西都捡起来很快就会让你的物品栏塞满毫无用处的死重；所以许多玩家更喜欢结合使用 <color:keyword>Mogaminator (莫加拾取器)</color> (<link:editor.txt>) 手动拾取物品，这是一个基于可修改规则的自动系统，它（理想情况下）会在摧毁垃圾的同时捡起有用的物品。在击败混沌之蛇的旅途中，你可能会发现数以万计的物品，因此有一个自动处理它们的方法是很好的；如果你发现莫加拾取器过于热衷于摧毁物品，你可以开启 <color:keyword>always_pickup</color> 或 <color:keyword>leave_mogaminator (保留莫加过滤)</color> 选项 (<link:option.txt#leave_mogaminator>)，以确保只有真正的垃圾被销毁。
+走到物品上方并使用 <color:keypress>g</color>et (拾取) 命令可以捡起物品。开启 <color:keyword>always_pickup (始终拾取)</color> 选项可以让你在不消耗额外回合的情况下自动拾取物品——事实上，这允许你移动到一个方格并在同一回合内捡起那里的物品！但不加区分地把所有东西都捡起来很快就会让你的物品栏塞满毫无用处的死重；所以许多玩家更喜欢结合使用 <color:keyword>墨家明器</color> (<link:editor.txt>) 手动拾取物品，这是一个基于可修改规则的自动系统，它（理想情况下）会在摧毁垃圾的同时捡起有用的物品。在击败混沌之蛇的旅途中，你可能会发现数以万计的物品，因此有一个自动处理它们的方法是很好的；如果你发现墨家明器过于热衷于摧毁物品，你可以开启 <color:keyword>always_pickup</color> 或 <color:keyword>leave_mogaminator (保留墨家明器)</color> 选项 (<link:option.txt#leave_mogaminator>)，以确保只有真正的垃圾被销毁。
 
 <topic:Knowledge><style:heading>好的，我找到了一个东西。它有什么用？</style>
 
@@ -158,7 +158,7 @@
 
 <topic:Inscriptions><style:heading>物品铭刻 (Object Inscriptions)</style>
 
-这是一个进阶话题，如果你刚刚开始玩，你可能想跳过它；但<color:keyword>铭刻 (inscriptions)</color>一旦学会，就会非常强大且有用。莫加拾取器 (Mogaminator) 会自动为一些物品添加铭刻，所以激活它既是轻松利用铭刻的好方法，也是观察它们在实践中如何工作的好方法。
+这是一个进阶话题，如果你刚刚开始玩，你可能想跳过它；但<color:keyword>铭刻 (inscriptions)</color>一旦学会，就会非常强大且有用。墨家明器 会自动为一些物品添加铭刻，所以激活它既是轻松利用铭刻的好方法，也是观察它们在实践中如何工作的好方法。
 
 铭刻是附加到单个物品上的文本；游戏使用物品上的铭刻来向你传达信息，而你可以使用铭刻向游戏反馈信息。
 
@@ -175,7 +175,7 @@
 </indent>
 <topic:RealInsc>  <indent><color:o>实用铭刻 (Useful Inscriptions)</color>
 
-“真实”铭刻包括那些你使用 <color:keypress>{</color> 命令自己输入的铭刻，以及莫加拾取器添加的铭刻。这些铭刻可以是任何你喜欢的文本，也许是给你自己的一个备忘录，比如在你正式鉴定它之前写上“这瓶药水可能是加速”。或者，你可以使用特殊语法向游戏传达你的偏好；我们称这些为<color:keyword>实用铭刻 (useful inscriptions)</color>。
+“真实”铭刻包括那些你使用 <color:keypress>{</color> 命令自己输入的铭刻，以及墨家明器添加的铭刻。这些铭刻可以是任何你喜欢的文本，也许是给你自己的一个备忘录，比如在你正式鉴定它之前写上“这瓶药水可能是加速”。或者，你可以使用特殊语法向游戏传达你的偏好；我们称这些为<color:keyword>实用铭刻 (useful inscriptions)</color>。
 
 实用铭刻最实用的用途（抱歉拗口了！）是在输入给定命令时控制物品的选择。例如，当法师去施放法术（使用 <color:keypress>m</color> 命令）时，系统会提示他们需要一本法术书，他们必须从物品栏中选择。默认情况下，这个选择是通过一个对应于书本在所有可用书本列表中位置的字母标签做出的，例如：
 <style:screenshot>
@@ -201,7 +201,7 @@
  a) <color:B>?</color> <color:B>一本咒术法术书 [初学者手册]</color>
  c) <color:B>?</color> <color:B>一本咒术法术书 [大师咒术师手册]</color>
 </style>
-好多了，但还不理想；我的 [初学者手册] 意料之外地移到了 a) 槽位，这可能也会干扰到我！这说明了一个关于法术书的重要原则：如果你给一本法术书铭刻，最好把所有的法术书都铭刻上。大多数玩家对他们的第一个魔法领域使用 @ma 到 @md（每个领域有四本法术书），对他们的第二个领域使用 @me 到 @mh；莫加拾取器甚至会自动执行此操作。让我们看看这有什么效果：
+好多了，但还不理想；我的 [初学者手册] 意料之外地移到了 a) 槽位，这可能也会干扰到我！这说明了一个关于法术书的重要原则：如果你给一本法术书铭刻，最好把所有的法术书都铭刻上。大多数玩家对他们的第一个魔法领域使用 @ma 到 @md（每个领域有四本法术书），对他们的第二个领域使用 @me 到 @mh；墨家明器甚至会自动执行此操作。让我们看看这有什么效果：
 <style:screenshot>
 <color:G>物品栏</color>
  b) <color:R>?</color> <color:R>一本混沌法术书 [混沌精通] {Master of @mb Chaos}</color>

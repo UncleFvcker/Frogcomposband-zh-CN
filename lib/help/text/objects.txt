@@ -93,11 +93,11 @@ no extra cost to you - indeed, it allows you to move to a square and
 pick up the items there in a single turn! But indiscriminately picking 
 everything up soon fills your inventory with useless dead weight; so 
 many players prefer to pick things up manually in combination with use 
-of the Mogaminator ([e]), an automatic system based on modifiable rules 
+of the 墨家明器 ([e]), an automatic system based on modifiable rules 
 that (hopefully) picks up useful items while destroying junk. During 
 your quest to defeat the Serpent you may find tens of thousands of 
 objects, so it is nice to have an automatic way to deal with them; and 
-if you find the Mogaminator overeager to destroy things, you can turn 
+if you find the 墨家明器 overeager to destroy things, you can turn 
 on always_pickup or the leave_mogaminator option ([f]) to make sure 
 only true junk is eliminated.
 
@@ -416,7 +416,7 @@ Object Inscriptions
 
 This is an advanced topic which you may want to skip if you are just 
 getting started; but inscriptions, once learned, are very powerful and 
-useful. The Mogaminator automatically inscribes some items, so 
+useful. 墨家明器 automatically inscribes some items, so 
 activating it is a good way to both get easy utility out of 
 inscriptions and to see how they work in practice.
 
@@ -456,7 +456,7 @@ system or keyboard.
   Useful Inscriptions
   
   "Real" inscriptions include those you type in yourself, using the { 
-  command, as well as those added by the Mogaminator. These 
+  command, as well as those added by the 墨家明器. These 
   inscriptions can be any text you like, maybe a note to yourself "this 
   potion is probably Speed" before you have officially identified it. 
   Alternatively, you can use special syntax to communicate your 
@@ -514,7 +514,7 @@ system or keyboard.
   spellbooks: if you inscribe one spellbook, it is a good idea to 
   inscribe all of them. Most players use @ma through @md for their 
   first realm of magic (each realm has four spellbooks) and @me through 
-  @mh for their second realm; the Mogaminator even does this 
+  @mh for their second realm; the 墨家明器 even does this 
   automatically. Let's see what effect this has:
   
   Inventory

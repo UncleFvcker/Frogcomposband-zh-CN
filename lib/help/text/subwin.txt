@@ -17,7 +17,7 @@ monster list subwindow there to alert you.
 
 The object list is likewise handy: it allows you to see at a glance if 
 you're missing anything on the level, especially since the most 
-valuable objects (and/or those wanted by the Mogaminator) will be 
+valuable objects (and/or those wanted by the 墨家明器) will be 
 displayed near the top. An object list subwindow will also help you 
 quickly locate quest or dungeon entrances in towns and the wilderness.
 

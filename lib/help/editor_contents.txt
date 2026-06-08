@@ -1,4 +1,4 @@
-<style:title>物品自动处理系统 (The Mogaminator)</style>
+<style:title>物品自动处理系统 (墨家明器)</style>
 
 请选择一个帮助章节。
 

@@ -302,7 +302,7 @@ Input Options
   Tells the game that walking onto an item should attempt to pick it 
   up. Otherwise, manually picking up an item requires you to use the g 
   command, or the - command while walking. This option disables the 
-  autodestroyer functions of the Mogaminator, so it's often used 
+  autodestroyer functions of the 墨家明器, so it's often used 
   together with destroy_items for the easy auto-destroyer, as well as 
   leave_mogaminator if picking up absolutely everything starts feeling 
   like overkill.
@@ -432,7 +432,7 @@ Input Options
   
   Use numpad keys as cursor keys in editor mode (numpad_as_cursorkey)
   If this option is on, numpad keys are interpreted as cursor-movement 
-  keys rather than numbers while editing any text (such as Mogaminator 
+  keys rather than numbers while editing any text (such as 墨家明器 
   preferences or a macro action). If this option is off, numpad keys 
   are interpreted as adding numbers to the text.
   
@@ -789,8 +789,8 @@ Disturbance Options
   Ignore identified items while travelling (travel_ignore_items)
   With this option on, all identified items (except some extremely 
   valuable objects, and objects that add to a stack of already carried 
-  items) are ignored by the Mogaminator while travelling. With the 
-  option off, the Mogaminator may try to pick up already identified 
+  items) are ignored by the 墨家明器 while travelling. With the 
+  option off, the 墨家明器 may try to pick up already identified 
   items walked over during the travel, which is sometimes good but 
   often disturbs the travel annoyingly.
   
@@ -898,27 +898,27 @@ Easy Auto-Destroyer Options
   one or more of the leave_* options discussed below.
   
     Note: The Easy Auto-Destroyer is a simpler version of 
-    the full-featured Mogaminator discussed at [j]. It is 
+    the full-featured 墨家明器 discussed at [j]. It is 
     designed for those who feel the full version is too 
     complicated to use. However, you really should only use 
-    one or the other; if you are using the Mogaminator, 
+    one or the other; if you are using the 墨家明器, 
     then you should not also enable the Easy Destroyer, 
     unless you have turned the always_pickup option on.
   
   Apply auto-destroy on sensing an item (destroy_feeling)
-  If this option is turned on, both the Mogaminator and the Easy 
+  If this option is turned on, both the 墨家明器 and the Easy 
   Destroyer will take actions whenever the player senses the quality of 
   an object (i.e., whenever pseudo-ID kicks in).
   
   Apply auto-destroy on identifying an item (destroy_identify)
-  If this option is turned on, both the Mogaminator and the Easy 
+  If this option is turned on, both the 墨家明器 and the Easy 
   Destroyer will take actions whenever the player identifies an object 
   with a spell or magical device. Identifying objects with a town 
   service does not trigger auto-destruction.
   
-  List the rule used when applying the Mogaminator (destroy_debug)
-  This is a debugging option for the Mogaminator. If this option is 
-  enabled, the rule applied when the Mogaminator does something is 
+  List the rule used when applying the 墨家明器 (destroy_debug)
+  This is a debugging option for the 墨家明器. If this option is 
+  enabled, the rule applied when the 墨家明器 does something is 
   reported in a message; for example:
     You have 26 charges remaining. (AutoID:~?unidentified rods) You see a 
     Rod: Frost Ball (1/3 charges). (Destroy:(!rods:frost ball$)
@@ -931,13 +931,13 @@ Easy Auto-Destroyer Options
       Score: 100                                            
       Autopick: ~first realm's first spellbooks#@ma!k                           
   
-  Never apply the Mogaminator (no_mogaminator)
-  This option deactivates the Mogaminator. (It is redundant if the 
-  Mogaminator was never activated in the first place.)
+  Never apply the 墨家明器 (no_mogaminator)
+  This option deactivates the 墨家明器. (It is redundant if the 
+  墨家明器 was never activated in the first place.)
   
-  Leave items the Mogaminator wants to destroy (leave_mogaminator)
-  With this option on, the Mogaminator never destroys items (the easy 
-  auto-destroyer can still destroy items), but items the Mogaminator 
+  Leave items the 墨家明器 wants to destroy (leave_mogaminator)
+  With this option on, the 墨家明器 never destroys items (the easy 
+  auto-destroyer can still destroy items), but items the 墨家明器 
   wants to destroy are not automatically picked up on walkover even 
   with the always_pickup option on. 
   

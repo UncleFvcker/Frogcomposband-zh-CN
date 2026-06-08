@@ -1,6 +1,6 @@
 <style:title>物品列表 (The Object List)</style>
 
-此命令显示当前楼层上所有已知的物品。<color:keyword>Mogaminator (自动拾取器)</color> 想要拾取的物品会显示在靠近顶部的 <color:keyword>需要的物品 (wanted objects)</color> 类别中，而其他所有物品则显示在下方的 <color:keyword>其他物品 (other objects)</color> 类别中。这两组中的物品都按其估算价值进行排序；每件物品相对于你当前位置的位置，用类似 <color:keyword>N 23 E 11 (北23 东11)</color> 的方向格式来指示。物品列表还会显示地下城入口、任务入口和城镇商店，并且可以通过切换决定是否在列表中包含楼梯。
+此命令显示当前楼层上所有已知的物品。<color:keyword>墨家明器 (自动拾取器)</color> 想要拾取的物品会显示在靠近顶部的 <color:keyword>需要的物品 (wanted objects)</color> 类别中，而其他所有物品则显示在下方的 <color:keyword>其他物品 (other objects)</color> 类别中。这两组中的物品都按其估算价值进行排序；每件物品相对于你当前位置的位置，用类似 <color:keyword>N 23 E 11 (北23 东11)</color> 的方向格式来指示。物品列表还会显示地下城入口、任务入口和城镇商店，并且可以通过切换决定是否在列表中包含楼梯。
 
 <topic:Summary><style:heading>快速汇总 (Quick Summary)</style>
 
@@ -23,7 +23,7 @@
 
 <topic:Usage><style:heading>使用场景 (Usage)</style>
 
-一旦战利品开始掉落得满地都是，物品列表就是你查看是否遗漏了什么的最佳工具；它与物品探测 (Object Detection)，尤其是与透视 (Clairvoyance) 配合使用效果极佳。由于物品首先根据 Mogaminator 是否需要来排序，其次按估值排序，因此即使列表极长，最有趣的物品也很容易被发现。这个角色有一大堆未鉴定的物品：
+一旦战利品开始掉落得满地都是，物品列表就是你查看是否遗漏了什么的最佳工具；它与物品探测 (Object Detection)，尤其是与透视 (Clairvoyance) 配合使用效果极佳。由于物品首先根据 墨家明器 是否需要来排序，其次按估值排序，因此即使列表极长，最有趣的物品也很容易被发现。这个角色有一大堆未鉴定的物品：
 <style:screenshot>                                                                                
 有 42 件需要的物品:                               #####<color:s>.....</color><color:W>|</color><color:u>]</color><color:s>.....</color> LEVEL <color:G>    50</color>
  <color:r>!</color> <color:B>一瓶敏捷药水                        </color> N  3 E 28 <color:s>...</color>##<color:s>............</color> EXP <color:G>********</color>

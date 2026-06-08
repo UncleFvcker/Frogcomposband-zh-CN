@@ -305,7 +305,7 @@ output to the screen).
   </font><font color="#ffffff">Tells the game that walking onto an item should attempt to pick it 
   up. Otherwise, manually picking up an item requires you to use the </font><font color="#ff8000">g 
   </font><font color="#ffffff">command, or the </font><font color="#ff8000">- </font><font color="#ffffff">command while walking. This option disables the 
-  autodestroyer functions of the Mogaminator, so it's often used 
+  autodestroyer functions of the 墨家明器, so it's often used 
   together with </font><font color="#ff0000">destroy_items </font><font color="#ffffff">for the easy auto-destroyer, as well as 
   </font><font color="#ff0000">leave_mogaminator </font><font color="#ffffff">if picking up absolutely everything starts feeling 
   like overkill.
@@ -435,7 +435,7 @@ output to the screen).
   
 <a name="numpad_as_cursorkey"></a>  </font><font color="#c08040">Use numpad keys as cursor keys in editor mode </font><font color="#404040">(numpad_as_cursorkey)
   </font><font color="#ffffff">If this option is on, numpad keys are interpreted as cursor-movement 
-  keys rather than numbers while editing any text (such as Mogaminator 
+  keys rather than numbers while editing any text (such as 墨家明器 
   preferences or a macro action). If this option is off, numpad keys 
   are interpreted as adding numbers to the text.
   
@@ -792,8 +792,8 @@ output to the screen).
 <a name="travel_ignore_items"></a>  </font><font color="#c08040">Ignore identified items while travelling </font><font color="#404040">(travel_ignore_items)
   </font><font color="#ffffff">With this option on, all identified items (except some extremely 
   valuable objects, and objects that add to a stack of already carried 
-  items) are ignored by the Mogaminator while travelling. With the 
-  option off, the Mogaminator may try to pick up already identified 
+  items) are ignored by the 墨家明器 while travelling. With the 
+  option off, the 墨家明器 may try to pick up already identified 
   items walked over during the travel, which is sometimes good but 
   often disturbs the travel annoyingly.
   
@@ -901,27 +901,27 @@ output to the screen).
   one or more of the </font><font color="#ff0000">leave_* </font><font color="#ffffff">options discussed below.
   
     </font><font color="#00ff00">Note: The </font><font color="#ff0000">Easy Auto-Destroyer </font><font color="#00ff00">is a simpler version of 
-    the full-featured </font><font color="#ff0000">Mogaminator </font><font color="#00ff00">discussed at <a href="editor.html">[j]</a>. It is 
+    the full-featured </font><font color="#ff0000">墨家明器 </font><font color="#00ff00">discussed at <a href="editor.html">[j]</a>. It is 
     designed for those who feel the full version is too 
     complicated to use. However, you really should only use 
-    one or the other; if you are using the Mogaminator, 
+    one or the other; if you are using the 墨家明器, 
     then you should not also enable the Easy Destroyer, 
     </font><font color="#00ffff">unless </font><font color="#00ff00">you have turned the </font><font color="#ff0000">always_pickup </font><font color="#00ff00">option on.
   
 <a name="destroy_feeling"></a>  </font><font color="#c08040">Apply auto-destroy on sensing an item </font><font color="#404040">(destroy_feeling)
-  </font><font color="#ffffff">If this option is turned on, both the Mogaminator and the Easy 
+  </font><font color="#ffffff">If this option is turned on, both the 墨家明器 and the Easy 
   Destroyer will take actions whenever the player senses the quality of 
   an object (i.e., whenever pseudo-ID kicks in).
   
 <a name="destroy_identify"></a>  </font><font color="#c08040">Apply auto-destroy on identifying an item </font><font color="#404040">(destroy_identify)
-  </font><font color="#ffffff">If this option is turned on, both the Mogaminator and the Easy 
+  </font><font color="#ffffff">If this option is turned on, both the 墨家明器 and the Easy 
   Destroyer will take actions whenever the player identifies an object 
   with a spell or magical device. Identifying objects with a town 
   service does not trigger auto-destruction.
   
-<a name="destroy_debug"></a>  </font><font color="#c08040">List the rule used when applying the Mogaminator </font><font color="#404040">(destroy_debug)
-  </font><font color="#ffffff">This is a debugging option for the Mogaminator. If this option is 
-  enabled, the rule applied when the Mogaminator does something is 
+<a name="destroy_debug"></a>  </font><font color="#c08040">List the rule used when applying the 墨家明器 </font><font color="#404040">(destroy_debug)
+  </font><font color="#ffffff">This is a debugging option for the 墨家明器. If this option is 
+  enabled, the rule applied when the 墨家明器 does something is 
   reported in a message; for example:
     You have 26 charges remaining. </font><font color="#00ffff">(AutoID:</font><font color="#ffffff">~?</font><font color="#00ff00">unidentified </font><font color="#ff0000">rods</font><font color="#00ffff">) </font><font color="#ffffff">You see </font><font color="#ff00ff">a 
     Rod: </font><font color="#c0c0c0">Frost Ball </font><font color="#ff00ff">(</font><font color="#ffff00">1/3 charges</font><font color="#ff00ff">)</font><font color="#ffffff">. </font><font color="#00ffff">(Destroy:</font><font color="#ffffff">(!</font><font color="#ff0000">rods</font><font color="#ffffff">:frost ball$</font><font color="#00ffff">)
@@ -934,13 +934,13 @@ output to the screen).
       </font><font color="#00ffff">Score: </font><font color="#404040">100                                            
       </font><font color="#c00000">Autopick: </font><font color="#ffffff">~</font><font color="#00ff00">first realm's first </font><font color="#ff0000">spellbooks</font><font color="#c08040">#@ma!k                           
   
-<a name="no_mogaminator"></a>  Never apply the Mogaminator </font><font color="#404040">(no_mogaminator)
-  </font><font color="#ffffff">This option deactivates the Mogaminator. (It is redundant if the 
-  Mogaminator was never activated in the first place.)
+<a name="no_mogaminator"></a>  Never apply the 墨家明器 </font><font color="#404040">(no_mogaminator)
+  </font><font color="#ffffff">This option deactivates the 墨家明器. (It is redundant if the 
+  墨家明器 was never activated in the first place.)
   
-<a name="leave_mogaminator"></a>  </font><font color="#c08040">Leave items the Mogaminator wants to destroy </font><font color="#404040">(leave_mogaminator)
-  </font><font color="#ffffff">With this option on, the Mogaminator never destroys items (the easy 
-  auto-destroyer can still destroy items), but items the Mogaminator 
+<a name="leave_mogaminator"></a>  </font><font color="#c08040">Leave items the 墨家明器 wants to destroy </font><font color="#404040">(leave_mogaminator)
+  </font><font color="#ffffff">With this option on, the 墨家明器 never destroys items (the easy 
+  auto-destroyer can still destroy items), but items the 墨家明器 
   wants to destroy are not automatically picked up on walkover even 
   with the </font><font color="#ff0000">always_pickup </font><font color="#ffffff">option on. 
   

@@ -1,13 +1,13 @@
-The Mogaminator
+墨家明器
 
-The Mogaminator is a rules-based system for automatic object handling, 
+墨家明器 is a rules-based system for automatic object handling, 
 which you can activate or modify with the _ command. With this system, 
 you can decide which objects to pick up, which to destroy, which to 
 automatically identify, and which to display as wanted in the object 
 list. You can automatically inscribe objects to suit your tastes, and 
 even enter conditional statements to handle the preferences of 
 different races and classes. Or you can just keep the default 
-Mogaminator rules, which already do all of the above!
+墨家明器 rules, which already do all of the above!
 
 This document describes this system in tutorial fashion, assuming you 
 know nothing about it. Detailed reference material will appear towards 
@@ -19,7 +19,7 @@ Mogami.
 Review of Object Knowledge
 There is no doubt about it: the game generates lots and lots of 
 objects. Some are valuable, some are not, and some are only valuable in 
-specific situations... The Mogaminator will help you untangle that 
+specific situations... 墨家明器 will help you untangle that 
 mountain of loot.
 
 First, a really quick review of what is explained in detail at [b]. 
@@ -46,21 +46,21 @@ preferences, what to do with future instances of this type of object.
 Managing Objects
 
 There are three ways to manage objects: manually, by using the Easy 
-Destroyer ([c] below), and by using the Mogaminator. The Mogaminator is 
+Destroyer ([c] below), and by using the 墨家明器. 墨家明器 is 
 much more powerful than the Easy Destroyer, which simply destroys 
-items, usually junk. The Mogaminator and the Easy Destroyer should only 
+items, usually junk. 墨家明器 and the Easy Destroyer should only 
 be used side-by-side if you have turned the always_pickup option on.
 
-What is the Mogaminator? Basically, it is a rules-based system for 
+What is the 墨家明器? Basically, it is a rules-based system for 
 taking a given action each time you encounter a certain type of object. 
 The default action is pick up, and this action is used whenever you 
-fail to specify an alternative action; but the Mogaminator can also 
+fail to specify an alternative action; but the 墨家明器 can also 
 destroy junk for you and identify and inscribe objects automatically. 
 Let's discuss the basics.
 
 Basic Usage
 
-The Mogaminator is activated by pressing _, which also brings up an 
+墨家明器 is activated by pressing _, which also brings up an 
 in-game editor where you can manage your preferences. It might look 
 like this:
  
@@ -94,14 +94,14 @@ If you are new, you probably want to run from this complexity as fast
 as you can. Notice the top line of the screen where it tells you how to 
 get out: ^Q (and you can also exit through the ESC menu). The desire to 
 exit immediately is understandable, and in fact not a problem: simply 
-pressing _ turned the Mogaminator on and initialized it with default 
+pressing _ turned the 墨家明器 on and initialized it with default 
 preferences, so it should do a good job without any further messing. 
 (If you are very lazy, you can stop reading here and just happily play 
 away with the default preferences for the rest of the game!)
 
 So What Happened?
 
-With the Mogaminator now on, you will find much of the junk you 
+With the 墨家明器 now on, you will find much of the junk you 
 encounter being destroyed. For example, all those corpses and skeletons 
 you leave behind as you hack and slash your way through the dungeon... 
 except for wanted corpses, which are getting automatically picked up!
@@ -117,7 +117,7 @@ object is destroyed, but the fact that you don't like torches is
 remembered by the system. The next time your character moves on top of 
 one, it will be destroyed automatically.
 
-That's one simple way to use the Mogaminator: keep registering stuff 
+That's one simple way to use the 墨家明器: keep registering stuff 
 for automatic destruction as you encounter it, and the loot mountain 
 becomes easier to manage; but as we'll see later, auto-pickup is even 
 better than auto-destruction.
@@ -218,7 +218,7 @@ There are 4 other objects:                                          |      !(
 Bingo! You can even automatically travel to those delicious potions by 
 pressing J inside the Object List. What could be easier?
 
-To recap, adding the line "cure critical wounds" tells the Mogaminator 
+To recap, adding the line "cure critical wounds" tells the 墨家明器 
 to pick up any object that has "cure critical wounds" as part of its 
 name. You don't have to type so much - "crit" might work just as well - 
 but the less you type, the more likely it is that your new rule will 
@@ -698,23 +698,23 @@ always displays exactly what you typed.
 
 The Easy Destroyer
 
-If, after reading all of the above, you decide that the Mogaminator is 
+If, after reading all of the above, you decide that the 墨家明器 is 
 too much for you to handle, you may instead use a simpler system to 
 manage objects: the Easy Destroyer. This system is configured via 
 options (see [j]); the option destroy_items turns the Easy Destroyer on 
-and off. Using the Mogaminator and the Easy Destroyer side-by-side is 
+and off. Using the 墨家明器 and the Easy Destroyer side-by-side is 
 recommended if and only if you have the always_pickup option on.
 
-If you have turned on the Mogaminator but don't like what it's doing, 
+If you have turned on the 墨家明器 but don't like what it's doing, 
 you can use the no_mogaminator option to turn it off, or the 
 leave_mogaminator option to limit object destruction to complete junk 
 only. Using always_pickup also disables item destruction by the 
-Mogaminator while still allowing the Easy Destroyer.
+墨家明器 while still allowing the Easy Destroyer.
 
 Reference Tables
 
 This section will give all the nitty-gritty syntax details for the 
-Mogaminator. But first, where are those preference files located 
+墨家明器. But first, where are those preference files located 
 anyway? The default preferences are initialized from 
 lib/pref/pickpref.prf; so if you want to edit the default preferences 
 for all characters, this is the file to edit. You can also create your 
@@ -724,7 +724,7 @@ defaults, and can go back to them easily if you start disliking your
 changes. (Another advantage of the user defaults is that you can set 
 and edit them in-game, which you cannot do with the global defaults.)
 
-Once you activate the Mogaminator, your preferences are stored in a 
+Once you activate the 墨家明器, your preferences are stored in a 
 separate file in a system-dependent location. On Windows, they will be 
 stored at lib/user/pickpref-NAME.prf, while on Linux they might be 
 moved to ~/.angband/FrogComposband/pickpref-NAME.prf (outside the 
@@ -848,7 +848,7 @@ Table IV: Rules: Nouns
   Hafted Weapons
              Applies to all hafted weapons like Maces, Flails and War 
              Hammers; these weapons are preferred by Priests. Like the 
-             Favorite Weapons "noun" above, the Mogaminator views this 
+             Favorite Weapons "noun" above, the 墨家明器 views this 
              as a single noun, not an adjective followed by a noun.
   
   Diggers    Applies to all digging implements, such as shovels, 

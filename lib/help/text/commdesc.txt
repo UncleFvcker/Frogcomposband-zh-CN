@@ -85,12 +85,12 @@ Inventory Commands
 
   Get Objects (g)
   This command will get any objects located on the same tile as the 
-  player (Mogaminator applies). As a convenience, picking up items does 
+  player (墨家明器 applies). As a convenience, picking up items does 
   not consume time.
 
   Auto-Get Objects (^G)
   This command will get any objects located on the same tile as the 
-  player (Mogaminator applies). In addition, this command will 
+  player (墨家明器 applies). In addition, this command will 
   automatically travel to and get other objects in line of sight. With 
   auto_get_objects enabled, any object registered for either 
   auto-pickup or auto-destroy will qualify for automatic get. If that 
@@ -149,14 +149,14 @@ Movement Commands
   can take a count and requires a direction. You may also use the 
   "original" direction keys (both keysets) or the "roguelike" direction 
   keys (roguelike keyset) to walk in a direction (they are keymapped to 
-  this command). If the Mogaminator or the easy auto-destroyer is 
+  this command). If the 墨家明器 or the easy auto-destroyer is 
   active, specified objects will be picked up or destroyed.
 
   Walk (flip pickup) (-)
   This is just like normal move, except that the "Pick things up" 
   option is inverted. In other words, you will pick things up if and 
   only if always_pickup is not set. This command can take a count and 
-  requires a direction. If the Mogaminator or the easy auto-destroyer 
+  requires a direction. If the 墨家明器 or the easy auto-destroyer 
   is active, specified objects will be picked up or destroyed.
   
   This is also the command for deliberately walking into a trap.
@@ -168,7 +168,7 @@ Movement Commands
   you by setting the disturbance options. Run requires a direction. By 
   default Shift+DIR is keymapped to .DIR, although with the original 
   keyset this may run into technical limitations on some platforms. If 
-  the Mogaminator or the easy auto-destroyer is active, specified 
+  the 墨家明器 or the easy auto-destroyer is active, specified 
   objects will be picked up or destroyed.
 
   Go Up Staircase (<)
@@ -197,7 +197,7 @@ Movement Commands
   Locates and automatically travels to the nearest known item that is 
   unidentified, either has not been pseudo-ID'd or has been sensed as 
   an artifact or ego item, is not considered unworthy of picking up by 
-  an active Mogaminator, and to which a known route has been mapped. 
+  an active 墨家明器, and to which a known route has been mapped. 
   Convenient for quickly locating items you forgot to pick up or 
   identify after you have otherwise a dungeon level, or after killing a 
   high-level monster who dropped loot all over the place.
@@ -214,7 +214,7 @@ Resting Commands
   Stays in the same square for one move. If you normally pick up 
   objects you encounter, you will pick up whatever you are standing on. 
   This command can take a count. You may also use the "5" key (both 
-  keysets). If the Mogaminator or the easy auto-destroyer is active, 
+  keysets). If the 墨家明器 or the easy auto-destroyer is active, 
   specified objects will be picked up or destroyed.
 
   Rest (R)
@@ -552,7 +552,7 @@ Looking Commands
     |            #...#                                                 |
     |            ###%#                                                 |
   
-  If the Mogaminator is active, specified objects can be displayed on 
+  If the 墨家明器 is active, specified objects can be displayed on 
   this map; this is an obsolete functionality, though, as it is always 
   more convenient to just use the ] object list.
 
@@ -702,15 +702,15 @@ Message Commands
     Allows the user to interact with colors. This command only works on 
     some systems.
    
-    Reload Mogaminator Preferences ($)
+    Reload 墨家明器 Preferences ($)
     This command will reload "pickpref.prf" and 
-    "pickpref-<<playername>>.prf" for the Mogaminator; only needs to be 
+    "pickpref-<<playername>>.prf" for the 墨家明器; only needs to be 
     used if you have edited these files during the game with an 
     external text editor.
   
-    Edit Mogaminator Preferences (_)
+    Edit 墨家明器 Preferences (_)
     Allows you to edit your pickup preferences, and activates the 
-    Mogaminator if it was not yet active. The ESC key will open the 
+    墨家明器 if it was not yet active. The ESC key will open the 
     menu in this editor. You can see and use all edit commands from the 
     command menu. Press ^Q or ^W to quit the editor.
   
@@ -899,8 +899,8 @@ Message Commands
     Interact with Macros        @
     Interact with Visuals       %
     Interact with Colors        &
-    Reload Mogaminator Prefs    $
-    Edit Mogaminator Prefs      _
+    Reload 墨家明器 Prefs    $
+    Edit 墨家明器 Prefs      _
   
   Help Commands              Original        Roguelike
     Help                        ?
