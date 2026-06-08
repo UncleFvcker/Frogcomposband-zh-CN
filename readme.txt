@@ -1,3 +1,10 @@
+--- zh-CN分支介绍 ---
+在大刘哥1iuh的frognet版本（https://github.com/1iuh/frogcomposbandnet）基础上增加了一系列改动。
+改动如下：
+使用Mingw64位编译了64位的frogcomposband版本。
+支持UTF-8编码
+对大部分硬编码和edit内文本进行了汉化，内挂显示层在不影响游戏读取的情况下显示中文。
+修改了Museum公房，不再挂载于1iuh的服务器。改为本地玩家存档间个人共享。
 --- DISCLAIMER ---
     FrogComposband may ruin your social life, work productivity, or
     daily exercise routine. You play the game at your own risk; in no
