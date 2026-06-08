@@ -1,5 +1,4 @@
 #include "angband.h"
-#include "jsmn.h"
 #include "shop.h"
 
 #include <assert.h>
@@ -7,16 +6,7 @@
 static inv_ptr _home = NULL;
 static inv_ptr _museum = NULL;
 
-
-int replacechar(char *str, char orig, char rep) {
-    char *ix = str;
-    int n = 0;
-    while((ix = strchr(ix, orig)) != NULL) {
-        *ix++ = rep;
-        n++;
-    }
-    return n;
-}
+#define MUSEUM_SHARED_FILE "museum.txt"
 
 /* Function to convert a hex string representation back to an object
    This is useful for debugging or object deserialization */
@@ -150,6 +140,121 @@ static void museum_carry(obj_ptr obj)
         inv_add(_museum, obj);
 }
 
+static void _museum_reset(void)
+{
+    inv_free(_museum);
+    _museum = inv_alloc("博物馆", INV_MUSEUM, 0);
+}
+
+static void _museum_path(char *buf, size_t max)
+{
+    path_build(buf, max, ANGBAND_DIR_USER, MUSEUM_SHARED_FILE);
+}
+
+static void _strip_newline(char *buf)
+{
+    char *pos = strchr(buf, '\n');
+    if (pos) *pos = '\0';
+    pos = strchr(buf, '\r');
+    if (pos) *pos = '\0';
+}
+
+static bool _save_museum_data(void)
+{
+    char path[1024];
+    FILE *fp;
+    slot_t slot;
+    slot_t max;
+    bool success = TRUE;
+
+    _museum_path(path, sizeof(path));
+
+    safe_setuid_grab();
+    fp = my_fopen(path, "w");
+    safe_setuid_drop();
+
+    if (!fp) return FALSE;
+
+    fprintf(fp, "# FrogComposband local shared museum v1\n");
+
+    max = inv_last(_museum, obj_exists);
+    for (slot = 1; slot <= max; slot++)
+    {
+        obj_ptr obj = inv_obj(_museum, slot);
+        char hex_buf[2048];
+        cptr art_name = "";
+
+        if (!obj) continue;
+
+        obj_dump_hex(obj, hex_buf, sizeof(hex_buf));
+        if (obj->art_name) art_name = quark_str(obj->art_name);
+        if (fprintf(fp, "%s|%d|%s\n", hex_buf, obj->number, art_name ? art_name : "") < 0)
+        {
+            success = FALSE;
+            break;
+        }
+    }
+
+    if (my_fclose(fp)) success = FALSE;
+    return success;
+}
+
+bool _fetch_museum_data(void)
+{
+    char path[1024];
+    char line[4096];
+    FILE *fp;
+
+    _museum_reset();
+    _museum_path(path, sizeof(path));
+
+    safe_setuid_grab();
+    fp = my_fopen(path, "r");
+    safe_setuid_drop();
+
+    if (!fp) return TRUE;
+
+    while (fgets(line, sizeof(line), fp))
+    {
+        char *hex_buf;
+        char *number_buf;
+        char *art_name_buf;
+        int number;
+        obj_ptr obj;
+
+        _strip_newline(line);
+        if (!line[0] || line[0] == '#') continue;
+
+        hex_buf = line;
+        number_buf = strchr(hex_buf, '|');
+        if (!number_buf) continue;
+        *number_buf++ = '\0';
+
+        art_name_buf = strchr(number_buf, '|');
+        if (art_name_buf) *art_name_buf++ = '\0';
+
+        number = atoi(number_buf);
+        if (number <= 0) continue;
+
+        obj = obj_alloc();
+        if (hex_to_obj(hex_buf, obj))
+        {
+            if (obj->art_name)
+                obj->art_name = (art_name_buf && art_name_buf[0]) ? quark_add(art_name_buf) : 0;
+
+            obj->number = number;
+            museum_carry(obj);
+            obj_free(obj);
+        }
+        else
+            obj_free(obj);
+    }
+
+    my_fclose(fp);
+    inv_sort(_museum);
+    return TRUE;
+}
+
 /************************************************************************
  * Character Sheet (py_display)
  ***********************************************************************/
@@ -189,9 +294,6 @@ void museum_display(doc_ptr doc, obj_p p, int flags)
     slot_t slot;
     slot_t max = inv_last(_museum, obj_exists);
     char   name[MAX_NLEN];
-
-    http_response_t response;
-
 
     for (slot = 1; slot <= max; slot++)
     {
@@ -239,119 +341,6 @@ static void _get(_ui_context_ptr context);
 static void _ui(_ui_context_ptr context);
 static void _drop_aux(obj_ptr obj, _ui_context_ptr context);
 
-bool _fetch_museum_data(_ui_context_ptr context)
-{
-    _museum = inv_alloc("博物馆", INV_MUSEUM, 0);
-    //  make http post request
-    http_response_t response;
-    bool success = make_http_request("http://111.229.130.78:5000/frogcomposbandnet/share_room/list/v2", NULL, &response);
-    if (success && response.data)
-    {
-        jsmn_parser parser;
-        jsmntok_t tokens[1024];
-        int token_count;
-
-        jsmn_init(&parser);
-        token_count = jsmn_parse(&parser, response.data, response.size, tokens, sizeof(tokens)/sizeof(tokens[0]));
-        
-        // json example:
-        // ["000102030405060708090A0B0C0D0E0F|1|", "000102030405060708090A0B0C0D0E0F|2|addd"]
-        if (token_count > 0)
-        {
-            for(int i = 0; i < token_count; i++)
-            {
-                if (tokens[i].type != JSMN_STRING) continue;
-
-                // Find "hex" and "number" fields
-                char *token_str = malloc(tokens[i].end - tokens[i].start + 1);
-                char *hex_buf;
-                char *number_buf;
-                int number = 0;
-                strncpy(token_str, response.data + tokens[i].start, tokens[i].end - tokens[i].start);
-                char* rest = token_str;
-                // split the string by '|' 
-                hex_buf = strtok_r(rest, "|", &rest);
-                number_buf = strtok_r(rest, "|", &rest);
-
-                number = atoi(number_buf);
-                if (hex_buf)
-                {
-                    obj_ptr obj = obj_alloc();
-                    if (hex_to_obj(hex_buf, obj))
-                    {
-                        if (obj->art_name) {
-                            char *art_name_buf;
-                            art_name_buf = strtok_r(rest, "|", &rest);
-                            obj->art_name = quark_add(art_name_buf);
-                        } 
-
-                        obj->number = number;
-                        museum_carry(obj);
-                    }
-                }
-            }
-
-            inv_sort(_museum);
-        }
-        free(response.data);
-    }
-
-    return success;
-}
-
-bool _sync_drop(_ui_context_ptr context, obj_ptr obj) {
-    http_response_t response;
-    char post_data[1024];
-    char name[MAX_NLEN];
-
-    if(obj->level == 0) {
-        obj->level = rand_range(10, 99);
-    }
-
-    object_desc(name, obj, OD_OMIT_INSCRIPTION);
-    replacechar(name, '"', '\''); // Replace double quotes with single quotes for JSON compatibility
-
-    char hex_buf[2048]; /* Should be more than enough for an obj_t */
-    obj_dump_hex(obj, hex_buf, sizeof(hex_buf));
-    // set up the POST data
-    char art_name[256] = "0"; /* Should be more than enough for an obj_t */
-    if (obj->art_name) {
-        strncpy(art_name, quark_str(obj->art_name), sizeof(art_name) - 1);
-        art_name[sizeof(art_name) - 1] = '\0';
-    }
-
-    snprintf(post_data, sizeof(post_data), "{\"name\": \"%s\", \"hex\": \"%s\", \"k_idx\": %d, \"tval\": %d, \"sval\": %d, \"pval\": %d, \"name2\": %d, \"name3\": %d, \"number\": %d, \"hit\": %d, \"damage\": %d, \"ac\": %d, \"art_name\": \"%s\"}",
-     name, hex_buf, obj->k_idx, obj->tval, obj->sval, obj->pval, obj->name2, obj->name3, obj->number, obj->to_h, obj->to_d, obj->to_a, art_name);
-
-    //  make http post request
-    bool success = make_http_post("http://111.229.130.78:5000/frogcomposbandnet/share_room/drop/v2", post_data, &response);
-    free(response.data);
-    return success;
-}
-
-bool _sync_get(obj_ptr obj) {
-    http_response_t response;
-    char post_data[1024];
-    char name[MAX_NLEN];
-    object_desc(name, obj, OD_COLOR_CODED);
-
-    char hex_buf[2048]; /* Should be more than enough for an obj_t */
-    obj_dump_hex(obj, hex_buf, sizeof(hex_buf));
-    // set up the POST data
-    char art_name[256] = "0"; /* Should be more than enough for an obj_t */
-    if (obj->art_name) {
-        strncpy(art_name, quark_str(obj->art_name), sizeof(art_name) - 1);
-        art_name[sizeof(art_name) - 1] = '\0';
-    }
-    snprintf(post_data, sizeof(post_data), "{\"k_idx\": %d, \"tval\": %d, \"sval\": %d, \"pval\": %d, \"name2\": %d, \"name3\": %d, \"number\": %d, \"hit\": %d, \"damage\": %d, \"ac\": %d, \"art_name\": \"%s\"}",
-     obj->k_idx, obj->tval, obj->sval, obj->pval, obj->name2, obj->name3, obj->number, obj->to_h, obj->to_d, obj->to_a, art_name);
-
-    //  make http post request
-    bool success = make_http_post("http://111.229.130.78:5000/frogcomposbandnet/share_room/get/v2", post_data, &response);
-    free(response.data);
-    return success;
-}
-
 
 
 void home_ui(void)
@@ -367,7 +356,7 @@ void home_ui(void)
 void museum_ui(void)
 {
     _ui_context_t context = {0};
-    int success = _fetch_museum_data(&context);
+    int success = _fetch_museum_data();
     if (!success){
         msg_format("<color:R>获取博物馆数据失败。</color>");
         return;
@@ -564,22 +553,6 @@ static void _get(_ui_context_ptr context)
             if (!msg_input_num("数量", &amt, 1, obj->number)) continue;
         }
 
-        int cookie_requirement = calculate_obj_cookie_requirement(obj);
-
-
-        if (inv_loc(context->inv) == INV_MUSEUM)
-        {
-            if(p_ptr->cookie < cookie_requirement) {
-                msg_print("<color:R>你没有足够的代币(Cookie)来获取此物品。</color>");
-                continue;
-            }
-            if(!_sync_get(obj)) {
-                msg_print("<color:R>从博物馆获取物品失败。请稍后再试。</color>");
-                continue;
-            }
-            p_ptr->cookie -= cookie_requirement;
-        }
-
         if (amt < obj->number)
         {
             obj_t copy = *obj;
@@ -602,6 +575,8 @@ static void _get(_ui_context_ptr context)
                 inv_sort(context->inv);
             }
         }
+        if (inv_loc(context->inv) == INV_MUSEUM && !_save_museum_data())
+            msg_print("<color:R>保存本地博物馆数据失败。</color>");
         break;
     }
 }
@@ -694,13 +669,6 @@ static void _drop(_ui_context_ptr context)
         if (!msg_input_num("数量", &amt, 1, prompt.obj->number)) return;
     }
 
-    if (inv_loc(context->inv) == INV_MUSEUM)
-        if (!_sync_drop(context, prompt.obj)) {
-            msg_print("<color:R>捐赠物品至博物馆失败。请稍后再试。</color>");
-            return;
-        }
-
-
     if (prompt.obj->loc.where == INV_EQUIP)
     {
         char name[MAX_NLEN];
@@ -732,6 +700,9 @@ static void _drop(_ui_context_ptr context)
     }
     else
         _drop_aux(prompt.obj, context);
+
+    if (inv_loc(context->inv) == INV_MUSEUM && !_save_museum_data())
+        msg_print("<color:R>保存本地博物馆数据失败。</color>");
 
     obj_release(prompt.obj, OBJ_RELEASE_QUIET);
 }

@@ -495,29 +495,6 @@ static bool _create(obj_ptr obj, int k_idx, int lvl, u32b mode)
     return TRUE;
 }
 
-int calculate_obj_cookie_requirement(obj_ptr obj) {
-
-    int level = obj->level;
-    
-    if (level < 0) {
-        level = 0; // Ensure minimum level is 10
-    } else if (level > 100) {
-        level = 100; // Ensure maximum level is 100
-    }
-    int base_level = 0;
-
-    if(level <= 50) {
-        base_level = level / 10;
-    } else {
-        base_level = level / 15; // For levels above 50, add a base of 5
-    }
-
-    int value = obj_value(obj);
-    base_level += value / 15000; // Add 1 for every 10000 value
-
-    return base_level ? base_level : 1;
-}
-
 /************************************************************************
  * The 杂货店
  ***********************************************************************/
@@ -2396,7 +2373,6 @@ static void _display_inv(doc_ptr doc, shop_ptr shop, slot_t top, int page_size)
     inv_ptr inv = shop->inv;
     bool    show_prices = inv_loc(inv) == INV_SHOP;
     bool    show_values = (inv_loc(inv) != INV_SHOP || p_ptr-> wizard) && !(inv_loc(inv) == INV_MUSEUM);
-    bool    show_cookie = inv_loc(inv) == INV_MUSEUM;
 
     if (show_weights)
         xtra += 10;  /* " 123.0 lbs" */
@@ -2404,15 +2380,6 @@ static void _display_inv(doc_ptr doc, shop_ptr shop, slot_t top, int page_size)
         xtra += 7;
     if (show_values)
         xtra += 7;
-    if (show_cookie)
-        xtra += 7;
-
-
-    if (inv_loc(inv) == INV_MUSEUM) {
-        doc_printf(doc, "<tab:%d>", doc_width(doc) - xtra+7);
-        doc_printf(doc, "<color:R>饼干: %d</color>\n", p_ptr->cookie);
-        doc_newline(doc);
-    }
 
     doc_insert(doc, "    物品说明");
 
@@ -2425,8 +2392,6 @@ static void _display_inv(doc_ptr doc, shop_ptr shop, slot_t top, int page_size)
             doc_printf(doc, " %6.6s", "价格");
         if (show_values)
             doc_printf(doc, " %6.6s", "评分");
-        if (show_cookie)
-            doc_printf(doc, " %6.6s", "饼干");
     }
     doc_newline(doc);
 
@@ -2467,7 +2432,7 @@ static void _display_inv(doc_ptr doc, shop_ptr shop, slot_t top, int page_size)
                     int wgt = obj->weight; /* single object only for home/shops */
                     doc_printf(doc, "%3d.%d 磅", wgt/10, wgt%10);
                 }
-                if (show_prices || show_values || show_cookie)
+                if (show_prices || show_values)
                 {
                     int value = obj_value(obj);
 
@@ -2491,10 +2456,6 @@ static void _display_inv(doc_ptr doc, shop_ptr shop, slot_t top, int page_size)
                             doc_printf(doc, " %6s", tmp);
                         }
                         else doc_printf(doc, " %6d", value);
-                    }
-                    if (show_cookie)
-                    {
-                        doc_printf(doc, " %6d", calculate_obj_cookie_requirement(obj));
                     }
                 }
             }

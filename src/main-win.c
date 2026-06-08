@@ -603,11 +603,27 @@ static cptr ini_file = NULL;
  * Name of application
  */
 static cptr AppName = "ANGBAND";
+static const WCHAR AppNameW[] = L"ANGBAND";
 
-/*
- * Name of sub-window type
- */
-static cptr AngList = "AngList";
+static const WCHAR AngListW[] = L"AngList";
+static const WCHAR MainWindowTitleW[] = L"Frogcomposband";
+static const WCHAR ScreenSaverClassNameW[] = L"WindowsScreenSaverClass";
+
+static void utf8_to_wide(cptr src, WCHAR *dst, int max)
+{
+    int n;
+
+    if (!dst || max <= 0) return;
+
+    dst[0] = L'\0';
+    if (!src) return;
+
+    n = MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, src, -1, dst, max);
+    if (!n)
+        MultiByteToWideChar(CP_ACP, 0, src, -1, dst, max);
+
+    dst[max - 1] = L'\0';
+}
 
 /*
  * Directory names
@@ -907,9 +923,7 @@ static void crash_report_note_plog(cptr str)
 
 static bool crash_report_recent_diagnostic(char *reason, size_t max)
 {
-    int i, ct;
     DWORD now = GetTickCount();
-    bool found = FALSE;
 
     if (max) reason[0] = '\0';
 
@@ -921,28 +935,7 @@ static bool crash_report_recent_diagnostic(char *reason, size_t max)
         return TRUE;
     }
 
-    ct = msg_recent_count();
-    for (i = 0; i < ct && i < 8; i++)
-    {
-        char msg[1024];
-
-        msg_recent_text(i, msg, sizeof(msg));
-        if (crash_report_is_diagnostic(msg))
-        {
-            found = TRUE;
-            break;
-        }
-    }
-
-    if (found)
-    {
-        char tmp[1024];
-
-        msg_recent_text(0, tmp, sizeof(tmp));
-        strnfmt(reason, max, "Process exited without an explicit error after recent diagnostic message: %s", tmp);
-    }
-
-    return found;
+    return FALSE;
 }
 
 static void crash_report_sanitize(char *s)
@@ -3081,11 +3074,14 @@ static void init_windows(void)
     /* Sub windows (reverse order) */
     for (i = MAX_TERM_DATA - 1; i >= 1; --i)
     {
+        WCHAR title[64];
+
         td = &data[i];
+        utf8_to_wide(td->s, title, sizeof(title)/sizeof(title[0]));
 
         my_td = td;
-        td->w = CreateWindowEx(td->dwExStyle, AngList,
-                       td->s, td->dwStyle,
+        td->w = CreateWindowExW(td->dwExStyle, AngListW,
+                       title, td->dwStyle,
                        td->pos_x, td->pos_y,
                        td->size_wid, td->size_hgt,
                        HWND_DESKTOP, NULL, hInstance, NULL);
@@ -3125,13 +3121,16 @@ static void init_windows(void)
 
     /* Main window */
     my_td = td;
-    td->w = CreateWindowEx(td->dwExStyle, AppName,
-                   td->s, td->dwStyle,
-                   td->pos_x, td->pos_y,
-                   td->size_wid, td->size_hgt,
-                   HWND_DESKTOP, NULL, hInstance, NULL);
+    {
+        td->w = CreateWindowExW(td->dwExStyle, AppNameW,
+                       MainWindowTitleW, td->dwStyle,
+                       td->pos_x, td->pos_y,
+                       td->size_wid, td->size_hgt,
+                       HWND_DESKTOP, NULL, hInstance, NULL);
+    }
     my_td = NULL;
     if (!td->w) quit("创建 Angband 窗口失败");
+    SetWindowTextW(td->w, MainWindowTitleW);
 
     term_data_link(td);
     angband_term[0] = &td->t;
@@ -3904,8 +3903,8 @@ static void process_menus(WORD wCmd)
             else
             {
                 /* Create a screen scaver window */
-                hwndSaver = CreateWindowEx(WS_EX_TOPMOST, "WindowsScreenSaverClass",
-                               "Angband 屏幕保护程序",
+                hwndSaver = CreateWindowExW(WS_EX_TOPMOST, ScreenSaverClassNameW,
+                               L"Angband 屏幕保护程序",
                                WS_POPUP | WS_MAXIMIZE | WS_VISIBLE,
                                0, 0, GetSystemMetrics(SM_CXSCREEN),
                                GetSystemMetrics(SM_CYSCREEN),
@@ -4442,7 +4441,7 @@ LRESULT FAR PASCAL AngbandWndProc(HWND hWnd, UINT uMsg,
         }
     }
 
-    return DefWindowProc(hWnd, uMsg, wParam, lParam);
+    return DefWindowProcW(hWnd, uMsg, wParam, lParam);
 }
 
 
@@ -4624,7 +4623,7 @@ LRESULT FAR PASCAL AngbandListProc(HWND hWnd, UINT uMsg,
         }
     }
 
-    return DefWindowProc(hWnd, uMsg, wParam, lParam);
+    return DefWindowProcW(hWnd, uMsg, wParam, lParam);
 }
 
 
@@ -4706,7 +4705,7 @@ LRESULT FAR PASCAL AngbandSaverProc(HWND hWnd, UINT uMsg,
     }
 
     /* Oops */
-    return DefWindowProc(hWnd, uMsg, wParam, lParam);
+    return DefWindowProcW(hWnd, uMsg, wParam, lParam);
 }
 
 #endif /* USE_SAVER */
@@ -4757,7 +4756,7 @@ static void hack_quit(cptr str)
     }
 
     /* Unregister the classes */
-    UnregisterClass(AppName, hInstance);
+    UnregisterClassW(AppNameW, hInstance);
 
     /* Destroy the icon */
     if (hIcon) DestroyIcon(hIcon);
@@ -4853,7 +4852,7 @@ static void hook_quit(cptr str)
 
     if (hPal) DeleteObject(hPal);
 
-    UnregisterClass(AppName, hInstance);
+    UnregisterClassW(AppNameW, hInstance);
 
     if (hIcon) DestroyIcon(hIcon);
 
@@ -5010,7 +5009,7 @@ int FAR PASCAL WinMain(HINSTANCE hInst, HINSTANCE hPrevInst,
 {
     int i;
 
-    WNDCLASS wc;
+    WNDCLASSW wc;
     HDC hdc;
     MSG msg;
 
@@ -5032,19 +5031,19 @@ int FAR PASCAL WinMain(HINSTANCE hInst, HINSTANCE hPrevInst,
         wc.cbClsExtra    = 0;
         wc.cbWndExtra    = sizeof(LONG_PTR); /* one pointer to term_data */
         wc.hInstance     = hInst;
-        wc.hIcon         = hIcon = LoadIcon(hInst, AppName);
+        wc.hIcon         = hIcon = LoadIconW(hInst, AppNameW);
         wc.hCursor       = LoadCursor(NULL, IDC_ARROW);
         wc.hbrBackground = GetStockObject(BLACK_BRUSH);
-        wc.lpszMenuName  = AppName;
-        wc.lpszClassName = AppName;
+        wc.lpszMenuName  = AppNameW;
+        wc.lpszClassName = AppNameW;
 
-        if (!RegisterClass(&wc)) exit(1);
+        if (!RegisterClassW(&wc)) exit(1);
 
         wc.lpfnWndProc   = AngbandListProc;
         wc.lpszMenuName  = NULL;
-        wc.lpszClassName = AngList;
+        wc.lpszClassName = AngListW;
 
-        if (!RegisterClass(&wc)) exit(2);
+        if (!RegisterClassW(&wc)) exit(2);
 
 #ifdef USE_SAVER
 
@@ -5052,9 +5051,9 @@ int FAR PASCAL WinMain(HINSTANCE hInst, HINSTANCE hPrevInst,
         wc.lpfnWndProc    = AngbandSaverProc;
         wc.hCursor        = NULL;
         wc.lpszMenuName   = NULL;
-        wc.lpszClassName  = "WindowsScreenSaverClass";
+        wc.lpszClassName  = ScreenSaverClassNameW;
 
-        if (!RegisterClass(&wc)) exit(3);
+        if (!RegisterClassW(&wc)) exit(3);
 
 #endif
 
