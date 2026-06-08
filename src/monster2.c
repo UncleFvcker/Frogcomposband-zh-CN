@@ -20,70 +20,70 @@
 
 cptr horror_desc[MAX_SAN_HORROR] =
 {
-    "abominable",
-    "abysmal",
-    "appalling",
-    "baleful",
-    "blasphemous",
+    "可憎的",
+    "深渊的",
+    "令人震惊的",
+    "恶毒的",
+    "亵渎的",
 
-    "disgusting",
-    "dreadful",
-    "filthy",
-    "grisly",
-    "hideous",
+    "恶心的",
+    "可怕的",
+    "污秽的",
+    "恐怖的",
+    "极其丑陋的",
 
-    "hellish",
-    "horrible",
-    "infernal",
-    "loathsome",
-    "nightmarish",
+    "地狱般的",
+    "恐怖的",
+    "地狱的",
+    "令人讨厌的",
+    "噩梦般的",
 
-    "repulsive",
-    "sacrilegious",
-    "terrible",
-    "unclean",
-    "unspeakable",
+    "排斥的",
+    "大逆不道的",
+    "可怕的",
+    "不洁的",
+    "不可名状的",
 
 };
 
 cptr funny_desc[MAX_SAN_FUNNY] =
 {
-    "silly",
-    "hilarious",
-    "absurd",
-    "insipid",
-    "ridiculous",
+    "愚蠢的",
+    "滑稽的",
+    "荒谬的",
+    "乏味的",
+    "可笑的",
 
-    "laughable",
-    "ludicrous",
-    "far-out",
-    "groovy",
-    "postmodern",
+    "惹人发笑的",
+    "荒唐的",
+    "超凡的",
+    "时髦的",
+    "后现代的",
 
-    "fantastic",
-    "dadaistic",
-    "cubistic",
-    "cosmic",
-    "awesome",
+    "奇妙的",
+    "达达主义的",
+    "立体派的",
+    "宇宙的",
+    "超赞的",
 
-    "incomprehensible",
-    "fabulous",
-    "amazing",
-    "incredible",
-    "chaotic",
+    "不可理喻的",
+    "极好的",
+    "惊人的",
+    "不可思议的",
+    "混沌的",
 
-    "wild",
-    "preposterous",
+    "狂野的",
+    "反常的",
 
 };
 
 cptr funny_comments[MAX_SAN_COMMENT] =
 {
-    "Wow, cosmic, man!",
-    "Rad!",
-    "Groovy!",
-    "Cool!",
-    "Far out!"
+    "哇，好宇宙，老兄！",
+    "酷毙了！",
+    "太时髦了！",
+    "真酷！",
+    "太神了！"
 
 };
 
@@ -1921,9 +1921,9 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
     r_ptr = mon_apparent_race(m_ptr);
 
     /* Mode of MD_TRUE_NAME will reveal Chameleon's true name */
-    if (mode & MD_TRUE_NAME) name = (r_name + real_r_ptr(m_ptr)->name);
+    if (mode & MD_TRUE_NAME) name = monster_race_display_name(real_r_ptr(m_ptr)->id);
     else if ((m_ptr->mflag2 & MFLAG2_FUZZY) && (!(mode & MD_IGNORE_HALLU))) name = "怪物";
-    else name = (r_name + r_ptr->name);
+    else name = monster_race_display_name(r_ptr->id);
 
     /* Are we hallucinating? (Idea from Nethack...) */
     if (p_ptr->image && !(mode & MD_IGNORE_HALLU))
@@ -1945,7 +1945,7 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
             }
             while (!hallu_race->name || (hallu_race->flags1 & RF1_UNIQUE));
 
-            strcpy(silly_name, (r_name + hallu_race->name));
+            strcpy(silly_name, monster_race_display_name(hallu_race->id));
         }
 
         /* Better not strcpy it, or we could corrupt r_info... */
@@ -1974,43 +1974,43 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
 
 
         /* Assume simple result */
-        res = "it";
+        res = "它";
 
 
         /* Brute force: split on the possibilities */
         switch (kind + (mode & (MD_INDEF_HIDDEN | MD_POSSESSIVE | MD_OBJECTIVE)))
         {
             /* Neuter, or unknown */
-            case 0x00:                                                    res = "it"; break;
-            case 0x00 + (MD_OBJECTIVE):                                   res = "it"; break;
-            case 0x00 + (MD_POSSESSIVE):                                  res = "its"; break;
-            case 0x00 + (MD_POSSESSIVE | MD_OBJECTIVE):                   res = "itself"; break;
-            case 0x00 + (MD_INDEF_HIDDEN):                                res = "something"; break;
-            case 0x00 + (MD_INDEF_HIDDEN | MD_OBJECTIVE):                 res = "something"; break;
-            case 0x00 + (MD_INDEF_HIDDEN | MD_POSSESSIVE):                res = "something's"; break;
-            case 0x00 + (MD_INDEF_HIDDEN | MD_POSSESSIVE | MD_OBJECTIVE): res = "itself"; break;
+            case 0x00:                                                    res = "它"; break;
+            case 0x00 + (MD_OBJECTIVE):                                   res = "它"; break;
+            case 0x00 + (MD_POSSESSIVE):                                  res = "它的"; break;
+            case 0x00 + (MD_POSSESSIVE | MD_OBJECTIVE):                   res = "它自己"; break;
+            case 0x00 + (MD_INDEF_HIDDEN):                                res = "某物"; break;
+            case 0x00 + (MD_INDEF_HIDDEN | MD_OBJECTIVE):                 res = "某物"; break;
+            case 0x00 + (MD_INDEF_HIDDEN | MD_POSSESSIVE):                res = "某物的"; break;
+            case 0x00 + (MD_INDEF_HIDDEN | MD_POSSESSIVE | MD_OBJECTIVE): res = "它自己"; break;
 
 
             /* Male (assume human if vague) */
-            case 0x10:                                                    res = "he"; break;
-            case 0x10 + (MD_OBJECTIVE):                                   res = "him"; break;
-            case 0x10 + (MD_POSSESSIVE):                                  res = "his"; break;
-            case 0x10 + (MD_POSSESSIVE | MD_OBJECTIVE):                   res = "himself"; break;
-            case 0x10 + (MD_INDEF_HIDDEN):                                res = "someone"; break;
-            case 0x10 + (MD_INDEF_HIDDEN | MD_OBJECTIVE):                 res = "someone"; break;
-            case 0x10 + (MD_INDEF_HIDDEN | MD_POSSESSIVE):                res = "someone's"; break;
-            case 0x10 + (MD_INDEF_HIDDEN | MD_POSSESSIVE | MD_OBJECTIVE): res = "himself"; break;
+            case 0x10:                                                    res = "他"; break;
+            case 0x10 + (MD_OBJECTIVE):                                   res = "他"; break;
+            case 0x10 + (MD_POSSESSIVE):                                  res = "他的"; break;
+            case 0x10 + (MD_POSSESSIVE | MD_OBJECTIVE):                   res = "他自己"; break;
+            case 0x10 + (MD_INDEF_HIDDEN):                                res = "某人"; break;
+            case 0x10 + (MD_INDEF_HIDDEN | MD_OBJECTIVE):                 res = "某人"; break;
+            case 0x10 + (MD_INDEF_HIDDEN | MD_POSSESSIVE):                res = "某人的"; break;
+            case 0x10 + (MD_INDEF_HIDDEN | MD_POSSESSIVE | MD_OBJECTIVE): res = "他自己"; break;
 
 
             /* Female (assume human if vague) */
-            case 0x20:                                                    res = "she"; break;
-            case 0x20 + (MD_OBJECTIVE):                                   res = "her"; break;
-            case 0x20 + (MD_POSSESSIVE):                                  res = "her"; break;
-            case 0x20 + (MD_POSSESSIVE | MD_OBJECTIVE):                   res = "herself"; break;
-            case 0x20 + (MD_INDEF_HIDDEN):                                res = "someone"; break;
-            case 0x20 + (MD_INDEF_HIDDEN | MD_OBJECTIVE):                 res = "someone"; break;
-            case 0x20 + (MD_INDEF_HIDDEN | MD_POSSESSIVE):                res = "someone's"; break;
-            case 0x20 + (MD_INDEF_HIDDEN | MD_POSSESSIVE | MD_OBJECTIVE): res = "herself"; break;
+            case 0x20:                                                    res = "她"; break;
+            case 0x20 + (MD_OBJECTIVE):                                   res = "她"; break;
+            case 0x20 + (MD_POSSESSIVE):                                  res = "她的"; break;
+            case 0x20 + (MD_POSSESSIVE | MD_OBJECTIVE):                   res = "她自己"; break;
+            case 0x20 + (MD_INDEF_HIDDEN):                                res = "某人"; break;
+            case 0x20 + (MD_INDEF_HIDDEN | MD_OBJECTIVE):                 res = "某人"; break;
+            case 0x20 + (MD_INDEF_HIDDEN | MD_POSSESSIVE):                res = "某人的"; break;
+            case 0x20 + (MD_INDEF_HIDDEN | MD_POSSESSIVE | MD_OBJECTIVE): res = "她自己"; break;
         }
 
         /* Copy the result */
@@ -2022,9 +2022,9 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
     else if ((mode & (MD_POSSESSIVE | MD_OBJECTIVE)) == (MD_POSSESSIVE | MD_OBJECTIVE))
     {
         /* The monster is visible, so use its gender */
-        if (r_ptr->flags1 & RF1_FEMALE) strcpy(desc, "herself");
-        else if (r_ptr->flags1 & RF1_MALE) strcpy(desc, "himself");
-        else strcpy(desc, "itself");
+        if (r_ptr->flags1 & RF1_FEMALE) strcpy(desc, "她自己");
+        else if (r_ptr->flags1 & RF1_MALE) strcpy(desc, "他自己");
+        else strcpy(desc, "它自己");
     }
 
 
@@ -2054,7 +2054,7 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
                  !(p_ptr->riding && (&m_list[p_ptr->riding] == m_ptr)))
             {
                 /* It is a fake unique monster */
-                (void)sprintf(desc, "%s (clone)", name);
+                (void)sprintf(desc, "%s (克隆)", name);
             }
 
             else
@@ -2110,7 +2110,7 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
 
         if ((mode & MD_IGNORE_HALLU) && !is_original_ap(m_ptr))
         {
-            strcat(desc, format("(%s)", r_name + r_info[m_ptr->r_idx].name));
+            strcat(desc, format("(%s)", monster_race_display_name(m_ptr->r_idx)));
         }
 
         /* Handle the Possessive as a special afterthought */
@@ -3809,17 +3809,17 @@ int place_monster_one(int who, int y, int x, int r_idx, int pack_idx, u32b mode)
             char o_name[MAX_NLEN];
 
             if (r_ptr->level > p_ptr->lev + 30)
-                color = "black";
+                color = "黑色";
             else if (r_ptr->level > p_ptr->lev + 15)
-                color = "purple";
+                color = "紫色";
             else if (r_ptr->level > p_ptr->lev + 5)
-                color = "deep red";
+                color = "深红色";
             else if (r_ptr->level > p_ptr->lev - 5)
-                color = "red";
+                color = "红色";
             else if (r_ptr->level > p_ptr->lev - 15)
-                color = "pink";
+                color = "粉红色";
             else
-                color = "white";
+                color = "白色";
 
             o_ptr = choose_warning_item();
             if (o_ptr)
@@ -3830,7 +3830,7 @@ int place_monster_one(int who, int y, int x, int r_idx, int pack_idx, u32b mode)
             }
             else
             {
-                msg_format("一个%s的图像在你的脑海中形成。");
+                msg_format("一个%s的图像在你的脑海中形成。", color);
             }
         }
     }
@@ -4590,7 +4590,7 @@ bool summon_specific(int who, int y1, int x1, int lev, int type, u32b mode)
         _ignore_depth_hack = TRUE;
 
     /* Hack - preserve old level of summoning in the Vault */
-    if ((quest_id_current()) && (strpos("地下金库", quests_get_current()->name) == 1)) summon_level -= 5;
+    if (quest_id_current() == QUEST_VAULT) summon_level -= 5;
 
     /* Activate danger hack */
     _danger_hack = TRUE;

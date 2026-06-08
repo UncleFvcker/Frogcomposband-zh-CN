@@ -4,13 +4,13 @@ K:91
 ?:1
 
 ?:[EQU $QUEST36 Taken InProgress]
-D:We desperately need help in clearing out a foul nest of worms.
-D:These eldritch abominations are sleeping in a nearby pit, waiting
-D:upon the stars. Please, you must help us before it is too late.
+D:我们急需帮助清理一处肮脏的蠕虫巢穴。
+D:这些可怕的怪物正睡在附近的一个坑里，等待着
+D:群星归位。拜托了，你必须在一切太迟之前帮帮我们。
 ?:[EQU $QUEST36 Completed]
-D:Thank you.
+D:谢谢你。
 ?:[EQU $QUEST36 Failed]
-D:Oh. no.
+D:哦，不。
 ?:1
 
 T:QUEST:NORMAL

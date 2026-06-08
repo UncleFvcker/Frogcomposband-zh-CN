@@ -6,13 +6,13 @@ K:94
 ?:1
 
 ?:[EQU $QUEST34 Taken InProgress]
-D:A forgotten shrine in a nearby mountain has become a den of
-D:monsters, please return silence to this ancient place. Be
-D:warned that quite a few of these creatures are dangerous.
+D:附近山上一个被遗忘的神龛已经成了怪物的巢穴，
+D:请让这个古老的地方恢复宁静吧。
+D:请注意，里面有相当多危险的生物。
 ?:[EQU $QUEST34 Completed]
-D:Thank you. Please put this reward to good use.
+D:谢谢你。请好好利用这份奖励。
 ?:[EQU $QUEST34 Failed]
-D:The quest was more than you could handle.
+D:这个任务显然超出了你的能力范围。
 ?:1
 
 T:QUEST:NORMAL

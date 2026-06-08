@@ -77,7 +77,7 @@ extern void     towns_save(savefile_ptr file);
 extern void     towns_load(savefile_ptr file);
 extern void     towns_on_turn_overflow(int rollback_turns);
 
-extern void     towns_init_buildings(void);
+extern errr     towns_init_buildings(void);
 extern room_ptr towns_get_map(void);
                 /* Comment: atm, t_info.txt uses $TOWN to load the correct
                  * file (p_ptr->town_num). This should change to town_get_map(town_ptr)

@@ -515,7 +515,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "mystic technique";
+        me.magic_desc = "秘术";
         me.which_stat = A_CHR;
         me.encumbrance.max_wgt = 350;
         me.encumbrance.weapon_pct = 100;

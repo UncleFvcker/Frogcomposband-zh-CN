@@ -149,11 +149,11 @@ static bool _create_ammo(void)
     }
 
     if (p_ptr->lev >= 20)
-        sprintf(com, "Create [S]hots, Create [A]rrow or Create [B]olt ?");
+        sprintf(com, "制造 [S]弹丸, [A]箭矢 还是 [B]弩栓？");
     else if (p_ptr->lev >= 10)
-        sprintf(com, "Create [S]hots or Create [A]rrow ?");
+        sprintf(com, "制造 [S]弹丸 还是 [A]箭矢？");
     else
-        sprintf(com, "Create [S]hots ?");
+        sprintf(com, "制造 [S]弹丸？");
 
     for(;;)
     {

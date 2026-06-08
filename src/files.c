@@ -49,12 +49,12 @@ void safe_setuid_drop(void)
 
     if (setuid(getuid()) != 0)
     {
-        quit("setuid(): cannot set permissions correctly!");
+        quit("setuid()：无法正确设置权限！");
 
     }
     if (setgid(getgid()) != 0)
     {
-        quit("setgid(): cannot set permissions correctly!");
+        quit("setgid()：无法正确设置权限！");
 
     }
 
@@ -62,12 +62,12 @@ void safe_setuid_drop(void)
 
     if (setreuid(geteuid(), getuid()) != 0)
     {
-        quit("setreuid(): cannot set permissions correctly!");
+        quit("setreuid()：无法正确设置权限！");
 
     }
     if (setregid(getegid(), getgid()) != 0)
     {
-        quit("setregid(): cannot set permissions correctly!");
+        quit("setregid()：无法正确设置权限！");
 
     }
 
@@ -94,12 +94,12 @@ void safe_setuid_grab(void)
 
     if (setuid(player_euid) != 0)
     {
-        quit("setuid(): cannot set permissions correctly!");
+        quit("setuid()：无法正确设置权限！");
 
     }
     if (setgid(player_egid) != 0)
     {
-        quit("setgid(): cannot set permissions correctly!");
+        quit("setgid()：无法正确设置权限！");
 
     }
 
@@ -107,12 +107,12 @@ void safe_setuid_grab(void)
 
     if (setreuid(geteuid(), getuid()) != 0)
     {
-        quit("setreuid(): cannot set permissions correctly!");
+        quit("setreuid()：无法正确设置权限！");
 
     }
     if (setregid(getegid(), getgid()) != 0)
     {
-        quit("setregid(): cannot set permissions correctly!");
+        quit("setregid()：无法正确设置权限！");
 
     }
 
@@ -1022,7 +1022,7 @@ cptr process_pref_file_expr(char **sp, char *fp)
             /* Money */
             else if (streq(b+1, "SELLING"))
             {
-                sprintf(tmp, no_selling ? "关闭" : "On");
+                sprintf(tmp, no_selling ? "关闭" : "开启");
                 v = tmp;
             }
         }
@@ -1783,7 +1783,7 @@ cptr map_name(void)
     else if (!dun_level && p_ptr->town_num)
         return town_name(p_ptr->town_num);
     else
-        return d_name+d_info[dungeon_type].name;
+        return dungeon_display_name(dungeon_type);
 }
 
 /*
@@ -2136,7 +2136,7 @@ bool show_file(bool show_version, cptr name, cptr what, int line, int mode)
     if (!fff)
     {
         /* Caption */
-        sprintf(caption, "Help file '%s'", name);
+        sprintf(caption, "帮助文件 '%s'", name);
 
 
         /* Build the filename */
@@ -2150,7 +2150,7 @@ bool show_file(bool show_version, cptr name, cptr what, int line, int mode)
     if (!fff)
     {
         /* Caption */
-        sprintf(caption, "Info file '%s'", name);
+        sprintf(caption, "信息文件 '%s'", name);
 
 
         /* Build the filename */
@@ -2171,7 +2171,7 @@ bool show_file(bool show_version, cptr name, cptr what, int line, int mode)
                 path[i] = PATH_SEP[0];
 
         /* Caption */
-        sprintf(caption, "Info file '%s'", name);
+        sprintf(caption, "信息文件 '%s'", name);
 
         /* Open the file */
         fff = my_fopen(path, "r");
@@ -2345,14 +2345,14 @@ bool show_file(bool show_version, cptr name, cptr what, int line, int mode)
         if (show_version)
         {
             prt(format(
-                "[FrogComposband %d.%d.%s, %s, Line %d/%d]",
+                "[FrogComposband %d.%d.%s, %s, 第 %d/%d 行]",
                VER_MAJOR, VER_MINOR, VER_PATCH,
                caption, line, size), 0, 0);
         }
         else
         {
             prt(format(
-                "[%s, Line %d/%d]",
+                "[%s, 第 %d/%d 行]",
                 caption, line, size), 0, 0);
         }
 
@@ -2630,7 +2630,7 @@ void process_player_name(bool sf)
 #endif
     {
         /* Name too long */
-        quit_fmt("The name '%s' is too long!", player_name);
+        quit_fmt("名字“%s”太长了！", player_name);
 
     }
 #endif
@@ -2643,7 +2643,7 @@ void process_player_name(bool sf)
 
         {
             /* Illegal characters */
-            quit_fmt("The name '%s' contains control chars!", player_name);
+            quit_fmt("名字“%s”包含控制字符！", player_name);
 
         }
     }
@@ -2882,7 +2882,7 @@ void do_cmd_save_game(int is_autosave)
     Term_fresh();
 
     /* The player is not dead */
-    (void)strcpy(p_ptr->died_from, "(saved)");
+    (void)strcpy(p_ptr->died_from, "(已保存)");
 
     /* Forbid suspend */
     signals_ignore_tstp();
@@ -2906,7 +2906,7 @@ void do_cmd_save_game(int is_autosave)
     Term_fresh();
 
     /* Note that the player is not dead */
-    (void)strcpy(p_ptr->died_from, "(alive and well)");
+    (void)strcpy(p_ptr->died_from, "(活得好好的)");
 
     /* HACK -- don't get sanity blast on updating view */
     hack_mind = FALSE;
@@ -3213,7 +3213,7 @@ static void print_tomb(void)
         center_string(buf, player_name);
         put_str(buf, 6, 11);
 
-        center_string(buf, "the");
+        center_string(buf, "的");
         put_str(buf, 7, 11);
 
         center_string(buf, p);
@@ -3222,23 +3222,23 @@ static void print_tomb(void)
         center_string(buf, get_class()->name);
         put_str(buf, 10, 11);
 
-        (void)sprintf(tmp, "Level: %d", (int)p_ptr->lev);
+        (void)sprintf(tmp, "等级: %d", (int)p_ptr->lev);
         center_string(buf, tmp);
         put_str(buf, 11, 11);
 
-        (void)sprintf(tmp, "Exp: %d", p_ptr->exp);
+        (void)sprintf(tmp, "经验: %d", p_ptr->exp);
         center_string(buf, tmp);
         put_str(buf, 12, 11);
 
-        (void)sprintf(tmp, "AU: %d", p_ptr->au);
+        (void)sprintf(tmp, "金币: %d", p_ptr->au);
         center_string(buf, tmp);
         put_str(buf, 13, 11);
 
-        (void)sprintf(tmp, "Killed on Level %d", dun_level);
+        (void)sprintf(tmp, "死于地下城第 %d 层", dun_level);
         center_string(buf, tmp);
         put_str(buf, 14, 11);
 
-        roff_to_buf(format("by %s.", p_ptr->died_from), GRAVE_LINE_WIDTH + 1, tmp, sizeof tmp);
+        roff_to_buf(format("被 %s 杀死。", p_ptr->died_from), GRAVE_LINE_WIDTH + 1, tmp, sizeof tmp);
         center_string(buf, tmp);
         put_str(buf, 15, 11);
         t = tmp + strlen(tmp) + 1;
@@ -3543,7 +3543,7 @@ void close_game(void)
 void exit_game_panic(void)
 {
     /* If nothing important has happened, just quit */
-    if (!character_generated || character_saved) quit("panic");
+    if (!character_generated || character_saved) quit("系统恐慌(panic)");
 
     /* Clear the top line */
     msg_line_clear();
@@ -3561,15 +3561,15 @@ void exit_game_panic(void)
     signals_ignore_tstp();
 
     /* Indicate panic save */
-    (void)strcpy(p_ptr->died_from, "(panic save)");
+    (void)strcpy(p_ptr->died_from, "(恐慌保存)");
 
 
     /* Panic save, or get worried */
-    if (!save_player()) quit("panic save failed!");
+    if (!save_player()) quit("恐慌保存失败！");
 
 
     /* Successful panic save */
-    quit("panic save succeeded!");
+    quit("恐慌保存成功！");
 }
 
 
@@ -3901,7 +3901,7 @@ static void handle_signal_simple(int sig)
         close_game();
 
         /* Quit */
-        quit("interrupt");
+        quit("中断");
 
     }
 
@@ -3929,7 +3929,7 @@ static void handle_signal_simple(int sig)
         close_game();
 
         /* Quit */
-        quit("interrupt");
+        quit("中断");
 
     }
 
@@ -3988,7 +3988,7 @@ static void handle_signal_abort(int sig)
 
     /* Give a warning */
     Term_putstr(0, hgt - 1, -1, TERM_RED,
-            "A gruesome software bug LEAPS out at you!");
+            "一个可怕的软件漏洞跳出来攻击了你！");
 
 
     /* Message */
@@ -4003,7 +4003,7 @@ static void handle_signal_abort(int sig)
     p_ptr->panic_save = 1;
 
     /* Panic save */
-    (void)strcpy(p_ptr->died_from, "(panic save)");
+    (void)strcpy(p_ptr->died_from, "(恐慌保存)");
 
     /* Forbid suspend */
     signals_ignore_tstp();
@@ -4024,7 +4024,7 @@ static void handle_signal_abort(int sig)
     Term_fresh();
 
     /* Quit */
-    quit("software bug");
+    quit("软件漏洞");
 }
 
 

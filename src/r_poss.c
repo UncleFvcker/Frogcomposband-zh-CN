@@ -237,31 +237,31 @@ static cptr _hit_msg(mon_blow_ptr blow)
 {
     switch (blow->method) /* XXX table this up ... monsters need this too! */
     {
-    case RBM_HIT: return "hit";
-    case RBM_TOUCH: return "touch";
-    case RBM_PUNCH: return "punch";
-    case RBM_KICK: return "kick";
-    case RBM_CLAW: return "claw";
-    case RBM_BITE: return "bite";
-    case RBM_STING: return "sting";
-    case RBM_SLASH: return "slash";
-    case RBM_BUTT: return "butt";
-    case RBM_CRUSH: return "crush";
-    case RBM_ENGULF: return "engulf";
-    case RBM_CHARGE: return "charge";
-    case RBM_CRAWL: return "crawl on";
-    case RBM_DROOL: return "drool on";
-    case RBM_SPIT: return "spit on";
-    case RBM_GAZE: return "gaze at";
-    case RBM_WAIL: return "wail at";
-    case RBM_SPORE: return "release spores on";
-    case RBM_BEG: return "beg to";
-    case RBM_INSULT: return "insult";
-    case RBM_MOAN: return "moan at";
-    case RBM_SHOW: return "sing to";
-    case RBM_EXPLODE: return "explode at";
+    case RBM_HIT: return "击打";
+    case RBM_TOUCH: return "触碰";
+    case RBM_PUNCH: return "重拳";
+    case RBM_KICK: return "踢";
+    case RBM_CLAW: return "抓";
+    case RBM_BITE: return "咬";
+    case RBM_STING: return "蛰";
+    case RBM_SLASH: return "砍";
+    case RBM_BUTT: return "顶";
+    case RBM_CRUSH: return "粉碎";
+    case RBM_ENGULF: return "吞噬";
+    case RBM_CHARGE: return "冲锋";
+    case RBM_CRAWL: return "爬过";
+    case RBM_DROOL: return "对...流口水";
+    case RBM_SPIT: return "对...吐口水";
+    case RBM_GAZE: return "注视";
+    case RBM_WAIL: return "对...恸哭";
+    case RBM_SPORE: return "对...释放孢子";
+    case RBM_BEG: return "向...乞讨";
+    case RBM_INSULT: return "侮辱";
+    case RBM_MOAN: return "对...呻吟";
+    case RBM_SHOW: return "对...唱歌";
+    case RBM_EXPLODE: return "对...爆炸";
     }
-    return "hit";
+    return "击打";
 }
 static bool _touched(mon_blow_ptr blow)
 {
@@ -1434,7 +1434,7 @@ void possessor_character_dump(doc_ptr doc)
         switch (p->d_idx)
         {
         case DUNGEON_QUEST:
-            sprintf(loc, "%s", quests_get(p->d_lvl)->name);
+            sprintf(loc, "%s", quests_get_name(p->d_lvl));
             sprintf(lvl, "%3d", quests_get(p->d_lvl)->level);
             break;
         case DUNGEON_TOWN:
@@ -1442,7 +1442,7 @@ void possessor_character_dump(doc_ptr doc)
             sprintf(lvl, "%s", "   ");
             break;
         default: /* DUNGEON_WILD is present in the pref file d_info.txt with the name: Wilderness */
-            sprintf(loc, "%s", d_name + d_info[p->d_idx].name);
+            sprintf(loc, "%s", dungeon_display_name(p->d_idx));
             if (p->d_lvl)
                 sprintf(lvl, "%3d", p->d_lvl);
             else
@@ -1471,4 +1471,3 @@ void possessor_on_load(savefile_ptr file)
 {
     _history_on_load(file);
 }
-

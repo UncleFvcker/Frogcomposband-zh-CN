@@ -985,7 +985,7 @@ static void _character_dump(doc_ptr doc)
     _dump_flag(doc, OF_AURA_SHARDS, "碎片光环", FALSE);
     _dump_flag(doc, OF_AURA_REVENGE, "复仇", FALSE);
     for (i = 0; i < 6; i++) /* Assume in order */
-        _dump_flag(doc, OF_SUST_STR + i, format("Sustain %s", stat_name_true[A_STR + i]), FALSE);
+        _dump_flag(doc, OF_SUST_STR + i, format("维持%s", stat_name_true[A_STR + i]), FALSE);
 
     doc_printf(doc, "\n <color:G>%-22.22s 破布 手套 靴子 加成</color>\n", "侦测/心电感应");
     _dump_flag(doc, OF_TELEPATHY, "心灵感应", FALSE);

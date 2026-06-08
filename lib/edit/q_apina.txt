@@ -6,20 +6,20 @@ K:83
 ?:1
 
 ?:[EQU $QUEST75 Taken InProgress]
-D:Sailors have become afraid of passing anywhere near Apina Island.
-D:They claim it's haunted by the crew of the dread pirate Roope, and
-D:fear attacks from his ghost ship. I'd dismiss it as just another
-D:silly maritime myth, but it's starting to disturb trade; please
-D:investigate the island and make sure there's no one there.
+D:水手们开始害怕经过阿皮纳岛（Apina Island）附近的任何地方。
+D:他们声称那里被可怕的海盗罗佩（Roope）的船员鬼魂所盘踞，并
+D:害怕受到他的幽灵船的攻击。我本来会把它当作又一个无聊的
+D:航海神话不予理睬，但它已经开始干扰贸易了；请
+D:去调查一下那个岛，确保那里没有任何东西。
 ?:1
 
 ?:[EQU $QUEST75 Completed]
-D:Thank you! You never know when a silly-sounding myth might be confirmed.
+D:谢谢！你永远不知道那些听起来很蠢的神话什么时候会被证实。
 ?:1
 
 ?:[EQU $QUEST75 Failed]
-D:That's horrible! Hopefully some day I can find a genuine hero
-D:to cleanse the place.
+D:太可怕了！希望有一天我能找到一个真正的英雄
+D:来净化那个地方。
 ?:1
 
 T:QUEST:NORMAL:NO_ROTATE

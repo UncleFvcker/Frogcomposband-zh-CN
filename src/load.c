@@ -1163,25 +1163,25 @@ static errr rd_dungeon(savefile_ptr file)
     switch (err)
     {
     case 151:
-        note("Too many object entries!");
+        note("物品条目过多！");
         break;
     case 152:
         note("物品分配错误");
         break;
     case 161:
-        note("Too many monster entries!");
+        note("怪物条目过多！");
         break;
     case 162:
         note("怪物分配错误");
         break;
     case 171:
-        note("Dungeon data of saved floors are broken!");
+        note("保存的楼层地下城数据已损坏！");
         break;
     case 182:
-        note("Failed to make temporal files!");
+        note("无法创建临时文件！");
         break;
     case 183:
-        note("Error 183");
+        note("错误 183");
         break;
     }
 
@@ -1208,13 +1208,13 @@ static errr rd_savefile_new_aux(savefile_ptr file)
 
     /* Mention the savefile version */
     note(format(
-             "Loading a %d.%d.%s savefile...",
+             "正在加载 %d.%d.%s 版本的存档...",
              (z_major > 9) ? z_major - 10 : z_major, z_minor, z_patch));
 
     /* Savefiles break iff VER_MAJOR bumps */
     if (savefile_is_older_than(file, VER_MAJOR, 0, 0, 0))
     {
-        note(format("Savefiles older than %d.0.0 are not supported!", VER_MAJOR));
+        note(format("不支持低于 %d.0.0 版本的旧存档！", VER_MAJOR));
         return 1;
     }
 
@@ -1257,7 +1257,7 @@ static errr rd_savefile_new_aux(savefile_ptr file)
 
     if (tmp16u > max_r_idx)
     {
-        note(format("Too many (%u) monster races!", tmp16u));
+        note(format("怪物种族数量过多 (%u)！", tmp16u));
         return 22;
     }
     for (i = 0; i < tmp16u; i++)
@@ -1285,7 +1285,7 @@ static errr rd_savefile_new_aux(savefile_ptr file)
 
     if (tmp16u > max_k_idx)
     {
-        note(format("Too many (%u) object kinds!", tmp16u));
+        note(format("物品种类数量过多 (%u)！", tmp16u));
         return (22);
     }
     for (i = 0; i < tmp16u; i++)
@@ -1315,7 +1315,7 @@ static errr rd_savefile_new_aux(savefile_ptr file)
         if (e_idx < 0) break;
         if (e_idx > max_e_idx)
         {
-            note(format("Ego (%d) out of range!", e_idx));
+            note(format("Ego 索引 (%d) 越界！", e_idx));
             return (22);
         }
         ego = &e_info[e_idx];
@@ -1346,7 +1346,7 @@ static errr rd_savefile_new_aux(savefile_ptr file)
         if (a_idx < 0) break;
         if (a_idx > max_a_idx)
         {
-            note(format("Art (%d) out of range!", a_idx));
+            note(format("神器索引 (%d) 越界！", a_idx));
             return (22);
         }
         art = &a_info[a_idx];
@@ -1375,7 +1375,7 @@ static errr rd_savefile_new_aux(savefile_ptr file)
     wild_y_size = savefile_read_s32b(file);
     if ((wild_x_size > max_wild_x) || (wild_y_size > max_wild_y))
     {
-        note(format("Wilderness is too big (%u/%u)!", wild_x_size, wild_y_size));
+        note(format("大地图尺寸过大 (%u/%u)！", wild_x_size, wild_y_size));
         return (23);
     }
 
@@ -1386,7 +1386,7 @@ static errr rd_savefile_new_aux(savefile_ptr file)
     tmp16u = savefile_read_u16b(file);
     if (tmp16u > max_a_idx)
     {
-        note(format("Too many (%u) artifacts!", tmp16u));
+        note(format("神器数量过多 (%u)！", tmp16u));
         return (24);
     }
     for (i = 0; i < tmp16u; i++)
@@ -1409,7 +1409,7 @@ static errr rd_savefile_new_aux(savefile_ptr file)
     tmp16u = savefile_read_u16b(file);
     if (tmp16u > PY_MAX_LEVEL)
     {
-        note(format("Too many (%u) hitpoint entries!", tmp16u));
+        note(format("生命值条目过多 (%u)！", tmp16u));
         return (25);
     }
     for (i = 0; i < tmp16u; i++)
@@ -1474,7 +1474,7 @@ static errr rd_savefile_new_aux(savefile_ptr file)
     if (!p_ptr->is_dead)
     {
         handle_tmp_indices(TRUE, FALSE);
-        note("Restoring Dungeon...");
+        note("正在恢复地下城...");
         if (rd_dungeon(file))
         {
             note("读取地下城数据时发生错误");

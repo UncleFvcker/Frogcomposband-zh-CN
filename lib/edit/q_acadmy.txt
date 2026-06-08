@@ -2,21 +2,21 @@
 # Adapted further for FrogComposband 7.1.chocolate
 
 ?:[EQU $QUEST66 Taken InProgress]
-D:One of our former students has brought shame on the order of
-D:wizards by taking over the local museum and turning it into
-D:an academy of evil. He has begun teaching the dark arts to
-D:all applicants, and what's worse, below market prices.
-D:Put a stop to his treachery and reclaim our honour.
+D:我们的一位前任学生给巫师教团带来了耻辱，
+D:他接管了当地的博物馆，并将其变成了一座
+D:邪恶学院。他开始向所有申请者教授黑魔法，
+D:更糟糕的是，他的收费居然还低于市场价！
+D:去阻止他的背叛行径，挽回我们的荣誉。
 ?:1
 
 ?:[EQU $QUEST66 Completed]
-D:Well done! We will convert the building back into a museum, but
-D:you can have this amulet as your reward, it's too valuable to go
-D:back into the collection.
+D:干得好！我们会把那栋建筑重新改回博物馆，但
+D:你可以收下这个护身符作为奖励，它实在太珍贵了，
+D:不适合再放回收藏品中展览。
 ?:1
 
 ?:[EQU $QUEST66 Failed]
-D:You have failed us. I hate competition so much.
+D:你让我们失望了。我太讨厌商业竞争了。
 ?:1
 
 T:QUEST:NORMAL

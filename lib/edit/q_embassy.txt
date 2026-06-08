@@ -6,20 +6,20 @@ K:95
 ?:1
 
 ?:[EQU $QUEST54 Taken InProgress]
-D:You might be interested in exploring the old Elven Embassy
-D:among the ruins. The Elves are known to have stored many
-D:excellent items within those walls, perchance there are still
-D:some left hidden among the embassy ruins.
+D:你可能会对探索废墟中的旧精灵大使馆
+D:感兴趣。众所周知，精灵在那些墙内储存了许多
+D:优秀的物品，也许大使馆的废墟中
+D:仍有一些隐藏的宝藏。
 ?:1
 
 ?:[EQU $QUEST54 Completed]
-D:I hear you are doing rather well for yourself from all
-D:items you have been `liberating` from the ruins. Just
-D:remember I'm not charging you any taxes.
+D:我听说你从废墟中“解放”出来的所有物品中
+D:赚得盆满钵满。不过请记住，
+D:我可没有向你收取任何税费。
 ?:1
 
 ?:[EQU $QUEST54 Failed]
-D:You have failed me, beware you do not do so again!
+D:你让我失望了，小心别再这样了！
 ?:1
 
 T:QUEST:NORMAL

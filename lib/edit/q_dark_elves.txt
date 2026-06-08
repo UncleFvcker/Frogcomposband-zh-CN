@@ -2,19 +2,19 @@
 # By Shayne Steele (steele@cs.fsu.edu)
 
 ?:[EQU $QUEST32 Taken InProgress]
-D:A small group of Dark Elven Lords have set up a small shop
-D:in town. I do not need any competition, so kill everything 
-D:in their shop. You will be very well rewarded. Their shop
-D:is located in the Magic Shop's building. They are well
-D:guarded, so be careful.
+D:一小群黑暗精灵领主（Dark Elven Lords）在镇上开了一家
+D:小店。我不需要任何竞争对手，所以去把他们店里的
+D:一切都杀光。你会得到非常丰厚的报酬。他们的商店
+D:就在魔法商店的建筑里。他们有重重
+D:守卫，所以要小心。
 ?:1
 
 ?:[EQU $QUEST32 Completed]
-D:Thank you! Your efforts are greatly appreciated.
+D:谢谢你！非常感激你的努力。
 ?:1
 
 ?:[EQU $QUEST32 Failed]
-D:The quest was more than you could handle.
+D:这个任务显然超出了你的能力范围。
 ?:1
 
 T:QUEST:NORMAL

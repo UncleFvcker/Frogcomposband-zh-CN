@@ -668,7 +668,7 @@ bool py_teleport_level(cptr prompt)
     bool kysyttiin = FALSE;
     if ((py_in_dungeon()) && (!TELE_LEVEL_IS_INEFF(0)))
     {
-        if (!quests_check_ini_leave("teleport out of", "teleport", &kysyttiin)) return FALSE;
+        if (!quests_check_ini_leave("传送离开", "传送", &kysyttiin)) return FALSE;
     }
     if ((!kysyttiin) && (prompt) && (strlen(prompt)))
     {
@@ -690,7 +690,7 @@ void teleport_level(int m_idx)
 
     if (m_idx <= 0) /* To player */
     {
-        strcpy(m_name, "you");
+        strcpy(m_name, "你");
     }
     else /* To monster */
     {
@@ -843,7 +843,7 @@ int choose_dungeon(cptr note, int y, int x)
         if (max_dlv[DUNGEON_ANGBAND]) return DUNGEON_ANGBAND;
         else
         {
-            msg_format("你还没有进入过 %s。", d_name + d_info[DUNGEON_ANGBAND].name);
+            msg_format("你还没有进入过 %s。", dungeon_display_name(DUNGEON_ANGBAND));
             msg_print(NULL);
             return 0;
         }
@@ -869,7 +869,7 @@ int choose_dungeon(cptr note, int y, int x)
         if (d_info[i].flags1 & DF1_SUPPRESSED) continue;
         if (!max_dlv[i]) continue;
 
-        sprintf(buf," %c) %c%-16s : Max level %d ", multicase[num], seiha ? '!' : ' ', d_name + d_info[i].name, max_dlv[i]);
+        sprintf(buf," %c) %c%-16s : Max level %d ", multicase[num], seiha ? '!' : ' ', dungeon_display_name(i), max_dlv[i]);
         if (num >= sivu)
         {
             yy = y + (num % sivu);
@@ -925,7 +925,7 @@ bool recall_player(int turns, bool varmista)
         return TRUE;
     }
 
-    if ((varmista) && (!p_ptr->word_recall) && (!quests_check_ini_leave("recall out of", "recall", NULL))) return FALSE;
+    if ((varmista) && (!p_ptr->word_recall) && (!quests_check_ini_leave("召回离开", "召回", NULL))) return FALSE;
 
     if ( py_in_dungeon()
       && !(d_info[dungeon_type].flags1 & DF1_RANDOM)
@@ -943,7 +943,7 @@ bool recall_player(int turns, bool varmista)
         if (!dun_level)
         {
             int select_dungeon;
-            select_dungeon = choose_dungeon("recall to", 1, 1);
+            select_dungeon = choose_dungeon("召回到", 1, 1);
             if (!select_dungeon) return FALSE;
             p_ptr->recall_dungeon = select_dungeon;
         }
@@ -978,7 +978,7 @@ bool reset_recall(void)
     char ppp[80];
     char tmp_val[160];
 
-    select_dungeon = choose_dungeon("reset", 1, 1);
+    select_dungeon = choose_dungeon("重置", 1, 1);
 
     /* Ironman option */
     if (only_downward())
@@ -1649,7 +1649,7 @@ void call_the_(void)
                 msg_print("地下城在震颤。");
         }
 
-        take_hit(DAMAGE_NOESCAPE, 100 + randint1(150), "a suicidal Call the Void");
+        take_hit(DAMAGE_NOESCAPE, 100 + randint1(150), "自杀式的虚空召唤");
     }
 }
 
@@ -1818,27 +1818,27 @@ static bool _counter_allows_trap(int feature)
     if (feature == feat_shadow_zap) return TRUE;
     if (feature == feat_glyph)
     {
-        s1 = "inscribe";
-        s2 = "glyph";
-        s3 = "inscribing";
+        s1 = "铭刻";
+        s2 = "刻印";
+        s3 = "正在铭刻";
     }
     else if (feature == feat_semicolon)
     {
-        s1 = "inscribe";
-        s2 = "semicolon";
-        s3 = "inscribing";
+        s1 = "铭刻";
+        s2 = "分号";
+        s3 = "正在铭刻";
    }
    else if (feature == feat_explosive_rune)
    {
-        s1 = "set";
-        s2 = "rune";
-        s3 = "setting";
+        s1 = "设置";
+        s2 = "符文";
+        s3 = "正在设置";
    }
    else
    {
-        s1 = "set";
-        s2 = "trap";
-        s3 = "setting";
+        s1 = "设置";
+        s2 = "陷阱";
+        s3 = "正在设置";
     }
     if (_trap_counter() > 10) /* Limit other classes to 11 traps */
     {
@@ -2365,22 +2365,22 @@ bool artifact_scroll(void)
     if (object_is_artifact(prompt.obj))
     {
         msg_format("%s 已经 %s 了%s！",
-            o_name, ((prompt.obj->number > 1) ? "are" : "is"),
-            ((prompt.obj->number > 1) ? "artifacts" : "an artifact"));
+            o_name, ((prompt.obj->number > 1) ? "是" : "是"),
+            ((prompt.obj->number > 1) ? "神器" : "一件神器"));
     }
 
     else if (object_is_ego(prompt.obj))
     {
         msg_format("%s 已经 %s 了%s！",
-            o_name, ((prompt.obj->number > 1) ? "are" : "is"),
-            ((prompt.obj->number > 1) ? "ego items" : "an ego item"));
+            o_name, ((prompt.obj->number > 1) ? "是" : "是"),
+            ((prompt.obj->number > 1) ? "ego 物品" : "一件 ego 物品"));
     }
 
     else if (prompt.obj->xtra3)
     {
         msg_format("%s 已经 %s 了%s！",
-            o_name, ((prompt.obj->number > 1) ? "are" : "is"),
-            ((prompt.obj->number > 1) ? "customized items" : "a customized item"));
+            o_name, ((prompt.obj->number > 1) ? "是" : "是"),
+            ((prompt.obj->number > 1) ? "定制物品" : "一件定制物品"));
     }
 
     else if (have_flag(prompt.obj->flags, OF_NO_REMOVE))
@@ -2398,7 +2398,7 @@ bool artifact_scroll(void)
 
         if (object_is_mushroom(prompt.obj)) /* Hack for Snotlings ... */
         {
-            prompt.obj->art_name = quark_add("(Eternal Mushroom)");
+            prompt.obj->art_name = quark_add("(永恒蘑菇)");
             okay = TRUE;
         }
         else
@@ -2729,19 +2729,19 @@ bool recharge_from_player(int power)
     {
         if (amt > p_ptr->au / 100)
             amt = p_ptr->au / 100;
-        resource = "money";
+        resource = "金钱";
     }
     else if (p_ptr->pclass == CLASS_BLOOD_MAGE)
     {
         if (amt > p_ptr->chp)
             amt = p_ptr->chp;
-        resource = "health";
+        resource = "生命";
     }
     else
     {
         if (amt > p_ptr->csp)
             amt = p_ptr->csp;
-        resource = "mana";
+        resource = "法力";
     }
 
     if (amt == 0) 
@@ -2772,7 +2772,7 @@ bool recharge_from_player(int power)
         p_ptr->update |= (PU_BONUS | PU_HP | PU_MANA);
     }
     else if (p_ptr->pclass == CLASS_BLOOD_MAGE)
-        take_hit(DAMAGE_USELIFE, amt, "recharging");
+        take_hit(DAMAGE_USELIFE, amt, "充能法术反噬");
     else
         sp_player(-amt);
 
@@ -2889,13 +2889,13 @@ bool bless_weapon(void)
             (prompt.obj->curse_flags & OFC_PERMA_CURSE))
         {
             msg_format("%s%s身上的黑色光环扰乱了祝福！",
-                (prompt.obj->loc.where != INV_FLOOR) ? "your" : "the", o_name);
+                (prompt.obj->loc.where != INV_FLOOR) ? "你的" : "地上的", o_name);
 
             return TRUE;
         }
 
         msg_format("一股恶意的光环离开了 %s%s。",
-            (prompt.obj->loc.where != INV_FLOOR) ? "your" : "the", o_name);
+            (prompt.obj->loc.where != INV_FLOOR) ? "你的" : "地上的", o_name);
 
         /* Uncurse it */
         prompt.obj->curse_flags = 0;
@@ -2920,7 +2920,7 @@ bool bless_weapon(void)
     {
         msg_format("%s%s已经受过祝福了%s。",
             ((prompt.obj->loc.where != INV_FLOOR) ? "你的" : "地上的"), o_name,
-            ((prompt.obj->number > 1) ? "were" : "was"));
+            ((prompt.obj->number > 1) ? "是" : "是"));
 
         return TRUE;
     }
@@ -2984,7 +2984,7 @@ bool bless_weapon(void)
 
             msg_format("%s%s被祛除了魔法%s！",
                 ((prompt.obj->loc.where != INV_FLOOR) ? "你的" : "地上的"), o_name,
-                ((prompt.obj->number > 1) ? "were" : "was"));
+                ((prompt.obj->number > 1) ? "是" : "是"));
 
         }
     }
@@ -3585,7 +3585,7 @@ void print_spells(int target_spell, byte *spells, int num, rect_t display, int u
         /* Skip illegible spells */
         if (vaikeustaso >= 99)
         {
-                strcat(out_val, format("%-30s", "(illegible)"));
+                strcat(out_val, format("%-30s", "(难以辨认)"));
                 c_put_str(TERM_L_DARK, out_val, display.y + i + 1, display.x);
                 continue;
         }
@@ -3606,20 +3606,20 @@ void print_spells(int target_spell, byte *spells, int num, rect_t display, int u
         {
             if (vaikeustaso > p_ptr->max_plv)
             {
-                comment = "unknown";
+                comment = "未知的";
 
                 line_attr = TERM_L_BLUE;
             }
             else if (vaikeustaso > p_ptr->lev)
             {
-                comment = "forgotten";
+                comment = "被遗忘的";
 
                 line_attr = TERM_YELLOW;
             }
         }
         else if ((use_realm != p_ptr->realm1) && (use_realm != p_ptr->realm2))
         {
-            comment = "unknown";
+            comment = "未知的";
 
             line_attr = TERM_L_BLUE;
         }
@@ -3627,7 +3627,7 @@ void print_spells(int target_spell, byte *spells, int num, rect_t display, int u
             ((p_ptr->spell_forgotten1 & (1L << spell))) :
             ((p_ptr->spell_forgotten2 & (1L << spell))))
         {
-            comment = "forgotten";
+            comment = "被遗忘的";
 
             line_attr = TERM_YELLOW;
         }
@@ -3635,7 +3635,7 @@ void print_spells(int target_spell, byte *spells, int num, rect_t display, int u
             (p_ptr->spell_learned1 & (1L << spell)) :
             (p_ptr->spell_learned2 & (1L << spell))))
         {
-            comment = "unknown";
+            comment = "未知的";
 
             line_attr = TERM_L_BLUE;
         }
@@ -3643,7 +3643,7 @@ void print_spells(int target_spell, byte *spells, int num, rect_t display, int u
             (p_ptr->spell_worked1 & (1L << spell)) :
             (p_ptr->spell_worked2 & (1L << spell))))
         {
-            comment = "untried";
+            comment = "未尝试过的";
 
             line_attr = TERM_L_GREEN;
         }
@@ -3912,7 +3912,7 @@ static bool _damage_obj(obj_ptr obj, int p1, int p2, int which_res, bool mon_att
 
         if (amt < obj->number)
             msg_format("你的 %d 件 %s 被摧毁了%s！",
-                        amt, o_name, (amt > 1) ? "were" : "was");
+                        amt, o_name, (amt > 1) ? "是" : "是");
         else if (obj->number == 1)
             msg_format("你的 %s 被摧毁了%s！", o_name, object_plural(obj) ? "``" : "``"/* "Your Black Clothes were destroyed" */);
         else
@@ -4058,7 +4058,7 @@ bool rustproof(void)
 
     msg_format("%s%s现在可以防腐蚀了%s。",
         ((prompt.obj->loc.where != INV_FLOOR) ? "你的" : "地上的"), o_name,
-        ((prompt.obj->number > 1) ? "are" : "is"));
+        ((prompt.obj->number > 1) ? "是" : "是"));
 
     android_calc_exp();
     return TRUE;
@@ -4130,7 +4130,7 @@ bool curse_armor(int slot)
     if (object_is_artifact(o_ptr) && (randint0(100) < 50))
     {
         msg_format("%s 试图 %s，但你的 %s 抵抗了该效果！",
-               "terrible black aura", "surround your armor", o_name);
+               "可怕的黑色光环", "包围了你的盔甲", o_name);
     }
     else
     {
@@ -4163,7 +4163,7 @@ bool curse_weapon(bool force, int slot)
     if (object_is_artifact(o_ptr) && (randint0(100) < 50) && !force)
     {
         msg_format("%s 试图 %s，但你的 %s 抵抗了该效果！",
-               "terrible black aura", "surround your weapon", o_name);
+               "可怕的黑色光环", "包围了你的武器", o_name);
     }
     else
     {
@@ -4252,7 +4252,7 @@ bool polymorph_monster(mon_ptr mon)
     if (mon->mflag2 & MFLAG2_QUESTOR) return FALSE;
     r_idx = poly_r_idx(mon);
     if (r_idx != mon->r_idx || p_ptr->wizard)
-        mon_change_race(mon, r_idx, "polymorphed");
+        mon_change_race(mon, r_idx, "被变形了");
     return TRUE;
 }
 

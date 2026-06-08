@@ -1,16 +1,16 @@
 ?:[EQU $QUEST58 Taken InProgress]
-D:You're pretty strong, so how about something to really 
-D:test you. Go to the lonely mountain and kill ten
-D:ancient gold dragons. That'll show us if you're
-D:really great.
+D:你挺强的，所以不如来点真正能
+D:考验你的东西。去孤山（the lonely mountain）杀掉十只
+D:远古金龙。那才能证明你是否
+D:真的很伟大。
 ?:1
 
 ?:[EQU $QUEST58 Completed]
-D:Nicely done. Here's another trophy of your victory.
+D:干得漂亮。这是你胜利的另一件战利品。
 ?:1
 
 ?:[EQU $QUEST58 Failed]
-D:So you can't handle big dragons.
+D:看来你对付不了大龙。
 ?:1
 
 R:OBJ(gold dragon scale mail):EGO(87)

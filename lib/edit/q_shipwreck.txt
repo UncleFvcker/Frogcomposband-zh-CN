@@ -1,17 +1,17 @@
 # Original quest for ComPosband by Gwarl
 
 ?:[EQU $QUEST61 Taken InProgress]
-D:A ship carrying important documents has been wrecked near
-D:the shore. I need you to investigate the wreckage and
-D:report back to me.
+D:一艘载有重要文件的船只在海岸附近
+D:失事了。我需要你去调查那些残骸，然后
+D:向我汇报。
 ?:1
 
 ?:[EQU $QUEST61 Completed]
-D:You have done well, please accept this token of thanks.
+D:你做得很好，请接受这份感谢的信物。
 ?:1
 
 ?:[EQU $QUEST61 Failed]
-D:You have failed me, beware you do not do so again!
+D:你让我失望了，小心别再这样了！
 ?:1
 
 T:QUEST:NORMAL:NO_ROTATE

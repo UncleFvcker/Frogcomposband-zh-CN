@@ -90,7 +90,7 @@ static void _khorne_calc_innate_attacks(void)
 
             a.weight = 100;
             calc_innate_blows(&a, 200);
-            a.msg = "You claw.";
+            a.msg = "你抓了过去。";
             a.name = "爪击";
 
             p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -107,7 +107,7 @@ static void _khorne_calc_innate_attacks(void)
             a.weight = 200;
 
             calc_innate_blows(&a, 300);
-            a.msg = "You bite.";
+            a.msg = "你咬了过去。";
             a.name = "撕咬";
             p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
         }
@@ -128,7 +128,7 @@ static void _khorne_calc_innate_attacks(void)
 
             a.weight = 200;
             calc_innate_blows(&a, 400);
-            a.msg = "You crush.";
+            a.msg = "你粉碎了目标。";
             a.name = "爪击";
 
             p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -145,7 +145,7 @@ static void _khorne_calc_innate_attacks(void)
             a.weight = 500;
 
             calc_innate_blows(&a, 200);
-            a.msg = "You butt.";
+            a.msg = "你顶了过去。";
             a.name = "头撞";
             p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
         }
@@ -416,7 +416,7 @@ static void _marilith_calc_innate_attacks(void) {
         a.effect[0] = GF_MISSILE;
         a.blows = 100;
 
-        a.msg = "You sting.";
+        a.msg = "你蛰了过去。";
         a.name = "尾击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;

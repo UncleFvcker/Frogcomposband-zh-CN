@@ -1,27 +1,27 @@
 # Adapted from Frogspawn
 
 ?:[EQU $QUEST74 Taken InProgress]
-D:Unfortunately, rates of violent crime in our city have soared in recent
-D:months. For some reason, we've started attracting all sorts of crazy
-D:outsiders who fancy themselves "adventurers"; and the Mayor was happy
-D:with them at first because they brought in money, and the shopkeepers were
-D:happy too as you can probably guess. But now they're braining innocent
-D:townsfolk for the sake of a few dollars, or using them as targets for
-D:test zaps on their new wands, or just slicing them in half because they
-D:happen to be in the way. A whole bunch of those carrot-suckers are based
-D:in a small secluded house southeast of here, near the south wall.
-D:Regrettably, we can't massacre them because we're cops and need to obey
-D:the law; I would be most grateful for any help you can offer.
+D:不幸的是，最近几个月我们城市的暴力犯罪率飙升。
+D:不知什么原因，我们开始吸引各种疯狂的、
+D:自诩为“冒险者”的外地人；起初市长对他们很满意，
+D:因为他们带来了财富，你大概也能猜到，店主们也
+D:很高兴。但现在，他们为了几块钱就会敲碎无辜镇民的脑袋，
+D:或者把镇民当成测试新魔杖的活靶子，或者仅仅因为
+D:镇民挡了路就把他们劈成两半。有一大群这种
+D:吸胡萝卜的混蛋目前驻扎在
+D:这里东南方向、靠近南墙的一座隐蔽的小房子里。
+D:遗憾的是，我们不能去屠杀他们，因为我们是警察，必须遵守法律；
+D:如果你能提供任何帮助，我将不胜感激。
 
 ?:[EQU $QUEST74 Completed]
-D:Those "adventurers" are gone now? That's wonderful! No, don't tell me
-D:exactly what happened, I don't need to know... Since their house is now
-D:unoccupied, maybe you could move in.
+D:那些“冒险者”现在已经消失了？太棒了！不，别告诉我
+D:到底发生了什么，我不需要知道……既然他们的房子现在
+D:空着了，也许你可以搬进去。
 ?:1
 
 ?:[EQU $QUEST74 Failed]
-D:Too bad. I just hope you're not contemplating suicide after this abject
-D:failure.
+D:太糟糕了。我只希望你在经历了如此惨痛的失败后，
+D:不会考虑自杀。
 ?:1
 
 T:QUEST:NORMAL

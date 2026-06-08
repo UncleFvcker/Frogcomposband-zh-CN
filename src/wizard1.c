@@ -60,12 +60,12 @@ static grouper group_item[] =
     { TV_HAFTED,        NULL },
     { TV_SWORD,         NULL },
 
-    { TV_SOFT_ARMOR,    "Armour (Body)" },
+    { TV_SOFT_ARMOR,    "盔甲 (身体)" },
 
     { TV_HARD_ARMOR,    NULL },
     { TV_DRAG_ARMOR,    NULL },
 
-    { TV_BOOTS,         "Armour (Misc)" },
+    { TV_BOOTS,         "盔甲 (杂项)" },
 
     { TV_GLOVES,        NULL },
     { TV_HELM,          NULL },
@@ -85,22 +85,22 @@ static grouper group_item[] =
     { TV_POTION,        "药水" },
     { TV_FOOD,          "食物" },
 
-    { TV_LIFE_BOOK,     "Books (Life)" },
-    { TV_SORCERY_BOOK,  "Books (Sorcery)" },
-    { TV_NATURE_BOOK,   "Books (Nature)" },
-    { TV_CHAOS_BOOK,    "Books (Chaos)" },
-    { TV_DEATH_BOOK,    "Books (Death)" },
-    { TV_TRUMP_BOOK,    "Books (Trump)" },
-    { TV_ARCANE_BOOK,   "Books (Arcane)" },
-    { TV_CRAFT_BOOK,    "Books (Craft)" },
-    { TV_DAEMON_BOOK,   "Books (Daemon)" },
-    { TV_CRUSADE_BOOK,  "Books (Crusade)" },
-    { TV_NECROMANCY_BOOK, "Books (Necromancy)" },
-    { TV_ARMAGEDDON_BOOK, "Books (Armageddon)" },
+    { TV_LIFE_BOOK,     "书籍 (生命)" },
+    { TV_SORCERY_BOOK,  "书籍 (咒术)" },
+    { TV_NATURE_BOOK,   "书籍 (自然)" },
+    { TV_CHAOS_BOOK,    "书籍 (混沌)" },
+    { TV_DEATH_BOOK,    "书籍 (死亡)" },
+    { TV_TRUMP_BOOK,    "书籍 (王牌)" },
+    { TV_ARCANE_BOOK,   "书籍 (奥秘)" },
+    { TV_CRAFT_BOOK,    "书籍 (工匠)" },
+    { TV_DAEMON_BOOK,   "书籍 (恶魔)" },
+    { TV_CRUSADE_BOOK,  "书籍 (圣战)" },
+    { TV_NECROMANCY_BOOK, "书籍 (死灵)" },
+    { TV_ARMAGEDDON_BOOK, "书籍 (毁灭)" },
     { TV_MUSIC_BOOK,    "歌谱" },
-    { TV_HISSATSU_BOOK, "Books (Kendo)" },
-    { TV_HEX_BOOK,      "Books (Hex)" },
-    { TV_RAGE_BOOK,      "Books (Rage)" },
+    { TV_HISSATSU_BOOK, "书籍 (剑道)" },
+    { TV_HEX_BOOK,      "书籍 (诅咒)" },
+    { TV_RAGE_BOOK,      "书籍 (狂怒)" },
 
     { TV_WHISTLE,       "哨子" },
     { TV_CAPTURE,       "捕获球" },
@@ -252,12 +252,12 @@ static void spoil_obj_desc(cptr fname)
 
 
     /* Header */
-    fprintf(fff, "Spoiler File -- Basic Items (FrogComposband %d.%d.%s)\n\n\n",
+    fprintf(fff, "剧透文件 -- 基础物品 (FrogComposband %d.%d.%s)\n\n\n",
         VER_MAJOR, VER_MINOR, VER_PATCH);
 
     /* More Header */
     fprintf(fff, "%-45s     %8s%7s%5s%9s\n",
-        "描述", "Dam/AC", "重量", "等级", "价值");
+        "描述", "伤害/AC", "重量", "等级", "价值");
     fprintf(fff, "%-45s     %8s%7s%5s%9s\n",
         "----------------------------------------",
         "------", "---", "---", "----");
@@ -802,11 +802,11 @@ static void _spoil_mon_table(doc_ptr doc, cptr heading, _mon_pred p)
     {
         monster_race *r_ptr = vec_get(monsters, i);
         if (r_ptr->flags1 & RF1_UNIQUE)
-            doc_printf(doc, "<color:%c>%-38.38s</color> ", p == _mon_is_unique ? 'w' : 'v', r_name + r_ptr->name);
+            doc_printf(doc, "<color:%c>%-38.38s</color> ", p == _mon_is_unique ? 'w' : 'v', monster_race_display_name(r_ptr->id));
         else if (r_ptr->flags7 & RF7_UNIQUE2)
-            doc_printf(doc, "<color:%c>%-38.38s</color> ", p == _mon_is_nonunique ? 'v' : 'w', r_name + r_ptr->name);
+            doc_printf(doc, "<color:%c>%-38.38s</color> ", p == _mon_is_nonunique ? 'v' : 'w', monster_race_display_name(r_ptr->id));
         else
-            doc_printf(doc, "%-34.34s", r_name + r_ptr->name);
+            doc_printf(doc, "%-34.34s", monster_race_display_name(r_ptr->id));
 
         doc_printf(doc, "%3d %3d %+3d", r_ptr->level, r_ptr->rarity, r_ptr->speed - 110);
         if ((r_ptr->flags1 & RF1_FORCE_MAXHP) || r_ptr->hside == 1)
@@ -2029,7 +2029,7 @@ static vec_ptr _evol_roots(void)
 
 static void _evol_mon_line(doc_ptr doc, monster_race *r_ptr)
 {
-    doc_printf(doc, "[%d]: <color:B>%s</color> (等级 <color:G>%d</color>,", r_ptr->id, r_name + r_ptr->name, r_ptr->level);
+    doc_printf(doc, "[%d]: <color:B>%s</color> (等级 <color:G>%d</color>,", r_ptr->id, monster_race_display_name(r_ptr->id), r_ptr->level);
     doc_printf(doc, "<color:%c>%c</color>", attr_to_attr_char(r_ptr->d_attr), r_ptr->d_char);
     if (use_graphics && (r_ptr->x_char != r_ptr->d_char || r_ptr->x_attr != r_ptr->d_attr))
     {
@@ -2104,7 +2104,7 @@ static void spoil_shared_symbols(void)
 
         if ((!_uniq) && (!_norm)) continue;
 
-        doc_printf(doc, "[%d]: <color:B>%s</color> (<color:%c>%c</color>)：与", r_ptr->id, r_name + r_ptr->name, attr_to_attr_char(r_ptr->d_attr), r_ptr->d_char);
+        doc_printf(doc, "[%d]: <color:B>%s</color> (<color:%c>%c</color>)：与", r_ptr->id, monster_race_display_name(r_ptr->id), attr_to_attr_char(r_ptr->d_attr), r_ptr->d_char);
         if (_norm) doc_printf(doc, "%d 种非Unique怪物%s%s", _norm, (_norm == 1) ? "" : "s", _uniq ? "和" : "");
         if (_uniq) doc_printf(doc, "%d 种Unique怪物%s", _uniq, (_uniq == 1) ? "" : "s");
         doc_newline(doc);
@@ -2259,7 +2259,7 @@ static void _spoil_spell_book(doc_ptr doc, int class_idx, int realm_idx, int boo
     int           k_idx = lookup_kind(realm2tval(realm_idx), book_idx);
     player_magic *magic_ptr = &m_info[class_idx];
 
-    doc_printf(doc, "<color:o>%-25.25s</color><color:G> 等级 消耗 失败率</color>\n", k_name + k_info[k_idx].name);
+    doc_printf(doc, "<color:o>%-25.25s</color><color:G> 等级 消耗 失败率</color>\n", kind_display_name(k_idx));
     for (spell_idx = book_idx*8; spell_idx < (book_idx+1)*8; spell_idx++)
     {
         magic_type *spell_ptr = NULL;
@@ -2361,7 +2361,7 @@ static void _spoil_spell_book2(doc_ptr doc, int class1_idx, int class2_idx, int 
 
     doc_printf(doc, "%-25.25s <color:G>%-12.12s</color>  <color:R>%-12.12s</color>\n",
         "", get_class_aux(class1_idx, 0)->name, get_class_aux(class2_idx, 0)->name);
-    doc_printf(doc, "<color:o>%-25.25s</color><color:G> 等级 消耗 失败</color> <color:R>等级 消耗 失败</color>\n", k_name + k_info[k_idx].name);
+    doc_printf(doc, "<color:o>%-25.25s</color><color:G> 等级 消耗 失败</color> <color:R>等级 消耗 失败</color>\n", kind_display_name(k_idx));
     for (spell_idx = book_idx*8; spell_idx < (book_idx+1)*8; spell_idx++)
     {
         magic_type *spell1_ptr = &magic1_ptr->info[realm_idx - 1][spell_idx];
@@ -2650,11 +2650,9 @@ static void spoil_deadliest_mons(bool allow_thrall)
     {
         for (i = 0; i < vec_length(v); i++)
         {
-            monster_race *r_ptr;
             mon_ptr = vec_get(v, i);
             if ((!mon_ptr) || (!mon_ptr->id) || (!mon_ptr->count)) continue;
-            r_ptr = &r_info[mon_ptr->id];
-            doc_printf(doc, "  %-44.44s %4d\n", r_name + r_ptr->name, mon_ptr->count);
+            doc_printf(doc, "  %-44.44s %4d\n", monster_race_display_name(mon_ptr->id), mon_ptr->count);
         }
     }
     else

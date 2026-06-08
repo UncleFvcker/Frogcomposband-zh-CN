@@ -581,7 +581,7 @@ void sterility_spell(int cmd, variant *res)
         break;
     case SPELL_CAST:
         msg_print("你突然感到头疼！");
-        take_hit(DAMAGE_LOSELIFE, randint1(17) + 17, "the strain of forcing abstinence");
+        take_hit(DAMAGE_LOSELIFE, randint1(17) + 17, "强行禁食的负担");
 
         /* Fake a population explosion. */
         num_repro += MAX_REPRO;

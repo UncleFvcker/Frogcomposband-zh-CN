@@ -1,25 +1,25 @@
 # New quest for FrogComposband 7.1.chocolate
 
 ?:[EQU $QUEST24 Taken InProgress]
-D:There's a warehouse at the northern edge of the city that Vanerion, the
-D:librarian, has used for storing rare books. About half a year ago, people
-D:started reporting a malevolent presence there, as if they were being spied
-D:on by someone unseen. Last week Vanerion went there for a book, and when
-D:he opened the door he barely recognized the place. A gang of thieves seems
-D:to have set up shop there; but more worryingly, the books themselves were
-D:coming to life. The malevolent presence was everywhere, and demonic signs
-D:appeared on the floor. Please locate and destroy the source of this evil,
-D:reports indicate the ability to kill from range could be of paramount
-D:importance.
+D:在城市北边缘有一个仓库，图书管理员瓦内瑞恩（Vanerion）
+D:一直用它来存放珍贵书籍。大约半年前，人们
+D:开始报告那里存在一种恶意的气息，就好像他们被某个
+D:看不见的人监视着一样。上周瓦内瑞恩去那里找一本书，当他
+D:打开门时，他几乎认不出那个地方了。一伙盗贼似乎
+D:在那里安了家；但更令人担忧的是，那些书本身
+D:活了过来。那种恶意的气息无处不在，地板上还出现了
+D:恶魔的标记。请找到并摧毁这股邪恶的源头，
+D:有报告表明，进行远程杀伤的能力可能
+D:至关重要。
 ?:1
 
 ?:[EQU $QUEST24 Completed]
-D:Thank you for eliminating this abomination!
+D:感谢你消灭了这个令人憎恶的东西！
 ?:1
 
 ?:[EQU $QUEST24 Failed]
-D:You have brought a terrible thing upon us! Now their spying
-D:eyes are everywhere.
+D:你给我们带来了一场可怕的灾难！现在他们监视的
+D:眼睛无处不在。
 ?:1
 
 T:QUEST:NORMAL:NO_ROTATE

@@ -1,18 +1,18 @@
 # Description for quest
 ?:[EQU $QUEST50 Taken InProgress]
-D:A group of mercenaries have been frightening people at
-D:the bar. I need you to go and restore order. Be sure to 
-D:send my condolences to the families.
+D:一群雇佣兵一直在酒吧里恐吓
+D:人们。我需要你去恢复那里的秩序。一定要
+D:向他们的家人转达我的哀悼。
 ?:1
 
 # Description for quest reward
 ?:[EQU $QUEST50 Completed]
-D:Here is a reward for your good work.
+D:这是对你出色工作的奖励。
 ?:1
 
 # Description for quest failed
 ?:[EQU $QUEST50 Failed]
-D:You have failed me, beware you do not do so again!
+D:你让我失望了，小心别再这样了！
 ?:1
 
 T:QUEST:NORMAL

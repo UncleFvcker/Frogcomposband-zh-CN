@@ -4,20 +4,20 @@
 # Redesigned for FrogComposband 7.1.chocolate
 
 ?:[EQU $QUEST62 Taken InProgress]
-D:The bear population in our eastern forests has exploded recently; before
-D:we'd only see the occasional solitary grizzly, but now they're forming
-D:groups and even use our roads. They seem to live in a cave near the southern
-D:edge of the forest, at the base of a large hill. The Count believes them
-D:responsible for the disappearances of some of our citizens, who were last
-D:seen walking in that area. Please explore their den and make our town safe
-D:again.
+D:我们东部森林里的熊群数量最近急剧增加；以前
+D:我们只会偶尔看到孤单的灰熊，但现在它们开始成群结队，
+D:甚至占据了我们的道路。它们似乎住在森林南部边缘的
+D:一个洞穴里，就在一座大山丘的山脚下。伯爵认为它们
+D:对我们一些市民的失踪负有责任，那些人最后一次
+D:被看到就是在那片区域散步。请探索它们的巢穴，让我们的城镇
+D:再次安全。
 
 ?:[EQU $QUEST62 Completed]
-D:Thank you, truly you are stronger than any bear.
+D:谢谢你，你确实比任何熊都要强壮。
 ?:1
 
 ?:[EQU $QUEST62 Failed]
-D:I hope I can find someone more capable than you.
+D:希望我能找到比你更有能力的人。
 ?:1
 
 T:QUEST:NORMAL

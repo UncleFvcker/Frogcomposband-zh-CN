@@ -1,41 +1,41 @@
 ?:[AND [EQU $QUEST28 Taken InProgress] [EQU $WILDERNESS NORMAL] ]
-D:A mysterious force has entered the royal crypt and is
-D:desecrating the graves of the king's noble ancestors. Their
-D:bodily remains have been magically animated and their spirits
-D:enslaved and forcibly turned to evil. You must enter the
-D:crypt and seek out the Archliches. Once they have been
-D:eliminated, my guards should be able to take care of the
-D:rest.
+D:一股神秘的力量潜入了皇家地下室，正在
+D:亵渎国王高贵祖先的坟墓。他们的
+D:遗骸被施加了魔法唤醒，灵魂被奴役
+D:并被迫转向邪恶。你必须进入这个
+D:地下室，寻找那些大巫妖（Archliches）。一旦它们被
+D:消灭，我的守卫应该就能处理掉
+D:剩下的问题了。
 ?:1
 
 ?:[AND [EQU $QUEST28 Completed] [EQU $WILDERNESS NORMAL] ]
-D:How can I ever thank you? Let the people rejoice - a hero
-D:of legend walks this day in Outpost. My treasurer tells me
-D:a number of rather valuable heirlooms seem to be missing
-D:from the crypt - how about I turn a blind eye and we call
-D:it quits? Oh wait a moment ... Now where did I put that?
-D:Ah! Take this trinket and be glad you still live.
+D:我该如何感谢你？让人民欢呼吧——一位传说中的
+D:英雄今天漫步在前哨镇（Outpost）。我的财政官告诉我，
+D:地下室里似乎少了一些相当有价值的传家宝
+D:——不如我睁一只眼闭一只眼，我们就两清了
+D:怎么样？哦，等一下……我把那个放哪儿了？
+D:啊！拿着这个小饰品吧，庆幸你还活着。
 ?:1
 
 ?:[AND [EQU $QUEST28 Taken InProgress] [EQU $WILDERNESS NONE] ]
-D:A mysterious force has entered the royal crypt and is
-D:desecrating the graves of the king's noble ancestors. Their
-D:bodily remains have been magically animated and their spirits
-D:enslaved and forcibly turned to evil. You must enter the
-D:crypt and seek out the Archliches. Once they have been
-D:eliminated, the town guard should be able to take care of the
-D:rest.
+D:一股神秘的力量潜入了皇家地下室，正在
+D:亵渎国王高贵祖先的坟墓。他们的
+D:遗骸被施加了魔法唤醒，灵魂被奴役
+D:并被迫转向邪恶。你必须进入这个
+D:地下室，寻找那些大巫妖。一旦它们被
+D:消灭，城镇卫兵应该就能处理掉
+D:剩下的问题了。
 ?:1
 
 ?:[AND [EQU $QUEST28 Completed] [EQU $WILDERNESS NONE] ]
-D:How can we ever thank you? Let the people rejoice - a hero
-D:of legend walks this day in Outpost. This land will forever
-D:remain in your debt.
+D:我们该如何感谢你？让人民欢呼吧——一位传说中的
+D:英雄今天漫步在前哨镇。这片土地将永远
+D:铭记你的恩情。
 ?:1
 
 ?:[EQU $QUEST28 Failed]
-D:I trusted you and you have failed me. Heaven knows how
-D:we will appease the spirits of the king's ancestors now!
+D:我信任你，你却让我失望了。天知道现在
+D:我们该如何平息国王祖先们的怒火！
 ?:1
 
 T:QUEST:NORMAL

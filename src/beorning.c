@@ -130,7 +130,7 @@ void _beorning_calc_innate_attacks(void)
 
         a.weight = 100;
         calc_innate_blows(&a, 386 + (l * 2));
-        a.msg = "You claw.";
+        a.msg = "你发动了爪击。";
         a.name = "爪击";
 
         if (psion_combat()) psion_combat_innate_blows(&a);
@@ -248,7 +248,7 @@ void _bear_sniff_spell(int cmd, variant *res)
         var_set_string(res, "尝试嗅探附近的怪物。");
         break;
     case SPELL_CAST:
-        detect_monsters_living(DETECT_RAD_DEFAULT, "You smell nearby monsters.");
+        detect_monsters_living(DETECT_RAD_DEFAULT, "你闻到了附近怪物的气味。");
         var_set_bool(res, TRUE);
         break;
     default:

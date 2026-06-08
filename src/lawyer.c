@@ -113,7 +113,7 @@ cptr do_law_spell(int spell, int mode)
     /* Attractions of Law */
     case 0:
         if (name) return "探测金钱";
-        if (desc) return "Detects all treasures in your vicinity.";
+        if (desc) return "探测你附近的所有财宝。";
         if (info) return info_radius(rad);
 
         if (cast)
@@ -126,7 +126,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 1:
         if (name) return "探测陷阱";
-        if (desc) return "Detects nearby traps.";
+        if (desc) return "探测附近的陷阱。";
         if (info) return info_radius(rad);
         if (cast)
             detect_traps(rad, TRUE);
@@ -134,14 +134,14 @@ cptr do_law_spell(int spell, int mode)
 
     case 2:
         if (name) return "满足饥饿";
-        if (desc) return "Satisfies hunger.";
+        if (desc) return "满足饥饿感。";
         if (cast)
             set_food(PY_FOOD_MAX - 1);
         break;
 
     case 3:
         if (name) return "探测物品";
-        if (desc) return "Detects all items in your vicinity.";
+        if (desc) return "探测你附近的所有物品。";
         if (info) return info_radius(rad);
 
         if (cast)
@@ -150,7 +150,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 4:
         if (name) return "基础陷阱";
-        if (desc) return "Sets a trap under you. The trap will have a random weak effect on the monster that triggers it.";
+        if (desc) return "在你脚下设置一个陷阱。该陷阱会对触发它的怪物产生随机的微弱效果。";
 
         if (cast)
             set_trap(py, px, feat_rogue_trap1);
@@ -158,7 +158,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 5:
         if (name) return "解除陷阱";
-        if (desc) return "Fires a beam which disarms traps.";
+        if (desc) return "发射一束能够解除陷阱的光束。";
 
         if (cast)
         {
@@ -170,7 +170,7 @@ cptr do_law_spell(int spell, int mode)
     case 6:
         lisa = ((plev >= 45) && (lawyer_aptitude));
         if (name) return "鉴定";
-        if (desc) return (lisa ? "Fully identifies an item." : "Identifies an item.");
+        if (desc) return (lisa ? "完全鉴定一件物品。" : "鉴定一件物品。");
 
         {
             if (cast)
@@ -184,7 +184,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 7:
         if (name) return "挖掘";
-        if (desc) return "Turns one rock square to mud.";
+        if (desc) return "将一格岩石转化为泥土。";
 
         {
             int dice = 1;
@@ -206,7 +206,7 @@ cptr do_law_spell(int spell, int mode)
     case 8:
         lisa = (plev >= 25);
         if (name) return "探测怪物";
-        if (desc) return (lisa ? "Detects all monsters in your vicinity." : "Detects all monsters in your vicinity unless invisible.");
+        if (desc) return (lisa ? "探测你附近的所有怪物。" : "探测你附近的所有怪物，隐形怪物除外。");
 
         {
             int rad = DETECT_RAD_DEFAULT;
@@ -223,7 +223,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 9:
         if (name) return "减速怪物";
-        if (desc) return "Attempts to slow a monster.";
+        if (desc) return "尝试减缓一只怪物的速度。";
 
         {
             int power = spell_power(plev * 2);
@@ -241,7 +241,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 10:
         if (name) return "混乱怪物";
-        if (desc) return "Attempts to confuse a monster.";
+        if (desc) return "尝试使一只怪物混乱。";
 
         {
             int power = spell_power(plev * 2);
@@ -259,7 +259,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 11:
         if (name) return "恐吓怪物";
-        if (desc) return "Attempts to scare a monster.";
+        if (desc) return "尝试惊吓一只怪物。";
 
         {
             int power = spell_power(plev * 3 / 2);
@@ -277,7 +277,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 12:
         if (name) return "惩戒分号";
-        if (desc) return "Inscribes a semicolon of punishment on the floor beneath you.";
+        if (desc) return "在你脚下的地板上铭刻一个惩罚分号 (;) 。";
         if (info) return info_damage(0, 0, 32 + plev);
 
         if (cast)
@@ -286,7 +286,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 13:
         if (name) return "群体混乱";
-        if (desc) return "Attempts to confuse all monsters in sight.";
+        if (desc) return "尝试使视野内的所有怪物混乱。";
 
         {
             int power = spell_power(plev * 2 - 5);
@@ -302,7 +302,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 14:
         if (name) return "创造门";
-        if (desc) return "Creates doors on all surrounding squares.";
+        if (desc) return "在周围所有格子创造门。";
 
         if (cast)
         {
@@ -314,7 +314,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 15:
         if (name) return "守护分号";
-        if (desc) return "Inscribes a semicolon of warding on the floor beneath you.";
+        if (desc) return "在你脚下的地板上铭刻一个结界分号 (;) 。";
 
         {
             if (cast)
@@ -327,7 +327,7 @@ cptr do_law_spell(int spell, int mode)
     /* Building Alternative Realities */
     case 16:
         if (name) return "魅惑怪物";
-        if (desc) return "Attempts to charm a monster.";
+        if (desc) return "尝试魅惑一只怪物。";
 
         if (cast)
         {
@@ -340,7 +340,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 17:
         if (name) return "专家陷阱";
-        if (desc) return "Sets a trap under you. The trap will have a random effect on the monster that triggers it.";
+        if (desc) return "在你脚下设置一个陷阱。该陷阱会对触发它的怪物产生随机效果。";
 
         if (cast)
             set_trap(py, px, feat_rogue_trap2);
@@ -348,7 +348,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 18:
         if (name) return "逃之夭夭";
-        if (desc) return "Provides a random means of escape.";
+        if (desc) return "提供一种随机的逃脱手段。";
         if (cast)
         {
             switch (randint1(13))
@@ -374,7 +374,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 19:
         if (name) return "嫁祸死灵";
-        if (desc) return "Hurts all undead monsters in sight.";
+        if (desc) return "伤害视野内的所有不死怪物。";
 
         {
             int dam = spell_power(50 + plev + p_ptr->to_d_spell);
@@ -388,13 +388,13 @@ cptr do_law_spell(int spell, int mode)
 
     case 20:
         if (name) return "探测术";
-        if (desc) return "Reveals information about nearby monsters.";
+        if (desc) return "揭示有关附近怪物的信息。";
         if (cast) probing();
         break;
 
     case 21:
         if (name) return "扭曲事实";
-        if (desc) return "Provides temporary resistance to nether and makes charming effects more powerful.";
+        if (desc) return "提供暂时的地狱 (nether) 抗性，并使魅惑效果更强大。";
 
         {
             int base = spell_power(20);
@@ -410,7 +410,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 22:
         if (name) return "高级吸血";
-        if (desc) return "Absorbs life from a nearby living creature.";
+        if (desc) return "从附近的活体生物身上吸取生命。";
 
         {
             int dam = spell_power(50 + (plev * 2 / 3) + p_ptr->to_d_spell/3);
@@ -433,7 +433,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 23:
         if (name) return "改变现实";
-        if (desc) return "Recreates the current dungeon level.";
+        if (desc) return "重新生成当前的地下城楼层。";
 
         if (cast) { p_ptr->alter_reality = 2; do_alter_reality(); }
         break;
@@ -441,7 +441,7 @@ cptr do_law_spell(int spell, int mode)
     /* Acquiris Quodcumque Rapis */
     case 24:
         if (name) return "闪烁";
-        if (desc) return "Teleport a short distance.";
+        if (desc) return "短距离传送。";
 
         {
             int range = 10;
@@ -459,7 +459,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 25:
         if (name) return "轻声潜行";
-        if (desc) return "Grants enhanced stealth for a bit.";
+        if (desc) return "暂时提供增强的潜行。";
         {
             int base = spell_power(50);
 
@@ -472,7 +472,7 @@ cptr do_law_spell(int spell, int mode)
     case 26:
         lisa = ((plev >= 48) && (lawyer_aptitude));
         if (name) return "测绘周围";
-        if (desc) return ((lisa) ? "Maps and detects the nearby area." : "Maps the nearby area.");
+        if (desc) return ((lisa) ? "绘制附近区域的地图并进行探测。" : "绘制附近区域的地图。");
 
         {
             int rad = DETECT_RAD_MAP;
@@ -489,7 +489,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 27:
         if (name) return "深度挖掘";
-        if (desc) return "Fires a beam of disintegration.";
+        if (desc) return "发射一束解离光束。";
 
         {
             int dam = spell_power(30);
@@ -511,7 +511,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 28:
         if (name) return "邪恶狂暴";
-        if (desc) return "Puts you in a temporary berserk rage and heals 75 HP.";
+        if (desc) return "使你进入暂时的狂暴状态，并恢复 75 点生命值。";
 
         {
             int base = spell_power(20);
@@ -529,7 +529,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 29:
         if (name) return "传票";
-        if (desc) return "Teleports a visible monster to you.";
+        if (desc) return "将一只视野内的怪物传送到你身边。";
 
         if (cast)
         {
@@ -572,7 +572,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 30:
         if (name) return "传送";
-        if (desc) return "Teleport a long distance.";
+        if (desc) return "长距离传送。";
 
         {
             int range = plev * 5;
@@ -590,7 +590,7 @@ cptr do_law_spell(int spell, int mode)
 
     case 31:
         if (name) return "致盲";
-        if (desc) return "Attempts to slow, stun, confuse, scare and freeze nearby monsters.";
+        if (desc) return "尝试减速、击晕、使混乱、惊吓并冻结附近的怪物。";
 
         {
             int power = spell_power(60 + plev);
@@ -625,7 +625,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "legal trick";
+        me.magic_desc = "法律戏法";
         me.encumbrance.max_wgt = 430;
         me.encumbrance.weapon_pct = 33;
         me.encumbrance.enc_wgt = 1000;

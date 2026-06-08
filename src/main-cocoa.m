@@ -896,7 +896,7 @@ static int compare_advances(const void *ap, const void *bp)
     if( !libExists || !isDirectory )
     {
         NSLog( @"[%@ %@]: can't find %@/ in bundle: isDirectory: %d libExists: %d", NSStringFromClass( [self class] ), NSStringFromSelector( _cmd ), AngbandDirectoryNameLib, isDirectory, libExists );
-        NSRunAlertPanel( @"缺少资源", @"PosChengband was unable to find required resources and must quit. Please report a bug on the Angband forums.", @"退出", nil, nil );
+        NSRunAlertPanel( @"缺少资源", @"PosChengband 无法找到所需的资源，必须退出。请在 Angband 论坛上报告此错误。", @"退出", nil, nil );
         exit( 0 );
     }
 
@@ -2323,7 +2323,7 @@ static void load_sounds(void)
 	/* Handle errors */
 	if (!fff)
 	{
-		NSLog(@"The sound configuration file could not be opened.");
+		NSLog(@"无法打开声音配置文件。");
 		return;
 	}
 	
@@ -2843,7 +2843,7 @@ static void hook_plog(const char * str)
     if (str)
     {
         NSString *string = [NSString stringWithCString:str encoding:NSMacOSRomanStringEncoding];
-        NSRunAlertPanel(@"危险，威尔·罗宾逊", @"%@", @"OK", nil, nil, string);
+        NSRunAlertPanel(@"危险，威尔·罗宾逊", @"%@", @"确定", nil, nil, string);
     }
 }
 
@@ -3273,7 +3273,7 @@ static bool cocoa_get_file(const char *suggested_name, char *path, size_t len)
         
         /* Make the title. NSMenuItem throws on a nil title, so ensure it's not nil. */
         NSString *title = [[NSString alloc] initWithUTF8String:graf->menuname];
-        if (! title) title = [@"(Unknown)" copy];
+        if (! title) title = [@"(未知)" copy];
         
         /* Make the item */
         NSMenuItem *item = [menu addItemWithTitle:title action:action keyEquivalent:@""];

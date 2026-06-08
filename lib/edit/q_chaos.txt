@@ -1,19 +1,19 @@
 # Created by Topi Ylinen
 ?:[EQU $QUEST11 Taken InProgress]
-D:The Wizards of Chaos have discovered a magical Node of
-D:Chaos in a nearby volcano. You must seek the Node and
-D:dispatch its guardians so that the Tower of Chaos can
-D:claim the mystical energies of the Node.
+D:混沌法师们在附近的一座火山里发现了一个
+D:神奇的混沌节点。你必须去寻找那个节点并
+D:消灭它的守卫，这样混沌塔就能
+D:夺取节点的神秘能量。
 ?:1
 
 ?:[EQU $QUEST11 Completed]
-D:You have done well.
+D:你做得很好。
 ?:1
 
 ?:[EQU $QUEST11 Failed]
-D:Begone, incompetent fool! The dimensional energies of the 
-D:mystic Node have faded away and are lost forever! You had
-D:your chance and botched the job. 
+D:滚吧，无能的蠢货！神秘节点的维度能量已经消散，
+D:永远失去了！你本有机会，
+D:却把差事搞砸了。
 ?:1
 
 T:QUEST:NORMAL

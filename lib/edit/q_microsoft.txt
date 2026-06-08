@@ -3,28 +3,28 @@ K:86
 ?:1
 
 ?:[EQU $QUEST24 Taken InProgress]
-D:A mysterious building has appeared, with the eldritch runes "M$"
-D:inscribed in its walls. An aura of evil radiates from this building.
-D:People in nearby villages have lost their money and sanity, and
-D:turned into mindless zombies. Beware -- it is rumoured that the
-D:Dark Lord who dwells inside this mansion of vast evil is the
-D:Apocalyptic Beast himself! Who knows what unspeakable secrets lurk
-D:inside?
+D:一座神秘的建筑出现了，它的墙上刻着
+D:可怕的符文“M$”。一股邪恶的光环从这座建筑中散发出来。
+D:附近村庄的人们都失去了金钱和理智，并
+D:变成了没有思想的僵尸。当心——有传言说，
+D:居住在这个巨大邪恶宅邸内的黑暗领主，正是
+D:启示录野兽（Apocalyptic Beast）本尊！谁知道里面潜伏着
+D:什么不可告人的秘密？
 ?:1
 
 ?:[EQU $QUEST24 Completed]
-D:Thank you for killing the demon!
+D:感谢你杀死了那个恶魔！
 ?:1
 
 ?:[EQU $QUEST24 Failed]
-D:You have brought a terrible thing upon us! Now Micro$oft has
-D:an absolute monopoly on everything in this town, this country,
-D:this world! Every item sold anywhere is now M$-licenced and
-D:M$ gets a part of the profit. And there's no guarantee that
-D:the overall quality of the wares will improve...
-D:I notice that you have not received the Official M$ Licence
-D:number on your forehead yet. I don't know if anyone will sell
-D:you anything before you get one.
+D:你给我们带来了一场可怕的灾难！现在微$软（Micro$oft）
+D:垄断了这个城镇、这个国家，甚至是这个世界上
+D:的一切！现在各地出售的每件物品都必须获得M$授权，并且
+D:M$会从中抽取一部分利润。而且谁也不能保证
+D:商品的整体质量会有所提高……
+D:我注意到你的额头上还没有印上
+D:官方M$许可证号码。我不知道在你弄到一个之前，
+D:还有没有人敢卖东西给你。
 ?:1
 
 T:QUEST:NORMAL:NO_ROTATE

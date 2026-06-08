@@ -1,9 +1,9 @@
 # vim: filetype=q :
 
 ?:[EQU $QUEST9 Taken InProgress]
-D:Your final quest is the ultimate quest that has always been
-D:required of you. You must enter the realm of the Serpent,
-D:travel deep, and defeat this source of all our problems.
-D:Be prepared, be patient, and good luck. May the light shine on you.
+D:你的最终任务是终极挑战，这也是你一直以来
+D:必须面对的命运。你必须进入混沌之蛇的领域，
+D:深入地下，并击败这个造成我们所有问题的源头。
+D:做好准备，保持耐心，祝你好运。愿光芒照耀着你。
 ?:1
 

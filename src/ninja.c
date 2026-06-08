@@ -577,7 +577,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "ninjutsu";
+        me.magic_desc = "忍术";
         me.options = CASTER_USE_HP;
         me.which_stat = A_DEX;
         init = TRUE;

@@ -123,7 +123,7 @@ static void _selita_paikka(char *paikka_text, byte paikka, byte taso, byte origi
         strcpy(paikka_text, "in ");
         if (mika > TOWN_MAX)
         {
-            strcat(paikka_text, "a bizarre town");
+            strcat(paikka_text, "一个奇异的城镇里");
         }
         else
         {
@@ -156,7 +156,7 @@ static void _selita_paikka(char *paikka_text, byte paikka, byte taso, byte origi
     }
     else if ((paikka == ORIGIN_DUNGEONS_AFTER) || (!taso))
     {
-        strcpy(paikka_text, "in the wilderness");
+        strcpy(paikka_text, "在野外");
         return;
     }
     else /* originated in a regular dungeon */
@@ -168,8 +168,8 @@ static void _selita_paikka(char *paikka_text, byte paikka, byte taso, byte origi
         if (dung == DUNGEON_HEAVEN) aitotaso += 512;
         else if (dung == DUNGEON_HELL) aitotaso += 640;
         if (dung > DUNGEON_MAX) dung = DUNGEON_MAX; /* desperation */
-        dung_name = d_name + d_info[dung].name;
-        apu = string_alloc_format("on level %d of %s", aitotaso, dung_name);
+        dung_name = (char *)dungeon_display_name(dung);
+        apu = string_alloc_format("在 %s 的第 %d 层", dung_name, aitotaso);
         strcpy(paikka_text, string_buffer(apu));
         string_free(apu);
         return;
@@ -181,8 +181,8 @@ bool display_origin(object_type *o_ptr, doc_ptr doc)
     byte origin = o_ptr->origin_type;
     byte paikka = o_ptr->origin_place / ORIGIN_MODULO;
     byte taso = o_ptr->origin_place % ORIGIN_MODULO;
-    char paikka_text[80];
-    char pudottaja[80];
+    char paikka_text[MAX_NLEN];
+    char pudottaja[MAX_NLEN];
 
     if ((origin == ORIGIN_NONE) || (origin == ORIGIN_MIXED)) return FALSE;
     if ((!show_discovery) && (o_ptr->mitze_type & MITZE_MIXED)) return FALSE;
@@ -199,7 +199,7 @@ bool display_origin(object_type *o_ptr, doc_ptr doc)
         monster_race *r_ptr = &r_info[o_ptr->origin_xtra];
         if ((o_ptr->origin_xtra) && (o_ptr->origin_xtra < max_r_idx) && (r_ptr) && (r_ptr->name))
         {
-            cptr mon_name = r_name + r_ptr->name;
+            cptr mon_name = monster_race_display_name(o_ptr->origin_xtra);
             if (r_ptr->flags1 & RF1_UNIQUE)
             {
                 strcpy(pudottaja, mon_name);
@@ -210,7 +210,7 @@ bool display_origin(object_type *o_ptr, doc_ptr doc)
                 strcat(pudottaja, mon_name);
             }
         }
-        else strcpy(pudottaja, "a bizarre monster");
+        else strcpy(pudottaja, "一个奇异的怪物");
     }
 
     switch (origin)
@@ -715,35 +715,35 @@ static void _display_brands(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
     vec_ptr v = vec_alloc((vec_free_f)string_free);
 
     if (have_flag(flgs, OF_BRAND_ACID))
-        vec_add(v, string_copy_s("<color:g>Acid Brand</color>"));
+        vec_add(v, string_copy_s("<color:g>酸性烙印</color>"));
     if (have_flag(flgs, OF_BRAND_ELEC))
-        vec_add(v, string_copy_s("<color:b>Lightning Brand</color>"));
+        vec_add(v, string_copy_s("<color:b>闪电烙印</color>"));
     if (have_flag(flgs, OF_BRAND_FIRE))
-        vec_add(v, string_copy_s("<color:r>Flame Tongue</color>"));
+        vec_add(v, string_copy_s("<color:r>火焰之舌</color>"));
     if (have_flag(flgs, OF_BRAND_COLD))
-        vec_add(v, string_copy_s("<color:W>Frost Brand</color>"));
+        vec_add(v, string_copy_s("<color:W>冰霜烙印</color>"));
     if (have_flag(flgs, OF_BRAND_POIS))
-        vec_add(v, string_copy_s("<color:G>Viper's Fang</color>"));
+        vec_add(v, string_copy_s("<color:G>毒蛇之牙</color>"));
     if (have_flag(flgs, OF_BRAND_CHAOS))
-        vec_add(v, string_copy_s("<color:v>Mark of Chaos</color>"));
+        vec_add(v, string_copy_s("<color:v>混沌印记</color>"));
     if (have_flag(flgs, OF_BRAND_VAMP))
-        vec_add(v, string_copy_s("<color:D>Vampiric</color>"));
+        vec_add(v, string_copy_s("<color:D>吸血</color>"));
     if (have_flag(flgs, OF_BRAND_DARK))
-        vec_add(v, string_copy_s("<color:D>Shadow Sweep</color>"));
+        vec_add(v, string_copy_s("<color:D>暗影横扫</color>"));
     if (have_flag(flgs, OF_IMPACT))
-        vec_add(v, string_copy_s("<color:U>Earthquakes</color>"));
+        vec_add(v, string_copy_s("<color:U>引发地震</color>"));
     if (have_flag(flgs, OF_VORPAL2))
-        vec_add(v, string_copy_s("<color:v>*Sharpness*</color>"));
+        vec_add(v, string_copy_s("<color:v>*锋锐*</color>"));
     else if (have_flag(flgs, OF_VORPAL))
-        vec_add(v, string_copy_s("<color:R>Sharpness</color>"));
+        vec_add(v, string_copy_s("<color:R>锋锐</color>"));
     if (have_flag(flgs, OF_STUN))
-        vec_add(v, string_copy_s("<color:o>Stuns</color>"));
+        vec_add(v, string_copy_s("<color:o>震慑</color>"));
     if (have_flag(flgs, OF_BRAND_ORDER))
-        vec_add(v, string_copy_s("<color:W>Weapon of Order</color>"));
+        vec_add(v, string_copy_s("<color:W>秩序武器</color>"));
     if (have_flag(flgs, OF_BRAND_WILD))
-        vec_add(v, string_copy_s("<color:o>Wild Weapon</color>"));
+        vec_add(v, string_copy_s("<color:o>狂野武器</color>"));
     if (have_flag(flgs, OF_BRAND_MANA))
-        vec_add(v, string_copy_s("<color:B>Mana Brand</color>"));
+        vec_add(v, string_copy_s("<color:B>法力烙印</color>"));
 
     if (vec_length(v))
     {
@@ -759,59 +759,59 @@ static void _display_slays(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
     vec_ptr v = vec_alloc((vec_free_f)string_free);
 
     if (have_flag(flgs, OF_KILL_EVIL))
-        vec_add(v, string_copy_s("<color:y>*Evil*</color>"));
+        vec_add(v, string_copy_s("<color:y>*邪恶*</color>"));
     else if (have_flag(flgs, OF_SLAY_EVIL))
-        vec_add(v, string_copy_s("<color:y>Evil</color>"));
+        vec_add(v, string_copy_s("<color:y>邪恶</color>"));
 
 	if (have_flag(flgs, OF_KILL_GOOD))
-		vec_add(v, string_copy_s("<color:y>*Good*</color>"));
+		vec_add(v, string_copy_s("<color:y>*善良*</color>"));
 	else if (have_flag(flgs, OF_SLAY_GOOD))
-        vec_add(v, string_copy_s("<color:W>Good</color>"));
+        vec_add(v, string_copy_s("<color:W>善良</color>"));
 
 	if (have_flag(flgs, OF_KILL_LIVING))
-		vec_add(v, string_copy_s("<color:y>*Living*</color>"));
+		vec_add(v, string_copy_s("<color:y>*活物*</color>"));
 	else if (have_flag(flgs, OF_SLAY_LIVING))
-        vec_add(v, string_copy_s("<color:o>Living</color>"));
+        vec_add(v, string_copy_s("<color:o>活物</color>"));
 
     if (have_flag(flgs, OF_KILL_DRAGON))
-        vec_add(v, string_copy_s("<color:r>*Dragons*</color>"));
+        vec_add(v, string_copy_s("<color:r>*龙类*</color>"));
     else if (have_flag(flgs, OF_SLAY_DRAGON))
-        vec_add(v, string_copy_s("<color:r>Dragons</color>"));
+        vec_add(v, string_copy_s("<color:r>龙类</color>"));
 
     if (have_flag(flgs, OF_KILL_DEMON))
-        vec_add(v, string_copy_s("<color:R>*Demons*</color>"));
+        vec_add(v, string_copy_s("<color:R>*恶魔*</color>"));
     else if (have_flag(flgs, OF_SLAY_DEMON))
-        vec_add(v, string_copy_s("<color:R>Demons</color>"));
+        vec_add(v, string_copy_s("<color:R>恶魔</color>"));
 
     if (have_flag(flgs, OF_KILL_UNDEAD))
-        vec_add(v, string_copy_s("<color:D>*Undead*</color>"));
+        vec_add(v, string_copy_s("<color:D>*不死*</color>"));
     else if (have_flag(flgs, OF_SLAY_UNDEAD))
-        vec_add(v, string_copy_s("<color:D>Undead</color>"));
+        vec_add(v, string_copy_s("<color:D>不死</color>"));
 
     if (have_flag(flgs, OF_KILL_ANIMAL))
-        vec_add(v, string_copy_s("<color:g>*Animals*</color>"));
+        vec_add(v, string_copy_s("<color:g>*动物*</color>"));
     else if (have_flag(flgs, OF_SLAY_ANIMAL))
-        vec_add(v, string_copy_s("<color:g>Animals</color>"));
+        vec_add(v, string_copy_s("<color:g>动物</color>"));
 
     if (have_flag(flgs, OF_KILL_HUMAN))
-        vec_add(v, string_copy_s("<color:s>*Humans*</color>"));
+        vec_add(v, string_copy_s("<color:s>*人类*</color>"));
     else if (have_flag(flgs, OF_SLAY_HUMAN))
-        vec_add(v, string_copy_s("<color:s>Humans</color>"));
+        vec_add(v, string_copy_s("<color:s>人类</color>"));
 
     if (have_flag(flgs, OF_KILL_ORC))
-        vec_add(v, string_copy_s("<color:U>*Orcs*</color>"));
+        vec_add(v, string_copy_s("<color:U>*兽人*</color>"));
     else if (have_flag(flgs, OF_SLAY_ORC))
-        vec_add(v, string_copy_s("<color:U>Orcs</color>"));
+        vec_add(v, string_copy_s("<color:U>兽人</color>"));
 
     if (have_flag(flgs, OF_KILL_TROLL))
-        vec_add(v, string_copy_s("<color:g>*Trolls*</color>"));
+        vec_add(v, string_copy_s("<color:g>*巨魔*</color>"));
     else if (have_flag(flgs, OF_SLAY_TROLL))
-        vec_add(v, string_copy_s("<color:g>Trolls</color>"));
+        vec_add(v, string_copy_s("<color:g>巨魔</color>"));
 
     if (have_flag(flgs, OF_KILL_GIANT))
-        vec_add(v, string_copy_s("<color:u>*Giants*</color>"));
+        vec_add(v, string_copy_s("<color:u>*巨人*</color>"));
     else if (have_flag(flgs, OF_SLAY_GIANT))
-        vec_add(v, string_copy_s("<color:u>Giants</color>"));
+        vec_add(v, string_copy_s("<color:u>巨人</color>"));
 
     if (vec_length(v))
     {
@@ -888,44 +888,44 @@ static void _display_abilities(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
     vec_ptr v = vec_alloc((vec_free_f)string_free);
 
     if (have_flag(flgs, OF_LORE2))
-        vec_add(v, string_copy_s("<color:B>Auto Identify</color>"));
+        vec_add(v, string_copy_s("<color:B>自动鉴定</color>"));
 
     if (have_flag(flgs, OF_FREE_ACT))
-        vec_add(v, string_copy_s("<color:R>Free Action</color>"));
+        vec_add(v, string_copy_s("<color:R>行动自如</color>"));
     if (have_flag(flgs, OF_SEE_INVIS))
-        vec_add(v, string_copy_s("<color:B>See Invisible</color>"));
+        vec_add(v, string_copy_s("<color:B>识破隐形</color>"));
     if (have_flag(flgs, OF_REGEN))
-        vec_add(v, string_copy_s("<color:g>Regeneration</color>"));
+        vec_add(v, string_copy_s("<color:g>生命再生</color>"));
     if (have_flag(flgs, OF_REGEN_MANA))
-        vec_add(v, string_copy_s("<color:G>Mana Recovery</color>"));
+        vec_add(v, string_copy_s("<color:G>法力回复</color>"));
     if (have_flag(flgs, OF_HOLD_LIFE))
-        vec_add(v, string_copy_s("<color:y>Hold Life</color>"));
+        vec_add(v, string_copy_s("<color:y>维持生命</color>"));
     if (have_flag(flgs, OF_REFLECT))
-        vec_add(v, string_copy_s("<color:o>Reflection</color>"));
+        vec_add(v, string_copy_s("<color:o>反射</color>"));
     if (have_flag(flgs, OF_LEVITATION))
-        vec_add(v, string_copy_s("<color:B>Levitation</color>"));
+        vec_add(v, string_copy_s("<color:B>悬浮</color>"));
     if (have_flag(flgs, OF_SLOW_DIGEST))
-        vec_add(v, string_copy_s("<color:g>Slow Digestion</color>"));
+        vec_add(v, string_copy_s("<color:g>缓慢消化</color>"));
     if (have_flag(flgs, OF_WARNING))
-        vec_add(v, string_copy_s("<color:y>Warning</color>"));
+        vec_add(v, string_copy_s("<color:y>预警</color>"));
     if (have_flag(flgs, OF_NO_MAGIC))
-        vec_add(v, string_copy_s("<color:r>Anti-Magic</color>"));
+        vec_add(v, string_copy_s("<color:r>反魔法</color>"));
     if (have_flag(flgs, OF_NO_SUMMON))
-        vec_add(v, string_copy_s("<color:v>Prevents Summoning</color>"));
+        vec_add(v, string_copy_s("<color:v>阻止召唤</color>"));
     if (have_flag(flgs, OF_NO_TELE))
-        vec_add(v, string_copy_s("<color:r>Prevents Teleportation</color>"));
+        vec_add(v, string_copy_s("<color:r>阻止传送</color>"));
     if (have_flag(flgs, OF_THROWING))
-        vec_add(v, string_copy_s("<color:D>Throwing</color>"));
+        vec_add(v, string_copy_s("<color:D>投掷</color>"));
     if (have_flag(flgs, OF_BLESSED))
-        vec_add(v, string_copy_s("<color:B>Blessed</color>"));
+        vec_add(v, string_copy_s("<color:B>受祝福的</color>"));
     if (have_flag(flgs, OF_RIDING))
-        vec_add(v, string_copy_s("<color:o>Riding</color>"));
+        vec_add(v, string_copy_s("<color:o>骑乘</color>"));
     if (have_flag(flgs, OF_DARKNESS))
-        vec_add(v, string_copy_s("<color:D>Permanent Darkness</color>"));
+        vec_add(v, string_copy_s("<color:D>永久黑暗</color>"));
     else if (have_flag(flgs, OF_LITE))
-        vec_add(v, string_copy_s("<color:y>Permanent Light</color>"));
+        vec_add(v, string_copy_s("<color:y>永久光明</color>"));
     if (have_flag(flgs, OF_NIGHT_VISION))
-        vec_add(v, string_copy_s("<color:D>Night Vision</color>"));
+        vec_add(v, string_copy_s("<color:D>夜视</color>"));
     if (vec_length(v))
     {
         _print_list(v, doc, ';', '\0');
@@ -934,33 +934,33 @@ static void _display_abilities(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
 
     vec_clear(v);
     if (have_flag(flgs, OF_TELEPATHY))
-        vec_add(v, string_copy_s("<color:y>Telepathy</color>"));
+        vec_add(v, string_copy_s("<color:y>心灵感应</color>"));
     if (have_flag(flgs, OF_ESP_ANIMAL))
-        vec_add(v, string_copy_s("<color:B>Sense Animals</color>"));
+        vec_add(v, string_copy_s("<color:B>感知动物</color>"));
     if (have_flag(flgs, OF_ESP_UNDEAD))
-        vec_add(v, string_copy_s("<color:D>Sense Undead</color>"));
+        vec_add(v, string_copy_s("<color:D>感知不死生物</color>"));
     if (have_flag(flgs, OF_ESP_DEMON))
-        vec_add(v, string_copy_s("<color:R>Sense Demons</color>"));
+        vec_add(v, string_copy_s("<color:R>感知恶魔</color>"));
     if (have_flag(flgs, OF_ESP_ORC))
-        vec_add(v, string_copy_s("<color:U>Sense Orcs</color>"));
+        vec_add(v, string_copy_s("<color:U>感知兽人</color>"));
     if (have_flag(flgs, OF_ESP_TROLL))
-        vec_add(v, string_copy_s("<color:g>Sense Trolls</color>"));
+        vec_add(v, string_copy_s("<color:g>感知巨魔</color>"));
     if (have_flag(flgs, OF_ESP_GIANT))
-        vec_add(v, string_copy_s("<color:u>Sense Giants</color>"));
+        vec_add(v, string_copy_s("<color:u>感知巨人</color>"));
     if (have_flag(flgs, OF_ESP_DRAGON))
-        vec_add(v, string_copy_s("<color:r>Sense Dragons</color>"));
+        vec_add(v, string_copy_s("<color:r>感知龙类</color>"));
     if (have_flag(flgs, OF_ESP_HUMAN))
-        vec_add(v, string_copy_s("<color:s>Sense Humans</color>"));
+        vec_add(v, string_copy_s("<color:s>感知人类</color>"));
     if (have_flag(flgs, OF_ESP_EVIL))
-        vec_add(v, string_copy_s("<color:y>Sense Evil</color>"));
+        vec_add(v, string_copy_s("<color:y>感知邪恶</color>"));
     if (have_flag(flgs, OF_ESP_GOOD))
-        vec_add(v, string_copy_s("<color:w>Sense Good</color>"));
+        vec_add(v, string_copy_s("<color:w>感知善良</color>"));
     if (have_flag(flgs, OF_ESP_NONLIVING))
-        vec_add(v, string_copy_s("<color:B>Sense Nonliving</color>"));
+        vec_add(v, string_copy_s("<color:B>感知无生命生物</color>"));
 	if (have_flag(flgs, OF_ESP_LIVING))
-		vec_add(v, string_copy_s("<color:W>Sense Living</color>"));
+		vec_add(v, string_copy_s("<color:W>感知活物</color>"));
     if (have_flag(flgs, OF_ESP_UNIQUE))
-        vec_add(v, string_copy_s("<color:v>Sense Uniques</color>"));
+        vec_add(v, string_copy_s("<color:v>感知唯一怪物</color>"));
 
     if (vec_length(v))
     {
@@ -982,9 +982,9 @@ static void _display_auras(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc)
     if (have_flag(flgs, OF_AURA_ELEC))
         vec_add(v, _get_res_name(RES_ELEC));
     if (have_flag(flgs, OF_AURA_SHARDS))
-        vec_add(v, string_copy_s("<color:U>Shards</color>"));
+        vec_add(v, string_copy_s("<color:U>碎片</color>"));
     if (have_flag(flgs, OF_AURA_REVENGE))
-        vec_add(v, string_copy_s("<color:v>Retaliation</color>"));
+        vec_add(v, string_copy_s("<color:v>反击</color>"));
 
     if (vec_length(v))
     {
@@ -1031,14 +1031,14 @@ static void _display_extra(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], doc_ptr
     if (net)
     {
         doc_printf(doc, "它%s你近战武器的伤害面骰。\n",
-            (net > 0) ? "increases" : "<color:R>decreases</color>");
+            (net > 0) ? "提升" : "<color:R>降低</color>");
     }
 
     net = _calc_net_bonus(o_ptr->pval, flgs, OF_XTRA_MIGHT, OF_INVALID);
     if (net)
     {
         doc_printf(doc, "它%s你弓箭的倍率。\n",
-            (net > 0) ? "increases" : "<color:R>decreases</color>");
+            (net > 0) ? "提升" : "<color:R>降低</color>");
     }
 
     switch (o_ptr->name1)
@@ -1105,8 +1105,8 @@ static void _display_extra(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], doc_ptr
 
     if (o_ptr->name3)
     {
-        char nimi[80];
-        strcpy(nimi, a_name + a_info[o_ptr->name3].name);
+        char nimi[MAX_NLEN];
+        my_strcpy(nimi, artifact_display_name(o_ptr->name3), sizeof(nimi));
         (void)clip_and_locate("~", nimi);
         doc_printf(doc, "它让你想起了神器 <color:R>%s</color>。\n", ((nimi[0] == '&') && (strlen(nimi) > 2)) ? nimi + 2 : nimi);
     }
@@ -1173,61 +1173,61 @@ static void _display_curses(object_type *o_ptr, u32b flgs[OF_ARRAY_SIZE], doc_pt
     /* The precise nature of the curse, however, must be learned either by
        experience or by *identification* */
     if (have_flag(flgs, OF_TY_CURSE) || o_ptr->known_curse_flags & OFC_TY_CURSE)
-        vec_add(v, string_copy_s("<color:v>*Ancient Foul Curse*</color>"));
+        vec_add(v, string_copy_s("<color:v>*远古邪恶诅咒*</color>"));
     if (o_ptr->known_curse_flags & OFC_BY_CURSE)
-        vec_add(v, string_copy_s("<color:P>Baby Foul Curse</color>"));
+        vec_add(v, string_copy_s("<color:P>微型邪恶诅咒</color>"));
     if (have_flag(flgs, OF_AGGRAVATE) || o_ptr->known_curse_flags & OFC_AGGRAVATE)
-        vec_add(v, string_copy_s("<color:r>Aggravates</color>"));
+        vec_add(v, string_copy_s("<color:r>激怒怪物</color>"));
     if (have_flag(flgs, OF_DRAIN_EXP) || o_ptr->known_curse_flags & OFC_DRAIN_EXP)
-        vec_add(v, string_copy_s("<color:y>Drains Experience</color>"));
+        vec_add(v, string_copy_s("<color:y>吸取经验</color>"));
     if (o_ptr->known_curse_flags & OFC_SLOW_REGEN)
-        vec_add(v, string_copy_s("<color:o>Slow Regeneration</color>"));
+        vec_add(v, string_copy_s("<color:o>缓慢再生</color>"));
     if (o_ptr->known_curse_flags & OFC_DANGER)
-        vec_add(v, string_copy_s("<color:R>Invites Danger</color>"));
+        vec_add(v, string_copy_s("<color:R>招惹危险</color>"));
     if (o_ptr->known_curse_flags & OFC_ADD_L_CURSE)
-        vec_add(v, string_copy_s("<color:w>Adds Weak Curses</color>"));
+        vec_add(v, string_copy_s("<color:w>附加弱效诅咒</color>"));
     if (o_ptr->known_curse_flags & OFC_ADD_H_CURSE)
-        vec_add(v, string_copy_s("<color:b>Adds Heavy Curses</color>"));
+        vec_add(v, string_copy_s("<color:b>附加重度诅咒</color>"));
     if (o_ptr->known_curse_flags & OFC_CALL_ANIMAL)
-        vec_add(v, string_copy_s("<color:g>Attracts Animals</color>"));
+        vec_add(v, string_copy_s("<color:g>吸引动物</color>"));
     if (o_ptr->known_curse_flags & OFC_CALL_DEMON)
-        vec_add(v, string_copy_s("<color:R>Attracts Demons</color>"));
+        vec_add(v, string_copy_s("<color:R>吸引恶魔</color>"));
     if (o_ptr->known_curse_flags & OFC_CALL_DRAGON)
-        vec_add(v, string_copy_s("<color:r>Attracts Dragons</color>"));
+        vec_add(v, string_copy_s("<color:r>吸引龙类</color>"));
     if (o_ptr->known_curse_flags & OFC_COWARDICE)
-        vec_add(v, string_copy_s("<color:y>Cowardice</color>"));
+        vec_add(v, string_copy_s("<color:y>怯懦</color>"));
     if (o_ptr->known_curse_flags & OFC_CATLIKE)
-        vec_add(v, string_copy_s("<color:r>Catlike Tread</color>"));
+        vec_add(v, string_copy_s("<color:r>猫之步伐</color>"));
     if (o_ptr->known_curse_flags & OFC_CRAPPY_MUT)
-        vec_add(v, string_copy_s("<color:R>Harmful Mutations</color>"));
+        vec_add(v, string_copy_s("<color:R>有害突变</color>"));
     if (have_flag(flgs, OF_TELEPORT) || o_ptr->known_curse_flags & OFC_TELEPORT)
-        vec_add(v, string_copy_s("<color:B>Random Teleportation</color>"));
+        vec_add(v, string_copy_s("<color:B>随机传送</color>"));
     if (o_ptr->known_curse_flags & OFC_LOW_MELEE)
-        vec_add(v, string_copy_s("<color:G>Miss Blows</color>"));
+        vec_add(v, string_copy_s("<color:G>攻击失误</color>"));
     if (o_ptr->known_curse_flags & OFC_NORMALITY)
-        vec_add(v, string_copy_s("<color:B>Dispels Magic</color>"));
+        vec_add(v, string_copy_s("<color:B>驱散魔法</color>"));
     if (o_ptr->name2 == EGO_ROBE_TWILIGHT)
-        vec_add(v, string_copy_s("<color:v>Zero AC</color>"));
+        vec_add(v, string_copy_s("<color:v>零护甲</color>"));
     else if (o_ptr->known_curse_flags & OFC_LOW_AC)
-        vec_add(v, string_copy_s("<color:R>Low AC</color>"));
+        vec_add(v, string_copy_s("<color:R>低护甲</color>"));
     if (o_ptr->known_curse_flags & OFC_LOW_MAGIC)
         vec_add(v, string_copy_s("<color:y>额外法术失败率</color>"));
     if (o_ptr->known_curse_flags & OFC_LOW_DEVICE)
-        vec_add(v, string_copy_s("<color:y>Extra Device Fails</color>"));
+        vec_add(v, string_copy_s("<color:y>装置易失效</color>"));
     if (o_ptr->known_curse_flags & OFC_FAST_DIGEST)
-        vec_add(v, string_copy_s("<color:r>Fast Digestion</color>"));
+        vec_add(v, string_copy_s("<color:r>快速消化</color>"));
     if (o_ptr->known_curse_flags & OFC_OPEN_WOUNDS)
-        vec_add(v, string_copy_s("<color:r>Open Wounds</color>"));
+        vec_add(v, string_copy_s("<color:r>伤口撕裂</color>"));
     if (o_ptr->known_curse_flags & OFC_ALLERGY)
-        vec_add(v, string_copy_s("<color:y>Irritates Airways</color>"));
+        vec_add(v, string_copy_s("<color:y>刺激气道</color>"));
     if (o_ptr->known_curse_flags & OFC_DRAIN_HP)
-        vec_add(v, string_copy_s("<color:o>Drains HP</color>"));
+        vec_add(v, string_copy_s("<color:o>吸取生命</color>"));
     if (o_ptr->known_curse_flags & OFC_DRAIN_MANA)
-        vec_add(v, string_copy_s("<color:B>Drains Mana</color>"));
+        vec_add(v, string_copy_s("<color:B>吸取法力</color>"));
     if (o_ptr->known_curse_flags & OFC_DRAIN_PACK)
-        vec_add(v, string_copy_s("<color:g>Drains Devices</color>"));
+        vec_add(v, string_copy_s("<color:g>吸取装置</color>"));
     if (object_is_unenchantable(o_ptr))
-        vec_add(v, string_copy_s("<color:r>Unenchantable</color>"));
+        vec_add(v, string_copy_s("<color:r>无法附魔</color>"));
 
     if (vec_length(v))
     {
@@ -1674,7 +1674,7 @@ void device_display_doc(object_type *o_ptr, doc_ptr doc)
     v = vec_alloc((vec_free_f)string_free);
     net = _calc_net_bonus(o_ptr->pval, flgs, OF_SPEED, OF_DEC_SPEED);
     if (net)
-        vec_add(v, string_alloc_format("<color:%c>%+d Quickness</color>", (net > 0) ? 'G' : 'r', net));
+        vec_add(v, string_alloc_format("<color:%c>%+d 迅捷</color>", (net > 0) ? 'G' : 'r', net));
 
     net = _calc_net_bonus(o_ptr->pval, flgs, OF_DEVICE_POWER, OF_INVALID);
     if (net)
@@ -1686,16 +1686,16 @@ void device_display_doc(object_type *o_ptr, doc_ptr doc)
 
     net = _calc_net_bonus(o_ptr->pval, flgs, OF_EASY_SPELL, OF_INVALID);
     if (net > 0)
-        vec_add(v, string_alloc_format("<color:G>%+d Easy Use</color>", net));
+        vec_add(v, string_alloc_format("<color:G>%+d 易于使用</color>", net));
     else if (net < 0)
-        vec_add(v, string_copy_s("<color:r>Hard Use</color>"));
+        vec_add(v, string_copy_s("<color:r>难以使用</color>"));
 
     net = _calc_net_bonus(o_ptr->pval, flgs, OF_REGEN, OF_INVALID);
     if (net)
-        vec_add(v, string_alloc_format("<color:%c>%+d to Regeneration</color>", (net > 0) ? 'G' : 'r', net));
+        vec_add(v, string_alloc_format("<color:%c>%+d 再生</color>", (net > 0) ? 'G' : 'r', net));
 
     if (have_flag(flgs, OF_HOLD_LIFE))
-        vec_add(v, string_copy_s("<color:y>Hold Charges</color>"));
+        vec_add(v, string_copy_s("<color:y>维持充能</color>"));
 
     if (vec_length(v))
     {
@@ -1800,7 +1800,7 @@ void device_display_smith(object_type *o_ptr, doc_ptr doc)
     v = vec_alloc((vec_free_f)string_free);
     net = _calc_net_bonus(o_ptr->pval, flgs, OF_SPEED, OF_DEC_SPEED);
     if (net)
-        vec_add(v, string_alloc_format("<color:%c>%+d Quickness</color>", (net > 0) ? 'G' : 'r', net));
+        vec_add(v, string_alloc_format("<color:%c>%+d 迅捷</color>", (net > 0) ? 'G' : 'r', net));
 
     net = _calc_net_bonus(o_ptr->pval, flgs, OF_DEVICE_POWER, OF_INVALID);
     if (net)
@@ -1812,16 +1812,16 @@ void device_display_smith(object_type *o_ptr, doc_ptr doc)
 
     net = _calc_net_bonus(o_ptr->pval, flgs, OF_EASY_SPELL, OF_INVALID);
     if (net > 0)
-        vec_add(v, string_alloc_format("<color:G>%+d Easy Use</color>", net));
+        vec_add(v, string_alloc_format("<color:G>%+d 易于使用</color>", net));
     else if (net < 0)
-        vec_add(v, string_copy_s("<color:r>Hard Use</color>"));
+        vec_add(v, string_copy_s("<color:r>难以使用</color>"));
 
     net = _calc_net_bonus(o_ptr->pval, flgs, OF_REGEN, OF_INVALID);
     if (net)
-        vec_add(v, string_alloc_format("<color:%c>%+d to Regeneration</color>", (net > 0) ? 'G' : 'r', net));
+        vec_add(v, string_alloc_format("<color:%c>%+d 再生</color>", (net > 0) ? 'G' : 'r', net));
 
     if (have_flag(flgs, OF_HOLD_LIFE))
-        vec_add(v, string_copy_s("<color:y>Hold Charges</color>"));
+        vec_add(v, string_copy_s("<color:y>维持充能</color>"));
 
     if (vec_length(v))
     {

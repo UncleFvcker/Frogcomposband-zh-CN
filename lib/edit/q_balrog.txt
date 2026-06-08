@@ -1,23 +1,23 @@
 # New quest for FrogComposband 7.1.chocolate
 
 ?:[EQU $QUEST78 Taken InProgress]
-D:One of the mountains in the eastern part of our territory used to host a
-D:dwarven mining community; but they moved out in a hurry after their
-D:tunnels started spitting out lava. At first we thought it was just a normal
-D:volcano that had lain dormant for centuries, but it now appears their
-D:diggings disturbed the sleep of something even more dangerous. A shadowy
-D:horror, cloaked in flames, is rumoured to have lived under the old mine; we
-D:occasionally hear the mountain rumble at night, as if some enormous monster
-D:were trying to dig its way out. We hope you can put it back to sleep before
-D:it reaches the open.
+D:我们领地东部的一座山脉曾经是矮人
+D:采矿社区的所在地；但在他们的隧道开始喷出岩浆后，
+D:他们匆忙搬走了。起初我们以为那只是一座休眠了
+D:几个世纪的普通火山，但现在看来，他们的
+D:挖掘惊醒了某种更危险的东西的沉睡。有传言说，
+D:一个披着火焰的暗影骇魔一直住在那座旧矿井下面；我们
+D:偶尔会在夜间听到山脉轰隆作响，就好像有什么巨大的怪物
+D:正试图挖出一条路来。我们希望你能它到达地表之前
+D:让它重新陷入沉睡。
 ?:1
 
 ?:[EQU $QUEST78 Completed]
-D:Thank you! Here is a reward for your good work.
+D:谢谢你！这是对你出色工作的奖励。
 ?:1
 
 ?:[EQU $QUEST78 Failed]
-D:That's horrible news.
+D:真是个可怕的消息。
 ?:1
 
 T:QUEST:NORMAL

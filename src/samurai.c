@@ -17,7 +17,7 @@ cptr do_hissatsu_spell(int spell, int mode)
     {
     case 0:
         if (name) return "飞饭纲";
-        if (desc) return "Attacks a two squares distant monster.";
+        if (desc) return "攻击距离两格的怪物。";
         if (browse) return NULL;
         if (cast)
         {
@@ -29,8 +29,8 @@ cptr do_hissatsu_spell(int spell, int mode)
         break;
 
     case 1:
-        if (name) return "3-Way Attack";
-        if (desc) return "Attacks in 3 directions in one time.";
+        if (name) return "三向攻击";
+        if (desc) return "一次向 3 个方向进行攻击。";
         if (browse) return NULL;
         if (cast)
         {
@@ -70,7 +70,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 2:
         if (name) return "回旋镖";
-        if (desc) return "Throws current weapon. And it'll return to your hand unless failed.";
+        if (desc) return "投掷当前武器。除非失败，否则它将飞回到你手中。";
         if (browse) return NULL;
         if (cast)
         {
@@ -83,7 +83,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 3:
         if (name) return "燃烧打击";
-        if (desc) return "Attacks a monster with more damage unless it has resistance to fire.";
+        if (desc) return "除非怪物对火焰有抗性，否则将对其造成更高的伤害。";
         if (browse)
         {
             display_weapon_info_aux(HISSATSU_FIRE);
@@ -111,7 +111,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 4:
         if (name) return "探测凶意";
-        if (desc) return "Detects all monsters except mindless in your vicinity.";
+        if (desc) return "探测你附近除无心智以外的所有怪物。";
         if (browse) return NULL;
         if (cast)
             detect_monsters_mind(DETECT_RAD_DEFAULT);
@@ -119,7 +119,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 5:
         if (name) return "震慑打击";
-        if (desc) return "Attempts to stun an adjacent monster.";
+        if (desc) return "尝试震慑一个相邻的怪物。";
         if (browse) return NULL;
         if (cast)
         {
@@ -143,7 +143,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 6:
         if (name) return "反击";
-        if (desc) return "Prepares to counterattack, using SP to retaliate against any monster strikes on the following turn.";
+        if (desc) return "准备反击，在下个回合消耗 SP 反击怪物的任何近战攻击。";
         if (browse) return NULL;
         if (cast)
         {
@@ -159,7 +159,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 7:
         if (name) return "拂拔";
-        if (desc) return "Attacks monster with your weapons normally, then move through counter side of the monster.";
+        if (desc) return "用武器正常攻击怪物，然后穿透移动到怪物的另一侧。";
         if (browse) return NULL;
         if (cast)
         {
@@ -200,7 +200,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 8:
         if (name) return "毒蛇之舌";
-        if (desc) return "Attacks a monster with more damage unless it has resistance to poison.";
+        if (desc) return "对怪物造成更高伤害，除非其对毒素有抗性。";
         if (browse)
         {
             display_weapon_info_aux(HISSATSU_POISON);
@@ -228,7 +228,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 9:
         if (name) return "斩魔剑";
-        if (desc) return "Attacks an evil unliving monster with great damage. No effect to other monsters.";
+        if (desc) return "对邪恶的非活物怪物造成巨大伤害。对其他怪物无效。";
         if (browse)
         {
             display_weapon_info_aux(HISSATSU_ZANMA);
@@ -256,7 +256,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 10:
         if (name) return "风之冲击";
-        if (desc) return "Attacks an adjacent monster, and blows it away.";
+        if (desc) return "攻击一个相邻的怪物，并将其击退。";
         if (browse) return NULL;
         if (cast)
         {
@@ -322,7 +322,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 11:
         if (name) return "判定";
-        if (desc) return "Identifies a weapon or armor. Or *identifies* these at level 45.";
+        if (desc) return "鉴定一件武器或盔甲。在 45 级时改为对其进行*全面鉴定*。";
         if (browse) return NULL;
         if (cast)
         {
@@ -339,7 +339,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 12:
         if (name) return "碎岩击";
-        if (desc) return "Breaks rock, or greatly damages a monster made of rock.";
+        if (desc) return "破坏岩石，或对岩石构成的怪物造成巨大伤害。";
         if (browse)
         {
             display_weapon_info_aux(HISSATSU_HAGAN);
@@ -367,7 +367,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 13:
         if (name) return "乱雪月花";
-        if (desc) return "Attacks a monster with an increased number of attacks, and more damage unless it has resistance to cold.";
+        if (desc) return "增加攻击次数，并对怪物造成更高伤害，除非其对冰寒有抗性。";
         if (browse)
         {
             display_weapon_info_aux(HISSATSU_COLD);
@@ -395,7 +395,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 14:
         if (name) return "弱点瞄准";
-        if (desc) return "Attempts to kill a monster instantly. If failed cause only 1HP of damage.";
+        if (desc) return "尝试秒杀一个怪物。如果失败，只造成 1 点伤害。";
         if (browse) return NULL;
         if (cast)
         {
@@ -419,7 +419,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 15:
         if (name) return "魔神斩";
-        if (desc) return "Attempts to attack with critical hit. But this attack is easy to evade for a monster.";
+        if (desc) return "尝试进行必定暴击的攻击。但此攻击很容易被怪物闪避。";
         if (browse)
         {
             display_weapon_info_aux(HISSATSU_MAJIN);
@@ -478,7 +478,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 17:
         if (name) return "雷鹰斩";
-        if (desc) return "Attacks a monster with more damage unless it has resistance to electricity.";
+        if (desc) return "对怪物造成更高伤害，除非其对闪电有抗性。";
         if (browse)
         {
             display_weapon_info_aux(HISSATSU_ELEC);
@@ -506,7 +506,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 18:
         if (name) return "突进攻击";
-        if (desc) return "Steps close to a monster and attacks at a time.";
+        if (desc) return "靠近怪物并同时发动攻击。";
         if (browse) return NULL;
     
         if (cast)
@@ -563,7 +563,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 20:
         if (name) return "地震击";
-        if (desc) return "Shakes dungeon structure, and results in random swapping of floors and walls.";
+        if (desc) return "震动地下城结构，导致地板和墙壁随机交换。";
         if (browse) return NULL;
     
         if (cast)
@@ -585,7 +585,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 21:
         if (name) return "裂地击";
-        if (desc) return "Fires a beam of shock wave.";
+        if (desc) return "发射一道冲击波射线。";
         if (browse) return NULL;
         if (cast)
         {
@@ -628,7 +628,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 22:
         if (name) return "战吼";
-        if (desc) return "Damages all monsters in sight with sound. Aggravate nearby monsters.";
+        if (desc) return "用音波伤害视线内的所有怪物。激怒附近的怪物。";
         if (browse) return NULL;
     
         if (cast)
@@ -641,7 +641,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 23:
         if (name) return "无双三段";
-        if (desc) return "Attacks with powerful 3 strikes.";
+        if (desc) return "发动强力的三连击。";
         if (browse)
         {
             display_weapon_info_aux(HISSATSU_3DAN);
@@ -728,7 +728,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 24:
         if (name) return "吸血鬼之牙";
-        if (desc) return "Attacks with vampiric strikes which absorbs HP from a monster and gives them to you. No effect to unliving monsters.";
+        if (desc) return "发动吸血打击，从怪物身上吸收生命值并转化为你的生命。对非活物怪物无效。";
         if (browse) return NULL;
     
         if (cast)
@@ -753,7 +753,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 25:
         if (name) return "幻月";
-        if (desc) return "Attempts to stun, confuse and sleep all waking monsters.";
+        if (desc) return "尝试震慑、困惑并催眠所有清醒的怪物。";
         if (browse) return NULL;
     
         if (cast)
@@ -767,7 +767,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 26:
         if (name) return "百人斩";
-        if (desc) return "Performs a series of rush attacks. The series continues while killing each monster in a time and SP remains.";
+        if (desc) return "发动一系列突进攻击。只要每次能击杀怪物且还有剩余 SP，连击就会继续。";
         if (browse) return NULL;
     
         if (cast)
@@ -805,7 +805,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 27:
         if (name) return "龙闪";
-        if (desc) return "Runs toward given location while attacking all monsters on the path.";
+        if (desc) return "向指定位置奔跑，同时攻击路径上的所有怪物。";
         if (browse) return NULL;
     
         if (cast)
@@ -834,7 +834,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 28:
         if (name) return "双重斩";
-        if (desc) return "Double attacks at a time.";
+        if (desc) return "同时发动双重攻击。";
         if (browse) return NULL;
     
         if (cast)
@@ -865,7 +865,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 29:
         if (name) return "降伏绝刀势";
-        if (desc) return "Performs a powerful attack which even effect nearby monsters.";
+        if (desc) return "发动一次强力攻击，甚至会波及附近的怪物。";
         if (browse) return NULL;
         if (cast)
         {
@@ -920,7 +920,7 @@ cptr do_hissatsu_spell(int spell, int mode)
 
     case 30:
         if (name) return "庆云鬼忍剑";
-        if (desc) return "Attacks a monster with extremely powerful strikes, but also causes you to suffer 100+d100 damage. Greatly hurts undead monsters.";
+        if (desc) return "对怪物发动极其强力的打击，但也会使你承受 100+d100 点伤害。对不死怪物造成极大伤害。";
         if (browse)
         {
             display_weapon_info_aux(HISSATSU_UNDEAD);
@@ -943,13 +943,13 @@ cptr do_hissatsu_spell(int spell, int mode)
                 msg_print("这里没有怪物。");
                 return NULL;
             }
-            take_hit(DAMAGE_NOESCAPE, 100 + randint1(100), "exhaustion on using Keiun-Kininken");
+            take_hit(DAMAGE_NOESCAPE, 100 + randint1(100), "使用庆云金印剑后的虚脱");
         }
         break;
 
     case 31:
         if (name) return "切腹";
-        if (desc) return "'Busido is found in death'";
+        if (desc) return "'武士道乃求死之道'";
         if (browse) return NULL;
 
         if (cast)
@@ -1276,7 +1276,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "technique";
+        me.magic_desc = "特技";
         me.which_stat = A_WIS;
         me.encumbrance.max_wgt = 3000;
         me.encumbrance.weapon_pct = 0;

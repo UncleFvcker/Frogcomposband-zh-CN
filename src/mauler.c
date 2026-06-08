@@ -650,7 +650,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "technique";
+        me.magic_desc = "技巧";
         me.options = CASTER_USE_HP;
         me.which_stat = A_STR;
         init = TRUE;

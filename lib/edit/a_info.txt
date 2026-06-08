@@ -56,9 +56,9 @@ W:30:1:10:10000
 P:0:1d1:0:0:0
 F:SEARCH | INSTA_ART | RES_DARK
 E:LITE_AREA:10:15
-E:The phial wells with clear light...
-D:A small crystal phial, with the light of Earendil's Star contained inside.
-D:Its light is imperishable, and near it darkness cannot endure.
+E:玻璃瓶涌出清澈的光芒……
+D:一个小水晶瓶，里面装着埃兰迪尔之星的光芒。
+D:它的光芒是不朽的，在它附近，黑暗无法留存。
 
 N:2:of Elendil
 I:39:5:1
@@ -66,8 +66,8 @@ W:50:25:5:32500
 P:0:1d1:0:0:0
 F:SEE_INVIS | HOLD_LIFE | INSTA_ART | SPEED | CON | CHR | REGEN
 E:LITE_MAP_AREA:30:25
-E:The star shines brightly...
-D:The shining Star of the West, a famed heirloom of Elendil's house.
+E:星辰闪耀着明亮的光芒……
+D:闪耀的西方之星，埃兰迪尔家族著名的传家宝。
 
 N:3:of Judgement
 I:39:6:3
@@ -76,15 +76,15 @@ P:0:1d1:0:0:0
 F:SEE_INVIS | HOLD_LIFE | RES_CONF | RES_CHAOS |
 F:INSTA_ART | SPEED | WIS | INT
 E:JEWEL:50:30
-E:The Jewel flashes bright red!
+E:宝石闪烁着明亮的红光！
 
 N:4:of Carlammas
 I:40:0:2
 W:50:15:3:60000
 F:CON | HIDE_TYPE | RES_FIRE | RES_FEAR
 E:PROT_EVIL:30:300
-E:The amulet lets out a shrill wail...
-D:A fiery circle of bronze, with mighty spells to ward off evil.
+E:护身符发出尖锐的嚎叫声……
+D:一个燃烧的青铜圆环，带有驱逐邪恶的强大法术。
 
 N:5:of Ingwe
 I:40:0:3
@@ -93,27 +93,27 @@ F:WIS | CHR | INFRA | HIDE_TYPE |
 F:SEE_INVIS | FREE_ACT |
 F:RES_ACID | RES_COLD | RES_ELEC |
 E:DISPEL_EVIL:50:300:250
-E:The amulet floods the area with goodness...
-D:The ancient heirloom of Ingwe, high lord of the Vanyar, against whom nothing
-D:of evil could stand.
+E:护身符使周围区域充满了善良的力量……
+D:凡雅精灵至高王英格威的古老传家宝，任何邪恶事物
+D:都无法与之抗衡。
 
 N:6:Necklace of the Dwarves
 I:40:0:2
 W:70:35:3:75000
 F:STR | CON | LIFE | INFRA | HIDE_TYPE | RES_BLIND | DEC_STEALTH
 F:SEE_INVIS | FREE_ACT | REGEN | LITE | FULL_NAME
-D:The Nauglamir; a carencet of gold set with a multitude of shining gems of
-D:Valinor, accenting a radiant Silmaril. The sturdy spirits of Dwarvish
-D:craftsmen who labored long in mountain smithies lie within it still, and
-D:as gossamer it rests upon the bearer.
+D:诺格莱迷尔；一条镶嵌着无数闪耀的维林诺宝石的金项链，
+D:更衬托出一颗光芒四射的精灵宝钻。曾在山脉铁匠铺中长期劳作的
+D:矮人工匠们坚韧的灵魂依然留存于其中，而
+D:它戴在佩戴者身上却轻如游丝。
 
 N:7:of Edison
 I:39:3:3
 W:40:20:5:20000
 P:0:1d1:0:0:0
 F:INSTA_ART | INFRA | AURA_FIRE | AURA_ELEC
-D:Thomas Edison, the "Wizard of Menlo Park," patented 1,093
-D:invention including the incandescent lightbulb.
+D:托马斯·爱迪生，“门洛帕克的巫师”，拥有 1,093 项专利，
+D:其中包括白炽灯泡。
 
 N:8:'Frakir'
 I:45:0:1
@@ -121,15 +121,15 @@ W:30:20:2:10000
 F:STR | INT | WIS | DEX | CON | CHR | STEALTH | HIDE_TYPE | SPEED
 F:RES_POIS | SEE_INVIS | SEARCH | WARNING |
 E:DRAIN_LIFE:30:150:100
-E:You order Frakir to strangle your opponent.
+E:你命令弗拉基尔勒住你的对手。
 
 N:9:of Tulkas
 I:45:0:4
 W:70:45:2:35000
 F:STR | DEX | CON | HIDE_TYPE | SPEED |
-D:The treasure of Tulkas, most fleet and wrathful of the Valar.
+D:维拉中最迅捷、最愤怒的托卡斯的宝物。
 E:SPEED_HERO:25:225:75
-E:The ring glows brightly...
+E:戒指闪耀着明亮的光芒……
 
 
 
@@ -142,10 +142,10 @@ F:FREE_ACT | SEE_INVIS |
 F:SLOW_DIGEST | REGEN | SUST_STR | SUST_DEX | IM_FIRE | BRAND_FIRE
 F:WEAPONMASTERY | XTRA_SHOTS | FIXED_ART
 E:BALL_FIRE:50:50:300
-E:The ring glows deep red...
-D:The Ring of Fire, set with a ruby that glows like flame. Narya is one
-D:of the three Rings of Power created by the Elves and hidden by them from
-D:Sauron.
+E:戒指闪耀着深红色的光芒……
+D:火之戒，镶嵌着一颗如火焰般发光的红宝石。纳雅是
+D:精灵所铸造并向索伦隐藏的
+D:三枚力量之戒之一。
 
 
 
@@ -159,10 +159,10 @@ F:LEVITATION | REGEN |
 F:SUST_INT | SUST_WIS | IM_COLD | BRAND_COLD
 F:XTRA_POWER | WEAPONMASTERY | XTRA_SHOTS | FIXED_ART
 E:BALL_COLD:50:50:400
-E:The ring glows bright white...
-D:The Ring of Adamant, with a pure white stone as centerpiece. Nenya is one
-D:of the three Rings of Power created by the Elves and hidden by them from
-D:Sauron.
+E:戒指闪耀着明亮的白光……
+D:精金之戒，镶嵌着一颗纯白色的宝石。南雅是
+D:精灵所铸造并向索伦隐藏的
+D:三枚力量之戒之一。
 
 
 
@@ -176,11 +176,11 @@ F:LEVITATION | SLOW_DIGEST | REGEN |
 F:SUST_INT | SUST_WIS | SUST_STR | SUST_DEX | IM_ELEC | BRAND_ELEC
 F:XTRA_POWER | WEAPONMASTERY | XTRA_SHOTS | FIXED_ART
 E:BALL_ELEC:50:50:500
-E:The ring glows deep blue...
-D:The Ring of Sapphire, with clear blue gems that shine like stars,
-D:glittering untouchable despite all that Morgoth ever wrought. Vilya is
-D:one of the three Rings of Power created by the Elves and hidden by them
-D:from Sauron.
+E:戒指闪耀着深蓝色的光芒……
+D:蓝宝石之戒，镶有一颗清澈如星光般闪耀的蓝宝石，
+D:无论魔苟斯造成怎样的破坏，它都闪耀着不可触犯的光芒。维雅是
+D:精灵所铸造并向索伦隐藏的
+D:三枚力量之戒之一。
 
 
 
@@ -198,12 +198,12 @@ F:XTRA_POWER | XTRA_H_RES |
 F:ESP_DEMON | ESP_UNDEAD | WEAPONMASTERY
 F:BRAND_FIRE | BRAND_COLD | BRAND_ELEC | BRAND_ACID
 E:ONE_RING:50:500
-E:The ring glows intensely black...
-D:"One Ring to rule them all, One Ring to find them, One Ring to bring
-D:them all and in the darkness bind them." Made of massive gold, and
-D:set with runes in the foul speech of Mordor, Isildur's Bane possesses
-D:powers so great that it inevitably twists and masters any earthly being
-D:who wears it.
+E:戒指闪耀着深邃的黑光……
+D:“至尊戒，驭众戒；至尊戒，寻众戒；至尊戒，引众戒，
+D:禁锢众戒黑暗中。”由厚重的纯金打造，并
+D:铭刻着用邪恶的魔多语写成的符文，这枚“埃西铎的克星”拥有
+D:极其强大的力量，它不可避免地会扭曲并控制任何佩戴它的
+D:凡间生物。
 
 N:14:of Cower (Darnya)
 I:45:0:5
@@ -213,10 +213,10 @@ F:DEC_STR | DEC_INT | DEC_WIS | DEC_DEX | DEC_CON | DEC_CHR | DEC_SPEED | HIDE_T
 F:CURSED | HEAVY_CURSE | PERMA_CURSE |
 F:AGGRAVATE | DRAIN_EXP | TY_CURSE |
 E:ONE_RING:50:500
-E:The ring glows intensely black...
-D:Adorned, showy gilding,
-D:set with runes in the strange speech of Heheh, with power so great that it
-D:inevitably twists and masters any earthly being who wears it.
+E:戒指闪耀着深邃的黑光……
+D:华丽、炫目的镀金，
+D:铭刻着用奇怪的“呵呵（Heheh）”语写成的符文，拥有极其强大的力量，
+D:不可避免地会扭曲并控制任何佩戴它的凡间生物。
 
 N:15:Palantir of Westernesse
 I:39:8:3
@@ -224,10 +224,10 @@ W:60:50:10:60000
 P:0:1d1:0:0:0
 F:WIS | CHR | TELEPATHY | INSTA_ART | FULL_NAME | FIXED_ACT
 E:LIST_UNIQUES:60:200
-E:Some strange places show up in your mind, and you see ...
-D:A shining white ball of unbreakable crystal, the ancient palantiri,
-D:or 'far-watchers', were used by kings of Numenor and later by the Exiles
-D:for rapid communication between distant lands.
+E:一些奇怪的地方出现在你的脑海中，你看到了……
+D:一颗闪耀着白光的坚不可摧的水晶球，古老的真知晶球，
+D:或称“远观者”，曾被努曼诺尔的历代国王以及后来的流亡者用来
+D:在遥远的土地之间进行快速通讯。
 
 N:16:'Crimson'
 I:19:50:4
@@ -236,7 +236,7 @@ P:0:x0.00:0:0:0
 F:STEALTH | RES_SHARDS | XTRA_POWER | XTRA_H_RES
 F:INSTA_ART | NO_ENCHANT | FIXED_ACT
 E:ROCKET:60:15:300
-E:I'll fire CRIMSON! SEKKAKUDAKARA!
+E:我要开火深红（CRIMSON）了！难得有机会嘛！
 
 N:17:of Lore
 I:39:7:2
@@ -244,8 +244,8 @@ W:30:12:15:20000
 P:0:1d1:0:0:0
 F:INSTA_ART | INT | WIS | LORE2
 E:PROBING:10:5
-D:A great emerald that fills your mind with images of knowledge and
-D:understanding as you stare into its depths.
+D:一颗巨大的绿宝石，当你凝视它的深处时，
+D:你的脑海会充满知识和理解的画面。
 
 N:18:of Faramir
 I:40:0:3
@@ -254,9 +254,9 @@ P:0:0d0:12:0:0
 F:STEALTH | SHOW_MODS | HIDE_TYPE |
 F:RES_CONF | SUST_DEX |
 E:PESTICIDE:10:5
-E:You exterminate small life.
-D:A slim neckpiece of True-silver, with quiet spells of Ithilien to aid and
-D:protect the wearer.
+E:你消灭了微小的生命。
+D:一条纤细的真银项链，附有伊西利安的宁静法术，用来援助和
+D:保护佩戴者。
 
 
 
@@ -267,10 +267,10 @@ P:50:2d4:-4:0:20
 F:CON | HOLD_LIFE | SUST_CON |
 F:RES_ACID | RES_COLD | RES_DARK | RES_NETHER | RES_NEXUS | RES_CHAOS |
 E:HEAL:35:888:1000
-E:Your armor glows a bright white...
-D:A suit of imperishable adamant, with conquerable strength to endure evil
-D:and disruptive magics, that protects the life force of its wearer like
-D:nothing else can.
+E:你的盔甲闪耀着明亮的白光……
+D:一套不朽的精金盔甲，具有不可战胜的力量来抵挡邪恶和
+D:破坏性魔法，它能像任何其他东西都无法做到的那样
+D:保护佩戴者的生命力。
 
 
 
@@ -280,8 +280,8 @@ W:65:3:300:50000
 P:25:2d4:0:0:25
 F:CON | RES_ACID | RES_FIRE | RES_COLD | XTRA_H_RES |
 F:RES_SOUND | RES_CONF | RES_NEXUS
-D:A gleaming steel suit covering the wearer from neck to foot, with runes of
-D:warding and stability deeply engraved into its surface.
+D:一套闪闪发光的钢制盔甲，将佩戴者从头到脚覆盖起来，其表面深深刻有
+D:守护和稳定的符文。
 
 
 
@@ -291,9 +291,9 @@ W:35:3:200:30000
 P:19:1d4:0:0:15
 F:STR | DEX | HIDE_TYPE | XTRA_H_RES |
 F:RES_ACID | RES_ELEC | RES_COLD | RES_CONF | RES_SOUND
-D:Small metal plates cover an inner layer of sturdy canvas, and both bear
-D:scenes of hunting and war. You feel the spirit of Eorl the Young, matchless
-D:in combat, around you as you put his armour on.
+D:坚固的帆布内衬上覆盖着小金属板，两者都带有
+D:狩猎和战争的场景。当你穿上这件盔甲时，你感受到了在战斗中
+D:无人能敌的“青年”伊欧的灵魂萦绕在你周围。
 
 
 
@@ -305,7 +305,7 @@ F:STEALTH | WIS | INT | SEE_INVIS |
 F:RES_ACID | RES_ELEC | RES_FIRE | RES_COLD | RES_POIS |
 F:HOLD_LIFE | RES_NETHER | RES_DARK | RES_FEAR |
 E:HEAL_CURING_HERO:50:300:777
-E:A heavenly choir sings...
+E:圣灵的合唱在回荡……
 
 
 
@@ -317,7 +317,7 @@ F:STR | CHR | HIDE_TYPE |
 F:RES_ACID | RES_ELEC | RES_FIRE | RES_COLD | RES_DARK |
 F:RES_DISEN | XTRA_H_RES | ESP_ANIMAL
 E:GENOCIDE:40:500:200
-E:Your armor glows deep blue...
+E:你的盔甲闪耀着深蓝色的光芒……
 
 
 
@@ -327,9 +327,9 @@ W:40:3:220:32000
 P:14:1d4:-2:0:15
 F:STR | CHR | HIDE_TYPE | XTRA_H_RES |
 F:RES_ELEC | RES_FIRE | RES_COLD | RES_SHARDS | RES_NEXUS
-D:A hauberk, leggings, and sleeves of interlocking steel rings, well padded
-D:with leather. You feel strong and tall as Arvedui, last king of Arnor,
-D:as you put it on.
+D:由相互锁合的钢环组成的锁子甲、护腿和袖子，内衬有厚实的
+D:皮革。当你穿上它时，你感觉自己像阿尔诺最后的国王阿维杜伊一样
+D:强壮而高大。
 
 
 
@@ -340,10 +340,10 @@ P:16:1d4:-2:0:20
 F:INT | WIS | CON | HIDE_TYPE | XTRA_H_RES |
 F:RES_ACID | RES_POIS | RES_CONF
 E:DESTROY_TRAP:20:10
-E:Your armor glows bright red...
-D:A hauberk, leggings, and sleeves of interlocking steel rings, strategically
-D:reinforced at vital locations with a second layer of chain. Magics to
-D:enhance body and mind lie within, and no door can bar the wearer's path.
+E:你的盔甲闪耀着明亮的红光……
+D:由相互锁合的钢环组成的锁子甲、护腿和袖子，在关键部位战略性地
+D:加固了第二层锁链。其内部蕴含着
+D:增强身心的魔法，并且没有任何门能阻挡佩戴者的去路。
 
 
 
@@ -363,8 +363,8 @@ I:36:4:4
 W:25:3:80:45000
 P:4:0d0:0:0:20
 F:STEALTH | RES_ACID | RES_ELEC | RES_FIRE | RES_DARK | XTRA_H_RES
-D:Familiar with the secret ways hidden in darkness, this leather cuirass is
-D:truly more than it appears.
+D:这件皮胸甲熟悉隐藏在黑暗中的秘密路径，
+D:它实际上远不止表面看起来那么简单。
 
 
 
@@ -373,8 +373,8 @@ I:36:11:2
 W:30:3:60:25000
 P:11:1d1:-1:0:25
 F:SPEED | DEX | HIDE_TYPE | RES_ACID | RES_SHARDS | XTRA_H_RES
-D:An amazingly light tunic and skirt sewn with thick, overlapping scales of
-D:hardened leather whose wearer moves with agility and assurance.
+D:一件极其轻盈的束腰外衣和裙子，缝有厚重、重叠的
+D:硬化皮革鳞片，穿戴者可以敏捷而自信地移动。
 
 
 
@@ -386,8 +386,8 @@ W:70:35:65:120000
 P:5:1d2:0:0:21
 F:STR | CON | HIDE_TYPE | FREE_ACT | IM_ACID | RES_SOUND | RES_CHAOS
 F:XTRA_H_RES
-D:Invoking the strength and endurance of Thorin, King under the Mountain,
-D:this little metal shield is proof against the Element of Earth.
+D:唤起山下国王索林的力量和耐力，
+D:这面小金属盾是抵御土元素的证明。
 
 
 
@@ -396,9 +396,9 @@ I:34:4:0
 W:50:3:60:30000
 P:6:1d2:0:0:20
 F:RES_ACID | RES_ELEC | RES_FIRE | RES_LITE | RES_DARK | XTRA_H_RES
-D:This shield emblazoned with a multitude of creatures not seen for ages
-D:once protected Celegorm, lord of Himlad; around it lies a mystic balance
-D:that contains the conflicts of the elements.
+D:这面盾牌上装饰着许多许久未见的生物，
+D:它曾保护过希姆拉德领主凯勒巩；它周围有一种神秘的平衡，
+D:包容了元素之间的冲突。
 
 
 
@@ -408,8 +408,8 @@ W:60:9:120:160000
 P:8:1d3:0:0:18
 F:RES_ACID | RES_ELEC | RES_FIRE | RES_COLD | SUST_STR | SUST_INT |
 F:SUST_WIS | SUST_DEX | SUST_CON | SUST_CHR | XTRA_H_RES
-D:The great metal-bound shield of Anarion, son of Elendil, who Sauron found
-D:himself powerless to wither or diminish.
+D:埃兰迪尔之子阿纳瑞安的伟大金属包边盾牌，索伦发现自己
+D:无力使其枯萎或削弱。
 
 
 
@@ -440,9 +440,9 @@ P:0:1d1:0:0:25
 F:DEC_STR | DEC_DEX | DEC_CON | DEC_LIFE | HIDE_TYPE | DEC_MANA | EASY_SPELL |
 F:FREE_ACT | SEE_INVIS | TELEPATHY | XTRA_POWER | SPELL_POWER | REGEN_MANA |
 F:CURSED | HEAVY_CURSE | PERMA_CURSE
-D:The midnight-hued steel circlet of the sorceress-queen Beruthiel, which
-D:grants extraordinary powers of sight and awareness at a terrible physical
-D:cost.
+D:巫师女王贝露西尔的午夜色钢铁头冠，它
+D:以可怕的肉体代价赋予了极其非凡的
+D:视觉和感知能力。
 
 
 
@@ -451,8 +451,8 @@ I:32:2:2
 W:30:3:15:50000
 P:2:0d0:0:0:10
 F:INT | WIS | HIDE_TYPE | RES_BLIND | TELEPATHY | XTRA_H_RES
-D:The hunting cap of King Thranduil, to whose ears come all the secrets of
-D:his forest domain.
+D:瑟兰督伊国王的狩猎帽，他能倾听到
+D:其森林领地中的所有秘密。
 
 
 
@@ -461,9 +461,9 @@ I:32:3:3
 W:25:3:20:12000
 P:3:1d1:0:0:12
 F:WIS | CHR | HIDE_TYPE | SPELL_CAP
-D:A ridged helmet made of steel, and embossed with scenes of valor in fine-
-D:engraved silver. It grants the wearer nobility, clearness of thought and
-D:understanding.
+D:一顶用精细雕刻的银饰浮雕着英勇场景的钢制
+D:脊形头盔。它赋予佩戴者高贵的品质、清晰的思路和
+D:理解力。
 
 
 
@@ -472,8 +472,8 @@ I:32:6:3
 W:50:5:60:45000
 P:6:1d3:3:4:20
 F:STR | DEX | CON | HIDE_TYPE | RES_ACID | RES_NEXUS | DEC_STEALTH | SHOW_MODS
-D:A great helm as steady as the heroes of the Westdike. Mighty were the
-D:blows of Helm, the Hammerhand!
+D:一顶如西部防线（Westdike）的英雄般稳固的巨盔。锤手海尔姆的
+D:打击是极其强大的！
 
 
 
@@ -485,8 +485,8 @@ F:STR | DEX | CON | HIDE_TYPE |
 F:RES_ACID | RES_ELEC | RES_FIRE | RES_COLD | RES_LITE | RES_BLIND |
 F:LITE | SEE_INVIS | TELEPATHY
 E:SCARE_MONSTERS:20:100
-D:The legendary dragon helm of Turin Turambar, an object of dread to the
-D:servants of Morgoth.
+D:图林·图伦拔传说中的龙盔，令魔苟斯的仆从
+D:感到恐惧的物品。
 
 
 
@@ -496,9 +496,9 @@ W:25:5:75:100000
 P:5:1d3:0:0:10
 F:INT | WIS | SEARCH | HIDE_TYPE | RES_BLIND | SEE_INVIS
 E:DETECT_ALL:20:50
-E:Your helm glows bright white ... An image forms in your mind.
-D:A famous helm of forged iron granting extraordinary powers of mind and
-D:awareness.
+E:你的头盔闪耀着明亮的白光……一个图像在你的脑海中形成。
+D:一顶著名的锻铁头盔，赋予佩戴者非凡的心智和
+D:感知能力。
 
 
 
@@ -523,7 +523,7 @@ F:RES_FIRE | RES_LITE | RES_BLIND | RES_ELEC | RES_CONF |
 F:RES_CHAOS | LITE | SEE_INVIS | REGEN
 F:XTRA_POWER | XTRA_H_RES
 E:HEAL:40:250:700
-E:Your crown glows deep blue ... You feel a warm tingling inside.
+E:你的王冠闪耀着深蓝色的光芒……你感到内心里有一阵温暖的刺痛。
 
 N:43:of Jack of Shadows
 I:35:1:7
@@ -539,9 +539,9 @@ W:30:45:10:80000
 P:1:0d0:0:0:15
 F:RES_ACID | RES_ELEC | RES_FIRE | RES_COLD | RES_POIS
 E:RESISTANCE:30:111
-E:Your cloak glows many colors ...
-D:A cape worn by a hero from Valinor, a land utterly beyond the strife
-D:of Elements.
+E:你的披风闪烁着五颜六色的光芒……
+D:由来自维林诺的英雄所穿戴的披风，那是一片完全超越了元素纷争
+D:的土地。
 
 
 
@@ -551,10 +551,10 @@ W:40:15:5:43000
 P:4:0d0:0:0:15
 F:INT | WIS | STEALTH | HIDE_TYPE | RES_ACID | SEARCH
 E:SLEEP_MONSTERS:20:55
-E:Your cloak glows deep blue...
-D:This elven-grey mantle possesses great powers of tranquility and of
-D:concealment, and grants the wearer the knowledge and understanding of
-D:the Sindar.
+E:你的披风闪耀着深蓝色的光芒……
+D:这件精灵灰色的斗篷拥有极强的宁静与
+D:隐蔽力量，并赋予佩戴者
+D:辛达精灵的知识和理解力。
 
 
 
@@ -565,9 +565,9 @@ P:1:0d0:0:0:18
 F:DEX | CHR | HIDE_TYPE | XTRA_POWER |
 F:FREE_ACT | RES_ACID | RES_FIRE | RES_COLD
 E:RECHARGE_FROM_DEVICE:20:70:130
-E:Your cloak glows bright yellow...
-D:A sable-hued cloak, with glowing elven-runes to restore magic showing calm
-D:and clear as moonlight on still water.
+E:你的披风闪耀着明亮的黄光……
+D:一件黑紫色的披风，带有发光的精灵符文以恢复魔力，展现出
+D:如静水上的月光般平静与清澈。
 
 
 
@@ -576,9 +576,9 @@ I:35:1:0
 W:20:20:10:13000
 P:1:0d0:0:0:10
 F:FREE_ACT | RES_ELEC | RES_FIRE | RES_COLD | SEE_INVIS
-D:A cloak of shimmering green and brown that grants sight beyond sight and
-D:shakes off holding magics, worn by Aragorn son of Arathorn in his youth
-D:as he adventured under the name of Thorongil.
+D:一件闪烁着绿色和棕色的披风，它赋予了超越视觉的感知能力，并能
+D:摆脱束缚魔法。这是阿拉松之子阿拉贡在年轻时
+D:以索隆吉尔之名冒险时所穿戴的。
 
 
 
@@ -588,10 +588,10 @@ W:20:10:10:15000
 P:1:0d0:0:0:15
 F:STEALTH | RES_ACID
 E:TELEPORT:10:45
-E:Your cloak twists space around you...
-D:A crystal-blue cape of fine silk worn by a silent messenger of
-D:the forces of Law. Somehow, its wearer is always able to escape
-D:trouble.
+E:你的披风扭曲了你周围的空间……
+D:一件水晶蓝色的精美丝绸披风，曾被律法势力的
+D:无声信使所穿戴。不知何故，它的佩戴者总能逃脱
+D:麻烦。
 
 
 
@@ -603,11 +603,11 @@ F:INT | WIS | CHR | HIDE_TYPE | SPEED | STEALTH |
 F:RES_ACID | RES_FIRE | RES_COLD |
 F:RES_DARK | RES_LITE | XTRA_H_RES
 E:RESTORE_EXP:25:450
-E:Your cloak glows a deep red...
-D:The opaque midnight folds, inset with a multitude of tiny diamonds, of
-D:this cloak swirl around you and you feel a hint, a fragment of the
-D:knowledge and power to restore that lay in Luthien, the most beautiful
-D:being that ever knew death.
+E:你的披风闪耀着深红色的光芒……
+D:这件披风镶嵌着无数细小的钻石，其不透明的午夜色褶皱
+D:在你周围盘旋，你感受到了一丝恢复知识与力量的暗示与片段，
+D:这股力量曾存在于露西安——这位曾经知晓死亡的
+D:最美丽的生灵之中。
 
 
 
@@ -617,8 +617,8 @@ W:70:40:5:50000
 P:6:0d0:0:0:12
 F:STEALTH | FREE_ACT | IM_ACID | SEE_INVIS |
 F:RES_DARK | RES_LITE | XTRA_H_RES
-D:From the ruin of Gondolin did Tuor escape, through secret ways and travail,
-D:shielded by his cloak from a multitude of hostile eyes.
+D:图尔从贡多林的废墟中逃出，历经秘密的路径和艰辛，
+D:他的披风保护他免受无数敌对目光的注视。
 
 
 
@@ -629,7 +629,7 @@ I:31:2:3
 W:40:10:5:36000
 P:1:0d0:8:8:15
 F:STR | CON | HIDE_TYPE | FREE_ACT | SHOW_MODS
-D:A hero's handgear that lends great prowess in battle.
+D:一件赋予战斗中极强力量的英雄手部护具。
 
 
 
@@ -639,9 +639,9 @@ W:10:3:5:30000
 P:1:0d0:0:0:10
 F:FREE_ACT | RES_LITE | SUST_CON | LITE
 E:BOLT_MISSILE:10:2:4
-E:Your gloves glow extremely brightly...
-D:These gloves glow so brightly as to light the way for their owner and cast
-D:magical bolts with great frequency.
+E:你的手套闪耀着极其明亮的光芒……
+D:这些手套闪耀着极其明亮的光芒，不仅能为主人照亮道路，还能
+D:以极高的频率发射魔法射线。
 
 
 
@@ -651,8 +651,8 @@ W:30:20:25:15000
 P:2:1d1:2:2:7
 F:RES_FIRE | BRAND_FIRE
 E:BEAM_FIRE:12:12:35
-E:Your gauntlets are covered in fire...
-D:A fiery set of gauntlets that can even burn your opponent.
+E:你的护手被火焰所覆盖……
+D:一副燃烧着的护手，甚至能烧伤你的对手。
 
 
 
@@ -670,9 +670,9 @@ W:30:20:25:11000
 P:2:1d1:2:2:7
 F:RES_ELEC | BRAND_ELEC
 E:BALL_ELEC:12:12:40
-E:Your gauntlets are covered in sparks...
-D:A set of handgear with sparks surrounding it, able to shock
-D:your opponent.
+E:你的护手被火花所覆盖……
+D:一副周围环绕着火花的手部护具，能够电击
+D:你的对手。
 
 
 
@@ -682,8 +682,8 @@ W:30:20:25:12000
 P:2:1d1:2:2:7
 F:RES_ACID | BRAND_ACID
 E:BOLT_ACID:12:12:8
-E:Your gauntlets are covered in acid...
-D:A set of handgear so corrosive that dissolves your opponent.
+E:你的护手被强酸所覆盖……
+D:一副极具腐蚀性的手部护具，能够溶解你的对手。
 
 
 
@@ -705,9 +705,9 @@ P:5:1d1:10:12:20
 F:DEX | HIDE_TYPE |
 F:FREE_ACT | RES_ACID | SHOW_MODS | XTRA_POWER
 E:ARROW:30:50:150
-E:Your caestus grow magical spikes...
-D:The hand-sheathing of Fingolfin, warrior-king of Elves and Men, who gave
-D:Morgoth seven mighty wounds and pain that will last forever.
+E:你的搏击拳套长出了魔法尖刺……
+D:精灵与人类的战士国王芬国昐的手部护具，他曾给
+D:魔苟斯留下了七道巨大的伤口和将持续到永远的痛苦。
 
 
 
@@ -718,10 +718,10 @@ P:3:1d1:0:0:20
 F:SPEED |
 F:RES_NEXUS
 E:SPEED:30:200
-E:Your boots glow bright green...
-D:This wondrous pair of leather boots once sped Feanor, creator of the
-D:Silmarils and the mightiest of the Eldar, along the Grinding Ice and to
-D:Middle Earth at last.
+E:你的靴子闪耀着明亮的绿光……
+D:这双神奇的皮靴曾加速了费诺——精灵宝钻的创造者，也是
+D:最强大的艾尔达精灵——让他跨过坚冰阵（Grinding Ice），最终
+D:抵达中土世界。
 
 
 
@@ -732,7 +732,7 @@ P:2:1d1:0:0:15
 F:DEX | HIDE_TYPE | CHR | SUST_CHR | FREE_ACT |
 F:RES_NETHER | RES_CHAOS | SUST_CON
 E:CURE_FEAR_POIS:10:5
-E:Your boots glow deep blue...
+E:你的靴子闪耀着深蓝色的光芒……
 
 
 
@@ -741,9 +741,9 @@ I:30:6:3
 W:60:25:80:85000
 P:6:1d1:0:2:20
 F:STR | CON | HIDE_TYPE | SPEED | XTRA_H_RES
-D:Sturdy footwear of leather and steel as enduring as the long-suffering
-D:Dwarven King-in-exile who wore them. Of dwarven make, the wearer of
-D:these boots will be completely at home in the mountains.
+D:坚固的皮革与钢铁制成的鞋子，如穿戴它们的
+D:饱经风霜的流亡矮人国王一样坚忍。由于是矮人制造的，穿上
+D:这双靴子的人将在群山中如履平地。
 
 
 
@@ -763,9 +763,9 @@ P:0:2d6:12:15:0
 F:INT | DEX | HIDE_TYPE | SPEED | XTRA_RES_OR_POWER |
 F:SLAY_TROLL | SLAY_GIANT | FREE_ACT | SEE_INVIS | SHOW_MODS |
 F:ESP_ORC | ESP_TROLL | ESP_GIANT
-D:A short thrusting blade with a large guard worn by Maedhros the Tall,
-D:eldest son of Feanor, and wielded with his left hand after the loss of
-D:his right hand in the pits of Thangorodrim.
+D:一把带有大护手的短刺剑，由高大的迈兹洛斯佩戴，
+D:他是费诺的长子。在安格班（Thangorodrim）的地牢中失去右手后，
+D:他用左手挥舞这把剑。
 
 
 
@@ -786,8 +786,8 @@ P:0:2d5:8:12:0
 F:BRAND_FIRE | RES_FIRE | SHOW_MODS | LITE | THROWING | XTRA_H_RES
 F:SPEED
 E:BOLT_FIRE:4:12:6
-E:Your dagger is covered in fire...
-D:A fiery dagger finely balanced for deadly throws.
+E:你的匕首被火焰所覆盖……
+D:一把燃烧的匕首，具有完美的平衡性，适合进行致命的投掷。
 
 
 
@@ -798,8 +798,8 @@ P:0:2d5:8:12:0
 F:BRAND_COLD | RES_COLD | SHOW_MODS | THROWING | XTRA_H_RES
 F:SPEED
 E:BOLT_COLD:3:12:6
-E:Your dagger is covered in frost...
-D:A frosty dagger finely balanced for deadly throws.
+E:你的匕首被冰霜所覆盖……
+D:一把冰霜匕首，具有完美的平衡性，适合进行致命的投掷。
 
 
 
@@ -810,8 +810,8 @@ P:0:2d5:8:12:0
 F:BRAND_ELEC | RES_ELEC | SHOW_MODS | LITE | THROWING | XTRA_H_RES
 F:SPEED
 E:BEAM_ELEC:5:12:24
-E:Your dagger is covered in sparks...
-D:A dagger covered in sparks and finely balanced for deadly throws.
+E:你的匕首被火花所覆盖……
+D:一把被火花覆盖的匕首，具有完美的平衡性，适合进行致命的投掷。
 
 
 
@@ -822,9 +822,9 @@ P:0:3d5:8:6:0
 F:SLAY_ORC | RES_POIS | RES_DISEN | SHOW_MODS | BRAND_POIS | THROWING
 F:SPEED
 E:BALL_POIS:5:6:12
-E:Your dagger throbs deep green...
-D:A large stiletto dagger that glistens with odorless poison, to which the
-D:wearer seems oddly immune.
+E:你的匕首悸动着深绿色的光芒……
+D:一把闪烁着无味毒液的大型细刺匕首，
+D:佩戴者似乎对其出奇地免疫。
 
 
 
@@ -836,7 +836,7 @@ F:DEX | HIDE_TYPE | SPEED | BLOWS | BRAND_COLD | RES_COLD |
 F:SEE_INVIS | SLOW_DIGEST | REGEN |
 F:SHOW_MODS | BRAND_POIS | THROWING
 E:BALL_COLD:10:7:48
-E:Your dagger is covered in frost...
+E:你的匕首被冰霜所覆盖……
 
 
 
@@ -847,9 +847,9 @@ P:0:5d5:-20:20:0
 F:CON | HIDE_TYPE |
 F:KILL_DRAGON | SLAY_EVIL | SLAY_DEMON | SLAY_TROLL | RES_DISEN | SLAY_HUMAN |
 F:DEC_STEALTH | CURSED | HEAVY_CURSE | SHOW_MODS | VULN_FIRE
-D:This sword has runes of power incised on its ornate hilt, and a single
-D:blood channel that gleams coldly blue as you grasp this mighty weapon of
-D:peril.
+D:这把剑的华丽剑柄上刻有力量符文，当你握住这把充满危险的
+D:强大武器时，它那唯一的一条血槽会
+D:闪烁着冰冷的蓝光。
 
 
 
@@ -863,9 +863,9 @@ F:RES_CHAOS | RES_NETHER | HOLD_LIFE |
 F:RES_COLD | BRAND_COLD |
 F:SLAY_DEMON | SLAY_EVIL | SLAY_DRAGON | SLAY_UNDEAD |
 F:SLOW_DIGEST | SHOW_MODS | HIDE_TYPE | BLESSED | RIDING
-D:Corwin's mighty blade, decorated with a portion of the Pattern and
-D:especially deadly against creatures of chaos; it is the twin of
-D:Brand's sword Werewindle.
+D:科温的强大剑刃，装饰有部分“图案（Pattern）”，
+D:对混沌生物极其致命；它是
+D:布兰德的剑“维尔温德尔（Werewindle）”的双生剑。
 
 
 
@@ -878,8 +878,8 @@ F:SLAY_EVIL | BRAND_FIRE | KILL_ORC | RES_FIRE | RES_LITE | RES_DARK | LITE |
 F:SLOW_DIGEST | SHOW_MODS | RIDING | FREE_ACT | SEE_INVIS | XTRA_RES_OR_POWER |
 F:SLAY_ORC | SLAY_TROLL | SLAY_DEMON |
 F:ESP_ORC | ESP_TROLL | ESP_GIANT | ESP_DEMON
-D:This fiery, shining blade earned its sobriquet "Foe-Hammer" from dying orcs
-D:who dared to come near hidden Gondolin.
+D:这把燃烧着耀眼光芒的利刃，从那些胆敢靠近隐藏的贡多林而
+D:被击杀的半兽人口中，获得了“敌击剑（Foe-Hammer）”的绰号。
 
 
 
@@ -900,8 +900,8 @@ P:0:2d6:10:15:0
 F:STEALTH | SLAY_EVIL | BRAND_COLD | KILL_ORC | RES_COLD | RES_DARK | LITE |
 F:SLOW_DIGEST | SHOW_MODS | RIDING | XTRA_RES_OR_POWER |
 F:ESP_ORC | ESP_TROLL | ESP_GIANT
-D:This coldly gleaming blade is called simply "Biter", by orcs who came to
-D:know its power all too well.
+D:这把闪烁着冷光的利刃，被那些深知其威力的半兽人
+D:简单地称为“咬剑（Biter）”。
 
 
 
@@ -911,9 +911,9 @@ W:35:30:200:100000
 P:0:3d7:13:17:0
 F:STR | HIDE_TYPE | XTRA_RES_OR_POWER |
 F:KILL_DRAGON | SLAY_TROLL | FREE_ACT | SLOW_DIGEST | REGEN | SHOW_MODS
-D:A giant sword once wielded by mighty Turin, and a great dragonbane which
-D:bathed in Glaurung's blood: but beware, it will drink the blood of those
-D:who wield it eventually.
+D:这把曾被强大的图林所挥舞的巨剑，是一把伟大的屠龙武器，曾
+D:沐浴过格劳龙的鲜血：但要小心，它最终也会
+D:饮下那些挥舞它之人的鲜血。
 
 
 
@@ -926,9 +926,9 @@ F:KILL_DRAGON | SLAY_ANIMAL | SLAY_EVIL | BRAND_FIRE | LITE |
 F:SLAY_UNDEAD | SLAY_DEMON | SLAY_TROLL | SLAY_GIANT | SLAY_ORC | SLAY_GOOD
 F:RES_FIRE | RES_CONF | RES_CHAOS | FREE_ACT | SEE_INVIS | AGGRAVATE |
 F:SHOW_MODS
-D:Dark and deadly runes stand stark against the naked steel of this awesome
-D:weapon, and you feel a stunning power of slaying and rending as you
-D:slowly approach.
+D:黑暗而致命的符文在这把可怕武器裸露的钢铁上显得格外显眼，
+D:当你缓慢靠近时，你能感受到一股
+D:令人震惊的杀戮与撕裂的力量。
 
 N:78:'Twilight'
 I:23:25:10
@@ -937,7 +937,7 @@ P:0:4d7:-40:-60:-50
 F:QUESTITEM
 F:SPEED | IM_FIRE | RES_FIRE | BRAND_FIRE | RES_DISEN |
 F:SHOW_MODS | LITE |
-D:Surtur's sword of doom, bringer of death and destruction even to the gods.
+D:苏尔特尔的末日之剑，甚至能给众神带来死亡与毁灭。
 
 
 
@@ -948,9 +948,9 @@ P:0:1d9:10:11:0
 F:DEX | STEALTH | HIDE_TYPE |
 F:RES_ACID | RES_ELEC | RES_FIRE | RES_COLD | LEVITATION |
 F:SEE_INVIS | REGEN | SHOW_MODS
-D:Famed sea-defender of Lebennin. A short, slightly curved chopping blade
-D:with a perfect edge shining cleanly in the sun, an object of hate to the
-D:men of Umbar who met it in combat.
+D:著名的列本宁海洋防卫者。一把短小、略带弧度的劈砍剑，
+D:其完美的刃口在阳光下闪烁着纯净的光芒，这是所有
+D:在战斗中遇到它的昂巴人类所憎恨的物品。
 
 
 
@@ -960,9 +960,9 @@ W:60:15:260:111000
 P:0:4d6:23:24:0
 F:SLAY_DRAGON | SLAY_EVIL | SLAY_UNDEAD | SLAY_TROLL | SLAY_GIANT |
 F:SLAY_HUMAN | SLAY_ORC | SEE_INVIS | SHOW_MODS | VORPAL | BRAND_POIS
-D:A giant's weapon, with a long blade tall and straight thrusting out from a
-D:massive double-pronged hilt. On its blade are written doomspells against
-D:both the living and undead.
+D:一把巨人的武器，其笔直的长刃从巨大的双叉剑柄中
+D:突伸而出。在它的剑刃上刻有对抗
+D:生者与不死生物的厄运法术。
 
 
 
@@ -972,9 +972,9 @@ W:50:40:50:150000
 P:0:8d5:0:0:0
 F:DEX | HIDE_TYPE | VORPAL2 | VORPAL |
 F:SUST_DEX | SHOW_MODS | SPEED | TUNNEL
-D:An utterly perfect, cleanly chiseled sword, with a edge that effortlessly
-D: slices rock and bone and spells to render the wearer lithe and nimble. It
-D: is combat incarnate.
+D:一把极其完美、轮廓分明的剑，其锋利的边缘能毫不费力地
+D:切开岩石与骨头，还带有能让佩戴者变得轻盈敏捷的法术。它
+D:就是战斗的化身。
 
 
 
@@ -987,10 +987,10 @@ F:SLAY_EVIL | BRAND_COLD | SLAY_UNDEAD | SLAY_DEMON | SLAY_TROLL |
 F:FREE_ACT | RES_COLD | RES_LITE | LITE | SEE_INVIS | SLOW_DIGEST |
 F:ESP_ORC | ESP_TROLL | ESP_GIANT
 E:BALL_COLD:20:200:100
-E:Your sword glows an intense blue...
-D:The weapon of Fingolfin, High King of the Noldor; it shines like a column
-D:of ice lit by light unquenchable. Morgoth came unwillingly to meet it
-D:of old; his lame foot will remind him of its might should he meet it again.
+E:你的剑闪耀着强烈的蓝光……
+D:诺多精灵至高王芬国昐的武器；它闪耀起来就像一根
+D:被不灭之光照亮的冰柱。魔苟斯曾极不情愿地去面对它；
+D:他那瘸了的脚会提醒他，如果再次遇到它，它的威力有多么可怕。
 
 
 
@@ -1002,11 +1002,11 @@ F:STR | HIDE_TYPE | RIDING | XTRA_RES_OR_POWER |
 F:SLAY_EVIL | BRAND_FIRE | SLAY_TROLL | SLAY_ORC | FREE_ACT |
 F:RES_FIRE | SUST_DEX | SEE_INVIS | SHOW_MODS | LITE | ESP_UNDEAD |
 E:BALL_FIRE:20:40:72
-E:Your sword glows an intense red...
-D:The famed "Flame of the West", the sword that was broken and is forged
-D:again. It glows with the essence of fire, its wearer is mighty in combat,
-D:and no creature of Sauron can withstand it. It will never be stained or
-D:broken even in defeat.
+E:你的剑闪耀着强烈的红光……
+D:著名的“西方之焰”，这把断折的剑被重新
+D:锻造。它闪烁着火焰的精华，其佩戴者在战斗中无比强大，
+D:没有哪个索伦的生物能抵挡它。即使在失败中，它也永远不会
+D:被玷污或折断。
 
 N:84:'Werewindle'
 I:23:17:3
@@ -1018,7 +1018,7 @@ F:RES_LITE | LITE | SEE_INVIS | SHOW_MODS | SPEED |
 F:SUST_CON | SUST_STR | SUST_INT | SUST_WIS | RES_DARK |
 F:RES_DISEN
 E:ESCAPE:20:35
-D:Brand's mighty Pattern sword, the twin of Corwin's Grayswandir.
+D:布兰德强大的“图案”剑，是科温的“灰杖（Grayswandir）”的双生剑。
 
 
 
@@ -1038,8 +1038,8 @@ W:15:8:40:15000
 P:0:1d8:12:19:0
 F:SLAY_ANIMAL | BRAND_COLD | RES_COLD | RES_LITE | LITE | SHOW_MODS
 F:SPEED
-D:A slender, tapered blade whose wielder strikes icy blows with deadly
-D:accuracy.
+D:一把细长、锥形的剑刃，挥舞它的人能以致命的精准度
+D:发动冰霜打击。
 
 
 
@@ -1049,8 +1049,8 @@ W:15:8:50:25000
 P:0:1d9:8:12:0
 F:BLOWS | SLAY_DRAGON | SLAY_ANIMAL | SLAY_TROLL | SLAY_GIANT | SLAY_HUMAN |
 F:SLAY_ORC | SHOW_MODS | RIDING
-D:An heirloom of the Lords of Rhun far to the east, and a name of
-D:dismay to creatures natural and unnatural.
+D:远东鲁恩（Rhun）领主的传家宝，这个名字令
+D:所有自然与非自然的生物都感到恐慌。
 
 
 
@@ -1061,10 +1061,10 @@ P:0:1d8:7:8:0
 F:STR | DEX | CON | BLOWS | SLAY_EVIL | SLAY_UNDEAD | SLAY_ORC |
 F:FREE_ACT | RES_LITE | LITE | SEE_INVIS | SHOW_MODS | XTRA_H_RES | QUESTITEM |
 F:ESP_ORC | ESP_TROLL | ESP_GIANT
-D:"I will give you a name, and I shall call you Sting." The perfect size
-D:for Bilbo, and stamped forever by the courage he found in Mirkwood, this
-D:sturdy little blade grants the wearer combat prowess and survival
-D:abilities they did not know they had.
+D:“我要给你起个名字，就叫你‘刺针’。”完美的大小
+D:正适合比尔博，并且永远印刻着他在幽暗密林中找到的勇气，这把
+D:坚固的小剑刃赋予了佩戴者他们自己都不知道的
+D:战斗力和生存能力。
 
 
 
@@ -1097,9 +1097,9 @@ F:SLAY_ORC | FREE_ACT | RES_ACID | RES_ELEC | RES_FIRE | RES_COLD |
 F:RES_CONF | RES_CHAOS | SEE_INVIS | TELEPATHY | AGGRAVATE | SHOW_MODS |
 F:SLAY_HUMAN | BRAND_CHAOS | VORPAL | BRAND_FIRE | BRAND_POIS | LITE |
 F:DEC_LIFE | DEC_CON | BRAND_VAMP
-D:This weapon of wrath, cursed with a violent anger, dives hungrily
-D:into the flesh of its enemies. It gathers shadows of death into its
-D:owner as they inflict wounds that will never heal.
+D:这把愤怒的武器，被狂暴的愤怒所诅咒，如饥似渴地
+D:刺入敌人的血肉之中。当它造成永远无法愈合的伤口时，
+D:它会将死亡的阴影汇聚到其主人身上。
 
 
 
@@ -1109,8 +1109,8 @@ W:90:240:150:250000
 P:0:5d6:32:32:0
 F:VORPAL2 | SLAY_EVIL | HIDE_TYPE | VORPAL |
 F:FREE_ACT | LITE | SEE_INVIS | SLOW_DIGEST | REGEN | SPEED | STR | DEX | CHR
-D:"One, two! One, two! And through, and through, the vorpal blade
-D:went snicker-snack!"
+D:“一，二！一，二！斩首剑，进又出，
+D:咔嚓咔嚓响！”
 
 
 
@@ -1121,10 +1121,10 @@ P:0:2d7:10:12:0
 F:WIS | CON | HIDE_TYPE | BLESSED |
 F:SLAY_DRAGON | TELEPATHY | SLOW_DIGEST | SHOW_MODS
 E:DRAIN_LIFE:20:100:120
-E:Your axe blade glows black...
-D:The narrow axe head of this weapon, finely balanced by a crow's beak,
-D:would pierce even the armour of Smaug, and its wielder becomes aware of
-D:the minds of their enemies.
+E:你的斧刃闪耀着黑光……
+D:这把武器狭窄的斧头被一个像乌鸦嘴一样的尖头完美平衡，
+D:甚至能刺穿史矛革的盔甲，挥舞它的人能感知到
+D:敌人的思想。
 
 
 
@@ -1133,9 +1133,9 @@ I:22:13:0
 W:60:25:190:50000
 P:0:9d7:0:30:0
 F:SHOW_MODS | RIDING
-D:The massive chopper that crowns this glaive glows blood-red and black;
-D:fell spells of annihilation swirl and dance as you swing death's myrmidon
-D:down.
+D:这把大砍刀顶端的巨大刀刃闪烁着血红色和黑色的光芒；
+D:当你挥下这把死亡的爪牙时，毁灭的邪恶法术
+D:在周围旋转飞舞。
 
 
 
@@ -1146,8 +1146,8 @@ P:0:3d6:8:12:0
 F:CHR | HIDE_TYPE |
 F:BRAND_FIRE | SLAY_UNDEAD | SLAY_GIANT | RES_FIRE | RES_SOUND |
 F:LEVITATION | SEE_INVIS | SHOW_MODS | LITE
-D:Lordly and tall did Osondir stand against the wrath of giants, and
-D:clear-eyed in barrows fell, wielding a halberd glowing ruby red.
+D:奥松迪尔高大威严地屹立着，抵御巨人们的愤怒，在
+D:邪恶的古墓中，他目光清澈，挥舞着一把闪耀着红宝石光芒的戟。
 
 
 
@@ -1158,8 +1158,8 @@ P:0:2d6:12:15:10
 F:INT | HIDE_TYPE |
 F:BRAND_COLD | BRAND_FIRE | SLAY_DEMON | SLAY_TROLL | SLAY_GIANT |
 F:RES_FIRE | RES_COLD | SUST_INT | SLOW_DIGEST | SHOW_MODS | LITE
-D:Within this long thrusting spear lie the spirits of frost giants and fire
-D:demons, who war forever, trapped by magely spells.
+D:在这根长刺矛内，栖息着被魔法束缚的霜巨人和火恶魔的
+D:灵魂，它们在其中永远地交战。
 
 
 
@@ -1172,8 +1172,8 @@ F:SLAY_TROLL | SLAY_ORC | SLAY_GIANT |
 F:FREE_ACT | RES_FIRE | RES_ELEC | RES_LITE |
 F:SLOW_DIGEST | BLESSED | SHOW_MODS | LITE | RIDING
 E:BALL_ELEC:15:50:100
-E:Your spear crackles with electricity...
-D:Gungnir, the spear of Odin, inscribed with mighty runes.
+E:你的长矛发出噼啪的电流声……
+D:冈格尼尔，奥丁的长矛，刻有强大的符文。
 
 
 
@@ -1186,7 +1186,7 @@ F:SLAY_GIANT | SLAY_EVIL | SLAY_DEMON | SLAY_UNDEAD | SLAY_DRAGON |
 F:RES_FIRE | RES_LITE | HOLD_LIFE | LEVITATION |
 F:LITE | SEE_INVIS | BLESSED | SHOW_MODS | RIDING
 E:STONE_TO_MUD:15:5
-E:Your spear pulsates...
+E:你的长矛在悸动……
 
 
 
@@ -1205,9 +1205,9 @@ W:30:33:360:100000
 P:0:3d10:3:21:0
 F:STR | DEX | CHR | HIDE_TYPE | FREE_ACT |
 F:SLAY_TROLL | SLAY_ORC | SEE_INVIS | SHOW_MODS | RIDING
-D:"Forth Eorlingas!". To the field of Celebrant came Eorl the Young
-D:to save beleaguered Gondor, and from his lance fled massive trolls
-D:and dire wolves.
+D:“前进吧，伊欧林加斯！”。“青年”伊欧来到了凯勒布兰特平原，
+D:拯救了被围困的刚铎，巨大的巨魔和可怕的狼
+D:都在他的长枪下四散奔逃。
 
 
 
@@ -1218,9 +1218,9 @@ P:0:4d5:10:20:15
 F:CON | HIDE_TYPE |
 F:KILL_DRAGON | SLAY_DEMON | SLAY_TROLL | SLAY_ORC | FREE_ACT |
 F:RES_ACID | RES_FIRE | RES_LITE | RES_DARK | RES_CHAOS | SHOW_MODS
-D:The twin massive axe heads of this ancient demon's dread gleam with
-D:mithril inlay, which tell sagas of endurance, invoking the powers of
-D:Khazad-dum to protect the wearer and slay all evils found underground.
+D:这把让古老恶魔感到恐惧的武器，其巨大的双斧刃上闪烁着
+D:秘银镶嵌的光芒。它们诉说着坚忍的传说，唤起
+D:卡扎督姆的力量，以保护佩戴者并杀死地下发现的所有邪恶。
 
 
 
@@ -1233,10 +1233,10 @@ F:SLAY_EVIL | BRAND_COLD | SLAY_UNDEAD |
 F:SLAY_ORC | FREE_ACT | IM_COLD | SEE_INVIS |
 F:BLESSED | SHOW_MODS
 E:MASS_GENOCIDE:50:1000:200
-E:Your axe lets out a long, shrill note...
-D:The axe of Eonwe, leader of the Hosts of the West before the gates of
-D:Thangorodrim, strikes with icy wrath at the undead, disperses hosts of
-D:evil at a word, and grants Maia-like powers of body and mind.
+E:你的斧头发出一声悠长、尖锐的鸣响……
+D:这是西方大军领袖伊昂威在安格班（Thangorodrim）门前
+D:所用的斧头，它以冰冷的愤怒打击不死生物，一句话就能驱散
+D:邪恶的大军，并赋予佩戴者迈雅般的肉体与心智力量。
 
 
 
@@ -1248,8 +1248,8 @@ F:STR | CON | STEALTH | HIDE_TYPE |
 F:SLAY_DEMON | SLAY_TROLL | SLAY_ORC | FREE_ACT |
 F:RES_ACID | RES_ELEC | RES_FIRE | RES_COLD | RES_BLIND | LEVITATION |
 F:SEE_INVIS | REGEN | SHOW_MODS
-D:The twin blades of this weapon were forged in Belegost, and powerful forces
-D:to resist and endure lie ready for he who shall wield it once more.
+D:这把武器的双刃是在贝莱格斯特锻造的，那些将会再次挥舞它的人，
+D:将获得它所蕴含的能够抵抗和忍耐的强大力量。
 
 N:104:'Lotharang'
 I:22:22:1
@@ -1258,13 +1258,13 @@ P:0:2d9:9:8:0
 F:STR | DEX | HIDE_TYPE |
 F:SLAY_TROLL | SLAY_ORC | SHOW_MODS
 E:HEAL:10:4:30
-E:Your battle axe radiates deep purple...
-D:A superbly crafted battle axe with spells to slay all creatures of earth
-D:and allow rapid recovery from their blows, renowned in legends of the North
-D:as a token of the lasting friendship between dwarves and men. Lord Gwilim
-D:once wielded it in battle, its twin blades singing in the night as he
-D:conquered the forest camp of the orcs of Morgul and single-handedly
-D:repelled their foul invasion.
+E:你的战斗斧放射出深紫色的光芒……
+D:一把制作精良的战斗斧，带有能杀死所有大地生物的法术，
+D:并能让佩戴者从它们的打击中迅速恢复。它在北方传说中很有名，
+D:是矮人和人类之间持久友谊的象征。格威林（Gwilim）领主
+D:曾在战斗中挥舞过它，当他征服魔古尔半兽人的森林营地并
+D:单枪匹马地击退了他们邪恶的入侵时，
+D:它的双刃在夜空中歌唱。
 
 
 
@@ -1275,9 +1275,9 @@ P:0:3d9:12:17:0
 F:SLAY_EVIL | TUNNEL | INFRA | SEARCH | SLAY_GIANT |
 F:RES_ACID | RES_ELEC | RES_FIRE | RES_COLD |
 F:SHOW_MODS
-D:A massive axe with twin razor-sharp heads, so large that it usually
-D:requires two hands to wield, intricately engraved in gold with spells
-D:to ward off the elements and smite evil.
+D:一把带有两面锋利斧刃的巨斧，它太大了，通常
+D:需要双手才能挥舞，斧面上用金子精细地刻有
+D:抵御元素和惩戒邪恶的法术。
 
 
 
@@ -1288,8 +1288,8 @@ P:0:2d7:13:19:0
 F:CON | HIDE_TYPE |
 F:SLAY_EVIL | SLAY_TROLL | SLAY_GIANT | SLAY_ORC |
 F:SEE_INVIS | SHOW_MODS
-D:A royal heirloom of the southern coast, strong in combat against evil
-D:creatures of the earth.
+D:南部海岸的皇家传家宝，在对抗大地之中的
+D:邪恶生物时非常强大。
 
 
 
@@ -1300,9 +1300,9 @@ P:0:3d10:16:18:0
 F:STR | DEX | HIDE_TYPE | BRAND_CHAOS |
 F:SLAY_EVIL | SLAY_UNDEAD | RES_LITE | RES_DARK | SEE_INVIS |
 F:BLESSED | SHOW_MODS | RIDING
-D:A massive triple-pronged spear, so great it normally requires two hands to
-D:wield, evoking the spirit of Osse who with it pierced legions of
-D:evil and undead.
+D:一把巨大的三叉矛，非常庞大，通常需要双手才能
+D:挥舞。它唤起了欧希的灵魂，欧希曾用它刺穿了
+D:邪恶和不死生物的军团。
 
 
 
@@ -1315,10 +1315,10 @@ F:SLAY_DRAGON | SLAY_ANIMAL | FREE_ACT | HOLD_LIFE | IM_ACID |
 F:RES_NETHER | SEE_INVIS | SLOW_DIGEST | REGEN |
 F:BLESSED | SHOW_MODS | RIDING
 E:TELEPORT_AWAY:30:50
-E:Your trident glows deep red...
-D:The awesome weapon of the Vala Ulmo, Lord of Waters. Mightiest of all the
-D:powers of good save Manwe himself, Ulmo laughs in scorn at the dread powers
-D:of the undead, and is utterly in command of the element of water.
+E:你的三叉戟闪耀着深红色的光芒……
+D:水之主，维拉乌欧牟的可怕武器。作为除了曼威本人之外
+D:最强大的善良力量，乌欧牟嘲笑着不死生物可怕的
+D:力量，并且完全掌控着水元素。
 
 
 
@@ -1330,10 +1330,10 @@ F:DEX | CHR | HIDE_TYPE |
 F:BRAND_COLD | BRAND_FIRE | FREE_ACT | RES_FIRE | RES_COLD |
 F:RES_LITE | LITE | SEE_INVIS | SHOW_MODS
 E:RECALL:20:100
-E:Your scythe glows soft white...
-D:With elemental powers whose struggles turn this weapon red and purest
-D:white, this shining reaper bears within it a power of going forth and
-D:returning.
+E:你的镰刀闪耀着柔和的白光……
+D:这把闪耀的收割者蕴含着元素力量的冲突，使其交替呈现出红色和最纯洁的
+D:白色。它的内部蕴含着一种向前冲锋和
+D:返回的力量。
 
 N:110:of the Dawn
 I:23:17:3
@@ -1344,9 +1344,9 @@ F:SLAY_EVIL | SLAY_DRAGON | SLAY_UNDEAD | SLAY_DEMON | VORPAL |
 F:CHR | SUST_CHR | RES_LITE | RES_BLIND | REGEN | SHOW_MODS |
 F:XTRA_RES_OR_POWER
 E:SUMMON_DAWN:40:750
-D:Forged in the farthest East by a race of mighty spellcasters, this
-D:shiny pale sword gleams with the rays of rising sun as you invoke
-D:its power of commanding legions of powerful immortal warriors...
+D:这把由一个强大施法者种族在极东之地锻造的
+D:闪亮苍白之剑，当你唤起它指挥
+D:强大的不朽战士军团的力量时，它会闪烁出初升太阳的光芒……
 
 
 
@@ -1361,8 +1361,8 @@ F:KILL_DRAGON | SLAY_ANIMAL | SLAY_EVIL | IMPACT | SLAY_UNDEAD | NO_MAGIC |
 F:SLAY_DEMON | SLAY_TROLL | SLAY_ORC | RES_ACID | RES_ELEC | RES_FIRE |
 F:RES_COLD | SEE_INVIS | TELEPATHY | AGGRAVATE | SHOW_MODS | INSTA_ART |
 F:SLAY_HUMAN | RIDING | QUESTITEM | FIXED_ART
-D:The mighty Hammer of the Underworld, blackened by doomspells of shattering,
-D:whose wielder holds the lives of all Morgoth's servants in his hand.
+D:强大的地狱之锤，被粉碎的厄运法术熏黑，
+D:挥舞它的人将所有魔苟斯的仆从的生命掌握在自己手中。
 
 
 
@@ -1374,9 +1374,9 @@ F:STEALTH |
 F:SLAY_EVIL | BRAND_FIRE | RES_FIRE | RES_CONF |
 F:SHOW_MODS | LITE | RIDING
 E:CONFUSE_MONSTERS:30:50
-E:Your flail glows in scintillating colours...
-D:A flail whose head befuddles those who stare as you whirl it around, and
-D:becomes a fiery comet as you bring it down.
+E:你的连枷闪烁着耀眼的色彩……
+D:这把连枷，当你在周围挥舞它时，它的头部会让盯着它看的人感到困惑；
+D:而当你将它砸下时，它会变成一颗燃烧的彗星。
 
 
 
@@ -1387,9 +1387,9 @@ P:0:3d7:5:18:0
 F:STR | HIDE_TYPE |
 F:SLAY_ANIMAL | BRAND_FIRE | BRAND_ELEC | SLAY_TROLL | SLAY_ORC |
 F:RES_ELEC | RES_FIRE | RES_DARK | SHOW_MODS | LITE
-D:The long-lost weapon of Kzurin, Dwarven champion of ancient Belegost,
-D:with runes of strength in its handle, and flames and sparks that roar and
-D:crackle around its massive head.
+D:远古贝莱格斯特的矮人冠军克祖林（Kzurin）失落已久的武器，
+D:它的握柄上刻有力量符文，火焰和火花在其巨大的头部周围
+D:咆哮、噼啪作响。
 
 
 
@@ -1400,8 +1400,8 @@ P:0:2d7:8:22:0
 F:STR | HIDE_TYPE | SLAY_HUMAN |
 F:SLAY_ANIMAL | SLAY_TROLL | SLAY_ORC | RES_NEXUS | SEE_INVIS |
 F:SHOW_MODS
-D:You feel strong and firm of foot as you whip the chain-suspended spiked orb
-D:around - and bathe it in the blood of your foes.
+D:当你挥舞着锁链悬挂的带刺铁球时，你感到脚步稳健有力——
+D:并让它沐浴在敌人的鲜血中。
 
 
 
@@ -1411,9 +1411,9 @@ W:25:8:150:35000
 P:0:2d7:5:7:2
 F:BRAND_FIRE | RES_FIRE | SHOW_MODS | LITE
 E:BALL_FIRE:25:50:72
-E:Your morning star rages in fire...
-D:A famed battle-lord of old with a ruddy head, colored as embers are that
-D: can yet rise up in wrath.
+E:你的晨星锤在火焰中狂怒……
+D:古代著名的战斗领主，它那带有红色的头部，颜色如同
+D:还能在愤怒中重新燃起的余烬一样。
 
 
 
@@ -1423,10 +1423,10 @@ W:35:15:200:50000
 P:0:3d5:12:12:0
 F:KILL_DRAGON | BRAND_ELEC | IM_ELEC | SHOW_MODS
 E:SPEED:20:100:20
-E:Your mace glows bright green...
-D:A great ridged mace that calls around you a nimbus of living lightning;
-D:you remain utterly untouched even as fat sparks arc around your
-D:fingers and eyebrows.
+E:你的权杖闪耀着明亮的绿光……
+D:一把巨大的脊状权杖，它会在你周围召唤出一圈活跃的闪电光环；
+D:即使粗大的火花在你手指和眉毛周围划过，
+D:你也完全不受影响。
 
 
 
@@ -1438,9 +1438,9 @@ F:WIS | HIDE_TYPE |
 F:KILL_DRAGON | SLAY_EVIL | BRAND_ELEC | SLAY_UNDEAD | SLAY_DEMON |
 F:FREE_ACT | RES_ACID | RES_ELEC | RES_FIRE | RES_COLD | RES_NEXUS |
 F:SEE_INVIS | SHOW_MODS | XTRA_POWER | XTRA_H_RES
-D:The wondrous hammer of Aule, creator of the wise Dwarven lords of old.
-D:It bears magics of demolishing that no serpent or demon can withstand, and
-D:invokes the strength of mountains to ward off the tumult of the elements.
+D:奥力的神奇锤子，他是古代睿智矮人领主的创造者。
+D:它带有没有任何巨蛇或恶魔能抵挡的毁灭魔法，并
+D:唤起山脉的力量来抵御元素的喧嚣。
 
 
 
@@ -1450,8 +1450,8 @@ W:25:10:150:70000
 P:0:1d10:10:20:0
 F:INT | HIDE_TYPE |
 F:SLAY_ANIMAL | BRAND_FIRE | RES_FIRE | SHOW_MODS | LITE
-D:Named for a fiery star and set with gems of great worth binding mystic
-D:virtues of protection and thought.
+D:以一颗炽热的星星命名，镶嵌着价值连城的宝石，束缚着神秘的
+D:保护和精神力量。
 
 
 
@@ -1462,9 +1462,9 @@ P:0:1d10:3:5:0
 F:INT | WIS | HIDE_TYPE | SPELL_CAP
 F:SLAY_EVIL | RES_LITE | LITE | SEE_INVIS | SHOW_MODS
 E:IDENTIFY:10:10
-E:Your quarterstaff glows yellow...
-D:The radiant golden staff of an Istar of legend, this wizard's companion
-D:grants keen sight and the knowledge of many hidden things.
+E:你的铁头木棍闪耀着黄光……
+D:传奇伊斯塔（Istar）的耀眼金色法杖，这件巫师的伴侣
+D:赋予了敏锐的视觉和许多隐藏事物的知识。
 
 N:120:of Gandalf
 I:21:21:4
@@ -1475,11 +1475,11 @@ F:SLAY_EVIL | SLAY_TROLL | SLAY_ORC | LITE | DEC_MANA | XTRA_POWER |
 F:HOLD_LIFE | RES_FIRE | RES_NETHER | SEE_INVIS | SHOW_MODS | REGEN
 F:REGEN_MANA | SLOW_DIGEST | RES_CONF | RES_BLIND | SPELL_CAP
 E:INVULNERABILITY:90:777
-E:"You cannot pass! I am a servant of the Secret Fire, wielder of the Flame of Anor."
-D:The staff of the great wizard Gandalf.
-D:It is tall and sturdy, with rough-hewn runes that invoke the element of
-D:Earth, and which strikes down all creatures who live in the shadow of
-D:mountains.
+E:“你不能过去！我是秘火的仆人，阿诺尔之焰的持有者。”
+D:伟大巫师甘道夫的法杖。
+D:它高大而坚固，刻有粗糙的符文，能唤起土元素，
+D:并将击倒所有生活在群山阴影中的
+D:生物。
 
 
 
@@ -1491,11 +1491,11 @@ F:STR | TUNNEL | HIDE_TYPE | NO_TELE | SLAY_HUMAN |
 F:SLAY_DRAGON | SLAY_ANIMAL | SLAY_EVIL | SLAY_UNDEAD | BRAND_FIRE |
 F:IM_FIRE | RES_DARK | RES_CONF | RES_CHAOS | RES_DISEN | AGGRAVATE |
 F:LITE | SHOW_MODS | BRAND_POIS | BRAND_VAMP | RIDING
-D:A weapon so massive it seems beyond the strength of mortals, yet you feel
-D:the might of giants within you as you heft it. As you grip the handle
-D:of ebony and steel, coronas of fire blaze and mighty spells to preserve
-D:magic activate around you. You wield the Fear of Dragons and the Despair
-D:of the Undead!
+D:这把武器如此巨大，似乎超出了凡人的力量，然而当你掂量它时，
+D:你能感受到体内巨人的力量。当你握住它乌木和钢铁制成的
+D:手柄时，火焰的日冕会燃烧起来，强大的保护魔法
+D:也会在你周围激活。你挥舞着的，正是巨龙的恐惧和
+D:不死生物的绝望！
 
 
 
@@ -1507,10 +1507,10 @@ F:WIS | INFRA | HIDE_TYPE | BLESSED |
 F:BRAND_COLD | SLAY_ORC | RES_COLD | RES_LITE | LITE | REGEN |
 F:SHOW_MODS | XTRA_H_RES
 E:DRAIN_LIFE:25:70:90
-E:Your hammer glows white...
-D:Wielded by the High Priest of Meneltarma, this great mace gleams coldly as
-D:though moonlit, and it can strike as mighty a blow spiritually as
-D:physically.
+E:你的锤子闪耀着白光……
+D:曾被米涅尔塔玛（Meneltarma）大祭司所挥舞，这把巨大的权杖闪烁着
+D:如月光般冰冷的光芒，它在精神上和物理上都能
+D:发动极其强大的打击。
 
 N:123:'Slayer'
 I:23:28:2
@@ -1524,16 +1524,16 @@ I:19:13:4
 W:70:20:40:60000
 P:0:x3.00:20:33:0
 F:DEX | STEALTH | HIDE_TYPE | RES_DISEN | XTRA_SHOTS | SHOW_MODS
-D:The great bow of Beleg Cuthalion, made of black yew and strung with elven
-D:hair that faintly shimmers a pale clear gold.
+D:强弓贝尔格的巨弓，由黑色的紫杉木制成，并用精灵的
+D:头发作为弓弦，隐约闪烁着苍白清澈的金色。
 
 N:125:of Bard
 I:19:13:3
 W:60:20:40:40000
 P:0:x4.00:17:29:0
 F:DEX | HIDE_TYPE | FREE_ACT | SHOW_MODS
-D:The great yew bow of grim-faced Bard, who shot the mightiest arrow that
-D:songs record.
+D:面容冷峻的巴德使用的巨大紫杉木弓，他射出了
+D:歌曲中所记载的最强大的一箭。
 
 N:126:of Brand
 I:19:23:5
@@ -1548,9 +1548,9 @@ W:25:6:100:35000
 P:6:0d0:0:0:15
 F:RES_CHAOS | RES_NETHER | RES_POIS | AURA_COLD
 E:PROT_EVIL:25:200
-E:A shrill wailing sound surrounds you.
-D:Contained within this studded cuirass of pliable leather is the memory of
-D:unvanquished Himring, defiant fortress surrounded by the legions of Morgoth.
+E:一阵尖锐的哀号声环绕着你。
+D:这件由柔韧皮革制成的镶钉胸甲中，蕴含着关于未被征服的
+D:希姆林的记忆，那是一座被魔苟斯军团包围却依然屹立不倒的堡垒。
 
 N:128:'Kusanagi-no-tsurugi'
 I:23:20:3
@@ -1569,10 +1569,10 @@ P:40:2d4:-4:0:25
 F:RES_FIRE | RES_COLD | RES_POIS | RES_LITE | RES_DARK | RES_ACID |
 F:LITE | SEE_INVIS | AGGRAVATE | FREE_ACT | IM_ELEC |
 E:STAR_BALL:30:1000
-E:Your armor is surrounded by lightning...
-D:A massive suit of heavy dragon scales deeply saturated with many colors.
-D:It throbs with angry energies, and you feel the raw elemental might of
-D:untamed Lightning as you put it on.
+E:你的盔甲被闪电环绕……
+D:一套巨大的重型龙鳞盔甲，深深地渗透着多种色彩。
+D:它随着愤怒的能量而悸动，当你穿上它时，你能感受到
+D:未被驯服的闪电那原始的元素力量。
 
 N:130:'Bladeturner'
 I:38:30:0
@@ -1584,9 +1584,9 @@ F:RES_NETHER | RES_NEXUS | RES_CHAOS | RES_LITE | RES_DARK |
 F:RES_SHARDS | RES_SOUND | RES_DISEN | RES_BLIND | RES_CONF |
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD |
 E:BLADETURNER:50:400
-D:A suit of adamant, set with scales of every color, surrounded in a nimbus
-D:of perfectly untrammelled yet inextricably intermingled and utterly mastered
-D:powers elemental and ethereal.
+D:一套精金盔甲，镶嵌着各种颜色的鳞片，被一圈完美无瑕、
+D:交织融合且被彻底掌控的元素与
+D:空灵力量的光环所环绕。
 
 N:131:of Incanus
 I:36:2:3
@@ -1596,12 +1596,12 @@ F:INT | WIS | SEARCH | HIDE_TYPE | LEVITATION
 F:SUST_INT | SUST_WIS | FREE_ACT | SEE_INVIS | DEC_MANA |
 F:RES_ACID | RES_ELEC | RES_FIRE | RES_COLD | SPELL_CAP
 E:BOLT_MANA:50:120:200
-E:The robe pulsates with raw mana...
-D:The robe of the great wizard Gandalf, also known as Incanus in the
-D:lands of the South. It is proof against elements, for neither the
-D:heat of the South, nor the ice of the North, nor the acidic pits of Dol
-D:Guldur were able to hold back the defiant Maia in the pursuit of
-D:his mission.
+E:长袍随着原始的法力而悸动……
+D:伟大巫师甘道夫的长袍，他在南方也被称为
+D:因卡努斯。它是抵御元素的证明，因为无论是南方的
+D:酷热、北方的严寒，还是多尔哥多（Dol Guldur）的酸液坑，
+D:都无法阻挡这位无畏的迈雅去追求
+D:他的使命。
 
 N:132:of Numenor
 I:33:12:3
@@ -1610,8 +1610,8 @@ P:0:1d1:0:0:15
 F:INT | DEX | CHR | HIDE_TYPE |
 F:RES_SHARDS | RES_SOUND | RES_LITE |
 F:LITE |
-D:A crown of massive gold, set with wondrous jewels of thought and warding,
-D: worn by the kings of ancient Numenor.
+D:一顶厚重的纯金王冠，镶嵌着蕴含思想与守护之力的神奇珠宝，
+D:曾由古代努曼诺尔的历代国王佩戴。
 
 N:133:of Hurin
 I:22:10:4
@@ -1620,37 +1620,37 @@ P:0:3d7:10:12:2
 F:CON | BLOWS | HIDE_TYPE | BRAND_ACID | SHOW_MODS
 F:SLAY_TROLL | SLAY_DEMON
 E:SPEED_HERO:30:200:50
-D:"Hurin [...] wielded the axe two-handed, and it is sung that the axe
-D: smoked in the black blood of the troll-guard of Gothmog, until it withered,
-D: and each time that he slew Hurin cried 'Aure entuluva! Day shall come
-D: again!'. Seventy times he uttered that cry, but they took him at last
-D: alive, by the command of Morgoth..."
+D:“胡林[...]双手挥舞着斧头，据说那把斧头在
+D:勾斯魔格巨魔卫队的黑色鲜血中冒着烟，直到它枯萎，
+D:每次杀戮时，胡林都会高喊‘Aure entuluva！新的白昼
+D:必将来临！’。他喊了七十次，但在魔苟斯的命令下，
+D:他们最终还是活捉了他……”
 
 N:134:of Buckland
 I:19:2:3
 W:40:35:20:50000
 P:0:x2.75:19:22:0
 F:SPEED | RES_BLIND | RES_CONF | SHOW_MODS | XTRA_RES_OR_POWER
-D:A sling granting extraordinary clarity of mind amidst darkness and
-D:confusion, and which hurls shot with deadly speed.
+D:一把在黑暗和混乱中赋予非凡的头脑清晰度的投石索，
+D:它能以致命的速度投掷弹丸。
 
 N:135:of Azaghal
 I:23:5:0
 W:15:30:30:40000
 P:0:2d6:12:14:0
 F:KILL_DRAGON | ESP_DRAGON | IM_FIRE | XTRA_RES_OR_POWER
-D:At the Nirnaeth the Dwarves stayed the onslaught of Glaurung, and
-D:Azaghal their lord drove this short blade into the drake's belly before
-D:he was trampled underfoot. The black blood of the Father of Dragons
-D:now serves as a remembrance for all dragons that come near it.
+D:在尼南斯·阿农迪亚德（Nirnaeth）战役中，矮人们挡住了格劳龙的猛攻，
+D:他们的领主阿扎格哈尔在被踩在脚下之前，将这把短刀刺入了
+D:恶龙的腹部。龙之父的黑色鲜血
+D:现在成为所有靠近它的龙类的警告。
 
 N:136:'Mjollnir'
 I:21:8:4
 W:40:125:360:100000
 P:0:6d5:9:18:0
 F:BRAND_ELEC | IM_ELEC | STR | DEX | THROWING | SLAY_GIANT
-D:The famous throwing hammer of the Norse god Thor, it crackles with
-D:lightning as you swing it at your opponents.
+D:北欧神话中雷神托尔著名的投掷战锤，当你挥舞它砸向对手时，
+D:它会爆发出噼啪作响的闪电。
 
 N:137:'Goln Nova'
 I:23:16:2
@@ -1666,9 +1666,9 @@ P:10:1d2:0:0:20
 F:LITE | CHR | RES_ELEC | RES_ACID | HIDE_TYPE | REFLECT |
 F:SUST_WIS | SUST_CHR
 E:BALL_LITE:40:100:300
-E:Your shield gleams with blinding light...
-D:The legendary shield of Gil-galad, who fought his way to the gates of
-D: the Dark Tower, and with whom came light even to Gorgoroth.
+E:你的盾牌闪烁着令人盲目的光芒……
+D:吉尔-加拉德的传奇盾牌，他一路杀到了黑塔（Dark Tower）的大门前，
+D:甚至把光明带到了葛哥罗斯（Gorgoroth）。
 
 N:139:'Winblows'
 I:21:13:4
@@ -1694,7 +1694,7 @@ F:HOLD_LIFE | FREE_ACT | SEE_INVIS | TELEPATHY |
 F:LEVITATION | SLOW_DIGEST | REGEN | SEARCH | LITE | WARNING |
 F:INSTA_ART | QUESTITEM | FULL_NAME
 E:RECHARGE_FROM_DEVICE:30:200:1000
-E:Your card gleams with blinding light...
+E:你的卡片闪耀着令人盲目的光芒……
 
 N:142:'Worpal Blade'
 I:23:17:2
@@ -1702,7 +1702,7 @@ W:50:5:150:100
 P:0:5d6:32:32:0
 F:TY_CURSE | AGGRAVATE | DRAIN_EXP | INFRA | NO_TELE | NO_MAGIC | HIDE_TYPE
 F:VULN_FIRE | VULN_COLD | VULN_ELEC | VULN_ACID | VULN_POIS | VULN_CONF | VULN_CHAOS
-D:It is a look-alike for the strongest sword!
+D:这把剑看起来很像那把最强的剑！
 
 N:143:of Boromir
 I:40:0:2
@@ -1711,9 +1711,9 @@ P:0:0d0:0:8:0
 F:SHOW_MODS | HIDE_TYPE |
 F:SUST_STR | RES_FEAR |
 E:SCARE_MONSTERS:30:60
-E:You wind a mighty blast; your enemies tremble!
-D:A massive golden torque, made of innumerable strands of gold and steel
-D:intermingled, with great golden hounds set at either end.
+E:你吹响了一阵强大的号角声；你的敌人都在颤抖！
+D:一个巨大的金色项圈，由无数根金线和钢线
+D:交织而成，两端镶嵌着巨大的金色猎犬。
 
 N:144:'Muramasa'
 I:23:20:4
@@ -1723,7 +1723,7 @@ F:HIDE_TYPE | BLOWS | VORPAL2 | BRAND_VAMP | SLAY_HUMAN | SLAY_GOOD |
 F:SHOW_MODS | SPEED | RES_DISEN | NO_TELE | VORPAL |
 F:DRAIN_EXP | AGGRAVATE | RES_DARK | RES_NETHER | TY_CURSE |
 E:MURAMASA:1
-E:The Muramasa pulsates...
+E:村正在悸动……
 
 N:145:of Xiaolong
 I:21:4:3
@@ -1750,7 +1750,7 @@ W:60:60:10:60000
 P:0:1d1:0:0:0
 F:INT | CHR | SPEED | LEVITATION | HOLD_LIFE | INSTA_ART
 E:BALL_MANA:60:250:300
-E:Your stone glows pale...
+E:你的石头闪耀着苍白的光芒……
 
 N:148:of Yoichi
 I:19:13:4
@@ -1765,7 +1765,7 @@ F:INT | CHR | SEARCH | HIDE_TYPE |
 F:SEE_INVIS | FREE_ACT |
 F:RES_FIRE | RES_COLD | RES_ELEC |
 E:RECALL:30:200
-E:Your amulet glows soft white...
+E:你的护身符闪耀着柔和的白光……
 
 N:150:'Zantetsuken'
 I:23:20:2
@@ -1780,7 +1780,7 @@ P:0:1d1:0:0:18
 F:INSTA_ART | SEE_INVIS | REFLECT | LITE | RES_LITE
 F:INT | WIS | TELEPATHY | HOLD_LIFE | HIDE_TYPE
 E:DISPEL_EVIL:50:300:250
-E:The mirror floods the area with goodness...
+E:这面镜子使周围区域充满了善良的力量……
 
 N:152:of Benkei
 I:22:9:4
@@ -1794,8 +1794,8 @@ I:17:10:0
 W:35:35:2:5000
 P:0:8d4:30:19:0
 F:KILL_DRAGON | INSTA_ART | SHOW_MODS
-D:Deadliest of arrows, imbued with elemental strength, this shaft is
-D:feared especially by the wyrmkin.
+D:最致命的箭矢，注入了元素力量，这支箭
+D:特别令龙族感到恐惧。
 
 
 
@@ -1867,7 +1867,7 @@ W:8:5:30:18000
 P:0:1d7:16:13:0
 F:INT | WIS | LEVITATION | SHOW_MODS | SEE_INVIS
 E:TELEKINESIS:25:30
-E:You stretch your whip.
+E:你伸展开了你的鞭子。
 
 N:163:'Gae Bulg'
 I:22:2:4
@@ -1878,7 +1878,7 @@ F:BRAND_ELEC | SLAY_EVIL | SLAY_GIANT |
 F:RES_ELEC | RES_LITE | RES_DARK |
 F:LITE | SEE_INVIS | RES_BLIND | SHOW_MODS | RIDING
 E:BALL_LITE:35:200:200
-E:Your spear grows brightly...
+E:你的长矛闪耀出明亮的光芒……
 
 N:164:of Arryu-Chien-Kun
 I:22:5:2
@@ -1913,8 +1913,8 @@ P:0:2d6:18:9:0
 F:CON | SEARCH | BLOWS |
 F:SLAY_EVIL | KILL_DRAGON | ESP_DRAGON |
 F:SHOW_MODS
-D:The sword of dragon-slayer Bellomarius, and later of Giles. Hidden within
-D:its unassuming blade are powerful spells to detect and slay wyrms.
+D:屠龙者贝洛马利乌斯（Bellomarius）的剑，后来属于吉尔斯。在它
+D:不起眼的剑刃中隐藏着探测和屠杀巨龙的强大魔法。
 
 N:168:of Giles
 I:37:2:2
@@ -1923,8 +1923,8 @@ P:12:1d4:-2:0:18
 F:DEC_STEALTH |
 F:RES_FIRE | RES_CHAOS | RES_NEXUS | RES_COLD
 F:HIDE_TYPE
-D:The sturdy ring mail of Giles of Ham, who was turned from an unassuming
-D:farmer to a great lord and hero by the might of his artifacts.
+D:哈姆的吉尔斯的坚固环甲，他凭借着这些神器的力量，
+D:从一个不起眼的农夫变成了一位伟大的领主和英雄。
 
 N:169:'Hyousi-gi'
 I:21:4:3
@@ -1932,7 +1932,7 @@ W:15:5:15:808
 P:0:1d2:-3:-7:6
 F:SEARCH | SHOW_MODS | HIDE_TYPE
 E:AGGRAVATE:1
-E:You beat your wooden clappers.
+E:你敲响了你的木制拍板。
 
 N:170:'Matoi'
 I:21:7:3
@@ -1946,16 +1946,16 @@ I:23:20:3
 W:50:15:120:60000
 P:0:3d5:28:17:0
 F:DEX | HIDE_TYPE | SUST_DEX | SHOW_MODS
-D:It is the katana of the famed creator of the dual sword technique,
-D:Miyamoto Musashi, and wielded with his right hand in combat.
+D:这是著名的二刀流剑术创造者
+D:宫本武藏的打刀，他在战斗中用右手挥舞它。
 
 N:172:of Musashi
 I:23:13:3
 W:50:5:90:60000
 P:0:2d5:28:17:0
 F:DEX | HIDE_TYPE | SUST_DEX | SHOW_MODS
-D:It is the wakizashi of the famed creator of the dual sword technique,
-D:Miyamoto Musashi, and wielded with his left hand in combat.
+D:这是著名的二刀流剑术创造者
+D:宫本武藏的胁差，他在战斗中用左手挥舞它。
 
 N:173:'Iron ball'
 I:21:6:6
@@ -2009,8 +2009,8 @@ F:BLOWS
 F:SLAY_UNDEAD | SLAY_DRAGON | SLAY_ANIMAL |
 F:RES_FIRE | BLESSED |
 F:SLOW_DIGEST | SHOW_MODS
-D:Crafted by a legendary wizard and wielded for a long time by the hero Pip,
-D:this sword is powerfully magical but notoriously arachnophobic...
+D:由一位传奇巫师打造，并由英雄皮普（Pip）挥舞了很长一段时间，
+D:这把剑具有强大的魔力，但它对蜘蛛的极度恐惧也是出了名的……
 
 
 
@@ -2054,10 +2054,10 @@ F:SLAY_DEMON | SLAY_ORC | FREE_ACT | RES_COLD | LEVITATION |
 F:SLOW_DIGEST | SHOW_MODS |
 F:ESP_ORC | ESP_TROLL | ESP_GIANT | ESP_DEMON
 E:BOLT_COLD:10:50:12
-E:Your sword glows a pale blue...
-D:The beautiful sword of Thingol, justly named "King's Ire". It glistens
-D: icy enough to freeze the hearts of demons, and you feel supple and
-D: lightfooted as you clasp its hilt of gold and silver inlay.
+E:你的剑闪耀着淡蓝色的光芒……
+D:辛葛的美丽佩剑，正如其名“国王之怒”。它闪烁的光芒
+D:冰冷得足以冻结恶魔的心脏。当你紧握它那镶嵌着金银的剑柄时，
+D:你会感到身体柔软且步履轻盈。
 
 N:185:'Paurnimmen'
 I:31:3:0
@@ -2065,8 +2065,8 @@ W:30:20:25:13000
 P:2:1d1:2:2:7
 F:RES_COLD | BRAND_COLD
 E:BEAM_COLD:12:12:40
-E:Your gauntlets are covered in ice...
-D:A set of handgear so icy as to be able to freeze your opponent.
+E:你的护手被冰雪所覆盖……
+D:一副冰冷到能够冻结对手的手部护具。
 
 N:186:of Earendil
 I:34:7:0
@@ -2075,8 +2075,8 @@ P:10:1d6:0:0:20
 F:LITE | RES_BLIND | RES_DARK | RES_NETHER | RES_ELEC | RES_FIRE |
 F:ESP_GOOD
 E:CURING:25:100
-D:A shining shield, once borne by the great mariner Earendil, "scored with
-D:runes to keep all wounds and harm from him".
+D:一面闪耀的盾牌，曾由伟大的航海家埃兰迪尔持有，“上面刻着
+D:让一切伤痛与伤害远离他的符文”。
 
 N:187:'Aeglos'
 I:22:2:4
@@ -2086,9 +2086,9 @@ F:WIS | HIDE_TYPE | THROWING | RIDING |
 F:BRAND_COLD | SLAY_TROLL | SLAY_ORC | FREE_ACT | RES_COLD |
 F:SLOW_DIGEST | BLESSED | SHOW_MODS
 E:BALL_COLD:15:200:100
-E:Your spear glows a bright white...
-D:The mighty spear of Gil-galad, famed as "Snow-point" in the songs of Elves,
-D:against which all the foul corruptions of Sauron dashed in vain.
+E:你的长矛闪耀着明亮的白光……
+D:吉尔-加拉德的强大长矛，在精灵的歌谣中被称为“雪点”，
+D:索伦所有邪恶的腐化物在它面前都如同螳臂当车。
 
 N:188:of Bolshoi
 I:21:2:4
@@ -2112,7 +2112,7 @@ P:0:6d6:16:16:0
 F:BRAND_VAMP | STR | CON | FREE_ACT | HOLD_LIFE | RES_NETHER | RES_CONF |
 F:RES_CHAOS | QUESTITEM
 F:SLAY_HUMAN | SLAY_GOOD
-D:Death is all. Beware, cursed is the wielder.
+D:死亡即是一切。当心，挥舞它的人将会受到诅咒。
 
 N:191:'Narsil'
 I:23:2:3
@@ -2120,8 +2120,8 @@ W:20:4:130:20000
 P:0:4d2:6:10:0
 F:STR | BLOWS | HIDE_TYPE |
 F:SLAY_ORC | SLAY_TROLL | RES_FIRE
-D:A blade of Elendil that was broken by his fall as the battled Sauron upon
-D: the steps of Barad-Dur.
+D:这是埃兰迪尔的剑，当他在巴拉督尔的台阶上与索伦战斗而倒下时，
+D:它被折断了。
 
 N:192:'I killed the GHB and all I got was this lousy T-shirt!'
 I:36:0:0
@@ -2173,7 +2173,7 @@ I:22:30:2
 W:70:12:250:180000
 P:0:8d4:8:8:8
 E:BLOODY_MOON:30:500
-E:Your scythe glows brightly!
+E:你的镰刀闪烁着明亮的光芒！
 
 N:200:'Dasai'
 I:36:8:10
@@ -2189,7 +2189,7 @@ F:RES_ACID | RES_FIRE | RES_COLD | RES_ELEC |
 F:RES_DARK | RES_CONF | RES_POIS |
 F:FREE_ACT | SEE_INVIS
 E:RESISTANCE:30:111
-E:Your armor glows many colors ...
+E:你的盔甲闪烁着五颜六色的光芒……
 
 N:202:'Ama-no-NumaHoko'
 I:22:4:4
@@ -2200,7 +2200,7 @@ F:SLAY_EVIL | SLAY_DEMON | SLAY_UNDEAD |
 F:RES_ACID | RES_COLD | RES_BLIND | RES_CHAOS |
 F:LITE | BLESSED | SEE_INVIS | SHOW_MODS
 E:BALL_WATER:50:250:200
-E:Your awl pike throbs deep blue...
+E:你的破甲锥悸动着深蓝色的光芒……
 
 N:203:of The High Priest of Morlok
 I:37:1:2
@@ -2219,7 +2219,7 @@ P:4:0d0:0:0:0
 F:STR | CON | SUST_STR | SUST_CON |
 F:FREE_ACT
 E:DISPEL_EVIL_HERO:20:150
-E:You stamp your feet (as if you are in a ring.)
+E:你用力跺脚（就好像在相扑擂台里一样。）
 
 N:205:of Mook
 I:35:3:0
@@ -2227,7 +2227,7 @@ W:50:20:30:50000
 P:3:0d0:0:0:20
 F:RES_COLD | RES_ACID | RES_CHAOS | LEVITATION
 E:RESIST_COLD:20:60
-E:Your cloak grows white.
+E:你的披风变成了白色。
 
 N:206:of The Padre
 I:37:13:2
@@ -2244,7 +2244,7 @@ F:STR | SLAY_EVIL | SLAY_DEMON | BRAND_ELEC |
 F:RES_ELEC | RES_FIRE | RES_NETHER |
 F:LITE | SEE_INVIS | SHOW_MODS
 E:BALL_ELEC:50:50:500
-E:The sword glows deep blue...
+E:剑闪耀着深蓝色的光芒……
 
 N:208:'Aegis Fang'
 I:21:8:2
@@ -2262,7 +2262,7 @@ P:0:1d7:10:5:0
 F:INT | WIS | BRAND_MANA
 F:SEE_INVIS | TELEPATHY
 E:PROT_EVIL:35:225
-E:The whip lets out a shrill wail...
+E:鞭子发出一声尖锐的哀号……
 
 N:210:'Tetsu-geta of Flame'
 I:30:6:1
@@ -2279,10 +2279,10 @@ F:TUNNEL | INFRA | SEARCH | STR |
 F:SLAY_ORC | SLAY_TROLL | SLAY_GIANT | SLAY_DRAGON |
 F:BRAND_ACID | RES_ACID | RES_DARK | RES_DISEN |
 E:STONE_TO_MUD:20:2
-E:Your mattock pulsates...
-D:Wielded by Nain of the Iron Hills at the Battle of Azanulbizar, this great
-D:mattock brought victory to the Dwarves over Azog's Orcs - though Nain
-D:himself fell at the last, even with victory already assured.
+E:你的鹤嘴锄在悸动……
+D:在阿扎努比扎（Azanulbizar）战役中，铁丘陵的内恩曾挥舞过这把巨大的
+D:鹤嘴锄，为矮人战胜阿索格的半兽人带来了胜利——尽管内恩
+D:自己最后倒下了，即使胜利已成定局。
 
 N:212:of Gothmog
 I:21:2:3
@@ -2295,9 +2295,9 @@ F:SLAY_ANIMAL | SLAY_ORC | SLAY_TROLL | SLAY_GIANT |
 F:IM_FIRE | RES_ELEC | RES_DARK | VULN_COLD |
 F:LITE | SHOW_MODS
 E:BALL_FIRE:50:15:300
-E:Your whip glows deep red...
-D:With this unbearably bright whip of flame, the Balrog Gothmog has become
-D: known for never having lost in combat.
+E:你的鞭子闪耀着深红色的光芒……
+D:凭借这条亮得令人难以忍受的火焰长鞭，炎魔之王勾斯魔格
+D:以在战斗中从未尝过败绩而闻名。
 
 N:213:of The Bonze Octopus
 I:21:7:4
@@ -2315,10 +2315,10 @@ F:STR | WIS | SPEED | LITE | HIDE_TYPE |
 F:SLAY_EVIL | SLAY_UNDEAD |
 F:RES_FIRE | RES_ELEC | RES_NETHER | HOLD_LIFE |
 E:DISPEL_EVIL:50:100:250
-E:The iron ball floods the area with goodness...
-D:The weapon of one of the great dwarven priests, with powers
-D:to preserve body and soul, and the bane of those
-D:who seek life beyond death.
+E:铁球使周围区域充满了善良的力量……
+D:伟大的矮人牧师之一的武器，拥有
+D:保护肉体和灵魂的力量，并且是那些
+D:在死后寻求生命者的克星。
 
 N:215:of The Pitch Dark Night
 I:40:0:4
@@ -2327,7 +2327,7 @@ P:0:0d0:0:0:5
 F:STEALTH | SEARCH | HIDE_TYPE | SEE_INVIS |
 F:RES_DARK | DARKNESS |
 E:BALL_DARK:50:100:250
-E:Your amulet is covered in pitch-darkness...
+E:你的护身符被漆黑的暗影所覆盖……
 
 N:216:of Eowyn
 I:23:21:4
@@ -2345,7 +2345,7 @@ F:STR | WIS | HIDE_TYPE |
 F:RES_CONF | RES_CHAOS | BLESSED |
 F:SEE_INVIS | FREE_ACT | REGEN | HOLD_LIFE |
 E:SACRED_KNIGHTS:25
-E:Your amulet exhibits the truth...
+E:你的护身符展现了真相……
 
 N:218:Harness of the Hell
 I:40:0:2
@@ -2355,7 +2355,7 @@ F:DEC_INT | DEC_WIS | CHR | DEC_STEALTH | DEC_SPEED | HIDE_TYPE | FULL_NAME
 F:RES_DARK | RES_NETHER |
 F:SEE_INVIS | AGGRAVATE | ESP_UNDEAD |
 E:BALL_DARK:50:100:250
-E:Your collar harness is covered in pitch-darkness...
+E:你的项圈挽具被漆黑的暗影所覆盖……
 
 N:219:Charmed Pendant
 I:40:0:2
@@ -2365,7 +2365,7 @@ F:INT | CHR | INFRA | SEARCH | HIDE_TYPE | FULL_NAME |
 F:SEE_INVIS | FREE_ACT | SLOW_DIGEST | REGEN | LITE | WARNING |
 F:AURA_FIRE | AURA_ELEC | AURA_COLD | EASY_SPELL | MAGIC_MASTERY
 E:RESTORE_MANA:50:777
-E:Your pendant glows pale...
+E:你的吊坠闪耀着苍白的光芒……
 
 N:220:of Gogo
 I:40:0:4
@@ -2380,7 +2380,7 @@ W:20:15:30:50000
 P:0:x3.25:15:17:0
 F:DEX | CHR | STEALTH |
 F:HIDE_TYPE | SHOW_MODS | XTRA_H_RES
-D:This is of Robin Hood who live in the deep forest.
+D:这属于生活在密林深处的罗宾汉。
 
 
 N:222:of Hellfire
@@ -2390,7 +2390,7 @@ P:0:x4.00:10:35:0
 F:STR | INFRA | RES_FIRE | AURA_FIRE |
 F:HIDE_TYPE | SHOW_MODS
 F:BRAND_FIRE
-D:This crossbow gives flame energy to bolts which it fires.
+D:这把弩能赋予它发射的弩箭火焰能量。
 
 N:223:of Wilhelm Tell
 I:19:23:4
@@ -2398,17 +2398,17 @@ W:50:30:110:50000
 P:0:x4.00:40:23:0
 F:DEX | HIDE_TYPE | SEE_INVIS | SHOW_MODS
 F:SLAY_HUMAN
-D:With this crossbow, Swiss hero Tell shot an apple exactly
-D:though it was on his son's head, and then he defeated evil
-D:magistrate Gessler.
+D:瑞士英雄泰尔用这把弩精准地射中了一颗苹果，
+D:尽管那颗苹果放在他儿子的头上，之后他还击败了邪恶的
+D:行政官盖斯勒（Gessler）。
 
 N:224:of Wilhelm Tell
 I:18:1:0
 W:35:35:2:5000
 P:0:6d5:20:16:0
 F:KILL_HUMAN
-D:It is said that this bolt sticked onto the heart of Gessler
-D:when Wilhelm Tell shot it.
+D:据说威廉·泰尔射出这支弩箭时，它
+D:刺穿了盖斯勒的心脏。
 
 N:225:of Asclepius
 I:21:14:3
@@ -2420,8 +2420,8 @@ F:BRAND_VAMP | SLAY_ANIMAL | SLAY_DRAGON | SLAY_HUMAN |
 F:SLAY_ORC | SLAY_TROLL | SLAY_GIANT |
 F:RES_POIS | RES_CONF | RES_CHAOS |
 E:RESTORING:40:750
-E:'Asclepius! Ot-tiovno ok-lut!' The Bo Staff glows a deep green...
-D:This is the staff of Asclepius, Greek god of medicine.
+E:“阿斯克勒庇俄斯！Ot-tiovno ok-lut！”这根武术棍闪耀出深绿色的光芒……
+D:这是希腊医神阿斯克勒庇俄斯的法杖。
 
 N:226:Spectral Dragon Scale Mail
 I:38:3:3
@@ -2432,8 +2432,8 @@ F:RES_NETHER | RES_NEXUS | RES_DISEN |
 F:SEE_INVIS | HOLD_LIFE | LEVITATION |
 F:DEC_STR | DEC_DEX | DEC_CON | DEC_LIFE | STEALTH
 F:CURSED | HEAVY_CURSE | FULL_NAME
-D:A white transparent dragon scale mail which was made from
-D:the tortured soul of a once powerful wyrm.
+D:一件透明的白色龙鳞甲，它是用一条曾经强大、
+D:备受折磨的巨龙的灵魂制成的。
 
 N:227:of Sha Wujing
 I:22:14:2
@@ -2443,9 +2443,9 @@ F:BLESSED | STR | WIS |
 F:SLAY_EVIL | SLAY_UNDEAD | KILL_DEMON |
 F:SEE_INVIS | REGEN | INFRA |
 F:RES_ACID | RES_COLD | RES_DARK
-D:This lajatang looks like a staff because it has only a
-D:blade which looks like a half moon. Sha Wujing helped a
-D:long journey of Tang Sanzang with it.
+D:这把月牙铲看起来像一根法杖，因为它只有一端
+D:是像半月一样的铲刃。沙悟净在唐三藏的
+D:漫长旅途中用它来帮忙。
 
 N:228:of Elmi the Murderer
 I:22:1:2
@@ -2453,8 +2453,8 @@ W:15:10:60:50000
 P:0:3d6:5:19:0
 F:DEX | STEALTH | HIDE_TYPE | BRAND_MANA |
 F:KILL_HUMAN | VORPAL | SEE_INVIS |
-D:This is a hatchet of Elmi who was a horrible murderer of
-D:Raffnor.
+D:这是拉夫诺（Raffnor）可怕的杀人犯，
+D:埃尔米（Elmi）的短斧。
 
 N:229:'Taro Dachi'
 I:23:27:4
@@ -2462,8 +2462,8 @@ W:45:25:300:120000
 P:0:9d5:0:0:-5
 F:STR | VORPAL |
 F:SLAY_HUMAN | SLAY_ORC | SLAY_TROLL | SLAY_GIANT
-D:Asakura's captain Naotaka Magara defeated a lot of soldiers
-D:with this large katana.
+D:朝仓家的将领真柄直隆（Naotaka Magara）用这把大太刀
+D:击败了无数的士兵。
 
 
 
@@ -2483,8 +2483,8 @@ I:22:3:1
 W:10:4:70:10000
 P:0:2d4:7:9:0
 F:STR | DEX | RES_FIRE | RES_LITE | VORPAL |
-D:This is farmer Maggot's sickle. He left it behind on his
-D:farm.
+D:这是农夫马各特的镰刀。他把它落在
+D:自己的农场里了。
 
 N:233:of the Heavenly Maiden
 I:35:5:4
@@ -2493,10 +2493,10 @@ P:0:0d0:0:0:20
 F:CHR | LEVITATION | SEE_INVIS | FREE_ACT | AGGRAVATE
 F:RES_COLD | RES_ELEC | XTRA_H_RES | XTRA_POWER
 E:RECALL:25:200
-E:Your cloak glows soft white...
-D:This is a heavenly cloak of the maiden which was stolen
-D:by a man, when she was having a bath at a lake with her
-D:friend maidens.
+E:你的披风闪耀着柔和的白光……
+D:这是一件天女的羽衣，当她和她的仙女朋友们
+D:在湖里洗澡时，
+D:它被一个男人偷走了。
 
 N:234:of Yositsune
 I:32:8:2
@@ -2505,8 +2505,8 @@ P:7:1d2:0:0:8
 F:DEX | CON | CHR | SEARCH | INFRA | HIDE_TYPE |
 F:RES_FEAR | RES_BLIND | RES_SOUND |
 F:WARNING | ESP_HUMAN |
-D:This is Yositsune's kabuto. It defended his head against
-D:many arrows and blades from his enemies.
+D:这是源义经的头盔。它保护了他的头部免受
+D:敌人无数箭矢和刀剑的伤害。
 
 N:235:of Yositsune
 I:37:14:2
@@ -2516,9 +2516,9 @@ F:DEX | SPEED | STEALTH | HIDE_TYPE |
 F:FREE_ACT | REGEN | SLOW_DIGEST |
 F:RES_ACID | RES_FIRE | RES_COLD | RES_ELEC | RES_CONF |
 F:RES_CHAOS | RES_NEXUS |
-D:This is the haramakido of Yositsune who is the best brave
-D:warrior of Genji. You can feel his agility and dexterity,
-D:when you put it on.
+D:这是源氏最勇敢的武将义经的腹卷（日式盔甲）。
+D:当你穿上它时，你可以感受到他那
+D:敏捷和灵巧的身手。
 
 N:236:of the Bando Musha
 I:37:16:2
@@ -2527,9 +2527,9 @@ P:24:1d4:5:5:20
 F:STR | CON | CHR | HIDE_TYPE | SHOW_MODS |
 F:RES_ACID | RES_COLD | RES_ELEC | RES_BLIND | RES_DISEN |
 F:RES_FEAR | XTRA_H_RES
-D:This is Shigetada Hatakeyama's O-yoroi. He is brave, wise
-D:and honest warrior, so he was called the best model of
-D:eastern samurai. This O-yoroi is majestic like him.
+D:这是畠山重忠的大铠。他是一位勇敢、聪明
+D:而诚实的武将，因此被称为东国武士的
+D:最佳典范。这套大铠就像他一样威风凛凛。
 
 
 
@@ -2552,23 +2552,23 @@ I:32:2:1
 W:20:3:15:15000
 P:2:0d0:1:1:7
 F:DEC_STR | DEX | HIDE_TYPE | SPEED
-D:Sam was brave and trustworthy companion of Frodo.
-D:With this cap, you feel able to face the dangers
-D:ahead with a steady hand and a noble heart.
+D:山姆是佛罗多勇敢而值得信赖的同伴。
+D:戴上这顶帽子，你觉得自己能够以平稳的手和
+D:高贵的心去面对前方的危险。
 
 N:240:of Merry
 I:35:1:1
 W:20:3:10:15000
 P:1:0d0:1:1:7
 F:DEC_STR | DEX | STEALTH | SPEED | RES_CONF | SEARCH | HIDE_TYPE
-D:Merry was the most perceptive and intelligent of hobbits.
+D:梅里是霍比特人中最敏锐、最聪明的。
 
 N:241:of Pippin
 I:31:1:1
 W:20:3:5:15000
 P:1:0d0:1:1:7
 F:DEC_STR | DEX | HIDE_TYPE | SHOW_MODS | SPEED
-D:'Fool of a Took' ... Ah, but Peregrin was brave if not wise.
+D:“图克家的傻瓜”……啊，不过佩里格林（皮平）虽然算不上明智，但很勇敢。
 
 N:242:of Bilbo
 I:37:20:2
@@ -2576,11 +2576,11 @@ W:60:4:70:200000
 P:28:1d4:2:2:7
 F:STEALTH | SEE_INVIS | DEX | SPEED |
 F:RES_ACID | RES_ELEC | RES_FIRE | RES_COLD | RES_POIS | RES_DARK | XTRA_H_RES
-D:"Also there is this!" said Bilbo, bringing out a parcel which seemed
-D:to be rather heavy for its size. He unwound several folds of old cloth,
-D:and held up a small shirt of mail. It was close-woven of many rings,
-D:as supple almost as linen, cold as ice, and harder than steel. It shone
-D:like moonlit silver, and was studded with white gems.
+D:“还有这个！”比尔博说着，拿出一个相对于它的体积来说
+D:相当沉重的包裹。他解开了几层旧布，
+D:举起了一件小锁子甲。它由许多圆环紧密编织而成，
+D:几乎和亚麻一样柔软，像冰一样冷，比钢铁还要坚硬。它闪耀着
+D:如同月光下的白银般的光芒，上面镶嵌着白色的宝石。
 
 N:243:'Bloodrip'
 I:23:21:2
@@ -2590,10 +2590,10 @@ F:CON | HIDE_TYPE | SHOW_MODS |
 F:VORPAL | BRAND_VAMP | FREE_ACT | SEE_INVIS | SLAY_GOOD |
 F:RES_CONF | RES_SOUND | DEC_STEALTH
 E:WHIRLWIND_ATTACK:40:66
-E:Your sword glows blood red...
-D:This weapon is infused with the soul of the first Blood Knight. Beware!
-D:It longs for blood, even the wielder's! But there is no finer weapon for
-D:those who walk the red path.
+E:你的剑闪耀着血红色的光芒……
+D:这把武器注入了第一代鲜血骑士的灵魂。当心！
+D:它渴望鲜血，甚至是挥舞者的鲜血！但对于那些走在血色之路上的人来说，
+D:没有比这更好的武器了。
 
 N:244:of Eternity
 I:36:2:3
@@ -2602,8 +2602,8 @@ P:0:0d0:0:0:42
 F:CON | SUST_STR | SUST_INT | SUST_WIS | SUST_DEX | SUST_CON | SUST_CHR |
 F:FREE_ACT | LEVITATION | SEE_INVIS | HOLD_LIFE |
 F:RES_LITE | RES_DARK | RES_DISEN | RES_TIME
-D:This robe is invisible to the naked eye. It's a wonder you found it at all! Yet,
-D:it holds an incredible power, undiluted by time.
+D:这件长袍肉眼是看不见的。你能找到它简直是个奇迹！然而，
+D:它拥有不可思议的力量，且不会被时间所削弱。
 
 N:245:of Maglor
 I:19:70:4
@@ -2613,8 +2613,8 @@ F:STR | INT | CHR |
 F:SUST_STR | SUST_INT | SUST_CHR | FREE_ACT | HOLD_LIFE |
 F:RES_DARK | RES_NETHER | RES_BLIND | FIXED_ART
 E:RESTORE_MANA:50:777
-E:Your harps plays a restoring melody...
-D:Maglor, son of Feanor and Nerdanel, was the greatest poet and bard of the Noldor.
+E:你的竖琴演奏出一首恢复旋律……
+D:梅格洛尔，费诺和涅丹娜尔之子，是诺多精灵中最伟大的诗人和游吟诗人。
 
 
 N:246:of Daeron
@@ -2625,9 +2625,9 @@ F:WIS | CON | CHR |
 F:SUST_WIS | SUST_CON | SUST_CHR | SEE_INVIS | REFLECT |
 F:RES_FIRE | RES_ELEC | RES_LITE | RES_POIS | FIXED_ART
 E:HEAL_CURING_HERO:50:300:777
-E:Your harp plays a restoring melody...
-D:Daeron is mentioned as the greatest minstrel of all the Children of Iluvatar,
-D:and only Maglor son of Feanor is said to come close to his skill.
+E:你的竖琴演奏出一首恢复旋律……
+D:戴隆被称为所有伊露维塔的子民中最伟大的游吟诗人，
+D:据说只有费诺之子梅格洛尔的技艺能与他接近。
 
 
 N:247:of the Master Tonberry
@@ -2643,7 +2643,7 @@ W:50:7:30:150000
 P:0:1d8:7:17:17
 F:BRAND_VAMP | SHOW_MODS | SPEED | DEX | INT | FREE_ACT
 E:STRAFING:10:3
-E:Your rapier glows a deep purple...
+E:你的细剑闪耀着深紫色的光芒……
 
 N:249:of Saruman
 I:21:21:3
@@ -2653,7 +2653,7 @@ F:INT | HIDE_TYPE | DEC_MANA | REGEN |
 F:RES_FIRE | RES_COLD | RES_ACID | RES_ELEC
 F:BRAND_VAMP | BRAND_POIS | BRAND_MANA | SPELL_CAP
 E:RESISTANCE:25:111
-E:Your staff glows many colours...
+E:你的法杖闪烁着五颜六色的光芒……
 
 N:250:of Kaschei
 I:21:21:4
@@ -2670,12 +2670,12 @@ P:0:4d7:13:20:10
 F:STR | CON | CHR | RES_COLD | SLAY_EVIL | SLAY_UNDEAD
 F:SLAY_DEMON | BRAND_COLD
 E:SUMMON_KRAKEN:50:500
-E:Your club unleashes the rage of storms and sea!
-D:The mighty black stone club of the sea-god Aegir, crafted from
-D:hot magma quarried from a volcano in the blackest depths of his
-D:watery domain. Although a jovial soul in nature, Aegir is
-D:terrifying to behold when angered. You feel the contained rage
-D:within this heavy truncheon, awaiting your command to be released.
+E:你的木棒释放出了风暴与海洋的愤怒！
+D:海神埃吉尔那强大的黑石短棒，是用从他那
+D:水域中最黑暗深处的火山里开采出的滚烫岩浆
+D:制成的。尽管埃吉尔本性是个快活的人，但他被激怒时
+D:看起来却非常可怕。你能感觉到这根沉重的短棒里
+D:蕴含的愤怒，正等待着你的命令被释放出来。
 
 N:252:of the Defender of the Crown
 I:21:6:3
@@ -2685,10 +2685,10 @@ F:STR | CON | LITE | HIDE_TYPE |
 F:SLAY_EVIL | SLAY_HUMAN | SLAY_DEMON
 F:RES_SOUND | RES_SHARDS | RES_NETHER | HOLD_LIFE |
 E:STONE_SKIN:30:300
-E:Your ball and chain goes 'boop' ...
-D:A rather clumsy but large ball-and-chain forged of iron.
-D:It emits a curiously muted bell-like tone when you strike
-D:your foes.
+E:你的流星锤发出了“啵”的一声……
+D:一个相当笨拙但体积巨大的铁制流星锤。
+D:当你用它击打敌人时，它会发出一种
+D:奇怪的、沉闷的铃铛般的声音。
 
 N:253:of Rygar
 I:21:12:1
@@ -2697,18 +2697,18 @@ P:0:3d9:12:22:5
 F:STR | DEX | BLOWS | HIDE_TYPE | SLAY_HUMAN |
 F:SLAY_ANIMAL | SLAY_EVIL | SLAY_DRAGON | SEE_INVIS |
 F:FREE_ACT | SHOW_MODS |
-D:This curious weapon with an oversized head seems to flail out with
-D:amazing ease. In fact, it seems to leap out several times on its own
-D:without your trying.
+D:这件有着超大头部的奇特武器似乎能极其
+D:轻松地向外猛击。事实上，不用你费力，
+D:它似乎就能自己跳出去攻击好几次。
 
 N:254:'Big Punch'
 I:21:15:0
 W:50:50:800:150000
 P:0:8d5:1:3:-6
 F:HIDE_TYPE | SHOW_MODS | RES_SOUND
-D:This gigantic, dull-gray mace was rumored to be a gift
-D:from an ancient dwarven king to an adventurer for saving
-D:his people from a fearsome demon.
+D:据说这把巨大、暗灰色的权杖是一位古代矮人国王
+D:赠送给一名冒险者的礼物，以感谢他
+D:从一个可怕的恶魔手中拯救了他的人民。
 
 N:255:'Ruyi Jingu Bang'
 I:21:14:2
@@ -2718,9 +2718,9 @@ F:SLAY_ANIMAL | SLAY_DEMON | SLAY_UNDEAD |
 F:FREE_ACT | RES_SOUND | HOLD_LIFE | SUST_STR | SUST_DEX |
 F:BLOWS | SPEED | STR | DEX | CON | WIS
 E:ENLARGE_WEAPON:40:100
-E:Your cudgel grows bigger ...
-D:The magic cudgel of The Monkey King, Sun Wukong, this iron rod has
-D:the power to change its size at the will of its master.
+E:你的棍子变大了……
+D:猴王孙悟空的魔法棍，这根铁棒具有
+D:可以根据主人的意愿改变其大小的能力。
 
 N:256:of Zeus
 I:40:0:5
@@ -2729,8 +2729,8 @@ P:0:0d0:5:5:5
 F:SPEED | MAGIC_MASTERY | LITE | REGEN | FREE_ACT |
 F:RES_SHARDS | AURA_ELEC | PERMA_CURSE | QUESTITEM |
 E:BALL_ELEC:50:5:555
-E:Your pendant crackles with power.
-D:This is the charm worn by Zeus, King of the Olympians and Bane of the Titans.
+E:你的吊坠爆发出强大的噼啪声。
+D:这是奥林匹斯众神之王、泰坦克星宙斯佩戴的护身符。
 
 N:257:of Poseidon
 I:22:5:3
@@ -2740,7 +2740,7 @@ F:STR | DEX | SPEED | BRAND_ACID | SLAY_EVIL
 F:BRAND_ORDER | RES_ACID | RES_FIRE | RES_SOUND |
 F:PERMA_CURSE | QUESTITEM
 E:EARTHQUAKE:10
-E:The ground trembles!
+E:大地震动了！
 
 N:258:of Hades
 I:36:13:5
@@ -2752,8 +2752,8 @@ F:RES_COLD | RES_FIRE | RES_POIS | RES_DARK | RES_NETHER |
 F:RES_NEXUS | ESP_UNDEAD | ESP_DEMON | ESP_EVIL | AURA_COLD |
 F:PERMA_CURSE | QUESTITEM
 E:RESTORING:30:5
-E:Your clothes glow black.
-D:This simple tunic belongs to Hades, Lord of the Underworld.
+E:你的衣服闪耀着黑光。
+D:这件朴素的束腰外衣属于冥界之主哈迪斯。
 
 N:259:of Athena
 I:22:2:4
@@ -2763,8 +2763,8 @@ F:SUST_INT | SUST_WIS | DEC_MANA | BLESSED |
 F:HOLD_LIFE | TELEPATHY | PERMA_CURSE | QUESTITEM |
 F:DEC_STR | DEC_DEX | DEC_CON | SPELL_POWER | INT |
 E:RECHARGE_FROM_PLAYER:80:15:200
-E:Your spear glows red.
-D:This is the favored weapon of Athena, the great goddess of War and Wisdom.
+E:你的长矛闪耀着红光。
+D:这是伟大的战争与智慧女神雅典娜最喜爱的武器。
 
 N:260:of Ares
 I:32:5:2
@@ -2774,9 +2774,9 @@ F:STR | DEX | CON | SPEED | BLOWS | IM_FEAR
 F:WARNING | REFLECT | AGGRAVATE | PERMA_CURSE |
 F:QUESTITEM
 E:BERSERK:8:20
-E:Your head fills with the dying cries of fallen heroes.
-D:The helm of Ares, the Olympian whose legendary combat prowess exceeds that
-D:of Zeus himself.
+E:你的脑海中充满了倒下英雄濒死的哭喊声。
+D:阿瑞斯的头盔，这位奥林匹斯神明传说中的战斗力甚至超越了
+D:宙斯本人。
 
 N:261:of Hermes
 I:30:2:7
@@ -2785,7 +2785,7 @@ P:2:1d1:0:0:7
 F:SPEED | DEX | STEALTH | FREE_ACT | LEVITATION |
 F:RES_CHAOS | PERMA_CURSE | QUESTITEM
 E:HERMES:50:100
-E:Your boots shine.
+E:你的靴子闪闪发光。
 
 N:262:of Apollo
 I:19:70:5
@@ -2795,8 +2795,8 @@ F:STR | INT | CHR | SPEED | SUST_STR |
 F:SUST_INT | SUST_CHR | FREE_ACT | RES_FEAR | RES_LITE |
 F:RES_NETHER | PERMA_CURSE | QUESTITEM
 E:CLAIRVOYANCE:30:20
-E:Your harp flashes bright red!
-D:The is the lyre of Apollo, the sun god.
+E:你的竖琴闪烁着明亮的红光！
+D:这是太阳神阿波罗的里拉琴。
 
 N:263:of Artemis
 I:19:12:3
@@ -2806,8 +2806,8 @@ F:STR | DEX | CHR | STEALTH |
 F:XTRA_SHOTS | SUST_STR | SUST_DEX | SUST_CHR | SEE_INVIS |
 F:RES_BLIND | PERMA_CURSE | QUESTITEM
 E:ARTEMIS:30:1000
-E:Your bow glows purple.
-D:This is the bow of Artemis, the virgin huntress and twin of Apollo.
+E:你的弓闪耀着紫光。
+D:这是阿尔忒弥斯的弓，她是处女狩猎者，也是阿波罗的孪生妹妹。
 
 N:264:of Hephaestus
 I:21:19:1
@@ -2819,7 +2819,7 @@ F:KILL_DEMON | SLAY_HUMAN | SLAY_ANIMAL | SLAY_ORC | SLAY_TROLL |
 F:SLAY_GIANT | BRAND_ACID | BRAND_COLD | BRAND_FIRE | BRAND_ELEC |
 F:BRAND_VAMP | PERMA_CURSE | QUESTITEM
 E:ENCHANTMENT:50:200
-E:Your mighty hammer glows red hot!
+E:你强大的锤子闪耀着烧红的光芒！
 
 N:265:of Hera
 I:33:12:3
@@ -2837,7 +2837,7 @@ P:0:1d1:0:0:0
 F:WIS | CON | RES_TIME | REGEN | LITE |
 F:PERMA_CURSE | QUESTITEM
 E:DEMETER:50:100
-E:Your torch engulfs you in a purifying flame!
+E:你的火把将你吞没在纯净的火焰中！
 
 N:267:of Aphrodite
 I:40:0:5
@@ -2848,12 +2848,12 @@ F:RES_CHAOS | RES_DISEN | FREE_ACT | SEE_INVIS | LEVITATION |
 F:TELEPATHY | REFLECT | AGGRAVATE | PERMA_CURSE |
 F:QUESTITEM
 E:SUMMON_MONSTERS:40:25
-E:Your golden apple pulsates!
-D:The legendary Apple of Discord, created by Eris in revenge for
-D:not being invited to the wedding of Peleus and Thetis. On this
-D:apple is engraved "For the Fairest," and Athena, Hera, and Aphrodite
-D:all laid claim to it. When the Trojan Prince gave the apple to
-D:Aphrodite, he received Helen of Troy, which sparked the Trojan War.
+E:你的金苹果在悸动！
+D:传说中的“不和的金苹果”，由厄里斯（Eris）创造，以报复她
+D:没有被邀请参加珀琉斯和忒提斯的婚礼。这颗
+D:苹果上刻着“献给最美丽的女神”，雅典娜、赫拉和阿佛洛狄忒
+D:都声称它属于自己。当特洛伊王子把苹果交给了
+D:阿佛洛狄忒时，他得到了特洛伊的海伦，这也引发了特洛伊战争。
 
 N:268:of Vecna
 I:31:8:2
@@ -2861,8 +2861,8 @@ W:66:222:1:666666
 P:0:1d1:0:0:0
 F:CHR
 F:FREE_ACT | PERMA_CURSE | QUESTITEM | INSTA_ART | NO_ENCHANT
-D:It is a charred and rotting vestige of the once
-D:great Emperor Lich.
+D:它是那位曾经伟大的巫妖皇帝被烧焦且腐烂的
+D:遗物。
 
 N:269:of Vecna
 I:39:10:2
@@ -2870,17 +2870,17 @@ W:66:222:1:666666
 P:0:1d1:0:0:0
 F:INT | SPELL_CAP | NIGHT_VISION |
 F:TELEPATHY | PERMA_CURSE | QUESTITEM | INSTA_ART
-D:It is a shriveled vestige of the once
-D:great Emperor Lich.
+D:它是那位曾经伟大的巫妖皇帝干瘪的
+D:遗物。
 E:EYE_VECNA:30:30
-E:The Eye burns painfully!
+E:眼睛痛苦地燃烧着！
 
 N:270:'Cupid's Arrow'
 I:17:1:0
 W:35:35:2:2000
 P:0:1d4:0:0:0
 F:SHOW_MODS
-D:This arrow is traditionally shot only by fat, scantily clad babies.
+D:传统上，这支箭只能由胖胖的、衣着暴露的婴儿射出。
 
 N:271:'Ballista'
 I:19:24:3
@@ -2889,7 +2889,7 @@ P:0:x5.00:10:30:0
 F:HIDE_TYPE | SHOW_MODS
 F:STR | RES_CONF
 E:PIERCING_SHOT:30:100
-E:Your ballista glows black...
+E:你的弩炮闪耀着黑光……
 
 N:272:of the Kamikaze Warrior
 I:36:2:2
@@ -2900,9 +2900,9 @@ F:SUST_STR | SUST_DEX | HOLD_LIFE | LEVITATION
 F:RES_FIRE | RES_POIS | RES_CONF | RES_SOUND | RES_NETHER | RES_FEAR
 F:NO_MAGIC | WEAPONMASTERY | NO_ENCHANT
 E:BERSERK:8:100
-E:Your robe glows crimson...
-D:This robe is stained with the the blood of many fallen heroes.
-D:So much death. So much destruction. What could cause such a thing?
+E:你的长袍闪耀着深红色的光芒……
+D:这件长袍上沾满了许多倒下英雄的鲜血。
+D:这么多的死亡。这么大的破坏。到底是什么造成了这一切？
 
 N:273:'Railgun'
 I:19:51:2
@@ -2911,7 +2911,7 @@ P:0:x0.00:0:0:0
 F:IM_FIRE | RES_LITE | NO_ENCHANT
 F:INSTA_ART | FIXED_ACT
 E:BEAM_LITE:50:15:300
-E:Your gun glows with blinding light...
+E:你的枪闪烁着令人盲目的光芒……
 
 N:274:of the Ages
 I:45:0:4
@@ -2919,15 +2919,15 @@ W:70:35:2:100000
 P:0:0d0:0:0:20
 F:CON | SUST_STR | SUST_INT | SUST_WIS | SUST_DEX | SUST_CON | SUST_CHR
 F:RES_TIME | HOLD_LIFE |
-D:Forged you know not when, this ring seems to have withstood the test of time.
+D:你不知道它是什么时候锻造的，但这枚戒指似乎经受住了时间的考验。
 
 N:275:'Assassinator'
 I:23:4:4
 W:44:250:12:110000
 P:0:1d5:44:4:0
 F:VORPAL | STEALTH | DEX
-D:It is the ultimate weapon of the assassin who prefers to dispatch enemies
-D:while they sleep.
+D:它是喜欢在敌人熟睡时解决他们的刺客的
+D:终极武器。
 
 N:276:of the Bard
 I:30:2:4
@@ -2941,7 +2941,7 @@ W:30:25:80:85000
 P:6:1d1:0:2:21
 F:STR | CON | DEC_STEALTH | RES_SHARDS | RES_CONF | RES_NEXUS
 E:EARTHQUAKE:30:35
-E:You stomp your foot down powerfully...
+E:你用力地跺下了脚……
 
 N:278:'Gong'
 I:34:5:4
@@ -2949,7 +2949,7 @@ W:40:9:120:80000
 P:15:1d3:0:0:15
 F:STR | WIS | HOLD_LIFE | REFLECT
 E:GONG:20:10
-E:BOOOOOOOOOOOOOOOOOOONGGGGGGGGGGG!!!
+E:咣昂昂昂昂昂昂昂昂昂昂昂昂昂昂昂昂！！！
 
 N:279:'Great Maul of Vice'
 I:21:19:2
@@ -2958,10 +2958,10 @@ P:0:8d8:8:8:8
 F:CON | CHR | BRAND_VAMP | BRAND_ELEC | BRAND_POIS
 F:FREE_ACT | HOLD_LIFE | RES_NETHER | RES_NEXUS | RES_FEAR
 E:LIGHT_SPEED:40:888
-E:Your maul rends the fabric of space-time ...
-D:This curious object is the favorite of many a female of every
-D:species. Those who find themselves in a proximity of one seem
-D:to constantly lose cash, and it seems impossible to leave its presence.
+E:你的巨锤撕裂了时空的结构……
+D:这件奇特的物品是各个种族许多女性的最爱。
+D:那些发现自己靠近它的人，似乎会
+D:不断地失去金钱，而且似乎无法离开它的存在。
 
 N:280:of Destruction
 I:45:0:4
@@ -2984,10 +2984,10 @@ W:50:150:20:100000
 P:0:1d1:0:0:5
 F:FULL_NAME | INSTA_ART
 E:STONE_SKIN:25:100
-E:Your stone hums softly.
-D:At first glance, it appears to be just an ordinary rock.
-D:But as you grasp the stone it emits an earthly glow, and you
-D:begin to feel yourself in tune with the world around you.
+E:你的石头发出轻柔的嗡嗡声。
+D:乍一看，它似乎只是一块普通的石头。
+D:但当你握住这块石头时，它散发出大地的光芒，你
+D:开始觉得自已与周围的世界融为一体了。
 
 N:283:& Stone of Life
 I:39:12:3
@@ -2995,7 +2995,7 @@ W:50:150:20:100000
 P:0:1d1:0:0:0
 F:FULL_NAME | HOLD_LIFE | LIFE | INSTA_ART
 E:RESTORING:50:500
-E:Your stone glows a pure white.
+E:你的石头闪耀着纯洁的白光。
 
 N:284:& Sorcerer's Stone
 I:39:13:2
@@ -3003,7 +3003,7 @@ W:50:150:20:100000
 P:0:1d1:0:0:0
 F:FULL_NAME | INT | INSTA_ART
 E:RECHARGE_FROM_PLAYER:60:10
-E:Your stone begins to vibrate rapidly.
+E:你的石头开始快速振动。
 
 N:285:& Stone of Chaos
 I:39:14:0
@@ -3011,7 +3011,7 @@ W:50:150:20:100000
 P:0:1d1:0:0:0
 F:FULL_NAME | RES_CHAOS | INSTA_ART
 E:POLY_SELF:30:500
-E:Your stone shifts colors rapidly.
+E:你的石头快速地变换着颜色。
 
 N:286:& Stone of Death
 I:39:15:0
@@ -3019,7 +3019,7 @@ W:50:150:20:100000
 P:0:1d1:0:0:0
 F:FULL_NAME | RES_NETHER | INSTA_ART
 E:ANIMATE_DEAD:30:666
-E:Your stone emits a foul breeze.
+E:你的石头散发出一阵恶臭的微风。
 
 N:287:& Trump Card
 I:39:16:2
@@ -3034,7 +3034,7 @@ W:50:150:20:100000
 P:0:1d1:0:0:0
 F:FULL_NAME | INSTA_ART
 E:BALL_FIRE:50:666:400
-E:Your stone glows a fiery red.
+E:你的石头闪耀着火红的光芒。
 
 N:289:& Crusader's Stone
 I:39:18:2
@@ -3042,7 +3042,7 @@ W:50:150:20:100000
 P:0:1d1:0:0:0
 F:FULL_NAME | WIS | INSTA_ART
 E:PROT_EVIL:30:250
-E:Your stone offers heavenly protection.
+E:你的石头提供了神圣的庇护。
 
 N:290:& Stone of Craft
 I:39:19:2
@@ -3050,7 +3050,7 @@ W:50:150:20:100000
 P:0:1d1:0:0:0
 F:FULL_NAME | SPEED | INSTA_ART
 E:RESISTANCE:30:100
-E:Your stone glows many colors.
+E:你的石头闪烁着五颜六色的光芒。
 
 N:291:& Stone of War
 I:39:20:0
@@ -3058,7 +3058,7 @@ W:50:150:20:100000
 P:0:1d1:6:6:0
 F:FULL_NAME | FREE_ACT | INSTA_ART
 E:BERSERK:8:100
-E:Your stone enrages you!
+E:你的石头激怒了你！
 
 N:292:of David
 I:16:2:0
@@ -3072,7 +3072,7 @@ W:30:125:3:60000
 F:HIDE_TYPE | FULL_NAME
 F:WIS | CHR | RES_NETHER
 E:HOLY_GRAIL:30:24
-E:You drink from the holy grail.
+E:你从圣杯中饮水。
 
 N:294:'Eternal Blade'
 I:23:31:2
@@ -3086,8 +3086,8 @@ W:60:25:400:80000
 P:0:4d8:12:12:0
 F:TUNNEL | INFRA | REGEN | STR | CON | RES_BLIND
 F:SLAY_EVIL | RES_DISEN | DEC_STEALTH
-D:"The Dwarves delved too greedily and too deep. You know what
-D:they awoke in the darkness of Khazad-dum: Shadow and Flame!"
+D:“矮人们挖得太贪婪，也太深了。你知道他们在
+D:卡扎督姆的黑暗中唤醒了什么：暗影与火焰！”
 
 N:296:of the Undertaker
 I:20:1:5
@@ -3102,7 +3102,7 @@ W:50:250:20:100000
 P:0:1d1:0:0:0
 F:FULL_NAME | INSTA_ART
 E:DESTRUCTION:50:10:1000
-E:Your stone glows an intense red.
+E:你的石头闪耀着强烈的红光。
 
 N:298:of Ubbo-Sathla
 I:36:12:1
@@ -3170,8 +3170,8 @@ F:QUESTITEM
 F:STR | INT | WIS | DEX | CON | CHR | SPEED
 F:RES_FIRE | RES_SOUND | RES_CHAOS | RES_CONF
 F:VORPAL | KILL_GIANT | SLAY_EVIL | KILL_HUMAN
-D:An incredibly sharp sickle rumored to have been wielded
-D:by Kronos to castrate his father, Uranus.
+D:一把极其锋利的镰刀，传说是被
+D:克洛诺斯用来阉割他父亲乌拉诺斯的武器。
 
 N:306:of Eyes
 I:33:12:3
@@ -3181,7 +3181,7 @@ F:QUESTITEM
 F:SEE_INVIS | TELEPATHY | RES_BLIND | RES_DISEN
 F:WARNING | INT | SEARCH
 E:CLAIRVOYANCE:40:30
-E:The crown grants amazing sight!
+E:王冠赋予了惊人的视觉能力！
 
 N:307:of the Hydra
 I:39:22:3
@@ -3190,7 +3190,7 @@ P:0:1d1:0:0:0
 F:QUESTITEM | INSTA_ART
 F:SPEED | SUST_CON | SUST_STR | REGEN | RES_POIS
 E:HEAL_CURING:20:300:700
-E:The Eye engulfs you in healing flames!
+E:这只眼睛将你吞没在治愈的火焰中！
 
 N:308:Dog Collar of Fang
 I:40:0:1
@@ -3317,9 +3317,9 @@ P:0:7d8:5:20:0
 F:STR | RES_COLD | BRAND_VAMP | BRAND_COLD | SLAY_GOOD | SLAY_LIVING |
 F:HOLD_LIFE |
 F:SUST_STR | SUST_INT | SUST_WIS | SUST_DEX | SUST_CON | SUST_CHR
-D:The staff of Death, this mighty, lethal hammer was used
-D:by the God Yama and is the ultimate weapon. None can
-D:withstand its wrath!
+D:死亡之杖，这把强大、致命的锤子曾被
+D:神明阎摩（Yama）使用，它是终极的武器。无人能
+D:抵挡它的愤怒！
 
 N:324:'Impaler'
 I:22:29:0
@@ -3328,7 +3328,7 @@ P:0:5d10:17:23:0
 F:SLAY_HUMAN | SLAY_GIANT | SLAY_TROLL | BRAND_POIS
 F:RIDING |
 E:CHARGE:10:100
-E:You charge your foe ...
+E:你冲向了你的敌人……
 
 N:325:of Heracles
 I:19:13:2
@@ -3336,8 +3336,8 @@ W:40:30:40:60000
 P:0:x3.00:12:22:0
 F:STR | INT | CHR | SPEED
 F:BRAND_POIS | RES_FEAR
-D:This bow belonged to the greatest of Greek heroes. Its
-D:arrows are coated in the Lernaean Hydra's venom.
+D:这把弓曾属于最伟大的希腊英雄。它的
+D:箭矢上涂有勒拿九头蛇的毒液。
 
 N:326:'Dramborleg'
 I:22:25:1
@@ -3346,10 +3346,10 @@ P:0:4d5:3:12:0
 F:STR | CON | INFRA | HIDE_TYPE
 F:KILL_DEMON | VORPAL | STUN
 F:RES_BLIND | RES_DARK | RES_DISEN | REGEN
-D:This is the great axe, used by Tuor, that both
-D:cuts and stuns its foes. With this axe, Tuor slew
-D:five balrogs in the battle of Gondolin. It was
-D:believed lost in the drowning of Numenor.
+D:这是图尔使用过的那把能在击伤敌人的同时
+D:震慑他们的巨斧。在贡多林之战中，图尔
+D:用这把斧头杀死了五只炎魔。人们一直
+D:认为它在努曼诺尔沉没时遗失了。
 
 N:327:of The Multi-hued Centipede
 I:30:2:1
@@ -3366,7 +3366,7 @@ W:50:150:20:100000
 P:0:1d1:0:0:0
 F:FULL_NAME | WIS | INSTA_ART
 E:RESTORE_MANA:50:777
-E:You focus your thoughts as your stone thrums with power.
+E:当你集中思绪时，你的石头随着力量而嗡嗡作响。
 
 
 
@@ -3376,9 +3376,9 @@ W:50:5:20:100000
 P:0:1d1:0:0:0
 F:SEE_INVIS | HOLD_LIFE | RES_LITE | RES_DARK
 E:CLAIRVOYANCE:50:150
-D:A great globe seemingly filled with moonlight, the famed Heart of the 
-D:Mountain.  It splinters the light that falls upon it into ten thousand 
-D:sparks of white radiance shot with glints of the rainbow.
+D:一个仿佛装满了月光的巨大球体，即著名的“大山之心”（阿肯宝石）。
+D:它能把落在它上面的光芒折射成成千上万道
+D:带着彩虹般闪光的白色耀眼火花。
 
 N:330:Sword of the Winds
 I:23:17:3
@@ -3386,7 +3386,7 @@ W:35:15:130:40000
 P:0:3d6:12:16:0
 F:VORPAL | RIDING | FULL_NAME | BLOWS
 F:SPEED | DEX | SHOW_MODS
-D:This sword is light as a feather. The air howls as you swing it.
+D:这把剑轻如鸿毛。当你挥舞它时，空气都在呼啸。
 
 N:331:'VainGlory'
 I:21:12:5
@@ -3395,7 +3395,7 @@ P:0:3d7:8:15:0
 F:DEC_WIS | DEC_STEALTH
 F:SLAY_UNDEAD | SLAY_DRAGON | SLAY_DEMON | SLAY_EVIL
 F:SHOW_MODS | CURSED
-D:You swell with pride as you wield this spiked mace.
+D:当你挥舞这把带刺的钉头锤时，你充满了骄傲。
 
 
 
@@ -3406,8 +3406,8 @@ W:60:8:0:200:30000
 P:40:2d4:4:4:20
 F:RES_ACID | BRAND_ACID | RES_DARK | DARKNESS | FULL_NAME
 E:BREATHE_ACID:50:40:120
-E:You breathe acid.
-D:A suit of utterly black scales, against which no metal or wood can rest.
+E:你喷吐出酸液。
+D:一套乌黑的鳞甲，任何金属或木材都无法穿透它。
 
 N:333:Sword of Tengri
 I:23:15:3
@@ -3416,7 +3416,7 @@ P:0:4d5:16:18:0
 F:SLAY_HUMAN | FULL_NAME | STR | CHR | RES_FEAR | FREE_ACT
 F:SHOW_MODS | BRAND_ELEC | BRAND_FIRE | LITE
 E:HEROISM:25:35:25
-D:This sword was a divine gift to a warrior destined for conquest.
+D:这把剑是上天赐予一位注定要征服世界的战士的礼物。
 
 
 
@@ -3427,14 +3427,14 @@ P:0:6d6:6:36:-18
 F:DEC_INT | DEC_WIS | AGGRAVATE | CURSED | HEAVY_CURSE | VORPAL2
 F:BRAND_VAMP | BRAND_CHAOS | DEC_SPEED | SLAY_GOOD | DRAIN_EXP
 F:RANDOM_CURSE0
-D:It feels so sharp you might cut yourself.
+D:它感觉太锋利（Edge）了，你可能会割伤自己。
 
 N:335:'Silver Hammer'
 I:21:19:2
 W:45:25:150:100000
 P:0:4d7:14:11:0
 F:BLOWS | STEALTH | SLAY_HUMAN | FREE_ACT | RES_FEAR | RES_ELEC | BRAND_ELEC
-D:And you thought they'd made it up!
+D:你还以为那是他们瞎编的呢！
 
 N:336:of Bubo
 I:30:3:2
@@ -3442,8 +3442,8 @@ W:30:22:40:50000
 P:3:1d1:0:0:14
 F:RES_FEAR | RES_COLD | RES_DARK | CON | STR | DEX | MAGIC_MASTERY
 E:SPEED:30:100
-D:Old leather boots, comfortable yet sturdy and enduring, worn by Bubo on
-D: his journeys to the frozen lands of the north.
+D:一双旧皮靴，舒适却坚固耐穿，这是布博在前往
+D:北方冰冻之地的旅途中所穿戴的。
 
 N:337:of Mr. Shine
 I:34:10:2
@@ -3451,7 +3451,7 @@ W:65:25:100:65000
 P:10:1d2:0:0:22
 F:CHR | INT | RES_SHARDS | RES_POIS | RES_LITE | HIDE_TYPE | REFLECT |
 F:WIS | SUST_INT | SUST_WIS | SUST_CHR
-D:You could almost believe it was made of diamond.
+D:你几乎能相信它是用钻石做的。
 
 N:338:'Nogudil'
 I:22:12:3
@@ -3459,15 +3459,15 @@ W:15:15:120:26000
 P:0:2d6:8:7:0
 F:SLAY_GOOD | SLAY_EVIL | IM_COLD | RES_FEAR | FREE_ACT |
 F:VULN_LITE | DEC_INT | DEC_WIS | AGGRAVATE | SPEED
-D:As you lift this great hammer, all your doubts are dispelled: it's time to
-D: get going and crush your enemies into a pulp.
+D:当你举起这把巨锤时，你所有的疑虑都烟消云散了：是时候
+D:出发把你的敌人砸成肉酱了。
 
 N:339:'Curiosity'
 I:23:10:3
 W:20:20:80:40000
 P:0:2d8:16:5:0
 F:INT | SUST_INT | VORPAL | KILL_ANIMAL
-D:Very sharp, and ideal for cutting stray felines open for examination.
+D:非常锋利，很适合把流浪猫切开来检查。
 
 
 N:340:of Mokomagi
@@ -3476,9 +3476,9 @@ W:42:20:40:30000
 P:0:2d2:12:10:0
 F:INT | HIDE_TYPE | DEC_MANA | EASY_SPELL |
 F:RES_CONF | RES_BLIND | SUST_INT | QUESTITEM
-D:It previously belonged to Katoshiko Mokomagi, a young wizard who started
-D: playing with forces beyond his control. (Not a mistake you would ever
-D: make.)
+D:它以前属于片彦·莫科玛吉（Katoshiko Mokomagi），一个开始玩弄
+D:超出自己控制的力量的年轻巫师。（这可不是你会犯的
+D:错误。）
 
 N:341:'Skynail'
 I:23:16:3
@@ -3486,7 +3486,7 @@ W:60:50:150:150000
 P:0:4d6:19:14:0
 F:SLAY_EVIL | BRAND_FIRE | RES_COLD | RES_DARK | LITE | SHOW_MODS | RIDING |
 F:XTRA_RES_OR_POWER | SPEED | STR | DEX | RES_CHAOS | VORPAL | BLESSED |
-D:A shining blade so sturdy it could even hold the stars in place.
+D:一把极其坚固的闪亮剑刃，它甚至能把星星钉在原位。
 
 N:342:Lava Lamp of Telmora
 I:39:25:1
@@ -3504,9 +3504,9 @@ P:0:2d4:21:7:0
 E:RESTORING:40:75
 F:SPEED | DEX | REFLECT | FREE_ACT | SUST_DEX | RES_NEXUS
 F:RES_TIME | HOLD_LIFE | REGEN | INSTA_ART | QUESTITEM
-D:You feel agile and impervious to the passage of time as you hold this
-D:old club and swing it. Now, if only it had been designed for bashing
-D:your enemies' heads in...
+D:当你握住并挥舞这根古老的木棒时，你感觉自己非常敏捷，
+D:而且不受时间流逝的影响。不过，如果它当初被设计成是用来敲碎
+D:你敌人的脑袋就好了……
 
 N:344:of the Visiting Team
 I:21:51:2
@@ -3514,8 +3514,8 @@ W:60:1:20:50000
 P:0:2d4:8:24:0
 F:SPEED | DEX | REFLECT | RES_SOUND | SUST_DEX | INSTA_ART | QUESTITEM
 F:DEC_CHR | RES_NEXUS | MAGIC_MASTERY | STUN
-D:A memento of your adventures in Zul, you presume it must have either
-D:belonged to one of the strange mages or fallen out of a hole in space-time.
+D:这是你在祖尔（Zul）冒险的纪念品，你猜它要么是属于某个
+D:奇怪法师的，要么是从时空洞里掉出来的。
 
 N:345:'Superbat'
 I:21:51:3
@@ -3523,17 +3523,17 @@ W:60:1:20:40000
 P:0:2d4:14:16:0
 F:STR | DEX | CHR | REFLECT | RES_FEAR | FREE_ACT | RES_NEXUS | REGEN |
 F:DEC_INT | LIFE | TELEPATHY | INSTA_ART | QUESTITEM
-D:It was carved out of a tree branch knocked down by a falling meteor.
-D:(You're not sure if that gives it any mystic superpowers, but you sure
-D:hope so.)
+D:它是用被坠落陨石砸断的树枝雕刻而成的。
+D:（你不确定这是否赋予了它任何神秘的超能力，但你确实
+D:希望如此。）
 
 N:346:of the Fell Rider
 I:32:2:3
 W:10:6:15:10000
 P:2:0d0:0:0:-2
 F:WIS | DEC_CHR | RES_FIRE | RES_LITE | SUST_INT | HIDE_TYPE |
-D:An old, timeworn leather cap, embroidered with the motto of Fell Livery
-D:Stable: 'FELL. The rider - it's you.'
+D:一顶古老、破旧的皮帽，上面绣着“可怕的费尔（Fell）出租马车行”的
+D:座右铭：‘可怕（FELL）。骑手——就是你。’
 
 N:347:of the Vagabond
 I:21:12:4
@@ -3541,7 +3541,7 @@ W:22:7:150:35000
 P:0:2d7:16:15:0
 F:CON | SUST_CON | RES_FEAR | REGEN | HOLD_LIFE | SLOW_DIGEST | HIDE_TYPE |
 F:BLESSED
-D:The lonely traveller's one true friend.
+D:孤独旅行者唯一真正的朋友。
 
 N:348:of Kundry
 I:40:0:2
@@ -3550,16 +3550,16 @@ P:0:0d0:0:0:0
 E:CLARITY:70:30:15
 F:QUESTITEM | HIDE_TYPE | MAGIC_MASTERY | MAGIC_RESISTANCE | RES_TIME
 F:SEARCH | HOLD_LIFE | SUST_INT | SUST_WIS | SUST_CHR
-D:A shining golden pendant with powerful magics stored within to keep its
-D: wearer's mind clear.
+D:一个闪闪发光的金色吊坠，里面储存着强大的魔法，可以保持
+D:佩戴者的头脑清醒。
 
 N:349:of Tweutox
 I:22:2:2
 W:15:30:50:30000
 P:0:1d8:6:9:0
 F:SPEED | STR | RES_FEAR | DEC_STEALTH | BRAND_CHAOS | RIDING | HIDE_TYPE
-D:Tiotullo, the spear of Tweutox, carved from the wood of a Seepumis tree.
-D:It seems to pulsate with energy as you hold it.
+D:提奥图洛，吐托克斯（Tweutox）的长矛，由斯普米斯树（Seepumis）的木头雕刻而成。
+D:当你握住它时，它似乎因为充满了能量而悸动。
 
 N:350:of Amun
 I:23:4:5
@@ -3569,9 +3569,9 @@ F:BRAND_FIRE | BRAND_POIS | IM_FIRE | RES_POIS | INT | SPEED | RES_LITE
 F:RES_ELEC | RES_SOUND | STEALTH | SEARCH | FREE_ACT | SEE_INVIS | HIDE_TYPE
 F:VORPAL | SLAY_TROLL | BLESSED
 E:TELEPATHY:60:100
-D:An ancient, well-balanced steel blade with beautiful decorations on its
-D:golden hilt, once held by Amun the everliving. Despite its age, the dagger
-D:remains shiny and razor-sharp.
+D:一把古老而平衡感极佳的钢制剑刃，金色的剑柄上有着美丽的
+D:装饰，曾由永生者阿蒙持有。尽管年代久远，这把匕首
+D:依然闪亮且锋利如剃刀。
 
 
 
@@ -3583,9 +3583,9 @@ P:0:2d5:16:14:6
 F:DEX | HIDE_TYPE | STEALTH | VORPAL | BLOWS
 F:SLAY_EVIL | SLAY_TROLL | SLAY_ORC | BRAND_POIS
 F:FREE_ACT | RES_FEAR | SUST_DEX | SEE_INVIS | HIDE_TYPE
-D:Forged by Telchar, greatest of the Dwarven smiths, and used by Beren to
-D:gouge a Silmaril out of Morgoth's crown, this long chopping dagger slices
-D:through ordinary metal as easily as its name, "Iron Cleaver", suggests.
+D:由最伟大的矮人铁匠铁尔哈（Telchar）锻造，曾被贝伦用来
+D:从魔苟斯的王冠上剜出一颗精灵宝钻。这把适合劈砍的长匕首
+D:切开普通金属就像它的名字“斩铁剑”所暗示的那样容易。
 
 N:352:Mithril Spear of Liweris
 I:22:7:4
@@ -3593,10 +3593,10 @@ W:55:55:100:80000
 P:0:3d11:13:23:0
 F:DEC_WIS | SLAY_GOOD | KILL_DRAGON | HIDE_TYPE | FULL_NAME | HEAVY_CURSE
 F:RIDING | RANDOM_CURSE0
-D:Forged from stolen mithril for the evil king of Liweris, it is imbued
-D:with dark powers that make it a mortal enemy of all things good, and deadly
-D:to dragonkind. The city of Liweris was razed by dragons as soon as the word
-D:got out, and the king died in flames; but his spear survived.
+D:它是用偷来的秘银为邪恶的利维里斯国王锻造的，里面充满了
+D:黑暗力量，使其成为一切美好事物的死敌，并且对
+D:龙族来说是致命的。消息一传出，利维里斯城就立刻被巨龙夷为平地，
+D:国王也死于火海；但他的长矛却保存了下来。
 
 N:353:of Manychin
 I:22:3:3
@@ -3605,10 +3605,10 @@ P:0:3d4:4:8:0
 F:STR | DEC_STEALTH | SLAY_HUMAN | SLAY_UNDEAD | ESP_HUMAN | ESP_UNDEAD |
 F:RES_FEAR | FREE_ACT | VORPAL |
 E:CHARM_MONSTER:40:25
-E:You proclaim your intention to liberate Angband!
-D:The lost sickle of the legendary hero Manychin, who renounced his
-D: comfortable life as a prince to lead oppressed serfs in revolt against the
-D: nobility.
+E:你宣称你要解放安格班！
+D:传奇英雄曼尼钦遗失的镰刀。他放弃了作为王子的舒适生活，
+D:领导被压迫的农奴们，发起了反抗
+D:贵族的起义。
 
 N:354:of Multi-Skills
 I:30:2:4
@@ -3617,16 +3617,16 @@ P:2:1d1:3:2:3
 F:SPEED | STR | DEX | CON | RES_DISEN | REGEN | FREE_ACT | AGGRAVATE
 F:NO_ENCHANT
 E:EXPERTSEXCHANGE:80:100
-D:Wearing these state-of-the-art boots, you feel strong, agile, and
-D: healthy... and yet strangely unsure of yourself.
+D:穿上这些最先进的靴子，你感觉自己变得强壮、敏捷、
+D:健康……然而不知为何，你又对自己感到莫名的不自信。
 
 N:355:of Dogram
 I:31:1:3
 W:40:15:5:30000
 P:1:0d0:9:1:12
 F:SPEED | DEX | STEALTH | FREE_ACT | RES_FEAR | SUST_DEX
-D:The gloves of Dogram the Terrible, master criminal and hybrid-burglar
-D:nonpareil.
+D:“恐怖者”多格拉姆的手套，他是犯罪大师兼无与伦比的
+D:混血盗贼。
 
 N:356:of Tuber
 I:19:13:3
@@ -3634,16 +3634,16 @@ W:48:28:40:30000
 P:0:x3.50:39:16:0
 F:WIS | BRAND_COLD | RES_COLD | RES_FEAR | HIDE_TYPE | SHOW_MODS
 E:STASIS_MONSTERS:66:300:92
-D:The bow of sure-aimed Tuber, son of the hero Bubo, imbued with the powers
-D:of the frost spirits who once held him captive.
+D:百发百中的图伯——英雄布博的儿子——的弓。它充满了曾经
+D:囚禁过他的冰霜精灵的力量。
 
 N:357:of Ossian
 I:34:4:3
 W:40:20:60:30000
 P:6:1d2:0:0:22
 F:STR | CON | REGEN | REFLECT | RES_FEAR | SUST_STR | SUST_CON
-D:This magical shield once protected strong-armed Ossian, who never
-D:backed away from a struggle.
+D:这面魔法盾曾保护过臂力过人的莪相，他从未
+D:在任何战斗中退缩。
 
 N:358:'Nightcap'
 I:32:1:3
@@ -3651,15 +3651,15 @@ W:30:5:8:15000
 P:1:0d0:0:0:6
 F:STEALTH | RES_COLD | RES_DARK | RES_FEAR | DARKNESS | HOLD_LIFE
 F:ESP_UNDEAD
-D:A warm woolly hat, ideal for those who creep in cold, dark places.
+D:一顶温暖的羊毛帽，非常适合那些在寒冷、黑暗的地方潜行的人。
 
 N:359:of the Four Winds
 I:32:1:0
 W:30:10:8:15000
 P:1:0d0:0:0:12
 F:RES_COLD | RES_FIRE | RES_ELEC | RES_ACID
-D:A red-and-blue hat with a four-pointed star on top, mystic spells laid
-D:upon it to protect its wearer from the elements.
+D:一顶红蓝相间的帽子，顶部有一个四芒星，上面施加了神秘的法术
+D:来保护佩戴者免受元素的伤害。
 
 N:360:'Black Belet'
 I:32:1:0
@@ -3668,8 +3668,8 @@ P:1:0d0:0:0:18
 F:RES_SOUND | RES_TIME | RES_FEAR | SUST_STR | SUST_INT | SUST_WIS | SUST_DEX
 F:SUST_CON | SUST_CHR | REGEN | RES_FIRE | RES_DISEN | FREE_ACT | HOLD_LIFE
 F:SEE_INVIS | RES_CONF | ESP_HUMAN | ESP_ANIMAL
-D:The legendary black hat of Aijem the walrus, sewn in the mists of time, and
-D:rumoured to keep its owner's mind and body ever fresh.
+D:海象艾杰姆（Aijem）传说中的黑帽子，在时间的迷雾中缝制而成，
+D:据说能保持其主人身心永远年轻。
 
 N:361:Bobble Hat of Barnaby
 I:32:1:2
@@ -3677,17 +3677,17 @@ W:16:10:8:10000
 P:1:0d0:0:0:8
 F:INT | DEX | CHR | STEALTH | FREE_ACT | RES_COLD | SEARCH | FULL_NAME
 E:PHASE_DOOR:1:5
-D:A camouflage bobble-hat knitted from wool, once worn by the great adventurer
-D:Barnaby.
+D:一顶用羊毛编织的迷彩绒球帽，曾被伟大的冒险家
+D:巴纳比戴过。
 
 N:362:'Dragonchip'
 I:40:0:3
 W:65:90:3:70000
 F:CHR | NO_MAGIC | MAGIC_RESISTANCE | IGNORE_INVULN
-D:A golden amulet of unparallelled craftsmanship, shaped like a flying dragon
-D:and inlaid with precious gems. Powerful runes have been inscribed upon it,
-D:and no magic, whether the wearer's or an enemy's, can function properly
-D:near it.
+D:一个工艺无双的金色护身符，形状像一条飞龙，
+D:上面镶嵌着珍贵的宝石。它上面刻有强大的符文，
+D:无论是佩戴者的魔法还是敌人的魔法，在它附近都无法
+D:正常发挥作用。
 
 N:363:Pendant 'Efki'
 I:40:0:3
@@ -3695,9 +3695,9 @@ W:65:65:3:50000
 P:0:0d0:0:0:5
 F:SPEED | RES_FEAR | HOLD_LIFE | FULL_NAME
 E:SPEED:60:150:30
-D:A powerful rune of speed has been inscribed on this protective talisman.
-D:You feel calm and safe from dangers with its reassuring weight around your
-D:neck, knowing there are few enemies you cannot outrun.
+D:这件保护性的护身符上刻有强大的速度符文。
+D:当你脖子上挂着它令人安心的重量时，你会感到平静，不再畏惧危险，
+D:因为你知道几乎没有哪个敌人能跑得过你。
 
 N:364:& All-Seeing Eye
 I:39:26:5
@@ -3706,7 +3706,7 @@ P:0:1d1:0:0:0
 F:FULL_NAME | INSTA_ART | RES_BLIND | SEE_INVIS | TELEPATHY | NIGHT_VISION
 F:SEARCH | RES_LITE | RES_DARK | PERMA_CURSE
 E:DETECT_ALL:35:5
-E:Your eye glows a bright blue...
+E:你的眼睛闪耀着明亮的蓝光……
 
 N:365:of the Hypnotoad
 I:39:27:0
@@ -3714,7 +3714,7 @@ W:60:180:5:100000
 P:0:1d1:0:0:0
 F:FREE_ACT
 E:EYE_HYPNO:66:6:128
-E:Your eye blinks hypnotically...
+E:你的眼睛催眠般地眨动着……
 
 N:366:'Urog'
 I:23:28:3
@@ -3724,19 +3724,19 @@ F:STR | CON | CHR | RES_DARK | RES_DISEN | SHOW_MODS | VORPAL | SEE_INVIS |
 F:INFRA | DARKNESS | SEARCH | SLAY_GIANT | DEC_STEALTH | BRAND_VAMP |
 F:SPEED | BRAND_DARK | QUESTITEM | FIXED_ART
 E:BALL_DARK:50:100:250
-E:A storm of darkness erupts!
-D:The ultimate reward for your loyal service: Karrot's massive blade of
-D:shadows, which no ordinary man could wield. A chilling darkness strikes
-D:your enemies with every blow as you proudly swing it.
+E:黑暗风暴爆发了！
+D:你忠诚服务的终极奖赏：紫神卡洛特巨大的暗影剑，
+D:普通人根本无法挥舞它。当你自豪地挥动它时，每一次打击都会伴随着
+D:令人不寒而栗的黑暗袭击你的敌人。
 
 N:367:of Surveillance
 I:40:0:2
 W:50:27:3:60000
 F:CHR | STEALTH | HIDE_TYPE | FREE_ACT | SEE_INVIS | TELEPATHY | ESP_NONLIVING
 E:PROBING:30:10
-E:You raise the amulet to your eyes...
-D:This amulet reveals all the secrets of the world. You're very glad it's
-D:not in less responsible hands...
+E:你把护身符举到眼前……
+D:这个护身符能揭示世界上所有的秘密。你很高兴
+D:它没有落入不太负责任的人手中……
 
 N:368:Pumpkin Lamp of Jack of Lanterns
 I:39:2:4
@@ -3744,8 +3744,8 @@ W:50:50:60:50000
 P:0:1d1:0:0:0
 F:STEALTH | CHR | RES_COLD | RES_ELEC | RES_FIRE | ESP_HUMAN | LITE
 F:QUESTITEM | FULL_NAME
-D:A soft light shines from the depths of this carved pumpkin. (You hope it
-D:isn't the glow of damned souls...)
+D:柔和的光芒从这个雕刻的南瓜深处散发出来。（你希望那
+D:不是该死的灵魂散发的光芒……）
 
 
 N:369:of Freyr
@@ -3755,8 +3755,8 @@ P:0:4d6:21:12:10
 F:SPEED | BLOWS | DEX | VORPAL | LITE | BRAND_FIRE | SLAY_GIANT | SLAY_DEMON
 F:RES_FIRE | RES_SOUND | FREE_ACT | REGEN | RIDING | BLESSED | SHOW_MODS |
 F:WIS | XTRA_POWER
-D:The blazing sword of the god Freyr, the loss of which is fated to doom him
-D:in battle against the fire-giant Surtur.
+D:神明弗雷那燃烧着火焰的剑，注定它的丢失会让他
+D:在对抗火巨人苏尔特尔的战斗中走向毁灭。
 
 N:370:'Gjallarhorn'
 I:4:2:3
@@ -3764,8 +3764,8 @@ W:70:50:25:100000
 E:RETURN_PETS:15:20
 F:CHR | SUST_CHR | RES_FEAR | DEC_STEALTH | ESP_GIANT | ESP_UNDEAD
 F:FIXED_ACT | QUESTITEM
-D:The great horn of the god Heimdall, claimed to ring so loud it can be
-D:heard in all nine worlds.
+D:神明海姆达尔的巨大号角，据说它的声音如此洪亮，以至于在
+D:整个九界中都能听到。
 
 N:371:of Tyr
 I:37:13:3
@@ -3775,7 +3775,7 @@ E:HEROISM:10:10
 F:RES_ACID | RES_ELEC | RES_COLD | RES_SOUND | RES_SHARDS |
 F:WIS | CON | RES_CHAOS | RES_BLIND | RES_FEAR | FREE_ACT |
 F:SLOW_DIGEST | QUESTITEM
-D:The armour of the god Tyr, upholder of law and justice.
+D:神明提尔的盔甲，他是法律和正义的维护者。
 
 N:372:of Vidarr
 I:30:3:3
@@ -3783,18 +3783,18 @@ W:40:50:80:200000
 P:3:1d1:6:6:27
 F:SPEED | RES_FIRE | RES_DARK | RES_POIS | RES_COLD | LEVITATION | QUESTITEM
 E:STUNNING_KICK:50:80
-E:You stomp with great force!
-D:The magical shoes of the god Vidarr, crafted from all the spare
-D:shoe-leather thrown away by the common folk. With shoes like this you
-D:could even take on the great wolf.
+E:你用巨大的力量踩下脚！
+D:神明维达的神奇鞋子，这是由普通老百姓扔掉的所有多余的
+D:废弃鞋皮制作而成的。穿上这样的鞋子，你
+D:甚至能与那头巨狼搏斗。
 
 N:373:Falcon Cloak of Freyja
 I:35:3:5
 W:50:20:30:50000
 P:3:0d0:0:0:9
 F:SPEED | RES_LITE | RES_COLD | FREE_ACT | LEVITATION | FULL_NAME | QUESTITEM
-D:The magical feathered cloak of Freyja, the twin of Frigg's cloak.
-D:It allows anyone who wears it access to the skies.
+D:芙蕾雅的魔法羽毛披风，是弗丽嘉披风的孪生姐妹。
+D:它能让任何穿上它的人飞向天空。
 
 N:374:Necklace 'Brisingamen'
 I:40:0:3
@@ -3802,8 +3802,8 @@ W:70:210:3:75000
 F:CON | CHR | INFRA | HIDE_TYPE | RES_LITE | RES_FIRE | RES_DARK |
 F:FREE_ACT | SEE_INVIS | REGEN | LITE | SUST_STR | SUST_CON | SUST_WIS |
 F:SUST_INT | SUST_DEX | SUST_CHR | FULL_NAME | DEC_STEALTH |
-D:The beautiful necklace of the goddess Freyja, reputed to be the work of
-D:dwarven masters.
+D:女神芙蕾雅美丽的项链，被誉为
+D:矮人大师们的杰作。
 
 N:375:of Njord
 I:22:40:0
@@ -3811,22 +3811,22 @@ W:10:150:30:10000
 P:0:1d1:1:1:1
 F:QUESTITEM
 E:FISHING:1
-D:The fishingpole of the god Njord. It is without an equal.
+D:神明尼约德的钓鱼竿。它是无与伦比的。
 
 N:376:Falcon Cloak of Frigg
 I:35:3:3
 W:50:20:30:50000
 P:3:0d0:0:0:18
 F:SPEED | RES_NEXUS | TELEPATHY | LEVITATION | FULL_NAME | QUESTITEM
-D:The magical feathered cloak of Frigg, the twin of Freyja's cloak. It allows
-D:anyone who wears it access to the skies.
+D:弗丽嘉的魔法羽毛披风，是芙蕾雅披风的孪生姐妹。它能让
+D:任何穿上它的人飞向天空。
 
 N:377:of Skadi
 I:19:13:3
 W:80:100:30:66666
 P:0:x3.75:22:18:0
 F:DEX | STEALTH | RES_COLD | BRAND_COLD | XTRA_SHOTS | QUESTITEM
-D:The bow of the giantess Skadi, a great hunter and the wife of the god Njord.
+D:女巨人斯卡蒂的弓，她是一位伟大的猎手，也是神明尼约德的妻子。
 
 N:378:of Ullur
 I:45:0:3
@@ -3834,30 +3834,30 @@ W:80:200:2:10000
 P:0:0d0:21:36:0
 F:SPEED | DEX | STEALTH | XTRA_SHOTS | QUESTITEM
 E:SPEED:30:200
-D:The ring of Ullur, god of archery and the hunt.
+D:乌勒尔的戒指，他是箭术与狩猎之神。
 
 N:379:'Jarngreipr'
 I:31:7:7
 W:60:150:40:110000
 P:5:1d1:9:9:18
 F:STR | RES_ELEC | HIDE_TYPE | QUESTITEM | SHOW_MODS
-D:The iron gloves of Magni the mighty, inherited from his father. They give
-D:their wearer such strength that Thor's hammer will feel light as a feather.
+D:强大的曼尼（Magni）的铁手套，这是他从父亲那里继承的。它们赋予
+D:佩戴者极大的力量，以至于挥舞雷神之锤也会感觉轻如鸿毛。
 
 N:380:of the Great Wizzard
 I:32:10:1
 W:10:40:20:1000
 P:1:0d0:0:0:8
 F:DEC_STEALTH | HIDE_TYPE
-D:Previously owned by a famous wizard.
+D:以前属于一位著名的巫师。
 
 N:381:Mom's Loving Modular Sniper Crossbow
 I:19:23:0
 W:50:225:110:100000
 P:0:x5.05:48:44:0
 F:HIDE_TYPE | SHOW_MODS | FULL_NAME
-D:The great masterpiece of Mom's Loving Arms Company, it is capable of
-D:shooting any ammunition.
+D:“老妈充满爱之武器公司（Mom's Loving Arms Company）”的伟大杰作，它能够
+D:发射任何弹药。
 
 N:382:Gada of Hanuman
 I:21:5:2
@@ -3865,8 +3865,8 @@ W:75:150:500:50000
 P:0:9d5:10:20:0
 F:STR | RES_FEAR | STUN | SLAY_DEMON | SHOW_MODS | QUESTITEM | FULL_NAME
 F:SLOW_DIGEST
-D:The massive mace of the god Hanuman, most mortals lack the strength to
-D:handle it.
+D:神明哈努曼巨大的狼牙棒，大多数凡人都没有力量去
+D:挥舞它。
 
 N:383:of Murugan
 I:22:2:3
@@ -3876,9 +3876,9 @@ F:SPEED | STR | WIS | RES_DARK | RIDING | THROWING | SEE_INVIS | SLAY_DEMON |
 F:VORPAL | FREE_ACT | RES_CHAOS | RES_FEAR | SUST_STR | SUST_WIS |
 F:SLOW_DIGEST | ESP_DEMON | SHOW_MODS | QUESTITEM |
 E:DISPEL_DEMON:50:90:275
-D:The great spear of the warrior-philosopher-god Karthikeya, also known as
-D:Murugan. It was a present from his mother Parvati, and is imbued with the
-D:energy of both.
+D:这位战士兼哲学家神明卡尔蒂克耶（Karthikeya，也称为
+D:穆鲁干）的伟大长矛。这是他母亲雪山神女（Parvati）的礼物，里面充满了
+D:他们两者的能量。
 
 N:384:of Rama
 I:19:13:3
@@ -3887,9 +3887,9 @@ P:0:x4.25:21:36:0
 F:WIS | STEALTH | SLAY_DEMON | SLAY_EVIL | HIDE_TYPE | SHOW_MODS
 F:SUST_WIS | SLOW_DIGEST | PERMA_CURSE | QUESTITEM
 E:RAMA_ARROW:65:20
-D:The great bow of prince Rama, avatar of Vishnu, famous for his unmatched
-D:bowmanship. Crafted by the divine builder Vishwakarma, it originally
-D:belonged to Vishnu himself.
+D:罗摩王子的巨弓。他是毗湿奴的化身，以其无与伦比的
+D:箭术而闻名。这把弓由神圣的建筑师毗首羯磨（Vishwakarma）打造，最初
+D:属于毗湿奴本人。
 
 N:385:of Krishna
 I:19:71:4
@@ -3897,8 +3897,8 @@ W:70:50:5:100000
 F:WIS | CHR | SUST_WIS | SUST_CHR | FREE_ACT | SEE_INVIS | REGEN | QUESTITEM
 F:ESP_HUMAN | HOLD_LIFE | RES_ACID | SLOW_DIGEST | FIXED_ACT
 E:RETURN_PETS:15:5
-D:The flute of Krishna, avatar of Vishnu. The gopis always heard when he
-D:played it, even if they were far away.
+D:黑天（克里希纳，毗湿奴的化身）的长笛。当他吹奏时，牧牛女们
+D:总是能听见，即使她们远在天边。
 
 N:386:'Kaumodaki'
 I:21:5:3
@@ -3908,8 +3908,8 @@ F:WIS | CON | RES_ACID | RES_ELEC | RES_FIRE | RES_SOUND | STUN | HOLD_LIFE
 F:SUST_CON | FREE_ACT | BRAND_ELEC | BRAND_ACID | SLAY_DEMON | SHOW_MODS
 F:RES_CHAOS | SEARCH | QUESTITEM
 E:SPEED_HERO:25:225:40
-E:The mace glows brightly...
-D:The divine mace of the god Vishnu, preserver of life against chaos.
+E:权杖闪耀着明亮的光芒……
+D:神明毗湿奴的神圣权杖，他是对抗混沌、保护生命的维护者。
 
 N:387:of Shiva
 I:22:5:2
@@ -3920,9 +3920,9 @@ F:SUST_STR | SUST_DEX | SUST_INT | SUST_WIS | SUST_CON | SUST_CHR |
 F:VORPAL | BRAND_ELEC | BRAND_FIRE | SLAY_EVIL | SEE_INVIS |
 F:BLESSED | SHOW_MODS | RIDING
 E:DISPEL_EVIL:50:250:363
-E:You unleash a wave of holy energy!
-D:The great trishula of Shiva himself, destroyer of everything and bringer
-D:of a new, monster-free world.
+E:你释放出了一股神圣的能量波！
+D:湿婆本人的巨大三叉戟。他是万物的毁灭者，也是
+D:一个没有怪物的崭新世界的带来者。
 
 N:388:'Kaustubha'
 I:39:28:3
@@ -3931,9 +3931,9 @@ P:0:1d1:0:0:0
 F:SEE_INVIS | HOLD_LIFE | RES_DARK | RES_DISEN | QUESTITEM | PERMA_CURSE
 F:LORE2 | INSTA_ART | SPEED | WIS | INT | ESP_DEMON
 E:BALL_LITE:40:100:300
-E:The Jewel flashes with a blinding light!
-D:The shining gem of Vishnu, which the gods churned forth from the milky
-D:ocean.
+E:宝石闪烁着令人盲目的光芒！
+D:毗湿奴闪耀的宝石，那是众神从乳海的
+D:搅动中得到的。
 
 N:389:'Syamantaka'
 I:39:29:3
@@ -3942,8 +3942,8 @@ P:0:1d1:0:0:7
 F:SPEED | CHR | IM_FIRE | RES_LITE | AURA_FIRE | RES_CHAOS | SLOW_DIGEST
 F:AGGRAVATE | TY_CURSE | PERMA_CURSE
 E:CONFUSING_LITE:64:10:120
-D:This gem once belonged to the sun-god Surya, and no other jewel can match
-D:its brightness; yet death and destruction follow its wearer.
+D:这颗宝石曾属于太阳神苏利耶（Surya），没有其他宝石能比得上
+D:它的亮度；然而，佩戴它的人总是伴随着死亡与毁灭。
 
 N:390:of Kali
 I:23:18:3
@@ -3953,22 +3953,22 @@ F:SPEED | BLOWS | VORPAL | BRAND_CHAOS | RES_NETHER | FREE_ACT | HOLD_LIFE
 F:SLAY_DEMON | BLESSED | AGGRAVATE | PERMA_CURSE | XTRA_RES_OR_POWER
 F:DUAL_WIELDING | QUESTITEM
 E:BERSERK:8:100
-D:The sword of the divine mother Kali, destroyer of demons.
+D:神圣之母迦梨的剑，她是恶魔的毁灭者。
 
 N:391:'Brahmastra'
 I:17:1:0
 W:35:35:15:5000
 P:0:8d4:27:24:0
 F:BRAND_FIRE | SLAY_DEMON | INSTA_ART | SHOW_MODS | QUESTITEM
-D:The unmatched missile of Brahma, it is more lethal than any other and
-D:returns to the quiver after being fired.
+D:梵天那无与伦比的飞弹，它比任何其他武器都要致命，而且
+D:发射后会自动返回箭袋。
 
 N:392:'Dunce Cap'
 I:32:10:3
 W:10:40:5:0
 P:1:0d0:0:0:-1
 F:DEC_INT | DEC_WIS | DEC_SPELL_CAP | HEAVY_CURSE
-D:It generates special feelings.
+D:它能产生一种特殊的感觉。
 
 N:393:of Saraswati
 I:32:2:3
@@ -3976,7 +3976,7 @@ W:70:100:15:10000
 P:2:0d0:0:0:10
 F:SPEED | INT | WIS | MAGIC_MASTERY | LORE2 | SUST_INT | SUST_WIS | QUESTITEM
 E:PROBING:10:5
-D:The headwear of Saraswati, the goddess of knowledge and learning.
+D:辩才天女萨拉斯瓦蒂（Saraswati）的头饰，她是知识与学习的女神。
 
 N:394:of Lakshmi
 I:40:0:4
@@ -3984,10 +3984,10 @@ W:65:150:3:90000
 F:CHR | LITE | INFRA | HIDE_TYPE | SEE_INVIS | FREE_ACT | SUST_CHR | SEARCH |
 F:RES_LITE | RES_DARK | RES_CHAOS | REGEN | QUESTITEM | BLESSED | HOLD_LIFE
 E:SATISFY_HUNGER:50:25:100
-E:Mmm... holy milk chocolate.
-D:This pendant inlaid with a shining gem was worn by Lakshmi, the wise
-D:and beautiful goddess of prosperity, until that fateful day when a
-D:murdering looter invaded her home.
+E:嗯……神圣的牛奶巧克力。
+D:这个镶嵌着闪亮宝石的吊坠曾被吉祥天女拉克什米（Lakshmi）佩戴，
+D:她是智慧而美丽的繁荣女神，直到那个命运之日，一个
+D:杀人越货的掠夺者入侵了她的家。
 
 N:395:Stress Ball
 I:39:30:3
@@ -3995,7 +3995,7 @@ W:50:150:3:10000
 P:0:1d1:0:0:0
 F:FULL_NAME | INSTA_ART | RES_FEAR | BLESSED
 E:UNFOCUS_RAGE:1:30:200
-E:You squeeze the stress ball! You feel better.
+E:你捏了捏解压球！你感觉好多了。
 
 N:396:Space Suit of Vayu
 I:36:12:3
@@ -4003,8 +4003,8 @@ W:70:50:440:80000
 P:18:1d2:-6:0:21
 F:RES_ELEC | RES_COLD | RES_DARK | RES_SOUND | RES_CHAOS | LEVITATION |
 F:SEARCH | DEC_DEX | FULL_NAME | QUESTITEM |
-D:This strange jacket is uncomfortably heavy, but allows its wearer to
-D:breathe normally in airless environments.
+D:这件奇怪的夹克重得让人不舒服，但它能让佩戴者在
+D:没有空气的环境中正常呼吸。
 
 N:397:Unlight Cloak of Ungoliant
 I:35:6:6
@@ -4012,4 +4012,4 @@ W:70:240:0:50000
 P:6:0d0:0:0:21
 F:STEALTH | INFRA | SEARCH | RES_POIS | RES_DARK | RES_BLIND | SEE_INVIS |
 F:VULN_LITE | DARKNESS | ESP_ANIMAL | FULL_NAME | HOLD_LIFE | QUESTITEM
-D:A cloak of darkness; an Unlight which eyes cannot pierce, for it is void.
+D:一件黑暗的披风；一种视线无法穿透的非光（Unlight），因为它即是虚无。

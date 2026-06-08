@@ -1,25 +1,25 @@
 # Adapted from Frogspawn
 
 ?:[EQU $QUEST68 Taken InProgress]
-D:This is strictly confidential, but I've heard reports that a local
-D:wizard is running a dinosaur reintroduction program! The nutjob's using
-D:magic to resurrect dinosaurs and dimetrodons; so far he's kept them under
-D:wraps at his own place, but it's only a matter of time before he lets
-D:them loose. The last thing our city needs is a population of urban
-D:dinosaurs; I would be blamed and ousted in no time, no matter how hard I
-D:argued it was good for tourism. I hope you can unresurrect them before
-D:that happens. The wizard's house is to the west of here, north of the 
-D:police station; I won't be too sorry if it turns out you need to off him 
-D:as well.
+D:这是绝对机密，但我收到报告说，当地的一位
+D:巫师正在进行一项恐龙复育计划！这个疯子正在使用
+D:魔法来复活恐龙和异齿龙；到目前为止，他一直把它们秘密
+D:关在自己家里，但他迟早会把它们
+D:放出来。我们城市最不需要的就是一群城市
+D:恐龙；如果不幸发生，我立刻就会被指责和赶下台，无论我多么努力地
+D:争辩这有利于旅游业。我希望你能在这一切发生之前，
+D:把它们“反复活”掉。那个巫师的房子在警察局的北面，
+D:这里往西；如果你发现需要连他一块干掉，
+D:我也不会觉得太遗憾的。
 
 ?:[EQU $QUEST68 Completed]
-D:Thank you for solving my prehistoric problem. Here's your reward,
-D:I hope you find it satisfactory.
+D:感谢你解决了我的史前大麻烦。这是你的奖励，
+D:希望你还满意。
 ?:1
 
 ?:[EQU $QUEST68 Failed]
-D:Sweet zombie Serpent, no. I just hope it's not true that urban dinosaurs
-D:evolve into dragons over time.
+D:活见鬼了，不。我只希望“城市恐龙假以时日会进化成龙”的传闻
+D:不是真的。
 ?:1
 
 T:QUEST:NORMAL

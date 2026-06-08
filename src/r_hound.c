@@ -131,7 +131,7 @@ void hound_calc_innate_attacks(void)
 
         a.weight = 100;
         calc_innate_blows(&a, 200);
-        a.msg = "You claw.";
+        a.msg = "你抓了过去。";
         a.name = "爪击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -156,7 +156,7 @@ void hound_calc_innate_attacks(void)
         }
 
         calc_innate_blows(&a, 300);
-        a.msg = "You bite.";
+        a.msg = "你咬了过去。";
         a.name = "撕咬";
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -236,13 +236,13 @@ static cptr _breath_desc(void)
     gf_info_ptr gf;
     switch (p_ptr->current_r_idx)
     {
-    case MON_AETHER_HOUND: return "almost anything";
-    case MON_HOUND_OF_TINDALOS: return "nether or time";
-    case MON_MULTI_HUED_HOUND: return "acid, fire, cold, lightning or poison";
+    case MON_AETHER_HOUND: return "几乎任何属性";
+    case MON_HOUND_OF_TINDALOS: return "幽冥或时间";
+    case MON_MULTI_HUED_HOUND: return "酸液、火焰、冰寒、闪电或毒素";
     }
     gf = gf_lookup(_breath_effect());
     if (gf) return gf->name;
-    return "something";
+    return "某物";
 }
 
 static void _breathe_spell(int cmd, variant *res)
@@ -353,7 +353,7 @@ void hound_sniff_spell(int cmd, variant *res)
         var_set_string(res, "尝试嗅出附近的猎物。");
         break;
     case SPELL_CAST:
-        detect_monsters_living(DETECT_RAD_DEFAULT, "You smell nearby monsters.");
+        detect_monsters_living(DETECT_RAD_DEFAULT, "你闻到了附近怪物的气味。");
         var_set_bool(res, TRUE);
         break;
     default:

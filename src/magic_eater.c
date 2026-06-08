@@ -223,13 +223,13 @@ static object_type *_choose(cptr verb, int tval, int options)
         if (exchange)
         {
             if (slot1 == _INVALID_SLOT)
-                string_printf(prompt, "Select the first %s:", _which_name(which_tval));
+                string_printf(prompt, "选择第一件 %s：", _which_name(which_tval));
             else
-                string_printf(prompt, "Select the second %s:", _which_name(which_tval));
+                string_printf(prompt, "选择第二件 %s：", _which_name(which_tval));
         }
         else
         {
-            string_printf(prompt, "%s which %s", inscribe ? "铭刻" : verb, _which_name(which_tval));
+            string_printf(prompt, "%s 哪件 %s", inscribe ? "铭刻" : verb, _which_name(which_tval));
             if (options & _ALLOW_SWITCH)
             {
                 switch (which_tval)
@@ -239,9 +239,9 @@ static object_type *_choose(cptr verb, int tval, int options)
                 case TV_ROD: string_append_s(prompt, " [Press 'W' for Wands, 'S' for Staves"); break;
                 }
                 if (options & _ALLOW_EXCHANGE)
-                    string_append_s(prompt, ", 'X' to Exchange");
+                    string_append_s(prompt, ", 'X' 交换顺序");
                 if (options & _ALLOW_INSCRIBE)
-                    string_append_s(prompt, ", 'Z' to Inscribe");
+                    string_append_s(prompt, ", 'Z' 铭刻");
                 string_append_s(prompt, "]:");
             }
             else
@@ -492,12 +492,12 @@ static bool gain_magic(void)
     {
         char prompt[255];
         object_desc(o_name, dest_ptr, OD_COLOR_CODED);
-        sprintf(prompt, "Really replace %s? <color:y>[y/n]</color>", o_name);
+        sprintf(prompt, "真的要替换 %s 吗？<color:y>[y/n]</color>", o_name);
         if (msg_prompt(prompt, "ny", PROMPT_DEFAULT) == 'n')
             return FALSE;
         if (dest_ptr->inscription)
         {
-            sprintf(prompt, "Copy inscription from %s? <color:y>[y/n]</color>", o_name);
+            sprintf(prompt, "从 %s 复制铭刻吗？<color:y>[y/n]</color>", o_name);
             if (msg_prompt(prompt, "ny", PROMPT_DEFAULT) == 'y') _auto_insc = dest_ptr->inscription;
         }
     }

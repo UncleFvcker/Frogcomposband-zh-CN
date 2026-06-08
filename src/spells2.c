@@ -51,7 +51,7 @@ void self_knowledge(void)
     p_ptr->knowledge |= (KNOW_STAT | KNOW_HPRATE);
 
     strcpy(Dummy, "");
-    sprintf(Dummy, "Your current Life Rating is %s.", life_rating_desc(FALSE));
+    sprintf(Dummy, "你当前的生命等级为 %s。", life_rating_desc(FALSE));
 
     strcpy(buf[0], Dummy);
     info[i++] = buf[0];
@@ -94,7 +94,7 @@ void self_knowledge(void)
 
     if (enable_virtues)
     {
-        sprintf(Dummy, "Your alignment : %s (%d)", your_alignment(), p_ptr->align);
+        sprintf(Dummy, "你的阵营：%s (%d)", your_alignment(), p_ptr->align);
         strcpy(buf[1], Dummy);
         info[i++] = buf[1];
         for (v_nr = 0; v_nr < 8; v_nr++)
@@ -105,33 +105,33 @@ void self_knowledge(void)
 
             strcpy(v_name, virtue_name(p_ptr->vir_types[v_nr]));
 
-            sprintf(vir_desc, "Oops. No info about %s.", v_name);
+            sprintf(vir_desc, "哎呀。没有关于 %s 的信息。", v_name);
             if (tester < -100)
-                sprintf(vir_desc, "You are the polar opposite of %s (%d).", v_name, tester);
+                sprintf(vir_desc, "你是 %s 的截然对立面 (%d)。", v_name, tester);
             else if (tester < -80)
-                sprintf(vir_desc, "You are an arch-enemy of %s (%d).", v_name, tester);
+                sprintf(vir_desc, "你是 %s 的宿敌 (%d)。", v_name, tester);
             else if (tester < -60)
-                sprintf(vir_desc, "You are a bitter enemy of %s (%d).", v_name, tester);
+                sprintf(vir_desc, "你是 %s 的死敌 (%d)。", v_name, tester);
             else if (tester < -40)
-                sprintf(vir_desc, "You are an enemy of %s (%d).", v_name, tester);
+                sprintf(vir_desc, "你是 %s 的敌人 (%d)。", v_name, tester);
             else if (tester < -20)
-                sprintf(vir_desc, "You have sinned against %s (%d).", v_name, tester);
+                sprintf(vir_desc, "你对 %s 犯下了罪行 (%d)。", v_name, tester);
             else if (tester < 0)
-                sprintf(vir_desc, "You have strayed from the path of %s (%d).", v_name, tester);
+                sprintf(vir_desc, "你偏离了 %s 的道路 (%d)。", v_name, tester);
             else if (tester == 0)
-                sprintf(vir_desc,"You are neutral to %s (%d).", v_name, tester);
+                sprintf(vir_desc,"你对 %s 保持中立 (%d)。", v_name, tester);
             else if (tester < 20)
-                sprintf(vir_desc,"You are somewhat virtuous in %s (%d).", v_name, tester);
+                sprintf(vir_desc,"你在 %s 方面略有美德 (%d)。", v_name, tester);
             else if (tester < 40)
-                sprintf(vir_desc,"You are virtuous in %s (%d).", v_name, tester);
+                sprintf(vir_desc,"你在 %s 方面具有美德 (%d)。", v_name, tester);
             else if (tester < 60)
-                sprintf(vir_desc,"You are very virtuous in %s (%d).", v_name, tester);
+                sprintf(vir_desc,"你在 %s 方面具有高尚的美德 (%d)。", v_name, tester);
             else if (tester < 80)
-                sprintf(vir_desc,"You are a champion of %s (%d).",  v_name, tester);
+                sprintf(vir_desc,"你是 %s 的捍卫者 (%d)。",  v_name, tester);
             else if (tester < 100)
-                sprintf(vir_desc,"You are a great champion of %s (%d).", v_name, tester);
+                sprintf(vir_desc,"你是 %s 的伟大捍卫者 (%d)。", v_name, tester);
             else
-                sprintf(vir_desc,"You are the living embodiment of %s (%d).", v_name, tester);
+                sprintf(vir_desc,"你是 %s 的活化身 (%d)。", v_name, tester);
 
             strcpy(v_string[v_nr], vir_desc);
 
@@ -142,391 +142,391 @@ void self_knowledge(void)
 
     if (p_ptr->blind)
     {
-        info[i++] = "You cannot see.";
+        info[i++] = "你无法视物。";
     }
     if (p_ptr->confused)
     {
-        info[i++] = "You are confused.";
+        info[i++] = "你感到混乱。";
     }
     if (p_ptr->afraid)
     {
-        info[i++] = "You are terrified.";
+        info[i++] = "你感到恐惧。";
     }
     if (p_ptr->cut)
     {
-        info[i++] = "You are bleeding.";
+        info[i++] = "你在流血。";
     }
     if (p_ptr->stun)
     {
-        info[i++] = "You are stunned.";
+        info[i++] = "你被震慑了。";
     }
     if (p_ptr->poisoned)
     {
-        info[i++] = "You are poisoned.";
+        info[i++] = "你中毒了。";
     }
     if (p_ptr->image)
     {
-        info[i++] = "You are hallucinating.";
+        info[i++] = "你产生了幻觉。";
     }
     if (p_ptr->cursed & OFC_TY_CURSE)
     {
-        info[i++] = "You carry an ancient foul curse.";
+        info[i++] = "你携带着远古邪恶诅咒。";
     }
     if (p_ptr->cursed & OFC_BY_CURSE)
     {
-        info[i++] = "You carry a baby foul curse.";
+        info[i++] = "你携带着微型邪恶诅咒。";
     }
     if (p_ptr->cursed & OFC_AGGRAVATE)
     {
-        info[i++] = "You aggravate monsters.";
+        info[i++] = "你会激怒怪物。";
     }
     if (p_ptr->cursed & OFC_CATLIKE)
     {
-        info[i++] = "You make a great deal of noise as you move.";
+        info[i++] = "你移动时会发出巨大的噪音。";
     }
     if (p_ptr->cursed & OFC_DANGER)
     {
-        info[i++] = "You face great dangers at shallow levels.";
+        info[i++] = "你在浅层会面临巨大的危险。";
     }
     if (p_ptr->cursed & OFC_DRAIN_EXP)
     {
-        info[i++] = "You are drained.";
+        info[i++] = "你的属性被吸取了。";
     }
     if (p_ptr->cursed & OFC_SLOW_REGEN)
     {
-        info[i++] = "You regenerate slowly.";
+        info[i++] = "你再生缓慢。";
     }
     if (p_ptr->cursed & OFC_ADD_L_CURSE)
     {
-        info[i++] = "Your weak curses multiply.";
+        info[i++] = "你的弱效诅咒会繁殖。";
     }
     if (p_ptr->cursed & OFC_ADD_H_CURSE)
     {
-        info[i++] = "Your heavy curses multiply.";
+        info[i++] = "你的重度诅咒会繁殖。";
     }
     if (p_ptr->cursed & OFC_CALL_ANIMAL)
     {
-        info[i++] = "You attract animals.";
+        info[i++] = "你会吸引动物。";
     }
     if (p_ptr->cursed & OFC_CALL_DEMON)
     {
-        info[i++] = "You attract demons.";
+        info[i++] = "你会吸引恶魔。";
     }
     if (p_ptr->cursed & OFC_CALL_DRAGON)
     {
-        info[i++] = "You attract dragons.";
+        info[i++] = "你会吸引龙类。";
     }
     if (p_ptr->cursed & OFC_COWARDICE)
     {
-        info[i++] = "You are subject to cowardice.";
+        info[i++] = "你很容易感到怯懦。";
     }
     if (p_ptr->cursed & OFC_TELEPORT)
     {
-        info[i++] = "Your position is very uncertain.";
+        info[i++] = "你的位置非常不确定。";
     }
     if (p_ptr->cursed & OFC_LOW_MELEE)
     {
-        info[i++] = "Your weapon causes you to miss blows.";
+        info[i++] = "你的武器导致你攻击失误。";
     }
     if (p_ptr->cursed & OFC_LOW_AC)
     {
-        info[i++] = "You are subject to being hit.";
+        info[i++] = "你容易被击中。";
     }
     if (p_ptr->cursed & OFC_LOW_MAGIC)
     {
-        info[i++] = "You are a careless spellcaster.";
+        info[i++] = "你是个粗心的施法者。";
     }
     if (p_ptr->cursed & OFC_LOW_DEVICE)
     {
-        info[i++] = "You are careless at using magic devices.";
+        info[i++] = "你使用魔法装置时很粗心。";
     }
     if (p_ptr->cursed & OFC_FAST_DIGEST)
     {
-        info[i++] = "You have a good appetite.";
+        info[i++] = "你胃口很好。";
     }
     if (p_ptr->cursed & OFC_ALLERGY)
     {
-        info[i++] = "You are allergic to your equipment.";
+        info[i++] = "你对你的装备过敏。";
     }
     if (p_ptr->cursed & OFC_CRAPPY_MUT)
     {
-        info[i++] = "You occasionally suffer harmful mutations.";
+        info[i++] = "你偶尔会遭受有害的突变。";
     }
     if (p_ptr->cursed & OFC_NORMALITY)
     {
-        info[i++] = "You are subject to bouts of normality.";
+        info[i++] = "你偶尔会恢复正常。";
     }
     if (p_ptr->cursed & OFC_OPEN_WOUNDS)
     {
-        info[i++] = "Your wounds heal very slowly.";
+        info[i++] = "你的伤口愈合得非常慢。";
     }
     if (p_ptr->cursed & OFC_DRAIN_HP)
     {
-        info[i++] = "Your body is drained.";
+        info[i++] = "你的身体被吸取了。";
     }
     if (p_ptr->cursed & OFC_DRAIN_MANA)
     {
-        info[i++] = "Your brain is drained.";
+        info[i++] = "你的大脑被吸取了。";
     }
     if (p_ptr->cursed & OFC_DRAIN_PACK)
     {
-        info[i++] = "Your inventory is drained.";
+        info[i++] = "你的物品栏被吸取了。";
     }
     if (IS_BLESSED())
     {
-        info[i++] = "You feel righteous.";
+        info[i++] = "你感到正气凛然。";
 
     }
     if (IS_HERO())
     {
-        info[i++] = "You feel heroic.";
+        info[i++] = "你感到英雄般无畏。";
 
     }
     if (IS_SHERO())
     {
-        info[i++] = "You are in a battle rage.";
+        info[i++] = "你处于战斗狂热中。";
 
     }
     if (IS_PROT_EVIL())
     {
-        info[i++] = "You are protected from evil.";
+        info[i++] = "你受到保护免受邪恶侵害。";
 
     }
     if (p_ptr->shield)
     {
-        info[i++] = "You are protected by a mystic shield.";
+        info[i++] = "你受到神秘护盾的保护。";
 
     }
     if (IS_INVULN())
     {
-        info[i++] = "You are temporarily invulnerable.";
+        info[i++] = "你暂时处于无敌状态。";
 
     }
     if (IS_WRAITH())
     {
-        info[i++] = "You are temporarily incorporeal.";
+        info[i++] = "你暂时处于无形状态。";
 
     }
     if (p_ptr->special_attack & ATTACK_CONFUSE)
     {
-        info[i++] = "Your hands are glowing dull red.";
+        info[i++] = "你的双手闪烁着暗红色的光芒。";
 
     }
     if (p_ptr->special_attack & ATTACK_FIRE)
     {
-        info[i++] = "You can strike the enemy with flame.";
+        info[i++] = "你可以用火焰打击敌人。";
 
     }
     if (p_ptr->special_attack & ATTACK_COLD)
     {
-        info[i++] = "You can strike the enemy with cold.";
+        info[i++] = "你可以用冰寒打击敌人。";
 
     }
     if (p_ptr->special_attack & ATTACK_ACID)
     {
-        info[i++] = "You can strike the enemy with acid.";
+        info[i++] = "你可以用酸液打击敌人。";
 
     }
     if (p_ptr->special_attack & ATTACK_ELEC)
     {
-        info[i++] = "You can strike the enemy with electoric shock.";
+        info[i++] = "你可以用电击打击敌人。";
 
     }
     if (p_ptr->special_attack & ATTACK_POIS)
     {
-        info[i++] = "You can strike the enemy with poison.";
+        info[i++] = "你可以用毒素打击敌人。";
 
     }
     switch (p_ptr->action)
     {
         case ACTION_SEARCH:
-            info[i++] = "You are looking around very carefully.";
+            info[i++] = "你正在非常仔细地环顾四周。";
             break;
     }
     if (p_ptr->new_spells)
     {
-        info[i++] = "You can learn some spells/prayers.";
+        info[i++] = "你可以学习一些法术/祈祷。";
 
     }
     if (p_ptr->word_recall)
     {
-        info[i++] = "You will soon be recalled.";
+        info[i++] = "你很快就会被召回。";
 
     }
     if (p_ptr->alter_reality)
     {
-        info[i++] = "You will soon be altered.";
+        info[i++] = "你很快就会被改变。";
 
     }
     if (p_ptr->see_infra)
     {
-        info[i++] = "Your eyes are sensitive to infrared light.";
+        info[i++] = "你的眼睛对红外线很敏感。";
 
     }
     if (p_ptr->see_inv)
     {
-        info[i++] = "You can see invisible creatures.";
+        info[i++] = "你可以看到隐形生物。";
 
     }
     if (p_ptr->levitation)
     {
-        info[i++] = "You can fly.";
+        info[i++] = "你可以飞行。";
 
     }
     if (p_ptr->free_act)
     {
-        info[i++] = "You have free action.";
+        info[i++] = "你行动自如。";
 
     }
     if (p_ptr->regen > 100)
     {
-        info[i++] = "You regenerate quickly.";
+        info[i++] = "你再生迅速。";
 
     }
     if (p_ptr->slow_digest)
     {
-        info[i++] = "Your appetite is small.";
+        info[i++] = "你的胃口很小。";
 
     }
     if (p_ptr->telepathy)
     {
-        info[i++] = "You have ESP.";
+        info[i++] = "你拥有心灵感应 (ESP)。";
 
     }
     if (p_ptr->esp_animal)
     {
-        info[i++] = "You sense natural creatures.";
+        info[i++] = "你能感知自然生物。";
 
     }
     if (p_ptr->esp_undead)
     {
-        info[i++] = "You sense undead.";
+        info[i++] = "你能感知不死生物。";
 
     }
     if (p_ptr->esp_demon)
     {
-        info[i++] = "You sense demons.";
+        info[i++] = "你能感知恶魔。";
 
     }
     if (p_ptr->esp_orc)
     {
-        info[i++] = "You sense orcs.";
+        info[i++] = "你能感知兽人。";
 
     }
     if (p_ptr->esp_troll)
     {
-        info[i++] = "You sense trolls.";
+        info[i++] = "你能感知巨魔。";
 
     }
     if (p_ptr->esp_giant)
     {
-        info[i++] = "You sense giants.";
+        info[i++] = "你能感知巨人。";
 
     }
     if (p_ptr->esp_dragon)
     {
-        info[i++] = "You sense dragons.";
+        info[i++] = "你能感知龙类。";
 
     }
     if (p_ptr->esp_human)
     {
-        info[i++] = "You sense humans.";
+        info[i++] = "你能感知人类。";
 
     }
     if (p_ptr->esp_evil)
     {
-        info[i++] = "You sense evil creatures.";
+        info[i++] = "你能感知邪恶生物。";
 
     }
     if (p_ptr->esp_good)
     {
-        info[i++] = "You sense good creatures.";
+        info[i++] = "你能感知善良生物。";
 
     }
     if (p_ptr->esp_nonliving)
     {
-        info[i++] = "You sense non-living creatures.";
+        info[i++] = "你能感知无生命生物。";
 
     }
     if (p_ptr->esp_unique)
     {
-        info[i++] = "You sense unique monsters.";
+        info[i++] = "你能感知唯一怪物。";
 
     }
     if (p_ptr->hold_life)
     {
-        info[i++] = "You have a firm hold on your life force.";
+        info[i++] = "你牢牢掌控着自己的生命力。";
 
     }
     if (p_ptr->reflect)
     {
-        info[i++] = "You reflect arrows and bolts.";
+        info[i++] = "你能反射箭矢和法术。";
 
     }
     if (p_ptr->sh_fire)
-        info[i++] = "You are surrounded with a fiery aura.";
+        info[i++] = "你被火焰光环环绕。";
     if (p_ptr->sh_shards)
-        info[i++] = "You are surrounded with a shard aura.";
+        info[i++] = "你被碎片光环环绕。";
     if (p_ptr->tim_blood_revenge)
-        info[i++] = "You are surrounded with a bloody aura.";
+        info[i++] = "你被鲜血光环环绕。";
     if (p_ptr->sh_elec)
     {
-        info[i++] = "You are surrounded with electricity.";
+        info[i++] = "你被电流环绕。";
 
     }
     if (p_ptr->sh_cold)
     {
-        info[i++] = "You are surrounded with an aura of coldness.";
+        info[i++] = "你被冰寒光环环绕。";
 
     }
     if (p_ptr->tim_sh_holy)
     {
-        info[i++] = "You are surrounded with a holy aura.";
+        info[i++] = "你被神圣光环环绕。";
 
     }
     if (p_ptr->tim_sh_touki)
     {
-        info[i++] = "You are surrounded with a energy aura.";
+        info[i++] = "你被能量光环环绕。";
 
     }
     if (p_ptr->anti_magic)
     {
-        info[i++] = "You are surrounded by an anti-magic shell.";
+        info[i++] = "你被反魔法外壳环绕。";
 
     }
     if (p_ptr->anti_tele)
     {
-        info[i++] = "You cannot teleport.";
+        info[i++] = "你无法传送。";
 
     }
     if (p_ptr->lite)
     {
-        info[i++] = "You are carrying a permanent light.";
+        info[i++] = "你携带着永久光源。";
 
     }
     if (p_ptr->warning)
     {
-        info[i++] = "You will be warned before dangerous actions.";
+        info[i++] = "你在采取危险行动前会收到警告。";
 
     }
     if (p_ptr->dec_mana)
     {
-        info[i++] = "You can cast spells with fewer mana points.";
+        info[i++] = "你可以用更少的法力值施法。";
 
     }
     if (p_ptr->easy_spell)
     {
-        info[i++] = "Fail rate of your magic is decreased.";
+        info[i++] = "你的魔法失败率降低了。";
 
     }
     if (p_ptr->heavy_spell)
     {
-        info[i++] = "Fail rate of your magic is increased.";
+        info[i++] = "你的魔法失败率增加了。";
 
     }
     if (p_ptr->mighty_throw)
     {
-        info[i++] = "You can throw objects powerfully.";
+        info[i++] = "你可以强力地投掷物品。";
 
     }
 
@@ -536,119 +536,119 @@ void self_knowledge(void)
         if (pct != 0)
         {
             if (j == RES_FEAR)
-                sprintf(r_string[j], "You are %s to %s.", pct > 0 ? "resistant" : "vulnerable", res_name(j));
+                sprintf(r_string[j], "你具有%s（%s）。", pct > 0 ? "抗性" : "弱点", res_name(j));
             else
-                sprintf(r_string[j], "You are %d%% %s to %s.", ABS(pct), pct > 0 ? "resistant" : "vulnerable", res_name(j));
+                sprintf(r_string[j], "你具有 %d%% 的%s（%s）。", ABS(pct), pct > 0 ? "抗性" : "弱点", res_name(j));
             info[i++] = r_string[j];
         }
     }
     if (p_ptr->sustain_str)
     {
-        info[i++] = "Your strength is sustained.";
+        info[i++] = "你的力量得到了维持。";
 
     }
     if (p_ptr->sustain_int)
     {
-        info[i++] = "Your intelligence is sustained.";
+        info[i++] = "你的智力得到了维持。";
 
     }
     if (p_ptr->sustain_wis)
     {
-        info[i++] = "Your wisdom is sustained.";
+        info[i++] = "你的感知得到了维持。";
 
     }
     if (p_ptr->sustain_con)
     {
-        info[i++] = "Your constitution is sustained.";
+        info[i++] = "你的体质得到了维持。";
 
     }
     if (p_ptr->sustain_dex)
     {
-        info[i++] = "Your dexterity is sustained.";
+        info[i++] = "你的敏捷得到了维持。";
 
     }
     if (p_ptr->sustain_chr)
     {
-        info[i++] = "Your charisma is sustained.";
+        info[i++] = "你的魅力得到了维持。";
 
     }
 
     if (have_flag(flgs, OF_STR))
     {
-        info[i++] = "Your strength is affected by your equipment.";
+        info[i++] = "你的力量受到装备的影响。";
 
     }
     if (have_flag(flgs, OF_INT))
     {
-        info[i++] = "Your intelligence is affected by your equipment.";
+        info[i++] = "你的智力受到装备的影响。";
 
     }
     if (have_flag(flgs, OF_WIS))
     {
-        info[i++] = "Your wisdom is affected by your equipment.";
+        info[i++] = "你的感知受到装备的影响。";
 
     }
     if (have_flag(flgs, OF_DEX))
     {
-        info[i++] = "Your dexterity is affected by your equipment.";
+        info[i++] = "你的敏捷受到装备的影响。";
 
     }
     if (have_flag(flgs, OF_CON))
     {
-        info[i++] = "Your constitution is affected by your equipment.";
+        info[i++] = "你的体质受到装备的影响。";
 
     }
     if (have_flag(flgs, OF_CHR))
     {
-        info[i++] = "Your charisma is affected by your equipment.";
+        info[i++] = "你的魅力受到装备的影响。";
 
     }
 
     if (have_flag(flgs, OF_STEALTH))
     {
-        info[i++] = "Your stealth is affected by your equipment.";
+        info[i++] = "你的潜行受到装备的影响。";
 
     }
     if (have_flag(flgs, OF_SEARCH))
     {
-        info[i++] = "Your searching ability is affected by your equipment.";
+        info[i++] = "你的搜索能力受到装备的影响。";
 
     }
     if (have_flag(flgs, OF_INFRA))
     {
-        info[i++] = "Your infravision is affected by your equipment.";
+        info[i++] = "你的红外视觉受到装备的影响。";
 
     }
     if (have_flag(flgs, OF_TUNNEL))
     {
-        info[i++] = "Your digging ability is affected by your equipment.";
+        info[i++] = "你的挖掘能力受到装备的影响。";
 
     }
     if (have_flag(flgs, OF_SPEED))
     {
-        info[i++] = "Your speed is affected by your equipment.";
+        info[i++] = "你的速度受到装备的影响。";
 
     }
     if (have_flag(flgs, OF_BLOWS))
     {
-        info[i++] = "Your attack speed is affected by your equipment.";
+        info[i++] = "你的攻击速度受到装备的影响。";
 
     }
 
     if (p_ptr->no_eldritch)
-        info[i++] = "You are unaffected by the Eldritch Horror.";
+        info[i++] = "你不受不可名状的恐怖影响。";
     if (p_ptr->no_cut)
-        info[i++] = "You cannot be cut.";
+        info[i++] = "你不会被割伤。";
     if (p_ptr->no_stun)
-        info[i++] = "You cannot be stunned.";
+        info[i++] = "你不会被震慑。";
     if (p_ptr->no_charge_drain)
-        info[i++] = "You are immune to charge draining attacks.";
+        info[i++] = "你免疫吸取充能的攻击。";
     if (p_ptr->auto_id)
-        info[i++] = "Objects are automatically identified as you pass over them.";
+        info[i++] = "你经过物品时它们会被自动鉴定。";
     else if (p_ptr->auto_pseudo_id)
-        info[i++] = "Objects are automatically pseudo-identified as you pass over them.";
+        info[i++] = "你经过物品时它们会被自动伪鉴定。";
     if (p_ptr->cult_of_personality)
-        info[i++] = "Summoned monsters sometimes switch their allegiance.";
+        info[i++] = "被召唤的怪物有时会倒戈相向。";
 
     /* TODO: We used to spoil your first weapon, and ignore any alternate weapons. Rethink ... */
 
@@ -722,14 +722,14 @@ static int report_magics_aux(int dur)
 
 static cptr report_magic_durations[] =
 {
-    "for a short time",
-    "for a little while",
-    "for a while",
-    "for a long while",
-    "for a long time",
-    "for a very long time",
-    "for an incredibly long time",
-    "until you hit a monster"
+    "（短时间内）",
+    "（一小会儿）",
+    "（一段时间内）",
+    "（很长一段时间内）",
+    "（很长时间内）",
+    "（非常长的时间内）",
+    "（极其长的时间内）",
+    "（直到击中怪物）"
 
 };
 
@@ -820,7 +820,7 @@ void report_magics(void)
     if (p_ptr->special_attack & ATTACK_CONFUSE)
     {
         info2[i]  = 7;
-        info[i++] = "Your hands are glowing dull red.";
+        info[i++] = "你的双手闪烁着暗红色的光芒。";
 
     }
     if (p_ptr->word_recall)
@@ -1748,7 +1748,7 @@ bool detect_monsters_xxx(int range, u32b match_flag)
 {
     int  i, y, x;
     bool flag = FALSE;
-    cptr desc_monsters = "weird monsters";
+    cptr desc_monsters = "奇怪的怪物";
 
     if (d_info[dungeon_type].flags1 & DF1_DARKNESS) range /= 3;
 
@@ -1794,11 +1794,11 @@ bool detect_monsters_xxx(int range, u32b match_flag)
         switch (match_flag)
         {
             case RF3_DEMON:
-                desc_monsters = "demons";
+                desc_monsters = "恶魔";
 
                 break;
             case RF3_UNDEAD:
-                desc_monsters = "the undead";
+                desc_monsters = "不死生物";
 
                 break;
         }
@@ -2114,7 +2114,7 @@ bool genocide_aux(int m_idx, int power, bool player_cast, int dam_side, cptr spe
     if (player_cast)
     {
         /* Take damage */
-        take_hit(DAMAGE_GENO, randint1(dam_side), format("the strain of casting %^s", spell_name));
+        take_hit(DAMAGE_GENO, randint1(dam_side), format("施放 %^s 的负担", spell_name));
     }
 
     /* Visual feedback */
@@ -2160,11 +2160,11 @@ bool symbol_genocide(int power, bool player_cast)
             return FALSE;
         if (typ == 'n') /* naga hack */
         {
-            if (msg_prompt("Really genocide Nagas? <color:y>[Y/N]</color>", "NY", PROMPT_DEFAULT) != 'Y') continue;
+            if (msg_prompt("真的要灭绝娜迦吗？<color:y>[Y/N]</color>", "NY", PROMPT_DEFAULT) != 'Y') continue;
         }
         else if ((rogue_like_commands) && (typ == 'X'))
         {
-            if (msg_prompt("Really genocide Xorns? <color:y>[Y/N]</color>", "NY", PROMPT_DEFAULT) != 'Y') continue;
+            if (msg_prompt("真的要灭绝索恩吗？<color:y>[Y/N]</color>", "NY", PROMPT_DEFAULT) != 'Y') continue;
         }
         else if (typ == '?')
         {
@@ -2175,7 +2175,7 @@ bool symbol_genocide(int power, bool player_cast)
         } 
         else if (!isalpha(typ))
         {
-            if (msg_prompt("Confirm genocide? <color:y>[Y/N]</color>", "NY", PROMPT_DEFAULT) != 'Y') continue;
+            if (msg_prompt("确认灭绝？<color:y>[Y/N]</color>", "NY", PROMPT_DEFAULT) != 'Y') continue;
         }
         okay = TRUE;
     }
@@ -2879,7 +2879,7 @@ bool earthquake_aux(int cy, int cx, int r, int m_idx)
         /* Take some damage */
         if (damage)
         {
-            char killer[MAX_NLEN + 24] = "an earthquake";
+            char killer[MAX_NLEN + 24] = "一场地震";
 
             if (m_idx)
             {
@@ -4276,7 +4276,7 @@ bool activate_ty_curse(bool stop_ty, int *count)
                 msg_print("一道通往纯粹法力位面的传送门打开了！");
 
                 project(0, 8, py, px, dam, GF_MANA, flg);
-                take_hit(DAMAGE_NOESCAPE, dam, "released pure mana");
+                take_hit(DAMAGE_NOESCAPE, dam, "释放纯粹的法力");
                 if (!one_in_(6)) break;
             }
         case 32: case 33:
@@ -4295,7 +4295,7 @@ bool activate_ty_curse(bool stop_ty, int *count)
             if (!randint0(7))
             {
                 project(0, 7, py, px, 50, GF_KILL_WALL, flg);
-                take_hit(DAMAGE_NOESCAPE, 50, "surge of energy");
+                take_hit(DAMAGE_NOESCAPE, 50, "能量激增");
             }
             if (!one_in_(6)) break;
         case 1: case 2: case 3: case 16: case 17:

@@ -1292,13 +1292,16 @@ int parse_lookup_monster(cptr name, int options)
 int parse_lookup_dungeon(cptr name, int options)
 {
     int i;
+    char query[255];
+
+    _prep_name_aux(query, name);
     for (i = 1; i < max_d_idx; i++)
     {
         dungeon_info_type *d_ptr = &d_info[i];
         char buf[255];
         if (!d_ptr->name) continue;
         _prep_name(buf, d_name + d_ptr->name);
-        if (strstr(buf, name))
+        if (strstr(buf, query))
         {
             if (trace_doc)
                 doc_printf(trace_doc, "正在映射地下城 <color:B>%s</color> 到 <color:R>%s</color> (%d)。\n", name, buf, i);
@@ -5330,7 +5333,7 @@ errr process_dungeon_file(cptr name, int options)
 
         /* Oops */
         msg_boundary();
-        msg_format("<color:v>错误</color> %d (%s)，位于 '%s' 的第 %d 行。", err, oops, num, name);
+        msg_format("<color:v>错误</color> %d (%s)，位于 '%s' 的第 %d 行。", err, oops, name, num);
         msg_format("正在解析 '%s'。", buf);
 
         msg_print(NULL);
@@ -5392,7 +5395,7 @@ errr parse_edit_file(cptr name, parser_f parser, int options)
                 cptr oops = (err > 0 && err < PARSE_ERROR_MAX) ? err_str[err] : "unknown";
 
                 msg_boundary();
-                msg_format("<color:v>错误</color> %d (%s)，位于 '%s' 的第 %d 行。", err, oops, line_num, name);
+                msg_format("<color:v>错误</color> %d (%s)，位于 '%s' 的第 %d 行。", err, oops, name, line_num);
                 msg_format("正在解析 '%s'。", buf);
                 msg_print(NULL); /* quit() during initialization ... */
             }

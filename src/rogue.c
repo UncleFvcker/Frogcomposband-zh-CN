@@ -77,10 +77,10 @@ static cptr _rogue_pick_pocket(int power)
             }
             else if (loot.tval == TV_GOLD)
             {
-                if ((p_ptr->prace == RACE_WEREWOLF) && (strpos("silver", o_name)))
+                if ((p_ptr->prace == RACE_WEREWOLF) && (strpos("银", o_name)))
                 {
                     msg_print("你偷了一些银币，但立刻又把它们掉了。");
-                    take_hit(DAMAGE_NOESCAPE, randint1(10), "contact with silver coins");
+                    take_hit(DAMAGE_NOESCAPE, randint1(10), "接触了银币");
                 }
                 else {
                     msg_format("你偷了价值 %d 金币的 %s。", (int)loot.pval, o_name);
@@ -272,7 +272,7 @@ cptr do_burglary_spell(int spell, int mode)
     /* Burglar's Handbook */
     case 0:
         if (name) return "探测陷阱";
-        if (desc) return "Detects nearby traps.";
+        if (desc) return "探测附近的陷阱。";
         if (info) return info_radius(rad);
         if (cast)
             detect_traps(rad, TRUE);
@@ -280,7 +280,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 1:
         if (name) return "解除陷阱";
-        if (desc) return "Fires a beam which disarms traps.";
+        if (desc) return "发射一道解除陷阱的射线。";
 
         if (cast)
         {
@@ -291,7 +291,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 2:
         if (name) return "探测财宝";
-        if (desc) return "Detects all treasures in your vicinity.";
+        if (desc) return "探测你附近的所有财宝。";
         if (info) return info_radius(rad);
 
         if (cast)
@@ -303,7 +303,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 3:
         if (name) return "探测物品";
-        if (desc) return "Detects all items in your vicinity.";
+        if (desc) return "探测你附近的所有物品。";
         if (info) return info_radius(rad);
 
         if (cast)
@@ -312,7 +312,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 4:
         if (name) return "黑暗视觉";
-        if (desc) return "Gives infravision for a while.";
+        if (desc) return "暂时提供红外视觉。";
         {
             int base = spell_power(100);
 
@@ -325,7 +325,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 5:
         if (name) return "轻声行走";
-        if (desc) return "Grants enhanced stealth for a bit.";
+        if (desc) return "短时间内大幅提升潜行能力。";
         {
             int base = spell_power(50);
 
@@ -337,7 +337,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 6:
         if (name) return "小型逃遁";
-        if (desc) return "Teleport medium distance.";
+        if (desc) return "进行中等距离的传送。";
 
         {
             int range = 30;
@@ -355,7 +355,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 7:
         if (name) return "设置小型陷阱";
-        if (desc) return "Sets a weak trap under you. This trap will have various weak effects on a passing monster.";
+        if (desc) return "在脚下设置一个微弱的陷阱。经过该陷阱的怪物会受到各种较弱的效果影响。";
 
         if (cast)
             set_trap(py, px, feat_rogue_trap1);
@@ -364,7 +364,7 @@ cptr do_burglary_spell(int spell, int mode)
     /* Thieving Ways */
     case 8:
         if (name) return "标记逃跑路线";
-        if (desc) return "Maps nearby area.";
+        if (desc) return "映射附近区域。";
         if (info) return info_radius(rad);
 
         if (cast)
@@ -373,7 +373,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 9:
         if (name) return "妙手空空";
-        if (desc) return "Attempt to steal an item or treasure from an adjacent monster.";
+        if (desc) return "尝试从相邻的怪物身上偷取物品或财宝。";
 
         if (cast)
             return _rogue_pick_pocket(0);
@@ -381,7 +381,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 10:
         if (name) return "谈判";
-        if (desc) return "Attempt to bargain for the services of a nearby thief.";
+        if (desc) return "尝试花钱雇佣附近的窃贼为你服务。";
 
         if (cast)
             return _rogue_negotiate();
@@ -389,7 +389,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 11:
         if (name) return "取回物品";
-        if (desc) return "Pulls a distant item close to you.";
+        if (desc) return "将远处的物品拉到你身边。";
 
         {
             int weight = spell_power(plev * 15);
@@ -404,7 +404,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 12:
         if (name) return "危险感知";
-        if (desc) return "Gives telepathy for a while.";
+        if (desc) return "暂时提供心灵感应能力。";
         {
             int base = 25;
             int sides = 30;
@@ -418,7 +418,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 13:
         if (name) return "检查战利品";
-        if (desc) return "Identifies an item.";
+        if (desc) return "鉴定一件物品。";
 
         if (cast)
         {
@@ -429,7 +429,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 14:
         if (name) return "设置大型陷阱";
-        if (desc) return "Sets a trap under you. This trap will have various effects on a passing monster.";
+        if (desc) return "在脚下设置一个陷阱。经过该陷阱的怪物会受到各种效果影响。";
 
         if (cast)
             set_trap(py, px, feat_rogue_trap2);
@@ -437,7 +437,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 15:
         if (name) return "加速";
-        if (desc) return "Hastes you for a while.";
+        if (desc) return "暂时为你提供加速效果。";
 
         {
             int base = spell_power(plev);
@@ -453,7 +453,7 @@ cptr do_burglary_spell(int spell, int mode)
     /* Great Escapes */
     case 16:
         if (name) return "创造楼梯";
-        if (desc) return "Creates a flight of stairs underneath you.";
+        if (desc) return "在你的正下方创造一阶楼梯。";
 
         if (cast)
             stair_creation(FALSE);
@@ -461,7 +461,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 17:
         if (name) return "恐慌打击";
-        if (desc) return "Attack an adjacent monster and attempt a getaway.";
+        if (desc) return "攻击相邻的怪物并试图逃跑。";
 
         if (cast)
         {
@@ -490,7 +490,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 18:
         if (name) return "恐慌射击";
-        if (desc) return "Shoot a nearby monster and attempt a getaway.";
+        if (desc) return "射击附近的怪物并试图逃跑。";
 
         if (cast)
         {
@@ -504,7 +504,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 19:
         if (name) return "恐慌召唤";
-        if (desc) return "Summon assistance and attempt a getaway.";
+        if (desc) return "召唤援助并试图逃跑。";
 
         if (cast)
         {
@@ -519,7 +519,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 20:
         if (name) return "恐慌陷阱";
-        if (desc) return "Set multiple weak traps and attempt a getaway.";
+        if (desc) return "设置多个微弱的陷阱并试图逃跑。";
 
         if (cast)
         {
@@ -543,7 +543,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 21:
         if (name) return "逃离楼层";
-        if (desc) return "Flee your current level without delay.";
+        if (desc) return "毫无延迟地逃离你当前的楼层。";
 
         if (cast)
         {
@@ -553,7 +553,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 22:
         if (name) return "新的开始";
-        if (desc) return "Recreates current dungeon level after a short delay.";
+        if (desc) return "在短暂的延迟后重新生成当前的地下城楼层。";
         if (info) return info_delay(15, 20);
 
         if (cast)
@@ -562,7 +562,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 23:
         if (name) return "大型逃遁";
-        if (desc) return "Teleport long distance with very little energy use.";
+        if (desc) return "消耗极少的能量进行远距离传送。";
 
         {
             int range = plev * 5;
@@ -580,7 +580,7 @@ cptr do_burglary_spell(int spell, int mode)
     /* Book of Shadows */
     case 24:
         if (name) return "保护战利品";
-        if (desc) return "For a long time, items in your inventory will have a chance at resisting destruction.";
+        if (desc) return "在很长一段时间内，你物品栏中的物品将有几率抵抗损坏。";
 
         {
             int base = spell_power(plev*2);
@@ -595,7 +595,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 25:
         if (name) return "传送到";
-        if (desc) return "Teleport a visible monster next to you without disturbing it.";
+        if (desc) return "将一个可见怪物传送到你身边而不惊动它。";
 
         if (cast)
         {
@@ -620,7 +620,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 26:
         if (name) return "大师级盗窃";
-        if (desc) return "The ultimate in thievery. With a light touch, you attempt to relieve monsters of their goods.";
+        if (desc) return "盗窃的终极境界。只需轻轻一触，你就能试图顺走怪物的财物。";
 
         if (cast)
             return _rogue_pick_pocket(100);
@@ -628,7 +628,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 27:
         if (name) return "暗影风暴";
-        if (desc) return "Fires a huge ball of darkness.";
+        if (desc) return "发射一个巨大的黑暗球。";
 
         {
             int dam = spell_power(10 * (plev - 20) + p_ptr->to_d_spell);
@@ -646,7 +646,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 28:
         if (name) return "隐匿于阴影";
-        if (desc) return "You become shrouded in darkness, your torch light magically dimmed.";
+        if (desc) return "你被黑暗笼罩，你的火把光芒被魔法般地调暗了。";
         {
             int d = plev;
             if (info) return info_duration(spell_power(d), spell_power(d));
@@ -664,7 +664,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 29:
         if (name) return "盗贼巢穴";
-        if (desc) return "As a Thief Lord, you may summon assistance from your minions at will.";
+        if (desc) return "作为盗贼领主，你可以随意召唤你的喽啰来提供援助。";
         if (cast)
         {
             int i;
@@ -688,7 +688,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 30:
         if (name) return "设置终极陷阱";
-        if (desc) return "Sets an extremely powerful trap under you. This trap will have various strong effects on a passing monster.";
+        if (desc) return "在脚下设置一个极其强大的陷阱。经过该陷阱的怪物会受到各种强力效果影响。";
 
         if (cast)
             set_trap(py, px, feat_rogue_trap3);
@@ -696,7 +696,7 @@ cptr do_burglary_spell(int spell, int mode)
 
     case 31:
         if (name) return "暗杀";
-        if (desc) return "Attempt to instantly kill a sleeping monster.";
+        if (desc) return "尝试秒杀一个正在沉睡的怪物。";
 
         if (cast)
         {

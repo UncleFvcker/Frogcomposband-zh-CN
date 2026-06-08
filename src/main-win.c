@@ -625,6 +625,17 @@ static void utf8_to_wide(cptr src, WCHAR *dst, int max)
     dst[max - 1] = L'\0';
 }
 
+static int message_box_utf8(HWND hwnd, cptr text, cptr caption, UINT type)
+{
+    WCHAR text_w[2048];
+    WCHAR caption_w[256];
+
+    utf8_to_wide(text, text_w, sizeof(text_w)/sizeof(text_w[0]));
+    utf8_to_wide(caption, caption_w, sizeof(caption_w)/sizeof(caption_w[0]));
+
+    return MessageBoxW(hwnd, text_w, caption_w, type);
+}
+
 /*
  * Directory names
  */
@@ -877,13 +888,13 @@ static void validate_dir(cptr s, bool vital)
         /* This directory contains needed data */
         if (vital)
         {
-            quit_fmt("Cannot find required directory:\n%s", s);
+            quit_fmt("找不到所需目录：\n%s", s);
 
         }
         /* Attempt to create this directory */
         else if (_mkdir(s))
         {
-            quit_fmt("Unable to create directory:\n%s", s);
+            quit_fmt("无法创建目录：\n%s", s);
         }
     }
 }
@@ -1080,6 +1091,7 @@ static void crash_report_write_common(FILE *fp, cptr kind, cptr reason)
         }
     }
 
+    format_diagnostic_dump(fp);
     game_log_dump_recent(fp, 32);
 }
 
@@ -1193,11 +1205,11 @@ static LONG WINAPI crash_report_exception_filter(EXCEPTION_POINTERS *info)
     {
         strnfmt(msg, sizeof(msg),
             "程序发生未处理异常，已生成错误报告：\n%s\n\n请把这个文件发给维护者。", path);
-        MessageBox(NULL, msg, "FrogComposband 崩溃报告", MB_ICONERROR | MB_OK);
+        message_box_utf8(NULL, msg, "FrogComposband 崩溃报告", MB_ICONERROR | MB_OK);
     }
     else
     {
-        MessageBox(NULL, "程序发生未处理异常，但错误报告写入失败。", "FrogComposband 崩溃报告", MB_ICONERROR | MB_OK);
+        message_box_utf8(NULL, "程序发生未处理异常，但错误报告写入失败。", "FrogComposband 崩溃报告", MB_ICONERROR | MB_OK);
     }
 
     return EXCEPTION_EXECUTE_HANDLER;
@@ -1214,13 +1226,13 @@ static void crash_report_show(HWND hwnd, cptr kind, cptr str)
     {
         strnfmt(msg, sizeof(msg),
             "%s\n\n已生成错误报告：\n%s\n\n请把这个文件发给维护者。", str, path);
-        MessageBox(hwnd, msg, "FrogComposband 错误报告", MB_ICONEXCLAMATION | MB_OK | MB_ICONSTOP);
+        message_box_utf8(hwnd, msg, "FrogComposband 错误报告", MB_ICONEXCLAMATION | MB_OK | MB_ICONSTOP);
     }
     else
     {
         strnfmt(msg, sizeof(msg),
             "%s\n\n错误报告写入失败。", str);
-        MessageBox(hwnd, msg, "FrogComposband 错误报告", MB_ICONEXCLAMATION | MB_OK | MB_ICONSTOP);
+        message_box_utf8(hwnd, msg, "FrogComposband 错误报告", MB_ICONEXCLAMATION | MB_OK | MB_ICONSTOP);
     }
 }
 
@@ -1655,7 +1667,7 @@ static int new_palette(void)
         if ((nEntries == 0) || (nEntries > 220))
         {
             /* Warn the user */
-            plog("Please switch to high- or true-color mode.");
+            plog("请切换至高色彩 (high-color) 或真彩色 (true-color) 模式。");
 
 
             /* Cleanup */
@@ -1708,7 +1720,7 @@ static int new_palette(void)
 
     /* Create a new palette, or fail */
     hNewPal = CreatePalette(pLogPal);
-    if (!hNewPal) quit("Cannot create palette!");
+    if (!hNewPal) quit("无法创建调色板！");
 
 
     /* Free the palette */
@@ -1722,7 +1734,7 @@ static int new_palette(void)
     SelectPalette(hdc, hNewPal, 0);
     i = RealizePalette(hdc);
     ReleaseDC(td->w, hdc);
-    if (i == 0) quit("Cannot realize palette!");
+    if (i == 0) quit("无法实现调色板！");
 
 
     /* Sub-windows */
@@ -1817,7 +1829,7 @@ static bool init_graphics(void)
             /* Free bitmap XXX XXX XXX */
 
             /* Oops */
-            plog("Cannot activate palette!");
+            plog("无法激活调色板！");
 
             return (FALSE);
         }
@@ -2094,7 +2106,7 @@ static errr Term_xtra_win_react(void)
         if (arg_sound && !init_sound())
         {
             /* Warning */
-            plog("Cannot initialize sound!");
+            plog("无法初始化声音！");
 
 
             /* Cannot enable */
@@ -2117,7 +2129,7 @@ static errr Term_xtra_win_react(void)
         if (arg_graphics && !init_graphics())
         {
             /* Warning */
-            plog("Cannot initialize graphics!");
+            plog("无法初始化图形！");
 
 
             /* Cannot enable */
@@ -3436,7 +3448,7 @@ static void process_menus(WORD wCmd)
             }
             else if (game_in_progress)
             {
-                plog("You can't start a new game while you're still playing!");
+                plog("你不能在游戏进行中开始新游戏！");
 
             }
             else
@@ -3459,7 +3471,7 @@ static void process_menus(WORD wCmd)
             }
             else if (game_in_progress)
             {
-                plog("You can't open a new game while you're still playing!");
+                plog("你不能在游戏进行中打开新游戏！");
 
             }
             else
@@ -3495,7 +3507,7 @@ static void process_menus(WORD wCmd)
                 /* Paranoia */
                 if (!can_save)
                 {
-                    plog("You may not do that right now.");
+                    plog("你现在不能这么做。");
 
                     break;
                 }
@@ -3538,7 +3550,7 @@ static void process_menus(WORD wCmd)
         /* Show scores */
         case IDM_WINDOW_VIS_0:
         {
-            plog("You are not allowed to do that!");
+            plog("你不被允许这么做！");
 
 
             break;
@@ -4241,6 +4253,7 @@ LRESULT FAR PASCAL AngbandWndProc(HWND hWnd, UINT uMsg,
 
         case WM_CLOSE:
         {
+            game_log_note("winmsg", "WM_CLOSE main window");
             if (game_in_progress && character_generated)
             {
                 if (!can_save)
@@ -4275,7 +4288,7 @@ LRESULT FAR PASCAL AngbandWndProc(HWND hWnd, UINT uMsg,
                 signals_ignore_tstp();
 
                 /* Indicate panic save */
-                (void)strcpy(p_ptr->died_from, "(panic save)");
+                (void)strcpy(p_ptr->died_from, "(紧急保存)");
 
                 /* Panic save */
                 (void)save_player();
@@ -4286,6 +4299,7 @@ LRESULT FAR PASCAL AngbandWndProc(HWND hWnd, UINT uMsg,
 
         case WM_QUIT:
         {
+            game_log_note("winmsg", "WM_QUIT main window");
             quit(NULL);
             return 0;
         }
@@ -4728,7 +4742,7 @@ static void hack_plog(cptr str)
     /* Give a warning */
     if (str)
     {
-        MessageBox(NULL, str, "警告",
+        message_box_utf8(NULL, str, "警告",
                MB_ICONEXCLAMATION | MB_OK);
 
     }
@@ -4784,7 +4798,7 @@ static void hook_plog(cptr str)
     /* Warning */
     if (str)
     {
-        MessageBox(data[0].w, str, "警告",
+        message_box_utf8(data[0].w, str, "警告",
                MB_ICONEXCLAMATION | MB_OK);
 
     }
@@ -5065,7 +5079,9 @@ int FAR PASCAL WinMain(HINSTANCE hInst, HINSTANCE hPrevInst,
     core_aux = hook_core;
 
     /* Prepare the filepaths */
+    game_log_note("winmain", "before_init_stuff");
     init_stuff();
+    game_log_note("winmain", "after_init_stuff");
 
     /* Initialize the keypress analyzer */
     for (i = 0; special_key_list[i]; ++i)
@@ -5102,7 +5118,9 @@ int FAR PASCAL WinMain(HINSTANCE hInst, HINSTANCE hPrevInst,
     }
 
     /* Prepare the windows */
+    game_log_note("winmain", "before_init_windows");
     init_windows();
+    game_log_note("winmain", "after_init_windows");
 
     /* Activate hooks */
     plog_aux = hook_plog;
@@ -5136,17 +5154,22 @@ int FAR PASCAL WinMain(HINSTANCE hInst, HINSTANCE hPrevInst,
     signals_init();
 
     /* Initialize */
+    game_log_note("winmain", "before_init_angband");
     init_angband();
+    game_log_note("winmain", "after_init_angband");
 
     /* Did the user double click on a save file? */
     check_for_save_file(lpCmdLine);
 
     Term_flush();
+    game_log_note("winmain", "before_display_news");
     display_news();
+    game_log_note("winmain", "after_display_news");
     c_prt(TERM_YELLOW, "[请从“文件”菜单中选择“新建”或“打开”]", Term->hgt - 1, 0);
     Term_fresh();
 
     /* Process messages forever */
+    game_log_note("winmain", "before_message_loop");
     while (GetMessage(&msg, NULL, 0, 0))
     {
         TranslateMessage(&msg);
@@ -5154,6 +5177,7 @@ int FAR PASCAL WinMain(HINSTANCE hInst, HINSTANCE hPrevInst,
     }
 
     /* Paranoia */
+    game_log_note("winmain", "message_loop_ended");
     quit(NULL);
 
     /* Paranoia */

@@ -68,16 +68,16 @@ cptr gf_name(int which)
     gf_info_ptr gf;
     switch (which)
     {
-    case GF_ELDRITCH_HOWL: return "<color:R>Fear</color>";
-    case GF_ANIM_DEAD: return "<color:D>Reanimation</color>";
-    case GF_OLD_DRAIN: return "<color:D>Vampirism</color>";
-    case GF_GENOCIDE: return "<color:D>Death</color>";
-    case GF_OLD_POLY: return "<color:v>Change</color>";
+    case GF_ELDRITCH_HOWL: return "<color:R>恐惧</color>";
+    case GF_ANIM_DEAD: return "<color:D>复生</color>";
+    case GF_OLD_DRAIN: return "<color:D>吸血</color>";
+    case GF_GENOCIDE: return "<color:D>死亡</color>";
+    case GF_OLD_POLY: return "<color:v>变形</color>";
     }
     gf = gf_lookup(which);
     if (gf)
         return format("<color:%c>%s</color>", attr_to_attr_char(gf->color), gf->name);
-    return "something";
+    return "某物";
 }
 
 static int _count(int list[])
@@ -245,21 +245,21 @@ static cptr _breath_desc(void)
 {
     switch (p_ptr->psubrace)
     {
-    case DRAGON_RED: return "fire";
-    case DRAGON_WHITE: return "cold";
-    case DRAGON_BLUE: return "lightning";
-    case DRAGON_BLACK: return "acid";
-    case DRAGON_GREEN: return "poison";
-    case DRAGON_BRONZE: return "confusion";
-    case DRAGON_GOLD: return "sound";
+    case DRAGON_RED: return "火焰";
+    case DRAGON_WHITE: return "冰寒";
+    case DRAGON_BLUE: return "闪电";
+    case DRAGON_BLACK: return "酸液";
+    case DRAGON_GREEN: return "毒素";
+    case DRAGON_BRONZE: return "混乱";
+    case DRAGON_GOLD: return "音波";
     case DRAGON_NETHER: 
-        if (p_ptr->lev >= 40) return "nether, nexus or disenchantment";
-        return "nether";
-    case DRAGON_LAW: return "sound or shards";
-    case DRAGON_CHAOS: return "chaos or disenchantment";
-    case DRAGON_ETHEREAL: return "light, dark or confusion";
-    case DRAGON_CRYSTAL: return "shards";
-    case DRAGON_BALANCE: return "sound, shards, chaos or disenchantment";
+        if (p_ptr->lev >= 40) return "幽冥、时空或除魔";
+        return "幽冥";
+    case DRAGON_LAW: return "音波或碎片";
+    case DRAGON_CHAOS: return "混沌或除魔";
+    case DRAGON_ETHEREAL: return "光明、黑暗或混乱";
+    case DRAGON_CRYSTAL: return "碎片";
+    case DRAGON_BALANCE: return "音波、碎片、混沌或除魔";
     }
     return 0;
 }
@@ -365,7 +365,7 @@ static void _calc_innate_attacks(void)
 
         a.weight = 100 + l;
         calc_innate_blows(&a, 400);
-        a.msg = "You claw.";
+        a.msg = "你抓了过去。";
         a.name = "爪击";
 
         /*if (p_ptr->dragon_realm == DRAGON_REALM_ATTACK && p_ptr->lev >= 40)
@@ -393,7 +393,7 @@ static void _calc_innate_attacks(void)
             calc_innate_blows(&a, 150);
         else
             a.blows = 100;
-        a.msg = "You bite.";
+        a.msg = "你咬了过去。";
         a.name = "撕咬";
 
         /*if (p_ptr->dragon_realm == DRAGON_REALM_ATTACK && p_ptr->lev >= 40)
@@ -2124,7 +2124,7 @@ void dragon_tail_sweep_spell(int cmd, variant *res)
 
             a.weight = 100 + l;
             a.blows = 100;
-            a.msg = "You hit.";
+            a.msg = "你打中了目标。";
             a.name = "尾击";
 
             p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;

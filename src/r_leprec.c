@@ -81,7 +81,7 @@ static void _calc_innate_attacks(void)
 
         calc_innate_blows(&a, 300);
 
-        a.msg = "You pilfer.";
+        a.msg = "你实施了偷窃。";
         a.name = "贪婪之手";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;

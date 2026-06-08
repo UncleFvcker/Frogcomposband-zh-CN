@@ -96,7 +96,7 @@ static void _calc_innate_attacks(void)
             a.effect[1] = GF_STUN;
 
         a.blows = 100;
-        a.msg = "You punch.";
+        a.msg = "你挥拳打去。";
         a.name = "重拳";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;

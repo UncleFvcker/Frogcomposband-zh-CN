@@ -2,22 +2,22 @@
 # By Shayne Steele (steele@cs.fsu.edu)
 
 ?:[EQU $QUEST33 Taken InProgress]
-D:For the past few years we have been cloning exceptionally powerful 
-D:creatures for gladiatorial combat. Something has gone very wrong in 
-D:the Cloning Pits. Please eliminate all the clones and you will be well
-D:rewarded. The active security systems have stopped working. The
-D:clones can use magic, teleport, summon, etc. "The Ultimate Dungeon 
-D:Cleaner" security bots are no longer controlled, so you will need to
-D:eliminate them as well. Levitation and a good distance weapon are
-D:recommended.
+D:在过去的几年里，我们一直在克隆极其强大的
+D:生物用于角斗表演。但在克隆深坑里发生了一些
+D:严重的事故。请消灭所有的克隆体，你会得到丰厚的
+D:奖励。主动安全系统已经停止工作了。
+D:这些克隆体可以使用魔法、传送、召唤等等。而且
+D:“终极地城清理者”安保机器人也已失去控制，所以你需要
+D:一并消灭它们。强烈建议准备好悬浮手段和一把好用的
+D:远程武器。
 ?:1
 
 ?:[EQU $QUEST33 Completed]
-D:Impressive!!
+D:令人印象深刻！！
 ?:1
 
 ?:[EQU $QUEST33 Failed]
-D:It seems like this task was too difficult for you.
+D:看来这个任务对你来说太难了。
 ?:1
 
 T:QUEST:NORMAL

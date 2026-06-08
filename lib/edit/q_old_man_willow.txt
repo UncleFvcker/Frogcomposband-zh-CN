@@ -1,20 +1,20 @@
 # Old Man Willow Quest
 # By Shayne Steele (steele@cs.fsu.edu)
 ?:[EQU $QUEST31 Taken InProgress]
-D:Old Man Willow has gone too far! He has turned a small section
-D:of the forest against all men. Please kill him before his
-D:influence can spread any further, you will be well rewarded 
-D:for completing this quest. The quest is in a clearing east of
-D:the town.
+D:柳树老头（Old Man Willow）太过分了！他让森林的一小部分
+D:倒戈对抗所有人类。请在他的影响进一步扩散之前
+D:杀掉他，完成这项任务后，你将获得
+D:丰厚的奖励。这个任务地点在城镇东边的一片
+D:空地上。
 ?:1
 
 ?:[EQU $QUEST31 Completed]
-D:Thank you! Old Man Willow was much more manageable when good
-D:ol' Tom Bombadil was still around.
+D:谢谢你！如果好心的老汤姆·庞巴迪（Tom Bombadil）还在的话，
+D:柳树老头就好对付得多了。
 ?:1
 
 ?:[EQU $QUEST31 Failed]
-D:The quest was more than you could handle.
+D:这个任务显然超出了你的能力范围。
 ?:1
 
 T:QUEST:NORMAL

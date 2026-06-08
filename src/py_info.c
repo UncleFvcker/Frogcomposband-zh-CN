@@ -171,10 +171,14 @@ static void _build_general1(doc_ptr doc)
                             format("%.2lu:%.2lu", playtime/(60*60), (playtime/60)%60));
 }
 
+static void _build_label(doc_ptr doc, cptr name);
+static void _build_skill_label(doc_ptr doc, cptr name);
+
 static void _display_skill(doc_ptr doc, cptr name, int amt, int div)
 {
     skill_desc_t desc = skills_describe(amt, div);
-    doc_printf(doc, "   %-11.11s: <color:%c>%s</color>", name, attr_to_attr_char(desc.color), desc.desc);
+    _build_skill_label(doc, name);
+    doc_printf(doc, "<color:%c>%s</color>", attr_to_attr_char(desc.color), desc.desc);
     if (p_ptr->wizard || display_skill_num || 0)
         doc_printf(doc, " (%d)", amt);
     doc_newline(doc);
@@ -367,10 +371,32 @@ static void _equippy_chars(doc_ptr doc, int col)
     }
 }
 
+static void _build_label(doc_ptr doc, cptr name)
+{
+    doc_insert_space(doc, 1);
+    doc_insert(doc, name);
+    if (doc_cursor(doc).x < 12)
+        doc_insert_space(doc, 12 - doc_cursor(doc).x);
+    else
+        doc_insert_space(doc, 1);
+    doc_insert(doc, ": ");
+}
+
+static void _build_skill_label(doc_ptr doc, cptr name)
+{
+    doc_insert_space(doc, 3);
+    doc_insert(doc, name);
+    if (doc_cursor(doc).x < 14)
+        doc_insert_space(doc, 14 - doc_cursor(doc).x);
+    else
+        doc_insert_space(doc, 1);
+    doc_insert(doc, ": ");
+}
+
 static void _equippy_heading_aux(doc_ptr doc, cptr heading, int col)
 {
     int i;
-    doc_printf(doc, " <color:G>%-11.11s</color><tab:%d>", heading, col);
+    doc_printf(doc, " <color:G>%s</color><tab:%d>", heading, col);
     for (i = 1; i <= equip_max(); i++)
         doc_insert_char(doc, TERM_WHITE, 'a' + i - 1);
     doc_insert_char(doc, TERM_WHITE, '@');
@@ -439,7 +465,7 @@ static void _build_res_flags(doc_ptr doc, int which, _flagzilla_ptr flagzilla)
     int pct = res_pct_known(which);
     char color = 'w';
 
-    doc_printf(doc, " %-11.11s: ", res_name(which));
+    _build_label(doc, res_name(which));
 
     for (i = 1; i <= equip_max(); i++)
     {
@@ -506,7 +532,7 @@ static void _build_res_flags(doc_ptr doc, int which, _flagzilla_ptr flagzilla)
 static void _build_curse_flags(doc_ptr doc, cptr name)
 {
     int i;
-    doc_printf(doc, " %-11.11s: ", name);
+    _build_label(doc, name);
     for (i = 1; i <= equip_max(); i++)
     {
         object_type *o_ptr = equip_obj(i);
@@ -532,7 +558,7 @@ static void _build_curse_flags(doc_ptr doc, cptr name)
 static void _build_slays_imp(doc_ptr doc, cptr name, int flg, int kill_flg, _flagzilla_ptr flagzilla)
 {
     int i;
-    doc_printf(doc, " %-11.11s: ", name);
+    _build_label(doc, name);
     for (i = 1; i <= equip_max(); i++)
     {
         if (kill_flg != OF_INVALID && have_flag(flagzilla->obj_flgs[i], kill_flg))
@@ -560,7 +586,7 @@ static int _build_flags_imp(doc_ptr doc, cptr name, int flg, int dec_flg, _flagz
 {
     int result = 0;
     int i;
-    doc_printf(doc, " %-11.11s: ", name);
+    _build_label(doc, name);
     for (i = 1; i <= equip_max(); i++)
     {
         if (have_flag(flagzilla->obj_flgs[i], flg))
@@ -1324,7 +1350,7 @@ static void _build_uniques(doc_ptr doc)
         if (ct_uniques_dead)
         {
             doc_printf(doc, "你总共击败了 %d 个%s，其中包括 %d 个唯一怪%s",
-                ct, ct == 1 ? "enemy" : "enemies",
+                ct, ct == 1 ? "敌人" : "敌人",
                 ct_uniques_dead, ct_uniques_dead == 1 ? "" : "s");
 
             if ((coffee_break == SPEED_INSTA_COFFEE) && (p_ptr->lv_kills))
@@ -1346,7 +1372,7 @@ static void _build_uniques(doc_ptr doc)
             for (i = ct_uniques_dead - 1; i >= 0 && i >= ct_uniques_dead - 20; i--)
             {
                 monster_race *r_ptr = vec_get(v, i);
-                doc_printf(doc, "  %-44.44s %3d\n", (r_name + r_ptr->name), r_ptr->level);
+                doc_printf(doc, "  %-44.44s %3d\n", monster_race_display_name(r_ptr->id), r_ptr->level);
             }
         }
         else
@@ -1380,7 +1406,7 @@ static void _build_uniques(doc_ptr doc)
             for (i = ct - 1; i >= 0 && i >= ct - 20; i--)
             {
                 monster_race *r_ptr = vec_get(v, i);
-                doc_printf(cols[0], "  %-25.25s %3d %5d\n", (r_name + r_ptr->name), r_ptr->level, r_ptr->r_pkills);
+                doc_printf(cols[0], "  %-25.25s %3d %5d\n", monster_race_display_name(r_ptr->id), r_ptr->level, r_ptr->r_pkills);
             }
             doc_newline(cols[0]);
 
@@ -1389,7 +1415,7 @@ static void _build_uniques(doc_ptr doc)
             for (i = ct - 1; i >= 0 && i >= ct - 20; i--)
             {
                 monster_race *r_ptr = vec_get(v, i);
-                doc_printf(cols[1], "  %-25.25s %3d %5d\n", (r_name + r_ptr->name), r_ptr->level, r_ptr->r_pkills);
+                doc_printf(cols[1], "  %-25.25s %3d %5d\n", monster_race_display_name(r_ptr->id), r_ptr->level, r_ptr->r_pkills);
             }
             doc_newline(cols[1]);
 
@@ -1524,7 +1550,7 @@ static void _build_allies(doc_ptr doc)
             bool osuma = FALSE;
             int j;
 
-            doc_printf(doc, "  %-42.42s %3d", (r_name + r_ptr->name), r_ptr->level);
+            doc_printf(doc, "  %-42.42s %3d", monster_race_display_name(r_ptr->id), r_ptr->level);
             if (r_ptr->flags7 & RF7_GUARDIAN)
             {
                 for (j = 1; j < max_d_idx && !osuma; j++)
@@ -1533,7 +1559,7 @@ static void _build_allies(doc_ptr doc)
                     if ((!d_ptr) || (!d_ptr->final_guardian)) continue;
                     if (r_ptr->name == r_info[d_ptr->final_guardian].name)
                     {
-                        doc_printf(doc, " (%s)", d_name + d_ptr->name);
+                        doc_printf(doc, " (%s)", dungeon_display_name(j));
                         osuma = TRUE;
                     }
                 }
@@ -2342,7 +2368,7 @@ static void _build_statistics(doc_ptr doc)
 
     doc_printf(doc, "\n <color:G>特殊Ego装备 找到 买入 摧毁</color>\n");
     _ego_counts_imp(doc, EGO_RING_SPEED, "速度戒指");
-    _ego_counts_imp(doc, EGO_JEWELRY_DEFENDER, "Jewelry (Defender)");
+    _ego_counts_imp(doc, EGO_JEWELRY_DEFENDER, "珠宝 (护卫)");
     _ego_counts_imp(doc, EGO_BOOTS_ELVENKIND, "精灵之靴");
     _ego_counts_imp(doc, EGO_BOOTS_SPRITE, "妖精之靴");
     _ego_counts_imp(doc, EGO_BOOTS_SPEED, "速度之靴");
@@ -2403,7 +2429,7 @@ void py_display_dungeons(doc_ptr doc)
         if ((p_ptr->total_winner) && ((strpos("切腹", p_ptr->died_from)) || (strpos("寿终正寝", p_ptr->died_from))))
         {
             doc_printf(doc, "<color:v>你在获胜后%s。</color>\n",
-                streq(p_ptr->died_from, "切腹自尽了") ? "did Seppuku" : "retired from the adventure");
+                streq(p_ptr->died_from, "切腹自尽了") ? "切腹自尽了" : "退出了冒险");
         }
         else if (py_on_surface())
         {
@@ -2495,15 +2521,15 @@ static void _build_messages(doc_ptr doc)
 
 /******************************** Options ************************************/
 static cptr _game_mode_text[GAME_MODE_MAX] = {
-    "<color:G>Beginner</color>",
+    "<color:G>新手</color>",
     "普通",
     "XXX", 
-    "<color:r>Monster</color>"
+    "<color:r>怪物</color>"
 };
 static cptr _game_speed_text[GAME_SPEED_MAX] = {
     "普通",
-    "<color:U>Coffeebreak</color>",
-    "<color:U>Instant Coffee</color>"
+    "<color:U>茶歇</color>",
+    "<color:U>速溶</color>"
 };
 
 static void _build_options(doc_ptr doc)
@@ -2632,7 +2658,7 @@ static void _build_quests(doc_ptr doc)
             {
                 doc_printf(doc, "<color:G>竞技场</color>: 在第 %d%s 场战斗中 <color:v>被</color> %s <color:v>击败</color>\n",
                     -p_ptr->arena_number, get_ordinal_number_suffix(-p_ptr->arena_number),
-                    r_name + r_info[arena_info[-1 - p_ptr->arena_number].r_idx].name);
+                    monster_race_display_name(arena_info[-1 - p_ptr->arena_number].r_idx));
             }
         }
         else if (p_ptr->arena_number > MAX_ARENA_MONS + 2)
@@ -2724,7 +2750,7 @@ static void _add_html_header(doc_ptr doc)
      * Note: A retired winning player is_dead, but has died_from set to 'Ripe Old Age'.
      * Approach #1: Give oook a string status field */
     string_printf(header,  " <meta name='status' value='%s'>\n",
-        p_ptr->total_winner ? "winner" : (p_ptr->is_dead ? "dead" : "alive"));
+        p_ptr->total_winner ? "通关者" : (p_ptr->is_dead ? "死亡" : "存活"));
     /* Approach #2: Give oook some boolean fields */
     string_printf(header,  " <meta name='winner' value='%d'>\n", p_ptr->total_winner ? 1 : 0);
     string_printf(header,  " <meta name='dead' value='%d'>\n", p_ptr->is_dead ? 1 : 0);

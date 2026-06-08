@@ -95,7 +95,7 @@ void pack_get(obj_ptr obj)
     {
         int value = obj->pval;
 
-        if ((p_ptr->prace == RACE_WEREWOLF) && (strpos("silver", name)))
+        if ((p_ptr->prace == RACE_WEREWOLF) && (strpos("银", name)))
         {
             msg_print("你小心翼翼地避免碰到那一堆银币。");
         }

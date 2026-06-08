@@ -636,7 +636,7 @@ static int _choose_spell(power_info* spells, int ct, cptr verb, cptr desc, int m
 
     if (force_browsing)
     {
-        strnfmt(prompt2, 78, "Browse which %s?", desc);
+        strnfmt(prompt2, 78, "浏览哪一个%s？", desc);
     }
     else if (power)
     {
@@ -1345,7 +1345,7 @@ byte do_cmd_power(void)
         {
             int cost = spell->cost - p_ptr->csp;
             p_ptr->csp = 0;
-            take_hit(DAMAGE_USELIFE, cost, "concentrating too hard");
+            take_hit(DAMAGE_USELIFE, cost, "过度集中精神");
         }
         else
             p_ptr->csp -= spell->cost;
@@ -1505,14 +1505,14 @@ static void _dump_book(doc_ptr doc, int realm, int book)
 
     if (realm == REALM_HISSATSU)
     {
-        doc_printf(doc, "<color:G> %-25.25s 等级 消耗 %-15.15s 施法</color>\n", k_name + k_info[k_idx].name, "描述");
+        doc_printf(doc, "<color:G> %-25.25s 等级 消耗 %-15.15s 施法</color>\n", kind_display_name(k_idx), "描述");
     }
     else
     {
         if (caster_ptr && (caster_ptr->options & CASTER_USE_HP))
-            doc_printf(doc, "<color:G> %-23.23s 熟练 等级 生命 失败 %-15.15s 施法 失败</color>\n", k_name + k_info[k_idx].name, "描述");
+            doc_printf(doc, "<color:G> %-23.23s 熟练 等级 生命 失败 %-15.15s 施法 失败</color>\n", kind_display_name(k_idx), "描述");
         else
-            doc_printf(doc, "<color:G> %-23.23s 熟练 等级 消耗 失败 %-15.15s 施法 失败</color>\n", k_name + k_info[k_idx].name, "描述");
+            doc_printf(doc, "<color:G> %-23.23s 熟练 等级 消耗 失败 %-15.15s 施法 失败</color>\n", kind_display_name(k_idx), "描述");
     }
 
     for (i = 0; i < 8; i++)
@@ -1562,12 +1562,12 @@ static void _dump_book(doc_ptr doc, int realm, int book)
         {
             if (vaikeustaso > p_ptr->max_plv)
             {
-                comment = "unknown";
+                comment = "未知的";
                 color = 'D';
             }
             else if (vaikeustaso > p_ptr->lev)
             {
-                comment = "forgotten";
+                comment = "被遗忘的";
                 color = 'y';
             }
         }
@@ -1575,14 +1575,14 @@ static void _dump_book(doc_ptr doc, int realm, int book)
             ((p_ptr->spell_forgotten1 & (1L << s_idx))) :
             ((p_ptr->spell_forgotten2 & (1L << s_idx))))
         {
-            comment = "forgotten";
+            comment = "被遗忘的";
             color = 'y';
         }
         else if (!((realm == p_ptr->realm1) ?
             (p_ptr->spell_learned1 & (1L << s_idx)) :
             (p_ptr->spell_learned2 & (1L << s_idx))))
         {
-            comment = "unknown";
+            comment = "未知的";
             if (vaikeustaso > p_ptr->lev)
                 color = 'D';
             else
@@ -1592,7 +1592,7 @@ static void _dump_book(doc_ptr doc, int realm, int book)
             (p_ptr->spell_worked1 & (1L << s_idx)) :
             (p_ptr->spell_worked2 & (1L << s_idx))))
         {
-            comment = "untried";
+            comment = "未尝试过的";
         }
 
         sprintf(line, " %c) ", I2A(i));

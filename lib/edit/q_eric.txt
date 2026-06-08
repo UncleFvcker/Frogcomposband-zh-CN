@@ -1,19 +1,19 @@
 ?:[EQU $QUEST15 Taken InProgress]
-D:When Oberon, the rightful ruler of Amber, disappeared, Eric 
-D:did not waste much time making his claim for the throne.
-D:Eric is waiting for his own coronation in a secure stronghold.
-D:You must eliminate him before he is crowned, or other Amberites
-D:may feel obliged to obey him -- and he'll be invincible!
+D:当安珀（Amber）的合法统治者奥伯龙（Oberon）失踪时，埃里克（Eric）
+D:毫不犹豫地宣布了自己对王位的要求。
+D:埃里克正在一个坚固的要塞里等待着自己的加冕典礼。
+D:你必须在他加冕之前消灭他，否则其他的安珀人
+D:可能会觉得有义务服从他——那样他将无敌于天下！
 ?:1
 
 ?:[EQU $QUEST15 Completed]
-D:You have done well. Please accept this reward.
+D:你做得很好。请收下这份奖励。
 ?:1
 
 ?:[EQU $QUEST15 Failed]
-D:Eric is now the King of Amber. Maybe Oberon will come back and
-D:take the crown, or maybe not. You have failed your mission
-D:and the traitor has become the supreme ruler of Amber.
+D:埃里克现在是安珀的国王了。也许奥伯龙会回来
+D:夺回王冠，也许不会。你在任务中失败了，
+D:那个叛徒现在成了安珀的最高统治者。
 ?:1
 
 T:QUEST:NORMAL

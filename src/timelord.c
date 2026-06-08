@@ -178,7 +178,7 @@ bool devolve_monster(int m_idx, bool msg)
     }
 
     set_monster_csleep(m_idx, 0);
-    mon_change_race(m_ptr, r_idx, "devolved");
+    mon_change_race(m_ptr, r_idx, "退化了");
     return TRUE;
 }
 
@@ -207,7 +207,7 @@ bool evolve_monster(int m_idx, bool msg)
             msg_format("%^s抵抗了。", m_name);
         return FALSE;
     }
-    mon_change_race(m_ptr, r_idx, "evolved");
+    mon_change_race(m_ptr, r_idx, "进化了");
     return TRUE;
 }
 
@@ -826,7 +826,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "timecraft";
+        me.magic_desc = "时间之术";
         me.which_stat = A_WIS;
         me.encumbrance.max_wgt = 400;
         me.encumbrance.weapon_pct = 80;

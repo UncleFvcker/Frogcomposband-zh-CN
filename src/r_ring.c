@@ -803,7 +803,7 @@ typedef struct {
 } _group_t, *_group_ptr;
 
 static _group_t _groups[] = {
-    { "Offense: Bolt", '1', TERM_RED,
+    { "攻击：射线", '1', TERM_RED,
       { { EFFECT_BOLT_MISSILE,         1,   1, 30 }, 
         { EFFECT_BOLT_ELEC,           10,   3, 35 },
         { EFFECT_BOLT_POIS,           12,   5, 45 },
@@ -826,7 +826,7 @@ static _group_t _groups[] = {
         { EFFECT_BOLT_MANA,           33,  25, 70 },
         { EFFECT_NONE } } },
 
-    { "Offense: Ball", '2', TERM_RED,
+    { "攻击：球体", '2', TERM_RED,
       { { EFFECT_BALL_POIS,           10,   5, 35 },
         { EFFECT_BALL_ELEC,           19,  10, 45 },
         { EFFECT_BALL_COLD,           23,  12, 45 },
@@ -846,7 +846,7 @@ static _group_t _groups[] = {
         { EFFECT_BALL_MANA,           40,  45, 75 },
         { EFFECT_NONE } } },
 
-    { "Offense: Breath", '3', TERM_RED,
+    { "攻击：吐息", '3', TERM_RED,
       { { EFFECT_BREATHE_ELEC,        25,  30, 35 },
         { EFFECT_BREATHE_COLD,        26,  30, 45 },
         { EFFECT_BREATHE_ACID,        27,  35, 55 },
@@ -864,7 +864,7 @@ static _group_t _groups[] = {
         { EFFECT_BREATHE_SHARDS,      42,  55, 70 },
         { EFFECT_NONE } } },
 
-    { "Offense: Other", '4', TERM_RED,
+    { "攻击：其他", '4', TERM_RED,
       { { EFFECT_PESTICIDE,            5,   2, 35 },
         { EFFECT_DISPEL_MONSTERS,     10,   5, 40 }, /* Faramir for only 4 damage */
         { EFFECT_BEAM_ELEC,           15,   7, 40 },
@@ -911,7 +911,7 @@ static _group_t _groups[] = {
         { EFFECT_LIGHT_SPEED,         50, 100, 90 },
         { EFFECT_NONE } } },
 
-    { "Healing/Recovery", 'H', TERM_YELLOW,
+    { "治疗/恢复", 'H', TERM_YELLOW,
       { { EFFECT_CURE_POIS,           10,   7, 40 },
         { EFFECT_CURE_FEAR,           15,  10, 40 },
         { EFFECT_REMOVE_CURSE,        20,  15, 45 },
@@ -928,7 +928,7 @@ static _group_t _groups[] = {
         { EFFECT_HEAL_CURING_HERO,    45,  65, 80 },
         { EFFECT_NONE } } },
 
-    { "Detection/Knowledge", 'D', TERM_L_BLUE,
+    { "探测/知识", 'D', TERM_L_BLUE,
       { { EFFECT_LITE_AREA,            1,   2, 25 },
         { EFFECT_DETECT_TRAPS,         3,   4, 30 },
         { EFFECT_DETECT_GOLD,          4,   4, 30 },
@@ -1249,9 +1249,9 @@ static _spell_t _prompt_spell(_spell_ptr spells)
         menu_t menu = { prompt1, prompt2, heading,
                         _spell_menu_fn, choices, ct_avail, 0};
 
-        sprintf(prompt1, "Use which type of %s?", _group_choice);
-        sprintf(prompt2, "Browse which type of %s?", _group_choice);
-        sprintf(heading, "%-30.30s Lvl Cst Fail Info", "");
+        sprintf(prompt1, "使用哪种类型的 %s？", _group_choice);
+        sprintf(prompt2, "浏览哪种类型的 %s？", _group_choice);
+        sprintf(heading, "%-30.30s 等级 消耗 失败 说明", "");
         idx = menu_choose(&menu);
         if (idx >= 0)
             result = choices[idx];
@@ -1780,7 +1780,7 @@ static void _character_dump(doc_ptr doc)
     _dump_ability_flag(doc, OF_AURA_COLD, 7, "寒冰光环");
     _dump_ability_flag(doc, OF_AURA_SHARDS, 7, "碎片光环");
     for (i = 0; i < 6; i++) /* Assume in order */
-        _dump_ability_flag(doc, OF_SUST_STR + i, 5, format("Sustain %s", stat_name_true[A_STR + i]));
+        _dump_ability_flag(doc, OF_SUST_STR + i, 5, format("维持%s", stat_name_true[A_STR + i]));
 
     doc_printf(doc, "\n <color:G>%-22.22s 总计 需要 加成</color>\n", "侦测/心电感应");
     _dump_ability_flag(doc, OF_TELEPATHY, 2, "心灵感应");

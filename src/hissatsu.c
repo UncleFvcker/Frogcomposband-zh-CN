@@ -58,7 +58,7 @@ static int get_hissatsu_power(int *sn)
     int             ask = TRUE;
     char            choice;
     char            out_val[160];
-    cptr            p = "technique";
+    cptr            p = "剑技";
 
     magic_type spell;
     bool            flag, redraw, skip;

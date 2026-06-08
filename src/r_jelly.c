@@ -66,7 +66,7 @@ static void _jelly_calc_innate_attacks(void)
         a.weight = 100;
         a.effect[0] = GF_ACID;
         calc_innate_blows(&a, 600);
-        a.msg = "You shoot acid.";
+        a.msg = "你喷射了酸液。";
         a.name = "伪足击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -384,7 +384,7 @@ bool jelly_eat_object(object_type *o_ptr)
     if ((object_is_artifact(o_ptr)) && ((obj_is_identified(o_ptr)) || (o_ptr->feeling == FEEL_SPECIAL) || (o_ptr->feeling == FEEL_TERRIBLE)))
     {
         char buf[255];
-        strcpy(buf, format("<color:v>Really eat</color> %s? <color:y>[Y/n]</color>\n", o_name));
+        strcpy(buf, format("<color:v>真的要吃掉</color> %s 吗？ <color:y>[Y/n]</color>\n", o_name));
         if (!paranoid_msg_prompt(buf, 0))
         {
             energy_use = 0;

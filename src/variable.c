@@ -23,9 +23,9 @@ cptr copyright[5] =
 {
     "Copyright (c) 1989 James E. Wilson, Robert A. Koeneke",
     "",
-    "This software may be copied and distributed for educational, research,",
-    "and not for profit purposes provided that this copyright and statement",
-    "are included in all such copies."
+    "本软件可被复制与分发用于教育、研究，",
+    "且不得用于营利目的，前提是在所有此类副本中",
+    "包含此版权与声明信息。"
 };
 
 

@@ -1,29 +1,29 @@
 ?:[EQU $QUEST5 Taken InProgress]
-D:Lately, a dark evil has been discovered. An ancient burial ground
-D:has been taken over by something terrible. Creatures black as night
-D:now inhabit the place, attacking our villagers and eating our young.
-D:Please, we are desperate. We don't have much to offer, but we beg you
-D:to help us!
+D:最近，一股黑暗的邪恶力量被发现了。一处古老的墓地
+D:被某种可怕的东西接管了。黑如夜晚的生物
+D:现在栖息在那里，攻击我们的村民并吃掉我们的年轻人。
+D:拜托了，我们绝望了。我们没有多少东西可以提供，但我们求你
+D:帮帮我们！
 ?:1
 
 ?:[AND [EQU $QUEST5 Completed] [EQU $WILDERNESS NORMAL] ]
-D:Thank you! You have saved our town and our people rejoice!
-D:I've talked with Astinus, the local librarian, Suiyan, the local
-D:weaponmaster, and Lorien, the local beastmaster. They will offer you
-D:a special discount price when they serve you. It is not much, but
-D:we are a poor people.
+D:谢谢你！你拯救了我们的城镇，我们的人民欢欣鼓舞！
+D:我已经和当地的图书管理员阿斯提努斯（Astinus）、当地的
+D:武器大师碎岩（Suiyan），还有当地的驯兽师罗瑞恩（Lorien）谈过了。
+D:他们会在为你服务时提供特别的折扣价。虽然不多，但
+D:我们只是穷苦百姓。
 ?:1
 
 ?:[AND [EQU $QUEST5 Completed] [EQU $WILDERNESS NONE] ]
-D:Thank you! You have saved our town and our people rejoice!
-D:Please accept this gift.
+D:谢谢你！你拯救了我们的城镇，我们的人民欢欣鼓舞！
+D:请收下这份礼物。
 ?:1
 
 ?:[EQU $QUEST5 Failed]
-D:Oh no! We are doomed to periodic culling from the foul denizens of
-D:the Barrow Downs. You have disappointed me dearly. Please, begone
-D:for now. I must inform the village of your failure. Come back later
-D:after we have had time to grieve.
+D:哦不！我们注定要被古墓古岗（Barrow Downs）里
+D:肮脏的居民定期扑杀。你真让我失望。请你离开吧。
+D:我必须把你的失败通知村里。等我们有时间哀悼之后，
+D:你再回来吧。
 ?:1
 
 T:QUEST:NORMAL

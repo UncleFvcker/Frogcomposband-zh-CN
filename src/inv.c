@@ -129,7 +129,7 @@ inv_ptr inv_filter_floor(point_t loc, obj_p p)
 
     if (0 && p_ptr->wizard) /* wizards have mighty magicks */
     {
-        result->name = "*FLOOR*";
+        result->name = "*地板*";
         for (this_o_idx = 0; this_o_idx < max_o_idx; this_o_idx++)
         {
             obj_ptr obj = &o_list[this_o_idx];

@@ -156,53 +156,53 @@ cptr rune_desc(int which)
     switch (which)
     {
     case RUNE_ABSORPTION:
-        return "{Absorption}";
+        return "{吸收}";
     case RUNE_PROTECTION:
-        return "{Protection}";
+        return "{保护}";
     case RUNE_REGENERATION:
-        return "{Regeneration}";
+        return "{再生}";
     case RUNE_FIRE:
-        return "{Fire}";
+        return "{火焰}";
     case RUNE_AIR:
-        return "{Air}";
+        return "{气流}";
     case RUNE_WATER:
-        return "{Water}";
+        return "{水流}";
     case RUNE_LIGHT:
-        return "{Light}";
+        return "{光明}";
     case RUNE_SHADOW:
-        return "{Shadow}";
+        return "{暗影}";
     case RUNE_EARTH:
-        return "{Earth}";
+        return "{大地}";
     case RUNE_UNDERSTANDING:
-        return "{Understanding}";
+        return "{理解}";
     case RUNE_ELEMENTAL_PROTECTION:
-        return "{Preservation}";
+        return "{防腐}";
     case RUNE_HASTE:
-        return "{Haste}";
+        return "{加速}";
     case RUNE_SEEING:
-        return "{Seeing}";
+        return "{识破}";
     case RUNE_SACRIFICE:
-        return "{Sacrifice}";
+        return "{献祭}";
     case RUNE_LIFE:
-        return "{Life}";
+        return "{生命}";
     case RUNE_STABILITY:
-        return "{Stability}";
+        return "{稳定}";
     case RUNE_REFLECTION:
-        return "{Reflection}";
+        return "{反射}";
     case RUNE_DEATH:
-        return "{Death}";
+        return "{死亡}";
     case RUNE_MIND:
-        return "{Mind}";
+        return "{心灵}";
     case RUNE_MIGHT:
-        return "{Might}";
+        return "{威力}";
     case RUNE_DESTRUCTION:
-        return "{Destruction}";
+        return "{毁灭}";
     case RUNE_GOOD_FORTUNE:
-        return "{Luck}";
+        return "{幸运}";
     case RUNE_IMMORTALITY:
-        return "{Immortality}";
+        return "{不朽}";
     }
-    return "{Unknown}";
+    return "{未知}";
 }
 
 void _add_flag(obj_ptr obj, int which)
@@ -239,7 +239,7 @@ bool rune_add(object_type *o_ptr, int which, bool prompt)    /* Birthing needs a
     if (prompt)
     {
         if (!get_check(
-                format("Really add %^s to %s?",
+                format("真的要将%^s加到 %s 上吗？",
                     rune_desc(which), o_name))) return FALSE;
     }
 
@@ -1921,7 +1921,7 @@ static _spell_group _spell_groups[_MAX_SPELL_GROUPS] = {
       }
     },
     { "强化符文",
-      "Place runes on yourself for temporary or one-time effects.",
+      "将符文刻印在自己身上，以获得暂时或一次性的效果。",
       TERM_L_GREEN, {
         { 10,   5, 20, _self_darkness_spell },
         { 20,   9, 30, _self_seeing_spell },
@@ -1936,7 +1936,7 @@ static _spell_group _spell_groups[_MAX_SPELL_GROUPS] = {
       }
     },
     { "转化符文",
-      "These runes of change allow you to permanently alter your surroundings.",
+      "这些变化符文允许你永久性地改变周围环境。",
       TERM_UMBER, { 
         {  5,  1, 20, _feat_light_spell },
         {  7,  5, 30, _feat_water_spell },

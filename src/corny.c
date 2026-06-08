@@ -995,7 +995,7 @@ static int _destroy_insure_item(object_type *o_ptr, building_type *bldg)
             c_prt(vari, format("%s标准计划 - 费用: %d%s - 赔付: %d%s", allow_full ? "a) " : "", (arvo / div), ((qty > 1) ? "/件" : ""), (arvo * mult / div), ((qty > 1) ? "/件" : "")), 12, 5);
             update_bitflag &= ~0x02;
         }
-        if (valinta & 0x01) c_put_str(vari, "SELECTED", 12, 67);
+        if (valinta & 0x01) c_put_str(vari, "已被选择", 12, 67);
         if (update_bitflag & 0x01)
         {
             c_put_str(tval_to_attr[o_ptr->tval], format(o_ptr->number >= 10 ? "%2d" : "%d", qty), 8, 8);
@@ -1017,7 +1017,7 @@ static int _destroy_insure_item(object_type *o_ptr, building_type *bldg)
                 c_prt(vari, format("b) 包换计划 - 费用: %d", arvo * replacement_mult), 13, 5);
                 update_bitflag &= ~0x04;
             }
-            if (valinta & 0x02) c_put_str(vari, "SELECTED", 13, 67);
+            if (valinta & 0x02) c_put_str(vari, "已被选择", 13, 67);
             Term_gotoxy(5, 12 + rivi);
         }
         komento = inkey_special(FALSE);
@@ -1235,7 +1235,7 @@ static int _interact_with_policy(int policy, building_type *bldg)
     int i, rivi = 5;
     char komento;
     char option_keys[5] = "dcrm";
-    char viestit[4][30] = {"d) Cancel this policy", "c) Claim compensation", "r) Get replacement item", "m) Modify policy"};
+    char viestit[4][30] = {"d) 取消此保单", "c) 领取赔偿金", "r) 获得替换物品", "m) 修改保单"};
     bool avoid_redraw = FALSE;
     object_type *obj = NULL;
     slot_t slot = 0;

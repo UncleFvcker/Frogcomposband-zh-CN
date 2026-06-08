@@ -1805,100 +1805,100 @@ bool mon_attack_mon(int m_idx, int t_idx)
             switch (method)
             {
             case RBM_HIT:
-                act = "hits";
+                act = "击打";
                 touched = TRUE;
                 break;
             case RBM_TOUCH:
-                act = "touches";
+                act = "触碰";
                 touched = TRUE;
                 break;
             case RBM_PUNCH:
-                act = "punches";
+                act = "拳击";
                 touched = TRUE;
                 break;
             case RBM_KICK:
-                act = "kicks";
+                act = "踢打";
                 touched = TRUE;
                 break;
             case RBM_CLAW:
-                act = "claws";
+                act = "抓挠";
                 touched = TRUE;
                 break;
             case RBM_BITE:
-                act = "bites";
+                act = "撕咬";
                 touched = TRUE;
                 break;
             case RBM_STING:
-                act = "stings";
+                act = "蜇刺";
                 touched = TRUE;
                 break;
             case RBM_SLASH:
-                act = "slashes";
+                act = "劈砍";
                 break;
             case RBM_BUTT:
-                act = "butts";
+                act = "顶撞";
                 touched = TRUE;
                 break;
             case RBM_CRUSH:
-                act = "crushes";
+                act = "碾压";
                 touched = TRUE;
                 break;
             case RBM_ENGULF:
-                act = "engulfs";
+                act = "吞噬";
                 touched = TRUE;
                 break;
             case RBM_CHARGE:
-                act = "charges";
+                act = "冲撞";
                 touched = TRUE;
                 break;
             case RBM_CRAWL:
-                act = "crawls";
+                act = "爬过";
                 touched = TRUE;
                 break;
             case RBM_DROOL:
-                act = "drools";
+                act = "流口水";
                 touched = FALSE;
                 break;
             case RBM_SPIT:
-                act = "spits";
+                act = "喷吐";
                 touched = FALSE;
                 break;
             case RBM_EXPLODE:
                 if (see_either) disturb(1, 0);
-                act = "explodes";
+                act = "爆炸";
                 explode = TRUE;
                 touched = FALSE;
                 break;
             case RBM_GAZE:
-                act = "gazes";
+                act = "注视";
                 touched = FALSE;
                 break;
             case RBM_WAIL:
-                act = "wails";
+                act = "恸哭";
                 touched = FALSE;
                 break;
             case RBM_SPORE:
-                act = "releases spores";
+                act = "释放孢子";
                 touched = FALSE;
                 break;
             case RBM_XXX4:
-                act = "projects XXX4's at %s.";
+                act = "向 %s 投射 XXX4。";
                 touched = FALSE;
                 break;
             case RBM_BEG:
-                act = "begs";
+                act = "乞求";
                 touched = FALSE;
                 break;
             case RBM_INSULT:
-                act = "insults";
+                act = "侮辱";
                 touched = FALSE;
                 break;
             case RBM_MOAN:
-                act = "moans";
+                act = "呻吟";
                 touched = FALSE;
                 break;
             case RBM_SHOW:
-                act = "sings";
+                act = "唱歌";
                 touched = FALSE;
                 break;
             }
@@ -2689,7 +2689,7 @@ static void process_monster(int m_idx)
             if (m_ptr->ml)
                 monster_desc(m_name, m_ptr, 0);
             else
-                strcpy(m_name, "It");
+                strcpy(m_name, "它");
 
             /* Select the file for monster quotes */
             if (MON_MONFEAR(m_ptr))

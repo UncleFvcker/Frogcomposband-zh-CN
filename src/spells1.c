@@ -877,7 +877,7 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
         case GF_FIRE:
         case GF_ELEC:
         case GF_PLASMA:
-            message = "burns up.";
+            message = "烧毁了。";
             break;
         case GF_METEOR:
         case GF_CHAOS:
@@ -886,28 +886,28 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
         case GF_ROCK:
         case GF_ROCKET:
         case GF_FORCE:
-            message = "is blasted.";
+            message = "被炸毁了。";
             break;
         case GF_ACID:
-            message = "melts.";
+            message = "融化了。";
             break;
         case GF_COLD:
         case GF_ICE:
-            message = "is frozen.";
+            message = "被冻结了。";
             break;
         case GF_PSY_SPEAR:
         case GF_LITE:
-            message = "shrivels in the light.";
+            message = "在光芒中枯萎了。";
             break;
         case GF_STORM:
-            message = "is washed away.";
+            message = "被冲走了。";
             break;
         case GF_WATER:
         case GF_WATER2:
-            message = "is washed away.";
+            message = "被冲走了。";
             break;
         case GF_GRAVITY:
-            message = "disappears.";
+            message = "消失了。";
             break;
         }
         if (message)
@@ -924,20 +924,20 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
         switch (typ)
         {
         case GF_DEATH_TOUCH:
-            message = "dies.";break;
+            message = "死去了。";break;
 
         case GF_POIS:
         case GF_NUKE:
         case GF_DEATH_RAY:
-            message = "was blasted.";break;
+            message = "被炸毁了。";break;
         case GF_TIME:
-            message = "shrank.";break;
+            message = "萎缩了。";break;
         case GF_ACID:
-            message = "melted.";break;
+            message = "融化了。";break;
         case GF_COLD:
         case GF_ICE:
             if (have_flag(f_ptr->flags, FF_SNOW)) message = NULL;
-            else message = "was frozen and smashed.";
+            else message = "被冻结并粉碎了。";
             break;
         case GF_FIRE:
         case GF_ELEC:
@@ -948,19 +948,19 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
                 switch (randint0(3))
                 {
                     case 0: message = NULL; break;
-                    case 1: message = "burns up!"; break;
+                    case 1: message = "烧毁了！"; break;
                     default:
                         if (!cave[y][x].m_idx)
                         {
-                            message = "catches fire!";
+                            message = "着火了！";
                             cave_set_feat(y, x, one_in_(3) ? feat_brake : feat_grass);
                             summon_named_creature(0, y, x, MON_BUSH, 0);
                         }
-                        else message = "burns up!";
+                        else message = "烧毁了！";
                         break;
                 }
             }
-            else message = "burns up!";
+            else message = "烧毁了！";
             break;
         }
         case GF_METEOR:
@@ -975,7 +975,7 @@ static bool project_f(int who, int r, int y, int x, int dam, int typ)
         case GF_DISENCHANT:
         case GF_FORCE:
         case GF_GRAVITY:
-            message = "was crushed.";break;
+            message = "被粉碎了。";break;
         default:
             message = NULL;break;
         }
@@ -2063,7 +2063,7 @@ static bool project_p(int who, cptr who_name, int r, int y, int x, int dam, int 
                     msg_print("你敏捷地躲开了攻击！");
                     dam = 0;
                     evaded = TRUE;
-                    check_muscle_sprains(75, "You feel a sudden stabbing pain!");
+                    check_muscle_sprains(75, "你感到一阵突如其来的刺痛！");
                 }
             }
 

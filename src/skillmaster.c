@@ -704,7 +704,7 @@ caster_info *_caster_info(void)
     if (_get_skill_pts(_TYPE_TECHNIQUE, REALM_HISSATSU))
     {
         info.which_stat = A_WIS;
-        info.magic_desc = "technique";
+        info.magic_desc = "特技";
         info.options = CASTER_SUPERCHARGE_MANA;
         return &info;
     }
@@ -722,7 +722,7 @@ caster_info *_caster_info(void)
     else if (prayer_pts)
     {
         info.which_stat = A_WIS;
-        info.magic_desc = "prayer";
+        info.magic_desc = "祈祷";
         if (prayer_pts >= 5)
             info.options |= CASTER_ALLOW_DEC_MANA;
         return &info;
@@ -730,7 +730,7 @@ caster_info *_caster_info(void)
     else if (_get_skill_pts(_TYPE_TECHNIQUE, REALM_BURGLARY))
     {
         info.which_stat = A_DEX;
-        info.magic_desc = "thieving talent";
+        info.magic_desc = "盗贼天赋";
         /* Since nothing but Burglary is known, use rogue encumbrance */
         info.encumbrance.max_wgt = 400;
         info.encumbrance.weapon_pct = 33;
@@ -970,7 +970,7 @@ static void _spoil_book(doc_ptr doc, int realm, int book)
     int stop = start + 8;
     int k_idx = lookup_kind(realm2tval(realm), book);
 
-    doc_printf(doc, "<color:G>%-20.20s</color>", k_name + k_info[k_idx].name);
+    doc_printf(doc, "<color:G>%-20.20s</color>", kind_display_name(k_idx));
     for (pts = 1; pts <= 5; pts++)
         doc_printf(doc, "<color:%c>Lv 消耗 失败</color>", pts % 2 ? 'G' : 'R');
     doc_newline(doc);

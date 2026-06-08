@@ -43,8 +43,18 @@ extern bool msg_line_contains(int row, int col);
 extern bool msg_line_is_empty(void);
 extern rect_t msg_line_rect(void);
 extern void cmsg_print(byte color, cptr msg);
-extern void msg_format(cptr fmt, ...);
-extern void cmsg_format(byte color, cptr fmt, ...);
+extern void msg_format_aux(cptr file, int line, cptr fmt, ...);
+extern void cmsg_format_aux(cptr file, int line, byte color, cptr fmt, ...);
+
+#if defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+#endif
+#define msg_format(FMT, ...) msg_format_aux(__FILE__, __LINE__, (FMT) __VA_OPT__(,) __VA_ARGS__)
+#define cmsg_format(COLOR, FMT, ...) cmsg_format_aux(__FILE__, __LINE__, (COLOR), (FMT) __VA_OPT__(,) __VA_ARGS__)
+#if defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
 
 #define PROMPT_FORCE_CHOICE   0x01 /* ignore quick_messages */
 #define PROMPT_CASE_SENSITIVE 0x02

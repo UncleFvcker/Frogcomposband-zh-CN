@@ -2,21 +2,21 @@
 # New quest for FrogComposband 7.1.chocolate
 
 ?:[EQU $QUEST75 Taken InProgress]
-D:Lord Bovin, the once-beloved Warden of the High Tower, has joined forces
-D:with a black enchantress and turned to evil. Dark wizards and
-D:necromancers now frequent the High Tower, plotting against our city. Their
-D:plans must be disrupted before they raise an unstoppable army of demons,
-D:dragons and the dead. Please help us and save our city.
+D:曾经备受爱戴的高塔典狱长鲍文（Bovin）大人，与一名
+D:黑女巫联手，转向了邪恶。黑暗巫师和
+D:死灵法师现在频繁出入高塔，密谋对抗我们的城市。必须在他们
+D:唤起一支不可阻挡的恶魔、巨龙和死者大军之前，
+D:破坏他们的计划。请帮助我们，拯救我们的城市。
 ?:1
 
 ?:[EQU $QUEST75 Completed]
-D:Thank you! Now the people of Anambar can walk safely again.
+D:谢谢你！现在阿南巴（Anambar）的人民又可以安全地出行了。
 ?:1
 
 ?:[EQU $QUEST75 Failed]
-D:I should have known you wouldn't be up to this task. Fortunately Lord
-D:Gwilim, the great hero, happened to drop by and saved us from the dark
-D:armies of the traitor Bovin.
+D:我早该知道你胜任不了这个任务。幸运的是，伟大的英雄
+D:格威利姆（Gwilim）大人恰好路过，把我们从叛徒鲍文的
+D:黑暗军队手中拯救了出来。
 ?:1
 
 T:QUEST:NORMAL

@@ -1,25 +1,25 @@
 ?:[AND [EQU $QUEST14 Taken InProgress] [LEQ $SPEED 1] ]
-D:Our scouts report a large number of Wargs in the dungeon.
-D:We don't know who set them on guard at 250 feet, but we
-D:think their task is to hinder resupply of our outposts
-D:in the dungeon. We offer you a small reward if you clear
-D:the path for the supplies.
+D:我们的侦察兵报告说，地下城里有大量的座狼（Warg）。
+D:我们不知道是谁派它们在 250 英尺的地方站岗，
+D:但我们认为它们的任务是阻碍我们对地下城中
+D:前哨站的补给。如果你能为我们的补给队伍扫清道路，
+D:我们会提供一份小奖励。
 ?:1
 
 ?:[AND [EQU $QUEST14 Taken InProgress] [EQU $SPEED 2] ]
-D:The scouts of Outpost have reported a large number of Wargs
-D:in the dungeon. Their presence at 250 feet hinders resupply to
-D:our troops in the dungeon. Otick, the innkeeper, will offer you
-D:a small reward if you clear the path for our supplies.
+D:前哨镇的侦察兵报告说，地下城里有大量的座狼。
+D:它们在 250 英尺处的出现，阻碍了我们对地下城中
+D:部队的补给。如果你能为我们的补给队伍扫清道路，
+D:旅馆老板欧提克会给你提供一份小奖励。
 ?:1
 
 ?:[EQU $QUEST14 Completed]
-D:Since most of the supplies have been sent to our troops
-D:in the dungeon, we can only give you a small reward.
+D:因为大部分物资已经被送往了我们在
+D:地下城中的部队，我们只能给你提供一份小小的奖励了。
 ?:1
 
 ?:[EQU $QUEST14 Failed]
-D:Bah! I'll have to find another for this simple task.
+D:呸！对这种简单的任务，我还得再找别人。
 ?:1
 
 R:OBJ(fur cloak)

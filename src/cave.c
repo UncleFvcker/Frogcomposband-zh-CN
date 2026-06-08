@@ -1882,7 +1882,7 @@ static void display_shortened_item_name(object_type *o_ptr, int y)
     if (p_ptr->image)
     {
         attr = TERM_WHITE;
-        strcpy(buf, "something strange");
+        strcpy(buf, "某些奇怪的东西");
     }
 
     for (c = buf; *c; c++)
@@ -4835,7 +4835,7 @@ void hit_mon_trap(int y, int x, int m_idx)
         }
         if (kipu)
         {
-            take_hit(DAMAGE_NOESCAPE, 15 * kipu, "shadow pain");
+            take_hit(DAMAGE_NOESCAPE, 15 * kipu, "暗影之痛");
         }
         else return;
     }

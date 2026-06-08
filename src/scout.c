@@ -519,7 +519,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "technique";
+        me.magic_desc = "特技";
         me.which_stat = A_WIS;
         me.encumbrance.max_wgt = 350;
         me.encumbrance.weapon_pct = 50;

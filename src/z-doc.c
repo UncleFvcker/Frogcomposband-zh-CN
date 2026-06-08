@@ -6,6 +6,9 @@
 #include <assert.h>
 #include <stdint.h>
 
+#undef doc_printf
+#undef doc_cprintf
+
 #define _INVALID_COLOR 255
 #define _DOC_UC_WIDE_TRAIL TERM_UC_WIDE_TRAIL
 #define _DOC_UC_REPLACEMENT TERM_UC_REPLACEMENT
@@ -923,16 +926,16 @@ static void _doc_process_var(doc_ptr doc, cptr name)
     if (strcmp(name, "version") == 0)
     {
         string_ptr s = string_alloc_format("%d.%d.%s", VER_MAJOR, VER_MINOR, VER_PATCH);
-        if (coffee_break == SPEED_COFFEE) string_append_s(s, "<color:U> (Coffee)</color>");
-        if (coffee_break == SPEED_INSTA_COFFEE) string_append_s(s, "<color:U> (Instant Coffee)</color>");
-        if (thrall_mode) string_append_s(s, "<color:R> (Thrall)</color>");
-        if (wacky_rooms) string_append_s(s, "<color:v> (Wacky)</color>");
+        if (coffee_break == SPEED_COFFEE) string_append_s(s, "<color:U> (茶歇)</color>");
+        if (coffee_break == SPEED_INSTA_COFFEE) string_append_s(s, "<color:U> (速溶)</color>");
+        if (thrall_mode) string_append_s(s, "<color:R> (奴役)</color>");
+        if (wacky_rooms) string_append_s(s, "<color:v> (古怪)</color>");
         if (VERSION_IS_DEVELOPMENT)
         {
-            if ((coffee_break) && (wacky_rooms) && (thrall_mode)) string_append_s(s, "<color:B> (Dev)</color>");
-            else string_append_s(s, "<color:B> (Development)</color>");
+            if ((coffee_break) && (wacky_rooms) && (thrall_mode)) string_append_s(s, "<color:B> (开发版)</color>");
+            else string_append_s(s, "<color:B> (开发版)</color>");
         }
-        if ((VER_MINOR == 0) && (VER_MAJOR != 7)) string_append_s(s, "<color:r> (Beta)</color>");
+        if ((VER_MINOR == 0) && (VER_MAJOR != 7)) string_append_s(s, "<color:r> (测试版)</color>");
         doc_insert(doc, string_buffer(s));
         string_free(s);
     }
@@ -1034,7 +1037,7 @@ static void _doc_process_tag(doc_ptr doc, doc_tag_ptr tag)
             int pos = atoi(string_buffer(arg)) + doc_current_style(doc)->left;
             if (pos > doc->cursor.x)
                 doc_insert_space(doc, pos - doc->cursor.x);
-            else
+            else if (pos < doc->cursor.x)
                 doc_rollback(doc, doc_pos_create(pos, doc->cursor.y));
             break;
         }
@@ -1264,10 +1267,12 @@ doc_pos_t doc_insert_text(doc_ptr doc, byte a, cptr text)
     return doc->cursor;
 }
 
-doc_pos_t doc_printf(doc_ptr doc, const char *fmt, ...)
+doc_pos_t doc_printf_aux(cptr file, int line, doc_ptr doc, const char *fmt, ...)
 {
     string_ptr s = string_alloc();
     va_list vp;
+
+    format_diagnostic_note("doc_printf", fmt, file, line);
 
     va_start(vp, fmt);
     string_vprintf(s, fmt, vp);
@@ -1278,10 +1283,44 @@ doc_pos_t doc_printf(doc_ptr doc, const char *fmt, ...)
     return doc->cursor;
 }
 
+doc_pos_t doc_printf(doc_ptr doc, const char *fmt, ...)
+{
+    string_ptr s = string_alloc();
+    va_list vp;
+
+    format_diagnostic_note("doc_printf", fmt, "(legacy object)", 0);
+
+    va_start(vp, fmt);
+    string_vprintf(s, fmt, vp);
+    va_end(vp);
+
+    doc_insert(doc, string_buffer(s));
+    string_free(s);
+    return doc->cursor;
+}
+
+doc_pos_t doc_cprintf_aux(cptr file, int line, doc_ptr doc, byte a, const char *fmt, ...)
+{
+    string_ptr s = string_alloc();
+    va_list vp;
+
+    format_diagnostic_note("doc_cprintf", fmt, file, line);
+
+    va_start(vp, fmt);
+    string_vprintf(s, fmt, vp);
+    va_end(vp);
+
+    doc_insert_text(doc, a, string_buffer(s));
+    string_free(s);
+    return doc->cursor;
+}
+
 doc_pos_t doc_cprintf(doc_ptr doc, byte a, const char *fmt, ...)
 {
     string_ptr s = string_alloc();
     va_list vp;
+
+    format_diagnostic_note("doc_cprintf", fmt, "(legacy object)", 0);
 
     va_start(vp, fmt);
     string_vprintf(s, fmt, vp);
@@ -2348,7 +2387,7 @@ int doc_display_help_aux(cptr file_name, cptr topic, rect_t display)
         }
     }
 
-    sprintf(caption, "Help file '%s'", file_name);
+    sprintf(caption, "帮助文件 '%s'", file_name);
     path_build(path, sizeof(path), ANGBAND_DIR_HELP, file_name);
     fp = my_fopen(path, "r");
     if (!fp)

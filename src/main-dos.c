@@ -493,7 +493,7 @@ static void Term_xtra_dos_react(void)
 		if (arg_graphics && !init_graphics())
 		{
 			/* Warning */
-			plog("Cannot initialize graphics!");
+			plog("无法初始化图形！");
 
 			/* Cannot enable */
 			arg_graphics = GRAPHICS_NONE;
@@ -528,7 +528,7 @@ static void Term_xtra_dos_react(void)
 		if (arg_sound && !init_sound())
 		{
 			/* Warning */
-			plog("Cannot initialize sound!");
+			plog("无法初始化声音！");
 
 			/* Cannot enable */
 			arg_sound = FALSE;
@@ -1662,7 +1662,7 @@ static bool init_windows(void)
 			/* Load the font file */
 			if (!(td->font = import_grx_font(filename)))
 			{
-				quit_fmt("Error reading font file '%s'", filename);
+				quit_fmt("读取字体文件 '%s' 时出错", filename);
 			}
 		}
 
@@ -1674,7 +1674,7 @@ static bool init_windows(void)
 			/* Load the font file */
 			if (!(fontdata = load_datafile(filename)))
 			{
-				quit_fmt("Error reading font file '%s'", filename);
+				quit_fmt("读取字体文件 '%s' 时出错", filename);
 			}
 
 			/* Save the font data */
@@ -1687,7 +1687,7 @@ static bool init_windows(void)
 		/* Oops */
 		else
 		{
-			quit_fmt("Unknown suffix in font file '%s'", filename);
+			quit_fmt("字体文件 '%s' 的后缀未知", filename);
 		}
 
 		/* Link the term */
@@ -2101,7 +2101,7 @@ errr init_dos(void)
 			allegro_exit();
 
 			/* Print the error description */
-			plog_fmt("Error selecting screen mode: %s", error_text);
+			plog_fmt("选择屏幕模式时出错：%s", error_text);
 
 			/* Failure */
 			return (-1);

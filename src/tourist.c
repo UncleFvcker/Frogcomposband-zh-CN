@@ -26,7 +26,7 @@ static void _take_photo_spell(int cmd, variant *res)
         {
             int dam = res_calc_dam(RES_LITE, 20);
             msg_print("你因闪光灯而退缩！");
-            take_hit(DAMAGE_NOESCAPE, dam, "taking a photograph");
+            take_hit(DAMAGE_NOESCAPE, dam, "拍照");
         }
         break;
     }

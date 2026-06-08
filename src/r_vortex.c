@@ -318,7 +318,7 @@ static void _calc_innate_attacks(void)
             a.flags |= INNATE_VORPAL;
 
         calc_innate_blows(&a, (p_ptr->current_r_idx == MON_AETHER_VORTEX) ? 363 : 375);
-        a.msg = "You engulf.";
+        a.msg = "你吞噬了目标。";
         a.name = "吞噬";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -343,7 +343,7 @@ static cptr _breath_desc(void)
 {
     gf_info_ptr gf;
     if (p_ptr->current_r_idx == MON_AETHER_VORTEX)
-        return "almost anything";
+        return "几乎任何属性";
     /* XXX gf_name() returns a color coded result, but the 'powers' menu is still
      * old school and does not use a z-doc for formatting. */
     gf = gf_lookup(_breath_effect());
@@ -452,7 +452,7 @@ static void _explode_spell(int cmd, variant *res)
         break;
     case SPELL_DESC: {
         char buf[255];
-        sprintf(buf, "Generates a large ball of %s.", _breath_desc());
+        sprintf(buf, "产生一个巨大的%s球。", _breath_desc());
         var_set_string(res, buf);
         break; }
     case SPELL_INFO:

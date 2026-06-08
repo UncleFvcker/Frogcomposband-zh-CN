@@ -170,7 +170,7 @@ static void change_path(cptr info)
 	s = my_strchr(info, '=');
 
 	/* Verify equal sign */
-	if (!s) quit_fmt("Try '-d<what>=<path>' not '-d%s'", info);
+	if (!s) quit_fmt("请尝试使用 '-d<what>=<path>' 而不是 '-d%s'", info);
 
 	/* Analyze */
 	switch (tolower(info[0]))
@@ -277,7 +277,7 @@ static void change_path(cptr info)
 
 		default:
 		{
-			quit_fmt("Bad semantics in '-d%s'", info);
+			quit_fmt("'-d%s' 的语法错误", info);
 		}
 	}
 }
@@ -359,12 +359,12 @@ int main(int argc, char *argv[])
 
 	if (setgid(getegid()) != 0)
 	{
-		quit("setgid(): cannot set permissions correctly!");
+		quit("setgid()：无法正确设置权限！");
 	}
 
 	if (setuid(geteuid()) != 0)
 	{
-		quit("setuid(): cannot set permissions correctly!");
+		quit("setuid()：无法正确设置权限！");
 	}
 
 #  endif
@@ -383,13 +383,13 @@ int main(int argc, char *argv[])
 	/* Initialize the "time" checker */
 	if (check_time_init() || check_time())
 	{
-		quit("The gates to Angband are closed (bad time).");
+		quit("通往安格班的大门已关闭 (时间错误)。");
 	}
 
 	/* Initialize the "load" checker */
 	if (check_load_init() || check_load())
 	{
-		quit("The gates to Angband are closed (bad load).");
+		quit("通往安格班的大门已关闭 (系统负载过高)。");
 	}
 
 	/* Acquire the "user name" as a default player name */
@@ -515,7 +515,7 @@ int main(int argc, char *argv[])
 			usage:
 			{
 				/* Dump usage information */
-				puts("Usage: angband [options] [-- subopts]");
+				puts("用法: angband [选项] [-- 子选项]");
 				puts("  -n       Start a new character");
 				puts("  -f       Request fiddle mode");
 				puts("  -w       Request wizard mode");
@@ -766,7 +766,7 @@ int main(int argc, char *argv[])
 
 
 	/* Make sure we have a display! */
-	if (!done) quit("Unable to prepare any 'display module'!");
+	if (!done) quit("无法准备任何 '显示模块'！");
 
 
 	/* Catch nasty signals */

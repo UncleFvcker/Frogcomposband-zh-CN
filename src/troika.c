@@ -253,7 +253,7 @@ static void _make_troika_weapon(int sval)
 
 static void _troika_event(int effect)
 {
-    char wrath_reason[24] = "the Wrath of Guntujant";
+    char wrath_reason[24] = "冈图扬之怒";
     int count = 0, dummy;
 
     if (p_ptr->is_dead) return;
@@ -906,7 +906,7 @@ void troika_punish_quest_fail(void)
 {
     msg_print("一个遥远的声音咆哮道：");
     cmsg_print(TERM_VIOLET, "“这种懦弱是对乌克西普的亵渎！”");
-    take_hit(DAMAGE_NOESCAPE, MIN(p_ptr->lev * 6, p_ptr->mhp / 2), "the Wrath of Uxip");
+    take_hit(DAMAGE_NOESCAPE, MIN(p_ptr->lev * 6, p_ptr->mhp / 2), "乌克西普之怒");
     switch (randint0(5))
     {
         case 0:
@@ -2118,19 +2118,16 @@ static void _dump_quests(doc_ptr doc)
     {
         int vari = TERM_L_GREEN;
         int day = 0, hour = 0, min = 0;
-        monster_race *r_ptr = &r_info[_tk_quests[i].goal_idx];
-        if (!r_ptr) continue; /* paranoia */
         if ((_tk_quests[i].start_lev) && (!_tk_quests[i].completed_lev)) vari = TERM_YELLOW;
         else if (_tk_quests[i].killed < _tk_quests[i].goal_ct) vari = TERM_RED;
         if (_tk_quests[i].goal_ct > 1)
         {
             char name[MAX_NLEN];
-            strcpy(name, r_name + r_ptr->name);
-            plural_aux(name);
-            doc_printf(doc, "%2d) <indent><style:indent><color:%c>%s，等级 %d - 击杀 %d 只 %s\n", i + 1, attr_to_attr_char(vari), d_name + d_info[_tk_quests[i].dungeon].name, _tk_quests[i].level, _tk_quests[i].goal_ct, name);
+            strcpy(name, monster_race_display_name(_tk_quests[i].goal_idx));
+            doc_printf(doc, "%2d) <indent><style:indent><color:%c>%s，等级 %d - 击杀 %d 只 %s\n", i + 1, attr_to_attr_char(vari), dungeon_display_name(_tk_quests[i].dungeon), _tk_quests[i].level, _tk_quests[i].goal_ct, name);
         }
         else
-            doc_printf(doc, "%2d) <indent><style:indent><color:%c>%s，等级 %d - 击杀 %s\n", i + 1, attr_to_attr_char(vari), d_name + d_info[_tk_quests[i].dungeon].name, _tk_quests[i].level, r_name + r_ptr->name);
+            doc_printf(doc, "%2d) <indent><style:indent><color:%c>%s，等级 %d - 击杀 %s\n", i + 1, attr_to_attr_char(vari), dungeon_display_name(_tk_quests[i].dungeon), _tk_quests[i].level, monster_race_display_name(_tk_quests[i].goal_idx));
         switch (vari)
         {
             case TERM_YELLOW:

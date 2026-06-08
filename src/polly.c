@@ -443,7 +443,7 @@ static void _create_chaos_spell(int cmd, variant *res)
         if (!res_save_default(RES_CHAOS))
         {
             int dam = res_calc_dam(RES_CHAOS, 32 + randint1(32));
-            take_hit(DAMAGE_NOESCAPE, dam, "political chaos");
+            take_hit(DAMAGE_NOESCAPE, dam, "政治混乱");
         }
         var_set_bool(res, TRUE);
         break;
@@ -730,7 +730,7 @@ static void _on_cast(const spell_info *spell)
         }
         default:
         {
-            take_hit(DAMAGE_USELIFE, kulu, "overworking");
+            take_hit(DAMAGE_USELIFE, kulu, "过度劳累");
             break;
         }
     }
@@ -787,7 +787,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "political skill";
+        me.magic_desc = "政治技能";
         me.which_stat = A_CHR;
         me.min_fail = 0;
         me.on_cast = _on_cast;

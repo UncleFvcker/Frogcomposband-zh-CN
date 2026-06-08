@@ -1,19 +1,19 @@
 # Created by Topi Ylinen
 ?:[EQU $QUEST10 Taken InProgress]
-D:The Wizards of Sorcery have discovered a magical Node of Sorcery 
-D:in a damp area nearby. You must seek the Node and dispatch 
-D:its guardians so that the Tower of Sorcery can claim the 
-D:mystical energies of the Node.
+D:咒术法师们在附近的一片潮湿区域发现了一个
+D:神奇的咒术节点。你必须去寻找那个节点并消灭
+D:它的守卫，这样咒术之塔就能夺取
+D:节点的神秘能量。
 ?:1
 
 ?:[EQU $QUEST10 Completed]
-D:You have done well.
+D:你做得很好。
 ?:1
 
 ?:[EQU $QUEST10 Failed]
-D:Begone, incompetent fool! The dimensional energies of the 
-D:mystic Node have faded away and are lost forever! You had
-D:your chance and botched the job. 
+D:滚吧，无能的蠢货！神秘节点的维度能量已经消散，
+D:永远失去了！你本有机会，
+D:却把差事搞砸了。
 ?:1
 
 T:QUEST:NORMAL

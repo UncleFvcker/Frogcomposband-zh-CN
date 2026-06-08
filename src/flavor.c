@@ -11,6 +11,106 @@
 #include "angband.h"
 
 #include <assert.h>
+
+#include "artifact_name_zh.inc"
+#include "body_name_zh.inc"
+#include "dungeon_name_zh.inc"
+#include "ego_name_zh.inc"
+#include "kind_flavor_zh.inc"
+#include "kind_name_zh.inc"
+#include "monster_name_zh.inc"
+
+cptr artifact_display_name(int a_idx)
+{
+    int max = sizeof(_artifact_name_zh)/sizeof(_artifact_name_zh[0]);
+
+    if (a_idx > 0 && a_idx < max && _artifact_name_zh[a_idx])
+        return _artifact_name_zh[a_idx];
+
+    if (a_idx > 0 && a_idx < max_a_idx && a_info[a_idx].name)
+        return a_name + a_info[a_idx].name;
+
+    return "";
+}
+
+cptr body_display_name(int b_idx)
+{
+    int max = sizeof(_body_name_zh)/sizeof(_body_name_zh[0]);
+
+    if (b_idx >= 0 && b_idx < max && _body_name_zh[b_idx])
+        return _body_name_zh[b_idx];
+
+    if (b_idx >= 0 && b_idx < max_b_idx && b_info[b_idx].name)
+        return b_name + b_info[b_idx].name;
+
+    return "";
+}
+
+cptr dungeon_display_name(int d_idx)
+{
+    int max = sizeof(_dungeon_name_zh)/sizeof(_dungeon_name_zh[0]);
+
+    if (d_idx >= 0 && d_idx < max && _dungeon_name_zh[d_idx])
+        return _dungeon_name_zh[d_idx];
+
+    if (d_idx >= 0 && d_idx < max_d_idx && d_info[d_idx].name)
+        return d_name + d_info[d_idx].name;
+
+    return "";
+}
+
+cptr ego_display_name(int e_idx)
+{
+    int max = sizeof(_ego_name_zh)/sizeof(_ego_name_zh[0]);
+
+    if (e_idx > 0 && e_idx < max && _ego_name_zh[e_idx])
+        return _ego_name_zh[e_idx];
+
+    if (e_idx > 0 && e_idx < max_e_idx && e_info[e_idx].name)
+        return e_name + e_info[e_idx].name;
+
+    return "";
+}
+
+cptr kind_display_name(int k_idx)
+{
+    int max = sizeof(_kind_name_zh)/sizeof(_kind_name_zh[0]);
+
+    if (k_idx > 0 && k_idx < max && _kind_name_zh[k_idx])
+        return _kind_name_zh[k_idx];
+
+    if (k_idx > 0 && k_idx < max_k_idx && k_info[k_idx].name)
+        return k_name + k_info[k_idx].name;
+
+    return "";
+}
+
+cptr kind_flavor_display_name(int k_idx)
+{
+    int max = sizeof(_kind_flavor_zh)/sizeof(_kind_flavor_zh[0]);
+
+    if (k_idx > 0 && k_idx < max && _kind_flavor_zh[k_idx])
+        return _kind_flavor_zh[k_idx];
+
+    if (k_idx > 0 && k_idx < max_k_idx && k_info[k_idx].flavor_name)
+        return k_name + k_info[k_idx].flavor_name;
+
+    return "";
+}
+
+cptr monster_race_display_name(int r_idx)
+{
+    int max = sizeof(_monster_name_zh)/sizeof(_monster_name_zh[0]);
+
+    if (r_idx > 0 && r_idx < max && _monster_name_zh[r_idx])
+        return _monster_name_zh[r_idx];
+
+    if (r_idx > 0 && r_idx < max_r_idx && r_info[r_idx].name)
+        return r_name + r_info[r_idx].name;
+
+    return "";
+}
+
 /*
  * Certain items, if aware, are known instantly
  * This function is used only by "flavor_init()"
@@ -1009,7 +1109,7 @@ char tval_to_attr_char(int tval)
 void object_desc(char *buf, object_type *o_ptr, u32b mode)
 {
     /* Extract object kind name */
-    cptr            kindname = k_name + k_info[o_ptr->k_idx].name;
+    cptr            kindname = kind_display_name(o_ptr->k_idx);
 
     /* Extract default "base" string */
     cptr            basenm = kindname;
@@ -1042,8 +1142,6 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
     u32b            known_flgs[OF_ARRAY_SIZE];
 
     object_kind    *k_ptr = &k_info[o_ptr->k_idx];
-    object_kind    *flavor_k_ptr = &k_info[k_ptr->flavor];
-
     int             number;
 
     mode |= (od_xtra_context);
@@ -1088,7 +1186,6 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
         known = FALSE;
 
         /* Cancel shuffling */
-        flavor_k_ptr = k_ptr;
     }
 
     /* Analyze the object */
@@ -1118,7 +1215,7 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
                 }
                 else
                 {
-                    cptr t = r_name + r_ptr->name;
+                    cptr t = monster_race_display_name(o_ptr->pval);
 
                     if (!(r_ptr->flags1 & RF1_UNIQUE))
                     {
@@ -1143,7 +1240,7 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
         {
             monster_race *r_ptr = &r_info[o_ptr->pval];
 
-            cptr t = r_name + r_ptr->name;
+            cptr t = monster_race_display_name(o_ptr->pval);
 
             if (!(r_ptr->flags1 & RF1_UNIQUE))
             {
@@ -1171,26 +1268,26 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
                     {
                         if (r_ptr->flags1 & RF1_UNIQUE)
                         {
-                            modstr = r_name + r_ptr->name;
-                            basenm = "The % of #";
+                            modstr = monster_race_display_name(luku);
+                            basenm = "#的%";
                         }
                         else
                         {
-                            modstr = r_name + r_ptr->name;
-                            if (is_a_vowel(modstr[0])) basenm = "the % of an #";
-                            else basenm = "the % of a #";
+                            modstr = monster_race_display_name(luku);
+                            if (is_a_vowel(modstr[0])) basenm = "#的%";
+                            else basenm = "#的%";
                         }
                     }
                     else
                     {
-                        modstr = "a Software bug";
-                        basenm = "the % of #";
+                        modstr = "一个软件漏洞";
+                        basenm = "#的%";
                     }
                 }
                 else
                 {
-                    modstr = "an Igor";
-                    basenm = "the % of #";
+                    modstr = "一个伊戈尔";
+                    basenm = "#的%";
                 }
                 /* Body parts cannot be piled, so it's usually safe to use the
                  * article "the"... but it is possible to have 0 of them */
@@ -1200,10 +1297,10 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
             {
                 monster_race *r_ptr = &r_info[o_ptr->pval];
 
-                modstr = r_name + r_ptr->name;
+                modstr = monster_race_display_name(o_ptr->pval);
 
                 if (r_ptr->flags1 & RF1_UNIQUE)
-                    basenm = "& % of #";
+                    basenm = "& #的%";
                 else
                     basenm = "& # %";
             }
@@ -1246,10 +1343,10 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
         {
             if (o_ptr->name1 == ART_HAND_OF_VECNA)
             {
-                modstr = k_name + flavor_k_ptr->flavor_name;
-                if (!flavor)    basenm = "& Hand~ of %";
+                modstr = kind_flavor_display_name(k_ptr->flavor);
+                if (!flavor)    basenm = "& %的断手~";
                 else if (aware) break;
-                else            basenm = "& # Hand~";
+                else            basenm = "& #的断手~";
             }
             else
                 show_armour = TRUE;
@@ -1261,10 +1358,10 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
         {
             if (o_ptr->name1 == ART_EYE_OF_VECNA)
             {
-                modstr = k_name + flavor_k_ptr->flavor_name;
-                if (!flavor)    basenm = "& Eye~ of %";
+                modstr = kind_flavor_display_name(k_ptr->flavor);
+                if (!flavor)    basenm = "& %的眼球~";
                 else if (aware) break;
-                else            basenm = "& # Eye~";
+                else            basenm = "& #的眼球~";
             }
             break;
         }
@@ -1294,11 +1391,11 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
         case TV_SCROLL:
         {
             /* Color the object */
-            modstr = k_name + flavor_k_ptr->flavor_name;
+            modstr = kind_flavor_display_name(k_ptr->flavor);
 
-            if (!flavor)    basenm = "& Scroll~ of %";
-            else if (aware) basenm = "& Scroll~ titled \"#\" of %";
-            else            basenm = "& Scroll~ titled \"#\"";
+            if (!flavor)    basenm = "& %卷轴~";
+            else if (aware) basenm = "& 标题为“#”的%卷轴~";
+            else            basenm = "& 标题为“#”的卷轴~";
 
             break;
         }
@@ -1306,11 +1403,11 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
         case TV_POTION:
         {
             /* Color the object */
-            modstr = k_name + flavor_k_ptr->flavor_name;
+            modstr = kind_flavor_display_name(k_ptr->flavor);
 
-            if (!flavor)    basenm = "& Potion~ of %";
-            else if (aware) basenm = "& # Potion~ of %";
-            else            basenm = "& # Potion~";
+            if (!flavor)    basenm = "& %药水~";
+            else if (aware) basenm = "& %的#药水~";
+            else            basenm = "& #药水~";
             break;
         }
 
@@ -1320,17 +1417,17 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
             if (!k_ptr->flavor_name) break;
 
             /* Color the object */
-            modstr = k_name + flavor_k_ptr->flavor_name;
+            modstr = kind_flavor_display_name(k_ptr->flavor);
 
-            if (!flavor)    basenm = "& Mushroom~ of %";
-            else if (aware) basenm = "& # Mushroom~ of %";
-            else            basenm = "& # Mushroom~";
+            if (!flavor)    basenm = "& %蘑菇~";
+            else if (aware) basenm = "& %的#蘑菇~";
+            else            basenm = "& #蘑菇~";
             break;
         }
 
         case TV_PARCHMENT:
         {
-            basenm = "& Parchment~ - %";
+            basenm = "& 羊皮纸~ - %";
             break;
         }
 
@@ -1338,142 +1435,142 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
         case TV_LIFE_BOOK:
         {
             if (mp_ptr->spell_book == TV_LIFE_BOOK)
-                basenm = "& Book~ of Life Magic %";
+                basenm = "& 生命魔法书~ %";
             else
-                basenm = "& Life Spellbook~ %";
+                basenm = "& 生命法术书~ %";
             break;
         }
 
         case TV_SORCERY_BOOK:
         {
             if (mp_ptr->spell_book == TV_LIFE_BOOK)
-                basenm = "& Book~ of Sorcery %";
+                basenm = "& 咒术魔法书~ %";
             else
-                basenm = "& Sorcery Spellbook~ %";
+                basenm = "& 咒术法术书~ %";
             break;
         }
 
         case TV_NATURE_BOOK:
         {
             if (mp_ptr->spell_book == TV_LIFE_BOOK)
-                basenm = "& Book~ of Nature Magic %";
+                basenm = "& 自然魔法书~ %";
             else
-                basenm = "& Nature Spellbook~ %";
+                basenm = "& 自然法术书~ %";
             break;
         }
 
         case TV_CHAOS_BOOK:
         {
             if (mp_ptr->spell_book == TV_LIFE_BOOK)
-                basenm = "& Book~ of Chaos Magic %";
+                basenm = "& 混沌魔法书~ %";
             else
-                basenm = "& Chaos Spellbook~ %";
+                basenm = "& 混沌法术书~ %";
             break;
         }
 
         case TV_DEATH_BOOK:
         {
             if (mp_ptr->spell_book == TV_LIFE_BOOK)
-                basenm = "& Book~ of Death Magic %";
+                basenm = "& 死亡魔法书~ %";
             else
-                basenm = "& Death Spellbook~ %";
+                basenm = "& 死亡法术书~ %";
             break;
         }
 
         case TV_TRUMP_BOOK:
         {
             if (mp_ptr->spell_book == TV_LIFE_BOOK)
-                basenm = "& Book~ of Trump Magic %";
+                basenm = "& 王牌魔法书~ %";
             else
-                basenm = "& Trump Spellbook~ %";
+                basenm = "& 王牌法术书~ %";
             break;
         }
 
         case TV_ARCANE_BOOK:
         {
             if (mp_ptr->spell_book == TV_LIFE_BOOK)
-                basenm = "& Book~ of Arcane Magic %";
+                basenm = "& 奥秘魔法书~ %";
             else
-                basenm = "& Arcane Spellbook~ %";
+                basenm = "& 奥秘法术书~ %";
             break;
         }
 
         case TV_CRAFT_BOOK:
         {
             if (mp_ptr->spell_book == TV_LIFE_BOOK)
-                basenm = "& Book~ of Craft Magic %";
+                basenm = "& 工匠魔法书~ %";
             else
-                basenm = "& Craft Spellbook~ %";
+                basenm = "& 工匠法术书~ %";
             break;
         }
 
         case TV_DAEMON_BOOK:
         {
             if (mp_ptr->spell_book == TV_LIFE_BOOK)
-                basenm = "& Book~ of Daemon Magic %";
+                basenm = "& 恶魔魔法书~ %";
             else
-                basenm = "& Daemon Spellbook~ %";
+                basenm = "& 恶魔法术书~ %";
             break;
         }
 
         case TV_CRUSADE_BOOK:
         {
             if (mp_ptr->spell_book == TV_LIFE_BOOK)
-                basenm = "& Book~ of Crusade Magic %";
+                basenm = "& 圣战魔法书~ %";
             else
-                basenm = "& Crusade Spellbook~ %";
+                basenm = "& 圣战法术书~ %";
             break;
         }
 
         case TV_LAW_BOOK:
         {
             if (mp_ptr->spell_book == TV_LIFE_BOOK)
-                basenm = "& Book~ of Legal Tricks %";
+                basenm = "& 法律诡计书~ %";
             else
-                basenm = "& Law Book~ %";
+                basenm = "& 律法书~ %";
             break;
         }
 
         case TV_NECROMANCY_BOOK:
         {
-            basenm = "& Necromancy Spellbook~ %";
+            basenm = "& 死灵法术书~ %";
             break;
         }
 
         case TV_RAGE_BOOK:
         {
-            basenm = "& Rage Spellbook~ %";
+            basenm = "& 狂怒法术书~ %";
             break;
         }
 
         case TV_BURGLARY_BOOK:
         {
-            basenm = "& Thieves' Guide~ %";
+            basenm = "& 盗贼指南~ %";
             break;
         }
 
         case TV_ARMAGEDDON_BOOK:
-            basenm = "& Armageddon Spellbook~ %";
+            basenm = "& 毁灭法术书~ %";
             break;
 
         case TV_MUSIC_BOOK:
         {
-            basenm = "& Song Book~ %";
+            basenm = "& 乐谱~ %";
             break;
         }
 
         case TV_HISSATSU_BOOK:
         {
-            basenm = "Book~ of Kendo %";
+            basenm = "剑道指南~ %";
             break;
         }
 
         case TV_HEX_BOOK:
         {
             if (mp_ptr->spell_book == TV_LIFE_BOOK)
-                basenm = "& Book~ of Hex Magic %";
+                basenm = "& 诅咒魔法书~ %";
             else
-                basenm = "& Hex Spellbook~ %";
+                basenm = "& 诅咒法术书~ %";
             break;
         }
 
@@ -1490,7 +1587,7 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
         /* Used in the "inventory" routine */
         default:
         {
-            strcpy(buf, "(nothing)");
+            strcpy(buf, "(无)");
             return;
         }
     }
@@ -1498,8 +1595,8 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
     /* Use full name from k_info or a_info */
     if (aware && have_flag(flgs, OF_FULL_NAME))
     {
-        if (known && o_ptr->name1) basenm = a_name + a_info[o_ptr->name1].name;
-        else if (known && o_ptr->name2) basenm = e_name + e_info[o_ptr->name2].name;
+        if (known && o_ptr->name1) basenm = artifact_display_name(o_ptr->name1);
+        else if (known && o_ptr->name2) basenm = ego_display_name(o_ptr->name2);
         else basenm = kindname;
     }
 
@@ -1702,10 +1799,8 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
         /* Grab any artifact name */
         else if (object_is_fixed_artifact(o_ptr))
         {
-            artifact_type *a_ptr = &a_info[o_ptr->name1];
-
             t = object_desc_chr(t, ' ');
-            t = object_desc_str(t, a_name + a_ptr->name);
+            t = object_desc_str(t, artifact_display_name(o_ptr->name1));
         }
 
         /* Grab any ego-item name */
@@ -1713,10 +1808,8 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
         {
             if (object_is_ego(o_ptr))
             {
-                ego_type *e_ptr = &e_info[o_ptr->name2];
-
                 t = object_desc_chr(t, ' ');
-                t = object_desc_str(t, e_name + e_ptr->name);
+                t = object_desc_str(t, ego_display_name(o_ptr->name2));
             }
 
             if (o_ptr->inscription && my_strchr(quark_str(o_ptr->inscription), '#'))
@@ -2085,7 +2178,7 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
                 if (statistics_hack)
                 {
                     double charges = (double)device_max_sp(o_ptr)/o_ptr->activation.cost;
-                    t = object_desc_str(t, format("%.2f charges", charges));
+                    t = object_desc_str(t, format("%.2f 充能", charges));
                 }
                 else
                 {
@@ -2230,9 +2323,9 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
         if ((o_ptr->tval == TV_CAPTURE) && (o_ptr->pval > 0))
         { /* Special case */
             if (mode & OD_COLOR_CODED)
-                sprintf(buf, "<color:B>A:Release Pet</color>");
+                sprintf(buf, "<color:B>A:释放宠物</color>");
             else
-                sprintf(buf, "A:Release Pet");
+                sprintf(buf, "A:释放宠物");
         }
         else
         {            
@@ -2248,7 +2341,7 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
     {
         gf_info_ptr gf = gf_lookup(o_ptr->xtra5);
         char buf[255];
-        sprintf(buf, "%sU:Breathe %s%s", (mode & OD_COLOR_CODED) ? "<color:G>" : "", gf ? gf->name : "Buggy", (mode & OD_COLOR_CODED) ? "</color>" : "");
+        sprintf(buf, "%sU:喷吐%s%s", (mode & OD_COLOR_CODED) ? "<color:G>" : "", gf ? gf->name : "Buggy", (mode & OD_COLOR_CODED) ? "</color>" : "");
         if (strlen(tmp_val2) > 0)
             strcat(tmp_val2, " ");
         strcat(tmp_val2, buf);
@@ -2280,7 +2373,7 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
 
     if (o_ptr->name3 && object_is_known(o_ptr) && abbrev_all)
     {
-        cptr  t = a_name + a_info[o_ptr->name3].name;
+        cptr  t = artifact_display_name(o_ptr->name3);
         if ((strlen(t) > 2) && (t[0] == '&')) t += 2;
 
         if (!o_ptr->art_name || !strpos(t, quark_str(o_ptr->art_name)))
@@ -2360,7 +2453,7 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
             /* Hide cursed status of devices until *Identified* */
         }
         else
-            strcpy(fake_insc_buf, "cursed");
+            strcpy(fake_insc_buf, "被诅咒的");
     }
 
     /* Note "unidentified" if the item is unidentified */
@@ -2369,26 +2462,26 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
            && !known
            && !(o_ptr->ident & IDENT_SENSE) )
     {
-        strcpy(fake_insc_buf, "unidentified");
+        strcpy(fake_insc_buf, "未鉴定的");
     }
     /* Mega-Hack -- note empty wands/staffs */
     else if (!known && (o_ptr->ident & IDENT_EMPTY))
     {
-        strcpy(fake_insc_buf, "empty");
+        strcpy(fake_insc_buf, "空的");
     }
 
     /* Note "tried" if the object has been tested unsuccessfully */
     else if (!known && object_is_device(o_ptr) && object_is_tried(o_ptr))
     {
-        strcpy(fake_insc_buf, "tried");
+        strcpy(fake_insc_buf, "尝试过的");
     }
     else if (!aware && object_is_tried(o_ptr))
     {
-        strcpy(fake_insc_buf, "tried");
+        strcpy(fake_insc_buf, "尝试过的");
     }
     else if ((shops_mark_unseen) && (aware) && (!object_is_aware(o_ptr)) && (object_is_flavor(o_ptr)) && (o_ptr->loc.where == INV_SHOP))
     {
-        strcpy(fake_insc_buf, "unseen");
+        strcpy(fake_insc_buf, "未见过的");
     }
 
     /* Note the discount, if any */
@@ -2403,7 +2496,7 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
 
             (void)object_desc_num(discount_num_buf, o_ptr->discount);
             strcat(fake_insc_buf, discount_num_buf);
-            strcat(fake_insc_buf, "% off");
+            strcat(fake_insc_buf, "% 失败率");
         }
     }
 

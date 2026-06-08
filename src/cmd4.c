@@ -290,7 +290,7 @@ static bool open_auto_dump(cptr buf, cptr mark)
     auto_dump_line_num = 0;
 
     auto_dump_printf("# *警告!* 下面的行是自动转储的。\n");
-    auto_dump_printf("# Don't edit them; changes will be deleted and replaced automatically.\n");
+    auto_dump_printf("# 请勿编辑这些内容；手动修改会被自动删除和替换。\n");
 
     /* Success */
     return TRUE;
@@ -307,7 +307,7 @@ static void close_auto_dump(void)
     sprintf(footer_mark_str, auto_dump_footer, auto_dump_mark);
 
     auto_dump_printf("# *警告!* 上面的行是自动转储的。\n");
-    auto_dump_printf("# Don't edit them; changes will be deleted and replaced automatically.\n");
+    auto_dump_printf("# 请勿编辑这些内容；手动修改会被自动删除和替换。\n");
 
     /* End of dump */
     fprintf(auto_dump_stream, "%s (%d)\n", footer_mark_str, auto_dump_line_num);
@@ -565,7 +565,7 @@ static void do_cmd_options_cheat(cptr info)
             /* Display the option text */
             sprintf(buf, "%-48s: %s (%s)",
                 cheat_info[i].o_desc,
-                (*cheat_info[i].o_var ? "yes" : "no "),
+                (*cheat_info[i].o_var ? "是" : "no "),
 
                 cheat_info[i].o_text);
             c_prt(a, buf, i + 2, 0);
@@ -730,7 +730,7 @@ static void do_cmd_options_autosave(cptr info)
             /* Display the option text */
             sprintf(buf, "%-48s: %s (%s)",
                 autosave_info[i].o_desc,
-                (*autosave_info[i].o_var ? "yes" : "no "),
+                (*autosave_info[i].o_var ? "是" : "no "),
 
                 autosave_info[i].o_text);
             c_prt(a, buf, i + 2, 0);
@@ -910,7 +910,7 @@ void do_cmd_options_aux(int page, cptr info)
             else if (option_info[opt[i]].o_var == &single_pantheon)
             {
                 sprintf(buf, "%-48s: ", option_info[opt[i]].o_desc);
-                sprintf(buf + strlen(buf), "%d of %d", pantheon_count, PANTHEON_MAX - 1);
+                sprintf(buf + strlen(buf), "%d / %d", pantheon_count, PANTHEON_MAX - 1);
             }
             else if (option_info[opt[i]].o_var == &guaranteed_pantheon)
             {
@@ -935,7 +935,7 @@ void do_cmd_options_aux(int page, cptr info)
             {
                 sprintf(buf, "%-48s: %s (%.19s)",
                     option_info[opt[i]].o_desc,
-                    (*option_info[opt[i]].o_var ? "yes" : "no "),
+                    (*option_info[opt[i]].o_var ? "是" : "no "),
                     option_info[opt[i]].o_text);
             }
             if ((page == OPT_PAGE_AUTODESTROY) && i > 7) rivi = i + 5 - option_offset;
@@ -2532,7 +2532,7 @@ void do_cmd_visuals(void)
         /* Dump monster attr/chars */
         case '1':
         {
-            static cptr mark = "Monster attr/chars";
+            static cptr mark = "怪物颜色/字符";
 
             /* Prompt */
             prt("命令: 转储怪物外观属性/字符(attr/chars)", 15, 0);
@@ -2553,7 +2553,7 @@ void do_cmd_visuals(void)
             if (!open_auto_dump(buf, mark)) continue;
 
             /* Start dumping */
-            auto_dump_printf("\n# Monster attr/char definitions\n\n");
+            auto_dump_printf("\n# 怪物颜色/字符定义\n\n");
 
             /* Dump monsters */
             for (i = 0; i < max_r_idx; i++)
@@ -2583,7 +2583,7 @@ void do_cmd_visuals(void)
         /* Dump object attr/chars */
         case '2':
         {
-            static cptr mark = "Object attr/chars";
+            static cptr mark = "物品颜色/字符";
 
             /* Prompt */
             prt("命令: 转储物品外观属性/字符(attr/chars)", 15, 0);
@@ -2604,7 +2604,7 @@ void do_cmd_visuals(void)
             if (!open_auto_dump(buf, mark)) continue;
 
             /* Start dumping */
-            auto_dump_printf("\n# Object attr/char definitions\n\n");
+            auto_dump_printf("\n# 物品颜色/字符定义\n\n");
 
             /* Dump objects */
             for (i = 0; i < max_k_idx; i++)
@@ -2652,7 +2652,7 @@ void do_cmd_visuals(void)
         /* Dump feature attr/chars */
         case '3':
         {
-            static cptr mark = "Feature attr/chars";
+            static cptr mark = "地形特征颜色/字符";
 
             /* Prompt */
             prt("命令: 转储地形外观属性/字符(attr/chars)", 15, 0);
@@ -2673,7 +2673,7 @@ void do_cmd_visuals(void)
             if (!open_auto_dump(buf, mark)) continue;
 
             /* Start dumping */
-            auto_dump_printf("\n# Feature attr/char definitions\n\n");
+            auto_dump_printf("\n# 地形特征颜色/字符定义\n\n");
 
             /* Dump features */
             for (i = 0; i < max_f_idx; i++)
@@ -2708,7 +2708,7 @@ void do_cmd_visuals(void)
         /* Modify monster attr/chars (numeric operation) */
         case '4':
         {
-            static cptr choice_msg = "Change monster attr/chars";
+            static cptr choice_msg = "更改怪物颜色/字符";
             static int r = 0;
 
             prt(format("命令: %s", choice_msg), 15, 0);
@@ -2727,19 +2727,19 @@ void do_cmd_visuals(void)
 
                 /* Label the object */
                 Term_putstr(5, 17, -1, TERM_WHITE,
-                        format("Monster = %d, Name = %-40.40s",
+                        format("怪物 = %d, 名称 = %-40.40s",
                            r, (r_name + r_ptr->name)));
 
                 /* Label the Default values */
                 Term_putstr(10, 19, -1, TERM_WHITE,
-                        format("Default attr/char = %3u / %3u", da, dc));
+                        format("默认颜色/字符 = %3u / %3u", da, dc));
 
                 Term_putstr(40, 19, -1, TERM_WHITE, empty_symbol);
                 Term_queue_bigchar(43, 19, da, dc, 0, 0);
 
                 /* Label the Current values */
                 Term_putstr(10, 20, -1, TERM_WHITE,
-                        format("Current attr/char = %3u / %3u", ca, cc));
+                        format("当前颜色/字符 = %3u / %3u", ca, cc));
 
                 Term_putstr(40, 20, -1, TERM_WHITE, empty_symbol);
                 Term_queue_bigchar(43, 20, ca, cc, 0, 0);
@@ -2802,7 +2802,7 @@ void do_cmd_visuals(void)
         /* Modify object attr/chars (numeric operation) */
         case '5':
         {
-            static cptr choice_msg = "Change object attr/chars";
+            static cptr choice_msg = "更改物品颜色/字符";
             static int k = 0;
 
             prt(format("命令: %s", choice_msg), 15, 0);
@@ -2821,19 +2821,19 @@ void do_cmd_visuals(void)
 
                 /* Label the object */
                 Term_putstr(5, 17, -1, TERM_WHITE,
-                        format("Object = %d, Name = %-40.40s",
+                        format("物品 = %d, 名称 = %-40.40s",
                            k, k_name + (!k_ptr->flavor ? k_ptr->name : k_ptr->flavor_name)));
 
                 /* Label the Default values */
                 Term_putstr(10, 19, -1, TERM_WHITE,
-                        format("Default attr/char = %3d / %3d", da, dc));
+                        format("默认颜色/字符 = %3d / %3d", da, dc));
 
                 Term_putstr(40, 19, -1, TERM_WHITE, empty_symbol);
                 Term_queue_bigchar(43, 19, da, dc, 0, 0);
 
                 /* Label the Current values */
                 Term_putstr(10, 20, -1, TERM_WHITE,
-                        format("Current attr/char = %3d / %3d", ca, cc));
+                        format("当前颜色/字符 = %3d / %3d", ca, cc));
 
                 Term_putstr(40, 20, -1, TERM_WHITE, empty_symbol);
                 Term_queue_bigchar(43, 20, ca, cc, 0, 0);
@@ -2896,7 +2896,7 @@ void do_cmd_visuals(void)
         /* Modify feature attr/chars (numeric operation) */
         case '6':
         {
-            static cptr choice_msg = "Change feature attr/chars";
+            static cptr choice_msg = "更改地形特征颜色/字符";
             static int f = 0;
             static int lighting_level = F_LIT_STANDARD;
 
@@ -2917,12 +2917,12 @@ void do_cmd_visuals(void)
                 /* Label the object */
                 prt("", 17, 5);
                 Term_putstr(5, 17, -1, TERM_WHITE,
-                        format("Terrain = %d, Name = %s, Lighting = %s",
+                        format("地形 = %d, 名称 = %s, 光照 = %s",
                            f, (f_name + f_ptr->name), lighting_level_str[lighting_level]));
 
                 /* Label the Default values */
                 Term_putstr(10, 19, -1, TERM_WHITE,
-                        format("Default attr/char = %3d / %3d", da, dc));
+                        format("默认颜色/字符 = %3d / %3d", da, dc));
 
                 Term_putstr(40, 19, -1, TERM_WHITE, empty_symbol);
 
@@ -2930,7 +2930,7 @@ void do_cmd_visuals(void)
 
                 /* Label the Current values */
                 Term_putstr(10, 20, -1, TERM_WHITE,
-                        format("Current attr/char = %3d / %3d", ca, cc));
+                        format("当前颜色/字符 = %3d / %3d", ca, cc));
 
                 Term_putstr(40, 20, -1, TERM_WHITE, empty_symbol);
                 Term_queue_bigchar(43, 20, ca, cc, 0, 0);
@@ -3152,7 +3152,7 @@ void do_cmd_colors(void)
             if (!open_auto_dump(buf, mark)) continue;
 
             /* Start dumping */
-            auto_dump_printf("\n# Color redefinitions\n\n");
+            auto_dump_printf("\n# 颜色重新定义\n\n");
 
             /* Dump colors */
             for (i = 0; i < 256; i++)
@@ -3162,7 +3162,7 @@ void do_cmd_colors(void)
                 int gv = angband_color_table[i][2];
                 int bv = angband_color_table[i][3];
 
-                cptr name = "unknown";
+                cptr name = "未知";
 
 
                 /* Skip non-entries */
@@ -3172,7 +3172,7 @@ void do_cmd_colors(void)
                 if (i < MAX_COLOR) name = color_names[i];
 
                 /* Dump a comment */
-                auto_dump_printf("# Color '%s'\n", name);
+                auto_dump_printf("# 颜色 '%s'\n", name);
 
                 /* Dump the monster attr/char info */
                 auto_dump_printf("V:%d:0x%02X:0x%02X:0x%02X:0x%02X\n\n",
@@ -3227,7 +3227,7 @@ void do_cmd_colors(void)
                 }
 
                 /* Describe the color */
-                name = ((a < MAX_COLOR) ? color_names[a] : "undefined");
+                name = ((a < MAX_COLOR) ? color_names[a] : "未定义");
 
 
                 /* Describe the color */
@@ -3496,32 +3496,32 @@ struct _feeling_info_s
 typedef struct _feeling_info_s _feeling_info_t;
 static _feeling_info_t _level_feelings[11] =
 {
-    {TERM_SLATE, "Looks like any other level."},
-    {TERM_L_BLUE, "You feel there is something special about this level."},
-    {TERM_VIOLET, "You nearly faint as horrible visions of death fill your mind!"},
-    {TERM_RED, "This level looks very dangerous."},
-    {TERM_L_RED, "You have a very bad feeling..."},
-    {TERM_ORANGE, "You have a bad feeling..."},
-    {TERM_YELLOW, "You feel nervous."},
-    {TERM_L_UMBER, "You feel your luck is turning..."},
-    {TERM_L_WHITE, "You don't like the look of this place."},
-    {TERM_WHITE, "This level looks reasonably safe."},
-    {TERM_WHITE, "What a boring place..."},
+    {TERM_SLATE, "看起来和其它楼层没什么两样。"},
+    {TERM_L_BLUE, "你觉得这层有一些特别之处。"},
+    {TERM_VIOLET, "死亡的可怕景象充斥着你的大脑，你差点晕倒！"},
+    {TERM_RED, "这层看起来非常危险。"},
+    {TERM_L_RED, "你有一种非常不祥的预感……"},
+    {TERM_ORANGE, "你有一种不祥的预感……"},
+    {TERM_YELLOW, "你感到紧张。"},
+    {TERM_L_UMBER, "你感觉你的运气正在好转……"},
+    {TERM_L_WHITE, "你不喜欢这个地方的样子。"},
+    {TERM_WHITE, "这层看起来相当安全。"},
+    {TERM_WHITE, "真是个无聊的地方……"},
 };
 
 static _feeling_info_t _level_feelings_lucky[11] =
 {
-    {TERM_SLATE, "Looks like any other level."},
-    {TERM_L_BLUE, "You feel there is something special about this level."},
-    {TERM_VIOLET, "You have a superb feeling about this level."},
-    {TERM_RED, "You have an excellent feeling..."},
-    {TERM_L_RED, "You have a very good feeling..."},
-    {TERM_ORANGE, "You have a good feeling..."},
-    {TERM_YELLOW, "You feel strangely lucky..."},
-    {TERM_L_UMBER, "You feel your luck is turning..."},
-    {TERM_L_WHITE, "You like the look of this place..."},
-    {TERM_WHITE, "This level can't be all bad..."},
-    {TERM_WHITE, "What a boring place..."},
+    {TERM_SLATE, "看起来和其它楼层没什么两样。"},
+    {TERM_L_BLUE, "你觉得这层有一些特别之处。"},
+    {TERM_VIOLET, "你对这层有一种绝佳的感觉。"},
+    {TERM_RED, "你有一种极好的感觉……"},
+    {TERM_L_RED, "你有一种非常好的感觉……"},
+    {TERM_ORANGE, "你有一种不错的感觉……"},
+    {TERM_YELLOW, "你感到出奇的幸运……"},
+    {TERM_L_UMBER, "你感觉你的运气正在好转……"},
+    {TERM_L_WHITE, "你喜欢这个地方的样子……"},
+    {TERM_WHITE, "这层总不至于太糟……"},
+    {TERM_WHITE, "真是个无聊的地方……"},
 };
 
 
@@ -3588,9 +3588,9 @@ static cptr monster_group_text[] =
     "蜈蚣",
     "龙",
     "漂浮眼",
-    "Feline/Fox",
+    "猫科/狐狸",
     "魔像",
-    "Hobbit/Elf/Dwarf",
+    "霍比特人/精灵/矮人",
     "恶心之物",
     "果冻怪",
     "狗头人",
@@ -3598,16 +3598,16 @@ static cptr monster_group_text[] =
     "霉菌",
     "娜迦",
     "兽人",
-    "Person/Human",
+    "人类",
     "四足动物",
     "啮齿动物",
     "骷髅",
     "恶魔",
     "漩涡",
-    "Worm/Worm-Mass",
+    "蠕虫/蠕虫群",
     /* "unused", */
     "伊克",
-    "Zombie/Mummy",
+    "僵尸/木乃伊",
     "天使",
     "鸟类",
     "犬科",
@@ -3625,17 +3625,17 @@ static cptr monster_group_text[] =
     "食人魔",
     "巨大人形生物",
     "脉动肉块",
-    "Reptile/Amphibian",
-    "Spider/Scorpion/Tick",
+    "爬行/两栖动物",
+    "蜘蛛/蝎子/蜱虫",
     "巨魔",
     /* "Major Demon", */
     "吸血鬼",
-    "Wight/Wraith/etc",
-    "Xorn/Xaren/etc",
+    "尸妖/幽灵等",
+    "索恩/萨伦等",
     "雪人",
     "微风猎犬",
     "宝箱怪",
-    "Wall/Plant/Gas",
+    "墙壁/植物/气体",
     "蘑菇丛",
     "球体",
     "玩家",
@@ -4105,7 +4105,7 @@ static int collect_objects(int grp_cur, int object_idx[], byte mode)
  */
 static cptr feature_group_text[] =
 {
-    "terrains",
+    "地形",
     NULL
 };
 
@@ -4603,7 +4603,7 @@ static void do_cmd_knowledge_uniques(void)
     }
     else
     {
-        fputs("No known uniques alive.\n", fff);
+        fputs("没有已知的唯一怪物存活。\n", fff);
     }
 
     /* Scan the monster races */
@@ -4739,7 +4739,7 @@ static vec_ptr _prof_weapon_alloc(int tval)
     return v;
 }
  
-static cptr _prof_exp_str[5]   = {"[Un]", "[Be]", "[Sk]", "[Ex]", "[Ma]"};
+static cptr _prof_exp_str[5]   = {"[无]", "[初]", "[熟]", "[专]", "[师]"};
 static char _prof_exp_color[5] = {'w',    'G',    'y',    'r',    'v'};
 static cptr _prof_weapon_heading(int tval)
 {
@@ -4902,8 +4902,8 @@ static int _do_cmd_knowledge_weapon_exp_aux(int mode, int *huippu)
             strcat(buf, "熟练度上限");
             tulos = weapon_exp_display(doc, buf, huippu); break;
         }
-        case 2: tulos = weapon_exp_display(doc, "Current Proficiency as % of Caps", huippu); break;
-        case 3: tulos = weapon_exp_display(doc, "Current Proficiency as % of Full Mastery", huippu); break;
+        case 2: tulos = weapon_exp_display(doc, "当前熟练度占上限的百分比", huippu); break;
+        case 3: tulos = weapon_exp_display(doc, "当前熟练度占完全精通的百分比", huippu); break;
         default: tulos = weapon_exp_display(doc, "当前熟练度", huippu); break;
     }
 
@@ -5194,9 +5194,9 @@ static void do_cmd_knowledge_kill_count(void)
         }
 
         if (Total < 1)
-            fprintf(fff,"You have defeated no enemies yet.\n\n");
+            fprintf(fff,"你还没有击败任何敌人。\n\n");
         else
-            fprintf(fff,"You have defeated %d %s.\n\n", Total, (Total == 1) ? "enemy" : "enemies");
+            fprintf(fff,"你已经击败了 %d %s。\n\n", Total, (Total == 1) ? "个敌人" : "个敌人");
     }
 
     Total = 0;
@@ -5677,7 +5677,7 @@ static void display_monster_list(int col, int row, int per_page, s16b mon_idx[],
             attr = TERM_L_DARK;
 
         /* Display the name */
-        c_prt(attr, (r_name + r_ptr->name), row + i, col);
+        c_prt(attr, monster_race_display_name(r_idx), row + i, col);
 
         /* Hack -- visual_list mode */
         if (per_page == 1)
@@ -5997,18 +5997,18 @@ static void do_cmd_knowledge_monsters(bool *need_redraw, bool visual_only, int d
         if (p_ptr->wizard || p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC)
         {
             prt(format("<dir>%s%s%s%s, ESC",
-                (!visual_list && !visual_only) ? ", '?' to recall" : "",
-                visual_list ? ", ENTER to accept" : ", 'v' for visuals",
-                (attr_idx || char_idx) ? ", 'c', 'p' to paste" : ", 'c' to copy",
-                ", '=' for more info"),
+                (!visual_list && !visual_only) ? "，'?' 回忆" : "",
+                visual_list ? "，回车 接受" : "，'v' 视觉效果",
+                (attr_idx || char_idx) ? "，'c', 'p' 粘贴" : "，'c' 复制",
+                "，'=' 更多信息"),
                 hgt - 1, 0);
         }
         else
         {
             prt(format("<dir>%s%s%s, ESC",
-                (!visual_list && !visual_only) ? ", '?' to recall" : "",
-                visual_list ? ", ENTER to accept" : ", 'v' for visuals",
-                (attr_idx || char_idx) ? ", 'c', 'p' to paste" : ", 'c' to copy"),
+                (!visual_list && !visual_only) ? "，'?' 回忆" : "",
+                visual_list ? "，回车 接受" : "，'v' 视觉效果",
+                (attr_idx || char_idx) ? "，'c', 'p' 粘贴" : "，'c' 复制"),
                 hgt - 1, 0);
         }
 
@@ -6706,9 +6706,9 @@ static void do_cmd_knowledge_objects(bool *need_redraw, bool visual_only, int di
 
         /* Prompt */
         prt(format("<dir>%s%s%s, ESC",
-            (!visual_list && !visual_only) ? ", 'r' to recall" : "",
-            visual_list ? ", ENTER to accept" : ", 'v' for visuals",
-            (attr_idx || char_idx) ? ", 'c', 'p' to paste" : ", 'c' to copy"),
+            (!visual_list && !visual_only) ? "，'r' 回忆" : "",
+            visual_list ? "，回车 接受" : "，'v' 视觉效果",
+            (attr_idx || char_idx) ? "，'c', 'p' 粘贴" : "，'c' 复制"),
             hgt - 1, 0);
 
         if (!visual_only && object_idx[object_cur] >= 0)
@@ -7037,8 +7037,8 @@ static void do_cmd_knowledge_features(bool *need_redraw, bool visual_only, int d
 
         /* Prompt */
         prt(format("<dir>%s, 'd' 恢复默认光照%s, ESC",
-            visual_list ? ", ENTER to accept, 'a' for lighting level" : ", 'v' for visuals",
-            (attr_idx || char_idx) ? ", 'c', 'p' to paste" : ", 'c' to copy"),
+            visual_list ? "，回车 接受，'a' 光照等级" : "，'v' 视觉效果",
+            (attr_idx || char_idx) ? "，'c', 'p' 粘贴" : "，'c' 复制"),
             hgt - 1, 0);
 
         /* Get the current feature */
@@ -7210,7 +7210,7 @@ static void do_cmd_knowledge_kubi(void)
     {
         bool listed = FALSE;
 
-        fprintf(fff, "Today target : %s\n", (p_ptr->today_mon ? r_name + r_info[p_ptr->today_mon].name : "unknown"));
+        fprintf(fff, "今日目标：%s\n", (p_ptr->today_mon ? monster_race_display_name(p_ptr->today_mon) : "未知"));
         fprintf(fff, "\n");
         fprintf(fff, "通缉怪物列表\n");
         fprintf(fff, "----------------------------------------------\n");
@@ -7220,14 +7220,14 @@ static void do_cmd_knowledge_kubi(void)
             int id = kubi_r_idx[i];
             if (0 < id && id < 10000)
             {
-                fprintf(fff,"%s\n", r_name + r_info[id].name);
+                fprintf(fff,"%s\n", monster_race_display_name(id));
                 listed = TRUE;
             }
         }
 
         if (!listed)
         {
-            fprintf(fff,"\n%s\n", "You have turned in all wanted monsters.");
+            fprintf(fff,"\n%s\n", "你已经上交了所有被悬赏的怪物。");
         }
     }
 
@@ -7620,7 +7620,7 @@ void do_cmd_time(void)
 
     num = 0;
 
-    strcpy(desc, "It is a strange time.");
+    strcpy(desc, "这是一个奇怪的时间。");
 
 
     if (day < MAX_DAYS) sprintf(day_buf, "%d", day);
@@ -7629,7 +7629,7 @@ void do_cmd_time(void)
     /* Message */
     msg_format("今天是第 %s 天。时间是 %d:%02d %s。",
            day_buf, (hour % 12 == 0) ? 12 : (hour % 12),
-           min, (hour < 12) ? "AM" : "PM");
+           min, (hour < 12) ? "上午" : "下午");
 
 
     /* Find the path */

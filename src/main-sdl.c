@@ -1116,7 +1116,7 @@ bool file_exists(const char *fname)
 static void validate_file(cptr s)
 {
     if (!file_exists(s))
-        quit_fmt("Cannot find required file:\n%s", s);
+        quit_fmt("找不到所需文件：\n%s", s);
 }
 
 /**
@@ -1159,7 +1159,7 @@ static void draw_statusbar(sdl_Window *window)
     button = sdl_ButtonBankGet(&StatusBar.buttons, AboutSelect);
     x += button->pos.w + 20;
 
-    sdl_WindowText(&StatusBar, c, x, 1, "Term:");
+    sdl_WindowText(&StatusBar, c, x, 1, "终端:");
     x += 5 * fw;
 
     button = sdl_ButtonBankGet(&StatusBar.buttons, TermSelect);
@@ -1170,7 +1170,7 @@ static void draw_statusbar(sdl_Window *window)
     sdl_WindowText(&StatusBar, c, x, 1, buf);
     x += strlen(buf) * fw + 20;
 
-    sdl_WindowText(&StatusBar, c, x, 1, "Visible:");
+    sdl_WindowText(&StatusBar, c, x, 1, "可见:");
     x += 8 * fw;
 
     button = sdl_ButtonBankGet(&StatusBar.buttons, VisibleSelect);
@@ -1178,7 +1178,7 @@ static void draw_statusbar(sdl_Window *window)
     x += button->pos.w + 20;
 
     button = sdl_ButtonBankGet(&StatusBar.buttons, FontSelect);
-    if (button->visible) sdl_WindowText(&StatusBar, c, x, 1, "Font:");
+    if (button->visible) sdl_WindowText(&StatusBar, c, x, 1, "字体:");
     x += 5 * fw;
 
     button->pos.x = x;
@@ -1286,7 +1286,7 @@ static void SetStatusButtons(void)
     if (!win->visible)
     {
         sdl_ButtonVisible(fontbutton, FALSE);
-        sdl_ButtonCaption(visbutton, "No");
+        sdl_ButtonCaption(visbutton, "否");
     }
     else
     {
@@ -1587,7 +1587,7 @@ static void FlipTag(sdl_Button *sender)
     else
     {
         sender->tag = 1;
-        sdl_ButtonCaption(sender, "On");
+        sdl_ButtonCaption(sender, "开");
     }
 }
 
@@ -1623,9 +1623,9 @@ static void MoreDraw(sdl_Window *win)
         sdl_ButtonVisible(button1, TRUE);
         sdl_ButtonVisible(button2, TRUE);
         sdl_ButtonVisible(button3, TRUE);
-        sdl_WindowText(win, colour, 20, y, "Bigtile is:");
-        sdl_WindowText(win, colour, 20, y + 20, "Dbltile is:");
-        sdl_WindowText(win, colour, 20, y + 40, "Trptile is:");
+        sdl_WindowText(win, colour, 20, y, "大图块 (Bigtile):");
+        sdl_WindowText(win, colour, 20, y + 20, "双倍图块 (Dbltile):");
+        sdl_WindowText(win, colour, 20, y + 40, "三倍图块 (Trptile):");
 
         sdl_ButtonMove(button1, 200, y);
         sdl_ButtonMove(button2, 200, y + 20);
@@ -1640,13 +1640,13 @@ static void MoreDraw(sdl_Window *win)
         sdl_ButtonVisible(button3, FALSE);
     }
 
-    sdl_WindowText(win, colour, 20, y, "Selected Graphics:");
+    sdl_WindowText(win, colour, 20, y, "当前选择的图像:");
     sdl_WindowText(win, select_colour,
                    200, y, GfxDesc[SelectedGfx].name);
 
     y += 20;
 
-    sdl_WindowText(win, colour, 20, y, "Available Graphics:");
+    sdl_WindowText(win, colour, 20, y, "可用的图像:");
 
     for (i = 0; i < GfxModes; i++)
     {
@@ -1658,12 +1658,12 @@ static void MoreDraw(sdl_Window *win)
 #endif
 
     button = sdl_ButtonBankGet(&win->buttons, MoreFullscreen);
-    sdl_WindowText(win, colour, 20, y, "Fullscreen is:");
+    sdl_WindowText(win, colour, 20, y, "全屏模式:");
 
     sdl_ButtonMove(button, 200, y);
     y+= 20;
 
-    sdl_WindowText(win, colour, 20, y, format("Snap range is %d.", SnapRange));
+    sdl_WindowText(win, colour, 20, y, format("吸附范围为 %d。", SnapRange));
     button = sdl_ButtonBankGet(&win->buttons, MoreSnapMinus);
     sdl_ButtonMove(button, 200, y);
 
@@ -1695,7 +1695,7 @@ static void MoreActivate(sdl_Button *sender)
     button1->sel_colour = scolour;
     sdl_ButtonSize(button1, 50 , PopUp.font.height + 2);
     sdl_ButtonVisible(button1, TRUE);
-    sdl_ButtonCaption(button1, use_bigtile ? "On" : "关");
+    sdl_ButtonCaption(button1, use_bigtile ? "开" : "关");
     button1->tag = use_bigtile;
     button1->activate = FlipTag;
 
@@ -1706,7 +1706,7 @@ static void MoreActivate(sdl_Button *sender)
     button2->sel_colour = scolour;
     sdl_ButtonSize(button2, 50 , PopUp.font.height + 2);
     sdl_ButtonVisible(button2, TRUE);
-    sdl_ButtonCaption(button2, use_dbltile ? "On" : "关");
+    sdl_ButtonCaption(button2, use_dbltile ? "开" : "关");
     button2->tag = use_dbltile;
     button2->activate = FlipTag;
 
@@ -1717,7 +1717,7 @@ static void MoreActivate(sdl_Button *sender)
     button3->sel_colour = scolour;
     sdl_ButtonSize(button3, 50 , PopUp.font.height + 2);
     sdl_ButtonVisible(button3, TRUE);
-    sdl_ButtonCaption(button3, use_trptile ? "On" : "关");
+    sdl_ButtonCaption(button3, use_trptile ? "开" : "关");
     button3->tag = use_trptile;
     button3->activate = FlipTag;
 #endif
@@ -1745,7 +1745,7 @@ static void MoreActivate(sdl_Button *sender)
     button->sel_colour = scolour;
     sdl_ButtonSize(button, 50 , PopUp.font.height + 2);
     sdl_ButtonVisible(button, TRUE);
-    sdl_ButtonCaption(button, fullscreen ? "On" : "关");
+    sdl_ButtonCaption(button, fullscreen ? "开" : "关");
     button->tag = fullscreen;
     button->activate = FlipTag;
 
@@ -1778,7 +1778,7 @@ static void MoreActivate(sdl_Button *sender)
     button->sel_colour = scolour;
     sdl_ButtonSize(button, 50 , PopUp.font.height + 2);
     sdl_ButtonVisible(button, TRUE);
-    sdl_ButtonCaption(button, "OK");
+    sdl_ButtonCaption(button, "确定");
     sdl_ButtonMove(button, width / 2 - 25, height - 40);
     button->activate = AcceptChanges;
 
@@ -1811,7 +1811,7 @@ static void ResizeWin(term_window* win, int w, int h)
 
         /* Oops */
         if (!win->tile_wid || !win->tile_hgt)
-            quit(format("Unable to find font '%s'.", win->req_font));
+            quit(format("无法找到字体 '%s'。", win->req_font));
     }
 
     /* Get the amount of columns & rows */
@@ -2863,14 +2863,14 @@ static bool open_audio(void)
     /* Initialize the SDL library */
     if (SDL_Init(SDL_INIT_AUDIO) < 0)
     {
-        plog_fmt("Couldn't initialize SDL: %s", SDL_GetError());
+        plog_fmt("无法初始化 SDL：%s", SDL_GetError());
         return FALSE;
     }
 
     /* Try to open the audio */
     if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, 4096) < 0)
     {
-        plog_fmt("Couldn't open mixer: %s", SDL_GetError());
+        plog_fmt("无法打开混音器：%s", SDL_GetError());
         return FALSE;
     }
 
@@ -3091,7 +3091,7 @@ static void play_sound(int event)
     /* Check to see if we have a sound again */
     if (!(wave || mp3))
     {
-        plog("SDL sound load failed.");
+        plog("SDL 声音加载失败。");
         return;
     }
 
@@ -3116,7 +3116,7 @@ errr init_sound_sdl(int argc, char **argv)
         if (prefix(argv[i], "-c"))
         {
             no_cache_audio = TRUE;
-            plog("Audio cache disabled.");
+            plog("音频缓存已禁用。");
             continue;
         }
     }
@@ -3761,7 +3761,7 @@ static void init_gfx(void)
 
             if (!file_exists(path))
             {
-                plog_fmt("Can't find file %s - graphics mode '%s' will be disabled.", path, GfxDesc[i].name);
+                plog_fmt("找不到文件 %s - 图形模式 '%s' 将被禁用。", path, GfxDesc[i].name);
                 GfxDesc[i].avail = FALSE;
             }
         }
@@ -3839,7 +3839,7 @@ static void init_sdl_local(void)
     VideoInfo = SDL_GetVideoInfo();
 
     /* Require at least 256 colors */
-    if (VideoInfo->vfmt->BitsPerPixel < 8) quit(format("This %s port requires lots of colors.", VERSION_NAME));
+    if (VideoInfo->vfmt->BitsPerPixel < 8) quit(format("%s 端口需要更多颜色支持。", VERSION_NAME));
 
     full_w = VideoInfo->current_w;
     full_h = VideoInfo->current_h;
@@ -3857,7 +3857,7 @@ static void init_sdl_local(void)
     AppWin = SDL_SetVideoMode(fullscreen ? full_w : screen_w,fullscreen ? full_h : screen_h, 0, vflags);
 
     /* Handle failure */
-    if (!AppWin) quit(format("Failed to create %dx%d window at %d bpp!",
+    if (!AppWin) quit(format("无法创建 %dx%d 分辨率、%d 色深的窗口！",
                              screen_w, screen_h, VideoInfo->vfmt->BitsPerPixel));
 
     /* Set the window caption */
@@ -4009,14 +4009,14 @@ int init_sdl(int argc, char *argv[])
     /* Initialize SDL:  Timer, video, and audio functions */
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
-        fprintf(stderr, "Couldn't initialize SDL: %s\n",SDL_GetError());
+        fprintf(stderr, "无法初始化 SDL：%s\n",SDL_GetError());
         return (2);
     }
 
     /* Initialize the TTF library */
     if (TTF_Init() < 0)
     {
-        fprintf(stderr, "Couldn't initialize TTF: %s\n",SDL_GetError());
+        fprintf(stderr, "无法初始化 TTF：%s\n",SDL_GetError());
         SDL_Quit();
         return (2);
     }

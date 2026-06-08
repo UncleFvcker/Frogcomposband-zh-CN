@@ -192,7 +192,7 @@ static _essence_group_t _essence_groups[ESSENCE_TYPE_MAX] = {
         { OF_IMPACT,        "冲击",          20, _ALLOW_HAFTED },
         { OF_STUN,          "震慑",            50, _ALLOW_HAFTED },
         { OF_VORPAL,        "斩首",         100, _ALLOW_SWORD },
-        { OF_VORPAL2,       "*Vorpal*",       100, _ALLOW_SWORD },
+        { OF_VORPAL2,       "*锋锐*",       100, _ALLOW_SWORD },
         { _ESSENCE_NONE } } },
 
     { ESSENCE_TYPE_RESISTS, "抗性", {

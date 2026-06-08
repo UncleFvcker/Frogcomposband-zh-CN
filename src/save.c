@@ -1506,31 +1506,31 @@ static char *versio_nimi(int tavu, int keski)
 		case 0: {
 			switch (tavu)
 			{
-				case 0: return "toffee";
-				case 1: return "chocolate";
-				case 2: return "liquorice";
-				case 3: return "salmiak";
-				case 4: return "strawberry";
-				case 5: return "peppermint";
-				case 6: return "mango";
-				case 7: return "nougat";
-				case 8: return "raspberry";
-				default: return "cloudberry";
+				case 0: return "太妃糖";
+				case 1: return "巧克力";
+				case 2: return "甘草糖";
+				case 3: return "咸甘草糖";
+				case 4: return "草莓";
+				case 5: return "薄荷";
+				case 6: return "芒果";
+				case 7: return "牛轧糖";
+				case 8: return "覆盆子";
+				default: return "云莓";
 			}
 		}
 		default: {
 			switch (tavu)
 			{
-				case 0: return "toffee";
-				case 1: return "chocolate";
-				case 2: return "liquorice";
-				case 3: return "salmiak";
-				case 4: return "raspberry";
-				case 5: return "spearmint";
-				case 6: return "peach";
-				case 7: return "apricot";
-				case 8: return "blueberry";
-				default: return "cloudberry";
+				case 0: return "太妃糖";
+				case 1: return "巧克力";
+				case 2: return "甘草糖";
+				case 3: return "咸甘草糖";
+				case 4: return "覆盆子";
+				case 5: return "绿薄荷";
+				case 6: return "桃子";
+				case 7: return "杏子";
+				case 8: return "蓝莓";
+				default: return "云莓";
 			}
 		}
 	}
@@ -1650,7 +1650,7 @@ bool load_player(void)
         fkk = my_fopen(temp, "w");
 
         /* Dump a line of info */
-        fprintf(fkk, "Lock file for savefile '%s'\n", savefile);
+        fprintf(fkk, "存档文件 '%s' 的锁定文件\n", savefile);
 
         /* Close the lock file */
         my_fclose(fkk);
@@ -1818,7 +1818,7 @@ bool load_player(void)
 
     /* Message */
     msg_format("读取 %d.%d.%s 版本的存档文件时出错 (%s)。",
-           what, (z_major>9) ? z_major - 10 : z_major, z_minor, z_patch);
+           (z_major>9) ? z_major - 10 : z_major, z_minor, z_patch, what);
     msg_print(NULL);
 
     /* Oops */

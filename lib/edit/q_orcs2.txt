@@ -6,18 +6,18 @@ K:99
 ?:1
 
 ?:[EQU $QUEST60 Taken InProgress]
-D:Thank you for taking care of the orcs. I had my men search the
-D:area after you were finished and they discovered a secret tunnel
-D:in a nearby hill. We suspect this is where the orcs are coming
-D:from. Secure the tunnels and you will be rewarded.
+D:感谢你解决了那些兽人。在你完事之后，我派人搜查了
+D:那片区域，他们在附近的一座山丘里发现了一条
+D:秘密隧道。我们怀疑兽人就是从那里
+D:出来的。肃清隧道，你会得到奖励的。
 ?:1
 
 ?:[EQU $QUEST60 Completed]
-D:You helped make the city safer from orcs.
+D:你让城市免受兽人侵扰，变得更加安全了。
 ?:1
 
 ?:[EQU $QUEST60 Failed]
-D:You have failed me, beware you do not do so again!
+D:你让我失望了，小心别再这样了！
 ?:1
 
 T:QUEST:NORMAL

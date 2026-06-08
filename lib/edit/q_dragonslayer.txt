@@ -1,15 +1,15 @@
 ?:[EQU $QUEST79 Taken InProgress]
-D:You're pretty strong, so how about something to really 
-D:test you. Go to Tiamat's lair and kill ten great wyrms of
-D:many colours. That'll show us if you're really great.
+D:你挺强的，所以不如来点真正能
+D:考验你的东西。去提亚马特的巢穴（Tiamat's lair）杀掉十只
+D:多彩巨龙。那才能证明你是否真的很伟大。
 ?:1
 
 ?:[EQU $QUEST79 Completed]
-D:Nicely done. Here's another trophy of your victory.
+D:干得漂亮。这是你胜利的另一件战利品。
 ?:1
 
 ?:[EQU $QUEST79 Failed]
-D:So you can't handle big dragons.
+D:看来你对付不了大龙。
 ?:1
 
 R:OBJ(dragon shield):ART(*)

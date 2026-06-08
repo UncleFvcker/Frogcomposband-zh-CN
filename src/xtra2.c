@@ -2643,7 +2643,7 @@ static void get_exp_from_mon(int dam, monster_type *m_ptr, bool mon_dead)
         m_ptr->pexp += pexp;
 #if 0
         msg_format(
-            "Gain %d.%2.2d XP (Max %d.%2.2d, Mon %d.%2.2d, Actual %d %u)",
+            "获得 %d.%2.2d XP (上限 %d.%2.2d, 怪物 %d.%2.2d, 实际 %d %u)",
             pexp/100, pexp%100,
             mexp/100, mexp%100,
             m_ptr->pexp/100, m_ptr->pexp%100,
@@ -2663,7 +2663,7 @@ static void get_exp_from_mon(int dam, monster_type *m_ptr, bool mon_dead)
         quest_ptr q_ptr = quests_get_current();
         if (q_ptr)
         {
-             if ((strpos("暗影集市", q_ptr->name)) || (strpos("清理", q_ptr->name)))
+             if ((q_ptr->id == QUEST_SHADOW_FAIRIES) || prefix(q_ptr->name, "Clear"))
              {
                  s64b_mul(&new_exp, &new_exp_frac, 0, 2);
                  s64b_div(&new_exp, &new_exp_frac, 0, 3);
@@ -3631,23 +3631,23 @@ cptr mon_health_desc(monster_type *m_ptr)
     int           perc = 100 * m_ptr->hp / m_ptr->maxhp;
 
     if (m_ptr->hp >= m_ptr->maxhp)
-        return living ? "unhurt" : "undamaged";
+        return living ? "毫发无伤" : "完好无损";
     else if (perc >= 60)
-        return living ? "somewhat wounded" : "somewhat damaged";
+        return living ? "有些受伤" : "有些受损";
     else if (perc >= 25)
-        return living ? "wounded" : "damaged";
+        return living ? "受伤了" : "受损了";
     else if (perc >= 10)
-        return living ? "badly wounded" : "badly damaged";
+        return living ? "受了重伤" : "严重受损";
 
-    return living ? "almost dead" : "almost destroyed";
+    return living ? "濒临死亡" : "快被摧毁了";
 }
 
 cptr mon_allegiance_desc(monster_type *m_ptr)
 {
     if (is_pet(m_ptr))
-        return "pet";
+        return "宠物";
     else if (is_friendly(m_ptr))
-        return "friendly";
+        return "友善的";
     return ""; /* Hostile is to be assumed! */
 }
 
@@ -4186,7 +4186,7 @@ static int target_set_aux(int y, int x, int mode, cptr info)
     /* Hack -- hallucination */
     if (p_ptr->image)
     {
-        cptr name = "something strange";
+        cptr name = "一些奇怪的东西";
 
 
         /* Display a message */
@@ -4422,7 +4422,7 @@ static int target_set_aux(int y, int x, int mode, cptr info)
         if (boring)
         {
             /* Display rough information about items */
-            sprintf(out_val, "%s%s%sa pile of %d items [x,%s]",
+            sprintf(out_val, "%s%s%s有一堆包含 %d 件物品 [x,%s]",
                 s1, s2, s3, obj_ct, info);
 
             prt(out_val, 0, 0);
@@ -4445,7 +4445,7 @@ static int target_set_aux(int y, int x, int mode, cptr info)
                 doc_range_middle_lines(doc, top, top + lines),
                 doc_pos_create(r.x, r.y));
 
-            sprintf(out_val, "%s%s%sa pile of %d items [Enter,%s]",
+            sprintf(out_val, "%s%s%s有一堆包含 %d 件物品 [Enter,%s]",
                 s1, s2, s3, obj_ct, info);
             prt(out_val, 0, 0);
             query = inkey();
@@ -4497,9 +4497,9 @@ static int target_set_aux(int y, int x, int mode, cptr info)
         else if (have_flag(f_ptr->flags, FF_ENTRANCE))
         {
             if (d_info[c_ptr->special].flags1 & DF1_RANDOM)
-                name = format("%s (level ?)", d_text + d_info[c_ptr->special].text);
+                name = format("%s (等级 ?)", dungeon_display_name(c_ptr->special));
             else
-                name = format("%s (level %d)", d_text + d_info[c_ptr->special].text, d_info[c_ptr->special].mindepth);
+                name = format("%s (等级 %d)", dungeon_display_name(c_ptr->special), d_info[c_ptr->special].mindepth);
         }
         else if (have_flag(f_ptr->flags, FF_TOWN))
         {
@@ -4507,7 +4507,7 @@ static int target_set_aux(int y, int x, int mode, cptr info)
         }
         else if (p_ptr->wild_mode && (feat == feat_floor))
         {
-            name = "road";
+            name = "道路";
         }
         else
         {
@@ -4564,7 +4564,7 @@ static int target_set_aux(int y, int x, int mode, cptr info)
             int dy = (py > y) ? (py - y) : (y - py);
             int dx = (px > x) ? (px - x) : (x - px);
             int d  = (dy > dx) ? (dy + (dx>>1)) : (dx + (dy>>1));
-            sprintf(out_val, "%s%s%s%s [%s] (Rng %d)", s1, s2, s3, name, info, d);
+            sprintf(out_val, "%s%s%s%s [%s] (距离 %d)", s1, s2, s3, name, info, d);
         }
         else
             sprintf(out_val, "%s%s%s%s [%s]", s1, s2, s3, name, info);

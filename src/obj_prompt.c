@@ -353,8 +353,8 @@ static void _display(obj_prompt_context_ptr context)
     if (tab->page_ct > 1)
     {
         doc_printf(context->doc,
-            "<color:B>-%s-</color> <color:G>Page %d of %d</color>\n",
-            tab->page == tab->page_ct - 1 ? "less" : "more",
+            "<color:B>-%s-</color> <color:G>第 %d 页，共 %d 页</color>\n",
+            tab->page == tab->page_ct - 1 ? "更少" : "更多",
             tab->page + 1, tab->page_ct);
     }
     if (!(context->prompt->flags & (INV_SHOW_FAIL_RATES | INV_SHOW_VALUE)))

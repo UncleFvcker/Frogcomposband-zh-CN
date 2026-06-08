@@ -1,0 +1,1460 @@
+{
+  "stats": {
+    "eligible": 4739,
+    "exact": 3263,
+    "sameLineUnique": 13,
+    "uniqueInFile": 486,
+    "already": 0,
+    "conflict": 2,
+    "notFound": 855,
+    "ambiguous": 120,
+    "filesWritten": 151
+  },
+  "skippedSample": [
+    {
+      "reason": "not-found",
+      "file": "src/arky.c",
+      "line": 283,
+      "col": 45,
+      "source": "You are about to flee the current level. Are you sure?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/artifact.c",
+      "line": 3150,
+      "col": 24,
+      "source": "What do you want to call the artifact?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 2511,
+      "col": 30,
+      "source": "Pick up %s?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 2650,
+      "col": 21,
+      "source": "These lines will be deleted. Are you sure?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 3239,
+      "col": 22,
+      "source": "and automatically identify"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 3251,
+      "col": 22,
+      "source": "on"
+    },
+    {
+      "reason": "conflict",
+      "file": "src/autopick.c",
+      "line": 3256,
+      "source": "all",
+      "zh": "所有"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 3277,
+      "col": 26,
+      "source": "whose"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 3299,
+      "col": 26,
+      "source": "which"
+    },
+    {
+      "reason": "conflict",
+      "file": "src/autopick.c",
+      "line": 3301,
+      "source": ", and",
+      "zh": "，而且"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 3317,
+      "col": 22,
+      "source": "Display these items as wanted in object list."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 3320,
+      "col": 22,
+      "source": "Do not display as wanted."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 3991,
+      "col": 21,
+      "source": "Search key(^I:inven ^L:destroyed):"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 4508,
+      "col": 27,
+      "source": "Left (Left Arrow key)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 4509,
+      "col": 27,
+      "source": "Down (Down Arrow key)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 4510,
+      "col": 27,
+      "source": "Up (Up Arrow key)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 4511,
+      "col": 27,
+      "source": "Right (Right Arrow key)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 4514,
+      "col": 27,
+      "source": "Page up (PageUp key)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 4516,
+      "col": 27,
+      "source": "Top (Home key)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/autopick.c",
+      "line": 4517,
+      "col": 27,
+      "source": "Bottom (End key)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/birth.c",
+      "line": 35,
+      "col": 1,
+      "source": "The books of Rage describe various techniques. To learn a new technique, you must perform a ritual of rage, destroying the book in the process. Once learned, you may use techniques without requiring the corresponding Rage book, but you will need to find many copies of each book in order to learn all of the techniques."
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/bldg.c",
+      "line": 155,
+      "col": 35,
+      "source": "(%dgp)",
+      "count": 3
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/bldg.c",
+      "line": 163,
+      "col": 34,
+      "source": "(closed)",
+      "count": 2
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/bldg.c",
+      "line": 174,
+      "col": 35,
+      "source": "(%dgp)",
+      "count": 3
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/bldg.c",
+      "line": 182,
+      "col": 34,
+      "source": "(closed)",
+      "count": 2
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/bldg.c",
+      "line": 193,
+      "col": 35,
+      "source": "(%dgp)",
+      "count": 3
+    },
+    {
+      "reason": "not-found",
+      "file": "src/bldg.c",
+      "line": 736,
+      "col": 19,
+      "source": "`"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/bldg.c",
+      "line": 937,
+      "col": 25,
+      "source": "Your wager (1-%d) ?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/bldg.c",
+      "line": 979,
+      "col": 30,
+      "source": "Current Wager: %9d"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/bldg.c",
+      "line": 1001,
+      "col": 38,
+      "source": "Black die: %d Black Die: %d"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/bldg.c",
+      "line": 1020,
+      "col": 38,
+      "source": "First roll: %d %d Total: %d"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/bldg.c",
+      "line": 1038,
+      "col": 46,
+      "source": "Roll result: %d %d Total: %d"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/bldg.c",
+      "line": 1171,
+      "col": 34,
+      "source": "Current Gold: %9d"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/bldg.c",
+      "line": 1521,
+      "col": 121,
+      "source": "(clone)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/bldg.c",
+      "line": 1555,
+      "col": 25,
+      "source": "Your wager (1-%d) ?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/bldg.c",
+      "line": 1623,
+      "col": 17,
+      "source": "corpse ---- $%d"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/bldg.c",
+      "line": 1758,
+      "col": 18,
+      "source": "Convert %s into money?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/bldg.c",
+      "line": 1778,
+      "col": 18,
+      "source": "Convert %s into money?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/bldg.c",
+      "line": 1838,
+      "col": 18,
+      "source": "Hand %s over?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/bldg.c",
+      "line": 2401,
+      "col": 9,
+      "source": "'Protection Rate' means how much damage is reduced by your armor.\\nNote that the Protection rate is effective only against normal 'attack' and 'shatter' type melee attacks, and has no effect against any other types such as 'poison'.\\n \\n'Dodge Rate' indicates the success rate on dodging the monster's melee attacks. It is depend on the level of the monster and your AC.\\n \\n'Average Damage' indicates the expected amount of damage when you are attacked by normal melee attacks with power=60."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cave.c",
+      "line": 1832,
+      "col": 6,
+      "source": "^Ring of"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cave.c",
+      "line": 1833,
+      "col": 6,
+      "source": "^Amulet of"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cave.c",
+      "line": 1834,
+      "col": 6,
+      "source": "^Scroll of"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cave.c",
+      "line": 1835,
+      "col": 6,
+      "source": "^Scroll titled"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cave.c",
+      "line": 1836,
+      "col": 6,
+      "source": "^Wand of"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cave.c",
+      "line": 1837,
+      "col": 6,
+      "source": "^Rod of"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cave.c",
+      "line": 1838,
+      "col": 6,
+      "source": "^Staff of"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cave.c",
+      "line": 1839,
+      "col": 6,
+      "source": "^Potion of"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cave.c",
+      "line": 1841,
+      "col": 6,
+      "source": "^Book of"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cave.c",
+      "line": 1842,
+      "col": 6,
+      "source": "Magic ["
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cave.c",
+      "line": 1843,
+      "col": 6,
+      "source": "Book ["
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cave.c",
+      "line": 1844,
+      "col": 6,
+      "source": "Arts ["
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cave.c",
+      "line": 1845,
+      "col": 6,
+      "source": "^Set of"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cave.c",
+      "line": 1846,
+      "col": 6,
+      "source": "^Pair of"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd1.c",
+      "line": 1243,
+      "col": 51,
+      "source": "and"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd1.c",
+      "line": 1249,
+      "col": 33,
+      "source": "and"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd1.c",
+      "line": 2002,
+      "col": 16,
+      "source": "<color:R>powerfully</color>"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd1.c",
+      "line": 2004,
+      "col": 16,
+      "source": "with a <color:R>deadly</color> bite"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd2.c",
+      "line": 2609,
+      "col": 18,
+      "source": "<color:y>Rest</color> (0-9999, '*' for HP/SP, '&' as needed):"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd3.c",
+      "line": 1052,
+      "col": 36,
+      "source": "other"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd3.c",
+      "line": 1098,
+      "col": 33,
+      "source": "(asleep)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd3.c",
+      "line": 1940,
+      "col": 50,
+      "source": "other"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 568,
+      "col": 49,
+      "source": "no"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 733,
+      "col": 52,
+      "source": "no"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 881,
+      "col": 33,
+      "source": "no"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 895,
+      "col": 33,
+      "source": "no"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 938,
+      "col": 59,
+      "source": "no"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 2749,
+      "col": 25,
+      "source": "Command (n/N/^N/a/A/^A/c/C/^C/v/V/^V):"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 2843,
+      "col": 25,
+      "source": "Command (n/N/^N/a/A/^A/c/C/^C/v/V/^V):"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 2940,
+      "col": 25,
+      "source": "Command (n/N/^N/a/A/^A/c/C/^C/l/L/^L/d/D/^D/v/V/^V):"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 3248,
+      "col": 25,
+      "source": "Command (n/N/k/K/r/R/g/G/b/B):"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 3475,
+      "col": 36,
+      "source": "(Beta)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 4585,
+      "col": 22,
+      "source": "Surface alive: %3d\\n"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 4590,
+      "col": 22,
+      "source": "Level %3d-%3d alive: %3d\\n"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 4595,
+      "col": 22,
+      "source": "Level 101- alive: %3d\\n"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 4602,
+      "col": 22,
+      "source": "Total alive: %3d\\n\\n"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 4615,
+      "col": 22,
+      "source": "%s (level %d)\\n"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 5120,
+      "col": 18,
+      "source": "Total: %d pet%s.\\n"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 5122,
+      "col": 18,
+      "source": "Upkeep: %d%% mana.\\n"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 5247,
+      "col": 38,
+      "source": "1 pile of %s\\n"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 5269,
+      "col": 17,
+      "source": "Total: %d creature%s killed.\\n"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 5926,
+      "col": 34,
+      "source": "Dsrm Dvce Save Stlh Srch Prcp Melee Bows"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd4.c",
+      "line": 6440,
+      "col": 30,
+      "source": "[Shared]"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd5.c",
+      "line": 140,
+      "col": 32,
+      "source": "(%^ss %c-%c, *=List, ESC=exit) %^s which %s?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd5.c",
+      "line": 281,
+      "col": 40,
+      "source": "%^s %s (%d mana, %d%% fail)?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd5.c",
+      "line": 728,
+      "col": 13,
+      "source": "(<color:keypress>F</color> for the Force)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd5.c",
+      "line": 729,
+      "col": 13,
+      "source": "(<color:keypress>N</color> for Ninjutsu)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd5.c",
+      "line": 730,
+      "col": 13,
+      "source": "(<color:keypress>P</color> for Politics)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd5.c",
+      "line": 1584,
+      "col": 38,
+      "source": "Are you sure? (%s)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd5.c",
+      "line": 2247,
+      "col": 17,
+      "source": "(Command %c-%c, *=List, ESC=exit) Select a command:"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/cmd5.c",
+      "line": 2371,
+      "col": 30,
+      "source": "Use %s?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/corny.c",
+      "line": 413,
+      "col": 18,
+      "source": "Convert %s into money?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/corny.c",
+      "line": 1204,
+      "col": 38,
+      "source": "Unclaimed compensation: %d gp"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/corny.c",
+      "line": 1209,
+      "col": 49,
+      "source": "(Claimable: %d)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/demigod.c",
+      "line": 487,
+      "col": 26,
+      "source": "Aphrodite is the Greek goddess of love, beauty, pleasure, and procreation. You inherit her sex appeal. As such, your pets are more obedient and shopkeepers fawn over you in their efforts to please you. You may kiss monsters and they might even decide to follow you with slavish devotion, though sometimes this just angers them."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/demigod.c",
+      "line": 502,
+      "col": 26,
+      "source": "Apollo has been variously recognized as a god of light and the sun, truth and prophecy, medicine, healing, plague, music, poetry, arts, archery, and more. You inherit powers of illumination and are completely immune to light based attacks. You are seldom blinded."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/demigod.c",
+      "line": 514,
+      "col": 26,
+      "source": "Ares is the bold son of Zeus and Hera, whose very name is feared and respected by warriors and citizens alike. His legendary combat prowess exceeds that of Zeus and Poseidon, but he is less skilled in wiles than the other Olympians. You inherit exceptional bonuses to combat and have a firm grip on your strength. Later in life, you will be able to fly into a berserk rage on command. However, your lust for combat decreases your stealth as you call out challenges to all that you meet. And your resistance to magic is suspect as well."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/demigod.c",
+      "line": 533,
+      "col": 26,
+      "source": "Artemis was often described as the daughter of Zeus and Leto, and the twin sister of Apollo. She was the Hellenic goddess of the hunt, wild animals, wilderness, childbirth, virginity and young girls, bringing and relieving disease in women; she often was depicted as a huntress carrying a bow and arrows. You inherit powers of archery and are very nimble. Your skills with the bow are unmatched and you shoot arrows with increased range and deadliness."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/demigod.c",
+      "line": 549,
+      "col": 26,
+      "source": "Athena is the great goddess of wisdom and the protector of Athens. She was born of Zeus and the Titan Metis, and her cunning far surpasses that of the other deities. You inherit great clarity of thought and magic and will be able to cast spells more reliably than other mortals. And should you fail to cast a spell, you will pay a reduced casting cost rather than the full amount. You also have a firm grip on your mental prowess."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/demigod.c",
+      "line": 564,
+      "col": 26,
+      "source": "Demeter is the goddess of the harvest, who presided over grains, the fertility of the earth, and the seasons. You gain powers of regeneration, healing, and temperance. Eventually, you will become resistant to the ravages of time."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/demigod.c",
+      "line": 576,
+      "col": 26,
+      "source": "Hades is Ruler of the Underworld. You gain resistance to nether forces, increased fortitude and have a firm grasp on your life and health."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/demigod.c",
+      "line": 589,
+      "col": 26,
+      "source": "Hephaestus was the god of technology, blacksmiths, craftsmen, artisans, sculptors, metals, metallurgy, fire and volcanoes. Like other mythic smiths but unlike most other gods, Hephaestus was lame, which gave him a grotesque appearance in Greek eyes. He served as the blacksmith of the gods. You inherit powers of enchantment and protection. Your equipment will not suffer diminution by corrosion or magical attack."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/demigod.c",
+      "line": 603,
+      "col": 26,
+      "source": "Hera was the wife and one of three sisters of Zeus. Her chief function was as the goddess of women and marriage. You inherit great clarity of mind and capacity for magic. You are very wise and have a firm grasp on your magical energy, which is even augmented."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/demigod.c",
+      "line": 617,
+      "col": 26,
+      "source": "Hermes, the Messenger, is the extremely cunning diplomat used by the Olympians to negotiate truces. With his Winged Sandals and his powerful magic, there is no place barred from him, and there is no way to detain him. You inherit great powers of motion and will never become slowed. Your stealth is better than your brethren and your speed will increase with experience."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/demigod.c",
+      "line": 632,
+      "col": 26,
+      "source": "Poseidon, Brother of Zeus, is Lord of the Seas and Storm. You inherit elemental protection and corrosive attacks that melt the armor of your foes."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/demigod.c",
+      "line": 644,
+      "col": 26,
+      "source": "Zeus, King of the gods and ruler of Mount Olympus, is god of the Sky and Thunder, and nominal husband of Hera. You inherit increased stature and your divine birth will be marked by your aura of electricity. You also resist lightning."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/devicemaster.c",
+      "line": 497,
+      "col": 13,
+      "source": "Devicemasters are excellent with magical devices, but poor in most other skills. They may shoot or use melee in a pinch, but this will never be their forte; instead, they conquer through their arsenal of magical devices.\\n \\nEach Devicemaster chooses to specialize in a particular class of devices, and will gain extra bonuses for speciality items. These bonuses include increased damage, increased speed of activation, extra resistance to charge draining, and even the ability to occasionally power these devices without consuming charges; each of these abilities becomes stronger with experience. In addition, speciality devices are easier to use, although all Devicemasters are also good with devices of other types.\\n \\nDevicemasters have several useful device-related powers; they may detect magical devices from a distance, and gain the powerful talent of Recharging very early on. At higher levels, they gain the ability to move effects from one device to another, or to move magical essences from one item to another if they specialize in Potions or Scrolls. In times of desperate need, the Devicemaster may drain a speciality item of multiple charges at once; this greatly increases the power of the effect, but may destroy the device in the process."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/devices.c",
+      "line": 488,
+      "col": 26,
+      "source": "It has unpredictable effects when you quaff it, either 1) curing 5000 HP and all temporary ailments, 2) increasing all stats, 3) decreasing all stats, 4) providing temporary light speed, 5) temporarily turning your skin to stone, 6) giving or curing mutations randomly, 7) repeatedly giving or curing mutations randomly, 8) temporarily making you gigantic, 9) triggering the Baby Foul Curse, 10) temporarily polymorphing you into an Ent, 11) making you hallucinate temporarily, 12) curing 420 HP and all ailments but making you hallucinate temporarily, or 13) exploding in your mouth for 11d66 damage, massive stunning and a dangerous wound."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/devices.c",
+      "line": 1160,
+      "col": 26,
+      "source": "You get temporary resistance to the elements and poison when you quaff it."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/devices.c",
+      "line": 3726,
+      "col": 41,
+      "source": "Teleport Level?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/disciple.c",
+      "line": 4,
+      "col": 5,
+      "source": "Trusted followers of mysterious ancient spirits known as the 'Purples', the Disciples roam the world running errands for their masters, learning mighty spells and receiving rare items as rewards for their work. There are three main flavors of Purple Disciples - disciples of Karrot, disciples of Yeqrezh, and disciples of a group of Purples known as the Troika. Each of the Purples expects different things of their Disciples, and each helps them achieve their ends in very different ways."
+    },
+    {
+      "reason": "not-found",
+      "file": "src/do-spell.c",
+      "line": 69,
+      "col": 29,
+      "source": "dam"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/do-spell.c",
+      "line": 111,
+      "col": 29,
+      "source": "heal"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/do-spell.c",
+      "line": 1898,
+      "col": 40,
+      "source": "Are you sure? (Teleport Level)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/do-spell.c",
+      "line": 2763,
+      "col": 33,
+      "source": "dam"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/do-spell.c",
+      "line": 3431,
+      "col": 33,
+      "source": "dam"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/do-spell.c",
+      "line": 4370,
+      "col": 40,
+      "source": "Are you sure? (Teleport Level)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/do-spell.c",
+      "line": 5207,
+      "col": 40,
+      "source": "Are you sure? (Teleport Level)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/do-spell.c",
+      "line": 5893,
+      "col": 33,
+      "source": "dam"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/do-spell.c",
+      "line": 8757,
+      "col": 26,
+      "source": "Fires a ball of hell fire to try revenging after few turns."
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/dungeon.c",
+      "line": 126,
+      "col": 38,
+      "source": "is",
+      "count": 3
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/dungeon.c",
+      "line": 126,
+      "col": 45,
+      "source": "are",
+      "count": 3
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/dungeon.c",
+      "line": 134,
+      "col": 38,
+      "source": "is",
+      "count": 3
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/dungeon.c",
+      "line": 134,
+      "col": 45,
+      "source": "are",
+      "count": 3
+    },
+    {
+      "reason": "not-found",
+      "file": "src/dungeon.c",
+      "line": 334,
+      "col": 22,
+      "source": "Teleport to level (%d-%d):"
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/dungeon.c",
+      "line": 1105,
+      "col": 56,
+      "source": "is",
+      "count": 3
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/dungeon.c",
+      "line": 1105,
+      "col": 63,
+      "source": "are",
+      "count": 3
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/dungeon.c",
+      "line": 1320,
+      "col": 48,
+      "source": "a fatal wound",
+      "count": 2
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/dungeon.c",
+      "line": 1385,
+      "col": 58,
+      "source": "flying over %s",
+      "count": 2
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/dungeon.c",
+      "line": 1427,
+      "col": 48,
+      "source": "flying over %s",
+      "count": 2
+    },
+    {
+      "reason": "not-found",
+      "file": "src/dungeon.c",
+      "line": 2246,
+      "col": 38,
+      "source": "Teleport?"
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/dungeon.c",
+      "line": 5088,
+      "col": 60,
+      "source": "a fatal wound",
+      "count": 2
+    },
+    {
+      "reason": "not-found",
+      "file": "src/effects.c",
+      "line": 6234,
+      "col": 37,
+      "source": "female"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/effects.c",
+      "line": 6240,
+      "col": 37,
+      "source": "male"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/effects.c",
+      "line": 6274,
+      "col": 36,
+      "source": "deformed"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/effects.c",
+      "line": 6556,
+      "col": 75,
+      "source": "while helpless"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/effects.c",
+      "line": 6557,
+      "col": 33,
+      "source": "(Foe)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/effects.c",
+      "line": 6565,
+      "col": 34,
+      "source": "Dump the screen?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/effects.c",
+      "line": 6597,
+      "col": 61,
+      "source": "Are you sure?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/equip.c",
+      "line": 646,
+      "col": 28,
+      "source": "Really use the %s {cursed}?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/files.c",
+      "line": 1820,
+      "col": 32,
+      "source": "Replace existing file %s?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/files.c",
+      "line": 2809,
+      "col": 31,
+      "source": "Do you want to retire?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/files.c",
+      "line": 2845,
+      "col": 34,
+      "source": "Are you sure?"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1117,
+      "col": 30,
+      "source": "(empty)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1538,
+      "col": 36,
+      "source": "no more"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1596,
+      "col": 36,
+      "source": "no more"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1681,
+      "col": 38,
+      "source": "of %s the Smith"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1692,
+      "col": 35,
+      "source": "'Nameless'"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1780,
+      "col": 36,
+      "source": "(empty)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1788,
+      "col": 40,
+      "source": "(disarmed)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1792,
+      "col": 40,
+      "source": "(unlocked)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1804,
+      "col": 44,
+      "source": "(Locked)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1809,
+      "col": 44,
+      "source": "(Poison Needle)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1814,
+      "col": 44,
+      "source": "(Poison Needle)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1819,
+      "col": 44,
+      "source": "(Gas Trap)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1824,
+      "col": 44,
+      "source": "(Gas Trap)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1829,
+      "col": 44,
+      "source": "(Explosion Device)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1837,
+      "col": 44,
+      "source": "(Summoning Runes)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1842,
+      "col": 44,
+      "source": "(Gleaming Black Runes)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1847,
+      "col": 44,
+      "source": "(Alarm)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1852,
+      "col": 44,
+      "source": "(Multiple Traps)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1953,
+      "col": 47,
+      "source": "[%d of %d]"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 1955,
+      "col": 47,
+      "source": "[%d of %d]"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 2106,
+      "col": 127,
+      "source": "charges"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 2108,
+      "col": 127,
+      "source": "charges"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 2111,
+      "col": 106,
+      "source": "charges"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 2185,
+      "col": 36,
+      "source": "(with"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 2189,
+      "col": 36,
+      "source": "turns of light)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 2195,
+      "col": 36,
+      "source": "(charging)"
+    },
+    {
+      "reason": "not-found",
+      "file": "src/flavor.c",
+      "line": 2274,
+      "col": 26,
+      "source": "%dsp"
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 19,
+      "col": 22,
+      "source": "Term-0 window",
+      "count": 6
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 20,
+      "col": 22,
+      "source": "Term-1 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 21,
+      "col": 22,
+      "source": "Term-2 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 22,
+      "col": 22,
+      "source": "Term-3 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 23,
+      "col": 22,
+      "source": "Term-4 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 24,
+      "col": 22,
+      "source": "Term-5 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 25,
+      "col": 22,
+      "source": "Term-6 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 26,
+      "col": 22,
+      "source": "Term-7 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 31,
+      "col": 22,
+      "source": "Term-0 window",
+      "count": 6
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 32,
+      "col": 22,
+      "source": "Term-1 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 33,
+      "col": 22,
+      "source": "Term-2 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 34,
+      "col": 22,
+      "source": "Term-3 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 35,
+      "col": 22,
+      "source": "Term-4 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 36,
+      "col": 22,
+      "source": "Term-5 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 37,
+      "col": 22,
+      "source": "Term-6 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 38,
+      "col": 22,
+      "source": "Term-7 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 43,
+      "col": 22,
+      "source": "Term-1 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 44,
+      "col": 22,
+      "source": "Term-2 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 45,
+      "col": 22,
+      "source": "Term-3 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 46,
+      "col": 22,
+      "source": "Term-4 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 47,
+      "col": 22,
+      "source": "Term-5 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 48,
+      "col": 22,
+      "source": "Term-6 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 49,
+      "col": 22,
+      "source": "Term-7 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 68,
+      "col": 22,
+      "source": "Term-0 window",
+      "count": 6
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 69,
+      "col": 22,
+      "source": "Term-1 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 70,
+      "col": 22,
+      "source": "Term-2 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 71,
+      "col": 22,
+      "source": "Term-3 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 72,
+      "col": 22,
+      "source": "Term-4 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 73,
+      "col": 22,
+      "source": "Term-5 window",
+      "count": 7
+    },
+    {
+      "reason": "ambiguous",
+      "file": "src/frogcomposband.rc",
+      "line": 74,
+      "col": 22,
+      "source": "Term-6 window",
+      "count": 7
+    }
+  ]
+}

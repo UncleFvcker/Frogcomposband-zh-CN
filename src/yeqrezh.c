@@ -1400,7 +1400,7 @@ static int _yeqrezh_gain_talent(int slot)
         {
             char buf[1024];
             int idx = choices[i];
-            sprintf(buf, "You will gain %s. Are you sure?", _yeqrezh_muts[idx].nimi);
+            sprintf(buf, "你将获得 %s。你确定吗？", _yeqrezh_muts[idx].nimi);
             if (get_check(buf))
             {
                 /* We need to do this first of all because mut_gain() can trigger a
@@ -1619,7 +1619,7 @@ void yeqrezh_help(FILE *fp)
     int i;
     variant v;
     var_init(&v);
-    fputs("<topic:Powers><style:heading>Table 4 - Yeqrezh Talents</style>\n\n", fp);
+    fputs("<topic:Powers><style:heading>表 4 - 耶克瑞什天赋</style>\n\n", fp);
     fputs("Disciples of Yeqrezh can choose five special gifts, one every ten levels. "
                "These gifts can take the form of new abilities, physical powers, or rare items; "
                "some can be chosen repeatedly, while others can only be picked once. "

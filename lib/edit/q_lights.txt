@@ -2,23 +2,23 @@
 # New quest for FrogComposband 7.1.chocolate
 
 ?:[EQU $QUEST3 Taken InProgress]
-D:Unusual and dangerous phenomena have been reported in the marshes to the
-D:northeast. Strange lights are said to blink around, luring travelers away
-D:from safe paths and into quagmires; and one fowler even claims to have
-D:narrowly escaped with his life after being set upon by what looked like
-D:an enormous rolling pumpkin! I do not know how much truth there is behind
-D:these stories, but I would appreciate it if you investigated and made sure
-D:the swamps are safe.
+D:据报道，东北部的沼泽中出现了不寻常且危险的
+D:现象。据说周围闪烁着奇怪的灯光，引诱旅行者
+D:离开安全的道路并陷入泥潭；甚至有一位捕鸟人声称，
+D:他在遭到一个看起来像巨大的滚动南瓜的东西袭击后，
+D:险些丧命！我不知道这些故事背后有
+D:多少真相，但如果你能去调查并确保
+D:沼泽是安全的，我将不胜感激。
 ?:1
 
 ?:[EQU $QUEST3 Completed]
-D:Thank you! I sent a couple of scouts to see for themselves what happened,
-D:and one of them discovered this lamp in the remains of that giant pumpkin.
-D:Please take it as a reward for your good work.
+D:谢谢你！我派了几名斥候去亲自看看发生了什么事，
+D:其中一人在那个巨型南瓜的残骸中发现了这盏灯。
+D:请收下它作为对你出色工作的奖励。
 ?:1
 
 ?:[EQU $QUEST3 Failed]
-D:Oh no! If this keeps up, next we'll have hydras in the swamps...
+D:哦不！如果这样下去，接下来沼泽里就要出现九头蛇了……
 ?:1
 
 T:QUEST:NORMAL

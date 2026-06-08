@@ -3,20 +3,20 @@
 # slightly edited for FrogComposband
 
 ?:[EQU $QUEST19 Taken InProgress]
-D:We need your help, adventurer. A hole has opened up to the
-D:northwest of our town, and strange demons lurk within. One
-D:of our townspeople investigated it unwittingly and barely 
-D:escaped with his life! Please destroy these demons and 
-D:ensure the continued safety of our town, else we are surely
-D:doomed.
+D:我们需要你的帮助，冒险者。在我们镇子的西北方
+D:裂开了一个大洞，里面潜伏着奇怪的恶魔。一位
+D:不知情的镇民去调查了那里，结果差点
+D:丢了性命才逃出来！请摧毁这些恶魔，
+D:以确保我们城镇的长久安全，否则我们肯定
+D:在劫难逃。
 ?:1
 
 ?:[EQU $QUEST19 Completed]
-D:Thank you for killing the demons!
+D:感谢你杀死了那些恶魔！
 ?:1
 
 ?:[EQU $QUEST19 Failed]
-D:I've sent out someone else to do the job. Now leave me alone!
+D:我已经派了别人去干这差事了。现在别烦我了！
 ?:1
 
 T:QUEST:NORMAL:NO_ROTATE

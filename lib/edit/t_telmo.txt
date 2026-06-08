@@ -114,49 +114,49 @@ L:b:BUILDING_1(0)
 
 #################### Buildings ####################
 
-B:0:N:Library:Astinus Loremaster:Human?
-B:0:A:0:Research item:2000:2000:a:1:0
+B:0:N:图书馆:知识传授者阿斯提努斯:人类？
+B:0:A:0:研究物品:2000:2000:a:1:0
 ?:[EQU $QUEST5 Finished]
-B:0:A:0:Research item:1000:1000:a:1:0
+B:0:A:0:研究物品:1000:1000:a:1:0
 ?:1
-B:0:A:1:Town Overview:0:0:h:2:0
-B:0:A:2:Identify item:50:50:i:44:0
+B:0:A:1:城镇纵览:0:0:h:2:0
+B:0:A:2:鉴定单件物品:50:50:i:44:0
 
-B:1:N:Castle:Denegor III:Human
-B:1:A:0:Request quest:0:0:q:6:0
+B:1:N:城堡:丹内戈三世:人类
+B:1:A:0:请求任务:0:0:q:6:0
 
-B:3:N:Casino:Materim the Sly:Human
-B:3:A:0:In-Between:0:0:b:12:0
-B:3:A:1:Play craps:0:0:c:14:0
-B:3:A:2:Spin the wheel:0:0:s:15:0
-B:3:A:3:Play dice slots:0:0:d:16:0
-B:3:A:4:Monster arena:0:0:m:36:0
-B:3:A:5:Poker:0:0:p:43:0
-B:3:A:6:Game rules:0:0:r:13:0
+B:3:N:赌场:狡猾的麦特林:人类
+B:3:A:0:夹牌游戏(In-Between):0:0:b:12:0
+B:3:A:1:玩掷骰子:0:0:c:14:0
+B:3:A:2:转轮盘:0:0:s:15:0
+B:3:A:3:玩骰子老虎机:0:0:d:16:0
+B:3:A:4:怪物竞技场:0:0:m:36:0
+B:3:A:5:扑克:0:0:p:43:0
+B:3:A:6:游戏规则:0:0:r:13:0
 
-B:4:N:Inn:Owen the Bald:Human
-B:4:A:0:Rest for the night:20:20:r:17:0
-B:4:A:1:Buy food and drink:1:1:f:18:1
-B:4:A:2:Listen for rumors:10:10:u:19:0
-B:4:A:3:Teleport to other town:500:500:m:42:0
-B:4:A:4:Ask about your reputation:1:1:a:55:0
+B:4:N:旅店:秃子欧文:人类
+B:4:A:0:住宿一晚:20:20:r:17:0
+B:4:A:1:购买食物和饮料:1:1:f:18:1
+B:4:A:2:打听传闻:10:10:u:19:0
+B:4:A:3:传送到其他城镇:500:500:m:42:0
+B:4:A:4:询问你的声望:1:1:a:55:0
 B:4:R:*:Member
 
-B:5:N:Beastmaster:Lorien Goldenhair:Elf
-B:5:A:0:Research monster:10000:10000:r:20:0
+B:5:N:驯兽师:金发罗瑞林:精灵
+B:5:A:0:研究怪物:10000:10000:r:20:0
 ?:[EQU $QUEST5 Finished]
-B:5:A:0:Research monster:1200:1200:r:20:0
+B:5:A:0:研究怪物:1200:1200:r:20:0
 ?:1
 
-B:6:N:Weaponmaster:Suiyan the Swift:Human
-B:6:A:0:Evaluate AC:1000:1000:a:46:0
+B:6:N:武器大师:迅捷的岁宴:人类
+B:6:A:0:评估护甲等级(AC):1000:1000:a:46:0
 ?:[EQU $QUEST5 Finished]
-B:6:A:0:Evaluate AC:150:150:a:46:0
+B:6:A:0:评估护甲等级(AC):150:150:a:46:0
 ?:1
 
-B:7:N:Fighters' Hall:Barak the Brave:Human
-B:7:A:0:Enchant weapon:0:0:w:23:0
-B:7:A:1:Enchant armor:0:0:a:24:0
+B:7:N:战士公会:勇敢的巴拉克:人类
+B:7:A:0:强化武器:0:0:w:23:0
+B:7:A:1:强化护甲:0:0:a:24:0
 B:7:C:*:None
 B:7:C:Warrior:Owner
 B:7:C:Samurai:Owner
@@ -165,29 +165,29 @@ B:7:C:Berserker:Owner
 B:7:C:Blood-Knight:Owner
 B:7:C:Mauler:Owner
 
-B:9:N:Temple of Life:Holy Crysania:Human
-B:9:A:0:Healing prayer:0:150:h:28:0
-B:9:A:1:Restoration:400:1500:r:29:0
+B:9:N:生命神殿:神圣的克丽珊娜:人类
+B:9:A:0:治疗祈祷:0:150:h:28:0
+B:9:A:1:属性恢复:400:1500:r:29:0
 B:9:M:*:None
 B:9:M:Life:Owner
 
-B:10:N:Thieves' Guild:Lardbottom the Vain:Hobbit
-B:10:A:1:Rest for the night:0:100:r:17:0
-B:10:A:2:Identify possessions:100:2000:i:26:0
+B:10:N:盗贼公会:虚荣的大屁股:霍比特人
+B:10:A:1:住宿一晚:0:100:r:17:0
+B:10:A:2:鉴定所有物品:100:2000:i:26:0
 B:10:C:*:None
 B:10:C:Rogue:Owner
 
-B:11:N:Archers' Guild:Trallin Fleetfoot:Half-elf
-B:11:A:0:Enchant missiles:20:40:a:30:0
-B:11:A:1:Enchant bow:0:0:b:31:0
+B:11:N:弓箭手公会:捷足者特拉林:半精灵
+B:11:A:0:强化弹药:20:40:a:30:0
+B:11:A:1:强化弓:0:0:b:31:0
 B:11:C:*:None
 B:11:C:Ranger:Owner
 B:11:C:Archer:Owner
 B:11:C:Sniper:Owner
 
-B:12:N:Paladins' Guild:Sir Langordathur:Human
-B:12:A:0:Enchant armor:300:600:a:24:0
-B:12:A:1:See Healers:0:150:h:28:0
+B:12:N:圣武士公会:兰戈达图尔爵士:人类
+B:12:A:0:强化护甲:300:600:a:24:0
+B:12:A:1:拜访治疗师:0:150:h:28:0
 B:12:C:*:None
 B:12:C:Paladin:Owner
 

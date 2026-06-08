@@ -66,58 +66,58 @@ enum {
 static _parse_t _annoy_tbl[] = {
     { "AMNESIA", { MST_ANNOY, ANNOY_AMNESIA },
         { "失忆", TERM_L_BLUE,
-          "$CASTER tries to blank your mind.",
-          "$CASTER tries to blank your mind."}, MSF_TARGET | MSF_DIRECT},
+          "$CASTER 试图让你的大脑一片空白。",
+          "$CASTER 试图让你的大脑一片空白。"}, MSF_TARGET | MSF_DIRECT},
     { "ANIM_DEAD", { MST_ANNOY, ANNOY_ANIMATE_DEAD },
         { "操纵死尸", TERM_L_DARK,
           "$CASTER施展法术复活死者。",
-          "$CASTER mumbles."}},
+          "$CASTER 喃喃自语着。"}},
     { "BLIND", { MST_ANNOY, ANNOY_BLIND },
         { "致盲", TERM_ORANGE,
           "$CASTER施展法术，灼烧了你的眼睛！",
-          "$CASTER mumbles."}, MSF_TARGET | MSF_DIRECT},
+          "$CASTER 喃喃自语着。"}, MSF_TARGET | MSF_DIRECT},
     { "CONFUSE", { MST_ANNOY, ANNOY_CONFUSE },
         { "混乱", TERM_L_UMBER,
-          "$CASTER creates a mesmerizing illusion.",
-          "$CASTER mumbles, and you hear puzzling noises."}, MSF_TARGET | MSF_DIRECT},
+          "$CASTER 制造了令人着迷的幻象。",
+          "$CASTER 喃喃自语着，你听到了令人困惑的声音。"}, MSF_TARGET | MSF_DIRECT},
     { "DARKNESS", { MST_ANNOY, ANNOY_DARKNESS },
         { "制造黑暗", TERM_L_DARK }},
     { "PARALYZE", { MST_ANNOY, ANNOY_PARALYZE },
         { "麻痹", TERM_RED,
-          "$CASTER stares deep into your eyes!",
-          "$CASTER mumbles."}, MSF_TARGET},
+          "$CASTER 凝视着你的眼睛深处！",
+          "$CASTER 喃喃自语着。"}, MSF_TARGET},
     { "SCARE", { MST_ANNOY, ANNOY_SCARE },
         { "惊骇", TERM_RED,
-          "$CASTER casts a fearful illusion.",
-          "$CASTER mumbles, and you hear scary noises."}, MSF_TARGET | MSF_DIRECT},
+          "$CASTER 施放了令人恐惧的幻象。",
+          "$CASTER 喃喃自语着，你听到了可怕的声音。"}, MSF_TARGET | MSF_DIRECT},
     { "SLOW", { MST_ANNOY, ANNOY_SLOW },
         { "减速", TERM_SLATE,
           "$CASTER吸取了你肌肉中的力量！",
           "$CASTER吸取了你肌肉中的力量！"}, MSF_TARGET | MSF_DIRECT},
     { "SHRIEK", { MST_ANNOY, ANNOY_SHRIEK },
         { "尖叫", TERM_L_BLUE,
-          "$CASTER makes a high pitched shriek.",
-          "$CASTER makes a high pitched shriek." }, MSF_INNATE },
+          "$CASTER 发出了尖厉的刺耳尖叫。",
+          "$CASTER 发出了尖厉的刺耳尖叫。" }, MSF_INNATE },
     { "TELE_LEVEL", { MST_ANNOY, ANNOY_TELE_LEVEL },
         { "传送楼层", TERM_WHITE,
-          "$CASTER gestures at your feet.",
-          "$CASTER mumbles strangely."}, MSF_TARGET | MSF_DIRECT},
+          "$CASTER 指向你的双脚。",
+          "$CASTER 奇怪地喃喃自语着。"}, MSF_TARGET | MSF_DIRECT},
     { "TELE_TO", { MST_ANNOY, ANNOY_TELE_TO },
         { "传送至身边", TERM_WHITE,
-          "$CASTER commands you to return.",
-          "$CASTER mumbles." }, MSF_TARGET | MSF_DIRECT},
+          "$CASTER 命令你返回。",
+          "$CASTER 喃喃自语着。" }, MSF_TARGET | MSF_DIRECT},
     { "TRAPS", { MST_ANNOY, ANNOY_TRAPS },
         { "制造陷阱", TERM_WHITE,
           "$CASTER施展法术并邪恶地咯咯大笑。",
-          "$CASTER mumbles gleefully.",
-          "You create a trap." }},
+          "$CASTER 兴高采烈地喃喃自语着。",
+          "你制造了一个陷阱。" }},
     { "WORLD", { MST_ANNOY, ANNOY_WORLD },
         { "时间停止", TERM_L_BLUE}},
     { "NO_AIR", { MST_ANNOY, ANNOY_NO_AIR },
         { "抽空空气", TERM_L_BLUE,
-          "$CASTER takes a deep breath.",
-          "$CASTER takes a deep breath.",
-          "You take a deep breath." }},
+          "$CASTER 深吸了一口气。",
+          "$CASTER 深吸了一口气。",
+          "你深吸了一口气。" }},
     {0}
 };
 
@@ -130,22 +130,22 @@ enum {
 static _parse_t _biff_tbl[] = {
     { "ANTI_MAGIC", { MST_BIFF, BIFF_ANTI_MAGIC },
         { "反魔法", TERM_L_BLUE,
-          "$CASTER invokes <color:B>Anti-Magic</color>.",
-          "$CASTER mumbles powerfully.",
+          "$CASTER 唤起了<color:B>反魔法</color>领域。",
+          "$CASTER 强有力地念着咒语。",
           "",
-          "You invoke <color:B>Anti-Magic</color>." }, MSF_TARGET | MSF_DIRECT},
+          "你唤起了<color:B>反魔法</color>领域。" }, MSF_TARGET | MSF_DIRECT},
     { "DISPEL_MAGIC", { MST_BIFF, BIFF_DISPEL_MAGIC },
         { "解除魔法", TERM_L_BLUE,
-          "$CASTER invokes <color:B>Dispel Magic</color>.",
-          "$CASTER mumbles powerfully.",
+          "$CASTER 施放了<color:B>解除魔法</color>。",
+          "$CASTER 强有力地念着咒语。",
           "",
-          "You invoke <color:B>Dispel Magic</color>." }, MSF_TARGET | MSF_DIRECT},
+          "你施放了<color:B>解除魔法</color>。" }, MSF_TARGET | MSF_DIRECT},
     { "POLYMORPH", { MST_BIFF, BIFF_POLYMORPH },
         { "变形他人", TERM_RED,
-          "$CASTER invokes <color:r>Polymorph Other</color>.",
-          "$CASTER mumbles powerfully.",
+          "$CASTER 施放了<color:r>变形他人</color>。",
+          "$CASTER 强有力地念着咒语。",
           "",
-          "You invoke <color:r>Polymorph Other<color>." }, MSF_TARGET},
+          "你施放了<color:r>变形他人<color>。" }, MSF_TARGET},
     {0}
 };
 
@@ -157,16 +157,16 @@ enum {
 static _parse_t _buff_tbl[] = {
     { "HASTE", { MST_BUFF, BUFF_HASTE },
         { "自我加速", TERM_WHITE,
-          "$CASTER concentrates on $CASTER_POS body.",
-          "$CASTER mumbles.",
-          "$CASTER concentrates on $CASTER_POS body.",
-          "You concentrate on your body." }},
+          "$CASTER 将精力集中在$CASTER_POS的身体上。",
+          "$CASTER 喃喃自语着。",
+          "$CASTER 将精力集中在$CASTER_POS的身体上。",
+          "你将精力集中在你的身体上。" }},
     { "INVULN", { MST_BUFF, BUFF_INVULN },
         { "无敌", TERM_YELLOW,
-          "$CASTER casts a <color:y>Globe of Invulnerability</color>.",
-          "$CASTER mumbles powerfully.",
-          "$CASTER casts a <color:y>Globe of Invulnerability</color>.",
-          "You cast a <color:y>Globe of Invulnerability</color>." }},
+          "$CASTER 施放了<color:y>无敌法球</color>。",
+          "$CASTER 强有力地念着咒语。",
+          "$CASTER 施放了<color:y>无敌法球</color>。",
+          "你施放了<color:y>无敌法球</color>。" }},
     {0}
 };
 
@@ -174,87 +174,87 @@ static _parse_t _buff_tbl[] = {
 static _parse_t _ball_tbl[] = {
     { "BA_CHAOS", { MST_BALL, GF_CHAOS },
         { "唤起罗格鲁斯", TERM_VIOLET,
-          "$CASTER invokes a <color:v>Raw Logrus</color>.",
-          "$CASTER mumbles frighteningly.",
-          "$CASTER invokes a <color:v>Raw Logrus</color> at $TARGET.",
-          "You invoke a <color:v>Raw Logrus</color>." }, MSF_TARGET | MSF_BALL4},
+          "$CASTER 施放了<color:v>纯粹的洛格鲁斯 (Raw Logrus)</color>。",
+          "$CASTER 发出令人毛骨悚然的喃喃声。",
+          "$CASTER 朝 $TARGET 施放了<color:v>纯粹的洛格鲁斯 (Raw Logrus)</color>。",
+          "你施放了<color:v>纯粹的洛格鲁斯 (Raw Logrus)</color>。" }, MSF_TARGET | MSF_BALL4},
     { "BA_DARK", { MST_BALL, GF_DARK },
         { "黑暗风暴", TERM_L_DARK,
-          "$CASTER invokes a <color:D>Darkness Storm</color>.",
-          "$CASTER mumbles powerfully.",
-          "$CASTER invokes a <color:D>Darkness Storm</color> at $TARGET.",
-          "You invoke a <color:D>Darkness Storm</color>." }, MSF_TARGET | MSF_BALL4},
+          "$CASTER 呼唤了<color:D>暗影风暴</color>。",
+          "$CASTER 强有力地念着咒语。",
+          "$CASTER 朝 $TARGET 呼唤了<color:D>暗影风暴</color>。",
+          "你呼唤了<color:D>暗影风暴</color>。" }, MSF_TARGET | MSF_BALL4},
     { "BA_LITE", { MST_BALL, GF_LITE },
         { "星爆", TERM_YELLOW,
-          "$CASTER invokes a <color:y>Starburst</color>.",
-          "$CASTER mumbles powerfully.",
-          "$CASTER invokes a <color:y>Starburst</color> at $TARGET.",
-          "You invoke a <color:y>Starburst</color>." }, MSF_TARGET | MSF_BALL4},
+          "$CASTER 施放了<color:y>星光爆裂</color>。",
+          "$CASTER 强有力地念着咒语。",
+          "$CASTER 朝 $TARGET 施放了<color:y>星光爆裂</color>。",
+          "你施放了<color:y>星光爆裂</color>。" }, MSF_TARGET | MSF_BALL4},
     { "MANA_STORM", { MST_BALL, GF_MANA },
         { "法力风暴", TERM_L_BLUE,
-          "$CASTER invokes a <color:B>Mana Storm</color>.",
-          "$CASTER mumbles powerfully.",
-          "$CASTER invokes a <color:B>Mana Storm</color> at $TARGET.",
-          "You invoke a <color:B>Mana Storm</color>." }, MSF_TARGET | MSF_BALL4},
+          "$CASTER 呼唤了<color:B>法力风暴</color>。",
+          "$CASTER 强有力地念着咒语。",
+          "$CASTER 朝 $TARGET 呼唤了<color:B>法力风暴</color>。",
+          "你呼唤了<color:B>法力风暴</color>。" }, MSF_TARGET | MSF_BALL4},
     { "BA_NUKE", { MST_BALL, GF_NUKE },
         { "辐射球", TERM_L_GREEN,
-          "$CASTER casts a <color:G>Ball of Radiation</color>.",
-          "$CASTER mumbles.",
-          "$CASTER casts a <color:G>Ball of Radiation</color> at $TARGET.",
-          "You cast a <color:G>Ball of Radiation</color>." }, MSF_TARGET},
+          "$CASTER 发射了一颗<color:G>辐射球</color>。",
+          "$CASTER 喃喃自语着。",
+          "$CASTER 朝 $TARGET 发射了一颗<color:G>辐射球</color>。",
+          "你发射了一颗<color:G>辐射球</color>。" }, MSF_TARGET},
     { "BA_POISON", { MST_BALL, GF_POIS },
         { "恶臭之云", TERM_L_GREEN,
-          "$CASTER casts a <color:G>Stinking Cloud</color>.",
-          "$CASTER mumbles.",
-          "$CASTER casts a <color:G>Stinking Cloud</color> at $TARGET.",
-          "You cast a <color:G>Stinking Cloud</color>." }, MSF_TARGET},
+          "$CASTER 施放了<color:G>臭云术</color>。",
+          "$CASTER 喃喃自语着。",
+          "$CASTER 朝 $TARGET 施放了<color:G>臭云术</color>。",
+          "你施放了<color:G>臭云术</color>。" }, MSF_TARGET},
     { "BA_WATER", { MST_BALL, GF_WATER },
         { "大漩涡", TERM_L_BLUE,
-          "$CASTER gestures fluidly. You are engulfed in a <color:B>Whirlpool</color>.",
-          "$CASTER mumbles. You are engulfed in a <color:B>Whirlpool</color>.",
-          "$CASTER gestures fluidly. $TARGET is engulfed in a <color:B>Whirlpool</color>.",
-          "You gesture fluidly." }, MSF_TARGET},
+          "$CASTER 做出流水的动作。你被卷入了<color:B>漩涡</color>中。",
+          "$CASTER 喃喃自语着。你被卷入了<color:B>漩涡</color>中。",
+          "$CASTER 做出流水的动作。$TARGET 被卷入了<color:B>漩涡</color>中。",
+          "你做出流水的动作。" }, MSF_TARGET},
     { "BRAIN_SMASH", { MST_BALL, GF_BRAIN_SMASH },
         { "大脑粉碎", TERM_L_BLUE,
-          "$CASTER gazes deep into your eyes.",
-          "You feel something focusing on your mind.", 
-          "$CASTER gazes deep into the eyes of $TARGET.",
-          "You gaze deeply." }, MSF_BALL0 | MSF_TARGET },
+          "$CASTER 深深地凝视着你的眼睛。",
+          "你感觉有东西在集中精神攻击你的心智。", 
+          "$CASTER 深深地凝视着 $TARGET 的眼睛。",
+          "你深深地凝视着。" }, MSF_BALL0 | MSF_TARGET },
     { "DRAIN_MANA", { MST_BALL, GF_DRAIN_MANA },
         { "吸取法力", TERM_L_BLUE,
-          "$CASTER attempts to drain psychic energy from you.",
-          "$CASTER attempts to drain psychic energy from you.",
-          "$CASTER drains psychic energy from $TARGET."}, MSF_BALL0 | MSF_TARGET },
+          "$CASTER 试图从你身上吸取精神能量。",
+          "$CASTER 试图从你身上吸取精神能量。",
+          "$CASTER 从 $TARGET 身上吸取了精神能量。"}, MSF_BALL0 | MSF_TARGET },
     { "MIND_BLAST", { MST_BALL, GF_MIND_BLAST },
         { "心灵爆破", TERM_L_BLUE,
-          "$CASTER gazes deep into your eyes.",
-          "You feel something focusing on your mind.", 
-          "$CASTER gazes deep into the eyes of $TARGET.",
-          "You gaze deeply." }, MSF_BALL0 | MSF_TARGET},
+          "$CASTER 深深地凝视着你的眼睛。",
+          "你感觉有东西在集中精神攻击你的心智。", 
+          "$CASTER 深深地凝视着 $TARGET 的眼睛。",
+          "你深深地凝视着。" }, MSF_BALL0 | MSF_TARGET},
     { "PULVERISE", { MST_BALL, GF_TELEKINESIS },
         { "念力粉碎", TERM_L_BLUE,
-          "$CASTER <color:B>pulverises</color> you.",
-          "Something <color:B>pulverises</color> you.",
-          "$CASTER <color:B>pulverises</color> $TARGET.",
+          "$CASTER <color:B>粉碎</color>了你。",
+          "有东西<color:B>粉碎</color>了你。",
+          "$CASTER <color:B>粉碎</color>了 $TARGET。",
           "" }, MSF_TARGET},
     { "ROCKET", { MST_BALL, GF_ROCKET },
         { "火箭", TERM_L_UMBER,
-          "$CASTER fires a <color:U>Rocket</color>.",
-          "$CASTER shoots something.",
-          "$CASTER fires a <color:U>Rocket</color> at $TARGET.",
-          "You fire a <color:U>Rocket</color>." }, MSF_INNATE | MSF_TARGET },
+          "$CASTER 发射了一枚<color:U>火箭弹</color>。",
+          "$CASTER 发射了什么东西。",
+          "$CASTER 朝 $TARGET 发射了一枚<color:U>火箭弹</color>。",
+          "你发射了一枚<color:U>火箭弹</color>。" }, MSF_INNATE | MSF_TARGET },
     { "THROW", { MST_BALL, GF_ROCK }, /* non-reflectable! */
         { "投掷巨石", TERM_L_UMBER,
-          "$CASTER throws a large rock.",
-          "$CASTER shouts, 'Haaa!!'.",
-          "$CASTER throws a large rock at $TARGET.", 
-          "You throw a large rock." }, MSF_INNATE | MSF_BALL0 | MSF_TARGET},
+          "$CASTER 扔出了一块巨石。",
+          "$CASTER 大喊道：“哈！！”。",
+          "$CASTER 朝 $TARGET 扔出了一块巨石。", 
+          "你扔出了一块巨石。" }, MSF_INNATE | MSF_BALL0 | MSF_TARGET},
     { "CHICKEN", { MST_BALL, GF_CHICKEN },
         { "小鸡化", TERM_YELLOW,
-          "$CASTER fires a <color:y>Chicken</color>.",
-          "$CASTER shoots something.",
-          "$CASTER fires a <color:y>Chicken</color> at $TARGET.",
-          "You fire a <color:y>Chicken</color>." }, MSF_INNATE | MSF_BALL0 | MSF_TARGET },
+          "$CASTER 发射了一只<color:y>小鸡</color>。",
+          "$CASTER 发射了什么东西。",
+          "$CASTER 朝 $TARGET 发射了一只<color:y>小鸡</color>。",
+          "你发射了一只<color:y>小鸡</color>。" }, MSF_INNATE | MSF_BALL0 | MSF_TARGET },
     {0}
 };
 
@@ -262,28 +262,28 @@ static _parse_t _ball_tbl[] = {
 static _parse_t _bolt_tbl[] = {
     { "GAZE", { MST_BOLT, GF_ATTACK },
         { "凝视", TERM_RED,
-          "$CASTER gazes at you.",
+          "$CASTER 凝视着你。",
           "",
-          "$CASTER gazes at $TARGET.",
+          "$CASTER 凝视着 $TARGET。",
           ""}, MSF_TARGET},
     { "MISSILE", { MST_BOLT, GF_MISSILE },
         { "魔法飞弹", TERM_WHITE,
-          "$CASTER casts a Magic Missile.",
-          "$CASTER mumbles.",
-          "$CASTER casts a Magic Missile at $TARGET.",
-          "You cast a Magic Missile." }, MSF_TARGET},
+          "$CASTER 施放了魔法飞弹。",
+          "$CASTER 喃喃自语着。",
+          "$CASTER 朝 $TARGET 施放了魔法飞弹。",
+          "你施放了魔法飞弹。" }, MSF_TARGET},
     { "SHOOT", { MST_BOLT, GF_ARROW },
         { "射击", TERM_L_UMBER,
-          "$CASTER fires an arrow.",
-          "$CASTER makes a strange noise.",
-          "$CASTER fires an arrow at $TARGET.",
-          "You fire an arrow." }, MSF_INNATE | MSF_TARGET },
+          "$CASTER 射出了一支箭。",
+          "$CASTER 发出了奇怪的声音。",
+          "$CASTER 朝 $TARGET 射出了一支箭。",
+          "你射出了一支箭。" }, MSF_INNATE | MSF_TARGET },
     { "BO_TIME", { MST_BOLT, GF_TIME },
         { "时间波", TERM_L_BLUE,
-          "$CASTER casts a <color:B>Time Wave</color>.",
-          "$CASTER mumbles.",
-          "$CASTER casts a <color:B>Time Wave</color> at $TARGET.",
-          "You cast a <color:B>Time Wave</color>." }, MSF_TARGET },
+          "$CASTER 施放了<color:B>时间波</color>。",
+          "$CASTER 喃喃自语着。",
+          "$CASTER 朝 $TARGET 施放了<color:B>时间波</color>。",
+          "你施放了<color:B>时间波</color>。" }, MSF_TARGET },
     {0}
 };
 
@@ -291,22 +291,22 @@ static _parse_t _bolt_tbl[] = {
 static _parse_t _beam_tbl[] = {
     { "PSY_SPEAR", { MST_BEAM, GF_PSY_SPEAR },
         { "精神之矛", TERM_L_BLUE,
-          "$CASTER throws a <color:B>Psycho-Spear</color>.",
-          "$CASTER mumbles.", 
-          "$CASTER throws a <color:B>Psycho-Spear</color> at $TARGET.",
-          "You throw a <color:B>Psycho-Spear</color>." }, MSF_TARGET },
+          "$CASTER 投掷了<color:B>精神之矛</color>。",
+          "$CASTER 喃喃自语着。", 
+          "$CASTER 朝 $TARGET 投掷了<color:B>精神之矛</color>。",
+          "你投掷了<color:B>精神之矛</color>。" }, MSF_TARGET },
     { "HELL_LANCE", { MST_BEAM, GF_HELL_FIRE },
         { "地狱之枪", TERM_RED,
-          "$CASTER throws a <color:r>Hell Lance</color>.",
-          "$CASTER mumbles.",
-          "$CASTER throws a <color:r>Hell Lance</color> at $TARGET.",
-          "You throw a <color:r>Hell Lance</color>." }, MSF_TARGET},
+          "$CASTER 投掷了<color:r>地狱长枪</color>。",
+          "$CASTER 喃喃自语着。",
+          "$CASTER 朝 $TARGET 投掷了<color:r>地狱长枪</color>。",
+          "你投掷了<color:r>地狱长枪</color>。" }, MSF_TARGET},
     { "HOLY_LANCE", { MST_BEAM, GF_HOLY_FIRE },
         { "神圣之枪", TERM_YELLOW,
-          "$CASTER throws a <color:y>Holy Lance</color>.",
-          "$CASTER mumbles.",
-          "$CASTER throws a <color:y>Holy Lance</color> at $TARGET.",
-          "You throw a <color:y>Holy Lance</color>." }, MSF_TARGET},
+          "$CASTER 投掷了<color:y>神圣长枪</color>。",
+          "$CASTER 喃喃自语着。",
+          "$CASTER 朝 $TARGET 投掷了<color:y>神圣长枪</color>。",
+          "你投掷了<color:y>神圣长枪</color>。" }, MSF_TARGET},
     {0}
 };
 
@@ -315,30 +315,30 @@ static _parse_t _beam_tbl[] = {
 static _parse_t _curse_tbl[] = {
     { "CAUSE_1", { MST_CURSE, GF_CAUSE_1 },
         { "创伤诅咒", TERM_RED,
-          "$CASTER points at you and curses.",
-          "$CASTER curses.",
-          "$CASTER points at $TARGET and curses." }, MSF_TARGET },
+          "$CASTER 指着你并施加诅咒。",
+          "$CASTER 施加了诅咒。",
+          "$CASTER 指着 $TARGET 并施加诅咒。" }, MSF_TARGET },
     { "CAUSE_2", { MST_CURSE, GF_CAUSE_2 },
         { "邪恶诅咒", TERM_RED,
-          "$CASTER points at you and curses horribly.",
-          "$CASTER curses horribly.",
-          "$CASTER points at $TARGET and curses horribly." }, MSF_TARGET },
+          "$CASTER 指着你并施加了恶毒的诅咒。",
+          "$CASTER 施加了恶毒的诅咒。",
+          "$CASTER 指着 $TARGET 并施加了恶毒的诅咒。" }, MSF_TARGET },
     { "CAUSE_3", { MST_CURSE, GF_CAUSE_3 },
         { "强力诅咒", TERM_RED,
-          "$CASTER points at you, incanting terribly!",
-          "$CASTER incants terribly.",
-          "$CASTER points at $TARGET, incanting terribly!" }, MSF_TARGET },
+          "$CASTER 指着你，念诵着可怕的咒语！",
+          "$CASTER 念诵着可怕的咒语。",
+          "$CASTER 指着 $TARGET，念诵着可怕的咒语！" }, MSF_TARGET },
     { "CAUSE_4", { MST_CURSE, GF_CAUSE_4 },
         { "死亡诅咒", TERM_RED,
-          "$CASTER points at you, screaming the word DIE!",
-          "$CASTER screams the word DIE!", 
-          "$CASTER points at $TARGET, screaming the word DIE!" }, MSF_TARGET },
+          "$CASTER 指着你，尖叫着“去死吧”！",
+          "$CASTER 尖叫着“去死吧”！", 
+          "$CASTER 指着 $TARGET，尖叫着“去死吧”！" }, MSF_TARGET },
     { "HAND_DOOM", { MST_CURSE, GF_HAND_DOOM },
         { "毁灭之手", TERM_RED,
-          "$CASTER invokes the <color:r>Hand of Doom</color>!",
-          "$CASTER invokes the <color:r>Hand of Doom</color>!",
-          "$CASTER invokes the <color:r>Hand of Doom</color> at $TARGET.",
-          "You invoke the <color:r>Hand of Doom</color>!" }, MSF_TARGET },
+          "$CASTER 唤起了<color:r>末日之手</color>！",
+          "$CASTER 唤起了<color:r>末日之手</color>！",
+          "$CASTER 对 $TARGET 唤起了<color:r>末日之手</color>。",
+          "你唤起了<color:r>末日之手</color>！" }, MSF_TARGET },
     {0}
 };
 
@@ -373,10 +373,10 @@ enum {
 static _parse_t _heal_tbl[] = {
     { "HEAL", { MST_HEAL, HEAL_SELF },
         { "自我治疗", TERM_WHITE,
-          "$CASTER concentrates on $CASTER_POS wounds.",
-          "$CASTER mumbles.",
-          "$CASTER concentrates on $CASTER_POS wounds.",
-          "You concentrate on your wounds." }},
+          "$CASTER 将注意力集中在 $CASTER_POS 伤口上。",
+          "$CASTER 喃喃自语着。",
+          "$CASTER 将注意力集中在 $CASTER_POS 伤口上。",
+          "你将注意力集中在你的伤口上。" }},
     {0}
 };
 
@@ -431,22 +431,22 @@ static _parse_t _pos_tbl[] = {
         { "繁殖", TERM_RED }},
     { "BLESS", { MST_POSSESSOR, POS_BLESS },
         { "祝福", TERM_WHITE,
-          "$CASTER prays for aid.",
-          "$CASTER mumbles a petition.",
-          "$CASTER prays for aid.",
-          "You pray for aid."}},
+          "$CASTER 祈求援助。",
+          "$CASTER 喃喃地祈祷。",
+          "$CASTER 祈求援助。",
+          "你祈求援助。"}},
     { "HEROISM", { MST_POSSESSOR, POS_HEROISM },
         { "英雄气概", TERM_WHITE,
-          "$CASTER prays for aid.",
-          "$CASTER mumbles a petition.",
-          "$CASTER prays for aid.",
-          "You pray for aid."}},
+          "$CASTER 祈求援助。",
+          "$CASTER 喃喃地祈祷。",
+          "$CASTER 祈求援助。",
+          "你祈求援助。"}},
     { "BERSERK", { MST_POSSESSOR, POS_BERSERK },
         { "狂暴", TERM_RED,
-          "$CASTER enters into a berserk frenzy.",
-          "$CASTER sounds furious!",
-          "$CASTER enters into a berserk frenzy.",
-          "You enter into a berserk frenzy."}, MSF_INNATE},
+          "$CASTER 陷入了狂暴的狂热中。",
+          "$CASTER 听起来怒不可遏！",
+          "$CASTER 陷入了狂暴的狂热中。",
+          "你陷入了狂暴的狂热中。"}, MSF_INNATE},
     {0}
 };
 
@@ -997,7 +997,7 @@ void mon_spell_parm_print(mon_spell_parm_ptr parm, string_ptr s, mon_race_ptr ra
             string_printf(s, "%d", dam);
         }
         else
-            string_printf(s, "%d%% up to %d", parm->v.hp_pct.pct, parm->v.hp_pct.max);
+            string_printf(s, "%d%% 最高至 %d", parm->v.hp_pct.pct, parm->v.hp_pct.max);
     }
 }
 
@@ -1100,14 +1100,14 @@ void mon_spell_print(mon_spell_ptr spell, string_ptr s)
         if (!p)
             string_printf(s, "召唤 %d", spell->id.effect);
         else
-            string_printf(s, "<color:%c>Summon %s</color>", attr_to_attr_char(p->color), p->name);
+            string_printf(s, "<color:%c>召唤 %s</color>", attr_to_attr_char(p->color), p->name);
     }
     else if (spell->id.type == MST_BREATH)
     {
         gf_info_ptr gf = gf_lookup(spell->id.effect);
         if (gf)
         {
-            string_printf(s, "<color:%c>Breathe %s</color>",
+            string_printf(s, "<color:%c>喷吐 %s</color>",
                 attr_to_attr_char(gf->color), gf->name);
         }
         else
@@ -1118,7 +1118,7 @@ void mon_spell_print(mon_spell_ptr spell, string_ptr s)
         gf_info_ptr gf = gf_lookup(spell->id.effect);
         if (gf)
         {
-            string_printf(s, "<color:%c>%s Jump</color>",
+            string_printf(s, "<color:%c>%s跳跃</color>",
                 attr_to_attr_char(gf->color), gf->name);
         }
         else
@@ -2684,7 +2684,7 @@ static void _summon_special(void)
             if (_current.flags & MSC_SRC_PLAYER)
                 msg_print("你召唤了你的家人！");
             else if (one_in_(15))
-                msg_format("%s召唤了他的家人！");
+                msg_format("%s召唤了他的家人！", _current.name);
         }
         else
         {
@@ -2712,7 +2712,7 @@ static void _summon_special(void)
             if (_current.flags & MSC_SRC_PLAYER)
                 msg_print("你召唤了你的家人！");
             else if (one_in_(15))
-                msg_format("%s召唤了她的家人！");
+                msg_format("%s召唤了她的家人！", _current.name);
         }
         break;
     case MON_LAKSHMI:
@@ -2829,7 +2829,7 @@ static void _summon(void)
 }
 static void _weird_bird_p(void)
 {
-    char mon_name[MAX_NLEN] = "a strange monster";
+    char mon_name[MAX_NLEN] = "一个奇怪的怪物";
     if (_current.mon && _current.mon->id) monster_desc(mon_name, _current.mon, MD_IGNORE_HALLU | MD_ASSUME_VISIBLE | MD_INDEF_VISIBLE);
 
     if (one_in_(3) || !(_current.flags & MSC_DIRECT))
@@ -2927,7 +2927,7 @@ static void _weird_bird_m(void)
         if (_current.mon2->id == p_ptr->riding)
         {
             int get_damage = 0;
-            char mon_name[MAX_NLEN] = "a strange monster";
+            char mon_name[MAX_NLEN] = "一个奇怪的怪物";
             if (_current.mon && _current.mon->id) monster_desc(mon_name, _current.mon, MD_IGNORE_HALLU | MD_ASSUME_VISIBLE | MD_INDEF_VISIBLE);
 
             /* Mega hack -- this special action deals damage to the player. Therefore the code of "eyeeye" is necessary.
@@ -3077,7 +3077,7 @@ static cptr _possessive(mon_race_ptr race)
     if (!race) return "它的";
     if (race->flags1 & RF1_MALE) return "他的";
     if (race->flags1 & RF1_FEMALE) return "她的";
-    return "its";
+    return "它的";
 }
 /* Some monsters override the default message with something cutesy */
 typedef struct {
@@ -3090,85 +3090,85 @@ typedef struct {
 } _custom_msg_t, *_custom_msg_ptr;
 static _custom_msg_t _mon_msg_tbl[] = {
     { MON_NINJA, {MST_BOLT, GF_ARROW},
-        "$CASTER throws a syuriken.",
+        "$CASTER 投掷了一枚手里剑。",
         "",
-        "$CASTER throws a syuriken at $TARGET.",
-        "You throw a syuriken." },
+        "$CASTER 朝 $TARGET 投掷了一枚手里剑。",
+        "你投掷了一枚手里剑。" },
     { MON_HALFLING_S, {MST_BOLT, GF_ARROW},
-        "$CASTER shoots a pebble.",
+        "$CASTER 射出了一颗石子。",
         "",
-        "$CASTER shoots a pebble at $TARGET.",
-        "You shoot a pebble." },
+        "$CASTER 朝 $TARGET 射出了一颗石子。",
+        "你射出了一颗石子。" },
     { MON_JAIAN, {MST_BREATH, GF_SOUND},
-        "'Booooeeeeee'",
-        "'Booooeeeeee'",
-        "'Booooeeeeee'",
-        "'Booooeeeeee'" },
+        "'呜哦哦哦哦哦哦'",
+        "'呜哦哦哦哦哦哦'",
+        "'呜哦哦哦哦哦哦'",
+        "'呜哦哦哦哦哦哦'" },
     { MON_BOTEI, {MST_BREATH, GF_SHARDS},
-        "'Botei-Build cutter!!!'",
-        "'Botei-Build cutter!!!'",
-        "'Botei-Build cutter!!!'",
-        "'Botei-Build cutter!!!'" } ,
+        "'肉体强化切割！！！'",
+        "'肉体强化切割！！！'",
+        "'肉体强化切割！！！'",
+        "'肉体强化切割！！！'" } ,
     { MON_ROLENTO, {MST_BALL, GF_FIRE},
-        "$CASTER throws a hand grenade.", 
-        "$CASTER throws a hand grenade.", 
-        "$CASTER throws a hand grenade at $TARGET.",
-        "You throw a hand grenade." },
+        "$CASTER 投掷了一枚手榴弹。", 
+        "$CASTER 投掷了一枚手榴弹。", 
+        "$CASTER 朝 $TARGET 投掷了一枚手榴弹。",
+        "你投掷了一枚手榴弹。" },
    { MON_FESTIVUS, {MST_BOLT, GF_ARROW},
-        "$CASTER throws a syuriken.",
+        "$CASTER 投掷了一枚手里剑。",
         "",
-        "$CASTER throws a syuriken at $TARGET.",
-        "You throw a syuriken." }, 
+        "$CASTER 朝 $TARGET 投掷了一枚手里剑。",
+        "你投掷了一枚手里剑。" }, 
    { MON_DUCK, {MST_ANNOY, ANNOY_SHRIEK},
-        "$CASTER quacks.",
-        "$CASTER quacks.",
-        "$CASTER quacks.",
-        "You quack." }, 
+        "$CASTER 嘎嘎叫。",
+        "$CASTER 嘎嘎叫。",
+        "$CASTER 嘎嘎叫。",
+        "你嘎嘎叫。" }, 
    { MON_PLATYPUS, {MST_ANNOY, ANNOY_SHRIEK},
-        "$CASTER quacks.",
-        "$CASTER quacks.",
-        "$CASTER quacks.",
-        "You quack." },
+        "$CASTER 嘎嘎叫。",
+        "$CASTER 嘎嘎叫。",
+        "$CASTER 嘎嘎叫。",
+        "你嘎嘎叫。" },
    { MON_FISHROOSTER, {MST_SUMMON, SUMMON_MONSTER},
-        "$CASTER spits out undigested monsters.",
-        "$CASTER spits out undigested monsters.",
-        "$CASTER spits out undigested monsters.",
-        "You spit out undigested monsters." },
+        "$CASTER 吐出未消化的怪物。",
+        "$CASTER 吐出未消化的怪物。",
+        "$CASTER 吐出未消化的怪物。",
+        "你吐出未消化的怪物。" },
    { MON_R_MACHINE, {MST_SUMMON, SUMMON_DEAD_UNIQ},
-        "$CASTER reproduces monsters.",
-        "$CASTER reproduces monsters.",
-        "$CASTER reproduces monsters.",
-        "You reproduce monsters." },
+        "$CASTER 繁殖出怪物。",
+        "$CASTER 繁殖出怪物。",
+        "$CASTER 繁殖出怪物。",
+        "你繁殖出怪物。" },
     { MON_ARACHNOTRON, {MST_BOLT, GF_PLASMA},
-        "$CASTER fires a <color:R>Jet of Plasma</color>.",
-        "$CASTER fires a <color:R>Jet of Plasma</color>.",
-        "$CASTER fires a <color:R>Jet of Plasma</color> at $TARGET.",
-        "You fire a <color:R>Jet of Plasma</color>."},
+        "$CASTER 喷射出<color:R>等离子射流</color>。",
+        "$CASTER 喷射出<color:R>等离子射流</color>。",
+        "$CASTER 朝 $TARGET 喷射出<color:R>等离子射流</color>。",
+        "你喷射出<color:R>等离子射流</color>。"},
     { MON_NIZUKIL, {MST_ANNOY, ANNOY_CONFUSE},
         "$CASTER命令你拼出他的名字。",
         "$CASTER命令你拼出他的名字。",
         "$CASTER命令$TARGET拼出他的名字。",
-        "You organise an impromptu spelling bee."},
+        "你组织了一场即兴的拼写比赛。"},
     { MON_MANTA, {MST_BOLT, GF_ARROW},
-        "$CASTER fires a harpoon.",
+        "$CASTER 发射了一把鱼叉。",
         "",
-        "$CASTER fires a harpoon at $TARGET.",
-        "You fire a harpoon." },
+        "$CASTER 朝 $TARGET 发射了一把鱼叉。",
+        "你发射了一把鱼叉。" },
    { MON_HEIMDALL, {MST_ANNOY, ANNOY_SHRIEK},
-        "$CASTER blows in Gjallarhorn!",
-        "$CASTER blows a horn!",
-        "$CASTER blows in Gjallarhorn!",
-        "You blow a horn." },
+        "$CASTER 吹响了加拉尔号角！",
+        "$CASTER 吹响了号角！",
+        "$CASTER 吹响了加拉尔号角！",
+        "你吹响了号角。" },
    { MON_DOKKAEBI, {MST_ANNOY, ANNOY_SHRIEK},
-        "$CASTER bellows, <color:R>'30,000 gold to the monster who kills this adventurer!'</color>",
-        "$CASTER shrieks, <color:R>'Free artifact to the one who kills this adventurer!'</color>",
-        "$CASTER shrieks, <color:R>'30,000 gold to the killer of</color> $TARGET<color:R>!'</color>",
-        "You shriek." },
+        "$CASTER 咆哮道，<color:R>“谁杀了这个冒险者，赏金三万！”</color>",
+        "$CASTER 尖叫道，<color:R>“谁杀了这个冒险者，就送他一件神器！”</color>",
+        "$CASTER 尖叫道，<color:R>“杀了</color> $TARGET <color:R>赏金三万！”</color>",
+        "你尖叫起来。" },
    { MON_G_DOKKAEBI, {MST_ANNOY, ANNOY_SHRIEK},
-        "$CASTER bellows, <color:R>'Free artifacts to the monster who kills this adventurer!'</color>",
-        "$CASTER shrieks, <color:R>'500,000 gold to the one who kills this adventurer!'</color>",
-        "$CASTER shrieks, <color:R>'Free artifacts to the killer of</color> $TARGET<color:R>!'</color>",
-        "You shriek." },
+        "$CASTER 咆哮道，<color:R>“谁杀了这个冒险者，就送他神器！”</color>",
+        "$CASTER 尖叫道，<color:R>“谁杀了这个冒险者，赏金五十万！”</color>",
+        "$CASTER 尖叫道，<color:R>“杀了</color> $TARGET <color:R>就送神器！”</color>",
+        "你尖叫起来。" },
     {0}
 };
 static cptr _custom_msg(void)
@@ -3222,14 +3222,14 @@ static cptr _breath_msg(void)
     assert(gf);
     if (_current.flags & MSC_SRC_PLAYER)
     {
-        sprintf(_msg, "You breathe <color:%c>%s</color>.",
+        sprintf(_msg, "你喷吐<color:%c>%s</color>。",
             attr_to_attr_char(gf->color), gf->name);
         return _msg;
     }
     else if (_current.flags & MSC_DEST_PLAYER)
     {
-        if (p_ptr->blind) return "$CASTER roars.";
-        sprintf(_msg, "$CASTER breathes <color:%c>%s</color>.",
+        if (p_ptr->blind) return "$CASTER 咆哮着。";
+        sprintf(_msg, "$CASTER 喷吐<color:%c>%s</color>。",
             attr_to_attr_char(gf->color), gf->name);
         return _msg;
     }
@@ -3237,7 +3237,7 @@ static cptr _breath_msg(void)
     {
         if (!(_current.flags & MSC_UNVIEW))
         {
-            sprintf(_msg, "$CASTER breathes <color:%c>%s</color> at $TARGET.",
+            sprintf(_msg, "$CASTER 朝 $TARGET 喷吐<color:%c>%s</color>。",
                 attr_to_attr_char(gf->color), gf->name);
             return _msg;
         }
@@ -3255,14 +3255,14 @@ static cptr _ball_msg(void)
     assert(gf);
     if (_current.flags & MSC_SRC_PLAYER)
     {
-        sprintf(_msg, "You cast %s <color:%c>%s Ball</color>.",
+        sprintf(_msg, "你施放了%s<color:%c>%s球</color>。",
             _a_an(gf->name), attr_to_attr_char(gf->color), gf->name);
         return _msg;
     }
     else if (_current.flags & MSC_DEST_PLAYER)
     {
-        if (p_ptr->blind) return "$CASTER mumbles.";
-        sprintf(_msg, "$CASTER casts %s <color:%c>%s Ball</color>.",
+        if (p_ptr->blind) return "$CASTER 喃喃自语着。";
+        sprintf(_msg, "$CASTER 施放了%s<color:%c>%s球</color>。",
             _a_an(gf->name), attr_to_attr_char(gf->color), gf->name);
         return _msg;
     }
@@ -3270,7 +3270,7 @@ static cptr _ball_msg(void)
     {
         if (!(_current.flags & MSC_UNVIEW))
         {
-            sprintf(_msg, "$CASTER casts %s <color:%c>%s Ball</color> at $TARGET.",
+            sprintf(_msg, "$CASTER 朝 $TARGET 施放了%s<color:%c>%s球</color>。",
                 _a_an(gf->name), attr_to_attr_char(gf->color), gf->name);
             return _msg;
         }
@@ -3283,14 +3283,14 @@ static cptr _bolt_msg(void)
     assert(gf);
     if (_current.flags & MSC_SRC_PLAYER)
     {
-        sprintf(_msg, "You cast %s <color:%c>%s Bolt</color>.",
+        sprintf(_msg, "你发射了%s<color:%c>%s射线</color>。",
             _a_an(gf->name), attr_to_attr_char(gf->color), gf->name);
         return _msg;
     }
     else if (_current.flags & MSC_DEST_PLAYER)
     {
-        if (p_ptr->blind) return "$CASTER mumbles.";
-        sprintf(_msg, "$CASTER casts %s <color:%c>%s Bolt</color>.",
+        if (p_ptr->blind) return "$CASTER 喃喃自语着。";
+        sprintf(_msg, "$CASTER 发射了%s<color:%c>%s射线</color>。",
             _a_an(gf->name), attr_to_attr_char(gf->color), gf->name);
         return _msg;
     }
@@ -3298,7 +3298,7 @@ static cptr _bolt_msg(void)
     {
         if (!(_current.flags & MSC_UNVIEW))
         {
-            sprintf(_msg, "$CASTER casts %s <color:%c>%s Bolt</color> at $TARGET.",
+            sprintf(_msg, "$CASTER 朝 $TARGET 发射了%s<color:%c>%s射线</color>。",
                 _a_an(gf->name), attr_to_attr_char(gf->color), gf->name);
             return _msg;
         }
@@ -3313,14 +3313,14 @@ static cptr _summon_msg(void)
     assert(p);
     if (_current.flags & MSC_SRC_PLAYER)
     {
-        sprintf(_msg, "You summon <color:%c>%s</color>.",
+        sprintf(_msg, "你召唤了<color:%c>%s</color>。",
             attr_to_attr_char(p->color), p->name);
         return _msg;
     }
     else if (_current.flags & MSC_DEST_PLAYER)
     {
-        if (p_ptr->blind) return "$CASTER mumbles.";
-        sprintf(_msg, "$CASTER summons <color:%c>%s</color>.",
+        if (p_ptr->blind) return "$CASTER 喃喃自语着。";
+        sprintf(_msg, "$CASTER 召唤了<color:%c>%s</color>。",
             attr_to_attr_char(p->color), p->name);
         return _msg;
     }
@@ -3328,7 +3328,7 @@ static cptr _summon_msg(void)
     {
         if (!(_current.flags & MSC_UNVIEW))
         {
-            sprintf(_msg, "$CASTER summons <color:%c>%s</color>.",
+            sprintf(_msg, "$CASTER 召唤了<color:%c>%s</color>。",
                 attr_to_attr_char(p->color), p->name);
             return _msg;
         }
@@ -3340,9 +3340,9 @@ static cptr _tactic_msg(void)
     if (_current.spell->id.effect < GF_COUNT)
     {
         if (_current.flags & MSC_SRC_PLAYER)
-            return "You jump away.";
+            return "你跳开了。";
         else if (!(_current.flags & MSC_UNVIEW))
-            return "$CASTER jumps away.";
+            return "$CASTER 跳开了。";
         else return "";
     }
     return NULL;
@@ -3381,7 +3381,7 @@ static cptr _msg_var(cptr var)
     if (strcmp(var, "CASTER_POS") == 0)
     {
         if (_current.flags & MSC_SRC_PLAYER)
-            return "your";
+            return "你的";
         return _possessive(_current.race);
     }
     if (strcmp(var, "TARGET") == 0)
@@ -3389,7 +3389,7 @@ static cptr _msg_var(cptr var)
     if (strcmp(var, "TARGET_POS") == 0)
     {
         if (_current.flags & MSC_DEST_PLAYER)
-            return "your";
+            return "你的";
         return _possessive(mon_race(_current.mon2));
     }
     
@@ -5593,7 +5593,7 @@ bool mon_spell_cast_possessor(mon_race_ptr race)
         {
             int hp = cost - p_ptr->csp;
             sp_player(-p_ptr->csp);
-            take_hit(DAMAGE_USELIFE, hp, "concentrating too hard");
+            take_hit(DAMAGE_USELIFE, hp, "注意力过度集中");
         }
         else sp_player(-cost);
         if (p_ptr->pclass == CLASS_BLUE_MAGE)

@@ -44,16 +44,16 @@ static int _check_hit(int skill, int ac)
  */
 static cptr desc_insult[] =
 {
-    "insults you",
-    "insults your mother",
-    "gives you the finger",
-    "humiliates you",
-    "defiles you",
-    "dances around you",
-    "makes obscene gestures",
-    "moons you",
-    "calls you a parasite",
-    "calls you a cyborg"
+    "侮辱了你",
+    "问候了你母亲",
+    "对你竖了中指",
+    "羞辱了你",
+    "玷污了你",
+    "围着你跳舞",
+    "对你做出下流的手势",
+    "对你露出屁股",
+    "骂你是寄生虫",
+    "骂你是改造人"
 };
 
 
@@ -63,10 +63,10 @@ static cptr desc_insult[] =
  */
 static cptr desc_moan[] =
 {
-    "seems sad about something",
-    "asks if you have seen his dogs",
-    "tells you to get off his land",
-    "mumbles something about mushrooms"
+    "似乎因为某事而伤心",
+    "问你有没有看到他的狗",
+    "叫你滚出他的地盘",
+    "咕哝着关于蘑菇的事情"
 
 };
 
@@ -342,98 +342,98 @@ bool make_attack_normal(int m_idx)
             switch (blow->method)
             {
             case RBM_HIT:
-                act = "hits";
+                act = "击打";
                 touched = TRUE;
                 sound(SOUND_HIT);
                 break;
             case RBM_TOUCH:
-                act = "touches";
+                act = "触碰";
                 touched = TRUE;
                 sound(SOUND_TOUCH);
                 break;
             case RBM_PUNCH:
-                act = "punches";
+                act = "拳击";
                 touched = TRUE;
                 sound(SOUND_HIT);
                 break;
             case RBM_KICK:
-                act = "kicks";
+                act = "踢打";
                 touched = TRUE;
                 sound(SOUND_HIT);
                 break;
             case RBM_CLAW:
-                act = "claws";
+                act = "抓挠";
                 touched = TRUE;
                 sound(SOUND_CLAW);
                 break;
             case RBM_BITE:
-                act = "bites";
+                act = "撕咬";
                 touched = TRUE;
                 sound(SOUND_BITE);
                 break;
             case RBM_STING:
-                act = "stings";
+                act = "蜇刺";
                 touched = TRUE;
                 sound(SOUND_STING);
                 break;
             case RBM_SLASH:
-                act = "slashes";
+                act = "劈砍";
                 touched = TRUE;
                 sound(SOUND_CLAW);
                 break;
             case RBM_BUTT:
-                act = "butts";
+                act = "顶撞";
                 touched = TRUE;
                 sound(SOUND_HIT);
                 break;
             case RBM_CRUSH:
-                act = "crushes";
+                act = "碾压";
                 touched = TRUE;
                 sound(SOUND_CRUSH);
                 break;
             case RBM_ENGULF:
-                act = "engulfs";
+                act = "吞噬";
                 touched = TRUE;
                 sound(SOUND_CRUSH);
                 break;
             case RBM_CHARGE:
-                act = "charges";
+                act = "冲撞";
                 touched = TRUE;
                 sound(SOUND_BUY); /* Note! This is "charges", not "charges at". */
                 break;
             case RBM_CRAWL:
-                act = "crawls";
+                act = "爬过";
                 touched = TRUE;
                 sound(SOUND_SLIME);
                 break;
             case RBM_DROOL:
-                act = "drools";
+                act = "流口水";
                 sound(SOUND_SLIME);
                 break;
             case RBM_SPIT:
-                act = "spits";
+                act = "喷吐";
                 sound(SOUND_SLIME);
                 break;
             case RBM_EXPLODE:
-                act = "explodes";
+                act = "爆炸";
                 explode = TRUE;
                 break;
             case RBM_GAZE:
-                act = "gazes";
+                act = "注视";
                 break;
             case RBM_WAIL:
-                act = "wails";
+                act = "恸哭";
                 sound(SOUND_WAIL);
                 break;
             case RBM_SPORE:
-                act = "releases spores";
+                act = "释放孢子";
                 sound(SOUND_SLIME);
                 break;
             case RBM_XXX4:
-                act = "projects XXX4's at you";
+                act = "向你投射 XXX4";
                 break;
             case RBM_BEG:
-                act = "begs";
+                act = "乞求";
                 sound(SOUND_MOAN);
                 break;
             case RBM_INSULT:
@@ -446,13 +446,13 @@ bool make_attack_normal(int m_idx)
                 break;
             case RBM_SHOW:
                 if (m_ptr->r_idx == MON_JAIAN)
-                    act = "horribly sings 'I AM GIAAAAAN. THE BOOOSS OF THE KIIIIDS.'";
+                    act = "难听地唱着“我是胖虎。我是孩子王。”";
                 else
                 {
                     if (one_in_(3))
-                        act = "sings 'We are a happy family.'";
+                        act = "唱着“我们是快乐的一家。”";
                     else
-                        act = "sings 'I love you, you love me.'";
+                        act = "唱着“我爱你，你爱我。”";
                 }
                 sound(SOUND_SHOW);
                 break;
@@ -647,7 +647,7 @@ bool make_attack_normal(int m_idx)
 
                         msg_format("【物品被偷】%sour %s %s！",
                                ((obj->number > 1) ? "One of y" : "Y"),
-                               o_name, have_flag(obj->flags, OF_PLURAL) ? "were" : "was");
+                               o_name, have_flag(obj->flags, OF_PLURAL) ? "被" : "被");
 
                         virtue_add(VIRTUE_SACRIFICE, 1);
 
@@ -701,7 +701,7 @@ bool make_attack_normal(int m_idx)
                         object_desc(o_name, obj, OD_OMIT_PREFIX | OD_NAME_ONLY | OD_COLOR_CODED);
                         msg_format("%sour %s %s被吃掉了！",
                                ((obj->number > 1) ? "One of y" : "Y"),
-                               o_name, (((obj->number == 1) && (have_flag(obj->flags, OF_PLURAL))) ? "were" : "was"));
+                               o_name, (((obj->number == 1) && (have_flag(obj->flags, OF_PLURAL))) ? "被" : "被"));
 
                         obj->number--;
                         obj_release(obj, OBJ_RELEASE_QUIET);
@@ -1282,7 +1282,7 @@ bool make_attack_normal(int m_idx)
                 }
                 break;
             }
-            check_muscle_sprains(150, "You sprain a muscle dodging the attack!");
+            check_muscle_sprains(150, "你在躲避攻击时扭伤了肌肉！");
         }
 
 

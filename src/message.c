@@ -4,6 +4,9 @@
 
 #include <assert.h>
 
+#undef msg_format
+#undef cmsg_format
+
 /* The Message Queue */
 static int       _msg_max = 500;
 static int       _msg_count = 0;
@@ -554,10 +557,12 @@ void msg_print(cptr msg)
 /* Note: Angband uses proprietary format strings, like %^s
    that string_vprintf() won't handle. So, let's hope 1024
    is enough for every message! (It should be ...) */
-void msg_format(cptr fmt, ...)
+void msg_format_aux(cptr file, int line, cptr fmt, ...)
 {
     va_list vp;
     char buf[1024];
+
+    format_diagnostic_note("msg_format", fmt, file, line);
 
     va_start(vp, fmt);
     (void)vstrnfmt(buf, 1024, fmt, vp);
@@ -566,10 +571,26 @@ void msg_format(cptr fmt, ...)
     cmsg_print(TERM_WHITE, buf);
 }
 
-void cmsg_format(byte color, cptr fmt, ...)
+void msg_format(cptr fmt, ...)
 {
     va_list vp;
     char buf[1024];
+
+    format_diagnostic_note("msg_format", fmt, "(legacy object)", 0);
+
+    va_start(vp, fmt);
+    (void)vstrnfmt(buf, 1024, fmt, vp);
+    va_end(vp);
+
+    cmsg_print(TERM_WHITE, buf);
+}
+
+void cmsg_format_aux(cptr file, int line, byte color, cptr fmt, ...)
+{
+    va_list vp;
+    char buf[1024];
+
+    format_diagnostic_note("cmsg_format", fmt, file, line);
 
     va_start(vp, fmt);
     (void)vstrnfmt(buf, 1024, fmt, vp);
@@ -577,6 +598,30 @@ void cmsg_format(byte color, cptr fmt, ...)
 
     cmsg_print(color, buf);
 }
+
+void cmsg_format(byte color, cptr fmt, ...)
+{
+    va_list vp;
+    char buf[1024];
+
+    format_diagnostic_note("cmsg_format", fmt, "(legacy object)", 0);
+
+    va_start(vp, fmt);
+    (void)vstrnfmt(buf, 1024, fmt, vp);
+    va_end(vp);
+
+    cmsg_print(color, buf);
+}
+
+#if defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+#endif
+#define msg_format(FMT, ...) msg_format_aux(__FILE__, __LINE__, (FMT) __VA_OPT__(,) __VA_ARGS__)
+#define cmsg_format(COLOR, FMT, ...) cmsg_format_aux(__FILE__, __LINE__, (COLOR), (FMT) __VA_OPT__(,) __VA_ARGS__)
+#if defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
 
 void msg_on_load(savefile_ptr file)
 {

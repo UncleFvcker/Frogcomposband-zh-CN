@@ -695,7 +695,7 @@ static void hit_trap(bool break_trap, bool do_jump)
     feature_type *f_ptr = &f_info[c_ptr->feat];
     int trap_feat_type = have_flag(f_ptr->flags, FF_TRAP) ? f_ptr->subtype : NOT_TRAP;
 
-    cptr name = "a trap";
+    cptr name = "陷阱";
 
     /* Disturb the player */
     disturb(0, 0);
@@ -717,7 +717,7 @@ static void hit_trap(bool break_trap, bool do_jump)
                 msg_print("你掉进了暗门陷阱！");
                 sound(SOUND_FALL);
                 dam = damroll(2, 8);
-                name = "a trap door";
+                name = "活板门陷阱";
 
                 take_hit(DAMAGE_NOESCAPE, dam, name);
 
@@ -745,7 +745,7 @@ static void hit_trap(bool break_trap, bool do_jump)
                 msg_print("你掉进了地坑陷阱！");
 
                 dam = damroll(2, 6);
-                name = "a pit trap";
+                name = "陷坑";
 
                 take_hit(DAMAGE_NOESCAPE, dam, name);
             }
@@ -765,7 +765,7 @@ static void hit_trap(bool break_trap, bool do_jump)
 
 
                 /* Base damage */
-                name = "a pit trap";
+                name = "陷坑";
 
                 dam = damroll(2, 6);
 
@@ -775,7 +775,7 @@ static void hit_trap(bool break_trap, bool do_jump)
                     msg_print("你被刺穿了！");
 
 
-                    name = "a spiked pit";
+                    name = "尖刺陷坑";
 
                     dam = dam * 2;
                     (void)set_cut(p_ptr->cut + randint1(dam), FALSE);
@@ -802,7 +802,7 @@ static void hit_trap(bool break_trap, bool do_jump)
                 /* Base damage */
                 dam = damroll(2, 6);
 
-                name = "a pit trap";
+                name = "陷坑";
 
 
                 /* Extra spike damage */
@@ -811,7 +811,7 @@ static void hit_trap(bool break_trap, bool do_jump)
                     msg_print("你被有毒的尖刺刺穿了！");
 
 
-                    name = "a spiked pit";
+                    name = "尖刺陷坑";
 
 
                     dam = dam * 2;
@@ -889,7 +889,7 @@ static void hit_trap(bool break_trap, bool do_jump)
                 msg_print("一支小飞镖击中了你！");
 
                 dam = damroll(1, 4);
-                take_hit(DAMAGE_ATTACK, dam, "a dart trap");
+                take_hit(DAMAGE_ATTACK, dam, "毒镖陷阱");
 
                 if (!CHECK_MULTISHADOW() && !free_act_save_p(dun_level))
                     (void)set_slow(p_ptr->slow + randint0(20) + 20, FALSE);
@@ -909,7 +909,7 @@ static void hit_trap(bool break_trap, bool do_jump)
                 msg_print("一支小飞镖击中了你！");
 
                 dam = damroll(1, 4);
-                take_hit(DAMAGE_ATTACK, dam, "a dart trap");
+                take_hit(DAMAGE_ATTACK, dam, "毒镖陷阱");
 
                 if (!CHECK_MULTISHADOW()) (void)do_dec_stat(A_STR);
             }
@@ -928,7 +928,7 @@ static void hit_trap(bool break_trap, bool do_jump)
                 msg_print("一支小飞镖击中了你！");
 
                 dam = damroll(1, 4);
-                take_hit(DAMAGE_ATTACK, dam, "a dart trap");
+                take_hit(DAMAGE_ATTACK, dam, "毒镖陷阱");
 
                 if (!CHECK_MULTISHADOW()) (void)do_dec_stat(A_DEX);
             }
@@ -947,7 +947,7 @@ static void hit_trap(bool break_trap, bool do_jump)
                 msg_print("一支小飞镖击中了你！");
 
                 dam = damroll(1, 4);
-                take_hit(DAMAGE_ATTACK, dam, "a dart trap");
+                take_hit(DAMAGE_ATTACK, dam, "毒镖陷阱");
 
                 if (!CHECK_MULTISHADOW()) (void)do_dec_stat(A_CON);
             }
@@ -1123,7 +1123,7 @@ static void hit_trap(bool break_trap, bool do_jump)
             else
             {
                 set_stun(p_ptr->stun + dam, TRUE);
-                (void)take_hit(DAMAGE_USELIFE/* already checked invu */, dam, "a drop bear");
+                (void)take_hit(DAMAGE_USELIFE/* already checked invu */, dam, "掉落熊");
             }
             break;
         }
@@ -1140,7 +1140,7 @@ static void hit_trap(bool break_trap, bool do_jump)
             {
                 msg_print("你踩到香蕉皮滑倒了！");
                 dam = randint1(10);
-                take_hit(DAMAGE_NOESCAPE, dam, "slipping on a banana peel");
+                take_hit(DAMAGE_NOESCAPE, dam, "踩到香蕉皮滑倒");
                 p_ptr->energy_need += ENERGY_NEED() * 3 / 4;
                 if (magik(40))
                 {
@@ -1236,18 +1236,18 @@ void touch_zap_player(int m_idx)
 
             buf[0] = '\0';
             if (fire_dam)
-                strcat(buf, "<color:r>burned</color>");
+                strcat(buf, "<color:r>烧伤了</color>");
             if (cold_dam)
             {
                 if (strlen(buf))
                     strcat(buf, elec_dam ? ", " : " and ");
-                strcat(buf, "<color:w>frozen</color>");
+                strcat(buf, "<color:w>冻伤了</color>");
             }
             if (elec_dam)
             {
                 if (strlen(buf))
                     strcat(buf, " and ");
-                strcat(buf, "<color:b>shocked</color>");
+                strcat(buf, "<color:b>电击了</color>");
             }
 
             msg_format("你%s。", buf);
@@ -1844,7 +1844,7 @@ static void innate_attacks(s16b m_idx, bool *fear, bool *mdeath, int mode)
                     }
                 }
                 touch_zap_player(m_idx);
-                check_muscle_sprains(300, "You pull a muscle!");
+                check_muscle_sprains(300, "你拉伤了肌肉！");
 
                 if (a->flags & INNATE_EXPLODE)
                 {
@@ -1875,7 +1875,7 @@ static void innate_attacks(s16b m_idx, bool *fear, bool *mdeath, int mode)
                 else
                 {
                     msg_print("你未命中。");
-                    check_muscle_sprains(300, "You pull a muscle!");
+                    check_muscle_sprains(300, "你拉伤了肌肉！");
                 }
             }
             fuiuchi = FALSE; /* Clumsy! */
@@ -2644,7 +2644,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                     {
                         msg_format("%^s被击晕了。", m_name_subject);
                         mon_stun(m_ptr, mon_stun_amount(k));
-                        obj_learn_slay(o_ptr, OF_STUN, "<color:o>Stuns</color> your enemies");
+                        obj_learn_slay(o_ptr, OF_STUN, "<color:o>震慑</color>你的敌人");
                     }
                 }
 
@@ -2689,9 +2689,9 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                     }
                     drain_result = drain_result * 3 / 2;
                     if (have_flag(flgs, OF_VORPAL2))
-                        obj_learn_slay(o_ptr, OF_VORPAL2, "is <color:v>*Sharp*</color>");
+                        obj_learn_slay(o_ptr, OF_VORPAL2, "极其<color:v>*锋利*</color>");
                     else
-                        obj_learn_slay(o_ptr, OF_VORPAL, "is <color:R>Sharp</color>");
+                        obj_learn_slay(o_ptr, OF_VORPAL, "<color:R>锋利</color>的");
                 }
 
                 k += to_d;
@@ -2853,7 +2853,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
             if (have_flag(flgs, OF_BRAND_WILD))
             {
                 wild_weapon_strike();
-                obj_learn_slay(o_ptr, OF_BRAND_WILD, "is a <color:o>Wild Weapon</color>");
+                obj_learn_slay(o_ptr, OF_BRAND_WILD, "是把<color:o>狂野武器</color>");
             }
 
             if (mode == ROGUE_ASSASSINATE)
@@ -3017,7 +3017,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
 
             dam_tot += k;
 
-            check_muscle_sprains(500, "You sprain a muscle!");
+            check_muscle_sprains(500, "你扭伤了肌肉！");
 
             /* Damage, check for fear and death */
             if (mon_take_hit(c_ptr->m_idx, k, DAM_TYPE_MELEE, fear, NULL))
@@ -3335,7 +3335,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                             drain_heal = (drain_heal * mutant_regenerate_mod) / 100;
                             vampirism_hack = m_ptr->hp;
                             vamp_player(drain_heal);
-                            obj_learn_slay(o_ptr, OF_BRAND_VAMP, "is <color:D>Vampiric</color>");
+                            obj_learn_slay(o_ptr, OF_BRAND_VAMP, "具有<color:D>吸血</color>属性");
                         }
                     }
                 }
@@ -3493,7 +3493,7 @@ static bool py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, int
                 sound(SOUND_MISS);
                 msg_format("你未命中。", m_name_object);
             }
-            check_muscle_sprains(250, "You sprain a muscle!");
+            check_muscle_sprains(250, "你扭伤了肌肉！");
         }
         backstab = FALSE;
         fuiuchi = FALSE;
@@ -3647,7 +3647,7 @@ weaponmaster_reap:
     if (do_quake)
     {
         earthquake(py, px, 10);
-        obj_learn_slay(o_ptr, OF_IMPACT, "causes <color:U>Earthquakes</color>");
+        obj_learn_slay(o_ptr, OF_IMPACT, "能引发<color:U>地震</color>");
     }
 
 #if 0
@@ -4865,7 +4865,7 @@ void _glacier_slip(feature_type *f_ptr)
      else msg_print("你从冰坡上滑落了！");
      if (have_flag(f_ptr->flags, FF_CREVASSE))
      {
-         take_hit(DAMAGE_NOESCAPE, ow_level * 2, "falling into a crevasse");
+         take_hit(DAMAGE_NOESCAPE, ow_level * 2, "掉进裂缝");
          if (!p_ptr->is_dead)
          {
              inven_damage(0, set_cold_destroy, 3, RES_SOUND);
@@ -4874,7 +4874,7 @@ void _glacier_slip(feature_type *f_ptr)
              if (!res_save_default(RES_SHARDS)) set_cut(p_ptr->cut + ow_level, FALSE);
          }
      }
-     else take_hit(DAMAGE_NOESCAPE, ow_level, "slipping off a glacier");
+     else take_hit(DAMAGE_NOESCAPE, ow_level, "从冰川滑落");
      _glacier_hack = FALSE;
 }
 
@@ -5495,7 +5495,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
                         {
                             msg_print("你没站稳，在滑溜的冰面上摔倒了！");
                             ow_level = randint0(MAX(5, 25 - ((p_ptr->ac + p_ptr->to_a) / 8))) + 5;
-                            take_hit(DAMAGE_NOESCAPE, ow_level, "slipping on ice");
+                            take_hit(DAMAGE_NOESCAPE, ow_level, "在冰上滑倒");
                             if (hex_spelling_any()) stop_hex_spell_all();
                             p_ptr->counter = FALSE;
                             energy_use += 100;

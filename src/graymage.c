@@ -604,7 +604,7 @@ void gray_mage_gain_spell(void)
     {
         char       c;
         string_ptr prompt = string_alloc_format(
-            "Really replace %s? <color:y>[y/N]</color>",
+            "确定要替换 %s 吗？<color:y>[y/N]</color>",
             do_spell(slot_ptr->realm, slot_ptr->spell, SPELL_NAME));
 
         c = msg_prompt(string_buffer(prompt), "ny", PROMPT_DEFAULT);
@@ -638,9 +638,9 @@ extern cptr gray_mage_speciality_desc(int psubclass)
 {
     switch (psubclass)
     {
-    case GRAY_MAGE_GOOD: return "You gain access to Life and Crusade magic.";
-    case GRAY_MAGE_NEUTRAL: return "You gain access to Nature magic.";
-    case GRAY_MAGE_EVIL: return "You gain access to Daemon and Death magic.";
+    case GRAY_MAGE_GOOD: return "你可以使用生命和圣战魔法。";
+    case GRAY_MAGE_NEUTRAL: return "你可以使用自然魔法。";
+    case GRAY_MAGE_EVIL: return "你可以使用恶魔和死亡魔法。";
     }
     return "";
 }

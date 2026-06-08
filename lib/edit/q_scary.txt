@@ -2,22 +2,22 @@
 # New quest for FrogComposband 7.1.salmiak
 
 ?:[EQU $QUEST99 Taken InProgress]
-D:I keep hearing persistent rumors of an old treasure chest hidden
-D:somewhere on Scary Rock, supposedly buried there by the pirates who
-D:infested these shores in days gone by. I would very much like to
-D:investigate this matter, unfortunately none of the local men are
-D:willing to go anywhere near that islet. I'm sure it's just the name
-D:of the place keeping them away, you should have nothing to worry about.
+D:我一直听到持续不断的传言说，有一个古老的宝箱隐藏在
+D:恐怖岩石（Scary Rock）的某个地方，据说是过去那些盘踞在这些海岸
+D:的海盗埋在那里的。我非常想
+D:调查这件事，不幸的是，当地的男人没有一个
+D:愿意靠近那个小岛。我确信那只是名字吓人
+D:才让他们不敢靠近的，你没什么好担心的。
 ?:1
 
 ?:[EQU $QUEST99 Completed]
-D:Thank you! Here's a little reward for your good work. I trust there was
-D:enough booty for both of us?
+D:谢谢你！这是对你出色工作的一点小奖励。我相信应该有
+D:足够我们两人分的战利品了吧？
 ?:1
 
 ?:[EQU $QUEST99 Failed]
-D:Too bad, I will need to find a better hero. Wait a minute... did you at
-D:least verify the presence of the treasure?
+D:太糟糕了，我需要找一个更好的英雄。等一下……你至少
+D:核实了宝藏是否存在吧？
 ?:1
 
 T:QUEST:NORMAL:NO_ROTATE

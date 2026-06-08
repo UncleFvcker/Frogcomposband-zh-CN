@@ -167,7 +167,7 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
 
             case SV_FOOD_WEAKNESS:
             {
-                take_hit(DAMAGE_NOESCAPE, damroll(6, 6), "poisonous food");
+                take_hit(DAMAGE_NOESCAPE, damroll(6, 6), "有毒食物");
                 do_dec_stat(A_STR);
                 ident = TRUE;
                 break;
@@ -175,7 +175,7 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
 
             case SV_FOOD_SICKNESS:
             {
-                take_hit(DAMAGE_NOESCAPE, damroll(6, 6), "poisonous food");
+                take_hit(DAMAGE_NOESCAPE, damroll(6, 6), "有毒食物");
                 do_dec_stat(A_CON);
                 ident = TRUE;
                 break;
@@ -183,7 +183,7 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
 
             case SV_FOOD_STUPIDITY:
             {
-                take_hit(DAMAGE_NOESCAPE, damroll(8, 8), "poisonous food");
+                take_hit(DAMAGE_NOESCAPE, damroll(8, 8), "有毒食物");
                 do_dec_stat(A_INT);
                 ident = TRUE;
                 break;
@@ -191,7 +191,7 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
 
             case SV_FOOD_NAIVETY:
             {
-                take_hit(DAMAGE_NOESCAPE, damroll(8, 8), "poisonous food");
+                take_hit(DAMAGE_NOESCAPE, damroll(8, 8), "有毒食物");
                 do_dec_stat(A_WIS);
                 ident = TRUE;
                 break;
@@ -199,7 +199,7 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
 
             case SV_FOOD_UNHEALTH:
             {
-                take_hit(DAMAGE_NOESCAPE, damroll(10, 10), "poisonous food");
+                take_hit(DAMAGE_NOESCAPE, damroll(10, 10), "有毒食物");
                 do_dec_stat(A_CON);
                 ident = TRUE;
                 break;
@@ -207,7 +207,7 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
 
             case SV_FOOD_DISEASE:
             {
-                take_hit(DAMAGE_NOESCAPE, damroll(10, 10), "poisonous food");
+                take_hit(DAMAGE_NOESCAPE, damroll(10, 10), "有毒食物");
                 do_dec_stat(A_STR);
                 ident = TRUE;
                 break;
@@ -1357,7 +1357,7 @@ void capture_ball_opening(object_type *j_ptr, int y, int x, bool from_drop)
         }
         if (!my || !mx || !in_bounds(my, mx) || !capture_ball_release(j_ptr, my, mx, mode))
         {
-            cmsg_format(TERM_BLUE, "%s%^s消失了。", (r_ptr->flags1 & RF1_UNIQUE) ? "" : "那只", r_name + r_ptr->name);
+            cmsg_format(TERM_BLUE, "%s%^s消失了。", (r_ptr->flags1 & RF1_UNIQUE) ? "" : "那只", monster_race_display_name(r_ptr->id));
         }
     }
 }

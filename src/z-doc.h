@@ -179,8 +179,18 @@ doc_pos_t     doc_newline(doc_ptr doc);
 void          doc_rollback(doc_ptr doc, doc_pos_t pos);
 void          doc_clear(doc_ptr doc);
 
-doc_pos_t     doc_printf(doc_ptr doc, const char *fmt, ...);
-doc_pos_t     doc_cprintf(doc_ptr doc, byte a, const char *fmt, ...);
+doc_pos_t     doc_printf_aux(cptr file, int line, doc_ptr doc, const char *fmt, ...);
+doc_pos_t     doc_cprintf_aux(cptr file, int line, doc_ptr doc, byte a, const char *fmt, ...);
+
+#if defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+#endif
+#define doc_printf(DOC, FMT, ...) doc_printf_aux(__FILE__, __LINE__, (DOC), (FMT) __VA_OPT__(,) __VA_ARGS__)
+#define doc_cprintf(DOC, A, FMT, ...) doc_cprintf_aux(__FILE__, __LINE__, (DOC), (A), (FMT) __VA_OPT__(,) __VA_ARGS__)
+#if defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
 
 doc_char_ptr  doc_char(doc_ptr doc, doc_pos_t pos);
 void          doc_sync_term(doc_ptr doc, doc_region_t range, doc_pos_t term_pos);

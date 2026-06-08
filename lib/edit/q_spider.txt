@@ -1,23 +1,23 @@
 # New quest for FrogComposband 7.1.chocolate
 
 ?:[EQU $QUEST54 Taken InProgress]
-D:Local explorers have discovered a well-preserved ancient temple hidden
-D:under the ruins of the old Elven Embassy. It seems, though, that the
-D:temple was less forgotten than we had assumed at first; the descendants
-D:of the spider-cultists who originally built it have kept it in active use.
-D:Now I fear they will attempt to summon their dark god to punish us for
-D:disturbing his unholy shrine... We must strike first and destroy the
-D:spider cult, but you are the only one I can trust to do it.
+D:当地的探险家在旧精灵大使馆的废墟下发现了一座保存完好的
+D:古老神殿。然而，这座神殿似乎并没有我们最初认为的
+D:那样被遗忘；最初建造它的那些蜘蛛崇拜者的后代们
+D:一直在积极地使用它。
+D:现在我担心他们会试图召唤他们的黑暗神明来惩罚我们
+D:惊扰了他邪恶的神龛……我们必须先发制人，摧毁
+D:蜘蛛邪教，但你是我唯一可以信任去完成这项任务的人。
 ?:1
 
 ?:[EQU $QUEST54 Completed]
-D:I hear you are doing rather well for yourself from all items you have
-D:been `liberating` from the ruins. Just remember I'm not charging you
-D:any taxes.
+D:我听说你从废墟中“解放”出来的所有物品中
+D:赚得盆满钵满。不过请记住，
+D:我可没有向你收取任何税费。
 ?:1
 
 ?:[EQU $QUEST54 Failed]
-D:You have failed me, beware you do not do so again!
+D:你让我失望了，小心别再这样了！
 ?:1
 
 T:QUEST:NORMAL

@@ -276,7 +276,7 @@ void chaos_warrior_reward(void)
         if (type > 20) type = 20;
         type--;
 
-        sprintf(wrath_reason, "the Wrath of %s",
+        sprintf(wrath_reason, "%s的狂怒",
             chaos_patrons[p_ptr->chaos_patron]);
 
         /* Extra chance to avoid the worst stuff */

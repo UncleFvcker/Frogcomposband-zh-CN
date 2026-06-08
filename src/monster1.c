@@ -265,7 +265,7 @@ void roff_top(int r_idx)
     }
 
     /* Dump the name */
-    Term_addstr(-1, TERM_WHITE, (r_name + r_ptr->name));
+    Term_addstr(-1, TERM_WHITE, monster_race_display_name(r_ptr->id));
 
     /* Append the "standard" attr/char info */
     Term_addstr(-1, TERM_WHITE, " ('");

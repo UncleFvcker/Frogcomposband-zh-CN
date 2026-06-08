@@ -24,6 +24,40 @@
 int auto_more_state = AUTO_MORE_PROMPT;
 
 static bool _game_log_active = FALSE;
+static char _format_diag_api[32];
+static char _format_diag_fmt[512];
+static char _format_diag_file[256];
+static int  _format_diag_line = 0;
+static long _format_diag_turn = 0;
+
+void format_diagnostic_note(cptr api, cptr fmt, cptr file, int line)
+{
+    snprintf(_format_diag_api, sizeof(_format_diag_api), "%s", api ? api : "(unknown)");
+    snprintf(_format_diag_fmt, sizeof(_format_diag_fmt), "%s", fmt ? fmt : "(null)");
+    snprintf(_format_diag_file, sizeof(_format_diag_file), "%s", file ? file : "(unknown)");
+    _format_diag_line = line;
+    _format_diag_turn = (long)player_turn;
+}
+
+void format_diagnostic_dump(FILE *out)
+{
+    if (!out) return;
+
+    fprintf(out, "\nLast format call\n");
+    fprintf(out, "----------------\n");
+    if (!_format_diag_api[0])
+    {
+        fprintf(out, "(none recorded)\n");
+        return;
+    }
+
+    fprintf(out, "api=%s source=%s:%d player_turn=%ld\n",
+        _format_diag_api,
+        _format_diag_file[0] ? _format_diag_file : "(unknown)",
+        _format_diag_line,
+        _format_diag_turn);
+    fprintf(out, "fmt=%s\n", _format_diag_fmt[0] ? _format_diag_fmt : "(empty)");
+}
 
 static void _game_log_path(char *path, size_t max)
 {
@@ -220,7 +254,7 @@ int usleep(huge usecs)
 
 
     /* Paranoia -- No excessive sleeping */
-    if (usecs > 4000000L) core("Illegal usleep() call");
+    if (usecs > 4000000L) core("非法的 usleep() 调用");
 
 
 
@@ -743,11 +777,49 @@ errr my_fgets(FILE *fff, char *buf, huge n)
                 while (0 != (i % 8)) buf[i++] = ' ';
             }
 
-            /* Handle printables HACK: msvcr100d will assert the character belongs to the ASCII code set*/
-            else if ((unsigned)(*s + 1) <= 256 && isprint(*s))
+            /* Keep ASCII printables. */
+            else if ((byte)*s < 0x80 && isprint((byte)*s))
             {
                 /* Copy */
                 buf[i++] = *s;
+
+                /* Check length */
+                if (i >= n) break;
+            }
+
+            /* Keep valid UTF-8 multibyte sequences while filtering legacy high bytes. */
+            else if ((byte)*s >= 0xC2)
+            {
+                byte c0 = (byte)s[0];
+                int len = 0;
+
+                if ((c0 & 0xE0) == 0xC0)
+                {
+                    byte c1 = (byte)s[1];
+                    if ((c1 & 0xC0) == 0x80) len = 2;
+                }
+                else if ((c0 & 0xF0) == 0xE0)
+                {
+                    byte c1 = (byte)s[1];
+                    byte c2 = (byte)s[2];
+                    if ((c1 & 0xC0) == 0x80 && (c2 & 0xC0) == 0x80)
+                        len = 3;
+                }
+                else if ((c0 & 0xF8) == 0xF0)
+                {
+                    byte c1 = (byte)s[1];
+                    byte c2 = (byte)s[2];
+                    byte c3 = (byte)s[3];
+                    if ((c1 & 0xC0) == 0x80 && (c2 & 0xC0) == 0x80 && (c3 & 0xC0) == 0x80)
+                        len = 4;
+                }
+
+                if (len && i + len < n)
+                {
+                    while (len--)
+                        buf[i++] = *s++;
+                    s--;
+                }
 
                 /* Check length */
                 if (i >= n) break;
@@ -3115,7 +3187,7 @@ bool get_check_strict(cptr prompt, int mode)
     if (mode & CHECK_OKAY_CANCEL)
     {
         my_strcpy(buf, prompt, sizeof(buf)-15);
-        strcat(buf, "[(O)k/(C)ancel]");
+        strcat(buf, "[(O)确定/(C)取消]");
     }
     else if (mode & CHECK_DEFAULT_Y)
     {
@@ -3367,7 +3439,7 @@ void pause_line(int row)
         row = h - 1;
     }
 
-    pause_line_aux("[Press any key to continue]", row, 23);
+    pause_line_aux("[按任意键继续]", row, 23);
 }
 
 
@@ -3388,23 +3460,23 @@ typedef struct
 menu_naiyou menu_info[10][10] =
 {
     {
-        {"Magic/Special", 1, FALSE},
+        {"魔法/特殊", 1, FALSE},
         {"行动", 2, FALSE},
-        {"Items(use)", 3, FALSE},
-        {"Items(other)", 4, FALSE},
+        {"物品(使用)", 3, FALSE},
+        {"物品(其他)", 4, FALSE},
         {"装备", 5, FALSE},
         {"门", 6, FALSE},
         {"信息", 7, FALSE},
         {"选项", 8, FALSE},
-        {"Save/Exit/Help", 9, FALSE},
+        {"保存/退出/帮助", 9, FALSE},
         {"", 0, FALSE},
     },
 
     {
-        {"Use(m)", 'm', TRUE},
-        {"See tips(b/P)", 'b', TRUE},
-        {"Study(G)", 'G', TRUE},
-        {"Special abilities(U/O)", 'U', TRUE},
+        {"使用(m)", 'm', TRUE},
+        {"查看提示(b/P)", 'b', TRUE},
+        {"学习(G)", 'G', TRUE},
+        {"特殊能力(U/O)", 'U', TRUE},
         {"", 0, FALSE},
         {"", 0, FALSE},
         {"", 0, FALSE},
@@ -3414,49 +3486,49 @@ menu_naiyou menu_info[10][10] =
     },
 
     {
-        {"Rest(R)", 'R', TRUE},
-        {"Disarm a trap(D)", 'D', TRUE},
-        {"Search(s)", 's', TRUE},
-        {"Look(l/x)", 'l', TRUE},
-        {"Target(*)", '*', TRUE},
-        {"Dig(T/^t)", 'T', TRUE},
-        {"Go up stairs(<)", '<', TRUE},
-        {"Go down stairs(>)", '>', TRUE},
-        {"Command pets(p)", 'p', TRUE},
-        {"Toggle searching(S/#)", 'S', TRUE}
+        {"休息(R)", 'R', TRUE},
+        {"解除陷阱(D)", 'D', TRUE},
+        {"搜索(s)", 's', TRUE},
+        {"观察(l/x)", 'l', TRUE},
+        {"目标(*)", '*', TRUE},
+        {"挖掘(T/^t)", 'T', TRUE},
+        {"上楼梯(<)", '<', TRUE},
+        {"下楼梯(>)", '>', TRUE},
+        {"指挥宠物(p)", 'p', TRUE},
+        {"开启/关闭搜索(S/#)", 'S', TRUE}
     },
 
     {
-        {"Read a scroll(r)", 'r', TRUE},
-        {"Drink a potion(q)", 'q', TRUE},
-        {"Use a staff(u/Z)", 'u', TRUE},
-        {"Aim a wand(a/z)", 'a', TRUE},
-        {"Zap a rod(z/a)", 'z', TRUE},
-        {"Activate an equipment(A)", 'A', TRUE},
-        {"Eat(E)", 'E', TRUE},
-        {"Fire missile weapon(f/t)", 'f', TRUE},
-        {"Throw an item(v)", 'v', TRUE},
+        {"读卷轴(r)", 'r', TRUE},
+        {"喝药水(q)", 'q', TRUE},
+        {"使用法杖(u/Z)", 'u', TRUE},
+        {"发射魔杖(a/z)", 'a', TRUE},
+        {"激发魔棒(z/a)", 'z', TRUE},
+        {"激活装备(A)", 'A', TRUE},
+        {"吃东西(E)", 'E', TRUE},
+        {"发射远程武器(f/t)", 'f', TRUE},
+        {"投掷物品(v)", 'v', TRUE},
         {"", 0, FALSE}
     },
 
     {
-        {"Get items(g)", 'g', TRUE},
-        {"Drop an item(d)", 'd', TRUE},
-        {"Destroy an item(k/^d)", 'k', TRUE},
-        {"Inscribe an item(Z/{)", 'Z', TRUE},
-        {"Uninscribe an item(})", '}', TRUE},
-        {"Inspect an item(I)", 'I', TRUE},
-        {"Inventory list(i)", 'i', TRUE},
-        {"Travel to item(H/^E)", 'H', TRUE},
-        {"Resume travel(J/())", 'J', TRUE},
+        {"拾取物品(g)", 'g', TRUE},
+        {"丢弃物品(d)", 'd', TRUE},
+        {"破坏物品(k/^d)", 'k', TRUE},
+        {"铭刻物品(Z/{)", 'Z', TRUE},
+        {"擦除铭刻(})", '}', TRUE},
+        {"检查物品(I)", 'I', TRUE},
+        {"物品栏列表(i)", 'i', TRUE},
+        {"寻路到物品处(H/^E)", 'H', TRUE},
+        {"恢复寻路(J/())", 'J', TRUE},
         {"", 0, FALSE}
     },
 
     {
-        {"Wear(w)", 'w', TRUE},
-        {"Take off(t/T)", 't', TRUE},
-        {"Refuel(F)", 'F', TRUE},
-        {"Equipment list(e)", 'e', TRUE},
+        {"穿戴(w)", 'w', TRUE},
+        {"脱下(t/T)", 't', TRUE},
+        {"添加燃料(F)", 'F', TRUE},
+        {"装备栏列表(e)", 'e', TRUE},
         {"交换戒指位", 'W', TRUE},
         {"", 0, FALSE},
         {"", 0, FALSE},
@@ -3466,10 +3538,10 @@ menu_naiyou menu_info[10][10] =
     },
 
     {
-        {"Open(o)", 'o', TRUE},
-        {"Close(c)", 'c', TRUE},
-        {"Bash a door(B/f)", 'B', TRUE},
-        {"Jam a door(j/S)", 'j', TRUE},
+        {"打开(o)", 'o', TRUE},
+        {"关闭(c)", 'c', TRUE},
+        {"猛击门(B/f)", 'B', TRUE},
+        {"卡住门(j/S)", 'j', TRUE},
         {"", 0, FALSE},
         {"", 0, FALSE},
         {"", 0, FALSE},
@@ -3479,25 +3551,25 @@ menu_naiyou menu_info[10][10] =
     },
 
     {
-        {"List monsters(Y/[)", 'Y', TRUE},
-        {"List objects(O/])", ']', TRUE},
-        {"Character sheet(C)", 'C', TRUE},
-        {"Full map(M)", 'M', TRUE},
-        {"Map(L/W)", 'L', TRUE},
-        {"Level feeling(^f)", KTRL('F'), TRUE},
-        {"Identify symbol(/)", '/', TRUE},
-        {"Show prev messages(^p)", KTRL('P'), TRUE},
-        {"Current time(^t/')", KTRL('T'), TRUE},
+        {"列出怪物(Y/[)", 'Y', TRUE},
+        {"列出物品(O/])", ']', TRUE},
+        {"角色面板(C)", 'C', TRUE},
+        {"全地图(M)", 'M', TRUE},
+        {"地图(L/W)", 'L', TRUE},
+        {"楼层感觉(^f)", KTRL('F'), TRUE},
+        {"鉴定符号(/)", '/', TRUE},
+        {"显示之前的消息(^p)", KTRL('P'), TRUE},
+        {"当前时间(^t/')", KTRL('T'), TRUE},
         {"知识菜单(~)", '~', TRUE}
     },
 
     {
-        {"Set options(=)", '=', TRUE},
-        {"Interact with macros(@)", '@', TRUE},
-        {"Interact w/ visuals(%)", '%', TRUE},
-        {"Interact with colors(&)", '&', TRUE},
-        {"Enter a user pref(\")", '\"', TRUE},
-        {"Edit Mogaminator(_)", '_', TRUE},
+        {"设置选项(=)", '=', TRUE},
+        {"宏交互(@)", '@', TRUE},
+        {"视觉效果交互(%)", '%', TRUE},
+        {"颜色交互(&)", '&', TRUE},
+        {"输入用户偏好(\")", '\"', TRUE},
+        {"编辑自动拾取/销毁器(_)", '_', TRUE},
         {"", 0, FALSE},
         {"", 0, FALSE},
         {"", 0, FALSE},
@@ -3505,15 +3577,15 @@ menu_naiyou menu_info[10][10] =
     },
 
     {
-        {"Save and quit(^x)", KTRL('X'), TRUE},
-        {"Save(^s)", KTRL('S'), TRUE},
-        {"Help(?)", '?', TRUE},
-        {"Redraw(^r)", KTRL('R'), TRUE},
-        {"Take note(:)", ':', TRUE},
+        {"保存并退出(^x)", KTRL('X'), TRUE},
+        {"保存(^s)", KTRL('S'), TRUE},
+        {"帮助(?)", '?', TRUE},
+        {"重绘屏幕(^r)", KTRL('R'), TRUE},
+        {"记笔记(:)", ':', TRUE},
         {"保存屏幕截图(()", ')', TRUE},
         {"加载屏幕截图())", '(', TRUE},
-        {"Version info(V)", 'V', TRUE},
-        {"Commit suicide(Q)", 'Q', TRUE},
+        {"版本信息(V)", 'V', TRUE},
+        {"自杀(Q)", 'Q', TRUE},
         {"", 0, FALSE}
     },
 };
@@ -3532,16 +3604,16 @@ typedef struct
 
 special_menu_naiyou special_menu_info[] =
 {
-    {"MindCraft/Special", 0, 0, MENU_CLASS, CLASS_MINDCRAFTER},
-    {"Song/Special", 0, 0, MENU_CLASS, CLASS_BARD},
-    {"Technique/Special", 0, 0, MENU_CLASS, CLASS_SAMURAI},
-    {"Mind/Magic/Special", 0, 0, MENU_CLASS, CLASS_FORCETRAINER},
-    {"BrutalPower/Special", 0, 0, MENU_CLASS, CLASS_BERSERKER},
-    {"MirrorMagic/Special", 0, 0, MENU_CLASS, CLASS_MIRROR_MASTER},
+    {"心灵感应/特殊", 0, 0, MENU_CLASS, CLASS_MINDCRAFTER},
+    {"吟唱/特殊", 0, 0, MENU_CLASS, CLASS_BARD},
+    {"特技/特殊", 0, 0, MENU_CLASS, CLASS_SAMURAI},
+    {"心灵/魔法/特殊", 0, 0, MENU_CLASS, CLASS_FORCETRAINER},
+    {"蛮力/特殊", 0, 0, MENU_CLASS, CLASS_BERSERKER},
+    {"镜魔法/特殊", 0, 0, MENU_CLASS, CLASS_MIRROR_MASTER},
     {"Ninjutsu/Special", 0, 0, MENU_CLASS, CLASS_NINJA},
     {"Ninjutsu/Special", 0, 0, MENU_CLASS, CLASS_NINJA_LAWYER},
-    {"Enter global map(<)", 2, 6, MENU_WILD, FALSE},
-    {"Enter local map(>)", 2, 7, MENU_WILD, TRUE},
+    {"进入大地图(<)", 2, 6, MENU_WILD, FALSE},
+    {"进入局域地图(>)", 2, 7, MENU_WILD, TRUE},
     {"", 0, 0, 0, 0},
 };
 

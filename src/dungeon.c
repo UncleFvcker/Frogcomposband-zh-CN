@@ -135,7 +135,7 @@ static void _sense_obj(obj_ptr obj)
     {
         msg_format("你感觉你%s里的 %s (%c) %s了 %s……",
                name, slot_label(obj->loc.slot),
-               obj->loc.where == INV_QUIVER ? "quiver" : "pack", 
+               obj->loc.where == INV_QUIVER ? "箭袋" : "背包", 
                !object_plural(obj) ? "is" : "are",
                    game_inscriptions[feel]);
     }
@@ -405,7 +405,7 @@ static void wreck_the_pattern(void)
     msg_print("可怕的事情发生了！");
 
     if (!IS_INVULN())
-        take_hit(DAMAGE_NOESCAPE, damroll(10, 8), "corrupting the Pattern");
+        take_hit(DAMAGE_NOESCAPE, damroll(10, 8), "破坏本原(Pattern)");
 
     to_ruin = randint1(45) + 35;
 
@@ -480,14 +480,14 @@ static bool pattern_effect(void)
 
     case PATTERN_TILE_WRECKED:
         if (!IS_INVULN())
-            take_hit(DAMAGE_NOESCAPE, 200, "walking the corrupted Pattern");
+            take_hit(DAMAGE_NOESCAPE, 200, "走在受损的本原上");
         break;
 
     default:
         if (prace_is_(RACE_AMBERITE) && !one_in_(2))
             return TRUE;
         else if (!IS_INVULN())
-            take_hit(DAMAGE_NOESCAPE, damroll(1, 3), "walking the Pattern");
+            take_hit(DAMAGE_NOESCAPE, damroll(1, 3), "走在本原上");
         break;
     }
 
@@ -1337,7 +1337,7 @@ static void process_world_aux_hp_and_sp(void)
             if ((cave[py][px].info & (CAVE_GLOW | CAVE_MNDK)) == CAVE_GLOW)
             {
                 msg_print("阳光灼伤了你亡灵的肉体！");
-                take_hit(DAMAGE_NOESCAPE, 1, "sunlight");
+                take_hit(DAMAGE_NOESCAPE, 1, "日光");
                 cave_no_regen = TRUE;
             }
         }
@@ -1358,7 +1358,7 @@ static void process_world_aux_hp_and_sp(void)
                 msg_format("%s灼伤了你亡灵的肉体！", o_name);
                 cave_no_regen = TRUE;
                 object_desc(o_name, lite, OD_NAME_ONLY);
-                sprintf(ouch, "wielding %s", o_name);
+                sprintf(ouch, "挥舞 %s", o_name);
                 if (!IS_INVULN()) take_hit(DAMAGE_NOESCAPE, 1, ouch);
             }
         }
@@ -1459,7 +1459,7 @@ static void process_world_aux_hp_and_sp(void)
         {
             /* Take damage */
             msg_print("你溺水了！");
-            take_hit(DAMAGE_NOESCAPE, randint1(p_ptr->lev), "drowning");
+            take_hit(DAMAGE_NOESCAPE, randint1(p_ptr->lev), "溺水");
 
             cave_no_regen = TRUE;
         }
@@ -1469,7 +1469,7 @@ static void process_world_aux_hp_and_sp(void)
         (p_ptr->resist[RES_COLD] <= 0))
     {
         msg_print("你要冻僵了！");
-        if (one_in_(10)) take_hit(DAMAGE_NOESCAPE, 1, "freezing");
+        if (one_in_(10)) take_hit(DAMAGE_NOESCAPE, 1, "冻僵");
         if (one_in_(50)) set_unwell(75 + randint1(25), TRUE);
         cave_no_regen = TRUE;
     }
@@ -1534,7 +1534,7 @@ static void process_world_aux_hp_and_sp(void)
                 else
                 {
                     msg_print("你感觉你的分子被瓦解了！");
-                    dam_desc = "density";
+                    dam_desc = "密度";
                     if (p_ptr->prace == RACE_SPECTRE && dam > p_ptr->chp)
                         dam = p_ptr->chp;
                 }
@@ -1542,7 +1542,7 @@ static void process_world_aux_hp_and_sp(void)
             else
             {
                 msg_print("你快被压碎了！");
-                dam_desc = "solid rock";
+                dam_desc = "坚硬的岩石";
             }
 
             if (dam)
@@ -2454,7 +2454,7 @@ static void process_world_aux_curse(void)
 
             object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
             msg_format("你的 %s 吸取了你的生命值！", o_name, object_plural(o_ptr) ? "刚刚" : "刚刚");
-            take_hit(DAMAGE_LOSELIFE, MIN(p_ptr->lev*2, 100), "an equipment curse");
+            take_hit(DAMAGE_LOSELIFE, MIN(p_ptr->lev*2, 100), "装备诅咒");
             obj_learn_curse(o_ptr, OFC_DRAIN_HP);
         }
         /* Handle mana draining */
@@ -2502,7 +2502,7 @@ static void process_world_aux_curse(void)
                 msg_print("审判宝石吸取了你的生命！");
             else
                 msg_print("有什么东西吸取了你的生命！");
-            take_hit(DAMAGE_LOSELIFE, MIN(p_ptr->lev, 50), "the Jewel of Judgement");
+            take_hit(DAMAGE_LOSELIFE, MIN(p_ptr->lev, 50), "审判宝石");
         }
     }
 
@@ -2551,7 +2551,7 @@ static void process_world_aux_curse(void)
                 msg_print("维克那之手扼住了你的喉咙！");
             else
                 msg_print("那只手扼住了你的喉咙！");
-            take_hit(DAMAGE_LOSELIFE, MIN(p_ptr->lev, 50), "the Hand of Vecna");
+            take_hit(DAMAGE_LOSELIFE, MIN(p_ptr->lev, 50), "维克那之手");
         }
     }
 
@@ -3390,7 +3390,7 @@ static void process_world(void)
                 int dam = (PY_FOOD_STARVE - p_ptr->food) / 10;
 
                 /* Take damage */
-                if (!IS_INVULN()) take_hit(DAMAGE_LOSELIFE, dam, "starvation");
+                if (!IS_INVULN()) take_hit(DAMAGE_LOSELIFE, dam, "饥饿");
             }
         }
     }
@@ -3950,19 +3950,19 @@ static void _dispatch_command(int old_now_turn)
                    && p_ptr->prace  != RACE_MON_POSSESSOR
                    && p_ptr->prace  != RACE_MON_MIMIC)
             {
-                cptr which_power = "magic";
+                cptr which_power = "魔法";
                 if (p_ptr->pclass == CLASS_MINDCRAFTER || p_ptr->pclass == CLASS_PSION)
-                    which_power = "psionic powers";
+                    which_power = "灵能";
                 else if (p_ptr->pclass == CLASS_SAMURAI)
-                    which_power = "hissatsu";
+                    which_power = "必杀(hissatsu)";
                 else if (p_ptr->pclass == CLASS_LAWYER || p_ptr->pclass == CLASS_NINJA_LAWYER)
-                    which_power = "legal trickery";
+                    which_power = "法律诡计";
                 else if (p_ptr->pclass == CLASS_MIRROR_MASTER)
-                    which_power = "mirror magic";
+                    which_power = "镜之魔法";
                 else if (p_ptr->pclass == CLASS_NINJA)
-                    which_power = "ninjutsu";
+                    which_power = "忍术";
                 else if (mp_ptr->spell_book == TV_LIFE_BOOK)
-                    which_power = "prayer";
+                    which_power = "祈祷";
 
                 if (flush_failure) flush();
                 msg_format("一层反魔法护盾干扰了你的 %s！", which_power);
@@ -5075,7 +5075,7 @@ static void process_player(void)
                 if (0 || p_ptr->wizard)
                     msg_format("<color:G> %d 点毒素伤害</color>", amt);
                 if (!IS_INVULN())
-                    take_hit(DAMAGE_NOESCAPE, amt, "poison");
+                    take_hit(DAMAGE_NOESCAPE, amt, "毒素");
                 set_poisoned(p_ptr->poisoned - amt, TRUE);
             }
 
@@ -5105,7 +5105,7 @@ static void process_player(void)
                     msg_print("你无法呼吸！");
                 }
                 else msg_print("你因缺氧而感到虚弱……");
-                take_hit(DAMAGE_NOESCAPE, dmg, "oxygen deprivation");
+                take_hit(DAMAGE_NOESCAPE, dmg, "缺氧");
             }
 
             if (p_ptr->free_turns)
@@ -5411,9 +5411,9 @@ static void dungeon(bool load_game)
         if (mon_available_num(&r_info[d_info[dungeon_type].final_guardian]))
         {
             cmsg_format(
-                TERM_YELLOW, "%^s lives on this level as the keeper of %s.",
-                r_name + r_info[d_info[dungeon_type].final_guardian].name,
-                d_name + d_info[dungeon_type].name);
+                TERM_YELLOW, "%^s 作为 %s 的守护者居住在这一层。",
+                monster_race_display_name(d_info[dungeon_type].final_guardian),
+                dungeon_display_name(dungeon_type));
         }
     }
 
@@ -6107,7 +6107,7 @@ void play_game(bool new_game)
     /* Attempt to load */
     if (!load_player())
     {
-        quit("broken savefile");
+        quit("损坏的存档");
     }
 
     /* Extract the options */
@@ -6298,7 +6298,7 @@ void play_game(bool new_game)
         }
         else if (p_ptr->is_dead)
         {
-            quit("Already dead.");
+            quit("已经死亡。");
         }
     }
 

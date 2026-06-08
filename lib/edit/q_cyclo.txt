@@ -1,19 +1,19 @@
 # New quest for FrogComposband 7.1.chocolate
 
 ?:[EQU $QUEST70 Taken InProgress]
-D:There's a cave to the east of the city, near the shore, that we've
-D:always been a bit afraid to approach; but until recently we never thought
-D:there was anything worse there than a couple of bears, and some spiders and
-D:bats near the entrance. Now, though, it seems the bears have been driven out
-D:by a man-eating cyclops! We need a hero to visit the cave and rid us of
-D:that one-eyed giant.
+D:在城市东边靠近海岸的地方有个洞穴，我们
+D:一直都不太敢靠近；但直到最近，我们才想到那里除了入口附近
+D:的几只熊、蜘蛛和蝙蝠之外，
+D:还有更糟糕的东西。现在，那些熊似乎被一个食人的
+D:独眼巨人赶了出来！我们需要一位英雄去探索那个洞穴，
+D:并帮我们除掉那个独眼巨人。
 
 ?:[EQU $QUEST70 Completed]
-D:You saved us from deep trouble. Please accept this modest gift.
+D:你把我们从深渊中拯救了出来。请收下这份微薄的礼物。
 ?:1
 
 ?:[EQU $QUEST70 Failed]
-D:You have failed me, beware you do not do so again!
+D:你让我失望了，小心别再这样了！
 ?:1
 
 T:QUEST:NORMAL

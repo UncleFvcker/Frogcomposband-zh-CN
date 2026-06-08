@@ -378,16 +378,16 @@ int gf_affect_p(int who, int type, int dam, int flags)
             break;
 
         case PROJECT_WHO_GLASS_SHARDS:
-            strcpy(m_name_real, "shards of glass");
+            strcpy(m_name_real, "玻璃碎片");
             break;
 
         case PROJECT_WHO_MIRROR:
-            strcpy(m_name_real, "mirror shards");
+            strcpy(m_name_real, "镜子碎片");
             break;
 
         case GF_WHO_TRAP:
         default:
-            strcpy(m_name_real, "a trap");
+            strcpy(m_name_real, "一个陷阱");
             break;
         }
     }
@@ -855,12 +855,12 @@ int gf_affect_p(int who, int type, int dam, int flags)
             case 6: case 7: case 8: case 9:
                 switch (randint1(6))
                 {
-                    case 1: k = A_STR; act = "strong"; break;
-                    case 2: k = A_INT; act = "bright"; break;
-                    case 3: k = A_WIS; act = "wise"; break;
-                    case 4: k = A_DEX; act = "agile"; break;
-                    case 5: k = A_CON; act = "hale"; break;
-                    case 6: k = A_CHR; act = "confident"; break;
+                    case 1: k = A_STR; act = "强壮"; break;
+                    case 2: k = A_INT; act = "聪明"; break;
+                    case 3: k = A_WIS; act = "智慧"; break;
+                    case 4: k = A_DEX; act = "敏捷"; break;
+                    case 5: k = A_CON; act = "健康"; break;
+                    case 6: k = A_CHR; act = "自信"; break;
                 }
                 msg_format("你不再像以前那样%s了……", act);
                 p_ptr->stat_cur[k] = (p_ptr->stat_cur[k] * 3) / 4;
@@ -2390,7 +2390,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
             {
                 note = NULL;
                 msg_format("%^s%s腐化的心智反噬了你的攻击！",
-                    m_name, (seen ? "'s" : "s"));
+                    m_name, (seen ? "的" : "s"));
 
                 /* Saving throw */
                 if ((randint0(100 + race->level / 2) < p_ptr->skills.sav) && !CHECK_MULTISHADOW())
@@ -2479,7 +2479,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
             {
                 note = NULL;
                 msg_format("%^s%s腐化的心智反噬了你的攻击！",
-                    m_name, (seen ? "'s" : "s"));
+                    m_name, (seen ? "的" : "s"));
 
                 /* Saving throw */
                 if ((randint0(100 + race->level / 2) < p_ptr->skills.sav) && !CHECK_MULTISHADOW())
@@ -2507,9 +2507,9 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
         else if (dam > 0)
         {
             int b = damroll(5, dam) / 4;
-            cptr str = (p_ptr->pclass == CLASS_MINDCRAFTER) ? "psychic energy" : "mana";
+            cptr str = (p_ptr->pclass == CLASS_MINDCRAFTER) ? "精神力" : "法力";
             msg_format("你将%s%s痛苦转化为了%s！",
-                m_name, (seen ? "'s" : "s"), str);
+                m_name, (seen ? "的" : "s"), str);
 
             b = MIN(p_ptr->msp, p_ptr->csp + b);
             p_ptr->csp = b;
@@ -2570,7 +2570,7 @@ bool gf_affect_m(int who, mon_ptr mon, int type, int dam, int flags)
             {
                 note = NULL;
                 msg_format("%^s%s腐化的心智反噬了你的攻击！",
-                    m_name, (seen ? "'s" : "s"));
+                    m_name, (seen ? "的" : "s"));
 
                 /* Saving throw */
                 if (randint0(100 + race->level/2) < p_ptr->skills.sav)

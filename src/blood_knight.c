@@ -46,7 +46,7 @@ void _blood_sight_spell(int cmd, variant *res)
     case SPELL_CAST:
     {
         if (p_ptr->lev < 30)
-            detect_monsters_living(DETECT_RAD_DEFAULT, "You sense potential blood!");
+            detect_monsters_living(DETECT_RAD_DEFAULT, "你感知到了潜在的鲜血！");
         else
             set_tim_blood_sight(randint1(30) + 30, FALSE);
         var_set_bool(res, TRUE);
@@ -482,7 +482,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "bloodcraft";
+        me.magic_desc = "鲜血技艺";
         me.options = CASTER_USE_HP;
         me.which_stat = A_CON;
         me.on_cast = _on_cast;

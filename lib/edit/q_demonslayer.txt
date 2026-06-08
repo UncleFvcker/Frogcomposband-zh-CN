@@ -1,15 +1,15 @@
 ?:[EQU $QUEST80 Taken InProgress]
-D:You're one of the strongest we've seen, so here's your final
-D:test - go to Angband and kill ten pit fiends. If you can do 
-D:it, we'll sing songs to your glorious triumph.
+D:你是我们见过的最强者之一，所以这是对你的终极
+D:考验——去安格班杀掉十只深渊恶魔（pit fiends）。如果你能
+D:做到，我们将为你辉煌的胜利高唱赞歌。
 ?:1
 
 ?:[EQU $QUEST80 Completed]
-D:Wow! Here's a trophy of your great victory.
+D:哇！这是你伟大胜利的战利品。
 ?:1
 
 ?:[EQU $QUEST80 Failed]
-D:So you were never that good really.
+D:所以你其实根本没那么厉害。
 ?:1
 
 R:OBJ(mithril chain mail):EGO(^of the demon$)

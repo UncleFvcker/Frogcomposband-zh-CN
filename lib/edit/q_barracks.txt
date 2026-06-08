@@ -3,18 +3,18 @@ K:92
 ?:1
 
 ?:[EQU $QUEST52 Taken InProgress]
-D:The next building will be the barracks. As you have noticed, there are
-D:a lot of lost souls wandering the ruined buildings. Therefore, this could
-D:be very dangerous as a lot of soldiers were quartered here.
+D:下一座建筑是军营。正如你所注意到的，有
+D:许多迷失的灵魂在废弃的建筑物中游荡。因此，这可能会
+D:非常危险，因为以前有很多士兵驻扎在这里。
 ?:1
 
 ?:[EQU $QUEST52 Completed]
-D:I hear there were some valuable items in the barracks. You can
-D:keep anything you found as your reward.
+D:我听说军营里有一些贵重物品。你可以
+D:保留你找到的任何东西作为奖励。
 ?:1
 
 ?:[EQU $QUEST52 Failed]
-D:You have failed me, beware you do not do so again!
+D:你让我失望了，小心别再这样了！
 ?:1
 
 T:QUEST:NORMAL

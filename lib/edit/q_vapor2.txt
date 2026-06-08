@@ -1,24 +1,24 @@
 #new version by st_
 
 ?:[EQU $QUEST20 Taken InProgress]
-D:Something curious has taken root beneath our Inn. Otick,
-D:the innkeeper, has reported strange vapors and auras in the
-D:basement that drive out all living things. A caged canary was
-D:placed there to test the air quality; it died within minutes,
-D:though the strange scents had vanished when the investigators
-D:returned. Then, suddenly, it was as if the air itself attacked!
-D:Please see if you can detect what is amiss.
+D:在我们的旅馆下面出现了一些奇怪的东西。旅馆老板
+D:欧提克（Otick）报告说，地下室里有奇怪的蒸汽和光环，
+D:驱逐了所有生物。为了测试空气质量，放了一只装在笼子里的金丝雀
+D:进去；它在几分钟内就死了，
+D:尽管当调查人员返回时那奇怪的气味已经消失了。
+D:紧接着，突然之间，就好像连空气本身都发起了攻击一样！
+D:请你去看看能否查出到底是哪里不对劲。
 ?:1
 
 ?:[EQU $QUEST20 Completed]
-D:Strange tidings indeed. Where eldritch vapors gather, more
-D:dangerous creatures are often nearby. Perhaps this is an ill
-D:omen of dangers yet to come... We may be in need of your services
-D:again soon. This gift may help you detect what evils plague this land.
+D:真是奇怪的消息。可怕的蒸汽聚集的地方，往往
+D:附近就有更危险的生物。也许这是未来灾难的
+D:不祥之兆……我们可能很快就又需要你的服务了。
+D:这份礼物也许能帮你探测出是什么邪恶力量在困扰这片土地。
 ?:1
 
 ?:[EQU $QUEST20 Failed]
-D:I've sent out someone else to do the job. Now leave me alone!
+D:我已经派了别人去干这差事了。现在别烦我了！
 ?:1
 
 T:QUEST:NORMAL

@@ -1212,7 +1212,7 @@ void obj_destroy_ui(void)
         if (prompt.obj->number > 1)
             options |= OD_OMIT_PREFIX;
         object_desc(name, prompt.obj, options);
-        sprintf(msg, "Really destroy %s? <color:y>[y/n/Auto]</color>", name);
+        sprintf(msg, "真的要摧毁 %s 吗？ <color:y>[y/n/Auto(自动)]</color>", name);
 
         ch = msg_prompt(msg, "nyA", PROMPT_DEFAULT);
         if (ch == 'n') return;

@@ -54,6 +54,33 @@
 #define SEEK_SET 0
 #endif
 
+static void utf8_to_wide(const char *src, WCHAR *dst, int max)
+{
+    int n;
+
+    if (!dst || max <= 0) return;
+
+    dst[0] = L'\0';
+    if (!src) return;
+
+    n = MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, src, -1, dst, max);
+    if (!n)
+        MultiByteToWideChar(CP_ACP, 0, src, -1, dst, max);
+
+    dst[max - 1] = L'\0';
+}
+
+static int message_box_utf8(HWND hwnd, const char *text, const char *caption, UINT type)
+{
+    WCHAR text_w[512];
+    WCHAR caption_w[128];
+
+    utf8_to_wide(text, text_w, sizeof(text_w)/sizeof(text_w[0]));
+    utf8_to_wide(caption, caption_w, sizeof(caption_w)/sizeof(caption_w[0]));
+
+    return MessageBoxW(hwnd, text_w, caption_w, type);
+}
+
 
 /*
  * Number of bytes to be read during each read operation
@@ -214,8 +241,8 @@ BOOL ReadDIB(HWND hWnd, LPSTR lpFileName, DIBINIT *pInfo)
     fh = OpenFile(lpFileName, &of, OF_READ);
     if (fh == -1)
     {
-        wsprintf(str, "Can't open file '%s'", (LPSTR)lpFileName);
-        MessageBox(NULL, str, "错误", MB_ICONSTOP | MB_OK);
+        wsprintf(str, "无法打开文件 '%s'", (LPSTR)lpFileName);
+        message_box_utf8(NULL, str, "错误", MB_ICONSTOP | MB_OK);
         return (FALSE);
     }
 
@@ -352,4 +379,3 @@ ErrExit2:
     _lclose(fh);
     return(result);
 }
-

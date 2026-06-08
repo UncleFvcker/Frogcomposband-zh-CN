@@ -1,19 +1,19 @@
 # Created by Topi Ylinen
 ?:[EQU $QUEST12 Taken InProgress]
-D:The Wizards of Nature have discovered a magical Node of 
-D:Nature in a nearby forest. You must seek the Node and 
-D:dispatch its guardians so that the Tower of Nature can 
-D:claim the mystical energies of the Node.
+D:自然法师们在附近的一片森林里发现了一个
+D:神奇的自然节点。你必须去寻找那个节点并
+D:消灭它的守卫，这样自然之塔就能
+D:夺取节点的神秘能量。
 ?:1
 
 ?:[EQU $QUEST12 Completed]
-D:You have done well. A powerful spellbook awaits you outside.
+D:你做得很好。一本强大的法术书正在外面等着你。
 ?:1
 
 ?:[EQU $QUEST12 Failed]
-D:Begone, incompetent fool! The dimensional energies of the 
-D:mystic Node have faded away and are lost forever! You had
-D:your chance and botched the job. 
+D:滚吧，无能的蠢货！神秘节点的维度能量已经消散，
+D:永远失去了！你本有机会，
+D:却把差事搞砸了。
 ?:1
 
 T:QUEST:NORMAL

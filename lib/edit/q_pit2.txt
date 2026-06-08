@@ -1,17 +1,17 @@
 # New quest for FrogComposband 7.1.chocolate
 
 ?:[AND [EQU $QUEST36 Taken InProgress] [EQU $WILDERNESS NORMAL] ]
-D:Unspeakable horrors inhabit the old quarry south of our town, spreading
-D:gloom and fear as they creep out at night. Please, help us before it's
-D:too late for Angwil.
+D:不可名状的恐怖生物栖息在我们镇南边的旧采石场里，
+D:当它们在夜间爬出来时，散播着忧郁和恐惧。求你了，在安格威尔
+D:一切都太迟之前，帮帮我们。
 ?:[AND [EQU $QUEST36 Taken InProgress] [EQU $WILDERNESS NONE] ]
-D:Unspeakable horrors inhabit an old quarry in the forest to the northwest,
-D:spreading gloom and fear as they creep out at night. Please, 
-D:help us before it's too late for Outpost.
+D:不可名状的恐怖生物栖息在西北森林的一个旧采石场里，
+D:当它们在夜间爬出来时，散播着忧郁和恐惧。求你了，
+D:在前哨镇一切都太迟之前，帮帮我们。
 ?:[EQU $QUEST36 Completed]
-D:Thank you.
+D:谢谢你。
 ?:[EQU $QUEST36 Failed]
-D:Oh. no.
+D:哦，不。
 ?:1
 
 T:QUEST:NORMAL

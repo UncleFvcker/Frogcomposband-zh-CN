@@ -1,20 +1,20 @@
 # New quest for FrogComposband 7.1.chocolate
 
 ?:[EQU $QUEST52 Taken InProgress]
-D:I would like you to explore the ruins of the old barracks. No one's been
-D:there in decades; the rooms have largely caved in, and the ghosts of the
-D:soldiers who died in the great earthquake are rumoured to haunt the place.
-D:You could check whether it's safe and whether anything valuable survived
-D:the earthquake.
+D:我希望你去探索旧军营的废墟。几十年来没人去过
+D:那里；大部分房间都塌陷了，而且据说那些在大地震中死去的
+D:士兵的鬼魂一直在那里出没。
+D:你可以去检查一下那里是否安全，以及大地震中
+D:是否有任何贵重物品幸存下来。
 ?:1
 
 ?:[EQU $QUEST52 Completed]
-D:I hear there was still some good stuff left, you can keep anything you
-D:found as your reward.
+D:我听说那里还剩下一些好东西，你可以保留你找到的
+D:任何东西作为你的奖励。
 ?:1
 
 ?:[EQU $QUEST52 Failed]
-D:You have failed me, beware you do not do so again!
+D:你让我失望了，小心别再这样了！
 ?:1
 
 T:QUEST:NORMAL

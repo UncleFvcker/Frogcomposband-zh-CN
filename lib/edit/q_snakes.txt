@@ -1,19 +1,19 @@
 ?:[EQU $QUEST51 Taken InProgress]
-D:...What is that you say? One of the buildings seems to be
-D:overrun with snakes! You might be interested to know that not
-D:long ago, a local adventurer dropped, I mean "Lost" his prized 
-D:leather whip among the ruins when he came face to face with a 
-D:thousand snakes. Perhaps you could perform a little house 
-D:cleaning in the ruins.
+D:……你说什么？其中一栋建筑物似乎被
+D:蛇给占领了！你可能有兴趣知道，不久前，
+D:一位当地冒险家在面对一千条蛇时，把他在废墟中掉落，
+D:我是说“丢失”了他珍贵的皮鞭。
+D:也许你可以去废墟里做点
+D:大扫除。
 ?:1
 
 ?:[EQU $QUEST51 Completed]
-D:I will sleep easier now I do not have to think about those
-D:snakes. If you found the whip you can keep it as a reward.
+D:现在我不必去想那些蛇了，我能睡得更踏实了。
+D:如果你找到了那根皮鞭，你可以留着它作为奖励。
 ?:1
 
 ?:[EQU $QUEST51 Failed]
-D:You have failed me, beware you do not do so again!
+D:你让我失望了，小心别再这样了！
 ?:1
 
 T:QUEST:NORMAL

@@ -1,9 +1,13 @@
 #include "c-string.h"
+#include "z-util.h"
 
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+
+#undef string_alloc_format
+#undef string_printf
 
 #ifdef _MSC_VER
 #   pragma warning(disable:4996)
@@ -28,10 +32,26 @@ string_ptr string_alloc(void)
     return string_copy_sn("", 0);
 }
 
+string_ptr string_alloc_format_aux(cptr file, int line, const char *fmt, ...)
+{
+    string_ptr res = string_alloc_size(128);
+    va_list vp;
+
+    format_diagnostic_note("string_alloc_format", fmt, file, line);
+
+    va_start(vp, fmt);
+    string_vprintf(res, fmt, vp);
+    va_end(vp);
+
+    return res;
+}
+
 string_ptr string_alloc_format(const char *fmt, ...)
 {
     string_ptr res = string_alloc_size(128);
     va_list vp;
+
+    format_diagnostic_note("string_alloc_format", fmt, "(legacy object)", 0);
 
     va_start(vp, fmt);
     string_vprintf(res, fmt, vp);
@@ -169,9 +189,19 @@ int string_compare(const string_ptr left, const string_ptr right)
     return strcmp(left->buf, right->buf);
 }
 
+void string_printf_aux(cptr file, int line, string_ptr str, const char *fmt, ...)
+{
+    va_list vp;
+    format_diagnostic_note("string_printf", fmt, file, line);
+    va_start(vp, fmt);
+    string_vprintf(str, fmt, vp);
+    va_end(vp);
+}
+
 void string_printf(string_ptr str, const char *fmt, ...)
 {
     va_list vp;
+    format_diagnostic_note("string_printf", fmt, "(legacy object)", 0);
     va_start(vp, fmt);
     string_vprintf(str, fmt, vp);
     va_end(vp);

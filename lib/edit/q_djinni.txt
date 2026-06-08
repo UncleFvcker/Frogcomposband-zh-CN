@@ -7,22 +7,22 @@ K:89
 ?:1
 
 ?:[EQU $QUEST70 Taken InProgress]
-D:We've had a few problems lately with the rogue djinni who lives in a
-D:cavern to the northeast of the city. It was previously quite tame and
-D:did the bidding of a local sorcerer, but the man vanished some time ago
-D:and the djinni has been out of control since then. Please visit its cave
-D:and eliminate it and any lesser spirits that may attend to it. (I've
-D:heard rumours that the djinni might become friendly again if offered
-D:peppermint leaves; so if you have any, that could be an alternative way
-D:to deal with it.)
+D:最近，住在城市东北部一个洞穴里的流浪巨灵（djinni）
+D:给我们带来了一些麻烦。它以前很温顺，
+D:并且听从一位当地巫师的吩咐，但那个人不久前消失了，
+D:从那以后那个巨灵就失控了。请去它的洞穴
+D:消灭它以及任何可能侍奉它的小精灵。（我
+D:听到传言说，如果给那个巨灵献上薄荷叶，它可能会重新变得友好；
+D:所以如果你有薄荷叶的话，这也许是
+D:解决这个问题的另一种方法。）
 
 ?:[EQU $QUEST70 Completed]
-D:My men found this valuable lamp in the djinni's secret treasure trove,
-D:I hope you find it an acceptable token of our gratitude.
+D:我的人在那个巨灵的秘密宝库里发现了这盏贵重的神灯，
+D:我希望你能接受它作为我们感谢的信物。
 ?:1
 
 ?:[EQU $QUEST70 Failed]
-D:You have failed me, beware you do not do so again!
+D:你让我失望了，小心别再这样了！
 ?:1
 
 T:QUEST:NORMAL:NO_ROTATE

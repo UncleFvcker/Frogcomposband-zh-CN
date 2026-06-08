@@ -323,7 +323,7 @@ static void _archery_transformation_spell(int power, int cmd, variant *res)
             return;
         }
         _NO_COST_FAIL()
-        _clear_counter(_COMBAT, "Your combat transformation expires.");    
+        _clear_counter(_COMBAT, "你的战斗变形失效了。");    
         msg_print("你变成了一台射击机器！");
         p_ptr->magic_num1[_ARCHERY] = spell_power(power*8 + 20);
         p_ptr->magic_num2[_ARCHERY] = power;
@@ -407,7 +407,7 @@ static void _combat_transformation_spell(int power, int cmd, variant *res)
             return;
         }
         _NO_COST_FAIL()
-        _clear_counter(_ARCHERY, "Your archery transformation expires.");    
+        _clear_counter(_ARCHERY, "你的箭术变形失效了。");    
         msg_print("你变成了一台战斗机器！");
         p_ptr->magic_num1[_COMBAT] = spell_power(power*8 + 20);
         p_ptr->magic_num2[_COMBAT] = power;
@@ -1077,11 +1077,11 @@ static void _psionic_healing_spell(int power, int cmd, variant *res)
     case SPELL_DESC:
     {
         const cptr _descriptions[_MAX_POWER] = {
-            "Cures blindness, stunning and cuts.",
-            "Cures blindness, stunning and cuts.",
-            "Cures blindness, stunning, cuts and hallucination.",
-            "Cures blindness, stunning, cuts and hallucination.",
-            "Cures blindness, stunning, cuts and hallucination. Restores all stats and experience."
+            "治疗失明、震慑和割伤。",
+            "治疗失明、震慑和割伤。",
+            "治疗失明、震慑、割伤和幻觉。",
+            "治疗失明、震慑、割伤和幻觉。",
+            "治疗失明、震慑、割伤和幻觉。恢复所有属性和经验。"
             };
         var_set_string(res, _descriptions[power-1]);
         break;
@@ -1139,10 +1139,10 @@ static void _psionic_protection_spell(int power, int cmd, variant *res)
     case SPELL_DESC:
     {
         const cptr _descriptions[_MAX_POWER] = {
-            "Gain temporary resistance to fire and cold.",
-            "Gain temporary resistance to fire, cold and lightning.",
-            "Gain temporary resistance to fire, cold, lightning, acid and poison.",
-            "Gain temporary resistance to fire, cold, lightning, acid and poison. Gain temporary elemental auras.",
+            "获得暂时的火焰与冰寒抗性。",
+            "获得暂时的火焰、冰寒与闪电抗性。",
+            "获得暂时的火焰、冰寒、闪电、酸液与毒素抗性。",
+            "获得暂时的火焰、冰寒、闪电、酸液与毒素抗性。并获得暂时的元素光环。",
             "获得对你选择的元素的临时免疫。"
             };
         var_set_string(res, _descriptions[power-1]);
@@ -1192,18 +1192,18 @@ static void _psionic_seeing_spell(int power, int cmd, variant *res)
     case SPELL_NAME:
     {
         const cptr _names[_MAX_POWER] = {
-            "侦测怪物", "and Traps, Objects", "and Surroundings", "and Telepathy", "and Clairvoyance"};
+            "侦测怪物", "以及陷阱和物品", "以及周围环境", "以及心灵感应", "以及千里眼"};
         var_set_string(res, _names[power-1]);
         break;
     }
     case SPELL_DESC:
     {
         const cptr _descriptions[_MAX_POWER] = {
-            "Detects monsters.", 
-            "Detects monsters, doors, stairs, traps and objects.",
-            "Detects monsters, doors, stairs, traps and objects. Maps nearby area.",
-            "Detects monsters, doors, stairs, traps and objects. Maps nearby area and grants temporary telepathy.",
-            "Detects monsters, doors, stairs, traps and objects. Maps entire level and grants temporary telepathy.",
+            "探测怪物。", 
+            "探测怪物、门、阶梯、陷阱和物品。",
+            "探测怪物、门、阶梯、陷阱和物品。映射附近区域。",
+            "探测怪物、门、阶梯、陷阱和物品。映射附近区域并赋予暂时的心灵感应。",
+            "探测怪物、门、阶梯、陷阱和物品。映射整个楼层并赋予暂时的心灵感应。",
             };
         var_set_string(res, _descriptions[power-1]);
         break;
@@ -1382,8 +1382,8 @@ static void _psionic_travel_spell(int power, int cmd, variant *res)
     case SPELL_DESC:
     {
         const cptr _descriptions[_MAX_POWER] = {
-            "Short-range teleport.", "Medium-range teleport.", "Long-range teleport.",
-            "Teleport to specified location.", "Teleport to specified location."};
+            "短距离传送。", "中距离传送。", "长距离传送。",
+            "传送到指定位置。", "传送到指定位置。"};
         var_set_string(res, _descriptions[power-1]);
         break;
     }
@@ -1727,7 +1727,7 @@ static _spell_t __spells[] =
         {240,  70, _mindspring3_spell },
         {400,  85, _mindspring4_spell },
         {600, 100, _mindspring5_spell }},
-        "Mindspring greatly enhances your mana recovery."
+        "心灵源泉极大地提高你的法力回复速度。"
     },
     { "预知未来", _PSION_FORESIGHT, 50, {  
         { 40,  40, _psionic_foresight1_spell },
@@ -2118,9 +2118,9 @@ void psion_decrement_counters(void)
     _decrement_counter(_SPEED, "Your psionic speed fades.");    
     _decrement_counter(_BACKLASH, "Your mental revenge abates.");    
     _decrement_counter(_FORTRESS, "Your mental fortress collapses.");    
-    _decrement_counter(_MINDSPRING, "Your mindspring dries up.");    
+    _decrement_counter(_MINDSPRING, "你的心灵源泉枯竭了。");    
     _decrement_counter(_FORESIGHT, "Your foresight fades.");    
-    _decrement_counter(_DISRUPTION, "Your mental disruption vanishes.");
+    _decrement_counter(_DISRUPTION, "你的心灵干扰消失了。");
     _decrement_counter(_DRAIN, "你不再从周围的魔法中吸取力量。");
 }
 
@@ -2151,7 +2151,7 @@ void psion_dispel_player(void)
     _clear_counter(_FORTRESS, "Your mental fortress collapses.");    
     /*_clear_counter(_MINDSPRING, "Your mindspring dries up.");    */
     _clear_counter(_FORESIGHT, "Your foresight fades.");    
-    _clear_counter(_DISRUPTION, "Your mental disruption is calmed.");    
+    _clear_counter(_DISRUPTION, "你的心灵干扰平息了。");    
     _clear_counter(_DRAIN, "你不再从周围的魔法中吸取力量。");
 }
 
@@ -2161,7 +2161,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "focus";
+        me.magic_desc = "专注";
         me.encumbrance.max_wgt = 400;
         me.encumbrance.weapon_pct = 50;
         me.encumbrance.enc_wgt = 800;

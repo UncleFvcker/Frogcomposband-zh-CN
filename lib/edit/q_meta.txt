@@ -1,5 +1,5 @@
 # vim: filetype=q :
 
 ?:[EQU $QUEST97 Taken InProgress]
-D:If you can see this description, there's a bug in the code, please report.
+D:如果你能看到这条描述，说明代码里有 Bug，请汇报给作者。
 ?:1

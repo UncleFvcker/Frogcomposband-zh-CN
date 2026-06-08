@@ -3,17 +3,17 @@
 # that q_info.txt changes will suffice, but worry that some code might
 # try to parse the file link.
 ?:[EQU $QUEST26 Taken InProgress]
-D:This quest has been removed. If you are seeing this, then
-D:you probably took the quest before upgrading to a version
-D:in which the quest no longer exists.
+D:此任务已被移除。如果你看到了这条信息，那么
+D:你可能是在升级到一个不再包含此任务的版本
+D:之前接下了这个任务。
 ?:1
 
 ?:[EQU $QUEST26 Completed]
-D:You accomplished something truly noble. Well done!
+D:你完成了一件真正崇高的事情。干得好！
 ?:1
 
 ?:[EQU $QUEST26 Failed]
-D:You failed this quest.
+D:你未能完成此任务。
 ?:1
 
 T:QUEST:NORMAL

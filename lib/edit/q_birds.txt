@@ -3,17 +3,17 @@ K:84
 ?:1
 
 ?:[EQU $QUEST62 Taken InProgress]
-D:There have been a flock of birds attacking people on the roads and carrying 
-D:away their valuables. We think they have a nest up in the hills to the south. 
-D:We need your help.
+D:有一群鸟一直在道路上袭击行人，并抢走
+D:他们的贵重物品。我们认为它们在南边山丘上筑了巢。
+D:我们需要你的帮助。
 ?:1
 
 ?:[EQU $QUEST62 Completed]
-D:Now those devilish birds won't be harming innocent people.
+D:现在那些恶魔般的鸟不会再伤害无辜的人了。
 ?:1
 
 ?:[EQU $QUEST62 Failed]
-D:You have failed me, beware you do not do so again!
+D:你让我失望了，小心别再这样了！
 ?:1
 
 T:QUEST:NORMAL

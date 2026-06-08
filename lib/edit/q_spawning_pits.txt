@@ -2,26 +2,26 @@
 # a quick creation by Jeff Coleburn <vsp@netaxs.com>
 
 ?:[EQU $QUEST23 Taken InProgress]
-D:A great, great evil approaches, perhaps the end for our town.
-D:Our scouts lie slaughtered, their bodies crushed and mangled
-D:by powerful beasts. I know not what you shall face. 
-D:Monsters appear as if out of thin air, as if spawned by a foul 
-D:altar in a valley close to where you defeated the orcs.
-D:I am hesistant to ask for your help, knowing you may be sent 
-D:to your doom, and yet you are the last hope for our town. 
-D:Approach each nook carefully, as evil lies in unexpected places.
-D:Please prepare well, and strike hard in our names.
+D:一股极其强大的邪恶力量正在逼近，这也许就是我们城镇的末日。
+D:我们的侦察兵惨遭屠杀，他们的身体被强大的野兽
+D:粉碎和蹂躏。我不知道你将面临什么。
+D:怪物们仿佛凭空出现一般，就像是由你在击败兽人那片山谷附近
+D:的一座邪恶祭坛中孵化出来的。
+D:我很犹豫是否该请求你的帮助，因为我知道这可能
+D:是派你去送死，但你却又是我们城镇最后的希望了。
+D:小心靠近每一个角落，因为邪恶总是隐藏在意想不到的地方。
+D:请做好准备，并以我们的名义给它们致命一击。
 ?:1
 
 ?:[EQU $QUEST23 Completed]
-D:Your valor shall go down in our legends; your name shall be
-D:sung by elvenkind for ages to come. Hail the conquering hero!
-D:May your battles with the Serpent be as successful.
-D:Use our gift wisely, and may the light shine on you.
+D:你的英勇将被载入我们的传说；你的名字将被
+D:精灵族传唱千古。向凯旋的英雄致敬！
+D:愿你与混沌之蛇的战斗也能如此顺利。
+D:明智地使用我们的礼物，愿光芒照耀着你。
 ?:1
 
 ?:[EQU $QUEST23 Failed]
-D:I've sent out someone else to do the job. Now leave me alone!
+D:我已经派了别人去干这差事了。现在别烦我了！
 ?:1
 
 T:QUEST:NORMAL

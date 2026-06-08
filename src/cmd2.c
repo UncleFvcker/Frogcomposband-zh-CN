@@ -157,9 +157,9 @@ void do_cmd_go_down(void)
             if (!max_dlv[target_dungeon])
             {
                 if (d_info[target_dungeon].flags1 & DF1_RANDOM)
-                    msg_format("这是%s的入口 (危险等级: ?)", d_name+d_info[target_dungeon].name);
+                    msg_format("这是%s的入口 (危险等级: ?)", dungeon_display_name(target_dungeon));
                 else
-                    msg_format("这是%s的入口 (危险等级: %d)", d_name+d_info[target_dungeon].name, d_info[target_dungeon].mindepth);
+                    msg_format("这是%s的入口 (危险等级: %d)", dungeon_display_name(target_dungeon), d_info[target_dungeon].mindepth);
                 if (!get_check("你真的要进入这个地下城吗？")) return;
             }
 
@@ -440,7 +440,7 @@ static void chest_trap(int y, int x, s16b o_idx)
     if (trap & (CHEST_LOSE_STR))
     {
         msg_print("一根小细针扎了你一下！");
-        take_hit(DAMAGE_NOESCAPE, damroll(1, 4), "a poison needle");
+        take_hit(DAMAGE_NOESCAPE, damroll(1, 4), "毒针");
 
         (void)do_dec_stat(A_STR);
     }
@@ -449,7 +449,7 @@ static void chest_trap(int y, int x, s16b o_idx)
     if (trap & (CHEST_LOSE_CON))
     {
         msg_print("一根小细针扎了你一下！");
-        take_hit(DAMAGE_NOESCAPE, damroll(1, 4), "a poison needle");
+        take_hit(DAMAGE_NOESCAPE, damroll(1, 4), "毒针");
 
         (void)do_dec_stat(A_CON);
     }
@@ -574,7 +574,7 @@ static void chest_trap(int y, int x, s16b o_idx)
             /* ...but a high saving throw does help a little. */
             if (randint1(100+o_ptr->pval*2) > p_ptr->skills.sav)
             {
-                if (one_in_(6)) take_hit(DAMAGE_NOESCAPE, damroll(5, 20), "a chest dispel-player trap");
+                if (one_in_(6)) take_hit(DAMAGE_NOESCAPE, damroll(5, 20), "宝箱驱散玩家陷阱");
                 else if (one_in_(5)) (void)set_cut(p_ptr->cut + 200, FALSE);
                 else if (one_in_(4))
                 {
@@ -613,7 +613,7 @@ static void chest_trap(int y, int x, s16b o_idx)
 
         o_ptr->pval = 0;
         sound(SOUND_EXPLODE);
-        take_hit(DAMAGE_ATTACK, damroll(5, 8), "an exploding chest");
+        take_hit(DAMAGE_ATTACK, damroll(5, 8), "爆炸的宝箱");
 
     }
     /* Scatter contents. */
@@ -2668,7 +2668,7 @@ void do_cmd_rest(void)
 
         /* XXX race_mimic? */
         if (clear)
-            mimic_race(MIMIC_NONE, "You cannot rest while maintaining your current form.");
+            mimic_race(MIMIC_NONE, "在维持当前形态时你无法休息。");
     }
 
     if (p_ptr->special_defense & NINJA_S_STEALTH) set_superstealth(FALSE);
@@ -2807,7 +2807,7 @@ static s16b tot_dam_aux_shot(object_type *o_ptr, int tdam, monster_type *m_ptr)
                     {
                         my_mult *= 5;
                     }
-                    strcpy(oppi, format("slays <color:%c>*%^s*</color>", _slay.attr, _slay.kill_desc));
+                    strcpy(oppi, format("可对<color:%c>*%^s*</color>造成巨大杀伤", _slay.attr, _slay.kill_desc));
                     obj_learn_slay(o_ptr, _slay.kill_flag, oppi);
                 }
                 else if (have_flag(flgs, _slay.slay_flag))
@@ -2828,7 +2828,7 @@ static s16b tot_dam_aux_shot(object_type *o_ptr, int tdam, monster_type *m_ptr)
                     if (!_slay.is_slay) obj_learn_slay(o_ptr, _slay.slay_flag, _slay.brand_learn);
                     else
                     {
-                        strcpy(oppi, format("slays <color:%c>%^s</color>", _slay.attr, _slay.kill_desc));
+                        strcpy(oppi, format("可对<color:%c>%^s</color>造成杀伤", _slay.attr, _slay.kill_desc));
                         obj_learn_slay(o_ptr, _slay.slay_flag, oppi);
                     }
                 }
@@ -2843,7 +2843,7 @@ static s16b tot_dam_aux_shot(object_type *o_ptr, int tdam, monster_type *m_ptr)
                 {
                     sp_player(-cost);
                     mult += 5;
-                    obj_learn_slay(o_ptr, OF_BRAND_MANA, "is <color:B>Mana Branded</color>");
+                    obj_learn_slay(o_ptr, OF_BRAND_MANA, "带有<color:B>法力烙印</color>");
                 }
             }
 
@@ -3738,7 +3738,7 @@ void do_cmd_fire_aux2(obj_ptr bow, obj_ptr arrows, int sx, int sy, int tx, int t
 
     /* Check for easy tiring */
     p_inc_fatigue(MUT_EASY_TIRING2, 7500 / NUM_SHOTS);
-    check_muscle_sprains(250, "You feel a sudden sharp pain running down from your right shoulder!");
+    check_muscle_sprains(250, "你感到一阵剧痛从右肩传遍全身！");
 }
 
 

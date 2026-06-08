@@ -128,25 +128,25 @@ L:a:BUILDING_0(0)
 
 ############### Buildings ###############
 
-B:0:N:The White Horse Inn:Goodman Otick:Human
-B:0:A:0:Rest for the night:20:20:r:17:0
-B:0:A:1:Buy food and drink:1:1:f:18:1
-B:0:A:2:Listen for rumors:5:5:u:19:0
-B:0:A:3:Request quest:0:0:q:6:0
-B:0:A:4:Teleport to other town:500:500:m:42:0
-B:0:A:5:Ask about your reputation:1:1:a:55:0
+B:0:N:白马旅店:好人奥蒂克:人类
+B:0:A:0:住宿一晚:20:20:r:17:0
+B:0:A:1:购买食物和饮料:1:1:f:18:1
+B:0:A:2:打听传闻:5:5:u:19:0
+B:0:A:3:请求任务:0:0:q:6:0
+B:0:A:4:传送到其他城镇:500:500:m:42:0
+B:0:A:5:询问你的声望:1:1:a:55:0
 B:0:R:*:Member
 
-B:1:N:Count:Uldrik II:Human
-B:1:A:0:Request quest:0:0:q:6:0
-B:1:A:1:Identify item:50:50:i:44:0
-B:1:A:2:Legal Name Change:10:10:c:57:0
+B:1:N:伯爵:乌尔德里克二世:人类
+B:1:A:0:请求任务:0:0:q:6:0
+B:1:A:1:鉴定单件物品:50:50:i:44:0
+B:1:A:2:合法改名:10:10:c:57:0
 
-B:13:N:Bounty Office:Arack Beastmaster:Dwarf
-B:13:A:0:Today's wanted:0:0:a:38:0
-B:13:A:1:Wanted unique list:0:0:b:39:0
-B:13:A:2:Special target:0:0:s:37:0
-B:13:A:3:Receive prize:0:0:c:40:0
+B:13:N:赏金事务所:驯兽师阿拉克:矮人
+B:13:A:0:今日通缉:0:0:a:38:0
+B:13:A:1:通缉独特怪名单:0:0:b:39:0
+B:13:A:2:特殊目标:0:0:s:37:0
+B:13:A:3:领取赏金:0:0:c:40:0
 
 
 ############### Town Layout ###############

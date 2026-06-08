@@ -354,7 +354,7 @@ static _flag_info_t _slay_flag_info[] = {
     { OF_BRAND_CHAOS, 32, "混乱附魔" },
     { OF_BRAND_VAMP, 32, "吸血附魔" },
     { OF_VORPAL, 16, "斩首附魔" },
-    { OF_VORPAL2, 32, "*Vorpal*" },
+    { OF_VORPAL2, 32, "*锋锐*" },
 
     /* Alt: These could be achieved from corresponding slay flags with enough essences */
     { OF_KILL_EVIL, 16, "抹杀邪恶" },
@@ -1015,7 +1015,7 @@ static void _character_dump(doc_ptr doc)
     _dump_ability_flag(doc, OF_AURA_ELEC, 7, "闪电光环");
     _dump_ability_flag(doc, OF_AURA_COLD, 7, "寒冰光环");
     for (i = 0; i < 6; i++) /* Assume in order */
-        _dump_ability_flag(doc, OF_SUST_STR + i, 5, format("Sustain %s", stat_name_true[A_STR + i]));
+        _dump_ability_flag(doc, OF_SUST_STR + i, 5, format("维持%s", stat_name_true[A_STR + i]));
 
     doc_printf(doc, "\n <color:G>%-22.22s 总计 需要 加成</color>\n", "侦测/心电感应");
     _dump_ability_flag(doc, OF_TELEPATHY, 2, "心灵感应");

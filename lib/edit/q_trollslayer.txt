@@ -1,21 +1,21 @@
 ?:[AND [EQU $QUEST56 Taken InProgress] [EQU $DUNGEON3 Active] ]
-D:If you want our respect you need to prove yourself. Go to
-D:the orc caves and kill ten Ologs to show us you aren't a
-D:wimp.
+D:如果你想赢得我们的尊重，你需要证明你自己。去
+D:兽人洞穴杀掉十只奥罗格（Ologs），向我们证明你不是
+D:懦夫。
 ?:1
 
 ?:[AND [EQU $QUEST56 Taken InProgress] [EQU $DUNGEON3 Suppressed] ]
-D:If you want our respect you need to prove yourself. Go to
-D:the troll caves and kill ten Ologs to show us you aren't a
-D:wimp.
+D:如果你想赢得我们的尊重，你需要证明你自己。去
+D:巨魔洞穴杀掉十只奥罗格，向我们证明你不是
+D:懦夫。
 ?:1
 
 ?:[EQU $QUEST56 Completed]
-D:Good start. Our armourers have made you a trophy.
+D:好的开始。我们的护甲匠为你制作了一件战利品。
 ?:1
 
 ?:[EQU $QUEST56 Failed]
-D:Not tough enough eh? Try harder next time.
+D:不够坚强，嗯？下次再努力点吧。
 ?:1
 
 R:OBJ(steel helm):EGO(troll)

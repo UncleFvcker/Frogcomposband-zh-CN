@@ -1060,7 +1060,7 @@ void _igor_calc_innate_attacks(void)
 
                     _bite.weight = 60;
                     calc_innate_blows(&_bite, 100);
-                    _bite.msg = "You bite.";
+                    _bite.msg = "你咬了一口。";
                     _bite.name = "咬";
                     _bite.effect[0] = GF_MISSILE;
                     if (venom) _bite.effect[1] = GF_POIS;
@@ -1136,7 +1136,7 @@ void _igor_calc_innate_attacks(void)
 
                     _claw.weight = 60;
                     calc_innate_blows(&_claw, 100);
-                    _claw.msg = "You claw.";
+                    _claw.msg = "你抓了一下。";
                     _claw.name = "抓";
                     _claw.effect[0] = GF_MISSILE;
                     if (venom) _claw.effect[1] = GF_POIS;

@@ -141,49 +141,49 @@ L:F:FLOWER
 L:n:BUILDING_13(0)
 ?:1
 
-B:0:N:Library:Ibn Khaldun:Human?
-B:0:A:0:Research item:1000:1000:a:1:0
-B:0:A:1:Town Overview:0:0:h:2:0
-B:0:A:2:Identify item:50:50:i:44:0
+B:0:N:图书馆:伊本·赫勒敦:人类？
+B:0:A:0:研究物品:1000:1000:a:1:0
+B:0:A:1:城镇纵览:0:0:h:2:0
+B:0:A:2:鉴定单件物品:50:50:i:44:0
 
-B:1:N:Palace:Sultan Idris:Human
-B:1:A:0:Request quest:0:0:q:6:0
+B:1:N:宫殿:苏丹·伊德里斯:人类
+B:1:A:0:请求任务:0:0:q:6:0
 
-B:2:N:Arena:Tariq:Human
+B:2:N:竞技场:塔里克:人类
 #B:2:A:0:RULES:0:0:a:9:0
-B:2:A:0:Enter in arena:0:0:e:10:0
-B:2:A:1:Look at poster:0:0:p:8:0
+B:2:A:0:进入竞技场:0:0:e:10:0
+B:2:A:1:查看海报:0:0:p:8:0
 #B:2:A:2:Palace of heros:0:0:s:11:0
 
-B:3:N:Casino:Aziz:Human
-B:3:A:0:In-Between:0:0:b:12:0
-B:3:A:1:Play craps:0:0:c:14:0
-B:3:A:2:Spin the wheel:0:0:s:15:0
-B:3:A:3:Play dice slots:0:0:d:16:0
-B:3:A:4:Monster arena:0:0:m:36:0
-B:3:A:5:Poker:0:0:p:43:0
-B:3:A:6:Game rules:0:0:r:13:0
+B:3:N:赌场:阿齐兹:人类
+B:3:A:0:夹牌游戏(In-Between):0:0:b:12:0
+B:3:A:1:玩掷骰子:0:0:c:14:0
+B:3:A:2:转轮盘:0:0:s:15:0
+B:3:A:3:玩骰子老虎机:0:0:d:16:0
+B:3:A:4:怪物竞技场:0:0:m:36:0
+B:3:A:5:扑克:0:0:p:43:0
+B:3:A:6:游戏规则:0:0:r:13:0
 
-B:4:N:Inn:Balthazar:Human
-B:4:A:0:Rest for the night:20:20:r:17:0
-B:4:A:1:Buy food and drink:1:1:f:18:1
-B:4:A:2:Listen for rumors:10:10:u:19:0
-B:4:A:3:Teleport to other town:500:500:m:42:0
-B:4:A:4:Ask about your reputation:1:1:a:55:0
+B:4:N:旅店:巴尔萨泽:人类
+B:4:A:0:住宿一晚:20:20:r:17:0
+B:4:A:1:购买食物和饮料:1:1:f:18:1
+B:4:A:2:打听传闻:10:10:u:19:0
+B:4:A:3:传送到其他城镇:500:500:m:42:0
+B:4:A:4:询问你的声望:1:1:a:55:0
 B:4:R:*:Member
 
-B:5:N:Bounty Office:Kaleel:Human
-B:5:A:0:Today's wanted:0:0:a:38:0
-B:5:A:1:Wanted unique list:0:0:b:39:0
-B:5:A:2:Special target:0:0:s:37:0
-B:5:A:3:Receive prize:0:0:c:40:0
+B:5:N:赏金事务所:卡利尔:人类
+B:5:A:0:今日通缉:0:0:a:38:0
+B:5:A:1:通缉独特怪名单:0:0:b:39:0
+B:5:A:2:特殊目标:0:0:s:37:0
+B:5:A:3:领取赏金:0:0:c:40:0
 
-B:6:N:Weaponmaster:Torvald:Human
-B:6:A:0:Evaluate AC:100:100:a:46:0
+B:6:N:武器大师:托瓦尔德:人类
+B:6:A:0:评估护甲等级(AC):100:100:a:46:0
 
-B:7:N:Fighters' Hall:Arrashaw:Beastman
-B:7:A:0:Enchant weapon:0:0:w:23:0
-B:7:A:1:Enchant armor:0:0:a:24:0
+B:7:N:战士公会:阿拉肖:兽人
+B:7:A:0:强化武器:0:0:w:23:0
+B:7:A:1:强化护甲:0:0:a:24:0
 B:7:C:*:None
 B:7:C:Warrior:Owner
 B:7:C:Samurai:Owner
@@ -192,8 +192,8 @@ B:7:C:Berserker:Owner
 B:7:C:Blood-Knight:Owner
 B:7:C:Mauler:Owner
 
-B:8:N:Tower of Sorcery:Zindani:Human
-B:8:A:0:Identify possessions:200:1000:i:26:0
+B:8:N:巫术之塔:津达尼:人类
+B:8:A:0:鉴定所有物品:200:1000:i:26:0
 B:8:C:*:None
 B:8:C:Mage:Owner
 B:8:C:High-Mage:Owner
@@ -204,34 +204,34 @@ B:8:C:Gray-Mage:Owner
 B:8:C:Ranger:Member
 B:8:C:Warrior-Mage:Member
 
-B:9:N:Temple of Life:Rydell Feanathiel:Elf
-B:9:A:0:Healing prayer:0:150:h:28:0
-B:9:A:1:Restoration:400:1500:r:29:0
+B:9:N:生命神殿:雷德尔·菲纳希尔:精灵
+B:9:A:0:治疗祈祷:0:150:h:28:0
+B:9:A:1:属性恢复:400:1500:r:29:0
 B:9:M:*:None
 B:9:M:Life:Owner
 
-B:10:N:Thieves' Guild:Gergan:Hobbit
-B:10:A:0:Rest for the night:0:100:r:17:0
-B:10:A:1:Identify possessions:100:2000:i:26:0
+B:10:N:盗贼公会:格尔干:霍比特人
+B:10:A:0:住宿一晚:0:100:r:17:0
+B:10:A:1:鉴定所有物品:100:2000:i:26:0
 B:10:C:*:None
 B:10:C:Rogue:Owner
 
-B:11:N:Archers' Guild:Ikhlan:Wood-elf
-B:11:A:0:Enchant missiles:20:40:a:30:0
-B:11:A:1:Enchant bow:0:0:b:31:0
+B:11:N:弓箭手公会:伊克兰:木精灵
+B:11:A:0:强化弹药:20:40:a:30:0
+B:11:A:1:强化弓:0:0:b:31:0
 B:11:C:*:None
 B:11:C:Ranger:Owner
 B:11:C:Archer:Owner
 B:11:C:Sniper:Owner
 
-B:12:N:Paladins' Guild:Keara:Giant
-B:12:A:0:Enchant armor:300:600:a:24:0
-B:12:A:1:See Healers:0:150:h:28:0
+B:12:N:圣武士公会:基亚拉:巨人
+B:12:A:0:强化护甲:300:600:a:24:0
+B:12:A:1:拜访治疗师:0:150:h:28:0
 B:12:C:*:None
 B:12:C:Paladin:Owner
 
-B:13:N:Royal Lyceum:Lord Itsukama:Human
-B:13:A:0:Request quest:0:0:q:6:0
+B:13:N:皇家书院:伊祖卡玛领主:人类
+B:13:A:0:请求任务:0:0:q:6:0
 B:13:C:*:None
 
 ############### Town Layout ###############

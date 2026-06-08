@@ -1,19 +1,19 @@
 # By Shayne Steele (steele@cs.fsu.edu)
 
 ?:[EQU $QUEST30 Taken InProgress]
-D:The Black Market's owner is thinking of opening another Thieves' Guild. 
-D:I do not need the competition, here is the key to the Black Market's
-D:treasure room. Destroy everything you find there and you will
-D:be rewarded.
+D:黑市老板正考虑开设另一个盗贼公会。
+D:我不需要这种竞争，这是黑市藏宝室的
+D:钥匙。摧毁你在那里找到的一切，你会
+D:得到奖励。
 ?:1
 
 ?:[EQU $QUEST30 Completed]
-D:You have done well. Please accept the following reward as a token
-D:of my gratitude.
+D:你做得很出色。请接受以下奖励，以此作为我感激的
+D:信物。
 ?:1
 
 ?:[EQU $QUEST30 Failed]
-D:You have failed this quest, but keep what you have found.
+D:你未能完成这个任务，但你可以保留你找到的东西。
 ?:1
 
 T:QUEST:NORMAL

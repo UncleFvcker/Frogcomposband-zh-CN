@@ -2,6 +2,8 @@
 
 #include <assert.h>
 
+#include "quest_name_zh.inc"
+
 doc_ptr trace_doc = NULL;
 static int _current = 0;
 
@@ -45,41 +47,47 @@ void quest_change_file(quest_ptr q, cptr file)
 
 cptr kayttonimi(quest_ptr q)
 {
+    cptr name = quest_display_name(q->id);
+
     /* Censor (Thalos), (Morivant) etc. in lite-town mode */
-    if ((no_wilderness) && (strpos("(", q->name) > 2))
+    if ((no_wilderness) && (strpos("(", name) > 2))
     {
-        char putsattu[50];
-        int paikka = strpos("(", q->name);
-        my_strcpy(putsattu, q->name, MIN((int)sizeof(putsattu), paikka - 1));
-        free((vptr)q->name);
-        q->name = _strcpy(putsattu);
-        return q->name;
+        static char putsattu[80];
+        int paikka = strpos("(", name);
+        my_strcpy(putsattu, name, MIN((int)sizeof(putsattu), paikka - 1));
+        return putsattu;
     }
-    else return q->name;
+    else return name;
 }
 
-/* It's a bit ugly to have two functions that essentially do the same thing.
- * The problem with using kayttonimi() for everything is that it actually
- * changes the quest's name, which saves time (no need to truncate the name
- * repeatedly) and avoids memory leaks, but is inconvenient if we don't use
- * lite-town and therefore actually want to keep the long name. We can't even
- * use kayttonimi() to put the long name back in, because the long name isn't
- * retained and the quest doesn't actually "know" which town it belongs to.
- * Therefore, we use lyhytnimi() to get the short name when we don't want
- * to actually change the quest's name, but it is a much less convenient
- * function than kayttonimi(), because it allocates memory for the name
- * but relies on its users to free that memory elsewhere. */
+/* lyhytnimi() returns a newly allocated short display name; callers must free it. */
 cptr lyhytnimi(quest_ptr q, cptr *nimi)
 {
-    if (strpos("(", q->name) > 2)
+    cptr name = quest_display_name(q->id);
+
+    if (strpos("(", name) > 2)
     {
-        char putsattu[50];
-        int paikka = strpos("(", q->name);
-        my_strcpy(putsattu, q->name, MIN((int)sizeof(putsattu), paikka - 1));
+        char putsattu[80];
+        int paikka = strpos("(", name);
+        my_strcpy(putsattu, name, MIN((int)sizeof(putsattu), paikka - 1));
         *nimi = _strcpy(putsattu);
     }
-    else *nimi = _strcpy(q->name);
+    else *nimi = _strcpy(name);
     return *nimi;
+}
+
+cptr quest_display_name(int id)
+{
+    quest_ptr q = quests_get(id);
+    int max = sizeof(_quest_name_zh)/sizeof(_quest_name_zh[0]);
+
+    if (id > 0 && id < max && _quest_name_zh[id])
+        return _quest_name_zh[id];
+
+    if (q && q->name)
+        return q->name;
+
+    return "";
 }
 
 
@@ -107,7 +115,9 @@ int quest_get_rnd_num(int *num)
     q = quests_get_current();
     if ((!q) || (!q->name)) return 0;
     if (!(q->flags & QF_RANDOM)) return 0;
-    if (sscanf(q->name, "Random %d", &tulos) == 1)
+    if (sscanf(q->name, "Random %d", &tulos) == 1 ||
+        sscanf(q->name, "随机 %d", &tulos) == 1 ||
+        sscanf(q->name, "随机任务 %d", &tulos) == 1)
     {
         if (num != NULL) *num = tulos;
         return tulos;
@@ -501,7 +511,7 @@ bool quest_post_generate(quest_ptr q)
         else if ((r_ptr->flags1 & RF1_UNIQUE) && (unique_is_friend(q->goal_idx)) && (!(q->flags & QF_PURPLE))) /* this can happen at least with Eric if you befriend him in his quest */
         {
             int i, ct = (q->level/(coffee_break ? 13 : 25)) + 1;
-            cmsg_format(TERM_L_BLUE, "你的朋友，这层的保护者%s，允许你自由通行并送给了你礼物。", r_name + r_ptr->name);
+            cmsg_format(TERM_L_BLUE, "你的朋友，这层的保护者%s，允许你自由通行并送给了你礼物。", monster_race_display_name(r_ptr->id));
             q->completed_lev = (prace_is_(RACE_ANDROID)) ? p_ptr->lev : p_ptr->max_plv;
             q->completed_turn = game_turn;
             q->status = QS_FINISHED;
@@ -588,26 +598,26 @@ bool quest_post_generate(quest_ptr q)
                 if (ct != 1)
                 {
                     char name[MAX_NLEN];
-                    strcpy(name, r_name + r_ptr->name);
+                    strcpy(name, monster_race_display_name(q->goal_idx));
                     plural_aux(name);
                     if (one_in_(2)) msg_format("卡罗特(Karrot)的声音如雷鸣般响起：<color:v>看哪，这层是 %d 只 %s 的邪恶巢穴！将它们全部消灭，我的%s，我将对你无比满意。</color>", ct, name, p_ptr->psex == SEX_FEMALE ? "女儿" : "儿子");
                     else msg_format("卡罗特(Karrot)的声音如雷鸣般响起：<color:v>看哪，这层是 %d 只 %s 的邪恶巢穴！证明你自己，%s，将它们全部击倒。</color>", ct, name, strlen(player_name) > 2 ? player_name : "我的仆人");
                 }
                 else
                 {
-                    msg_format("卡罗特(Karrot)的声音如雷鸣般响起：<color:v>看哪，这层是 %s 的污秽巢穴！指引我们两人的命运将你带到了这里，我的%s，愿你能斩杀这个敌人并净化此地。</color>", r_name + r_ptr->name, p_ptr->psex == SEX_FEMALE ? "女儿" : "儿子");
+                    msg_format("卡罗特(Karrot)的声音如雷鸣般响起：<color:v>看哪，这层是 %s 的污秽巢穴！指引我们两人的命运将你带到了这里，我的%s，愿你能斩杀这个敌人并净化此地。</color>", monster_race_display_name(q->goal_idx), p_ptr->psex == SEX_FEMALE ? "女儿" : "儿子");
                 }
             }
             else /* Assume Troika disciple... */
             {
                 if (ct == 1)
                 {
-                    msg_format("索霍格利斯(Sohoglyth)的声音如雷鸣般响起：<color:v>现在去斩杀我们那盘踞在这一层的邪恶敌人，%s 吧！</color>", r_name + r_ptr->name);
+                    msg_format("索霍格利斯(Sohoglyth)的声音如雷鸣般响起：<color:v>现在去斩杀我们那盘踞在这一层的邪恶敌人，%s 吧！</color>", monster_race_display_name(q->goal_idx));
                 }
                 else
                 {
                     char name[MAX_NLEN];
-                    strcpy(name, r_name + r_ptr->name);
+                    strcpy(name, monster_race_display_name(q->goal_idx));
                     plural_aux(name);
                     if (one_in_(19)) msg_format("索霍格利斯(Sohoglyth)的声音如雷鸣般响起：<color:v>哟，哥们，这层好像有 %d 只 %s，能顺手把它们给宰了吗，球球了？</color>", ct, name);
                     else msg_format("索霍格利斯(Sohoglyth)的声音如雷鸣般响起：<color:v>看哪，这层是 %d 只 %s 的老巢：杀了它们，我会好好奖赏你的。</color>", ct, name);
@@ -615,11 +625,11 @@ bool quest_post_generate(quest_ptr q)
             }
         }
         else if (ct == 1)
-            cmsg_format(TERM_VIOLET, "小心，这一层由 %s 保护！", r_name + r_ptr->name);
+            cmsg_format(TERM_VIOLET, "小心，这一层由 %s 保护！", monster_race_display_name(q->goal_idx));
         else
         {
             char name[MAX_NLEN];
-            strcpy(name, r_name + r_ptr->name);
+            strcpy(name, monster_race_display_name(q->goal_idx));
             plural_aux(name);
             cmsg_format(TERM_VIOLET, "注意，这一层由 %d 只 %s 守卫！", ct, name);
         }
@@ -1385,7 +1395,7 @@ void _dungeon_boss_death(mon_ptr mon)
             /* Drop it in the dungeon */
             (void)drop_near(q_ptr, -1, mon->fy, mon->fx);
         }
-        cmsg_format(TERM_L_GREEN, "你征服了%s！",d_name+d_info[dungeon_type].name);
+        cmsg_format(TERM_L_GREEN, "你征服了%s！", dungeon_display_name(dungeon_type));
         virtue_add(VIRTUE_VALOUR, 5);
         msg_add_tiny_screenshot(50, 24);
     }
@@ -1490,7 +1500,7 @@ bool quests_check_leave(void)
 
             string_append_s(s, "<color:r>警告，</color>你即将离开任务：<color:R>");
             if ((q->flags & QF_RANDOM) && q->goal == QG_KILL_MON)
-                string_printf(s, "击杀 %s\n", r_name + r_info[q->goal_idx].name);
+                string_printf(s, "击杀 %s\n", monster_race_display_name(q->goal_idx));
             else
                 string_append_s(s, kayttonimi(q));
             string_append_s(s, "</color>。不过你以后还可以回到这个任务。你确定要离开吗？<color:y>[Y,n]</color>");
@@ -1505,7 +1515,7 @@ bool quests_check_leave(void)
 
             string_append_s(s, "<color:r>警告，</color>你即将离开任务：<color:R>");
             if ((q->flags & QF_RANDOM) && q->goal == QG_KILL_MON)
-                string_printf(s, "Kill %s", r_name + r_info[q->goal_idx].name);
+                string_printf(s, "Kill %s", monster_race_display_name(q->goal_idx));
             else
                 string_append_s(s, kayttonimi(q));
             string_append_s(s, "</color>。<color:v>如果你离开，你将导致这个任务失败！</color>你确定要离开吗？<color:y>[Y,n]</color>");
@@ -1534,13 +1544,13 @@ bool quests_check_ini_leave(cptr varoitus, cptr toimi, bool *kysyttiin)
         string_append_s(s, varoitus);
         string_append_s(s, "任务：<color:R>");
         if ((q->flags & QF_RANDOM) && q->goal == QG_KILL_MON)
-            string_printf(s, "Kill %s", r_name + r_info[q->goal_idx].name);
+            string_printf(s, "Kill %s", monster_race_display_name(q->goal_idx));
         else
             string_append_s(s, kayttonimi(q));
         string_append_s(s, "</color>。<color:v>如果你在完成它之前离开，你将导致这个任务失败！</color>"
                           "你确定要");
         string_append_s(s, toimi);
-        string_append_s(s, "? <color:y>[Y,n]</color>");
+        string_append_s(s, "？ <color:y>[Y,n]</color>");
         c = msg_prompt(string_buffer(s), "nY", PROMPT_NEW_LINE | PROMPT_ESCAPE_DEFAULT | PROMPT_CASE_SENSITIVE);
         string_free(s);
         if (kysyttiin) *kysyttiin = TRUE;
@@ -1699,17 +1709,16 @@ void quests_display(void)
             {
                 if (q->goal == QG_KILL_MON)
                 {
-                    monster_race *r_ptr = &r_info[q->goal_idx];
                     if (q->goal_count > 1)
                     {
                         char name[MAX_NLEN];
-                        strcpy(name, r_name + r_ptr->name);
+                        strcpy(name, monster_race_display_name(q->goal_idx));
                         plural_aux(name);
                         doc_printf(doc, "<indent>击杀 %d 个 %s (已击杀 %d 个)</indent>\n",
                             q->goal_count, name, q->goal_current);
                     }
                     else if (q->flags & (QF_RANDOM | QF_PURPLE))
-                        doc_printf(doc, "    Kill %s\n", r_name + r_ptr->name);
+                        doc_printf(doc, "    Kill %s\n", monster_race_display_name(q->goal_idx));
                 }
                 if (!(q->flags & (QF_RANDOM | QF_PURPLE)))
                 {
@@ -1758,7 +1767,7 @@ static void _quest_doc(quest_ptr q, doc_ptr doc)
                 plural_aux(name);
                 extract_day_hour_min_imp(q->completed_turn, &day, &hour, &min);
                 if (strlen(name) > 29) {
-                    doc_printf(doc, "击杀 %d 个 %.41s <tab:53>DL%-3d CL%-2d 第%d天，%d:%02d\n",
+                    doc_printf(doc, "击杀 %d 个 %.41s (已杀 %d) <tab:53>DL%-3d CL%-2d 第%d天，%d:%02d\n",
                         q->goal_count, name, q->goal_current, q->danger_level, q->completed_lev, day, hour, min);
                 }
                 else {
@@ -2116,7 +2125,7 @@ static void _display_menu(_ui_context_ptr context)
                 string_free(s);
             }
             else
-                doc_printf(doc, "%-40.40s ", quest->name);
+                doc_printf(doc, "%-40.40s ", kayttonimi(quest));
             doc_printf(doc, "%-10.10s %3d</color>", _status_name(quest->status), quest->danger_level);
             doc_newline(doc);
         }
@@ -2173,13 +2182,13 @@ static void _map_cmd(_ui_context_ptr context)
             room_ptr  map;
             if (!(quest->flags & QF_GENERATE) || !quest->file)
             {
-                msg_format("<color:R>%s</color> 任务没有地图。", quest->name);
+                msg_format("<color:R>%s</color> 任务没有地图。", kayttonimi(quest));
                 continue;
             }
             map = quest_get_map(quest);
             if (!map)
             {
-                msg_format("无法加载 <color:R>%s</color> 任务地图。", quest->name);
+                msg_format("无法加载 <color:R>%s</color> 任务地图。", kayttonimi(quest));
                 continue;
             }
             _display_map(map);
@@ -2348,13 +2357,13 @@ static void _reward_cmd(_ui_context_ptr context)
                 reward = quest_get_reward(quest);
 
                 if (!reward)
-                    msg_format("<color:R>%s</color> 没有奖励。", quest->name);
+                    msg_format("<color:R>%s</color> 没有奖励。", kayttonimi(quest));
                 else
                 {
                     char name[MAX_NLEN];
                     obj_identify_fully(reward);
                     object_desc(name, reward, OD_COLOR_CODED);
-                    msg_format("<color:R>%s</color> 的奖励是 %s。", quest->name, name);
+                    msg_format("<color:R>%s</color> 的奖励是 %s。", kayttonimi(quest), name);
                     if (reward->name1)
                     {
                         a_info[reward->name1].generated = FALSE;
@@ -2390,7 +2399,7 @@ static void _analyze_cmd(_ui_context_ptr context)
             quest_ptr quest = vec_get(context->quests, idx);
             if (!quest->file || !strlen(quest->file))
             {
-                msg_format("<color:R>%s</color> 没有任务文件。", quest->name);
+                msg_format("<color:R>%s</color> 没有任务文件。", kayttonimi(quest));
                 continue;
             }
             /* very hackish ... but very useful */
@@ -2406,7 +2415,7 @@ static void _analyze_cmd(_ui_context_ptr context)
             _temp_reward = NULL;
             trace_doc = NULL;
             Term_clear();
-            doc_display(context->doc, quest->name, 0);
+            doc_display(context->doc, kayttonimi(quest), 0);
             Term_clear();
             break;
         }

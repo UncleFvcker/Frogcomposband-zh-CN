@@ -566,7 +566,7 @@ static Boolean SetValues(AngbandWidget current, AngbandWidget request,
 		{
 			new->angband.fnt = current->angband.fnt;
 			new->angband.font = current->angband.font;
-			XtWarning("Couldn't find the request font!");
+			XtWarning("找不到请求的字体！");
 		}
 		else
 		{
@@ -642,7 +642,7 @@ static Boolean SetValues(AngbandWidget current, AngbandWidget request,
 		    XtGeometryNo)
 		{
 			/* Not allowed */
-			XtWarning("Size change denied!");
+			XtWarning("尺寸更改被拒绝！");
 		}
 		else
 		{
@@ -704,10 +704,10 @@ static XFontStruct *getFont(AngbandWidget widget,
 
 	if (!(fnt = XLoadQueryFont(dpy, font)) && fallback)
 	{
-		sprintf(buf, "Can't find the font \"%s\", trying fixed\n", font);
+		sprintf(buf, "找不到字体 \"%s\"，尝试使用 fixed 字体\n", font);
 		XtWarning(buf);
 		if (!(fnt = XLoadQueryFont(dpy, "fixed")))
-			XtError("Can't fint the font \"fixed\"!, bailing out\n");
+			XtError("找不到 \"fixed\" 字体！正在退出程序\n");
 	}
 
 	return fnt;

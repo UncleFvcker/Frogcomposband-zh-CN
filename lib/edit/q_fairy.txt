@@ -1,18 +1,18 @@
 # New quest for FrogComposband 7.0.strawberry
 
 ?:[EQU $QUEST71 Taken InProgress]
-D:The forests near our city, once a safe and pleasant place for a relaxing
-D:evening walk, have become increasingly dangerous as shadow fairies have
-D:settled there. My scouts report they usually lurk in a deep thicket
-D:northeast of the main gate. I would be most thankful should you go there
-D:and eliminate this threat to our safety.
+D:我们城市附近的森林，曾经是一个安全又令人愉快的、适合傍晚放松散步的
+D:好去处，但自从暗影仙子（shadow fairies）在那里定居后，
+D:就变得越来越危险。我的斥候报告说，她们通常潜伏在主城门东北方
+D:的深处灌木丛里。如果你能去那里
+D:消除这个对我们安全的威胁，我将不胜感激。
 
 ?:[EQU $QUEST71 Completed]
-D:Thank you for making our forests safer.
+D:感谢你让我们的森林变得更安全。
 ?:1
 
 ?:[EQU $QUEST71 Failed]
-D:I hope I can find someone more capable than you.
+D:希望我能找到比你更有能力的人。
 ?:1
 
 T:QUEST:NORMAL

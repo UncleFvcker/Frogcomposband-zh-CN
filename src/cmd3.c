@@ -306,7 +306,7 @@ void do_cmd_locate(void)
         }
         else
         {
-            sprintf(tmp_val, "%s%s of",
+            sprintf(tmp_val, "%s%s",
                 ((y2 < y1) ? "北" : (y2 > y1) ? "南" : ""),
                 ((x2 < x1) ? "西" : (x2 > x1) ? "东" : ""));
 
@@ -314,7 +314,7 @@ void do_cmd_locate(void)
 
         /* Prepare to ask which way to look */
         sprintf(out_val,
-            "Map sector [%d(%02d),%d(%02d)], which is%s your sector. Direction?",
+            "地图扇区 [%d(%02d),%d(%02d)]，这里%s你所在的扇区。方向？",
 
             y2 / (map_rect.cy / 2), y2 % (map_rect.cy / 2),
             x2 / (map_rect.cx / 2), x2 % (map_rect.cx / 2), tmp_val);
@@ -502,22 +502,22 @@ void do_cmd_query_symbol(void)
     if (sym == KTRL('A'))
     {
         all = TRUE;
-        strcpy(buf, "Full monster list.");
+        strcpy(buf, "全部怪物列表。");
     }
     else if (sym == KTRL('U'))
     {
         all = uniq = TRUE;
-        strcpy(buf, "Unique monster list.");
+        strcpy(buf, "唯一（Unique）怪物列表。");
     }
     else if (sym == KTRL('N'))
     {
         all = norm = TRUE;
-        strcpy(buf, "Non-unique monster list.");
+        strcpy(buf, "非唯一怪物列表。");
     }
     else if (sym == KTRL('R'))
     {
         all = ride = TRUE;
-        strcpy(buf, "Ridable monster list.");
+        strcpy(buf, "可骑乘怪物列表。");
     }
     /* XTRA HACK WHATSEARCH */
     else if (sym == KTRL('M'))
@@ -528,7 +528,7 @@ void do_cmd_query_symbol(void)
             temp[0]=0;
             return;
         }
-        sprintf(buf, "Monsters with a name \"%s\"",temp);
+        sprintf(buf, "名字中包含“%s”的怪物",temp);
     }
     else if (ident_info[i])
     {
@@ -1035,24 +1035,24 @@ static int _draw_monster_list(_mon_list_ptr list, int top, rect_t rect, int mode
             if (info_ptr->group == _GROUP_LOS)
             {
                 c_put_str(TERM_WHITE,
-                      format("You %s %d monster%s, %d %s awake:",
-                             mode == MON_LIST_PROBING ? "probe" : "see",
+                      format("你%s了 %d 个怪物%s，其中 %d 个%s醒着的：",
+                             mode == MON_LIST_PROBING ? "探测" : "看到",
                              info_ptr->ct_los,
                              info_ptr->ct_los != 1 ? "s" : "",
                              info_ptr->ct_awake,
-                             info_ptr->ct_awake == 1 ? "is" : "are"),
+                             info_ptr->ct_awake == 1 ? "是" : "是"),
                       rect.y + i, rect.x);
             }
             else if (info_ptr->group == _GROUP_AWARE)
             {
                 char buf[200];
 
-                sprintf(buf, "You are aware of %d %smonster%s, %d %s awake:",
+                sprintf(buf, "你察觉到了 %d 个%s怪物%s，其中 %d 个%s醒着的：",
                     info_ptr->ct_total,
                     list->ct_los ? "other " : "",
                     info_ptr->ct_total != 1 ? "s" : "",
                     info_ptr->ct_awake,
-                    info_ptr->ct_awake == 1 ? "is" : "are"
+                    info_ptr->ct_awake == 1 ? "是" : "是"
                 );
                 if (p_ptr->wizard && list->ct_total)
                 {
@@ -1093,12 +1093,12 @@ static int _draw_monster_list(_mon_list_ptr list, int top, rect_t rect, int mode
 
             if (info_ptr->ct_total == 1)
             {
-                sprintf(buf, "%s", r_name + r_ptr->name);
+                sprintf(buf, "%s", monster_race_display_name(r_ptr->id));
                 if ((r_ptr->flags1 & RF1_UNIQUE) && !info_ptr->ct_awake)
                     strcat(buf, " (asleep)");
                 if (info_ptr->group == _GROUP_LOS && display_distance)
                 {
-                    sprintf(loc, "Rng %2d", info_ptr->dis);
+                    sprintf(loc, "距离 %2d", info_ptr->dis);
                 }
                 else
                 {
@@ -1108,12 +1108,12 @@ static int _draw_monster_list(_mon_list_ptr list, int top, rect_t rect, int mode
                 }
             }
             else if (!info_ptr->ct_awake)
-                sprintf(buf, "%s (%d asleep)", r_name + r_ptr->name, info_ptr->ct_total);
+                sprintf(buf, "%s (%d 个熟睡)", monster_race_display_name(r_ptr->id), info_ptr->ct_total);
             else if (info_ptr->ct_awake == info_ptr->ct_total)
-                sprintf(buf, "%s (%d awake)", r_name + r_ptr->name, info_ptr->ct_total);
+                sprintf(buf, "%s (%d 个清醒)", monster_race_display_name(r_ptr->id), info_ptr->ct_total);
             else
             {
-                sprintf(buf, "%s (%d awake, %d asleep)", r_name + r_ptr->name,
+                sprintf(buf, "%s (%d 个清醒，%d 个熟睡)", monster_race_display_name(r_ptr->id),
                     info_ptr->ct_awake, info_ptr->ct_total - info_ptr->ct_awake);
             }
 
@@ -1916,8 +1916,8 @@ static int _draw_obj_list(_obj_list_ptr list, int top, rect_t rect)
             if (info_ptr->group == _GROUP_FEATURE)
             {
                 c_put_str(TERM_WHITE,
-                      format("There %s %d interesting feature%s:",
-                             info_ptr->count != 1 ? "are" : "is",
+                      format("这里%s %d 个有趣的地形特征%s：",
+                             info_ptr->count != 1 ? "有" : "有",
                              info_ptr->count,
                              info_ptr->count != 1 ? "s" : ""),
                       rect.y + i, rect.x);
@@ -1925,8 +1925,8 @@ static int _draw_obj_list(_obj_list_ptr list, int top, rect_t rect)
             else if (info_ptr->group == _GROUP_AUTOPICK)
             {
                 c_put_str(TERM_WHITE,
-                      format("There %s %d wanted object%s:",
-                             info_ptr->count != 1 ? "are" : "is",
+                      format("这里%s %d 个被悬赏的物品%s：",
+                             info_ptr->count != 1 ? "有" : "有",
                              info_ptr->count,
                              info_ptr->count != 1 ? "s" : ""),
                       rect.y + i, rect.x);
@@ -1934,8 +1934,8 @@ static int _draw_obj_list(_obj_list_ptr list, int top, rect_t rect)
             else
             {
                 c_put_str(TERM_WHITE,
-                      format("There %s %d %sobject%s:",
-                             info_ptr->count != 1 ? "are" : "is",
+                      format("这里%s %d 个%s物品%s：",
+                             info_ptr->count != 1 ? "有" : "有",
                              info_ptr->count,
                              list->ct_autopick ? "other " : "",
                              info_ptr->count != 1 ? "s" : ""),

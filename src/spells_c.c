@@ -838,7 +838,7 @@ void detect_life_spell(int cmd, variant *res)
         var_set_string(res, "定位附近活着的怪物。");
         break;
     case SPELL_CAST:
-        detect_monsters_living(DETECT_RAD_DEFAULT, "You sense the presence of life around you.");
+        detect_monsters_living(DETECT_RAD_DEFAULT, "你感应到周围有生命存在。");
         var_set_bool(res, TRUE);
         break;
     default:

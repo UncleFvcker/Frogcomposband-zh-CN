@@ -35,7 +35,7 @@ static void _detect_prey_spell(int cmd, variant *res)
         var_set_string(res, "寻找附近的美餐。");
         break;
     case SPELL_CAST:
-        detect_monsters_living(DETECT_RAD_DEFAULT, "You sense potential prey!");
+        detect_monsters_living(DETECT_RAD_DEFAULT, "你感应到了潜在的猎物！");
         var_set_bool(res, TRUE);
         break;
     default:
@@ -123,7 +123,7 @@ static void _cave_spider_calc_innate_attacks(void)
     a.ds = 5;
     a.weight = 70;
     calc_innate_blows(&a, 200);
-    a.msg = "You bite.";
+    a.msg = "你咬了过去。";
     a.name = "撕咬";
 
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -188,7 +188,7 @@ static void _giant_spider_calc_innate_attacks(void)
     a.effect[0] = GF_MISSILE;
     a.effect[1] = GF_POIS;
     calc_innate_blows(&a, 400);
-    a.msg = "You bite.";
+    a.msg = "你咬了过去。";
     a.name = "撕咬";
 
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -287,7 +287,7 @@ static void _phase_spider_calc_innate_attacks(void)
     a.effect[1] = GF_POIS;
     a.effect[2] = GF_OLD_SLEEP;
     calc_innate_blows(&a, 500);
-    a.msg = "You bite.";
+    a.msg = "你咬了过去。";
     a.name = "撕咬";
 
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -374,7 +374,7 @@ static void _aranea_calc_innate_attacks(void)
     a.effect[1] = GF_POIS;
     a.effect[2] = GF_OLD_SLEEP;
     calc_innate_blows(&a, 500);
-    a.msg = "You bite.";
+    a.msg = "你咬了过去。";
     a.name = "撕咬";
 
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -459,7 +459,7 @@ static void _elder_aranea_calc_innate_attacks(void)
     a.effect[2] = GF_PARALYSIS;
     a.effect_chance[2] = 25 + 5*(p_ptr->lev - 40);
     calc_innate_blows(&a, 550);
-    a.msg = "You bite.";
+    a.msg = "你咬了过去。";
     a.name = "撕咬";
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
 }
@@ -601,7 +601,7 @@ static void _birth(void)
 }
 
 static name_desc_t _info[SPIDER_MAX] = {
-    { "相位蜘蛛", "Phase Spiders have unsurpassed powers of teleportation and average offense." },    { "蛛化精灵", "Aranea are stronger in melee than Phase Spiders, but lack special powers except for their Spider Web." },
+    { "相位蜘蛛", "相位蜘蛛拥有无可匹敌的传送能力，且攻击力中等。" },    { "蛛化精灵", "阿剌克涅的近战能力比相位蜘蛛更强，但除了蜘蛛网外，没有其他的特殊能力。" },
 };
 
 race_t *mon_spider_get_race(int psubrace)

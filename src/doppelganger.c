@@ -105,7 +105,7 @@ static void _pay_cost(int cost)
     {
         int dam = cost - p_ptr->csp;
         p_ptr->csp = 0;
-        take_hit(DAMAGE_USELIFE, dam, "concentrating too hard");
+        take_hit(DAMAGE_USELIFE, dam, "过度集中精神");
     }
     else 
         p_ptr->csp -= cost;
@@ -123,7 +123,7 @@ void mimic_upkeep(void)
 
     cost = _form_upkeep(get_race()->exp);
     if (cost > p_ptr->csp + p_ptr->chp)
-        mimic_race(MIMIC_NONE, "You can no longer afford the upkeep for this form.");
+        mimic_race(MIMIC_NONE, "你再也无法负担维持此形态的消耗了。");
     else
         _pay_cost(cost);
 }

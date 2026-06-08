@@ -583,7 +583,7 @@ static void _boit_vomit_spell(int cmd, variant *res)
         msg_print("你吐了！");
         if (p_ptr->food < PY_FOOD_FAINT + 24)
         {
-            take_hit(DAMAGE_NOESCAPE, 10, "vomiting on an empty stomach");
+            take_hit(DAMAGE_NOESCAPE, 10, "空腹呕吐");
             energy_use += 15;
         }
         set_food(MAX(1, MIN(p_ptr->food - 100, PY_FOOD_FAINT + 12)));
@@ -753,7 +753,7 @@ static void _centaur_calc_innate_attacks(void)
 
     a.weight = 150;
     calc_innate_blows(&a, 200);
-    a.msg = "You kick.";
+    a.msg = "你踢了过去。";
     a.name = "马蹄";
 
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -975,15 +975,15 @@ static cptr _draconian_breath_desc(void)
 {
     switch (p_ptr->psubrace)
     {
-    case DRACONIAN_RED: return "fire";
-    case DRACONIAN_WHITE: return "cold";
-    case DRACONIAN_BLUE: return "lightning";
-    case DRACONIAN_BLACK: return "acid";
-    case DRACONIAN_GREEN: return "poison";
-    case DRACONIAN_CRYSTAL: return "shards";
-    case DRACONIAN_BRONZE: return "confusion";
-    case DRACONIAN_GOLD: return "sound";
-    case DRACONIAN_SHADOW: return "nether";
+    case DRACONIAN_RED: return "火焰";
+    case DRACONIAN_WHITE: return "冰寒";
+    case DRACONIAN_BLUE: return "闪电";
+    case DRACONIAN_BLACK: return "酸液";
+    case DRACONIAN_GREEN: return "毒素";
+    case DRACONIAN_CRYSTAL: return "碎片";
+    case DRACONIAN_BRONZE: return "混乱";
+    case DRACONIAN_GOLD: return "音波";
+    case DRACONIAN_SHADOW: return "幽冥";
     }
     return 0;
 }
@@ -1265,7 +1265,7 @@ static void _draconian_calc_innate_attacks(void)
 
         a.weight = 100 + l;
         calc_innate_blows(&a, 400);
-        a.msg = "You claw.";
+        a.msg = "你抓了过去。";
         a.name = "爪击";
 
         if (p_ptr->pclass == CLASS_MONK || p_ptr->pclass == CLASS_FORCETRAINER)
@@ -1302,7 +1302,7 @@ static void _draconian_calc_innate_attacks(void)
             calc_innate_blows(&a, 150);
         else
             a.blows = 100;
-        a.msg = "You bite.";
+        a.msg = "你咬了过去。";
         a.name = "撕咬";
 
         if (p_ptr->pclass == CLASS_MONK || p_ptr->pclass == CLASS_FORCETRAINER)

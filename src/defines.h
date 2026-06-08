@@ -171,8 +171,8 @@
  * it's a bit tedious to figure current memory requirements. Why
  * not just malloc() string data and let the C library handle things?
  */
-#define FAKE_NAME_SIZE  24 * 1024   /* max is 18532 (r_info) */
-#define FAKE_TEXT_SIZE  160 * 1024  /* max is 116771 (r_info) */
+#define FAKE_NAME_SIZE  128 * 1024
+#define FAKE_TEXT_SIZE  2 * 1024 * 1024
 #define FAKE_TAG_SIZE   3 * 1024    /* max is 2092 (f_info) */
 
 

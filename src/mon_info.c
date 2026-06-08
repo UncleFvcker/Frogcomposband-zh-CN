@@ -242,41 +242,41 @@ static void _display_type(monster_race *r_ptr, doc_ptr doc)
     doc_insert(doc, "类型 : <indent><style:indent>");
 
     if (r_ptr->flags2 & RF2_ELDRITCH_HORROR)
-        vec_add(v, string_copy_s("<color:v>Sanity Blasting</color>"));
+        vec_add(v, string_copy_s("<color:v>精神冲击</color>"));
     if (r_ptr->flags3 & RF3_ANIMAL)
-        vec_add(v, string_copy_s("<color:G>Natural</color>"));
+        vec_add(v, string_copy_s("<color:G>自然</color>"));
     if (r_ptr->flags3 & RF3_EVIL)
-        vec_add(v, string_copy_s("<color:D>Evil</color>"));
+        vec_add(v, string_copy_s("<color:D>邪恶</color>"));
     if (r_ptr->flags3 & RF3_GOOD)
-        vec_add(v, string_copy_s("<color:y>Good</color>"));
+        vec_add(v, string_copy_s("<color:y>善良</color>"));
     if (r_ptr->flags3 & RF3_UNDEAD)
-        vec_add(v, string_copy_s("<color:v>Undead</color>"));
+        vec_add(v, string_copy_s("<color:v>不死</color>"));
     if (r_ptr->flags3 & RF3_NONLIVING)
-        vec_add(v, string_copy_s("<color:U>Nonliving</color>"));
+        vec_add(v, string_copy_s("<color:U>无生命</color>"));
     if (r_ptr->flags3 & RF3_AMBERITE)
-        vec_add(v, string_copy_s("<color:v>Amberite</color>"));
+        vec_add(v, string_copy_s("<color:v>安珀皇族</color>"));
     if (r_ptr->flags3 & RF3_DRAGON)
-        vec_add(v, string_copy_s("<color:o>Dragon</color>"));
+        vec_add(v, string_copy_s("<color:o>龙类</color>"));
     if (r_ptr->flags3 & RF3_DEMON)
-        vec_add(v, string_copy_s("<color:v>Demon</color>"));
+        vec_add(v, string_copy_s("<color:v>恶魔</color>"));
     if (r_ptr->flags3 & RF3_GIANT)
-        vec_add(v, string_copy_s("<color:U>Giant</color>"));
+        vec_add(v, string_copy_s("<color:U>巨人</color>"));
     if (r_ptr->flags3 & RF3_TROLL)
-        vec_add(v, string_copy_s("<color:B>Troll</color>"));
+        vec_add(v, string_copy_s("<color:B>巨魔</color>"));
     if (r_ptr->flags3 & RF3_ORC)
-        vec_add(v, string_copy_s("<color:u>Orc</color>"));
+        vec_add(v, string_copy_s("<color:u>兽人</color>"));
     if (r_ptr->flags2 & RF2_HUMAN)
-        vec_add(v, string_copy_s("<color:W>Human</color>"));
+        vec_add(v, string_copy_s("<color:W>人类</color>"));
     if (r_ptr->flags2 & RF2_THIEF)
-        vec_add(v, string_copy_s("<color:D>Thief</color>"));
+        vec_add(v, string_copy_s("<color:D>盗贼</color>"));
     /*if (r_ptr->flags2 & RF2_QUANTUM)
         vec_add(v, string_copy_s("<color:v>Quantum</color>"));*/
     if (r_ptr->flags1 & RF1_MALE)
-        vec_add(v, string_copy_s("<color:b>Male</color>"));
+        vec_add(v, string_copy_s("<color:b>雄性</color>"));
     if (r_ptr->flags1 & RF1_FEMALE)
-        vec_add(v, string_copy_s("<color:R>Female</color>")); /* Pink? */
+        vec_add(v, string_copy_s("<color:R>雌性</color>")); /* Pink? */
     if (p_ptr->pclass == CLASS_WARLOCK && warlock_is_pact_monster(r_ptr))
-        vec_add(v, string_copy_s("<color:v>Pact</color>"));
+        vec_add(v, string_copy_s("<color:v>契约</color>"));
 
     _print_list(v, doc, ',', '\0');
     vec_free(v);
@@ -284,7 +284,7 @@ static void _display_type(monster_race *r_ptr, doc_ptr doc)
 }
 static void _display_basic(monster_race *r_ptr, doc_ptr doc)
 {
-    doc_printf(doc, "名称 : <indent><style:indent><color:B>%s</color>", r_name + r_ptr->name);
+    doc_printf(doc, "名称 : <indent><style:indent><color:B>%s</color>", monster_race_display_name(r_ptr->id));
     assert(r_ptr->d_char);
     doc_printf(doc, "(<color:%c>%c</color>", attr_to_attr_char(r_ptr->d_attr), r_ptr->d_char);
     if (use_graphics && (r_ptr->x_char != r_ptr->d_char || r_ptr->x_attr != r_ptr->d_attr))
@@ -340,17 +340,17 @@ static void _display_resists(monster_race *r_ptr, doc_ptr doc)
         }
     }
     if ((r_ptr->flagsr & RFR_RES_TELE) && !(r_ptr->flags1 & RF1_UNIQUE) && !(r_ptr->flagsr & RFR_RES_ALL))
-        vec_add(v, string_copy_s("<color:o>Teleportation</color>"));
+        vec_add(v, string_copy_s("<color:o>传送</color>"));
     if (r_ptr->flagsr & RFR_RES_WATE)
-        vec_add(v, string_copy_s("<color:b>Water</color>"));
+        vec_add(v, string_copy_s("<color:b>水</color>"));
     if (r_ptr->flagsr & RFR_RES_PLAS)
-        vec_add(v, string_copy_s("<color:R>Plasma</color>"));
+        vec_add(v, string_copy_s("<color:R>等离子</color>"));
     if (r_ptr->flagsr & RFR_RES_WALL)
-        vec_add(v, string_copy_s("<color:u>Force</color>"));
+        vec_add(v, string_copy_s("<color:u>原力</color>"));
     if (r_ptr->flagsr & RFR_RES_GRAV)
-        vec_add(v, string_copy_s("<color:s>Gravity</color>"));
+        vec_add(v, string_copy_s("<color:s>重力</color>"));
     if (r_ptr->flagsr & RFR_RES_DISI)
-        vec_add(v, string_copy_s("<color:s>Disintegration</color>"));
+        vec_add(v, string_copy_s("<color:s>分解</color>"));
 
     if (vec_length(v))
     {
@@ -364,7 +364,7 @@ static void _display_resists(monster_race *r_ptr, doc_ptr doc)
     vec_clear(v);
     if (r_ptr->flagsr & RFR_RES_ALL)
     {
-        vec_add(v, string_copy_s("<color:y>Everything</color>"));
+        vec_add(v, string_copy_s("<color:y>全属性</color>"));
     }
     if (r_ptr->flagsr & RFR_IM_ACID)
         vec_add(v, _get_res_name(RES_ACID));
@@ -379,15 +379,15 @@ static void _display_resists(monster_race *r_ptr, doc_ptr doc)
     if (r_ptr->flags3 & RF3_UNDEAD)
         vec_add(v, _get_res_name(RES_NETHER));
     if (r_ptr->flags3 & RF3_NO_FEAR)
-        vec_add(v, string_copy_s("<color:s>Fear</color>"));
+        vec_add(v, string_copy_s("<color:s>恐惧</color>"));
     if (r_ptr->flags3 & RF3_NO_STUN)
-        vec_add(v, string_copy_s("<color:o>Stunning</color>"));
+        vec_add(v, string_copy_s("<color:o>震慑</color>"));
     if (r_ptr->flags3 & RF3_NO_CONF)
-        vec_add(v, string_copy_s("<color:U>Confusion</color>"));
+        vec_add(v, string_copy_s("<color:U>混乱</color>"));
     if (r_ptr->flags3 & RF3_NO_SLEEP)
-        vec_add(v, string_copy_s("<color:b>Sleep</color>"));
+        vec_add(v, string_copy_s("<color:b>睡眠</color>"));
     if ((r_ptr->flagsr & RFR_RES_TELE) && ((r_ptr->flags1 & RF1_UNIQUE) || (r_ptr->flagsr & RFR_RES_ALL)))
-        vec_add(v, string_copy_s("<color:o>Teleportation</color>"));
+        vec_add(v, string_copy_s("<color:o>传送</color>"));
 
     if (vec_length(v))
     {
@@ -406,7 +406,7 @@ static void _display_resists(monster_race *r_ptr, doc_ptr doc)
     if (r_ptr->flags3 & RF3_HURT_LITE)
         vec_add(v, _get_res_name(RES_LITE));
     if (r_ptr->flags3 & RF3_HURT_ROCK)
-        vec_add(v, string_copy_s("<color:u>Rock Remover</color>"));
+        vec_add(v, string_copy_s("<color:u>粉碎岩石</color>"));
 
     if (vec_length(v))
     {
@@ -447,7 +447,7 @@ static void _display_frequency(monster_race *r_ptr, doc_ptr doc)
             doc_printf(doc, "(%d 次施法 / %d 次行动)", r_ptr->r_spell_turns, r_ptr->r_spell_turns + r_ptr->r_move_turns);
 
         if (r_ptr->flags2 & RF2_SMART)
-            vec_add(v, string_copy_s("<color:y>Intelligent</color>"));
+            vec_add(v, string_copy_s("<color:y>智能</color>"));
         _print_list(v, doc, ',', '\0');
         vec_free(v);
         doc_insert(doc, "</indent>");
@@ -637,12 +637,12 @@ static string_ptr _effect_desc(mon_race_ptr race, mon_effect_ptr effect)
     case RBE_LOSE_CHR:    s = string_copy_s("降低魅力"); break;
     case RBE_LOSE_ALL:    s = string_copy_s("降低所有属性"); break;
     case RBE_SHATTER:     s = string_copy_s("引发地震"); break;
-    case RBE_DRAIN_EXP:   s = string_copy_s("<color:D>Lower Experience</color>"); break;
+    case RBE_DRAIN_EXP:   s = string_copy_s("<color:D>汲取经验</color>"); break;
     case RBE_DISEASE:     s = string_copy_s("疾病"); break;
-    case RBE_VAMP:        s = string_copy_s("<color:D>Vampiric</color>"); break;
-    case RBE_CUT:         s = string_copy_s("<color:r>Cut</color>"); break;
+    case RBE_VAMP:        s = string_copy_s("<color:D>吸血</color>"); break;
+    case RBE_CUT:         s = string_copy_s("<color:r>割伤</color>"); break;
     case GF_MISSILE:      s = string_copy_s("伤害"); break;
-    case GF_TURN_ALL:     s = string_copy_s("<color:r>Terrify</color>"); break;
+    case GF_TURN_ALL:     s = string_copy_s("<color:r>恐吓</color>"); break;
     default:              s = string_copy_s(gf_name(effect->effect));
     }
     assert(s);
@@ -720,49 +720,49 @@ static void _display_other(monster_race *r_ptr, doc_ptr doc)
     vec_ptr    v = vec_alloc((vec_free_f)string_free);
 
     if (r_ptr->flags2 & RF2_KILL_WALL)
-        vec_add(v, string_copy_s("<color:U>Destroys Walls</color>"));
+        vec_add(v, string_copy_s("<color:U>摧毁墙壁</color>"));
 
     if (r_ptr->flags2 & RF2_PASS_WALL)
-        vec_add(v, string_copy_s("<color:B>Passes through Walls</color>"));
+        vec_add(v, string_copy_s("<color:B>穿透墙壁</color>"));
 
     if (r_ptr->flags2 & RF2_REFLECTING)
-        vec_add(v, string_copy_s("<color:o>Reflection</color>"));
+        vec_add(v, string_copy_s("<color:o>反射</color>"));
 
     if (r_ptr->flags7 & (RF7_SELF_LITE_1 | RF7_SELF_LITE_2))
-        vec_add(v, string_copy_s("<color:y>Shining</color>"));
+        vec_add(v, string_copy_s("<color:y>发光</color>"));
 
     if (r_ptr->flags7 & (RF7_SELF_DARK_1 | RF7_SELF_DARK_2))
-        vec_add(v, string_copy_s("<color:D>Shrouded in Darkness</color>"));
+        vec_add(v, string_copy_s("<color:D>暗影笼罩</color>"));
 
     if (r_ptr->flags2 & RF2_INVISIBLE)
-        vec_add(v, string_copy_s("<color:B>Invisible</color>"));
+        vec_add(v, string_copy_s("<color:B>隐形</color>"));
 
     if (r_ptr->flags2 & RF2_COLD_BLOOD)
-        vec_add(v, string_copy_s("<color:w>Cold Blooded</color>"));
+        vec_add(v, string_copy_s("<color:w>冷血</color>"));
 
     if (r_ptr->flags2 & RF2_EMPTY_MIND)
-        vec_add(v, string_copy_s("<color:o>Shielded from Telepathy</color>"));
+        vec_add(v, string_copy_s("<color:o>屏蔽心灵感应</color>"));
 
     if (r_ptr->flags2 & RF2_WEIRD_MIND)
-        vec_add(v, string_copy_s("<color:w>Weird Mind</color>"));
+        vec_add(v, string_copy_s("<color:w>诡异心智</color>"));
 
     if (r_ptr->flags3 & RF3_CLEAR_HEAD)
-        vec_add(v, string_copy_s("<color:v>Clear Mind</color>"));
+        vec_add(v, string_copy_s("<color:v>清晰心智</color>"));
 
     if (r_ptr->flags2 & RF2_MULTIPLY)
-        vec_add(v, string_copy_s("<color:U>Breeds Explosively</color>"));
+        vec_add(v, string_copy_s("<color:U>爆炸式增殖</color>"));
 
     if (r_ptr->flags2 & RF2_REGENERATE)
-        vec_add(v, string_copy_s("<color:r>Regeneration</color>"));
+        vec_add(v, string_copy_s("<color:r>再生</color>"));
 
     if (r_ptr->flags7 & RF7_RANGED_MELEE)
-        vec_add(v, string_copy_s("<color:o>Long Reach</color>"));
+        vec_add(v, string_copy_s("<color:o>长武器</color>"));
 
     if (r_ptr->flags7 & RF7_RIDING)
-        vec_add(v, string_copy_s("<color:s>Suitable for Riding</color>"));
+        vec_add(v, string_copy_s("<color:s>适合骑乘</color>"));
 
     if ((r_ptr->flags7 & RF7_GUARDIAN) && !no_wilderness)
-        vec_add(v, string_copy_s("<color:R>Dungeon Guardian</color>"));
+        vec_add(v, string_copy_s("<color:R>地下城守卫</color>"));
 
     if (vec_length(v))
     {
@@ -776,9 +776,9 @@ static void _display_other(monster_race *r_ptr, doc_ptr doc)
     vec_clear(v);
 
     if (r_ptr->flags2 & RF2_AURA_REVENGE)
-        vec_add(v, string_copy_s("<color:v>Retaliation</color>"));
+        vec_add(v, string_copy_s("<color:v>反击</color>"));
     if (r_ptr->flags2 & RF2_AURA_FEAR)
-        vec_add(v, string_copy_s("<color:v>Fear</color>"));
+        vec_add(v, string_copy_s("<color:v>恐惧</color>"));
     if (r_ptr->flags2 & RF2_AURA_FIRE)
         vec_add(v, _get_res_name(RES_FIRE));
     if (r_ptr->flags3 & RF3_AURA_COLD)

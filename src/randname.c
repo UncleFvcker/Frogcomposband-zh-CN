@@ -306,7 +306,7 @@ errr name_parser(void)
         cptr oops;
 
         /* Error string */
-        oops = (((err > 0) && (err < PARSE_ERROR_MAX)) ? err_str[err] : "unknown");
+        oops = (((err > 0) && (err < PARSE_ERROR_MAX)) ? err_str[err] : "未知");
 
         /* Oops */
         msg_boundary();

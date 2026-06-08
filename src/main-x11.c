@@ -1027,13 +1027,13 @@ static Pixell Infoclr_Pixell(cptr name)
 		/* Attempt to parse 'name' into 'scrn' */
 		if (!(XParseColor(Metadpy->dpy, Metadpy->cmap, name, &scrn)))
 		{
-			plog_fmt("Warning: Couldn't parse color '%s'\n", name);
+			plog_fmt("警告：无法解析颜色 '%s'\n", name);
 		}
 
 		/* Attempt to Allocate the Parsed color */
 		if (!(XAllocColor(Metadpy->dpy, Metadpy->cmap, &scrn)))
 		{
-			plog_fmt("Warning: Couldn't allocate color '%s'\n", name);
+			plog_fmt("警告：无法分配颜色 '%s'\n", name);
 		}
 
 		/* The Pixel was Allocated correctly */
@@ -1041,7 +1041,7 @@ static Pixell Infoclr_Pixell(cptr name)
 	}
 
 	/* Warn about the Default being Used */
-	plog_fmt("Warning: Using 'fg' for unknown color '%s'\n", name);
+	plog_fmt("警告：对未知颜色 '%s' 使用 'fg'（前景色）\n", name);
 
 	/* Default to the 'Foreground' color */
 	return (Metadpy->fg);
@@ -1344,13 +1344,13 @@ static void Infofnt_init_data(cptr name)
 	/*** Load the info Fresh, using the name ***/
 
 	/* If the name is not given, report an error */
-	if (!name || !*name) quit("Missing font!");
+	if (!name || !*name) quit("缺少字体！");
 
 	/* Attempt to load the font */
 #ifdef USE_FONTSET
 	info = XCreateFontSet(Metadpy->dpy, name, &missing_list, &missing_count, &default_font);
 	if(missing_count > 0){
-		printf("missing font(s): \n");
+		printf("缺少字体：\n");
 		while(missing_count-- > 0){
 			printf("\t%s\n", missing_list[missing_count]);
 		}
@@ -1362,7 +1362,7 @@ static void Infofnt_init_data(cptr name)
 
 
 	/* The load failed, try to recover */
-	if (!info) quit_fmt("Failed to find font:\"%s\"", name);
+	if (!info) quit_fmt("无法找到字体：\"%s\"", name);
 
 
 
@@ -1382,7 +1382,7 @@ static void Infofnt_init_data(cptr name)
 		XFreeFont(Metadpy->dpy, info);
 #endif
 		/* Fail */
-		quit_fmt("Failed to prepare font:\"%s\"", name);
+		quit_fmt("无法准备字体：\"%s\"", name);
 	}
 
 	/* Save a copy of the font name */
@@ -1633,7 +1633,7 @@ static void react_keypress(XKeyEvent *xev)
 		Status status;
 		n = XmbLookupString(Focuswin->xic, ev, buf, 125, &ks, &status);
 		if(status == XBufferOverflow){
-			printf("Input is too long, and dropped\n");
+			printf("输入过长，已被丢弃\n");
 			return;
 		}
 		if(status != XLookupKeySym && status != XLookupBoth){
@@ -1989,20 +1989,20 @@ static void paste_x11_accept(const XSelectionEvent *ptr)
 		else
 		{
 			request_target = 0;
-			plog("Paste failure (remote client could not send).");
+			plog("粘贴失败（远程客户端无法发送）。");
 		}
 		return;
 	}
 
 	if (ptr->selection != XA_PRIMARY)
 	{
-		plog("Paste failure (remote client did not send primary selection).");
+		plog("粘贴失败（远程客户端未发送主要选区）。");
 		return;
 	}
 
 	if (ptr->target != request_target)
 	{
-		plog("Paste failure (selection in unknown format).");
+		plog("粘贴失败（选区格式未知）。");
 		return;
 	}
 
@@ -2055,7 +2055,7 @@ static void paste_x11_accept(const XSelectionEvent *ptr)
 	/* No room. */
 	if (err)
 	{
-		plog("Paste failure (too much text selected).");
+		plog("粘贴失败（选中的文本过多）。");
 	}
 }
 
@@ -2317,7 +2317,7 @@ static errr CheckEvent(bool wait)
 	if (XFilterEvent(xev, xev->xany.window)
 		/*XFilterEvent(xev, (data[0].win)->win)*/){
 #ifdef DEBUG_EVENT
-		printf(", [filtered by IM]\n");
+		printf(", [已通过输入法过滤]\n");
 #endif
 		goto redo_checkevent;
 	}
@@ -2984,7 +2984,7 @@ IMInstantiateCallback(Display *display, XPointer unused1, XPointer unused2)
 
 	xim = XOpenIM(display, NULL, NULL, NULL);
 	if(!xim){
-		printf("can't open IM\n");
+		printf("无法打开输入法 (IM)\n");
 		return;
 	}
 
@@ -2999,7 +2999,7 @@ IMInstantiateCallback(Display *display, XPointer unused1, XPointer unused2)
 		if(xim_styles->supported_styles[i] == (XIMPreeditNothing | XIMStatusNothing)) break;
 	}
 	if(i >= xim_styles->count_styles){
-		printf("Sorry, your IM does not support 'Root' preedit style...\n");
+		printf("抱歉，您的输入法不支持 'Root' 预编辑样式...\n");
 		XCloseIM(xim);
 		return;
 	}
@@ -3013,7 +3013,7 @@ IMInstantiateCallback(Display *display, XPointer unused1, XPointer unused2)
 		if (!iwin) continue;
 		iwin->xic = XCreateIC(xim, XNInputStyle, (XIMPreeditNothing | XIMStatusNothing), XNClientWindow, iwin->win, XNFocusWindow, iwin->win, NULL);
 		if(!iwin->xic){
-			printf("Can't create input context for Term%d\n", i);
+			printf("无法为 Term%d 创建输入上下文\n", i);
 			continue;
 		}
 		if(XGetICValues(iwin->xic, XNFilterEvents, &iwin->xic_mask, NULL) != NULL){

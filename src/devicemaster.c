@@ -398,11 +398,11 @@ cptr devicemaster_speciality_desc(int psubclass)
 {
     switch (psubclass)
     {
-    case DEVICEMASTER_RODS: return "You specialize in the use of rods.";
-    case DEVICEMASTER_STAVES: return "You specialize in the use of staves.";
-    case DEVICEMASTER_WANDS: return "You specialize in the use of wands.";
-    case DEVICEMASTER_POTIONS: return "You specialize in the use of potions.";
-    case DEVICEMASTER_SCROLLS: return "You specialize in the use of scrolls.";
+    case DEVICEMASTER_RODS: return "你专精于使用魔棒。";
+    case DEVICEMASTER_STAVES: return "你专精于使用法杖。";
+    case DEVICEMASTER_WANDS: return "你专精于使用魔杖。";
+    case DEVICEMASTER_POTIONS: return "你专精于使用药水。";
+    case DEVICEMASTER_SCROLLS: return "你专精于使用卷轴。";
     }
     return "";
 }
@@ -464,7 +464,7 @@ static void _character_dump(doc_ptr doc)
     {
         int pow = p_ptr->lev / 10;
         if (pow)
-            doc_printf(doc, "* 你在使用%s时获得 +%d%% 的强度。\n", device_power_aux(100, pow) - 100, desc);
+            doc_printf(doc, "* 你在使用%s时获得 +%d%% 的强度。\n", desc, device_power_aux(100, pow) - 100);
     }
     doc_printf(doc, "* 你使用%s的速度更快。\n", desc);
     if (p_ptr->psubclass != DEVICEMASTER_POTIONS && p_ptr->psubclass != DEVICEMASTER_SCROLLS)
@@ -485,7 +485,7 @@ static caster_info * _caster_info(void)
     if (!init)
     {
         me.which_stat = A_INT;
-        me.magic_desc = "talent";
+        me.magic_desc = "才能";
         me.encumbrance.max_wgt = 1000;
         me.encumbrance.weapon_pct = 0;
         me.encumbrance.enc_wgt = 1200;

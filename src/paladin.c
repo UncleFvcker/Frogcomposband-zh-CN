@@ -41,7 +41,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "prayer";
+        me.magic_desc = "祈祷";
         me.which_stat = A_WIS;
         me.encumbrance.max_wgt = 450;
         me.encumbrance.weapon_pct = 20;

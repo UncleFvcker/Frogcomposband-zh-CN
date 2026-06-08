@@ -1787,7 +1787,7 @@ static bool level_gen(cptr *why)
     /* Make a dungeon */
     if (!cave_gen())
     {
-        *why = "could not place player";
+        *why = "无法放置玩家";
         return FALSE;
     }
     return TRUE;
@@ -1956,12 +1956,12 @@ void generate_cave(void)
 
         if (o_max >= max_o_idx)
         {
-            why = "too many objects";
+            why = "物品过多";
             okay = FALSE;
         }
         else if (m_max >= max_m_idx)
         {
-            why = "too many monsters";
+            why = "怪物过多";
             okay = FALSE;
         }
 

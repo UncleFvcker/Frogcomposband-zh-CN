@@ -27,7 +27,7 @@ static void _help_file(cptr name, _file_fn fn)
     }
 
     fn(fp);
-    fprintf(fp, "\n\n<color:s>Automatically generated for FrogComposband %d.%d.%s.</color>\n",
+    fprintf(fp, "\n\n<color:s>自动生成于 FrogComposband %d.%d.%s。</color>\n",
             VER_MAJOR, VER_MINOR, VER_PATCH);
 
     my_fclose(fp);
@@ -287,10 +287,10 @@ static void _race_help(FILE *fp, int idx)
     switch(idx)
     {
     case RACE_DEMIGOD:
-        fputs("See <link:Demigods.txt> for more details on demigod parentage.\n\n", fp);
+        fputs("有关半神血统的更多详细信息，请参阅 <link:Demigods.txt>。\n\n", fp);
         break;
     case RACE_DRACONIAN:
-        fputs("See <link:Draconians.txt> for more details on draconians.\n\n", fp);
+        fputs("有关龙人的更多详细信息，请参阅 <link:Draconians.txt>。\n\n", fp);
         break;
     }
 
@@ -301,7 +301,7 @@ static void _races_help(FILE* fp)
 {
     int i, j;
 
-    fputs("<style:title>The Races</style>\n", fp);
+    fputs("<style:title>种族</style>\n", fp);
     fputs("There are many races in the world, each, for the most part, with both "
           "strengths and weaknesses. In general, the stronger a race is, the higher "
           "its <color:keyword>Experience Penalty</color> and the longer it will take "
@@ -412,7 +412,7 @@ static void _demigods_help(FILE* fp)
 {
     int i;
 
-    fputs("<style:title>Demigod Parentage</style>\n\n", fp);
+    fputs("<style:title>半神血统</style>\n\n", fp);
     fputs(get_race_aux(RACE_DEMIGOD, 0)->desc, fp);
     fputs("\n\n", fp);
 
@@ -426,7 +426,7 @@ static void _demigods_help(FILE* fp)
         _race_help_table(fp, race_ptr);
     }
 
-    fputs("<topic:Tables><style:heading>Table 1 - Demigod Statistic Bonus Table</style>\n\n", fp);
+    fputs("<topic:Tables><style:heading>表 1 - 半神属性加成表</style>\n\n", fp);
     fputs("<style:table><color:G>               STR  INT  WIS  DEX  CON  CHR  Life  Exp  Shop</color>\n", fp);
 
     for (i = 0; i < DEMIGOD_MAX; i++)
@@ -442,7 +442,7 @@ static void _demigods_help(FILE* fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills1><style:heading>Table 2 - Demigod Skill Bonus Table I</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills1><style:heading>表 2 - 半神技能加成表 I</style>\n<style:table>\n", fp);
     fprintf(fp, "%-12.12s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s</color>\n", "", "解除陷阱", "使用装置", "豁免", "潜行");
     for (i = 0; i < DEMIGOD_MAX; i++)
     {
@@ -456,7 +456,7 @@ static void _demigods_help(FILE* fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills2><style:heading>Table 3 - Demigod Skill Bonus Table II</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills2><style:heading>表 3 - 半神技能加成表 II</style>\n<style:table>\n", fp);
     fprintf(fp, "%-12.12s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s %s</color>\n", "", "搜索", "察觉", "近战", "箭术", "红外");
     for (i = 0; i < DEMIGOD_MAX; i++)
     {
@@ -474,7 +474,7 @@ static void _demigods_help(FILE* fp)
     {
         vec_ptr vec = vec_alloc((vec_free_f)_name_desc_free);
 
-        fputs("<topic:Powers><style:heading>Table 4 - Demigod Special Powers</style>\n\n", fp);
+        fputs("<topic:Powers><style:heading>表 4 - 半神特殊能力</style>\n\n", fp);
         fputs("All demigods have access to special powers. When they reach level 20, they may choose "
                     "a single power from the following list. When they reach level, 40, they may choose another. "
                     "These powers can never be removed or changed, so you might want to study this list to "
@@ -513,7 +513,7 @@ static void _demigods_help(FILE* fp)
     {
         vec_ptr vec = vec_alloc((vec_free_f)_name_desc_free);
 
-        fputs("<topic:Weaknesses><style:heading>Table 5 - Human Weaknesses</style>\n\n", fp);
+        fputs("<topic:Weaknesses><style:heading>表 5 - 人类弱点</style>\n\n", fp);
         fputs("Normal humans receive one demigod talent, but they also acquire a special human weakness on reaching level 35. "
                     "Each weakness corresponds to one of the six basic stats; which weakness a human gets depends on "
                     "their primary spellcasting stat. Characters with no spell stat are assumed to be "
@@ -549,7 +549,7 @@ static void _draconians_help(FILE* fp)
 {
     int i;
 
-    fputs("<style:title>Draconians</style>\n\n", fp);
+    fputs("<style:title>龙人</style>\n\n", fp);
     fputs(get_race_aux(RACE_DRACONIAN, 0)->desc, fp);
     fputs("\n\n", fp);
 
@@ -563,7 +563,7 @@ static void _draconians_help(FILE* fp)
         _race_help_table(fp, race_ptr);
     }
 
-    fputs("<topic:Tables><style:heading>Table 1 - Draconian Statistic Bonus Table</style>\n\n", fp);
+    fputs("<topic:Tables><style:heading>表 1 - 龙人属性加成表</style>\n\n", fp);
     fputs("<style:table><color:G>               STR  INT  WIS  DEX  CON  CHR  Life  Exp  Shop</color>\n", fp);
 
     for (i = 0; i < DRACONIAN_MAX; i++)
@@ -579,7 +579,7 @@ static void _draconians_help(FILE* fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills1><style:heading>Table 2 - Draconian Skill Bonus Table I</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills1><style:heading>表 2 - 龙人技能加成表 I</style>\n<style:table>\n", fp);
     fprintf(fp, "%-12.12s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s</color>\n", "", "解除陷阱", "使用装置", "豁免", "潜行");
     for (i = 0; i < DRACONIAN_MAX; i++)
     {
@@ -593,7 +593,7 @@ static void _draconians_help(FILE* fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills2><style:heading>Table 3 - Draconian Skill Bonus Table II</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills2><style:heading>表 3 - 龙人技能加成表 II</style>\n<style:table>\n", fp);
     fprintf(fp, "%-12.12s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s %s</color>\n", "", "搜索", "察觉", "近战", "箭术", "红外");
     for (i = 0; i < DRACONIAN_MAX; i++)
     {
@@ -611,7 +611,7 @@ static void _draconians_help(FILE* fp)
     {
         vec_ptr vec = vec_alloc((vec_free_f)_name_desc_free);
 
-        fputs("<topic:Powers><style:heading>Table 4 - Draconian Special Powers</style>\n\n", fp);
+        fputs("<topic:Powers><style:heading>表 4 - 龙人特殊能力</style>\n\n", fp);
         fputs("All draconians have access to special powers. When they reach level 35, they may choose "
                 "a single power from the following list. "
                 "These powers can never be removed or changed, so you might want to study this list to "
@@ -703,17 +703,17 @@ static void _mon_race_help(FILE *fp, int idx)
     switch(idx)
     {
     case RACE_MON_RING:
-        fputs("See <link:rings.txt> for more details on rings.\n\n", fp);
+        fputs("有关戒指的更多详细信息，请参阅 <link:rings.txt>。\n\n", fp);
         break;
     case RACE_MON_DRAGON:
-        fputs("See <link:Dragons.txt> for more details on dragons.\n", fp);
-        fputs("See <link:DragonRealms.txt> for more details on dragon realms.\n\n", fp);
+        fputs("有关龙族的更多详细信息，请参阅 <link:Dragons.txt>。\n", fp);
+        fputs("有关龙族领域的更多详细信息，请参阅 <link:DragonRealms.txt>。\n\n", fp);
         break;
     case RACE_MON_ORC:
-        fputs("See <link:Orcs.txt> for more details on orcs.\n\n", fp);
+        fputs("有关兽人的更多详细信息，请参阅 <link:Orcs.txt>。\n\n", fp);
         break;
     case RACE_MON_DEMON:
-        fputs("See <link:Demons.txt> for more details on demons.\n\n", fp);
+        fputs("有关恶魔的更多详细信息，请参阅 <link:Demons.txt>。\n\n", fp);
         return;
     }
 
@@ -725,7 +725,7 @@ static void _monster_races_help(FILE* fp)
 {
     int i, j;
 
-    fprintf(fp, "<style:title>Monster Races</style>\n\n");
+    fprintf(fp, "<style:title>怪物种族</style>\n\n");
     fputs("So, you feel ready to play as a monster? There are many monster races and "
             "subraces to choose from, and the various races are loosely grouped "
             "by type below: Animals, Dragons, Demons, and so forth.\n\n"
@@ -839,7 +839,7 @@ static void _monster_races_help(FILE* fp)
 static void _demons_help(FILE* fp)
 {
     int i;
-    fputs("<style:title>Demons</style>\n\n", fp);
+    fputs("<style:title>恶魔</style>\n\n", fp);
     fputs(get_race_aux(RACE_MON_DEMON, 0)->desc, fp);
     fputs("\n\n", fp);
 
@@ -852,7 +852,7 @@ static void _demons_help(FILE* fp)
         _mon_race_help_table(fp, race_ptr);
     }
 
-    fputs("<topic:Tables><style:heading>Table 1 - Demon Statistic Bonus Table</style>\n<style:table>\n", fp);
+    fputs("<topic:Tables><style:heading>表 1 - 恶魔属性加成表</style>\n<style:table>\n", fp);
     fprintf(fp, "<color:G>%-17.17s</color> <color:G>STR  INT  WIS  DEX  CON  CHR  Life  BHP  Exp  Shop</color>\n", "");
     for (i = 0; i < DEMON_MAX; i++)
     {
@@ -866,7 +866,7 @@ static void _demons_help(FILE* fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills1><style:heading>Table 2 - Demon Skill Bonus Table I</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills1><style:heading>表 2 - 恶魔技能加成表 I</style>\n<style:table>\n", fp);
     fprintf(fp, "%-17.17s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s</color>\n", "", "解除陷阱", "使用装置", "豁免", "潜行");
     for (i = 0; i < DEMON_MAX; i++)
     {
@@ -880,7 +880,7 @@ static void _demons_help(FILE* fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills2><style:heading>Table 3 - Demon Skill Bonus Table II</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills2><style:heading>表 3 - 恶魔技能加成表 II</style>\n<style:table>\n", fp);
     fprintf(fp, "%-17.17s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s %s</color>\n", "", "搜索", "察觉", "近战", "箭术", "红外");
     for (i = 0; i < DEMON_MAX; i++)
     {
@@ -899,10 +899,10 @@ static void _demons_help(FILE* fp)
 static void _dragons_help(FILE* fp)
 {
     int i;
-    fputs("<style:title>Dragons</style>\n\n", fp);
+    fputs("<style:title>龙族</style>\n\n", fp);
     fputs(get_race_aux(RACE_MON_DRAGON, 0)->desc, fp);
     fputs("\n\n", fp);
-    fputs("For more information on <color:keyword>Dragon Realms</color>, see <link:DragonRealms.txt>.\n\n", fp);
+    fputs("有关<color:keyword>龙族领域</color>的更多信息，请参阅 <link:DragonRealms.txt>。\n\n", fp);
 
     for (i = 0; i < DRAGON_MAX; i++)
     {
@@ -913,7 +913,7 @@ static void _dragons_help(FILE* fp)
         _mon_race_help_table(fp, race_ptr);
     }
 
-    fputs("<topic:Tables><style:heading>Table 1 - Dragon Statistic Bonus Table</style>\n<style:table>\n", fp);
+    fputs("<topic:Tables><style:heading>表 1 - 龙族属性加成表</style>\n<style:table>\n", fp);
     fprintf(fp, "<color:G>%-17.17s</color> <color:G>STR  INT  WIS  DEX  CON  CHR  Life  BHP  Exp  Shop</color>\n", "");
     for (i = 0; i < DRAGON_MAX; i++)
     {
@@ -927,7 +927,7 @@ static void _dragons_help(FILE* fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills1><style:heading>Table 2 - Dragon Skill Bonus Table I</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills1><style:heading>表 2 - 龙族技能加成表 I</style>\n<style:table>\n", fp);
     fprintf(fp, "%-17.17s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s</color>\n", "", "解除陷阱", "使用装置", "豁免", "潜行");
     for (i = 0; i < DRAGON_MAX; i++)
     {
@@ -941,7 +941,7 @@ static void _dragons_help(FILE* fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills2><style:heading>Table 3 - Dragon Skill Bonus Table II</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills2><style:heading>表 3 - 龙族技能加成表 II</style>\n<style:table>\n", fp);
     fprintf(fp, "%-17.17s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s %s</color>\n", "", "搜索", "察觉", "近战", "箭术", "红外");
     for (i = 0; i < DRAGON_MAX; i++)
     {
@@ -960,7 +960,7 @@ static void _dragons_help(FILE* fp)
 static void _dragon_realms_help(FILE* fp)
 {
     int i, j;
-    fputs("<style:title>Dragon Realms</style>\n\n", fp);
+    fputs("<style:title>龙族领域</style>\n\n", fp);
     fputs("Dragons are magical creatures and may choose to learn a particular branch of "
            "dragon magic. Dragons do not need spellbooks to cast spells or learn powers; "
            "instead, they simply gain spells as they mature. Each "
@@ -1064,7 +1064,7 @@ static void _dragon_realms_help(FILE* fp)
 static void _orcs_help(FILE* fp)
 {
     int i;
-    fputs("<style:title>Orcs</style>\n\n", fp);
+    fputs("<style:title>兽人</style>\n\n", fp);
     fputs(get_race_aux(RACE_MON_ORC, ORC_FIGHTER)->desc, fp);
     fputs("\n\n", fp);
 
@@ -1077,7 +1077,7 @@ static void _orcs_help(FILE* fp)
         _mon_race_help_table(fp, race_ptr);
     }
 
-    fputs("<topic:Tables><style:heading>Table 1 - Orc Statistic Bonus Table</style>\n<style:table>\n", fp);
+    fputs("<topic:Tables><style:heading>表 1 - 兽人属性加成表</style>\n<style:table>\n", fp);
     fprintf(fp, "<color:G>%-17.17s</color> <color:G>STR  INT  WIS  DEX  CON  CHR  Life  BHP  Exp  Shop</color>\n", "");
     for (i = 0; i < ORC_MAX; i++)
     {
@@ -1091,7 +1091,7 @@ static void _orcs_help(FILE* fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills1><style:heading>Table 2 - Orc Skill Bonus Table I</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills1><style:heading>表 2 - 兽人技能加成表 I</style>\n<style:table>\n", fp);
     fprintf(fp, "%-17.17s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s</color>\n", "", "解除陷阱", "使用装置", "豁免", "潜行");
     for (i = 0; i < ORC_MAX; i++)
     {
@@ -1105,7 +1105,7 @@ static void _orcs_help(FILE* fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills2><style:heading>Table 3 - Orc Skill Bonus Table II</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills2><style:heading>表 3 - 兽人技能加成表 II</style>\n<style:table>\n", fp);
     fprintf(fp, "%-17.17s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s %s</color>\n", "", "搜索", "察觉", "近战", "箭术", "红外");
     for (i = 0; i < ORC_MAX; i++)
     {
@@ -1177,19 +1177,19 @@ static void _class_help(FILE *fp, int idx)
     switch(idx)
     {
     case CLASS_WARLOCK:
-        fputs("See <link:Warlocks.txt> for more details on warlock pacts.\n\n", fp);
+        fputs("有关邪术师契约的更多详细信息，请参阅 <link:Warlocks.txt>。\n\n", fp);
         break;
     case CLASS_WEAPONMASTER:
-        fputs("See <link:Weaponmasters.txt> for more details on weaponmasters.\n\n", fp);
+        fputs("有关武器大师的更多详细信息，请参阅 <link:Weaponmasters.txt>。\n\n", fp);
         break;
     case CLASS_SKILLMASTER:
-        fputs("See <link:Skillmasters.txt> for more details on skillmasters.\n\n", fp);
+        fputs("有关技能大师的更多详细信息，请参阅 <link:Skillmasters.txt>。\n\n", fp);
         break;
     case CLASS_DISCIPLE:
-        fputs("See <link:Disciples.txt> for more details on disciples.\n\n", fp);
+        fputs("有关门徒的更多详细信息，请参阅 <link:Disciples.txt>。\n\n", fp);
         break;
     case CLASS_RUNE_KNIGHT:
-        fputs("See <link:Runeknights.txt> for more details on rune knights.\n\n", fp);
+        fputs("有关符文骑士的更多详细信息，请参阅 <link:Runeknights.txt>。\n\n", fp);
         break;
     }
 
@@ -1226,7 +1226,7 @@ static void _classes_help(FILE* fp)
 {
     int i, j, k;
 
-    fputs("<style:title>The Classes</style>\n\n", fp);
+    fputs("<style:title>职业</style>\n\n", fp);
     fputs("没有什么决定比选择玩哪个职业更重要了。在下面，众多可用的职业大致按其主要优势或游戏风格进行了分类：近战、箭术、武术、魔法、装置、混合等。每个职业的主要施法属性都已<color:v>高亮</color>显示。\n\n有关<color:keyword>属性</color>的详细信息，请参阅 <link:birth.txt#PrimaryStats>。有关<color:keyword>技能</color>的信息，请参阅 <link:birth.txt#PrimarySkills>。本文档中的技能描述<color:v>仅供比较之用</color>；例如，你初出茅庐的狂战士并不会真正天生就带有<color:v>琥珀色[25]</color>的近战技能。通常来说，技能受等级、种族、职业、属性和装备的影响。请查看此文件底部的表格（<link:Classes.txt#Tables>）以一目了然地比较各种职业的属性和技能加成。\n\n", fp);
 
     for (i = 0; i < _MAX_CLASS_GROUPS; i++)
@@ -1320,7 +1320,7 @@ static void _classes_help(FILE* fp)
 static void _disciples_help(FILE *fp)
 {
     int i;
-    fputs("<style:title>Disciples</style>\n\n", fp);
+    fputs("<style:title>门徒</style>\n\n", fp);
     fputs(get_class_aux(CLASS_DISCIPLE, 0)->desc, fp);
     fputs("\n\n", fp);
 
@@ -1337,9 +1337,9 @@ static void _disciples_help(FILE *fp)
     fprintf(fp, "如果你所在的层数足够深，使得该任务具有挑战性。按下 <color:y>CTRL+F</color>");
     fprintf(fp, "reveals your patron's opinion of your current depth. The Purples also like you to visit ");
     fprintf(fp, "many different dungeons; do not expect a large number of assignments in a single dungeon, unless ");
-    fprintf(fp, "you are playing with no wilderness.\n\n");
+    fprintf(fp, "你在没有荒野的模式下游玩。\n\n");
 
-    fputs("<topic:Tables><style:heading>Table 1 - Disciple Statistic Bonus Table</style>\n<style:table>\n", fp);
+    fputs("<topic:Tables><style:heading>表 1 - 门徒属性加成表</style>\n<style:table>\n", fp);
     fprintf(fp, "<color:G>%-17.17s</color> <color:G>STR  INT  WIS  DEX  CON  CHR  Life  BHP  Exp</color>\n", "");
     for (i = MIN_PURPLE_PATRON; i < MAX_PURPLE_PATRON; i++)
     {
@@ -1353,7 +1353,7 @@ static void _disciples_help(FILE *fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills1><style:heading>Table 2 - Disciple Skill Bonus Table I</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills1><style:heading>表 2 - 门徒技能加成表 I</style>\n<style:table>\n", fp);
     fprintf(fp, "%-17.17s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s</color>\n", "", "解除陷阱", "使用装置", "豁免", "潜行");
     for (i = MIN_PURPLE_PATRON; i < MAX_PURPLE_PATRON; i++)
     {
@@ -1367,7 +1367,7 @@ static void _disciples_help(FILE *fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills2><style:heading>Table 3 - Disciple Skill Bonus Table II</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills2><style:heading>表 3 - 门徒技能加成表 II</style>\n<style:table>\n", fp);
     fprintf(fp, "%-17.17s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s</color>\n", "", "搜索", "察觉", "近战", "箭术");
     for (i = MIN_PURPLE_PATRON; i < MAX_PURPLE_PATRON; i++)
     {
@@ -1387,7 +1387,7 @@ static void _disciples_help(FILE *fp)
 static void _weaponmasters_help(FILE *fp)
 {
     int i;
-    fputs("<style:title>Weaponmasters</style>\n\n", fp);
+    fputs("<style:title>武器大师</style>\n\n", fp);
     fputs(get_class_aux(CLASS_WEAPONMASTER, WEAPONMASTER_AXES)->desc, fp);
     fputs("\n\n", fp);
 
@@ -1400,7 +1400,7 @@ static void _weaponmasters_help(FILE *fp)
         _class_help_table(fp, class_ptr);
     }
 
-    fputs("<topic:Tables><style:heading>Table 1 - Weaponmaster Statistic Bonus Table</style>\n<style:table>\n", fp);
+    fputs("<topic:Tables><style:heading>表 1 - 武器大师属性加成表</style>\n<style:table>\n", fp);
     fprintf(fp, "<color:G>%-17.17s</color> <color:G>STR  INT  WIS  DEX  CON  CHR  Life  BHP  Exp</color>\n", "");
     for (i = 0; i < WEAPONMASTER_MAX; i++)
     {
@@ -1414,7 +1414,7 @@ static void _weaponmasters_help(FILE *fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills1><style:heading>Table 2 - Weaponmaster Skill Bonus Table I</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills1><style:heading>表 2 - 武器大师技能加成表 I</style>\n<style:table>\n", fp);
     fprintf(fp, "%-17.17s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s</color>\n", "", "解除陷阱", "使用装置", "豁免", "潜行");
     for (i = 0; i < WEAPONMASTER_MAX; i++)
     {
@@ -1428,7 +1428,7 @@ static void _weaponmasters_help(FILE *fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills2><style:heading>Table 3 - Weaponmaster Skill Bonus Table II</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills2><style:heading>表 3 - 武器大师技能加成表 II</style>\n<style:table>\n", fp);
     fprintf(fp, "%-17.17s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s</color>\n", "", "搜索", "察觉", "近战", "箭术");
     for (i = 0; i < WEAPONMASTER_MAX; i++)
     {
@@ -1446,7 +1446,7 @@ static void _weaponmasters_help(FILE *fp)
 static void _warlocks_help(FILE *fp)
 {
     int i;
-    fputs("<style:title>Warlocks</style>\n\n", fp);
+    fputs("<style:title>邪术师</style>\n\n", fp);
     fputs(get_class_aux(CLASS_WARLOCK, WARLOCK_UNDEAD)->desc, fp);
     fputs("\n\n", fp);
 
@@ -1459,7 +1459,7 @@ static void _warlocks_help(FILE *fp)
         _class_help_table(fp, class_ptr);
     }
 
-    fputs("<topic:Tables><style:heading>Table 1 - Warlock Statistic Bonus Table</style>\n<style:table>\n", fp);
+    fputs("<topic:Tables><style:heading>表 1 - 邪术师属性加成表</style>\n<style:table>\n", fp);
     fprintf(fp, "<color:G>%-17.17s</color> <color:G>STR  INT  WIS  DEX  CON  CHR  Life  BHP  Exp</color>\n", "");
     for (i = 0; i < WARLOCK_MAX; i++)
     {
@@ -1473,7 +1473,7 @@ static void _warlocks_help(FILE *fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills1><style:heading>Table 2 - Warlock Skill Bonus Table I</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills1><style:heading>表 2 - 邪术师技能加成表 I</style>\n<style:table>\n", fp);
     fprintf(fp, "%-17.17s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s</color>\n", "", "解除陷阱", "使用装置", "豁免", "潜行");
     for (i = 0; i < WARLOCK_MAX; i++)
     {
@@ -1487,7 +1487,7 @@ static void _warlocks_help(FILE *fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills2><style:heading>Table 3 - Warlock Skill Bonus Table II</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills2><style:heading>表 3 - 邪术师技能加成表 II</style>\n<style:table>\n", fp);
     fprintf(fp, "%-17.17s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s</color>\n", "", "搜索", "察觉", "近战", "箭术");
     for (i = 0; i < WARLOCK_MAX; i++)
     {
@@ -1551,7 +1551,7 @@ static void _personalities_help(FILE* fp)
 {
     int i;
 
-    fprintf(fp, "<style:title>The Personalities</style>\n\n");
+    fprintf(fp, "<style:title>性格</style>\n\n");
     fputs("Your personality is the way you see and act in the world, and has "
             "a small but significant effect on your stats and skills. In general, "
             "you should pick a personality that complements the strengths and "
@@ -1572,7 +1572,7 @@ static void _personalities_help(FILE* fp)
         _personality_help(fp, i);
     }
 
-    fputs("<topic:Tables><style:heading>Table 1 - Personality Statistic Bonus Table</style>\n\n", fp);
+    fputs("<topic:Tables><style:heading>表 1 - 性格属性加成表</style>\n\n", fp);
     fputs("<style:table><color:G>               STR  INT  WIS  DEX  CON  CHR  Life  Exp</color>\n", fp);
 
     for (i = 0; i < MAX_PERSONALITIES; i++)
@@ -1589,7 +1589,7 @@ static void _personalities_help(FILE* fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills1><style:heading>Table 2 - Personality Skill Bonus Table I</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills1><style:heading>表 2 - 性格技能加成表 I</style>\n<style:table>\n", fp);
     fprintf(fp, "%-12.12s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s</color>\n", "", "解除陷阱", "使用装置", "豁免", "潜行");
     for (i = 0; i < MAX_PERSONALITIES; i++)
     {
@@ -1604,7 +1604,7 @@ static void _personalities_help(FILE* fp)
     }
     fputs("\n</style>\n", fp);
 
-    fputs("<topic:Skills2><style:heading>Table 3 - Personality Skill Bonus Table II</style>\n<style:table>\n", fp);
+    fputs("<topic:Skills2><style:heading>表 3 - 性格技能加成表 II</style>\n<style:table>\n", fp);
     fprintf(fp, "%-12.12s <color:w>%-13.13s %-13.13s %-13.13s %-13.13s</color>\n", "", "搜索", "察觉", "近战", "箭术");
     for (i = 0; i < MAX_PERSONALITIES; i++)
     {
@@ -1650,9 +1650,9 @@ static void _possessor_stats_table(FILE* fp)
             #endif
 
             fprintf(fp, "\"%s\",%d,%d,%d,%d,%d,%d,%s,%d,%d,%d,%d,%d,%d,%d,=\"%d+%d\",=\"%d+%d\",=\"%d+%d\",%d,%d,%d,=\"%d+%d\",=\"%d+%d\"\n",
-                i == MON_ECHIZEN ? "战斗越前" : r_name + r_ptr->name, i, r_ptr->level,
+                i == MON_ECHIZEN ? "战斗越前" : monster_race_display_name(i), i, r_ptr->level,
                 r_ptr->speed - 110, ac, attacks, dam,
-                b_name + b_info[r_ptr->body.body_idx].name,
+                body_display_name(r_ptr->body.body_idx),
                 r_ptr->body.stats[A_STR], r_ptr->body.stats[A_INT], r_ptr->body.stats[A_WIS],
                 r_ptr->body.stats[A_DEX], r_ptr->body.stats[A_CON], r_ptr->body.stats[A_CHR],
                 r_ptr->body.life,

@@ -135,7 +135,7 @@ void core(cptr str)
     (*crash) = (*crash);
 
     /* Be sure we exited */
-    quit("core() failed");
+    quit("core() 调用失败");
 }
 
 

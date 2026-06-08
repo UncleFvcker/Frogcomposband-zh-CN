@@ -1,22 +1,22 @@
 ?:[EQU $QUEST55 Taken InProgress]
-D:Our archeologists have discovered an ancient underground city. They
-D:have asked that you help them in clearing out any would be dangers.
-D:It stands to reason that you might find some interesting items in
-D:the process.
+D:我们的考古学家发现了一座古老的地下城市。他们
+D:请求你协助他们清除那里的所有潜在危险。
+D:理所当然的，在这个过程中你可能会找到一些
+D:有趣的物品。
 ?:1
 
 ?:[AND [EQU $QUEST55 Completed] [NEQ $RACE Centipede Beholder Ring Dragon Quylthulg Death-Sword Hydra Vortex Jelly] ]
-D:You have our undying gratitude for your heroic efforts. Here, take
-D:my old battle gloves for your victory.
+D:我们对你英勇的努力致以无尽的感激。给，收下
+D:我这副旧战斗手套，作为对你胜利的奖赏。
 ?:1
 
 ?:[AND [EQU $QUEST55 Completed] [EQU $RACE Centipede Beholder Ring Dragon Quylthulg Death-Sword Hydra Vortex Jelly] ]
-D:You have our undying gratitude for your heroic efforts. Here, take
-D:this reward for your victory.
+D:我们对你英勇的努力致以无尽的感激。给，收下
+D:这份礼物，作为对你胜利的奖赏。
 ?:1
 
 ?:[EQU $QUEST55 Failed]
-D:You have failed me, beware you do not do so again!
+D:你让我失望了，小心别再这样了！
 ?:1
 
 T:QUEST:NORMAL

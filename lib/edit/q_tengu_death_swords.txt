@@ -1,18 +1,18 @@
 # By Shayne Steele (steele@cs.fsu.edu)
 
 ?:[EQU $QUEST29 Taken InProgress]
-D:The Magic Shop's owner is thinking of opening another Thieves' Guild. 
-D:I do not need the competition, here is the key to the Magic Shop's
-D:back treasure room. Destroy everything you find there and you will
-D:be rewarded.
+D:魔法商店老板正考虑开设另一个盗贼公会。
+D:我不需要这种竞争，这是魔法商店后面的
+D:藏宝室钥匙。摧毁你在那里找到的一切，你会
+D:得到奖励。
 ?:1
 
 ?:[EQU $QUEST29 Completed]
-D:You have done well. Perhaps this will prove useful.
+D:你做得很出色。也许这个对你能派上用场。
 ?:1
 
 ?:[EQU $QUEST29 Failed]
-D:You have failed this quest, but keep what you have found. 
+D:你未能完成这个任务，但你可以保留你找到的东西。
 ?:1
 
 T:QUEST:NORMAL

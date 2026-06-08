@@ -632,7 +632,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "mindcraft";
+        me.magic_desc = "心灵异能";
         me.which_stat = A_WIS;
         me.encumbrance.max_wgt = 400;
         me.encumbrance.weapon_pct = 50;

@@ -314,19 +314,19 @@ void create_needed_dirs(void)
     char dirpath[512];
 
     path_build(dirpath, sizeof(dirpath), ANGBAND_DIR_USER, "");
-    if (!dir_create(dirpath)) quit_fmt("Cannot create '%s'", dirpath);
+    if (!dir_create(dirpath)) quit_fmt("无法创建 '%s'", dirpath);
 
     path_build(dirpath, sizeof(dirpath), ANGBAND_DIR_SAVE, "");
-    if (!dir_create(dirpath)) quit_fmt("Cannot create '%s'", dirpath);
+    if (!dir_create(dirpath)) quit_fmt("无法创建 '%s'", dirpath);
 
     path_build(dirpath, sizeof(dirpath), ANGBAND_DIR_APEX, "");
-    if (!dir_create(dirpath)) quit_fmt("Cannot create '%s'", dirpath);
+    if (!dir_create(dirpath)) quit_fmt("无法创建 '%s'", dirpath);
 
     path_build(dirpath, sizeof(dirpath), ANGBAND_DIR_DATA, "");
-    if (!dir_create(dirpath)) quit_fmt("Cannot create '%s'", dirpath);
+    if (!dir_create(dirpath)) quit_fmt("无法创建 '%s'", dirpath);
 
     path_build(dirpath, sizeof(dirpath), ANGBAND_DIR_HELP, "");
-    if (!dir_create(dirpath)) quit_fmt("Cannot create '%s'", dirpath);
+    if (!dir_create(dirpath)) quit_fmt("无法创建 '%s'", dirpath);
 }
 
 
@@ -348,16 +348,16 @@ int error_line;
 cptr err_str[PARSE_ERROR_MAX] =
 {
     NULL,
-    "parse error",
-    "obsolete file",
-    "missing record header",
-    "non-sequential records",
-    "invalid flag specification",
-    "undefined directive",
-    "out of memory",
-    "coordinates out of bounds",
-    "too few arguments",
-    "undefined terrain tag",
+    "解析错误",
+    "废弃的文件",
+    "缺失记录头",
+    "记录不连续",
+    "无效的标记规范",
+    "未定义的指令",
+    "内存不足",
+    "坐标越界",
+    "参数过少",
+    "未定义的地形标签",
 
 };
 
@@ -451,7 +451,7 @@ static errr init_info(cptr filename, header *head,
     fp = my_fopen(buf, "r");
 
     /* Parse it */
-    if (!fp) quit(format("Cannot open '%s.txt' file.", filename));
+    if (!fp) quit(format("无法打开 '%s.txt' 文件。", filename));
 
 
     /* Parse the file */
@@ -464,18 +464,23 @@ static errr init_info(cptr filename, header *head,
     if (err)
     {
         cptr oops;
+        char diag[1024];
 
         /* Error string */
         oops = (((err > 0) && (err < PARSE_ERROR_MAX)) ? err_str[err] : "unknown");
 
+        snprintf(diag, sizeof(diag), "%s.txt line=%d record=%d err=%d (%s) buf=%s",
+            filename, error_line, error_idx, err, oops, buf);
+        game_log_note("init_info_error", diag);
+
         /* Oops */
-        msg_format("错误 %d，位于 '%s.txt' 的第 %d 行。", err, error_line, filename);
+        msg_format("错误 %d，位于 '%s.txt' 的第 %d 行。", err, filename, error_line);
         msg_format("记录 %d 包含一个 '%s' 错误。", error_idx, oops);
         msg_format("正在解析 '%s'。", buf);
         msg_print(NULL);
 
         /* Quit */
-        quit(format("Error in '%s.txt' file.", filename));
+        quit(format("'%s.txt' 文件出错。", filename));
 
     }
 
@@ -1137,7 +1142,7 @@ static errr init_object_alloc(void)
     }
 
     /* Paranoia */
-    if (!num[0]) quit("No town objects!");
+    if (!num[0]) quit("没有城镇物品！");
 
 
 
@@ -1295,7 +1300,7 @@ static errr init_alloc(void)
     }
 
     /* Paranoia */
-    if (!num[0]) quit("No town monsters!");
+    if (!num[0]) quit("没有城镇怪物！");
 
 
 
@@ -1378,16 +1383,16 @@ static void init_angband_aux(cptr why)
     plog(why);
 
     /* Explain */
-    plog("The 'lib' directory is probably missing or broken.");
+    plog("'lib' 目录可能丢失或损坏。");
 
     /* More details */
-    plog("Perhaps the archive was not extracted correctly.");
+    plog("也许压缩包没有正确解压。");
 
     /* Explain */
-    plog("See the 'README' file for more information.");
+    plog("请参阅 'README' 文件以获取更多信息。");
 
     /* Quit with error */
-    quit("Fatal Error.");
+    quit("致命错误。");
 
 }
 
@@ -1529,7 +1534,7 @@ void init_angband(void)
         char why[1024];
 
         /* Message */
-        sprintf(why, "Cannot access the '%s' file!", buf);
+        sprintf(why, "无法访问 '%s' 文件！", buf);
 
 
         /* Crash and burn */
@@ -1539,47 +1544,62 @@ void init_angband(void)
     /* Close it */
     (void)fd_close(fd);
 
+    game_log_note("init_angband", "before_msg_on_startup");
     msg_on_startup();
+    game_log_note("init_angband", "after_msg_on_startup");
 
     /*** Initialize some arrays ***/
 
     /* Initialize misc. values */
-    note("[Initializing values... (misc)]");
+    game_log_note("init_angband", "before_misc_note");
+    note("[正在初始化数值... (misc)]");
 
-    if (init_misc()) quit("Cannot initialize misc. values");
+    if (init_misc()) quit("无法初始化杂项数值");
 
     /* Initialize feature info */
-    note("[Initializing arrays... (features)]");
+    game_log_note("init_angband", "before_features_note");
+    note("[正在初始化数组... (features)]");
     if (init_f_info()) quit("无法初始化地形特征");
     if (init_feat_variables()) quit("无法初始化地形特征变量");
 
 
     /* Initialize object info */
-    note("[Initializing arrays... (objects)]");
+    game_log_note("init_angband", "before_objects_note");
+    note("[正在初始化数组... (objects)]");
     if (init_k_info()) quit("无法初始化物品");
 
 
     /* Initialize artifact info */
-    note("[Initializing arrays... (artifacts)]");
+    game_log_note("init_angband", "before_artifacts_note");
+    note("[正在初始化数组... (artifacts)]");
     if (init_a_info()) quit("无法初始化神器");
+    game_log_note("init_angband", "after_init_a_info");
 
 
     /* Initialize ego-item info */
-    note("[Initializing arrays... (ego-items)]");
+    game_log_note("init_angband", "before_init_e_info");
+    note("[正在初始化数组... (ego-items)]");
     if (init_e_info()) quit("无法初始化 ego 物品");
+    game_log_note("init_angband", "after_init_e_info");
 
     /* Initialize monster info */
-    note("[Initializing arrays... (body-types)]");
+    game_log_note("init_angband", "before_init_b_info");
+    note("[正在初始化数组... (body-types)]");
     if (init_b_info()) quit("无法初始化种族体型");
+    game_log_note("init_angband", "after_init_b_info");
 
 
     /* Initialize monster info ... requires b_info */
-    note("[Initializing arrays... (monsters)]");
+    game_log_note("init_angband", "before_init_r_info");
+    note("[正在初始化数组... (monsters)]");
     if (init_r_info()) quit("无法初始化怪物");
+    game_log_note("init_angband", "after_init_r_info");
 
     /* Initialize dungeon info ... requires k_info */
-    note("[Initializing arrays... (dungeon)]");
+    game_log_note("init_angband", "before_init_d_info");
+    note("[正在初始化数组... (dungeon)]");
     if (init_d_info()) quit("无法初始化地下城");
+    game_log_note("init_angband", "after_init_d_info");
     {
         int i;
         for (i = 1; i < max_d_idx; i++)
@@ -1588,55 +1608,73 @@ void init_angband(void)
     }
 
     /* Initialize magic info */
-    note("[Initializing arrays... (magic)]");
+    game_log_note("init_angband", "before_init_m_info");
+    note("[正在初始化数组... (magic)]");
     if (init_m_info()) quit("无法初始化魔法");
+    game_log_note("init_angband", "after_init_m_info");
 
     /* Initialize weapon_exp info */
-    note("[Initializing arrays... (skill)]");
+    game_log_note("init_angband", "before_init_s_info");
+    note("[正在初始化数组... (skill)]");
     if (init_s_info()) quit("无法初始化技能");
+    game_log_note("init_angband", "after_init_s_info");
 
     /* Initialize wilderness array */
-    note("[Initializing arrays... (wilderness)]");
+    game_log_note("init_angband", "before_init_wilderness");
+    note("[正在初始化数组... (wilderness)]");
 
     if (init_wilderness()) quit("无法初始化荒野");
+    game_log_note("init_angband", "after_init_wilderness");
 
 
     /* Initialize building array */
-    note("[Initializing arrays... (buildings)]");
+    game_log_note("init_angband", "before_init_buildings");
+    note("[正在初始化数组... (buildings)]");
 
     if (init_buildings()) quit("无法初始化建筑");
+    game_log_note("init_angband", "after_init_buildings");
 
 
-    note("[Initializing arrays... (quests)]");
+    game_log_note("init_angband", "before_quests_init");
+    note("[正在初始化数组... (quests)]");
     if (!quests_init()) quit("无法初始化任务");
+    game_log_note("init_angband", "after_quests_init");
 
 
     /* Initialize vault info */
+    game_log_note("init_angband", "before_init_v_info");
     if (init_v_info(0)) quit("无法初始化金库");
+    game_log_note("init_angband", "after_init_v_info");
 
     /* Initialize monster info */
-    note("[Initializing arrays... (random names)]");
+    game_log_note("init_angband", "before_name_parser");
+    note("[正在初始化数组... (random names)]");
     if (name_parser()) quit("无法初始化随机名称");
+    game_log_note("init_angband", "after_name_parser");
 
     /* Initialize some other arrays */
-    note("[Initializing arrays... (other)]");
+    game_log_note("init_angband", "before_init_other");
+    note("[正在初始化数组... (other)]");
     if (init_other()) quit("无法初始化其他杂项");
+    game_log_note("init_angband", "after_init_other");
 
 
     /* Initialize some other arrays */
-    note("[Initializing arrays... (alloc)]");
+    game_log_note("init_angband", "before_init_alloc");
+    note("[正在初始化数组... (alloc)]");
     if (init_alloc()) quit("无法初始化生成分配数据");
+    game_log_note("init_angband", "after_init_alloc");
 
 #ifdef ALLOW_SPOILERS
     /* Initialize help files */
-    note("[Updating help files - please wait...]");
+    note("[正在更新帮助文件 - 请稍候...]");
     if (init_help_files()) quit("无法初始化帮助文件");
 #endif
 
     /*** Load default user pref files ***/
 
     /* Initialize feature info */
-    note("[Initializing user pref files...]");
+    note("[正在初始化用户配置(pref)文件...]");
 
 
     /* Access the "basic" pref file */
@@ -1652,7 +1690,7 @@ void init_angband(void)
     process_pref_file(buf);
 
     /* Done */
-    note("[Initialization complete]");
+    note("[初始化完成]");
 
     /* We are now initialized */
     initialized = TRUE;

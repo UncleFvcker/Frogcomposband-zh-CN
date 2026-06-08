@@ -2,25 +2,25 @@
 # New quest for FrogComposband 7.1.liquorice
 
 ?:[EQU $QUEST98 Taken InProgress]
-D:Some time ago, a well-meaning chap from the elf-town of Angwil tried
-D:to open a livery stable here; but the beasts he offered for hire
-D:were completely untamed and too vile to be ridden, and his business
-D:failed miserably. The Angwilian left the town in humiliation;
-D:unfortunately, the beasts and the stables are still here, and
-D:the smell and reputation of the place are driving visitors away.
-D:We're not getting the steady inflow of new customers I need;
-D:and even the locals prefer to stay indoors where the stench is
-D:not as bad, making them harder to rob. I would appreciate it
-D:if you cleaned the old place up a bit.
+D:不久前，一个来自安格威尔（Angwil）精灵镇的善良小伙试图
+D:在这里开一家出租马厩；但他提供出租的野兽
+D:完全没有被驯服，而且太恶劣了根本没法骑，所以他的生意
+D:惨败了。那个安格威尔人带着屈辱离开了小镇；
+D:不幸的是，那些野兽和马厩还留在这里，并且
+D:那个地方散发的气味和名声正在把游客吓跑。
+D:我们得不到我所需要的稳定的新客源；
+D:甚至连当地人也宁愿呆在恶臭没那么严重的
+D:室内，导致他们也更难被抢劫了。如果你能把
+D:那个旧地方稍微清理一下，我将不胜感激。
 ?:1
 
 ?:[EQU $QUEST98 Completed]
-D:Thank you! I look forward to going out without a clothespin on my nose.
+D:谢谢你！我终于期待不用在鼻子上夹着衣服夹就能出门了。
 ?:1
 
 ?:[EQU $QUEST98 Failed]
-D:Too bad. I guess there's nothing for it but to try to divert the river to
-D:wash the place out.
+D:太糟糕了。我想别无他法，只能试着让河流改道
+D:来冲洗那个地方了。
 ?:1
 
 T:QUEST:NORMAL

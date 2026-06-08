@@ -3,18 +3,18 @@
 # partly based on Gwarl's quest descriptions from ComPosband
 
 ?:[EQU $QUEST64 Taken InProgress]
-D:An old sorcerer has betrayed the order of wizards and gone over
-D:to serve the forces of darkness. He has built a tower nearby and 
-D:the Sultan is growing concerned. Go kill him, I'll give you credit.
+D:一位老咒术师背叛了巫师教团，转投了
+D:黑暗势力的阵营。他在附近建了一座塔，
+D:苏丹对此越来越担忧。去杀了他，我会给你算学分的。
 ?:1
 
 ?:[EQU $QUEST64 Completed]
-D:Well done on the special examination. Here is your wizard's hat.
+D:特殊考试干得好。这是你的巫师帽。
 ?:1
 
 ?:[EQU $QUEST64 Failed]
-D:Back already? So you couldn't do it. No matter.
-D:The order of wizards will have to take care of its own problem.
+D:这么快就回来了？看来你做不到啊。没关系。
+D:巫师教团得自己处理他们自己的问题了。
 ?:1
 
 T:QUEST:NORMAL

@@ -1043,7 +1043,7 @@ static bool _gain_spell(int book)
 
     while (1)
     {
-        which = choose_spell(spells, ct, "学习", "rage", 1000, FALSE);
+        which = choose_spell(spells, ct, "学习", "狂怒", 1000, FALSE);
         if ((which >= 0) && (which < ct))
         {
             if (spells[which].spell.level > p_ptr->lev)
@@ -1118,7 +1118,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "rage";
+        me.magic_desc = "狂怒";
         me.encumbrance.max_wgt = 1000;
         me.encumbrance.weapon_pct = 20;
         me.encumbrance.enc_wgt = 1200;

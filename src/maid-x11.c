@@ -121,7 +121,7 @@ static unsigned long create_pixel(Display *dpy, byte red, byte green, byte blue)
 	/* Attempt to Allocate the Parsed color */
 	if (!(XAllocColor(dpy, cmap, &xcolour)))
 	{
-		quit_fmt("Couldn't allocate bitmap color '#%02x%02x%02x'\n",
+		quit_fmt("无法分配位图颜色 '#%02x%02x%02x'\n",
 			 red, green, blue);
 	}
 
@@ -268,7 +268,7 @@ static XImage *ReadBMP(Display *dpy, char *Name)
 	    (fileheader.bfType != 19778) ||
 	    (infoheader.biSize != 40))
 	{
-		quit_fmt("Incorrect BMP file format %s", Name);
+		quit_fmt("不正确的 BMP 文件格式 %s", Name);
 	}
 
 	/* The two headers above occupy 54 bytes total */
@@ -321,7 +321,7 @@ static XImage *ReadBMP(Display *dpy, char *Name)
 			int ch = getc(f);
 
 			/* Verify not at end of file XXX XXX */
-			if (feof(f)) quit_fmt("Unexpected end of file in %s", Name);
+			if (feof(f)) quit_fmt("文件 %s 中出现意外的文件末尾 (EOF)", Name);
 
 			if (infoheader.biBitCount == 24)
 			{
@@ -329,7 +329,7 @@ static XImage *ReadBMP(Display *dpy, char *Name)
 				int c3 = getc(f);
 
 				/* Verify not at end of file XXX XXX */
-				if (feof(f)) quit_fmt("Unexpected end of file in %s", Name);
+				if (feof(f)) quit_fmt("文件 %s 中出现意外的文件末尾 (EOF)", Name);
 
 				XPutPixel(Res, x, y2, create_pixel(dpy, ch, c2, c3));
 			}
@@ -346,7 +346,7 @@ static XImage *ReadBMP(Display *dpy, char *Name)
 			else
 			{
 				/* Technically 1 bit is legal too */
-				quit_fmt("Illegal biBitCount %d in %s",
+				quit_fmt("%s 中存在非法的 biBitCount %d",
 					 infoheader.biBitCount, Name);
 			}
 		}

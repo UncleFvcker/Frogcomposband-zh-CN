@@ -660,7 +660,7 @@ static bool _wield_confirm(obj_ptr obj, slot_t slot)
         char dummy[MAX_NLEN+80];
         object_desc(o_name, obj, OD_OMIT_PREFIX | OD_NAME_ONLY);
         msg_format("装备后，%s将把你永久变成吸血鬼。", o_name);
-        sprintf(dummy, "Do you become a vampire?");
+        sprintf(dummy, "你要变成吸血鬼吗？");
         if (!get_check(dummy)) return FALSE;
     }
     return TRUE;
@@ -1956,12 +1956,12 @@ void _learn_resist_aux(int obj_flag, cptr desc)
 
 void equip_learn_resist(int obj_flag)
 {
-    _learn_resist_aux(obj_flag, "protecting");
+    _learn_resist_aux(obj_flag, "保护");
 }
 
 void equip_learn_vuln(int obj_flag)
 {
-    _learn_resist_aux(obj_flag, "exposing");
+    _learn_resist_aux(obj_flag, "暴露");
 }
 
 void equip_learn_flag(int obj_flag)

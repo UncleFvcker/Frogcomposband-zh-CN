@@ -145,7 +145,7 @@ static void _calc_weapon_bonuses(object_type *o_ptr, weapon_info_t *info_ptr)
         info_ptr->to_d -= 5;
         info_ptr->dis_to_d -= 5;
         info_ptr->info_attr = TERM_RED;
-        info_ptr->info = "Your weapon is too small.";
+        info_ptr->info = "你的武器太小了。";
     }
     if (_weapon_is_giant(o_ptr->tval, o_ptr->sval))
     {
@@ -154,7 +154,7 @@ static void _calc_weapon_bonuses(object_type *o_ptr, weapon_info_t *info_ptr)
         info_ptr->to_d += 3 + p_ptr->lev/7;
         info_ptr->dis_to_d += 3 + p_ptr->lev/7;
         info_ptr->info_attr = TERM_L_GREEN;
-        info_ptr->info = "You love your weapon.";
+        info_ptr->info = "你爱死这把武器了。";
     }
 }
 

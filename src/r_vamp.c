@@ -648,12 +648,12 @@ void vampire_take_light_damage(int amt)
         case 6: case 7: case 8: case 9:
             switch (randint1(6))
             {
-                case 1: k = A_STR; act = "strong"; break;
-                case 2: k = A_INT; act = "bright"; break;
-                case 3: k = A_WIS; act = "wise"; break;
-                case 4: k = A_DEX; act = "agile"; break;
-                case 5: k = A_CON; act = "hale"; break;
-                case 6: k = A_CHR; act = "confident"; break;
+                case 1: k = A_STR; act = "强壮"; break;
+                case 2: k = A_INT; act = "聪慧"; break;
+                case 3: k = A_WIS; act = "明智"; break;
+                case 4: k = A_DEX; act = "敏捷"; break;
+                case 5: k = A_CON; act = "健壮"; break;
+                case 6: k = A_CHR; act = "自信"; break;
             }
             msg_format("你不如以前那么%s了。", act);
             p_ptr->stat_cur[k] = (p_ptr->stat_cur[k] * 3) / 4;
@@ -716,7 +716,7 @@ static void _bat_calc_innate_attacks(void)
     a.effect[0] = GF_OLD_DRAIN;
     calc_innate_blows(&a, 400);
 
-    a.msg = "You bite.";
+    a.msg = "你咬了过去。";
     a.name = "撕咬";
 
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;

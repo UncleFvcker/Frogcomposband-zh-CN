@@ -58,7 +58,7 @@ static void _calc_innate_attacks(void)
         a.effect_chance[1] = 20;
 
         a.blows = 100;
-        a.msg = "You squash.";
+        a.msg = "你碾压了目标。";
         a.name = "重压";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -74,7 +74,7 @@ static void _calc_innate_attacks(void)
 
         if (p_ptr->lev >= 40) a.effect[1] = GF_OLD_DRAIN;
         calc_innate_blows(&a, 450);
-        a.msg = "You bite.";
+        a.msg = "你咬了过去。";
         a.name = "撕咬";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;

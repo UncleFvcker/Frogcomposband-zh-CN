@@ -259,7 +259,7 @@ static _type_t _types[] =
         {{  1, "加里·盖加斯",               20000, 150, RACE_HALF_TROLL },
          {  2, "哥布林希斯托",        20000, 150, RACE_SNOTLING },
          {  3, "费伦吉人夸克",        30000, 150, RACE_DWARF },
-         {  4, "Topi the Fair(?)",         30000, 150, RACE_HUMAN },
+         {  4, "公平的托皮(?)",         30000, 150, RACE_HUMAN },
          {  5, "死者瓦萨",          20000, 150, RACE_ZOMBIE },
          {  6, "奸诈的凯恩",      20000, 150, RACE_VAMPIRE },
          {  7, "布博尼库斯",                30000, 150, RACE_BEASTMAN },
@@ -316,7 +316,7 @@ static _type_t _types[] =
     { SHOP_JEWELER, "珠宝店", _jeweler_will_buy, _jeweler_create,
         {{  1, "甜美的达兰娜",        20000, 108, RACE_HUMAN },
          {  2, "梅西斯特隆德",               15000, 105, RACE_DARK_ELF },
-         {  3, "Mr. Biggles",              50000, 110, RACE_GNOME },
+         {  3, "比格斯先生",              50000, 110, RACE_GNOME },
          {  4, "斯尼维尔斯比",                10000, 108, RACE_SNOTLING },
          {  5, "格鲁格",                     10000, 110, RACE_HALF_TROLL },
          {  6, "拉斐埃拉",                35000, 105, RACE_ARCHON },
@@ -2758,6 +2758,8 @@ static errr _parse_building(char *buf, int options) /* moved w/o change from ini
     s = buf + 2;
     /* Get the building number */
     index = atoi(s);
+    if (index < 0 || index >= MAX_BLDG)
+        return PARSE_ERROR_OUT_OF_BOUNDS;
 
     /* Find the colon after the building number */
     s = my_strchr(s, ':');
@@ -2780,13 +2782,13 @@ static errr _parse_building(char *buf, int options) /* moved w/o change from ini
             if (tokenize(s + 2, 3, zz, 0) == 3)
             {
                 /* Name of the building */
-                strcpy(building[index].name, zz[0]);
+                my_strcpy(building[index].name, zz[0], sizeof(building[index].name));
 
                 /* Name of the owner */
-                strcpy(building[index].owner_name, zz[1]);
+                my_strcpy(building[index].owner_name, zz[1], sizeof(building[index].owner_name));
 
                 /* Race of the owner */
-                strcpy(building[index].owner_race, zz[2]);
+                my_strcpy(building[index].owner_race, zz[2], sizeof(building[index].owner_race));
 
                 break;
             }
@@ -2801,9 +2803,11 @@ static errr _parse_building(char *buf, int options) /* moved w/o change from ini
             {
                 /* Index of the action */
                 int action_index = atoi(zz[0]);
+                if (action_index < 0 || action_index >= 8)
+                    return PARSE_ERROR_OUT_OF_BOUNDS;
 
                 /* Name of the action */
-                strcpy(building[index].act_names[action_index], zz[1]);
+                my_strcpy(building[index].act_names[action_index], zz[1], sizeof(building[index].act_names[action_index]));
 
                 /* Cost of the action for members */
                 building[index].member_costs[action_index] = atoi(zz[2]);
@@ -2960,8 +2964,8 @@ room_ptr towns_get_map(void)
     return room;
 }
 
-void towns_init_buildings(void)
+errr towns_init_buildings(void)
 {
-    parse_edit_file("t_info.txt", _parse_town, 0);
+    return parse_edit_file("t_info.txt", _parse_town, 0);
 }
 

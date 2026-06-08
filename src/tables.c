@@ -1862,7 +1862,7 @@ s32b realm_choices2[MAX_CLASS] =
 
 cptr realm_names[]
 = {
-    "none",
+    "无",
     "生命",
     "咒术",
     "自然",
@@ -1875,15 +1875,15 @@ cptr realm_names[]
     "圣战",
     "死灵",
     "毁灭",
-    "unknown",
-    "unknown",
+    "未知",
+    "未知",
     "律法",
     "音乐",
     "剑道",
     "诅咒",
     "狂怒",
     "行窃",
-    "unknown"
+    "未知"
 };
 
 cptr realm_internal_names[]
@@ -2017,9 +2017,9 @@ cptr color_names[32] =
     "浅绿",
     "浅蓝",
     "浅赭",
-    "Int. Green",
+    "高亮绿",
     "粉红",
-    "Int. Blue",
+    "高亮蓝",
     "紫色",
     "青色",
     "天蓝",
@@ -2087,9 +2087,9 @@ cptr empty_lv_description[EMPTY_MAX] =
  */
 cptr window_flag_desc[32] =
 {
-    "Display inven/equip",
+    "显示物品栏/装备栏",
 
-    "Display equip/inven",
+    "显示装备栏/物品栏",
 
     NULL,
 
@@ -2172,7 +2172,7 @@ option_type option_info[] =
     "confirm_destroy",              "在销毁已知无价值物品前提示" },
 
     { &confirm_wear,                TRUE,  OPT_PAGE_INPUT, 5, 4,
-    "confirm_wear",                 "Confirm to wear/wield known cursed items" },
+    "confirm_wear",                 "穿戴/装备已知的被诅咒物品时需确认" },
 
     { &target_pet,                  FALSE, OPT_PAGE_INPUT, 2, 5,
     "target_pet",                   "允许瞄准宠物" },
@@ -2222,10 +2222,10 @@ option_type option_info[] =
     "view_bright_lite",             "为“可视”的网格使用特殊颜色" },
 
     { &view_granite_lite,           TRUE,  OPT_PAGE_MAPSCREEN, 1, 30,
-    "view_granite_lite",            "Use special colors for wall grids (slow)" },
+    "view_granite_lite",            "墙壁网格使用特殊颜色（减慢游戏速度）" },
 
     { &view_special_lite,           TRUE,  OPT_PAGE_MAPSCREEN, 1, 31,
-    "view_special_lite",            "Use special colors for floor grids (slow)" },
+    "view_special_lite",            "地板网格使用特殊颜色（减慢游戏速度）" },
 
     { &view_perma_grids,            TRUE,  OPT_PAGE_MAPSCREEN, 1, 6,
     "view_perma_grids",             "地图记住所有永久照明的网格" },
@@ -2281,7 +2281,7 @@ option_type option_info[] =
     "decimal_stats",                "以小数形式显示属性(Stats)" },
 
     { &percentage_life,             FALSE,  OPT_PAGE_TEXT, 4, 2,
-    "percentage_life",              "Display life rating on a scale of 87% to 117%" },
+    "percentage_life",              "按 87% 到 117% 的比例显示生命等级" },
 
     { &show_rogue_keys,		    FALSE, OPT_PAGE_TEXT, 6, 3,
     "show_rogue_keys",		    "显示 roguelike 移动键作为提示" },
@@ -2302,7 +2302,7 @@ option_type option_info[] =
     "abbrev_all",                   "使用缩写描述物品的所有属性" },
 
     { &mark_dragon,                 TRUE, OPT_PAGE_TEXT, 2, 4,
-    "mark_dragon",                  "Extend use of '?' to random dragon resistances" },
+    "mark_dragon",                  "扩展对随机龙族抗性使用 '?' 鉴定的功能" },
 
     { &exp_need,                    FALSE, OPT_PAGE_TEXT, 2, 12,
     "exp_need",                     "显示升至下一级所需的经验值" },
@@ -2357,7 +2357,7 @@ option_type option_info[] =
 
 #ifdef ALLOW_WIZARD
     { &allow_debug_opts,            FALSE, OPT_PAGE_GAMEPLAY, 6, 11,
-    "allow_debug_opts",             "Allow use of debug/cheat options" },
+    "allow_debug_opts",             "允许使用调试/作弊选项" },
 #endif
 
     /*** Disturbance ***/
@@ -2440,19 +2440,19 @@ option_type option_info[] =
 //	"coffee_break",			"Coffee-break mode (accelerated game) (*)" },
 
 	{ &easy_id,			FALSE, OPT_PAGE_BIRTH, 6, 31,
-	"easy_id",			"Easy Identify (*)" },
+	"easy_id",			"简易鉴定 (*)" },
 	
 	{ &easy_lore,			FALSE, OPT_PAGE_BIRTH, 6, 30,
 	"easy_lore",			"简易物品学识" },
 
 	{ &easy_damage,			FALSE, OPT_PAGE_BIRTH, 6, 16,
-	"easy_damage",			"Easy monster health and damage information (*)" },
+	"easy_damage",			"简易怪物生命值及伤害信息 (*)" },
 
 	{ &allow_spoilers,		FALSE, OPT_PAGE_BIRTH, 6, 29,
 	"allow_spoilers",		"允许生成剧透文件" },
 	
 	{ &power_tele,			FALSE, OPT_PAGE_BIRTH, 6, 6,
-	"power_tele",			"Use enhanced telepathy (*)" },
+	"power_tele",			"使用增强心灵感应 (*)" },
 
 	{ &easy_thalos,			TRUE, OPT_PAGE_BIRTH, 6, 28,
 	"easy_thalos",			"允许便捷传送到萨罗斯(Thalos)" },
@@ -2464,37 +2464,37 @@ option_type option_info[] =
 	"empty_lore",			"在不同游戏间总是忘记物品学识" },
 
     { &smart_learn,                 TRUE,  OPT_PAGE_BIRTH, 1, 14,
-    "smart_learn",                  "Monsters learn from their mistakes (*)" },
+    "smart_learn",                  "怪物会从错误中学习 (*)" },
 
     { &smart_cheat,                 FALSE, OPT_PAGE_BIRTH, 1, 15,
-    "smart_cheat",                  "Monsters exploit player's weaknesses (*)" },
+    "smart_cheat",                  "怪物会利用玩家的弱点 (*)" },
 
     { &no_wilderness,               FALSE, OPT_PAGE_BIRTH, 6, 1,
     "no_wilderness",                "游玩无荒野模式" },
 
     { &ironman_shops,               FALSE, OPT_PAGE_BIRTH, 6, 2,
-    "ironman_shops",                "Stores are permanently closed (*)" },
+    "ironman_shops",                "商店永久关闭 (*)" },
 
     { &ironman_downward,            FALSE, OPT_PAGE_BIRTH, 6, 4,
-    "ironman_downward",             "Disable recall and use of up stairs (*)" },
+    "ironman_downward",             "禁用召回和上楼梯 (*)" },
 
     { &ironman_empty_levels,        FALSE, OPT_PAGE_BIRTH, 6, 8,
-    "ironman_empty_levels",         "Generate empty 'arena' levels (*)" },
+    "ironman_empty_levels",         "生成空旷的“竞技场”楼层 (*)" },
 
     { &ironman_nightmare,           FALSE, OPT_PAGE_BIRTH, 6, 18,
-    "ironman_nightmare",            "Nightmare mode(it isn't even remotely fair!)(*)" },
+    "ironman_nightmare",            "噩梦模式（这根本就不公平！）(*)" },
 
     { &thrall_mode,                 FALSE, OPT_PAGE_BIRTH, 1, 19,
-    "thrall_mode",                  "Thrall mode (start in extreme danger) (*)" },
+    "thrall_mode",                  "奴役模式（在极度危险中开局）(*)" },
 
     { &wacky_rooms,                 FALSE, OPT_PAGE_BIRTH, 1, 22,
     "wacky_rooms",                  "总是生成极不寻常的房间" },
 
     { &melee_challenge,             FALSE, OPT_PAGE_BIRTH, 2, 21,
-    "melee_challenge",              "Monsters can only be damaged in melee (*)" },
+    "melee_challenge",              "怪物只能被近战伤害 (*)" },
 
     { &no_melee_challenge,          FALSE, OPT_PAGE_BIRTH, 2, 23,
-    "no_melee_challenge",           "Monsters cannot be damaged in melee (*)" },
+    "no_melee_challenge",           "怪物不能被近战伤害 (*)" },
 
     { &enable_virtues,              FALSE, OPT_PAGE_BIRTH, 6, 13,
     "enable_virtues",               "启用美德系统" },
@@ -2503,7 +2503,7 @@ option_type option_info[] =
     "no_wanted_points",             "更深层悬赏的独特怪物给予更好的奖励" },
 
     { &preserve_mode,               TRUE,  OPT_PAGE_BIRTH, 6, 14,
-    "preserve_mode",                "Preserve artifacts (*)" },
+    "preserve_mode",                "保留未获得的神器 (*)" },
 
     { &allow_friendly_monster,      TRUE, OPT_PAGE_BIRTH, 6, 17,
     "allow_friendly_monster",       "允许生成对玩家友好的怪物" },
@@ -2512,7 +2512,7 @@ option_type option_info[] =
     "allow_hostile_monster",        "允许怪物之间相互敌对" },
 
     { &allow_pets,                  TRUE, OPT_PAGE_BIRTH, 6, 20,
-    "allow_pets",                   "Allow player to summon/charm monsters" },
+    "allow_pets",                   "允许玩家召唤/魅惑怪物" },
 
     { &quest_unique,                TRUE, OPT_PAGE_BIRTH, 6, 21,
     "quest_unique",                 "随机任务仅限独特怪物" },
@@ -2521,16 +2521,16 @@ option_type option_info[] =
     "random_artifacts",             "随机化标准神器" },
 
     { &no_artifacts,                FALSE, OPT_PAGE_BIRTH, 6, 24,
-    "no_artifacts",                 "Never create artifacts (*)" },
+    "no_artifacts",                 "从不生成神器 (*)" },
 
     { &no_egos,                     FALSE, OPT_PAGE_BIRTH, 6, 25,
-    "no_egos",                      "Never create non-jewelry ego items (*)" },
+    "no_egos",                      "从不生成珠宝以外的 ego 物品 (*)" },
 
     { &no_selling,                  FALSE, OPT_PAGE_BIRTH, 6, 22,
     "no_selling",                   "禁用售卖但增加金币掉落" },
 
     { &reduce_uniques,              FALSE, OPT_PAGE_BIRTH, 6, 26,
-    "reduce_uniques",               "Reduce the number of uniques (randomly)" },
+    "reduce_uniques",               "（随机）减少唯一怪物的数量" },
 
     { &single_pantheon,             FALSE, OPT_PAGE_BIRTH, 5, 9,
     "single_pantheon",              "激活神系" },
@@ -2547,7 +2547,7 @@ option_type option_info[] =
     "no_big_dungeons",              "允许在除竞技场外的所有地下城生成小型楼层" },
 
     { &even_proportions,            FALSE, OPT_PAGE_BIRTH, 4, 16,
-    "even_proportions",             "Sometimes reshape very flat \"pipe\" levels" },
+    "even_proportions",             "有时会重塑非常平坦的“管道形”楼层" },
 
     { &no_chris,			FALSE, OPT_PAGE_BIRTH, 6, 12,
     "no_chris",				"时空(Nexus)攻击从不传送到另一个地下城" },
@@ -2687,18 +2687,18 @@ cptr chaos_patrons[MAX_PATRON] =
 cptr lv_size_options[SMALL_LVL_MAX + 1] =
 {
     "普通",
-    "Coffee-break (allow big)",
-    "Coffee-break (never big)",
+    "茶歇模式 (允许大型楼层)",
+    "茶歇模式 (从不生成大型楼层)",
     "中等",
-    "Instant Coffee (allow big)",
-    "Instant Coffee (never big)",
-    "Small (classic)",
+    "速溶模式 (允许大型楼层)",
+    "速溶模式 (从不生成大型楼层)",
+    "小型 (经典)",
     "小杯咖啡",
     "非常小",
     "极小",
     "微小",
     "巨大",
-    "Huge (respect tiny)"
+    "巨大 (保留微型楼层)"
 };
 
 martial_arts ma_blows[MAX_MA] =
@@ -2729,16 +2729,16 @@ martial_arts ma_blows[MAX_MA] =
 cptr game_inscriptions[] =
 {
     NULL,            /* FEEL_NONE */
-    "broken",        /* FEEL_BROKEN */
-    "terrible",      /* FEEL_TERRIBLE */
-    "awful",         /* FEEL_AWFUL */
-    "cursed",        /* FEEL_CURSED */
-    "enchanted",     /* FEEL_ENCHANTED */
-    "average",       /* FEEL_AVERAGE */
-    "good",          /* FEEL_GOOD */
-    "excellent",     /* FEEL_EXCELLENT */
-    "special",       /* FEEL_SPECIAL */
-    "bad",           /* FEEL_BAD */
+    "破碎的",        /* FEEL_BROKEN */
+    "可怕的",      /* FEEL_TERRIBLE */
+    "糟糕的",         /* FEEL_AWFUL */
+    "被诅咒的",        /* FEEL_CURSED */
+    "附魔的",     /* FEEL_ENCHANTED */
+    "普通的",       /* FEEL_AVERAGE */
+    "良好的",          /* FEEL_GOOD */
+    "优秀的",     /* FEEL_EXCELLENT */
+    "特殊的",       /* FEEL_SPECIAL */
+    "劣质的",           /* FEEL_BAD */
 };
 
 kamae kamae_shurui[MAX_KAMAE] =
@@ -2758,88 +2758,88 @@ kamae kata_shurui[MAX_KATA] =
 };
 
 cptr exp_level_str[5]=
-{"[Unskilled]", "[Beginner]", "[Skilled]", "[Expert]", "[Master]"};
+{"[生疏]", "[新手]", "[熟练]", "[专家]", "[大师]"};
 
 /* Weird melee attack types when hallucinating */
 cptr silly_attacks[MAX_SILLY_ATTACK] =
 {
-    "smothers",
-    "hugs",
-    "humiliates",
-    "whips",
-    "kisses",
+    "使其窒息",
+    "将其抱死",
+    "使其受辱",
+    "将其鞭死",
+    "将其吻死",
 
-    "disgusts",
-    "pees all over",
-    "passes the gas on",
-    "makes obscene gestures at",
-    "licks",
+    "恶心死它",
+    "尿它一身",
+    "对它放屁",
+    "对它做出下流手势",
+    "舔了它",
 
-    "stomps on",
-    "swallows",
-    "drools on",
-    "misses",
-    "shrinks",
+    "将其踩扁",
+    "将其吞下",
+    "对它流口水",
+    "未击中",
+    "使其缩小",
 
-    "emasculates",
-    "evaporates",
-    "solidifies",
-    "digitizes",
-    "insta-kills",
+    "阉割它",
+    "使其蒸发",
+    "使其凝固",
+    "将其数字化",
+    "将其秒杀",
 
-    "massacres",
-    "slaughters",
-    "drugs",
-    "psychoanalyzes",
-    "deconstructs",
+    "屠杀它",
+    "宰杀它",
+    "给它下药",
+    "对其精神分析",
+    "解构它",
 
-    "falsifies",
-    "disbelieves",
-    "molests",
-    "pusupusu",
-    "wipes",
+    "伪造它",
+    "不相信它",
+    "骚扰它",
+    "扎爆它(pusupusu)",
+    "擦除它",
 
-    "bowdlerizes",
-    "decomposes",
-    "eats",
-    "drinks",
-    "disrobes",
+    "删改它",
+    "使其腐烂",
+    "吃了它",
+    "喝了它",
+    "脱了它的衣服",
 
-    "minimizes",
-    "sits on",
-    "decompresses",
-    "pulverises",
-    "gropes",
+    "使其最小化",
+    "一屁股坐死它",
+    "解压它",
+    "将其粉碎",
+    "乱摸它",
 
-    "dismembers",
-    "sneezes at",
-    "flays",
-    "debones",
-    "sucker-punches",
+    "将其肢解",
+    "冲它打喷嚏",
+    "剥了它的皮",
+    "将其去骨",
+    "出其不意地揍它",
 
-    "erases",
-    "paws",
-    "vomits on",
-    "disembowels",
-    "overwrites",
+    "抹除它",
+    "用爪子扒拉它",
+    "吐在它身上",
+    "将其开膛破肚",
+    "覆盖它",
 
-    "initializes",
-    "headpats",
-    "smacks",
-    "bounces",
-    "nerfs",
+    "初始化它",
+    "摸它的头",
+    "拍打它",
+    "弹开它",
+    "削弱(nerf)它",
 
-    "defenestrates",
-    "deletes",
-    "caresses",
-    "petrifies",
-    "nags at",
+    "将其扔出窗外",
+    "删除它",
+    "抚摸它",
+    "使其石化",
+    "对它唠叨",
 
-    "discombobulates",
-    "violates",
-    "bores",
-    "sprays pink paint on",
-    "autocorrects",
+    "使其混乱不知所措",
+    "侵犯它",
+    "烦死它",
+    "往它身上喷粉色漆",
+    "自动纠正它",
 };
 
 
@@ -2850,100 +2850,100 @@ cptr silly_attacks[MAX_SILLY_ATTACK] =
 cptr ident_info[] =
 {
     " :A dark grid",
-    "!:A potion (or oil)",
-    "\":An amulet (or necklace)",
-    "#:A wall (or secret door) / a plant / a gas",
-    "$:Treasure (gold or gems)",
-    "%:A vein (magma or quartz)",
-    "&:A chest",
-    "':An open door",
-    "(:Soft armor",
-    "):A shield",
-    "*:A vein with treasure or a ball monster",
-    "+:A closed door",
-    ",:Food (or mushroom patch)",
-    "-:A wand (or rod)",
-    ".:Floor",
-    "/:A polearm (Axe/Pike/etc)",
-    "0:Entrance to Museum",
+    "!:药水 (或油)",
+    "\":护身符 (或项链)",
+    "#:墙壁 (或密门) / 植物 / 气体",
+    "$:财宝 (金子或宝石)",
+    "%:矿脉 (岩浆或石英)",
+    "&:箱子",
+    "':开着的门",
+    "(:轻型盔甲",
+    "):盾牌",
+    "*:含有财宝的矿脉 或 球形怪物",
+    "+:关着的门",
+    ",:食物 (或蘑菇堆)",
+    "-:魔杖 (或魔棒)",
+    ".:地板",
+    "/:长柄武器 (斧/长矛/等)",
+    "0:博物馆入口",
     "1:杂货店入口",
-    "2:Entrance to Armory",
-    "3:Entrance to Weaponsmith",
-    "4:Entrance to Temple",
-    "5:Entrance to Alchemy shop",
+    "2:护甲店入口",
+    "3:武器店入口",
+    "4:神殿入口",
+    "5:炼金店入口",
     "6:魔法店入口",
-    "7:Entrance to Black Market",
-    "8:Entrance to your home",
-    "9:Entrance to the bookstore",
-    "::Rubble",
-    ";:A glyph of warding / an explosive rune",
-    "<:An up staircase",
-    "=:A ring",
-    ">:A down staircase",
-    "?:A scroll",
-    "@:You",
-    "A:Angel",
-    "B:Bird",
-    "C:Canine",
-    "D:Ancient Dragon/Wyrm",
-    "E:Elemental",
-    "F:Dragon Fly",
-    "G:Ghost",
-    "H:Hybrid",
-    "I:Insect",
-    "J:Snake",
-    "K:Killer Beetle",
-    "L:Lich",
-    "M:Multi-Headed Reptile",
-    "N:Mystery Living",
-    "O:Ogre",
-    "P:Giant Humanoid",
-    "Q:Quylthulg (Pulsing Flesh Mound)",
-    "R:Reptile/Amphibian",
-    "S:Spider/Scorpion/Tick",
-    "T:Troll",
-    "U:Major Demon",
-    "V:Vampire",
-    "W:Wight/Wraith/etc",
-    "X:Xorn/Xaren/etc",
-    "Y:Yeti",
-    "Z:Zephyr Hound",
-    "[:Hard armor",
+    "7:黑市入口",
+    "8:你的家入口",
+    "9:书店入口",
+    "::碎石",
+    ";:守护刻印 / 爆炸符文",
+    "<:上行楼梯",
+    "=:戒指",
+    ">:下行楼梯",
+    "?:卷轴",
+    "@:你",
+    "A:天使",
+    "B:鸟类",
+    "C:犬科动物",
+    "D:极老龙/上古龙",
+    "E:元素",
+    "F:蜻蜓",
+    "G:幽灵",
+    "H:混血生物",
+    "I:昆虫",
+    "J:蛇类",
+    "K:杀人甲虫",
+    "L:巫妖",
+    "M:多头爬行动物",
+    "N:神秘生物",
+    "O:食人魔",
+    "P:巨型类人生物",
+    "Q:克尔苏格 (脉动肉丘)",
+    "R:爬行动物/两栖动物",
+    "S:蜘蛛/蝎子/蜱虫",
+    "T:巨魔",
+    "U:大型恶魔",
+    "V:吸血鬼",
+    "W:尸妖/死灵/等",
+    "X:索恩/索伦/等",
+    "Y:雪人",
+    "Z:和风猎犬",
+    "[:重型盔甲",
     "\\:A hafted weapon (mace/whip/etc)",
-    "]:Misc. armor",
-    "^:A trap",
-    "_:A staff",
+    "]:杂项盔甲",
+    "^:陷阱",
+    "_:法杖",
     "`:A figurine or statue",
-    "a:Ant",
-    "b:Bat",
-    "c:Centipede",
-    "d:Dragon",
-    "e:Floating Eye",
-    "f:Feline/Fox",
-    "g:Golem",
-    "h:Hobbit/Elf/Dwarf",
-    "i:Icky Thing",
-    "j:Jelly",
-    "k:Kobold",
-    "l:Aquatic monster",
-    "m:Mold",
-    "n:Naga",
-    "o:Orc",
-    "p:Person/Human",
-    "q:Quadruped",
-    "r:Rodent",
-    "s:Skeleton",
-    "t:Townsperson",
-    "u:Minor Demon",
-    "v:Vortex",
-    "w:Worm/Worm-Mass",
+    "a:蚂蚁",
+    "b:蝙蝠",
+    "c:蜈蚣",
+    "d:龙",
+    "e:漂浮眼",
+    "f:猫科动物/狐狸",
+    "g:魔像",
+    "h:霍比特人/精灵/矮人",
+    "i:恶心生物",
+    "j:果冻",
+    "k:狗头人",
+    "l:水生怪物",
+    "m:霉菌",
+    "n:娜迦",
+    "o:兽人",
+    "p:人/人类",
+    "q:四足动物",
+    "r:啮齿动物",
+    "s:骷髅",
+    "t:城镇居民",
+    "u:小型恶魔",
+    "v:漩涡",
+    "w:蠕虫/虫群",
     /* "x:unused", */
-    "y:Yeek",
-    "z:Zombie/Mummy",
-    "{:A missile (arrow/bolt/shot)",
+    "y:伊克人",
+    "z:僵尸/木乃伊",
+    "{:弹药 (箭/弩箭/弹丸)",
     "|:An edged weapon (sword/dagger/etc)",
-    "}:A launcher (bow/crossbow/sling)",
-    "~:Fluid terrain (or miscellaneous item)",
+    "}:发射器 (弓/弩/投石索)",
+    "~:流土地形 (或杂项物品)",
     NULL
 };
 

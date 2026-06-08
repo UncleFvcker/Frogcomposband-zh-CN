@@ -1611,11 +1611,11 @@ typedef struct building_type building_type;
 
 struct building_type
 {
-    char name[20];                  /* building name */
-    char owner_name[25];            /* proprietor name */
-    char owner_race[20];            /* proprietor race */
+    char name[80];                  /* building name */
+    char owner_name[80];            /* proprietor name */
+    char owner_race[80];            /* proprietor race */
 
-    char act_names[8][30];          /* action names */
+    char act_names[8][80];          /* action names */
     s32b member_costs[8];           /* Costs for class members of building */
     s32b other_costs[8];            /* Costs for nonguild members */
     char letters[8];                /* action letters */

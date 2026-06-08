@@ -3,19 +3,19 @@
 
 ANGBAND MENU
 {
-    POPUP "&File"
+    POPUP "文件(&F)"
     {
-        MENUITEM "&New", 100
-        MENUITEM "&Open...", 101
+        MENUITEM "新建(&N)", 100
+        MENUITEM "打开(&O)...", 101
         MENUITEM SEPARATOR
-        MENUITEM "&Save", 110
+        MENUITEM "保存(&S)", 110
         MENUITEM SEPARATOR
-        MENUITEM "E&xit", 130
+        MENUITEM "退出(&X)", 130
     }
 
-    POPUP "&Window"
+    POPUP "窗口(&W)"
     {
-        POPUP "&Visibility"
+        POPUP "可见性(&V)"
         {
             MENUITEM "Term-0 window", 200
             MENUITEM "Term-1 window", 201
@@ -27,7 +27,7 @@ ANGBAND MENU
             MENUITEM "Term-7 window", 207
         }
 
-        POPUP "&Font"
+        POPUP "字体(&F)"
         {
             MENUITEM "Term-0 window", 210
             MENUITEM "Term-1 window", 211
@@ -113,17 +113,17 @@ ANGBAND MENU
         }
     }
 
-    POPUP "&Options"
+    POPUP "选项(&O)"
     {
-        POPUP "&Graphics"
+        POPUP "画面(&G)"
         {
-            MENUITEM "&None (recommended)", 400
-            MENUITEM "&Old tiles", 401
-            MENUITEM "&Adam Bolt's tiles", 402
-            MENUITEM "&Bigtile mode", 409
+            MENUITEM "无 (推荐)(&N)", 400
+            MENUITEM "旧版贴图(&O)", 401
+            MENUITEM "Adam Bolt 贴图(&A)", 402
+            MENUITEM "大贴图模式(&B)", 409
         }
 
-        MENUITEM "&Sound", 410
+        MENUITEM "声音(&S)", 410
         MENUITEM "&HTML 导出", 450
     }
 

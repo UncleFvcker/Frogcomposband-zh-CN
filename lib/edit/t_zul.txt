@@ -41,29 +41,29 @@ L:p:BUILDING_15(0)
 
 #################### Buildings ####################
 
-B:8:N:Tower of Sorcery:Tanistil:Elf
-B:8:A:0:Identify possessions:100:800:i:26:0
-B:8:A:1:Request quest:0:0:q:6:0
+B:8:N:巫术之塔:塔尼斯提尔:精灵
+B:8:A:0:鉴定所有物品:100:800:i:26:0
+B:8:A:1:请求任务:0:0:q:6:0
 ?:[EQU $QUEST77 Finished]
-B:8:A:1:Request quest:0:0:q:6:1
-B:8:A:2:Teleport to other town:200:500:m:42:0
+B:8:A:1:请求任务:0:0:q:6:1
+B:8:A:2:传送到其他城镇:200:500:m:42:0
 ?:[EQU $QUEST77 FailedDone]
-B:8:A:1:Request quest:0:0:q:6:1
+B:8:A:1:请求任务:0:0:q:6:1
 ?:1
 B:8:M:*:None
 B:8:M:Sorcery:Owner
 
-B:14:N:Chaos Tower:Xeno:Beastman
-B:14:A:0:Request quest:0:0:q:6:1
-B:14:A:1:Cure mutation:1000:5000:m:35:0
+B:14:N:混沌之塔:泽诺:兽人
+B:14:A:0:请求任务:0:0:q:6:1
+B:14:A:1:治疗突变:1000:5000:m:35:0
 B:14:R:*:None
 B:14:R:Beastman:Member
 B:14:M:*:None
 B:14:M:Chaos:Owner
 
-B:15:N:Nature Tower:Josh:Elf
-B:15:A:0:Request quest:0:0:q:6:1
-B:15:A:1:Ritual of balance:2000:10000:n:41:0
+B:15:N:自然之塔:乔什:精灵
+B:15:A:0:请求任务:0:0:q:6:1
+B:15:A:1:平衡仪式:2000:10000:n:41:0
 B:15:M:*:None
 B:15:M:Nature:Owner
 

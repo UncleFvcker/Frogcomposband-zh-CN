@@ -1,35 +1,35 @@
 # New quest for FrogComposband 7.0.strawberry
 
 ?:[AND [EQU $QUEST69 Taken InProgress] [EQU $WILDERNESS NORMAL] ]
-D:Unfortunately, the citizens of Thalos are still not safe. A young boy
-D:disappeared last week while out on a walk; we found his corpse in the
-D:forest a few days later, lifeless and sucked dry of blood. The city's
-D:lawyers, afraid of being blamed by the public, are pressuring me to drive
-D:out the vampires who have taken over the old watchtower near the shore.
-D:Please help me eliminate the vampires, you will be well rewarded.
+D:不幸的是，萨洛斯（Thalos）的市民仍不安全。上周一个
+D:小男孩在散步时失踪了；几天后我们在森林里
+D:发现了他的尸体，毫无生机，而且被吸干了血。这座城市的
+D:律师们害怕受到公众指责，正向我施压，要求我赶走
+D:那些占领了海岸附近旧瞭望塔的吸血鬼。
+D:请帮我消灭这些吸血鬼，你会得到丰厚的奖励。
 ?:1
 
 ?:[AND [EQU $QUEST69 Completed] [EQU $WILDERNESS NORMAL] ]
-D:Thank you once more for your help. Here's your reward, let's hope the
-D:innocent children of Thalos will never be attacked again.
+D:再次感谢你的帮助。这是你的奖励，希望
+D:萨洛斯的无辜孩子们永远不会再受到攻击。
 ?:1
 
 ?:[AND [EQU $QUEST69 Taken InProgress] [EQU $WILDERNESS NONE] ]
-D:An old watchtower in the forest west of here, near the river, has been
-D:taken over by vampires. A young boy disappeared last week while out on
-D:a walk in the forest; his corpse was found near the tower a few days later,
-D:lifeless and sucked dry of blood. My lawyers are afraid of being blamed
-D:by the public and want the vampires driven out. Please help me eliminate
-D:the vampires, you will be well rewarded.
+D:这里以西森林里、靠近河流的一座旧瞭望塔，已经
+D:被吸血鬼占领了。上周一个小男孩在森林里散步时失踪了；
+D:几天后有人在塔附近发现了他的尸体，
+D:毫无生机，而且被吸干了血。我的律师们害怕受到公众指责，
+D:希望能把那些吸血鬼赶出去。请帮我消灭
+D:这些吸血鬼，你会得到丰厚的奖励。
 ?:1
 
 ?:[AND [EQU $QUEST69 Completed] [EQU $WILDERNESS NONE] ]
-D:Thank you for your help. Here's your reward, let's hope the innocent
-D:children of Outpost will never be attacked again.
+D:感谢你的帮助。这是你的奖励，希望前哨镇的
+D:无辜孩子们永远不会再受到攻击。
 ?:1
 
 ?:[EQU $QUEST69 Failed]
-D:I relied on you and you failed me. Now I'll have to find someone competent.
+D:我信任你，你却让我失望了。现在我得去找个能干的人了。
 ?:1
 
 T:QUEST:NORMAL

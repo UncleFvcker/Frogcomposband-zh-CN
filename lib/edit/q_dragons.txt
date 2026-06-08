@@ -1,14 +1,14 @@
 # Dragon Quest (clouded)
 ?:[EQU $QUEST35 Taken InProgress]
-D:There's a small dungeon in which dragons have created a home.
-D:They aren't a threat to us, but what do you say to doing some
-D:looting? Here's the deal, you go in, kill everything in there,
-D:take what you like and I'll send my men in for the rest.
-D:Sound good?
+D:有一个小地下城，龙群在那里安了家。
+D:它们对我们不构成威胁，但你想去
+D:抢点战利品吗？我们就这么说定了：你进去，杀光里面的所有东西，
+D:拿走你喜欢的，然后我会派我的人去收尾。
+D:听起来不错吧？
 ?:[EQU $QUEST35 Completed]
-D:Here's a little something extra for you.
+D:这算是给你的一点额外奖励。
 ?:[EQU $QUEST35 Failed]
-D:Disgraceful.
+D:真丢人。
 ?:1
 
 T:QUEST:NORMAL

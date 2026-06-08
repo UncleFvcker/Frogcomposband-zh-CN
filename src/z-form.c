@@ -15,6 +15,13 @@
 #include "z-util.h"
 #include "z-virt.h"
 
+#undef strnfmt
+#undef strfmt
+#undef format
+#undef plog_fmt
+#undef quit_fmt
+#undef core_fmt
+
 
 /*
  * Here is some information about the routines in this file.
@@ -696,11 +703,13 @@ char *vformat(cptr fmt, va_list vp)
 /*
  * Do a vstrnfmt (see above) into a buffer of a given size.
  */
-uint strnfmt(char *buf, uint max, cptr fmt, ...)
+uint strnfmt_aux(cptr file, int line, char *buf, uint max, cptr fmt, ...)
 {
     uint len;
 
     va_list vp;
+
+    format_diagnostic_note("strnfmt", fmt, file, line);
 
     /* Begin the Varargs Stuff */
     va_start(vp, fmt);
@@ -715,16 +724,32 @@ uint strnfmt(char *buf, uint max, cptr fmt, ...)
     return (len);
 }
 
+uint strnfmt(char *buf, uint max, cptr fmt, ...)
+{
+    uint len;
+    va_list vp;
+
+    format_diagnostic_note("strnfmt", fmt, "(legacy object)", 0);
+
+    va_start(vp, fmt);
+    len = vstrnfmt(buf, max, fmt, vp);
+    va_end(vp);
+
+    return (len);
+}
+
 
 /*
  * Do a vstrnfmt (see above) into a buffer of unknown size.
  * Since the buffer size is unknown, the user better verify the args.
  */
-uint strfmt(char *buf, cptr fmt, ...)
+uint strfmt_aux(cptr file, int line, char *buf, cptr fmt, ...)
 {
     uint len;
 
     va_list vp;
+
+    format_diagnostic_note("strfmt", fmt, file, line);
 
     /* Begin the Varargs Stuff */
     va_start(vp, fmt);
@@ -739,6 +764,20 @@ uint strfmt(char *buf, cptr fmt, ...)
     return (len);
 }
 
+uint strfmt(char *buf, cptr fmt, ...)
+{
+    uint len;
+    va_list vp;
+
+    format_diagnostic_note("strfmt", fmt, "(legacy object)", 0);
+
+    va_start(vp, fmt);
+    len = vstrnfmt(buf, 32767, fmt, vp);
+    va_end(vp);
+
+    return (len);
+}
+
 
 
 
@@ -748,10 +787,12 @@ uint strfmt(char *buf, cptr fmt, ...)
  * Note that the buffer is (technically) writable, but only up to
  * the length of the string contained inside it.
  */
-char *format(cptr fmt, ...)
+char *format_aux(cptr file, int line, cptr fmt, ...)
 {
     char *res;
     va_list vp;
+
+    format_diagnostic_note("format", fmt, file, line);
 
     /* Begin the Varargs Stuff */
     va_start(vp, fmt);
@@ -766,16 +807,32 @@ char *format(cptr fmt, ...)
     return (res);
 }
 
+char *format(cptr fmt, ...)
+{
+    char *res;
+    va_list vp;
+
+    format_diagnostic_note("format", fmt, "(legacy object)", 0);
+
+    va_start(vp, fmt);
+    res = vformat(fmt, vp);
+    va_end(vp);
+
+    return (res);
+}
+
 
 
 
 /*
  * Vararg interface to plog()
  */
-void plog_fmt(cptr fmt, ...)
+void plog_fmt_aux(cptr file, int line, cptr fmt, ...)
 {
     char *res;
     va_list vp;
+
+    format_diagnostic_note("plog_fmt", fmt, file, line);
 
     /* Begin the Varargs Stuff */
     va_start(vp, fmt);
@@ -790,15 +847,31 @@ void plog_fmt(cptr fmt, ...)
     plog(res);
 }
 
+void plog_fmt(cptr fmt, ...)
+{
+    char *res;
+    va_list vp;
+
+    format_diagnostic_note("plog_fmt", fmt, "(legacy object)", 0);
+
+    va_start(vp, fmt);
+    res = vformat(fmt, vp);
+    va_end(vp);
+
+    plog(res);
+}
+
 
 
 /*
  * Vararg interface to quit()
  */
-void quit_fmt(cptr fmt, ...)
+void quit_fmt_aux(cptr file, int line, cptr fmt, ...)
 {
     char *res;
     va_list vp;
+
+    format_diagnostic_note("quit_fmt", fmt, file, line);
 
     /* Begin the Varargs Stuff */
     va_start(vp, fmt);
@@ -813,15 +886,31 @@ void quit_fmt(cptr fmt, ...)
     quit(res);
 }
 
+void quit_fmt(cptr fmt, ...)
+{
+    char *res;
+    va_list vp;
+
+    format_diagnostic_note("quit_fmt", fmt, "(legacy object)", 0);
+
+    va_start(vp, fmt);
+    res = vformat(fmt, vp);
+    va_end(vp);
+
+    quit(res);
+}
+
 
 
 /*
  * Vararg interface to core()
  */
-void core_fmt(cptr fmt, ...)
+void core_fmt_aux(cptr file, int line, cptr fmt, ...)
 {
     char *res;
     va_list vp;
+
+    format_diagnostic_note("core_fmt", fmt, file, line);
 
     /* Begin the Varargs Stuff */
     va_start(vp, fmt);
@@ -836,4 +925,16 @@ void core_fmt(cptr fmt, ...)
     core(res);
 }
 
+void core_fmt(cptr fmt, ...)
+{
+    char *res;
+    va_list vp;
 
+    format_diagnostic_note("core_fmt", fmt, "(legacy object)", 0);
+
+    va_start(vp, fmt);
+    res = vformat(fmt, vp);
+    va_end(vp);
+
+    core(res);
+}

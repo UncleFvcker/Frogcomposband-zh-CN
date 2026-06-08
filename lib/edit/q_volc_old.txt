@@ -1,17 +1,17 @@
 ?:[EQU $QUEST6 Taken InProgress]
-D:A volcano has been rumbling in the eastern part of our
-D:territory. But, we do not think it is natural.
-D:Now, it is time to eliminate all creatures that are
-D:making their home at the volcano. You must exterminate
-D:them all if we are to avoid having lava ruin our crops!
+D:我们领地东部的一座火山一直在
+D:轰隆作响。但是，我们不认为这是自然现象。
+D:现在，是时候消灭所有在这座火山中
+D:安家的生物了。如果我们想避免熔岩毁掉我们的庄稼，
+D:你必须把它们全部消灭干净！
 ?:1
 
 ?:[EQU $QUEST6 Completed]
-D:Here is a reward for your good work.
+D:这是对你出色工作的奖励。
 ?:1
 
 ?:[EQU $QUEST6 Failed]
-D:You have failed me, beware you do not do so again!
+D:你让我失望了，小心别再这样了！
 ?:1
 
 T:QUEST:NORMAL

@@ -1,19 +1,19 @@
 ?:[EQU $QUEST16 Taken InProgress]
-D:Those annoying do-gooders who call themselves the knights of
-D:the Holy Grail are a pain in our flesh. We can tolerate them
-D:no longer! You must storm their Castle Montsalvat and show them
-D:who's the boss!
+D:那些自称为圣杯骑士、烦人的伪善者们，
+D:真是我们的眼中钉。我们再也
+D:容忍不了他们了！你必须攻占他们的蒙萨尔瓦特城堡（Castle Montsalvat），
+D:给他们点颜色看看！
 ?:1
 
 ?:[EQU $QUEST16 Completed]
-D:You have done well. Please accept this reward.
+D:你做得很好。请收下这份奖励。
 ?:1
 
 ?:[EQU $QUEST16 Failed]
-D:Aaaargghh! You wimp, you feeble cry-baby! Do you have any idea 
-D:of the disgrace you have brought to our mighty guild? Who's going to
-D:fear Death Knights anymore when they hear how those Knights of the
-D:accursed Holy Grail wiped the floor with you? Get lost! GO! NOW!
+D:啊啊啊！你这个懦夫，你这个软弱的爱哭鬼！你知道你给
+D:我们强大的公会带来了怎样的耻辱吗？如果大家听到
+D:那些该死的圣杯骑士把你打得满地找牙，谁还会再去
+D:惧怕死亡骑士（Death Knights）？滚！滚！现在就滚！
 ?:1
 
 T:QUEST:NORMAL

@@ -656,7 +656,7 @@ static void _drop(_ui_context_ptr context)
         char       c;
 
         object_desc(name, prompt.obj, OD_COLOR_CODED);
-        string_printf(s, "Really donate %s to the museum? <color:y>[y/n]</color>", name);
+        string_printf(s, "确定要将 %s 捐献给博物馆吗？<color:y>[y/n]</color>", name);
         c = msg_prompt(string_buffer(s), "ny", PROMPT_YES_NO);
         string_free(s);
         if (c == 'n') return;
@@ -715,7 +715,7 @@ static void _examine(_ui_context_ptr context)
         slot_t  slot;
         obj_ptr obj;
 
-        if (!msg_command("<color:y>Examine which item <color:w>(<color:keypress>Esc</color> when done)</color>?</color>", &cmd)) break;
+        if (!msg_command("<color:y>调查哪件物品 <color:w>(<color:keypress>Esc</color> 结束)</color>？</color>", &cmd)) break;
         if (cmd < 'a' || cmd > 'z') continue;
         slot = label_slot(cmd);
         slot = slot + context->top - 1;
@@ -741,7 +741,7 @@ static void _remove(_ui_context_ptr context)
         obj_ptr obj;
         char    name[MAX_NLEN];
 
-        if (!msg_command("<color:y>Remove which item <color:w>(<color:keypress>Esc</color> when done)</color>?</color>", &cmd)) break;
+        if (!msg_command("<color:y>移除哪件物品 <color:w>(<color:keypress>Esc</color> 结束)</color>？</color>", &cmd)) break;
         if (cmd < 'a' || cmd > 'z') continue;
         slot = label_slot(cmd);
         slot = slot + context->top - 1;

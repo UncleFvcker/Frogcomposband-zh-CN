@@ -477,7 +477,7 @@ race_t *demigod_get_race(int psubrace)
         {
         case DEMIGOD_MINOR:
             me.subname = "次神";
-            me.subdesc = "Fathered by a minor god, you gain no starting powers.";
+            me.subdesc = "作为某个不知名小神的后代，你没有获得任何初始能力。";
             break;
         case DEMIGOD_APHRODITE:
             me.subname = "阿佛洛狄忒";

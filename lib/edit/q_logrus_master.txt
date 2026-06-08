@@ -1,22 +1,22 @@
 ?:[EQU $QUEST3 Taken InProgress]
-D:One of the houses in town was recently sold to a foreign
-D:mystic. Now more and more alarming things happen like the
-D:sudden plague of evil in the sewers, animals dying, people
-D:getting sick, and a general run of bad luck for our town.
-D:It is like someone is playing around with powers of chaos.
-D:I have evidence that the origin of everything is the stranger
-D:living in the house in the north-west corner of town.
-D:I need you to take this logrus adept out.
+D:镇上的一栋房子最近卖给了一个外国的
+D:神秘主义者。现在发生了越来越多令人担忧的事情，比如
+D:下水道里突然爆发出邪恶的瘟疫，动物死亡，人们
+D:生病，我们的城镇遭遇了接二连三的厄运。
+D:这就像是有人在玩弄混沌的力量。
+D:我有证据表明，这一切的根源就是那个住在
+D:镇西北角房子里的陌生人。
+D:我需要你除掉这个洛格鲁斯学徒（logrus adept）。
 ?:1
 
 ?:[EQU $QUEST3 Completed]
-D:You saved us from deep trouble again. Please accept this modest gift.
+D:你又一次把我们从深渊中拯救了出来。请收下这份微薄的礼物。
 ?:1
 
 ?:[EQU $QUEST3 Failed]
-D:It seems like I've overestimated your power. But at least
-D:my friend Astinus, the Librarian says that the Logrus Master
-D:has left the town. Lets hope that he never comes back.
+D:看来我是高估了你的力量。但至少
+D:我的朋友，图书管理员阿斯提努斯说，那个洛格鲁斯精通者
+D:已经离开了城镇。让我们祈祷他永远不要再回来。
 ?:1
 
 T:QUEST:NORMAL

@@ -1,19 +1,19 @@
 # Haunted House, (C) Topi Ylinen 1999
 
 ?:[EQU $QUEST25 Taken InProgress]
-D:There is something evil going on in the old, thatched house
-D:near the south-east corner of the city wall. People say that
-D:the house is haunted and refuse to go near it. We need someone
-D:to exorcise the evil spirits that are infesting the house.
+D:在城墙东南角那座茅草盖的老房子里，
+D:正在发生一些邪恶的事情。人们说
+D:那所房子闹鬼，拒绝靠近它。我们需要有人
+D:来驱除盘踞在那所房子里的邪灵。
 ?:[EQU $QUEST25 Completed]
-D:Well done, indeed! Our citizens can finally sigh in relief.
+D:干得好！我们的市民终于可以松一口气了。
 ?:[EQU $QUEST25 Failed]
-D:Bah, what a loser!
-D:Fortunately, a bunch of pilgrims who were passing by turned
-D:out to be ultra-elite paladins on their pilgrimage to the
-D:holy city, and -- as a spiritual exercise -- the cleaned up
-D:the house without even asking for a reward. Maybe you should
-D:try to find them: you could learn a thing or two!
+D:呸，真是个失败者！
+D:幸运的是，一群路过的朝圣者原来是
+D:前往圣城朝圣的超级精英圣武士，作为一种
+D:精神修行，他们清理了那所房子，
+D:甚至都没有要求任何奖励。也许你应该
+D:试着找到他们：你能学到一两招的！
 ?:1
 
 T:QUEST:NORMAL

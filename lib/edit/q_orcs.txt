@@ -2,21 +2,21 @@
 # Slightly modified for FrogComposband 7.0.mango
 
 ?:[EQU $QUEST22 Taken InProgress]
-D:The marauding orcs approach ever closer to our quiet town, as
-D:is happening all over in these troubled times. To the southeast
-D:lies a valley where our scouts have found an orc raiding party
-D:preparing to overrun us once and for all. Our forces are
-D:committed elsewhere; please repel this threat before they reach
-D:our borders.
+D:正如这动荡时代的各处一样，四处劫掠的兽人
+D:正不断逼近我们宁静的小镇。在东南方
+D:有一个山谷，我们的侦察兵在那里发现了一支兽人突袭小队，
+D:他们正准备一举摧毁我们。我们的部队
+D:已经在别处投入了战斗；请在他们抵达我们的边界之前
+D:击退这个威胁。
 ?:1
 
 ?:[EQU $QUEST22 Completed]
-D:Thank you for your assistance. Please accept this token of our
-D:appreciation. We may have need for your help in future, as well.
+D:感谢你的协助。请收下这个信物作为我们的谢意。
+D:未来我们可能还需要你的帮助。
 ?:1
 
 ?:[EQU $QUEST22 Failed]
-D:I've sent out someone else to do the job. Now leave me alone!
+D:我已经派了别人去干这差事了。现在别烦我了！
 ?:1
 
 T:QUEST:NORMAL

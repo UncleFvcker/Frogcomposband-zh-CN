@@ -50,6 +50,10 @@ extern void quit(cptr str);
 /* Dump core, with optional message */
 extern void core(cptr str);
 
+/* Crash diagnostics for vararg formatting call sites. */
+extern void format_diagnostic_note(cptr api, cptr fmt, cptr file, int line);
+extern void format_diagnostic_dump(FILE *out);
+
 
 /* 64-bit integer operations */
 #define s64b_LSHIFT(V1, V2, N) {V1 = (V1<<(N)) | (V2>>(32-(N))); V2 <<= (N);}
@@ -63,4 +67,3 @@ extern void s64b_mod(s32b *A1, u32b *A2, s32b B1, u32b B2);
 
 
 #endif
-

@@ -154,11 +154,11 @@ static cptr _choose_prompt(_choice_array_t *choices)
     switch (choices->mode)
     {
     case _CHOOSE_MODE_MIMIC:
-        return "Mimic which form?";
+        return "要拟态成哪种形态？";
     case _CHOOSE_MODE_LEARN:
-        return "Replace which existing form?";
+        return "要替换哪个现有形态？";
     case _CHOOSE_MODE_BROWSE:
-        return "Available forms:";
+        return "可用形态：";
     }
     return "";
 }
@@ -249,9 +249,9 @@ static void _list(_choice_array_t *choices)
                 attr = TERM_L_BLUE;
 
             if (choice->key)
-                sprintf(buf, " %c) %-20.20s", choice->key, r_name + r_ptr->name);
+                sprintf(buf, " %c) %-20.20s", choice->key, monster_race_display_name(choice->r_idx));
             else
-                sprintf(buf, "    %-20.20s", r_name + r_ptr->name);
+                sprintf(buf, "    %-20.20s", monster_race_display_name(choice->r_idx));
 
             Term_putch(start_col, row, r_ptr->x_attr, r_ptr->x_char);
             c_put_str(attr, buf, row, start_col + 1);
@@ -677,11 +677,10 @@ static int _choose_new_slot(int new_r_idx)
 static bool _memorize_form(int r_idx)
 {
     int           i;
-    monster_race *r_ptr = &r_info[r_idx];
 
     if (_is_memorized(r_idx))
     {
-        msg_format("你已经掌握了这个形态(%s)。", r_name + r_ptr->name);
+        msg_format("你已经掌握了这个形态(%s)。", monster_race_display_name(r_idx));
         return FALSE;
     }
 
@@ -689,7 +688,7 @@ static bool _memorize_form(int r_idx)
     if (i >= 0 && i < _MAX_FORMS)
     {
         _forms[i] = r_idx;
-        msg_format("你学会了这个形态(%s)。", r_name + r_ptr->name);
+        msg_format("你学会了这个形态(%s)。", monster_race_display_name(r_idx));
         return TRUE;
     }
     return FALSE;
@@ -831,13 +830,13 @@ static void _set_current_r_idx(int r_idx)
     disturb(1, 0);
     if (r_idx == MON_MIMIC && p_ptr->current_r_idx)
     {
-        msg_format("你停止模仿%s。", r_name + r_info[p_ptr->current_r_idx].name);
+        msg_format("你停止模仿%s。", monster_race_display_name(p_ptr->current_r_idx));
         set_invuln(0, TRUE); /* XXX dispel_player? */
         _dismiss_pets(); /* They no longer recognize you as their leader! */
     }
     possessor_set_current_r_idx(r_idx);
     if (r_idx != MON_MIMIC)
-        msg_format("你开始模仿%s。", r_name + r_info[p_ptr->current_r_idx].name);
+        msg_format("你开始模仿%s。", monster_race_display_name(p_ptr->current_r_idx));
     /* Mimics shift forms often enough to be annoying if shapes
        have dramatically different body types (e.g. dragons vs humanoids).
        Inscribe gear with @mimic to autoequip on shifing. */
@@ -906,11 +905,11 @@ static void _player_action(int energy_use)
         cptr msg = NULL;
 
         if (p_ptr->confused)
-            msg = "You are too confused to maintain your current form.";
+            msg = "你太混乱了，无法维持当前的形态。";
         else if (p_ptr->image)
-            msg = "Groovy! I think I'll mimic that guy instead!!";
+            msg = "太时髦了！我想我还是模仿那个家伙吧！！";
         else if (one_in_(100) && (p_ptr->blind || !_is_visible(p_ptr->current_r_idx)))
-            msg = "You can no longer see the source of your current form.";
+            msg = "你再也看不到你当前形态的来源了。";
 
         if (msg)
         {
@@ -960,7 +959,7 @@ static void _mimic_spell(int cmd, variant *res)
         if (p_ptr->current_r_idx == MON_MIMIC)
         {
             string_ptr s = string_alloc();
-            string_append_s(s, "Mimic a nearby visible monster, gaining the powers and abilities of that form.");
+            string_append_s(s, "拟态成附近一个可见的怪物，并获得该形态的力量和能力。");
             string_printf(s, " You may attempt to mimic a monster of any level, but may fail if the monster is higher than level %d.", p_ptr->lev);
             string_printf(s, " You may permanently learn monster forms up to level %d.", _max_level[p_ptr->lev]);
             var_set_string(res, string_buffer(s));
@@ -984,7 +983,7 @@ static void _mimic_spell(int cmd, variant *res)
             r_ptr = &r_info[r_idx];
             pct = _mimic_chance(r_idx);
             if (pct <= 0)
-                msg_format("你不够强大，无法模仿这个形态 (%s: 等级 %d)。", r_name + r_ptr->name, r_ptr->level);
+                msg_format("你不够强大，无法模仿这个形态 (%s: 等级 %d)。", monster_race_display_name(r_idx), r_ptr->level);
             else if (randint1(100) > pct)
             {
                 msg_print("<color:v>失败！</color>");
@@ -1047,7 +1046,7 @@ void _character_dump(doc_ptr doc)
                 doc_printf(doc, "<topic:LearnedForms>================================ 已 学 会 的 形 态 (<color:keypress>L</color>) ================================\n\n");
                 first = FALSE;
             }
-            doc_printf(doc, " %s\n", r_name + r_info[_forms[i]].name);
+            doc_printf(doc, " %s\n", monster_race_display_name(_forms[i]));
         }
     }
     doc_newline(doc);
@@ -1117,4 +1116,3 @@ void mimic_on_kill_monster(int r_idx)
     if (randint0(100) < pct)
         _memorize_form(r_idx);
 }
-

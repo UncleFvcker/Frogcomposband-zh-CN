@@ -17,9 +17,9 @@
 #define _CTIER_MAX 3
 
 static cptr _tiername[_CTIER_MAX] = {
-	"tier 0",
-	"tier 1",
-	"tier 2"
+	"0阶",
+	"1阶",
+	"2阶"
 };
 
 static object_type _infusions[_MAX_INF_SLOTS];
@@ -281,17 +281,17 @@ object_type *_chooseInfusion(cptr verb, int tval, int options)
 		if (exchange)
 		{
 			if (slot1 == _INVALID_SLOT)
-				string_printf(prompt, "Select the first %s:", "infusion");
+				string_printf(prompt, "选择第一个%s：", "注入物");
 			else
-				string_printf(prompt, "Select the second %s:", "infusion");
+				string_printf(prompt, "选择第二个%s：", "注入物");
 		}
 		else
 		{
-			string_printf(prompt, "%s which %s", verb, "infusion");
+			string_printf(prompt, "%s哪个%s", verb, "注入物");
 			if (options & _ALLOW_SWITCH)
 			{
 				if (options & _ALLOW_EXCHANGE){
-					string_append_s(prompt, ", ['X' to Exchange");
+					string_append_s(prompt, "，[按 'X' 交换");
 					string_append_s(prompt, "]:");
 				}
 			}
@@ -398,11 +398,11 @@ void _use_infusion(object_type* o_ptr, int overdose)
 		char prompt[255];
 		char o_name[255];
 		object_desc(o_name, o_ptr, OD_COLOR_CODED | OD_NO_PLURAL | OD_OMIT_PREFIX);
-		sprintf(prompt, "Really use %s? <color:y>[y/n]</color>", o_name);
+		sprintf(prompt, "真的要使用%s吗？<color:y>[y/n]</color>", o_name);
 		if (msg_prompt(prompt, "ny", PROMPT_DEFAULT) == 'n')
 			return;
 		else{
-			sprintf(prompt, "Really, REALLY use %s? <color:y>[y/n]</color>", o_name);
+			sprintf(prompt, "真的、真的要使用%s吗？<color:y>[y/n]</color>", o_name);
 			if (msg_prompt(prompt, "ny", PROMPT_DEFAULT) == 'n') return;
 		}
 	}
@@ -496,7 +496,7 @@ static bool create_infusion(void)
 	{
 		char prompt[255];
 		object_desc(o_name, dest_ptr, OD_COLOR_CODED);
-		sprintf(prompt, "Really replace %s? <color:y>[y/n]</color>", o_name);
+		sprintf(prompt, "真的要替换%s吗？<color:y>[y/n]</color>", o_name);
 		if (msg_prompt(prompt, "ny", PROMPT_DEFAULT) == 'n')
 			return FALSE;
 	}
@@ -612,40 +612,40 @@ bool _evaporate_aux(object_type *o_ptr){
 		}
 
 		switch (o_ptr->sval){
-		case SV_POTION_APPLE_JUICE:     desc = "It produces a blast of... apple juice?";	break;
-		case SV_POTION_SALT_WATER:      desc = "It produces a blast of mist, and some salt.";	break;
-		case SV_POTION_WATER:			desc = "It produces a blast of mist!";	break;
+		case SV_POTION_APPLE_JUICE:     desc = "它产生了一阵……苹果汁？";	break;
+		case SV_POTION_SALT_WATER:      desc = "它产生了一阵雾气和一些盐。";	break;
+		case SV_POTION_WATER:			desc = "它产生了一阵雾气！";	break;
 		case SV_POTION_BLINDNESS:		desc = "它会产生一团黑暗云雾";	break;
-		case SV_POTION_DETONATIONS:		desc = "It produces an explosion!";	break;
-		case SV_POTION_DEATH:			desc = "It produces a cloud of death!";	break;
-		case SV_POTION_RUINATION:		desc = "It produces an eerie white mist!";	break;
-		case SV_POTION_LIFE:			desc = "It produces a massive pillar of raw life energy!";	break;
-		case SV_POTION_HEALING:			desc = "It produces a cloud of raw life energy!";	break;
-		case SV_POTION_STAR_HEALING:	desc = "It produces a blast of raw life energy!";	break;
-		case SV_POTION_SLEEP:			desc = "It produces a cloud of sleeping gas!";	break;
-		case SV_POTION_LIQUID_LOGRUS:   	desc = "It produces a cloud of raw Logrus!";	break;
+		case SV_POTION_DETONATIONS:		desc = "它产生了一场爆炸！";	break;
+		case SV_POTION_DEATH:			desc = "它产生了一团死亡之云！";	break;
+		case SV_POTION_RUINATION:		desc = "它产生了一阵怪异的白雾！";	break;
+		case SV_POTION_LIFE:			desc = "它产生了一道巨大的纯粹生命能量柱！";	break;
+		case SV_POTION_HEALING:			desc = "它产生了一团纯粹生命能量云！";	break;
+		case SV_POTION_STAR_HEALING:	desc = "它产生了一阵纯粹生命能量！";	break;
+		case SV_POTION_SLEEP:			desc = "它产生了一团催眠气体！";	break;
+		case SV_POTION_LIQUID_LOGRUS:   	desc = "它产生了一团纯粹的罗格鲁斯！";	break;
 		case SV_POTION_DEC_CHR:
 		case SV_POTION_DEC_STR:
 		case SV_POTION_DEC_DEX:
 		case SV_POTION_DEC_INT:
 		case SV_POTION_DEC_WIS:
 		case SV_POTION_DEC_CON:
-			desc = "It a cloud of brown mist!";	break;
-		case SV_POTION_CONFUSION:		desc = "It produces a scintillating cloud!";	break;
-		case SV_POTION_SLOWNESS:		desc = "It produces a slow cloud!";	break;
-		case SV_POTION_LOSE_MEMORIES:	desc = "It produces an ominous mist!";	break;
-		case SV_POTION_BLOOD:			desc = "It produces a blast of blood!";	break;
-		case SV_POTION_POISON:			desc = "It produces a cloud of poison!";	break;
-		case SV_POTION_BERSERK_STRENGTH:desc = "It produces a cloud of fury!";	break;
-		case SV_POTION_STONE_SKIN:		desc = "It produces a cloud of petrification!";	break;
-		case SV_POTION_SLIME_MOLD:		desc = "It produces a blast of slime!";	break;
-		case SV_POTION_RESTORE_MANA:    desc = "It produces a blast of raw mana!";	break;
+			desc = "它产生了一团棕色雾气！";	break;
+		case SV_POTION_CONFUSION:		desc = "它产生了一团闪烁的云！";	break;
+		case SV_POTION_SLOWNESS:		desc = "它产生了一团减速之云！";	break;
+		case SV_POTION_LOSE_MEMORIES:	desc = "它产生了一阵不祥的雾气！";	break;
+		case SV_POTION_BLOOD:			desc = "它产生了一阵鲜血！";	break;
+		case SV_POTION_POISON:			desc = "它产生了一团毒云！";	break;
+		case SV_POTION_BERSERK_STRENGTH:desc = "它产生了一团狂暴之云！";	break;
+		case SV_POTION_STONE_SKIN:		desc = "它产生了一团石化之云！";	break;
+		case SV_POTION_SLIME_MOLD:		desc = "它产生了一阵史莱姆粘液！";	break;
+		case SV_POTION_RESTORE_MANA:    desc = "它产生了一阵纯粹法力！";	break;
 		default: blastType = -1; // no allowing others.
 		}
 	}
 	else if (o_ptr->tval == TV_FLASK){
 		if (o_ptr->sval == SV_FLASK_OIL){
-			desc = "The flask explodes into a cloud of fire!";
+			desc = "烧瓶爆炸成了一团火云！";
 			dam = 12 + damroll(plev / 5, 12);	
 			blastType = GF_FIRE; rad = 3;
 		}
@@ -693,7 +693,7 @@ static bool evaporate(void){
 	int komento = 0;
 
 	char kehote[80];
-	sprintf(kehote, "Evaporate [Q] Potion or [m] Infusion?\n");
+	sprintf(kehote, "蒸发 [Q] 药水 还是 [m] 注入物？\n");
 
 	if ((REPEAT_PULL(&komento)) && ((komento == 'm') || (komento == 'M'))) {}
 	else if (msg_prompt(kehote, "qm", PROMPT_DEFAULT) == 'q')
@@ -767,7 +767,7 @@ bool alchemist_break_down_aux(object_type *o_ptr, int ct){
 	if (_CHEM[tier] + cost > _MAX_CHEM){
 		char prompt[255];
 		object_desc(o_name, o_ptr, OD_OMIT_PREFIX);
-		sprintf(prompt, "Really break down %s? %s chemicals will be lost due to lack of room. <color:y>[y/n]</color>", o_name, _CHEM[tier] == _MAX_CHEM ? "全部" : "部分");
+		sprintf(prompt, "真的要分解%s吗？由于空间不足，%s化学物质将会丢失。<color:y>[y/n]</color>", o_name, _CHEM[tier] == _MAX_CHEM ? "全部" : "部分");
 		if (msg_prompt(prompt, "ny", PROMPT_DEFAULT) == 'n')
 			return FALSE;
 	}
@@ -877,7 +877,7 @@ void _reproduceInf(object_type* o_ptr){
 	}
 
 	object_desc(o_name, o_ptr, OD_COLOR_CODED);
-	sprintf(prompt, "Reproduction would cost %d chemicals. Are you sure? <color:y>[y/n]</color>", cost);
+	sprintf(prompt, "复制将消耗 %d 个化学物质。你确定吗？<color:y>[y/n]</color>", cost);
 	if (msg_prompt(prompt, "ny", PROMPT_DEFAULT) == 'n')
 		return;
 
@@ -1128,7 +1128,7 @@ static caster_info * _caster_info(void)
 	static bool init = FALSE;
 	if (!init)
 	{
-		me.magic_desc = "alchemy";
+		me.magic_desc = "炼金术";
 		me.encumbrance.max_wgt = 1000;
 		me.encumbrance.weapon_pct = 20;
 		me.encumbrance.enc_wgt = 1200;

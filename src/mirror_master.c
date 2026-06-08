@@ -830,7 +830,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "mirror magic";
+        me.magic_desc = "镜之魔法";
         me.which_stat = A_INT;
         me.encumbrance.max_wgt = 400;
         me.encumbrance.weapon_pct = 50;

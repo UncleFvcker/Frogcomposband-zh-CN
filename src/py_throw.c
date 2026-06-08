@@ -302,9 +302,9 @@ bool _hit_mon(py_throw_ptr context, int m_idx)
                 }
 
                 if (have_flag(context->flags, OF_VORPAL2))
-                    obj_learn_slay(context->obj, OF_VORPAL2, "is <color:v>*Sharp*</color>");
+                    obj_learn_slay(context->obj, OF_VORPAL2, "具有 <color:v>*锋锐*</color>");
                 else
-                    obj_learn_slay(context->obj, OF_VORPAL, "is <color:R>Sharp</color>");
+                    obj_learn_slay(context->obj, OF_VORPAL, "具有 <color:R>锋锐</color>");
             }
         }
         if (!have_flag(context->flags, OF_BRAND_ORDER))
@@ -344,7 +344,7 @@ bool _hit_mon(py_throw_ptr context, int m_idx)
                 monster_desc(m_name, m_ptr, MD_PRON_VISIBLE | MD_OBJECTIVE);
                 msg_format("你的武器吸取了 %s 的生命！", m_name);
                 hp_player_aux(heal);
-                obj_learn_slay(context->obj, OF_BRAND_VAMP, "is <color:D>Vampiric</color>");
+                obj_learn_slay(context->obj, OF_BRAND_VAMP, "具有 <color:D>吸血</color>");
             }
             message_pain(m_idx, tdam);
             if (tdam > 0)

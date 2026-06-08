@@ -118,7 +118,7 @@ void interrupt_singing(bool take_energy)
     warlock_stop_singing();
     if (music_singing_any() || hex_spelling_any())
     {
-        cptr str = (music_singing_any()) ? "singing" : "spelling";
+        cptr str = (music_singing_any()) ? "唱歌" : "施法";
         p_ptr->magic_num1[1] = p_ptr->magic_num1[0];
         p_ptr->magic_num1[0] = 0;
         msg_format("你的 %s 被打断了。", str);
@@ -820,7 +820,7 @@ bool set_mimic(int v, int p, bool do_dec)
         else if ((!p_ptr->tim_mimic) || (p_ptr->mimic_form != p))
         {
             msg_print("你感觉自己的身体发生了改变。");
-            if (p_ptr->prace == RACE_DOPPELGANGER) mimic_race(MIMIC_NONE, "suppress");
+            if (p_ptr->prace == RACE_DOPPELGANGER) mimic_race(MIMIC_NONE, "压制");
             p_ptr->mimic_form=p;
             notice = TRUE;
         }
@@ -4487,12 +4487,12 @@ bool set_ele_attack(u32b attack_type, int v)
 
         /* Message. */
         msg_format("在一段时间内，你的攻击将附带%s",
-                 ((attack_type == ATTACK_ACID) ? "melt with acid!" :
-                  ((attack_type == ATTACK_ELEC) ? "shock your foes!" :
-                   ((attack_type == ATTACK_FIRE) ? "burn with fire!" : 
-                ((attack_type == ATTACK_COLD) ? "chill to the bone!" : 
-                 ((attack_type == ATTACK_POIS) ? "poison your enemies!" : 
-                    "do nothing special."))))));
+                 ((attack_type == ATTACK_ACID) ? "用酸液融化敌人！" :
+                  ((attack_type == ATTACK_ELEC) ? "电击你的敌人！" :
+                   ((attack_type == ATTACK_FIRE) ? "用火焰烧死敌人！" : 
+                ((attack_type == ATTACK_COLD) ? "将敌人冻彻骨髓！" : 
+                 ((attack_type == ATTACK_POIS) ? "毒死你的敌人！" : 
+                    "没有什么特别的效果。"))))));
     }
 
     /* Disturb */
@@ -4556,12 +4556,12 @@ bool set_ele_immune(u32b immune_type, int v)
 
         /* Message. */
         msg_format("在一段时间内，你免疫%s。",
-                 ((immune_type == DEFENSE_ACID) ? "acid!" :
-                  ((immune_type == DEFENSE_ELEC) ? "electricity!" :
-                   ((immune_type == DEFENSE_FIRE) ? "fire!" : 
-                ((immune_type == DEFENSE_COLD) ? "cold!" : 
-                 ((immune_type == DEFENSE_POIS) ? "poison!" : 
-                    "do nothing special."))))));
+                 ((immune_type == DEFENSE_ACID) ? "酸液！" :
+                  ((immune_type == DEFENSE_ELEC) ? "闪电！" :
+                   ((immune_type == DEFENSE_FIRE) ? "火焰！" : 
+                ((immune_type == DEFENSE_COLD) ? "寒冷！" : 
+                 ((immune_type == DEFENSE_POIS) ? "毒素！" : 
+                    "没有什么特别的效果。"))))));
     }
 
     /* Disturb */
@@ -4959,42 +4959,42 @@ stun_info_t stun_info(int stun)
     {
         result.level = STUN_KNOCKED_OUT;
         result.name = "昏迷";  /* <== PR_EFFECTS */
-        result.msg = "knocked out";   /* <== You have been %s */
+        result.msg = "陷入昏迷";   /* <== You have been %s */
         result.attr = TERM_VIOLET;
     }
     else if (stun >= STUN_MASSIVE)
     {
         result.level = STUN_MASSIVE;
         result.name = "重度震慑";
-        result.msg = "massively stunned";
+        result.msg = "被严重震慑";
         result.attr = TERM_RED;
     }
     else if (stun >= STUN_HEAVY)
     {
         result.level = STUN_HEAVY;
         result.name = "严重震慑";
-        result.msg = "heavily stunned";
+        result.msg = "被重度震慑";
         result.attr = TERM_L_RED;
     }
     else if (stun >= STUN_MODERATE)
     {
         result.level = STUN_MODERATE;
         result.name = "震慑";
-        result.msg = "stunned";
+        result.msg = "被震慑";
         result.attr = TERM_ORANGE;
     }
     else if (stun >= STUN_LIGHT)
     {
         result.level = STUN_LIGHT;
         result.name = "轻度震慑";
-        result.msg = "lightly stunned";
+        result.msg = "被轻度震慑";
         result.attr = TERM_YELLOW;
     }
     else if (stun >= STUN_DAZE)
     {
         result.level = STUN_DAZE;
         result.name = "眩晕";
-        result.msg = "dazed";
+        result.msg = "陷入眩晕";
         result.attr = TERM_L_UMBER;
     }
     else
@@ -5764,7 +5764,7 @@ bool lp_player(int num)
             change_race(which, "");
             if (!(get_race()->flags & RACE_IS_NONLIVING)) /* race change failed for whatever reason, so instead of being undead we are now dead */
             {
-                take_hit(DAMAGE_NOESCAPE, p_ptr->chp + 10, "running out of life force");
+                take_hit(DAMAGE_NOESCAPE, p_ptr->chp + 10, "生命力耗尽");
             }
             else
             {
@@ -5834,17 +5834,17 @@ bool sp_player(int num)
  */
 static cptr desc_stat_pos[] =
 {
-    "strong",
+    "强壮",
 
-    "smart",
+    "聪明",
 
-    "wise",
+    "睿智",
 
-    "dextrous",
+    "灵巧",
 
-    "healthy",
+    "健康",
 
-    "self-confident"
+    "自信"
 
 };
 
@@ -5854,12 +5854,12 @@ static cptr desc_stat_pos[] =
  */
 static cptr desc_stat_neg[] =
 {
-    "weak",
-    "stupid",
-    "naive",
-    "clumsy",
-    "sickly",
-    "insecure"
+    "虚弱",
+    "愚蠢",
+    "天真",
+    "笨拙",
+    "病弱",
+    "自卑"
 
 };
 
@@ -6086,12 +6086,12 @@ void do_poly_wounds(void)
         if (get_race()->flags & RACE_IS_NONLIVING)
         { /* Nonliving characters can't bleed but can suffer other bodily harm */
             msg_print("你遭受了新的创伤！");
-            take_hit(DAMAGE_LOSELIFE, change / 2, "a polymorphed wound");
+            take_hit(DAMAGE_LOSELIFE, change / 2, "变形创伤");
         }
         else
         {
             msg_print("产生了一道新的伤口！");
-            take_hit(DAMAGE_LOSELIFE, change / 2, "a polymorphed wound");
+            take_hit(DAMAGE_LOSELIFE, change / 2, "变形创伤");
 
             set_cut(change, FALSE);
         }
@@ -6266,7 +6266,7 @@ void do_poly_self(void)
             {
                 char tmp_msg[10];
                 sprintf(tmp_msg,"%s",effect_msg);
-                sprintf(effect_msg,"deformed %s",tmp_msg);
+                sprintf(effect_msg,"畸形的 %s",tmp_msg);
 
             }
             else
@@ -6322,7 +6322,7 @@ void do_poly_self(void)
         if (one_in_(6))
         {
             msg_print("你发现以目前的形态很难活下去！");
-            take_hit(DAMAGE_LOSELIFE, damroll(randint1(10), p_ptr->lev), "a lethal mutation");
+            take_hit(DAMAGE_LOSELIFE, damroll(randint1(10), p_ptr->lev), "致命变异");
 
             power -= 10;
         }
@@ -6531,7 +6531,7 @@ int take_hit(int damage_type, int damage, cptr hit_from)
 
         if (p_ptr->inside_arena)
         {
-            cptr m_name = r_name+r_info[arena_info[p_ptr->arena_number].r_idx].name;
+            cptr m_name = monster_race_display_name(arena_info[p_ptr->arena_number].r_idx);
             msg_format("你被 %s 击败了。", m_name);
             msg_print(NULL);
         }
@@ -6598,7 +6598,7 @@ int take_hit(int damage_type, int damage, cptr hit_from)
 
                 if (death_message[0] == '\0')
                 {
-                    strcpy(death_message, android ? "You are broken." : "You die.");
+                    strcpy(death_message, android ? "你坏掉了。" : "你死了。");
                 }
                 else p_ptr->last_message = z_string_make(death_message);
                 
@@ -6631,7 +6631,7 @@ int take_hit(int damage_type, int damage, cptr hit_from)
             /* Hack -- stop the player on first crossing the threshold */
             if (old_chp >= warning) 
             {
-                msg_prompt("<color:v>*** LOW HITPOINT WARNING! ***</color> Press <color:y>Space</color> to continue.", " ", PROMPT_FORCE_CHOICE);
+                msg_prompt("<color:v>*** 低生命值警告！***</color> 按 <color:y>空格键(Space)</color> 继续。", " ", PROMPT_FORCE_CHOICE);
             }
             else
             {

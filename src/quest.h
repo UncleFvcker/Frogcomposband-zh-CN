@@ -9,9 +9,12 @@
 
 enum {
     SEWER_QUEST = 2,
+    QUEST_VAULT = 4,
     QUEST_OBERON = 8,
     QUEST_SERPENT = 9,
     QUEST_WARG = 14,
+    QUEST_SHADOW_FAIRIES = 71,
+    QUEST_EDDIES = 77,
     PURPLE_QUEST = 82,
     QUEST_METATRON = 97
 };
@@ -70,6 +73,7 @@ extern void       quest_free(quest_ptr q);
 extern void       quest_change_file(quest_ptr q, cptr file);
 extern cptr       kayttonimi(quest_ptr q);
 extern cptr       lyhytnimi(quest_ptr q, cptr *nimi);
+extern cptr       quest_display_name(int id);
 extern void       get_purple_questor(quest_ptr q);
 
 extern void       quest_take(quest_ptr q);

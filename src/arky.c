@@ -598,7 +598,7 @@ static void _pharaohs_curse_spell(int cmd, variant *res)
                     msg_print("你打扰了一位古老法老的安息！");
                 }
             }
-            take_hit(DAMAGE_USELIFE, p_ptr->lev + randint1(p_ptr->lev), "the Pharaoh's Curse");
+            take_hit(DAMAGE_USELIFE, p_ptr->lev + randint1(p_ptr->lev), "法老的诅咒");
             var_set_bool(res, TRUE);
         }
         break;

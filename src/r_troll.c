@@ -35,7 +35,7 @@ static void _calc_innate_attacks(void)
         break;
     }
 
-    a.msg = "You bite.";
+    a.msg = "你咬了过去。";
     a.name = "撕咬";
 
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;

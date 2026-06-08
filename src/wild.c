@@ -1629,15 +1629,15 @@ void wilderness_gen(void)
 
         if (dungeon_flags[wilderness[p_ptr->wilderness_y][p_ptr->wilderness_x].entrance] & DUNGEON_NO_ENTRANCE)
         {
-            msg_format("%s入口已经坍塌。", d_name + d_info[wilderness[p_ptr->wilderness_y][p_ptr->wilderness_x].entrance].name);
+            msg_format("%s入口已经坍塌。", dungeon_display_name(wilderness[p_ptr->wilderness_y][p_ptr->wilderness_x].entrance));
         }
         else if (((ent_cx - p_ptr->wilderness_dx) * (ent_cx - p_ptr->wilderness_dx) > 1) ||
             ((ent_cy - p_ptr->wilderness_dy) * (ent_cy - p_ptr->wilderness_dy) > 1))
         {
             msg_format("%s入口似乎不在视线内。也许在更靠%s%s一点的地方？",
-            d_name + d_info[wilderness[p_ptr->wilderness_y][p_ptr->wilderness_x].entrance].name,
-            ((ent_cy - p_ptr->wilderness_dy == -2) ? "north" : (ent_cy - p_ptr->wilderness_dy == 2) ? "south" : ""),
-            (((ent_cx - p_ptr->wilderness_dx == -2) || (x2 - (p_ptr->wilderness_dx * WILD_SCROLL_CX + px) <= -44)) ? "west" : ((ent_cx - p_ptr->wilderness_dx == 2) || (x2 - (p_ptr->wilderness_dx * WILD_SCROLL_CX + px) >= 44)) ? "east" : ""));
+            dungeon_display_name(wilderness[p_ptr->wilderness_y][p_ptr->wilderness_x].entrance),
+            ((ent_cy - p_ptr->wilderness_dy == -2) ? "北" : (ent_cy - p_ptr->wilderness_dy == 2) ? "南" : ""),
+            (((ent_cx - p_ptr->wilderness_dx == -2) || (x2 - (p_ptr->wilderness_dx * WILD_SCROLL_CX + px) <= -44)) ? "西" : ((ent_cx - p_ptr->wilderness_dx == 2) || (x2 - (p_ptr->wilderness_dx * WILD_SCROLL_CX + px) >= 44)) ? "东" : ""));
         }
 
         Rand_quick = FALSE;
@@ -2153,7 +2153,7 @@ bool change_wild_mode(void)
 
     if (p_ptr->word_recall)
     {
-        char c, buf[255] = "You cannot enter the global map with Word of Recall active! Cancel recall? <color:y>[y/n]</color>\n";
+        char c, buf[255] = "在召回真言生效期间你无法进入大地图！取消召回吗？<color:y>[y/n]</color>\n";
         c = msg_prompt(buf, "ny", PROMPT_ESCAPE_DEFAULT | PROMPT_FORCE_CHOICE);
         sound(SOUND_WARN);
         if (c == 'n')

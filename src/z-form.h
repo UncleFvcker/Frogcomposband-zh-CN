@@ -31,25 +31,39 @@
 extern uint vstrnfmt(char *buf, uint max, cptr fmt, va_list vp);
 
 /* Simple interface to "vstrnfmt()" */
-extern uint strnfmt(char *buf, uint max, cptr fmt, ...);
+extern uint strnfmt_aux(cptr file, int line, char *buf, uint max, cptr fmt, ...);
 
 /* Simple interface to "vstrnfmt()", assuming infinite length */
-extern uint strfmt(char *buf, cptr fmt, ...);
+extern uint strfmt_aux(cptr file, int line, char *buf, cptr fmt, ...);
 
 /* Format arguments into a static resizing buffer */
 extern char *vformat(cptr fmt, va_list vp);
 
 /* Simple interface to "vformat()" */
-extern char *format(cptr fmt, ...);
+extern char *format_aux(cptr file, int line, cptr fmt, ...);
 
 /* Vararg interface to "plog()", using "format()" */
-extern void plog_fmt(cptr fmt, ...);
+extern void plog_fmt_aux(cptr file, int line, cptr fmt, ...);
 
 /* Vararg interface to "quit()", using "format()" */
-extern void quit_fmt(cptr fmt, ...);
+extern void quit_fmt_aux(cptr file, int line, cptr fmt, ...);
 
 /* Vararg interface to "core()", using "format()" */
-extern void core_fmt(cptr fmt, ...);
+extern void core_fmt_aux(cptr file, int line, cptr fmt, ...);
+
+#if defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+#endif
+#define strnfmt(BUF, MAX, FMT, ...) strnfmt_aux(__FILE__, __LINE__, (BUF), (MAX), (FMT) __VA_OPT__(,) __VA_ARGS__)
+#define strfmt(BUF, FMT, ...) strfmt_aux(__FILE__, __LINE__, (BUF), (FMT) __VA_OPT__(,) __VA_ARGS__)
+#define format(FMT, ...) format_aux(__FILE__, __LINE__, (FMT) __VA_OPT__(,) __VA_ARGS__)
+#define plog_fmt(FMT, ...) plog_fmt_aux(__FILE__, __LINE__, (FMT) __VA_OPT__(,) __VA_ARGS__)
+#define quit_fmt(FMT, ...) quit_fmt_aux(__FILE__, __LINE__, (FMT) __VA_OPT__(,) __VA_ARGS__)
+#define core_fmt(FMT, ...) core_fmt_aux(__FILE__, __LINE__, (FMT) __VA_OPT__(,) __VA_ARGS__)
+#if defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
 
 
 #endif

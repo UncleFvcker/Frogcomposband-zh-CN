@@ -814,23 +814,23 @@ slay_type slay_list[] =
 /* The ordering is historical and definitely not in any way optimized, it has
  * so far been retained for consistent ordering on the character sheet */
 {
-    { _SLAY_TIER_MID, OF_KILL_ANIMAL, OF_SLAY_ANIMAL, 0, TRUE, _can_slay_animal, 'g', "animals", "" },
-    { _SLAY_TIER_BASIC, OF_KILL_EVIL, OF_SLAY_EVIL, 0, TRUE, _can_slay_evil, 'y', "evil", "" },
-    { _SLAY_TIER_BASIC, OF_KILL_GOOD, OF_SLAY_GOOD, 0, TRUE, _can_slay_good, 'W', "good", "" },
-    { _SLAY_TIER_BASIC, OF_KILL_LIVING, OF_SLAY_LIVING, 0, TRUE, _can_slay_living, 'o', "living", "" },
-    { _SLAY_TIER_MID, OF_KILL_HUMAN, OF_SLAY_HUMAN, 0, TRUE, _can_slay_humans, 's', "humans", "" },
-    { _SLAY_TIER_HIGH, OF_KILL_UNDEAD, OF_SLAY_UNDEAD, 0, TRUE, _can_slay_undead, 'D', "undead", "" },
-    { _SLAY_TIER_HIGH, OF_KILL_DEMON, OF_SLAY_DEMON, 0, TRUE, _can_slay_demons, 'R', "demons", "" },
-    { _SLAY_TIER_HIGH, OF_KILL_ORC, OF_SLAY_ORC, 0, TRUE, _can_slay_orcs, 'U', "orcs", "" },
-    { _SLAY_TIER_HIGH, OF_KILL_TROLL, OF_SLAY_TROLL, 0, TRUE, _can_slay_trolls, 'g', "trolls", "" },
-    { _SLAY_TIER_HIGH, OF_KILL_GIANT, OF_SLAY_GIANT, 0, TRUE, _can_slay_giants, 'u', "giants", "" },
-    { _SLAY_TIER_HIGH, OF_KILL_DRAGON, OF_SLAY_DRAGON, 0, TRUE, _can_slay_dragons, 'r', "dragons", "" },
-    { _SLAY_TIER_MID, 0, OF_BRAND_ACID, 0, FALSE, _can_slay_acid, 'g', "acid", "is <color:g>Acid Branded</color>" },
-    { _SLAY_TIER_MID, 0, OF_BRAND_ELEC, HISSATSU_ELEC, FALSE, _can_slay_elec, 'b', "electricity", "is <color:b>Lightning Branded</color>" },
-    { _SLAY_TIER_MID, 0, OF_BRAND_FIRE, HISSATSU_FIRE, FALSE, _can_slay_fire, 'r', "fire", "has <color:r>Flame Tongue</color>" },
-    { _SLAY_TIER_MID, 0, OF_BRAND_COLD, HISSATSU_COLD, FALSE, _can_slay_cold, 'W', "frost", "is <color:W>Frost Branded</color>" },
-    { _SLAY_TIER_MID, 0, OF_BRAND_POIS, HISSATSU_POISON, FALSE, _can_slay_pois, 'G', "poison", "has <color:G>Viper's Fang</color>" },
-    { _SLAY_TIER_MID, 0, OF_BRAND_DARK, 0, FALSE, _can_slay_dark, 'G', "dark", "has <color:G>Shadow Sweep</color>" },
+    { _SLAY_TIER_MID, OF_KILL_ANIMAL, OF_SLAY_ANIMAL, 0, TRUE, _can_slay_animal, 'g', "动物", "" },
+    { _SLAY_TIER_BASIC, OF_KILL_EVIL, OF_SLAY_EVIL, 0, TRUE, _can_slay_evil, 'y', "邪恶", "" },
+    { _SLAY_TIER_BASIC, OF_KILL_GOOD, OF_SLAY_GOOD, 0, TRUE, _can_slay_good, 'W', "善良", "" },
+    { _SLAY_TIER_BASIC, OF_KILL_LIVING, OF_SLAY_LIVING, 0, TRUE, _can_slay_living, 'o', "活物", "" },
+    { _SLAY_TIER_MID, OF_KILL_HUMAN, OF_SLAY_HUMAN, 0, TRUE, _can_slay_humans, 's', "人类", "" },
+    { _SLAY_TIER_HIGH, OF_KILL_UNDEAD, OF_SLAY_UNDEAD, 0, TRUE, _can_slay_undead, 'D', "不死生物", "" },
+    { _SLAY_TIER_HIGH, OF_KILL_DEMON, OF_SLAY_DEMON, 0, TRUE, _can_slay_demons, 'R', "恶魔", "" },
+    { _SLAY_TIER_HIGH, OF_KILL_ORC, OF_SLAY_ORC, 0, TRUE, _can_slay_orcs, 'U', "兽人", "" },
+    { _SLAY_TIER_HIGH, OF_KILL_TROLL, OF_SLAY_TROLL, 0, TRUE, _can_slay_trolls, 'g', "食人妖", "" },
+    { _SLAY_TIER_HIGH, OF_KILL_GIANT, OF_SLAY_GIANT, 0, TRUE, _can_slay_giants, 'u', "巨人", "" },
+    { _SLAY_TIER_HIGH, OF_KILL_DRAGON, OF_SLAY_DRAGON, 0, TRUE, _can_slay_dragons, 'r', "龙类", "" },
+    { _SLAY_TIER_MID, 0, OF_BRAND_ACID, 0, FALSE, _can_slay_acid, 'g', "酸性", "带有<color:g>酸液烙印</color>" },
+    { _SLAY_TIER_MID, 0, OF_BRAND_ELEC, HISSATSU_ELEC, FALSE, _can_slay_elec, 'b', "电击", "带有<color:b>闪电烙印</color>" },
+    { _SLAY_TIER_MID, 0, OF_BRAND_FIRE, HISSATSU_FIRE, FALSE, _can_slay_fire, 'r', "火焰", "带有<color:r>火舌</color>" },
+    { _SLAY_TIER_MID, 0, OF_BRAND_COLD, HISSATSU_COLD, FALSE, _can_slay_cold, 'W', "寒霜", "带有<color:W>寒霜烙印</color>" },
+    { _SLAY_TIER_MID, 0, OF_BRAND_POIS, HISSATSU_POISON, FALSE, _can_slay_pois, 'G', "毒素", "带有<color:G>毒蛇之牙</color>" },
+    { _SLAY_TIER_MID, 0, OF_BRAND_DARK, 0, FALSE, _can_slay_dark, 'G', "暗黑", "带有<color:G>暗影横扫</color>" },
     { 0, 0, 0, 0, FALSE, NULL, 0, "", "" },
 };
 
@@ -937,7 +937,7 @@ s16b tot_dam_aux(object_type *o_ptr, int tdam, monster_type *m_ptr, s16b hand, i
                 if (chaos_slay == _slay.slay_flag)
                 {
                     msg_format("你的 %s %s %s。", o_name, _slay.is_slay ? "斩杀了" : "包裹着", _slay.kill_desc);
-                    obj_learn_slay(o_ptr, OF_BRAND_CHAOS, "has the <color:v>Mark of Chaos</color>");
+                    obj_learn_slay(o_ptr, OF_BRAND_CHAOS, "带有<color:v>混沌印记</color>");
                     _chaos = TRUE;
                 }
                 if ((_slay.kill_flag > 0) && (have_flag(flgs, _slay.kill_flag)))
@@ -946,7 +946,7 @@ s16b tot_dam_aux(object_type *o_ptr, int tdam, monster_type *m_ptr, s16b hand, i
                     my_mult = _chaos ? slay_tiers[_slay.tier - 1].kill_with_chaos : slay_tiers[_slay.tier - 1].kill;
                     if ((o_ptr->name1 == ART_NOTHUNG) && (m_ptr->r_idx == MON_FAFNER) && (_slay.kill_flag == OF_KILL_DRAGON))
                         my_mult *= 3;
-                    strcpy(oppi, format("slays <color:%c>*%^s*</color>", _slay.attr, _slay.kill_desc)); /* Assume no brand */
+                    strcpy(oppi, format("可对<color:%c>*%^s*</color>造成巨大杀伤", _slay.attr, _slay.kill_desc)); /* Assume no brand */
                     obj_learn_slay(o_ptr, _slay.kill_flag, oppi);
                 }
                 else if (have_flag(flgs, _slay.slay_flag))
@@ -956,7 +956,7 @@ s16b tot_dam_aux(object_type *o_ptr, int tdam, monster_type *m_ptr, s16b hand, i
                     else
                     {
                         char oppi[80];
-                        strcpy(oppi, format("slays <color:%c>%^s</color>", _slay.attr, _slay.kill_desc));
+                        strcpy(oppi, format("可对<color:%c>%^s</color>造成杀伤", _slay.attr, _slay.kill_desc));
                         obj_learn_slay(o_ptr, _slay.slay_flag, oppi);
                     }
                 }
@@ -1107,7 +1107,7 @@ s16b tot_dam_aux(object_type *o_ptr, int tdam, monster_type *m_ptr, s16b hand, i
                         p_ptr->redraw |= (PR_GOLD);
 
                         mult = mult * 3 / 2 + 14;
-                        obj_learn_slay(o_ptr, OF_BRAND_MANA, "is <color:B>Mana Branded</color>");
+                        obj_learn_slay(o_ptr, OF_BRAND_MANA, "带有<color:B>法力烙印</color>");
                     }
                 }
                 else if (p_ptr->csp >= cost)
@@ -1115,12 +1115,12 @@ s16b tot_dam_aux(object_type *o_ptr, int tdam, monster_type *m_ptr, s16b hand, i
                     p_ptr->csp -= cost;
                     p_ptr->redraw |= (PR_MANA);
                     mult = mult * 3 / 2 + 14;
-                    obj_learn_slay(o_ptr, OF_BRAND_MANA, "is <color:B>Mana Branded</color>");
+                    obj_learn_slay(o_ptr, OF_BRAND_MANA, "带有<color:B>法力烙印</color>");
                 }
             }
             if (p_ptr->tim_blood_feast)
             {
-                take_hit(DAMAGE_ATTACK, 15, "blood feast");
+                take_hit(DAMAGE_ATTACK, 15, "鲜血盛宴");
             }
             break;
         }
@@ -1410,8 +1410,7 @@ static void _display_weapon_slay(int base_mult, int slay_mult, bool force, int b
     if (weaponmaster_get_toggle() == TOGGLE_ORDER_BLADE)
         min = max;
 
-    doc_printf(doc, "<color:%c> %-7.7s</color>", attr_to_attr_char(color), format("%^s", name));
-    doc_printf(doc, ": %d [%d.%02dx]\n",
+    doc_printf(doc, "<color:%c> %s</color><tab:10>: %d [%d.%02dx]\n", attr_to_attr_char(color), format("%^s", name),
                     (min + max)/2,
                     mult/100, mult%100);
 }
@@ -1651,7 +1650,7 @@ void display_weapon_info(doc_ptr doc, int hand)
     else
         doc_printf(cols[0], "<color:y> 武器 #%d:</color> <indent><style:indent>%s</style></indent>\n", hand+1, o_name);
 
-    doc_printf(cols[0], "%-7.7s: %d.%d 磅\n", "重量(wgt)", o_ptr->weight/10, o_ptr->weight%10);
+    doc_printf(cols[0], "重量(wgt)<tab:10>: %d.%d 磅\n", o_ptr->weight/10, o_ptr->weight%10);
 
     if (object_is_(o_ptr, TV_SWORD, SV_POISON_NEEDLE)) /* special case */
     {
@@ -1668,26 +1667,24 @@ void display_weapon_info(doc_ptr doc, int hand)
     if (weaponmaster_get_toggle() == TOGGLE_SHIELD_BASH)
     {
         assert(o_ptr->tval == TV_SHIELD);
-        doc_printf(cols[0], "%-7.7s: %dd%d (%+d,%+d)\n", "盾击", dd, ds, to_h, to_d);
-        doc_printf(cols[0], "%-7.7s: %s (命中 %+d)\n",
-                    "熟练度",
+        doc_printf(cols[0], "盾击<tab:10>: %dd%d (%+d,%+d)\n", dd, ds, to_h, to_d);
+        doc_printf(cols[0], "熟练度<tab:10>: %s (命中 %+d)\n",
                     skills_shield_describe_current(o_ptr->sval),
                     skills_shield_calc_bonus(o_ptr->sval));
     }
     else
     {
-        doc_printf(cols[0], "%-7.7s: %s (命中 %+d)\n",
-                    "熟练度",
+        doc_printf(cols[0], "熟练度<tab:10>: %s (命中 %+d)\n",
                     skills_weapon_describe_current(o_ptr->tval, o_ptr->sval),
                     skills_weapon_calc_bonus(o_ptr->tval, o_ptr->sval));
     }
-    doc_printf(cols[0], " %-7.7s: %d + %d = %d\n", "命中", to_h, p_ptr->weapon_info[hand].to_h, to_h + p_ptr->weapon_info[hand].to_h);
-    doc_printf(cols[0], " %-7.7s: %d + %d = %d\n", "伤害加成", to_d, p_ptr->weapon_info[hand].to_d, to_d + p_ptr->weapon_info[hand].to_d);
-    doc_printf(cols[0], " %-7.7s: %d.%2.2d\n", "攻击次数", num_blow/100, num_blow%100);
+    doc_printf(cols[0], " 命中<tab:10>: %d + %d = %d\n", to_h, p_ptr->weapon_info[hand].to_h, to_h + p_ptr->weapon_info[hand].to_h);
+    doc_printf(cols[0], " 伤害加成<tab:10>: %d + %d = %d\n", to_d, p_ptr->weapon_info[hand].to_d, to_d + p_ptr->weapon_info[hand].to_d);
+    doc_printf(cols[0], " 攻击次数<tab:10>: %d.%2.2d\n", num_blow/100, num_blow%100);
 
     if (p_ptr->weapon_info[hand].dual_wield_pct < 1000)
     {
-        doc_printf(cols[0], " %-7.7s: %d.%d%%\n", "技能",
+        doc_printf(cols[0], " 技能<tab:10>: %d.%d%%\n",
             p_ptr->weapon_info[hand].dual_wield_pct/ 10,
             p_ptr->weapon_info[hand].dual_wield_pct % 10);
     }
@@ -1695,19 +1692,19 @@ void display_weapon_info(doc_ptr doc, int hand)
     mult = mult * crit.mul / 100;
     to_d = to_d + crit.to_d/100 + p_ptr->weapon_info[hand].to_d;
 
-    doc_printf(cols[0], "<color:G> %-7.7s</color>\n", "总计伤害");
+    doc_printf(cols[0], "<color:G> 总计伤害</color>\n");
 
     if (!have_flag(flgs, OF_BRAND_ORDER)
         && weaponmaster_get_toggle() != TOGGLE_ORDER_BLADE)
     {
         if (crit.to_d)
         {
-            doc_printf(cols[0], "%-7.7s: %d.%02dx + %d.%02d\n", "暴击",
+            doc_printf(cols[0], "暴击<tab:10>: %d.%02dx + %d.%02d\n",
                             crit.mul/100, crit.mul%100, crit.to_d/100, crit.to_d%100);
         }
         else
         {
-            doc_printf(cols[0], "%-7.7s: %d.%02dx (%d.%d%%)\n", "暴击",
+            doc_printf(cols[0], "暴击<tab:10>: %d.%02dx (%d.%d%%)\n",
                             crit.mul/100, crit.mul%100, crit_pct / 10, crit_pct % 10);
         }
     }
@@ -1716,7 +1713,7 @@ void display_weapon_info(doc_ptr doc, int hand)
     if (force)
         _display_weapon_slay(mult, norm_mult, force, num_blow, dd, ds, to_d, "原力", TERM_L_BLUE, cols[0]);
     if (p_ptr->tim_slay_sentient)
-        _display_weapon_slay(mult, SLAY_MULT_BASIC, force, num_blow, dd, ds, to_d, "Sent.", TERM_YELLOW, cols[0]);
+        _display_weapon_slay(mult, SLAY_MULT_BASIC, force, num_blow, dd, ds, to_d, "有感.", TERM_YELLOW, cols[0]);
 
     i = 0;
     
@@ -1846,37 +1843,36 @@ void display_innate_attack_info(doc_ptr doc, int which)
 
     /* First Column */
     if (a->flags & INNATE_NO_DAM)
-        doc_printf(cols[0], "<color:y> %-7.7s</color>: 你的 %s\n", "攻击", a->name);
+        doc_printf(cols[0], "<color:y> 攻击</color><tab:10>: 你的 %s\n", a->name);
     else
-        doc_printf(cols[0], "<color:y> %-7.7s</color>: 你的 %s (%dd%d)\n", "攻击", a->name, dd, a->ds);
+        doc_printf(cols[0], "<color:y> 攻击</color><tab:10>: 你的 %s (%dd%d)\n", a->name, dd, a->ds);
 
     if (a->weight && !(a->flags & INNATE_NO_DAM) && p_ptr->prace != RACE_MON_BEHOLDER)
-        doc_printf(cols[0], "%-7.7s: %d.%d 磅\n", "重量", a->weight/10, a->weight%10);
+        doc_printf(cols[0], "重量<tab:10>: %d.%d 磅\n", a->weight/10, a->weight%10);
 
     {
         cptr name = skills_innate_calc_name(a);
-        doc_printf(cols[0], "%-7.7s: %s (命中 %+d)\n",
-                    "熟练度",
+        doc_printf(cols[0], "熟练度<tab:10>: %s (命中 %+d)\n",
                     skills_innate_describe_current(name),
                     skills_innate_calc_bonus(name));
     }
 
-    doc_printf(cols[0], " %-7.7s: %d + %d = %d\n", "命中", a->to_h, p_ptr->to_h_m, to_h);
+    doc_printf(cols[0], " 命中<tab:10>: %d + %d = %d\n", a->to_h, p_ptr->to_h_m, to_h);
 
     if (!(a->flags & INNATE_NO_DAM))
-        doc_printf(cols[0], " %-7.7s: %d + %d = %d\n", "伤害加成", a->to_d, p_ptr->to_d_m, to_d);
+        doc_printf(cols[0], " 伤害加成<tab:10>: %d + %d = %d\n", a->to_d, p_ptr->to_d_m, to_d);
 
-    doc_printf(cols[0], " %-7.7s: %d.%2.2d\n", "攻击次数", blows/100, blows%100);
+    doc_printf(cols[0], " 攻击次数<tab:10>: %d.%2.2d\n", blows/100, blows%100);
 
     mult = 100;
 
     if (!(a->flags & INNATE_NO_DAM))
     {
-        doc_printf(cols[0], "<color:G> %-7.7s</color>\n", "总计伤害");
+        doc_printf(cols[0], "<color:G> 总计伤害</color>\n");
         if (a->flags & INNATE_VORPAL)
         {
             mult = mult * 11 / 9;
-            doc_printf(cols[0], "%-7.7s: %d.%02dx\n", "锋锐", mult/100, mult%100);
+            doc_printf(cols[0], "锋锐<tab:10>: %d.%02dx\n", mult/100, mult%100);
         }
     }
 
@@ -1921,9 +1917,9 @@ void display_innate_attack_info(doc_ptr doc, int which)
             }
         }
         if (crit.to_d)
-            doc_printf(cols[0], "%-7.7s: %d.%02dx + %d.%02d\n", "暴击", crit.mul/100, crit.mul%100, crit.to_d/100, crit.to_d%100);
+            doc_printf(cols[0], "暴击<tab:10>: %d.%02dx + %d.%02d\n", crit.mul/100, crit.mul%100, crit.to_d/100, crit.to_d%100);
         else
-            doc_printf(cols[0], "%-7.7s: %d.%02dx\n", "暴击", crit.mul/100, crit.mul%100);
+            doc_printf(cols[0], "暴击<tab:10>: %d.%02dx\n", crit.mul/100, crit.mul%100);
         crit.to_d /= 100;
         mult = mult * crit.mul / 100;
         to_d = to_d + crit.to_d;
@@ -1957,7 +1953,7 @@ void display_innate_attack_info(doc_ptr doc, int which)
     }
     else if (!(a->flags & INNATE_NO_DAM))
     {
-        doc_printf(cols[0], " %-7.7s: %d\n",_effect_name(a->effect[0]), blows * (min + max)/200);
+        doc_printf(cols[0], " %s<tab:10>: %d\n",_effect_name(a->effect[0]), blows * (min + max)/200);
     }
     else strt = 0;
 
@@ -1965,7 +1961,7 @@ void display_innate_attack_info(doc_ptr doc, int which)
     {
         int min3 = 9*(min_base + a->to_d)/4 + p_ptr->to_d_m; /* 1 + .75 + .5 = 2.25 = 9/4 */
         int max3 = 9*(max_base + a->to_d)/4 + p_ptr->to_d_m;
-        doc_printf(cols[0], "<color:r> %-7.7s</color>: %d\n",
+        doc_printf(cols[0], "<color:r> %s</color><tab:10>: %d\n",
                 _effect_name(a->effect[0]),
                 blows * (min3 + max3)/200);
     }
@@ -2023,9 +2019,9 @@ void display_innate_attack_info(doc_ptr doc, int which)
                 break;
             case GF_MISSILE: /* Full damage */
                 if ((!p) || (p == 100))
-                    doc_printf(cols[0], "<color:r>+%-7.7s</color>: %d\n", "伤害", blows * (min + max)/200);
+                    doc_printf(cols[0], "<color:r>+伤害</color><tab:10>: %d\n", blows * (min + max)/200);
                 else
-                    doc_printf(cols[0], "<color:r>+%-7.7s</color>: %d/%d%s\n", "伤害", blows * (min + max)/200, (s32b)blows * (min + max) * p / 20000L, xtra);
+                    doc_printf(cols[0], "<color:r>+伤害</color><tab:10>: %d/%d%s\n", blows * (min + max)/200, (s32b)blows * (min + max) * p / 20000L, xtra);
                 break;
             case GF_OLD_DRAIN:
                 if (i > 0)
@@ -2036,13 +2032,13 @@ void display_innate_attack_info(doc_ptr doc, int which)
             default:
                 if ((!p) || (p == 100))
                 {
-                    doc_printf(cols[0], "<color:r>+%-7.7s</color>: %d\n",
+                    doc_printf(cols[0], "<color:r>+%s</color><tab:10>: %d\n",
                         _effect_name(a->effect[i]),
                         blows * (min2 + max2)/200);
                 }
                 else
                 {
-                    doc_printf(cols[0], "<color:r>+%-7.7s</color>: %d/%d%s\n",
+                    doc_printf(cols[0], "<color:r>+%s</color><tab:10>: %d/%d%s\n",
                         _effect_name(a->effect[i]),
                         blows * (min2 + max2)/200, (s32b)blows * (min2 + max2) * p / 20000L, xtra);
                 }

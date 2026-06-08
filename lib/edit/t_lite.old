@@ -240,68 +240,68 @@ L:f:BUILDING_5(0)
 
 ############### Buildings ###############
 
-B:0:N:The White Horse Inn:Otick:Human
-B:0:A:0:Rest for the night:20:20:r:17:0
-B:0:A:1:Buy food and drink:1:1:f:18:1
-B:0:A:2:Listen for rumors:5:5:u:19:0
-B:0:A:3:Ask about your reputation:1:1:a:55:0
-B:0:A:4:Request quest:0:0:q:6:0
+B:0:N:白马旅店:奥蒂克:人类
+B:0:A:0:住宿一晚:20:20:r:17:0
+B:0:A:1:购买食物和饮料:1:1:f:18:1
+B:0:A:2:打听传闻:5:5:u:19:0
+B:0:A:3:询问你的声望:1:1:a:55:0
+B:0:A:4:请求任务:0:0:q:6:0
 B:0:R:*:Member
 
-B:1:N:Mayor:Uldrik:Human
-B:1:A:0:Request quest:0:0:q:6:0
-B:1:A:1:Identify item:100:100:i:44:0
-B:1:A:2:Legal Name Change:10:10:c:57:0
+B:1:N:镇长:乌尔德里克:人类
+B:1:A:0:请求任务:0:0:q:6:0
+B:1:A:1:鉴定单件物品:100:100:i:44:0
+B:1:A:2:合法改名:10:10:c:57:0
 
-B:2:N:Arena:Hideshi:Human
+B:2:N:竞技场:秀史:人类
 #B:9:A:0:RULES:0:0:a:9:0
-B:2:A:0:Enter in arena:0:0:e:10:0
-B:2:A:1:Look at poster:0:0:p:8:0
-B:2:A:2:Palace of heros:0:0:s:11:0
+B:2:A:0:进入竞技场:0:0:e:10:0
+B:2:A:1:查看海报:0:0:p:8:0
+B:2:A:2:英雄殿堂:0:0:s:11:0
 
-B:3:N:Library:Astinus:Human?
-B:3:A:0:Research item:1500:1500:a:1:0
+B:3:N:图书馆:阿斯提努斯:人类？
+B:3:A:0:研究物品:1500:1500:a:1:0
 ?:[EQU $QUEST5 Finished]
-B:3:A:0:Research item:750:750:a:1:0
+B:3:A:0:研究物品:750:750:a:1:0
 ?:1
-B:3:A:1:Town Overview:0:0:h:2:0
-B:3:A:2:Research monster:10000:10000:r:20:0
+B:3:A:1:城镇纵览:0:0:h:2:0
+B:3:A:2:研究怪物:10000:10000:r:20:0
 ?:[EQU $QUEST5 Finished]
-B:3:A:2:Research monster:1200:1200:r:20:0
+B:3:A:2:研究怪物:1200:1200:r:20:0
 ?:1
 
-B:4:N:Chaos Tower:Xeno:Beastman
-B:4:A:0:Request quest:0:0:q:6:1
-B:4:A:1:Cure mutation:1000:5000:m:35:0
+B:4:N:混沌之塔:泽诺:兽人
+B:4:A:0:请求任务:0:0:q:6:1
+B:4:A:1:治疗突变:1000:5000:m:35:0
 B:4:R:*:None
 B:4:R:Beastman:Member
 B:4:M:*:None
 B:4:M:Chaos:Owner
 
-B:5:N:Nature Tower:Josh:Elf
-B:5:A:0:Request quest:0:0:q:6:2
-B:5:A:1:Ritual of balance:2000:10000:n:41:0
+B:5:N:自然之塔:乔什:精灵
+B:5:A:0:请求任务:0:0:q:6:2
+B:5:A:1:平衡仪式:2000:10000:n:41:0
 B:5:M:*:None
 B:5:M:Nature:Owner
 
-B:6:N:Casino:Materim:Human
-B:6:A:0:In-Between:0:0:b:12:0
-B:6:A:2:Play craps:0:0:c:14:0
-B:6:A:3:Spin the wheel:0:0:s:15:0
-B:6:A:4:Play dice slots:0:0:d:16:0
-B:6:A:4:Monster arena:0:0:m:36:0
-B:6:A:5:Poker:0:0:p:43:0
-B:6:A:1:Game rules:0:0:r:13:0
+B:6:N:赌场:麦特林:人类
+B:6:A:0:夹牌游戏(In-Between):0:0:b:12:0
+B:6:A:2:玩掷骰子:0:0:c:14:0
+B:6:A:3:转轮盘:0:0:s:15:0
+B:6:A:4:玩骰子老虎机:0:0:d:16:0
+B:6:A:4:怪物竞技场:0:0:m:36:0
+B:6:A:5:扑克:0:0:p:43:0
+B:6:A:1:游戏规则:0:0:r:13:0
 
-B:7:N:Fighters Hall:Barak:Human
-B:7:A:0:Enchant weapon:400:800:w:23:0
-B:7:A:1:Enchant armor:300:600:a:24:0
-B:7:A:2:Reforge artifact:0:0:r:56:0
-B:7:A:3:Compare weapons:1000:1000:c:21:0
-B:7:A:4:Evaluate AC:1000:1000:a:46:0
+B:7:N:战士公会:巴拉克:人类
+B:7:A:0:强化武器:400:800:w:23:0
+B:7:A:1:强化护甲:300:600:a:24:0
+B:7:A:2:重铸神器:0:0:r:56:0
+B:7:A:3:比较武器:1000:1000:c:21:0
+B:7:A:4:评估护甲等级(AC):1000:1000:a:46:0
 ?:[EQU $QUEST5 Finished]
-B:7:A:3:Compare weapons:150:150:c:21:0
-B:7:A:4:Evaluate AC:150:150:a:46:0
+B:7:A:3:比较武器:150:150:c:21:0
+B:7:A:4:评估护甲等级(AC):150:150:a:46:0
 ?:1
 B:7:C:*:None
 B:7:C:Warrior:Owner
@@ -311,62 +311,62 @@ B:7:C:Berserker:Owner
 B:7:C:Blood-Knight:Owner
 B:7:C:Mauler:Owner
 
-B:8:N:Tower of Sorcery:Tanistil:Elf
-B:8:A:0:Identify possessions:100:800:i:26:0
-B:8:A:1:Request quest:0:0:q:6:2
+B:8:N:巫术之塔:塔尼斯提尔:精灵
+B:8:A:0:鉴定所有物品:100:800:i:26:0
+B:8:A:1:请求任务:0:0:q:6:2
 B:8:M:*:None
 B:8:M:Sorcery:Owner
 
-B:9:N:Temple of Life:Crysania:Human
-B:9:A:0:Healing prayer:0:200:h:28:0
-B:9:A:1:Restoration:300:1000:r:29:0
+B:9:N:生命神殿:克丽珊娜:人类
+B:9:A:0:治疗祈祷:0:200:h:28:0
+B:9:A:1:属性恢复:300:1000:r:29:0
 B:9:M:*:None
 B:9:M:Life:Owner
 
-B:10:N:Thieves Guild:Lardbottom:Hobbit
-B:10:A:1:Rest for the Night:0:100:r:17:0
-B:10:A:2:Identify Possessions:100:600:i:26:0
-B:10:A:3:Request Quest:0:0:q:6:0
+B:10:N:盗贼公会:大屁股:霍比特人
+B:10:A:1:住宿一晚:0:100:r:17:0
+B:10:A:2:鉴定所有物品:100:600:i:26:0
+B:10:A:3:请求任务:0:0:q:6:0
 B:10:C:*:None
 B:10:C:Rogue:Owner
 
-B:11:N:Archers Guild:Trallin:Half-elf
-B:11:A:0:Enchant missiles:20:40:a:30:0
-B:11:A:1:Enchant bow:400:800:b:31:0
+B:11:N:弓箭手公会:特拉林:半精灵
+B:11:A:0:强化弹药:20:40:a:30:0
+B:11:A:1:强化弓:400:800:b:31:0
 B:11:C:*:None
 B:11:C:Ranger:Owner
 B:11:C:Archer:Owner
 B:11:C:Sniper:Owner
 
-B:12:N:Paladins Guild:Langordathur:Human
-B:12:A:0:Enchant armor:300:600:a:24:0
-B:12:A:1:See Healers:0:200:h:28:0
+B:12:N:圣武士公会:兰戈达图尔:人类
+B:12:A:0:强化护甲:300:600:a:24:0
+B:12:A:1:拜访治疗师:0:200:h:28:0
 B:12:C:*:None
 B:12:C:Paladin:Owner
 
-B:13:N:Trump Tower:Pelloi:Amberite
-B:13:A:0:Recall to dungeon:100:200:r:33:0
+B:13:N:王牌之塔:佩洛伊:安珀人
+B:13:A:0:传送回地下城:100:200:r:33:0
 #B:13:A:1:Teleport to dungeon-level:100000:1000000:t:34:0
-B:13:A:2:Request quest:0:0:q:6:0
+B:13:A:2:请求任务:0:0:q:6:0
 B:13:M:*:None
 B:13:M:Trump:Owner
 
-B:14:N:Gamble Shop:Hector:Half-giant
-B:14:A:0:Random Potion:10000:10000:a:47:0
-B:14:A:1:Random Scroll:12000:12000:b:48:0
-B:14:A:2:Random Staff:15000:15000:c:49:0
-B:14:A:3:Random Wand:15000:15000:d:50:0
-B:14:A:4:Random Rod:20000:20000:e:51:0
-B:14:A:5:Random Armor:50000:50000:f:52:0
-B:14:A:6:Random Weapon:30000:30000:g:53:0
+B:14:N:赌博商店:赫克托尔:半巨人
+B:14:A:0:随机药水:10000:10000:a:47:0
+B:14:A:1:随机卷轴:12000:12000:b:48:0
+B:14:A:2:随机法杖:15000:15000:c:49:0
+B:14:A:3:随机魔杖:15000:15000:d:50:0
+B:14:A:4:随机魔棒:20000:20000:e:51:0
+B:14:A:5:随机护甲:50000:50000:f:52:0
+B:14:A:6:随机武器:30000:30000:g:53:0
 #This costs so much it overflows a 32-bit int on scaling!
 #B:14:A:7:Random Artifact:10000000:10000000:h:54:0
 
-B:15:N:Hunter's office:Kopei:Human
-B:15:A:0:Today's wanted:0:0:a:38:0
-B:15:A:1:Wanted unique list:0:0:b:39:0
-B:15:A:2:Special target:0:0:s:37:0
-B:15:A:3:Receive prize:0:0:c:40:0
+B:15:N:猎人局:柯佩伊:人类
+B:15:A:0:今日通缉:0:0:a:38:0
+B:15:A:1:通缉独特怪名单:0:0:b:39:0
+B:15:A:2:特殊目标:0:0:s:37:0
+B:15:A:3:领取赏金:0:0:c:40:0
 
 ############### Town Layout ###############
 

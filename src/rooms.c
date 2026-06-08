@@ -17,6 +17,9 @@
 #include "rooms.h"
 
 #include <assert.h>
+
+#include "room_template_name_zh.inc"
+
 /* Only one ROOM_SHOP room per level, please. Due to the
    current inventory implementation (viz, using NO_TOWN),
    multiple shops of the same kind on the same level would
@@ -24,6 +27,19 @@
 static bool shop_allowed = TRUE;
 
 static void place_outer_bold_aux(int y, int x);
+
+static cptr _room_template_display_name(cptr name)
+{
+    int i;
+
+    if (!name) return "";
+    for (i = 0; _room_template_name_zh[i].key; i++)
+    {
+        if (streq(name, _room_template_name_zh[i].key))
+            return _room_template_name_zh[i].value;
+    }
+    return name;
+}
 
 /************************************************************************
  * Room Templates
@@ -630,7 +646,7 @@ static bool build_room_template(int type, int subtype)
             color = 'B';
         else if (room->flags & ROOM_SHOP)
             color = 'G';
-        msg_format("<color:%c>%s</color>.", color, room->name);
+        msg_format("<color:%c>%s</color>.", color, _room_template_display_name(room->name));
     }
 
     build_room_template_aux(room, xform, NULL);
@@ -4609,4 +4625,3 @@ bool generate_rooms(void)
 
     return TRUE;
 }
-

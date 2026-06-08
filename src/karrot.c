@@ -310,7 +310,7 @@ static void _device_focus_spell(int cmd, variant *res)
             msg_format("你的%s爆炸了！", o_name);
             obj_zero(prompt.obj);
             obj_release(prompt.obj, OBJ_RELEASE_QUIET);
-            take_hit(DAMAGE_NOESCAPE, 20, "an exploding device");
+            take_hit(DAMAGE_NOESCAPE, 20, "正在爆炸的装置");
         }
         break;
     }
@@ -682,7 +682,7 @@ void karrot_quest_finished(quest_ptr q, bool success)
                 if (one_in_(3))
                 {
                     msg_print("你被一只无形的拳头击中了！");
-                    take_hit(DAMAGE_NOESCAPE, MIN(p_ptr->lev * 4, p_ptr->mhp * 2 / 5), "the wrath of Karrot");
+                    take_hit(DAMAGE_NOESCAPE, MIN(p_ptr->lev * 4, p_ptr->mhp * 2 / 5), "Karrot 的愤怒");
                     set_stun(p_ptr->stun + 10, FALSE);
                     punished = TRUE;
                 }
@@ -693,7 +693,7 @@ void karrot_quest_finished(quest_ptr q, bool success)
                     else
                     {
                         msg_print("你被一只无形的拳头击中了！");
-                        take_hit(DAMAGE_NOESCAPE, MIN(p_ptr->lev * 5, p_ptr->mhp / 2), "the wrath of Karrot");
+                        take_hit(DAMAGE_NOESCAPE, MIN(p_ptr->lev * 5, p_ptr->mhp / 2), "Karrot 的愤怒");
                         set_stun(p_ptr->stun + 10, FALSE);
                     }
                     punished = TRUE;
@@ -709,7 +709,7 @@ void karrot_quest_finished(quest_ptr q, bool success)
                     else
                     {
                         msg_print("你被一只无形的拳头击中了！");
-                        take_hit(DAMAGE_NOESCAPE, MIN(p_ptr->lev * 4, p_ptr->mhp * 2 / 5), "the wrath of Karrot");
+                        take_hit(DAMAGE_NOESCAPE, MIN(p_ptr->lev * 4, p_ptr->mhp * 2 / 5), "Karrot 的愤怒");
                         set_stun(p_ptr->stun + 10, FALSE);
                     }
                     punished = TRUE;
@@ -927,11 +927,11 @@ bool karrot_replace_art(object_type *o_ptr)
             strip_name(o_name, o_ptr->k_idx);
             switch (randint0(5))
             {
-                case 0: kuvaus = "long-lost"; break;
-                case 1: kuvaus = "lost"; break;
-                case 2: kuvaus = "stolen"; break;
-                case 3: kuvaus = "beloved"; break;
-                default: kuvaus = "precious"; break;
+                case 0: kuvaus = "失传已久的"; break;
+                case 1: kuvaus = "遗失的"; break;
+                case 2: kuvaus = "被盗的"; break;
+                case 3: kuvaus = "深爱的"; break;
+                default: kuvaus = "珍贵的"; break;
             }
             msg_format("卡罗特的声音如雷鸣般响起：<color:v>吾甚悦，吾%s；汝成功寻回了吾之%s%s，干得好！</color>", p_ptr->psex == SEX_FEMALE ? "女" : "儿", kuvaus, o_name);
             no_karrot_hack = TRUE;
@@ -1069,19 +1069,16 @@ static void _dump_quests(doc_ptr doc)
     {
         int vari = TERM_L_GREEN;
         int day = 0, hour = 0, min = 0;
-        monster_race *r_ptr = &r_info[_kt_quests[i].goal_idx];
-        if (!r_ptr) continue; /* paranoia */
         if ((_kt_quests[i].start_lev) && (!_kt_quests[i].completed_lev)) vari = TERM_YELLOW;
         else if (_kt_quests[i].killed < _kt_quests[i].goal_ct) vari = TERM_RED;
         if (_kt_quests[i].goal_ct > 1)
         {
             char name[MAX_NLEN];
-            strcpy(name, r_name + r_ptr->name);
-            plural_aux(name);
-            doc_printf(doc, "%2d) <indent><style:indent><color:%c>%s, 楼层 %d - 击杀 %d 只 %s\n", i + 1, attr_to_attr_char(vari), d_name + d_info[_kt_quests[i].dungeon].name, _kt_quests[i].level, _kt_quests[i].goal_ct, name);
+            strcpy(name, monster_race_display_name(_kt_quests[i].goal_idx));
+            doc_printf(doc, "%2d) <indent><style:indent><color:%c>%s, 楼层 %d - 击杀 %d 只 %s\n", i + 1, attr_to_attr_char(vari), dungeon_display_name(_kt_quests[i].dungeon), _kt_quests[i].level, _kt_quests[i].goal_ct, name);
         }
         else
-            doc_printf(doc, "%2d) <indent><style:indent><color:%c>%s, 楼层 %d - 击杀 %s\n", i + 1, attr_to_attr_char(vari), d_name + d_info[_kt_quests[i].dungeon].name, _kt_quests[i].level, r_name + r_ptr->name);
+            doc_printf(doc, "%2d) <indent><style:indent><color:%c>%s, 楼层 %d - 击杀 %s\n", i + 1, attr_to_attr_char(vari), dungeon_display_name(_kt_quests[i].dungeon), _kt_quests[i].level, monster_race_display_name(_kt_quests[i].goal_idx));
         switch (vari)
         {
             case TERM_YELLOW:
@@ -1174,7 +1171,7 @@ static void _dragon_calc_innate_attacks(void)
 
         a.weight = 100 + l;
         calc_innate_blows(&a, 400);
-        a.msg = "You claw.";
+        a.msg = "你发动了爪击。";
         a.name = "抓";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -1196,7 +1193,7 @@ static void _dragon_calc_innate_attacks(void)
             calc_innate_blows(&a, 150);
         else
             a.blows = 100;
-        a.msg = "You bite.";
+        a.msg = "你发动了啃咬。";
         a.name = "咬";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;

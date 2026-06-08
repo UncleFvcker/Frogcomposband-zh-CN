@@ -63,7 +63,7 @@ static void _calc_innate_attacks(void)
         }
         
         calc_innate_blows(&a, 400);
-        a.msg = "You touch.";
+        a.msg = "你触碰了过去。";
         a.name = "一指";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;

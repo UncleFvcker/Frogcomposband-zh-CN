@@ -304,7 +304,7 @@ static bool _mummy_pick_curse(object_type *o_ptr)
             int idx = choices[i];
             _curse_type *_curse = &_mummy_curses[idx];
             char c, buf[256];
-            strcpy(buf, format("Add the curse of <color:%c>%s</color>? <color:y>[y/n]</color>", attr_to_attr_char(_curse->attr), _curse->desc));
+            strcpy(buf, format("添加<color:%c>%s</color>的诅咒？ <color:y>[y/n]</color>", attr_to_attr_char(_curse->attr), _curse->desc));
             c = msg_prompt(buf, "ny", PROMPT_NEW_LINE | PROMPT_ESCAPE_DEFAULT);
             if (c == 'n') continue;
 
@@ -930,7 +930,7 @@ void _zombie_innate_attacks(void)
         a.weight = 150;
         calc_innate_blows(&a, 242);
         a.blows += py_prorata_level_aux(_curse_boost_capped*121/15, 1, 1, 0);
-        a.msg = "You hit.";
+        a.msg = "你打中了目标。";
         a.name = "猛击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -956,7 +956,7 @@ void _ghoul_innate_attacks(void)
         a.weight = 100;
         calc_innate_blows(&a, 164);
         a.blows += py_prorata_level_aux(_curse_boost_capped*100/15, 1, 1, 0);
-        a.msg = "You claw.";
+        a.msg = "你抓了过去。";
         a.name = "爪击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -977,7 +977,7 @@ void _ghoul_innate_attacks(void)
         a.weight = 100;
         calc_innate_blows(&a, 164);
         a.blows += py_prorata_level_aux(_curse_boost_capped*100/15, 1, 1, 0);
-        a.msg = "You bite.";
+        a.msg = "你咬了过去。";
         a.name = "撕咬";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -1008,7 +1008,7 @@ void _sorc_innate_attacks(void)
         a.weight = 100;
         calc_innate_blows(&a, 200);
         a.blows += py_prorata_level_aux(_curse_boost_capped*121/15, 1, 1, 0);
-        a.msg = "You claw.";
+        a.msg = "你抓了过去。";
         a.name = "爪击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -1028,7 +1028,7 @@ void _sorc_innate_attacks(void)
         a.effect[0] = GF_TURN_ALL;
 
         a.blows = 100 + py_prorata_level_aux(_curse_boost_capped*100/15, 1, 1, 0);
-        a.msg = "You gaze.";
+        a.msg = "你注视了过去。";
         a.name = "凝视";
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -1057,7 +1057,7 @@ void _draugr_innate_attacks(void)
         a.effect_chance[2] = 20;
 
         a.blows = 100 + py_prorata_level_aux(_curse_boost_capped*5, 1, 1, 0);
-        a.msg = "You gaze.";
+        a.msg = "你注视了过去。";
         a.name = "凝视";
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -1076,7 +1076,7 @@ void _draugr_innate_attacks(void)
         a.weight = 150;
         calc_innate_blows(&a, 150);
         a.blows += py_prorata_level_aux(_curse_boost_capped*5, 1, 1, 0);
-        a.msg = "You bite.";
+        a.msg = "你咬了过去。";
         a.name = "撕咬";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -1098,7 +1098,7 @@ void _draugr_innate_attacks(void)
 
         a.weight = 250;
         a.blows = 100;
-        a.msg = "You crush.";
+        a.msg = "你粉碎了目标。";
         a.name = "粉碎";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -1125,7 +1125,7 @@ void _gmum_innate_attacks(void)
         a.weight = 150;
         calc_innate_blows(&a, 242);
         a.blows += py_prorata_level_aux(_curse_boost_capped*121/15, 1, 1, 0);
-        a.msg = "You claw.";
+        a.msg = "你抓了过去。";
         a.name = "爪击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -1147,7 +1147,7 @@ void _gmum_innate_attacks(void)
         a.effect_chance[1] = 50;
 
         a.blows = 200 + py_prorata_level_aux(_curse_boost_capped*121/15, 1, 1, 0);
-        a.msg = "You gaze.";
+        a.msg = "你注视了过去。";
         a.name = "凝视";
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }
@@ -1174,7 +1174,7 @@ void _king_innate_attacks(void)
         a.weight = 150;
         calc_innate_blows(&a, 242);
         a.blows += py_prorata_level_aux(_curse_boost_capped*121/15, 1, 1, 0);
-        a.msg = "You claw.";
+        a.msg = "你抓了过去。";
         a.name = "爪击";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -1198,7 +1198,7 @@ void _king_innate_attacks(void)
         a.effect_chance[2] = 25;
 
         a.blows = 200 + py_prorata_level_aux(_curse_boost_capped*121/15, 1, 1, 0);
-        a.msg = "You gaze.";
+        a.msg = "你注视了过去。";
         a.name = "凝视";
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
     }

@@ -82,7 +82,7 @@ static void _calc_innate_attacks(void)
 
     calc_innate_blows(&a, _head_count() * 100);
     
-    a.msg = "You bite.";
+    a.msg = "你咬了过去。";
     a.name = "撕咬";
     p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
 }
@@ -122,7 +122,7 @@ static void _breathe_spell(int cmd, variant *res)
         break;
     case SPELL_DESC:
     {
-        char elname[32] = "software bugs";
+        char elname[32] = "软件漏洞";
         gf_info_ptr gf = gf_lookup(_breath_effect());
         if ((gf) && (gf->name))
         {
@@ -303,7 +303,7 @@ race_t *mon_hydra_get_race(void)
 {
     static race_t me = {0};
     static bool   init = FALSE;
-    static cptr   titles[6] =  {"2-headed hydra", "4-headed hydra", "5-headed hydra", "7-headed hydra", "9-headed hydra", "11-headed hydra"};    
+    static cptr   titles[6] =  {"双头蛇蜥", "四头蛇蜥", "五头蛇蜥", "七头蛇蜥", "九头蛇蜥", "十一头蛇蜥"};    
     int           rank = 0;
 
     if (p_ptr->lev >= 10) rank++;

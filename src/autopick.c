@@ -127,82 +127,82 @@ enum _keyword_e {
 #define FLG_NOUN_END            (FLG_MAX - 1)
 
 
-static char KEY_ALL[] = "all";
+static char KEY_ALL[] = "全部";
 
-static char KEY_UNSENSED[] = "unsensed";
-static char KEY_UNIDENTIFIED[] = "unidentified";
-static char KEY_IDENTIFIED[] = "identified";
-static char KEY_STAR_IDENTIFIED[] = "*identified*";
-static char KEY_UNAWARE[] = "unaware";
+static char KEY_UNSENSED[] = "未感知";
+static char KEY_UNIDENTIFIED[] = "未鉴定";
+static char KEY_IDENTIFIED[] = "已鉴定";
+static char KEY_STAR_IDENTIFIED[] = "*已鉴定*";
+static char KEY_UNAWARE[] = "未察觉";
 
-static char KEY_AVERAGE[] = "average";
-static char KEY_GOOD[] = "good";
-static char KEY_CURSED[] = "cursed";
+static char KEY_AVERAGE[] = "普通的";
+static char KEY_GOOD[] = "良好的";
+static char KEY_CURSED[] = "被诅咒的";
 static char KEY_EGO[] = "ego";
-static char KEY_ARTIFACT[] = "artifact";
-static char KEY_NAMELESS[] = "nameless";
-static char KEY_RARE[] = "rare";
-static char KEY_COMMON[] = "common";
-static char KEY_WORTHLESS[] = "worthless";
+static char KEY_ARTIFACT[] = "神器";
+static char KEY_NAMELESS[] = "无名";
+static char KEY_RARE[] = "稀有";
+static char KEY_COMMON[] = "常见";
+static char KEY_WORTHLESS[] = "无价值";
 
-static char KEY_BOOSTED[] = "dice boosted";
-static char KEY_ICKY[] = "icky";
+static char KEY_BOOSTED[] = "伤害骰提升";
+static char KEY_ICKY[] = "被排斥";
 
-static char KEY_UNREADABLE[] = "unreadable";
+static char KEY_UNREADABLE[] = "无法阅读";
 static char KEY_REALM1[] = "第一领域的";
 static char KEY_REALM2[] = "第二领域的";
-static char KEY_FIRST[] = "first";
-static char KEY_SECOND[] = "second";
-static char KEY_THIRD[] = "third";
-static char KEY_FOURTH[] = "fourth";
+static char KEY_FIRST[] = "第一";
+static char KEY_SECOND[] = "第二";
+static char KEY_THIRD[] = "第三";
+static char KEY_FOURTH[] = "第四";
 
-static char KEY_COLLECTING[] = "collecting";
-static char KEY_SPECIAL[] = "special";
-static char KEY_UNUSABLE[] = "unusable";
-static char KEY_WANTED[] = "wanted";
-static char KEY_UNIQUE[] = "unique";
-static char KEY_HUMAN[] = "human";
+static char KEY_COLLECTING[] = "收集中";
+static char KEY_SPECIAL[] = "特殊的";
+static char KEY_UNUSABLE[] = "不可用";
+static char KEY_WANTED[] = "悬赏中";
+static char KEY_UNIQUE[] = "唯一";
+static char KEY_HUMAN[] = "人类";
 
-static char KEY_MORE_DICE[] =  "more dice than";
-static char KEY_MORE_BONUS[] =  "more bonus than";
-static char KEY_MORE_LEVEL[] =  "more level than";
-static char KEY_MORE_WEIGHT[] =  "more weight than";
-static char KEY_MORE_CHARGES[] =  "more charges than";
-static char KEY_MORE_VALUE[] =  "more value than";
+static char KEY_MORE_DICE[] =  "伤害骰多于";
+static char KEY_MORE_BONUS[] =  "加成多于";
+static char KEY_MORE_LEVEL[] =  "等级多于";
+static char KEY_MORE_WEIGHT[] =  "重量多于";
+static char KEY_MORE_CHARGES[] =  "充能多于";
+static char KEY_MORE_VALUE[] =  "价值多于";
 
-static char KEY_ITEMS[] = "items";
+static char KEY_ITEMS[] = "物品";
 
-static char KEY_WEAPONS[] = "weapons";
-    static char KEY_FAVORITE_WEAPONS[] = "favorite weapons";
-    static char KEY_HAFTED[] = "hafted weapons";
-    static char KEY_DIGGERS[] = "diggers";
+static char KEY_WEAPONS[] = "武器";
+    static char KEY_FAVORITE_WEAPONS[] = "偏好的武器";
+    static char KEY_HAFTED[] = "钝器";
+    static char KEY_DIGGERS[] = "挖掘工具";
 
-static char KEY_SHOOTERS[] = "shooters";
-static char KEY_AMMO[] = "ammo";
+static char KEY_SHOOTERS[] = "发射器";
+static char KEY_AMMO[] = "弹药";
 
-static char KEY_ARMORS[] = "armors";
-    static char KEY_SHIELDS[] = "shields";
-    static char KEY_SUITS[] = "suits";
-    static char KEY_CLOAKS[] = "cloaks";
-    static char KEY_HELMS[] = "helms";
-    static char KEY_GLOVES[] = "gloves";
-    static char KEY_BOOTS[] = "boots";
+static char KEY_ARMORS[] = "防具";
+    static char KEY_SHIELDS[] = "盾牌";
+    static char KEY_SUITS[] = "护甲";
+    static char KEY_CLOAKS[] = "斗篷";
+    static char KEY_HELMS[] = "头盔";
+    static char KEY_GLOVES[] = "手套";
+    static char KEY_BOOTS[] = "靴子";
 
-static char KEY_LIGHTS[] = "lights";
-static char KEY_RINGS[] = "rings";
-static char KEY_AMULETS[] = "amulets";
+static char KEY_LIGHTS[] = "光源";
+static char KEY_RINGS[] = "戒指";
+static char KEY_AMULETS[] = "护身符";
 
-static char KEY_SPELLBOOKS[] = "spellbooks";
+static char KEY_SPELLBOOKS[] = "法术书";
 
-static char KEY_WANDS[] = "wands";
-static char KEY_STAVES[] = "staves";
-static char KEY_RODS[] = "rods";
-static char KEY_POTIONS[] = "potions";
-static char KEY_SCROLLS[] = "scrolls";
+static char KEY_WANDS[] = "魔杖";
+static char KEY_STAVES[] = "法杖";
+static char KEY_RODS[] = "魔棒";
+static char KEY_POTIONS[] = "药水";
+static char KEY_SCROLLS[] = "卷轴";
 
-static char KEY_JUNKS[] = "junk";
-static char KEY_CORPSES[] = "corpses";
-static char KEY_SKELETONS[] = "skeletons";
+static char KEY_JUNKS[] = "垃圾";
+static char KEY_CORPSES[] = "尸体";
+static char KEY_SKELETONS[] = "残骸";
 
 static bool _inscribe_pack_hack = FALSE;
 
@@ -2709,10 +2709,10 @@ bool autopick_autoregister(object_type *o_ptr)
         byte act = autopick_list[match_autopick].action;
         string_ptr s = autopick_line_from_entry(&autopick_list[match_autopick], AUTOPICK_COLOR_CODED);
 
-        if (act & DO_AUTOPICK) what = "auto-pickup";
-        else if (act & DO_AUTODESTROY) what = "auto-destroy";
-        else if (act & DONT_AUTOPICK) what = "leave on floor";
-        else /* if (act & DO_QUERY_AUTOPICK) */ what = "query auto-pickup";
+        if (act & DO_AUTOPICK) what = "自动拾取";
+        else if (act & DO_AUTODESTROY) what = "自动摧毁";
+        else if (act & DONT_AUTOPICK) what = "留在地上";
+        else /* if (act & DO_QUERY_AUTOPICK) */ what = "询问是否自动拾取";
 
         msg_format("该物品已被注册为%s，根据规则%s。", what, string_buffer(s));
 
@@ -2808,8 +2808,8 @@ bool autopick_autoregister(object_type *o_ptr)
         /* Add the header */
         fprintf(pref_fff, "%s\n", autoregister_header);
 
-        fprintf(pref_fff, "%s\n", "# *Warning!* The lines below will be deleted later.");
-        fprintf(pref_fff, "%s\n", "# Keep them by cut & paste if you need them for future characters.");
+        fprintf(pref_fff, "%s\n", "# *警告！* 下面的行稍后会被删除。");
+        fprintf(pref_fff, "%s\n", "# 如果你以后的角色还需要它们，请剪切并粘贴以保留。");
 
         /* Now auto register is in-use */
         p_ptr->autopick_autoregister = TRUE;
@@ -2921,129 +2921,129 @@ static void describe_autopick(char *buff, autopick_type *entry)
     cptr before_str[20], after_str[20], which_str[20], whose_str[20], body_str;
     int before_n = 0, after_n = 0, which_n = 0, whose_n = 0;
 
-    body_str = "items";
+    body_str = "物品";
 
     /*** Collecting items ***/
     /*** Which can be absorbed into a slot as a bundle ***/
     if (IS_FLG(FLG_COLLECTING))
-        which_str[which_n++] = "can be absorbed into an existing inventory slot";
+        which_str[which_n++] = "可堆叠进已有的物品栏中";
 
     /*** Unaware items ***/
     if (IS_FLG(FLG_UNAWARE))
     {
-        before_str[before_n++] = "unidentified";
-        whose_str[whose_n++] = "basic abilities are not known";
+        before_str[before_n++] = "未鉴定的";
+        whose_str[whose_n++] = "其基本能力未知";
     }
 
     /*** Unsensed ***/
     if (IS_FLG(FLG_UNSENSED))
-        before_str[before_n++] = "unsensed";
+        before_str[before_n++] = "未感知的";
 
     /*** Unidentified ***/
     if (IS_FLG(FLG_UNIDENTIFIED))
-        before_str[before_n++] = "unidentified";
+        before_str[before_n++] = "未鉴定的";
 
     /*** Identified ***/
     if (IS_FLG(FLG_IDENTIFIED))
-        before_str[before_n++] = "identified";
+        before_str[before_n++] = "已鉴定的";
 
     /*** *Identified* ***/
     if (IS_FLG(FLG_STAR_IDENTIFIED))
-        before_str[before_n++] = "fully identified";
+        before_str[before_n++] = "完全鉴定的";
 
     /*** Rare equipments ***/
     if (IS_FLG(FLG_RARE))
     {
-        before_str[before_n++] = "very rare";
-        body_str = "equipments";
-        after_str[after_n++] = "like Dragon armors, Blades of Chaos, etc.";
+        before_str[before_n++] = "非常稀有的";
+        body_str = "装备";
+        after_str[after_n++] = "（如龙铠、混沌之刃等）";
     }
 
     /*** Common equipments ***/
     if (IS_FLG(FLG_COMMON))
     {
-        before_str[before_n++] = "relatively common";
-        body_str = "equipments";
-        after_str[after_n++] = "compared to very rare Dragon armors, Blades of Chaos, etc.";
+        before_str[before_n++] = "比较常见的";
+        body_str = "装备";
+        after_str[after_n++] = "（与非常稀有的龙铠、混沌之刃等相比）";
     }
 
     /*** Worthless items ***/
     if (IS_FLG(FLG_WORTHLESS))
     {
-        before_str[before_n++] = "worthless";
-        which_str[which_n++] = "can not be sold at stores";
+        before_str[before_n++] = "毫无价值的";
+        which_str[which_n++] = "无法在商店出售";
     }
 
     /*** Icky/uncomfortable item ***/
     if (IS_FLG(FLG_ICKY))
     {
-        before_str[before_n++] = "uncomfortable";
+        before_str[before_n++] = "不顺手的（受排斥的）";
     }
 
     /*** Artifacto ***/
     if (IS_FLG(FLG_ARTIFACT))
     {
-        before_str[before_n++] = "artifact";
+        before_str[before_n++] = "神器的";
     }
 
     /*** Ego ***/
     if (IS_FLG(FLG_EGO))
     {
-        before_str[before_n++] = "ego";
+        before_str[before_n++] = "ego的";
     }
 
     /*** Good ***/
     if (IS_FLG(FLG_GOOD))
     {
-        body_str = "equipment";
-        which_str[which_n++] = "have good quality";
+        body_str = "装备";
+        which_str[which_n++] = "拥有良好品质";
     }
 
     if (IS_FLG(FLG_CURSED))
     {
-        body_str = "equipment";
-        which_str[which_n++] = "are cursed";
+        body_str = "装备";
+        which_str[which_n++] = "是被诅咒的";
     }
 
     if (IS_FLG(FLG_SPECIAL))
     {
-        body_str = "item";
+        body_str = "物品";
         which_str[which_n++] = "你的种族/职业需求";
     }
 
     if (IS_FLG(FLG_UNUSABLE))
     {
-        body_str = "equipment";
-        which_str[which_n++] = "you cannot wear";
+        body_str = "装备";
+        which_str[which_n++] = "你无法穿戴";
     }
 
     /*** Nameless ***/
     if (IS_FLG(FLG_NAMELESS))
     {
-        body_str = "equipment";
-        which_str[which_n++] = "are neither ego-item nor artifact";
+        body_str = "装备";
+        which_str[which_n++] = "既非ego也非神器";
     }
 
     /*** Average ***/
     if (IS_FLG(FLG_AVERAGE))
     {
-        body_str = "equipment";
-        which_str[which_n++] = "have average quality";
+        body_str = "装备";
+        which_str[which_n++] = "拥有普通品质";
     }
 
     /*** Dice boosted (weapon of slaying) ***/
     if (IS_FLG(FLG_BOOSTED))
     {
-        body_str = "weapons";
-        whose_str[whose_n++] = "damage dice is bigger than normal";
+        body_str = "武器";
+        whose_str[whose_n++] = "其伤害骰大于基础值";
     }
 
     /*** Weapons whose dd*ds is more than nn ***/
     if (IS_FLG(FLG_MORE_DICE))
     {
         static char more_than_desc_str[] =
-            "maximum damage from dice is more than __";
-        body_str = "weapons";
+            "其伤害骰最大值大于 __";
+        body_str = "武器";
 
         sprintf(more_than_desc_str + sizeof(more_than_desc_str) - 3,
             "%d", entry->dice);
@@ -3054,7 +3054,7 @@ static void describe_autopick(char *buff, autopick_type *entry)
     if (IS_FLG(FLG_MORE_BONUS))
     {
         static char more_bonus_desc_str[] =
-            "magical bonus is larger than (+__)";
+            "其魔法加成大于 (+__)";
 
         sprintf(more_bonus_desc_str + sizeof(more_bonus_desc_str) - 4,
             "%d)", entry->bonus);
@@ -3064,152 +3064,152 @@ static void describe_autopick(char *buff, autopick_type *entry)
     if (IS_FLG(FLG_MORE_LEVEL))
     {
         static char more_level_desc_str[50];
-        sprintf(more_level_desc_str, "level is higher than %d", entry->level);
+        sprintf(more_level_desc_str, "其等级高于 %d", entry->level);
         whose_str[whose_n++] = more_level_desc_str;
     }
     if (IS_FLG(FLG_MORE_WEIGHT))
     {
         static char more_weight_desc_str[50];
-        sprintf(more_weight_desc_str, "weight is more than %d lbs", entry->weight);
+        sprintf(more_weight_desc_str, "其重量大于 %d 磅", entry->weight);
         whose_str[whose_n++] = more_weight_desc_str;
     }
     if (IS_FLG(FLG_MORE_CHARGES))
     {
         static char more_charges_desc_str[50];
-        sprintf(more_charges_desc_str, "number of charges is higher than %d", entry->charges);
+        sprintf(more_charges_desc_str, "其充能次数多于 %d", entry->charges);
         whose_str[whose_n++] = more_charges_desc_str;
     }
     if (IS_FLG(FLG_MORE_VALUE))
     {
         static char more_value_desc_str[50];
-        sprintf(more_value_desc_str, "known value is more than %d", entry->value);
+        sprintf(more_value_desc_str, "其已知价值大于 %d", entry->value);
         whose_str[whose_n++] = more_value_desc_str;
     }
 
     /*** Wanted monster's corpse/skeletons ***/
     if (IS_FLG(FLG_WANTED))
     {
-        body_str = "corpse or skeletons";
-        which_str[which_n++] = "are wanted at the Hunter's Office";
+        body_str = "尸体或残骸";
+        which_str[which_n++] = "是猎人公会正在悬赏的";
     }
 
     /*** Human corpse/skeletons (for Daemon magic) ***/
     if (IS_FLG(FLG_HUMAN))
     {
-        before_str[before_n++] = "humanoid";
-        body_str = "corpse or skeletons";
-        which_str[which_n++] = "can be used for Daemon magic";
+        before_str[before_n++] = "人形生物的";
+        body_str = "尸体或残骸";
+        which_str[which_n++] = "可用于恶魔魔法";
     }
 
     /*** Unique monster's corpse/skeletons/statues ***/
     if (IS_FLG(FLG_UNIQUE))
     {
-        before_str[before_n++] = "unique monster's";
-        body_str = "corpse or skeletons";
+        before_str[before_n++] = "唯一怪物的";
+        body_str = "尸体或残骸";
     }
 
     /*** Unreadable spellbooks ***/
     if (IS_FLG(FLG_UNREADABLE))
     {
-        body_str = "spellbooks";
-        after_str[after_n++] = "of different realms from yours";
+        body_str = "法术书";
+        after_str[after_n++] = "（与你不同领域的）";
     }
 
     /*** First realm spellbooks ***/
     if (IS_FLG(FLG_REALM1))
     {
-        body_str = "spellbooks";
+        body_str = "法术书";
         after_str[after_n++] = "你的第一领域的";
     }
 
     /*** Second realm spellbooks ***/
     if (IS_FLG(FLG_REALM2))
     {
-        body_str = "spellbooks";
+        body_str = "法术书";
         after_str[after_n++] = "你的第二领域的";
     }
 
     /*** First rank spellbooks ***/
     if (IS_FLG(FLG_FIRST))
     {
-        before_str[before_n++] = "first one of four";
-        body_str = "spellbooks";
+        before_str[before_n++] = "四本中的第一本";
+        body_str = "法术书";
     }
 
     /*** Second rank spellbooks ***/
     if (IS_FLG(FLG_SECOND))
     {
-        before_str[before_n++] = "second one of four";
-        body_str = "spellbooks";
+        before_str[before_n++] = "四本中的第二本";
+        body_str = "法术书";
     }
 
     /*** Third rank spellbooks ***/
     if (IS_FLG(FLG_THIRD))
     {
-        before_str[before_n++] = "third one of four";
-        body_str = "spellbooks";
+        before_str[before_n++] = "四本中的第三本";
+        body_str = "法术书";
     }
 
     /*** Fourth rank spellbooks ***/
     if (IS_FLG(FLG_FOURTH))
     {
-        before_str[before_n++] = "fourth one of four";
-        body_str = "spellbooks";
+        before_str[before_n++] = "四本中的第四本";
+        body_str = "法术书";
     }
 
     /*** Items ***/
     if (IS_FLG(FLG_ITEMS))
         ; /* Nothing to do */
     else if (IS_FLG(FLG_WEAPONS))
-        body_str = "melee weapons";
+        body_str = "近战武器";
     else if (IS_FLG(FLG_FAVORITE_WEAPONS))
-        body_str = "favorite weapons";
+        body_str = "偏好的武器";
     else if (IS_FLG(FLG_HAFTED))
-        body_str = "hafted weapons";
+        body_str = "钝器";
     else if (IS_FLG(FLG_DIGGERS))
-        body_str = "digging implements";
+        body_str = "挖掘工具";
     else if (IS_FLG(FLG_SHOOTERS))
-        body_str = "slings, bows or crossbows";
+        body_str = "投石索、弓或弩";
     else if (IS_FLG(FLG_AMMO))
-        body_str = "shots, arrows or bolts";
+        body_str = "弹丸、箭矢或弩栓";
     else if (IS_FLG(FLG_ARMORS))
-        body_str = "armors";
+        body_str = "防具";
     else if (IS_FLG(FLG_WANDS))
-        body_str = "wands";
+        body_str = "魔杖";
     else if (IS_FLG(FLG_STAVES))
-        body_str = "staves";
+        body_str = "法杖";
     else if (IS_FLG(FLG_RODS))
-        body_str = "rods";
+        body_str = "魔棒";
     else if (IS_FLG(FLG_POTIONS))
-        body_str = "potions";
+        body_str = "药水";
     else if (IS_FLG(FLG_SCROLLS))
-        body_str = "scrolls";
+        body_str = "卷轴";
     else if (IS_FLG(FLG_LIGHTS))
-        body_str = "light sources";
+        body_str = "光源";
     else if (IS_FLG(FLG_JUNKS))
-        body_str = "junk such as broken sticks";
+        body_str = "断棍等垃圾";
     else if (IS_FLG(FLG_CORPSES))
-        body_str = "corpses";
+        body_str = "尸体";
     else if (IS_FLG(FLG_SKELETONS))
-        body_str = "skeletons";
+        body_str = "残骸";
     else if (IS_FLG(FLG_SPELLBOOKS))
-        body_str = "spellbooks";
+        body_str = "法术书";
     else if (IS_FLG(FLG_SHIELDS))
-        body_str = "shields";
+        body_str = "盾牌";
     else if (IS_FLG(FLG_RINGS))
-        body_str = "rings";
+        body_str = "戒指";
     else if (IS_FLG(FLG_AMULETS))
-        body_str = "amulets";
+        body_str = "护身符";
     else if (IS_FLG(FLG_SUITS))
-        body_str = "body armors";
+        body_str = "躯干护甲";
     else if (IS_FLG(FLG_CLOAKS))
-        body_str = "cloaks";
+        body_str = "斗篷";
     else if (IS_FLG(FLG_HELMS))
-        body_str = "helms or crowns";
+        body_str = "头盔或王冠";
     else if (IS_FLG(FLG_GLOVES))
-        body_str = "gloves";
+        body_str = "手套";
     else if (IS_FLG(FLG_BOOTS))
-        body_str = "boots";
+        body_str = "靴子";
 
     /* Prepare a string for item name */
     if (*str)
@@ -3218,10 +3218,10 @@ static void describe_autopick(char *buff, autopick_type *entry)
         {
             str++;
             top = TRUE;
-            whose_str[whose_n++] = "name begins with \"";
+            whose_str[whose_n++] = "其名字以该词开头：\"";
         }
         else
-            which_str[which_n++] = "have \"";
+            which_str[which_n++] = "名字中包含：\"";
     }
 
 
@@ -3241,12 +3241,12 @@ static void describe_autopick(char *buff, autopick_type *entry)
     /* Auto-insctiption */
     if (insc)
     {
-        strncat(buff, format("and inscribe \"%s\"", insc), 80);
+        strncat(buff, format("并铭刻 \"%s\"", insc), 80);
 
         if (my_strstr(insc, "%all"))
-            strcat(buff, ", replacing %all with code string representing all abilities,");
+            strcat(buff, "，将 %all 替换为代表所有能力的暗号，");
         else if (my_strstr(insc, "%"))
-            strcat(buff, ", replacing % with code string representing extra random abilities,");
+            strcat(buff, "，将 % 替换为代表额外随机能力的暗号，");
 
         strcat(buff, " on ");
     }
@@ -3290,7 +3290,7 @@ static void describe_autopick(char *buff, autopick_type *entry)
 
     /* whose ..., and which .... */
     if (whose_n && which_n)
-        strcat(buff, ", and");
+        strcat(buff, "，且");
 
     /* which ... */
     for (i = 0; i < which_n && which_str[i]; i++)
@@ -3307,7 +3307,7 @@ static void describe_autopick(char *buff, autopick_type *entry)
     if (*str && !top)
     {
         strncat(buff, str, 80);
-        strcat(buff, "\" as part of their name");
+        strcat(buff, "” 作为它们名字的一部分");
     }
     strcat(buff, ".");
 
@@ -3366,14 +3366,14 @@ static cptr *read_text_lines(cptr filename)
 static void prepare_default_pickpref(bool silent)
 {
     static char *messages[] = {
-        "You have activated the Mogaminator for the first time.",
-        "Since user preferences have not yet been created,",
-        "the default settings are loaded from lib/pref/pickpref.prf.",
+        "你首次激活了莫加明器(Mogaminator，自动拾取编辑器)。",
+        "由于尚未创建用户偏好设置，",
+        "现已从 lib/pref/pickpref.prf 载入默认设置。",
         NULL
     };
 
     static char *usermessages[] = {
-        "Mogaminator user preferences loaded from lib/user/UserDefault.prf.",
+        "从 lib/user/UserDefault.prf 载入了莫加明器的用户偏好设置。",
         NULL
     };
 
@@ -4498,7 +4498,7 @@ enum {
 /* Manu names */
 
 static char MN_QUIT[] = "不保存并退出";
-static char MN_SAVEQUIT[] = "Save & Quit";
+static char MN_SAVEQUIT[] = "保存并退出";
 static char MN_REVERT[] = "撤销所有更改";
 static char MN_LOAD[] = "加载偏好设置";
 static char MN_SAVE[] = "另存为";
@@ -4512,7 +4512,7 @@ static char MN_RIGHT[] =  "Right    (Right Arrow key)";
 static char MN_BOL[] =    "行首";
 static char MN_EOL[] =    "行尾";
 static char MN_PGUP[] =   "Page up  (PageUp key)";
-static char MN_PGDOWN[] = "Page down(PageDown key)";
+static char MN_PGDOWN[] = "向下翻页 (PageDown 键)";
 static char MN_TOP[] =    "Top      (Home key)";
 static char MN_BOTTOM[] = "Bottom   (End key)";
 
@@ -4533,7 +4533,7 @@ static char MN_SEARCH_BACK[] = "向上搜索";
 static char MN_SEARCH_OBJ[] = "按背包物品搜索";
 static char MN_SEARCH_DESTROYED[] = "按已摧毁物品搜索";
 
-static char MN_INSERT[] = "Insert...";
+static char MN_INSERT[] = "插入...";
 static char MN_INSERT_OBJECT[] = "插入所选物品名称";
 static char MN_INSERT_DESTROYED[] = "插入已摧毁物品名称";
 static char MN_INSERT_BLOCK[] = "插入条件块";
@@ -4541,38 +4541,38 @@ static char MN_INSERT_MACRO[] = "插入宏定义";
 static char MN_INSERT_KEYMAP[] = "插入键位映射定义";
 
 static char MN_COMMAND_LETTER[] = "动作字母";
-static char MN_CL_AUTOPICK[] = "' ' (Pick up)";
-static char MN_CL_DESTROY[] = "'!' (Destroy)";
-static char MN_CL_LEAVE[] = "'~' (Leave on the floor)";
-static char MN_CL_QUERY[] = "';' (Query to pick up)";
-static char MN_CL_NO_DISP[] = "'(' (Hide on M map)";
-static char MN_CL_AUTO_ID[] = "'?' (Identify)";
+static char MN_CL_AUTOPICK[] = "' ' (拾取)";
+static char MN_CL_DESTROY[] = "'!' (摧毁)";
+static char MN_CL_LEAVE[] = "'~' (留在地上)";
+static char MN_CL_QUERY[] = "';' (询问是否拾取)";
+static char MN_CL_NO_DISP[] = "'(' (在大地图 M 上隐藏)";
+static char MN_CL_AUTO_ID[] = "'?' (鉴定)";
 
-static char MN_ADJECTIVE_GEN[] = "Adjective (general)";
-static char MN_RARE[] = "rare (equipments)";
-static char MN_COMMON[] = "common (equipments)";
-static char MN_ICKY[] = "icky (equipments)";
+static char MN_ADJECTIVE_GEN[] = "形容词 (通用)";
+static char MN_RARE[] = "rare (装备)";
+static char MN_COMMON[] = "common (装备)";
+static char MN_ICKY[] = "icky (装备)";
 
-static char MN_ADJECTIVE_SPECIAL[] = "Adjective (special)";
-static char MN_BOOSTED[] = "dice boosted (weapons)";
-static char MN_MORE_DICE[] = "more dice than # (weapons/shooters)";
-static char MN_MORE_BONUS[] = "more bonus than # (rings etc.)";
-static char MN_MORE_LEVEL[] = "more level than # (corpses)";
-static char MN_MORE_WEIGHT[] = "more weight than #";
-static char MN_MORE_VALUE[] = "more value than #";
-static char MN_MORE_CHARGES[] = "more charges than #";
-static char MN_WANTED[] = "wanted (corpse)";
-static char MN_UNIQUE[] = "unique (corpse)";
-static char MN_HUMAN[] = "human (corpse)";
-static char MN_UNREADABLE[] = "unreadable (spellbooks)";
-static char MN_REALM1[] = "realm1 (spellbooks)";
-static char MN_REALM2[] = "realm2 (spellbooks)";
-static char MN_FIRST[] = "first (spellbooks)";
-static char MN_SECOND[] = "second (spellbooks)";
-static char MN_THIRD[] = "third (spellbooks)";
-static char MN_FOURTH[] = "fourth (spellbooks)";
+static char MN_ADJECTIVE_SPECIAL[] = "形容词 (特殊)";
+static char MN_BOOSTED[] = "dice boosted (武器)";
+static char MN_MORE_DICE[] = "more dice than # (武器/发射器)";
+static char MN_MORE_BONUS[] = "more bonus than # (戒指等)";
+static char MN_MORE_LEVEL[] = "more level than # (尸体)";
+static char MN_MORE_WEIGHT[] = "more weight than # (重量大于#)";
+static char MN_MORE_VALUE[] = "more value than # (价值大于#)";
+static char MN_MORE_CHARGES[] = "more charges than # (充能多于#)";
+static char MN_WANTED[] = "wanted (悬赏的尸体)";
+static char MN_UNIQUE[] = "unique (唯一的尸体)";
+static char MN_HUMAN[] = "human (人类的尸体)";
+static char MN_UNREADABLE[] = "unreadable (无法阅读的法术书)";
+static char MN_REALM1[] = "realm1 (领域1的法术书)";
+static char MN_REALM2[] = "realm2 (领域2的法术书)";
+static char MN_FIRST[] = "first (第一本法术书)";
+static char MN_SECOND[] = "second (第二本法术书)";
+static char MN_THIRD[] = "third (第三本法术书)";
+static char MN_FOURTH[] = "fourth (第四本法术书)";
 
-static char MN_NOUN[] = "Keywords (noun)";
+static char MN_NOUN[] = "关键字 (名词)";
 
 
 
@@ -5247,40 +5247,40 @@ static void draw_text_editor(text_body_type *tb)
         /* Display information */
         if (tb->dirty_flags & DIRTY_NOT_FOUND)
         {
-            str1 = format("Pattern not found: %s", tb->search_str);
+            str1 = format("未找到模式：%s", tb->search_str);
         }
         else if (tb->dirty_flags & DIRTY_SKIP_INACTIVE)
         {
-            str1 = format("Some inactive lines are skipped. (Searching %s)", tb->search_str);
+            str1 = format("已跳过某些处于非激活状态的行。(正在搜索 %s)", tb->search_str);
         }
         else if (tb->dirty_flags & DIRTY_INACTIVE)
         {
-            str1 = format("Found only an inactive line. (Searching %s)", tb->search_str);
+            str1 = format("仅找到了一个处于非激活状态的行。(正在搜索 %s)", tb->search_str);
         }
         else if (tb->dirty_flags & DIRTY_NO_SEARCH)
         {
-            str1 = "No pattern to search. (Press ^S to search.)";
+            str1 = "没有要搜索的模式。(按 ^S 进行搜索。)";
         }
         else if (tb->lines_list[tb->cy][0] == '#')
         {
-            str1 = "This line is a comment.";
+            str1 = "此行是注释。";
         }
         else if (tb->lines_list[tb->cy][0] && tb->lines_list[tb->cy][1] == ':')
         {
             switch(tb->lines_list[tb->cy][0])
             {
             case '?':
-                str1 = "This line is a Conditional Expression.";
+                str1 = "此行是条件表达式。";
 
                 break;
             case 'A':
-                str1 = "This line defines a Macro action.";
+                str1 = "此行定义了宏动作。";
                 break;
             case 'P':
-                str1 = "This line defines a Macro trigger key.";
+                str1 = "此行定义了宏触发键。";
                 break;
             case 'C':
-                str1 = "This line defines a Keymap.";
+                str1 = "此行定义了键位映射。";
                 break;
             }
 
@@ -5289,23 +5289,23 @@ static void draw_text_editor(text_body_type *tb)
             case '?':
                 if (tb->states[tb->cy] & LSTAT_BYPASS)
                 {
-                    str2 = "The expression is 'False'(=0) currently.";
+                    str2 = "该表达式当前为“False”(=0)。";
                 }
                 else
                 {
-                    str2 = "The expression is 'True'(=1) currently.";
+                    str2 = "该表达式当前为“True”(=1)。";
                 }
                 break;
 
             default:
                 if (tb->states[tb->cy] & LSTAT_AUTOREGISTER)
                 {
-                    str2 = "This line will be deleted later.";
+                    str2 = "此行稍后将会被删除。";
                 }
 
                 else if (tb->states[tb->cy] & LSTAT_BYPASS)
                 {
-                    str2 = "This line is bypassed currently.";
+                    str2 = "此行当前被绕过（失效）。";
                 }
                 break;
             }

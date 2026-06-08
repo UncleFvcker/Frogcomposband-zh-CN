@@ -558,7 +558,7 @@ static _flag_info_t _brand_flags[] = {
     { OF_IMPACT,        "冲击", object_is_melee_weapon },
     { OF_STUN,          "震慑", object_is_melee_weapon },
     { OF_VORPAL,        "斩首", object_is_melee_weapon },
-    { OF_VORPAL2,       "*Vorpal*", object_is_melee_weapon },
+    { OF_VORPAL2,       "*锋锐*", object_is_melee_weapon },
     { OF_INVALID }
 };
 

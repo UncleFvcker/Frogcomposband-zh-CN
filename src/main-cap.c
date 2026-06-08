@@ -1021,7 +1021,7 @@ errr init_cap(void)
 	if (init_cap_aux()) return (-1);
 
 	/* Hack -- Require large screen, or Quit with message */
-	if ((rows < 24) || (cols < 80)) quit("Screen too small!");
+	if ((rows < 24) || (cols < 80)) quit("屏幕太小！");
 
 
 	/*** Prepare to play ***/

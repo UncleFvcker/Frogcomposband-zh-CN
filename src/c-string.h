@@ -9,7 +9,7 @@ typedef string_t *string_ptr;
 
 /* Create a new string object (You must string_free()) */
 extern string_ptr string_alloc(void);
-extern string_ptr string_alloc_format(const char *fmt, ...);
+extern string_ptr string_alloc_format_aux(cptr file, int line, const char *fmt, ...);
 extern string_ptr string_alloc_size(int size);
 
 extern string_ptr string_copy(string_ptr str);
@@ -29,8 +29,18 @@ extern void string_append_c(string_ptr str, char ch);
 extern void string_append_s(string_ptr str, const char *val);
 extern void string_append_sn(string_ptr str, const char *val, int cb);
 extern void string_append_file(string_ptr str, FILE *fp);
-extern void string_printf(string_ptr str, const char *fmt, ...);
+extern void string_printf_aux(cptr file, int line, string_ptr str, const char *fmt, ...);
 extern void string_vprintf(string_ptr str, const char *fmt, va_list vp);
+
+#if defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+#endif
+#define string_alloc_format(FMT, ...) string_alloc_format_aux(__FILE__, __LINE__, (FMT) __VA_OPT__(,) __VA_ARGS__)
+#define string_printf(STR, FMT, ...) string_printf_aux(__FILE__, __LINE__, (STR), (FMT) __VA_OPT__(,) __VA_ARGS__)
+#if defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
 
 extern void string_read_line(string_ptr str, FILE *fp);
 extern void string_write_file(string_ptr str, FILE *fp);

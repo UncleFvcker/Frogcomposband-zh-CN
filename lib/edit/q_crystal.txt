@@ -1,19 +1,19 @@
 ?:[EQU $QUEST67 Taken InProgress]
-D:I always... uh, our city always needs more money, and I know a
-D:mage in Thalos who would pay handsomely for a shipment of dragons'
-D:hearts. What'd you say you open five great crystal drakes for him
-D:and we split the reward? You should find the drakes nesting in the
-D:crystal castle away to the east.
+D:我总是……呃，我们的城市总是需要更多的钱，我认识
+D:一位萨洛斯（Thalos）的法师，他愿意为一批龙心出高价。
+D:如果你去给他剖出五只水晶巨龙的心脏，然后
+D:我们平分奖励，你觉得怎么样？你应该能在东边很远的水晶城堡里
+D:找到这些巨龙的巢穴。
 ?:1
 
 ?:[EQU $QUEST67 Completed]
-D:Thank you very much, here's your share of the reward. I look forward
-D:to working together with you again.
+D:非常感谢，这是你应得的那份奖励。我期待
+D:再次与你合作。
 ?:1
 
 ?:[EQU $QUEST67 Failed]
-D:That's a pity, I guess I should have contracted someone more
-D:experienced. 
+D:真遗憾，我想我应该雇一个更
+D:有经验的人。
 ?:1
 
 R:OBJ(AMULET):ART(*)

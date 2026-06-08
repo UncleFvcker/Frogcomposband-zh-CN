@@ -120,7 +120,7 @@ static void _calc_innate_attacks(void)
         a.weight = 70;
         a.effect[0] = GF_MISSILE;
         a.blows = 100;
-        a.msg = "You bite.";
+        a.msg = "你咬了过去。";
         a.name = "撕咬";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -139,7 +139,7 @@ static void _calc_innate_attacks(void)
         if (r >= 5)
             a.effect[1] = GF_POIS;
         a.blows = 100;
-        a.msg = "You sting.";
+        a.msg = "你蛰了过去。";
         a.name = "蛰刺";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;
@@ -158,7 +158,7 @@ static void _calc_innate_attacks(void)
         a.weight = 70;
         a.effect[0] = GF_MISSILE;
         calc_innate_blows(&a, 100 + 50*r);
-        a.msg = "You crawl.";
+        a.msg = "你爬了过去。";
         a.name = "爬行";
 
         p_ptr->innate_attacks[p_ptr->innate_attack_ct++] = a;

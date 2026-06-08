@@ -2,24 +2,24 @@
 # By Shayne Steele (steele@cs.fsu.edu)
 
 ?:[EQU $QUEST27 Taken InProgress]
-D:The old castle northwest of here has been taken over by evil beings. 
-D:Mighty undead, evil spell casters, dragons, and even titans are 
-D:rumored to lurk there. Destroy ALL the monsters within the castle, 
-D:and your reward will be an artifact of great value.
+D:这里西北方的旧城堡已经被邪恶的生物占据了。
+D:据说那里潜伏着强大的亡灵、邪恶的施法者、巨龙，甚至还有
+D:泰坦。摧毁城堡内的所有怪物，
+D:你将获得一件极具价值的神器作为奖励。
 ?:1
 
 ?:[AND [EQU $QUEST27 Completed] [EQU $WILDERNESS NORMAL] ]
-D:Impressive!! You have served me well. May this final gift aid you
-D:well in your future adventures.
+D:令人印象深刻！！你干得很不错。愿这最后一份礼物
+D:能在你未来的冒险中帮助你。
 ?:1
 
 ?:[AND [EQU $QUEST27 Completed] [EQU $WILDERNESS NONE] ]
-D:Impressive!! You have served me well. May this gift aid you
-D:well in your future adventures.
+D:令人印象深刻！！你干得很不错。愿这份礼物
+D:能在你未来的冒险中帮助你。
 ?:1
 
 ?:[EQU $QUEST27 Failed]
-D:It seems like this task was too difficult for you.
+D:看来这个任务对你来说太难了。
 ?:1
 
 T:QUEST:NORMAL

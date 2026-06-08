@@ -1,21 +1,21 @@
 ?:[AND [OR [EQU $QUEST57 Taken InProgress] [EQU $QUEST81 Taken InProgress] ] [EQU $DUNGEON24 Active] ]
-D:You're not a total wimp but how about something a bit more
-D:challenging? Go to the Giant's Hall and kill ten lesser
-D:titans to show us you're really strong.
+D:你不是一个彻头彻尾的懦夫，但不如来点
+D:更有挑战性的东西？去巨人殿堂（Giant's Hall）杀掉十个次级
+D:泰坦，向我们证明你真的很强壮。
 ?:1
 
 ?:[AND [OR [EQU $QUEST57 Taken InProgress] [EQU $QUEST81 Taken InProgress] ] [EQU $DUNGEON24 Suppressed] ]
-D:You're not a total wimp but how about something a bit more
-D:challenging? Go to the Snow Castle and kill ten lesser
-D:titans to show us you're really strong.
+D:你不是一个彻头彻尾的懦夫，但不如来点
+D:更有挑战性的东西？去雪之城堡（Snow Castle）杀掉十个次级
+D:泰坦，向我们证明你真的很强壮。
 ?:1
 
 ?:[OR [EQU $QUEST57 Completed] [EQU $QUEST81 Completed] ]
-D:Not bad. Our armourers have made you another trophy.
+D:不错。我们的护甲匠为你制作了另一件战利品。
 ?:1
 
 ?:[OR [EQU $QUEST57 Failed] [EQU $QUEST81 Failed] ]
-D:So you're not stronger than a titan.
+D:看来你并不比泰坦更强壮。
 ?:1
 
 R:OBJ(spiked gauntlets):EGO(giant)

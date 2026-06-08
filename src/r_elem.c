@@ -411,7 +411,7 @@ static bool _earth_p(object_type *o_ptr)
 static void _earth_process_world(void)
 {
     int chance = 40 - p_ptr->lev/2;
-    _elemental_pack_destroy(_earth_p, "Your %s turns to mud.", chance);
+    _elemental_pack_destroy(_earth_p, "你的 %s 变成了泥巴。", chance);
 }
 
 static race_t *_earth_get_race_t(void)
@@ -671,7 +671,7 @@ static bool _air_p(object_type *o_ptr)
 
 static void _air_process_world(void)
 {
-    _elemental_pack_destroy(_air_p, "Your shocking touch destroys your %s.", 40);
+    _elemental_pack_destroy(_air_p, "你的雷击之触摧毁了你的 %s。", 40);
 }
 
 static race_t *_air_get_race_t(void)
@@ -1372,7 +1372,7 @@ static bool _fire_p(object_type *o_ptr)
 
 static void _fire_process_world(void)
 {
-    _elemental_pack_destroy(_fire_p, "Your fiery touch burns your %s.", 40);
+    _elemental_pack_destroy(_fire_p, "你的烈焰之触烧毁了你的 %s。", 40);
 }
 
 static race_t *_fire_get_race_t(void)

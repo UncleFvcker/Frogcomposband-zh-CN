@@ -2,19 +2,19 @@
 # Simplified for FrogComposband 7.0.mango
 
 ?:[EQU $QUEST65 Taken InProgress]
-D:You again. Tell you what, a couple of other students left
-D:the laboratory in a mess. Go and tidy it up! That should
-D:keep you busy.
+D:又是你。听着，另外几个学生把
+D:实验室弄得一团糟。去把它收拾干净！这应该
+D:能让你忙上一阵了。
 ?:1
 
 ?:[EQU $QUEST65 Completed]
-D:Hrm, you know you're meant to follow lab safety and wear
-D:gloves in there? Go to the stockroom and get yourself a
-D:pair.
+D:哼，你知道你必须遵守实验室安全规定，在那里
+D:戴上手套吗？去储藏室给自己
+D:拿一副吧。
 ?:1
 
 ?:[EQU $QUEST65 Failed]
-D:Ugh now who is going to clean up the mess in there.
+D:唉，现在谁去清理那里面的一团糟啊。
 ?:1
 
 T:QUEST:NORMAL

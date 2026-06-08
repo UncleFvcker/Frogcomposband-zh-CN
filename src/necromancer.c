@@ -197,53 +197,53 @@ cptr do_necromancy_spell(int spell, int mode)
     /* Stench of Death */
     case 0:
         if (name) return "寒冷之触";
-        if (desc) return "Damage an adjacent monster with a chilling touch.";
+        if (desc) return "用冰寒之触伤害一个相邻的怪物。";
         if (info) return _necro_info_damage(2, 6, plev + p_ptr->to_d_spell);
         if (cast && !_necro_do_touch(GF_COLD, 2, 6, plev + p_ptr->to_d_spell)) return NULL;
         break;
 
     case 1:
         if (name) return "召唤老鼠";
-        if (desc) return "Summons a rat to feast on the dead!";
+        if (desc) return "召唤一只老鼠来吞食死者！";
         if (cast || fail) _necro_do_summon(SUMMON_RAT, 1, fail);
         break;
 
     case 2:
         if (name) return "侦测生命";
-        if (desc) return "Detects all living monsters in your vicinity.";
+        if (desc) return "探测你附近所有活着的怪物。";
         if (info) return info_radius(DETECT_RAD_DEFAULT);
-        if (cast) detect_monsters_living(DETECT_RAD_DEFAULT, "You sense the presence of life around you.");
+        if (cast) detect_monsters_living(DETECT_RAD_DEFAULT, "你感觉到周围有生命的存在。");
         break;
 
     case 3:
         if (name) return "侦测不死生物";
-        if (desc) return "Detects all nonliving monsters in your vicinity.";
+        if (desc) return "探测你附近所有无生命的怪物。";
         if (info) return info_radius(DETECT_RAD_DEFAULT);
         if (cast) detect_monsters_nonliving(DETECT_RAD_DEFAULT);
         break;
 
     case 4:
         if (name) return "毒素之触";
-        if (desc) return "Damage an adjacent monster with a venomous touch.";
+        if (desc) return "用剧毒之触伤害一个相邻的怪物。";
         if (info) return _necro_info_damage(4, 6, plev + p_ptr->to_d_spell);
         if (cast && !_necro_do_touch(GF_POIS, 4, 6, plev + p_ptr->to_d_spell)) return NULL;
         break;
 
     case 5:
         if (name) return "召唤蝙蝠";
-        if (desc) return "Summons bats to feast on the living!";
+        if (desc) return "召唤蝙蝠来吞食生者！";
         if (cast || fail) _necro_do_summon(SUMMON_BAT, 1 + randint1(2), fail);
         break;
 
     case 6:
         if (name) return "诡异嚎叫";
-        if (desc) return "Emit a terrifying howl.";
+        if (desc) return "发出震慑人心的嚎叫。";
         if (cast) project_hack(GF_ELDRITCH_HOWL, spell_power(plev * 3));
         break;
 
     case 7:
         if (name) return "黑暗之触";
-        if (desc) return "Damage an adjacent monster with a dark touch.";
+        if (desc) return "用黑暗之触伤害一个相邻的怪物。";
         if (info) return _necro_info_damage(6, 6, plev * 3 / 2 + p_ptr->to_d_spell);
         if (cast && !_necro_do_touch(GF_DARK, 6, 6, plev * 3 / 2 + p_ptr->to_d_spell)) return NULL;
         break;
@@ -251,13 +251,13 @@ cptr do_necromancy_spell(int spell, int mode)
     /* Sepulchral Ways */
     case 8:
         if (name) return "召唤狼";
-        if (desc) return "Summons wolves to feast on the living!";
+        if (desc) return "召唤狼群来吞食生者！";
         if (cast || fail) _necro_do_summon(SUMMON_WOLF, 1 + randint1(2), fail);
         break;
 
     case 9:
         if (name) return "黑色斗篷";
-        if (desc) return "You become shrouded in darkness.";
+        if (desc) return "你被黑暗所笼罩。";
         if (cast) 
         {
             set_tim_dark_stalker(spell_power(randint1(plev) + plev), FALSE);
@@ -266,7 +266,7 @@ cptr do_necromancy_spell(int spell, int mode)
 
     case 10:
         if (name) return "亡灵视界";
-        if (desc) return "Learn about your nearby surroundings by communing with the dead.";
+        if (desc) return "通过与死者沟通来了解周围的环境。";
         if (info) return info_radius(DETECT_RAD_MAP);
         if (cast)
         {
@@ -279,13 +279,13 @@ cptr do_necromancy_spell(int spell, int mode)
 
     case 11:
         if (name) return "亡灵学识";
-        if (desc) return "Ask the dead to examine an object for you.";
+        if (desc) return "让死者为你鉴定一件物品。";
         if (cast) ident_spell(NULL);
         break;
 
     case 12:
         if (name) return "排斥之触";
-        if (desc) return "Conjure a foul wind to blow an adjacent monster away.";
+        if (desc) return "召唤一阵恶臭的风，将相邻的怪物吹走。";
     
         if (cast)
         {
@@ -347,20 +347,20 @@ cptr do_necromancy_spell(int spell, int mode)
 
     case 13:
         if (name) return "吸血之触";
-        if (desc) return "Steal life from an adjacent foe.";
+        if (desc) return "从相邻的敌人身上窃取生命。";
         if (info) return _necro_info_damage(0, 0, plev * 4 + p_ptr->to_d_spell);
         if (cast && !_necro_do_touch(GF_OLD_DRAIN, 0, 0, plev * 4 + p_ptr->to_d_spell)) return NULL;
         break;
 
     case 14:
         if (name) return "黑夜恐惧";
-        if (desc) return "Summons Dread to do your bidding. Beware of failure!";
+        if (desc) return "召唤一只恐魔 (Dread) 为你效命。小心施法失败的反噬！";
         if (cast || fail) _necro_do_summon(SUMMON_DREAD, 1 + randint0(3), fail);
         break;
 
     case 15:
         if (name) return "活埋";
-        if (desc) return "Entombs chosen foe.";
+        if (desc) return "将选定的敌人活埋在坟墓中。";
         if (cast)
         {
             int dir; 
@@ -374,63 +374,63 @@ cptr do_necromancy_spell(int spell, int mode)
     /* Return of the Dead */
     case 16:
         if (name) return "召唤僵尸";
-        if (desc) return "The dead are back and hungry for brains!";
+        if (desc) return "死者归来，渴望着大脑！";
         if (cast || fail) _necro_do_summon(SUMMON_ZOMBIE, 2 + randint1(3), fail);
         break;
 
     case 17:
         if (name) return "召唤骷髅";
-        if (desc) return "Summon skeletal assistance.";
+        if (desc) return "召唤骷髅作为助手。";
         if (cast || fail) _necro_do_summon(SUMMON_SKELETON, 1 + randint0(3), fail);
         break;
 
     case 18:
         if (name) return "召唤幽灵";
-        if (desc) return "Recall the spirits of slain warriors for unholy servitude.";
+        if (desc) return "唤回阵亡战士的灵魂，进行邪恶的奴役。";
         if (cast || fail) _necro_do_summon(SUMMON_GHOST, 1 + randint0(3), fail);
         break;
 
     case 19:
         if (name) return "召唤吸血鬼";
-        if (desc) return "Its time to command the commanders!";
+        if (desc) return "是时候指挥指挥官了！";
         if (cast || fail) _necro_do_summon(SUMMON_VAMPIRE, 1 + randint0(2), fail);
         break;
 
     case 20:
         if (name) return "召唤怨灵";
-        if (desc) return "Summon wights and wraiths to do your bidding.";
+        if (desc) return "召唤尸妖和妖鬼为你效命。";
         if (cast || fail) _necro_do_summon(SUMMON_WIGHT, 1 + randint0(2), fail);
         break;
 
     case 21:
         if (name) return "召唤巫妖";
-        if (desc) return "Call forth former necromancers.";
+        if (desc) return "召唤昔日的死灵法师。";
         if (cast || fail) _necro_do_summon(SUMMON_LICH, 1 + randint0(2), fail);
         break;
 
     case 22:
         if (name) return "邪恶真言";
-        if (desc) return "Utter an unspeakable word. The morale of your visible evil pets is temporarily boosted and they will serve you with renewed enthusiasm.";
+        if (desc) return "念出一个不可名状的词语。你视野内所有邪恶宠物的士气都会暂时提升，并怀着新的狂热为你效劳。";
         if (cast) project_hack(GF_UNHOLY_WORD, plev * 6);
         break;
 
     case 23:
         if (name) return "无望之争";
-        if (desc) return "Make a last ditch Kamikaze effort for victory!";
+        if (desc) return "为了胜利，发动最后的自杀式袭击！";
         if (cast) discharge_minion();
         break;
 
     /* Necromatic Tome */
     case 24:
         if (name) return "汲取之触";
-        if (desc) return "Steal mana from an adjacent foe.";
+        if (desc) return "从相邻的敌人身上窃取法力。";
         if (info) return _necro_info_damage(5, 5, plev/2 + p_ptr->to_d_spell);
         if (cast && !_necro_do_touch(GF_DRAINING_TOUCH, 5, 5, plev/2 + p_ptr->to_d_spell)) return NULL;
         break;
 
     case 25:
         if (name) return "亵渎圣地";
-        if (desc) return "Makes the current square unholy.";
+        if (desc) return "使当前的方格充满邪恶气息。";
         if (cast) warding_glyph(); /* TODO: Add new cave feature! */
         break;
 
@@ -438,7 +438,7 @@ cptr do_necromancy_spell(int spell, int mode)
     {
         int base = spell_power(20);
         if (name) return "亡者之盾";
-        if (desc) return "Temporarily gives an AC bonus and resistance to cold, poison and nether.";
+        if (desc) return "暂时提供护甲(AC)加成，以及对冰寒、毒素和幽冥的抗性。";
         if (info) return info_duration(base, base);
         if (cast)
         {
@@ -452,14 +452,14 @@ cptr do_necromancy_spell(int spell, int mode)
     }
     case 27:
         if (name) return "撕裂之触";
-        if (desc) return "Damage an adjacent monster with a disintegrating touch.";
+        if (desc) return "用分解之触伤害一个相邻的怪物。";
         if (info) return _necro_info_damage(20, 20, plev + p_ptr->to_d_spell);
         if (cast && !_necro_do_touch(GF_DISINTEGRATE, 20, 20, plev + p_ptr->to_d_spell)) return NULL;
         break;
 
     case 28:
         if (name) return "亡者安息";
-        if (desc) return "Sleep the sleep of the dead for a few rounds, during which time nothing can awaken you, except perhaps death. When (if?) you wake up, you will be thoroughly refreshed!";
+        if (desc) return "像死人一样沉睡几个回合，期间除了死亡外没有任何东西能唤醒你。当你（如果？）醒来时，你将彻底恢复精力！";
         if (cast)
         {
             if (!get_check("你将进入深度沉睡。你确定吗？")) return NULL;
@@ -470,7 +470,7 @@ cptr do_necromancy_spell(int spell, int mode)
 
     case 29:
         if (name) return "阴墓之风";
-        if (desc) return "You call forth the wind of the dead. All nearby monsters are blown away!";
+        if (desc) return "你呼唤死者之风。附近所有的怪物都会被吹飞！";
         {
             int power = spell_power(plev * 4);
             if (info) return info_power(power);
@@ -480,7 +480,7 @@ cptr do_necromancy_spell(int spell, int mode)
 
     case 30:
         if (name) return "致命之触";
-        if (desc) return "Attempt to kill an adjacent monster.";
+        if (desc) return "尝试秒杀一个相邻的怪物。";
         if (cast && !_necro_do_touch(GF_DEATH_TOUCH, 0, 0, plev * 200)) return NULL;
         break;
 

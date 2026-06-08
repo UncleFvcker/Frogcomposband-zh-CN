@@ -598,13 +598,13 @@ static bool askfor_file(char *buf, int len)
 	long drefnum, junk;
 
 	/* Default file name */
-	sprintf((char*)dflt + 1, "%s's description", buf);
+	sprintf((char*)dflt + 1, "%s 的描述", buf);
 	dflt[0] = strlen((char*)dflt + 1);
 
 	/* Ask for a file name */
 	topleft.h=(qd.screenBits.bounds.left+qd.screenBits.bounds.right)/2-344/2;
 	topleft.v=(2*qd.screenBits.bounds.top+qd.screenBits.bounds.bottom)/3-188/2;
-	SFPutFile(topleft, "\pSelect a filename:", dflt, NULL, &reply);
+	SFPutFile(topleft, "p选择文件名：", dflt, NULL, &reply);
 	/* StandardPutFile("\pSelect a filename:", dflt, &reply); */
 
 	/* Process */
@@ -1983,7 +1983,7 @@ static void play_sound(int num, SInt16 vol)
 				}
 
 				/* Notify error */
-				plog("Cannot initialise sound channels!");
+				plog("无法初始化声道！");
 
 				/* Cancel request */
 				use_sound = arg_sound = FALSE;
@@ -2486,7 +2486,7 @@ static errr Term_xtra_mac_react(void)
 
 		if ((graf_mode_req != GRAF_MODE_NONE) && !frameP && (globe_init() != 0))
 		{
-			plog("Cannot initialize graphics!");
+			plog("无法初始化图形！");
 
 			/* reject request */
 			graf_mode_req = GRAF_MODE_NONE;
@@ -3150,7 +3150,7 @@ static void SetupAppDir(void)
 	err = PBGetFCBInfo(&fcbBlock, FALSE);
 	if (err != noErr)
 	{
-		sprintf(errString, "Fatal PBGetFCBInfo Error #%d.\r Exiting.", err);
+		sprintf(errString, "致命 PBGetFCBInfo 错误 #%d。\r 正在退出。", err);
 		mac_warning(errString);
 		ExitToShell();
 	}
@@ -3163,7 +3163,7 @@ static void SetupAppDir(void)
 	err = HSetVol(NULL, app_vol, app_dir);
 	if (err != noErr)
 	{
-		sprintf(errString, "Fatal HSetVol Error #%d.\r Exiting.", err);
+		sprintf(errString, "致命 HSetVol 错误 #%d。\r 正在退出。", err);
 		mac_warning(errString);
 		ExitToShell();
 	}
@@ -3353,7 +3353,7 @@ static void cf_load_prefs()
 	if (!ok)
 	{
 		/* This may be the first run */
-		mac_warning("Preferences are not found.");
+		mac_warning("未找到首选项 (Preferences)。");
 
 		/* Ignore the rest */
 		return;
@@ -3514,7 +3514,7 @@ static void load_prefs(void)
 	    (old_patch != FAKE_VER_PATCH))
 	{
 		/* Message */
-		mac_warning("Ignoring old preferences.");
+		mac_warning("忽略旧首选项。");
 		/* Ignore */
 		return;
 	}
@@ -4177,7 +4177,7 @@ static bool select_savefile(bool all)
 #endif
 
 	/* Oops */
-	if (err != noErr) quit("Unable to find the folder :lib:save:");
+	if (err != noErr) quit("找不到文件夹 :lib:save:");
 
 	/* Get default Navigator dialog options */
 	err = NavGetDefaultDialogOptions(&dialogOptions);
@@ -4207,7 +4207,7 @@ static bool select_savefile(bool all)
 		err = PtrToHand(&types, (Handle *)&myTypeList, sizeof(NavTypeList));
 
 		/* Oops */
-		if (err != noErr) quit("Error in PtrToHand. Try enlarging heap");
+		if (err != noErr) quit("PtrToHand 出错。尝试扩大堆内存");
 
 	}
 
@@ -4543,7 +4543,7 @@ static void init_menubar(void)
 	mbar = GetNewMBar(128);
 
 	/* Whoops! */
-	if (mbar == nil) quit("Cannot find menubar('MBAR') id 128!");
+	if (mbar == nil) quit("找不到菜单栏('MBAR') id 128！");
 
 	/* Insert them into the current menu list */
 	SetMenuBar(mbar);
@@ -5647,7 +5647,7 @@ static void menu(long mc)
 				case ITEM_SAVE:
 				{
 					if (!can_save){
-						plog("You may not do that right now.");
+						plog("你现在不能这么做。");
 						break;
 					}
 					
@@ -5664,7 +5664,7 @@ static void menu(long mc)
 					if (game_in_progress && character_generated)
 					{
 						if (!can_save){
-							plog("You may not do that right now.");
+							plog("你现在不能这么做。");
 							break;
 						}
 						/* Save the game */
@@ -6085,7 +6085,7 @@ static pascal OSErr AEH_Quit(const AppleEvent *theAppleEvent,
 	if (game_in_progress && character_generated)
 	{
 			if (!can_save){
-				plog("You may not do that right now.");
+				plog("你现在不能这么做。");
 				return;
 			}
 			/* Hack -- Forget messages */
@@ -6658,7 +6658,7 @@ static bool CheckEvents(bool wait)
 			/* Process apple events */
 			if (AEProcessAppleEvent(&event) != noErr)
 			{
-				plog("Error in Apple Event Handler!");
+				plog("Apple Event Handler 出错！");
 			}
 
 			/* Handle "quit_when_ready" */
@@ -6766,7 +6766,7 @@ static vptr hook_rpanic(huge size)
 		lifeboat = NULL;
 
 		/* Mega-Hack -- Warning */
-		mac_warning("Running out of Memory!\rAbort this process now!");
+		mac_warning("内存不足！\r立即中止此进程！");
 
 		/* Mega-Hack -- Never leave this function */
 		while (TRUE) CheckEvents(TRUE);
@@ -6820,10 +6820,10 @@ static void hook_core(cptr str)
 	if (str) mac_warning(str);
 
 	/* Warn, then save player */
-	mac_warning("Fatal error.\rI will now attempt to save and quit.");
+	mac_warning("致命错误。\r我现在将尝试保存并退出。");
 
 	/* Attempt to save */
-	if (!save_player()) mac_warning("Warning -- save failed!");
+	if (!save_player()) mac_warning("警告 —— 保存失败！");
 	
 	/* Quit */
 	quit(NULL);
@@ -6915,13 +6915,13 @@ static void init_stuff(void)
 		if (0 == fd_close(fd_open(path, O_RDONLY))) break;
 
 		/* Warning */
-		plog_fmt("Unable to open the '%s' file.", path);
+		plog_fmt("无法打开 '%s' 文件。", path);
 
 		/* Warning */
-		plog("The Angband 'lib' folder is probably missing or misplaced.");
+		plog("Angband 的 'lib' 文件夹可能丢失或放错位置了。");
 
 		/* Warning */
-		plog("Please 'open' any file in any sub-folder of the 'lib' folder.");
+		plog("请 'open'（打开）'lib' 文件夹下任何子文件夹中的任意文件。");
 		
 #if TARGET_API_MAC_CARBON
 		/* Ask the user to choose the lib folder */
@@ -7106,7 +7106,7 @@ int main(void)
 		/* Check the version */
 		if ((err != noErr) || (versionNumber < 0x0700))
 		{
-			quit("You must have System 7 to use this program.");
+			quit("必须使用 System 7 才能运行此程序。");
 		}
 	}
 
@@ -7118,19 +7118,19 @@ int main(void)
 		/* Check the environs */
 		if (SysEnvirons(1, &env) != noErr)
 		{
-			quit("The SysEnvirons call failed!");
+			quit("SysEnvirons 调用失败！");
 		}
 
 		/* Check for System Seven Stuff */
 		if (env.systemVersion < 0x0700)
 		{
-			quit("You must have System 7 to use this program.");
+			quit("必须使用 System 7 才能运行此程序。");
 		}
 
 		/* Check for Color Quickdraw */
 		if (!env.hasColorQD)
 		{
-			quit("You must have Color Quickdraw to use this program.");
+			quit("必须具有 Color Quickdraw 才能运行此程序。");
 		}
 	}
 

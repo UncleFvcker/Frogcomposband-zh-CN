@@ -2,28 +2,28 @@
 # New quest for FrogComposband 7.0.peppermint
 
 ?:[EQU $QUEST77 Taken InProgress]
-D:Unfortunately, reliable teleporting between Zul and the outside world
-D:has become impossible, thanks to a group of strange time mages who moved
-D:in some time ago. Their experiments have twisted the space-time fabric
-D:around our town. We could probably fix it with sorcery, but as things
-D:stand there would be little point - it would just get messed up all over
-D:again tomorrow. The time mages have refused to either leave or start
-D:behaving, and there's too many of them for us to drive out of the town by
-D:force. We need the help of a great hero like you, I hope you can catch
-D:them napping.
+D:不幸的是，由于一群在不久前搬来的奇怪时间法师，祖尔（Zul）
+D:和外界之间可靠的传送变得不可能了。他们的实验扭曲了我们
+D:城镇周围的时空连续体。我们或许可以用咒术修复它，但按目前
+D:的情况来看，这毫无意义——明天它只会再次被搞得一团糟。
+D:那些时间法师既拒绝离开，也拒绝老实守规矩，
+D:而且他们人数太多，我们无法用武力把他们赶出城镇。
+D:我们需要像你这样伟大英雄的帮助，我希望你能
+D:在他们打盹的时候抓住他们。
+D:（时空连续体里的漩涡致敬了银河系漫游指南）
 ?:1
 
 ?:[EQU $QUEST77 Completed]
-D:Yes, I heard of your success; news travel fast here. Thank you for your
-D:help, now we can teleport to other towns again without fear of landing
-D:on the wrong planet or in the wrong century. I found this strange object
-D:when we went out to admire your work and smooth out the space-time fabric;
-D:I am not sure what it is, but it looks like some kind of club. We have no
-D:use for it, please take it as a memento and thank-you gift.
+D:是的，我听说了你的成功；这里的消息传得很快。感谢你的
+D:帮助，现在我们可以再次传送到其他城镇了，而不必担心降落
+D:在错误的星球或错误的世纪。当我们出去欣赏你的工作成果并
+D:抚平时空连续体时，我发现了这个奇怪的物体；
+D:我不确定它是什么，但它看起来像某种木棒。我们用不上它，
+D:请把它作为纪念品和感谢的礼物收下。
 ?:1
 
 ?:[EQU $QUEST77 Failed]
-D:Too bad, the whole town was counting on you.
+D:太糟糕了，全镇的人都指望你呢。
 ?:1
 
 T:QUEST:NORMAL

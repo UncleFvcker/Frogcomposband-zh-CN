@@ -10,19 +10,19 @@ cptr duelist_equip_error(void)
     int wgt = equip_weight(object_is_armour);
 
     if (wgt > (120 + (p_ptr->lev * 3)))
-        return "The weight of your equipment is disrupting your talents.";
+        return "你装备的重量妨碍了你的天赋。";
 
     if (equip_find_obj(TV_SHIELD, SV_ANY) || equip_find_obj(TV_CAPTURE, SV_ANY))
-        return "Your shield is disrupting your talents.";
+        return "你的盾牌妨碍了你的天赋。";
 
     if (p_ptr->weapon_ct > 1)
-        return "Dual wielding is disrupting your talents.";
+        return "双持武器妨碍了你的天赋。";
 
     if (equip_find_obj(TV_SWORD, SV_POISON_NEEDLE))
-        return "The Poison Needle is not an honorable dueling weapon.";
+        return "毒针(Poison Needle)并不是一种光荣的决斗武器。";
 
     if (p_ptr->anti_magic)
-        return "An anti-magic barrier disrupts your talents.";
+        return "反魔法屏障妨碍了你的天赋。";
 
     return NULL;
 }
@@ -580,7 +580,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "challenge";
+        me.magic_desc = "挑战";
         me.options = CASTER_USE_HP;
         me.which_stat = A_DEX;
         init = TRUE;

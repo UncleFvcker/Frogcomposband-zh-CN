@@ -803,7 +803,7 @@ static void _bless_song(int cmd, variant *res)
         var_set_string(res, "柔板。演唱时，你和你的坐骑都将获得近战技能加成。");
         break;
     default:
-        _dragon_song(WARLOCK_DRAGON_TOGGLE_BLESS, "of heroic deeds", cmd, res);
+        _dragon_song(WARLOCK_DRAGON_TOGGLE_BLESS, "英雄事迹之", cmd, res);
         break;
     }
 }
@@ -819,7 +819,7 @@ static void _canter_song(int cmd, variant *res)
         var_set_string(res, "快板。这是一段悦耳的旋律，你的坐骑会随着歌声的节奏欢跃。");
         break;
     default:
-        _dragon_song(WARLOCK_DRAGON_TOGGLE_CANTER, "a joyful, upbeat melody", cmd, res);
+        _dragon_song(WARLOCK_DRAGON_TOGGLE_CANTER, "欢快、轻快的旋律", cmd, res);
         break;
     }
 }
@@ -835,7 +835,7 @@ static void _gallop_song(int cmd, variant *res)
         var_set_string(res, "急板。急促的节拍是这首紧迫之歌的标志。");
         break;
     default:
-        _dragon_song(WARLOCK_DRAGON_TOGGLE_GALLOP, "a spurring melody", cmd, res);
+        _dragon_song(WARLOCK_DRAGON_TOGGLE_GALLOP, "激励的旋律", cmd, res);
         break;
     }
 }
@@ -851,7 +851,7 @@ static void _healing_song(int cmd, variant *res)
         var_set_string(res, "广板。缓慢而庄严，你和你的坐骑都能感受到这首强大歌谣赋予生命的效果。");
         break;
     default:
-        _dragon_song(WARLOCK_DRAGON_TOGGLE_HEALING, "a rejuvenating melody", cmd, res);
+        _dragon_song(WARLOCK_DRAGON_TOGGLE_HEALING, "焕发活力的旋律", cmd, res);
         break;
     }
 }
@@ -867,7 +867,7 @@ static void _heroic_charge_song(int cmd, variant *res)
         var_set_string(res, "极快板。一首挑衅之歌，其旋律捕捉了巨龙对财宝和征服的渴望的本质。听到这首古老龙之歌的人都将大难临头。");
         break;
     default:
-        _dragon_song(WARLOCK_DRAGON_TOGGLE_HEROIC_CHARGE, "of battle and riches", cmd, res);
+        _dragon_song(WARLOCK_DRAGON_TOGGLE_HEROIC_CHARGE, "战斗与财富之", cmd, res);
         break;
     }
 }
@@ -997,7 +997,7 @@ static bool _dragonrider_ai(mon_spell_cast_ptr cast)
     }
 
     if (!cast->mon2)
-        strcpy(cast->name2, "<color:o>the ground</color>");
+        strcpy(cast->name2, "<color:o>地面</color>");
 
     group = spells->groups[MST_BREATH];
     cast->spell = &group->spells[randint0(group->count)];
@@ -1336,7 +1336,7 @@ static void _vengeful_blast(int cmd, variant *res)
         if (!get_fire_dir(&dir)) return;
 
         fire_ball(GF_ELDRITCH, dir, dam, 0);
-        take_hit(DAMAGE_USELIFE, 100, "a vengeful blast");
+        take_hit(DAMAGE_USELIFE, 100, "复仇的冲击波");
 
         var_set_bool(res, TRUE);
         break;

@@ -94,7 +94,7 @@
 
 # else /* __DJGPP__ > 1 */
 #  ifdef __DJGPP__
-#   error "Upgrade to version 2.0 of DJGPP"
+#   error "请升级至 DJGPP 2.0 版本"
 #  endif /* __DJGPP__ */
 # endif /* __DJGPP__ > 1 */
 
@@ -1311,7 +1311,7 @@ errr init_ibm(void)
 			/* Load the bitmap data */
 			if (fread(buf, 1, 4096, f) != 4096)
 			{
-				quit("Corrupt 'angband.fnt' file");
+				quit("'angband.fnt' 文件损坏");
 			}
 
 			/* Close the file */

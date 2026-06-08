@@ -647,202 +647,202 @@ static struct {
     cptr lstr;
 } bar[]
 = {
-    {TERM_YELLOW, "Ts", "刚强"},
-    {TERM_VIOLET, "Ha", "幻觉"},
-    {TERM_L_DARK, "Bl", "失明"},
-    {TERM_RED, "Pa", "麻痹"},
-    {TERM_VIOLET, "Cf", "混乱"},
-    {TERM_GREEN, "Po", "中毒"},
-    {TERM_YELLOW, "Af", "恐惧"},
-    {TERM_L_BLUE, "Lv", "浮空"},
-    {TERM_SLATE, "Rf", "反弹"},
-    {TERM_SLATE, "Pw", "穿墙"},
-    {TERM_L_DARK, "Wr", "怨灵"},
-    {TERM_SLATE, "Ev", "防邪"},
-    {TERM_VIOLET, "Kw", "替身"},
-    {TERM_YELLOW, "Md", "魔甲"},
-    {TERM_L_UMBER, "Eh", "变大"},
-    {TERM_WHITE, "Ss", "石肤"},
-    {TERM_L_BLUE, "Ms", "多影"},
-    {TERM_SLATE, "Rm", "抗魔"},
-    {TERM_YELLOW, "Ul", "终防"},
-    {TERM_YELLOW, "Iv", "无敌"},
+    {TERM_YELLOW, "刚强", "刚强"},
+    {TERM_VIOLET, "幻觉", "幻觉"},
+    {TERM_L_DARK, "致盲", "失明"},
+    {TERM_RED, "麻痹", "麻痹"},
+    {TERM_VIOLET, "混乱", "混乱"},
+    {TERM_GREEN, "中毒", "中毒"},
+    {TERM_YELLOW, "恐惧", "恐惧"},
+    {TERM_L_BLUE, "漂浮", "浮空"},
+    {TERM_SLATE, "反射", "反弹"},
+    {TERM_SLATE, "穿墙", "穿墙"},
+    {TERM_L_DARK, "幽灵", "怨灵"},
+    {TERM_SLATE, "防邪", "防邪"},
+    {TERM_VIOLET, "替身", "替身"},
+    {TERM_YELLOW, "魔甲", "魔甲"},
+    {TERM_L_UMBER, "巨大", "变大"},
+    {TERM_WHITE, "石肤", "石肤"},
+    {TERM_L_BLUE, "多重", "多影"},
+    {TERM_SLATE, "抗魔", "抗魔"},
+    {TERM_YELLOW, "终极", "终防"},
+    {TERM_YELLOW, "无敌", "无敌"},
     {TERM_L_GREEN, "免酸", "酸免疫"},
-    {TERM_GREEN, "Ac", "酸抗"},
+    {TERM_GREEN, "酸", "酸抗"},
     {TERM_L_BLUE, "免电", "电免疫"},
-    {TERM_BLUE, "El", "电抗"},
+    {TERM_BLUE, "电", "电抗"},
     {TERM_L_RED, "免火", "火免疫"},
-    {TERM_RED, "Fi", "火抗"},
+    {TERM_RED, "火", "火抗"},
     {TERM_WHITE, "免冷", "冷免疫"},
-    {TERM_SLATE, "Co", "冷抗"},
-    {TERM_GREEN, "Po", "毒抗"},
-    {TERM_L_DARK, "Nt", "虚空"},
-    {TERM_L_BLUE, "Ti", "时抗"},
-    {TERM_L_DARK, "Mr", "镜面"},
+    {TERM_SLATE, "冷", "冷抗"},
+    {TERM_GREEN, "毒", "毒抗"},
+    {TERM_L_DARK, "幽冥", "虚空"},
+    {TERM_L_BLUE, "时间", "时抗"},
+    {TERM_L_DARK, "镜子", "镜面"},
     {TERM_L_RED, "火盾", "火焰护盾"},
-    {TERM_WHITE, "Fo", "力场"},
-    {TERM_WHITE, "Ho", "神圣"},
-    {TERM_VIOLET, "Ee", "以眼还眼"},
-    {TERM_WHITE, "Bs", "祝福"},
-    {TERM_WHITE, "He", "英雄"},
-    {TERM_RED, "Br", "狂暴"},
+    {TERM_WHITE, "原力", "力场"},
+    {TERM_WHITE, "神圣", "神圣"},
+    {TERM_VIOLET, "反伤", "以眼还眼"},
+    {TERM_WHITE, "祝福", "祝福"},
+    {TERM_WHITE, "英雄", "英雄"},
+    {TERM_RED, "狂暴", "狂暴"},
     {TERM_L_RED, "火印", "火焰烙印"},
     {TERM_WHITE, "冷印", "冰霜烙印"},
     {TERM_L_BLUE, "电印", "闪电烙印"},
     {TERM_SLATE, "酸印", "强酸烙印"},
     {TERM_L_GREEN, "毒印", "毒素烙印"},
     {TERM_RED, "触惑", "接触混乱"},
-    {TERM_L_BLUE, "Se", "破隐"},
-    {TERM_ORANGE, "Te", "心感"},
-    {TERM_L_BLUE, "Rg", "再生"},
-    {TERM_L_RED, "If", "红外"},
-    {TERM_UMBER, "Sl", "潜行"},
-    {TERM_L_DARK, "Hd", "躲藏"},
-    {TERM_L_BLUE, "Rc", "召回"},
-    {TERM_WHITE, "Al", "改变"},
+    {TERM_L_BLUE, "视隐", "破隐"},
+    {TERM_ORANGE, "心感", "心感"},
+    {TERM_L_BLUE, "再生", "再生"},
+    {TERM_L_RED, "红外", "红外"},
+    {TERM_UMBER, "潜行", "潜行"},
+    {TERM_L_DARK, "隐藏", "躲藏"},
+    {TERM_L_BLUE, "召回", "召回"},
+    {TERM_WHITE, "重塑", "改变"},
     /* Hex */
     {TERM_WHITE, "冷盾", "冰霜护盾"},
     {TERM_BLUE, "电盾", "闪电护盾"},
     {TERM_L_DARK, "影盾", "暗影护盾"},
     {TERM_YELLOW, "威力", "额外威力"},
-    {TERM_RED, "Gi", "巨人"},
+    {TERM_RED, "巨人", "巨人"},
     {TERM_L_DARK, "防多", "反多重攻击"},
-    {TERM_ORANGE, "AT", "反传送"},
-    {TERM_RED, "AM", "反魔法"},
-    {TERM_SLATE, "Pa", "耐心"},
-    {TERM_SLATE, "Rv", "复仇"},
-    {TERM_L_DARK, "Rs", "符文剑"},
-    {TERM_RED, "Vm", "吸血"},
-    {TERM_WHITE, "Cu", "治疗"},
-    {TERM_L_DARK, "ET", "邪恶心感"},
-    {TERM_VIOLET, "Ch", "混乱"},
-    {TERM_ORANGE, "Sh", "盾防"},
-    {TERM_YELLOW, "Sk", "追踪"},
-    {TERM_RED, "Rv", "复仇"},
-    {TERM_L_BLUE, "Si", "视野"},
-    {TERM_WHITE, "Fs", "盛宴"},
-    {TERM_VIOLET, "NS", "无法施法"},
+    {TERM_ORANGE, "防传", "反传送"},
+    {TERM_RED, "反魔", "反魔法"},
+    {TERM_SLATE, "耐心", "耐心"},
+    {TERM_SLATE, "复仇", "复仇"},
+    {TERM_L_DARK, "符文剑", "符文剑"},
+    {TERM_RED, "吸血", "吸血"},
+    {TERM_WHITE, "治愈", "治疗"},
+    {TERM_L_DARK, "邪传", "邪恶心感"},
+    {TERM_VIOLET, "混沌", "混乱"},
+    {TERM_ORANGE, "护盾", "盾防"},
+    {TERM_YELLOW, "索敌", "追踪"},
+    {TERM_RED, "复仇", "复仇"},
+    {TERM_L_BLUE, "视野", "视野"},
+    {TERM_WHITE, "盛宴", "盛宴"},
+    {TERM_VIOLET, "禁魔", "无法施法"},
     {TERM_YELLOW, "Q", "快速"},
-    {TERM_L_BLUE, "Sp", "特殊"},
-    {TERM_YELLOW, "", "Duelist Target Goes Here!"},
-    {TERM_L_BLUE, "Rn", "跑动射击"},
-    {TERM_L_BLUE, "Rp", "急速射击"},
-    {TERM_L_BLUE, "FD", "飞刀"},
-    {TERM_L_BLUE, "Sw", "暗影"},
-    {TERM_L_BLUE, "Fz", "狂热"},
-    {TERM_L_UMBER, "/o", "/Orc"},
-    {TERM_L_BLUE, "Fc", "力场"},
-    {TERM_L_BLUE, "DS", "防御姿态"},
-    {TERM_UMBER, "SB", "石骨"},
-    {TERM_L_BLUE, "Tr", "以伤换伤"},
+    {TERM_L_BLUE, "特殊", "特殊"},
+    {TERM_YELLOW, "", "决斗者目标在这里！"},
+    {TERM_L_BLUE, "跑射", "跑动射击"},
+    {TERM_L_BLUE, "连射", "急速射击"},
+    {TERM_L_BLUE, "飞刀", "飞刀"},
+    {TERM_L_BLUE, "暗影", "暗影"},
+    {TERM_L_BLUE, "狂热", "狂热"},
+    {TERM_L_UMBER, "/o", "/兽人"},
+    {TERM_L_BLUE, "原力", "力场"},
+    {TERM_L_BLUE, "防姿", "防御姿态"},
+    {TERM_UMBER, "石骨", "石骨"},
+    {TERM_L_BLUE, "换血", "以伤换伤"},
     {TERM_L_BLUE, "强攻", "强力攻击"},
-    {TERM_RED, "Vs", "破绽"},
-    {TERM_RED, "BB", "燃烧之刃"},
-    {TERM_BLUE, "IB", "冰霜之刃"},
-    {TERM_YELLOW, "TB", "雷霆之刃"},
-    {TERM_RED, "Bl", "鲜血之刃"},
-    {TERM_WHITE, "HB", "神圣之刃"},
-    {TERM_ORANGE, "OB", "秩序之刃"},
-    {TERM_GREEN, "WB", "狂野之刃"},
-    {TERM_L_BLUE, "MS", "多重打击"},
-    {TERM_L_BLUE, "PS", "穿透打击"},
+    {TERM_RED, "破绽", "破绽"},
+    {TERM_RED, "燃刃", "燃烧之刃"},
+    {TERM_BLUE, "冰刃", "冰霜之刃"},
+    {TERM_YELLOW, "雷刃", "雷霆之刃"},
+    {TERM_RED, "血刃", "鲜血之刃"},
+    {TERM_WHITE, "圣刃", "神圣之刃"},
+    {TERM_ORANGE, "秩刃", "秩序之刃"},
+    {TERM_GREEN, "狂刃", "狂野之刃"},
+    {TERM_L_BLUE, "多重击", "多重打击"},
+    {TERM_L_BLUE, "穿刺击", "穿透打击"},
     {TERM_L_BLUE, "绊倒", "绊倒"},
-    {TERM_UMBER, "En", "掘壕"},
-    {TERM_RED, "EW", "变大"},
-    {TERM_L_RED, "Fl", "疾风"},
-    {TERM_RED, "Fl", "FLURRY"},
+    {TERM_UMBER, "掘壕", "掘壕"},
+    {TERM_RED, "放大", "变大"},
+    {TERM_L_RED, "连击", "疾风"},
+    {TERM_RED, "连击!", "连击!"},
     {TERM_UMBER, "葬", "送葬"},
-    {TERM_ORANGE, "Sc", "坚忍"},
-    {TERM_YELLOW, "At", "殓尸"},
-    {TERM_L_BLUE, "SB", "盾击"},
-    {TERM_L_BLUE, "Bw", "壁垒"},
-    {TERM_RED, "Rt", "仪式"},
+    {TERM_ORANGE, "坚忍", "坚忍"},
+    {TERM_YELLOW, "殡葬", "殓尸"},
+    {TERM_L_BLUE, "盾击", "盾击"},
+    {TERM_L_BLUE, "壁垒", "壁垒"},
+    {TERM_RED, "仪式", "仪式"},
     {TERM_WHITE, "移", "移植"},
-    {TERM_YELLOW, "Cl", "清明"},
-    {TERM_L_DARK, "Bl", "融入"},
-    {TERM_ORANGE, "Sh", "护盾"},
-    {TERM_RED, "Ct", "战斗"},
-    {TERM_VIOLET, "Ft", "要塞"},
-    {TERM_GREEN, "MS", "心智泉"},
-    {TERM_YELLOW, "Fs", "预知"},
+    {TERM_YELLOW, "澄明", "清明"},
+    {TERM_L_DARK, "融入", "融入"},
+    {TERM_ORANGE, "偏导", "护盾"},
+    {TERM_RED, "战斗", "战斗"},
+    {TERM_VIOLET, "要塞", "要塞"},
+    {TERM_GREEN, "心灵之泉", "心智泉"},
+    {TERM_YELLOW, "预见", "预知"},
     {TERM_L_DARK, "祛魔", "祛魔"},
     {TERM_L_BLUE, "反应", "反应"},
-    {TERM_YELLOW, "RC", "诅咒"},
-    {TERM_RED, "Fy", "狂怒"},
-    {TERM_GREEN, "Tn", "驱退"},
-    {TERM_GREEN, "Fs", "辟谷"},
-    {TERM_YELLOW, "(Str", "维力"},
-    {TERM_YELLOW, "(Int", "维智"},
-    {TERM_YELLOW, "(Wis", "维感"},
-    {TERM_YELLOW, "(Dex", "维敏"},
-    {TERM_YELLOW, "(Con", "维体"},
-    {TERM_YELLOW, "(Chr", "维魅"},
-    {TERM_YELLOW, "(HL", "维生"},
-    {TERM_WHITE, "Tr", "超凡"},
-    {TERM_L_BLUE, "ST", "时停"},
-    {TERM_L_DARK, "DS", "潜行"},
-    {TERM_L_BLUE, "ND", "闪避"},
-    {TERM_UMBER, "SS", "狙击"},
-    {TERM_L_BLUE, "Bl", "格挡"},
-    {TERM_RED, "Dr", "吸取"},
-    {TERM_YELLOW, "Qk", "地震"},
-    {TERM_RED, "Ml", "重击"},
-    {TERM_VIOLET, "KS", "连杀"},
-    {TERM_L_DARK, "Tn", "挖掘"},
-    {TERM_YELLOW, "QW", "快步"},
-    {TERM_L_BLUE, "IP", "护包"},
-    {TERM_VIOLET, "IP", "护包"},
-    {TERM_L_BLUE, "Wp", "武器"},
-    {TERM_VIOLET, "Dv", "装置"},
+    {TERM_YELLOW, "诅咒", "诅咒"},
+    {TERM_RED, "狂怒", "狂怒"},
+    {TERM_GREEN, "驱散", "驱退"},
+    {TERM_GREEN, "绝食", "辟谷"},
+    {TERM_YELLOW, "保力", "维力"},
+    {TERM_YELLOW, "保智", "维智"},
+    {TERM_YELLOW, "保感", "维感"},
+    {TERM_YELLOW, "保敏", "维敏"},
+    {TERM_YELLOW, "保体", "维体"},
+    {TERM_YELLOW, "保魅", "维魅"},
+    {TERM_YELLOW, "保命", "维生"},
+    {TERM_WHITE, "超脱", "超凡"},
+    {TERM_L_BLUE, "时停", "时停"},
+    {TERM_L_DARK, "潜行", "潜行"},
+    {TERM_L_BLUE, "闪避", "闪避"},
+    {TERM_UMBER, "狙击", "狙击"},
+    {TERM_L_BLUE, "格挡", "格挡"},
+    {TERM_RED, "汲取", "吸取"},
+    {TERM_YELLOW, "地震", "地震"},
+    {TERM_RED, "重锤", "重击"},
+    {TERM_VIOLET, "狂杀", "连杀"},
+    {TERM_L_DARK, "挖掘", "挖掘"},
+    {TERM_YELLOW, "快步", "快步"},
+    {TERM_L_BLUE, "护物", "护包"},
+    {TERM_VIOLET, "护物", "护包"},
+    {TERM_L_BLUE, "武器", "武器"},
+    {TERM_VIOLET, "装置", "装置"},
     {TERM_RED, "*", "飞溅"},
-    {TERM_L_BLUE, "ST", "缓时"},
+    {TERM_L_BLUE, "时停", "缓时"},
     {TERM_YELLOW, "2", "连动"},
-    {TERM_L_BLUE, "RS", "准备"},
-    {TERM_L_BLUE, "PA", "穿透"},
-    {TERM_L_BLUE, "RR", "装填"},
-    {TERM_L_BLUE, "Ex", "爆炸"},
-    {TERM_L_BLUE, "OD", "满弓"},
-    {TERM_RED, "Ay", "箭术"},
-    {TERM_L_BLUE, "Sl", "潜行"},
-    {TERM_L_BLUE, "Fs", "加速"},
-    {TERM_L_BLUE, "Rl", "反击"},
-    {TERM_L_BLUE, "Of", "攻击"},
-    {TERM_L_BLUE, "Df", "防御"},
-    {TERM_L_BLUE, "Bl", "闪烁"},
-    {TERM_L_GREEN, "DT", "探陷"},
-    {TERM_YELLOW, "DT", "探陷"},
-    {TERM_YELLOW, "Lt", "照明"},
-    {TERM_L_DARK, "Dk", "黑暗"},
+    {TERM_L_BLUE, "准备", "准备"},
+    {TERM_L_BLUE, "穿透", "穿透"},
+    {TERM_L_BLUE, "装填", "装填"},
+    {TERM_L_BLUE, "爆炸", "爆炸"},
+    {TERM_L_BLUE, "满弓", "满弓"},
+    {TERM_RED, "箭术", "箭术"},
+    {TERM_L_BLUE, "潜行", "潜行"},
+    {TERM_L_BLUE, "加速", "加速"},
+    {TERM_L_BLUE, "反击", "反击"},
+    {TERM_L_BLUE, "进攻", "攻击"},
+    {TERM_L_BLUE, "防御", "防御"},
+    {TERM_L_BLUE, "闪烁", "闪烁"},
+    {TERM_L_GREEN, "测陷", "探陷"},
+    {TERM_YELLOW, "测陷", "探陷"},
+    {TERM_YELLOW, "照明", "照明"},
+    {TERM_L_DARK, "黑暗", "黑暗"},
     {TERM_UMBER, "碎盾", "碎片护盾"},
     {TERM_L_BLUE, "支配", "支配"},
-    {TERM_RED, "[M", "扰乱"},
-    {TERM_YELLOW, "Dr", "吸取"},
+    {TERM_RED, "瓦解", "扰乱"},
+    {TERM_YELLOW, "汲取", "吸取"},
     {TERM_L_BLUE, "慢跑", "慢跑"},
     {TERM_RED, "疾驰", "疾驰"},
-    {TERM_YELLOW, "Hl", "治疗"},
+    {TERM_YELLOW, "治疗", "治疗"},
     {TERM_VIOLET, "冲锋", "英雄冲锋"},
     {TERM_YELLOW, "$$", "囤积"},
     {TERM_L_BLUE, "瞄准", "瞄准"},
     {TERM_GREEN, "旋斩", "旋转"},
-    {TERM_SLATE, "uHP", "毅力"},
-    {TERM_YELLOW, "uAU", "润滑"},
-    {TERM_L_GREEN, "uXP", "荣耀"},
+    {TERM_SLATE, "坚毅", "毅力"},
+    {TERM_YELLOW, "润滑", "润滑"},
+    {TERM_L_GREEN, "荣耀", "荣耀"},
     {TERM_L_RED, "维护", "维护"},
     {TERM_ORANGE, "阻挠", "阻挠"},
     {TERM_L_WHITE, "不适", "不适"},
     {TERM_ORANGE, "力场", "力场"},
-    {TERM_WHITE, "/p", "/Human"},
-    {TERM_L_UMBER, "/P", "/Giant"},
-    {TERM_L_WHITE, "/T", "/Troll"},
-    {TERM_GREEN, "/D", "/Dragon"},
-    {TERM_L_RED, "/U", "/Demon"},
-    {TERM_SLATE, "/L", "/Undead"},
-    {TERM_L_GREEN, "/Z", "/Animal"},
+    {TERM_WHITE, "/p", "/人类"},
+    {TERM_L_UMBER, "/P", "/巨人"},
+    {TERM_L_WHITE, "/T", "/巨魔"},
+    {TERM_GREEN, "/D", "/龙族"},
+    {TERM_L_RED, "/U", "/恶魔"},
+    {TERM_SLATE, "/L", "/不死"},
+    {TERM_L_GREEN, "/Z", "/动物"},
     {TERM_ORANGE, "|St", "震慑"},
     {TERM_L_WHITE, "|S", "斩首"},
-    {TERM_L_ORANGE, "Pt", "诗人"},
-    {TERM_YELLOW, "Id", "自动鉴定"},
-    {TERM_VIOLET, "NA", "无气"},
+    {TERM_L_ORANGE, "诗人", "诗人"},
+    {TERM_YELLOW, "自鉴", "自动鉴定"},
+    {TERM_VIOLET, "无气", "无气"},
     {0, NULL, NULL}
 };
 
@@ -1641,9 +1641,9 @@ static void prt_depth(void)
             sprintf(buf, "%s", town_name(p_ptr->town_num));
         else if ((wilderness[p_ptr->wilderness_y][p_ptr->wilderness_x].entrance) && ((p_ptr->total_winner) ||
                  (!(d_info[wilderness[p_ptr->wilderness_y][p_ptr->wilderness_x].entrance].flags1 & DF1_WINNER))))
-            sprintf(buf, "Wilderness (%s): L%d", d_name+d_info[wilderness[p_ptr->wilderness_y][p_ptr->wilderness_x].entrance].name, base_level);
+            sprintf(buf, "荒野 (%s): L%d", dungeon_display_name(wilderness[p_ptr->wilderness_y][p_ptr->wilderness_x].entrance), base_level);
         else
-            sprintf(buf, "Wilderness: L%d", base_level);
+            sprintf(buf, "荒野: L%d", base_level);
     }
     else if (quests_get_current() && !dungeon_type)
     {
@@ -1655,9 +1655,9 @@ static void prt_depth(void)
     else
     {
         if (depth_in_feet)
-            sprintf(buf, "%s: %d ft", d_name+d_info[dungeon_type].name, dun_level * 50);
+            sprintf(buf, "%s: %d 英尺", dungeon_display_name(dungeon_type), dun_level * 50);
         else
-            sprintf(buf, "%s: L%d", d_name+d_info[dungeon_type].name, dun_level);
+            sprintf(buf, "%s: L%d", dungeon_display_name(dungeon_type), dun_level);
 
         /* Get color of level based on feeling  -JSV- */
         switch (p_ptr->feeling)
@@ -1881,8 +1881,8 @@ static bool prt_speed(int row, int col)
         else if ((is_fast) && (hitaus) && (hitaus == 10)) attr = TERM_L_RED;
         else if (p_ptr->filibuster) attr = TERM_ORANGE;
         else attr = TERM_L_GREEN;
-        if (effective_speed) sprintf(buf, "Fast (%d.%dx)", SPEED_TO_ENERGY(i) / 10, SPEED_TO_ENERGY(i) % 10);
-        else sprintf(buf, "Fast (+%d)", (i - 110));
+        if (effective_speed) sprintf(buf, "加速 (%d.%dx)", SPEED_TO_ENERGY(i) / 10, SPEED_TO_ENERGY(i) % 10);
+        else sprintf(buf, "加速 (+%d)", (i - 110));
 
     }
 
@@ -1904,8 +1904,8 @@ static bool prt_speed(int row, int col)
         else if ((is_fast) && (hitaus) && (hitaus == 10)) attr = TERM_L_RED;
         else if (p_ptr->filibuster) attr = TERM_ORANGE;
         else attr = TERM_L_UMBER;
-        if (effective_speed) sprintf(buf, "Slow (%d.%dx)", SPEED_TO_ENERGY(i) / 10, SPEED_TO_ENERGY(i) % 10);
-        else sprintf(buf, "Slow (-%d)", (110 - i));
+        if (effective_speed) sprintf(buf, "减速 (%d.%dx)", SPEED_TO_ENERGY(i) / 10, SPEED_TO_ENERGY(i) % 10);
+        else sprintf(buf, "减速 (-%d)", (110 - i));
     }
     else if (p_ptr->riding)
     {
@@ -2000,7 +2000,7 @@ static void prt_effects(void)
         if (p_ptr->cursed & OFC_PERMA_CURSE)
             c_put_str(a, "*被诅咒*", row++, col);
         else if (p_ptr->cursed & OFC_HEAVY_CURSE)
-            c_put_str(a, "CURSED", row++, col);
+            c_put_str(a, "受诅咒", row++, col);
         else
             c_put_str(a, "被诅咒", row++, col);
     }
@@ -2015,15 +2015,15 @@ static void prt_effects(void)
     else if (prace_is_(RACE_WEREWOLF))
     {
         char buf[MAX_NLEN];
-        if (werewolf_in_human_form()) sprintf(buf, "[Human]");
-        else sprintf(buf, "[Wolf]");
+        if (werewolf_in_human_form()) sprintf(buf, "[人类]");
+        else sprintf(buf, "[狼]");
         c_put_str(TERM_ORANGE, buf, row++, col);
     }
     else if (prace_is_(RACE_BEORNING))
     {
         char buf[MAX_NLEN];
-        if (beorning_is_(BEORNING_FORM_HUMAN)) sprintf(buf, "[Human]");
-        else sprintf(buf, "[Bear]");
+        if (beorning_is_(BEORNING_FORM_HUMAN)) sprintf(buf, "[人类]");
+        else sprintf(buf, "[熊]");
         c_put_str(TERM_ORANGE, buf, row++, col);
     }
     if (monk_armour_aux)
@@ -2098,14 +2098,14 @@ static void prt_effects(void)
         if (amt > 0)
         {
             char tmp[20];
-            sprintf(tmp, "Study (%d)", amt);
+            sprintf(tmp, "学习 (%d)", amt);
             c_put_str(TERM_L_BLUE, tmp, row++, col);
         }
     }
     else if (p_ptr->new_spells && p_ptr->pclass != CLASS_RAGE_MAGE)
     {
         char tmp[20];
-        sprintf(tmp, "Study (%d)", p_ptr->new_spells);
+        sprintf(tmp, "学习 (%d)", p_ptr->new_spells);
         c_put_str(TERM_L_BLUE, tmp, row++, col);
     }
     if ((rogue_like_commands) && (show_rogue_keys) && (row < Term->hgt - 3))

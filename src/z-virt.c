@@ -81,7 +81,7 @@ vptr rpanic(huge len)
     if (rpanic_aux) return ((*rpanic_aux)(len));
 
     /* Attempt to crash before icky things happen */
-    core("Out of Memory!");
+    core("内存不足！");
 
     /* Paranoia */
     return ((vptr)(NULL));

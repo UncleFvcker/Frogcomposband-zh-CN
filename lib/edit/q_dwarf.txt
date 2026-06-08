@@ -1,17 +1,17 @@
 # New quest for FrogComposband 7.1.chocolate
 
 ?:[EQU $QUEST53 Taken InProgress]
-D:The ruins of the old Dwarven Embassy might be worth checking out.
-D:Dangerous monsters lurk there now, but we both know dwarves' predilection
-D:for gold and treasures.
+D:旧矮人大使馆的废墟可能值得一看。
+D:那里现在潜伏着危险的怪物，但我们都知道矮人对
+D:黄金和宝藏的偏爱。
 ?:1
 
 ?:[EQU $QUEST53 Completed]
-D:Well done, you can keep everything you found.
+D:干得好，你可以保留你找到的一切。
 ?:1
 
 ?:[EQU $QUEST53 Failed]
-D:Too bad, I guess those old treasures are lost forever.
+D:太糟糕了，我猜那些古老的宝藏永远遗失了。
 ?:1
 
 T:QUEST:NORMAL

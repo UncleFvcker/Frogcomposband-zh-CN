@@ -88,7 +88,7 @@ W:5:0:30:1:0
 A:5/1
 P:0:4d4:0:0:0
 M:70:1d4
-D:It poisons you when you eat it.
+D:吃了它会让你中毒。
 
 N:*:Blindness:Blue
 G:,:b
@@ -96,7 +96,7 @@ I:80:1:500
 W:5:0:30:1:0
 A:5/1
 M:70:1d4
-D:It blinds you when you eat it.
+D:吃了它会让你失明。
 
 N:*:Paranoia:Black
 G:,:D
@@ -104,7 +104,7 @@ I:80:2:500
 W:5:0:30:1:0
 A:5/1
 M:70:1d4
-D:It scares you when you eat it.
+D:吃了它会让你感到恐惧。
 
 N:*:Confusion:Black Spotted
 G:,:D
@@ -112,7 +112,7 @@ I:80:3:500
 W:5:0:30:1:0
 A:5/1
 M:70:1d4
-D:It confuses you when you eat it.
+D:吃了它会让你感到困惑。
 
 N:*:Hallucination:Brown
 G:,:u
@@ -120,7 +120,7 @@ I:80:4:500
 W:10:0:30:1:0
 A:10/1
 M:70:1d4
-D:It makes you hallucinate when you eat it.
+D:吃了它会让你产生幻觉。
 
 N:*:Paralysis:Tan
 G:,:U
@@ -128,7 +128,7 @@ I:80:5:500
 W:20:0:40:1:0
 A:20/1
 M:70:1d4
-D:It paralyzes you when you eat it.
+D:吃了它会让你麻痹。
 
 N:*:Weakness:Furry
 G:,:W
@@ -137,7 +137,7 @@ W:10:0:30:1:0
 A:10/1
 M:70:1d4
 P:0:5d5:0:0:0
-D:You take 6d6 damage and it decreases your strength when you eat it.
+D:吃了它你会受到 6d6 点伤害，并且力量会降低。
 
 N:*:Sickness:Slimy
 G:,:s
@@ -146,7 +146,7 @@ W:10:0:30:1:0
 A:10/1
 P:0:4d4:0:0:0
 M:70:1d4
-D:You take 6d6 damage and it decreases your constitution when you eat it.
+D:吃了它你会受到 6d6 点伤害，并且体质会降低。
 
 N:*:Stupidity:Light Green
 G:,:G
@@ -154,7 +154,7 @@ I:80:8:500
 W:15:0:30:1:0
 A:15/1
 M:70:1d4
-D:You take 8d8 damage and it decreases your intelligence when you eat it.
+D:吃了它你会受到 8d8 点伤害，并且智力会降低。
 
 N:*:Naivety:Violet
 G:,:v
@@ -162,7 +162,7 @@ I:80:9:500
 W:15:0:30:1:0
 A:15/1
 M:70:1d4
-D:You take 8d8 damage and it decreases your wisdom when you eat it.
+D:吃了它你会受到 8d8 点伤害，并且感知会降低。
 
 N:*:Unhealth:Green
 G:,:g
@@ -171,7 +171,7 @@ W:15:0:40:1:50
 A:15/1
 P:0:10d10:0:0:0
 M:70:1d4
-D:You take 10d10 damage and it decreases your constitution when you eat it.
+D:吃了它你会受到 10d10 点伤害，并且体质会降低。
 
 N:*:Disease:White Spotted
 G:,:w
@@ -180,7 +180,7 @@ W:20:0:40:1:50
 A:20/1
 P:0:10d10:0:0:0
 M:70:1d4
-D:You take 10d10 damage and it decreases your strength when you eat it.
+D:吃了它你会受到 10d10 点伤害，并且力量会降低。
 
 N:*:Cure Poison:Dark Blue
 G:,:b
@@ -189,7 +189,7 @@ W:10:0:0:1:120
 F:TOWN
 A:10/1
 M:70:1d4
-D:It cures poison when you eat it.
+D:吃了它可以解除中毒状态。
 
 N:*:Cure Blindness:Dark Green
 G:,:g
@@ -198,7 +198,7 @@ W:10:0:30:1:30
 F:TOWN
 A:10/1
 M:70:1d4
-D:It cures blindness when you eat it.
+D:吃了它可以解除失明状态。
 
 N:*:Cure Paranoia:Dark Red
 G:,:r
@@ -207,7 +207,7 @@ W:10:0:0:1:25
 F:TOWN
 A:10/1
 M:70:1d4
-D:It removes fear when you eat it.
+D:吃了它可以解除恐惧状态。
 
 N:*:Cure Confusion:Yellow
 G:,:y
@@ -216,7 +216,7 @@ W:10:0:40:1:30
 F:TOWN
 A:10/1
 M:70:1d4
-D:It cures confusion when you eat it.
+D:吃了它可以解除困惑状态。
 
 N:*:Restore Constitution:Grey
 G:,:s
@@ -224,7 +224,7 @@ I:80:18:500
 W:20:0:0:1:350
 A:20/1
 M:70:1d4
-D:It restores your constitution when you eat it.
+D:吃了它可以恢复你的体质。
 
 N:*:Restoring:Light Blue
 G:,:B
@@ -233,7 +233,7 @@ W:20:0:0:1:1000
 A:20/8:30/4:40/1
 M:10:1d4
 F:NO_SHUFFLE
-D:It restores all your stats when you eat it.
+D:吃了它可以恢复你所有的属性。
 
 N:*:Restore Strength:White
 G:,:w
@@ -241,7 +241,7 @@ I:80:17:500
 W:20:0:0:1:350
 A:20/1
 M:70:1d4
-D:It restores your strength when you eat it.
+D:吃了它可以恢复你的力量。
 
 N:*:Fast Recovery:Wrinkled
 G:,:u
@@ -250,7 +250,7 @@ W:15:0:0:2:30
 F:TOWN
 A:15/1
 M:70:1d4
-D:It speeds your recovery when you eat it.
+D:吃了它可以加速你的生命恢复。
 
 
 
@@ -265,8 +265,8 @@ W:0:0:0:10:3
 A:0/1:5/1:10/1:20/1
 M:100:1d5
 F:TOWN
-D:This nutritious but fairly bland food is
-D:familiar to anyone contemplating long journeys.
+D:任何想要长途旅行的人都对这种
+D:营养丰富但相当平淡的食物很熟悉。
 
 N:*:& Hard Biscuit~
 G:,:U
@@ -274,8 +274,8 @@ I:80:32:500
 W:0:0:30:2:1
 M:100:1d5
 F:TOWN
-D:Twice-cooked for good keeping qualities, this lump of bread is as hard as a
-D:rock and about as tasty.
+D:为了良好的保存性而烤了两次，这块面包像石头
+D:一样硬，味道也差不多。
 
 N:*:& Strip~ of Venison
 G:,:u
@@ -283,7 +283,7 @@ I:80:33:1500
 W:0:0:30:2:2
 M:100:1d5
 F:TOWN
-D:A strip of jerked beef that seems never to spoil.
+D:一条似乎永远不会变质的肉干。
 
 N:*:& Slime Mold~
 G:,:g
@@ -291,7 +291,7 @@ I:80:36:3000
 W:1:0:20:5:2
 A:1/1
 M:100:1d5
-D:An utterly hideous fungal growth.  It is strangely appealing...
+D:一种极其丑陋的真菌增生物。但它却有种奇怪的吸引力……
 
 N:*:& Pint~ of Fine Ale
 G:,:y
@@ -299,7 +299,7 @@ I:80:38:500
 W:0:0:30:5:1
 M:100:1d5
 F:TOWN
-D:Made from the barley of Eriador, and brewed to golden perfection.
+D:由埃利阿多（Eriador）的大麦酿制而成，散发着完美的金黄色泽。
 
 N:*:& Pint~ of Fine Wine
 G:,:r
@@ -307,7 +307,7 @@ I:80:39:1000
 W:0:0:30:10:2
 M:100:1d5
 F:TOWN
-D:A heady wine, almost as good as that served at the Green Dragon at Bywater.
+D:一种令人陶醉的葡萄酒，几乎和绿龙酒馆（Green Dragon）供应的一样好。
 
 N:*:& Piece~ of Elvish Waybread
 G:,:B
@@ -316,16 +316,16 @@ W:5:0:0:3:30
 A:5/1:10/1
 M:50:1d4
 F:TOWN
-D:Small golden-brown wafers wrapped in silven leaves.  Made with elvish art,
-D:it sustains life where nothing else can.
+D:包裹在银色树叶中的小巧金棕色薄饼。用精灵的工艺制成，
+D:在其他任何东西都无能为力时，它能维持你的生命。
 
 N:*:& Serving~ of Ambrosia
 G:,:y
 I:80:40:7500
 W:90:0:0:3:5000
 A:90/1
-D:Food of the gods, fragrant and sweet.
-D:It cures poison, heals hp a bit, and restores your stats and life when eaten.
+D:众神的食物，芳香而甜美。
+D:食用后可以解毒、少量恢复生命值，并完全恢复你的属性和经验等级。
 
 
 
@@ -346,7 +346,7 @@ W:0:0:0:30:2
 A:0/1
 P:0:2d3:-2:-4:0
 F:SHOW_MODS
-D:Above the hilt, a foot of steel rises, ending in a jagged edge.
+D:在剑柄上方，残留着一英尺长的钢铁，末端呈锯齿状。
 
 N:*:& Dagger~
 G:|:W
@@ -355,7 +355,7 @@ W:0:0:0:12:10
 A:0/1
 P:0:1d5:0:0:0
 F:SHOW_MODS | TOWN
-D:A two-edged knife with a sharp point.
+D:带有尖锐刺锋的双刃短刀。
 
 N:*:& Main Gauche~
 G:|:W
@@ -364,7 +364,7 @@ W:3:0:0:30:25
 A:3/1
 P:0:1d6:0:0:0
 F:SHOW_MODS | TOWN
-D:A short thrusting blade with a large guard, primarily used in duels.
+D:一把带有大护手的短刺剑，主要用于决斗。
 
 N:*:& Tanto~
 G:|:W
@@ -381,7 +381,7 @@ W:5:0:0:40:42
 A:5/1
 P:0:1d8:0:0:0
 F:SHOW_MODS | TOWN
-D:A long, thin thrusting blade, mainly used in duels.
+D:一把细长的刺剑，主要用于决斗。
 
 N:*:& Small Sword~
 G:|:W
@@ -390,7 +390,7 @@ W:5:0:0:75:48
 A:5/1
 P:0:1d8:0:0:0
 F:SHOW_MODS | TOWN
-D:A smaller version of the longsword, perfectly sized for Hobbits.
+D:长剑的缩小版，尺寸非常适合霍比特人。
 
 N:*:& Basillard~
 G:|:w
@@ -407,7 +407,7 @@ W:5:0:0:80:90
 A:5/1
 P:0:1d8:0:0:0
 F:SHOW_MODS | TOWN
-D:A short thrusting sword.
+D:一把用于穿刺的短剑。
 
 N:*:& Sabre~
 G:|:W
@@ -416,8 +416,8 @@ W:5:0:0:50:50
 A:5/1
 P:0:1d9:0:0:0
 F:SHOW_MODS | RIDING | TOWN
-D:A light, somewhat curved blade that can be used to thrust or slash; familiar
-D:to horseman and duelists alike.
+D:一把轻巧的微弯利刃，可用于刺击或劈砍；为
+D:骑兵和决斗者所熟知。
 
 N:*:& Cutlass~
 G:|:W
@@ -426,7 +426,7 @@ W:5:0:0:110:85
 A:5/1
 P:0:1d9:0:0:0
 F:SHOW_MODS | TOWN
-D:A large, curved chopper with a basket hilt, well known to seamen.
+D:一把带有篮形护手的大型弯曲砍刀，水手们对此非常熟悉。
 
 N:*:& Wakizashi~
 G:|:W
@@ -459,7 +459,7 @@ W:10:0:0:150:255
 A:10/1
 P:0:2d6:0:0:0
 F:SHOW_MODS | RIDING | TOWN
-D:A heavy, double-edged sword with a strong grip.
+D:一把带有坚固握柄的沉重双刃剑。
 
 N:*:& Long Sword~
 G:|:W
@@ -468,8 +468,8 @@ W:10:0:0:130:300
 A:10/1
 P:0:2d6:0:0:0
 F:SHOW_MODS | RIDING | TOWN
-D:A long, straight, two-edged blade, with two hand guards projecting out from
-D:the hilt to form a perfect cross.
+D:一把长而直的双刃剑，两个护手从
+D:剑柄向外伸出，形成一个完美的十字。
 
 N:*:& Scimitar~
 G:|:W
@@ -478,7 +478,7 @@ W:10:0:0:130:250
 A:10/1
 P:0:2d6:0:0:0
 F:SHOW_MODS | TOWN
-D:A single-edged slashing sword with a blade like a crescent.
+D:一把单刃的劈砍剑，剑刃呈新月形。
 
 N:*:& Ninjato~
 G:|:s
@@ -495,8 +495,8 @@ W:20:0:0:120:400
 A:20/1
 P:0:3d5:0:0:0
 F:SHOW_MODS | TOWN
-D:A slightly curved long-handled slashing sword with a single-edged
-D:blade and a chisel tip.
+D:一把微弯的长柄劈砍剑，带有单面开刃的
+D:刀身和凿状的刀尖。
 
 N:*:& Bastard Sword~
 G:|:W
@@ -505,8 +505,8 @@ W:15:0:0:140:350
 A:15/1
 P:0:3d5:0:0:0
 F:SHOW_MODS | TOWN
-D:Also known as the hand-and-a-half blade.  A larger-than-normal
-D:straight-sided sword with two cutting edges.
+D:也称为“一手半剑”。比普通剑要大的
+D:双刃直剑。
 
 N:*:& Falchion~
 G:|:W
@@ -539,7 +539,7 @@ W:30:0:0:200:775
 A:30/1
 P:0:3d7:0:0:0
 F:SHOW_MODS | TOWN
-D:A great, double-edged broadsword which few can wield in one hand.
+D:一把巨大的双刃阔剑，很少有人能单手挥舞它。
 
 N:*:& Flamberge~
 G:|:W
@@ -564,8 +564,8 @@ W:40:0:0:260:850
 A:40/1
 P:0:4d6:0:0:0
 F:SHOW_MODS
-D:A giant, curved blade designed to cleave the head cleanly from the
-D:body.
+D:一把巨大的弯曲利刃，专为干净利落地将头颅从
+D:身体上砍下而设计。
 
 N:*:& Zweihander~
 G:|:w
@@ -582,8 +582,8 @@ W:70:0:0:180:4000
 A:70/8
 P:0:5d6:0:0:0
 F:RES_CHAOS | SHOW_MODS
-D:This inconstant weapon revels in disorder, hacking and slashing your foes
-D:with bloodthirsty glee.
+D:这把多变的武器沉迷于混乱，以嗜血的狂喜
+D:劈砍着你的敌人。
 
 N:*:& Diamond Edge~
 G:|:w
@@ -618,9 +618,9 @@ A:30/8
 P:0:0d0:-10:-10:0
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 F:BRAND_VAMP | NO_ENCHANT
-D:A black blade, covered with gleaming runes. It is rumored
-D:to be an evil weapon of great power that will ultimately control
-D:its bearer.
+D:一把黑色的剑，上面覆盖着闪闪发光的符文。据说
+D:这是一把拥有巨大力量的邪恶武器，最终会控制
+D:它的持有者。
 
 N:*:& Dragon Fang~
 G:|:G
@@ -648,8 +648,8 @@ W:5:0:0:50:36
 A:5/1
 P:0:1d8:0:0:0
 F:SHOW_MODS | RIDING | TOWN
-D:The basic polearm, with a double-edged knife mounted on a light shaft.
-D:This weapon can be thrown effectively.
+D:最基本的长柄武器，轻木杆上安装着双刃刀。
+D:这件武器可以有效地进行投掷。
 
 N:*:& Sickle~
 G:/:s
@@ -674,7 +674,7 @@ W:5:0:0:70:120
 A:5/1
 P:0:1d10:0:0:0
 F:SHOW_MODS | RIDING | TOWN
-D:A three-pronged spear, originally for catching fish.
+D:一把有三个叉形尖端的长矛，最初用于捕鱼。
 
 N:*:& Fauchard~
 G:/:s
@@ -699,7 +699,7 @@ W:15:0:0:160:358
 A:15/1
 P:0:2d6:0:0:0
 F:SHOW_MODS | TOWN
-D:A long, heavy spear with an iron head and reinforced shaft.
+D:一把带有铁制枪头和加固长杆的长而重的长枪。
 
 N:*:& Naginata~
 G:/:s
@@ -716,7 +716,7 @@ W:15:0:0:120:408
 A:15/1
 P:0:2d7:0:0:0
 F:SHOW_MODS | TOWN
-D:A narrow axe head opposed by a crow's beak, mounted on an oaken shaft.
+D:狭窄的斧头背面有一个像乌鸦嘴一样的尖头，安装在橡木杆上。
 
 N:*:& Broad Axe~
 G:/:s
@@ -725,7 +725,7 @@ W:15:0:0:130:304
 A:15/1
 P:0:2d7:0:0:0
 F:SHOW_MODS | TOWN
-D:A simple, single-bladed war axe capable of chopping though limbs or armour.
+D:一把简单的单刃战斧，能够砍断四肢或盔甲。
 
 N:*:& Lucerne Hammer~
 G:/:B
@@ -742,8 +742,8 @@ W:20:0:0:190:363
 A:20/1
 P:0:2d7:0:0:0
 F:SHOW_MODS | RIDING | TOWN
-D:A reinforced wooden pole eight feet long, topped by a massive knife blade
-D:that can can be used to thrust or chop.
+D:一根八英尺长的加固木杆，顶端是一把巨大的刀刃，
+D:可以用来刺击或劈砍。
 
 N:*:& Lajatang~
 G:/:s
@@ -760,8 +760,8 @@ W:25:0:0:190:430
 A:25/1
 P:0:3d6:0:0:0
 F:SHOW_MODS | TOWN
-D:The most successful of the polearms, the halberd has a long haft mounted
-D:with a heavy axe blade and opposing spike, and topped by a thrusting spine.
+D:长戟是最成功的长柄武器，它有很长的握柄，上面安装着
+D:沉重的斧刃和背面的尖刺，顶端是一根用于穿刺的尖锋。
 
 N:*:& Guisarme~
 G:/:s
@@ -778,8 +778,8 @@ W:45:0:0:250:800
 A:45/1
 P:0:5d4:0:0:0
 F:SHOW_MODS | TOWN
-D:The long crescent blade stands out from the handle of this polearm, and
-D:it is swung with two hands to harvest grain or blood.
+D:长长的新月形刀刃从这把长柄武器的握柄处伸出，
+D:可以用双手挥舞它来收割谷物或鲜血。
 
 N:*:& Lance~
 G:/:s
@@ -796,7 +796,7 @@ W:15:0:0:170:334
 A:15/1
 P:0:2d9:0:0:0
 F:SHOW_MODS | TOWN
-D:A double-bladed axe.  Very popular among Dwarves.
+D:一把双刃斧。在矮人中非常受欢迎。
 
 N:*:& Great Axe~
 G:/:s
@@ -805,8 +805,8 @@ W:40:0:0:230:500
 A:40/1
 P:0:4d5:0:0:0
 F:SHOW_MODS | TOWN
-D:An enormous two-handed battle axe, carried by Dwarven champions, who
-D:compete to see who can cleave the most orc heads.
+D:一把巨大的双手战斧，由矮人冠军携带，他们
+D:竞相看谁能砍下最多的半兽人头颅。
 
 N:*:& Trifurcate Spear~
 G:/:o
@@ -839,8 +839,8 @@ W:60:0:0:250:3500
 A:60/4
 P:0:8d4:0:0:0
 F:SHOW_MODS | RIDING
-D:A reaper's weapon, the long blade almost hums in anticipation of the
-D:blood it will spill.
+D:死神的武器，长长的刀刃几乎在期待它即将
+D:洒落的鲜血而嗡嗡作响。
 
 N:*:& Fishingpole~
 G:/:B
@@ -887,8 +887,8 @@ W:3:0:0:30:30
 A:3/1
 P:0:1d7:0:0:0
 F:SHOW_MODS | TOWN
-D:A heavy whip, this thick coil is thrown from the shoulder and can
-D:knock down a large man.
+D:一条沉重的鞭子，这根粗厚的绳圈从肩部甩出，可以
+D:击倒一个高大的男人。
 
 N:*:& Quarterstaff~
 G:\:U
@@ -897,8 +897,8 @@ W:10:0:0:150:200
 A:10/1
 P:0:1d10:0:0:0
 F:SHOW_MODS | TOWN
-D:Six feet of oak which can be wielded in both hands to give a drubbing or
-D:block one.
+D:一根六英尺长的橡木，可以双手挥舞来进行痛打，或者
+D:格挡攻击。
 
 N:*:& Nunchaku~
 G:\:u
@@ -915,7 +915,7 @@ W:5:0:0:120:130
 A:5/1
 P:0:2d5:0:0:0
 F:SHOW_MODS | TOWN
-D:A war club with an iron head, usually flanged.
+D:一种带有铁头的战锤，通常带有凸缘。
 
 N:*:& Ball-and-Chain~
 G:\:D
@@ -924,7 +924,7 @@ W:20:0:0:150:200
 A:20/1
 P:0:2d5:0:0:0
 F:SHOW_MODS | RIDING | TOWN
-D:A weighty iron ball, suspended by a chain from a sturdy oaken handle.
+D:一个沉重的铁球，由一条锁链悬挂在坚固的橡木手柄上。
 
 N:*:& Jo Staff~
 G:\:U
@@ -941,7 +941,7 @@ W:5:0:0:120:225
 A:5/1
 P:0:3d4:0:0:0
 F:SHOW_MODS | RIDING | TOWN
-D:A mallet with a tapered head and a long handle.
+D:一把带有锥形头部和长手柄的大锤。
 
 N:*:& Three Piece Rod~
 G:\:u
@@ -958,7 +958,7 @@ W:10:0:0:150:396
 A:10/1
 P:0:2d7:0:0:0
 F:SHOW_MODS | TOWN
-D:A war club with an spiked iron ball on the head.
+D:一种头部带有带刺铁球的战锤。
 
 N:*:& Flail~
 G:\:D
@@ -967,8 +967,8 @@ W:10:0:0:150:353
 A:10/1
 P:0:2d7:0:0:0
 F:SHOW_MODS | RIDING | TOWN
-D:Two heavy bars of wood connected by a short link of chain, capable of
-D:delivering crushing blows.
+D:两根沉重的木棍由一段短锁链连接而成，能够
+D:造成毁灭性的打击。
 
 N:*:& Bo Staff~
 G:\:U
@@ -985,8 +985,8 @@ W:15:0:0:180:502
 A:15/1
 P:0:3d5:0:0:0
 F:SHOW_MODS | TOWN
-D:A heavy war club topped with a mass of lead-filled steel, capable of
-D:landing crushing blows.
+D:一种沉重的战锤，顶端是一块灌铅的实心钢块，能够
+D:进行粉碎性的重击。
 
 N:*:& Tetsubo~
 G:\:u
@@ -1003,8 +1003,8 @@ W:45:0:0:280:590
 A:45/1
 P:0:3d7:0:0:0
 F:SHOW_MODS | TOWN
-D:Two great bars of wood connected by a massive chain, needing two hands
-D:to properly wield.
+D:两根巨大的木棍由一条粗大的锁链连接，需要双手
+D:才能正确挥舞。
 
 N:*:& Great Hammer~
 G:\:D
@@ -1021,8 +1021,8 @@ W:80:0:0:400:4300
 A:80/8
 P:0:5d8:0:0:0
 F:SLAY_UNDEAD | SHOW_MODS
-D:A giant's weapon, enchanted with shattering power that breaks bones, bodies,
-D:and spirit.
+D:巨人的武器，被附魔了粉碎的力量，能击碎骨头、身体
+D:以及精神。
 
 N:*:& Wizardstaff~
 G:\:y
@@ -1064,7 +1064,7 @@ W:1:0:10:60:10
 A:5/1
 P:0:1d3:0:0:0
 F:SHOW_MODS | TUNNEL | TOWN
-D:A compact and sturdy spade.
+D:一把小巧而结实的铲子。
 
 N:*:& Gnomish Shovel~
 G:\:G
@@ -1073,7 +1073,7 @@ W:20:0:0:60:100
 A:20/4
 P:0:1d3:0:0:0
 F:SHOW_MODS | TUNNEL
-D:A small spade forged of steel with gnomish craftsmanship.
+D:一把用侏儒工艺锻造的钢制小铲子。
 
 N:*:& Dwarven Shovel~
 G:\:B
@@ -1082,8 +1082,8 @@ W:40:0:0:120:200
 A:40/1
 P:0:1d4:0:0:0
 F:SHOW_MODS | TUNNEL
-D:A broad shovel, fit for the strong shoulders of a dwarf.  It bears runes
-D:of delving and no ordinary rock can resist it.
+D:一把宽大的铁锹，适合矮人强壮的肩膀。它上面刻有挖掘的符文，
+D:没有任何普通的岩石能抵抗它。
 
 N:*:& Pick~
 G:\:s
@@ -1092,8 +1092,8 @@ W:5:0:30:150:50
 A:10/1
 P:0:1d5:0:0:0
 F:SHOW_MODS | TUNNEL | TOWN
-D:A heavy mining tool with a long, slightly curved head that tapers
-D:to chisel points on both ends.
+D:一件沉重的采矿工具，它有一个长长、略微弯曲的头部，
+D:两端逐渐变细成凿子状。
 
 N:*:& Orcish Pick~
 G:\:g
@@ -1102,8 +1102,8 @@ W:30:0:0:150:300
 A:30/4
 P:0:1d5:0:0:0
 F:SHOW_MODS | TUNNEL
-D:A crude, ugly, but effective pickaxe.  Made in enormous quantities for
-D:the slave-mines of Durthang.
+D:一把粗糙、难看但很有效的十字镐。大量制造用于
+D:督桑（Durthang）的奴隶矿坑。
 
 N:*:& Dwarven Pick~
 G:\:b
@@ -1112,8 +1112,8 @@ W:50:0:0:200:600
 A:50/1
 P:0:1d6:0:0:0
 F:SHOW_MODS | TUNNEL
-D:A short but sturdy pick, like those that delved deep Moria, with runes to
-D:break the sinews of mountains.
+D:一把短小但结实的镐，就像深入挖掘摩瑞亚的那些一样，带有
+D:能击碎山脉筋骨的符文。
 
 N:*:& Mattock~
 G:\:D
@@ -1137,8 +1137,8 @@ W:5:0:0:5:5
 P:0:x2.00:0:0:0
 A:5/1
 F:SHOW_MODS | TOWN
-D:A loop of leather and cords able to hurl stones or shot with tremendous
-D:velocity.
+D:一个由皮革和绳索制成的套环，能够以极快的速度
+D:投掷石头或弹丸。
 
 N:*:& Short Bow~
 G:}:U
@@ -1147,7 +1147,7 @@ W:10:0:0:30:400
 P:0:x2.50:0:0:0
 A:10/1
 F:SHOW_MODS | TOWN
-D:The traditional hunter's weapon, this light bow is easily drawn.
+D:传统的猎人武器，这把轻弓很容易拉开。
 
 N:*:& Long Bow~
 G:}:U
@@ -1156,8 +1156,8 @@ W:30:0:0:40:400
 P:0:x3.00:0:0:0
 A:30/2
 F:SHOW_MODS | TOWN
-D:As tall as a man, the longbow can drive an arrow through the heaviest
-D:armour.
+D:和人一样高的长弓能让射出的箭穿透最厚重的
+D:盔甲。
 
 N:*:& Light Crossbow~
 G:}:s
@@ -1166,8 +1166,8 @@ W:15:0:0:110:500
 P:0:x3.50:0:0:0
 A:25/1
 F:SHOW_MODS | TOWN
-D:A mechanical bow made of wood, it is cocked to augment the strength of
-D:its wielder.
+D:一把由木头制成的机械弓，它的上弦机制增强了
+D:使用者的力量。
 
 N:*:& Heavy Crossbow~
 G:}:s
@@ -1201,7 +1201,7 @@ I:19:70:0
 W:25:0:0:40:400
 A:25/4
 F:CHR | NO_ENCHANT
-D:A stringed instrument preferred by Bards.
+D:游吟诗人偏爱的弦乐器。
 
 N:*:& Quiver~
 G:~:U
@@ -1215,7 +1215,7 @@ G:}:y
 I:19:71:0
 W:66:0:0:5:500
 F:CHR | INSTA_ART | NO_ENCHANT
-D:A simple woodwind instrument.
+D:一种简单的木管乐器。
 
 
 
@@ -1228,7 +1228,7 @@ A:3/1
 P:0:3d4:0:0:0
 F:SHOW_MODS | TOWN
 M:100:6d7
-D:A standard clothyard arrow, straight and cleanly fletched.
+D:一支标准的长箭，笔直且带有整洁的羽毛。
 
 N:*:& Sheaf Arrow~
 G:{:o
@@ -1258,8 +1258,8 @@ P:0:6d4:0:0:0
 F:SHOW_MODS
 F:IGNORE_ACID | IGNORE_COLD | IGNORE_FIRE | IGNORE_ELEC
 M:100:6d7
-D:Carved from a rare wood, this arrow is inscribed with fell runes and
-D:fletched with eagle feathers.
+D:用稀有木材雕刻而成，这支箭上刻有可怕的符文，并
+D:带有鹰羽。
 
 N:*:& Black Arrow~
 G:{:U
@@ -1279,7 +1279,7 @@ A:10/1
 P:0:3d5:0:0:0
 F:SHOW_MODS | TOWN
 M:100:6d7
-D:A short, heavy arrow shot from a crossbow.
+D:从弩中射出的一种短而重的箭。
 
 N:*:& Steel Bolt~
 G:{:w
@@ -1309,7 +1309,7 @@ P:0:6d5:0:0:0
 F:SHOW_MODS
 F:IGNORE_ACID | IGNORE_COLD | IGNORE_FIRE | IGNORE_ELEC
 M:100:6d7
-D:A mighty quarrel, bound about with battle magics.
+D:一种强大的弩箭，上面附有战斗魔法。
 
 N:189:& Adamantine Bolt~
 G:{:G
@@ -1362,7 +1362,7 @@ W:1:0:0:10:3
 A:1/1:20/1
 F:TOWN
 P:1:0d0:0:0:0
-D:A traveller's sturdy outer garment.
+D:旅行者结实的外套。
 
 N:*:& Elven Cloak~
 G:(:G
@@ -1372,8 +1372,8 @@ A:30/4
 P:4:0d0:0:0:4
 F:IGNORE_ACID | IGNORE_COLD | IGNORE_FIRE | IGNORE_ELEC
 F:STEALTH | SEARCH
-D:A mantle made of curious silken material by the Galadhrim that wondrously
-D:takes on the hues and shapes of its surroundings.
+D:由加拉兹民（Galadhrim）用奇特的丝绸材料制成的斗篷，它能奇妙地
+D:呈现出周围环境的颜色和形状。
 
 N:*:& Fur Cloak~
 G:(:W
@@ -1389,8 +1389,8 @@ W:50:0:0:0:2500
 A:70/4
 P:0:0d0:0:0:10
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
-D:This unearthly, completely transparent body mantle folds and drapes in
-D:iridescent patterns around you. It weighs absolutely nothing.
+D:这种超凡脱俗、完全透明的披风会以
+D:虹彩般的图案折叠垂坠在你周围。它完全没有重量。
 
 N:*:& Shadow Cloak~
 G:(:D
@@ -1399,7 +1399,7 @@ W:60:0:0:5:7500
 A:75/5
 P:6:0d0:0:0:4
 F:RES_DARK | RES_LITE
-D:A midnight-hued cloak that wreathes the wearer in folds of shadow.
+D:一件午夜色的披风，将穿戴者包裹在暗影的褶皱中。
 
 N:*:& Pair~ of Dragon Wings
 G:(:G
@@ -1420,7 +1420,7 @@ W:3:0:0:20:7
 A:3/1
 F:TOWN
 P:2:1d1:0:0:0
-D:These are calf-high boots of flexible leather, laced from heel to calf.
+D:这是由柔韧皮革制成的及犊靴，从脚跟一直系带到小腿。
 
 N:*:& Pair~ of Hard Leather Boots
 G:]:U
@@ -1429,7 +1429,7 @@ W:5:0:0:40:12
 A:5/1
 F:TOWN
 P:3:1d1:0:0:0
-D:A set of sturdy leather boots that will last many weary miles.
+D:一双坚固的皮靴，足以支撑走过许多疲惫的英里。
 
 N:*:& Pair~ of Dragon Boots
 G:]:G
@@ -1445,8 +1445,8 @@ I:30:5:0
 W:20:0:0:80:50
 A:20/1
 P:4:1d2:0:2:0
-D:A set of double-lined leather boots, with toes and heels reinforced with
-D:iron, allowing the wearer to deal a swift kick.
+D:一双双层内衬的皮靴，脚趾和脚跟用铁加固，
+D:允许穿戴者发出迅速的踢击。
 F:TOWN
 
 N:*:& Pair~ of Mithril Shod Boots
@@ -1456,8 +1456,8 @@ W:50:0:0:50:1000
 A:50/2
 F:IGNORE_ACID | IGNORE_FIRE | IGNORE_ELEC | IGNORE_COLD
 P:6:1d2:0:2:0
-D:A set of double-lined leather boots, with toes and heels reinforced with
-D:iron, allowing the wearer to deal a swift kick.
+D:一双双层内衬的皮靴，脚趾和脚跟用铁加固，
+D:允许穿戴者发出迅速的踢击。
 
 
 
@@ -1469,7 +1469,7 @@ W:3:0:0:15:12
 A:3/1
 F:TOWN
 P:2:0d0:0:0:0
-D:A padded skullcap of boiled leather.
+D:一顶煮沸皮革制成的带垫瓜皮帽。
 
 N:*:& Metal Cap~
 G:]:s
@@ -1478,7 +1478,7 @@ W:10:0:0:20:30
 A:10/1
 F:TOWN
 P:3:1d1:0:0:0
-D:A pot-helm of steel that protects the skull.
+D:一顶钢制的锅盔，用于保护头骨。
 
 N:*:& Jingasa~
 G:]:s
@@ -1495,7 +1495,7 @@ W:20:0:0:75:75
 A:20/1
 P:5:1d3:0:0:0
 F:TOWN
-D:A mighty helmet of heavy iron, completely enclosing the head.
+D:一顶重铁制成的坚固头盔，完全包裹住头部。
 
 N:*:& Steel Helm~
 G:]:W
@@ -1504,8 +1504,8 @@ W:40:0:0:60:200
 A:40/1
 P:6:1d3:0:0:0
 F:TOWN
-D:This great helm covers the head and shoulders with plates of steel and a
-D:curtain of mail.
+D:这顶巨大的头盔用钢板和锁子甲帘罩住
+D:头部和肩膀。
 
 N:*:& Mithril Helm~
 G:]:B
@@ -1514,7 +1514,7 @@ W:50:0:0:50:1000
 A:50/2
 P:8:1d3:0:0:0
 F:IGNORE_ACID | IGNORE_FIRE | IGNORE_ELEC | IGNORE_COLD
-D:A mighty helmet of pure mithril, completely enclosing the head.
+D:一顶纯秘银制成的坚固头盔，完全包裹住头部。
 
 N:*:& Dragon Helm~
 G:]:G
@@ -1523,8 +1523,8 @@ W:60:0:0:50:10000
 A:60/5
 P:8:1d3:0:0:10
 F:IGNORE_ACID | IGNORE_FIRE | IGNORE_ELEC | IGNORE_COLD
-D:A dragon-winged great helm, glowing in all the colors of the rainbow.
-D:It grants resistance to the elements.
+D:一顶带有龙翼的巨大头盔，闪烁着彩虹般的所有颜色。
+D:它赋予对元素的抗性。
 
 N:*:& Kabuto~
 G:]:D
@@ -1542,8 +1542,8 @@ I:33:10:0
 W:30:0:0:20:500
 A:30/1
 P:0:1d1:0:0:0
-D:A plain band of iron, crowned with iron spikes.  It is a tyrant's
-D:symbol.
+D:一条普通的铁带，上面布满了铁刺。它是暴君的
+D:象征。
 
 N:*:& Golden Crown~
 G:]:y
@@ -1552,8 +1552,8 @@ W:40:0:0:30:1000
 A:40/1
 P:0:1d1:0:0:0
 F:IGNORE_ACID
-D:An elegant golden circlet, with slender spines thrusting upward.
-D:It looks like it should be resting over the brow of a king.
+D:一个优雅的金色头冠，带有向上突出的细长尖刺。
+D:看起来它应该戴在国王的额头上。
 
 N:*:& Jewel Encrusted Crown~
 G:]:v
@@ -1562,8 +1562,8 @@ W:40:0:0:40:2000
 A:40/1
 P:0:1d1:0:0:0
 F:IGNORE_ACID
-D:An elaborately decorated crown of massive gold, studded with a rainbow
-D:of gems and jewels; worthy of an emperor.
+D:一顶装饰精美的纯金王冠，镶嵌着彩虹般的
+D:宝石和珠宝；足以配得上一位皇帝。
 
 N:*:& Massive Iron Crown~
 G:]:D
@@ -1579,7 +1579,7 @@ W:3:0:0:8:10
 A:3/3
 F:TOWN
 P:1:0d0:0:0:0
-D:A soft woolly hat.
+D:一顶柔软的羊毛帽。
 
 N:*:& Pointy Hat~
 G:]:C
@@ -1587,7 +1587,7 @@ I:32:10:0
 W:3:0:0:20:20
 A:10/5:40/3
 P:1:0d0:0:0:0
-D:A pointy hat. (You wonder if wearing it will automatically make you a magician...)
+D:一顶尖帽子。（你想知道戴上它是否会自动让你变成魔术师……）
 
 
 
@@ -1600,7 +1600,7 @@ W:1:0:0:5:3
 A:1/1
 F:TOWN
 P:1:0d0:0:0:0
-D:Leather hand protection, with an open palm for gripping weapons.
+D:皮革手部保护装备，手掌部分敞开以便于握持武器。
 
 N:*:& Set~ of Studded Leather Gloves
 G:]:U
@@ -1609,8 +1609,8 @@ W:5:0:0:5:3
 A:5/1
 F:TOWN
 P:1:1d1:0:1:0
-D:Leather hand protection, with an open palm for gripping weapons.
-D:The knuckles are weighted with studs to allow for heavier blows.
+D:皮革手部保护装备，手掌部分敞开以便于握持武器。
+D:指关节处加重了铁钉，以便进行更沉重的打击。
 
 N:*:& Set~ of Gauntlets
 G:]:U
@@ -1619,7 +1619,7 @@ W:10:0:0:20:35
 A:10/1
 F:TOWN
 P:4:1d2:1:1:0
-D:A set of gloves that completely covers the hand and wrist in steel plating.
+D:一副用钢板完全覆盖手和手腕的手套。
 
 N:*:& Set~ of Spiked Gauntlets
 G:]:U
@@ -1627,8 +1627,8 @@ I:31:4:0
 W:20:0:0:25:35
 A:20/1
 P:4:2d2:1:3:0
-D:A set of gloves that completely covers the hand and wrist in steel plating.
-D:Sharp spikes extend from the knuckles.
+D:一副用钢板完全覆盖手和手腕的手套。
+D:指关节处伸出锋利的尖刺。
 
 N:*:& Set~ of Mithril Gauntlets
 G:]:B
@@ -1652,8 +1652,8 @@ I:31:7:0
 W:55:0:0:10:1100
 A:55/3
 P:2:1d5:3:5:0
-D:An ancient battle glove designed for hand-to-hand fighting.  Its layered
-D: leather thongs are enhanced for combat by bloody-looking spikes.
+D:一种专为近身肉搏战设计的古老战斗手套。其多层
+D:皮带通过看起来血腥的尖刺进行了增强，以利于战斗。
 
 N:*:& Hand~:Decrepit
 G:]:W
@@ -1673,7 +1673,7 @@ W:3:0:0:50:15
 A:3/1
 F:TOWN
 P:3:1d1:0:0:0
-D:A circular shield of cured animal hide stretched over layered wooden strips.
+D:一面圆形的盾牌，由硝制过的兽皮覆在层叠的木条上制成。
 
 N:*:& Small Metal Shield~
 G:):s
@@ -1682,7 +1682,7 @@ W:10:0:0:65:40
 A:10/1
 F:TOWN
 P:5:1d2:0:0:0
-D:A round shield of wood reinforced with metal rims and central disk.
+D:一面圆形的木盾，由金属边缘和中心的圆盘加固。
 
 N:*:& Large Leather Shield~
 G:):U
@@ -1691,8 +1691,8 @@ W:15:0:0:100:100
 A:15/1
 F:TOWN
 P:6:1d2:0:0:0
-D:A large oval shield made of layered wooden strips with a thick leather
-D:covering.
+D:一面巨大的椭圆形盾牌，由层叠的木条和厚厚的
+D:皮革覆盖层制成。
 
 N:*:& Large Metal Shield~
 G:):s
@@ -1701,8 +1701,8 @@ W:30:0:0:120:200
 A:30/1
 F:TOWN
 P:8:1d3:0:0:0
-D:An oval shield of wood covered by leather and rimmed with metal.  A large
-D:iron shield boss offers excellent hand protection.
+D:一面椭圆形的木盾，覆有皮革并包有金属边缘。一个巨大的
+D:铁制盾心提供了极佳的手部保护。
 
 N:*:& Dragon Shield~
 G:[:G
@@ -1765,8 +1765,8 @@ I:36:1:0
 W:0:0:0:20:1
 A:0/1
 P:1:0d0:0:0:-1
-D:This tattered rag appears to once have been a robe, but has been patched
-D:and re-patched so many times that you can't be sure.
+D:这块破布似乎曾经是一件长袍，但它被修补了
+D:太多次，以至于你都不确定了。
 
 N:*:& Robe~
 G:(:b
@@ -1775,7 +1775,7 @@ W:1:0:0:20:4
 A:1/1:50/1
 F:TOWN
 P:2:0d0:0:0:0
-D:A practical garment of thick wool or velvet, draping from neck to heels.
+D:一件由厚羊毛或天鹅绒制成的实用外套，从脖子一直垂到脚跟。
 
 N:*:Paper Armour~
 G:(:w
@@ -1791,7 +1791,7 @@ W:3:0:0:80:18
 A:3/1
 F:TOWN
 P:4:0d0:0:0:0
-D:A cuirass of pliable leather with a thicker leather jack.
+D:一件由柔韧皮革和较厚皮夹克制成的胸甲。
 
 N:*:Soft Studded Leather~
 G:(:U
@@ -1800,7 +1800,7 @@ W:3:0:0:90:35
 A:3/1
 F:TOWN
 P:5:1d1:0:0:0
-D:A cuirass of pliable leather studded with metal rivets.
+D:一件镶有金属铆钉的柔韧皮革胸甲。
 
 N:*:Hard Leather Armour~
 G:(:U
@@ -1809,7 +1809,7 @@ W:5:0:0:100:150
 A:5/1
 F:TOWN
 P:6:1d1:-1:0:0
-D:A boiled leather cuirass and shoulder plates.
+D:一件煮沸皮革制成的胸甲和护肩。
 
 N:*:Hard Studded Leather~
 G:(:U
@@ -1818,8 +1818,8 @@ W:10:0:0:110:200
 A:10/1
 F:TOWN
 P:7:1d2:-1:0:0
-D:A strong leather breastplate and shoulder guards over a sleeved shirt
-D:of cured leather covered with iron studs.
+D:在覆有铁钉的硝制皮革长袖衬衫外面，穿着一件坚固的
+D:皮革胸甲和护肩。
 
 N:*:Rhino Hide Armour~
 G:(:s
@@ -1851,8 +1851,8 @@ W:15:0:0:140:450
 A:15/1
 F:TOWN
 P:11:1d1:-1:0:0
-D:A tunic and skirt sewn with thick, overlapping scales of hardened
-D:leather.
+D:一件缝有厚重、重叠的硬化皮革鳞片的
+D:束腰外衣和裙子。
 
 N:*:& Leather Jacket~
 G:(:U
@@ -1908,8 +1908,8 @@ I:37:1:0
 W:25:0:0:200:550
 A:25/1
 P:14:1d4:-5:0:-8
-D:Each link of this suit is brittle with rust, and the corroded rings
-D:are stiff and weakened.
+D:这套盔甲的每个链环都因生锈而变得脆弱，腐蚀的圆环
+D:僵硬且不结实。
 
 N:*:Ring Mail~
 G:[:s
@@ -1926,8 +1926,8 @@ W:25:0:0:250:550
 A:25/1
 F:TOWN
 P:13:1d4:-2:0:0
-D:A heavy shirt of overlapping steel scales backed by leather, with
-D:matching skirt and sleeves.
+D:一件沉重的鳞甲衫，由皮革支撑的重叠钢鳞制成，配有
+D:相配的裙子和袖子。
 
 N:*:Chain Mail~
 G:[:s
@@ -1936,9 +1936,9 @@ W:25:0:0:220:750
 A:25/1
 F:TOWN
 P:14:1d4:-2:0:0
-D:A sleeved hauberk of interlocking steel rings, well padded with leather.
-D:Chain mail takes skill to make, but offers good protection and relatively
-D:low weight.
+D:一件由相互连接的钢环制成的长袖锁子甲，里面垫有厚实的皮革。
+D:制作链甲需要高超的技巧，但它能提供良好的保护，而且重量相对
+D:较轻。
 
 N:*:Double Ring Mail~
 G:[:s
@@ -1955,9 +1955,9 @@ W:30:0:0:270:900
 A:30/1
 F:TOWN
 P:16:1d4:-2:0:0
-D:A hauberk, leggings, and sleeves of interlocking steel rings,
-D:strategically reinforced at vital locations with a second layer
-D:of chain, all over a layer of heavy padding.
+D:一件长袖锁子甲连带护腿和袖子，由相互连接的钢环制成，
+D:在要害部位巧妙地用第二层链甲进行了加固，
+D:里面全都垫有厚实的内衬。
 
 N:*:Double Chain Mail~
 G:[:s
@@ -2006,7 +2006,7 @@ W:45:0:0:260:1200
 A:45/1
 F:TOWN
 P:22:1d6:-3:0:0
-D:A steel corselet and vambraces over a skirt and leggings of chain.
+D:穿在链甲裙和护腿外面的钢制胸甲和臂甲。
 
 N:*:Metal Lamellar Armour~
 G:[:W
@@ -2031,8 +2031,8 @@ W:45:0:0:380:1350
 A:45/1
 F:TOWN
 P:25:2d4:-3:0:0
-D:A full suit of carefully fitted plates, with hinged joints backed
-D:by chain, and light padding underneath.
+D:一整套精心贴合的板甲，铰接的关节处衬有
+D:链甲，下面有轻薄的垫料。
 
 N:*:O-yoroi~
 G:[:D
@@ -2057,8 +2057,8 @@ W:55:0:0:150:7000
 A:55/4
 P:35:1d4:-1:0:0
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
-D:Rare and wondrous is chain mail made of true-silver, for it offers more
-D:protection for the weight than any other armour.
+D:由真银制成的链甲既罕见又奇妙，因为与其他任何盔甲相比，
+D:它在同等重量下提供了更好的保护。
 
 N:*:Mithril Plate Mail~
 G:[:B
@@ -2067,8 +2067,8 @@ W:60:0:0:300:15000
 A:60/4
 P:40:2d4:-3:0:0
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
-D:A shimmering suit of true-silver, forged long ago by dwarven smiths of
-D:legend.  It gleams with purest white as you gaze upon it.
+D:一套闪闪发光的真银盔甲，很久以前由传说中的矮人铁匠
+D:锻造而成。当你注视它时，它闪耀着最纯净的白光。
 
 N:*:Adamantite Plate Mail~
 G:[:G
@@ -2077,8 +2077,8 @@ W:75:0:0:420:20000
 A:75/8
 P:50:2d4:-4:0:0
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
-D:Adamantite, hard as diamonds, forms this exquisite suit; nothing else
-D:in Middle Earth gives as much protection.
+D:像钻石一样坚硬的精金构成了这套精美的盔甲；在
+D:中土世界没有其他东西能提供如此强大的保护。
 
 
 
@@ -2093,8 +2093,8 @@ P:40:2d4:-2:0:10
 F:RES_ACID |
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 E:BREATHE_ACID:30:30:150
-E:You breathe acid.
-D:A suit of utterly black scales, against which no metal or wood can rest.
+E:你喷吐出酸液。
+D:一套乌黑的鳞甲，任何金属或木材都无法穿透它。
 
 N:*:Blue Dragon Scale Mail~
 G:[:b
@@ -2105,9 +2105,9 @@ P:40:2d4:-2:0:10
 F:RES_ELEC |
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 E:BREATHE_ELEC:30:30:150
-E:You breathe lightning.
-D:A suit of scales as blue as sapphires, emitting eerie sparks and flashes as
-D:you move about in it.
+E:你喷吐出闪电。
+D:一套如蓝宝石般湛蓝的鳞甲，当你在其中活动时，
+D:它会散发出诡异的火花和闪光。
 
 N:*:White Dragon Scale Mail~
 G:[:w
@@ -2118,9 +2118,9 @@ P:40:2d4:-2:0:10
 F:RES_COLD |
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 E:BREATHE_COLD:30:30:150
-E:You breathe frost.
-D:A suit of scales, coldly gleaming in frosty white. A shiver runs down
-D:through your spine even as you look at it.
+E:你喷吐出冰霜。
+D:一套鳞甲，闪烁着冰冷的霜白色光芒。即使只是看着它，
+D:你的脊背也会感到一阵战栗。
 
 N:*:Red Dragon Scale Mail~
 G:[:r
@@ -2131,9 +2131,9 @@ P:40:2d4:-2:0:10
 F:RES_FIRE |
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 E:BREATHE_FIRE:30:50:150
-E:You breathe fire.
-D:A suit of scales, with all the reds of every fire ever lit. The scar
-D:tissue from an old burn aches as you put this armour on.
+E:你喷吐出火焰。
+D:一套鳞甲，蕴含着所有燃烧过的火焰的红色。当你穿上这套盔甲时，
+D:旧烧伤的疤痕组织会隐隐作痛。
 
 N:*:Green Dragon Scale Mail~
 G:[:g
@@ -2144,8 +2144,8 @@ P:40:2d4:-2:0:10
 F:RES_POIS |
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 E:BREATHE_POIS:30:40:150
-E:You breathe poison gas.
-D:A suit of scales, glistening in sickly green.
+E:你喷吐出毒气。
+D:一套在病态绿色中闪闪发光的鳞甲。
 
 N:*:Multi-Hued Dragon Scale Mail~
 G:[:v
@@ -2156,8 +2156,8 @@ P:40:2d4:-2:0:10
 F:RES_ACID | RES_ELEC | RES_FIRE | RES_COLD | RES_POIS
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 E:BREATHE_ONE_MULTIHUED:40:70:250
-D:A suit of scales that throbs with angry energies; it takes all your energy
-D:to master the Elements fighting an endless war trapped inside.
+D:一套因愤怒的能量而悸动的鳞甲；驾驭被困在其中的无尽元素战争
+D:需要耗费你所有的精力。
 
 N:*:Pseudo Dragon Scale Mail~
 G:[:v
@@ -2178,8 +2178,8 @@ P:40:2d4:-2:0:10
 F:RES_SOUND | RES_SHARDS |
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 E:BREATHE_ONE_LAW:50:100:230
-D:A suit of scales in stern blue and silver. You feel the slightest tremor
-D:as you touch it, like massed trumpets heard and cyclones felt from afar.
+D:一套严峻的蓝银色鳞甲。当你触摸它时，你能感觉到轻微的颤抖，
+D:就像从远方传来的阵阵号角声和席卷而来的气旋。
 
 N:*:Bronze Dragon Scale Mail~
 G:[:U
@@ -2190,10 +2190,10 @@ P:40:2d4:-2:0:10
 F:RES_CONF |
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 E:BREATHE_CONF:30:40:120
-E:You breathe confusion.
-D:A suit of scales, gleaming in rich engraved bronze. The more you look at
-D:the the maze of whorls and lines that close inspection reveal on its
-D:surface, the less sense you are able to make of them.
+E:你喷吐出混乱。
+D:一套鳞甲，闪耀着华丽的青铜雕刻光芒。当你仔细观察其表面，
+D:越是端详那些如同迷宫般的螺纹和线条时，
+D:你就越无法理解它们。
 
 N:*:Silver Dragon Scale Mail~
 G:[:W
@@ -2204,9 +2204,9 @@ P:40:2d4:-2:0:10
 F:FREE_ACT |
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 E:BREATHE_INERTIA:30:40:130
-E:You breathe inertia.
-D:A suit of scales in mirror-like silver. You feel a great stillness
-D:come over you as you regard the quality of the object.
+E:你喷吐出惰性。
+D:一套如镜面般银亮的鳞甲。当你注视这件物品的质量时，
+D:你会感到一种巨大的宁静降临在身上。
 
 N:*:Gold Dragon Scale Mail~
 G:[:y
@@ -2217,10 +2217,10 @@ P:40:2d4:-2:0:10
 F:RES_SOUND |
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 E:BREATHE_SOUND:30:40:130
-E:You breathe sound.
-D:A suit of scales in mirror-like gold. You hear nothing unusual as you
-D:wear this armour, yet your ears ache as though in the midst of a
-D:cacophony.
+E:你喷吐出音波。
+D:一套如镜面般金亮的鳞甲。当你穿上这件盔甲时，听不到任何异常的声音，
+D:但你的耳朵却隐隐作痛，就好像置身于
+D:刺耳的噪音之中。
 
 N:*:Chaos Dragon Scale Mail~
 G:[:v
@@ -2231,8 +2231,8 @@ P:40:2d4:-2:0:10
 F:RES_CHAOS | RES_DISEN |
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 E:BREATHE_ONE_CHAOS:50:100:220
-D:A suit of scales. Every shape, in every color imaginable, riot and
-D:contend upon its surface as you stare in fascination.
+D:一套鳞甲。每一种你能想象到的形状和颜色，都在它的表面上
+D:狂乱地交织着，让你看得入迷。
 
 N:*:Balance Dragon Scale Mail~
 G:[:v
@@ -2243,9 +2243,9 @@ P:40:2d4:-2:0:10
 F:RES_CHAOS | RES_DISEN | RES_SOUND | RES_SHARDS | NO_SHUFFLE
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 E:BREATHE_ONE_BALANCE:50:100:250
-D:A suit of scales. Featureless grey to casual inspection, yet a closer
-D:look reveals patterns within patterns of iridescence that throb with
-D:leashed energies bound as though by chains of adamant.
+D:一套鳞甲。粗看之下是毫无特征的灰色，但如果仔细观察，
+D:就会发现其虹彩中层层叠叠的图案，这些图案随着被坚固锁链
+D:束缚的能量而悸动着。
 
 N:*:Power Dragon Scale Mail~
 G:[:v
@@ -2258,10 +2258,10 @@ F:RES_NETHER | RES_NEXUS | RES_CHAOS | RES_LITE | RES_DARK |
 F:RES_SHARDS | RES_SOUND | RES_DISEN | RES_CONF |
 F:IGNORE_ACID | IGNORE_ELEC | IGNORE_FIRE | IGNORE_COLD
 E:BREATHE_ELEMENTS:50:100:300
-E:You breathe the elements!
-D:A suit with scales of every color, surrounded in a nimbus of perfectly
-D:untrammelled yet inextricably intermingled and utterly mastered powers
-D:elemental and ethereal.
+E:你喷吐出元素！
+D:一套有着各种颜色鳞片的盔甲，被一团光环所环绕。那是完美的元素与空灵力量，
+D:它们不受羁绊却又不可分割地交织在一起，并被彻底掌控。
+D:元素与空灵。
 
 
 
@@ -4555,7 +4555,7 @@ G:*:B
 I:81:1:0
 W:0:0:0:4:500
 P:0:1d1:0:0:0
-D:A cryptic rune, of powers incomprehensible.
+D:一个神秘的符文，蕴含着不可思议的力量。
 
 N:*:& Great Horn~
 G:~:o
@@ -4618,14 +4618,14 @@ I:46:1:0
 W:20:0:40:10:30
 A:20/3
 F:TOWN
-D:A small tied sack of coarse fabric.
+D:一个用粗糙布料制成并系口的小袋子。
 
 N:*:& Leather Pouch~
 G:~:U
 I:46:1:1
 W:20:0:50:10:120
 A:50/3
-D:A rugged pouch of worn leather, cinched with a cord clasp.
+D:一个粗糙的旧皮囊，用绳扣系紧。
 
 
 N:*:& Dwarven Backpack~
@@ -4633,4 +4633,4 @@ G:~:U
 I:46:1:2
 W:50:0:0:10:500
 A:70/4
-D:A rugged, iron-studded pouch forged from thick boarhide and banded with bronze straps.
+D:一个由厚野猪皮制成并绑有青铜带的坚固镶铁背包。

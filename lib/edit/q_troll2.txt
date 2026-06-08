@@ -1,17 +1,17 @@
 # New quest for FrogComposband 7.1.chocolate
 
 ?:[EQU $QUEST34 Taken InProgress]
-D:A few days ago, my men chanced upon a small group of trolls on the road to
-D:Angwil, and managed to fight them off after a hard-fought battle.
-D:Unfortunately, it seems the trolls they saw were only a scouting party for
-D:an enormous army hiding in the hills to the east, intent on destroying
-D:our town and subjecting us all to unimaginable horrors. Please,
-D:we cannot deal with this threat on our own, we need your help.
+D:几天前，我的人在前往安格威尔的路上偶然遇到了一小群巨魔，
+D:经过一场苦战后才设法击退了它们。
+D:不幸的是，他们看到的巨魔似乎只是一支隐藏在
+D:东边山丘里的庞大军队的侦察小队，这支军队意图摧毁
+D:我们的城镇，让我们所有人都遭受无法想象的恐怖。拜托了，
+D:我们无法独自应对这个威胁，我们需要你的帮助。
 ?:[EQU $QUEST34 Completed]
-D:Thank you for saving our town, please put this reward to good use.
+D:感谢你拯救了我们的城镇，请好好利用这份奖励。
 ?:[EQU $QUEST34 Failed]
-D:Oh no! Only the Maintainer being too lazy to actually wipe us off the map
-D:can save us now.
+D:哦不！现在只有负责游戏的维护者懒得真把我们从地图上抹去
+D:才能救得了我们了。
 ?:1
 
 T:QUEST:NORMAL

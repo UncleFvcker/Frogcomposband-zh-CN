@@ -74,14 +74,14 @@ static cptr _get_level_name(int v)
     int lvl = _get_level(v);
     switch (lvl)
     {
-    case FEAR_UNEASY: return "uneasy";
-    case FEAR_NERVOUS: return "nervous";
-    case FEAR_SCARED: return "scared";
-    case FEAR_TERRIFIED: return "terrified";
-    case FEAR_PETRIFIED: return "petrified";
+    case FEAR_UNEASY: return "不安";
+    case FEAR_NERVOUS: return "紧张";
+    case FEAR_SCARED: return "害怕";
+    case FEAR_TERRIFIED: return "恐慌";
+    case FEAR_PETRIFIED: return "吓呆";
     }
 
-    return "bold";
+    return "勇敢";
 }
 
 bool fear_set_p(int v)

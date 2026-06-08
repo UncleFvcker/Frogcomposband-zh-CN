@@ -1,18 +1,18 @@
 # New quest for FrogComposband 7.1.chocolate
 
 ?:[EQU $QUEST2 Taken InProgress]
-D:The compost heap on the other side of the city has started attracting
-D:large numbers of rats, some of them of a type we've never seen before.
-D:Please try to locate their nest and stop the infestation.
+D:城市另一边的堆肥堆开始吸引了
+D:大量老鼠，其中有一些是我们以前从未见过的种类。
+D:请试着找到它们的巢穴，阻止这场鼠患。
 ?:1
 
 ?:[EQU $QUEST2 Completed]
-D:Thank you for eradicating those pests! It was a dirty job, but someone
-D:had to do it.
+D:感谢你消灭了那些害虫！这虽然是个肮脏的活儿，但总得有人
+D:去做。
 ?:1
 
 ?:[EQU $QUEST2 Failed]
-D:Oh no! I hope we won't have to suffer the rats forever.
+D:哦不！希望我们不必永远忍受鼠患。
 ?:1
 
 T:QUEST:NORMAL

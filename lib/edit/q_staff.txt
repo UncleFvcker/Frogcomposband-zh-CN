@@ -1,20 +1,20 @@
 # New quest for FrogComposband 7.0.strawberry
 
 ?:[EQU $QUEST76 Taken InProgress]
-D:Back again? All right, another student of mine tried to
-D:play with the undead some time ago and came up second-best.
-D:See if you can bring back any of the valuables he had,
-D:or at least recover his wizard's staff.
+D:又回来了？好吧，不久前我的另一个学生试着
+D:去和亡灵玩耍，结果成了手下败将。
+D:看看你能不能把他身上的贵重物品带回来，
+D:或者至少找回他的巫师法杖。
 ?:1
 
 ?:[EQU $QUEST76 Completed]
-D:Hey, you made it! Tell you what, I'll let you keep that
-D:staff, you may not be a full wizard yet but at least you're
-D:doing better than him.
+D:嘿，你做到了！听着，那根法杖就
+D:留给你了，你也许还不是个真正的巫师，但至少你
+D:做得比他好。
 ?:1
 
 ?:[EQU $QUEST76 Failed]
-D:Let's see... you failed, no credit.
+D:让我看看……你失败了，没有学分。
 ?:1
 
 T:QUEST:NORMAL

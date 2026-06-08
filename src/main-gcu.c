@@ -1269,7 +1269,7 @@ static errr term_data_init(term_data *td)
    /* Make sure we succeed */
    if (!td->win)
    {
-      plog("Failed to setup curses window.");
+      plog("无法设置 curses 窗口。");
       return (-1);
    }
 
@@ -1390,7 +1390,7 @@ errr init_gcu(int argc, char *argv[])
 
    /* Hack -- Require large screen, or Quit with message */
    i = ((LINES < 24) || (COLS < 80));
-   if (i) quit("Angband needs an 80x24 'curses' screen");
+   if (i) quit("Angband 需要一个 80x24 的 'curses' 屏幕");
 
 
 #ifdef A_COLOR
@@ -1491,7 +1491,7 @@ errr init_gcu(int argc, char *argv[])
       if (arg_sound && !init_sound())
       {
 	 /* Warning */
-	 plog("Cannot initialize sound!");
+	 plog("无法初始化声音！");
 
 	 /* Cannot enable */
 	 arg_sound = FALSE;
@@ -1586,12 +1586,12 @@ errr init_gcu(int argc, char *argv[])
 
                 i++;
                 if (i >= argc)
-                    quit(format("Missing size specifier for -%s", left ? "left" : "right"));
+                    quit(format("缺少 -%s 的尺寸指定符", left ? "left" : "right"));
 
                 arg = argv[i];
                 tmp = strchr(arg, 'x');
                 if (!tmp)
-                    quit(format("Expected something like -%s 60x27,* for two %s hand terminals of 60 columns, the first 27 lines and the second whatever is left.", left ? "left" : "right", left ? "left" : "right"));
+                    quit(format("需要类似于 -%s 60x27,* 的格式，用于两个 %s 侧的终端（60列宽，第一个占27行，第二个占用剩余空间）。", left ? "left" : "right", left ? "left" : "right"));
                 cx = atoi(arg);
                 if (cx < 2) cx = 2;
                 remaining.cx -= cx;
@@ -1618,10 +1618,10 @@ errr init_gcu(int argc, char *argv[])
                     if (y + cy > remaining.y + remaining.cy)
                         cy = remaining.y + remaining.cy - y;
                     if (next_term >= MAX_TERM_DATA)
-                        quit(format("Too many terminals. Only %d are allowed.", MAX_TERM_DATA));
+                        quit(format("终端过多。最多只允许 %d 个。", MAX_TERM_DATA));
                     if (cy <= 0)
                     {
-                        quit(format("Out of bounds in -%s: %d is too large (%d rows max for this strip)", 
+                        quit(format("参数 -%s 越界：%d 过大（该长条区域最多 %d 行）", 
                             left ? "left" : "right", cys[j], remaining.cy));
                     }
                     data[next_term++].r = rect(x, y, cx, cy);
@@ -1637,12 +1637,12 @@ errr init_gcu(int argc, char *argv[])
 
                 i++;
                 if (i >= argc)
-                    quit(format("Missing size specifier for -%s", top ? "top" : "bottom"));
+                    quit(format("缺少 -%s 的尺寸指定符", top ? "top" : "bottom"));
 
                 arg = argv[i];
                 tmp = strchr(arg, 'x');
                 if (!tmp)
-                    quit(format("Expected something like -%s *x7 for a single %s terminal of 7 lines using as many columns as are available.", top ? "top" : "bottom", top ? "top" : "bottom"));
+                    quit(format("需要类似于 -%s *x7 的格式，用于单个 %s 侧的终端（7行高，占用所有可用列宽）。", top ? "top" : "bottom", top ? "top" : "bottom"));
                 tmp++;
                 cy = atoi(tmp);
                 ct = _parse_size_list(arg, cxs, MAX_TERM_DATA);
@@ -1670,10 +1670,10 @@ errr init_gcu(int argc, char *argv[])
                     if (x + cx > remaining.x + remaining.cx)
                         cx = remaining.x + remaining.cx - x;
                     if (next_term >= MAX_TERM_DATA)
-                        quit(format("Too many terminals. Only %d are allowed.", MAX_TERM_DATA));
+                        quit(format("终端过多。最多只允许 %d 个。", MAX_TERM_DATA));
                     if (cx <= 1)
                     {
-                        quit(format("Out of bounds in -%s: %d is too large (%d cols max for this strip)", 
+                        quit(format("参数 -%s 越界：%d 过大（该长条区域最多 %d 列）", 
                             top ? "top" : "bottom", cxs[j], remaining.cx));
                     }
                     data[next_term++].r = rect(x, y, cx, cy);
@@ -1685,7 +1685,7 @@ errr init_gcu(int argc, char *argv[])
 
         /* Map Terminal */
         if (remaining.cx < MAP_MIN_CX || remaining.cy < MAP_MIN_CY)
-            quit(format("Failed: FrogComposband needs an %dx%d map screen, not %dx%d", MAP_MIN_CX, MAP_MIN_CY, remaining.cx, remaining.cy));
+            quit(format("失败：FrogComposband 需要 %dx%d 的地图屏幕，而不是 %dx%d", MAP_MIN_CX, MAP_MIN_CY, remaining.cx, remaining.cy));
         data[0].r = remaining;
         term_data_init(&data[0]);
         angband_term[0] = Term;

@@ -141,7 +141,7 @@ static caster_info * _caster_info(void)
     static bool init = FALSE;
     if (!init)
     {
-        me.magic_desc = "ninjutsu";
+        me.magic_desc = "忍术";
         me.which_stat = A_WIS;
         me.min_fail = 1;
         me.encumbrance.max_wgt = 160;

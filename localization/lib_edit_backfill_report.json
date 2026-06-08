@@ -1,0 +1,20 @@
+{
+  "stats": {
+    "updated": 5415,
+    "already": 0,
+    "missing": 0,
+    "displayLayer": 3387
+  },
+  "generatedTables": {
+    "artifact": 392,
+    "body": 113,
+    "dungeon": 44,
+    "ego": 160,
+    "kind": 540,
+    "kindFlavor": 150,
+    "monster": 1396,
+    "quest": 92,
+    "roomTemplate": 487
+  },
+  "missing": []
+}

@@ -1,16 +1,16 @@
 ?:[EQU $QUEST64 Taken InProgress]
-D:Oh you're back already, hmm. Next thing you should do is
-D:get me some pumpkins from the icky cave. They have
-D:interesting magical properties.
+D:哦，你已经回来了，嗯。你接下来要做的就是
+D:从那个恶心的洞穴里给我拿些南瓜。它们有
+D:很有趣的魔法特性。
 ?:1
 
 ?:[EQU $QUEST64 Completed]
-D:Good work. Now I can finish my soup. Take this signet
-D:ring to show you're allowed to be here.
+D:干得好。现在我可以完成我的汤了。拿着这枚印章
+D:戒指，证明你获准待在这里。
 ?:1
 
 ?:[EQU $QUEST64 Failed]
-D:You know what helps with pumpkins? Fire.
+D:你知道对付南瓜最好的办法是什么吗？火。
 ?:1
 
 R:OBJ(RING):EGO(wizardry)

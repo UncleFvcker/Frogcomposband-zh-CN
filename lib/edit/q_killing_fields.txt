@@ -1,22 +1,22 @@
 # Killing Fields, (C) Topi Ylinen 1999
 ?:[EQU $QUEST26 Taken InProgress]
-D:A mysterious army has appeared near the eastern border.
-D:Their troops seem endless. There is not a hope a we can
-D:defeat them by numbers, we have to take out their general
-D:to make them retreat. Your mission is to infiltrate their
-D:headquarters, find the horned general and then get out of
-D:there alive. Beware of traps!
+D:东部边境附近出现了一支神秘的军队。
+D:他们的部队似乎无穷无尽。我们没有希望
+D:在数量上击败他们，我们必须除掉他们的将军，
+D:迫使他们撤退。你的任务是潜入他们的
+D:指挥部，找到那个长角的将军，然后活着从
+D:那里出来。当心陷阱！
 ?:1
 
 ?:[EQU $QUEST26 Completed]
-D:The invasion from the east has been thwarted! As a reward,
-D:we will give you valuable item which may yet save your life.
+D:来自东方的入侵被挫败了！作为奖励，
+D:我们将给你一件可能有救命之恩的贵重物品。
 ?:1
 
 ?:[EQU $QUEST26 Failed]
-D:We have now been driven into a full war which we wished to
-D:avoid. You have failed your duty, your superiors and your
-D:country. You have lost your honour.
+D:我们现在被迫卷入了一场我们本想避免的
+D:全面战争。你辜负了你的职责、你的上级和你的
+D:国家。你已经失去了你的荣誉。
 ?:1
 
 T:QUEST:NORMAL

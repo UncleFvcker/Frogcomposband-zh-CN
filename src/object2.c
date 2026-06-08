@@ -1887,7 +1887,7 @@ static void a_m_aux_4(object_type *o_ptr, int level, int power, int mode)
             {
                 msg_format("%s的微缩模型，深度 +%d%s",
 
-                              r_name + r_ptr->name, check - 1,
+                              monster_race_display_name(i), check - 1,
                               !object_is_cursed(o_ptr) ? "" : " {cursed}");
             }
 
@@ -1947,7 +1947,7 @@ static void a_m_aux_4(object_type *o_ptr, int level, int power, int mode)
             {
                 msg_format("%s的尸体，深度 +%d",
 
-                              r_name + r_ptr->name, check - 1);
+                              monster_race_display_name(i), check - 1);
             }
 
             obj_identify(o_ptr);
@@ -1977,7 +1977,7 @@ static void a_m_aux_4(object_type *o_ptr, int level, int power, int mode)
 
             if (cheat_peek)
             {
-                msg_format("%s的雕像", r_name + r_ptr->name);
+                msg_format("%s的雕像", monster_race_display_name(i));
 
             }
             obj_identify(o_ptr);
@@ -4750,7 +4750,7 @@ bool process_warning(int xx, int yy)
         object_type *o_ptr = choose_warning_item();
 
         if (o_ptr) object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
-        else strcpy(o_name, "body"); /* Warning ability without item */
+        else strcpy(o_name, "身体"); /* Warning ability without item */
         msg_format("你的%s正在脉动！", o_name);
         if (o_ptr) obj_learn_flag(o_ptr, OF_WARNING);
         disturb(0, 0);

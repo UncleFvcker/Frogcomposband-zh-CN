@@ -17,13 +17,13 @@ cptr spell_category_name(int tval)
     switch (tval)
     {
     case TV_HISSATSU_BOOK:
-        return "art";
+        return "武技";
     case TV_LIFE_BOOK:
-        return "prayer";
+        return "祈祷";
     case TV_MUSIC_BOOK:
-        return "song";
+        return "歌曲";
     case TV_LAW_BOOK:
-        return "legal trick";
+        return "法律手段";
     default:
         return "法术";
     }
@@ -34,14 +34,14 @@ cptr spell_category_verb(int tval)
     switch (tval)
     {
     case TV_LIFE_BOOK:
-        return "recite";
+        return "朗诵";
     case TV_MUSIC_BOOK:
-        return "sing";
+        return "唱歌";
     case TV_HISSATSU_BOOK:
     case TV_LAW_BOOK:
-        return "use";
+        return "使用";
     default:
-        return "cast";
+        return "施放";
     }
 }
 
@@ -722,7 +722,7 @@ static obj_ptr _get_spellbook(int mode)
     obj_prompt_t prompt = {0};
     char         msg[255];
 
-    sprintf(msg, "%s which book%s?",
+    sprintf(msg, "%s哪本书%s？",
         mode == _CAST ? "使用" : "浏览",
         p_ptr->pclass == CLASS_FORCETRAINER ?
             " (<color:keypress>F</color> for the Force)" : p_ptr->pclass == CLASS_NINJA_LAWYER ?
@@ -993,7 +993,7 @@ void do_cmd_cast(void)
             (caster_ptr->on_fail)(&hack);
         }
         if (hp_caster)
-            take_hit(DAMAGE_USELIFE, need_mana, "concentrating too hard");
+            take_hit(DAMAGE_USELIFE, need_mana, "过度集中精神");
 
         virtue_on_fail_spell(use_realm, chance);
 
@@ -1047,7 +1047,7 @@ void do_cmd_cast(void)
         spell_stats_on_cast_old(use_realm, spell);
 
         if (hp_caster)
-            take_hit(DAMAGE_USELIFE, need_mana, "concentrating too hard");
+            take_hit(DAMAGE_USELIFE, need_mana, "过度集中精神");
 
         if (caster_ptr && caster_ptr->on_cast != NULL && p_ptr->pclass != CLASS_POLITICIAN)
         {
@@ -1204,7 +1204,7 @@ void do_cmd_cast(void)
                 new_level = spell_exp_level(p_ptr->spell_exp[index]);
                 if (new_level > old_level)
                 {
-                    cptr desc[5] = { "未受训练", "a Beginner", "熟练", "an Expert", "a Master" };
+                    cptr desc[5] = { "未受训练", "初学者", "熟练", "专家", "大师" };
                     msg_format("你现在对 <color:R>%s</color> 的熟练度达到了 <color:B>%s</color> 级。",
                         desc[new_level],
                         do_spell(use_realm, spell % 32, SPELL_NAME));
@@ -1212,8 +1212,8 @@ void do_cmd_cast(void)
                 else if (p_ptr->wizard || easy_damage)
                 {
                     msg_format("你现在对 <color:R>%s</color> 拥有 <color:B>%d</color> 点熟练度。",
-                        p_ptr->spell_exp[index],
-                        do_spell(use_realm, spell % 32, SPELL_NAME));
+                        do_spell(use_realm, spell % 32, SPELL_NAME),
+                        p_ptr->spell_exp[index]);
                 }
                 else if (p_ptr->spell_exp[index]/100 > cur_exp/100)
                 {
@@ -1563,7 +1563,7 @@ void do_cmd_pet_dismiss(void)
             /* Hack -- handle stuff */
             handle_stuff();
 
-            sprintf(buf, "Dismiss %s? [Yes/No/Unnamed (%d remain)]", friend_name, max_pet - i);
+            sprintf(buf, "解散%s？ [Yes(是)/No(否)/Unnamed(未命名) (剩余 %d 个)]", friend_name, max_pet - i);
             prt(buf, 0, 0);
 
             if (m_ptr->ml)
@@ -1609,7 +1609,7 @@ void do_cmd_pet_dismiss(void)
                 p_ptr->redraw |= (PR_EXTRA | PR_HEALTH_BARS);
             }
 
-            sprintf(buf, "Dismissed %s.", friend_name);
+            sprintf(buf, "已解散%s。", friend_name);
 
             msg_add(buf);
             p_ptr->window |= (PW_MESSAGE);
@@ -1737,7 +1737,7 @@ bool rakuba(int dam, bool force)
         {
             monster_desc(m_name, m_ptr, 0);
             msg_format("你差点从%s身上摔下来，但是撞到了墙上。",m_name);
-            take_hit(DAMAGE_NOESCAPE, r_ptr->level+3, "bumping into wall");
+            take_hit(DAMAGE_NOESCAPE, r_ptr->level+3, "撞到墙上");
             return FALSE;
         }
 
@@ -1922,7 +1922,7 @@ bool do_riding(bool force)
             msg_format("这个怪物是%s%s。",
                        ((!have_flag(f_ptr->flags, FF_MOVE) && !have_flag(f_ptr->flags, FF_CAN_FLY)) ||
                         (!have_flag(f_ptr->flags, FF_LOS) && !have_flag(f_ptr->flags, FF_TREE))) ?
-                       "in" : "on", f_name + f_ptr->name);
+                       "在" : "于", f_name + f_ptr->name);
 
             return FALSE;
         }
@@ -2066,68 +2066,68 @@ void do_cmd_pet(void)
 
     num = 0;
 
-    power_desc[num] = "dismiss pets";
+    power_desc[num] = "解散宠物";
 
     powers[num++] = PET_DISMISS;
 
-    sprintf(target_buf, "specify a target of pet (now:%s)",
-        (pet_t_m_idx ? (p_ptr->image ? "something strange" : ((m_list[pet_t_m_idx].mflag2 & MFLAG2_KNOWN) ? (r_name + r_info[m_list[pet_t_m_idx].ap_r_idx].name) : "怪物")) : "nothing"));
+    sprintf(target_buf, "指定宠物目标 (目前：%s)",
+        (pet_t_m_idx ? (p_ptr->image ? "某些奇怪的东西" : ((m_list[pet_t_m_idx].mflag2 & MFLAG2_KNOWN) ? monster_race_display_name(m_list[pet_t_m_idx].ap_r_idx) : "怪物")) : "无"));
     power_desc[num] = target_buf;
 
     powers[num++] = PET_TARGET;
 
-    power_desc[num] = "stay close";
+    power_desc[num] = "紧随其后";
 
     if (p_ptr->pet_follow_distance == PET_CLOSE_DIST) mode = num;
     powers[num++] = PET_STAY_CLOSE;
 
-    power_desc[num] = "follow me";
+    power_desc[num] = "跟随我";
 
     if (p_ptr->pet_follow_distance == PET_FOLLOW_DIST) mode = num;
     powers[num++] = PET_FOLLOW_ME;
 
-    power_desc[num] = "seek and destroy";
+    power_desc[num] = "寻歼敌人";
 
     if (p_ptr->pet_follow_distance == PET_DESTROY_DIST) mode = num;
     powers[num++] = PET_SEEK_AND_DESTROY;
 
-    power_desc[num] = "give me space";
+    power_desc[num] = "给我空间";
 
     if (p_ptr->pet_follow_distance == PET_SPACE_DIST) mode = num;
     powers[num++] = PET_ALLOW_SPACE;
 
-    power_desc[num] = "stay away";
+    power_desc[num] = "保持距离";
 
     if (p_ptr->pet_follow_distance == PET_AWAY_DIST) mode = num;
     powers[num++] = PET_STAY_AWAY;
 
     if (p_ptr->pet_extra_flags & PF_OPEN_DOORS)
     {
-        power_desc[num] = "pets open doors (now On)";
+        power_desc[num] = "宠物开门 (目前：开)";
     }
     else
     {
-        power_desc[num] = "pets open doors (now Off)";
+        power_desc[num] = "宠物开门 (目前：关)";
     }
     powers[num++] = PET_OPEN_DOORS;
 
     if (p_ptr->pet_extra_flags & PF_PICKUP_ITEMS)
     {
-        power_desc[num] = "pets pick up items (now On)";
+        power_desc[num] = "宠物拾取物品 (目前：开)";
     }
     else
     {
-        power_desc[num] = "pets pick up items (now Off)";
+        power_desc[num] = "宠物拾取物品 (目前：关)";
     }
     powers[num++] = PET_TAKE_ITEMS;
 
     if (p_ptr->pet_extra_flags & PF_TELEPORT)
     {
-        power_desc[num] = "allow teleport (now On)";
+        power_desc[num] = "允许传送 (目前：开)";
     }
     else
     {
-        power_desc[num] = "allow teleport (now Off)";
+        power_desc[num] = "允许传送 (目前：关)";
     }
     powers[num++] = PET_TELEPORT;
 
@@ -2163,15 +2163,15 @@ void do_cmd_pet(void)
 
     if (p_ptr->riding)
     {
-        power_desc[num] = "get off a pet";
+        power_desc[num] = "从宠物身上下来";
     }
     else
     {
-        power_desc[num] = "ride a pet";
+        power_desc[num] = "骑乘宠物";
     }
     powers[num++] = PET_RIDING;
 
-    power_desc[num] = "name pets";
+    power_desc[num] = "命名宠物";
 
     powers[num++] = PET_NAME;
 
@@ -2179,20 +2179,20 @@ void do_cmd_pet(void)
     {
         /* TODO: We used to check weapons to see if 2-handed was an option ... */
         if (p_ptr->pet_extra_flags & PF_RYOUTE)
-            power_desc[num] = "use one hand to control a riding pet";
+            power_desc[num] = "单手控制骑乘宠物";
         else
-            power_desc[num] = "use both hands for a weapon";
+            power_desc[num] = "双手握持武器";
 
         powers[num++] = PET_RYOUTE;
     }
 
     if (p_ptr->pet_extra_flags & PF_NO_BREEDING)
     {
-        power_desc[num] = "no breeding (now On)";
+        power_desc[num] = "禁止繁殖 (目前：开)";
     }
     else
     {
-        power_desc[num] = "no breeding (now Off)";
+        power_desc[num] = "禁止繁殖 (目前：关)";
     }
     powers[num++] = PET_NO_BREEDING;
 
@@ -2200,22 +2200,22 @@ void do_cmd_pet(void)
     {
         if (p_ptr->pet_extra_flags & PF_HILITE)
         {
-            power_desc[num] = "highlight pets on map (now On)";
+            power_desc[num] = "在地图上高亮宠物 (目前：开)";
         }
         else
         {
-            power_desc[num] = "highlight pets on map (now Off)";
+            power_desc[num] = "在地图上高亮宠物 (目前：关)";
         }
         powers[num++] = PET_HILITE;
     }
 
     if (p_ptr->pet_extra_flags & PF_HILITE_LISTS)
     {
-        power_desc[num] = "highlight pets in lists (now On)";
+        power_desc[num] = "在列表中高亮宠物 (目前：开)";
     }
     else
     {
-        power_desc[num] = "highlight pets in lists (now Off)";
+        power_desc[num] = "在列表中高亮宠物 (目前：关)";
     }
     powers[num++] = PET_HILITE_LISTS;
 

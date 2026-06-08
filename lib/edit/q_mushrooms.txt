@@ -1,15 +1,15 @@
 ?:[EQU $QUEST63 Taken InProgress]
-D:Are you here to enrol? First thing I need from you is to go
-D:and get a pile of magic mushrooms. They grow in the icky cave.
+D:你是来报名的吗？我需要你做的第一件事是
+D:去采一堆魔法蘑菇。它们长在那个恶心黏稠的洞穴里。
 ?:1
 
 ?:[EQU $QUEST63 Completed]
-D:Good now I can finish my salad. Take this signet
-D:ring to show you're allowed to be here.
+D:很好，现在我可以完成我的沙拉了。拿着这枚印章
+D:戒指，证明你获准待在这里。
 ?:1
 
 ?:[EQU $QUEST63 Failed]
-D:You know what helps with mushrooms? Other mushrooms.
+D:你知道对付蘑菇最好的办法是什么吗？其他的蘑菇。
 ?:1
 
 R:OBJ(RING):EGO(wizardry)

@@ -131,10 +131,10 @@ static void show_building(building_type* bldg)
     char buff[20];
     int i;
     byte action_color;
-    char tmp_str[80];
+    char tmp_str[256];
 
     Term_clear();
-    sprintf(tmp_str, "%s (%s) %35s", bldg->owner_name, bldg->owner_race, bldg->name);
+    snprintf(tmp_str, sizeof(tmp_str), "%s (%s) %35s", bldg->owner_name, bldg->owner_race, bldg->name);
     prt(tmp_str, 3, 1);
 
 
@@ -158,7 +158,7 @@ static void show_building(building_type* bldg)
                 else
                 {
                     action_color = TERM_YELLOW;
-                    sprintf(buff, "(%dgp)", cost);
+                    snprintf(buff, sizeof(buff), "(%dgp)", cost);
                 }
             }
             else if (bldg->action_restr[i] == 1)
@@ -166,7 +166,7 @@ static void show_building(building_type* bldg)
                 if (!member)
                 {
                     action_color = TERM_L_DARK;
-                    strcpy(buff, "(closed)");
+                    my_strcpy(buff, "(closed)", sizeof(buff));
 
                 }
                 else if (cost == 0)
@@ -177,7 +177,7 @@ static void show_building(building_type* bldg)
                 else
                 {
                     action_color = TERM_YELLOW;
-                    sprintf(buff, "(%dgp)", cost);
+                    snprintf(buff, sizeof(buff), "(%dgp)", cost);
                 }
             }
             else
@@ -185,7 +185,7 @@ static void show_building(building_type* bldg)
                 if (!owner)
                 {
                     action_color = TERM_L_DARK;
-                    strcpy(buff, "(closed)");
+                    my_strcpy(buff, "(closed)", sizeof(buff));
 
                 }
                 else if (cost == 0)
@@ -196,14 +196,14 @@ static void show_building(building_type* bldg)
                 else
                 {
                     action_color = TERM_YELLOW;
-                    sprintf(buff, "(%dgp)", cost);
+                    snprintf(buff, sizeof(buff), "(%dgp)", cost);
                 }
             }
 
             if (cost > p_ptr->au)
                 action_color = TERM_L_DARK;
 
-            sprintf(tmp_str," %c) %s %s", bldg->letters[i], bldg->act_names[i], buff);
+            snprintf(tmp_str, sizeof(tmp_str), " %c) %s %s", bldg->letters[i], bldg->act_names[i], buff);
             c_put_str(action_color, tmp_str, 19+(i/2), 35*(i%2));
         }
     }
@@ -217,7 +217,6 @@ static void show_building(building_type* bldg)
  */
 static void arena_comm(int cmd)
 {
-    monster_race    *r_ptr;
     cptr            name;
 
 
@@ -292,8 +291,8 @@ static void arena_comm(int cmd)
             }
             else
             {
-                r_ptr = &r_info[arena_info[p_ptr->arena_number].r_idx];
-                name = (r_name + r_ptr->name);
+                int r_idx = arena_info[p_ptr->arena_number].r_idx;
+                name = monster_race_display_name(r_idx);
                 msg_format("有人敢挑战：%s 吗？", name);
             }
             break;
@@ -979,7 +978,7 @@ static bool gamble_comm(int cmd)
             odds = 0;
             oldgold = p_ptr->au;
 
-            sprintf(tmp_str, "Gold before game: %9d", oldgold);
+            sprintf(tmp_str, "赛前金币： %9d", oldgold);
             prt(tmp_str, 20, 2);
 
             sprintf(tmp_str, "Current Wager:    %9d", wager);
@@ -1078,7 +1077,7 @@ static bool gamble_comm(int cmd)
                     }
                     msg_print(NULL);
                     roll1 = randint0(10);
-                    sprintf(tmp_str, "The wheel spins to a stop and the winner is %d",
+                    sprintf(tmp_str, "轮盘停止了转动，赢家是 %d",
 
                         roll1);
                     prt(tmp_str, 13, 3);
@@ -1165,7 +1164,7 @@ static bool gamble_comm(int cmd)
 
                     p_ptr->au += odds * wager;
                     stats_on_gold_winnings(odds * wager);
-                    sprintf(tmp_str, "Payoff: %d", odds);
+                    sprintf(tmp_str, "赔率（或赢利）：%d", odds);
 
                     prt(tmp_str, 17, 37);
                 }
@@ -1524,7 +1523,7 @@ static bool kakutoujou(void)
             char buf[80];
             monster_race *r_ptr = &r_info[battle_mon[i]];
 
-            sprintf(buf,"%d) %-58s  %4u.%02u", i+1, format("%s%s", r_name + r_ptr->name, (r_ptr->flags1 & RF1_UNIQUE) ? " (clone)" : ""), mon_odds[i]/100, mon_odds[i]%100);
+            sprintf(buf,"%d) %-58s  %4u.%02u", i+1, format("%s%s", monster_race_display_name(battle_mon[i]), (r_ptr->flags1 & RF1_UNIQUE) ? " (clone)" : ""), mon_odds[i]/100, mon_odds[i]%100);
             prt(buf, 5+i, 1);
         }
 
@@ -1624,11 +1623,11 @@ static void today_target(void)
 
     clear_bldg(4,18);
     prt("通缉每天都会变化的怪物", 5, 10);
-    sprintf(buf,"target: %s",r_name + r_ptr->name);
+    sprintf(buf,"目标：%s",monster_race_display_name(today_mon));
     c_put_str(TERM_YELLOW, buf, 6, 10);
     sprintf(buf,"corpse   ---- $%d",r_ptr->level * 50 + 100);
     prt(buf, 8, 10);
-    sprintf(buf,"skeleton ---- $%d",r_ptr->level * 30 + 60);
+    sprintf(buf,"残骸 ---- $%d",r_ptr->level * 30 + 60);
     prt(buf, 9, 10);
     p_ptr->today_mon = today_mon;
 }
@@ -1665,7 +1664,7 @@ static void shoukinkubi(void)
         if (id > 10000)
         {
             color = TERM_RED;
-            done_mark = "(done)";
+            done_mark = "(完成)";
             id -= 10000;
         }
         else
@@ -1917,7 +1916,7 @@ void have_nightmare(int r_idx)
     monster_race *r_ptr = &r_info[r_idx];
     int power = r_ptr->level + 10;
     char m_name[80];
-    cptr desc = r_name + r_ptr->name;
+    cptr desc = monster_race_display_name(r_idx);
 
     /* Describe it */
     if (!(r_ptr->flags1 & RF1_UNIQUE))
@@ -2274,7 +2273,8 @@ static bool inn_comm(int cmd)
 static void refresh_buildings(void)
 {
     room_ptr dummy;
-    init_buildings();
+    if (init_buildings()) return;
+    if (towns_init_buildings()) return;
     dummy = towns_get_map();
     if (dummy)
     {
@@ -2330,7 +2330,7 @@ static void castle_quest(void)
 
     if (quest->status == QS_COMPLETED)
     {
-        if (strpos("艾迪", quest->name)) town_on_visit(TOWN_ZUL);
+        if (quest->id == QUEST_EDDIES) town_on_visit(TOWN_ZUL);
         quest_reward(quest);
         reinit_wilderness = TRUE;
         refresh_buildings();
@@ -2339,7 +2339,7 @@ static void castle_quest(void)
     {
         string_ptr s = quest_get_description(quest);
         msg_format("<color:R>%s</color> (<color:U>等级 %d</color>): %s",
-            quest->name, quest->danger_level, string_buffer(s));
+            kayttonimi(quest), quest->danger_level, string_buffer(s));
         string_free(s);
         quest->status = QS_FAILED_DONE;
         reinit_wilderness = TRUE;
@@ -3450,7 +3450,7 @@ static bool enchant_item(obj_p filter, int cost, int to_hit, int to_dam, int to_
     else
     {
         object_desc(tmp_str, prompt.obj, OD_NAME_AND_ENCHANT | OD_COLOR_CODED);
-        msg_format("花费%d金币改良了%s。", tmp_str, cost);
+        msg_format("花费%d金币改良了%s。", cost, tmp_str);
 
         p_ptr->au -= cost;
         stats_on_gold_services(cost);
@@ -3594,17 +3594,17 @@ static bool research_mon(void)
     if (sym == KTRL('A'))
     {
         all = TRUE;
-        strcpy(buf, "Full monster list.");
+        strcpy(buf, "全部怪物列表。");
     }
     else if (sym == KTRL('U'))
     {
         all = uniq = TRUE;
-        strcpy(buf, "Unique monster list.");
+        strcpy(buf, "唯一（Unique）怪物列表。");
     }
     else if (sym == KTRL('N'))
     {
         all = norm = TRUE;
-        strcpy(buf, "Non-unique monster list.");
+        strcpy(buf, "非唯一怪物列表。");
     }
     else if (sym == KTRL('M'))
     {
@@ -3618,7 +3618,7 @@ static bool research_mon(void)
 
             return FALSE;
         }
-        sprintf(buf, "Monsters with a name \"%s\"",temp);
+        sprintf(buf, "名字中包含“%s”的怪物",temp);
     }
     else if (ident_info[i])
     {
@@ -3664,7 +3664,7 @@ static bool research_mon(void)
                 if (isupper(temp[xx])) temp[xx] = tolower(temp[xx]);
             }
   
-            strcpy(temp2, r_name + r_ptr->name);
+            strcpy(temp2, monster_race_display_name(i));
             for (xx = 0; temp2[xx] && xx < 80; xx++)
                 if (isupper(temp2[xx])) temp2[xx] = tolower(temp2[xx]);
 
@@ -3847,7 +3847,7 @@ static void _sell_photo_local_aux(object_type *o_ptr)
     }
     else
     {
-        if (!get_check(format("真的要以 <color:R>%d</color> 金币出售%s吗？", name, tarjous)))
+        if (!get_check(format("真的要以 <color:R>%d</color> 金币出售%s吗？", tarjous, name)))
         {
             o_ptr->number = amt + jaljella;
             return;
@@ -3863,7 +3863,7 @@ static void _sell_photo_local_aux(object_type *o_ptr)
     if (!tarjous)
         msg_format("你给予了%s。", name);
     else
-        msg_format("你以 <color:R>%d</color> 金币出售了%s。", name, tarjous);
+        msg_format("你以 <color:R>%d</color> 金币出售了%s。", tarjous, name);
     (void)tourist_sell_photo_aux(o_ptr, amt, TRUE);
     o_ptr->number = jaljella;
     p_ptr->notice |= (PN_CARRY | PN_OPTIMIZE_PACK);
@@ -4044,7 +4044,7 @@ static void bldg_process_command(building_type *bldg, int i)
         int max_depth;
 
         clear_bldg(4, 20);
-        select_dungeon = choose_dungeon("teleport to", 4, 0);
+        select_dungeon = choose_dungeon("传送至", 4, 0);
         show_building(bldg);
         if (!select_dungeon) return;
 
@@ -4058,7 +4058,7 @@ static void bldg_process_command(building_type *bldg, int i)
         }
         else if ((select_dungeon == DUNGEON_HEAVEN) && (quests_get(QUEST_METATRON)->status != QS_FINISHED)) max_depth = 585;
 
-        amt = get_quantity(format("传送到%s的哪一层？", d_name + d_info[select_dungeon].name), max_depth);
+        amt = get_quantity(format("传送到%s的哪一层？", dungeon_display_name(select_dungeon)), max_depth);
         if (amt > 0)
         {
             p_ptr->word_recall = 1;
@@ -4248,6 +4248,20 @@ void do_cmd_bldg(void)
     }
 
     which = f_info[cave[py][px].feat].subtype;
+
+    if (py_on_surface())
+    {
+        if (init_buildings())
+        {
+            msg_print("无法初始化建筑。");
+            return;
+        }
+        if (towns_init_buildings())
+        {
+            msg_print("无法读取当前城镇的建筑。");
+            return;
+        }
+    }
 
     bldg = &building[which];
 
