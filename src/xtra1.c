@@ -62,6 +62,20 @@
 #define COL_EFFECTS             0
 #define COUNT_EFFECTS          11       /* Could be off screen ... */
 
+static cptr _stat_label_zh(int stat)
+{
+    switch (stat)
+    {
+    case A_STR: return "力量";
+    case A_INT: return "智力";
+    case A_WIS: return "感知";
+    case A_DEX: return "敏捷";
+    case A_CON: return "体质";
+    case A_CHR: return "魅力";
+    }
+    return "";
+}
+
 static int _npow(int x, int y)
 {
     int r = 1;
@@ -416,7 +430,7 @@ static void prt_stat(int stat)
     /* Display "injured" stat */
     if (p_ptr->stat_cur[stat] < p_ptr->stat_max[stat])
     {
-        put_str(stat_names_reduced[stat], r.y + ROW_STAT + stat, r.x + COL_STAT);
+        put_str(_stat_label_zh(stat), r.y + ROW_STAT + stat, r.x + COL_STAT);
         cnv_stat(p_ptr->stat_use[stat], tmp);
         vari = TERM_YELLOW;
         if ((p_ptr->unwell) && (unwell_effect(p_ptr->unwell)) && (stat == A_DEX || stat == A_CON)) vari = TERM_L_BLUE;
@@ -426,7 +440,7 @@ static void prt_stat(int stat)
     /* Display "healthy" stat */
     else
     {
-        put_str(stat_names[stat], r.y + ROW_STAT + stat, r.x + COL_STAT);
+        put_str(_stat_label_zh(stat), r.y + ROW_STAT + stat, r.x + COL_STAT);
         cnv_stat(p_ptr->stat_use[stat], tmp);
         vari = TERM_L_GREEN;
         if ((p_ptr->unwell) && (unwell_effect(p_ptr->unwell)) && (stat == A_DEX || stat == A_CON)) vari = TERM_L_WHITE;
@@ -436,7 +450,7 @@ static void prt_stat(int stat)
     /* Indicate natural maximum */
     if (p_ptr->stat_max[stat] == p_ptr->stat_max_max[stat])
     {
-        put_str("!", r.y + ROW_STAT + stat, r.x + 3);
+        put_str("!", r.y + ROW_STAT + stat, r.x + COL_STAT + 4);
 
     }
 }
@@ -1423,7 +1437,7 @@ static void prt_level(void)
 
     if (p_ptr->lev >= p_ptr->max_plv)
     {
-        put_str("LEVEL ", r.y + ROW_LEVEL, r.x + COL_LEVEL);
+        put_str("等级", r.y + ROW_LEVEL, r.x + COL_LEVEL);
         c_put_str(TERM_L_GREEN, tmp, r.y + ROW_LEVEL, r.x + COL_LEVEL + 6);
 
     }
@@ -1538,7 +1552,7 @@ static void prt_hp(void)
 
     byte color;
 
-    put_str("HP", r.y + ROW_CURHP, r.x + COL_CURHP);
+    put_str("命", r.y + ROW_CURHP, r.x + COL_CURHP);
 
     sprintf(tmp, "%4d", p_ptr->chp);
 
@@ -1587,7 +1601,7 @@ static void prt_sp(void)
         return;
     }
 
-    put_str("SP", r.y + ROW_CURSP, r.x + COL_CURSP);
+    put_str("法", r.y + ROW_CURSP, r.x + COL_CURSP);
     sprintf(tmp, "%4d", p_ptr->csp);
     if (p_ptr->csp >= p_ptr->msp)
         color = TERM_L_GREEN;

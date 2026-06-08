@@ -652,7 +652,7 @@ void inv_display(inv_ptr inv, slot_t start, slot_t stop, obj_p p, doc_ptr doc, i
             if (show_item_graph)
                 doc_insert(doc, "  ");
             if (inv->type == INV_EQUIP && describe_slots)
-                doc_printf(doc, "%-10.10s: ", equip_describe_slot(slot));
+                doc_printf(doc, "%s<tab:13>: ", equip_describe_slot(slot));
             /*doc_insert(doc, "<color:D>Empty</color>\n");*/
             doc_newline(doc);
         }
@@ -680,7 +680,7 @@ void inv_display(inv_ptr inv, slot_t start, slot_t stop, obj_p p, doc_ptr doc, i
                 doc_insert(doc, " ");
             }
             if (inv->type == INV_EQUIP && describe_slots)
-                doc_printf(doc, "%-10.10s: ", equip_describe_slot(slot));
+                doc_printf(doc, "%s<tab:13>: ", equip_describe_slot(slot));
             if (xtra)
             {
                 style.right = doc_width(doc) - xtra;
@@ -847,4 +847,3 @@ void inv_save(inv_ptr inv, savefile_ptr file)
     }
     assert(ct == 0);
 }
-

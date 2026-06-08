@@ -408,18 +408,16 @@ static int _welcome_ui(void)
         doc_clear(_doc);
 
         doc_insert(_doc,
-            "Welcome to <color:keyword>FrogComposband</color>, a dungeon exploration "
-            "role-playing game. Your goal is to defeat the dreaded <color:keyword>"
-            "Serpent of Chaos</color>, but before you can face it, you must battle "
-            "many foes. Your first step is to create a character for this quest. "
-            "The following screens will guide you through this process so that you "
-            "may quickly begin playing. You can get general help at any time by "
-            "pressing <color:keypress>?</color>.\n\n"
+            "欢迎来到 <color:keyword>FrogComposband</color>，一款地下城探索角色扮演游戏。\n"
+            "你的目标是击败可怕的 <color:keyword>混沌之蛇</color>；但在面对它之前，\n"
+            "你必须战胜许多敌人。你的第一步是为这次冒险创建一个角色。\n"
+            "接下来的界面将引导你完成此过程，以便你能尽快开始游戏。\n"
+            "你可以随时按 <color:keypress>?</color> 来获取常规帮助。\n\n"
         );
 
         doc_insert(_doc,
-            "First, you must decide what type of game to play. <color:keyword>Beginner Mode</color> "
-            "limits the options available, simplifying things for new players.\n\n "
+            "首先，你必须决定游玩哪种游戏模式。\n"
+            "<color:keyword>新手模式</color> 会限制可选的项目，从而为新玩家简化流程。\n\n "
         );
 
         doc_insert(_doc, "<color:G>选择要玩的游戏模式</color>\n");

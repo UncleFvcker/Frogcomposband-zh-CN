@@ -17,6 +17,20 @@
 
 #include <assert.h>
 
+static cptr _stat_label_zh(int stat)
+{
+    switch (stat)
+    {
+    case A_STR: return "力量";
+    case A_INT: return "智力";
+    case A_WIS: return "感知";
+    case A_DEX: return "敏捷";
+    case A_CON: return "体质";
+    case A_CHR: return "魅力";
+    }
+    return "";
+}
+
 static void browser_cursor(char ch, int *column, int *grp_cur, int grp_cnt, int *list_cur, int list_cnt);
 
 /*
@@ -7288,11 +7302,11 @@ static void do_cmd_knowledge_stat(void)
         if ((p_ptr->knowledge & KNOW_STAT) || p_ptr->stat_max[i] == p_ptr->stat_max_max[i])
         {
             if (decimal_stats)
-                doc_printf(doc, "%s <color:G>%d</color>\n", stat_names[i], (p_ptr->stat_max_max[i]-18)/10+18);
-            else doc_printf(doc, "%s <color:G>18/%d</color>\n", stat_names[i], p_ptr->stat_max_max[i]-18);
+                doc_printf(doc, "%s : <color:G>%d</color>\n", _stat_label_zh(i), (p_ptr->stat_max_max[i]-18)/10+18);
+            else doc_printf(doc, "%s : <color:G>18/%d</color>\n", _stat_label_zh(i), p_ptr->stat_max_max[i]-18);
         }
         else
-            doc_printf(doc, "%s <color:y>\?\?\?</color>\n", stat_names[i]);
+            doc_printf(doc, "%s : <color:y>\?\?\?</color>\n", _stat_label_zh(i));
     }
     doc_insert(doc, "\n\n");
 

@@ -1678,13 +1678,13 @@ void display_weapon_info(doc_ptr doc, int hand)
                     skills_weapon_describe_current(o_ptr->tval, o_ptr->sval),
                     skills_weapon_calc_bonus(o_ptr->tval, o_ptr->sval));
     }
-    doc_printf(cols[0], " 命中<tab:10>: %d + %d = %d\n", to_h, p_ptr->weapon_info[hand].to_h, to_h + p_ptr->weapon_info[hand].to_h);
-    doc_printf(cols[0], " 伤害加成<tab:10>: %d + %d = %d\n", to_d, p_ptr->weapon_info[hand].to_d, to_d + p_ptr->weapon_info[hand].to_d);
-    doc_printf(cols[0], " 攻击次数<tab:10>: %d.%2.2d\n", num_blow/100, num_blow%100);
+    doc_printf(cols[0], "命中<tab:10>: %d + %d = %d\n", to_h, p_ptr->weapon_info[hand].to_h, to_h + p_ptr->weapon_info[hand].to_h);
+    doc_printf(cols[0], "伤害加成<tab:10>: %d + %d = %d\n", to_d, p_ptr->weapon_info[hand].to_d, to_d + p_ptr->weapon_info[hand].to_d);
+    doc_printf(cols[0], "攻击次数<tab:10>: %d.%2.2d\n", num_blow/100, num_blow%100);
 
     if (p_ptr->weapon_info[hand].dual_wield_pct < 1000)
     {
-        doc_printf(cols[0], " 技能<tab:10>: %d.%d%%\n",
+        doc_printf(cols[0], "技能<tab:10>: %d.%d%%\n",
             p_ptr->weapon_info[hand].dual_wield_pct/ 10,
             p_ptr->weapon_info[hand].dual_wield_pct % 10);
     }
@@ -1692,7 +1692,7 @@ void display_weapon_info(doc_ptr doc, int hand)
     mult = mult * crit.mul / 100;
     to_d = to_d + crit.to_d/100 + p_ptr->weapon_info[hand].to_d;
 
-    doc_printf(cols[0], "<color:G> 总计伤害</color>\n");
+    doc_printf(cols[0], "<color:G>总计伤害</color>\n");
 
     if (!have_flag(flgs, OF_BRAND_ORDER)
         && weaponmaster_get_toggle() != TOGGLE_ORDER_BLADE)
@@ -1857,18 +1857,18 @@ void display_innate_attack_info(doc_ptr doc, int which)
                     skills_innate_calc_bonus(name));
     }
 
-    doc_printf(cols[0], " 命中<tab:10>: %d + %d = %d\n", a->to_h, p_ptr->to_h_m, to_h);
+    doc_printf(cols[0], "命中<tab:10>: %d + %d = %d\n", a->to_h, p_ptr->to_h_m, to_h);
 
     if (!(a->flags & INNATE_NO_DAM))
-        doc_printf(cols[0], " 伤害加成<tab:10>: %d + %d = %d\n", a->to_d, p_ptr->to_d_m, to_d);
+        doc_printf(cols[0], "伤害加成<tab:10>: %d + %d = %d\n", a->to_d, p_ptr->to_d_m, to_d);
 
-    doc_printf(cols[0], " 攻击次数<tab:10>: %d.%2.2d\n", blows/100, blows%100);
+    doc_printf(cols[0], "攻击次数<tab:10>: %d.%2.2d\n", blows/100, blows%100);
 
     mult = 100;
 
     if (!(a->flags & INNATE_NO_DAM))
     {
-        doc_printf(cols[0], "<color:G> 总计伤害</color>\n");
+        doc_printf(cols[0], "<color:G>总计伤害</color>\n");
         if (a->flags & INNATE_VORPAL)
         {
             mult = mult * 11 / 9;
@@ -2124,8 +2124,8 @@ static void _display_missile_slay(int bow_mult, int slay_mult, int crit_mult,
     if (p_ptr->stun)
         dam -= dam * MIN(100, p_ptr->stun) / 150;
 
-    doc_printf(doc, " <color:%c>%-8.8s</color>", attr_to_attr_char(color), format("%^s", name));
-    doc_printf(doc, ": %d/%d\n", dam, shots * dam / 100);
+    doc_printf(doc, " <color:%c>%s</color><tab:10>: %d/%d\n",
+        attr_to_attr_char(color), format("%^s", name), dam, shots * dam / 100);
 }
 
 
@@ -2208,22 +2208,22 @@ static void _shooter_info_aux(doc_ptr doc, object_type *bow, object_type *arrow,
 
     real_snipe = shoot_hack;
     if (display_shooter_mode) shoot_hack = display_shooter_mode;
-    doc_printf(cols[0], " %-8.8s: %d%%\n", "折损率", breakage_chance(arrow));
+    doc_printf(cols[0], "折损率<tab:10>: %d%%\n", breakage_chance(arrow));
     shoot_hack = real_snipe;
-    doc_printf(cols[0], "%-8.8s: %d.%d 磅\n", "重量", arrow->weight/10, arrow->weight%10);
-    doc_printf(cols[0], " %-8.8s: %d + %d = %d\n", "命中", to_h, to_h_bow + to_h_xtra, to_h + to_h_bow + to_h_xtra);
-    doc_printf(cols[0], " %-8.8s: %d (%s)\n", "伤害加成", to_d, "适用倍率");
-    doc_printf(cols[0], " %-8.8s: %d (%s)\n", "伤害加成", to_d_bow + to_d_xtra, "不适用倍率");
-    doc_printf(cols[0], " <color:G>%-8.8s</color>\n", "总计伤害");
+    doc_printf(cols[0], "重量<tab:10>: %d.%d 磅\n", arrow->weight/10, arrow->weight%10);
+    doc_printf(cols[0], "命中<tab:10>: %d + %d = %d\n", to_h, to_h_bow + to_h_xtra, to_h + to_h_bow + to_h_xtra);
+    doc_printf(cols[0], "伤害加成<tab:10>: %d (%s)\n", to_d, "适用倍率");
+    doc_printf(cols[0], "伤害加成<tab:10>: %d (%s)\n", to_d_bow + to_d_xtra, "不适用倍率");
+    doc_printf(cols[0], "<color:G>总计伤害</color>\n");
 
     if (crit.to_d)
     {
-        doc_printf(cols[0], "%-8.8s: %d.%02dx + %d.%02d\n", "暴击",
+        doc_printf(cols[0], "暴击<tab:10>: %d.%02dx + %d.%02d\n",
                         crit.mul/100, crit.mul%100, crit.to_d/100, crit.to_d%100);
     }
     else
     {
-        doc_printf(cols[0], "%-8.8s: %d.%02dx (%d.%d%%)\n", "暴击",
+        doc_printf(cols[0], "暴击<tab:10>: %d.%02dx (%d.%d%%)\n",
                         crit.mul/100, crit.mul%100, crit_pct / 10, crit_pct % 10);
     }
 
@@ -2326,14 +2326,14 @@ void display_shooter_info(doc_ptr doc)
     object_desc(o_name, bow_ptr, OD_OMIT_INSCRIPTION | OD_COLOR_CODED);
     doc_printf(doc, "<color:y>射击武器</color>: <indent><style:indent>%s</style></indent>\n", o_name);
 
-    doc_printf(doc, " %-8.8s: %d'\n", "射程", (bow_range(bow_ptr) + 1) * 10);
-    doc_printf(doc, " %-8.8s: %d.%02d\n", "射击次数", num_fire/100, num_fire%100);
-    doc_printf(doc, "%-8.8s: %d.%02dx\n", "倍率", mult/100, mult%100);
-    doc_printf(doc, "%-8.8s: %s (命中 %+d)\n", "熟练度", skills_bow_describe_current(bow_ptr->sval), skills_bow_calc_bonus(bow_ptr->sval));
-    doc_printf(doc, " %-8.8s: %d + %d = %d\n", "命中", to_h, p_ptr->shooter_info.dis_to_h, to_h + p_ptr->shooter_info.dis_to_h);
+    doc_printf(doc, "射程<tab:10>: %d'\n", (bow_range(bow_ptr) + 1) * 10);
+    doc_printf(doc, "射击次数<tab:10>: %d.%02d\n", num_fire/100, num_fire%100);
+    doc_printf(doc, "倍率<tab:10>: %d.%02dx\n", mult/100, mult%100);
+    doc_printf(doc, "熟练度<tab:10>: %s (命中 %+d)\n", skills_bow_describe_current(bow_ptr->sval), skills_bow_calc_bonus(bow_ptr->sval));
+    doc_printf(doc, "命中<tab:10>: %d + %d = %d\n", to_h, p_ptr->shooter_info.dis_to_h, to_h + p_ptr->shooter_info.dis_to_h);
     if (weaponmaster_is_(WEAPONMASTER_CROSSBOWS) && p_ptr->lev >= 15)
-        doc_printf(doc, " %-8.8s: %d (%s)\n", "伤害加成", 1 + p_ptr->lev/10, "适用倍率");
-    doc_printf(doc, " %-8.8s: %d (%s)\n", "额外伤害", p_ptr->shooter_info.dis_to_d + to_d, "不适用倍率");
+        doc_printf(doc, "伤害加成<tab:10>: %d (%s)\n", 1 + p_ptr->lev/10, "适用倍率");
+    doc_printf(doc, "额外伤害<tab:10>: %d (%s)\n", p_ptr->shooter_info.dis_to_d + to_d, "不适用倍率");
     doc_newline(doc);
 
     /* Ammo */

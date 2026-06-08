@@ -149,6 +149,64 @@ static int _get_slots(obj_ptr obj, slot_t slots[EQUIP_MAX + 1])
     return ct;
 }
 
+static cptr _slot_tag_display_name(cptr tag)
+{
+    if (streq(tag, "Right Hand")) return "右手";
+    if (streq(tag, "Left Hand")) return "左手";
+    if (streq(tag, "Shooting")) return "射击";
+    if (streq(tag, "Quiver")) return "箭袋";
+    if (streq(tag, "Back")) return "背部";
+    if (streq(tag, "Right Ring")) return "右戒指";
+    if (streq(tag, "Left Ring")) return "左戒指";
+    if (streq(tag, "Ring")) return "戒指";
+    if (streq(tag, "Amulet")) return "护符";
+    if (streq(tag, "Neck")) return "颈部";
+    if (streq(tag, "Neck?")) return "颈部?";
+    if (streq(tag, "Light")) return "光源";
+    if (streq(tag, "Body")) return "身体";
+    if (streq(tag, "Cloak")) return "斗篷";
+    if (streq(tag, "Head")) return "头部";
+    if (streq(tag, "Helmet") || streq(tag, "Helm")) return "头盔";
+    if (streq(tag, "Hands") || streq(tag, "Gloves")) return "双手";
+    if (streq(tag, "Feet") || streq(tag, "Boots")) return "双足";
+    if (streq(tag, "Foot")) return "足部";
+    if (streq(tag, "Pseudopod")) return "伪足";
+    if (streq(tag, "Belly")) return "腹部";
+    if (streq(tag, "Eyestalk")) return "眼柄";
+    if (streq(tag, "Right Arm")) return "右臂";
+    if (streq(tag, "Left Arm")) return "左臂";
+    if (streq(tag, "Arm")) return "手臂";
+    if (streq(tag, "Finger")) return "手指";
+    if (streq(tag, "Talon")) return "爪";
+    if (streq(tag, "Claw")) return "爪";
+    if (streq(tag, "Right Claw")) return "右爪";
+    if (streq(tag, "Left Claw")) return "左爪";
+    if (streq(tag, "Right Paw")) return "右爪";
+    if (streq(tag, "Left Paw")) return "左爪";
+    if (streq(tag, "Back Paws")) return "后爪";
+    if (streq(tag, "Tentacle")) return "触手";
+    if (streq(tag, "Horn")) return "角";
+    if (streq(tag, "Tail")) return "尾巴";
+    if (streq(tag, "Tusk")) return "獠牙";
+    if (streq(tag, "Branch")) return "树枝";
+    if (streq(tag, "Trunk")) return "鼻";
+    if (streq(tag, "Fin")) return "鳍";
+    if (streq(tag, "Orb")) return "宝珠";
+    if (streq(tag, "Spike")) return "尖刺";
+    if (streq(tag, "Spine")) return "脊刺";
+    if (streq(tag, "Skull")) return "颅骨";
+    if (streq(tag, "Eye")) return "眼睛";
+    if (streq(tag, "Eye Socket")) return "眼窝";
+    if (streq(tag, "Tooth")) return "牙齿";
+    if (streq(tag, "Any")) return "任意";
+    if (streq(tag, "You")) return "自身";
+    if (streq(tag, "Capture 1")) return "捕获1";
+    if (streq(tag, "Capture 2")) return "捕获2";
+    if (streq(tag, "Capture 3")) return "捕获3";
+    if (streq(tag, "Capture 4")) return "捕获4";
+    return tag;
+}
+
 static void _slot_menu_fn(int cmd, int which, vptr cookie, variant *res)
 {
     slot_t  slot = ((slot_t*)cookie)[which];
@@ -165,13 +223,13 @@ static void _slot_menu_fn(int cmd, int which, vptr cookie, variant *res)
             char buf[MAX_NLEN+50];
             char o_name[MAX_NLEN];
             object_desc(o_name, obj, 0);
-            sprintf(buf, "%-14s: %s", b_tag + _template->slots[slot].tag, o_name);
+            sprintf(buf, "%s: %s", _slot_tag_display_name(b_tag + _template->slots[slot].tag), o_name);
             var_set_string(res, buf);
         }
         else
         {
             char buf[MAX_NLEN+50];
-            sprintf(buf, "%-14s:", b_tag + _template->slots[slot].tag);
+            sprintf(buf, "%s:", _slot_tag_display_name(b_tag + _template->slots[slot].tag));
             var_set_string(res, buf);
         }
         break;
@@ -235,7 +293,7 @@ cptr equip_describe_slot(slot_t slot)
         if (p_ptr->shooter_info.heavy_shoot)
             return "仅拿着";
     }
-    return b_tag + _template->slots[slot].tag;
+    return _slot_tag_display_name(b_tag + _template->slots[slot].tag);
 }
 
 slot_t equip_find_art(int which)

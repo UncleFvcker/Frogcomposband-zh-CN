@@ -34,6 +34,20 @@ static void _build_statistics(doc_ptr doc);
 static void _build_messages(doc_ptr doc);
 static void _build_options(doc_ptr doc);
 
+static cptr _stat_label_zh(int stat)
+{
+    switch (stat)
+    {
+    case A_STR: return "力量";
+    case A_INT: return "智力";
+    case A_WIS: return "感知";
+    case A_DEX: return "敏捷";
+    case A_CON: return "体质";
+    case A_CHR: return "魅力";
+    }
+    return "";
+}
+
 /********************************** Page 1 ************************************/
 static void _build_general1(doc_ptr doc)
 {
@@ -201,10 +215,7 @@ static void _build_general2(doc_ptr doc)
     doc_insert(doc, "========== 属性 ==========\n");
     for (i = 0; i < MAX_STATS; i++)
     {
-        if (p_ptr->stat_use[i] < p_ptr->stat_top[i])
-            doc_printf(doc, "<tab:9>%3.3s", stat_names_reduced[i]);
-        else
-            doc_printf(doc, "<tab:9>%3.3s", stat_names[i]);
+        doc_printf(doc, "<tab:9>%s", _stat_label_zh(i));
 
         if (p_ptr->stat_max[i] == p_ptr->stat_max_max[i])
             doc_insert(doc, "! : ");
@@ -219,7 +230,7 @@ static void _build_general2(doc_ptr doc)
 
     string_clear(s);
     string_printf(s, "%d/%d", p_ptr->chp , p_ptr->mmhp);
-    doc_printf(doc, "<tab:9>HP : <color:%c>%9.9s</color>\n",
+    doc_printf(doc, "<tab:9>生命 : <color:%c>%9.9s</color>\n",
                     p_ptr->chp >= p_ptr->mhp ? 'G' :
                         p_ptr->chp > (p_ptr->mmhp * hitpoint_warn) / 10 ? 'y' : 'r',
                     string_buffer(s));
@@ -229,12 +240,12 @@ static void _build_general2(doc_ptr doc)
     if (elemental_is_(ELEMENTAL_WATER))
         doc_printf(doc, "<tab:9>流派 : <color:G>%9.9s</color>\n", string_buffer(s));
     else
-        doc_printf(doc, "<tab:9>SP : <color:%c>%9.9s</color>\n",
+        doc_printf(doc, "<tab:9>法力 : <color:%c>%9.9s</color>\n",
                     p_ptr->csp >= p_ptr->msp ? 'G' :
                         p_ptr->csp > (p_ptr->msp * mana_warn) / 10 ? 'y' : 'r',
                     string_buffer(s));
 
-    doc_printf(doc, "<tab:9>AC : <color:G>%9d</color>\n", p_ptr->dis_ac + p_ptr->dis_to_a);
+    doc_printf(doc, "<tab:9>护甲 : <color:G>%9d</color>\n", p_ptr->dis_ac + p_ptr->dis_to_a);
 
     /* Dump speed ... What a monster! */
     {
@@ -867,10 +878,7 @@ static void _build_stats(doc_ptr doc, _flagzilla_ptr flagzilla)
         int sust_flg = OF_SUST_STR + i;
         int e_adj = 0;
 
-        if (p_ptr->stat_use[i] < p_ptr->stat_top[i])
-            doc_printf(doc, "<tab:7>%3.3s", stat_names_reduced[i]);
-        else
-            doc_printf(doc, "<tab:7>%3.3s", stat_names[i]);
+        doc_printf(doc, "<tab:7>%s", _stat_label_zh(i));
 
         if (p_ptr->stat_max[i] == p_ptr->stat_max_max[i])
             doc_insert(doc, "! : ");
