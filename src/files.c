@@ -3965,9 +3965,60 @@ static void handle_signal_simple(int sig)
 /*
  * Handle signal -- abort, kill, etc
  */
+static cptr signal_name(int sig)
+{
+    switch (sig)
+    {
+#ifdef SIGFPE
+    case SIGFPE: return "SIGFPE";
+#endif
+#ifdef SIGILL
+    case SIGILL: return "SIGILL";
+#endif
+#ifdef SIGTRAP
+    case SIGTRAP: return "SIGTRAP";
+#endif
+#ifdef SIGIOT
+    case SIGIOT: return "SIGIOT";
+#endif
+#ifdef SIGKILL
+    case SIGKILL: return "SIGKILL";
+#endif
+#ifdef SIGBUS
+    case SIGBUS: return "SIGBUS";
+#endif
+#ifdef SIGSEGV
+    case SIGSEGV: return "SIGSEGV";
+#endif
+#ifdef SIGTERM
+    case SIGTERM: return "SIGTERM";
+#endif
+#ifdef SIGPIPE
+    case SIGPIPE: return "SIGPIPE";
+#endif
+#ifdef SIGEMT
+    case SIGEMT: return "SIGEMT";
+#endif
+#ifdef SIGDANGER
+    case SIGDANGER: return "SIGDANGER";
+#endif
+#ifdef SIGSYS
+    case SIGSYS: return "SIGSYS";
+#endif
+#ifdef SIGXCPU
+    case SIGXCPU: return "SIGXCPU";
+#endif
+#ifdef SIGPWR
+    case SIGPWR: return "SIGPWR";
+#endif
+    default: return "unknown";
+    }
+}
+
 static void handle_signal_abort(int sig)
 {
     int wid, hgt;
+    char reason[128];
 
     Term_get_size(&wid, &hgt);
 
@@ -4024,7 +4075,8 @@ static void handle_signal_abort(int sig)
     Term_fresh();
 
     /* Quit */
-    quit("软件漏洞");
+    snprintf(reason, sizeof(reason), "软件漏洞 (signal %d: %s)", sig, signal_name(sig));
+    quit(reason);
 }
 
 

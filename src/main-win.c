@@ -1086,10 +1086,11 @@ static void crash_report_write_common(FILE *fp, cptr kind, cptr reason)
         fprintf(fp, "level=%d exp=%ld gold=%ld depth=%d town=%d turn=%ld player_turn=%ld\n",
             p_ptr->lev, (long)p_ptr->exp, (long)p_ptr->au,
             dun_level, p_ptr->town_num, (long)game_turn, (long)player_turn);
-        fprintf(fp, "hp=%ld/%ld sp=%ld/%ld pos=(%d,%d) wild=(%ld,%ld) dead=%d panic_save=%d\n",
+        fprintf(fp, "hp=%ld/%ld sp=%ld/%ld pos=(%d,%d) old_pos=(%d,%d) wild=(%ld,%ld) dead=%d panic_save=%d\n",
             (long)p_ptr->chp, (long)p_ptr->mhp,
             (long)p_ptr->csp, (long)p_ptr->msp,
-            p_ptr->oldpx, p_ptr->oldpy,
+            py, px,
+            p_ptr->oldpy, p_ptr->oldpx,
             (long)p_ptr->wilderness_x, (long)p_ptr->wilderness_y,
             p_ptr->is_dead, p_ptr->panic_save);
     }
@@ -1199,6 +1200,7 @@ static bool crash_report_write(cptr kind, cptr reason, EXCEPTION_POINTERS *info,
 
     if (crash_report_active) return FALSE;
     crash_report_active = TRUE;
+    format_diagnostic_suspend();
 
     game_log_event("crash-report", "kind=%s reason=%s", kind ? kind : "(null)", reason ? reason : "(null)");
 
@@ -1215,6 +1217,7 @@ static bool crash_report_write(cptr kind, cptr reason, EXCEPTION_POINTERS *info,
             strnfmt(out_path, out_max, "%s", path);
     }
 
+    format_diagnostic_resume();
     crash_report_active = FALSE;
     return fp ? TRUE : FALSE;
 }

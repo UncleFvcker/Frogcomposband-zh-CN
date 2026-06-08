@@ -5290,15 +5290,26 @@ void move_player(int dir, bool do_pickup, bool break_trap)
                         if (is_closed_door(c_ptr->feat) && have_flag(f_ptr->flags, FF_OPEN))
                         {
                             if (_repeat_count == 0)
+                            {
                                 _repeat_count = 99;
+                                game_log_event("easy-open", "begin repeat dir=%d feat=%d power=%d", dir, c_ptr->feat, f_ptr->power);
+                            }
                             else
+                            {
                                 --_repeat_count;
+                                if (_repeat_count == 0)
+                                    game_log_event("easy-open", "repeat exhausted dir=%d feat=%d power=%d", dir, c_ptr->feat, f_ptr->power);
+                            }
 
                             if (_repeat_count)
                                 command_rep = 1;
                         }
                         else
+                        {
+                            if (_repeat_count)
+                                game_log_event("easy-open", "repeat ended dir=%d feat=%d", dir, c_ptr->feat);
                             _repeat_count = 0;
+                        }
                     }
                     return;
                 }

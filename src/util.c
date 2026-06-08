@@ -29,9 +29,23 @@ static char _format_diag_fmt[512];
 static char _format_diag_file[256];
 static int  _format_diag_line = 0;
 static long _format_diag_turn = 0;
+static int  _format_diag_suspended = 0;
+
+void format_diagnostic_suspend(void)
+{
+    _format_diag_suspended++;
+}
+
+void format_diagnostic_resume(void)
+{
+    if (_format_diag_suspended > 0)
+        _format_diag_suspended--;
+}
 
 void format_diagnostic_note(cptr api, cptr fmt, cptr file, int line)
 {
+    if (_format_diag_suspended) return;
+
     snprintf(_format_diag_api, sizeof(_format_diag_api), "%s", api ? api : "(unknown)");
     snprintf(_format_diag_fmt, sizeof(_format_diag_fmt), "%s", fmt ? fmt : "(null)");
     snprintf(_format_diag_file, sizeof(_format_diag_file), "%s", file ? file : "(unknown)");

@@ -52,6 +52,8 @@ extern void core(cptr str);
 
 /* Crash diagnostics for vararg formatting call sites. */
 extern void format_diagnostic_note(cptr api, cptr fmt, cptr file, int line);
+extern void format_diagnostic_suspend(void);
+extern void format_diagnostic_resume(void);
 extern void format_diagnostic_dump(FILE *out);
 
 
