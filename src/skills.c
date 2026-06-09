@@ -16,6 +16,16 @@ static int _class_idx(void)
     return result;
 }
 
+static int _weapon_class_idx(void)
+{
+    int result = _class_idx();
+
+    if (result == CLASS_ETHEREAL_MIMIC)
+        result = CLASS_BEASTMASTER;
+
+    return result;
+}
+
 void skills_add(skills_t *dest, skills_t *src)
 {
     dest->dis += src->dis;
@@ -149,7 +159,7 @@ int skills_bow_max(int sval)
     if (p_ptr->pclass == CLASS_SKILLMASTER)
         return skillmaster_bow_prof();
 
-    return s_info[_class_idx()].w_max[0][sval];
+    return s_info[_weapon_class_idx()].w_max[0][sval];
 }
 
 static int _bow_calc_bonus_aux(int sval, int skill)
@@ -320,7 +330,10 @@ int skills_weapon_max(int tval, int sval)
     if (demigod_is_(DEMIGOD_POSEIDON) && tval == TV_POLEARM && sval == SV_TRIDENT)
         return WEAPON_EXP_MASTER;
 
-    return s_info[_class_idx()].w_max[tval-TV_WEAPON_BEGIN][sval];
+    if (p_ptr->pclass == CLASS_ETHEREAL_MIMIC && tval == TV_POLEARM)
+        return WEAPON_EXP_MASTER;
+
+    return s_info[_weapon_class_idx()].w_max[tval-TV_WEAPON_BEGIN][sval];
 }
 
 /* Weapons: Gaining Proficiency
@@ -1007,6 +1020,7 @@ void skills_on_birth(void)
 {
     int i, j;
     int class_idx = _class_idx();
+    int weapon_class_idx = _weapon_class_idx();
     for (i = 0; i < 5; i++)
     {
         for (j = 0; j < 64; j++)
@@ -1016,8 +1030,8 @@ void skills_on_birth(void)
             else if (demigod_is_(DEMIGOD_ARES))
                 p_ptr->weapon_exp[i][j] = WEAPON_EXP_BEGINNER;
             else
-                p_ptr->weapon_exp[i][j] = s_info[class_idx].w_start[i][j];
-            if (p_ptr->weapon_exp[i][j] == 0) p_ptr->weapon_exp[i][j] = MIN(WEAPON_EXP_BEGINNER / 2, s_info[class_idx].w_max[i][j]);
+                p_ptr->weapon_exp[i][j] = s_info[weapon_class_idx].w_start[i][j];
+            if (p_ptr->weapon_exp[i][j] == 0) p_ptr->weapon_exp[i][j] = MIN(WEAPON_EXP_BEGINNER / 2, s_info[weapon_class_idx].w_max[i][j]);
         }
     }
     if (personality_includes_(PERS_SEXY))

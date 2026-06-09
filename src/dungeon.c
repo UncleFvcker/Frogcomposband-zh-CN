@@ -126,18 +126,16 @@ static void _sense_obj(obj_ptr obj)
     msg_boundary();
     if (obj->loc.where == INV_EQUIP)
     {
-        msg_format("你感觉你穿着的 %s (%c) %s了 %s……",
+        msg_format("你感觉你穿着的 %s (%c) 是%s……",
                name, slot_label(obj->loc.slot),
-               !object_plural(obj) ? "is" : "are",
-                   game_inscriptions[feel]);
+               game_inscriptions[feel]);
     }
     else
     {
-        msg_format("你感觉你%s里的 %s (%c) %s了 %s……",
+        msg_format("你感觉你%s里的 %s (%c) 是%s……",
+               obj->loc.where == INV_QUIVER ? "箭袋" : "背包",
                name, slot_label(obj->loc.slot),
-               obj->loc.where == INV_QUIVER ? "箭袋" : "背包", 
-               !object_plural(obj) ? "is" : "are",
-                   game_inscriptions[feel]);
+               game_inscriptions[feel]);
     }
 
     if (!(obj->ident & IDENT_KNOWN))

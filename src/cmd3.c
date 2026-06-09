@@ -16,6 +16,12 @@
 
 #include <assert.h>
 
+static void _put_fixed_term(byte attr, cptr str, int row, int col, int width)
+{
+    Term_erase(col, row, width);
+    Term_putstr(col, row, width, attr, str);
+}
+
 
 /*
  * Drop an item
@@ -1009,14 +1015,10 @@ static int _draw_monster_list(_mon_list_ptr list, int top, rect_t rect, int mode
 {
     int     i;
     int     cx_monster;
-    char    mon_fmt[50];
-    char    mon_fmt_ex[50];
 
     cx_monster = rect.cx - 14;
     if (cx_monster < 10)
         cx_monster = 10;
-    sprintf(mon_fmt, "%%-%d.%ds", cx_monster, cx_monster);
-    sprintf(mon_fmt_ex, "%%-%d.%ds ", cx_monster + 10, cx_monster + 10);
 
     for (i = 0; i < rect.cy; i++)
     {
@@ -1120,11 +1122,11 @@ static int _draw_monster_list(_mon_list_ptr list, int top, rect_t rect, int mode
             Term_queue_bigchar(rect.x + 1, rect.y + i, r_ptr->x_attr, r_ptr->x_char, 0, 0);
             if (info_ptr->ct_total == 1)
             {
-                c_put_str(attr, format(mon_fmt, buf), rect.y + i, rect.x + 3);
-                c_put_str(TERM_WHITE, format("%-9.9s ", loc), rect.y + i, rect.x + 3 + cx_monster + 1);
+                _put_fixed_term(attr, buf, rect.y + i, rect.x + 3, cx_monster);
+                _put_fixed_term(TERM_WHITE, loc, rect.y + i, rect.x + 3 + cx_monster + 1, 10);
             }
             else
-                c_put_str(attr, format(mon_fmt_ex, buf), rect.y + i, rect.x + 3);
+                _put_fixed_term(attr, buf, rect.y + i, rect.x + 3, cx_monster + 10);
 
             if (info_ptr->target)
                 Term_putch(rect.x, rect.y + i, TERM_L_RED, '*');
@@ -1892,12 +1894,10 @@ static int _draw_obj_list(_obj_list_ptr list, int top, rect_t rect)
 {
     int     i;
     int     cx_obj;
-    char    obj_fmt[50];
 
     cx_obj = rect.cx - 14;
     if (cx_obj < 10)
         cx_obj = 10;
-    sprintf(obj_fmt, "%%-%d.%ds", cx_obj, cx_obj);
 
     for (i = 0; i < rect.cy; i++)
     {
@@ -1966,9 +1966,9 @@ static int _draw_obj_list(_obj_list_ptr list, int top, rect_t rect)
                 sprintf(name + strlen(name), ": %s", quests_get_name(quest_id));
             }
             Term_queue_bigchar(rect.x + 1, rect.y + i, f_ptr->x_attr[F_LIT_STANDARD], f_ptr->x_char[F_LIT_STANDARD], 0, 0);
-            c_put_str(use_graphics ? f_ptr->d_attr[F_LIT_STANDARD] : f_ptr->x_attr[F_LIT_STANDARD],
-                format(obj_fmt, name), rect.y + i, rect.x + 3);
-            c_put_str(TERM_WHITE, format("%-9.9s ", loc), rect.y + i, rect.x + 3 + cx_obj + 1);
+            _put_fixed_term(use_graphics ? f_ptr->d_attr[F_LIT_STANDARD] : f_ptr->x_attr[F_LIT_STANDARD],
+                name, rect.y + i, rect.x + 3, cx_obj);
+            _put_fixed_term(TERM_WHITE, loc, rect.y + i, rect.x + 3 + cx_obj + 1, 10);
         }
         else
         {
@@ -1984,11 +1984,11 @@ static int _draw_obj_list(_obj_list_ptr list, int top, rect_t rect)
                     (info_ptr->dy > 0) ? 'S' : 'N', abs(info_ptr->dy),
                     (info_ptr->dx > 0) ? 'E' : 'W', abs(info_ptr->dx));
             Term_queue_bigchar(rect.x + 1, rect.y + i, a, c, 0, 0);
-            c_put_str(attr, format(obj_fmt, o_name), rect.y + i, rect.x + 3);
+            _put_fixed_term(attr, o_name, rect.y + i, rect.x + 3, cx_obj);
             if (p_ptr->wizard)
                 c_put_str(TERM_WHITE, format("%6d %6d ", info_ptr->score, obj_value_real(o_ptr)), rect.y + i, rect.x + cx_obj + 1);
             else
-                c_put_str(TERM_WHITE, format("%-9.9s ", loc), rect.y + i, rect.x + 3 + cx_obj + 1);
+                _put_fixed_term(TERM_WHITE, loc, rect.y + i, rect.x + 3 + cx_obj + 1, 10);
         }
     }
     return i;

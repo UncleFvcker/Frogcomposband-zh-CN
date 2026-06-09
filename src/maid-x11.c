@@ -347,7 +347,7 @@ static XImage *ReadBMP(Display *dpy, char *Name)
 			{
 				/* Technically 1 bit is legal too */
 				quit_fmt("%s 中存在非法的 biBitCount %d",
-					 infoheader.biBitCount, Name);
+					 Name, infoheader.biBitCount);
 			}
 		}
 	}

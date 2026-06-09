@@ -1307,7 +1307,7 @@ static void prt_status(void)
             bar[BAR_DUELIST].attr = TERM_YELLOW;
         else
             bar[BAR_DUELIST].attr = TERM_L_DARK;
-        strnfmt(duelist_buffer, 100, "%^s", duelist_current_challenge());
+        strnfmt(duelist_buffer, 100, "%s", duelist_current_challenge());
         bar[BAR_DUELIST].lstr = duelist_buffer;
     }
 
@@ -1860,8 +1860,9 @@ static void prt_state(void)
         }
     }
 
-    /* Display the info (or blanks) */
-    c_put_str(attr, format("%5.5s",text), r.y + ROW_STATE, r.x + COL_STATE);
+    /* Display the info (or blanks). Avoid byte-width truncation of UTF-8 text. */
+    Term_erase(r.x + COL_STATE, r.y + ROW_STATE, r.cx - COL_STATE);
+    c_put_str(attr, text, r.y + ROW_STATE, r.x + COL_STATE);
 }
 
 
