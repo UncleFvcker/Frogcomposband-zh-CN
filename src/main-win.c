@@ -1950,6 +1950,15 @@ static void term_window_resize(term_data *td)
     InvalidateRect(td->w, NULL, TRUE);
 }
 
+static void term_window_snap_resize(term_data *td)
+{
+    if (!td || !td->w) return;
+
+    td->size_hack = TRUE;
+    term_window_resize(td);
+    td->size_hack = FALSE;
+}
+
 
 static void term_delete_fonts(term_data *td)
 {
@@ -2114,6 +2123,20 @@ static void term_window_pos(term_data *td, HWND hWnd)
 {
     SetWindowPos(td->w, hWnd, 0, 0, 0, 0,
             SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
+}
+
+static void term_ensure_menu(HWND hWnd)
+{
+    HMENU hm;
+
+    if (!hWnd || GetMenu(hWnd)) return;
+
+    hm = LoadMenuW(hInstance, AppNameW);
+    if (hm)
+    {
+        SetMenu(hWnd, hm);
+        DrawMenuBar(hWnd);
+    }
 }
 
 static void windows_map(void);
@@ -2921,6 +2944,8 @@ static errr Term_text_win(int x, int y, int n, byte a, const char *s)
         if (Term && Term->old && Term->old->uc)
             cp = Term->old->uc[y][x + i];
         if (!cp) cp = (byte)s[i];
+        if ((cp == TERM_UC_WIDE_TRAIL) && ((byte)s[i] != ' '))
+            cp = (byte)s[i];
         if (cp == TERM_UC_WIDE_TRAIL) continue;
 
         cells = _win_codepoint_is_wide(cp) ? 2 : 1;
@@ -3375,7 +3400,9 @@ static void init_windows(void)
     my_td = NULL;
     if (!td->w) quit("创建 Angband 窗口失败");
     SetWindowTextW(td->w, MainWindowTitleW);
+    term_ensure_menu(td->w);
 
+    term_init_double_buffer(td);
     term_data_link(td);
     angband_term[0] = &td->t;
     normsize.x = td->cols;
@@ -3387,8 +3414,6 @@ static void init_windows(void)
 
     /* Bring main window back to top */
     SetWindowPos(td->w, HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
-
-    term_init_double_buffer(td);
 
     /* The core initializes messages immediately after init_windows(). */
     Term_activate(term_screen);
@@ -4674,6 +4699,9 @@ LRESULT FAR PASCAL AngbandWndProc(HWND hWnd, UINT uMsg,
                         /* Restore */
                         Term_activate(old_term);
 
+                        if (!IsZoomed(td->w) && !IsIconic(td->w))
+                            term_window_snap_resize(td);
+
                         term_data_force_redraw(td);
                     }
 
@@ -4698,9 +4726,7 @@ LRESULT FAR PASCAL AngbandWndProc(HWND hWnd, UINT uMsg,
             /* Snap a manually resized window back to whole terminal cells. */
             if (!term_data_can_redraw(td)) return 1;
 
-            td->size_hack = TRUE;
-            term_window_resize(td);
-            td->size_hack = FALSE;
+            term_window_snap_resize(td);
             term_data_force_redraw(td);
             return 0;
         }
@@ -4879,6 +4905,9 @@ LRESULT FAR PASCAL AngbandListProc(HWND hWnd, UINT uMsg,
                 /* Activate */
                 Term_activate(old_term);
 
+                if (!IsZoomed(td->w) && !IsIconic(td->w))
+                    term_window_resize(td);
+
                 term_data_force_redraw(td);
 
                 /* HACK - Redraw all windows */
@@ -4895,9 +4924,7 @@ LRESULT FAR PASCAL AngbandListProc(HWND hWnd, UINT uMsg,
         {
             if (!term_data_can_redraw(td)) return 1;
 
-            td->size_hack = TRUE;
-            term_window_resize(td);
-            td->size_hack = FALSE;
+            term_window_snap_resize(td);
             term_data_force_redraw(td);
             return 0;
         }

@@ -623,6 +623,47 @@ static errr Term_pict_hack(int x, int y, int n, const byte *ap, cptr cp, const b
 
 /*** Efficient routines ***/
 
+static void _term_mark_changed(int x, int y)
+{
+    if (y < Term->y1) Term->y1 = y;
+    if (y > Term->y2) Term->y2 = y;
+
+    if (x < Term->x1[y]) Term->x1[y] = x;
+    if (x > Term->x2[y]) Term->x2[y] = x;
+}
+
+static bool _term_queue_clear_cell(term_win *scrn, int x, int y)
+{
+    byte a = Term->attr_blank;
+    char c = Term->char_blank;
+    u32b uc = (byte)c;
+
+    if ((scrn->a[y][x] == a) && (scrn->c[y][x] == c) &&
+        (scrn->uc[y][x] == uc) && (scrn->ta[y][x] == 0) &&
+        (scrn->tc[y][x] == 0) && (scrn->utc[y][x] == 0))
+    {
+        return FALSE;
+    }
+
+    scrn->a[y][x] = a;
+    scrn->c[y][x] = c;
+    scrn->uc[y][x] = uc;
+    scrn->ta[y][x] = 0;
+    scrn->tc[y][x] = 0;
+    scrn->utc[y][x] = 0;
+    _term_mark_changed(x, y);
+    return TRUE;
+}
+
+static void _term_queue_clear_unicode_trails(term_win *scrn, int x, int y)
+{
+    if ((x > 0) && (scrn->uc[y][x] == TERM_UC_WIDE_TRAIL))
+        _term_queue_clear_cell(scrn, x - 1, y);
+
+    if ((x + 1 < Term->wid) && (scrn->uc[y][x + 1] == TERM_UC_WIDE_TRAIL))
+        _term_queue_clear_cell(scrn, x + 1, y);
+}
+
 
 /*
  * Mentally draw an attr/char at a given location
@@ -644,6 +685,8 @@ void Term_queue_char(int x, int y, byte a, char c, byte ta, char tc)
     u32b uc = (byte)c;
     u32b utc = (byte)tc;
 
+    _term_queue_clear_unicode_trails(scrn, x, y);
+
     /* Hack -- Ignore non-changes */
     if ((*scr_aa == a) && (*scr_cc == c) &&
          (*scr_uc == uc) && (*scr_taa == ta) &&
@@ -659,12 +702,7 @@ void Term_queue_char(int x, int y, byte a, char c, byte ta, char tc)
     *scr_utc = utc;
 
     /* Check for new min/max row info */
-    if (y < Term->y1) Term->y1 = y;
-    if (y > Term->y2) Term->y2 = y;
-
-    /* Check for new min/max col info for this row */
-    if (x < Term->x1[y]) Term->x1[y] = x;
-    if (x > Term->x2[y]) Term->x2[y] = x;
+    _term_mark_changed(x, y);
 
     if ((scrn->a[y][x] & AF_BIGTILE2) == AF_BIGTILE2)
         if ((x - 1) < Term->x1[y]) Term->x1[y]--;
@@ -838,6 +876,8 @@ void Term_queue_chars(int x, int y, int n, byte a, cptr s)
         byte ota = scr_taa[x];
         char otc = scr_tcc[x];
         u32b outc = scr_utc[x];
+
+        _term_queue_clear_unicode_trails(Term->scr, x, y);
 
         /* Hack -- Ignore non-changes */
         if ((oa == a) && (oc == c) && (ouc == cp) && (ota == 0) && (otc == 0) && (outc == 0))
@@ -2036,6 +2076,11 @@ errr Term_erase(int x, int y, int n)
     scr_utc = Term->scr->utc[y];
 
     if (n > 0 && (scr_aa[x] & AF_BIGTILE2) == AF_BIGTILE2)
+    {
+        x--;
+        n++;
+    }
+    if (n > 0 && (x > 0) && scr_uc[x] == TERM_UC_WIDE_TRAIL)
     {
         x--;
         n++;
