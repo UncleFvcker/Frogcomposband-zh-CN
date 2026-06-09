@@ -919,6 +919,20 @@ bool _unwield_verify(obj_ptr obj)
             p_ptr->redraw |= PR_EFFECTS;
             return TRUE;
         }
+        if (maia_is_corrupted()
+         && !(obj->curse_flags & OFC_PERMA_CURSE)
+         && !(obj->curse_flags & OFC_HEAVY_CURSE))
+        {
+            msg_print("堕落的力量让轻微诅咒自行崩解。");
+            obj->ident |= IDENT_SENSE;
+            obj->curse_flags = 0L;
+            obj->known_curse_flags = 0L;
+            obj->feeling = FEEL_NONE;
+            p_ptr->update |= PU_BONUS;
+            p_ptr->window |= PW_EQUIP;
+            p_ptr->redraw |= PR_EFFECTS;
+            return TRUE;
+        }
         if ((obj->curse_flags & OFC_PERMA_CURSE) || ((p_ptr->pclass != CLASS_BERSERKER) && (!beorning_is_(BEORNING_FORM_BEAR))))
         {
             msg_print("嗯，它似乎被诅咒了。");

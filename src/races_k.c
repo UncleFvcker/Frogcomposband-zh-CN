@@ -178,6 +178,268 @@ race_t *kutar_get_race(void)
 }
 
 /****************************************************************
+ * Maia
+ ****************************************************************/
+static bool _maia_is_initiated(void)
+{
+    return p_ptr->prace == RACE_MAIA && p_ptr->psubrace != MAIA_UNINITIATED;
+}
+
+bool maia_is_enlightened(void)
+{
+    return p_ptr->prace == RACE_MAIA && p_ptr->psubrace == MAIA_ENLIGHTENED;
+}
+
+bool maia_is_corrupted(void)
+{
+    return p_ptr->prace == RACE_MAIA && p_ptr->psubrace == MAIA_CORRUPTED;
+}
+
+bool maia_no_food(void)
+{
+    return _maia_is_initiated();
+}
+
+bool maia_forbids_realm(int realm)
+{
+    if (maia_is_enlightened())
+    {
+        return realm == REALM_DEATH
+            || realm == REALM_DAEMON
+            || realm == REALM_HEX
+            || realm == REALM_NECROMANCY;
+    }
+    if (maia_is_corrupted())
+    {
+        return realm == REALM_LIFE
+            || realm == REALM_CRUSADE;
+    }
+    return FALSE;
+}
+
+int maia_light_bonus(void)
+{
+    if (!maia_is_enlightened()) return 0;
+    return 1 + MAX(0, p_ptr->lev - 20) / 6;
+}
+
+void maia_sense_object(object_type *o_ptr)
+{
+    if (!maia_is_enlightened()) return;
+    if (!o_ptr || !o_ptr->k_idx) return;
+    if (!o_ptr->curse_flags) return;
+
+    o_ptr->known_curse_flags = o_ptr->curse_flags;
+    o_ptr->ident |= IDENT_SENSE;
+    if (!o_ptr->feeling)
+        o_ptr->feeling = FEEL_CURSED;
+}
+
+static void _maia_choose_initiation(void)
+{
+    char cmd;
+
+    msg_print("你的本质终于显现。你必须选择迈雅的道路。");
+    for (;;)
+    {
+        if (get_com("选择启蒙方向: [E]启明 / [C]堕落", &cmd, FALSE))
+        {
+            cmd = tolower(cmd);
+            if (cmd == 'e')
+            {
+                p_ptr->psubrace = MAIA_ENLIGHTENED;
+                msg_print("你升向启明，尘世的饥饿从此远去。");
+                break;
+            }
+            if (cmd == 'c')
+            {
+                p_ptr->psubrace = MAIA_CORRUPTED;
+                msg_print("你拥抱堕落，恶魔般的力量在体内燃起。");
+                break;
+            }
+        }
+        bell();
+    }
+
+    p_ptr->update |= PU_BONUS | PU_HP | PU_MANA | PU_TORCH;
+    p_ptr->redraw |= PR_BASIC | PR_STATUS | PR_EFFECTS;
+    p_ptr->window |= PW_EQUIP | PW_INVEN | PW_SPELL;
+}
+
+static void _maia_gain_level(int new_level)
+{
+    if (new_level >= 20 && p_ptr->psubrace == MAIA_UNINITIATED)
+        _maia_choose_initiation();
+}
+
+static int _maia_ac_bonus(void)
+{
+    if (!maia_is_enlightened() || p_ptr->lev <= 20) return 0;
+    return MIN(15, (p_ptr->lev - 20) / 2);
+}
+
+static int _maia_corrupted_hp_bonus(void)
+{
+    int l = p_ptr->lev;
+
+    if (!maia_is_corrupted() || l <= 20) return 0;
+    if (l <= 50) return (l - 20) * 2;
+    return 60 + (l - 50);
+}
+
+static void _maia_calc_bonuses(void)
+{
+    p_ptr->esp_demon = TRUE;
+    p_ptr->esp_evil = TRUE;
+    p_ptr->slow_digest = TRUE;
+
+    if (maia_is_enlightened())
+    {
+        int ac = _maia_ac_bonus();
+
+        res_add(RES_TIME);
+        res_add(RES_LITE);
+        p_ptr->see_inv++;
+        p_ptr->lite = TRUE;
+        p_ptr->to_a += ac;
+        p_ptr->dis_to_a += ac;
+
+        if (p_ptr->lev >= 50)
+        {
+            p_ptr->levitation = TRUE;
+            res_add(RES_POIS);
+            res_add(RES_ELEC);
+            res_add(RES_COLD);
+            p_ptr->sh_cold++;
+            p_ptr->sh_elec++;
+        }
+    }
+    else if (maia_is_corrupted())
+    {
+        res_add(RES_TIME);
+        res_add(RES_FIRE);
+        res_add(RES_DARK);
+
+        if (p_ptr->lev >= 50)
+        {
+            res_add(RES_POIS);
+            res_add_immune(RES_FIRE);
+            p_ptr->sh_fire++;
+        }
+    }
+}
+
+static void _maia_calc_weapon_bonuses(object_type *o_ptr, weapon_info_t *info_ptr)
+{
+    if (maia_is_enlightened() && p_ptr->lev >= 50)
+        add_flag(info_ptr->flags, OF_SLAY_EVIL);
+}
+
+static void _maia_get_flags(u32b flgs[OF_ARRAY_SIZE])
+{
+    add_flag(flgs, OF_ESP_DEMON);
+    add_flag(flgs, OF_ESP_EVIL);
+    add_flag(flgs, OF_SLOW_DIGEST);
+
+    if (maia_is_enlightened())
+    {
+        add_flag(flgs, OF_RES_TIME);
+        add_flag(flgs, OF_RES_LITE);
+        add_flag(flgs, OF_SEE_INVIS);
+        add_flag(flgs, OF_LITE);
+        if (p_ptr->lev >= 50)
+        {
+            add_flag(flgs, OF_LEVITATION);
+            add_flag(flgs, OF_RES_POIS);
+            add_flag(flgs, OF_RES_ELEC);
+            add_flag(flgs, OF_RES_COLD);
+            add_flag(flgs, OF_AURA_COLD);
+            add_flag(flgs, OF_AURA_ELEC);
+            add_flag(flgs, OF_SLAY_EVIL);
+        }
+    }
+    else if (maia_is_corrupted())
+    {
+        add_flag(flgs, OF_RES_TIME);
+        add_flag(flgs, OF_RES_FIRE);
+        add_flag(flgs, OF_RES_DARK);
+        if (p_ptr->lev >= 50)
+        {
+            add_flag(flgs, OF_RES_POIS);
+            add_flag(flgs, OF_IM_FIRE);
+            add_flag(flgs, OF_AURA_FIRE);
+        }
+    }
+}
+
+race_t *maia_get_race(int psubrace)
+{
+    static race_t me = {0};
+    static bool init = FALSE;
+    static int subrace_init = -1;
+
+    if (!init)
+    {
+        me.name = "迈雅";
+        me.desc = "迈雅是与维拉相随的次级神灵。他们能显现为精灵或人类的形貌，以智慧和力量引导凡世。迈雅在20级时必须选择启明或堕落的道路；启明者趋向光明与秩序，堕落者则换取恶魔般的力量。";
+        me.infra = 10;
+        me.gain_level = _maia_gain_level;
+        init = TRUE;
+    }
+
+    if (subrace_init != psubrace)
+    {
+        me.subname = "未启蒙";
+        me.subdesc = "你尚未决定迈雅的最终道路。20级时，你必须选择启明或堕落。";
+
+        me.stats[A_STR] =  2;
+        me.stats[A_INT] =  3;
+        me.stats[A_WIS] =  3;
+        me.stats[A_DEX] =  1;
+        me.stats[A_CON] =  1;
+        me.stats[A_CHR] =  2;
+
+        me.skills.dis =  3;
+        me.skills.dev = 20;
+        me.skills.sav =  3;
+        me.skills.stl =  0;
+        me.skills.srh =  1;
+        me.skills.fos =  5;
+        me.skills.thn =  5;
+        me.skills.thb =  5;
+
+        me.life = 100;
+        me.base_hp = 22;
+        me.exp = 400;
+        me.shop_adjust = 75;
+        me.flags = 0;
+
+        if (psubrace == MAIA_ENLIGHTENED)
+        {
+            me.subname = "启明";
+            me.subdesc = "你选择了启明之路。你不再需要凡俗食物，能感知捡起物品上的诅咒，并获得光明与时间的庇护。高等级时，你会显现更强的光辉、护甲、元素抗性和屠杀邪恶的力量。";
+        }
+        else if (psubrace == MAIA_CORRUPTED)
+        {
+            me.subname = "堕落";
+            me.subdesc = "你选择了堕落之路。你不再需要凡俗食物，能轻易脱下轻度诅咒的装备，并获得火焰、黑暗与时间的力量。高等级时，你会获得更多生命力、火焰免疫和火焰光环。";
+        }
+
+        me.calc_bonuses = _maia_calc_bonuses;
+        me.calc_weapon_bonuses = _maia_calc_weapon_bonuses;
+        me.get_flags = _maia_get_flags;
+
+        subrace_init = psubrace;
+    }
+
+    me.base_hp = 22;
+    if (psubrace == MAIA_CORRUPTED)
+        me.base_hp += _maia_corrupted_hp_bonus();
+
+    return &me;
+}
+
+/****************************************************************
  * Mindflayer
  ****************************************************************/
 static power_info _mindflayer_get_powers[] =

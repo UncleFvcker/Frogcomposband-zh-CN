@@ -3702,6 +3702,7 @@ static void calc_torch(void)
         p_ptr->cur_lite += ring_calc_torch();
     if (prace_is_(RACE_MON_ARMOR))
         p_ptr->cur_lite += armor_calc_torch();
+    p_ptr->cur_lite += maia_light_bonus();
 
     equip_for_each(_calc_torch_imp);
 

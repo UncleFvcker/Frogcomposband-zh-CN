@@ -656,7 +656,12 @@
 #define RACE_MON_PUMPKIN        71
 #define RACE_IGOR               72
 #define RACE_MON_MUMMY          73
-#define MAX_RACES               74
+#define RACE_MAIA               74
+#define MAX_RACES               75
+
+#define MAIA_UNINITIATED        0
+#define MAIA_ENLIGHTENED        1
+#define MAIA_CORRUPTED          2
 
 #define DEMIGOD_MINOR           0
 #define DEMIGOD_ZEUS            1

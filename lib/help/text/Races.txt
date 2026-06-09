@@ -895,6 +895,28 @@ Other
     Base HP       21        Archery     Fair         
     Experience   175%       Infravision 0'
     
+  Maia
+  Maiar are lesser spirits associated with the Valar, able to walk the 
+  world in the form of elves or humans. They have excellent minds and 
+  skill with magical devices, advance extremely slowly, and receive 
+  unusually favorable shop prices. At level 20, a Maia must choose 
+  enlightenment or corruption. Enlightened Maiar gain light and order, 
+  sense curses on items when picking them up, and eventually slay evil 
+  in melee; corrupted Maiar gain fire and darkness, and can freely 
+  remove lightly cursed equipment. After initiation, Maiar no longer 
+  need worldly food.
+  
+    Stats                   Skills
+    Strength      +2        Disarming   Poor         
+    Intelligence  +3        Device      Excellent    
+    Wisdom        +3        Save        Fair         
+    Dexterity     +1        Stealth     Fair         
+    Constitution  +1        Searching   Fair         
+    Charisma      +2        Perception  Good         
+    Life Rating  100%       Melee       Fair         
+    Base HP       22        Archery     Fair         
+    Experience   400%       Infravision 100'
+    
   Mindflayer
   Mindflayers are a secretive and mysterious ancient race. Their 
   civilization may well be older than any other; their intelligence and 
@@ -1001,6 +1023,7 @@ Ent           +3   +0   +2   -4   +3   +0  105%  +25  135%   95%
 Golem         +4   -5   -5   -2   +4   +0  105%  +23  185%  120%
 Klackon       +2   -1   -1   +1   +2   +1  105%  +23  170%  115%
 Kutar         +0   -1   -1   +1   +2   +2  102%  +21  175%   95%
+Maia          +2   +3   +3   +1   +1   +2  100%  +22  400%   75%
 Mindflayer    -3   +4   +4   +0   -2   -1   97%  +18  150%  115%
 Tonberry      +4   +0   -2   -4   +5   +0  108%  +26  175%  115%
 Yeek          -2   +1   -2   +1   -2   -4   92%  +14   70%  105%
@@ -1053,6 +1076,7 @@ Ent          Bad           Fair          Fair          Poor
 Golem        Bad           Bad           Good          Poor         
 Klackon      Excellent     Poor          Fair          Fair         
 Kutar        Poor          Fair          Fair          Superb       
+Maia         Poor          Excellent     Fair          Fair         
 Mindflayer   Excellent     Excellent     Good          Good         
 Tonberry     Bad           Poor          Fair          Good         
 Yeek         Fair          Fair          Good          Excellent    
@@ -1105,6 +1129,7 @@ Ent          Fair          Poor          Excellent     Fair             0'
 Golem        Poor          Poor          Superb        Fair            40'
 Klackon      Poor          Fair          Good          Good            20'
 Kutar        Poor          Bad           Fair          Fair             0'
+Maia         Fair          Good          Fair          Fair           100'
 Mindflayer   Excellent     Good          Bad           Poor            40'
 Tonberry     Poor          Very Bad      Superb        Poor            20'
 Yeek         Excellent     Excellent     Poor          Fair            20'

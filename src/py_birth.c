@@ -1013,7 +1013,7 @@ b_race_group_t b_race_groups[B_MAX_RACE_GROUPS] = {
     { "妖精",
         {RACE_SHADOW_FAIRY, RACE_SPRITE, -1} },
     { "Angel/Demon",
-        {RACE_ARCHON, RACE_BALROG, RACE_IMP, -1} },
+        {RACE_ARCHON, RACE_BALROG, RACE_IMP, RACE_MAIA, -1} },
     { "Orc/Troll/Giant",
         {RACE_CYCLOPS, RACE_HALF_GIANT, RACE_HALF_ORC, RACE_HALF_TITAN,
          RACE_HALF_TROLL, RACE_KOBOLD, RACE_OGRE, RACE_SNOTLING, -1} },

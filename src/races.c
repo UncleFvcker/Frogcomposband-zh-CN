@@ -53,6 +53,7 @@ static _race_alias_t _race_aliases[] = {
         { "Klackon", RACE_KLACKON },
         { "Kobold", RACE_KOBOLD },
         { "Kutar", RACE_KUTAR },
+        { "Maia", RACE_MAIA },
         { "Mindflayer", RACE_MIND_FLAYER },
         { "Angel", RACE_MON_ANGEL },
         { "Beholder", RACE_MON_BEHOLDER },
@@ -342,6 +343,9 @@ race_t *get_race_aux(int prace, int psubrace)
         break;
     case RACE_KUTAR:
         result = kutar_get_race();
+        break;
+    case RACE_MAIA:
+        result = maia_get_race(psubrace);
         break;
     case RACE_MIND_FLAYER:
         result = mindflayer_get_race();

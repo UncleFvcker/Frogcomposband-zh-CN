@@ -3330,8 +3330,13 @@ static void process_world(void)
 
     if (!p_ptr->inside_battle)
     {
+        if (maia_no_food())
+        {
+            if (p_ptr->food != PY_FOOD_FULL)
+                (void)set_food(PY_FOOD_FULL);
+        }
         /* Digest quickly when gorged */
-        if (p_ptr->food >= PY_FOOD_MAX)
+        else if (p_ptr->food >= PY_FOOD_MAX)
         {
             /* Digest a lot of food */
             (void)set_food(p_ptr->food - 100);

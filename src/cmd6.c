@@ -357,7 +357,7 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
     }
 
     /* Food can feed the player */
-    if (no_food)
+    if (no_food || maia_no_food())
     {
     }
     else if ( prace_is_(RACE_VAMPIRE)
@@ -596,7 +596,10 @@ static void do_cmd_quaff_potion_aux(obj_ptr obj)
     water_mana_action(FALSE, (obj->sval == SV_POTION_WATER) ? 20 : 10);
 
     /* Potions can feed the player */
-    switch (p_ptr->mimic_form)
+    if (maia_no_food())
+    {
+    }
+    else switch (p_ptr->mimic_form)
     {
     case MIMIC_NONE:
         switch (p_ptr->prace)
