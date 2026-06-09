@@ -914,7 +914,7 @@ cptr skills_innate_calc_name(innate_attack_ptr attack)
     static char buf[MAX_NLEN];
     buf[0] = '\0';
 #if 0
-    if ((p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC) && p_ptr->current_r_idx)
+    if (possessor_is_active() && p_ptr->current_r_idx)
     {
         monster_race *r_ptr = &r_info[p_ptr->current_r_idx];
         if (r_ptr->flags1 & RF1_UNIQUE)

@@ -3986,7 +3986,7 @@ static void _dispatch_command(int old_now_turn)
                 spell_problem = 0;
                 if (p_ptr->prace == RACE_MON_RING)
                     ring_cast();
-                else if (p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC || p_ptr->pclass == CLASS_BLUE_MAGE)
+                else if (possessor_is_active() || p_ptr->pclass == CLASS_BLUE_MAGE)
                     possessor_cast();
                 else if (p_ptr->pclass == CLASS_MAGIC_EATER)
                     magic_eater_cast(0);

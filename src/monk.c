@@ -287,7 +287,7 @@ static bool _monk_check_spell(void)
 {
     if (p_ptr->pclass == CLASS_WILD_TALENT || mut_present(MUT_DRACONIAN_METAMORPHOSIS))
         return TRUE;
-    if ((p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC) && !p_ptr->weapon_ct)
+    if (possessor_is_active() && !p_ptr->weapon_ct)
         return TRUE;
     if (!p_ptr->weapon_info[0].bare_hands && !p_ptr->weapon_info[1].bare_hands)
     {

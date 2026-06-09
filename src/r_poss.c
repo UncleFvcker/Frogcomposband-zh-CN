@@ -200,7 +200,7 @@ static int _get_toggle(void)
 int possessor_get_toggle(void)
 {
     int result = TOGGLE_NONE;
-    if (p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC)
+    if (possessor_is_active())
         result = _get_toggle();
     return result;
 }
@@ -228,7 +228,7 @@ static int _max_lvl(void)
  **********************************************************************/
 bool possessor_can_attack(void)
 {
-    if (p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC)
+    if (possessor_is_active())
         return p_ptr->current_r_idx != 0;
     return FALSE;
 }
@@ -1324,10 +1324,13 @@ void possessor_set_current_r_idx(int r_idx)
 
         p_ptr->magic_num1[0] = 0; /* Blinking Death ... */
         p_ptr->current_r_idx = r_idx;
-        lore_do_probe(r_idx);
-        if (!r_info[r_idx].r_sights) r_info[r_idx].r_sights = 1;
+        if (r_idx)
+        {
+            lore_do_probe(r_idx);
+            if (!r_info[r_idx].r_sights) r_info[r_idx].r_sights = 1;
+        }
 
-        if (p_ptr->exp > possessor_max_exp())
+        if ((possessor_is_() || mimic_is_()) && p_ptr->exp > possessor_max_exp())
         {
             p_ptr->exp = possessor_max_exp();
             check_experience();
@@ -1342,7 +1345,7 @@ void possessor_set_current_r_idx(int r_idx)
         equip_on_change_race();
 
         /* Mimic's shift alot. Try to preserve the old mana ratio if possible. */
-        if (p_ptr->prace == RACE_MON_MIMIC)
+        if (mimic_is_() || ethereal_mimic_is_())
         {
             handle_stuff();
 
@@ -1351,7 +1354,7 @@ void possessor_set_current_r_idx(int r_idx)
             p_ptr->redraw |= PR_MANA;
             p_ptr->window |= PW_SPELL;
 
-            if (p_ptr->current_r_idx != MON_MIMIC)
+            if (p_ptr->current_r_idx && p_ptr->current_r_idx != MON_MIMIC)
                 _history_on_possess(r_idx);
         }
         else if (p_ptr->current_r_idx != MON_POSSESSOR_SOUL)
@@ -1363,7 +1366,7 @@ void possessor_do_auras(mon_ptr mon)
 {
     mon_race_ptr race;
     int          i;
-    if (p_ptr->prace != RACE_MON_POSSESSOR && p_ptr->prace != RACE_MON_MIMIC) return;
+    if (!possessor_is_active()) return;
     race = &r_info[p_ptr->current_r_idx];
     for (i = 0; i < MAX_MON_AURAS; i++)
     {
@@ -1379,7 +1382,7 @@ void possessor_do_auras(mon_ptr mon)
 
 void possessor_explode(int dam)
 {
-    if (p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC)
+    if (possessor_is_active())
     {
         int           i;
         monster_race *r_ptr = &r_info[p_ptr->current_r_idx];
@@ -1395,14 +1398,41 @@ void possessor_explode(int dam)
             }
         }
 
-        if (p_ptr->prace == RACE_MON_MIMIC)
+        if (mimic_is_())
             possessor_set_current_r_idx(MON_MIMIC);
+        else if (ethereal_mimic_is_mimicking())
+            possessor_set_current_r_idx(0);
         else
             possessor_set_current_r_idx(MON_POSSESSOR_SOUL);
 
         take_hit(DAMAGE_NOESCAPE, dam, "爆炸");
         set_stun(p_ptr->stun + 10, FALSE);
     }
+}
+
+bool ethereal_mimic_is_(void)
+{
+    return p_ptr->pclass == CLASS_ETHEREAL_MIMIC;
+}
+
+bool ethereal_mimic_is_mimicking(void)
+{
+    return ethereal_mimic_is_() && p_ptr->current_r_idx > 0;
+}
+
+bool possessor_is_(void)
+{
+    return p_ptr->prace == RACE_MON_POSSESSOR;
+}
+
+bool mimic_is_(void)
+{
+    return p_ptr->prace == RACE_MON_MIMIC;
+}
+
+bool possessor_is_active(void)
+{
+    return possessor_is_() || mimic_is_() || ethereal_mimic_is_mimicking();
 }
 
 void possessor_character_dump(doc_ptr doc)

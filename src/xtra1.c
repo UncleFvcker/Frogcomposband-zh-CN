@@ -1210,7 +1210,7 @@ static void prt_status(void)
             break;
         }
     }
-    if (p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC)
+    if (possessor_is_active())
     {
         switch(possessor_get_toggle())
         {
@@ -3212,7 +3212,7 @@ static int _racial_mana_adjust(int i)
         result = race_ptr->stats[i];
 
     /* TODO: Some possessor forms have too much mana ... */
-    if (p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC)
+    if (possessor_is_active())
     {
         switch (i)
         {

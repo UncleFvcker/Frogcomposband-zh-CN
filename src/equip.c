@@ -1839,7 +1839,9 @@ void equip_calc_bonuses(void)
 void equip_init(void)
 {
     race_t *race_ptr = get_race();
-    if (race_ptr->equip_template)
+    if (ethereal_mimic_is_mimicking())
+        _template = mon_get_equip_template();
+    else if (race_ptr->equip_template)
         _template = race_ptr->equip_template;
     else
         _template = &b_info[0];
@@ -1905,6 +1907,9 @@ void equip_on_change_race(void)
 {
     equip_template_ptr old_template = _template;
     equip_template_ptr new_template = get_race()->equip_template;
+
+    if (ethereal_mimic_is_mimicking())
+        new_template = mon_get_equip_template();
 
     if (!new_template)
         new_template = &b_info[0];
@@ -2084,6 +2089,11 @@ void equip_save(savefile_ptr file)
 inv_ptr get_equipment(void)
 {
     return _inv;
+}
+
+equip_template_ptr equip_current_template(void)
+{
+    return _template;
 }
 
 void set_equip_template(equip_template_ptr new_template)

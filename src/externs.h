@@ -2522,6 +2522,7 @@ extern race_t *yeek_get_race(void);
 extern race_t *zombie_get_race(void);
 
 extern void equip_shuffle(cptr tag); /* For shapeshifters ... */
+extern equip_template_ptr equip_current_template(void);
 extern void set_equip_template(equip_template_ptr new_template);
 
 /* Monster Races */
@@ -2601,6 +2602,14 @@ extern void    possessor_set_current_r_idx(int r_idx);
 extern void    possessor_explode(int dam);
 extern void    possessor_init_race_t(race_t *race_ptr, int default_r_idx);
 extern void    possessor_do_auras(mon_ptr mon);
+extern bool    possessor_is_active(void);
+extern bool    possessor_is_(void);
+extern bool    mimic_is_(void);
+extern bool    ethereal_mimic_is_(void);
+extern bool    ethereal_mimic_is_mimicking(void);
+extern bool    ethereal_mimic_can_mimic(int r_idx);
+extern bool    ethereal_mimic_is_learned(int r_idx);
+extern int     ethereal_mimic_kill_requirement(int r_idx);
 extern void    mimic_dispel_player(void);
 extern void    mimic_on_kill_monster(int r_idx);
 extern int     mimic_max_lvl(void);
@@ -2804,6 +2813,7 @@ extern cptr     gray_mage_speciality_name(int psubclass);
 extern cptr     gray_mage_speciality_desc(int psubclass);
 
 extern class_t *high_mage_get_class(void);
+extern class_t *ethereal_mimic_get_class(void);
 extern bool     imitator_cast(bool revenge);
 extern class_t *imitator_get_class(void);
 extern class_t *lawyer_get_class(void);

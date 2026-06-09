@@ -870,7 +870,8 @@ enum _mimic_types {
 #define CLASS_ALCHEMIST         50
 #define CLASS_POLITICIAN        51
 #define CLASS_DISCIPLE          52
-#define MAX_CLASS               53
+#define CLASS_ETHEREAL_MIMIC    53
+#define MAX_CLASS               54
 
 /*
 #define CLASS_LOGRUS_MASTER     47

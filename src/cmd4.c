@@ -5706,7 +5706,7 @@ static void display_monster_list(int col, int row, int per_page, s16b mon_idx[],
         {
             c_prt(attr, format("%02x/%02x", r_ptr->x_attr, r_ptr->x_char), row + i, (p_ptr->wizard || visual_only) ? 56 : 61);
         }
-        if (p_ptr->wizard || visual_only)
+        if (p_ptr->wizard || visual_only || ethereal_mimic_is_())
         {
             c_prt(attr, format("%d", r_idx), row + i, 62);
         }
@@ -5722,6 +5722,20 @@ static void display_monster_list(int col, int row, int per_page, s16b mon_idx[],
             /* Display kills */
             if (!(r_ptr->flags1 & RF1_UNIQUE)) put_str(format("%5d", r_ptr->r_pkills), row + i, 73);
             else c_put_str((r_ptr->max_num == 0 ? TERM_L_DARK : TERM_WHITE), (r_ptr->max_num == 0 ? "死亡" : "存活"), row + i, 73);
+
+            if (ethereal_mimic_is_() && !visual_only)
+            {
+                if (ethereal_mimic_can_mimic(r_idx))
+                {
+                    int req = ethereal_mimic_kill_requirement(r_idx);
+                    if (ethereal_mimic_is_learned(r_idx))
+                        c_put_str(TERM_L_GREEN, "已学会", row + i, 80);
+                    else
+                        c_put_str(TERM_YELLOW, format("%d/%d", r_ptr->r_pkills, req), row + i, 80);
+                }
+                else
+                    c_put_str(TERM_L_DARK, "-", row + i, 80);
+            }
 
             /* Only Possessors get the extra body info display */
             if (p_ptr->wizard || p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC)
@@ -5929,9 +5943,10 @@ static void do_cmd_knowledge_monsters(bool *need_redraw, bool visual_only, int d
             prt(format("%s - 怪物", !visual_only ? "知识" : "视觉(Visuals)"), 2, 0);
             if (direct_r_idx < 0) prt("分组", 4, 0);
             prt("名称", 4, max + 3);
-            if (p_ptr->wizard || visual_only) prt("序号(Idx)", 4, 62);
+            if (p_ptr->wizard || visual_only || ethereal_mimic_is_()) prt("序号(Idx)", 4, 62);
             prt("字符(Sym)", 4, 68);
             if (!visual_only) prt("击杀", 4, 73);
+            if (!visual_only && ethereal_mimic_is_()) prt("模仿", 4, 80);
 
             if (p_ptr->wizard || p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC)
             {
