@@ -5,10 +5,30 @@ bool spoiler_hack = FALSE;
 #ifdef ALLOW_SPOILERS
 
 typedef void(*_file_fn)(FILE*);
+static bool _preserve_localized_help_file(cptr name)
+{
+    FILE *fp = NULL;
+    char  buf[1024];
+
+    path_build(buf, sizeof(buf), ANGBAND_DIR_HELP, name);
+    fp = my_fopen(buf, "r");
+    if (fp)
+    {
+        my_fclose(fp);
+        if (character_dungeon) msg_format("保留已汉化帮助文件 %s", buf);
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 static void _help_file(cptr name, _file_fn fn)
 {
     FILE    *fp = NULL;
     char    buf[1024];
+
+    if (_preserve_localized_help_file(name))
+        return;
 
     path_build(buf, sizeof(buf), ANGBAND_DIR_HELP, name);
     fp = my_fopen(buf, "w");
@@ -1171,7 +1191,15 @@ static void _class_help(FILE *fp, int idx)
     class_t *class_ptr = get_class_aux(idx, 0);
 
     fprintf(fp, "<topic:%s><color:o>%s</color>\n", class_ptr->name, class_ptr->name);
-    fputs(class_ptr->desc, fp);
+    if (idx == CLASS_ETHEREAL_MIMIC)
+    {
+        fputs("缥缈模仿者是能够学习怪物形态的战士。他们在未变身时使用普通人形身体和装备栏位；一旦变身，就会继承目标形态的身体结构、抗性、法术、吐息和天然攻击，从而用敌人的形体反过来适应地下城。\n\n", fp);
+        fputs("缥缈模仿者通过击杀非唯一怪物来理解其形体；当击杀数量达到该怪物等级后，就能永久学会该形态。使用职业能力时可以输入怪物序号来变身，怪物序号可在知识菜单的怪物知识中查询。由于可学习形态数量可能很多，这种方式也便于玩家为常用形态编写稳定的宏。唯一怪物不能被学习或模仿。", fp);
+    }
+    else
+    {
+        fputs(class_ptr->desc, fp);
+    }
     fputs("\n\n", fp);
 
     switch(idx)
@@ -1214,7 +1242,7 @@ static _class_group_t _class_groups[_MAX_CLASS_GROUPS] = {
     { "祈祷", {CLASS_PRIEST, -1} },
     { "潜行", {CLASS_NINJA, CLASS_ROGUE, CLASS_SCOUT, -1} },
     { "混合", {CLASS_CHAOS_WARRIOR, CLASS_DISCIPLE, CLASS_NINJA_LAWYER, CLASS_PALADIN,
-                    CLASS_RANGER, CLASS_RED_MAGE, CLASS_WARRIOR_MAGE,  -1} },
+                    CLASS_RANGER, CLASS_RED_MAGE, CLASS_WARRIOR_MAGE, CLASS_ETHEREAL_MIMIC, -1} },
     { "骑乘", {CLASS_BEASTMASTER, CLASS_CAVALRY, -1} },
     { "心灵", {CLASS_MINDCRAFTER, CLASS_MIRROR_MASTER, CLASS_PSION,
                     CLASS_TIME_LORD, CLASS_WARLOCK, -1} },
