@@ -337,9 +337,147 @@ static int _col_height(int ct)
     return result;
 }
 
+static int _utf8_decode_ui(cptr s, int max, u32b *cp)
+{
+    byte c0;
+
+    if (!s || !s[0])
+    {
+        *cp = 0;
+        return 0;
+    }
+
+    c0 = (byte)s[0];
+    if (c0 < 0x80)
+    {
+        *cp = c0;
+        return 1;
+    }
+    if ((c0 & 0xE0) == 0xC0)
+    {
+        byte c1;
+        if (max >= 0 && max < 2) goto bad;
+        c1 = (byte)s[1];
+        if ((c1 & 0xC0) != 0x80) goto bad;
+        *cp = ((u32b)(c0 & 0x1F) << 6) | (u32b)(c1 & 0x3F);
+        if (*cp < 0x80) goto bad;
+        return 2;
+    }
+    if ((c0 & 0xF0) == 0xE0)
+    {
+        byte c1, c2;
+        if (max >= 0 && max < 3) goto bad;
+        c1 = (byte)s[1];
+        c2 = (byte)s[2];
+        if ((c1 & 0xC0) != 0x80 || (c2 & 0xC0) != 0x80) goto bad;
+        *cp = ((u32b)(c0 & 0x0F) << 12) | ((u32b)(c1 & 0x3F) << 6) | (u32b)(c2 & 0x3F);
+        if (*cp < 0x800) goto bad;
+        return 3;
+    }
+    if ((c0 & 0xF8) == 0xF0)
+    {
+        byte c1, c2, c3;
+        if (max >= 0 && max < 4) goto bad;
+        c1 = (byte)s[1];
+        c2 = (byte)s[2];
+        c3 = (byte)s[3];
+        if ((c1 & 0xC0) != 0x80 || (c2 & 0xC0) != 0x80 || (c3 & 0xC0) != 0x80) goto bad;
+        *cp = ((u32b)(c0 & 0x07) << 18) | ((u32b)(c1 & 0x3F) << 12) | ((u32b)(c2 & 0x3F) << 6) | (u32b)(c3 & 0x3F);
+        if (*cp < 0x10000 || *cp > 0x10FFFF) goto bad;
+        return 4;
+    }
+
+bad:
+    *cp = '?';
+    return 1;
+}
+
+static int _char_width_ui(u32b cp)
+{
+    if (!cp) return 0;
+    if ( cp >= 0x1100
+      && ( cp <= 0x115F
+        || cp == 0x2329 || cp == 0x232A
+        || (0x2E80 <= cp && cp <= 0xA4CF && cp != 0x303F)
+        || (0xAC00 <= cp && cp <= 0xD7A3)
+        || (0xF900 <= cp && cp <= 0xFAFF)
+        || (0xFE10 <= cp && cp <= 0xFE19)
+        || (0xFE30 <= cp && cp <= 0xFE6F)
+        || (0xFF00 <= cp && cp <= 0xFF60)
+        || (0xFFE0 <= cp && cp <= 0xFFE6)
+        || (0x20000 <= cp && cp <= 0x3FFFD) ) )
+    {
+        return 2;
+    }
+    return 1;
+}
+
+static int _text_width_ui(cptr s)
+{
+    int w = 0;
+    int i = 0;
+    while (s && s[i])
+    {
+        u32b cp;
+        int len = _utf8_decode_ui(s + i, -1, &cp);
+        if (!len) break;
+        w += _char_width_ui(cp);
+        i += len;
+    }
+    return w;
+}
+
+static void _put_fixed_ui(byte attr, cptr s, int row, int col, int width)
+{
+    int w = _text_width_ui(s);
+
+    Term_putstr(col, row, width, attr, s);
+    if (w < width)
+        Term_erase(col + w, row, width - w);
+}
+
+static void _put_wrapped_ui(cptr s, int row, int col, int width, int max_lines)
+{
+    int i = 0;
+    int line;
+
+    for (line = 0; line < max_lines; line++)
+    {
+        char buf[512];
+        int bytes = 0;
+        int cells = 0;
+
+        while (s && s[i] && cells < width)
+        {
+            u32b cp;
+            int len = _utf8_decode_ui(s + i, -1, &cp);
+            int cw = _char_width_ui(cp);
+
+            if (!len) break;
+            if (cp == '\n')
+            {
+                i += len;
+                break;
+            }
+            if (cells + cw > width) break;
+            if (bytes + len >= (int)sizeof(buf) - 1) break;
+
+            memcpy(buf + bytes, s + i, len);
+            bytes += len;
+            cells += cw;
+            i += len;
+        }
+
+        buf[bytes] = '\0';
+        Term_erase(col, row + line, width);
+        Term_putstr(col, row + line, width, TERM_WHITE, buf);
+
+        while (s && s[i] == ' ') i++;
+    }
+}
+
 static void _list_spells(power_info* spells, int ct, int max_cost, char *labels, bool rage_hack, bool power)
 {
-    char temp[140];
     int  i;
     rect_t display = ui_menu_rect();
     int  col_height = _col_height(ct);
@@ -364,9 +502,9 @@ static void _list_spells(power_info* spells, int ct, int max_cost, char *labels,
     Term_erase(display.x, display.y, display.cx);
     if (col_height == ct)
     {
-        if (poli) put_str("等级 消耗 失败 描述", display.y, display.x + 29);
-        else if (show_stats) put_str("等级 消耗 失败 属性 描述", display.y, display.x + 29);
-        else put_str("等级 消耗 失败 描述", display.y, display.x + 29);
+        if (poli) put_str("等级 消耗 失败", display.y, display.x + 29);
+        else if (show_stats) put_str("等级 消耗 失败 属性", display.y, display.x + 29);
+        else put_str("等级 消耗 失败", display.y, display.x + 29);
     }
     else if (!poli)
     {
@@ -411,55 +549,64 @@ static void _list_spells(power_info* spells, int ct, int max_cost, char *labels,
         else
             letter = '0' + i - 52;
 
-        sprintf(temp, "  %c) ", letter);
-
         if (!poli)
         {
-            strcat(temp, format("%-23.23s %3d %4d %3d%%",
-                            var_get_string(&name),
-                            spell->level,
-                            spell->cost,
-                            spell->fail));
+            int row, col;
+            cptr name_s = var_get_string(&name);
+
+            if (spell->fail == 100 || spell_cost > max_cost || spell->level > p_ptr->lev)
+                attr = TERM_L_DARK;
+
+            if ((i - skipped) < col_height)
+            {
+                row = display.y + i + 1 - skipped;
+                col = display.x;
+            }
+            else
+            {
+                row = display.y + (i - col_height) + 1 - skipped;
+                col = display.x + col_width;
+            }
+
+            Term_erase(col, row, col_height == ct ? display.cx : col_width);
+            c_put_str(attr, format("  %c) ", letter), row, col);
+            _put_fixed_ui(attr, name_s, row, col + 5, 22);
+            c_put_str(attr, format("%3d %4d %3d%%", spell->level, spell->cost, spell->fail), row, col + 28);
+            if (show_stats)
+            {
+                if (spells[i].stat != A_NONE) c_put_str(attr, format("%3.3s", stat_names_reduced[spells[i].stat]), row, col + 42);
+                else c_put_str(attr, "无", row, col + 42);
+            }
+            continue;
         }
         else
         {
             char temp2[10];
+            int row, col;
+            cptr name_s = var_get_string(&name);
+
             spell_cost = politician_get_cost(spell);
             big_num_display(spell_cost, temp2);
-            strcat(temp, format("%-23.23s %3d %6s %5d%%",
-                            var_get_string(&name),
-                            spell->level,
-                            temp2,
-                            spell->fail));
-            if (col_height == ct) strcat(temp, "  ");
-        }
 
-        if (show_stats)
-        {
-            if (spells[i].stat != A_NONE) strcat(temp, format("  %3.3s", stat_names_reduced[spells[i].stat]));
-            else strcat(temp, "无");
-        }
+            if ((i - skipped) < col_height)
+            {
+                row = display.y + i + 1 - skipped;
+                col = display.x;
+            }
+            else
+            {
+                row = display.y + (i - col_height) + 1 - skipped;
+                col = display.x + col_width;
+            }
 
-        if ((col_height == ct) && (spell->level <= p_ptr->lev))
-            strcat(temp, format(" %s", var_get_string(&info)));
+            if (spell->fail == 100 || spell_cost > max_cost || spell->level > p_ptr->lev)
+                attr = TERM_L_DARK;
 
-        if (spell->fail == 100)
-            attr = TERM_L_DARK;
-
-        if (spell_cost > max_cost)
-            attr = TERM_L_DARK;
-
-        if (spell->level > p_ptr->lev)
-            attr = TERM_L_DARK;
-
-        if ((i - skipped) < col_height)
-        {
-            Term_erase(display.x, display.y + i + 1 - skipped, display.cx);
-            c_put_str(attr, temp, display.y + i + 1 - skipped, display.x);
-        }
-        else
-        {
-            c_put_str(attr, temp, display.y + (i - col_height) + 1 - skipped, display.x + col_width);
+            Term_erase(col, row, col_height == ct ? display.cx : col_width);
+            c_put_str(attr, format("  %c) ", letter), row, col);
+            _put_fixed_ui(attr, name_s, row, col + 5, 22);
+            c_put_str(attr, format("%3d %6s %5d%%", spell->level, temp2, spell->fail), row, col + 28);
+            continue;
         }
     }
     Term_erase(display.x, display.y + col_height + 1 - skipped, display.cx);
@@ -478,7 +625,6 @@ static bool _describe_spell(spell_info *spell, int col_height)
     (spell->fn)(SPELL_ON_BROWSE, &info);
     if (!var_get_bool(&info))
     {
-        char tmp[62*5];
         int i, line;
         rect_t display = ui_menu_rect();
 
@@ -488,19 +634,16 @@ static bool _describe_spell(spell_info *spell, int col_height)
 
         /* Get the description, and line break it (max 5 lines) */
         (spell->fn)(SPELL_DESC, &info);
-        roff_to_buf(var_get_string(&info), 62, tmp, sizeof(tmp));
 
         line = display.y + col_height + 3;
-        for(i = 0; tmp[i]; i += 1+strlen(&tmp[i]))
-        {
-            put_str(&tmp[i], line, display.x + 2);
-            line++;
-        }
+        _put_wrapped_ui(var_get_string(&info), line, display.x + 2, MIN(70, display.cx - 4), 5);
+        line += 5;
 
         if (spell->level <= p_ptr->lev)
         {
             (spell->fn)(SPELL_INFO, &info);
-            put_str(format("%^s", var_get_string(&info)), line, display.x + 2);
+            Term_erase(display.x + 2, line, display.cx - 4);
+            Term_putstr(display.x + 2, line, display.cx - 4, TERM_WHITE, var_get_string(&info));
         }
         result = FALSE;
     }
@@ -640,14 +783,14 @@ static int _choose_spell(power_info* spells, int ct, cptr verb, cptr desc, int m
     }
     else if (power)
     {
-        strnfmt(prompt1, 78, "Use which %s? ('?' to Browse, '!' to Label) ", desc);
-        strnfmt(prompt2, 78, "Browse which %s? ('?' to Use, '!' to Label) ", desc);
-        strnfmt(prompt3, 78, "Label which %s? ('!' to Use, '=' to wipe inactive) ", desc);
+        strnfmt(prompt1, 78, "使用哪一个%s？（? 浏览，! 标记）", desc);
+        strnfmt(prompt2, 78, "浏览哪一个%s？（? 使用，! 标记）", desc);
+        strnfmt(prompt3, 78, "标记哪一个%s？（! 使用，= 清除无效标记）", desc);
     }
     else
     {
-        strnfmt(prompt1, 78, "%s which %s? (Type '?' to Browse) ", verb, desc);
-        strnfmt(prompt2, 78, "Browse which %s? (Type '?' to %s) ", desc, verb);
+        strnfmt(prompt1, 78, "%s哪一个%s？（? 浏览）", verb, desc);
+        strnfmt(prompt2, 78, "浏览哪一个%s？（? %s）", desc, verb);
     }
 
     if (rage_hack)
