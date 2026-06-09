@@ -17,6 +17,55 @@ obj_ptr obj_copy(obj_ptr obj)
     return copy;
 }
 
+bool obj_is_custom_book(obj_ptr obj)
+{
+    return obj && obj->tval == TV_CUSTOM_BOOK;
+}
+
+int custom_book_capacity(obj_ptr obj)
+{
+    if (!obj_is_custom_book(obj)) return 0;
+    switch (obj->sval)
+    {
+    case SV_CUSTOM_CODEX: return 3;
+    case SV_CUSTOM_SPELLBOOK: return 4;
+    case SV_CUSTOM_GRIMOIRE: return 5;
+    }
+    return 0;
+}
+
+int custom_book_count(obj_ptr obj)
+{
+    int i, ct = 0;
+    if (!obj_is_custom_book(obj)) return 0;
+    for (i = 0; i < CUSTOM_BOOK_MAX_SPELLS; i++)
+    {
+        if (obj->custom_book_realm[i] && obj->custom_book_spell[i] < 32)
+            ct++;
+    }
+    return ct;
+}
+
+bool custom_book_has_spell(obj_ptr obj, int realm, int spell)
+{
+    int i;
+    if (!obj_is_custom_book(obj)) return FALSE;
+    for (i = 0; i < CUSTOM_BOOK_MAX_SPELLS; i++)
+    {
+        if (obj->custom_book_realm[i] == realm && obj->custom_book_spell[i] == spell)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+void custom_book_set_spell(obj_ptr obj, int slot, int realm, int spell)
+{
+    if (!obj_is_custom_book(obj)) return;
+    if (slot < 0 || slot >= CUSTOM_BOOK_MAX_SPELLS) return;
+    obj->custom_book_realm[slot] = realm;
+    obj->custom_book_spell[slot] = spell;
+}
+
 obj_ptr obj_split(obj_ptr obj, int amt)
 {
     obj_ptr copy;
@@ -609,6 +658,7 @@ bool obj_can_combine(obj_ptr dest, obj_ptr obj, int loc)
     case TV_STAFF:
     case TV_WAND:
     case TV_ROD:
+    case TV_CUSTOM_BOOK:
         return FALSE;
 
     case TV_STATUE:
@@ -1411,6 +1461,7 @@ enum object_save_fields_e {
     OBJ_SAVE_ORIGIN,
     OBJ_SAVE_MITZE,
     OBJ_SAVE_INSURED,
+    OBJ_SAVE_CUSTOM_BOOK,
 };
 
 void obj_load(obj_ptr obj, savefile_ptr file)
@@ -1590,6 +1641,21 @@ void obj_load(obj_ptr obj, savefile_ptr file)
         case OBJ_SAVE_INSURED:
             obj->insured = savefile_read_u16b(file);
             break;
+        case OBJ_SAVE_CUSTOM_BOOK:
+        {
+            int i, ct = savefile_read_byte(file);
+            for (i = 0; i < ct; i++)
+            {
+                byte realm = savefile_read_byte(file);
+                byte spell = savefile_read_byte(file);
+                if (i < CUSTOM_BOOK_MAX_SPELLS)
+                {
+                    obj->custom_book_realm[i] = realm;
+                    obj->custom_book_spell[i] = spell;
+                }
+            }
+            break;
+        }
         /* default:
             TODO: Report an error back to the load routine!!*/
         }
@@ -1831,6 +1897,17 @@ void obj_save(obj_ptr obj, savefile_ptr file)
     {
         savefile_write_byte(file, OBJ_SAVE_INSURED);
         savefile_write_u16b(file, obj->insured);
+    }
+    if (obj_is_custom_book(obj) && custom_book_count(obj))
+    {
+        int i;
+        savefile_write_byte(file, OBJ_SAVE_CUSTOM_BOOK);
+        savefile_write_byte(file, CUSTOM_BOOK_MAX_SPELLS);
+        for (i = 0; i < CUSTOM_BOOK_MAX_SPELLS; i++)
+        {
+            savefile_write_byte(file, obj->custom_book_realm[i]);
+            savefile_write_byte(file, obj->custom_book_spell[i]);
+        }
     }
 
     savefile_write_byte(file, OBJ_SAVE_DONE);

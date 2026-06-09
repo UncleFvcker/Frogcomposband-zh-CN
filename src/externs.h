@@ -732,6 +732,13 @@ extern bool autopick_autoregister(object_type *o_ptr);
 extern void do_cmd_edit_autopick(void);
 extern bool object_is_icky(object_type *o_ptr, bool assume_id);
 
+/* obj.c */
+extern bool obj_is_custom_book(obj_ptr obj);
+extern int custom_book_capacity(obj_ptr obj);
+extern int custom_book_count(obj_ptr obj);
+extern bool custom_book_has_spell(obj_ptr obj, int realm, int spell);
+extern void custom_book_set_spell(obj_ptr obj, int slot, int realm, int spell);
+
 /* birth.c */
 extern cptr realm_jouhou[VALID_REALM];
 extern bool birth_hack;
@@ -928,6 +935,8 @@ extern void msg_add_tiny_screenshot(int cx, int cy);
 /* cmd5.c */
 extern cptr spell_category_name(int tval);
 extern cptr spell_category_verb(int tval);
+extern bool custom_book_select_spell(obj_ptr book, cptr prompt, int *realm, int *spell, bool browse);
+extern void custom_book_transcribe(obj_ptr book);
 extern void do_cmd_browse(void);
 extern void do_cmd_study(void);
 extern void do_cmd_cast(void);

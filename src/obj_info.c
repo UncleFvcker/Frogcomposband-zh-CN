@@ -31,6 +31,7 @@ static void _display_ignore(u32b flgs[OF_ARRAY_SIZE], doc_ptr doc);
 static void _display_autopick(object_type *o_ptr, doc_ptr doc);
 static void _display_score(object_type *o_ptr, doc_ptr doc);
 static void _lite_display_doc(object_type *o_ptr, doc_ptr doc);
+static void _custom_book_display_doc(object_type *o_ptr, doc_ptr doc);
 
 /* Ego Object Knowledge is very similar to obj_display() ... I had to hack a bit
    to make it work, though :( */
@@ -80,6 +81,34 @@ static void _print_list(vec_ptr v, doc_ptr doc, char sep, char term)
         else
             doc_insert(doc, string_buffer(s));
     }
+}
+
+static void _custom_book_display_doc(object_type *o_ptr, doc_ptr doc)
+{
+    int i;
+    int cap = custom_book_capacity(o_ptr);
+    int ct = custom_book_count(o_ptr);
+
+    doc_printf(doc, "<color:U>容量:</color><tab:12><color:B>%d</color>/<color:G>%d</color>\n", ct, cap);
+    if (!ct)
+    {
+        doc_insert(doc, "这本书还是空白的。按 <color:keypress>A</color> 可以将你已经学会的法术从普通法术书抄写进去。\n");
+        return;
+    }
+
+    doc_insert(doc, "<color:U>法术:</color>\n");
+    for (i = 0; i < cap; i++)
+    {
+        int realm = o_ptr->custom_book_realm[i];
+        int spell = o_ptr->custom_book_spell[i];
+
+        if (realm && spell < 32)
+            doc_printf(doc, "  <color:y>%d.</color> <color:B>%s</color> <color:D>(%s)</color>\n",
+                i + 1, do_spell(realm, spell, SPELL_NAME), realm_names[realm]);
+        else
+            doc_printf(doc, "  <color:y>%d.</color> <color:D>空白</color>\n", i + 1);
+    }
+    doc_insert(doc, "按 <color:keypress>A</color> 可以继续抄写；写满后可以覆盖已有法术。\n");
 }
 
 static string_ptr _get_res_name(int res)
@@ -1489,6 +1518,8 @@ void obj_display_doc(object_type *o_ptr, doc_ptr doc)
 
     }
     _display_desc(o_ptr, doc);
+    if (obj_is_custom_book(o_ptr))
+        _custom_book_display_doc(o_ptr, doc);
     doc_insert(doc, "<style:indent>"); /* Indent a bit when word wrapping long lines */
 
     if (o_ptr->tval == TV_LITE)

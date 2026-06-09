@@ -1456,6 +1456,7 @@ static _object_type_t _object_types[] =
     { "STAFF",              TV_STAFF, EGO_TYPE_DEVICE },
     { "WAND",               TV_WAND, EGO_TYPE_DEVICE },
     { "ROD",                TV_ROD, EGO_TYPE_DEVICE },
+    { "CUSTOM_BOOK",        TV_CUSTOM_BOOK },
     { "SCROLL",             TV_SCROLL },
     { "POTION",             TV_POTION },
     { "FOOD",               TV_FOOD },

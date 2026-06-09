@@ -1666,6 +1666,7 @@ enum {
 #define TV_WAND         65
 #define TV_ROD          66
 #define TV_PARCHMENT    69
+#define TV_CUSTOM_BOOK  68
 #define TV_SCROLL       70
 #define TV_POTION       75
 #define TV_FLASK        77
@@ -1703,6 +1704,12 @@ enum {
 #define TV_ARMOR_END      TV_DRAG_ARMOR
 #define TV_BOOK_BEGIN     TV_LIFE_BOOK
 #define TV_BOOK_END       TV_BURGLARY_BOOK
+
+#define CUSTOM_BOOK_MAX_SPELLS 5
+
+#define SV_CUSTOM_CODEX      0
+#define SV_CUSTOM_SPELLBOOK  1
+#define SV_CUSTOM_GRIMOIRE   2
 
 /* Any subvalue */
 #define SV_ANY                     255

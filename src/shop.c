@@ -1068,6 +1068,7 @@ static bool _book_will_buy(obj_ptr obj)
     case TV_LAW_BOOK:
     case TV_MUSIC_BOOK:
     case TV_HEX_BOOK:
+    case TV_CUSTOM_BOOK:
         break;
     default:
         return FALSE;
@@ -1094,6 +1095,7 @@ static bool _book_stock_p(int k_idx)
     case TV_HEX_BOOK:
     case TV_NECROMANCY_BOOK:
     case TV_ARMAGEDDON_BOOK:
+    case TV_CUSTOM_BOOK:
         return TRUE;
     }
     return FALSE;
