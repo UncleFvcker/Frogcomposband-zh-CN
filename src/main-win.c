@@ -1093,6 +1093,13 @@ static void crash_report_write_common(FILE *fp, cptr kind, cptr reason)
             p_ptr->oldpy, p_ptr->oldpx,
             (long)p_ptr->wilderness_x, (long)p_ptr->wilderness_y,
             p_ptr->is_dead, p_ptr->panic_save);
+        fprintf(fp, "tracking: monster_race_idx=%d object_kind_idx=%d window=0x%08lx redraw=0x%08lx update=0x%08lx\n",
+            p_ptr->monster_race_idx, p_ptr->object_kind_idx,
+            (unsigned long)p_ptr->window,
+            (unsigned long)p_ptr->redraw,
+            (unsigned long)p_ptr->update);
+        if (p_ptr->monster_race_idx > 0 && p_ptr->monster_race_idx < max_r_idx)
+            fprintf(fp, "tracking_monster=%s\n", monster_race_display_name(p_ptr->monster_race_idx));
     }
 
     {

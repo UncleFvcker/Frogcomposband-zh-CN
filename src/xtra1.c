@@ -2773,7 +2773,18 @@ static void fix_monster(void)
         if (p_ptr->monster_race_idx)
         {
             int y;
-            doc_ptr doc = doc_alloc(MIN(72, Term->wid));
+            doc_ptr doc;
+
+            if (p_ptr->monster_race_idx <= 0 || p_ptr->monster_race_idx >= max_r_idx)
+            {
+                game_log_event("fix_monster", "invalid monster_race_idx=%d max_r_idx=%d",
+                    p_ptr->monster_race_idx, max_r_idx);
+                p_ptr->monster_race_idx = 0;
+                Term_activate(old);
+                continue;
+            }
+
+            doc = doc_alloc(MIN(72, Term->wid));
             mon_display_doc(&r_info[p_ptr->monster_race_idx], doc);
 
             for (y = 0; y < Term->hgt; y++)

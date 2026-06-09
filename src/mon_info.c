@@ -864,11 +864,15 @@ static void _display_drops(monster_race *r_ptr, doc_ptr doc)
             doc_insert(doc, "<color:r>优秀的</color>");
 
         if (ct_gold && ct_obj)
-            doc_printf(doc, "%s或%s", obj_text, gold_text);
+        {
+            doc_insert(doc, obj_text);
+            doc_insert(doc, "或");
+            doc_insert(doc, gold_text);
+        }
         else if (ct_obj)
-            doc_printf(doc, "%s", obj_text);
+            doc_insert(doc, obj_text);
         else if (ct_gold)
-            doc_printf(doc, "%s", gold_text);
+            doc_insert(doc, gold_text);
 
         doc_newline(doc);
     }
