@@ -2178,6 +2178,12 @@ static void prt_hp_bar(int row, int col)
     py_get_display_char_attr(&c, &a);
     Term_queue_bigchar(col, row, a, c, 0, 0);
 
+    if (p_ptr->mhp <= 0)
+    {
+        Term_putstr(col + 1, row, 11, TERM_WHITE, "[---------]");
+        return;
+    }
+
     pct = 100 * p_ptr->chp / p_ptr->mhp;
     len = MIN(9, 1 + p_ptr->chp * 9 / p_ptr->mhp);
 
@@ -2210,6 +2216,12 @@ static void prt_sp_bar(int row, int col)
 
     k_idx = lookup_kind(tval, 0);
     Term_queue_bigchar(col, row, k_info[k_idx].x_attr, k_info[k_idx].x_char, 0, 0);
+
+    if (p_ptr->msp <= 0)
+    {
+        Term_putstr(col + 1, row, 11, TERM_WHITE, "[---------]");
+        return;
+    }
 
     pct = 100 * p_ptr->csp / p_ptr->msp;
     len = MIN(9, 1 + p_ptr->csp * 9 / p_ptr->msp);
