@@ -2118,12 +2118,19 @@ static void term_window_pos(term_data *td, HWND hWnd)
 
 static void windows_map(void);
 
+static bool term_data_can_redraw(term_data *td)
+{
+    return td && td->w && td->hDC && td->t.old && td->t.scr;
+}
+
 /*
  * Hack -- redraw a term_data
  */
 static void term_data_redraw(term_data *td)
 {
     term *old = Term;
+
+    if (!term_data_can_redraw(td)) return;
 
     if (td->map_active)
     {
@@ -2483,7 +2490,7 @@ static void term_data_force_redraw(term_data *td)
     term *old = Term;
     RECT rc;
 
-    if (!td || !td->w) return;
+    if (!term_data_can_redraw(td)) return;
 
     if (td->hDC)
     {
@@ -4611,6 +4618,9 @@ LRESULT FAR PASCAL AngbandWndProc(HWND hWnd, UINT uMsg,
             /* it was sent from inside CreateWindowEx */
             if (!td->w) return 1;
 
+            /* it was sent before term_data_link() */
+            if (!td->t.old || !td->t.scr) return 1;
+
             /* was sent from WM_SIZE */
             if (td->size_hack) return 1;
 
@@ -4686,7 +4696,7 @@ LRESULT FAR PASCAL AngbandWndProc(HWND hWnd, UINT uMsg,
         case WM_EXITSIZEMOVE:
         {
             /* Snap a manually resized window back to whole terminal cells. */
-            if (!td || !td->w) return 1;
+            if (!term_data_can_redraw(td)) return 1;
 
             td->size_hack = TRUE;
             term_window_resize(td);
@@ -4835,6 +4845,9 @@ LRESULT FAR PASCAL AngbandListProc(HWND hWnd, UINT uMsg,
             /* it was sent from inside CreateWindowEx */
             if (!td->w) return 1;
 
+            /* it was sent before term_data_link() */
+            if (!td->t.old || !td->t.scr) return 1;
+
             /* was sent from inside WM_SIZE */
             if (td->size_hack) return 1;
 
@@ -4880,7 +4893,7 @@ LRESULT FAR PASCAL AngbandListProc(HWND hWnd, UINT uMsg,
 
         case WM_EXITSIZEMOVE:
         {
-            if (!td || !td->w) return 1;
+            if (!term_data_can_redraw(td)) return 1;
 
             td->size_hack = TRUE;
             term_window_resize(td);
