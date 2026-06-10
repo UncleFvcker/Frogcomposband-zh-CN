@@ -1,11 +1,11 @@
     注意：虽然在介绍界面按下 ? 
     会把你带到这里，而且本页面确实对游戏的大部分内容进行了简
     要概述，但它并不是整个帮助系统的主页面。如果你想访问 
-    FrogComposband 帮助的其他部分，请按 !。
+    RoguelikeFansBand 帮助的其他部分，请按 !。
 
 创建角色
 
-FrogComposband 
+RoguelikeFansBand 
 是一款角色扮演游戏，在游戏中，你（玩家）将控制一个角色，置身于一个充满神
 话与魔法的危险世界，这里居住着恶魔、龙、神明、鸭子以及末世中其他稀有而奇
 怪的生物。在你要去斩杀混沌之蛇 (Serpent of 
@@ -31,7 +31,7 @@ birth”）由一系列的选择来控制。你必须选择角色的种族（人
 第一个界面是欢迎界面。它简单地向你介绍了游戏，并允许你选择几个控制角色创
 建过程的选项之一。它看起来大概是这样的：
   
-  欢迎来到 FrogComposband，一款地下城探索角色扮演游戏。
+  欢迎来到 RoguelikeFansBand，一款地下城探索角色扮演游戏。
   你的目标是击败可怕的混沌之蛇，但在面对它之前，你必须战胜
   许多敌人。你的第一步是为这个任务创建一个角色。接下来的界面
   将引导你完成这个过程，以便你能快速开始游戏。你可以随时按
@@ -567,5 +567,5 @@ Updated  : Hengband 1.5.2
 Updated  : PosChengband 1.0.0
 Updated  : PosChengband 4.0.0
 Updated  : PosChengband 5.0.3
-Updated  : FrogComposband 7.1.liquorice
+Updated  : RoguelikeFansBand 7.1.liquorice
 

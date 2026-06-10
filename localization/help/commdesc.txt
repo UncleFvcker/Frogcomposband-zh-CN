@@ -530,5 +530,5 @@
 更新 (Updated)   : Zangband DevTeam
 更新 (Updated)   : Hengband 1.7.0
 更新 (Updated)   : PosChengband 4.0.0
-更新 (Updated)   : FrogComposband 7.1.liquorice
+更新 (Updated)   : RoguelikeFansBand 7.1.liquorice
 </color>

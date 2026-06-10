@@ -1579,6 +1579,48 @@ static bool _graph_feature_is_walllike(feature_type *f_ptr)
         (!have_flag(f_ptr->flags, FF_LOS) && !have_flag(f_ptr->flags, FF_MOVE));
 }
 
+typedef enum {
+    GRAPH_WALL_NONE,
+    GRAPH_WALL_GRANITE,
+    GRAPH_WALL_PERMANENT,
+    GRAPH_WALL_MAGMA,
+    GRAPH_WALL_QUARTZ,
+    GRAPH_WALL_MAGMA_TREASURE,
+    GRAPH_WALL_QUARTZ_TREASURE,
+    GRAPH_WALL_TREASURE
+} graph_wall_material;
+
+static int _graph_cached_feat_state(int *cache, int base_feat, int action)
+{
+    int state_feat;
+
+    if (*cache != -1) return *cache;
+    if (base_feat <= 0)
+    {
+        *cache = feat_none;
+        return *cache;
+    }
+
+    state_feat = feat_state(base_feat, action);
+    *cache = (state_feat != base_feat) ? state_feat : feat_none;
+    return *cache;
+}
+
+static graph_wall_material _graph_wall_material(feature_type *f_ptr, int feat)
+{
+    static int magma_treasure = -1;
+    static int quartz_treasure = -1;
+
+    if (!_graph_feature_is_walllike(f_ptr)) return GRAPH_WALL_NONE;
+    if (have_flag(f_ptr->flags, FF_PERMANENT)) return GRAPH_WALL_PERMANENT;
+    if (feat == _graph_cached_feat_state(&magma_treasure, feat_magma_vein, FF_MAY_HAVE_GOLD)) return GRAPH_WALL_MAGMA_TREASURE;
+    if (feat == _graph_cached_feat_state(&quartz_treasure, feat_quartz_vein, FF_MAY_HAVE_GOLD)) return GRAPH_WALL_QUARTZ_TREASURE;
+    if (feat == feat_magma_vein) return GRAPH_WALL_MAGMA;
+    if (feat == feat_quartz_vein) return GRAPH_WALL_QUARTZ;
+    if (have_flag(f_ptr->flags, FF_HAS_GOLD)) return GRAPH_WALL_TREASURE;
+    return GRAPH_WALL_GRANITE;
+}
+
 static u32b _graph_material_bg(feature_type *f_ptr, int feat)
 {
     if (feat == feat_none)
@@ -1611,7 +1653,25 @@ static u32b _graph_material_bg(feature_type *f_ptr, int feat)
     if (have_flag(f_ptr->flags, FF_MOUNTAIN))
         return GRAPH_RGB(46, 43, 42);
     if (_graph_feature_is_walllike(f_ptr))
-        return have_flag(f_ptr->flags, FF_PERMANENT) ? graph_permawall_rgb : graph_wall_rgb;
+    {
+        switch (_graph_wall_material(f_ptr, feat))
+        {
+        case GRAPH_WALL_PERMANENT:
+            return graph_permawall_rgb;
+        case GRAPH_WALL_MAGMA:
+            return graph_magma_wall_rgb;
+        case GRAPH_WALL_QUARTZ:
+            return graph_quartz_wall_rgb;
+        case GRAPH_WALL_MAGMA_TREASURE:
+        case GRAPH_WALL_QUARTZ_TREASURE:
+        case GRAPH_WALL_TREASURE:
+            return graph_treasure_wall_rgb;
+        case GRAPH_WALL_GRANITE:
+        case GRAPH_WALL_NONE:
+        default:
+            return graph_wall_rgb;
+        }
+    }
     if (have_flag(f_ptr->flags, FF_TOWN) || have_flag(f_ptr->flags, FF_BLDG))
         return GRAPH_RGB(24, 22, 20);
     if (have_flag(f_ptr->flags, FF_FLOOR) || have_flag(f_ptr->flags, FF_MOVE))
@@ -1619,7 +1679,7 @@ static u32b _graph_material_bg(feature_type *f_ptr, int feat)
     return GRAPH_RGB(16, 15, 20);
 }
 
-static u32b _graph_material_accent(feature_type *f_ptr)
+static u32b _graph_material_accent(feature_type *f_ptr, int feat)
 {
     if (have_flag(f_ptr->flags, FF_LAVA))
         return GRAPH_RGB(225, 82, 22);
@@ -1636,7 +1696,27 @@ static u32b _graph_material_accent(feature_type *f_ptr)
     if (have_flag(f_ptr->flags, FF_DOOR))
         return GRAPH_RGB(150, 100, 52);
     if (_graph_feature_is_walllike(f_ptr))
-        return have_flag(f_ptr->flags, FF_PERMANENT) ? GRAPH_RGB(128, 132, 142) : GRAPH_RGB(110, 104, 96);
+    {
+        switch (_graph_wall_material(f_ptr, feat))
+        {
+        case GRAPH_WALL_PERMANENT:
+            return GRAPH_RGB(128, 132, 142);
+        case GRAPH_WALL_MAGMA:
+            return GRAPH_RGB(142, 75, 42);
+        case GRAPH_WALL_QUARTZ:
+            return GRAPH_RGB(150, 142, 166);
+        case GRAPH_WALL_MAGMA_TREASURE:
+            return GRAPH_RGB(218, 151, 56);
+        case GRAPH_WALL_QUARTZ_TREASURE:
+            return GRAPH_RGB(226, 194, 95);
+        case GRAPH_WALL_TREASURE:
+            return GRAPH_RGB(224, 174, 64);
+        case GRAPH_WALL_GRANITE:
+        case GRAPH_WALL_NONE:
+        default:
+            return GRAPH_RGB(110, 104, 96);
+        }
+    }
     if (have_flag(f_ptr->flags, FF_FLOOR) || have_flag(f_ptr->flags, FF_MOVE))
         return GRAPH_RGB(92, 98, 88);
     return GRAPH_RGB(120, 118, 112);
@@ -1665,6 +1745,37 @@ static bool _graph_feature_uses_solid_fill(feature_type *f_ptr)
         return TRUE;
     }
 
+    return FALSE;
+}
+
+static bool _graph_feature_is_plain_floor(feature_type *f_ptr)
+{
+    if (_graph_feature_is_walllike(f_ptr)) return FALSE;
+    if (have_flag(f_ptr->flags, FF_WATER) || have_flag(f_ptr->flags, FF_LAVA) ||
+        have_flag(f_ptr->flags, FF_ACID) || have_flag(f_ptr->flags, FF_SNOW) ||
+        have_flag(f_ptr->flags, FF_SLUSH) || have_flag(f_ptr->flags, FF_GLASS) ||
+        have_flag(f_ptr->flags, FF_MIRROR) || have_flag(f_ptr->flags, FF_MOUNTAIN) ||
+        have_flag(f_ptr->flags, FF_TREE) || have_flag(f_ptr->flags, FF_PLANT))
+    {
+        return FALSE;
+    }
+
+    return have_flag(f_ptr->flags, FF_FLOOR) || have_flag(f_ptr->flags, FF_MOVE);
+}
+
+static bool _graph_solid_fill_shows_glyph(feature_type *f_ptr, int feat)
+{
+    graph_wall_material material = _graph_wall_material(f_ptr, feat);
+
+    if ((material == GRAPH_WALL_MAGMA_TREASURE) ||
+        (material == GRAPH_WALL_QUARTZ_TREASURE) ||
+        (material == GRAPH_WALL_TREASURE))
+    {
+        return TRUE;
+    }
+
+    if (_graph_feature_is_walllike(f_ptr)) return graph_show_wall_ascii;
+    if (_graph_feature_is_plain_floor(f_ptr)) return graph_show_floor_ascii;
     return FALSE;
 }
 
@@ -1720,9 +1831,9 @@ static void _graph_queue_border(int ui_x, int ui_y, bool bigchar, byte border, u
     }
 }
 
-static u32b _graph_wall_border_rgb(u32b bg, feature_type *f_ptr, graph_visual_state state)
+static u32b _graph_wall_border_rgb(u32b bg, feature_type *f_ptr, int feat, graph_visual_state state)
 {
-    u32b accent = _graph_material_accent(f_ptr);
+    u32b accent = _graph_material_accent(f_ptr, feat);
     u32b border = _graph_rgb_blend(bg, accent, 42);
 
     border = _graph_rgb_blend(border, GRAPH_RGB(218, 214, 194), 20);
@@ -1801,9 +1912,9 @@ static u32b _graph_base_bg(cave_type *c_ptr, feature_type *f_ptr, int feat, int 
     return bg;
 }
 
-static u32b _graph_apply_fg_material(u32b fg, feature_type *f_ptr)
+static u32b _graph_apply_fg_material(u32b fg, feature_type *f_ptr, int feat)
 {
-    u32b accent = _graph_material_accent(f_ptr);
+    u32b accent = _graph_material_accent(f_ptr, feat);
     int mix = 8;
 
     if (_graph_feature_is_walllike(f_ptr))
@@ -1883,13 +1994,13 @@ static void _graph_queue_map_rgb(int cave_y, int cave_x, int ui_x, int ui_y, byt
     fg = _graph_attr_rgb(a);
 
     if (terrain_glyph)
-        fg = _graph_apply_fg_material(fg, f_ptr);
+        fg = _graph_apply_fg_material(fg, f_ptr, feat);
     else
         fg = _graph_rgb_blend(fg, GRAPH_RGB(255, 255, 255), 10);
 
     fg = _graph_apply_fg_state(fg, bg, state);
 
-    if (solid_fill)
+    if (solid_fill && !_graph_solid_fill_shows_glyph(f_ptr, feat))
         fg = bg;
     else
         fg = _graph_ensure_contrast(fg, bg, state == GRAPH_VIS_MEMORY ? 24 : 36);
@@ -1899,7 +2010,7 @@ static void _graph_queue_map_rgb(int cave_y, int cave_x, int ui_x, int ui_y, byt
         Term_queue_rgb(ui_x + 1, ui_y, fg, bg);
 
     if (solid_fill && _graph_feature_is_walllike(f_ptr))
-        _graph_queue_wall_border(cave_y, cave_x, ui_x, ui_y, bigchar, _graph_wall_border_rgb(bg, f_ptr, state));
+        _graph_queue_wall_border(cave_y, cave_x, ui_x, ui_y, bigchar, _graph_wall_border_rgb(bg, f_ptr, feat, state));
 }
 
 static void _graph_queue_map_bigchar(int cave_y, int cave_x, int ui_x, int ui_y, byte a, char c, byte ta, char tc)

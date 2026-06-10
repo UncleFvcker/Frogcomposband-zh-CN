@@ -39,6 +39,9 @@ void reset_visuals(void)
 
     graph_wall_rgb = GRAPH_DEFAULT_WALL_RGB;
     graph_permawall_rgb = GRAPH_DEFAULT_PERMAWALL_RGB;
+    graph_magma_wall_rgb = GRAPH_DEFAULT_MAGMA_WALL_RGB;
+    graph_quartz_wall_rgb = GRAPH_DEFAULT_QUARTZ_WALL_RGB;
+    graph_treasure_wall_rgb = GRAPH_DEFAULT_TREASURE_WALL_RGB;
     graph_floor_rgb = GRAPH_DEFAULT_FLOOR_RGB;
 
     /* Extract some info about terrain features */

@@ -1,8 +1,8 @@
-<style:title>FrogComposband 常见问题解答 (FAQ)</style>
+<style:title>RoguelikeFansBand 常见问题解答 (FAQ)</style>
 
 <color:G>Q:</color> 我想每次只移动一个格子，但每次我按下方向键，我的角色就会跨越大半个屏幕。救命！
 
-<color:R>A:</color> 你不知怎么地触发了“奔跑 (Run)”命令而不是“行走 (Walk)”命令。除了正常的奔跑（使用 '.' 键）之外，FrogComposband 使用偏好文件来支持 Shift奔跑 (按住 Shift 键奔跑)，这是一些玩家喜欢的操作方式。这种机制有时会导致不必要的奔跑，特别是在 angband.live 在线服务器上，该服务器有一些非常奇怪的默认设置。如果你在那里玩，看看切换 Num Lock（数字锁定键）是否能帮你停止奔跑，或者在输入选项菜单（'=' 键）中开启 online_macros (在线宏) 选项，又或者在服务器聊天频道中寻求帮助。
+<color:R>A:</color> 你不知怎么地触发了“奔跑 (Run)”命令而不是“行走 (Walk)”命令。除了正常的奔跑（使用 '.' 键）之外，RoguelikeFansBand 使用偏好文件来支持 Shift奔跑 (按住 Shift 键奔跑)，这是一些玩家喜欢的操作方式。这种机制有时会导致不必要的奔跑，特别是在 angband.live 在线服务器上，该服务器有一些非常奇怪的默认设置。如果你在那里玩，看看切换 Num Lock（数字锁定键）是否能帮你停止奔跑，或者在输入选项菜单（'=' 键）中开启 online_macros (在线宏) 选项，又或者在服务器聊天频道中寻求帮助。
 
 
 <color:G>Q:</color> 好吧，我的角色已经站起来并开始行走了。我该做什么？
@@ -152,7 +152,7 @@
 
 <color:G>Q:</color> 我处于正常速度 (+0)。但正常速度的怪物有时会对我造成连动！
 
-<color:R>A:</color> 在 FrogComposband 中，移动所需的能量值在一定程度上是随机的（尽管不如其前身 PosChengband 那么随机）。这种速度系统机制是 FrogComposband 的一个重要特征，它模拟了真实的战斗。通常情况下，与你速度相同的怪物只能移动一次，但一定要随时做好它们可能会移动两次的准备！除非你想找死，否则不要在 HP 较低时进行战斗。
+<color:R>A:</color> 在 RoguelikeFansBand 中，移动所需的能量值在一定程度上是随机的（尽管不如其前身 PosChengband 那么随机）。这种速度系统机制是 RoguelikeFansBand 的一个重要特征，它模拟了真实的战斗。通常情况下，与你速度相同的怪物只能移动一次，但一定要随时做好它们可能会移动两次的准备！除非你想找死，否则不要在 HP 较低时进行战斗。
 
 此外，怪物的移动速度并不总是其面板所列的速度；特别要注意被加速的怪物，它们会获得暂时的 +10 速度奖励。非唯一的怪物出生时带有一定的随机速度，可能比它们种族的平均水平更快或更慢。（对这样的怪物使用探测法术 (Probing) 会揭示其个体的速度。）
 
@@ -177,13 +177,13 @@
 <color:R>A:</color> 近战戒指，如战斗戒指，只影响对应手上的武器；所以戴在你右手上的战斗戒指只影响你右手上的武器（如果有的话），戴在左手上的战斗戒指只影响左手上的武器。（如果你用双手挥舞一把武器，两枚戒指都会对它生效。）
 
 
-<color:G>Q:</color> 在 FrogComposband 中，“行动自如 (Free Action)”是如何起效的？
+<color:G>Q:</color> 在 RoguelikeFansBand 中，“行动自如 (Free Action)”是如何起效的？
 
 <color:R>A:</color> 行动自如提供对麻痹（一种潜在致命的负面状态）的保护。一级行动自如提供部分保护，并在你确实被麻痹时帮助你更快恢复；两级行动自如针对低级怪物提供完全保护，对高级怪物提供非常好的保护；三级行动自如提供对麻痹的完全保护，除了在遭遇“远古恶咒 (Ancient Foul Curse)”这种特殊情况下。
 
 “不完美的”行动自如（游戏早期的一级保护，或后期的二级保护）究竟有多有效，取决于攻击怪物的等级，以及你的豁免 (saving throw)。你的豁免越高，你不具备三级行动自如所承担的风险就越小。
 
-在许多其他的 Angband 变体中，一个行动自如的来源就足以赋予完全的麻痹免疫；如果你玩过这样的变体，小心不要在 FrogComposband 中过于依赖单一的行动自如来源。
+在许多其他的 Angband 变体中，一个行动自如的来源就足以赋予完全的麻痹免疫；如果你玩过这样的变体，小心不要在 RoguelikeFansBand 中过于依赖单一的行动自如来源。
 
 
 <color:G>Q:</color> 有什么方法可以获得甚至能抵抗远古恶咒的麻痹免疫吗？
@@ -191,7 +191,7 @@
 <color:R>A:</color> 良好的豁免能提高你免受该诅咒麻痹的几率。当豁免足够高时，被该诅咒麻痹的几率会降为零。反魔法 (Anti-Magic) 物品能将你的豁免提升到这个水平，但对于严重依赖魔法的角色来说可能会很不方便。
 
 
-<color:G>Q:</color> 在 FrogComposband 中，“识破隐形 (See Invisible)”是如何起效的？
+<color:G>Q:</color> 在 RoguelikeFansBand 中，“识破隐形 (See Invisible)”是如何起效的？
 
 <color:R>A:</color> 每一级识破隐形都能提高你发现隐形生物的几率。这些几率有多高取决于怪物的等级（高级怪物更难被看到）以及你的搜索 (Searching) 技能。有时一个隐形生物会在视线中闪烁不定——这一回合你看到了，下一回合又看不到了。如果你有几个识破隐形的来源，但仍然很难看到隐形生物，你可能需要心灵感应 (Telepathy)，或者需要一件提高搜索技能的物品。
 
@@ -487,22 +487,22 @@
 <color:R>A:</color> 使用 HTML 导出。
 
 
-<color:G>Q:</color> FrogComposband 的起源是什么？
+<color:G>Q:</color> RoguelikeFansBand 的起源是什么？
 
-<color:R>A:</color> FrogComposband 是 ComPosband 的分支，ComPosband 是 PosChengband 的分支，PosChengband 基于 Chengband，Chengband 基于 Hengband，Hengband 基于日本版的 ZAngband，日版 ZAngband 基于常规的 ZAngband，ZAngband 是 Angband 的分支，Angband 基于 Moria 和 Umoria。（呼！）
+<color:R>A:</color> RoguelikeFansBand 是 ComPosband 的分支，ComPosband 是 PosChengband 的分支，PosChengband 基于 Chengband，Chengband 基于 Hengband，Hengband 基于日本版的 ZAngband，日版 ZAngband 基于常规的 ZAngband，ZAngband 是 Angband 的分支，Angband 基于 Moria 和 Umoria。（呼！）
 
-除了这些直系祖先之外，FrogComposband 及其“家族”还受到了许多其他 Angband 变体的强烈影响，如 KAngband、Posband、ToME 和 OAngband。FrogComposband 特别继承了相当多来自原版 Angband 的未发布分支 Frogspawn 的内容——从它的名字开始。
+除了这些直系祖先之外，RoguelikeFansBand 及其“家族”还受到了许多其他 Angband 变体的强烈影响，如 KAngband、Posband、ToME 和 OAngband。RoguelikeFansBand 特别继承了相当多来自原版 Angband 的未发布分支 Frogspawn 的内容——从它的名字开始。
 
 
-<color:G>Q:</color> FrogComposband 的设计理念是什么？
+<color:G>Q:</color> RoguelikeFansBand 的设计理念是什么？
 
-<color:R>A:</color> 最重要的是，FrogComposband 旨在成为一个 1) 有趣 且 2) 充满挑战 的游戏。（它也旨在暗中带来世界末日和超高智能机器人的崛起。）
+<color:R>A:</color> 最重要的是，RoguelikeFansBand 旨在成为一个 1) 有趣 且 2) 充满挑战 的游戏。（它也旨在暗中带来世界末日和超高智能机器人的崛起。）
 
-追求一款有趣的游戏涉及很多方面。游戏试图对玩家公平——无处不在的、不可避免的死亡应该不存在，或者至少极其罕见，非致命的攻击应该增加挑战和氛围，但不应破坏乐趣。（一些不受欢迎的效果可以在出生选项中关闭。）正常的游玩应该始终让玩家保持警惕，提供需要解决的新情况和需要做出的新决定。FrogComposband 还包含了许多幽默内容以缓和气氛，其中一些被隐藏起来，以便在最意想不到的时候被发现。
+追求一款有趣的游戏涉及很多方面。游戏试图对玩家公平——无处不在的、不可避免的死亡应该不存在，或者至少极其罕见，非致命的攻击应该增加挑战和氛围，但不应破坏乐趣。（一些不受欢迎的效果可以在出生选项中关闭。）正常的游玩应该始终让玩家保持警惕，提供需要解决的新情况和需要做出的新决定。RoguelikeFansBand 还包含了许多幽默内容以缓和气氛，其中一些被隐藏起来，以便在最意想不到的时候被发现。
 
 你来决定什么是有趣的，什么是无趣的！游戏允许许多不同的游玩风格，从速通速降到缓慢、有条不紊的“刷刷刷”，并且不会试图将其中任何一种强加给玩家。它也被设计成高度可定制的，包含大约 100 个选项和一些其他修改方式。我不会试图替你做决定，只是提供普遍受欢迎的默认设置；每个玩家想要的东西都不同。
 
-通关游戏应该是一项成就！FrogComposband 试图不走简单路线，但也尽量避免“去死吧你”这种类型的人为困难；一个不犯错且知道自己在做什么的玩家，应该总有很大的机会获胜。游戏也致力于平衡；虽然一些职业、种族、物品和法术领域比其他的强得多，但不应该强到让游戏变得没有挑战性或索然无味。
+通关游戏应该是一项成就！RoguelikeFansBand 试图不走简单路线，但也尽量避免“去死吧你”这种类型的人为困难；一个不犯错且知道自己在做什么的玩家，应该总有很大的机会获胜。游戏也致力于平衡；虽然一些职业、种族、物品和法术领域比其他的强得多，但不应该强到让游戏变得没有挑战性或索然无味。
 
 游戏应该是可以无限重玩的；不同的性格、种族和（特别是）职业提出了截然不同的挑战，即使是两个种族、职业和性格相同的角色，根据做出的决定、找到的物品和遇到的怪物的不同，其游玩体验也可能大相径庭。
 
@@ -530,10 +530,10 @@ Hengband 还包含了许多其他变体的代码，例如 ToME 和 OAngband。Mr
 最初版     : Hengband FAQ 由 Mogami 编写
 更新       : Hengband 1.5.4
 更新       : PosChengband 1.0.0
-更新       : FrogComposband 7.0.strawberry
-更新       : FrogComposband 7.0.peppermint
-更新       : FrogComposband 7.0.nougat
-更新       : FrogComposband 7.1.toffee
-更新       : FrogComposband 7.1.chocolate
-更新       : FrogComposband 7.1.liquorice
+更新       : RoguelikeFansBand 7.0.strawberry
+更新       : RoguelikeFansBand 7.0.peppermint
+更新       : RoguelikeFansBand 7.0.nougat
+更新       : RoguelikeFansBand 7.1.toffee
+更新       : RoguelikeFansBand 7.1.chocolate
+更新       : RoguelikeFansBand 7.1.liquorice
 </color>

@@ -462,6 +462,6 @@ Updated    : (??)
 Updated    : Zangband DevTeam
 Updated    : Hengband 1.3.0
 Updated    : PosChengband 4.0.0
-Updated    : FrogComposband 7.1.chocolate
-Updated    : FrogComposband 7.1.liquorice
+Updated    : RoguelikeFansBand 7.1.chocolate
+Updated    : RoguelikeFansBand 7.1.liquorice
 </color>

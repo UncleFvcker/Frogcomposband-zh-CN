@@ -1,6 +1,6 @@
 熟练度系统 (The Proficiency System)
 
-FrogComposband 拥有多个独立的熟练度系统——武器熟练度 (weapon 
+RoguelikeFansBand 拥有多个独立的熟练度系统——武器熟练度 (weapon 
 proficiency)、法术熟练度 (spell proficiency)、骑乘熟练度 (riding 
 proficiency)、武术熟练度 (martial arts proficiency) 以及双持熟练度 
 (dual-wielding 
@@ -102,5 +102,5 @@ Genji）会对你的伤害造成中等程度的惩罚。对于几乎所有角色
 率和法力消耗。有关法术熟练度系统的更详细解释，请参阅 [a]。
 
 
-原作者   : FrogComposband 7.1.liquorice
+原作者   : RoguelikeFansBand 7.1.liquorice
 

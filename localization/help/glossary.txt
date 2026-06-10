@@ -1,6 +1,6 @@
-<style:title>FrogComposband 术语表 (Glossary)</style>
+<style:title>RoguelikeFansBand 术语表 (Glossary)</style>
 
-在游玩 FrogComposband、与其他玩家讨论，或者仅仅是阅读帮助文件时，你很可能会遇到许多深奥的游戏概念、神秘的缩写，或是游戏中具有特定含义的词汇。对于新玩家来说，绝对没有必要在开始游戏前阅读此文件——大多数玩家完全可以（且确实是）在游玩过程中自行摸索，而且该术语表除了基础知识外还包含了许多进阶主题，所有重要的概念在帮助文件的其他地方也有涵盖。但如果你对某个特定词汇或游戏概念拿捏不准，你可以把这个列表当作快速作弊纸参考，或者纯粹为了消遣读完整个文件 :)
+在游玩 RoguelikeFansBand、与其他玩家讨论，或者仅仅是阅读帮助文件时，你很可能会遇到许多深奥的游戏概念、神秘的缩写，或是游戏中具有特定含义的词汇。对于新玩家来说，绝对没有必要在开始游戏前阅读此文件——大多数玩家完全可以（且确实是）在游玩过程中自行摸索，而且该术语表除了基础知识外还包含了许多进阶主题，所有重要的概念在帮助文件的其他地方也有涵盖。但如果你对某个特定词汇或游戏概念拿捏不准，你可以把这个列表当作快速作弊纸参考，或者纯粹为了消遣读完整个文件 :)
 
 物品属性缩写请参见 <link:objects.txt#InscriptionAbbrev>。
 
@@ -132,7 +132,7 @@
 
 <color:keyword>genocide</color>: 灭绝；试图从地下城楼层中移除一个怪物物种（所有共享相同字母图标的怪物）。不影响唯一怪物。参见 <link:monster.txt#Genocide>。
 
-<color:keyword>global map</color>: 全球地图；也称作 <color:keyword>overworld map (大地图)</color>；FrogComposband 世界的比例地图，可在城镇和荒野中通过 '<' 命令进入，通常用于从城镇前往地下城或在地下城之间旅行。
+<color:keyword>global map</color>: 全球地图；也称作 <color:keyword>overworld map (大地图)</color>；RoguelikeFansBand 世界的比例地图，可在城镇和荒野中通过 '<' 命令进入，通常用于从城镇前往地下城或在地下城之间旅行。
 
 <color:keyword>good object</color>: 良好物品；带有某些魔法附魔，但不是神器或词缀物品的物品。
 
@@ -377,7 +377,7 @@
 
 <color:keyword>ASC</color>: 防召唤走廊 (Anti-summoning corridor)。你在地下城墙壁中挖掘的隧道，尤其是“之”字形的隧道，以限制召唤物的空间并减少能同时攻击你的怪物数量。
 
-<color:keyword>band</color>/<color:keyword>*band</color>: 任何起源于原版 Angband 的游戏分支变体统称，包括 FrogComposband。
+<color:keyword>band</color>/<color:keyword>*band</color>: 任何起源于原版 Angband 的游戏分支变体统称，包括 RoguelikeFansBand。
 
 <color:keyword>bravery</color>: 头铁 / 命大 / 作死 (Bravery)。指你朋友做了一件按理说绝对会送命的事，但居然没死，单纯因为你朋友运气逆天。“那可真是相当的头铁啊。”
 
@@ -437,7 +437,7 @@
 
 <color:keyword>resist hole</color>: 漏抗 (Resist hole)；缺乏特定抗性的状况，特别是指大部分或所有其他抗性都齐备的强大角色身上缺了那么一项。“带着暗和虚空漏抗去打奈比罗斯 (Nebiros)，真是头铁。”
 
-<color:keyword>rfe</color>: 请求增强 (Request for enhancement)；对 FrogComposband 提出特定修改的严肃或阴阳怪气的请求。“RFE：增加一个新突变，给个固定几率直接传送到这一层最深 DL 的怪脸前。”
+<color:keyword>rfe</color>: 请求增强 (Request for enhancement)；对 RoguelikeFansBand 提出特定修改的严肃或阴阳怪气的请求。“RFE：增加一个新突变，给个固定几率直接传送到这一层最深 DL 的怪脸前。”
 
 <color:keyword>rip</color>: 安息 / 暴毙 (Rest In Peace)；引申为死亡。“RIP 我”；“奥伯龙 RIP”；“观光客超模 RIP”；“啊啊，刚刚在 J 面前又暴毙了”。
 
@@ -462,6 +462,6 @@
 <color:keyword>the worst</color>: 最糟糕的事物；用于固定搭配 <color:o>秘密守卫是最糟的 (keepers of secrets are the worst)</color>，表示秘密守卫 (战锤里的 Slaanesh 大魔) 确实是角色能遇到的最恶心的东西。除此之外用来表示某个东西很烦人、很危险或是有点麻烦，但不是字面意义上最糟糕的，因为秘密守卫才是。
 
 <color:D>
-最初版     : FrogComposband 7.1.liquorice
-更新       : FrogComposband 7.1.salmiak
+最初版     : RoguelikeFansBand 7.1.liquorice
+更新       : RoguelikeFansBand 7.1.salmiak
 </color>

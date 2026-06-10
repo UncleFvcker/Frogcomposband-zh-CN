@@ -21,5 +21,5 @@
 <color:D>--
 最初版     : ??
 更新       : Kangband 2.8.3i
-更新       : FrogComposband 7.1.liquorice
+更新       : RoguelikeFansBand 7.1.liquorice
 </color>

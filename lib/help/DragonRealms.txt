@@ -163,4 +163,4 @@
 </style>
 
 
-<color:s>自动生成，适用于 FrogComposband 7.2.salmiak。</color>
+<color:s>自动生成，适用于 RoguelikeFansBand 7.2.salmiak。</color>

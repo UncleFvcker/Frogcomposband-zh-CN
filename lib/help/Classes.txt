@@ -1010,4 +1010,4 @@ Wild-Talent   <color:o>Fair         </color> <color:R>Poor         </color> <col
 </style>
 
 
-<color:s>自动生成于 FrogComposband 7.2.salmiak。</color>
+<color:s>自动生成于 RoguelikeFansBand 7.2.salmiak。</color>

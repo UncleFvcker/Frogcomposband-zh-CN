@@ -30,15 +30,15 @@
 
 在启动游戏时，使用命令行来指定子窗口的大小和位置。以下是一些示例：
 
-<color:y>$ ./frogcomposband -mgcu -uCrusher -- -right 57x26,*</color>
+<color:y>$ ./RoguelikeFansBand -mgcu -uCrusher -- -right 57x26,*</color>
 
 这指定了在主显示屏右侧开辟一条 57 列宽的子窗口区域；该区域将包含两个子窗口，一个高 26 行，另一个占据剩余的所有空间。
 
-<color:y>$ ./frogcomposband -mgcu -uCrusher -- -right 57x26,* -bottom *x10</color>
+<color:y>$ ./RoguelikeFansBand -mgcu -uCrusher -- -right 57x26,* -bottom *x10</color>
 
 除了指定和前面相同的两个子窗口外，还在主显示屏下方指定了第三个子窗口（Term-3），它占据 10 行以及 (屏幕总宽度-57) 列。
 
-<color:y>$ ./frogcomposband -mgcu -uCrusher -- -bottom *x10 -right 57x26,*</color>
+<color:y>$ ./RoguelikeFansBand -mgcu -uCrusher -- -bottom *x10 -right 57x26,*</color>
 
 与上面的类似，只不过位于底部的子窗口现在变成了 Term-1，并且它能占据横向的每一列空间。
 
@@ -46,5 +46,5 @@
 
 <color:D>
 --
-原始版本   : FrogComposband 7.1.liquorice
+原始版本   : RoguelikeFansBand 7.1.liquorice
 </color>

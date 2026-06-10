@@ -1,8 +1,8 @@
 游戏速度模式 (Game Speed Modes)
 
-FrogComposband 
+RoguelikeFansBand 
 提供几种不同的游戏速度模式，取决于你希望游戏玩多久以及多复杂。普通模式 
-(Normal mode) 是完整的 FrogComposband 
+(Normal mode) 是完整的 RoguelikeFansBand 
 体验；它开放了广阔的大地地图、众多的城镇、地牢以及其他模式中没有的支线任
 务。但如果你想玩一局较短的游戏，或者刚刚开始接触不想搞得太复杂，有两个加
 速游戏模式可供选择：非常快的茶歇模式 (coffee-break 
@@ -16,7 +16,7 @@ Chaos)，并在此之前击杀奥伯龙
 普通模式：完整游戏 (Normal - full game)
 
 这是传统的游戏速度，也是提供最完整游戏体验的模式。在一局完整的 
-FrogComposband 游戏中，你将与数以千计的怪物战斗，完成数十个任务，探索 
+RoguelikeFansBand 游戏中，你将与数以千计的怪物战斗，完成数十个任务，探索 
 30 
 多个地牢，并热切地检查成千上万可能具有魔法属性的物品。你可以在没有大地地
 图、只保留特殊茶歇模式城镇的情况下玩普通模式，但这极其不推荐。
@@ -77,5 +77,5 @@ Mode)会自动开启茶歇模式，但它不一定比普通模式更容易，也
 小时。
 
 
-原始版本   : FrogComposband 7.1.liquorice
+原始版本   : RoguelikeFansBand 7.1.liquorice
 

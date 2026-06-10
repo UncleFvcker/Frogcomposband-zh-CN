@@ -227,6 +227,12 @@
 <topic:view_special_lite><color:U>对地板格子使用特殊颜色</color> <color:D>(view_special_lite)</color>
 如果启用此选项，<color:keyword>view_yellow_lite</color> 和 <color:keyword>view_bright_lite</color> 选项将应用于开阔的地板格子；此外，如果玩家失明，将对地板格子使用特殊的暗色。关闭此选项可能会稍微提高游戏速度。如果玩家修改了地板的视觉效果，此选项可能会产生意外结果。
 
+<topic:graph_floor_ascii><color:U>色块地面显示ASCII符号</color> <color:D>(graph_floor_ascii)</color>
+如果启用此选项，地图色块渲染中的普通地面会保留原本的地面符号。关闭此选项时，普通地面以纯色块显示。
+
+<topic:graph_wall_ascii><color:U>色块墙壁显示ASCII符号</color> <color:D>(graph_wall_ascii)</color>
+如果启用此选项，地图色块渲染中的墙壁会保留原本的墙壁符号。关闭此选项时，墙壁以纯色块和轮廓显示。
+
 <topic:view_perma_grids><color:U>地图记住所有永久照亮的格子</color> <color:D>(view_perma_grids)</color>
 记住玩家看到的所有永久照亮的地板格子。此选项允许你跟踪已探索的哪些地板格子是永久照亮的，但不区分黑暗地板格子、未探索地板格子和未知格子。关闭此选项允许玩家始终知道哪些照亮的地板格子在视线范围内，但这最好通过“view_bright_lite”选项来实现。请注意，无论此设置如何，玩家看到的非地板格子总是会被记住。
 
@@ -634,8 +640,8 @@ Updated    : Zangband 2.2.0 through 2.2.6c by Robert Ruehlmann
 Updated    : Zangband DevTeam
 Updated    : Hengband 1.5.2
 Updated    : PosChengband 4.0.0
-Updated    : FrogComposband 7.0.nougat
-Updated    : FrogComposband 7.1.chocolate
-Updated    : FrogComposband 7.1.liquorice
-Updated    : FrogComposband 7.1.salmiak
+Updated    : RoguelikeFansBand 7.0.nougat
+Updated    : RoguelikeFansBand 7.1.chocolate
+Updated    : RoguelikeFansBand 7.1.liquorice
+Updated    : RoguelikeFansBand 7.1.salmiak
 </color>

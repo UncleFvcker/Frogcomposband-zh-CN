@@ -2251,6 +2251,12 @@ option_type option_info[] =
     { &display_path,                FALSE, OPT_PAGE_MAPSCREEN, 2, 8,
     "display_path",                 "射击前显示实际的飞行路径" },
 
+    { &graph_show_floor_ascii,      FALSE, OPT_PAGE_MAPSCREEN, 4, 3,
+    "graph_floor_ascii",            "色块地面显示ASCII符号" },
+
+    { &graph_show_wall_ascii,       FALSE, OPT_PAGE_MAPSCREEN, 4, 4,
+    "graph_wall_ascii",             "色块墙壁显示ASCII符号" },
+
     { &square_delays,               FALSE, OPT_PAGE_MAPSCREEN, 5, 23,
     "square_delays",                "使用平方级延迟因子" },
 

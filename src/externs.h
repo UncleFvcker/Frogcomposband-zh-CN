@@ -134,6 +134,9 @@ extern bool arg_force_roguelike;
 extern bool arg_bigtile;
 extern u32b graph_wall_rgb;
 extern u32b graph_permawall_rgb;
+extern u32b graph_magma_wall_rgb;
+extern u32b graph_quartz_wall_rgb;
+extern u32b graph_treasure_wall_rgb;
 extern u32b graph_floor_rgb;
 extern bool character_generated;
 extern bool character_dungeon;
@@ -299,6 +302,8 @@ extern bool fresh_after;    /* Flush output after monster's move */
 extern bool fresh_message;    /* Flush output after every message */
 extern bool hilite_player;    /* Hilite the player with the cursor */
 extern bool display_path;    /* Display actual path before shooting */
+extern bool graph_show_floor_ascii; /* Show floor glyphs over solid fill */
+extern bool graph_show_wall_ascii;  /* Show wall glyphs over solid fill */
 extern bool square_delays;   /* Use delay factors based on squares */
 
 

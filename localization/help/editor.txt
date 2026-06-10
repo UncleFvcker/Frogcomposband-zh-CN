@@ -421,7 +421,7 @@ This line is a comment.
 
 本节将给出关于墨家明器所有关键语法细节。（请注意：要在系统中起效，你必须使用**英文**的规则关键字进行编写！）但首先，那些偏好文件究竟存放在哪里呢？默认的全局偏好是由 `lib/pref/pickpref.prf` 初始化的；因此如果你想为所有角色编辑默认偏好，就去编辑这个文件。你也可以在 `/lib/user/pickpref-UserDefault.prf` 创建你自己的个人默认偏好；这样的好处是你无需覆盖原始的全局默认值，并且如果你开始讨厌你的更改，也可以轻松地恢复。（使用个人默认偏好的另一个优点是，你可以在游戏内设置并编辑它们，而对于全局偏好这是做不到的。）
 
-一旦你激活了墨家明器，你的偏好会存储在一个系统特定的独立文件中。在 Windows 系统上，它们将存储在 `lib/user/pickpref-<color:o>NAME</color>.prf`；而在 Linux 系统上，它们可能会被转移到 `~/.angband/FrogComposband/pickpref-<color:o>NAME</color>.prf`（在游戏目录结构之外）。这里，`<color:o>NAME</color>` 处会被替换为你玩家当前的名字。所以，如果你想使用外部文本编辑器编辑你角色的偏好设置，这就是你需要更改的文件。通常，直接使用游戏内的编辑器会更简单；但如果你在游玩期间用外部编辑器编辑了偏好文件，一定要确保使用 <color:keypress>$</color> 命令强迫游戏重新加载偏好文件。
+一旦你激活了墨家明器，你的偏好会存储在一个系统特定的独立文件中。在 Windows 系统上，它们将存储在 `lib/user/pickpref-<color:o>NAME</color>.prf`；而在 Linux 系统上，它们可能会被转移到 `~/.angband/RoguelikeFansBand/pickpref-<color:o>NAME</color>.prf`（在游戏目录结构之外）。这里，`<color:o>NAME</color>` 处会被替换为你玩家当前的名字。所以，如果你想使用外部文本编辑器编辑你角色的偏好设置，这就是你需要更改的文件。通常，直接使用游戏内的编辑器会更简单；但如果你在游玩期间用外部编辑器编辑了偏好文件，一定要确保使用 <color:keypress>$</color> 命令强迫游戏重新加载偏好文件。
 
 承诺过的参考表格就在下面……享受吧！
 
@@ -653,5 +653,5 @@ This line is a comment.
 </indent><color:D>
 --
 原版       : PosChengband 4.0.0
-更新       : FrogComposband 7.1.liquorice
+更新       : RoguelikeFansBand 7.1.liquorice
 </color>

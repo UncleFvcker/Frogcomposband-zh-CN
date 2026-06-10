@@ -80,6 +80,9 @@ bool arg_force_roguelike;    /* Command arg -- Request roguelike keyset */
 bool arg_bigtile = FALSE;    /* Command arg -- Request big tile mode */
 u32b graph_wall_rgb = GRAPH_DEFAULT_WALL_RGB;           /* Graph ASCII wall fill color */
 u32b graph_permawall_rgb = GRAPH_DEFAULT_PERMAWALL_RGB; /* Graph ASCII permanent wall fill color */
+u32b graph_magma_wall_rgb = GRAPH_DEFAULT_MAGMA_WALL_RGB; /* Graph ASCII magma vein fill color */
+u32b graph_quartz_wall_rgb = GRAPH_DEFAULT_QUARTZ_WALL_RGB; /* Graph ASCII quartz vein fill color */
+u32b graph_treasure_wall_rgb = GRAPH_DEFAULT_TREASURE_WALL_RGB; /* Graph ASCII treasure wall fill color */
 u32b graph_floor_rgb = GRAPH_DEFAULT_FLOOR_RGB;         /* Graph ASCII floor fill color */
 
 /*
@@ -267,6 +270,8 @@ bool fresh_after;    /* Flush output after monster's move */
 bool fresh_message;    /* Flush output after every message */
 bool hilite_player;    /* Hilite the player with the cursor */
 bool display_path;    /* Display actual path before shooting */
+bool graph_show_floor_ascii; /* Show floor glyphs over solid fill */
+bool graph_show_wall_ascii;  /* Show wall glyphs over solid fill */
 bool square_delays;   /* Use delay factors based on squares */
 
 

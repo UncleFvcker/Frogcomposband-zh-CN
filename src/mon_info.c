@@ -694,7 +694,8 @@ static void _display_attacks(monster_race *r_ptr, doc_ptr doc)
                 if (!_easy_lore(r_ptr) && !effect->lore) continue;
                 vec_add(v, _effect_desc(r_ptr, effect));
             }
-            doc_printf(doc, "          %-7.7s",  _method_desc(blow->method));
+            doc_insert(doc, "          ");
+            doc_insert(doc, _method_desc(blow->method));
             if (vec_length(v))
             {
                 doc_insert(doc, " <indent><style:indent>");

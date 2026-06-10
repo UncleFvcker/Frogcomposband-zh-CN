@@ -1,12 +1,12 @@
 新手指南 (The Newbie Guide)
 
 欢迎来到 
-FrogComposband！本指南将试图为你提供一个快速的游戏概述，并引导你踏上斩杀
+RoguelikeFansBand！本指南将试图为你提供一个快速的游戏概述，并引导你踏上斩杀
 可怕的“混沌之蛇 (Serpent of Chaos)”的征途。
 
 概述 (Overview)
 
-FrogComposband 
+RoguelikeFansBand 
 是一款单人角色扮演游戏，在游戏中，你作为勇敢的冒险者，试图通过击败邪恶的
 怪物（最终包括混沌之蛇）来拯救（或征服？）世界。道路漫长且充满险恶。许多
 人曾尝试过却失败了，地下城里到处散落着自命不凡的英雄们的骸骨，他们被黑暗
@@ -1169,7 +1169,7 @@ Orc*)”属性（带星号更强）的武器可能（我只是说可能！）会
   关于怪物知识
   
   在许多其他游戏中，你需要做笔记记录特定怪物的弱点、优势、法术等；但 
-  FrogComposband 
+  RoguelikeFansBand 
   会自动为你做这些笔记。每次你发现关于怪物的新信息（比如它会喷火），这都
   会被添加到你对该怪物的知识中。有几种方法可以查看这些知识；你可以输入 
   '/'，然后输入怪物的符号（你可能需要滚动浏览其他怪物记忆才能找到你想要
@@ -1184,7 +1184,7 @@ Orc*)”属性（带星号更强）的武器可能（我只是说可能！）会
   
   关于死亡
   
-  在 FrogComposband 
+  在 RoguelikeFansBand 
   中，死亡是永久的。保存进度仅意味着让你从你离开的地方继续；如果你死了，
   你的存档文件会被标记上死亡记号。下次你尝试使用该存档时，你将获得新建角
   色的对话框。死亡角色的后代将保留他们的怪物记忆和游戏设置偏好。这里很多
@@ -1217,6 +1217,6 @@ Orc*)”属性（带星号更强）的武器可能（我只是说可能！）会
 更新者     : Hengband 1.0.11
 更新者     : PosChengband 1.0.0
 更新者     : PosChengband 4.0.0
-更新者     : FrogComposband 7.0.strawberry
-更新者     : FrogComposband 7.1.liquorice
+更新者     : RoguelikeFansBand 7.0.strawberry
+更新者     : RoguelikeFansBand 7.1.liquorice
 

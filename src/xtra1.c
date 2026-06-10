@@ -2796,7 +2796,15 @@ static void fix_monster(void)
                 continue;
             }
 
-            doc = doc_alloc(MIN(72, Term->wid));
+            if (Term->wid <= 0 || Term->hgt <= 0)
+            {
+                game_log_event("fix_monster", "invalid monster recall term size wid=%d hgt=%d",
+                    Term->wid, Term->hgt);
+                Term_activate(old);
+                continue;
+            }
+
+            doc = doc_alloc(MAX(1, MIN(72, Term->wid)));
             mon_display_doc(&r_info[p_ptr->monster_race_idx], doc);
 
             for (y = 0; y < Term->hgt; y++)

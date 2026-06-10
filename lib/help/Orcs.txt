@@ -53,4 +53,4 @@
 </style>
 
 
-<color:s>Automatically generated for FrogComposband 7.2.salmiak.</color>
+<color:s>Automatically generated for RoguelikeFansBand 7.2.salmiak.</color>

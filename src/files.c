@@ -372,6 +372,9 @@ int parse_args(char *buf, char **name, char **args, int max)
  * Specify graph ASCII terrain fill colors
  *   G:WALL:<rgb>
  *   G:PERMAWALL:<rgb>
+ *   G:MAGMA:<rgb>
+ *   G:QUARTZ:<rgb>
+ *   G:TREASURE:<rgb>
  *   G:FLOOR:<rgb>
  *
  * Specify the set of colors to use when drawing a zapped spell
@@ -596,6 +599,21 @@ errr process_pref_file_command(char *buf)
             if (streq(zz[0], "PERMAWALL"))
             {
                 graph_permawall_rgb = rgb;
+                return 0;
+            }
+            if (streq(zz[0], "MAGMA"))
+            {
+                graph_magma_wall_rgb = rgb;
+                return 0;
+            }
+            if (streq(zz[0], "QUARTZ"))
+            {
+                graph_quartz_wall_rgb = rgb;
+                return 0;
+            }
+            if (streq(zz[0], "TREASURE"))
+            {
+                graph_treasure_wall_rgb = rgb;
                 return 0;
             }
             if (streq(zz[0], "FLOOR"))

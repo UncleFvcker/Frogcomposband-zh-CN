@@ -1,10 +1,10 @@
 <style:title>一般信息 (General Information)</style>
 
-本文档提供了游戏的简要介绍。FrogComposband 是一款单人地下城模拟游戏；你扮演一名角色，最终目标是杀死潜伏在地下城黑暗深处的、令人恐惧的<color:keyword>混沌之龙 (Serpent of Chaos)</color>。在你的冒险旅途中，你将完成许多支线任务，学习强大的魔法，击败或结交奇幻的怪物，获取奇妙的宝藏，探索黑暗的迷宫，阅读冗长的文本，被各种晦涩的外国流行文化梗搞得一头雾水，在事情不顺利时沮丧地狂拍桌子，并希望你最终能乐在其中。
+本文档提供了游戏的简要介绍。RoguelikeFansBand 是一款单人地下城模拟游戏；你扮演一名角色，最终目标是杀死潜伏在地下城黑暗深处的、令人恐惧的<color:keyword>混沌之龙 (Serpent of Chaos)</color>。在你的冒险旅途中，你将完成许多支线任务，学习强大的魔法，击败或结交奇幻的怪物，获取奇妙的宝藏，探索黑暗的迷宫，阅读冗长的文本，被各种晦涩的外国流行文化梗搞得一头雾水，在事情不顺利时沮丧地狂拍桌子，并希望你最终能乐在其中。
 
 <topic:Help><style:heading>关于帮助文件</style>
 
-你可能见过许多游戏附带了 300 页的手册，作者还指望你在开始玩之前把它读完。FrogComposband 也是这样的，只不过它的手册可没那么“袖珍”。
+你可能见过许多游戏附带了 300 页的手册，作者还指望你在开始玩之前把它读完。RoguelikeFansBand 也是这样的，只不过它的手册可没那么“袖珍”。
 
 当然，你并不真的需要在玩之前通读整个手册；你可以直接跳进去，在游玩中摸索，当遇到令人困惑的东西时再去查看帮助。你只需阅读足够的内容，知道在这个游戏中你应该做什么以及如何去做就可以了。这个文件绝对值得一读，<color:keyword>命令帮助文件</color> (<link:command.txt>) 也是如此；如果不了解各种命令，你在游戏中真的寸步难行。<color:keyword>新手指南</color> (<link:tang.txt>) 你可以把它当作大多数基础知识的快速参考，或者完全忽略、永远不打开。至于 <color:keyword>常见问题解答 (FAQ)</color> (<link:faq.txt>)，你可以一开始先跳过，或者至少跳过前面的部分，等弄懂了命令和其他基础知识后再回来看；大部分文档集中于基础知识（详细程度各不相同），而 FAQ 则是快速查找更高级主题的好地方。
 
@@ -126,6 +126,6 @@ Surface
 更新       : Zangband DevTeam
 更新       : Hengband 1.5.4
 更新       : PosChengband 4.0.0
-更新       : FrogComposband 7.0.nougat
-更新       : FrogComposband 7.1.liquorice
+更新       : RoguelikeFansBand 7.0.nougat
+更新       : RoguelikeFansBand 7.1.liquorice
 </color>

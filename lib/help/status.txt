@@ -147,5 +147,5 @@
 如上所述，恐惧和麻痹遵循它们自己的特殊规则；而中毒除非拥有完全的免疫能力，否则无法被完全预防。
 
 <color:D>
-原始版本   : FrogComposband 7.1.liquorice
+原始版本   : RoguelikeFansBand 7.1.liquorice
 </color>

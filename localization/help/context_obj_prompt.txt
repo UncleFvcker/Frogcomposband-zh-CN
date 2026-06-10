@@ -1,6 +1,6 @@
 <style:title>选择物品 (Selecting Objects)</style>
 
-物品是游玩 <color:keyword>FrogComposband</color> 的重要组成部分。许多命令（例如喝下药水或阅读卷轴）都需要你选择一件要使用的物品。其他命令则允许你查看和检视你正在携带或使用的物品。本帮助文件解释了用于查看和选择物品的用户界面。
+物品是游玩 <color:keyword>RoguelikeFansBand</color> 的重要组成部分。许多命令（例如喝下药水或阅读卷轴）都需要你选择一件要使用的物品。其他命令则允许你查看和检视你正在携带或使用的物品。本帮助文件解释了用于查看和选择物品的用户界面。
 
 <topic:Sample><style:heading>一个例子</style>
 

@@ -1,10 +1,10 @@
 <style:title>新手指南 (The Newbie Guide)</style>
 
-欢迎来到 <color:keyword>FrogComposband</color>！本指南将试图为你提供一个快速的游戏概述，并引导你踏上斩杀可怕的“混沌之蛇 (Serpent of Chaos)”的征途。
+欢迎来到 <color:keyword>RoguelikeFansBand</color>！本指南将试图为你提供一个快速的游戏概述，并引导你踏上斩杀可怕的“混沌之蛇 (Serpent of Chaos)”的征途。
 
 <topic:Overview><style:heading>概述 (Overview)</style>
 
-FrogComposband 是一款单人角色扮演游戏，在游戏中，你作为勇敢的冒险者，试图通过击败邪恶的怪物（最终包括<color:keyword>混沌之蛇</color>）来拯救（或征服？）世界。道路漫长且充满险恶。许多人曾尝试过却失败了，地下城里到处散落着自命不凡的英雄们的骸骨，他们被黑暗神明、巨龙、恶魔或者（在一个极不光彩的案例中）一只绵羊给宰了。你有获得成功所需的潜质吗？
+RoguelikeFansBand 是一款单人角色扮演游戏，在游戏中，你作为勇敢的冒险者，试图通过击败邪恶的怪物（最终包括<color:keyword>混沌之蛇</color>）来拯救（或征服？）世界。道路漫长且充满险恶。许多人曾尝试过却失败了，地下城里到处散落着自命不凡的英雄们的骸骨，他们被黑暗神明、巨龙、恶魔或者（在一个极不光彩的案例中）一只绵羊给宰了。你有获得成功所需的潜质吗？
 
 <topic:CreatingACharacter><style:heading>创建角色 (Creating a Character)</style>
 
@@ -734,13 +734,13 @@ Char  Object(物品)   Usage(使用方法)
 </indent>
   <indent><color:B>关于怪物知识</color>
 
-在许多其他游戏中，你需要做笔记记录特定怪物的弱点、优势、法术等；但 FrogComposband 会自动为你做这些笔记。每次你发现关于怪物的新信息（比如它会喷火），这都会被添加到你对该怪物的知识中。有几种方法可以查看这些知识；你可以输入 <color:keypress>'/'</color>，然后输入怪物的符号（你可能需要滚动浏览其他怪物记忆才能找到你想要的那个）；你可以使用 <color:keypress>'~'</color> 知识菜单；或者如果你感兴趣的怪物在你的视野内，你可以使用查看 (<color:keypress>'*'</color>) 和回忆 (<color:keypress>'r'</color>) 命令。
+在许多其他游戏中，你需要做笔记记录特定怪物的弱点、优势、法术等；但 RoguelikeFansBand 会自动为你做这些笔记。每次你发现关于怪物的新信息（比如它会喷火），这都会被添加到你对该怪物的知识中。有几种方法可以查看这些知识；你可以输入 <color:keypress>'/'</color>，然后输入怪物的符号（你可能需要滚动浏览其他怪物记忆才能找到你想要的那个）；你可以使用 <color:keypress>'~'</color> 知识菜单；或者如果你感兴趣的怪物在你的视野内，你可以使用查看 (<color:keypress>'*'</color>) 和回忆 (<color:keypress>'r'</color>) 命令。
 
 在你角色不幸死亡的情况下，你可以使用旧角色的存档文件创建一个新角色（不要简单地创建一个新角色，而是打开死掉角色的存档文件，然后就会弹出角色创建界面）。这个新角色将保留旧角色的怪物记忆。
 </indent>
   <indent><color:B>关于死亡</color>
 
-在 FrogComposband 中，死亡是永久的。保存进度仅意味着让你从你离开的地方继续；如果你死了，你的存档文件会被标记上死亡记号。下次你尝试使用该存档时，你将获得新建角色的对话框。死亡角色的后代将保留他们的怪物记忆和游戏设置偏好。这里很多人都有诸如“Yuppy XIV（雅皮十四世）”这样的角色；人经常会死，死亡是家常便饭，所以不要灰心。总的来说，你杀死的怪物远比怪物杀死你的次数要多！
+在 RoguelikeFansBand 中，死亡是永久的。保存进度仅意味着让你从你离开的地方继续；如果你死了，你的存档文件会被标记上死亡记号。下次你尝试使用该存档时，你将获得新建角色的对话框。死亡角色的后代将保留他们的怪物记忆和游戏设置偏好。这里很多人都有诸如“Yuppy XIV（雅皮十四世）”这样的角色；人经常会死，死亡是家常便饭，所以不要灰心。总的来说，你杀死的怪物远比怪物杀死你的次数要多！
 </indent>
   <indent><color:B>我还有些不明白的地方……？</color>
 
@@ -758,6 +758,6 @@ Char  Object(物品)   Usage(使用方法)
 更新者     : Hengband 1.0.11
 更新者     : PosChengband 1.0.0
 更新者     : PosChengband 4.0.0
-更新者     : FrogComposband 7.0.strawberry
-更新者     : FrogComposband 7.1.liquorice
+更新者     : RoguelikeFansBand 7.0.strawberry
+更新者     : RoguelikeFansBand 7.1.liquorice
 </color>

@@ -1,4 +1,4 @@
-<topic:salmiak><color:keyword>FrogComposband 7.1.salmiak</color> 的更新日志：
+<topic:salmiak><color:keyword>RoguelikeFansBand 7.1.salmiak</color> 的更新日志：
 
 * 添加了新地下城，并随机化了实际出现的地下城
 
@@ -9,7 +9,7 @@
 * 添加了新的玩家怪物种族（木乃伊 Mummy），基于 Pos-R 中的受咒者 (Maledicts)
 
 * 迁移到了 32 色调色板并更改了许多怪物的颜色
--- <style:indent>注意：如果你的平台不支持超过 16 种颜色，或者 FrogComposband 针对你平台的着色代码有问题，请使用 --disable-xtra-colours 编译以仅保留 16 色。如果你的平台确实支持超过 16 种颜色但你希望坚持使用 16 色（出于怀旧原因或为了颜色之间有更大的对比度），请加载 user-lim.prf（在游戏中输入 &4 会自动执行此操作），或使用 '&' 命令修改颜色</style>
+-- <style:indent>注意：如果你的平台不支持超过 16 种颜色，或者 RoguelikeFansBand 针对你平台的着色代码有问题，请使用 --disable-xtra-colours 编译以仅保留 16 色。如果你的平台确实支持超过 16 种颜色但你希望坚持使用 16 色（出于怀旧原因或为了颜色之间有更大的对比度），请加载 user-lim.prf（在游戏中输入 &4 会自动执行此操作），或使用 '&' 命令修改颜色</style>
 -- 特别感谢 Oneiron 帮我调试 32 色调色板
 
 * 城镇服务能够以附魔一把武器的价格为多把武器附魔；这已被修复（感谢 Thraalbee 报告）
@@ -187,7 +187,7 @@
 -------------------------------------------------------
 
 
-<topic:liquorice><color:keyword>FrogComposband 7.1.liquorice</color> 的更新日志：
+<topic:liquorice><color:keyword>RoguelikeFansBand 7.1.liquorice</color> 的更新日志：
 
 * 添加了一个新玩家种族（伊戈尔 Igor）
 
@@ -395,7 +395,7 @@
 -------------------------------------------------------
 
 
-<topic:chocolate><color:keyword>FrogComposband 7.1.chocolate</color> 的更新日志：
+<topic:chocolate><color:keyword>RoguelikeFansBand 7.1.chocolate</color> 的更新日志：
 
 * 添加了一个新的玩家职业（信徒 Disciples；它实际上是把三个职业合并在一起，因为它的三个子职业没有多少共同点）
 
@@ -563,7 +563,7 @@
 -------------------------------------------------------
 
 
-<topic:toffee><color:keyword>FrogComposband 7.1.toffee</color> 的更新日志：
+<topic:toffee><color:keyword>RoguelikeFansBand 7.1.toffee</color> 的更新日志：
 
 * 随机的戒指和护身符神器现在偶尔会生成了
 
@@ -797,7 +797,7 @@
 -------------------------------------------------------
 
 
-<topic:cloudberry><color:keyword>FrogComposband 7.0.cloudberry</color> 的更新日志：
+<topic:cloudberry><color:keyword>RoguelikeFansBand 7.0.cloudberry</color> 的更新日志：
 
 * 改进了对在 angband.live 在线服务器上游玩的支持（在没有 Num Lock 键的键盘上发生的意外自动跑步，这一直是 angband.live 新手的长期问题，现在可以很容易地禁用了；并且游戏会尝试自动检测此问题并帮助玩家解决）
 
@@ -934,7 +934,7 @@
 -------------------------------------------------------
 
 
-<topic:nougat><color:keyword>FrogComposband 7.0.nougat</color> 的更新日志：
+<topic:nougat><color:keyword>RoguelikeFansBand 7.0.nougat</color> 的更新日志：
 
 * 新增了两个种族（英灵战士 Einheri 和狼人 Werewolf）。英灵战士非常强大，但只能从魔法治疗中获得部分收益。狼人可以（惊喜吧）扮演人类或狼的形态，这两种形态都有其优点和缺点（感谢 murphy 和 CyclopsSlayer 提供的发行前狼人反馈）
 
@@ -1095,7 +1095,7 @@
 -------------------------------------------------------
 
 
-<topic:mango><color:keyword>FrogComposband 7.0.mango</color> 的更新日志：
+<topic:mango><color:keyword>RoguelikeFansBand 7.0.mango</color> 的更新日志：
 
 * 引入了三个新性格（混沌 Chaotic、平庸 Mundane 和倒霉 Unlucky）并恢复了被移除的慵懒 (Lazy) 和龙傲天 (Munchkin) 性格。（感谢 MITZE 建议混沌性格并帮我设计它）
 
@@ -1272,7 +1272,7 @@
 -------------------------------------------------------
 
 
-<topic:peppermint><color:keyword>FrogComposband 7.0.peppermint</color> 的更新日志：
+<topic:peppermint><color:keyword>RoguelikeFansBand 7.0.peppermint</color> 的更新日志：
 
 * 彻底重制了关闭荒野大地图 (no-wilderness) 模式下的城镇，并修复了任务描述，使其在开启或关闭荒野大地图时都保持准确。
 
@@ -1391,7 +1391,7 @@
 -------------------------------------------------------
 
 
-<topic:strawberry><color:keyword>FrogComposband 7.0.strawberry</color> 的更新日志（相比于 ComPosband 7.0.3）：
+<topic:strawberry><color:keyword>RoguelikeFansBand 7.0.strawberry</color> 的更新日志（相比于 ComPosband 7.0.3）：
 
 * 重新平衡了神器重铸系统。目标是在阻止生成过于离谱强力的物品的同时，依然允许非常强力的物品存在（所以玩家有理由期望在游戏终局以及最终决战中使用重铸物品）。名望在重铸中的重要性略微降低了，使早期/中期的重铸更具吸引力，不过在现实中，重铸可能仍大多是游戏后期的手段。栏位权重也稍微作了调整，影响了重铸和随机神器的生成。移除了源神器威力的 90000 的硬上限，尽管更强大的神器仍会被当作拥有 90000 威力处理，或者是更低权重的栏位。这防止了某些超强物品因为不直接适合玩家的需求，并且无法被重铸时，实际上比低级物品更糟的情况。现在重铸也稍微便宜了一点
 
@@ -1419,7 +1419,7 @@
 
 * 添加了新任务（实际上我觉得现在游戏早期的任务可能有点太多了；非常欢迎提供有关任务数量、玩家喜欢或不喜欢的任务 [无论是新任务还是旧任务] 的反馈；当然，你并不需要在游戏对应深度的进程中必须完成每个任务）
 
-* 在 ComPosband 中，如果任务楼层出现 Bug 未能正确生成，游戏将会崩溃，并迫使玩家在恢复游玩时任务自动失败。在 FrogComposband 中，虽然游戏仍然会崩溃，但玩家在恢复游玩时可以继续正常游戏，并且在问题修复后可以重新接取该任务。这应该能让开发者和试玩玩家的生活轻松一些
+* 在 ComPosband 中，如果任务楼层出现 Bug 未能正确生成，游戏将会崩溃，并迫使玩家在恢复游玩时任务自动失败。在 RoguelikeFansBand 中，虽然游戏仍然会崩溃，但玩家在恢复游玩时可以继续正常游戏，并且在问题修复后可以重新接取该任务。这应该能让开发者和试玩玩家的生活轻松一些
 
 * 给艾尔德拉克 (Eldraks/土巨魔) 提供了一个显著的增益，他们现在比双头巨人 (ettins) 更强了（因此，在巨魔 troll 进化序列中对换了双头巨人和艾尔德拉克的位置；然而，玩家巨魔仍然会进化成双头巨人而不是艾尔德拉克）
 
@@ -1439,7 +1439,7 @@
 
 * 增加了一些适应非英语键盘以便在 angband.live 进行游戏的选项：用 Y 和 Z 替代 [ 和 {，Ctrl+Y 替代 Ctrl+W，Ctrl+E 替代 @ 以及 Ctrl+O 替代 ]
 
-* 让自由行动 (free action) 变得更强了，因为 Chris 的系统有些令人困惑而且不受欢迎，尽管此处的改变没有 Gwarl 在 ComPosband 7.0.4 中做的那么大。在 FrogComposband 中拥有 1 层自由行动的效果和 ComPosband 7.0.3（以及最后版本的 PosChengband）相同。拥有 2 层自由行动在 FrogComposband 中稍强一些（它使得对低级怪物有完全的麻痹免疫），拥有 3 层自由行动可以免疫所有怪物，除了一些特例，比如 ty_curse 神罚
+* 让自由行动 (free action) 变得更强了，因为 Chris 的系统有些令人困惑而且不受欢迎，尽管此处的改变没有 Gwarl 在 ComPosband 7.0.4 中做的那么大。在 RoguelikeFansBand 中拥有 1 层自由行动的效果和 ComPosband 7.0.3（以及最后版本的 PosChengband）相同。拥有 2 层自由行动在 RoguelikeFansBand 中稍强一些（它使得对低级怪物有完全的麻痹免疫），拥有 3 层自由行动可以免疫所有怪物，除了一些特例，比如 ty_curse 神罚
 
 * 改变了当前 SP (法力值) 的计算方式，在经历过影响最大 SP 变化的操作后
 

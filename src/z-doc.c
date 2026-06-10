@@ -385,6 +385,8 @@ doc_ptr doc_alloc(int width)
     doc_ptr     res = malloc(sizeof(doc_t));
     doc_style_t style = {0};
 
+    if (width < 1) width = 1;
+
     res->cursor.x = 0;
     res->cursor.y = 0;
     res->selection = doc_region_invalid();

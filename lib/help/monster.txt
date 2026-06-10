@@ -1,6 +1,6 @@
 <style:title>怪物 (Monsters)</style>
 
-与怪物遭遇是 FrogComposband 的核心骨架。通常你通过击杀怪物来获取财宝、获得经验并变得更强大；但并非所有怪物都是必须死的可恨敌人。
+与怪物遭遇是 RoguelikeFansBand 的核心骨架。通常你通过击杀怪物来获取财宝、获得经验并变得更强大；但并非所有怪物都是必须死的可恨敌人。
 
 <indent><color:U>怪物种族 (Monster Races)</color>
 
@@ -258,7 +258,7 @@ Drops   : Up to 3 Objects                                           <color:G>Fas
 
 <topic:Pets><style:heading>宠物与骑乘 (Pets and Riding)</style>
 
-还有什么比一只忠诚的宠物更好的呢？人们有时担心他们的宠物会把他们踩在脚下；但在 FrogComposband 中，<color:G>宠物永远不会误伤你</color>。当你的宠物大恶魔龙把敌人轰成渣时，你可以安全地四处走动。更好的是，有些宠物甚至可以召唤新的宠物。
+还有什么比一只忠诚的宠物更好的呢？人们有时担心他们的宠物会把他们踩在脚下；但在 RoguelikeFansBand 中，<color:G>宠物永远不会误伤你</color>。当你的宠物大恶魔龙把敌人轰成渣时，你可以安全地四处走动。更好的是，有些宠物甚至可以召唤新的宠物。
 
 有人可能会认为宠物能让游戏变得简单得多。当然，把你的宠物龙送进一个巨魔坑里，在外面听着里面传出痛苦与恐惧的嚎叫、内脏飞溅和骨头断裂的声音，是极其令人满足的；但不要指望从中获得太多经验。只有当你自己给出致命一击时，你才能获得全额经验。
 
@@ -293,7 +293,7 @@ Drops   : Up to 3 Objects                                           <color:G>Fas
 以下是可用的宠物命令列表：
 
 <style:keyword>遣散宠物 (Dismiss Pets)</style>
-  <indent>遣散指定的宠物。被遣散的宠物会立即从当前楼层消失。FrogComposband 会询问你是否要按照从高等级命名宠物到低等级未命名宠物的顺序逐个遣散宠物。你可以按 'U' 来遣散所有未命名的宠物。</indent>
+  <indent>遣散指定的宠物。被遣散的宠物会立即从当前楼层消失。RoguelikeFansBand 会询问你是否要按照从高等级命名宠物到低等级未命名宠物的顺序逐个遣散宠物。你可以按 'U' 来遣散所有未命名的宠物。</indent>
 
 <style:keyword>指定宠物目标 (Specify Target of Pet)</style>
   <indent>选择一个目标怪物；你所有的宠物都会开始追击目标。在敌人不在宠物视线范围内的情况下，该命令会使宠物更加积极地寻路。</indent>
@@ -484,6 +484,6 @@ Orc                  | Old Man Willow                                 <color:s>#
 更新       : Zangband DevTeam
 更新       : Hengband 1.0.11
 更新       : PosChengband 4.0.0
-更新       : FrogComposband 7.1.liquorice
-更新       : FrogComposband 7.1.salmiak
+更新       : RoguelikeFansBand 7.1.liquorice
+更新       : RoguelikeFansBand 7.1.salmiak
 </color>

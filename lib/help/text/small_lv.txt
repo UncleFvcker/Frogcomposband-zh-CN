@@ -1,6 +1,6 @@
 地牢层大小选项 (Level Size Options)
 
-FrogComposband 
+RoguelikeFansBand 
 中地牢层的大小因地牢而异，且因深度而异，但均适用相同的基础系统：地牢层的
 宽度始终是 66 格的倍数（最大不超过 198），高度始终是 22 
 格的倍数（最大不超过 66）。某些地牢被标记为大型 
@@ -88,5 +88,5 @@ big)
    牢中）都被保证是 1x1 的微型大小。
 
 
-更新版本 : FrogComposband 7.1.chocolate
+更新版本 : RoguelikeFansBand 7.1.chocolate
 

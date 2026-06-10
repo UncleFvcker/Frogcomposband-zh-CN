@@ -206,4 +206,4 @@
 </style>
 
 
-<color:s>为 FrogComposband 7.2.salmiak 自动生成。</color>
+<color:s>为 RoguelikeFansBand 7.2.salmiak 自动生成。</color>
