@@ -78,6 +78,9 @@ bool arg_monochrome;        /* Command arg -- Request monochrome mode */
 bool arg_force_original;    /* Command arg -- Request original keyset */
 bool arg_force_roguelike;    /* Command arg -- Request roguelike keyset */
 bool arg_bigtile = FALSE;    /* Command arg -- Request big tile mode */
+u32b graph_wall_rgb = GRAPH_DEFAULT_WALL_RGB;           /* Graph ASCII wall fill color */
+u32b graph_permawall_rgb = GRAPH_DEFAULT_PERMAWALL_RGB; /* Graph ASCII permanent wall fill color */
+u32b graph_floor_rgb = GRAPH_DEFAULT_FLOOR_RGB;         /* Graph ASCII floor fill color */
 
 /*
  * Various things

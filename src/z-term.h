@@ -31,6 +31,21 @@
  */
 
 typedef struct term_win term_win;
+typedef struct term_rgb_cell term_rgb_cell;
+
+#define TERM_RGB_BORDER_TOP     0x01
+#define TERM_RGB_BORDER_RIGHT   0x02
+#define TERM_RGB_BORDER_BOTTOM  0x04
+#define TERM_RGB_BORDER_LEFT    0x08
+
+struct term_rgb_cell
+{
+    byte valid;
+    byte border;
+    u32b fg;
+    u32b bg;
+    u32b border_rgb;
+};
 
 struct term_win
 {
@@ -52,6 +67,9 @@ struct term_win
     byte *vta;
     char *vtc;
     u32b *vutc;
+
+    term_rgb_cell **rgb;
+    term_rgb_cell *vrgb;
 };
 
 
@@ -289,6 +307,10 @@ extern void Term_queue_bigchar(int x, int y, byte a, char c, byte ta, char tc);
 extern void Term_queue_line(int x, int y, int n, byte *a, char *c, byte *ta, char *tc);
 
 extern void Term_queue_chars(int x, int y, int n, byte a, cptr s);
+extern void Term_queue_rgb(int x, int y, u32b fg, u32b bg);
+extern void Term_queue_rgb_border(int x, int y, byte border, u32b rgb);
+extern bool Term_rgb_at(int x, int y, u32b *fg, u32b *bg);
+extern bool Term_rgb_border_at(int x, int y, byte *border, u32b *rgb);
 
 extern errr Term_fresh(void);
 extern errr Term_set_cursor(int v);

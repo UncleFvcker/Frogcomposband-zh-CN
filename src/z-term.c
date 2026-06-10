@@ -418,6 +418,10 @@ static errr term_win_nuke(term_win *s, int w, int h)
     C_KILL(s->vtc, h * w, char);
     C_KILL(s->vutc, h * w, u32b);
 
+    /* Free the optional RGB cell arrays */
+    C_KILL(s->rgb, h, term_rgb_cell*);
+    C_KILL(s->vrgb, h * w, term_rgb_cell);
+
     /* Success */
     return (0);
 }
@@ -450,6 +454,9 @@ static errr term_win_init(term_win *s, int w, int h)
     C_MAKE(s->vtc, h * w, char);
     C_MAKE(s->vutc, h * w, u32b);
 
+    /* Make the optional RGB cell arrays */
+    C_MAKE(s->rgb, h, term_rgb_cell*);
+    C_MAKE(s->vrgb, h * w, term_rgb_cell);
 
     /* Prepare the window access arrays */
     for (y = 0; y < h; y++)
@@ -461,6 +468,8 @@ static errr term_win_init(term_win *s, int w, int h)
         s->ta[y] = s->vta + w * y;
         s->tc[y] = s->vtc + w * y;
         s->utc[y] = s->vutc + w * y;
+
+        s->rgb[y] = s->vrgb + w * y;
     }
 
     /* Success */
@@ -494,6 +503,9 @@ static errr term_win_copy(term_win *s, term_win *f, int w, int h)
         char *s_tcc = s->tc[y];
         u32b *s_utc = s->utc[y];
 
+        term_rgb_cell *f_rgb = f->rgb[y];
+        term_rgb_cell *s_rgb = s->rgb[y];
+
         for (x = 0; x < w; x++)
         {
             *s_aa++ = *f_aa++;
@@ -503,6 +515,8 @@ static errr term_win_copy(term_win *s, term_win *f, int w, int h)
             *s_taa++ = *f_taa++;
             *s_tcc++ = *f_tcc++;
             *s_utc++ = *f_utc++;
+
+            *s_rgb++ = *f_rgb++;
         }
     }
 
@@ -632,15 +646,57 @@ static void _term_mark_changed(int x, int y)
     if (x > Term->x2[y]) Term->x2[y] = x;
 }
 
+static bool _term_rgb_cell_is_clear(term_rgb_cell *cell)
+{
+    return !cell->valid && !cell->border && !cell->fg && !cell->bg && !cell->border_rgb;
+}
+
+static bool _term_rgb_cell_equal(term_win *a, term_win *b, int x, int y)
+{
+    term_rgb_cell *ar = &a->rgb[y][x];
+    term_rgb_cell *br = &b->rgb[y][x];
+
+    return (ar->valid == br->valid) && (ar->border == br->border) &&
+        (ar->fg == br->fg) && (ar->bg == br->bg) &&
+        (ar->border_rgb == br->border_rgb);
+}
+
+static void _term_rgb_cell_copy(term_win *dst, term_win *src, int x, int y)
+{
+    dst->rgb[y][x] = src->rgb[y][x];
+}
+
+static void _term_rgb_cell_clear(term_rgb_cell *cell)
+{
+    cell->valid = 0;
+    cell->border = 0;
+    cell->fg = 0;
+    cell->bg = 0;
+    cell->border_rgb = 0;
+}
+
+static bool _term_queue_clear_rgb_cell(term_win *scrn, int x, int y)
+{
+    term_rgb_cell *cell = &scrn->rgb[y][x];
+
+    if (_term_rgb_cell_is_clear(cell)) return FALSE;
+
+    _term_rgb_cell_clear(cell);
+    _term_mark_changed(x, y);
+    return TRUE;
+}
+
 static bool _term_queue_clear_cell(term_win *scrn, int x, int y)
 {
     byte a = Term->attr_blank;
     char c = Term->char_blank;
     u32b uc = (byte)c;
+    term_rgb_cell *rgb = &scrn->rgb[y][x];
 
     if ((scrn->a[y][x] == a) && (scrn->c[y][x] == c) &&
         (scrn->uc[y][x] == uc) && (scrn->ta[y][x] == 0) &&
-        (scrn->tc[y][x] == 0) && (scrn->utc[y][x] == 0))
+        (scrn->tc[y][x] == 0) && (scrn->utc[y][x] == 0) &&
+        _term_rgb_cell_is_clear(rgb))
     {
         return FALSE;
     }
@@ -651,6 +707,7 @@ static bool _term_queue_clear_cell(term_win *scrn, int x, int y)
     scrn->ta[y][x] = 0;
     scrn->tc[y][x] = 0;
     scrn->utc[y][x] = 0;
+    _term_rgb_cell_clear(rgb);
     _term_mark_changed(x, y);
     return TRUE;
 }
@@ -684,13 +741,20 @@ void Term_queue_char(int x, int y, byte a, char c, byte ta, char tc)
 
     u32b uc = (byte)c;
     u32b utc = (byte)tc;
+    bool rgb_changed;
 
     _term_queue_clear_unicode_trails(scrn, x, y);
+    rgb_changed = _term_queue_clear_rgb_cell(scrn, x, y);
 
     /* Hack -- Ignore non-changes */
     if ((*scr_aa == a) && (*scr_cc == c) &&
          (*scr_uc == uc) && (*scr_taa == ta) &&
-         (*scr_tcc == tc) && (*scr_utc == utc)) return;
+         (*scr_tcc == tc) && (*scr_utc == utc))
+    {
+        if (rgb_changed && ((scrn->a[y][x] & AF_BIGTILE2) == AF_BIGTILE2))
+            if ((x - 1) < Term->x1[y]) Term->x1[y]--;
+        return;
+    }
 
     /* Save the "literal" information */
     *scr_aa = a;
@@ -784,12 +848,16 @@ void Term_queue_line(int x, int y, int n, byte *a, char *c, byte *ta, char *tc)
     byte *scr_taa = &scrn->ta[y][x];
     char *scr_tcc = &scrn->tc[y][x];
     u32b *scr_utc = &scrn->utc[y][x];
+    term_rgb_cell *scr_rgb = &scrn->rgb[y][x];
 
     while (n--)
     {
+        bool rgb_changed = !_term_rgb_cell_is_clear(scr_rgb);
+
         /* Hack -- Ignore non-changes */
         if ((*scr_aa == *a) && (*scr_cc == *c) && (*scr_uc == (byte)*c) &&
-            (*scr_taa == *ta) && (*scr_tcc == *tc) && (*scr_utc == (byte)*tc))
+            (*scr_taa == *ta) && (*scr_tcc == *tc) && (*scr_utc == (byte)*tc) &&
+            !rgb_changed)
         {
             x++;
             a++;
@@ -802,8 +870,12 @@ void Term_queue_line(int x, int y, int n, byte *a, char *c, byte *ta, char *tc)
             scr_cc++;
             scr_taa++;
             scr_tcc++;
+            scr_rgb++;
             continue;
         }
+
+        _term_rgb_cell_clear(scr_rgb);
+        scr_rgb++;
 
         /* Save the "literal" information */
         *scr_taa++ = *ta++;
@@ -859,6 +931,7 @@ void Term_queue_chars(int x, int y, int n, byte a, cptr s)
     byte *scr_taa = Term->scr->ta[y];
     char *scr_tcc = Term->scr->tc[y];
     u32b *scr_utc = Term->scr->utc[y];
+    term_rgb_cell *scr_rgb = Term->scr->rgb[y];
 
 
     /* Queue the attr/chars */
@@ -876,11 +949,12 @@ void Term_queue_chars(int x, int y, int n, byte a, cptr s)
         byte ota = scr_taa[x];
         char otc = scr_tcc[x];
         u32b outc = scr_utc[x];
+        bool rgb_changed = !_term_rgb_cell_is_clear(&scr_rgb[x]);
 
         _term_queue_clear_unicode_trails(Term->scr, x, y);
 
         /* Hack -- Ignore non-changes */
-        if ((oa == a) && (oc == c) && (ouc == cp) && (ota == 0) && (otc == 0) && (outc == 0))
+        if ((oa == a) && (oc == c) && (ouc == cp) && (ota == 0) && (otc == 0) && (outc == 0) && !rgb_changed)
         {
             /* No change */
         }
@@ -894,6 +968,7 @@ void Term_queue_chars(int x, int y, int n, byte a, cptr s)
             scr_taa[x] = 0;
             scr_tcc[x] = 0;
             scr_utc[x] = 0;
+            _term_rgb_cell_clear(&scr_rgb[x]);
 
             /* Note the "range" of window updates */
             if (x1 < 0) x1 = x;
@@ -910,8 +985,9 @@ void Term_queue_chars(int x, int y, int n, byte a, cptr s)
             ota = scr_taa[tx];
             otc = scr_tcc[tx];
             outc = scr_utc[tx];
+            rgb_changed = !_term_rgb_cell_is_clear(&scr_rgb[tx]);
 
-            if ((oa != a) || (oc != ' ') || (ouc != TERM_UC_WIDE_TRAIL) || (ota != 0) || (otc != 0) || (outc != 0))
+            if ((oa != a) || (oc != ' ') || (ouc != TERM_UC_WIDE_TRAIL) || (ota != 0) || (otc != 0) || (outc != 0) || rgb_changed)
             {
                 scr_aa[tx] = a;
                 scr_cc[tx] = ' ';
@@ -919,6 +995,7 @@ void Term_queue_chars(int x, int y, int n, byte a, cptr s)
                 scr_taa[tx] = 0;
                 scr_tcc[tx] = 0;
                 scr_utc[tx] = 0;
+                _term_rgb_cell_clear(&scr_rgb[tx]);
 
                 if (x1 < 0) x1 = tx;
                 x2 = tx;
@@ -947,6 +1024,74 @@ void Term_queue_chars(int x, int y, int n, byte a, cptr s)
         if (x1 < Term->x1[y]) Term->x1[y] = x1;
         if (x2 > Term->x2[y]) Term->x2[y] = x2;
     }
+}
+
+/*
+ * Attach optional truecolor foreground/background data to a queued cell.
+ *
+ * This is an additive visual layer: normal attr/char state remains the
+ * authoritative terminal content, and backends that do not understand RGB
+ * simply ignore this metadata.
+ */
+void Term_queue_rgb(int x, int y, u32b fg, u32b bg)
+{
+    term_rgb_cell *cell;
+
+    if (!Term || !Term->scr || !Term->scr->rgb) return;
+    if ((x < 0) || (x >= Term->wid) || (y < 0) || (y >= Term->hgt)) return;
+
+    cell = &Term->scr->rgb[y][x];
+    if (cell->valid && (cell->fg == fg) && (cell->bg == bg)) return;
+
+    cell->valid = 1;
+    cell->fg = fg;
+    cell->bg = bg;
+    _term_mark_changed(x, y);
+}
+
+void Term_queue_rgb_border(int x, int y, byte border, u32b rgb)
+{
+    term_rgb_cell *cell;
+
+    if (!Term || !Term->scr || !Term->scr->rgb) return;
+    if ((x < 0) || (x >= Term->wid) || (y < 0) || (y >= Term->hgt)) return;
+
+    cell = &Term->scr->rgb[y][x];
+    if ((cell->border == border) && (cell->border_rgb == rgb)) return;
+
+    cell->border = border;
+    cell->border_rgb = border ? rgb : 0;
+    _term_mark_changed(x, y);
+}
+
+bool Term_rgb_at(int x, int y, u32b *fg, u32b *bg)
+{
+    term_rgb_cell *cell;
+
+    if (!Term || !Term->old || !Term->old->rgb) return FALSE;
+    if ((x < 0) || (x >= Term->wid) || (y < 0) || (y >= Term->hgt)) return FALSE;
+
+    cell = &Term->old->rgb[y][x];
+    if (!cell->valid) return FALSE;
+
+    if (fg) *fg = cell->fg;
+    if (bg) *bg = cell->bg;
+    return TRUE;
+}
+
+bool Term_rgb_border_at(int x, int y, byte *border, u32b *rgb)
+{
+    term_rgb_cell *cell;
+
+    if (!Term || !Term->old || !Term->old->rgb) return FALSE;
+    if ((x < 0) || (x >= Term->wid) || (y < 0) || (y >= Term->hgt)) return FALSE;
+
+    cell = &Term->old->rgb[y][x];
+    if (!cell->border) return FALSE;
+
+    if (border) *border = cell->border;
+    if (rgb) *rgb = cell->border_rgb;
+    return TRUE;
 }
 
 
@@ -1022,7 +1167,8 @@ static void Term_fresh_row_pict(int y, int x1, int x2)
         ntc = scr_tcc[x];
 
         /* Handle unchanged grids */
-        if ((na == oa) && (nc == oc) && (nuc == ouc) && (nta == ota) && (ntc == otc) && (scr_utc[x] == old_utc[x]))
+        if ((na == oa) && (nc == oc) && (nuc == ouc) && (nta == ota) && (ntc == otc) &&
+            (scr_utc[x] == old_utc[x]) && _term_rgb_cell_equal(Term->old, Term->scr, x, y))
         {
             if ((nuc == TERM_UC_WIDE_TRAIL) && fn)
             {
@@ -1052,6 +1198,7 @@ static void Term_fresh_row_pict(int y, int x1, int x2)
         old_taa[x] = nta;
         old_tcc[x] = ntc;
         old_utc[x] = scr_utc[x];
+        _term_rgb_cell_copy(Term->old, Term->scr, x, y);
 
         /* Restart and Advance */
         if (fn++ == 0) fx = x;
@@ -1140,7 +1287,8 @@ static void Term_fresh_row_both(int y, int x1, int x2)
 
         /* Handle unchanged grids */
         if ((na == oa) && (nc == oc) && (nuc == ouc) &&
-            (nta == ota) && (ntc == otc) && (scr_utc[x] == old_utc[x]))
+            (nta == ota) && (ntc == otc) && (scr_utc[x] == old_utc[x]) &&
+            _term_rgb_cell_equal(Term->old, Term->scr, x, y))
         {
             if ((nuc == TERM_UC_WIDE_TRAIL) && fn)
             {
@@ -1179,6 +1327,7 @@ static void Term_fresh_row_both(int y, int x1, int x2)
         old_taa[x] = nta;
         old_tcc[x] = ntc;
         old_utc[x] = scr_utc[x];
+        _term_rgb_cell_copy(Term->old, Term->scr, x, y);
 
         /* 2nd byte of bigtile */
         if ((na & AF_BIGTILE2) == AF_BIGTILE2) continue;
@@ -1313,7 +1462,8 @@ static void Term_fresh_row_text(int y, int x1, int x2)
         nuc = scr_uc[x];
 
         /* Handle unchanged grids */
-        if ((na == oa) && (nc == oc) && (nuc == ouc))
+        if ((na == oa) && (nc == oc) && (nuc == ouc) &&
+            _term_rgb_cell_equal(Term->old, Term->scr, x, y))
 
         {
             if ((nuc == TERM_UC_WIDE_TRAIL) && fn)
@@ -1349,6 +1499,7 @@ static void Term_fresh_row_text(int y, int x1, int x2)
         old_aa[x] = na;
         old_cc[x] = nc;
         old_uc[x] = nuc;
+        _term_rgb_cell_copy(Term->old, Term->scr, x, y);
 
         /* Notice new color */
         if (fa != na)
@@ -1566,6 +1717,7 @@ errr Term_fresh(void)
 
             byte *taa = old->ta[y];
             char *tcc = old->tc[y];
+            term_rgb_cell *rgb = old->rgb[y];
 
 
             /* Wipe each column */
@@ -1577,6 +1729,9 @@ errr Term_fresh(void)
 
                 *taa++ = na;
                 *tcc++ = nc;
+
+                _term_rgb_cell_clear(rgb);
+                rgb++;
             }
         }
 
@@ -2059,6 +2214,7 @@ errr Term_erase(int x, int y, int n)
     byte *scr_taa;
     char *scr_tcc;
     u32b *scr_utc;
+    term_rgb_cell *scr_rgb;
 
     /* Place cursor */
     if (Term_gotoxy(x, y)) return (-1);
@@ -2074,6 +2230,7 @@ errr Term_erase(int x, int y, int n)
     scr_taa = Term->scr->ta[y];
     scr_tcc = Term->scr->tc[y];
     scr_utc = Term->scr->utc[y];
+    scr_rgb = Term->scr->rgb[y];
 
     if (n > 0 && (scr_aa[x] & AF_BIGTILE2) == AF_BIGTILE2)
     {
@@ -2092,9 +2249,10 @@ errr Term_erase(int x, int y, int n)
         int oa = scr_aa[x];
         int oc = scr_cc[x];
         u32b ouc = scr_uc[x];
+        bool rgb_changed = !_term_rgb_cell_is_clear(&scr_rgb[x]);
 
         /* Hack -- Ignore "non-changes" */
-        if ((oa == na) && (oc == nc) && (ouc == (byte)nc) && (scr_utc[x] == 0)) continue;
+        if ((oa == na) && (oc == nc) && (ouc == (byte)nc) && (scr_utc[x] == 0) && !rgb_changed) continue;
 
         /* Save the "literal" information */
         scr_aa[x] = na;
@@ -2104,6 +2262,7 @@ errr Term_erase(int x, int y, int n)
         scr_taa[x] = 0;
         scr_tcc[x] = 0;
         scr_utc[x] = 0;
+        _term_rgb_cell_clear(&scr_rgb[x]);
 
         /* Track minimum changed column */
         if (x1 < 0) x1 = x;
@@ -2160,6 +2319,7 @@ errr Term_clear(void)
         byte *scr_taa = Term->scr->ta[y];
         char *scr_tcc = Term->scr->tc[y];
         u32b *scr_utc = Term->scr->utc[y];
+        term_rgb_cell *scr_rgb = Term->scr->rgb[y];
 
         /* Wipe each column */
         for (x = 0; x < w; x++)
@@ -2171,6 +2331,7 @@ errr Term_clear(void)
             scr_taa[x] = 0;
             scr_tcc[x] = 0;
             scr_utc[x] = 0;
+            _term_rgb_cell_clear(&scr_rgb[x]);
         }
 
         /* This row has changed */

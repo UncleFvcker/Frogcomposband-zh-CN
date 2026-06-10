@@ -24,6 +24,7 @@ static byte display_autopick;
 static int match_autopick;
 static object_type *autopick_obj;
 static int feat_priority;
+static int graph_display_feat;
 
 /*
  * Distance between two points via Newton-Raphson technique
@@ -983,6 +984,9 @@ void map_info(int y, int x, byte *ap, char *cp, byte *tap, char *tcp)
     byte a;
     byte c;
 
+    feat_priority = -1;
+    graph_display_feat = feat_none;
+
     /* Boring grids (floors, etc) */
     if (!have_flag(f_ptr->flags, FF_REMEMBER))
     {
@@ -1197,6 +1201,7 @@ void map_info(int y, int x, byte *ap, char *cp, byte *tap, char *tcp)
     }
 
     if (feat_priority == -1) feat_priority = f_ptr->priority;
+    graph_display_feat = feat;
 
     /* Save the terrain info for the transparency effects */
     (*tap) = a;
@@ -1474,6 +1479,442 @@ void py_get_display_char_attr(char *c, byte *a)
 }
 
 /*
+ * Experimental Brogue-style visual layer for the graph branch.
+ *
+ * The existing attr/char result from map_info() remains authoritative.
+ * This layer only adds optional RGB foreground/background metadata for
+ * text-mode backends that know how to draw it.
+ */
+static bool _graph_visuals = TRUE;
+
+typedef enum {
+    GRAPH_VIS_VISIBLE,
+    GRAPH_VIS_LIT,
+    GRAPH_VIS_DIM,
+    GRAPH_VIS_MEMORY
+} graph_visual_state;
+
+#define GRAPH_RGB(R, G, B) ((((u32b)(R) & 0xFF) << 16) | (((u32b)(G) & 0xFF) << 8) | ((u32b)(B) & 0xFF))
+
+static int _graph_clamp_channel(int v)
+{
+    if (v < 0) return 0;
+    if (v > 255) return 255;
+    return v;
+}
+
+static int _graph_rgb_r(u32b c) { return (int)((c >> 16) & 0xFF); }
+static int _graph_rgb_g(u32b c) { return (int)((c >> 8) & 0xFF); }
+static int _graph_rgb_b(u32b c) { return (int)(c & 0xFF); }
+
+static u32b _graph_rgb_make(int r, int g, int b)
+{
+    return GRAPH_RGB(_graph_clamp_channel(r), _graph_clamp_channel(g), _graph_clamp_channel(b));
+}
+
+static u32b _graph_rgb_adjust(u32b c, int delta)
+{
+    return _graph_rgb_make(_graph_rgb_r(c) + delta, _graph_rgb_g(c) + delta, _graph_rgb_b(c) + delta);
+}
+
+static u32b _graph_rgb_scale(u32b c, int pct)
+{
+    return _graph_rgb_make(_graph_rgb_r(c) * pct / 100, _graph_rgb_g(c) * pct / 100, _graph_rgb_b(c) * pct / 100);
+}
+
+static u32b _graph_rgb_blend(u32b a, u32b b, int pct)
+{
+    return _graph_rgb_make(
+        (_graph_rgb_r(a) * (100 - pct) + _graph_rgb_r(b) * pct) / 100,
+        (_graph_rgb_g(a) * (100 - pct) + _graph_rgb_g(b) * pct) / 100,
+        (_graph_rgb_b(a) * (100 - pct) + _graph_rgb_b(b) * pct) / 100);
+}
+
+static int _graph_luma(u32b c)
+{
+    return (_graph_rgb_r(c) * 30 + _graph_rgb_g(c) * 59 + _graph_rgb_b(c) * 11) / 100;
+}
+
+static u32b _graph_rgb_desaturate(u32b c, int pct)
+{
+    int luma = _graph_luma(c);
+    return _graph_rgb_blend(c, GRAPH_RGB(luma, luma, luma), pct);
+}
+
+static bool _graph_cell_is_memory(cave_type *c_ptr)
+{
+    return (c_ptr->info & CAVE_MARK) && !(c_ptr->info & (CAVE_VIEW | CAVE_LITE | CAVE_MNLT));
+}
+
+static graph_visual_state _graph_cell_state(cave_type *c_ptr)
+{
+    if (_graph_cell_is_memory(c_ptr)) return GRAPH_VIS_MEMORY;
+    if (p_ptr->blind) return GRAPH_VIS_DIM;
+    if (c_ptr->info & (CAVE_LITE | CAVE_MNLT)) return GRAPH_VIS_LIT;
+    if (c_ptr->info & CAVE_VIEW) return GRAPH_VIS_VISIBLE;
+    return GRAPH_VIS_DIM;
+}
+
+static u32b _graph_attr_rgb(byte a)
+{
+    a &= COLOR_MASK;
+    return GRAPH_RGB(angband_color_table[a][1], angband_color_table[a][2], angband_color_table[a][3]);
+}
+
+static bool _graph_feature_is_walllike(feature_type *f_ptr)
+{
+    if (have_flag(f_ptr->flags, FF_TREE) || have_flag(f_ptr->flags, FF_PLANT) ||
+        have_flag(f_ptr->flags, FF_DOOR) || have_flag(f_ptr->flags, FF_STORE) ||
+        have_flag(f_ptr->flags, FF_BLDG) || have_flag(f_ptr->flags, FF_STAIRS) ||
+        have_flag(f_ptr->flags, FF_LESS) || have_flag(f_ptr->flags, FF_MORE) ||
+        have_flag(f_ptr->flags, FF_ENTRANCE) || have_flag(f_ptr->flags, FF_TRAP) ||
+        have_flag(f_ptr->flags, FF_MON_TRAP) || have_flag(f_ptr->flags, FF_GLYPH) ||
+        have_flag(f_ptr->flags, FF_PATTERN) || have_flag(f_ptr->flags, FF_WEB))
+    {
+        return FALSE;
+    }
+
+    return have_flag(f_ptr->flags, FF_WALL) || have_flag(f_ptr->flags, FF_PERMANENT) ||
+        have_flag(f_ptr->flags, FF_MOUNTAIN) ||
+        (!have_flag(f_ptr->flags, FF_LOS) && !have_flag(f_ptr->flags, FF_MOVE));
+}
+
+static u32b _graph_material_bg(feature_type *f_ptr, int feat)
+{
+    if (feat == feat_none)
+        return GRAPH_RGB(0, 0, 0);
+    if (have_flag(f_ptr->flags, FF_LAVA))
+        return have_flag(f_ptr->flags, FF_DEEP) ? GRAPH_RGB(70, 14, 5) : GRAPH_RGB(88, 28, 8);
+    if (have_flag(f_ptr->flags, FF_WATER))
+        return have_flag(f_ptr->flags, FF_DEEP) ? GRAPH_RGB(4, 18, 42) : GRAPH_RGB(8, 38, 56);
+    if (have_flag(f_ptr->flags, FF_ACID))
+        return GRAPH_RGB(28, 43, 18);
+    if (have_flag(f_ptr->flags, FF_SNOW) || have_flag(f_ptr->flags, FF_SLUSH))
+        return GRAPH_RGB(34, 40, 43);
+    if (have_flag(f_ptr->flags, FF_TREE) || have_flag(f_ptr->flags, FF_PLANT))
+        return GRAPH_RGB(10, 34, 17);
+    if (have_flag(f_ptr->flags, FF_GLASS) || have_flag(f_ptr->flags, FF_MIRROR))
+        return GRAPH_RGB(18, 31, 38);
+    if (have_flag(f_ptr->flags, FF_PATTERN))
+        return GRAPH_RGB(32, 19, 45);
+    if (have_flag(f_ptr->flags, FF_WEB))
+        return GRAPH_RGB(26, 28, 31);
+    if (have_flag(f_ptr->flags, FF_GLYPH))
+        return GRAPH_RGB(28, 23, 45);
+    if (have_flag(f_ptr->flags, FF_TRAP) || have_flag(f_ptr->flags, FF_MON_TRAP))
+        return GRAPH_RGB(35, 23, 35);
+    if (have_flag(f_ptr->flags, FF_DOOR))
+        return GRAPH_RGB(44, 29, 17);
+    if (have_flag(f_ptr->flags, FF_STAIRS) || have_flag(f_ptr->flags, FF_LESS) ||
+        have_flag(f_ptr->flags, FF_MORE) || have_flag(f_ptr->flags, FF_ENTRANCE))
+        return GRAPH_RGB(25, 25, 18);
+    if (have_flag(f_ptr->flags, FF_MOUNTAIN))
+        return GRAPH_RGB(46, 43, 42);
+    if (_graph_feature_is_walllike(f_ptr))
+        return have_flag(f_ptr->flags, FF_PERMANENT) ? graph_permawall_rgb : graph_wall_rgb;
+    if (have_flag(f_ptr->flags, FF_TOWN) || have_flag(f_ptr->flags, FF_BLDG))
+        return GRAPH_RGB(24, 22, 20);
+    if (have_flag(f_ptr->flags, FF_FLOOR) || have_flag(f_ptr->flags, FF_MOVE))
+        return graph_floor_rgb;
+    return GRAPH_RGB(16, 15, 20);
+}
+
+static u32b _graph_material_accent(feature_type *f_ptr)
+{
+    if (have_flag(f_ptr->flags, FF_LAVA))
+        return GRAPH_RGB(225, 82, 22);
+    if (have_flag(f_ptr->flags, FF_WATER))
+        return GRAPH_RGB(52, 129, 158);
+    if (have_flag(f_ptr->flags, FF_ACID))
+        return GRAPH_RGB(118, 172, 54);
+    if (have_flag(f_ptr->flags, FF_SNOW) || have_flag(f_ptr->flags, FF_SLUSH))
+        return GRAPH_RGB(170, 185, 190);
+    if (have_flag(f_ptr->flags, FF_TREE) || have_flag(f_ptr->flags, FF_PLANT))
+        return GRAPH_RGB(61, 118, 64);
+    if (have_flag(f_ptr->flags, FF_GLASS) || have_flag(f_ptr->flags, FF_MIRROR))
+        return GRAPH_RGB(118, 178, 190);
+    if (have_flag(f_ptr->flags, FF_DOOR))
+        return GRAPH_RGB(150, 100, 52);
+    if (_graph_feature_is_walllike(f_ptr))
+        return have_flag(f_ptr->flags, FF_PERMANENT) ? GRAPH_RGB(128, 132, 142) : GRAPH_RGB(110, 104, 96);
+    if (have_flag(f_ptr->flags, FF_FLOOR) || have_flag(f_ptr->flags, FF_MOVE))
+        return GRAPH_RGB(92, 98, 88);
+    return GRAPH_RGB(120, 118, 112);
+}
+
+static bool _graph_feature_uses_solid_fill(feature_type *f_ptr)
+{
+    if (have_flag(f_ptr->flags, FF_DOOR) || have_flag(f_ptr->flags, FF_TRAP) ||
+        have_flag(f_ptr->flags, FF_MON_TRAP) || have_flag(f_ptr->flags, FF_GLYPH) ||
+        have_flag(f_ptr->flags, FF_PATTERN) || have_flag(f_ptr->flags, FF_WEB) ||
+        have_flag(f_ptr->flags, FF_STAIRS) || have_flag(f_ptr->flags, FF_LESS) ||
+        have_flag(f_ptr->flags, FF_MORE) || have_flag(f_ptr->flags, FF_ENTRANCE) ||
+        have_flag(f_ptr->flags, FF_QUEST_ENTER) || have_flag(f_ptr->flags, FF_STORE) ||
+        have_flag(f_ptr->flags, FF_BLDG))
+    {
+        return FALSE;
+    }
+
+    if (_graph_feature_is_walllike(f_ptr)) return TRUE;
+    if (have_flag(f_ptr->flags, FF_FLOOR) || have_flag(f_ptr->flags, FF_MOVE)) return TRUE;
+    if (have_flag(f_ptr->flags, FF_WATER) || have_flag(f_ptr->flags, FF_LAVA)) return TRUE;
+    if (have_flag(f_ptr->flags, FF_GLASS) || have_flag(f_ptr->flags, FF_MIRROR)) return TRUE;
+    if (have_flag(f_ptr->flags, FF_ACID) || have_flag(f_ptr->flags, FF_SNOW) ||
+        have_flag(f_ptr->flags, FF_SLUSH) || have_flag(f_ptr->flags, FF_MOUNTAIN))
+    {
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+static bool _graph_cell_can_connect_wall(cave_type *c_ptr)
+{
+    if (p_ptr->blind) return FALSE;
+    return (c_ptr->info & (CAVE_MARK | CAVE_VIEW | CAVE_LITE | CAVE_MNLT)) != 0;
+}
+
+static bool _graph_neighbor_is_walllike(int y, int x)
+{
+    cave_type *c_ptr;
+    int feat;
+
+    if (!in_bounds2(y, x)) return FALSE;
+
+    c_ptr = &cave[y][x];
+    if (!_graph_cell_can_connect_wall(c_ptr)) return FALSE;
+
+    feat = get_feat_mimic(c_ptr);
+    if ((feat < 0) || (feat >= max_f_idx) || (feat == feat_none)) return FALSE;
+
+    return _graph_feature_is_walllike(&f_info[feat]);
+}
+
+static byte _graph_wall_border_mask(int y, int x)
+{
+    byte border = 0;
+
+    if (!_graph_neighbor_is_walllike(y - 1, x)) border |= TERM_RGB_BORDER_TOP;
+    if (!_graph_neighbor_is_walllike(y, x + 1)) border |= TERM_RGB_BORDER_RIGHT;
+    if (!_graph_neighbor_is_walllike(y + 1, x)) border |= TERM_RGB_BORDER_BOTTOM;
+    if (!_graph_neighbor_is_walllike(y, x - 1)) border |= TERM_RGB_BORDER_LEFT;
+
+    return border;
+}
+
+static void _graph_queue_border(int ui_x, int ui_y, bool bigchar, byte border, u32b rgb)
+{
+    if (!border) return;
+
+    if (bigchar && use_bigtile && ui_x + 1 < Term->wid)
+    {
+        byte left_border = border & (TERM_RGB_BORDER_TOP | TERM_RGB_BORDER_BOTTOM | TERM_RGB_BORDER_LEFT);
+        byte right_border = border & (TERM_RGB_BORDER_TOP | TERM_RGB_BORDER_BOTTOM | TERM_RGB_BORDER_RIGHT);
+
+        Term_queue_rgb_border(ui_x, ui_y, left_border, rgb);
+        Term_queue_rgb_border(ui_x + 1, ui_y, right_border, rgb);
+    }
+    else
+    {
+        Term_queue_rgb_border(ui_x, ui_y, border, rgb);
+    }
+}
+
+static u32b _graph_wall_border_rgb(u32b bg, feature_type *f_ptr, graph_visual_state state)
+{
+    u32b accent = _graph_material_accent(f_ptr);
+    u32b border = _graph_rgb_blend(bg, accent, 42);
+
+    border = _graph_rgb_blend(border, GRAPH_RGB(218, 214, 194), 20);
+
+    if (state == GRAPH_VIS_LIT)
+        border = _graph_rgb_blend(_graph_rgb_adjust(border, 8), GRAPH_RGB(240, 221, 154), 18);
+    else if (state == GRAPH_VIS_DIM)
+        border = _graph_rgb_desaturate(_graph_rgb_scale(border, 82), 20);
+    else if (state == GRAPH_VIS_MEMORY)
+        border = _graph_rgb_desaturate(_graph_rgb_scale(border, 58), 55);
+
+    return border;
+}
+
+static void _graph_queue_wall_border(int cave_y, int cave_x, int ui_x, int ui_y, bool bigchar, u32b rgb)
+{
+    byte border = _graph_wall_border_mask(cave_y, cave_x);
+
+    _graph_queue_border(ui_x, ui_y, bigchar, border, rgb);
+}
+
+static int _graph_player_light_mix(cave_type *c_ptr, int y, int x)
+{
+    int radius;
+    int d;
+
+    if (!(c_ptr->info & CAVE_LITE)) return 0;
+
+    radius = p_ptr->cur_lite;
+    if (radius <= 0) return 0;
+
+    d = distance(py, px, y, x);
+    if (d > radius) return 0;
+    if (d <= 1) d = 0;
+
+    return 7 + ((radius - d) * 24) / radius;
+}
+
+static u32b _graph_apply_bg_state(u32b bg, graph_visual_state state, feature_type *f_ptr, cave_type *c_ptr, int y, int x)
+{
+    switch (state)
+    {
+    case GRAPH_VIS_LIT:
+    {
+        int mix = _graph_player_light_mix(c_ptr, y, x);
+        int adjust;
+
+        if (!mix) mix = 18;
+        adjust = 2 + mix / 5;
+
+        if (have_flag(f_ptr->flags, FF_LAVA))
+            return _graph_rgb_blend(_graph_rgb_adjust(bg, adjust + 2), GRAPH_RGB(164, 106, 24), mix);
+        if (have_flag(f_ptr->flags, FF_WATER))
+            return _graph_rgb_blend(_graph_rgb_adjust(bg, adjust), GRAPH_RGB(130, 110, 32), MAX(6, mix - 6));
+        return _graph_rgb_blend(_graph_rgb_adjust(bg, adjust), GRAPH_RGB(184, 150, 34), mix);
+    }
+    case GRAPH_VIS_DIM:
+        return _graph_rgb_desaturate(_graph_rgb_scale(bg, 70), 14);
+    case GRAPH_VIS_MEMORY:
+        return _graph_rgb_blend(_graph_rgb_desaturate(_graph_rgb_scale(bg, 58), 48), GRAPH_RGB(14, 14, 18), 38);
+    case GRAPH_VIS_VISIBLE:
+    default:
+        return _graph_rgb_adjust(bg, 2);
+    }
+}
+
+static u32b _graph_base_bg(cave_type *c_ptr, feature_type *f_ptr, int feat, int y, int x, graph_visual_state state)
+{
+    u32b bg = _graph_material_bg(f_ptr, feat);
+
+    if (p_ptr->blind)
+        bg = _graph_rgb_scale(bg, 45);
+    else
+        bg = _graph_apply_bg_state(bg, state, f_ptr, c_ptr, y, x);
+
+    return bg;
+}
+
+static u32b _graph_apply_fg_material(u32b fg, feature_type *f_ptr)
+{
+    u32b accent = _graph_material_accent(f_ptr);
+    int mix = 8;
+
+    if (_graph_feature_is_walllike(f_ptr))
+        mix = 18;
+    else if (have_flag(f_ptr->flags, FF_WATER) || have_flag(f_ptr->flags, FF_LAVA))
+        mix = 14;
+    else if (have_flag(f_ptr->flags, FF_TREE) || have_flag(f_ptr->flags, FF_PLANT))
+        mix = 12;
+    else if (have_flag(f_ptr->flags, FF_FLOOR) || have_flag(f_ptr->flags, FF_MOVE))
+        mix = 6;
+
+    fg = _graph_rgb_blend(fg, accent, mix);
+    return fg;
+}
+
+static u32b _graph_apply_fg_state(u32b fg, u32b bg, graph_visual_state state)
+{
+    switch (state)
+    {
+    case GRAPH_VIS_LIT:
+        return _graph_rgb_blend(_graph_rgb_adjust(fg, 3), GRAPH_RGB(236, 214, 154), 10);
+    case GRAPH_VIS_DIM:
+        return _graph_rgb_desaturate(_graph_rgb_scale(fg, 80), 12);
+    case GRAPH_VIS_MEMORY:
+        return _graph_rgb_blend(_graph_rgb_scale(_graph_rgb_desaturate(fg, 52), 62), bg, 14);
+    case GRAPH_VIS_VISIBLE:
+    default:
+        return fg;
+    }
+}
+
+static u32b _graph_ensure_contrast(u32b fg, u32b bg, int min_diff)
+{
+    int bg_luma = _graph_luma(bg);
+    int diff = _graph_luma(fg) - bg_luma;
+    int pct;
+
+    if (diff < 0) diff = -diff;
+    if (diff >= min_diff) return fg;
+
+    for (pct = 18; pct <= 72; pct += 18)
+    {
+        u32b adjusted = (bg_luma < 128) ?
+            _graph_rgb_blend(fg, GRAPH_RGB(255, 255, 255), pct) :
+            _graph_rgb_blend(fg, GRAPH_RGB(0, 0, 0), pct);
+        int adjusted_diff = _graph_luma(adjusted) - bg_luma;
+
+        if (adjusted_diff < 0) adjusted_diff = -adjusted_diff;
+        if (adjusted_diff >= min_diff) return adjusted;
+    }
+
+    return fg;
+}
+
+static void _graph_queue_map_rgb(int cave_y, int cave_x, int ui_x, int ui_y, byte a, bool bigchar)
+{
+    cave_type *c_ptr;
+    int feat;
+    feature_type *f_ptr;
+    u32b fg, bg;
+    graph_visual_state state;
+    bool terrain_glyph;
+    bool solid_fill;
+
+    if (!_graph_visuals || use_graphics) return;
+    if (!in_bounds2(cave_y, cave_x)) return;
+
+    c_ptr = &cave[cave_y][cave_x];
+    feat = graph_display_feat;
+    if ((feat < 0) || (feat >= max_f_idx) || (feat == feat_none)) return;
+    f_ptr = &f_info[feat];
+    state = _graph_cell_state(c_ptr);
+    terrain_glyph = feat_priority < 20;
+    solid_fill = terrain_glyph && _graph_feature_uses_solid_fill(f_ptr);
+
+    bg = _graph_base_bg(c_ptr, f_ptr, feat, cave_y, cave_x, state);
+    fg = _graph_attr_rgb(a);
+
+    if (terrain_glyph)
+        fg = _graph_apply_fg_material(fg, f_ptr);
+    else
+        fg = _graph_rgb_blend(fg, GRAPH_RGB(255, 255, 255), 10);
+
+    fg = _graph_apply_fg_state(fg, bg, state);
+
+    if (solid_fill)
+        fg = bg;
+    else
+        fg = _graph_ensure_contrast(fg, bg, state == GRAPH_VIS_MEMORY ? 24 : 36);
+
+    Term_queue_rgb(ui_x, ui_y, fg, bg);
+    if (bigchar && use_bigtile && ui_x + 1 < Term->wid)
+        Term_queue_rgb(ui_x + 1, ui_y, fg, bg);
+
+    if (solid_fill && _graph_feature_is_walllike(f_ptr))
+        _graph_queue_wall_border(cave_y, cave_x, ui_x, ui_y, bigchar, _graph_wall_border_rgb(bg, f_ptr, state));
+}
+
+static void _graph_queue_map_bigchar(int cave_y, int cave_x, int ui_x, int ui_y, byte a, char c, byte ta, char tc)
+{
+    Term_queue_bigchar(ui_x, ui_y, a, c, ta, tc);
+    _graph_queue_map_rgb(cave_y, cave_x, ui_x, ui_y, a, TRUE);
+}
+
+static void _graph_queue_map_char(int cave_y, int cave_x, int ui_x, int ui_y, byte a, char c, byte ta, char tc)
+{
+    Term_queue_char(ui_x, ui_y, a, c, ta, tc);
+    _graph_queue_map_rgb(cave_y, cave_x, ui_x, ui_y, a, FALSE);
+}
+
+/*
  * Moves the cursor to a given MAP (y,x) location
  */
 void move_cursor_relative(int row, int col)
@@ -1652,7 +2093,7 @@ void display_dungeon(void)
                 map_info(y, x, &a, &c, &ta, &tc);
 
                 /* Hack -- Queue it */
-                Term_queue_char(x - px + Term->wid / 2 - 1, y - py + Term->hgt / 2 - 1, a, c, ta, tc);
+                _graph_queue_map_char(y, x, x - px + Term->wid / 2 - 1, y - py + Term->hgt / 2 - 1, a, c, ta, tc);
             }
             else
             {
@@ -1694,7 +2135,7 @@ void lite_spot(int y, int x)
             char c, tc;
 
             map_info(y, x, &a, &c, &ta, &tc);
-            Term_queue_bigchar(ui.x, ui.y, a, c, ta, tc);
+            _graph_queue_map_bigchar(y, x, ui.x, ui.y, a, c, ta, tc);
             p_ptr->window |= (PW_OVERHEAD | PW_DUNGEON);
         }
     }
@@ -1743,7 +2184,7 @@ void prt_map(void)
             if (!in_bounds2(cp.y, cp.x)) continue;
 
             map_info(cp.y, cp.x, &a, &c, &ta, &tc);
-            Term_queue_bigchar(uip.x, uip.y, a, c, ta, tc);
+            _graph_queue_map_bigchar(cp.y, cp.x, uip.x, uip.y, a, c, ta, tc);
         }
     }
 
