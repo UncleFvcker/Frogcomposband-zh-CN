@@ -452,6 +452,8 @@ static void term_data_redraw(term_data *td);
  */
 static term_data *my_td;
 
+#define WIN_TERM_BOTTOM_PAD 4
+
 /*
  * Remember normal size of main window when maxmized
  */
@@ -1324,7 +1326,7 @@ static void term_getsize(term_data *td)
 
     /* Window sizes */
     wid = td->cols * td->tile_wid + td->size_ow1 + td->size_ow2;
-    hgt = td->rows * td->tile_hgt + td->size_oh1 + td->size_oh2;
+    hgt = td->rows * td->tile_hgt + td->size_oh1 + td->size_oh2 + WIN_TERM_BOTTOM_PAD;
 
     /* Fake window size */
     rc.left = 0;
@@ -2490,7 +2492,7 @@ static errr Term_xtra_win_clear(void)
     rc.left = td->size_ow1;
     rc.right = rc.left + td->cols * td->tile_wid;
     rc.top = td->size_oh1;
-    rc.bottom = rc.top + td->rows * td->tile_hgt;
+    rc.bottom = rc.top + td->rows * td->tile_hgt + WIN_TERM_BOTTOM_PAD;
 
     /* Erase it */
     SetBkColor(hdc, td->bg_color);
@@ -2774,6 +2776,7 @@ static errr Term_curs_win(int x, int y)
     rc.right = rc.left + tile_wid;
     rc.top = y * tile_hgt + td->size_oh1;
     rc.bottom = rc.top + tile_hgt;
+    if (!td->map_active && y == (int)td->rows - 1) rc.bottom += WIN_TERM_BOTTOM_PAD;
 
     /* Cursor is done as a yellow "box" */
     hdc = td->hDC;
@@ -2816,6 +2819,7 @@ static errr Term_bigcurs_win(int x, int y)
     rc.right = rc.left + 2 * tile_wid;
     rc.top = y * tile_hgt + td->size_oh1;
     rc.bottom = rc.top + tile_hgt;
+    if (y == (int)td->rows - 1) rc.bottom += WIN_TERM_BOTTOM_PAD;
 
     /* Cursor is done as a yellow "box" */
     hdc = td->hDC;
@@ -2844,6 +2848,7 @@ static errr Term_wipe_win(int x, int y, int n)
     rc.right = rc.left + n * td->tile_wid;
     rc.top = y * td->tile_hgt + td->size_oh1;
     rc.bottom = rc.top + td->tile_hgt;
+    if (y == (int)td->rows - 1) rc.bottom += WIN_TERM_BOTTOM_PAD;
 
     hdc = td->hDC;
     SetBkColor(hdc, td->bg_color);
@@ -3001,6 +3006,7 @@ static errr Term_text_win(int x, int y, int n, byte a, const char *s)
     rc.right = rc.left + n * td->tile_wid;
     rc.top = y * td->tile_hgt + td->size_oh1;
     rc.bottom = rc.top + td->tile_hgt;
+    if (y == (int)td->rows - 1) rc.bottom += WIN_TERM_BOTTOM_PAD;
 
     _update_rect_enlarge(td, &rc);
 
@@ -4563,7 +4569,7 @@ LRESULT FAR PASCAL AngbandWndProc(HWND hWnd, UINT uMsg,
             /* Minimum window size is 80x27 */
             rc.left = rc.top = 0;
             rc.right = rc.left + 80 * td->tile_wid + td->size_ow1 + td->size_ow2;
-            rc.bottom = rc.top + 27 * td->tile_hgt + td->size_oh1 + td->size_oh2 + 1;
+            rc.bottom = rc.top + 27 * td->tile_hgt + td->size_oh1 + td->size_oh2 + WIN_TERM_BOTTOM_PAD;
 
             /* Adjust */
             AdjustWindowRectEx(&rc, td->dwStyle, TRUE, td->dwExStyle);
@@ -4972,7 +4978,7 @@ LRESULT FAR PASCAL AngbandListProc(HWND hWnd, UINT uMsg,
 
             rc.left = rc.top = 0;
             rc.right = rc.left + 20 * td->tile_wid + td->size_ow1 + td->size_ow2;
-            rc.bottom = rc.top + 3 * td->tile_hgt + td->size_oh1 + td->size_oh2 + 1;
+            rc.bottom = rc.top + 3 * td->tile_hgt + td->size_oh1 + td->size_oh2 + WIN_TERM_BOTTOM_PAD;
 
             /* Adjust */
             AdjustWindowRectEx(&rc, td->dwStyle, TRUE, td->dwExStyle);
