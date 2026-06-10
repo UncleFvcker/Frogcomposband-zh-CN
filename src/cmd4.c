@@ -2438,6 +2438,20 @@ static cptr lighting_level_str[F_LIT_MAX] =
     "昏暗",
 };
 
+static void _sync_feature_lighting_chars(feature_type *f_ptr, byte old_char, byte new_char)
+{
+    int i;
+    bool force = have_flag(f_ptr->flags, FF_FLOOR);
+
+    if (!force && (old_char == new_char)) return;
+
+    for (i = F_LIT_NS_BEGIN; i < F_LIT_MAX; i++)
+    {
+        if (force || (f_ptr->x_char[i] == old_char))
+            f_ptr->x_char[i] = new_char;
+    }
+}
+
 
 static bool cmd_visuals_aux(int i, int *num, int max)
 {
@@ -2463,6 +2477,210 @@ static bool cmd_visuals_aux(int i, int *num, int max)
     return TRUE;
 }
 
+static void _graph_visuals_color_swatch(int col, int row, u32b rgb)
+{
+    int i;
+
+    for (i = 0; i < 8; i++)
+    {
+        Term_queue_char(col + i, row, TERM_WHITE, ' ', 0, 0);
+        Term_queue_rgb(col + i, row, 0x00FFFFFF, rgb & 0x00FFFFFF);
+    }
+}
+
+static void _graph_visuals_reset_fill_colors(void)
+{
+    graph_wall_rgb = GRAPH_DEFAULT_WALL_RGB;
+    graph_permawall_rgb = GRAPH_DEFAULT_PERMAWALL_RGB;
+    graph_floor_rgb = GRAPH_DEFAULT_FLOOR_RGB;
+}
+
+static cptr _graph_visuals_fill_label(int item)
+{
+    switch (item)
+    {
+    case 0: return "普通墙";
+    case 1: return "永久墙";
+    case 2: return "地面";
+    }
+    return "";
+}
+
+static u32b *_graph_visuals_fill_rgb(int item)
+{
+    switch (item)
+    {
+    case 0: return &graph_wall_rgb;
+    case 1: return &graph_permawall_rgb;
+    case 2: return &graph_floor_rgb;
+    }
+    return &graph_wall_rgb;
+}
+
+static int _graph_visuals_get_channel(u32b rgb, int channel)
+{
+    switch (channel)
+    {
+    case 0: return (int)((rgb >> 16) & 0xFF);
+    case 1: return (int)((rgb >> 8) & 0xFF);
+    case 2: return (int)(rgb & 0xFF);
+    }
+    return 0;
+}
+
+static void _graph_visuals_set_channel(u32b *rgb, int channel, int value)
+{
+    int r = _graph_visuals_get_channel(*rgb, 0);
+    int g = _graph_visuals_get_channel(*rgb, 1);
+    int b = _graph_visuals_get_channel(*rgb, 2);
+
+    if (value < 0) value = 0;
+    if (value > 255) value = 255;
+
+    switch (channel)
+    {
+    case 0: r = value; break;
+    case 1: g = value; break;
+    case 2: b = value; break;
+    }
+
+    *rgb = ((u32b)r << 16) | ((u32b)g << 8) | (u32b)b;
+}
+
+static void _graph_visuals_step_channel(u32b *rgb, int channel, int delta)
+{
+    _graph_visuals_set_channel(rgb, channel, _graph_visuals_get_channel(*rgb, channel) + delta);
+}
+
+static void _graph_visuals_color_bar(int col, int row, int value, u32b rgb)
+{
+    int i;
+    int width = 24;
+    int filled = (value * width + 127) / 255;
+
+    for (i = 0; i < width; i++)
+    {
+        u32b bg = (i < filled) ? rgb : 0x00111111;
+        Term_queue_char(col + i, row, TERM_WHITE, ' ', 0, 0);
+        Term_queue_rgb(col + i, row, 0x00FFFFFF, bg);
+    }
+}
+
+static void _graph_visuals_print_slider(int row, cptr label, int value, u32b rgb, bool selected)
+{
+    Term_putstr(5, row, -1, TERM_WHITE, format("%c %s %3d", selected ? '>' : ' ', label, value));
+    _graph_visuals_color_bar(14, row, value, rgb);
+}
+
+static void _graph_visuals_print_fill_editor(int item, int channel)
+{
+    int i;
+    u32b rgb = *_graph_visuals_fill_rgb(item);
+
+    for (i = 0; i < 3; i++)
+    {
+        Term_putstr(5, 17 + i, -1, TERM_WHITE,
+            format("%c %-10s", (i == item) ? '>' : ' ', _graph_visuals_fill_label(i)));
+        _graph_visuals_color_swatch(18, 17 + i, *_graph_visuals_fill_rgb(i));
+    }
+
+    _graph_visuals_print_slider(20, "红", _graph_visuals_get_channel(rgb, 0), 0x00CC3333, channel == 0);
+    _graph_visuals_print_slider(21, "绿", _graph_visuals_get_channel(rgb, 1), 0x0033AA33, channel == 1);
+    _graph_visuals_print_slider(22, "蓝", _graph_visuals_get_channel(rgb, 2), 0x003366CC, channel == 2);
+}
+
+static void print_visuals_menu(cptr choice_msg);
+
+static void _graph_visuals_edit_fill_colors(bool *need_redraw)
+{
+    int item = 0;
+    int channel = 0;
+
+    while (1)
+    {
+        int i;
+        u32b *rgb = _graph_visuals_fill_rgb(item);
+
+        Term_clear();
+        print_visuals_menu("修改图形色块颜色");
+
+        _graph_visuals_print_fill_editor(item, channel);
+        prt("↑↓选色块 r/g/b选通道 ←→微调 ,/.大步 d默认 ESC确认", 23, 0);
+
+        i = inkey_special(TRUE);
+        if (i == ESCAPE) break;
+
+        switch (i)
+        {
+        case SKEY_UP:
+        case 'k':
+        case 'K':
+            item = (item + 2) % 3;
+            break;
+        case SKEY_DOWN:
+        case 'j':
+        case 'J':
+            item = (item + 1) % 3;
+            break;
+        case 'w':
+        case 'W':
+            item = 0;
+            break;
+        case 'p':
+        case 'P':
+            item = 1;
+            break;
+        case 'f':
+        case 'F':
+            item = 2;
+            break;
+        case 'r':
+        case 'R':
+            channel = 0;
+            break;
+        case 'g':
+        case 'G':
+            channel = 1;
+            break;
+        case 'b':
+        case 'B':
+            channel = 2;
+            break;
+        case SKEY_LEFT:
+        case 'h':
+        case 'H':
+            _graph_visuals_step_channel(rgb, channel, -1);
+            *need_redraw = TRUE;
+            break;
+        case SKEY_RIGHT:
+        case 'l':
+        case 'L':
+            _graph_visuals_step_channel(rgb, channel, 1);
+            *need_redraw = TRUE;
+            break;
+        case ',':
+        case '<':
+            _graph_visuals_step_channel(rgb, channel, -16);
+            *need_redraw = TRUE;
+            break;
+        case '.':
+        case '>':
+            _graph_visuals_step_channel(rgb, channel, 16);
+            *need_redraw = TRUE;
+            break;
+        case 'd':
+        case 'D':
+            _graph_visuals_reset_fill_colors();
+            *need_redraw = TRUE;
+            break;
+        default:
+            bell();
+            break;
+        }
+
+    }
+}
+
 static void print_visuals_menu(cptr choice_msg)
 {
     prt("外观设置", 1, 0);
@@ -2480,13 +2698,14 @@ static void print_visuals_menu(cptr choice_msg)
     prt("(7) 修改怪物颜色/字符(可视)", 10, 5);
     prt("(8) 修改物品颜色/字符(可视)", 11, 5);
     prt("(9) 修改地形颜色/字符(可视)", 12, 5);
+    prt("(G) 修改图形色块颜色", 13, 5);
 
 #endif /* ALLOW_VISUALS */
 
-    prt("(R) 重置外观", 13, 5);
+    prt("(R) 重置外观", 14, 5);
 
     /* Prompt */
-    prt(format("命令: %s", choice_msg ? choice_msg : ""), 15, 0);
+    prt(format("命令: %s", choice_msg ? choice_msg : ""), 16, 0);
 }
 
 static void do_cmd_knowledge_monsters(bool *need_redraw, bool visual_only, int direct_r_idx);
@@ -2717,6 +2936,11 @@ void do_cmd_visuals(void)
                     (byte)(f_ptr->x_attr[F_LIT_LITE]), (byte)(f_ptr->x_char[F_LIT_LITE]),
                     (byte)(f_ptr->x_attr[F_LIT_DARK]), (byte)(f_ptr->x_char[F_LIT_DARK]));
             }
+
+            auto_dump_printf("# 图形 ASCII 色块颜色\n");
+            auto_dump_printf("G:WALL:0x%06lX\n", (unsigned long)(graph_wall_rgb & 0x00FFFFFF));
+            auto_dump_printf("G:PERMAWALL:0x%06lX\n", (unsigned long)(graph_permawall_rgb & 0x00FFFFFF));
+            auto_dump_printf("G:FLOOR:0x%06lX\n\n", (unsigned long)(graph_floor_rgb & 0x00FFFFFF));
 
             /* Close */
             close_auto_dump();
@@ -2994,10 +3218,16 @@ void do_cmd_visuals(void)
                     need_redraw = TRUE;
                     break;
                 case 'c':
-                    t = (int)f_ptr->x_char[lighting_level];
-                    (void)cmd_visuals_aux(i, &t, 256);
-                    f_ptr->x_char[lighting_level] = (byte)t;
-                    need_redraw = TRUE;
+                    {
+                        byte old_char = f_ptr->x_char[lighting_level];
+
+                        t = (int)f_ptr->x_char[lighting_level];
+                        (void)cmd_visuals_aux(i, &t, 256);
+                        f_ptr->x_char[lighting_level] = (byte)t;
+                        if (lighting_level == F_LIT_STANDARD)
+                            _sync_feature_lighting_chars(f_ptr, old_char, f_ptr->x_char[lighting_level]);
+                        need_redraw = TRUE;
+                    }
                     break;
                 case 'l':
                     (void)cmd_visuals_aux(i, &lighting_level, F_LIT_MAX);
@@ -3036,6 +3266,12 @@ void do_cmd_visuals(void)
             do_cmd_knowledge_features(&need_redraw, TRUE, -1, &lighting_level);
             break;
         }
+
+        /* Modify graph ASCII fill colors */
+        case 'G':
+        case 'g':
+            _graph_visuals_edit_fill_colors(&need_redraw);
+            break;
 
 #endif /* ALLOW_VISUALS */
 
@@ -7128,78 +7364,86 @@ static void do_cmd_knowledge_features(bool *need_redraw, bool visual_only, int d
         }
 
         /* Do visual mode command if needed */
-        else if (visual_mode_command(ch, &visual_list, browser_rows-1, wid - (max + 3), &attr_top, &char_left, cur_attr_ptr, cur_char_ptr, need_redraw))
+        else
         {
-            switch (ch)
+            byte old_standard_char = f_ptr->x_char[F_LIT_STANDARD];
+
+            if (visual_mode_command(ch, &visual_list, browser_rows-1, wid - (max + 3), &attr_top, &char_left, cur_attr_ptr, cur_char_ptr, need_redraw))
             {
-            /* Restore previous visual settings */
-            case ESCAPE:
-                for (i = 0; i < F_LIT_MAX; i++)
+                if ((*lighting_level == F_LIT_STANDARD) && (f_ptr->x_char[F_LIT_STANDARD] != old_standard_char))
+                    _sync_feature_lighting_chars(f_ptr, old_standard_char, f_ptr->x_char[F_LIT_STANDARD]);
+
+                switch (ch)
                 {
-                    f_ptr->x_attr[i] = attr_old[i];
-                    f_ptr->x_char[i] = char_old[i];
-                }
-
-                /* Fall through */
-
-            case '\n':
-            case '\r':
-                if (direct_f_idx >= 0) flag = TRUE;
-                else *lighting_level = F_LIT_STANDARD;
-                break;
-
-            /* Preserve current visual settings */
-            case 'V':
-            case 'v':
-                for (i = 0; i < F_LIT_MAX; i++)
-                {
-                    attr_old[i] = f_ptr->x_attr[i];
-                    char_old[i] = f_ptr->x_char[i];
-                }
-                *lighting_level = F_LIT_STANDARD;
-                break;
-
-            case 'C':
-            case 'c':
-                if (!visual_list)
-                {
+                /* Restore previous visual settings */
+                case ESCAPE:
                     for (i = 0; i < F_LIT_MAX; i++)
                     {
-                        attr_idx_feat[i] = f_ptr->x_attr[i];
-                        char_idx_feat[i] = f_ptr->x_char[i];
+                        f_ptr->x_attr[i] = attr_old[i];
+                        f_ptr->x_char[i] = char_old[i];
                     }
-                }
-                break;
 
-            case 'P':
-            case 'p':
-                if (!visual_list)
-                {
-                    /* Allow TERM_DARK text */
-                    for (i = F_LIT_NS_BEGIN; i < F_LIT_MAX; i++)
+                    /* Fall through */
+
+                case '\n':
+                case '\r':
+                    if (direct_f_idx >= 0) flag = TRUE;
+                    else *lighting_level = F_LIT_STANDARD;
+                    break;
+
+                /* Preserve current visual settings */
+                case 'V':
+                case 'v':
+                    for (i = 0; i < F_LIT_MAX; i++)
                     {
-                        if (attr_idx_feat[i] || (!(char_idx_feat[i] & 0x80) && char_idx_feat[i])) f_ptr->x_attr[i] = attr_idx_feat[i];
-                        if (char_idx_feat[i]) f_ptr->x_char[i] = char_idx_feat[i];
+                        attr_old[i] = f_ptr->x_attr[i];
+                        char_old[i] = f_ptr->x_char[i];
                     }
-                }
-                break;
-            }
-            continue;
-        }
+                    *lighting_level = F_LIT_STANDARD;
+                    break;
 
-        switch (ch)
-        {
-            case ESCAPE:
-            {
-                flag = TRUE;
-                break;
+                case 'C':
+                case 'c':
+                    if (!visual_list)
+                    {
+                        for (i = 0; i < F_LIT_MAX; i++)
+                        {
+                            attr_idx_feat[i] = f_ptr->x_attr[i];
+                            char_idx_feat[i] = f_ptr->x_char[i];
+                        }
+                    }
+                    break;
+
+                case 'P':
+                case 'p':
+                    if (!visual_list)
+                    {
+                        /* Allow TERM_DARK text */
+                        for (i = F_LIT_NS_BEGIN; i < F_LIT_MAX; i++)
+                        {
+                            if (attr_idx_feat[i] || (!(char_idx_feat[i] & 0x80) && char_idx_feat[i])) f_ptr->x_attr[i] = attr_idx_feat[i];
+                            if (char_idx_feat[i]) f_ptr->x_char[i] = char_idx_feat[i];
+                        }
+                    }
+                    break;
+                }
+                continue;
             }
+
+            switch (ch)
+            {
+            case ESCAPE:
+                {
+                    flag = TRUE;
+                    break;
+                }
 
             default:
-            {
-                /* Move the cursor */
-                browser_cursor(ch, &column, &grp_cur, grp_cnt, &feat_cur, feat_cnt);
-                break;
+                {
+                    /* Move the cursor */
+                    browser_cursor(ch, &column, &grp_cur, grp_cnt, &feat_cur, feat_cnt);
+                    break;
+                }
             }
         }
     }

@@ -34,6 +34,18 @@ extern int kill(int, int);
 */
 bool arg_lock_name;
 
+static void _normalize_ascii_floor_lighting_chars(feature_type *f_ptr)
+{
+    int i;
+    byte c = f_ptr->x_char[F_LIT_STANDARD];
+
+    if (!have_flag(f_ptr->flags, FF_FLOOR)) return;
+    if (!is_ascii_graphics(f_ptr->x_attr[F_LIT_STANDARD])) return;
+
+    for (i = F_LIT_NS_BEGIN; i < F_LIT_MAX; i++)
+        f_ptr->x_char[i] = c;
+}
+
 
 /*
  * Hack -- drop permissions
@@ -357,6 +369,11 @@ int parse_args(char *buf, char **name, char **args, int max)
  * Specify visual information, given an index, and some data
  *   V:<num>:<kv>:<rv>:<gv>:<bv>
  *
+ * Specify graph ASCII terrain fill colors
+ *   G:WALL:<rgb>
+ *   G:PERMAWALL:<rgb>
+ *   G:FLOOR:<rgb>
+ *
  * Specify the set of colors to use when drawing a zapped spell
  *   Z:<type>:<str>
  *
@@ -466,6 +483,8 @@ errr process_pref_file_command(char *buf)
                 }
                 break;
             }
+
+            _normalize_ascii_floor_lighting_chars(f_ptr);
         }
         return 0;
 
@@ -560,6 +579,30 @@ errr process_pref_file_command(char *buf)
             angband_color_table[i][2] = (byte)strtol(zz[3], NULL, 0);
             angband_color_table[i][3] = (byte)strtol(zz[4], NULL, 0);
             return 0;
+        }
+        break;
+
+    /* Process "G:<which>:<rgb>" -- graph ASCII terrain fill color */
+    case 'G':
+        if (tokenize(buf+2, 2, zz, TOKENIZE_CHECKQUOTE) == 2)
+        {
+            u32b rgb = (u32b)strtoul(zz[1], NULL, 0) & 0x00FFFFFF;
+
+            if (streq(zz[0], "WALL"))
+            {
+                graph_wall_rgb = rgb;
+                return 0;
+            }
+            if (streq(zz[0], "PERMAWALL"))
+            {
+                graph_permawall_rgb = rgb;
+                return 0;
+            }
+            if (streq(zz[0], "FLOOR"))
+            {
+                graph_floor_rgb = rgb;
+                return 0;
+            }
         }
         break;
 

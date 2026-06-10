@@ -37,6 +37,10 @@ void reset_visuals(void)
 {
     int i, j;
 
+    graph_wall_rgb = GRAPH_DEFAULT_WALL_RGB;
+    graph_permawall_rgb = GRAPH_DEFAULT_PERMAWALL_RGB;
+    graph_floor_rgb = GRAPH_DEFAULT_FLOOR_RGB;
+
     /* Extract some info about terrain features */
     for (i = 0; i < max_f_idx; i++)
     {

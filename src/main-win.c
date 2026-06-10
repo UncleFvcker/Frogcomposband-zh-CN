@@ -2867,6 +2867,79 @@ static bool _win_codepoint_uses_cjk_font(u32b cp)
     return _win_codepoint_is_wide(cp);
 }
 
+static COLORREF _win_attr_color(byte a)
+{
+    if (colors16)
+        return PALETTEINDEX(win_pal[a & COLOR_MASK]);
+    else if (paletted)
+        return win_clr[a & COLOR_MASK];
+    else
+        return win_clr[a & COLOR_MASK];
+}
+
+static COLORREF _win_rgb_color(u32b rgb)
+{
+    return RGB((rgb >> 16) & 0xFF, (rgb >> 8) & 0xFF, rgb & 0xFF);
+}
+
+static bool _win_text_span_has_rgb(int x, int y, int n)
+{
+    int i;
+
+    for (i = 0; i < n; i++)
+    {
+        if (Term_rgb_at(x + i, y, NULL, NULL) || Term_rgb_border_at(x + i, y, NULL, NULL)) return TRUE;
+    }
+
+    return FALSE;
+}
+
+static void _win_draw_rgb_border(HDC hdc, RECT *cell, byte border, COLORREF color)
+{
+    HBRUSH brush = CreateSolidBrush(color);
+    RECT rc;
+
+    if (!brush) return;
+
+    if (border & TERM_RGB_BORDER_TOP)
+    {
+        rc.left = cell->left;
+        rc.top = cell->top;
+        rc.right = cell->right;
+        rc.bottom = cell->top + 1;
+        FillRect(hdc, &rc, brush);
+    }
+
+    if (border & TERM_RGB_BORDER_RIGHT)
+    {
+        rc.left = cell->right - 1;
+        rc.top = cell->top;
+        rc.right = cell->right;
+        rc.bottom = cell->bottom;
+        FillRect(hdc, &rc, brush);
+    }
+
+    if (border & TERM_RGB_BORDER_BOTTOM)
+    {
+        rc.left = cell->left;
+        rc.top = cell->bottom - 1;
+        rc.right = cell->right;
+        rc.bottom = cell->bottom;
+        FillRect(hdc, &rc, brush);
+    }
+
+    if (border & TERM_RGB_BORDER_LEFT)
+    {
+        rc.left = cell->left;
+        rc.top = cell->top;
+        rc.right = cell->left + 1;
+        rc.bottom = cell->bottom;
+        FillRect(hdc, &rc, brush);
+    }
+
+    DeleteObject(brush);
+}
+
 /*
  * Low level graphics.  Assumes valid input.
  *
@@ -2884,6 +2957,7 @@ static errr Term_text_win(int x, int y, int n, byte a, const char *s)
     RECT rc;
     HDC hdc;
     int i;
+    bool cell_rgb;
 
     static HBITMAP  WALL;
     static HBRUSH   myBrush, oldBrush;
@@ -2906,29 +2980,22 @@ static errr Term_text_win(int x, int y, int n, byte a, const char *s)
 
     /* Acquire DC */
     hdc = td->hDC;
+    cell_rgb = _win_text_span_has_rgb(x, y, n);
 
-    /* Background color */
-    SetBkColor(hdc, td->bg_color);
-
-    /* Foreground color */
-    if (colors16)
+    if (!cell_rgb)
     {
-        SetTextColor(hdc, PALETTEINDEX(win_pal[a]));
-    }
-    else if (paletted)
-    {
-        SetTextColor(hdc, win_clr[a&COLOR_MASK]);
-    }
-    else
-    {
-        SetTextColor(hdc, win_clr[a]);
-    }
+        /* Background color */
+        SetBkColor(hdc, td->bg_color);
 
-    /* Use the font */
-    SelectObject(hdc, td->font_id);
+        /* Foreground color */
+        SetTextColor(hdc, _win_attr_color(a));
 
-    /* Erase complete rectangle */
-    ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rc, NULL, 0, NULL);
+        /* Use the font */
+        SelectObject(hdc, td->font_id);
+
+        /* Erase complete rectangle */
+        ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rc, NULL, 0, NULL);
+    }
 
     /* Dump each character */
     for (i = 0; i < n; i++)
@@ -2955,6 +3022,24 @@ static errr Term_text_win(int x, int y, int n, byte a, const char *s)
         cell.right = cell.left + cells * td->tile_wid;
         draw_left = cell.left;
         draw_top = cell.top;
+
+        if (cell_rgb)
+        {
+            u32b fg_rgb, bg_rgb;
+            COLORREF fg_color = _win_attr_color(a);
+            COLORREF bg_color = td->bg_color;
+
+            if (Term_rgb_at(x + i, y, &fg_rgb, &bg_rgb))
+            {
+                fg_color = _win_rgb_color(fg_rgb);
+                bg_color = _win_rgb_color(bg_rgb);
+            }
+
+            SetBkColor(hdc, bg_color);
+            SetTextColor(hdc, fg_color);
+            ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &cell, NULL, 0, NULL);
+        }
+
         if (td->bizarre ||
             (td->tile_hgt != td->font_hgt) ||
             (td->tile_wid != td->font_wid))
@@ -2983,6 +3068,18 @@ static errr Term_text_win(int x, int y, int n, byte a, const char *s)
                 HFONT font = (_win_codepoint_uses_cjk_font(cp) && td->cjk_font_id) ? td->cjk_font_id : td->font_id;
                 SelectObject(hdc, font);
                 ExtTextOutW(hdc, draw_left, draw_top, ETO_CLIPPED, &cell, wbuf, wlen, NULL);
+                _update_rect_enlarge(td, &cell);
+            }
+        }
+
+        if (cell_rgb)
+        {
+            byte border;
+            u32b border_rgb;
+
+            if (Term_rgb_border_at(x + i, y, &border, &border_rgb))
+            {
+                _win_draw_rgb_border(hdc, &cell, border, _win_rgb_color(border_rgb));
                 _update_rect_enlarge(td, &cell);
             }
         }

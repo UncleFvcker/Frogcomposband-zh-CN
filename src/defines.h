@@ -4184,6 +4184,10 @@ extern int PlayerUID;
 #define GRAPHICS_ORIGINAL   1
 #define GRAPHICS_ADAM_BOLT  2
 
+#define GRAPH_DEFAULT_WALL_RGB       0x00262422
+#define GRAPH_DEFAULT_PERMAWALL_RGB  0x0030313A
+#define GRAPH_DEFAULT_FLOOR_RGB      0x00070C0B
+
 /*
  * Modes for the random name generator
  * (This is out of date. These definitions are not used by the actual
