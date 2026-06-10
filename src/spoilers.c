@@ -47,7 +47,7 @@ static void _help_file(cptr name, _file_fn fn)
     }
 
     fn(fp);
-    fprintf(fp, "\n\n<color:s>自动生成于 FrogComposband %s。</color>\n",
+    fprintf(fp, "\n\n<color:s>自动生成于 RoguelikeFansBand %s。</color>\n",
             VERSION_STRING);
 
     my_fclose(fp);

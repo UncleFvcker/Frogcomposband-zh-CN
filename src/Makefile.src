@@ -7,7 +7,7 @@
 
 VERSION = 7.4
 COPYRIGHT = (c) 1995-2020 Angband contributors
-PROGNAME = frogcomposband
+PROGNAME = RoguelikeFansBand
 
 HEADERS = \
     h-basic.h \

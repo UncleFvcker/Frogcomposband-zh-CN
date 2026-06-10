@@ -64,7 +64,7 @@ bool make_http_request(const char *url, const char *post_data, http_response_t *
         curl_easy_setopt(curl, CURLOPT_TIMEOUT, 30);
         
         /* Set a user agent */
-        curl_easy_setopt(curl, CURLOPT_USERAGENT, "Frogcomposband/1.0");
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, "RoguelikeFansBand/1.0");
         
         /* Follow redirects */
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
@@ -145,7 +145,7 @@ bool make_http_post(const char *url, const char *json_data, http_response_t *res
         curl_easy_setopt(curl, CURLOPT_TIMEOUT, 30);
         
         /* Set a user agent */
-        curl_easy_setopt(curl, CURLOPT_USERAGENT, "Frogcomposband/1.0");
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, "RoguelikeFansBand/1.0");
         
         /* Follow redirects */
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);

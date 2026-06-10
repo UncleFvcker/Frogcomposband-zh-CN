@@ -2056,7 +2056,7 @@ int doc_display_aux(doc_ptr doc, cptr caption, int top, rect_t display)
                     }
                 }
                 strcat(nuname, ".html");
-                strnfmt(prompt, sizeof(prompt), "请注意，angband.oook.cz 的 FrogComposband 排行榜只接受 HTML 格式的转储文件。\n<color:y>将转储文件保存为</color> <color:R>%s</color><color:y> 吗？[y/n]</color>", nuname);
+                strnfmt(prompt, sizeof(prompt), "请注意，angband.oook.cz 的 RoguelikeFansBand 排行榜只接受 HTML 格式的转储文件。\n<color:y>将转储文件保存为</color> <color:R>%s</color><color:y> 吗？[y/n]</color>", nuname);
                 if (msg_prompt(prompt, "ny", PROMPT_DEFAULT) == 'y')
                 {
                     strcpy(buf, nuname);

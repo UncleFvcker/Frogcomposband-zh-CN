@@ -388,7 +388,7 @@ bool name_is_numbered(char *nimi)
 }
 
 /************************************************************************
- * Welcome to FrogComposband!
+ * Welcome to RoguelikeFansBand!
  ***********************************************************************/ 
 static void _set_mode(int mode);
 static s16b _stats_changed = -1;
@@ -408,7 +408,7 @@ static int _welcome_ui(void)
         doc_clear(_doc);
 
         doc_insert(_doc,
-            "欢迎来到 <color:keyword>FrogComposband</color>，一款地下城探索角色扮演游戏。\n"
+            "欢迎来到 <color:keyword>RoguelikeFansBand</color>，一款地下城探索角色扮演游戏。\n"
             "你的目标是击败可怕的 <color:keyword>混沌之蛇</color>；但在面对它之前，\n"
             "你必须战胜许多敌人。你的第一步是为这次冒险创建一个角色。\n"
             "接下来的界面将引导你完成此过程，以便你能尽快开始游戏。\n"
@@ -3398,7 +3398,7 @@ static void _birth_finalize(void)
         else
         {
             Term_clear();
-            if (msg_prompt("无大地图选项<color:v>仅</color><color:w>为茶歇模式设计。普通游戏速度是完全围绕</color> <color:G>大地图</color> <color:w>以及随之而来的</color> <color:B>众多城镇</color>和<color:B>地下城</color>来平衡的，而无大地图选项则是围绕</color> <color:U>茶歇(coffee-break)</color> <color:w>和</color> <color:U>速溶(instant-coffee)</color> <color:w>模式来平衡的。试图将普通速度与缺乏大地图结合起来，会使游戏变得非常<color:r>乏味</color>和<color:r>重复</color>，而且你会错过许多本应使 FrogComposband 独一无二、令人愉快和引人入胜的内容。\n\n</color><color:v>真的</color> <color:w>要在没有大地图的情况下游玩吗？</color> <color:y>[y/n]</color>", "ny", PROMPT_DEFAULT) != 'y')
+            if (msg_prompt("无大地图选项<color:v>仅</color><color:w>为茶歇模式设计。普通游戏速度是完全围绕</color> <color:G>大地图</color> <color:w>以及随之而来的</color> <color:B>众多城镇</color>和<color:B>地下城</color>来平衡的，而无大地图选项则是围绕</color> <color:U>茶歇(coffee-break)</color> <color:w>和</color> <color:U>速溶(instant-coffee)</color> <color:w>模式来平衡的。试图将普通速度与缺乏大地图结合起来，会使游戏变得非常<color:r>乏味</color>和<color:r>重复</color>，而且你会错过许多本应使 RoguelikeFansBand 独一无二、令人愉快和引人入胜的内容。\n\n</color><color:v>真的</color> <color:w>要在没有大地图的情况下游玩吗？</color> <color:y>[y/n]</color>", "ny", PROMPT_DEFAULT) != 'y')
 //        else if (!get_check("REALLY? (The no-wilderness option is intended for coffee-break mode only.)"))
             {
                 no_wilderness = FALSE;

@@ -631,7 +631,7 @@ static cptr AppName = "ANGBAND";
 static const WCHAR AppNameW[] = L"ANGBAND";
 
 static const WCHAR AngListW[] = L"AngList";
-static const WCHAR MainWindowTitleW[] = L"Frogcomposband";
+static const WCHAR MainWindowTitleW[] = L"RoguelikeFansBand";
 static const WCHAR ScreenSaverClassNameW[] = L"WindowsScreenSaverClass";
 
 static void utf8_to_wide(cptr src, WCHAR *dst, int max)
@@ -1240,11 +1240,11 @@ static LONG WINAPI crash_report_exception_filter(EXCEPTION_POINTERS *info)
     {
         strnfmt(msg, sizeof(msg),
             "程序发生未处理异常，已生成错误报告：\n%s\n\n请把这个文件发给维护者。", path);
-        message_box_utf8(NULL, msg, "FrogComposband 崩溃报告", MB_ICONERROR | MB_OK);
+        message_box_utf8(NULL, msg, "RoguelikeFansBand 崩溃报告", MB_ICONERROR | MB_OK);
     }
     else
     {
-        message_box_utf8(NULL, "程序发生未处理异常，但错误报告写入失败。", "FrogComposband 崩溃报告", MB_ICONERROR | MB_OK);
+        message_box_utf8(NULL, "程序发生未处理异常，但错误报告写入失败。", "RoguelikeFansBand 崩溃报告", MB_ICONERROR | MB_OK);
     }
 
     return EXCEPTION_EXECUTE_HANDLER;
@@ -1261,13 +1261,13 @@ static void crash_report_show(HWND hwnd, cptr kind, cptr str)
     {
         strnfmt(msg, sizeof(msg),
             "%s\n\n已生成错误报告：\n%s\n\n请把这个文件发给维护者。", str, path);
-        message_box_utf8(hwnd, msg, "FrogComposband 错误报告", MB_ICONEXCLAMATION | MB_OK | MB_ICONSTOP);
+        message_box_utf8(hwnd, msg, "RoguelikeFansBand 错误报告", MB_ICONEXCLAMATION | MB_OK | MB_ICONSTOP);
     }
     else
     {
         strnfmt(msg, sizeof(msg),
             "%s\n\n错误报告写入失败。", str);
-        message_box_utf8(hwnd, msg, "FrogComposband 错误报告", MB_ICONEXCLAMATION | MB_OK | MB_ICONSTOP);
+        message_box_utf8(hwnd, msg, "RoguelikeFansBand 错误报告", MB_ICONEXCLAMATION | MB_OK | MB_ICONSTOP);
     }
 }
 

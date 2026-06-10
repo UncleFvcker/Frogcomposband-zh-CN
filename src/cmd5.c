@@ -1971,7 +1971,7 @@ bool do_riding(bool force)
              case 3: { msg_print("臣妾做不到啊。"); break; }
              case 4: { msg_print("你以为你在玩什么游戏，花花公子拉瑞吗？"); break; }
              case 5: { msg_print("你以为你在玩什么游戏，蛙卵模拟器吗？"); break; }
-             default: { msg_print("由于 FrogComposband 6.9.cream 版本的发布引起了争议，该功能已被关闭。"); break; }
+             default: { msg_print("由于 RoguelikeFansBand 6.9.cream 版本的发布引起了争议，该功能已被关闭。"); break; }
             }
             return FALSE;
         }

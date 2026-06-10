@@ -14,7 +14,7 @@ endif
 
 CFLAGS += -I. -std=c99 -O0 -Wdeclaration-after-statement -fno-omit-frame-pointer
 
-CLEAN = frogcomposband.o $(OBJECTS) win/frogcomposband.res
+CLEAN = RoguelikeFansBand.o $(OBJECTS) RoguelikeFansBand.res
 DISTCLEAN = autoconf.h
 
 export CFLAGS LDFLAGS LIBS

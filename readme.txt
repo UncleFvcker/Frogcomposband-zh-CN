@@ -1,14 +1,15 @@
---- zh-CN分支介绍 ---
-在大刘哥1iuh的frognet版本基础上增加了一系列改动。https://github.com/1iuh/frogcomposbandnet
-改动如下：
-使用Mingw64位编译了64位的frogcomposband版本。
-支持UTF-8编码
-对大部分硬编码和edit内文本进行了汉化，内挂显示层在不影响游戏读取的情况下显示中文。
-修改了Museum公房，不再挂载于1iuh的服务器。改为本地玩家存档间个人共享。
+--- RoguelikeFansBand zh-CN 分支介绍 ---
+RoguelikeFansBand 是基于 FrogComposband 与 1iuh frognet 版本继续维护的中文整合分支。
+本分支使用 MinGW 64 位工具链编译，Windows 启动文件为 RoguelikeFansBand.exe。
+主要改动包括：
+支持 UTF-8 编码与中文字体渲染。
+对大部分硬编码文本、edit 文本和帮助文本进行了汉化，并在不影响内部查找键的情况下补充显示层中文。
+修改了 Museum 公房，不再挂载于 1iuh 的服务器，改为本地玩家存档间个人共享。
+加入可配置的 ASCII 色块视觉渲染、窗口背景色、英文字体/中文字体分离等显示改进。
 --- DISCLAIMER ---
-    FrogComposband may ruin your social life, work productivity, or
+    RoguelikeFansBand may ruin your social life, work productivity, or
     daily exercise routine. You play the game at your own risk; in no
-    event shall the FrogComposband authors owe you a new keyboard, or
+    event shall the RoguelikeFansBand authors owe you a new keyboard, or
     be liable to you for any other direct, indirect, punitive, magical
     or other injuries or damages of any nature whatsoever.
 
@@ -33,10 +34,10 @@
     $ make install
     $ exit
 
-  Then run frogcomposband as desired:
-    $ frogcomposband -- -n<number of windows>  ## for normal ASCII graphics (recommended)
+  Then run RoguelikeFansBand as desired:
+    $ RoguelikeFansBand -- -n<number of windows>  ## for normal ASCII graphics (recommended)
   or
-    $ frogcomposband -g -- -n<# of windows>    ## for 8x8 tile graphics 
+    $ RoguelikeFansBand -g -- -n<# of windows>    ## for 8x8 tile graphics 
 
   NOTE: some users have reported installation problems when compiling under
   Linux (and Mac). Running ./configure using the --with-no-install parameter
@@ -45,7 +46,7 @@
   You can change game windows' font, location, and size, by environment 
   variables, for example:
     $ set env ANGBAND_X11_FONT '-*-*-medium-r-normal--24-*-*-*-*-*-iso8859-1'
-    $ frogcomposband -- -n
+    $ RoguelikeFansBand -- -n
 
   Then font size will be changed.
 
@@ -61,8 +62,8 @@
     $ ./configure SANITIZE_FLAGS=-fsanitize=address --with-no-install CC=clang-3.5
     $ make clean
     $ make -j4
-    $ cp src/frogcomposband .
-    $ ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer-3.5 ./frogcomposband -g -u<Savefile> -- -n1
+    $ cp src/RoguelikeFansBand .
+    $ ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer-3.5 ./RoguelikeFansBand -g -u<Savefile> -- -n1
     
     Note: Never pass sanitizer flags to CFLAGS as sanitizing configure causes it to fail.
     Instead, configure will append SANITIZE_FLAGS to CFLAGS and LDFLAGS once it has finished
@@ -73,14 +74,14 @@
     your compiler, rather than gcc. Of course, 3.5 should be replaced with latest version of clang.).
 
     ***Fonts on Linux: My experience with linux has been that the fonts are just plain awful. Here, I document
-    how I managed to install better fonts and use them in FrogComposband. I spent nearly a day on this, so I'm
+    how I managed to install better fonts and use them in RoguelikeFansBand. I spent nearly a day on this, so I'm
     hoping this might prove useful to somebody else. But mostly, it is here to remind me how I did so I don't
     stumble so much next time.
 
     [1] Install some better fonts. For example
     $ sudo apt-get install fonts-liberation
 
-    [2] See what fonts are on your system that FrogComposband can use:
+    [2] See what fonts are on your system that RoguelikeFansBand can use:
     $ xlsfonts
     Notice that the new fonts aren't there!
 
@@ -130,8 +131,8 @@
     ... [and many more]
 
     [6] Now, try to find a font you like. For example:
-    $ cd [path to frogcomposband]
-    ~/Src/frogcomposband> ANGBAND_X11_FONT='-misc-liberation mono-medium-r-normal--20-0-0-0-m-0-iso8859-1' ./frogcomposband -mx11
+    $ cd [path to RoguelikeFansBand]
+    ~/Src/RoguelikeFansBand> ANGBAND_X11_FONT='-misc-liberation mono-medium-r-normal--20-0-0-0-m-0-iso8859-1' ./RoguelikeFansBand -mx11
     You can play with the point size since these are vector fonts. I chose 20pt since my eyes suck!
 
     [7] Smile. Grab beer to recover from step [4].
@@ -140,14 +141,14 @@
 
   Curses is for Linux, of course, so everything said above also applies here.
   To run with a single 'big' terminal, simply run, for example:
-    $ ./frogcomposband -mgcu -uCrusher
+    $ ./RoguelikeFansBand -mgcu -uCrusher
 
   To add additional terminal windows, you need to specify sub-options. You can
   configure, from the command line, a strip of terminals on the right hand side
   of the screen, or on the bottom of the screen, or both.
 
   For example:
-    $ ./frogcomposband -mgcu -uCrusher -- -right 57x26,*
+    $ ./RoguelikeFansBand -mgcu -uCrusher -- -right 57x26,*
 
   This specifies that the right hand strip will be be 57 columns wide, and will
   contain 2 additional terminals. The first one, on top, will be 57x26 (i.e., 26
@@ -155,7 +156,7 @@
   to whatever is leftover). These terminals will be numbered 1 and 2, respectively.
 
   Another example:
-    $ ./frogcomposband -mgcu -uCrusher -- -bottom -bottom *x10
+    $ ./RoguelikeFansBand -mgcu -uCrusher -- -bottom -bottom *x10
 
   This adds a bottom strip 10 rows high, and this strip will contain a single
   additional terminal window (numbered as Term-1) that will be as wide as the
@@ -163,7 +164,7 @@
 
   Finally, you can combine the -right and -bottom commands, in either order.
   For example:
-    $ ./frogcomposband -mgcu -uCrusher -- -right 57x26,* -bottom *x10
+    $ ./RoguelikeFansBand -mgcu -uCrusher -- -right 57x26,* -bottom *x10
 
   Here, Term-1 and Term-2 are on the right strip, sized as 57x26 and 57x(LINES-26),
   while Term-3 is on the bottom strip, sized (COLS-57)x10. Term-0, the Main Terminal,
@@ -175,14 +176,14 @@
   region in the bottom-right corner of the screen.
 
   For example, the meaning of the following should now be clear:
-    $ ./frogcomposband -mgcu -uCrusher -- -bottom *x10 -right 57x26,*
+    $ ./RoguelikeFansBand -mgcu -uCrusher -- -bottom *x10 -right 57x26,*
 
   You cannot specify more than 7 child terminals.
 
 --- Windows
 
   Download the binary archive for Windows.  Unzip it to any location that you 
-  will have full permissions and launch frogcomposband to play.
+  will have full permissions and launch RoguelikeFansBand to play.
 
   To compile the source code in MinGW:
   $ ./autogen.sh
@@ -195,7 +196,7 @@
 
 ----------  Basics  ------------
 
-  The in-game documentation has been updated for FrogComposband 7.1.liquorice.
+  The in-game documentation has been updated for RoguelikeFansBand 7.1.liquorice.
   Press '?' to activate the help system, then select your favorite topic; e.g.
   press 'a' twice for General Information; press 'a' followed by 'b' for an
   introduction to the help files and how to best read them [yes, this is that
@@ -218,4 +219,4 @@
 
   Or open lib/help/html/command.html or lib/help/html/commdesc.html in your browser.
 
---- Most of this file inherited from PosChengband, updated for FrogComposband 7.1.liquorice.
+--- Most of this file inherited from PosChengband, updated for RoguelikeFansBand 7.1.liquorice.

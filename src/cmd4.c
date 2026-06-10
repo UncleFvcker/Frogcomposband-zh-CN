@@ -1494,7 +1494,7 @@ void do_cmd_options(void)
         Term_clear();
 
         /* Why are we here */
-        prt("FrogComposband 选项", 1, 0);
+        prt("RoguelikeFansBand 选项", 1, 0);
 
         while(1)
         {

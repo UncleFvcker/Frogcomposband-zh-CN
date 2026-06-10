@@ -175,7 +175,7 @@ static bool _save_museum_data(void)
 
     if (!fp) return FALSE;
 
-    fprintf(fp, "# FrogComposband local shared museum v1\n");
+    fprintf(fp, "# RoguelikeFansBand local shared museum v1\n");
 
     max = inv_last(_museum, obj_exists);
     for (slot = 1; slot <= max; slot++)

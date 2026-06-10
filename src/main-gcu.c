@@ -1542,13 +1542,13 @@ errr init_gcu(int argc, char *argv[])
       space.
 
       Examples:
-        frogcomposband -mgcu -- -right 30x27,* -bottom *x7 will layout as
+        RoguelikeFansBand -mgcu -- -right 30x27,* -bottom *x7 will layout as
 
         Term-0: Map (COLS-30)x(LINES-7) | Term-1: 30x27
         --------------------------------|----------------------
         <----Term-3: (COLS-30)x7------->| Term-2: 30x(LINES-27)
 
-        frogcomposband -mgcu -- -bottom *x7 -right 30x27,* will layout as
+        RoguelikeFansBand -mgcu -- -bottom *x7 -right 30x27,* will layout as
 
         Term-0: Map (COLS-30)x(LINES-7) | Term-2: 30x27
                                         |------------------------------
@@ -1685,7 +1685,7 @@ errr init_gcu(int argc, char *argv[])
 
         /* Map Terminal */
         if (remaining.cx < MAP_MIN_CX || remaining.cy < MAP_MIN_CY)
-            quit(format("失败：FrogComposband 需要 %dx%d 的地图屏幕，而不是 %dx%d", MAP_MIN_CX, MAP_MIN_CY, remaining.cx, remaining.cy));
+            quit(format("失败：RoguelikeFansBand 需要 %dx%d 的地图屏幕，而不是 %dx%d", MAP_MIN_CX, MAP_MIN_CY, remaining.cx, remaining.cy));
         data[0].r = remaining;
         term_data_init(&data[0]);
         angband_term[0] = Term;

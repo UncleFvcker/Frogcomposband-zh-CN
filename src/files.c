@@ -2388,7 +2388,7 @@ bool show_file(bool show_version, cptr name, cptr what, int line, int mode)
         if (show_version)
         {
             prt(format(
-                "[FrogComposband %s, %s, 第 %d/%d 行]",
+                "[RoguelikeFansBand %s, %s, 第 %d/%d 行]",
                VERSION_STRING,
                caption, line, size), 0, 0);
         }

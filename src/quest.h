@@ -1,7 +1,7 @@
 #ifndef INCLUDED_QUEST_H
 #define INCLUDED_QUEST_H
 
-/* FrogComposband Quests
+/* RoguelikeFansBand Quests
  * [1] Specified in q_info.txt
  * [2] Defined in lib/edit/<quest_file>.txt (q.file)
  * [3] Sequenced in town files
