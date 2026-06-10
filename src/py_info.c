@@ -69,10 +69,10 @@ static void _build_general1(doc_ptr doc)
 
     if (race_ptr->subname)
     {
-        char nimi[26];
+        char nimi[MAX_NLEN];
         int paikka;
         bool ok_name = FALSE;
-        strncpy(nimi, get_race()->subname, sizeof(nimi));
+        strcpy(nimi, get_race()->subname);
         if (strlen(get_race()->subname) < 25) ok_name = TRUE;
         while (!ok_name)
         {
@@ -100,34 +100,33 @@ static void _build_general1(doc_ptr doc)
                 nimi[paikka - 1] = '\0';
                 break;
             }
-            nimi[25] = '\0';
             break;
         }
 
         if (p_ptr->prace == RACE_MON_RING)
-            doc_printf(doc, "控制 : <color:B>%-26.26s</color>\n", nimi);
+            doc_printf(doc, "控制 : <color:B>%s</color>\n", nimi);
         else if (p_ptr->prace == RACE_MON_MIMIC)
         {
             if (p_ptr->current_r_idx == MON_MIMIC)
-                doc_printf(doc, "模仿 : <color:B>%-26.26s</color>\n", "无");
+                doc_printf(doc, "模仿 : <color:B>%s</color>\n", "无");
             else
-                doc_printf(doc, "模仿 : <color:B>%-26.26s</color>\n", nimi);
+                doc_printf(doc, "模仿 : <color:B>%s</color>\n", nimi);
         }
         else
-            doc_printf(doc, "分支种族 : <color:B>%-26.26s</color>\n", nimi);
+            doc_printf(doc, "分支种族 : <color:B>%s</color>\n", nimi);
     }
     else
-        doc_printf(doc, "分支种族 : <color:B>%-26.26s</color>\n", "无");
+        doc_printf(doc, "分支种族 : <color:B>%s</color>\n", "无");
 
     doc_printf(doc, "职业 : <color:B>%s</color>\n", class_ptr->name);
 
     /* Assume Subclass and Magic are mutually exclusive ... */
     if (class_ptr->subname)
-        doc_printf(doc, "副职业 : <color:B>%-26.26s</color>\n", class_ptr->subname);
+        doc_printf(doc, "副职业 : <color:B>%s</color>\n", class_ptr->subname);
     else if (p_ptr->prace == RACE_MON_DRAGON)
     {
         dragon_realm_ptr realm = dragon_get_realm(p_ptr->dragon_realm);
-        doc_printf(doc, "领域 : <color:B>%-26.26s</color>\n", realm->name);
+        doc_printf(doc, "领域 : <color:B>%s</color>\n", realm->name);
     }
     else if ((p_ptr->realm1) && (p_ptr->pclass != CLASS_LAWYER) && (p_ptr->pclass != CLASS_NINJA_LAWYER))
     {
@@ -1125,7 +1124,7 @@ void py_display_powers(doc_ptr doc, power_info *table, int ct)
     var_init(&vfm);
 
     doc_printf(doc, "<topic:Powers>==================================== 能力(<color:keypress>P</color>) ===================================\n\n");
-    doc_printf(doc, "<color:G>%-20.20s 等级 消耗 失败率 %-15.15s 施放 失败率</color>\n", "", "描述");
+    doc_printf(doc, "<style:table><color:G>名称<tab:22>等级 消耗 失败率 描述<tab:50>施放 失败率</color>\n");
     for (i = 0; i < ct; i++)
     {
         power_info     *power = &table[i];
@@ -1137,7 +1136,7 @@ void py_display_powers(doc_ptr doc, power_info *table, int ct)
         spell->fn(SPELL_COST_EXTRA, &vc);
         spell->fn(SPELL_FAIL_MIN, &vfm);
 
-        doc_printf(doc, "%-20.20s %3d %4d %3d%% %-15.15s %4d %4d %3d%%\n",
+        doc_printf(doc, "%s<tab:22>%3d %4d %3d%% %s<tab:50>%4d %4d %3d%%\n",
             var_get_string(&vn),
             spell->level, calculate_cost(spell->cost + var_get_int(&vc)), MAX(spell->fail, var_get_int(&vfm)),
             var_get_string(&vd),
@@ -1145,6 +1144,7 @@ void py_display_powers(doc_ptr doc, power_info *table, int ct)
             spell_stats_fail(stats)
         );
     }
+    doc_insert(doc, "</style>");
 
     var_clear(&vn);
     var_clear(&vd);
@@ -1208,8 +1208,9 @@ void py_display_spells_aux(doc_ptr doc, power_info *table, int ct)
     var_init(&vfm);
 
     if (prace_is_(RACE_MON_MUMMY))
-        doc_printf(doc, "<color:G>%-25.25s 等级 消耗 失败率 %-18.18s 施放 失败率</color>\n", "", "描述");
-    else doc_printf(doc, "<color:G>%-25.25s 等级 消耗 失败率 %-15.15s 施放 失败率</color>\n", "", "描述");
+        doc_printf(doc, "<style:table><color:G>名称<tab:30>等级 消耗 失败率 描述<tab:59>施放 失败率</color>\n");
+    else
+        doc_printf(doc, "<style:table><color:G>名称<tab:30>等级 消耗 失败率 描述<tab:56>施放 失败率</color>\n");
 
     for (i = 0; i < ct; i++)
     {
@@ -1223,14 +1224,14 @@ void py_display_spells_aux(doc_ptr doc, power_info *table, int ct)
 
         if (prace_is_(RACE_MON_MUMMY))
         {
-            doc_printf(doc, " %c) %-25.25s %3d %4d %3d%% %-18.18s %5d %4d %3d%%\n",
+            doc_printf(doc, " %c) %s<tab:30>%3d %4d %3d%% %s<tab:59>%5d %4d %3d%%\n",
             multicase[i],
             var_get_string(&vn),
             spell->level, spell->cost, MAX(spell->fail, var_get_int(&vfm)),
             var_get_string(&vd),
             stats->ct_cast, stats->ct_fail, spell_stats_fail(stats));
         }
-        else doc_printf(doc, " %c) %-25.25s %3d %4d %3d%% %-15.15s %5d %4d %3d%%\n",
+        else doc_printf(doc, " %c) %s<tab:30>%3d %4d %3d%% %s<tab:56>%5d %4d %3d%%\n",
             multicase[i],
             var_get_string(&vn),
             spell->level, spell->cost, MAX(spell->fail, var_get_int(&vfm)),
@@ -1239,6 +1240,7 @@ void py_display_spells_aux(doc_ptr doc, power_info *table, int ct)
             spell_stats_fail(stats)
         );
     }
+    doc_insert(doc, "</style>");
 
     var_clear(&vn);
     var_clear(&vd);
@@ -1376,12 +1378,13 @@ static void _build_uniques(doc_ptr doc)
 
             vec_sort(v, (vec_cmp_f)_compare_monsters);
 
-            doc_printf(doc, "  <color:G>%-44.44s <color:R>%3s</color></color>\n", "唯一怪", "等级");
+            doc_printf(doc, "<style:table>  <color:G>唯一怪<tab:46><color:R>等级</color></color>\n");
             for (i = ct_uniques_dead - 1; i >= 0 && i >= ct_uniques_dead - 20; i--)
             {
                 monster_race *r_ptr = vec_get(v, i);
-                doc_printf(doc, "  %-44.44s %3d\n", monster_race_display_name(r_ptr->id), r_ptr->level);
+                doc_printf(doc, "  %s<tab:46>%3d\n", monster_race_display_name(r_ptr->id), r_ptr->level);
             }
+            doc_insert(doc, "</style>");
         }
         else
             doc_printf(doc,"你击败了 %d 个%s。\n", ct, ct == 1 ? "敌人" : "敌人");
@@ -1410,21 +1413,23 @@ static void _build_uniques(doc_ptr doc)
 
             vec_sort(v, (vec_cmp_f)_compare_monsters);
 
-            doc_printf(cols[0], "  <color:G>%-25.25s <color:R>%3s</color> %5s</color>\n", "普通怪物", "等级", "数量");
+            doc_printf(cols[0], "<style:table>  <color:G>普通怪物<tab:27><color:R>等级</color>  数量</color>\n");
             for (i = ct - 1; i >= 0 && i >= ct - 20; i--)
             {
                 monster_race *r_ptr = vec_get(v, i);
-                doc_printf(cols[0], "  %-25.25s %3d %5d\n", monster_race_display_name(r_ptr->id), r_ptr->level, r_ptr->r_pkills);
+                doc_printf(cols[0], "  %s<tab:27>%3d %5d\n", monster_race_display_name(r_ptr->id), r_ptr->level, r_ptr->r_pkills);
             }
+            doc_insert(cols[0], "</style>");
             doc_newline(cols[0]);
 
             vec_sort(v, (vec_cmp_f)_compare_monsters_counts);
-            doc_printf(cols[1], "  <color:G>%-25.25s %3s <color:R>%5s</color></color>\n", "普通怪物", "等级", "数量");
+            doc_printf(cols[1], "<style:table>  <color:G>普通怪物<tab:27>等级  <color:R>数量</color></color>\n");
             for (i = ct - 1; i >= 0 && i >= ct - 20; i--)
             {
                 monster_race *r_ptr = vec_get(v, i);
-                doc_printf(cols[1], "  %-25.25s %3d %5d\n", monster_race_display_name(r_ptr->id), r_ptr->level, r_ptr->r_pkills);
+                doc_printf(cols[1], "  %s<tab:27>%3d %5d\n", monster_race_display_name(r_ptr->id), r_ptr->level, r_ptr->r_pkills);
             }
+            doc_insert(cols[1], "</style>");
             doc_newline(cols[1]);
 
             doc_insert_cols(doc, cols, 2, 0);
@@ -1549,7 +1554,7 @@ static void _build_allies(doc_ptr doc)
             doc_printf(doc, "%d 个唯一怪，包括 <color:w>%d 个地下城守卫%s</color> 与你结盟：\n\n", ally_counter, guardian_counter, (guardian_counter == 1) ? "," : "，");
         }
 
-        doc_printf(doc, "<color:G>唯一怪%39s</color>\n", "等级");
+        doc_printf(doc, "<style:table><color:G>唯一怪<tab:44>等级</color>\n");
         vec_sort(v, (vec_cmp_f)_compare_monsters);
 
         for (i = ally_counter - 1; i >= 0; i--)
@@ -1558,7 +1563,7 @@ static void _build_allies(doc_ptr doc)
             bool osuma = FALSE;
             int j;
 
-            doc_printf(doc, "  %-42.42s %3d", monster_race_display_name(r_ptr->id), r_ptr->level);
+            doc_printf(doc, "  %s<tab:44>%3d", monster_race_display_name(r_ptr->id), r_ptr->level);
             if (r_ptr->flags7 & RF7_GUARDIAN)
             {
                 for (j = 1; j < max_d_idx && !osuma; j++)
@@ -1589,6 +1594,7 @@ static void _build_allies(doc_ptr doc)
             }
             doc_newline(doc);
         }
+        doc_insert(doc, "</style>");
 
         doc_newline(doc);
 
@@ -1668,7 +1674,7 @@ static void _object_counts_imp(doc_ptr doc, int tval, int sval)
     {
         doc_printf(
             doc,
-            "  %-20.20s %5d %6d %5d %5d\n",
+            "  %s<tab:22>%5d %6d %5d %5d\n",
             k_name + k_ptr->name,
             k_ptr->counts.found,
             k_ptr->counts.bought,
@@ -1696,7 +1702,7 @@ static void _device_counts_imp(doc_ptr doc, int tval, int effect)
 
         doc_printf(
             doc,
-            "  %-20.20s %5d %6d %5d %5d\n",
+            "  %s<tab:22>%5d %6d %5d %5d\n",
             do_effect(&effect, SPELL_NAME, 0),
             entry->counts.found,
             entry->counts.bought,
@@ -1814,7 +1820,7 @@ static void _group_counts_imp(doc_ptr doc, _kind_p p, cptr text)
     {
         doc_printf(
             doc,
-            "  %-20.20s %5d %6d %5d %5d\n",
+            "  %s<tab:22>%5d %6d %5d %5d\n",
             text,
             totals.found,
             totals.bought,
@@ -1844,7 +1850,7 @@ static void _group_counts_tval_imp(doc_ptr doc, int tval, cptr text)
     {
         doc_printf(
             doc,
-            "  %-20.20s %5d %6d %5d %5d\n",
+            "  %s<tab:22>%5d %6d %5d %5d\n",
             text,
             totals.found,
             totals.bought,
@@ -1862,7 +1868,7 @@ static void _ego_counts_imp(doc_ptr doc, int idx, cptr text)
     {
         doc_printf(
             doc,
-            "  %-20.20s %5d %6d %5d\n",
+            "  %s<tab:22>%5d %6d %5d\n",
             text,
             e_ptr->counts.found,
             e_ptr->counts.bought,
@@ -1984,7 +1990,7 @@ static void _kill_counts_imp(doc_ptr doc, _mon_p p, cptr text, int total)
     {
         doc_printf(
             doc,
-            "  %-20.20s %5d %3d.%1d%%\n",
+            "  %s<tab:22>%5d %3d.%1d%%\n",
             text,
             kills,
             kills*100/total,
@@ -2014,13 +2020,13 @@ static void _build_mon_kill_stats(doc_ptr doc)
     _kill_counts_imp(doc, _mon_is_evil, "邪恶怪物", total_kills);
     _kill_counts_imp(doc, _mon_is_good, "善良怪物", total_kills);
     _kill_counts_imp(doc, _mon_is_neutral, "中立怪物", total_kills);
-    doc_printf(doc, "\n  %-20.20s %5d\n", "总计", total_kills);
+    doc_printf(doc, "\n  总计<tab:22>%5d\n", total_kills);
 }
 
 static void _spell_count_imp(doc_ptr doc, cptr heading, int ct, int total)
 {
     if (!total) return;
-    doc_printf(doc, "  %-20.20s %5d %3d.%1d%%\n", heading, ct,
+    doc_printf(doc, "  %s<tab:22>%5d %3d.%1d%%\n", heading, ct,
         ct*100/total,
         (ct*1000/total)%10);
 }
@@ -2059,11 +2065,11 @@ static void _build_mon_spell_stats(doc_ptr doc, cptr heading, mon_race_p filter)
         }
     }
     if (!ct_total_moves) return;
-    doc_printf(doc, "<color:G>%-20.20s 数量 占比</color>\n", heading);
+    doc_printf(doc, "<color:G>%s<tab:22>数量 占比</color>\n", heading);
     _spell_count_imp(doc, "实际观察", ct_spell_moves, ct_total_moves);
     expected_freq = (double)total_freq/(ct_total_moves * 100.0);
     expected_spells = ct_total_moves * expected_freq; 
-    doc_printf(doc, "  %-20.20s %5d %5.1f%%\n", "期望", expected_spells, expected_freq * 100.0);
+    doc_printf(doc, "  期望<tab:22>%5d %5.1f%%\n", expected_spells, expected_freq * 100.0);
     _spell_count_imp(doc, "失败", ct_spell_moves - ct_spells, ct_spell_moves);
     _spell_count_imp(doc, "召唤", allocation[MST_SUMMON], ct_spell_moves);
     _spell_count_imp(doc, "治疗", allocation[MST_HEAL], ct_spell_moves);

@@ -31,6 +31,8 @@ static _class_alias_t _class_aliases[] = {
         { "Devicemaster", CLASS_DEVICEMASTER },
         { "Disciple", CLASS_DISCIPLE },
         { "Duelist", CLASS_DUELIST },
+        { "Ethereal-Mimic", CLASS_ETHEREAL_MIMIC },
+        { "Ethereal Mimic", CLASS_ETHEREAL_MIMIC },
         { "Force-Trainer", CLASS_FORCETRAINER },
         { "Gray-Mage", CLASS_GRAY_MAGE },
         { "High-Mage", CLASS_HIGH_MAGE },
@@ -193,6 +195,9 @@ class_t *result = NULL;
         break;
     case CLASS_DUELIST:
         result = duelist_get_class();
+        break;
+    case CLASS_ETHEREAL_MIMIC:
+        result = ethereal_mimic_get_class();
         break;
     case CLASS_FORCETRAINER:
         result = force_trainer_get_class();

@@ -1210,7 +1210,7 @@ static void prt_status(void)
             break;
         }
     }
-    if (p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC)
+    if (possessor_is_active())
     {
         switch(possessor_get_toggle())
         {
@@ -1307,7 +1307,7 @@ static void prt_status(void)
             bar[BAR_DUELIST].attr = TERM_YELLOW;
         else
             bar[BAR_DUELIST].attr = TERM_L_DARK;
-        strnfmt(duelist_buffer, 100, "%^s", duelist_current_challenge());
+        strnfmt(duelist_buffer, 100, "%s", duelist_current_challenge());
         bar[BAR_DUELIST].lstr = duelist_buffer;
     }
 
@@ -1860,8 +1860,9 @@ static void prt_state(void)
         }
     }
 
-    /* Display the info (or blanks) */
-    c_put_str(attr, format("%5.5s",text), r.y + ROW_STATE, r.x + COL_STATE);
+    /* Display the info (or blanks). Avoid byte-width truncation of UTF-8 text. */
+    Term_erase(r.x + COL_STATE, r.y + ROW_STATE, r.cx - COL_STATE);
+    c_put_str(attr, text, r.y + ROW_STATE, r.x + COL_STATE);
 }
 
 
@@ -3232,7 +3233,7 @@ static int _racial_mana_adjust(int i)
         result = race_ptr->stats[i];
 
     /* TODO: Some possessor forms have too much mana ... */
-    if (p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC)
+    if (possessor_is_active())
     {
         switch (i)
         {
@@ -3733,6 +3734,7 @@ static void calc_torch(void)
         p_ptr->cur_lite += ring_calc_torch();
     if (prace_is_(RACE_MON_ARMOR))
         p_ptr->cur_lite += armor_calc_torch();
+    p_ptr->cur_lite += maia_light_bonus();
 
     equip_for_each(_calc_torch_imp);
 

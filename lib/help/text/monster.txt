@@ -1,86 +1,89 @@
-怪物 (Monsters)
+﻿Monsters
 
-与怪物遭遇是 RoguelikeFansBand 
-的核心骨架。通常你通过击杀怪物来获取财宝、获得经验并变得更强大；但并非所
-有怪物都是必须死的可恨敌人。
+Encounters with monsters are the backbone of RoguelikeFansBand. It is 
+mostly by killing monsters that you acquire treasures, gain experience 
+and become more powerful; but not all monsters are hateful enemies who 
+need to die.
 
-怪物种族 (Monster Races)
+Monster Races
 
+Each monster in the game represents some specific monster kind, usually 
+known for convenience as the monster's race. (The term is somewhat 
+misleading in that it does not necessarily imply a distinct species or 
+ethnicity; human novice mages, human novice priests and human novice 
+archaeologists are three separate monster races; also, I use semicolons 
+too much.) Race determines most things about a monster: which melee 
+attacks (if any) it can hit you with, which spells (if any) it can use, 
+which of your attacks (if any) it can shrug off.
 
-游戏中的每个怪物都代表某种特定的怪物种类，为了方便起见，通常被称为怪物的
-种族 
-(race)。（这个词有些误导，因为它不一定意味着独特的物种或人种；人类新手学
-徒、人类新手祭司和人类新手考古学家是三个不同的怪物种族；而且，我用分号用
-得太多了。）种族决定了怪物的大部分特性：它能用哪些近战攻击（如果有的话）
-打你，它能使用哪些法术（如果有的话），以及它能无视你的哪些攻击（如果有的
-话）。
+Two monsters of the same race are not completely identical - there is 
+some variation between individuals in terms of details such as hit 
+points and speed - but most of the time you can ignore that variation 
+and treat all members of a monster race as interchangeable, as impolite 
+as that might seem. Distinct races, on the other hand, are far from 
+interchangeable; each poses a unique challenge, apart from the few who 
+pose no challenge at all.
 
+Monster Species
 
-两个同种族的怪物并不完全相同——在生命值和速度等细节上个体之间存在一些差异
-——但大多数时候你可以忽略这种差异，把一个怪物种族的所有成员当作是可以互换
-的，尽管这听起来可能不太礼貌。另一方面，不同的种族远不能互换；每个种族都
-会带来独特的挑战，除了少数根本构不成挑战的弱鸡。
+Monster races can be grouped into categories (or species). Two monsters 
+of the same species are always represented on the map by the same 
+letter symbol; for example, all orcs share the letter o. Monsters of 
+the same race also share the color (all orc warlocks are o). It is 
+possible, but relatively rare, for a monster race to share both its 
+letter and its color with another race of the same species.
 
-怪物品类 (Monster Species)
+The symbols for all monster species are listed below.
 
-怪物种族可以被归入大类（或称品类 
-(species)）。两个同品类的怪物在地图上总是由相同的字母符号表示；例如，所
-有的兽人共享字母 o。同种族的怪物也共享颜色（所有的兽人邪术师都是 
-o）。一个怪物种族与同品类的另一个种族同时共享字母和颜色的情况是可能的，
-但相对罕见。
+Monster Symbols
 
-所有怪物品类的符号列在下方。
+  a   Ant                             A   Angel
+  b   Bat                             B   Bird
+  c   Centipede                       C   Canine
+  d   Dragon                          D   Ancient Dragon/Wyrm
+  e   Eye                             E   Elemental
+  f   Feline/Fox                      F   Dragon Fly
+  g   Golem                           G   Ghost
+  h   Humanoid                        H   Hybrid
+  i   Icky Thing                      I   Insect
+  j   Jelly                           J   Snake
+  k   Kobold                          K   Killer Beetle
+  l   Aquatic monster                 L   Lich
+  m   Mold                            M   Multi-Headed Hydra
+  n   Naga                            N   (special - shadower)
+  o   Orc                             O   Ogre
+  p   Human                           P   Giant
+  q   Quadruped                       Q   Quylthulg
+  r   Rodent                          R   Reptile/Amphibian
+  s   Skeleton                        S   Spider/Scorpion/Tick
+  t   Townsperson                     T   Troll
+  u   Minor demon                     U   Major demon
+  v   Vortex                          V   Vampire
+  w   Worm/Worm Mass                  W   Wight/Wraith
+  x   (special - easy mimic)          X   Xorn/Xaren
+  y   Yeek                            Y   Yeti
+  z   Zombie/Mummy                    Z   Zephyr Hound
+  $   Creeping Coins                  ,   Mushroom Patch
+  #   Ent/Mist creature
 
-怪物符号 (Monster Symbols)
+Unlike the race, the species of a monster does not tell you anything 
+about how dangerous a monster is; the almost harmless giant green frog 
+is a reptile/amphibian with the symbol R... but so is a tyrannosaurus. 
+The species does, however, allow some generic assumptions; for example, 
+nearly all dragons and zephyr hounds breathe something or other. You 
+can also assume something with the d or D symbol will take extra damage 
+from a weapon that slays dragons.
 
-  a   蚂蚁 (Ant)                      A   天使 (Angel)
-  b   蝙蝠 (Bat)                      B   鸟类 (Bird)
-  c   蜈蚣 (Centipede)                C   犬类 (Canine)
-  d   龙类 (Dragon)                   D   远古龙/巨龙 (Ancient 
-Dragon/Wyrm)
-  e   漂浮眼 (Eye)                    E   元素 (Elemental)
-  f   猫科/狐狸 (Feline/Fox)          F   蜻蜓/龙蝇 (Dragon Fly)
-  g   魔像 (Golem)                    G   幽灵 (Ghost)
-  h   类人生物 (Humanoid)             H   混血生物 (Hybrid)
-  i   粘滑物 (Icky Thing)             I   昆虫 (Insect)
-  j   果冻状怪物 (Jelly)              J   蛇类 (Snake)
-  k   狗头人 (Kobold)                 K   杀手甲虫 (Killer Beetle)
-  l   水生怪物 (Aquatic monster)      L   巫妖 (Lich)
-  m   霉菌 (Mold)                     M   多头蛇 (Multi-Headed Hydra)
-  n   那伽 (Naga)                     N   (特殊 - 暗影者 shadower)
-  o   兽人 (Orc)                      O   食人魔 (Ogre)
-  p   人类 (Human)                    P   巨人 (Giant)
-  q   四足兽 (Quadruped)              Q   跨维度生物 (Quylthulg)
-  r   啮齿动物 (Rodent)               R   爬行/两栖动物 
-(Reptile/Amphibian)
-  s   骷髅 (Skeleton)                 S   蜘蛛/蝎子/蜱虫 
-(Spider/Scorpion/Tick)
-  t   城镇平民 (Townsperson)          T   巨魔 (Troll)
-  u   次级恶魔 (Minor demon)          U   高级恶魔 (Major demon)
-  v   能量漩涡 (Vortex)               V   吸血鬼 (Vampire)
-  w   蠕虫/蠕虫团 (Worm/Worm Mass)    W   尸妖/怨灵 (Wight/Wraith)
-  x   (特殊 - 简易模仿者)          X   土元素/矿精 (Xorn/Xaren)
-  y   伊克人 (Yeek)                   Y   雪人 (Yeti)
-  z   丧尸/木乃伊 (Zombie/Mummy)      Z   和风猎犬 (Zephyr Hound)
-  $   爬行硬币 (Creeping Coins)       ,   蘑菇群 (Mushroom Patch)
-  #   树人/雾状生物 (Ent/Mist creature)
+Assessing a Monster
 
+The cheapest way to tell who a monster is and how much damage he deals 
+in combat is by picking a fight with them and finding out. This can 
+lead to complications such as death, though, so you may want to take a 
+more measured approach.
 
-与种族不同，怪物的品类不能告诉你它有多危险；几乎无害的巨型绿蛙是一种爬行
-/两栖动物，符号是 
-R……但霸王龙也是。然而，品类确实允许你做出一些一般性假设；例如，几乎所有
-的龙和和风猎犬都会吐息某些东西。你也可以假设带有 d 或 D 
-符号的东西会受到屠龙武器的额外伤害。
-
-评估怪物 (Assessing a Monster)
-
-
-辨别一个怪物是谁以及它在战斗中能造成多少伤害的最廉价方法就是和它打一架并
-找出答案。不过这可能会导致死亡等并发症，所以你可能想采取一种更有分寸的方
-法。
-
-使用 * 瞄准命令或 l 查看 (look) 命令来检查一个怪物。这里我使用了 * 
-命令，发现我东北方向的 h 是一个尼伯龙人 (Nibelung)：
+Use the * targetting command or the l look command to inspect a 
+monster. Here I have used the * command to discover that the h to my 
+north-east is a Nibelung:
 
 
 Monster: a Nibelung [r,q,t,p,o,x,j,+,-,?,<dir>]
@@ -101,9 +104,10 @@ Monster: a Nibelung [r,q,t,p,o,x,j,+,-,?,<dir>]
                                                                     h[*********]
 Quest: L5
 
-
-如果你是第一次玩，仅仅知道这个怪物是一个尼伯龙人并没有太大帮助——尼伯龙人
-到底是什么样的？！ 你可以在这个瞄准提示下按 r 来调出一些附加信息：
+If you are playing for the first time, just knowing the monster is a 
+Nibelung does not help that much - what are Nibelungs like?! You can 
+press r at this targetting prompt to bring up some additional 
+information:
 
 
 Monster: a Nibelung [r,q,t,p,o,x,j,+,-,?,<dir>]
@@ -124,14 +128,15 @@ Night dwarfs collecting new riches for their master, Alberich.          :     12
                                                                     h[*********]
 Quest: L5
 
+Had we met Nibelungs before, this screen would be populated with useful 
+information. We haven't, so there's really just the speed and the 
+flavor description... but the latter does strongly suggest that 
+nibelungs might be thieves. (Jumping ahead of ourselves for a bit, it 
+also implies there might be a unique nibelung called Alberich!)
 
-如果我们以前见过尼伯龙人，这个屏幕就会充满有用的信息。我们没有，所以真的
-只有速度和风味描述……但后者强烈暗示尼伯龙人可能是小偷。（剧透一下，这也暗
-示可能有一个名叫 Alberich 的唯一尼伯龙人！）
-
-
-如果我让尼伯龙人打我几下，我们就会发现我对尼伯龙人是小偷的猜测是正确的，
-而且怪物回忆会更新这些新信息：
+If I let the nibelung hit me a couple times, we find out I was right 
+about nibelungs being thieves, and the monster recall updates with this 
+new information:
 
 
 Monster: a Nibelung [r,q,t,p,o,x,j,+,-,?,<dir>]
@@ -153,79 +158,82 @@ Night dwarfs collecting new riches for their master, Alberich.           15/  48
 Quest: L5
 
 
-还请注意右侧的怪物状态条——那个小小的 
-h[**-------]？它表明怪物有多健康：我回击了那个尼伯龙人几下，两颗红星旁边
-的七个空槽告诉我他现在只剩下一小部分生命值了。如果我能这么快造成这么多伤
-害，尼伯龙人可能不怎么耐打！（有关状态条的更详细解释，请参见下文的 [a]
-。）
+Notice also the monster status bar on the right - that little 
+h[**-------]? It indicates how healthy a monster is: I hit that 
+Nibelung a couple times in return, and the seven empty slots next to 
+the two red stars tell me he is already down to a fraction of his 
+original health. Nibelungs probably aren't too tough if I could do so 
+much damage so quickly! (See [a] below for a more detailed explanation 
+of the status bar.)
 
-唯一怪物 (Unique Monsters)
+Unique Monsters
 
+While there are many humans in the world, there is only one of you. 
+Likewise, many monsters can only be killed once, and these monsters are 
+called unique monsters or simply uniques. A large part of the game 
+involves killing as many uniques as possible. In fact, you need to kill 
+a certain unique to win the game: the Serpent of Chaos. Many quests 
+also involve killing a unique.
 
-虽然世界上有很多人，但你只有一个。同样，许多怪物只能被杀死一次，这些怪物
-被称为唯一怪物 (unique monsters)或简称唯一怪 
-(uniques)。游戏的很大一部分内容就是尽可能多地击杀唯一怪。事实上，你需要
-击杀特定的一个唯一怪才能赢得游戏：混沌之蛇 (the Serpent of Chaos)
-。许多任务也涉及击杀唯一怪。
+Uniques are typically some of the toughest monsters you will meet at a 
+given depth. Many uniques, especially in the early game, are just 
+bigger, badder versions of a regular monster; Mughash the Kobold Lord, 
+for example, could be fairly described as a normal kobold who hits 
+harder, has extra hitpoints and takes a posse of friends with him 
+everywhere he goes. It is not unusual, however, for a unique to truly 
+be one of a kind and have little in common with anybody else.
 
+The flipside to uniques' toughness is that they also drop some of the 
+best treasures. A number of uniques even have special drops - the 
+unique Arthur Pendragon, for example, might drop the highly valuable 
+sword Excalibur. But that is a long way from guaranteed!
 
-唯一怪通常是你在特定深度遇到的最难对付的怪物。许多唯一怪，特别是在游戏前
-期，只是普通怪物的更大、更坏的版本；例如，狗头人领主穆加什 (Mughash the 
-Kobold Lord) 
-可以被公平地描述为一个打人更疼、拥有额外生命值并且走到哪都带着一群小弟的
-普通狗头人。然而，一个唯一怪真正独一无二、与其他任何人都几乎没有共同点的
-情况也很常见。
+A unique does not belong to any other monster race; from the game's 
+point of view, each unique is a monster race of its own.
 
-
-唯一怪坚韧的另一面是它们也会掉落一些最好的财宝。一些唯一怪甚至有特殊掉落
- (special drops)——例如，唯一怪亚瑟·潘德拉贡 (Arthur Pendragon) 
-可能会掉落极其珍贵的长剑王者之剑 (Excalibur)。但这绝不是保证会掉落的！
-
-
-一个唯一怪不属于任何其他怪物种族；从游戏的角度来看，每个唯一怪都是它自己
-的一个怪物种族。
-
-  唯一怪的魔法抗性
+  Uniques' Resistance to Magic
   
+  Unique monsters tend to be more resistant to magic than the other 
+  dungeon inhabitants. In particular, almost no magic is powerful 
+  enough to slow uniques or make them fall asleep. Uniques who resist 
+  Teleportation are always completely immune to it (most normal 
+  monsters only get a saving throw). In addition, Genocide and 
+  Mass-Genocide effects (see [b] below) will never work on a unique.
   
-  唯一怪物往往比地下城里的其他居民对魔法更具抵抗力。特别是，几乎没有任何
-  魔法强大到足以减缓唯一怪的速度或让它们沉睡。免疫传送 (Teleportation) 
-  的唯一怪总是完全免疫它（大多数普通怪物只有一次豁免检定的机会）。此外，
-  灭绝术 (Genocide) 和群体灭绝术 (Mass-Genocide) 效果（见下文 [b]
-  ）永远对唯一怪无效。
+  Speaking Uniques
   
-  会说话的唯一怪
+  Occasionally, you will find that a unique monster will speak to you 
+  as it approaches. Typically, a monster will shout insults and 
+  challenges to combat; but they may also mention topics relating to 
+  themselves, or just engage in friendly chatter if they are less 
+  hostile. The game has no mechanism to allow you to respond (other 
+  than with violence). Speaking is not strictly limited to uniques, but 
+  is much rarer in normal monster races.
   
+  Wanted Uniques
   
-  偶尔，你会发现一个唯一怪在靠近时对你说话。通常，怪物会大喊大叫，对你进
-  行侮辱和挑战；但它们也可能提到与自己相关的话题，或者如果它们不那么敌对
-  的话，只是进行友好的交谈。游戏没有让你回应的机制（除了用暴力回应）。说
-  话并不仅限于唯一怪，但在普通怪物种族中要罕见得多。
+  For every character you play, the game rolls a new random list of 
+  twenty wanted uniques. You can view this list at the Bounty Offices 
+  in Outpost, Thalos and Anambar, and review it at any time through the 
+  ~ knowledge-menu command. When you kill a wanted unique, you are 
+  reminded of the price on its head; pick up the corpse or skeleton and 
+  turn it in at the Bounty Office, and you will receive one or more 
+  valuable items as a reward for your good work.
   
-  被通缉的唯一怪
-  
-  对于你玩的每一个角色，游戏都会随机生成一个新的包含二十个通缉唯一怪 
-  (wanted uniques)的列表。你可以在前哨站 (Outpost)、萨洛斯 (Thalos) 
-  和阿南巴尔 (Anambar) 的赏金办公室 (Bounty Offices) 
-  查看此列表，并随时通过 ~ 
-  知识菜单命令来回顾。当你击杀了一个通缉怪时，系统会提醒你它头上的赏金；
-  捡起它的尸体或骨架，并在赏金办公室上交，你将获得一件或多件贵重物品作为
-  你出色工作的奖励。
-  
-  
-  通缉怪列表按唯一怪的自然生成深度排序；击杀生成在更深处的唯一怪会给予更
-  好的奖励。
+  The list of wanted uniques is sorted by the native depth of the 
+  unique; killing deeper uniques gives better rewards.
   
 
-列出视线内的所有怪物
+Listing All Monsters in View
 
-当你只需要担心一个怪物时，使用 * 
-命令检查单个怪物是很棒的，但通常周围会同时有几十个怪物。这里有一个更高级
-的角色，他刚刚走进一个任务楼层并施放了魔法探测怪物法术——这些家伙都是谁？
+Using the * command to inspect a single monster is great when you only 
+have to worry about one monster, but often dozens of monsters will be 
+nearby at once. Here's a more advanced character who has just walked 
+into a quest and cast a magical monster-detection spell - who are all 
+these guys?
 
-
-你感觉到了门的存在！你感觉到了                                AU      475k
-怪物的存在！ 你听到门被撞开的声音！                             ||}~=="~((]]
+You sense the presence of doors! You sense the presence of          AU      475k
+monsters! You hear a door burst open!                               ||}~=="~((]]
                              Z   Z.Z                                STR : 18/113
                                #++Z#                                INT :     10
                                #...#                                WIS :  18/10
@@ -250,10 +258,10 @@ Kobold Lord)
 Quest: L35                                DTrap                                 
 
 
-
-即使你玩游戏的时间足够长，可以仅仅从符号就猜出一个怪物是谁，要处理的信息
-依然太多了。解决办法是按 Y（如果你切换到了 roguelike 键位则按 
-[）来调出怪物列表 (monster list)：
+Even if you had been playing long enough that you could guess who a 
+monster is from just the symbol, that would still be an awful lot of 
+information to process. The solution here is to press Y (or [ if you 
+have switched to the roguelike keyset) to bring up the monster list:
 
 
 You see 2 monsters, 2 are awake:                                    LEVEL     33
@@ -284,26 +292,27 @@ You are aware of 67 other monsters, 8 are awake:                    ||}~=="~((]]
    [Press ESC to exit. Press ? for help]
 
 
+That is still a lot of information; but the list is ordered primarily 
+by line-of-sight (the two energy hounds go first because they are in 
+direct view) and secondarily by the native depth of the monster, which 
+is a rough indicator of the threat level. So the monsters near the top 
+of the list are the ones we should worry about the most.
 
-这仍然包含很多信息；但该列表首先按视线排序（两只能量猎犬排在最前面，因为
-它们在直接视野内），其次按怪物的自然生成深度排序，这是对威胁等级的粗略指
-示。所以列表顶部的怪物是我们最应该担心的。
+The highest level monster in there is an ancient green dragon, a very 
+nasty enemy in the wrong circumstances. My experience with the game 
+makes me even more worried about the bodak and in particular the logrus 
+master - but those are still near the top, so I spotted them easily.
+Luckily for me, the list has colored these monsters black rather than 
+white, indicating they are still asleep. (Unique monsters, here the 
+Ultimate Dungeon Cleaner, are listed in violet.)
 
+Not all of the monsters listed were actually visible in that earlier 
+screenshot - many were offscreen, but still within detection range, so 
+they show up on the monster list. All the better for us!
 
-里面等级最高的怪物是一条远古绿龙，在糟糕的情况下是一个非常令人头疼的敌人
-。我玩这个游戏的经验让我更担心波达尸 (bodak)，尤其是罗格鲁斯大师 
-(logrus master)——但它们都在列表顶部附近，所以我很容易就发现了它们。
-
-幸运的是，列表把这些怪物标成了黑色而不是白色，表明它们还在沉睡。（唯一怪
-物，这里是终极地下城清道夫 (The Ultimate Dungeon 
-Cleaner)，以紫色列出。）
-
-
-并非所有列出的怪物都在早前的截图中真正可见——许多都在屏幕外，但仍在探测范
-围内，所以它们显示在怪物列表中。这对我们更好！
-
-你可以通过怪物列表按 R 来调出附加信息；我在这里选择了火天使 (fire 
-angel)，因为碰巧这个角色已经了解了这个怪物的一些情况：
+You can press R to bring up additional information through the monster 
+list; I chose the fire angel for this purpose here because that 
+happened to be a monster this character already knew things about:
 
 
 [Monster Info, Line 0/22]                                           LEVEL     33
@@ -329,302 +338,335 @@ Exp     : 1.59k at CL33
 Drops   : Up to 3 Objects                                           Fast (+8)   
                                                                     Full        
 
-一条 37 级、邪恶的龙类，+10 
-速度，能吐息等离子……你能明白为什么火天使也被列在顶部附近了。
+A level 37 evil dragon with +10 speed who breathes plasma... you can 
+see why the fire angel was also listed near the top.
 
-怪物颜色 (Monster Colors)
+Monster Colors
 
+Monsters associated with a particular element (damage type) are often 
+color-coded. The most common and reliable associations are Red with 
+fire and White with cold/frost - a red dragon, for example, breathes 
+fire, bites to burn and is resistant to your own fire attacks. (This 
+does not mean all red monsters will be fire-based, only that most 
+fire-based monsters are red.)
 
-与特定元素（伤害类型）相关联的怪物通常通过颜色来标识。最常见和最可靠的关
-联是红色对应火焰，白色对应寒冷/冰霜——例如，红龙会喷火、通过撕咬造成燃烧
-，并抵抗你的火焰攻击。（这并不意味着所有红色的怪物都是基于火焰的，只是大
-多数基于火焰的怪物是红色的。）
+Other similar associations include Blue with lightning/electricity, 
+Black and Slate with acid, Green with poison, Bronze with confusion, 
+Gold with sound and Silver with inertia. Pink monsters often hit to 
+drain strength in melee. Multi-hued monsters flicker in all colours and 
+are typically associated with multiple elements; multi-hued dragons and 
+multi-hued hounds both breathe and resist all of the five common 
+elements (acid, cold, fire, electricity and poison).
 
-其他类似的关联包括蓝色对应闪电/电击，黑色和
-石板色对应酸液，绿色对应毒素，青铜色
-对应困惑，金色对应音波，以及银色对应惰性。
-粉色怪物通常在近战中击中你以吸取力量。多彩颜色的怪物闪烁着所有的颜色，通
-常与多种元素相关；多色龙和多色猎犬都能吐息并抵抗所有五种常见元素（酸、冷
-、火、电和毒）。
+These general rules are not completely airtight - the acid-breathing 
+Water Hounds, for example, are Z instead of the expected Z or Z. (This 
+is to avoid confusion with other hounds; the darkness-breathing Shadow 
+Hounds are Z, and the infamous Gravity Hounds are Z.)
 
-这些一般规则并非完全没有漏洞——例如，喷吐酸液的水猎犬是 Z 而不是预期的 Z 
-或 Z。（这是为了避免与其他猎犬混淆；喷吐暗影的暗影猎犬是 
-Z，臭名昭著的重力猎犬是 Z。）
+Eldritch Horrors
 
-远古恐惧 (Eldritch Horrors)
+Some of the monsters in the dungeons are so fearsome that just to look 
+upon them can have serious repercussions. When you see one of these 
+sanity-blasting monsters, one (or more) of several nasty things may 
+happen to you; these include having your intelligence and wisdom 
+temporarily reduced, becoming scared or confused, and suffering an 
+attack of hallucinations or amnesia.
 
+If you can cope with your first sighting of a sanity-blasting monster, 
+you can then safely keep that monster in view; it will not trigger the 
+Eldritch Horror effect as long as it remains in view. It is possible 
+for the effect to be triggered if the monster walks out of view and is 
+then seen again, but a single monster very rarely blasts your sanity 
+more than once.
 
-地下城里的一些怪物极其可怕，仅仅看着它们就会产生严重的后果。当你看到这些
-摧毁理智的怪物 (sanity-blasting 
-monsters)之一时，几件糟糕的事情之一（或多件）可能会发生在你身上；这包括
-智力和感知被暂时降低，变得恐惧或困惑，以及遭受幻觉或失忆的侵袭。
+Although all player characters have some chance to resist sanity 
+blasting, only a handful ever become fully immune to it.
 
+Pets and Riding
 
-如果你能挺过第一次看到某个摧毁理智的怪物，你就可以安全地将其保持在视线内
-；只要它仍在视野内，就不会触发远古恐惧 (Eldritch Horror) 
-效果。如果怪物走出视线然后再次被看到，就有可能触发该效果，但单个怪物极少
-会摧毁你的理智不止一次。
+What could be nicer than a loyal pet? People sometimes worry their pets 
+will trample them underfoot; but in RoguelikeFansBand, pets will never 
+attack you by mistake. You can walk around safely as your pet Great 
+Hell Wyrm obliterates your enemies. Better still, some pets can summon 
+new pets.
 
+One might think that pets can make the game much easier. It is of 
+course highly satisfying to send your pet Wyrm into a troll pit and 
+wait outside listening for the howls of agony and terror, the sounds of 
+guts splattering, bones crunching and so on; but one should not expect 
+to gain much experience from this. You only earn full experience when 
+you deliver the death blow yourself.
 
-虽然所有玩家角色都有一定的几率抵抗理智摧毁，但只有少数角色能够完全免疫它
-。
+Pets retain some self-preservation instincts; at low health, a pet may 
+decide to quit the fight (and the level) rather than to die for his 
+master. Another limitation to the usefulness of pets is the rule that 
+unique monsters can only be killed by you and never by another monster, 
+including pets; pets can harm uniques, but not finish them off. (This 
+is relaxed for player Quylthulgs due to their exceptional reliance on 
+pets.)
 
-宠物与骑乘 (Pets and Riding)
+The practical approach to pets varies widely from player to player; 
+some successful players like keeping pets, while others just ignore the 
+possibility. Pets are not needed to win (on most characters), but they 
+are fun!
 
-
-还有什么比一只忠诚的宠物更好的呢？人们有时担心他们的宠物会把他们踩在脚下
-；但在 RoguelikeFansBand 
-中，宠物永远不会误伤你。当你的宠物大恶魔龙把敌人轰成渣时，你可以安全地四
-处走动。更好的是，有些宠物甚至可以召唤新的宠物。
-
-
-有人可能会认为宠物能让游戏变得简单得多。当然，把你的宠物龙送进一个巨魔坑
-里，在外面听着里面传出痛苦与恐惧的嚎叫、内脏飞溅和骨头断裂的声音，是极其
-令人满足的；但不要指望从中获得太多经验。只有当你自己给出致命一击时，你才
-能获得全额经验。
-
-
-宠物保留了一些自我保护的本能；在低生命值时，宠物可能会决定退出战斗（并离
-开当前层），而不是为主人战死。限制宠物实用性的另一个规则是：唯一怪物只能
-由你击杀，不能由其他怪物（包括宠物）击杀；宠物可以伤害唯一怪，但不能给它
-们最后一击。（由于玩家如果玩跨维度生物 Quylthulgs 
-极其依赖宠物，对这个职业该规则有所放宽。）
-
-
-玩家对宠物的实际态度因人而异；有些成功的玩家喜欢带宠物，而另一些则完全忽
-视这种可能性。宠物不是获胜所必需的（对大多数职业来说），但它们很有趣！
-
-  获取宠物
+  Obtaining a Pet
   
+  You may obtain pets in several different ways. Some magic realms 
+  offer the ability to summon pets magically or to charm the creatures 
+  you meet. Mindcrafters may 'dominate' their opponents. Chaos patrons 
+  may grant pets as a gift to their devotees. Magical figurines can be 
+  thrown to create a pet (though they might be cursed and create an 
+  enemy!); and wands of charm monster may be used as their name 
+  suggests.
   
-  你可以通过几种不同的方式获得宠物。一些魔法领域提供了魔法召唤宠物或魅惑
-  你遇到的生物的能力。心灵术士 (Mindcrafters) 可以“支配 
-  (dominate)”他们的对手。混沌守护神可能会将宠物作为礼物赐予他们的信徒。
-  可以投掷魔法雕像来创造一只宠物（尽管它们可能会被诅咒从而创造一个敌人！
-  ）；魅惑怪物魔杖也可以如其名所示用来魅惑。
+  The Capture Ball is a useful tool that (almost) any player can use. 
+  Capture Balls can often be bought at a General Store. To use one, you 
+  must wield it on your hand, then Activate it, and choose a target 
+  monster to be captured; if successful, you can then Activate the ball 
+  again to release the monster as your pet.
   
-  捕获球 (Capture Ball) 
-  是（几乎）所有玩家都能使用的有用工具。捕获球通常可以在杂货店买到。要使
-  用它，你必须将其装备在手中，然后按 A 
-  激活它，并选择一个目标怪物进行捕获；如果成功，你随后可以再次 A 
-  激活捕获球，将怪物作为你的宠物释放出来。
+  Hostile monsters will attempt to resist capturing, and can only be 
+  captured if they are critically injured. Beastmasters are very good 
+  at using Capture Balls, and this limitation is relaxed for them. 
+  Level guardians are immune to being captured; uniques and monsters on 
+  town quest levels can only be captured if they are already pets, so 
+  they need to be charmed or otherwise tamed before capture.
   
-  敌对怪物会试图抵抗捕获，且只能在它们受重伤时被捕获。兽王 
-  (Beastmasters) 
-  非常擅长使用捕获球，对他们来说这个限制有所放宽。楼层守卫 (Level 
-  guardians) 
-  免疫捕获；唯一怪和城镇任务楼层上的怪物只有在已经是宠物的情况下才能被捕
-  获，所以它们在被捕获之前需要先被魅惑或以其他方式驯服。
+  Keeping Pets Happy
   
-  保持宠物开心
+  Pets will accept punishment from you; hurt a pet, and it remains your 
+  pet. But what pets do expect from you is attention! This is called 
+  pet upkeep and consumes some of your mana; the more pets you have, 
+  and the stronger they are, the higher the upkeep. At low upkeep 
+  (below 100%), no mana is actually lost, the upkeep just slows mana 
+  regeneration (this allows characters with no mana to keep some pets). 
+  But at higher levels of upkeep, you will lose mana; run out of mana, 
+  and you have no option but to dismiss enough pets to bring the upkeep 
+  level down. This often happens if you have a pet who likes to 
+  summon...
   
+  At grossly excessive upkeep levels (starting around 500%), a red 
+  upkeep warning appears in your status bar. At this point, pets have a 
+  chance to feel neglected from lack of attention. Neglected pets 
+  sometimes turn hostile, but more often they just think "bugger this 
+  for a game of heroes" and leave the level.
   
-  宠物会接受你的惩罚；伤害宠物，它仍然是你的宠物。但宠物期望从你那里得到
-  的是关注！这被称为宠物维护费 (pet 
-  upkeep)，它会消耗你的一些法力；你拥有的宠物越多，它们越强，维护费就越
-  高。在低维护费下（低于 
-  100%），实际上没有法力流失，维护费只是减慢法力恢复速度（这允许没有法力
-  的职业也能带一些宠物）。但在较高的维护费下，你会失去法力；一旦法力耗尽
-  ，你别无选择，只能解散足够的宠物来降低维护水平。如果你有一只喜欢召唤的
-  宠物，这种情况经常发生……
+  Pet Evolution
   
-  在极度超标的维护费下（大约从 500% 
-  开始），你的状态栏中会出现一个红色的维护费警告 (upkeep 
-  warning)。在这一点上，宠物有几率因缺乏关注而感到被忽视 
-  (neglected)。被忽视的宠物有时会变得敌对，但更常见的是它们只是想“英雄游
-  戏去死吧”，然后直接离开当前楼层。
+  Pets, like players, receive experience when they kill a hostile 
+  monster. With enough experience, some pets may evolve into stronger 
+  monsters; for example, your baby multi-hued dragon might become a 
+  young multi-hued dragon, then a mature multi-hued dragon, and 
+  eventually a mighty Wyrm of Many Colours!
   
-  宠物进化
+  One problem, though: evolving into very strong forms takes a long 
+  time, and placing a pet into a Capture Ball causes the pet to lose 
+  all experience. It will not devolve back into its original form, but 
+  loses any progress it had made towards the next form.
   
+  Commanding Your Pets
   
-  宠物和玩家一样，在击杀敌对怪物时会获得经验。积累足够的经验后，一些宠物
-  可能进化 
-  (evolve)成更强大的怪物；例如，你的多色龙宝宝可能会变成幼年多色龙，然后
-  变成成年多色龙，最终变成强大的多色巨龙！
+  Your pets are fairly well trained and will respond to a variety of 
+  commands such as following you closely, staying nearby and searching 
+  out your enemies. You can command your pets using the pet command 
+  menu which can be found be pressing p.
   
+  Here is a list of available pet commands:
   
-  不过有一个问题：进化到非常强大的形态需要很长时间，而将宠物收入捕获球会
-  导致宠物失去所有经验。它不会退化回原来的形态，但会失去朝着下一个形态迈
-  进的任何进度。
+  Dismiss Pets
+    Dismiss specified pets. Dismissed pets will immediately disappear 
+    from the current level. RoguelikeFansBand asks you whether you want to 
+    dismiss each pet in order from high level named pets to low level 
+    unnamed pets. You can press 'U' to dismiss all unnamed pets.
   
-  指挥你的宠物
+  Specify Target of Pet
+    Choose a target monster; all your pets will begin to chase the 
+    target. This command causes pets to pathfind much more aggressively 
+    in cases where enemies are not in their line of sight.
   
+  Stay Close
+    Command your pets to slay as close as they can.
   
-  你的宠物训练有素，会响应各种命令，比如紧紧跟随你、待在附近和搜寻你的敌
-  人。你可以通过按 p 调出宠物命令菜单来指挥你的宠物。
+  Follow Me
+    Command your pets to follow you as you move about.
   
-  以下是可用的宠物命令列表：
+  Seek and Destroy
+    Command your pets to chase monsters near you.
   
-  遣散宠物 (Dismiss Pets)
-    遣散指定的宠物。被遣散的宠物会立即从当前楼层消失。RoguelikeFansBand 
-    会询问你是否要按照从高等级命名宠物到低等级未命名宠物的顺序逐个遣散宠
-    物。你可以按 'U' 来遣散所有未命名的宠物。
+  Give Me Space
+    Command your pets to go away from your line of sight.
   
-  指定宠物目标 (Specify Target of Pet)
-    
-    选择一个目标怪物；你所有的宠物都会开始追击目标。在敌人不在宠物视线范
-    围内的情况下，该命令会使宠物更加积极地寻路。
+  Stay Away
+    Command your pets to go away as far as they can.
   
-  靠紧我 (Stay Close)
-    命令你的宠物尽可能靠近你进行杀戮。
+  Pets Open Doors
+    Toggle permission of pets to open doors.
   
-  跟随我 (Follow Me)
-    命令你的宠物在你移动时跟随你。
+  Pets Pick Up Items
+    Toggle permission of pets to pick up items. Pets will drop any 
+    items picked up earlier.
   
-  索敌摧毁 (Seek and Destroy)
-    命令你的宠物追击你附近的怪物。
+  Allow Teleport
+    Toggle permission of pets to cast teleport spell and teleport away 
+    spell.
   
-  给我点空间 (Give Me Space)
-    命令你的宠物离开你的视线。
+  Allow Cast Attack Spell
+    Toggle permission of pets to use breaths and attack spells.
   
-  离远点 (Stay Away)
-    命令你的宠物尽可能走得远远的。
+  Allow Cast Summon Spell
+    Toggle permission of pets to cast summoning spells.
   
-  宠物开门 (Pets Open Doors)
-    开启/关闭宠物开门的许可。
-  
-  宠物拾取物品 (Pets Pick Up Items)
-    开启/关闭宠物拾取物品的许可。宠物会丢下任何早先捡起的物品。
-  
-  允许传送 (Allow Teleport)
-    开启/关闭宠物施放传送法术和传送逃离法术的许可。
-  
-  允许施放攻击法术 (Allow Cast Attack Spell)
-    开启/关闭宠物使用吐息和攻击法术的许可。
-  
-  允许施放召唤法术 (Allow Cast Summon Spell)
-    开启/关闭宠物施放召唤法术的许可。
-  
-  允许区域法术波及玩家 (Allow Involve Player in Area Spell)
-    
-    即使你离得足够近会受到连带伤害，也开启/关闭允许宠物使用球状法术或吐
-    息攻击的许可。
+  Allow Involve Player in Area Spell
+    Toggle permission of pets to use ball spells or breath attacks even 
+    when you are close enough to take collateral damage.
    
-  骑乘宠物 (Ride a Pet)
-    骑在指定的宠物上。
+  Ride a Pet
+    Ride on a specified pet.
   
-  下坐骑 (Get Off a Pet)
-    从你正在骑乘的宠物上下来。
+  Get Off a Pet
+    Dismount from the pet you were riding.
   
-  命名宠物 (Name Pets)
-    指定一个目标宠物并给它命名。
+  Name Pets
+    Specify a target pet and name it.
   
-  在地图上高亮宠物 (Highlight Pets on Map)
-    开启/关闭在地图上用黄色高亮所有宠物。
+  Highlight Pets on Map
+    Toggles highlighting all pets in yellow.
   
-  在列表中高亮宠物 (Highlight Pets in Lists)
-    开启/关闭在怪物列表中用黄色高亮所有宠物。同时用绿色高亮友善怪物。
+  Highlight Pets in Lists
+    Toggles highlighting all pets in yellow on the monster list. Also 
+    highlights friendly monsters in green.
   
-  双手持握武器 (Use Both Hands for a Weapon)
-  单手控制坐骑 (Use One Hand to Control a Riding Pet)
-    
-    开启/关闭你在骑乘时左手的使用方式。你可以双手持握武器以在近战中造成
-    最大伤害，并使用“指定宠物目标”命令指挥坐骑追击你的目标。
+  Use Both Hands for a Weapon
+  Use One Hand to Control a Riding Pet
+    Toggle use of your left hand when you are riding. You can wield a 
+    weapon two-handed for maximum damage in melee, and command the 
+    riding pet to chase your target using the 'specify target of pet' 
+    command.
   
-  骑乘 (Riding)
+  Riding
+  Not all pets are suitable for riding, but many are - horses, most 
+  dragons, and many others. To control your mount, you must keep one 
+  hand free for holding the reins; but your pet will attack your target 
+  together with you, and enemy attacks will be dispersed between you 
+  and your mount. As a result, you will take less damage in combat.
   
-  不是所有的宠物都适合骑乘，但有很多适合——马、大部分龙以及许多其他生物。
-  要控制你的坐骑，你必须空出一只手来拉缰绳；但你的宠物会和你一起攻击你的
-  目标，敌人的攻击将分散在你和坐骑之间。因此，你在战斗中受到的伤害会减少
-  。
+  The most important feature of riding is speed. When you are riding on 
+  a pet, your speed does not depend on your original speed but only on 
+  the speed of your mount and your skill at riding. Quaffing a potion 
+  of speed has no effect on your mount's speed, but throwing it at a 
+  wall will hasten your pet if it is nearby. You can also simply use a 
+  wand or a spell of Haste Monster.
   
+  Note that your proficiency level for riding is very low at first (see 
+  'Proficiency' in the ~ Knowledge Menu). When your proficiency level 
+  is low, you cannot make good use of riding, and your speed while 
+  riding will be very low. You need to practice riding to gain the full 
+  speed of the creature you ride. Your riding proficiency will increase 
+  a little when you attack monsters in melee or shoot them with missile 
+  weapons while riding. Ride on low level creatures at first, and then 
+  switch to higher level mounts little by little.
   
-  骑乘最重要的特性是速度。当你骑在宠物上时，你的速度不再取决于你原来的速
-  度，而是仅取决于你坐骑的速度和你骑乘的技巧。喝下一瓶加速药水对你坐骑的
-  速度没有影响，但把它扔向墙壁，如果宠物在附近的话，就会加速它。你也可以
-  简单地使用加速怪物 (Haste Monster) 的魔杖或法术。
+  You can also use the ~ Knowledge Menu to check your class-dependent 
+  proficiency cap for riding. If the cap is low, you will never get 
+  good at riding and are likely better off with another plan.
   
-  请注意，起初你的骑乘熟练度非常低（在 ~ 知识菜单中查看 'Proficiency' 
-  (熟练度)）。当你的熟练度低时，你不能很好地利用骑乘，且骑乘时的速度会非
-  常低。你需要练习骑乘才能获得你所骑乘生物的全部速度。当你在骑乘时近战攻
-  击怪物或用远程武器射击它们时，你的骑乘熟练度会略微增加。起初骑低级生物
-  ，然后一点一点地换成更高级的坐骑。
-  
-  你还可以使用 ~ 知识菜单检查由你的职业决定的骑乘熟练度上限 
-  (proficiency 
-  cap)。如果上限很低，你将永远无法擅长骑乘，通常最好换个别的计划。
-  
-友善怪物 (Friendly Monsters)
+Friendly Monsters
 
-你偶尔会在地下城中发现不想抓你的怪物。这些怪物在游戏信息中被描述为“友善 
-(friendly)”。友善的怪物不会试图伤害你，但它也不一定会攻击你的敌人。
+You will occasionally find a monster in the dungeon that isn't out to 
+get you. Such monsters are described in game messages as being 
+'friendly'. A friendly monster will not attempt to hurt you, but 
+neither will it necessarily attack your enemies.
 
+Unlike pets, if you hurt a friendly monster it will turn against you. 
+Like pets, any monsters a friendly monster summons will also be 
+friendly (except in the case of really stupid friends, who summon 
+indiscriminately). Unlike pets, friendly monsters require no mana 
+upkeep and cannot be commanded using the pet commands.
 
-与宠物不同，如果你伤害了友善怪物，它会与你反目成仇。与宠物一样，友善怪物
-召唤的任何怪物也将是友善的（除了真的非常愚蠢的朋友，它会不加区分地盲目召
-唤）。与宠物不同，友善怪物不需要法力维护，也不能用宠物命令来指挥。
+Note that the loyalty of friendly monsters' friendly summons may be to 
+the original friendly monster, not you; if you piss him off, his 
+summons might not take your side in the fight...
 
+Since uniques can never be killed by another monster, only by you, a 
+friendly unique is a huge asset - who's going to stop them from killing 
+everyone for you? Friendly uniques are very rare, though; and 
+Politicians (the class most likely to have friendly uniques on their 
+side) may find them escaping as their health is depleted.
 
-注意，友善怪物的友善召唤物，其忠诚对象可能是原先的友善怪物，而不是你；如
-果你激怒了他，他的召唤物在战斗中可能不会站在你这边……
+Mimics and Shadowers
 
+A number of monsters disguise themselves by assuming the shape (and 
+symbol) of common objects found in the dungeon. These include the |, (, 
+?, !, &, =, ~, $ and * symbols. Some players find this unfair (or 
+unfun); to provide for them we have the easy_mimics display option [c], 
+which changes the symbols for most of these monsters to the special 
+symbol x. This reduces immersion a bit, but if you hate being chopped 
+to pieces by something you had thought was a cloak, go for it!
 
-由于唯一怪物永远不能被其它怪物击杀，只能由你击杀，因此友善的唯一怪是一笔
-巨大的资产——谁能阻止它们为你杀光所有人呢？然而，友善的唯一怪非常罕见；而
-政客 
-(Politicians)（最有可能让友善唯一怪站在他们这边的职业）可能会发现，唯一
-怪在生命值耗尽时依然会选择逃跑。
+These traditional mimics are not the only monsters who are trying to 
+hide their identity. There are also shadowers, who might seem easily 
+recognizable by the distinctive N symbol... except that shadowers are 
+not a distinct race at all. Shadowers are monsters of other races, 
+hiding their true identity. At times it is obvious who a shadower 
+really is, at other times you may have to think. Most of the time 
+shadowers are fairly harmless, but don't rely on it completely. 
+Shadowers are quite rare, and uniques never appear as a shadower.
 
-模仿者与暗影者 (Mimics and Shadowers)
+Two further monster races like to play games with their appearance: the 
+chameleons and the tanuki. Chameleons are true shape-changers: they 
+assume not just the appearance but also the characteristics of another 
+monster, and act like that monster in every way except that they might 
+suddenly change shape. Tanuki, on the other hand, only look like 
+monsters of another race; they are actually quite harmless, but might 
+spook you into thinking otherwise.
 
-许多怪物通过呈现为地下城中常见物品的形状（和符号）来伪装自己。这包括 |, 
-(, ?, !, &, =, ~, $ 和 * 
-符号。一些玩家觉得这不公平（或无趣）；为了照顾他们，我们提供了 
-easy_mimics (简易模仿者) 显示选项 [c]
-，它将大多数这些怪物的符号改变为特殊符号 
-x。这稍微降低了沉浸感，但如果你讨厌被你以为是斗篷的东西砍成碎片，那就开
-启它吧！
+Breeding Monsters
 
-这些传统的模仿者并不是唯一试图隐藏身份的怪物。还有暗影者 
-(shadowers)，它们似乎很容易通过独特的 N 
-符号被认出……只不过暗影者根本不是一个独特的种族。暗影者是其它种族的怪物隐
-藏了它们的真实身份。有时一个暗影者的真实身份很明显，有时你可能需要思考。
-大多数时候暗影者是相当无害的，但不要完全指望这一点。暗影者非常罕见，且唯
-一怪物永远不会作为暗影者出现。
+There are a few monsters with the ability to breed explosively - they 
+can multiply very fast, and fill entire rooms with new monsters of the 
+same type. (It is probably best not to think too closely about exactly 
+how they do this.) Breeders are rarely dangerous (with one notable 
+exception), but they can be extremely annoying, especially on quest 
+levels.
 
-还有另外两个怪物种族喜欢在它们的外表上玩花样：变色龙 (chameleons)和狸猫 
-(tanuki)。变色龙是真正的变形者：它们不仅呈现另一个怪物的外表，还拥有其特
-征，行为方式在各个方面都像那个怪物，除了它们可能突然改变形状。另一方面，
-狸猫只是看起来像另一个种族的怪物；它们实际上相当无害，但可能会吓到你，让
-你误以为情况不妙。
+It is best to kill breeders before they multiply out of control. They 
+are very rare in town quests (where the stipulation for completion is 
+often that you must empty the entire level of monsters!), but when they 
+do appear in a town quest, they should always be your top priority. 
+Breeders are particularly likely to be a pain if you select the Sexy 
+personality; most characters can hope to catch the breeder asleep and 
+kill it before it has the chance to multiply, but the aggravation on 
+Sexy characters wakes everybody up and removes this possibility.
 
-繁殖怪 (Breeding Monsters)
+Even in extreme cases, an entire level will never be filled with 
+breeders (unless it's a really tiny level): there is a strict limit of 
+no more than 100 breeders at a time. Farming breeders by deliberately 
+letting them multiply so you can kill them for XP does not work very 
+well in this game; the experience you can gain this way is very limited 
+and tails off rapidly. There are many other ways to level up that are 
+more interesting and productive.
 
-有少数怪物拥有爆炸性繁殖 (breed 
-explosively)的能力——它们能非常快地繁殖，让整个房间充满同一类型的新怪物。
-（最好不要深究它们到底是怎么办到的。）繁殖怪很少会造成危险（只有一个著名
-的例外），但它们可能极度烦人，尤其是在任务楼层。
+Monster Knowledge
 
-
-最好在繁殖怪失控前将其击杀。它们在城镇任务中非常罕见（那里完成任务的条件
-通常是你必须清空整个楼层的所有怪物！），但当它们确实出现在城镇任务中时，
-它们永远应该是你的首要目标。如果你选择了性感 
-(Sexy)性格，繁殖怪会特别让人头疼；大多数角色可以指望在繁殖怪熟睡时将其抓
-住，并在它有机会繁殖之前杀死它，但性感角色的激怒属性会唤醒所有人，从而排
-除了这种可能性。
-
-
-即使在极端情况下，整个楼层也永远不会被繁殖怪填满（除非那是一个非常小的楼
-层）：有一个严格的限制，即一次最多只能有 100 
-只繁殖怪。刻意让它们繁殖以便你杀它们换经验的刷怪 (Farming 
-breeders)玩法在这个游戏中效果并不好；你通过这种方式获得的经验非常有限且
-下降极快。有很多其他更有趣、更高效的升级方法。
-
-怪物知识 (Monster Knowledge)
-
-因为怪物的种类太多了（大约 1300 
-种），而且很多怪物的颜色和符号都很相似，想要弄清楚每个怪物能做什么非常困
-难，尤其是当你还是新手的时候。幸运的是，游戏会自动记录你与每个怪物遭遇的
-经历；你会记住你遭受过的近战、法术和吐息攻击，它抵抗了你的哪些魔法攻击，
-它是否掉落了财宝，你是否看到它繁殖，以及你杀死它得到了多少经验。
+Because there are so many different kinds of monster (about 1300) and 
+many of them share similar colors and symbols, it is very difficult to 
+keep track of what each of them can do, especially when you are still 
+new to the game. Luckily, the game automatically keeps track of your 
+experiences with each monster; you will remember the melee, spell and 
+breath attacks you have suffered, which of your own magical attacks it 
+resisted, whether it dropped treasure, whether you saw it multiply, and 
+how much XP you got for killing it.
  
-有几种方法可以访问这些怪物图鉴 (monster lore)。上面已经展示了两种——按 * 
-瞄准一个可见的怪物，然后按 r 回忆信息，以及按 Y 查看怪物列表，然后按 R 
-回忆特定怪物的图鉴。
+There are several ways to access this monster lore. Two were already 
+shown above - pressing * to target a visible monster and then r to 
+recall the information, and pressing Y to view the monster list and 
+then R to recall the lore on a particular monster.
 
-这些方法只有在你想了解更多关于当前可见的怪物时才有效，但你可以使用 ~ 
-知识菜单（选择 Known Monsters (已知怪物) 
-子菜单）随时访问任何怪物的图鉴。你将看到的大致如下：
+These approaches only work if the monster you would like to know more 
+about is currently visible, but you can use the ~ knowledge menu 
+(select the Known Monsters submenu) to access the lore on any monster 
+at any time. This is about what you will see:
 
 
 Knowledge - Monsters
@@ -651,133 +693,149 @@ Naga                 | Orcogar, Son of Orcobal                        o   dead
 Orc                  | Old Man Willow                                 #   dead  
 <dir>, '?' to recall, 'v' for visuals, 'c' to copy, ESC
 
-如果你现在在一个特定的怪物上按 ? 或 
-r，你对该怪物所知的一切都会被显示出来。
+If you now press ? or r on a particular monster, everything you know 
+about that monster will be displayed.
+
+This monster knowledge is still incomplete, though - it only tells you 
+what you have learned through your experiences; if you want to know all 
+there is to know about a monster without having to fight it over and 
+over again, there are three ways to reach that goal.
+
+You can probe a nearby monster with the Probing spell (or item effect); 
+this will reveal everything about both that individual monster and 
+about its race. Another option is to find your local Beastmaster (most 
+though not all towns have one; the Library serves this function in the 
+no-wilderness town) and pay to have a monster race researched; this 
+also reveals everything about that race. The final way is to just turn 
+on the Easy Lore birth option ([d]), which gives you full monster lore 
+at birth; this does make the game a bit easier, but maybe that's what 
+you want!
+
+You will retain your monster knowledge for as long as you use the same 
+savefile, even if your character dies; the monster memory is not just 
+for your character, but for you.
+
+It Resists...
+
+Your cool bag of magical tricks is not guaranteed to have the same 
+effect on every enemy; many monsters have an inherent resistance, 
+sometimes even an immunity, to a particular damage type or status 
+effect. An immunity means such an attack has no effect on the monster 
+at all. A resistance to an element (for example fire) means the damage 
+taken by the monster is greatly reduced, but a small amount of damage 
+is still taken. Resisting against a status effect means a monster 
+survived a saving throw against the effect; the higher the monster's 
+level compared to the attack power, the better the monster's chance to 
+resist. (Typically, this does not require a specific resistance; most 
+status effects give all monsters a chance to resist, while some are 
+completely immune.)
+
+Some monsters have immunities just by virtue of what they are; for 
+example, all Nonliving monsters, Demons and Undead are immune to 
+vampirism. Undead monsters also cannot be harmed by nether.
+
+The various feedback messages of the type "so-and-so is immune", 
+"so-and-so resists" and "so-and-so is unaffected" sometimes leave 
+players unsure as to whether it might be worth trying the same attack 
+again; though "so-and-so is immune" reliably means you can forget about 
+it. In the case of resistances noted in the monster lore (elemental 
+resistances, status effect resistances, teleportation) you can look in 
+the lore if you are uncertain; if the message you just got means the 
+monster has a resistance or an immunity, that information will now 
+appear in the lore.
+
+Genocide
+
+Some powerful magical spells and devices allow you to genocide a 
+monster species (all monsters sharing a given letter symbol). Genocide 
+attempts to remove all monsters of the specified species from the level 
+you are currently on.
+
+Genocide is not always fully effective; it does not affect uniques or 
+quest monsters (including town quest monsters), and monsters other than 
+uniques have a level-dependent chance to resist. Monsters who 
+successfully resist genocide have a small chance of acquiring immunity 
+to future attempts. Another downside is the strain involved in casting 
+genocide: you will take some damage for each monster affected. The 
+damage taken per monster is very small, but if the number of monsters 
+is high, casting genocide can hurt you seriously or even kill you. 
+(This does not happen if your chaos patron offers you a free genocide; 
+in this case, it is the patron casting genocide, he is just letting you 
+pick the species.)
+
+Two other spell effects are closely related and follow the same basic 
+rules as Genocide does. Annihilation targets a single monster (even 
+this is enough for it to be very valuable!), and Mass Genocide affects 
+all non-unique monsters regardless of species, but is limited to your 
+immediate surroundings (monsters within 20 squares of you) instead of 
+affecting the entire level.
+
+Genocide is based on the underlying "true" letter symbols of monsters, 
+and ignores any changes made by the player to the visual appearance of 
+a monster. For example, casting genocide on the symbol x would have no 
+effect on mimics even if you turned the easy_mimics option on, because 
+x is not these mimics' true symbol. Similarly, genociding D would 
+affect ancient dragons even if you had changed their visual appearance 
+to something else.
+
+Chameleons are genocided as if they truly belonged to their current, 
+apparent race. Tanuki and Shadowers, on the other hand, are genocided 
+by their underlying species, which for Tanuki is quadrupeds (q) and for 
+Shadowers the species of the race the shadower actually belongs to.
+
+Friendly monsters will always be turned hostile by a failed attempt to 
+genocide them, even if they are uniques and there was no chance the 
+genocide would harm them personally. Genocide can affect pets (it will 
+not turn them hostile), although your mount will never be affected.
+
+New players with previous experience in other roguelikes, but not in 
+Angband variants, sometimes expect Genocide or Mass Genocide to remove 
+a monster race or species from the game permanently. This does not 
+happen; genocide only affects monsters on a single level, and even 
+there, they have a chance to resist. In spite of these limitations, 
+sources of Genocide and Mass Genocide are extremely valuable, and many 
+players stockpile them for the end fights.
+
+Health Bar Colors
+
+The number of stars in a monster's status/health bar always indicates 
+the monster's health; the color of the stars reveals some additional 
+information about the monster. Here is a quick guide to health bar 
+colors, ordered from highest priority to lowest (if multiple colors 
+apply, the color with the highest priority is used):
+
+      U[*********]   Monster is invulnerable
+      U[*********]   Monster is paralyzed or sleeping
+      U[*********]   Monster is confused
+      U[*********]   Monster is stunned
+      U[*********]   Monster is afraid
+      U[*********]   Monster is slowed
+      U[*--------]   Monster is below 10% health
+      U[**-------]   Monster is below 25% health
+      U[*****----]   Monster is below 60% health
+      U[*********]   Monster is below 100% health
+      U[*********]   Monster is at full health
+      U[********-]   Monster is at full health but has reduced max HP
+      U[---------]   Monster's status and location are unknown
 
 
-然而，这种怪物知识依然是不完整的——它只能告诉你你通过经验学到的东西；如果
-你想知道关于一个怪物的所有信息，而不用一遍又一遍地和它战斗，有三种方法可
-以达到这个目标。
+The coloring of the empty slots and surrounding brackets provides some 
+additional information:
 
-你可以用探测 (Probing) 法术（或物品效果）探查 
-(probe)附近的一个怪物；这不仅会揭示这个个体怪物的一切，还会揭示其种族的
-一切。另一个选项是找到你当地的兽王 
-(Beastmaster)（大多数，虽然不是所有城镇都有一个；在没有荒野版本的城镇中
-由图书馆 Library 
-履行此功能）并付钱研究一个怪物种族；这也揭示了该种族的一切。最后一种方法
-是开启 Easy Lore (简单图鉴) 出生选项 ([d]
-)，这让你在建卡时就拥有完整的怪物图鉴；这确实让游戏变简单了一点，但也许
-那就是你想要的！
+      U[*****----]   Monster is current target
+      U[*****----]   Monster is current mount
 
-
-只要你使用同一个存档文件，即使你的角色死了，你的怪物知识也会保留；怪物记
-忆不仅属于你的角色，也属于你本人。
-
-抗性与免疫 (It Resists...)
-
-
-你那酷炫的一背包魔法戏法并不能保证对每个敌人都有相同的效果；许多怪物对特
-定的伤害类型或状态效果有着天生的抗性，有时甚至是免疫。免疫 (immunity) 
-意味着这种攻击对该怪物完全无效。对某元素（例如火焰）的 抗性 
-(resistance) 
-意味着怪物受到的伤害大幅减少，但仍会受到少量的伤害。抵抗某种状态效果意味
-着怪物在该效果的豁免检定中成功存活了下来；怪物的等级相对于攻击力越高，怪
-物抵抗的机会就越大。（通常，这不需要一种特定的抗性；大多数状态效果都给了
-所有怪物抵抗的机会，同时一些怪物能完全免疫。）
-
-有些怪物仅仅因为其本质就具有免疫力；例如，所有非活物怪物 
-(Nonliving)、恶魔 (Demons) 和不死生物 (Undead) 
-都免疫吸血。不死怪物也不能被虚空 (nether) 伤害。
-
-像“某某某免疫 (is immune)”、“某某某抵抗 (resists)”和“某某某不受影响 (is 
-unaffected)”这种各种各样的反馈信息，有时会让玩家不确定是否值得再次尝试相
-同的攻击；不过“某某某免疫”确实可靠地意味着你可以放弃这种攻击手段了。如果
-是怪物图鉴中注明的抗性（元素抗性、状态效果抗性、传送），如果你不确定，可
-以查阅图鉴；如果你刚刚得到的信息意味着怪物具有抗性或免疫力，那么该信息现
-在就会出现在图鉴中。
-
-灭绝术 (Genocide)
-
-一些强大的魔法法术和装置允许你灭绝 
-(genocide)一个怪物品类（共享特定字母符号的所有怪物）。灭绝术试图将指定品
-类的所有怪物从你当前的楼层移除。
-
-
-灭绝并不总是完全有效的；它对唯一怪物或任务怪物（包括城镇任务怪物）无效，
-而且除了唯一怪以外的其他怪物也有与等级相关的抵抗几率。成功抵抗灭绝的怪物
-有很小的几率获得对未来灭绝尝试的免疫。另一个缺点是施放灭绝带来的负担：你
-将为每个受到影响的怪物承受一定伤害。每个怪物带来的伤害非常小，但如果怪物
-数量很多，施放灭绝术可能会严重伤害你甚至杀死你。（如果你的混沌守护神向你
-提供免费的灭绝则不会发生这种情况；在这种情况下，是守护神在施放灭绝，他只
-是让你挑个品类。）
-
-另外两个法术效果与此密切相关，并遵循与灭绝相同的基本规则。湮灭术 
-(Annihilation) 
-针对单个怪物（即使只有这点也足以使它变得非常有价值！），而群体灭绝术 
-(Mass Genocide) 
-影响所有非唯一怪物而无论其品类，但仅限于你周围的环境（你周围 20 
-个方格内的怪物），而不是影响整个楼层。
-
-
-灭绝是基于怪物潜在的“真实”字母符号，并忽略玩家对怪物视觉外观所做的任何更
-改。例如，即使你开启了 easy_mimics 选项，对符号 x 
-施放灭绝术也不会对模仿者产生任何影响，因为 x 
-不是这些模仿者的真实符号。类似地，灭绝 D 
-依然会影响远古龙，即使你已将它们的视觉外观更改为其它东西。
-
-
-变色龙被灭绝的方式如同它们真的属于它们当前表现出来的种族。另一方面，狸猫
-和暗影者则是通过其底层品类被灭绝的，对于狸猫是四足兽 
-(q)，对于暗影者是该暗影者实际上所属种族的品类。
-
-
-灭绝失败总是会使友善怪物转为敌对状态，即使它们是唯一怪，并且这灭绝根本不
-可能伤害到它们本身。灭绝术可以影响宠物（且不会使它们变得敌对），不过你的
-坐骑绝不会受到影响。
-
-以前在其它 roguelike 游戏（但非 Angband 
-变体）中摸爬滚打过的新玩家，有时会期望灭绝或群体灭绝将某种怪物种族或品类
-永远从游戏中移除。这并不会发生；灭绝只影响单层楼上的怪物，即使在那里，它
-们也有几率抵抗。尽管存在这些限制，灭绝术和群体灭绝术的来源仍极其珍贵，许
-多玩家会为了最终决战而囤积它们。
-
-健康条颜色 (Health Bar Colors)
-
-
-怪物状态/健康条中的星号数量总是表示怪物的生命值；星号的颜色揭示了关于该
-怪物的一些附加信息。以下是健康条颜色的快速指南，按优先级从高到低排序（如
-果符合多种颜色情况，则使用优先级最高的颜色）：
-
-      U[*********]   怪物处于无敌状态
-      U[*********]   怪物被麻痹或沉睡
-      U[*********]   怪物感到困惑
-      U[*********]   怪物处于震慑状态
-      U[*********]   怪物感到恐惧
-      U[*********]   怪物被减速
-      U[*--------]   怪物生命值低于 10%
-      U[**-------]   怪物生命值低于 25%
-      U[*****----]   怪物生命值低于 60%
-      U[*********]   怪物生命值低于 100%
-      U[*********]   怪物处于满血状态
-      U[********-]   怪物处于满血状态，但最大生命值被削减
-      U[---------]   怪物的状态和位置未知
-
-
-空槽和周围括号的颜色提供了一些额外信息：
-
-      U[*****----]   怪物是当前瞄准的目标
-      U[*****----]   怪物是当前骑乘的坐骑
-
-      U[*****----]   怪物非常强大（>133.3% 正常生命值）
-      U[*****----]   怪物被加速了
+      U[*****----]   Monster is very powerful (>133.3% normal)
+      U[*****----]   Monster is hasted
 
 
 
-最初版     : (??)
-更新       : (??)
-更新       : Zangband DevTeam
-更新       : Hengband 1.0.11
-更新       : PosChengband 4.0.0
-更新       : RoguelikeFansBand 7.1.liquorice
-更新       : RoguelikeFansBand 7.1.salmiak
+Original   : (??)
+Updated    : (??)
+Updated    : Zangband DevTeam
+Updated    : Hengband 1.0.11
+Updated    : PosChengband 4.0.0
+Updated    : RoguelikeFansBand 7.1.liquorice
+Updated    : RoguelikeFansBand 7.1.salmiak
+
 

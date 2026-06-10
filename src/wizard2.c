@@ -506,6 +506,7 @@ static tval_desc tvals[] =
     { TV_HEX_BOOK,          "诅咒法术书"        },
     { TV_RAGE_BOOK,         "狂怒法术书"       },
     { TV_BURGLARY_BOOK,     "盗贼指南"       },
+    { TV_CUSTOM_BOOK,       "自定义法术书"       },
     { TV_PARCHMENT,         "羊皮纸" },
     { TV_WHISTLE,           "哨子"    },
     { TV_QUIVER,            "箭袋"               },

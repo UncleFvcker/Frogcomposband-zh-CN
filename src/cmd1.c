@@ -4343,7 +4343,7 @@ bool player_can_enter(s16b feature, u16b mode)
     if (p_ptr->prace == RACE_MON_POSSESSOR && p_ptr->current_r_idx != MON_POSSESSOR_SOUL)
         return monster_can_cross_terrain(feature, &r_info[p_ptr->current_r_idx], mode | CEM_MIMIC);
 
-    if (p_ptr->prace == RACE_MON_MIMIC && p_ptr->current_r_idx != MON_MIMIC)
+    if ((p_ptr->prace == RACE_MON_MIMIC && p_ptr->current_r_idx != MON_MIMIC) || ethereal_mimic_is_mimicking())
         return monster_can_cross_terrain(feature, &r_info[p_ptr->current_r_idx], mode | CEM_MIMIC);
 
     /* Pattern */
@@ -4994,7 +4994,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
     if (!oktomove)
     {
     }
-    else if (p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC)
+    else if (possessor_is_active())
     {
         monster_race *r_ptr = &r_info[p_ptr->current_r_idx];
         if (r_ptr->flags1 & RF1_NEVER_MOVE)
@@ -5572,7 +5572,7 @@ void move_player(int dir, bool do_pickup, bool break_trap)
         if (_glacier_hack)
         /* Keep moving */
         {
-            if (p_ptr->prace == RACE_MON_POSSESSOR || p_ptr->prace == RACE_MON_MIMIC)
+            if (possessor_is_active())
                _glacier_hack = FALSE; /* Code too achy */
             else if (p_ptr->riding) _glacier_hack = FALSE; /* Paranoia */
             else

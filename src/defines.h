@@ -656,7 +656,12 @@
 #define RACE_MON_PUMPKIN        71
 #define RACE_IGOR               72
 #define RACE_MON_MUMMY          73
-#define MAX_RACES               74
+#define RACE_MAIA               74
+#define MAX_RACES               75
+
+#define MAIA_UNINITIATED        0
+#define MAIA_ENLIGHTENED        1
+#define MAIA_CORRUPTED          2
 
 #define DEMIGOD_MINOR           0
 #define DEMIGOD_ZEUS            1
@@ -865,7 +870,8 @@ enum _mimic_types {
 #define CLASS_ALCHEMIST         50
 #define CLASS_POLITICIAN        51
 #define CLASS_DISCIPLE          52
-#define MAX_CLASS               53
+#define CLASS_ETHEREAL_MIMIC    53
+#define MAX_CLASS               54
 
 /*
 #define CLASS_LOGRUS_MASTER     47
@@ -1660,6 +1666,7 @@ enum {
 #define TV_WAND         65
 #define TV_ROD          66
 #define TV_PARCHMENT    69
+#define TV_CUSTOM_BOOK  68
 #define TV_SCROLL       70
 #define TV_POTION       75
 #define TV_FLASK        77
@@ -1697,6 +1704,12 @@ enum {
 #define TV_ARMOR_END      TV_DRAG_ARMOR
 #define TV_BOOK_BEGIN     TV_LIFE_BOOK
 #define TV_BOOK_END       TV_BURGLARY_BOOK
+
+#define CUSTOM_BOOK_MAX_SPELLS 5
+
+#define SV_CUSTOM_CODEX      0
+#define SV_CUSTOM_SPELLBOOK  1
+#define SV_CUSTOM_GRIMOIRE   2
 
 /* Any subvalue */
 #define SV_ANY                     255

@@ -101,6 +101,7 @@ static grouper group_item[] =
     { TV_HISSATSU_BOOK, "书籍 (剑道)" },
     { TV_HEX_BOOK,      "书籍 (诅咒)" },
     { TV_RAGE_BOOK,      "书籍 (狂怒)" },
+    { TV_CUSTOM_BOOK,   "书籍 (自定义)" },
 
     { TV_WHISTLE,       "哨子" },
     { TV_CAPTURE,       "捕获球" },

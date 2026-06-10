@@ -1,365 +1,396 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <body text="#ffffff" bgcolor="#000000"><pre>
-<font color="#00ffff">防御与护甲 (Defending and Armor)
+<font color="#00ffff">Defending and Armor
  
+</font><font color="#ffffff">There are a number of ways in which monsters can attack you: in direct 
+melee combat, by exploding next to you, by breathing on you, or by 
+casting spells (this is to say nothing of those lovely summoners who 
+summon other monsters to lend them a helping hand!). All types of 
+monster attacks can either harm your hit points directly, cause status 
+effects (<a href="status.html"></font><font color="#00ff00">[a]</a></font><font color="#ffffff">), cause other nasty side-effects (like stat drain or 
+elemental damage to your items), or - way too often - all of the above.
 
-</font><font color="#ffffff">怪物有许多种方式可以攻击你：直接进行近战格斗、在你身边自爆、向你吐息，或
-者施放法术（更不用提那些“可爱”的召唤师了，它们会召唤其他怪物来帮忙！）。
-所有类型的怪物攻击要么直接损害你的生命值，要么造成状态效果 (<a href="status.html"></font><font color="#00ff00">[a]</a>
-</font><font color="#ffffff">)，要么引起其他恶心的副作用（比如吸取属性或对你的物品造成元素破坏），或
-者——更常见的情况是——以上全部。
+Virtually all monsters have </font><font color="#ff0000">melee attacks</font><font color="#ffffff">; usually they can only use 
+them if they are directly next to you, but a few monsters have longer 
+(two-square) reach, and then there are the dreaded beholders... Melee 
+attacks are not guaranteed to hit, though; often they miss.
 
-几乎所有的怪物都有</font><font color="#ff0000">近战攻击 (melee 
-attacks)</font><font color="#ffffff">；通常它们只有在紧挨着你的时候才能使用近战，但少数怪物有更长的（
-两格）触及范围，此外还有可怕的眼魔……不过，近战攻击并不能保证每次都命中；
-它们经常会未命中 (miss)。
+Many monsters also have an array of </font><font color="#ff0000">magical spells </font><font color="#ffffff">which they may use 
+against you; and some have </font><font color="#ff0000">breath attacks </font><font color="#ffffff">(for example, red dragons 
+breathe fire). Spell and breath attacks can be used from some distance 
+away; usually they require line of sight, but sometimes a powerful ball 
+or breath attack might snipe you from around a corner, still doing some 
+damage even though the monster could not target you directly.
 
-许多怪物还拥有一系列可以用来对付你的</font><font color="#ff0000">魔法法术 (magical 
-spells)</font><font color="#ffffff">；一些怪物则有</font><font color="#ff0000">吐息攻击 (breath 
-attacks)</font><font color="#ffffff">（例如，红龙会喷火）。法术和吐息攻击可以从远处使用；通常它们需要
-视线，但有时强大的球类或吐息攻击可能会在拐角处狙击你，即使怪物无法直接将
-你作为目标，依然能对你造成一些伤害。
+You need three things to protect you from this onslaught of attacks: 
+</font><font color="#ff0000">armor class </font><font color="#ffffff">(</font><font color="#ff0000">AC</font><font color="#ffffff">) to make melee attacks miss more; </font><font color="#ff0000">resistances </font><font color="#ffffff">to reduce 
+damage from elements (like fire) and to mitigate or eliminate the 
+side-effects that elements have; and enough </font><font color="#ff0000">hit points </font><font color="#ffffff">(</font><font color="#ff0000">HP</font><font color="#ffffff">) to survive 
+the damage you can't help taking. (In practice, you also need a fourth 
+thing as well: plenty of healing to recover from the damage!)
 
-你需要三样东西来保护自己免受这种猛烈攻击：</font><font color="#ff0000">护甲等级 
-</font><font color="#ffffff">(</font><font color="#ff0000">AC</font><font color="#ffffff">)，使近战攻击更容易未命中；</font><font color="#ff0000">抗性 
-(resistances)</font><font color="#ffffff">，减少来自元素（如火焰）的伤害，并减轻或消除元素带来的副作
-用；以及足够的</font><font color="#ff0000">生命值 
-</font><font color="#ffffff">(</font><font color="#ff0000">HP</font><font color="#ffffff">)，以在无法避免的伤害中存活下来。（在实践中，你还需要第四样东西：充足
-的治疗手段来从伤害中恢复！）
+<a name="Armor"></a></font><font color="#c00000">Armor Class
 
-<a name="Armor"></a></font><font color="#c00000">护甲等级 (Armor Class)
+</font><font color="#ffffff">The higher your armor class (or AC) is, the better. The effects of high 
+AC are twofold: it causes all monster melee attacks to miss more often, 
+and it reduces damage from some melee attacks even when they do hit. 
+The latter only happens against the "Hurt" and "Shatter" attack types, 
+and not against melee attacks of other types.
 
-</font><font color="#ffffff">你的护甲等级（即 AC）越高越好。高 AC 
-的效果是双重的：它不仅能使所有怪物的近战攻击更容易打空，还能在某些近战攻
-击命中时减少其造成的伤害。后者只对“伤害 (Hurt)”和“粉碎 
-(Shatter)”这两种攻击类型有效，对其他类型的近战攻击无效。
+You can get some AC from your dexterity (essentially this is your 
+ability to dodge attacks, interpreted as AC); but the bulk of your AC 
+will be accounted for by your equipment, especially your armor.
 
-你可以从敏捷 (dexterity) 属性中获得一些 
-AC（本质上这是你躲避攻击的能力，被转化为了 AC）；但你绝大部分的 AC 
-都将由你的装备提供，尤其是你的护甲。
+All armor-type items (body armors, shields, cloaks, gloves, boots, 
+helmets etc.) have two different AC values: </font><font color="#ff0000">base AC </font><font color="#ffffff">and </font><font color="#ff0000">bonus AC</font><font color="#ffffff">. These 
+are displayed in square brackets as [x,+y] (e.g. [8,+0]), where </font><font color="#00ffff">x </font><font color="#ffffff">is 
+the base AC and </font><font color="#00ffff">y </font><font color="#ffffff">is the bonus AC. Base AC is usually the same for all 
+items of the same kind (e.g. all small leather shields), cannot be 
+magically enchanted or otherwise improved, and cannot be damaged. Bonus 
+AC can be magically enchanted, but can also suffer damage from 
+disenchantment and acid.
 
+Non-armor items (such as weapons, amulets or rings) never have base AC, 
+but may still have bonus AC. If present, this is indicated simply as 
+[+y] (e.g. [+10]); since these items never have base AC, only one 
+number is needed. See <a href="objects.html#WeirdNumbers"></font><font color="#00ff00">[b]</a> </font><font color="#ffffff">for a full account of all numbers that might 
+be displayed in an item description.
 
-所有护甲类物品（身体护甲、盾牌、披风、手套、靴子、头盔等）都有两个不同的
- AC 值：</font><font color="#ff0000">基础 AC (base AC) </font><font color="#ffffff">和 </font><font color="#ff0000">附加 AC (bonus 
-AC)</font><font color="#ffffff">。这些数值显示在方括号中，格式为 [x,+y]（例如 [8,+0]），其中 </font><font color="#00ffff">x 
-</font><font color="#ffffff">是基础 AC，</font><font color="#00ffff">y </font><font color="#ffffff">是附加 AC。基础 AC 
-通常对于所有同类物品都是相同的（例如所有的小皮盾），且无法通过魔法附魔或
-其他方式提升，也不会受损。附加 AC 可以被魔法附魔提升，但也会因退魔 
-(disenchantment) 和酸液 (acid) 而受损。
+For most characters, AC runs from around 0 to 150, maybe a bit higher. 
+AC can go arbitrarily high; direct damage reduction from AC reaches its 
+maximum level at an AC of 180, but the more important hit chance 
+reduction from AC is not similarly capped. Yet, since armor is needed 
+for resistances as much as (or even more than) it is needed for AC, 
+compromises that limit AC are often necessary.
 
-非护甲类物品（如武器、护身符或戒指）永远没有基础 AC，但仍可能有附加 
-AC。如果存在，它将简单地表示为 [+y]（例如 [+10]）；因为这些物品没有基础 
-AC，所以只需要一个数字。有关物品描述中可能显示的所有数字的完整说明，请参
-阅 <a href="objects.html#WeirdNumbers"></font><font color="#00ff00">[b]</a></font><font color="#ffffff">。
+<a name="ResistingMagic"></a></font><font color="#c00000">Resisting Magical Attacks
 
-对于大多数角色来说，AC 大约在 0 到 150 之间，或者稍高一点。AC 
-可以无限高；来自 AC 的直接伤害减免在 AC 达到 180 
-时达到最大值，但更为重要的来自 AC 
-的命中率降低效果并没有类似的上限。然而，由于对护甲抗性的需求与对 AC 
-的需求一样大（甚至更大），因此经常需要做出牺牲 AC 的妥协。
+</font><font color="#ffffff">A few evil curses might give you a saving throw (see <a href="birth.html#Skills"></font><font color="#00ff00">[c]</a></font><font color="#ffffff">); but breaths, 
+bolts, balls, and other nasty spell attacks offer no such easy way out. 
+Against them, your only recourse is to find equipment (or some other 
+source) that grants </font><font color="#ff0000">resistance </font><font color="#ffffff">to the attack's damage type, or element.
 
-<a name="ResistingMagic"></a></font><font color="#c00000">抵抗魔法攻击 (Resisting Magical Attacks)
+There are two categories of resistances: 1) the </font><font color="#ff0000">base </font><font color="#ffffff">or </font><font color="#ff0000">low resistances 
+</font><font color="#ffffff">(acid, electricity, fire, cold, poison); and 2) the </font><font color="#ff0000">high resistances</font><font color="#ffffff">: 
+light, dark, confusion, nether, nexus, sound, shards, chaos, 
+disenchantment, blindness and time. (Poison is sometimes counted as a 
+high resistance, but is functionally a low one.) In addition, there is 
+the special resistance to fear, which works differently (see <a href="status.html#Fear"></font><font color="#00ff00">[d]</a></font><font color="#ffffff">).
 
-</font><font color="#ffffff">一些邪恶的诅咒可能会给你一次豁免判定 (saving throw) 的机会（参阅 <a href="birth.html#PrimarySkills"></font><font color="#00ff00">[c]</a>
-</font><font color="#ffffff">）；但吐息 (breaths)、矢类 (bolts)、球类 (balls) 
-以及其他恶毒的法术攻击则没有这么简单的逃脱方法。面对它们，你唯一的出路就
-是寻找装备（或其他来源）来提供对该攻击伤害类型或元素的</font><font color="#ff0000">抗性 
-(resistance)</font><font color="#ffffff">。
+Each resistance both reduces damage from the corresponding element and 
+gives you a saving roll against side-effects caused by that element. 
+Multiple sources of the same resistance stack, though not linearly: one 
+source of fire resistance (or another low resistance), for example, 
+provides </font><font color="#ff0000">50% resistance</font><font color="#ffffff">; two sources would give 65%, three sources 72%, 
+and so on. The corresponding numbers for high resistances are lower: 
+30% for one source of resistance, 40% for two and 45% for three. These 
+resistance percentages are displayed on the Character Sheet, so there 
+is no need to memorize them.
 
-抗性分为两类：1) </font><font color="#ff0000">基础/低级抗性</font><font color="#ffffff">（酸、电、火、冷、毒）；以及 2) 
-</font><font color="#ff0000">高级抗性</font><font color="#ffffff">：光、暗、混乱、虚冥、时空 
-(Nexus)、音波、碎片、混沌、退魔、盲目和时间。（毒有时被归类为高级抗性，
-但在功能上属于低级抗性。）此外，还有一种特殊的恐惧抗性，其运作方式有所不
-同（参阅 <a href="status.html#Fear"></font><font color="#00ff00">[d]</a></font><font color="#ffffff">）。
+For damage reduction, 50% resistance simply means damage is reduced by 
+approximately 50% (there is slight randomness, so for any one attack it 
+could be 52% or 49%, but it will be close to 50%). For side-effects, 
+the calculation is somewhat different: the resistance level (here 50) 
+is compared to a </font><font color="#ff0000">66-sided die </font><font color="#ffffff">for item destruction calculations, and a 
+</font><font color="#ff0000">55-sided die </font><font color="#ffffff">for other side effects. So two sources of fire resistance 
+(65%) would almost eliminate item damage from fire, but there's still 
+that pesky 1 in 66 chance... For high resistances the numbers are 
+lower: a </font><font color="#ff0000">41-sided die </font><font color="#ffffff">for item destruction, and a </font><font color="#ff0000">33-sided die </font><font color="#ffffff">for 
+other side effects; again, two sources of resistance are almost but not 
+quite enough to prevent item destruction.
 
+A few races, such as </font><font color="#ff0000">Androids </font><font color="#ffffff">(electricity) or </font><font color="#ff0000">Werewolves </font><font color="#ffffff">and </font><font color="#ff0000">Ents 
+</font><font color="#ffffff">(fire), are exceptionally vulnerable to one element and trigger special 
+resistance calculations for that element only. The item destruction 
+limit is lowered in these special cases; Androids use a 54-sided die 
+for electricity, as do Ents for fire; and Werewolves use a 53-sided die 
+for fire, allowing them to still fully protect their inventory with 
+three sources of resistance. But damage and side-effect calculations 
+are not similarly forgiving.
 
-每种抗性不仅能减少相应元素的伤害，还能让你在面对该元素引起的副作用时获得
-一次豁免判定。同一抗性的多个来源可以叠加，但并非线性叠加：例如，一个火抗
-性来源（或其他低级抗性）提供 </font><font color="#ff0000">50% 的抗性</font><font color="#ffffff">；两个来源将提供 
-65%，三个来源提供 72%，依此类推。高级抗性的对应数值较低：一个抗性来源为 
-30%，两个为 40%，三个为 45%。这些抗性百分比显示在角色面板 (Character 
-Sheet) 上，因此无需死记硬背。
+A number of exotic elements (like gravity) have no corresponding 
+resistance, though it may still be possible to resist some of their 
+effects (see <a href="faq.html#ExoticElements"></font><font color="#00ff00">[e]</a></font><font color="#ffffff">).
 
-对于伤害减免，50% 的抗性简单来说就是将伤害减少约 
-50%（存在轻微的随机性，因此对于任何一次攻击，它可能是 52% 或 
-49%，但会接近 
-50%）。对于副作用，计算方法略有不同：在进行物品破坏计算时，抗性等级（此
-处为 50）会与一个 </font><font color="#ff0000">66 面骰 </font><font color="#ffffff">进行对抗；在进行其他副作用计算时，会与一个 </font><font color="#ff0000">55 
-面骰 </font><font color="#ffffff">进行对抗。因此，两个火抗来源 (65%) 
-将几乎消除火焰对物品的破坏，但仍有令人讨厌的 1/66 
-的几率中招……对于高级抗性，数字要低一些：物品破坏判定为 </font><font color="#ff0000">41 
-面骰</font><font color="#ffffff">，其他副作用为 </font><font color="#ff0000">33 
-面骰</font><font color="#ffffff">；同样，两个高级抗来源差一点点就能完全防止物品被毁。
+<a name="EgoArtifact"></a></font><font color="#c00000">Ego Armor and Artifacts
 
-少数种族，如 </font><font color="#ff0000">安卓/人造人 (Androids)</font><font color="#ffffff">（弱电）或 </font><font color="#ff0000">狼人 (Werewolves) </font><font color="#ffffff">和 </font><font color="#ff0000">树人 
-(Ents)</font><font color="#ffffff">（弱火），对某种元素异常脆弱，并会触发仅针对该元素的特殊抗性计算。
-在这些特殊情况下，物品破坏判定的上限被降低了；安卓对电使用 54 
-面骰，树人对火使用 54 面骰；狼人对火使用 53 
-面骰，这使得他们仍能通过三个抗性来源完全保护他们的物品栏。但伤害和副作用
-计算并没有那么宽容。
+</font><font color="#ffffff">Ordinary, mundane armor isn't likely to give you a resistance; but 
+armor crafted by the great smiths of the age and imbued with mighty 
+magics is another matter entirely. These items will fall into two broad 
+categories: 1) </font><font color="#ff0000">artifacts </font><font color="#ffffff">and 2) </font><font color="#ff0000">ego items</font><font color="#ffffff">. These categories are 
+explained in more detail elsewhere (<a href="objects.html#EgoItems"></font><font color="#00ff00">[f]</a> </font><font color="#ffffff">and <a href="objects.html#SpecialItems"></font><font color="#00ff00">[g]</a></font><font color="#ffffff">); the main difference 
+between them is that an artifact can only be found once in each game, 
+while an ego item shares its type with unlimitedly many other items.
 
+Both artifacts and ego items can be highly valuable, and can provide 
+not only resistances but also other nice stuff - boosts to your 
+statistics, boosts to your speed, protection from paralysis, the 
+ability to reflect enemy arrows and bolt spells, even skill with 
+magical devices or telepathy.
 
-一些异种元素（如重力）没有对应的抗性，不过仍有可能抵抗它们的一些效果（参
-阅 <a href="faq.html#ExoticElements"></font><font color="#00ff00">[e]</a></font><font color="#ffffff">）。
+A list of all artifacts and ego types, and all the bonuses they give, 
+would be both a spoiler and excessively long; so play the game and find 
+out what there is :)
 
-<a name="EgoArtifact"></a></font><font color="#c00000">Ego 护甲与神器 (Ego Armor and Artifacts)
+<a name="Resistances"></a></font><font color="#c00000">List of Resistances
 
+</font><font color="#ffffff">This section describes the various damage types that you can resist. As 
+mentioned above, your current resistance sources (and resistance 
+percentages) are noted on your </font><font color="#ff0000">Character Sheet </font><font color="#ffffff">(accessed with the </font><font color="#ff8000">C 
+</font><font color="#ffffff">command), and you should look there regularly to see what you have and 
+what you still lack. You start the game with few or no resistances, but 
+by the endgame you will resist nearly everything.
 
-</font><font color="#ffffff">普通、平庸的护甲不太可能为你提供抗性；但由时代伟大的铁匠打造并注入强大魔
-法的护甲则完全是另一回事。这些物品将分为两大类：1) </font><font color="#ff0000">神器 (artifacts) </font><font color="#ffffff">和 
-2) </font><font color="#ff0000">Ego 物品 (ego items)</font><font color="#ffffff">。这两个类别在其他地方有更详细的解释（<a href="objects.html#EgoItems"></font><font color="#00ff00">[f]</a> </font><font color="#ffffff">和 <a href="objects.html#SpecialItems"></font><font color="#00ff00">[g]</a>
-</font><font color="#ffffff">）；它们之间的主要区别在于，一件神器在每局游戏中只能找到一次，而一个 
-Ego 物品与无数其他同类型物品共享其词缀模板。
+The most important resistances are to the four </font><font color="#ff0000">base elements</font><font color="#ffffff">: acid, 
+electricity, fire and cold. These are the first four resistances your 
+character needs, and as early as DL 30-35 you should already have them 
+doubly covered if possible, to reduce both direct damage and item loss. 
+In the midgame and late game, attacks based on electricity, fire and 
+cold can do extremely high damage, and might kill even a fully 
+developed character from full health if not resisted.
 
-神器和 Ego 
-物品都极具价值，不仅可以提供抗性，还可以提供其他好东西——提升你的属性、提
-升你的速度、保护免受麻痹、反射敌人的箭矢和飞弹法术的能力，甚至提供魔法装
-置使用技能或心灵感应。
+The </font><font color="#ff0000">high resistances </font><font color="#ffffff">are not as important in the early game, but by the 
+late game you should have at least most of them covered too. Nether, 
+Shards and Chaos are particularly important resistances in the endgame; 
+you should always have them in the really deep dungeons, even if it 
+means major compromises elsewhere.
 
-列出所有神器和 Ego 
-物品类型及其提供的所有加成不仅会严重剧透，而且篇幅也会过长；所以，去玩游
-戏，自己去发现都有什么吧 :)
+  </font><font color="#008040">Acid
+  </font><font color="#ffffff">Acid is a corrosive form of attack. Not only is it painful to you, 
+  the player, but it may also damage your armor and destroy items such 
+  as staves and scrolls. Worse, the damage to equipped armor ignores 
+  normal resistance, and can only be prevented with full immunity or by 
+  wearing acid-proof equipment (use the </font><font color="#ff8000">I</font><font color="#ffffff">nspect command to see if a 
+  given piece of armor is acid-proof; all artifacts and many egos are). 
+  Acid damage is halved by armor, making it less deadly than the other 
+  base elements, but the damage to staves combined with the commonness 
+  of acid-based attacks still makes Acid Resistance a must-have.
 
-<a name="Resistances"></a></font><font color="#c00000">抗性列表 (List of Resistances)
+  </font><font color="#0000ff">Electricity/Lightning
+  </font><font color="#ffffff">Electricity is quite shocking (and quite painful) to experience up 
+  close. In addition, it destroys rings and wands, and you can be sure 
+  that the unidentified ring that just got fried was that Ring of Speed 
+  you'd long been looking for... Resistance to electricity is slightly 
+  more negotiable than the other three base elements, but not by much: 
+  you don't want to lose your wands, and you probably don't want to 
+  take 900 damage from a single lightning breath either.
 
+  </font><font color="#c00000">Fire
+  </font><font color="#ffffff">In addition to causing physical damage to the player, fire-based 
+  attacks are prolific destroyers of essential gear in your backpack. 
+  Without resistance you can say goodbye to your staves, scrolls, town 
+  spellbooks, unequipped equipment, and (pretty soon) this cruel world. 
+  Of all resistances in the game, resistance to Fire is the most 
+  important, and Werewolves and Ents (who are vulnerable to fire) never 
+  stop feeling the pain.
 
-</font><font color="#ffffff">本节描述了你可以抵抗的各种伤害类型。如前所述，你当前的抗性来源（及抗性百
-分比）记录在你的</font><font color="#ff0000">角色面板 (Character Sheet)</font><font color="#ffffff">（使用 </font><font color="#ff8000">C 
-</font><font color="#ffffff">命令访问）中，你应该定期查看，了解你拥有什么以及还缺少什么。你在游戏开始
-时几乎或完全没有抗性，但到了游戏末期，你将几乎抵抗所有东西。
+  </font><font color="#c0c0c0">Cold/Frost
+  </font><font color="#ffffff">Cold-based attacks may destroy potions (in addition to killing you 
+  outright). Some potions are so rare, so precious and so essential 
+  that they must be protected at all costs... but unfortunately, also 
+  so fragile that Cold resistance is only a part of that puzzle.
 
+  </font><font color="#00ff00">Poison
+  </font><font color="#ffffff">Poison does extremely high damage, the highest of any element, but it 
+  does so with some delay (see <a href="status.html#Poisoning"></font><font color="#00ff00">[h]</a></font><font color="#ffffff">). This means that you can use curing 
+  items such as </font><font color="#c08040">Mushrooms of Cure Poison </font><font color="#ffffff">to tackle poisoning, and so 
+  this resistance is not absolutely needed... except that there's an 
+  exotic element called </font><font color="#00ff00">Toxic Waste</font><font color="#ffffff">, which is basically poison (and 
+  checks poison resistance) but has some very nasty extra side-effects.
 
-最重要的抗性是针对四种</font><font color="#ff0000">基础元素</font><font color="#ffffff">的抗性：酸、电、火和冷。这是你的角色最先需
-要的四种抗性，早在地下城层数 (DL) 30-35 
-左右，如果可能的话，你就应该已经有了双重抗性覆盖，以减少直接伤害和物品损
-失。在游戏中期和后期，基于电、火和冷的攻击会造成极高的伤害，如果没有抗性
-，即使是满血的发育成型角色也可能会被秒杀。
+  </font><font color="#ffff00">Light
+  </font><font color="#ffffff">You need light to see, it is true, but too much light can blind you! 
+  While blinded, you won't be able to read scrolls or spellbooks, or 
+  even see the monsters around you (see <a href="status.html#Blindness"></font><font color="#00ff00">[i]</a></font><font color="#ffffff">)... and a few monsters have 
+  Light-based attacks that deal high damage directly. Luckily, these 
+  monsters are relatively rare, which makes Light one of the least 
+  important high resistances.
 
+  </font><font color="#404040">Dark
+  </font><font color="#ffffff">In addition to causing physical damage, darkness may also blind the 
+  player and darken the dungeon; so having resistance will protect your 
+  eyesight as well as your health. Darkness-based attacks tend to be 
+  fairly mild in the early game, but late-game Darkness Storms can be 
+  deadly.
 
-</font><font color="#ff0000">高级抗性</font><font color="#ffffff">在游戏早期并不那么重要，但到了游戏后期，你也应该至少覆盖其中的大
-部分。虚冥、碎片和混沌是末期游戏中尤为重要的抗性；在真正极深的地下城中，
-你必须始终拥有它们，即使这意味着要在其他方面做出重大妥协。
+  </font><font color="#804000">Confusion
+  </font><font color="#ffffff">This form of attack is quite baffling, and I must confess to being 
+  puzzled as to how it manages to hurt the player, but it does. The 
+  main problem, though, is not the damage but the side-effect: a 
+  </font><font color="#ff00ff">confused </font><font color="#ffffff">player cannot read scrolls, cast spells or even reliably 
+  move in the right direction. See <a href="status.html#Confusion"></font><font color="#00ff00">[j]</a> </font><font color="#ffffff">for tips on how to deal with 
+  confusion.
 
-  </font><font color="#008040">酸 (Acid)
+  </font><font color="#404040">Nether
+  </font><font color="#ffffff">Nether is the element of the underworld; not only is it deadly, but 
+  it can drain your life points (see <a href="faq.html#LifePoints"></font><font color="#00ff00">[k]</a></font><font color="#ffffff">). In the late game, the undead 
+  are everywhere, and you lack Nether resistance at your peril.
+
+  </font><font color="#ff00ff">Nexus
+  </font><font color="#ffffff">Nexus is seldom deadly, but often highly annoying; it can teleport 
+  you to very unexpected places, or even swap your primary stats 
+  around. Some of nexus's side-effects are so hated that birth options 
+  (<a href="option.html#no_chris"></font><font color="#00ff00">[l]</a> </font><font color="#ffffff">and <a href="option.html#no_scrambling"></font><font color="#00ff00">[m]</a></font><font color="#ffffff">) exist to replace them with a mere foul curse...
+
+  </font><font color="#ff8000">Sound
+  </font><font color="#ffffff">Loud noises can be very painful, stun you, and cause your potions to 
+  shatter. Resistance to Sound also protects you from stunning as a 
+  side-effect of exotic elements; see <a href="status.html#Stunning"></font><font color="#00ff00">[n]</a> </font><font color="#ffffff">for why being stunned is bad.
+
+  </font><font color="#c08040">Shards
+  </font><font color="#ffffff">Shard-based attacks may cause bleeding as well as direct damage. 
+  While bleeding, you lose hit points every turn; the deeper the gash, 
+  the faster you will die (see <a href="status.html#Cuts"></font><font color="#00ff00">[o]</a></font><font color="#ffffff">). In addition, shards can destroy 
+  potions. Resistance to shards is not needed in the early game, but in 
+  the late game it rivals base resistances in importance.
+
+  </font><font color="#ff00ff">Chaos/Logrus
+  </font><font color="#ffffff">Chaos is another of the most dangerous damage types: if chaos attacks 
+  don't kill you outright, their side effects might. You may find 
+  yourself a confused, hallucinating, mutated wretch, twisted by forces 
+  unfathomable. Oh, and chaos destroys staves and wands too... Best to 
+  resist it, if you can.
+
+  </font><font color="#ff00ff">Disenchantment
+  </font><font color="#ffffff">Disenchantment is the undoing of magic of all kinds. Not only might 
+  it (permanently!) reduce the quality of your equipment, it can also 
+  dispel the beneficial spells you weave; and it is plenty deadly, too. 
+  Disenchantment is the only element capable of harming an artifact.
+
+  </font><font color="#404040">Blindness
+  </font><font color="#ffffff">Blindness resistance, unlike all of the resistances listed above, 
+  does not reduce damage; its sole purpose is to protect you from the 
+  Blindness status effect, whether caused by directly blinding attacks 
+  or as a side-effect of Light or Dark. Apart from Time, Blindness is 
+  the least important resistance.
+
+  </font><font color="#00ffff">Time
+  </font><font color="#ffffff">Time-based attacks can be an enormous inconvenience; they have the 
+  potential to drain your experience or your stats, even ignoring any 
+  sustains you might have. Luckily, Time attacks are very rare, and the 
+  direct damage from them tends to be low; this makes Time resistance 
+  one you don't really need, which is good since it is by far the 
+  hardest resistance to find.
+
+  </font><font color="#ff0000">Fear
+  </font><font color="#ffffff">There is much in the world that may un-nerve the boldest hero, not 
+  least the special game mechanics around this resistance, which 
+  functions unlike any of the others. See <a href="status.html#Fear"></font><font color="#00ff00">[p]</a> </font><font color="#ffffff">for an explanation of 
+  fear and fear resistance.
+
+<a name="Immunities"></a></font><font color="#c00000">Immunities
+
+</font><font color="#ffffff">If you are very lucky, you may find items which grant </font><font color="#ff0000">immunity </font><font color="#ffffff">to one 
+or (very occasionally) more of the four base elements (Acid, Fire, Cold 
+and Electricity). An immunity fully protects you from all damage and 
+other effects that element might otherwise cause.
+
+<a name="Miscellaneous"></a></font><font color="#c00000">Other Protection
+
+</font><font color="#ffffff">These item attributes are not technically resistances, but will still 
+help you stay safe:
+
+  </font><font color="#c00000">Free Action
+  </font><font color="#ffffff">Free Action gives you a saving throw against paralysis, and becomes a 
+  necessity once you start going into quests with paralyzing monsters 
+  (such as the Old Barracks quest or the Old Man Willow quest). Three 
+  sources of Free Action are always good enough to save you from 
+  paralysis (regardless of how bad your saving throw is), and two 
+  sources are always good enough against monsters of level 41 and 
+  below. Free Action also helps you recover much faster if you do get 
+  paralyzed; with no Free Action at all, paralysis often means death.
+
+  </font><font color="#ffff00">Hold Life
+  </font><font color="#ffffff">Having your experience drained is often an inconvenience, and 
+  sometimes outright dangerous if you lose levels. Hold Life gives you 
+  a save against experience drain, and generally reduces the amount of 
+  experience lost even if the saves fail. Multiple sources of Hold Life 
+  will stack.
   
-  </font><font color="#ffffff">酸是一种腐蚀性的攻击形式。它不仅对你（玩家）很痛苦，而且还会损坏你的护
-  甲并摧毁法杖和卷轴等物品。更糟糕的是，对已装备护甲造成的伤害无视普通抗
-  性，只能通过完全免疫或穿戴防酸 (acid-proof) 装备来防止（使用 </font><font color="#ff8000">I 
-  </font><font color="#ffffff">检视命令看看某件护甲是否防酸；所有神器和许多 Ego 
-  物品都是防酸的）。护甲会将酸液伤害减半，使其不像其他基础元素那么致命，
-  但对法杖的破坏加上酸液攻击的普遍性，仍然使酸抗性成为必备。
+  Hold Life also gives some protection against </font><font color="#ff0000">life point drain</font><font color="#ffffff">, which 
+  in the late game can be an even more serious problem than experience 
+  loss. As you lose life points, your maximum HP is effectively lowered 
+  (<a href="faq.html#LifePoints"></font><font color="#00ff00">[q]</a></font><font color="#ffffff">); even worse, some life-draining attacks make the draining 
+  monster stronger! If you run out of life points, you will usually 
+  turn into an undead rather than die outright; but some races (like 
+  Androids, Werewolves and monster races) cannot turn undead and will 
+  therefore die.
 
-  </font><font color="#0000ff">电/闪电 (Electricity/Lightning)
+  </font><font color="#00ffff">See Invisible
+  </font><font color="#ffffff">Some monsters are invisible, and cannot be seen by ordinary eyes. 
+  Needless to say, being attacked by something you cannot see is very 
+  frustrating, not to mention deadly! See Invisible gives you a chance 
+  to see these monsters; the more sources of See Invisible you have, 
+  and the better your Searching skill is, the more reliably you can see 
+  invisible threats.
   
-  </font><font color="#ffffff">近距离体验电击是非常令人震惊（且非常痛苦）的。此外，它会摧毁戒指和魔棒
-  ，并且你可以确定，刚才被烧焦的那个未鉴定的戒指，正是你找了很久的速度戒
-  指……对电的抗性比其他三种基础元素稍微有商量余地一些，但也仅此而已：你肯
-  定不想失去你的魔棒，你大概也不想被一口闪电吐息直接轰掉 900 点生命值。
+  Note that some invisible monsters are warm blooded; if you have 
+  </font><font color="#ff0000">infravision</font><font color="#ffffff">, you may see these monsters once they get close enough, 
+  even if you have no See Invisible. Unfortunately for you, though, all 
+  the really dangerous invisible monsters are cold-blooded...
 
-  </font><font color="#c00000">火 (Fire)
+  </font><font color="#ffff00">Telepathy
+  </font><font color="#ffffff">Telepathy is the ultimate in monster detection: it lets you see all 
+  approaching monsters and keep track of where nearby monsters are, and 
+  allows you to see invisible monsters more reliably. Telepathic sight 
+  is not even affected by blindness, often allowing normal combat while 
+  blind.
   
-  </font><font color="#ffffff">除了对玩家造成物理伤害外，基于火焰的攻击也是你背包中重要装备的多产破坏
-  者。如果没有抗性，你就可以和你的法杖、卷轴、城镇法术书、未装备的物品说
-  拜拜了，并且（很快）向这个残酷的世界告别。在游戏的所有抗性中，火抗性是
-  最重要的，而狼人和树人（他们弱火）则永远无法摆脱这种痛苦。
+  Don't let up your guard, though: the common, "universal" form of 
+  Telepathy only detects monsters with minds. Dangerous mindless 
+  monsters, like drolems or steam-powered mechanical dragons, can still 
+  surprise you if you don't detect regularly.
 
-  </font><font color="#c0c0c0">冷/冰霜 (Cold/Frost)
-  
-  </font><font color="#ffffff">基于寒冷的攻击可能会摧毁药水（不仅能直接要你的命）。有些药水是如此罕见
-  、如此珍贵且如此不可或缺，以至于必须不惜一切代价保护它们……但遗憾的是，
-  它们也太脆弱了，冷抗性仅仅是解开这个保护谜题的一部分。
+<a name="AttackPower"></a></font><font color="#c00000">The Power of Monster Attacks
 
-  </font><font color="#00ff00">毒 (Poison)
-  </font><font color="#ffffff">毒造成的伤害极高，是所有元素中最高的，但它是延迟发作的（参阅 <a href="status.html#Poisoning"></font><font color="#00ff00">[h]</a>
-  </font><font color="#ffffff">）。这意味着你可以使用像</font><font color="#c08040">解毒蘑菇 (Mushrooms of Cure 
-  Poison)</font><font color="#ffffff">这样的治疗物品来应对中毒，因此这种抗性并不是绝对必要的……除非存
-  在一种被称为</font><font color="#00ff00">有毒废料 (Toxic 
-  Waste)</font><font color="#ffffff">的异种元素，它基本上就是毒（且判定毒抗性），但带有一些非常恶心的
-  额外副作用。
+</font><font color="#ffffff">Damage from monster </font><font color="#ff0000">melee attacks </font><font color="#ffffff">is usually a dice roll that depends 
+on the monster's race (and is reduced by your AC for the </font><font color="#ffff00">Hurt </font><font color="#ffffff">and 
+</font><font color="#ffff00">Shatter </font><font color="#ffffff">attack methods). The damage is not affected by the monster's 
+health. The hit chance of monster melee attacks depends on your AC and 
+the native level of the monster's race.
 
-  </font><font color="#ffff00">光 (Light)
-  
-  </font><font color="#ffffff">确实，你需要光来看见东西，但过多的光会使你致盲！在致盲期间，你将无法阅
-  读卷轴或法术书，甚至无法看到周围的怪物（参阅 <a href="status.html#Blindness"></font><font color="#00ff00">[i]</a>
-  </font><font color="#ffffff">）……并且少数怪物拥有基于光且造成高额直接伤害的攻击。幸运的是，这些怪物
-  相对罕见，这使得光成为了最不重要的高级抗性之一。
+Damage from monster </font><font color="#ff0000">spells </font><font color="#ffffff">can be either fixed, a dice roll or a 
+combination of both, depending on the monster's race. The damage is not 
+affected by the monster's health, but may be reduced for ball attacks 
+if you are not hit directly.
 
-  </font><font color="#404040">暗 (Dark)
-  
-  </font><font color="#ffffff">除了造成物理伤害外，黑暗还可能使玩家致盲并使地下城陷入黑暗；因此，拥有
-  抗性将保护你的视力以及你的生命。基于黑暗的攻击在游戏早期往往相当温和，
-  但游戏后期的黑暗风暴可能是致命的。
+Damage from monster </font><font color="#ff0000">breath attacks </font><font color="#ffffff">is usually a percentage of the 
+monster's current HP (and therefore is affected by the monster's 
+health). Breath damage has an upper limit (for example, 900 for the 
+base elements); this cap varies from element to element, and is applied 
+before resistances. Breath damage can be reduced if the player is not 
+hit directly.
 
-  </font><font color="#804000">混乱 (Confusion)
-  
-  </font><font color="#ffffff">这种攻击形式非常令人困惑，我必须承认，我很费解它到底是怎么伤害到玩家的
-  ，但它确实能造成伤害。不过，主要的问题不是伤害，而是副作用：一个处于</font><font color="#ff00ff">混
-  乱 
-  (confused)</font><font color="#ffffff">状态的玩家无法阅读卷轴、施放法术，甚至无法可靠地朝正确的方向
-  移动。有关如何处理混乱的提示，请参阅 <a href="status.html#Confusion"></font><font color="#00ff00">[j]</a></font><font color="#ffffff">。
+Melee and spell attacks can become stronger if the attacking monster 
+grows more powerful through Unlife attacks (see <a href="faq.html#Unlife"></font><font color="#00ff00">[r]</a></font><font color="#ffffff">). All attacks based 
+on resistable elements, whether melee, spell or breath, can be defended 
+against through appropriate resistances.
 
-  </font><font color="#404040">虚冥 (Nether)
-  </font><font color="#ffffff">虚冥是冥界的元素；它不仅致命，还能吸取你的生命点数/命源 (life 
-  points)（参阅 <a href="faq.html#LifePoints"></font><font color="#00ff00">[k]</a>
-  </font><font color="#ffffff">）。在游戏后期，不死生物无处不在，如果你缺乏虚冥抗性，那将面临极大的风
-  险。
+<a name="Recovering"></a></font><font color="#c00000">Recovering from Attacks
 
-  </font><font color="#ff00ff">时空/扭曲 (Nexus)
-  
-  </font><font color="#ffffff">时空攻击很少致命，但通常极其烦人；它可以将你传送到非常意想不到的地方，
-  甚至打乱并交换你的基础属性。时空元素的一些副作用非常招人恨，以至于游戏
-  提供了初始选项（<a href="option.html#no_chris"></font><font color="#00ff00">[l]</a> </font><font color="#ffffff">和 <a href="option.html#no_scrambling"></font><font color="#00ff00">[m]</a></font><font color="#ffffff">）用一个单纯的恶毒诅咒来替代它们……
+</font><font color="#ffffff">You cannot combat monsters and expect to come out unscathed every time; 
+you will suffer damage many times, even come close to death. If there 
+is no danger about, you can simply rest (</font><font color="#ff8000">R</font><font color="#ffffff">) to recover, but often this 
+cannot be safely (or efficiently) done and magical healing is required. 
+In the early game, this usually means </font><font color="#00ffff">Potions of Cure Serious Wounds</font><font color="#ffffff">, 
+</font><font color="#c08040">Mushrooms of Fast Recovery </font><font color="#ffffff">or an effect-specific cure like a </font><font color="#c08040">Mushroom 
+of Cure Confusion</font><font color="#ffffff">. Later, you will rely on </font><font color="#00ffff">Potions of Curing</font><font color="#ffffff">, </font><font color="#c08040">Staves of 
+Cure Wounds</font><font color="#ffffff">, </font><font color="#008040">Wands of Vampirism</font><font color="#ffffff">, </font><font color="#00ffff">Potions of Healing </font><font color="#ffffff">and </font><font color="#c08040">Staves of 
+Healing</font><font color="#ffffff">, maybe even a </font><font color="#ff00ff">Rod of Angelic Healing</font><font color="#ffffff">.
 
-  </font><font color="#ff8000">音波 (Sound)
-  
-  </font><font color="#ffffff">巨大的噪音可能非常痛苦，会击晕你，并导致你的药水破碎。对音波的抗性也能
-  保护你免受作为异种元素副作用的眩晕 (stunning) 影响；参阅 <a href="status.html#Stunning"></font><font color="#00ff00">[n]</a> 
-  </font><font color="#ffffff">了解为什么被击晕是件坏事。
-
-  </font><font color="#c08040">碎片 (Shards)
-  
-  </font><font color="#ffffff">基于碎片的攻击可能导致流血以及直接伤害。在流血时，你每回合都会失去生命
-  值；伤口越深，你死得越快（参阅 <a href="status.html#Cuts"></font><font color="#00ff00">[o]</a>
-  </font><font color="#ffffff">）。此外，碎片还能摧毁药水。在游戏早期不需要碎片抗性，但在游戏后期，它
-  的重要性足以与基础抗性相媲美。
-
-  </font><font color="#ff00ff">混沌/洛格鲁斯 (Chaos/Logrus)
-  
-  </font><font color="#ffffff">混沌是另一种最危险的伤害类型：如果混沌攻击没有直接杀死你，它的副作用也
-  可能会。你可能会发现自己变成一个迷茫、产生幻觉、发生变异的可怜虫，被深
-  不可测的力量扭曲。哦对了，混沌还会摧毁法杖和魔杖……如果可以的话，最好还
-  是设法抵抗它。
-
-  </font><font color="#ff00ff">退魔 (Disenchantment)
-  
-  </font><font color="#ffffff">退魔是各种魔法的克星。它不仅可能（永久地！）降低你装备的品质，还会驱散
-  你施加的增益法术；而且它本身也非常致命。退魔是唯一能够对神器造成损害的
-  元素。
-
-  </font><font color="#404040">盲目 (Blindness)
-  
-  </font><font color="#ffffff">盲目抗性与上面列出的所有抗性不同，它不减少任何伤害；它唯一的目的就是保
-  护你免受盲目状态的影响，无论是直接致盲的攻击还是由光/暗造成的副作用。
-  除了时间抗性之外，盲目是最不重要的抗性。
-
-  </font><font color="#00ffff">时间 (Time)
-  
-  </font><font color="#ffffff">基于时间的攻击可能是一个巨大的麻烦；它们有可能吸取你的经验值或你的属性
-  ，甚至无视你可能拥有的任何“维持”属性。幸运的是，时间攻击非常罕见，其直
-  接伤害往往很低；这使得时间抗性成为你并不真正需要的东西，好在它恰恰是迄
-  今为止最难找到的抗性。
-
-  </font><font color="#ff0000">恐惧 (Fear)
-  
-  </font><font color="#ffffff">世界上有许多事情可能会使最勇敢的英雄胆怯，尤其是围绕这种抗性的特殊游戏
-  机制，其运作方式与任何其他抗性都不同。参阅 <a href="status.html#Fear"></font><font color="#00ff00">[p]</a> 
-  </font><font color="#ffffff">了解恐惧和恐惧抗性的解释。
-
-<a name="Immunities"></a></font><font color="#c00000">免疫 (Immunities)
+Simple heals and cures will not fix everything, though: some attacks 
+can drain your statistics, your experience, or even your life points. 
+These can also be cured with certain potions or with a </font><font color="#ff00ff">Rod of 
+Restoring</font><font color="#ffffff">, but it is often simpler to seek a healer in the town.
 
 
-</font><font color="#ffffff">如果你非常幸运，你可能会找到授予你对四种基础元素（酸、火、冷和电）之一或
-（在极少数情况下）多种元素</font><font color="#ff0000">免疫 
-(immunity)</font><font color="#ffffff">的物品。免疫能完全保护你免受该元素可能造成的所有伤害和其他效果
-。
-
-<a name="Miscellaneous"></a></font><font color="#c00000">其他保护 (Other Protection)
-
-</font><font color="#ffffff">这些物品属性在技术上并不属于抗性，但它们仍然能帮助你保持安全：
-
-  </font><font color="#c00000">自由行动 (Free Action)
-  </font><font color="#ffffff">自由行动让你有机会在麻痹 (paralysis) 
-  判定中获得豁免，一旦你开始进入有麻痹怪物（例如旧兵营任务或老柳树任务）
-  的地下城探险，它就成了必需品。三个来源的自由行动总是足以将你从麻痹中拯
-  救出来（无论你的豁免判定有多差），而两个来源则足以对抗 41 
-  级及以下的怪物。自由行动还能帮助你在被麻痹后更快地恢复；如果完全没有自
-  由行动，麻痹通常意味着死亡。
-
-  </font><font color="#ffff00">维持生命 (Hold Life)
-  
-  </font><font color="#ffffff">被吸取经验值通常是一件麻烦事，如果导致你掉级则往往非常危险。维持生命让
-  你能对经验吸取进行一次豁免判定，并在豁免失败时通常能减少失去的经验量。
-  多个维持生命来源的效果会叠加。
-  
-  
-  维持生命还能在某种程度上防止</font><font color="#ff0000">生命点数被吸取</font><font color="#ffffff">，在游戏后期，这可能比经验损
-  失更严重。当你失去生命点数时，你的最大 HP 实际上被降低了（<a href="faq.html#LifePoints"></font><font color="#00ff00">[q]</a>
-  </font><font color="#ffffff">）；更糟糕的是，一些吸取生命的攻击会使发起吸取的怪物变得更强！如果你耗
-  尽了生命点数，你通常会变成亡灵而不是直接死亡；但某些种族（如安卓、狼人
-  和怪物种族）无法变成亡灵，因此会直接死亡。
-
-  </font><font color="#00ffff">识破隐形 (See Invisible)
-  
-  </font><font color="#ffffff">一些怪物是隐形的，普通人的肉眼无法看见。不用说，被你看不见的东西攻击是
-  非常令人沮丧的，更别提有多致命了！识破隐形使你有机会看见这些怪物；你拥
-  有的识破隐形来源越多，你的搜索 (Searching) 
-  技能越高，你就能越可靠地看到隐形的威胁。
-  
-  请注意，一些隐形怪物是温血的；如果你有</font><font color="#ff0000">红外视力 
-  (infravision)</font><font color="#ffffff">，当这些怪物靠得足够近时，即使你没有识破隐形，你也可能会
-  看见它们。但对你来说不幸的是，所有真正危险的隐形怪物都是冷血的……
-
-  </font><font color="#ffff00">心灵感应 (Telepathy)
-  
-  </font><font color="#ffffff">心灵感应是终极的怪物探测手段：它让你能看见所有正在靠近的怪物并追踪附近
-  怪物的位置，并让你更可靠地看见隐形怪物。心灵感应视力甚至不受致盲的影响
-  ，通常允许你在致盲状态下进行正常的战斗。
-  
-  
-  不过，不要因此放松警惕：常见的、“普适”的心灵感应只能探测到有心智的怪物
-  。那些没有心智的危险怪物，如龙形魔像 (drolems) 
-  或蒸汽驱动的机械龙，如果你不定期进行魔法探测，仍然可能会打你个措手不及
-  。
-
-<a name="AttackPower"></a></font><font color="#c00000">怪物攻击的威力 (The Power of Monster Attacks)
-
-
-</font><font color="#ffffff">怪物</font><font color="#ff0000">近战攻击</font><font color="#ffffff">造成的伤害通常是一个掷骰结果，这取决于怪物的种族（并且会被你
-的 AC 减轻对于 </font><font color="#ffff00">伤害(Hurt) </font><font color="#ffffff">和 </font><font color="#ffff00">粉碎(Shatter) 
-</font><font color="#ffffff">攻击手法的伤害）。伤害不受怪物剩余生命值的影响。怪物近战攻击的命中率取决
-于你的 AC 和怪物的种族原生等级。
-
-
-怪物</font><font color="#ff0000">法术</font><font color="#ffffff">造成的伤害可以是固定值、掷骰结果，或是两者的结合，这取决于怪物的
-种族。伤害不受怪物剩余生命值的影响，但如果是球类攻击且你未被直接命中，伤
-害可能会降低。
-
-怪物</font><font color="#ff0000">吐息攻击</font><font color="#ffffff">造成的伤害通常是怪物当前 HP 
-的一个百分比（因此受到怪物健康状况的影响）。吐息伤害有一个上限（例如，基
-础元素伤害上限为 
-900）；这个上限因元素而异，并且在计算抗性之前应用。如果玩家未被直接命中
-，吐息伤害可能会降低。
-
-如果攻击的怪物通过反生命化 (Unlife) 攻击变得更强大（参阅 <a href="faq.html#Unlife"></font><font color="#00ff00">[r]</a>
-</font><font color="#ffffff">），那么近战和法术攻击可能会变得更强。所有基于可抵抗元素的攻击，无论是近
-战、法术还是吐息，都可以通过适当的抗性进行防御。
-
-<a name="Recovering"></a></font><font color="#c00000">从攻击中恢复 (Recovering from Attacks)
-
-
-</font><font color="#ffffff">你不能指望每次与怪物战斗都能全身而退；你将多次遭受伤害，甚至濒临死亡。如
-果没有危险，你可以简单地休息 (</font><font color="#ff8000">R</font><font color="#ffffff">) 
-来恢复，但这通常无法安全（或有效）地进行，因此需要魔法治疗。在游戏早期，
-这通常意味着</font><font color="#00ffff">治疗重伤药水 (Potions of Cure Serious Wounds)</font><font color="#ffffff">、</font><font color="#c08040">快速恢复蘑菇 
-(Mushrooms of Fast Recovery) </font><font color="#ffffff">或针对特定效果的解药，如</font><font color="#c08040">治疗混乱蘑菇 
-(Mushroom of Cure Confusion)</font><font color="#ffffff">。后来，你将依赖</font><font color="#00ffff">治愈药水 (Potions of 
-Curing)</font><font color="#ffffff">、</font><font color="#c08040">治疗伤口法杖 (Staves of Cure Wounds)</font><font color="#ffffff">、</font><font color="#008040">吸血魔杖 (Wands of 
-Vampirism)</font><font color="#ffffff">、</font><font color="#00ffff">全面治疗药水 (Potions of Healing) </font><font color="#ffffff">和</font><font color="#c08040">全面治疗法杖 (Staves of 
-Healing)</font><font color="#ffffff">，甚至可能是</font><font color="#ff00ff">天使级治疗魔棒 (Rod of Angelic Healing)</font><font color="#ffffff">。
-
-
-不过，简单的治疗和解药无法解决所有问题：一些攻击会吸取你的属性、经验，甚
-至是生命点数。这些也可以用某些特定的药水或</font><font color="#ff00ff">恢复魔棒 (Rod of 
-Restoring)</font><font color="#ffffff">治愈，但通常更简单的方法是去镇上找治疗师 (healer)。
-
-
-</font><font color="#404040">原作者     : (??), Leon Marrick 和 Chris Weisiger
-更新       : (??)
-更新       : Zangband DevTeam
-更新       : Hengband 1.0.11
-更新       : PosChengband 7.0.0
-更新       : RoguelikeFansBand 7.1.liquorice
+</font><font color="#404040">Original   : (??), Leon Marrick and Chris Weisiger
+Updated    : (??)
+Updated    : Zangband DevTeam
+Updated    : Hengband 1.0.11
+Updated    : PosChengband 7.0.0
+Updated    : RoguelikeFansBand 7.1.liquorice
 
 
 </font></pre></body></html>

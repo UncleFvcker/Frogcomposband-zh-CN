@@ -1,422 +1,485 @@
-命令详细说明 (Command Descriptions)
+﻿Command Descriptions
 
-以下命令说明以命令名称加上底层命令按键的形式列出。如果Roguelike 
-按键集的按键与底层命令按键不同，则会在后面附加。接下来是对该命令的简短描
-述，包括在需要时如何在每种按键集中指定该命令的替代方法的信息。
+The following command descriptions are listed as the command name plus 
+the underlying command key. This is followed by the command name and 
+roguelike keyset key, if different from the underlying command key. 
+Then comes a brief description of the command, including information 
+about alternative methods of specifying the command in each keyset, 
+when needed.
 
-如果没有指定具体的重复次数，并且没有关闭 always_repeat 
-选项，则几个命令（挖掘、解除陷阱、撞击、打开）会自动重复必要的次数（最多
- 99 
-次）。其他一些命令允许使用重复计数作为参数；例如，需要数量的命令可以使用
-重复计数而不是提示询问数量，这样就可以通过按 0d 
-来丢弃全部物品。提示询问数量的命令会将任何字母转换为最大合法值。
+Several commands (tunnel, disarm, bash, open) are automatically 
+repeated as many times as necessary (up to 99) if no specific repeat 
+count is given and the always_repeat option has not been turned off. 
+Some other commands allow using repeat counts as arguments; for 
+example, commands which need a quantity can use the repeat count 
+instead of asking for a quantity, allowing the use of 0d to drop all. 
+Commands which ask for a quantity will convert any letters into the 
+maximal legal value.
 
-按 ? 可查看在帮助系统内部使用的命令。
+Press ? for commands to use within the help system.
 
-物品栏命令 (Inventory Commands)
+Inventory Commands
 
-  物品栏列表 (i)
-  显示当前携带但未装备的物品列表。除装备槽外，你的物品栏最多有 26 
-  个槽位。相同的物品通常可以合并成一个“堆叠”，只占据一个槽位，例如下面示
-  例中的 4 把火把、26 支箭和 13 份口粮；堆叠的最大数量为 99 个物品。
+  Inventory List (i)
+  Displays a list of objects being carried but not equipped. You have 
+  up to 26 slots in your inventory, not counting equipment slots. 
+  Identical objects can often form a "stack" which only occupies a 
+  single slot, like the 4 torches, 26 arrows and 13 rations of food in 
+  the sample below; stacks have a maximum size of 99 objects.
   
-  物品栏    | 装备栏                                                    
-   a) , 13 份口粮                                             13.0 lb
-   b) - 魔杖 {已试}                                             0.2 lb
-   c) ~ 4 把木火把 (带 2000 回合光照)                         12.0 lb
-   d) ( 一件肮脏的破布                                           2.0 lb
-   e) ) 一面小皮盾 {普通}                                      5.0 lb
-   f) ) 一面小皮盾                                             5.0 lb
-   g) | 一把左手匕首 {普通}                                    3.0 lb
-   h) { 26 支箭 (3d4) (+0,+0)  
+  Inventory | Equipment                                                 
+   a) , 13 Rations of Food                                    13.0 lb
+   b) - a Wand {tried}                                         0.2 lb
+   c) ~ 4 Wooden Torches (with 2000 turns of light)           12.0 lb
+   d) ( a Filthy Rag                                           2.0 lb
+   e) ) a Small Leather Shield {average}                       5.0 lb
+   f) ) a Small Leather Shield                                 5.0 lb
+   g) | a Main Gauche {average}                                3.0 lb
+   h) { 26 Arrows (3d4) (+0,+0)
                                                               45.4 lb
-  当前负重 93.4 磅 (71% 载重)。
+  Carrying 93.4 pounds (71% capacity).
   
-  你可以在此处按 / 
-  在物品栏列表、装备列表以及可能的其他物品栏（如箭袋）之间切换。
+  You can press / here to toggle between the inventory list, the 
+  equipment list and potentially other item inventories like your 
+  quiver.
    
-  装备栏列表 (e)
-  使用此命令显示你的角色当前穿戴或挥舞的物品列表。你的角色通常有 13 
-  个装备槽位，每个槽位对应身体的不同部位；每个槽位一次只能容纳一件物品，
-  并且每个槽位只能容纳合适类型的物品。请注意，某些种族（以及大多数怪物形
-  态）的身体结构与典型的类人生物不同，因此你的装备槽数量和类型可能会有所
-  不同。以下是人类战士的装备列表示例：
+  Equipment List (e)
+  Use this command to display a list of the objects currently worn or 
+  wielded by your character. Your character typically has 13 slots for 
+  equipment, each corresponding to a different location on the body; 
+  each slot may contain only a single object at a time, and each slot 
+  may only contain objects of the proper type. Note that some races 
+  (and most monster forms) have body types that differ from the typical 
+  humanoid, so the number and types of your equipment slots can vary. 
+  Here is a sample equipment list from a human warrior:
   
-   a) | 右手      : 一把阔剑 (2d6) (+0,+0)                    15.0 lb
-   b) ) 左手      : 一面小皮盾 [3,+0]                          5.0 lb
-   c) } 射击      : 一把短弓 (x2.50) (+0,+0)                   3.0 lb
-   d)   箭袋      :
-   e)   右手指环  :
-   f)   左手指环  :
-   g)   脖子      :
-   h) ~ 光源      : 一把木火把 (带 1983 回合光照)              3.0 lb
-   i) [ 身体      : 锁子甲 (-2) [14,+0]                       22.0 lb
-   j)   披风      :
-   k)   头部      :
-   l)   手部      :
-   m)   脚部      :                                                     
+   a) | Right Hand: a Broad Sword (2d6) (+0,+0)               15.0 lb
+   b) ) Left Hand : a Small Leather Shield [3,+0]              5.0 lb
+   c) } Shooting  : a Short Bow (x2.50) (+0,+0)                3.0 lb
+   d)   Quiver    :
+   e)   Right Ring:
+   f)   Left Ring :
+   g)   Neck      :
+   h) ~ Light     : a Wooden Torch (with 1983 turns of ligh    3.0 lb
+   i) [ Body      : Chain Mail (-2) [14,+0]                   22.0 lb
+   j)   Cloak     :
+   k)   Head      :
+   l)   Hands     :
+   m)   Feet      :                                                     
                                                               48.0 lb   
   
+  Each slot has a descriptive label (like "Right Hand") that determines 
+  what type of object it may receive; the right hand and left hand, for 
+  example, accept weapons and shields. And yes, you can wield two 
+  weapons, or two shields! The slots for most items are very intuitive 
+  (gloves go on your hands, helmets go on your head), but some might be 
+  a bit surprising, like harps going into the Shooting slot.
+
+  Inspect Item (I)
+  This command lets you examine an item in detail, listing whatever 
+  special powers of the object you have identified, mentioning if the 
+  object still has hidden powers, and noting the item's weight and 
+  estimated value. Here too, use / to toggle between your pack, 
+  equipment, and other relevant inventories. This is an especially 
+  handy command for artifacts and ego-items.
+
+  Get Objects (g)
+  This command will get any objects located on the same tile as the 
+  player (墨家明器 applies). As a convenience, picking up items does 
+  not consume time.
+
+  Auto-Get Objects (^G)
+  This command will get any objects located on the same tile as the 
+  player (墨家明器 applies). In addition, this command will 
+  automatically travel to and get other objects in line of sight. With 
+  auto_get_objects enabled, any object registered for either 
+  auto-pickup or auto-destroy will qualify for automatic get. If that 
+  is too much for you (maybe you enjoy cleaning up after battles?), the 
+  auto_get_ammo option only applies to objects inscribed with =g; which 
+  is typically your ammo, or perhaps spikes on a ninja.
   
-  每个槽位都有一个描述性标签（如“右手”），它决定了它可以接受什么类型的物
-  品；例如，右手和左手可以接受武器和盾牌。而且没错，你可以挥舞两把武器或
-  持有两面盾牌！大多数物品的槽位都非常直观（手套戴在手上，头盔戴在头上）
-  ，但有些可能会有点令人惊讶，比如竖琴装备在“射击 (Shooting)”槽位中。
+  The auto-get travels will terminate when there are no more visible 
+  qualifying objects; if your pack becomes full; or if you are 
+  disturbed for any reason, such as a nasty dragon waking up and 
+  deciding to breathe on you. Auto-get is both safer and more limited 
+  than travelling through the object list; auto-get usually only cleans 
+  up a single room since the objects must be visible to qualify, while 
+  the object list and the H/^E command allow lengthy automatic travels, 
+  potentially into harm's way (although these journeys also stop if bad 
+  things happen).
 
-  检视物品 (I)
+  Drop Item (d)
+  This drops an item from your inventory or equipment onto the dungeon 
+  floor. If the floor spot you are standing on already has an object in 
+  it, or rejects object drops altogether (doors, stairs, traps, some 
+  terrain types like deep lava), the game will attempt to drop the item 
+  onto an adjacent space. If nothing else works, the item will be 
+  dropped onto a square that already has an object in it; but be warned 
+  that if there simply are no acceptable squares nearby the object may 
+  disappear entirely. If the pile selected for dropping contains 
+  multiple items, you may specify a quantity.
+
+  Destroy Item (k) or (^D)
+  This destroys an item in your inventory or on the dungeon floor. If 
+  the selected pile contains multiple objects, you may specify a 
+  quantity. You must always verify this command, except in the case of 
+  worthless junk items.
+
+  Wear/Wield Equipment (w)
+  To wear or wield an object, use this command. Since only one object 
+  can be in each equipment slot at a time, if you wear or wield an item 
+  into a slot which is already occupied, the old item will first be 
+  taken off, and may be dropped if there is no room for it in your 
+  inventory.
+
+  Take Off Equipment (t) or (T)
+  Use this command to take off a piece of equipment and return it to 
+  your inventory. If there is no room in your inventory for the item, 
+  your pack will overflow and you will drop the item after taking it 
+  off. Occasionally, you will run into a cursed item which cannot be 
+  removed; these items normally penalize you in some way, and can only 
+  be taken off after the curse has been removed.
+
+Movement Commands
+
+  Walk (with pickup) (;)
+  Moves one step in the given direction. The square you are moving into 
+  must not be blocked by walls or doors. You will pick up any items in 
+  the destination grid if the always_pickup option is set. This command 
+  can take a count and requires a direction. You may also use the 
+  "original" direction keys (both keysets) or the "roguelike" direction 
+  keys (roguelike keyset) to walk in a direction (they are keymapped to 
+  this command). If the 墨家明器 or the easy auto-destroyer is 
+  active, specified objects will be picked up or destroyed.
+
+  Walk (flip pickup) (-)
+  This is just like normal move, except that the "Pick things up" 
+  option is inverted. In other words, you will pick things up if and 
+  only if always_pickup is not set. This command can take a count and 
+  requires a direction. If the 墨家明器 or the easy auto-destroyer 
+  is active, specified objects will be picked up or destroyed.
   
-  此命令可让你详细检查物品，列出你已查明的任何物品特殊能力，说明该物品是
-  否仍然具有隐藏的力量，并显示该物品的重量和估计价值。同样地，在此处可以
-  使用 / 在你的背包、装备和其他相关库存之间切换。这是一个对于神器和 Ego 
-  物品特别方便的命令。
+  This is also the command for deliberately walking into a trap.
 
-  拾取物品 (g)
-  此命令将拾取位于玩家同一图块上的任何物品（受 墨家明器 
-  插件规则影响）。为方便起见，拾取物品不消耗时间。
+  Run (.) or (,)
+  This command will move in the given direction, following any bends in 
+  the corridor, until you either have to make a "choice" between two 
+  directions or you are disturbed. You can configure what will disturb 
+  you by setting the disturbance options. Run requires a direction. By 
+  default Shift+DIR is keymapped to .DIR, although with the original 
+  keyset this may run into technical limitations on some platforms. If 
+  the 墨家明器 or the easy auto-destroyer is active, specified 
+  objects will be picked up or destroyed.
 
-  自动拾取物品 (^G)
-  此命令将拾取位于玩家同一图块上的任何物品（受 墨家明器 
-  插件规则影响）。此外，此命令还将自动行走到视线内并拾取其他物品。启用 
-  auto_get_objects 
-  选项后，任何注册为自动拾取或自动摧毁的物品都符合自动拾取的条件。如果你
-  觉得这太多了（也许你喜欢在战斗后亲自打扫战场？），auto_get_ammo 
-  选项只适用于刻有 =g 
-  铭文的物品；这通常是你的弹药，或者可能是忍者的铁蒺藜。
+  Go Up Staircase (<)
+  Climbs up if you are standing on an up staircase or shaft. In the 
+  wilderness, toggles global map mode unless there are alert monsters 
+  nearby.
   
+  Unless you are playing in coffee-break mode or have activated the 
+  ironman_downward option, there is always at least one up staircase on 
+  every level. Going up a staircase will take you to either the surface 
+  or a new dungeon level. Note that levels are semi-persistent; they 
+  can be returned to while you remain in the dungeon (supposing up 
+  staircases exist), but are lost forever when you return to surface.
+
+  Go Down Staircase (>)
+  Descends if you are standing on a down staircase or shaft. In the 
+  wilderness, returns from global map to local map.
   
-  自动拾取行走将在没有更多符合条件的可见物品时停止；或者当你的背包满了时
-  ；或者如果你因任何原因受到干扰（例如一只讨厌的龙醒来并决定对你喷吐）。
-  自动拾取比通过物品列表行走更安全但也更局限；由于必须可见才符合条件，自
-  动拾取通常只能清理单个房间，而物品列表和 H/^E 
-  命令允许进行长距离的自动旅行，甚至可能深入险境（尽管当不好的事情发生时
-  这些旅程也会停止）。
+  There are always at least two staircases going down on each level, 
+  except for quest levels (which have none until the quest monster is 
+  killed) and the bottom levels of dungeons. Going down a staircase 
+  will take you to a new dungeon level (see "Go Up Staircase" for 
+  notes).
 
-  丢弃物品 (d)
+  Travel to Nearest Interesting Item (H or ^E)
+  Locates and automatically travels to the nearest known item that is 
+  unidentified, either has not been pseudo-ID'd or has been sensed as 
+  an artifact or ego item, is not considered unworthy of picking up by 
+  an active 墨家明器, and to which a known route has been mapped. 
+  Convenient for quickly locating items you forgot to pick up or 
+  identify after you have otherwise a dungeon level, or after killing a 
+  high-level monster who dropped loot all over the place.
+
+  Resume Journey (J) or Resume Travelling (()
+  Resumes a previous travel that was interrupted before reaching its 
+  target. This command can also be used in the monster and object lists 
+  to start a new travel; for this purpose, the J key is also used by 
+  the roguelike keyset.
+
+Resting Commands
+
+  Stay Still (with pickup) (,) or (.)
+  Stays in the same square for one move. If you normally pick up 
+  objects you encounter, you will pick up whatever you are standing on. 
+  This command can take a count. You may also use the "5" key (both 
+  keysets). If the 墨家明器 or the easy auto-destroyer is active, 
+  specified objects will be picked up or destroyed.
+
+  Rest (R)
+  Resting is better for you than repeatedly staying still, and can be 
+  told to automatically stop after a certain amount of time, or when 
+  various conditions are met. In any case, you always wake up when 
+  anything disturbing happens, or when you press any key. This command 
+  requests a count if no count is specified; the count defaults to the 
+  special value &, which means "rest until fully healed". Another 
+  special value, * for "rest to full HP/SP", is also accepted.
+
+Searching Commands
+
+  Search (s)
+  This command can be used to locate hidden traps and secret doors in 
+  the spaces adjacent to the player. More than a single turn of 
+  searching will be required in most cases. You should always search a 
+  chest before trying to open it, since they are generally trapped; 
+  though if nothing appears, you may have found a rare trapless chest. 
+  This command can take a count, which is useful if you are fairly sure 
+  of finding something eventually, since the command stops as soon as 
+  anything is found.
+
+  Toggle Search Mode (S) or (#)
+  This command will take you into and out of search mode. When first 
+  pressed, the message "Searching" will appear at the bottom of the 
+  screen. You are now taking two turns for each command, one for the 
+  command and one turn to search. This means that you are taking twice 
+  the time to move around the dungeon, and therefore twice the food. 
+  Search mode will automatically turn off if you are disturbed. You may 
+  also turn off search mode by entering the Search Mode command again.
+
+Alter Commands
+
+  Tunnel (T) or (^T)
+  Tunneling or mining is a very useful art. There are many kinds of 
+  rock, with varying hardness, including:
   
-  这将把物品从你的物品栏或装备栏丢弃到地下城地板上。如果你站立的地板上已
-  经有物品，或者完全拒绝物品掉落（门、楼梯、陷阱、某些地形类型如深岩浆）
-  ，游戏将尝试将物品掉落到相邻的空间。如果其他方法都不起作用，物品将被丢
-  弃到已经有物品的方格上；但请注意，如果附近根本没有可接受的方格，物品可
-  能会完全消失。如果选择丢弃的堆叠包含多个物品，你可以指定数量。
-
-  摧毁物品 (k) 或 (^D)
+    # Permanent Rock   Permanent
+    # Granite          Very Hard
+    % Quartz Veins     Hard
+    % Magma veins      Soft
+    : Rubble           Very Soft
   
-  这会摧毁物品栏或地下城地板上的物品。如果选择的堆叠包含多个对象，你可以
-  指定数量。除了毫无价值的垃圾物品外，你必须始终在执行此命令时确认验证。
+  Quartz and Magma veins may sometimes contain treasure; known 
+  treasures will be displayed as *, but not all treasures are visible 
+  without detection. Rubble sometimes covers an object. Tunneling is 
+  difficult unless you are wielding a heavy weapon or a digging 
+  implement or your Strength is very high. This command can take a 
+  count, requires a direction, and is affected by the always_repeat 
+  option.
+
+  Open a Door or Chest (o)
+  To open a chest, you must use this command (for doors, simply walking 
+  into a closed door automatically attempts to open it). If the door or 
+  chest is locked, you will attempt to pick the lock based on your 
+  disarming ability; if you open a trapped chest without disarming the 
+  traps first, the traps will be set off. You may need several tries to 
+  open a door or chest, and rarely doors will be jammed shut and need 
+  to be bashed open. Open can take a count, requires a direction, and 
+  is affected by the always_repeat option.
+
+  Close a Door (c)
+  Non-intelligent and some other creatures cannot open doors, so 
+  shutting doors can be quite valuable. Broken doors cannot be closed. 
+  Bashing a door open may break it. Close can take a count, requires a 
+  direction, and is affected by the always_repeat option.
+
+  Jam a Door (j) or Spike a Door (S)
+  Many monsters can simply open closed doors, and can eventually get 
+  through a locked door. You may therefore occasionally want to jam a 
+  door shut with iron spikes. Each spike used on the door will make it 
+  harder to bash down the door, up to a certain limit. Smaller monsters 
+  are less able to bash down doors. In order to use this command, you 
+  must be carrying iron spikes. Jam or Spike requires a direction.
+
+  Bash a Door (B) or Force a Door (f)
+  This command allows you to bash down jammed doors. Your bashing 
+  ability increases with strength. Bashing open a door can (briefly) 
+  throw you off balance. Doors that are stuck, or which have been 
+  jammed closed with spikes can only be opened by bashing, and all 
+  closed doors can be bashed open if desired. Bashing a door open may 
+  permanently break it. Bash/Force can take a count, requires a 
+  direction, and is affected by the always_repeat option.
+
+  Disarm a Trap or Chest (D)
+  You can attempt to disarm traps on the floor or on chests. If you 
+  fail, there is a chance that you will blunder and set it off. You can 
+  only disarm a trap after you have found it (with the Search command, 
+  by detection, or by previously triggering it). Disarm can take a 
+  count, requires a direction, and is affected by the always_repeat 
+  option. Walking into known floor traps automatically attempts to 
+  disarm them unless the easy_disarm option has been disabled; use - if 
+  you wish to deliberately walk into a trap without disarming it.
+
+  Alter Adjacent Grid (+)
+  This all-purpose super-command allows the use of a single keypress to 
+  select any of the "obvious" commands above (attack, tunnel, bash, 
+  open, disarm, close). Ctrl-[dir] is by default macroed to be 
+  equivalent to alter-[dir], in both keysets. Alter can take a count, 
+  requires a direction, and is affected by the always_repeat option.
+
+Spell and Prayer Commands
+
+  Browse Magic List (b) or Peruse Magic List (P)
+  All characters which can cast spells can use this command. When this 
+  command is used, all of the spells available to you (or contained in 
+  a selected magic book) are displayed, along with such information as 
+  their level, the amount of mana required to cast them, and whether or 
+  not you know the spell. And when you select a spell from the list, a 
+  short description of the selected spell's effect will be displayed.
+
+  Gain New Spells or Prayers (G)
+  Use this command to actually learn new spells or prayers. When you 
+  are able to learn new spells or prayers, the word Study will appear 
+  in the status area of the screen. If you have a book in your 
+  possession, containing spells or prayers which you may learn, then 
+  you may choose to study that book. If you are a Priest, Paladin, 
+  Ranger, Monk or Force-Trainer, your gods will choose a prayer for 
+  you; other classes can choose which spell they wish to study, and 
+  even study the same spell a second time. There are four books in each 
+  realm, some normally found only in the dungeon.
+
+  Use a Magic Spell/Mental Power (m)
+  To use a book spell (or prayer), you must have previously learned the 
+  spell and must have in your inventory a book from which the spell can 
+  be read. Each spell has a chance of failure which starts out fairly 
+  large but decreases as you gain levels. If you don't have enough mana 
+  to cast a spell, you will be prompted for confirmation. If you decide 
+  to go ahead, the chance of failure is greatly increased, and you may 
+  lose a point of constitution. Since you must read the spell from a 
+  book, you cannot be blind or confused while casting, and there must 
+  be some light present.
   
+  For classes who do not learn book spells but do learn magic or mental 
+  powers through other means (commonly just by leveling up), this 
+  command may obey slightly different rules. For most (but not all) 
+  classes, this command will not work at all if your character is 
+  Mundane or has equipped an Anti-Magic item.
 
-  穿戴/挥舞装备 (w)
-  
-  要穿戴或挥舞物品，请使用此命令。由于每个装备槽一次只能容纳一件物品，如
-  果你将物品穿戴或挥舞到已经被占据的槽位，旧物品将首先被脱下，并且如果在
-  你的物品栏中没有空间容纳它，它可能会被丢弃在地。
-
-  脱下装备 (t) 或 (T)
-  
-  使用此命令脱下一件装备并将其返回你的物品栏。如果你的物品栏中没有空间容
-  纳该物品，你的背包将溢出，你将在脱下该物品后将其丢弃。偶尔，你会遇到无
-  法取下的被诅咒物品；这些物品通常会以某种方式惩罚你，并且只能在诅咒被移
-  除后才能取下。
-
-移动命令 (Movement Commands)
-
-  行走 (带拾取) (;)
-  在指定方向上移动一步。你要进入的方格不能被墙壁或门挡住。如果设置了 
-  always_pickup 
-  选项，你将拾取目标网格中的任何物品。此命令可以带有重复计数并且需要一个
-  方向。你也可以使用“原版”方向键（两种按键集皆可）或“Roguelike”方向键（R
-  oguelike 按键集）朝某个方向行走（它们被按键映射到此命令）。如果激活了 
-  墨家明器 或简易自动摧毁器，指定的物品将被拾取或摧毁。
-
-  行走 (翻转拾取) (-)
-  
-  这与正常的移动一样，只是“拾取物品”选项被反转了。换句话说，当且仅当没有
-  设置 always_pickup 
-  时你才会捡起东西。此命令可以带有重复计数并且需要一个方向。如果激活了 
-  墨家明器 或简易自动摧毁器，指定的物品将被拾取或摧毁。
-  
-  这也是故意走入陷阱的命令。
-
-  跑步 (.) 或 (,)
-  
-  此命令将在指定方向上移动，沿着走廊的任何弯道，直到你必须在两个方向之间
-  做出“选择”或受到干扰。你可以通过设置干扰选项来配置什么会干扰你。跑步需
-  要一个方向。默认情况下 Shift+DIR (方向) 被映射为 .DIR 
-  (向某方向跑)，尽管使用原版按键集时在某些平台上可能会遇到技术限制。如果
-  激活了 墨家明器 或简易自动摧毁器，指定的物品将被拾取或摧毁。
-
-  上楼梯 (<)
-  
-  如果你站在上行楼梯或竖井上，则向上攀爬。在荒野中，除非附近有警觉的怪物
-  ，否则切换全局地图模式。
-  
-  除非你是在茶歇模式 (coffee-break mode)下玩或激活了 
-  ironman_downward（铁人下行）选项，否则每个楼层总是至少有一个上行楼梯。
-  上楼梯将把你带到地表或一个新的地下城楼层。请注意，楼层是半持久的；只要
-  你留在地下城中（假设存在上行楼梯），你就可以返回它们，但是当你返回地表
-  时，这些楼层将永远丢失。
-
-  下楼梯 (>)
-  
-  如果你站在下行楼梯或竖井上，则向下下降。在荒野中，从全局地图返回局部地
-  图。
-  
-  
-  每个楼层总是至少有两个下行楼梯，除了任务楼层（在杀死任务怪物之前没有）
-  和地下城的底层。下楼梯将把你带到一个新的地下城楼层（相关说明请参阅“上
-  楼梯”）。
-
-  旅行至最近的有趣物品 (H 或 ^E)
-  
-  定位并自动前往最近的、满足以下条件的已知物品：未鉴定、或者未被伪鉴定、
-  或者被感知为神器/Ego物品、并且未被活动的 墨家明器 
-  视为不值得拾取的物品，同时已有一条已知的映射路线。这对于在清理完地下城
-  楼层后，或者在杀死将战利品掉落得到处都是的高级怪物后，快速定位你忘记捡
-  起或鉴定的物品非常方便。
-
-  恢复旅行 (J) 或 (()
-  
-  恢复之前在到达目标前被中断的旅程。此命令也可以在怪物和物品列表中用于开
-  始新的旅程；出于此目的，Roguelike 按键集也使用 J 键。
-
-休息命令 (Resting Commands)
-
-  原地停留 (带拾取) (,) 或 (.)
-  
-  在同一方格停留一回合。如果你正常拾取遇到的物品，你将捡起你站在上面的任
-  何东西。此命令可以带有重复计数。你也可以使用“5”键（两种按键集）。如果
-  激活了 墨家明器 或简易自动摧毁器，指定的物品将被拾取或摧毁。
-
-  休息 (R)
-  
-  休息比反复原地停留对你更好，并且可以被设置为在特定时间后或满足各种条件
-  时自动停止。无论如何，当发生任何干扰事件或你按下任何键时，你都会醒来。
-  如果没有指定计数，此命令会要求输入一个计数；该计数默认为特殊值 
-  &，这意味着“休息直到完全康复”。也接受另一个特殊值 * 
-  代表“休息直到HP/SP全满”。
-
-搜索命令 (Searching Commands)
-
-  搜索 (s)
-  
-  此命令可用于定位玩家相邻空间中的隐藏陷阱和暗门。在大多数情况下，需要多
-  个回合的搜索。你应始终在尝试打开箱子之前搜索它，因为它们通常有陷阱；虽
-  然如果没有发现任何东西，你可能找到了一个罕见的无陷阱箱子。此命令可以带
-  计数，如果你相当确定最终会找到什么，这将很有用，因为命令一旦发现任何东
-  西就会停止。
-
-  切换搜索模式 (S) 或 (#)
-  
-  此命令将带你进入和退出搜索模式。初次按下时，屏幕底部将显示消息“Searchi
-  ng 
-  (搜索中)”。现在你的每个命令都需要花费两个回合的时间，一个回合用于命令
-  ，一个回合用于搜索。这意味着你在地下城中移动的时间是原来的两倍，因此消
-  耗的食物也是两倍。如果你受到干扰，搜索模式将自动关闭。你也可以通过再次
-  输入搜索模式命令来关闭搜索模式。
-
-交互命令 (Alter Commands)
-
-  挖掘隧道 (T) 或 (^T)
-  挖掘隧道或采矿是一门非常有用的技艺。岩石有许多种类，硬度各异，包括：
-  
-    # 永久岩石         永久
-    # 花岗岩           极硬
-    % 石英矿脉         硬
-    % 岩浆矿脉         软
-    : 碎石             极软
-  
-  石英和岩浆矿脉有时可能含有宝藏；已知的宝藏将显示为 *
-  ，但并非所有的宝藏在没有探测的情况下都是可见的。碎石有时会覆盖物品。除
-  非你挥舞着重型武器或挖掘工具，或者你的力量非常高，否则挖掘隧道是很困难
-  的。此命令可以带有计数，需要一个方向，并受 always_repeat 选项的影响。
-
-  打开门或箱子 (o)
-  
-  要打开箱子，必须使用此命令（对于门，简单地撞上闭合的门会自动尝试打开它
-  ）。如果门或箱子上了锁，你将尝试根据你的解除陷阱能力进行开锁；如果你在
-  没有先解除陷阱的情况下打开带陷阱的箱子，陷阱将被触发。你可能需要多次尝
-  试才能打开一扇门或箱子，很少有门会被卡住（jammed）并需要被撞开。打开命
-  令可以带有计数，需要一个方向，并受 always_repeat 选项的影响。
-
-  关门 (c)
-  
-  非智能和其他一些生物无法开门，所以关门非常有价值。破损的门无法关闭。把
-  门撞开可能会破坏它。关门可以带有计数，需要一个方向，并受 
-  always_repeat 选项的影响。
-
-  卡住门 (j) 或 (S)
-  
-  许多怪物可以简单地推开关闭的门，并最终能够突破锁住的门。因此，你有偶尔
-  可能想用铁蒺藜（iron 
-  spikes）把门卡死。每次在门上使用铁蒺藜都会使这扇门更难被撞开，直到达到
-  一定限制。较小的怪物不太能够撞开门。为了使用此命令，你必须携带铁蒺藜。
-  此命令需要一个方向。
-
-  撞门 (B) 或 (f)
-  
-  此命令允许你撞倒卡住的门。你的撞击能力随力量而增加。撞开门可能会让你（
-  短暂地）失去平衡。卡住的门，或者被铁蒺藜卡死的门只能通过撞击来打开，并
-  且如果需要，所有关闭的门都可以被撞开。撞开一扇门可能会永久性地破坏它。
-  撞门可以带有计数，需要一个方向，并受 always_repeat 选项的影响。
-
-  解除陷阱或箱子 (D)
-  
-  你可以尝试解除地板上或箱子上的陷阱。如果你失败了，你可能会失误并触发它
-  。你只能在发现陷阱后（通过搜索命令、探测或之前触发它）才能解除它。解除
-  命令可以带有计数，需要一个方向，并受 always_repeat 
-  选项的影响。除非禁用了 easy_disarm (简易解除陷阱) 
-  选项，否则走进已知的地板陷阱会自动尝试解除它们；如果你希望故意走入陷阱
-  而不解除它，请使用 - 键。
-
-  与相邻网格交互 (+)
-  
-  这个多用途的超级命令允许按单个键来选择上述任何“明显的”命令（攻击、挖掘
-  、撞击、打开、解除、关闭）。在两种按键集中，Ctrl-[方向] 
-  默认在宏中等同于交互-[方向]。交互命令可以带有计数，需要一个方向，并受 
-  always_repeat 选项的影响。
-
-法术和祈祷命令 (Spell and Prayer Commands)
-
-  浏览法术列表 (b) 或 (P)
-  
-  所有可以施展法术的角色都可以使用此命令。使用此命令时，将显示对你可用的
-  （或包含在选定魔法书中的）所有法术，以及诸如它们的等级、施放所需的法力
-  值以及你是否知道该法术等信息。当你从列表中选择一个法术时，将显示该法术
-  效果的简短描述。
-
-  学习新法术或祈祷 (G)
-  
-  使用此命令来实际学习新法术或祈祷。当你能够学习新法术或祈祷时，屏幕的状
-  态区域将出现 Study (研究) 
-  字样。如果你身上有一本包含你可以学习的法术或祈祷的书，那么你可以选择研
-  究那本书。如果你是牧师、圣骑士、游侠、武僧或原力行者，你的神会为你选择
-  一个祈祷；其他职业可以选择他们希望研究的法术，甚至可以第二次研究同一个
-  法术以降低消耗。每个法术领域都有四本书，其中有些通常只在地下城中才能找
-  到。
-
-  使用魔法法术/灵能 (m)
-  
-  要使用书本法术（或祈祷），你必须之前学习过该法术，并且你的物品栏中必须
-  有可以从中阅读该法术的书。每个法术都有一个失败几率，开始时相当大，但随
-  着等级的提高而降低。如果你没有足够的法力值来施展法术，将提示你进行确认
-  。如果你决定强行施法，失败几率会大大增加，并且你可能会失去一点体质。因
-  为你必须从书中阅读法术，所以施法时你不能失明或困惑，并且必须存在一些光
-  源。
-  
-  
-  对于那些不学习书本法术而是通过其他方式（通常只是通过升级）学习魔法或精
-  神能力的职业，此命令可能会遵循稍微不同的规则。对于大多数（但不是全部）
-  职业，如果你的角色是凡人 (Mundane) 或装备了破魔 (Anti-Magic) 
-  物品，此命令将完全失效。
-
-  使用能力 (U) 或 (O)
-  一些种族和职业具有特殊的固有能力。例如，独眼巨人可以投掷巨石 (Throw 
-  Boulders)，侏儒可以从危险中闪现 (Blink) 离开。战士可以学习剑舞 (Sword 
-  Dancing) 
-  的力量。此外，你也可能会变异并获得一种能力，例如从眼睛发射激光束 
-  (Laser Beams) 的能力！如果你没有特殊能力，此命令将不起任何作用。
+  Use Bonus Power (U) or (O)
+  Some races and classes have special natural abilities. For example, a 
+  Cyclops may Throw Boulders and a Gnome may Blink away from danger. A 
+  Warrior can learn the power of Sword Dancing. Also, it is possible to 
+  become mutated and gain a power, such as the ability to shoot Laser 
+  Beams from your eyes! If you have no special powers, this command 
+  will not do anything.
 
 
-物品使用命令 (Object Use Commands)
+Object Use Commands
 
-  进食 (E)
-  你必须定期进食以防止饥饿。当你变得饥饿时，屏幕状态栏会出现 Hungry 
-  (饥饿)。如果你饿得太久，你会变得 Weak (虚弱)，然后开始 Fainting 
-  (昏厥)，最终饿死。使用此命令吃掉你物品栏中的食物——尽管你也可以直接从地
-  上吃东西……
+  Eat Food (E)
+  You must eat regularly to prevent starvation. As you grow hungry, a 
+  message will appear in the status portion of the screen saying 
+  Hungry. If you go hungry long enough, you will become Weak, then 
+  start Fainting, and eventually starve to death. Use this command to 
+  eat food from your inventory - though it is also possible to eat 
+  straight from the floor...
 
-  添加燃料 (F)
-  
-  如果你正在使用火把并且你的背包中有更多火把，或者你正在使用提灯并且你的
-  背包中有油瓶，你可以使用此命令为你的光源补充燃料。火把和提灯的燃料容量
-  有限；通常情况下，两瓶油将完全加满一盏提灯，两根火把将完全补充一根火把
-  。
+  Fuel Lantern/Torch (F)
+  If you are using a torch and have more torches in your pack, or you 
+  are using a lantern and have flasks of oil in your pack, you can 
+  refuel your light source with this command. Torches and Lanterns have 
+  limited fuel capacity; in general, two flasks will fully fuel a 
+  lantern and two torches will fully fuel a torch.
 
-  饮用药水 (q)
-  使用此命令饮用药水，它将被完全消耗，除非你是药水专精的魔法装置使 
-  (Devicemaster)。效果好坏取决于具体的药水。
+  Quaff Potion (q)
+  Use this command to drink a potion, fully consuming it unless you are 
+  a Potion-speciality Devicemaster. The effects could be good or bad, 
+  depending on the potion.
 
-  阅读卷轴 (r)
-  
-  使用此命令阅读魔法卷轴。阅读卷轴会导致羊皮纸在魔法生效时化为灰烬。大多
-  数提示输入更多信息的卷轴可以被中止（按 
-  ESC）且不消耗卷轴。注意魔法是变幻莫测的，必须小心阅读卷轴；如果念错了
-  咒语，什么都不会发生。
+  Read Scroll (r)
+  Use this command to read a magic scroll. Reading a scroll causes the 
+  parchment to disintegrate as the magic takes effect. Most scrolls 
+  which prompt for more information can be aborted (by pressing ESC) 
+  without consuming the scroll. Note that magic is fickle, and the 
+  scroll must be read with care; mispronounce the incantations, and 
+  nothing happens.
  
-  激活物品 (A)
-  
-  你听过传闻，在地下深处有一些特殊物品，它们能让你像龙一样喷吐火焰，或者
-  只需一个念头就能照亮整个房间。如果你有幸找到这样的物品，此命令将让你激
-  活其特殊能力。只有已装备的物品才能被激活，并且它们通常需要一定的时间充
-  能后才能再次激活。激活类似于卷轴、魔杖、法杖和魔棒的效果：都需要魔法装
-  置技能 (Magic Device Skill) 并且有可能失败。
+  Activate Item (A)
+  You have heard rumors of special items deep in the dungeon that let 
+  you breathe fire like a dragon or illuminate rooms with just a 
+  thought. Should you ever be lucky enough to find such an item, this 
+  command will let you activate its special ability. Only equipped 
+  items can be activated, and they usually take a certain amount of 
+  time to recharge before you can activate them again. Activations 
+  resemble scroll, wand, staff and rod effects: all require Magic 
+  Device Skill and have a chance to fail.
 
-  瞄准/使用魔杖 (Wand) (a) 或 (z)
-  此命令尝试使用魔杖。魔杖的效果通常是射线 (bolt)、光束 (beam)、球体 
-  (ball) 或喷吐 (breath) 
-  形状，因此需要瞄准；相应地，此命令需要一个方向并且可以使用目标。
+  Aim Wand (a) or Zap Wand (z)
+  This command attempts to use a wand. Wand effects are normally bolts, 
+  beams, balls or breaths, and so need to be aimed; accordingly, this 
+  command requires a direction and can use a target.
 
-  使用/挥舞法杖 (Staff) (u) 或 (Z)
-  
-  此命令尝试使用法杖。法杖通常具有区域效果或影响特定对象，因此不需要瞄准
-  。
+  Use Staff (u) or Zap Staff (Z)
+  This command attempts to use a staff. Staves normally either have an 
+  area effect or affect a specific object, and therefore do not need to 
+  be aimed.
  
-  使用/激活魔棒 (Rod) (z) 或 (a)
-  
-  此命令尝试使用魔棒；魔棒可以具有类似法杖或魔杖的效果。此命令可能需要一
-  个方向（取决于魔棒的类型以及你是否了解它的类型）并且可以使用目标。
+  Zap Rod (z) or Activate Rod (a)
+  This command attempts to use a rod; rods can have either staff-like 
+  or wand-like effects. This command may require a direction (depending 
+  on the type of rod, and whether you are aware of its type) and can 
+  use a target.
 
-  铭刻物品 (Z) 或 ({)
-  
-  此命令在物品上铭刻一串字符。铭刻显示在物品描述后的大括号内。铭文仅限于
-  特定的物品（或堆叠），并且不会自动转移到所有类似物品上。某些铭文向游戏
-  提供了如何处理或标记该物品的指令；有关更多信息，请参阅 [a]。
+  Inscribe an object (Z) or ({)
+  This command inscribes a string on an object. The inscription is 
+  displayed inside curly braces after the object description. The 
+  inscription is limited to the particular object (or pile) and is not 
+  automatically transferred to all similar objects. Certain 
+  inscriptions give the game instructions for how to handle or label 
+  the item; see [a] for more information.
 
-  移除铭刻 (})
-  此命令移除物品上的铭文。此命令对游戏本身添加的“虚假”铭刻没有影响。
+  Uninscribe an object (})
+  This command removes the inscription on an object. This command will 
+  have no effect on "fake" inscriptions added by the game itself.
 
-投射与远程武器命令 (Throwing and Missile Weapons)
+Throwing and Missile Weapons
 
-  射击/投掷 (f) 或 (t)
-  
-  发射适合你当前远程武器的弹药，前提是你装备了远程武器。投石索只能发射石
-  子和铁弹；弓只能发射箭；弩只能发射弩箭。弹药通常从你的箭袋发射，但也可
-  以直接从你的物品栏甚至从地板上发射。此命令需要一个方向，并可以接受一个
-  目标。
+  Fire Item (f) or (t)
+  Fires a selected projectile suitable for your current ranged weapon, 
+  provided that you have a ranged weapon equipped. Slings only shoot 
+  pebbles and iron shots; bows only shoot arrows; and crossbows only 
+  shoot bolts. Projectiles are typically fired from your quiver, but 
+  can also be shot directly from your inventory or even from the floor. 
+  This command requires a direction, and can take a target.
 
-  投掷物品 (v)
-  
-  你可以投掷你的角色携带的任何物品。物品越轻，你扔得越远。一次只能投掷堆
-  叠中的一个物品。抛出的物品可能会或可能不会损坏怪物。投掷物品可能会打破
-  它。把药水砸在墙上总会打破它，可能造成溅射伤害。此命令需要一个方向，并
-  可以接受一个目标。
+  Throw Item (v)
+  You may throw any object carried by your character. The lighter the 
+  object, the farther you can throw it. Only one object from a stack 
+  may be thrown at a time. Thrown objects may or may not damage 
+  monsters. Throwing an object can break it. Throwing a potion at a 
+  wall always breaks it, potentially causing splash damage. This 
+  command requires a direction, and can take a target.
 
-  设置目标 (*)
+  Set Target (*)
+  This command allows you to aim your spells, arrows and such at a 
+  specific monster or grid, even if they are not in one of the eight 
+  compass directions; it works both inside and outside direction 
+  prompts. This command can also be used as a substitute for the look 
+  command, which is especially convenient if what you wish to look at 
+  is a monster.
   
-  此命令允许你将法术、箭矢等瞄准特定的怪物或网格，即使它们不在八个指南针
-  方向之一；它在方向提示的内部和外部都有效。此命令也可以替代四处观察 
-  (look) 命令，如果你的观察目标是个怪物，这尤其方便。
+  The targeting prompt offers many options. The first target offered 
+  will be the nearest monster in line of sight, with other monsters in 
+  line of sight as alternative targets. Use direction keys to cycle 
+  between monsters; + and - also work, but are less intuitive.
   
+  If you wish to target (or inspect) a square with no monster on it, 
+  press p or o, switching to a mode where direction keys simply move 
+  the cursor. (This mode is automatically entered if no hostile 
+  monsters are in line of sight. o and p are identical except in one 
+  respect: pressing p moves the cursor to your own location.) At any 
+  time, press 5, t or . to accept the current target, q or ESC to exit 
+  targeting mode, r to recall lore about a currently targeted monster, 
+  x to see all items on the target square, and J/( to select a square 
+  as a travel target. See [b] for more detail.
   
-  瞄准提示提供了许多选项。提供的第一个目标将是视线内最近的怪物，视线内的
-  其他怪物作为备选目标。使用方向键在怪物之间循环切换；+ 和 - 
-  也起作用，但不太直观。
-  
-  如果你想瞄准（或检查）一个没有怪物的方格，请按 p 或 
-  o，切换到方向键只需移动光标的模式。（如果没有敌对怪物在视线内，将自动
-  进入此模式。o 和 p 除了在一个方面之外是相同的：按 p 
-  会将光标移动到你自己的位置）。随时可以按 5、t 或 . 接受当前目标，按 q 
-  或 ESC 退出瞄准模式，按 r 回忆有关当前瞄准怪物的知识背景，按 x 
-  查看目标方格上的所有物品，以及按 J/( 
-  选择一个方格作为旅行目标。详情请参阅 [b]。
-  
-  
-  注意，当你朝目标位置施放法术或发射物品时，选择的路径是朝向该位置的直接
-   (direct) 
-  路径，这可能不一定是你想要的路径。有时，通过巧妙地选择一个侧面位置作为
-  目标，你也许能瞄准不在直接视线内的方格：
+  Note that when you cast a spell or fire an object at a target 
+  location, the path chosen is the direct path towards that location, 
+  which may or may not be the path you want. Sometimes, by clever 
+  choice of a side location as your target, you may be able to aim at 
+  squares not directly in line of sight:
     
-    位置: 一个未知网格 [q,t,p,m,x,j,+,-,?,<dir>]       
+    Position: an unknown grid [q,t,p,m,x,j,+,-,?,<dir>]                         
           ##........#.... #%%####
           #........\......      #
           %.......}{\@....      #
@@ -434,36 +497,40 @@
         #       # ##*        #                                                  
         #########  #*#########
     
-  注意到那个鲜红色的 * 
-  了吗？那是一个我无法直接瞄准到的带龙方格；但我通过使用 p 
-  选择地图南部边缘的一个位置作为目标，成功地将该方格纳入了我的法术路径中
-  。
+  Notice that bright-red *? There's a dragon on that square I cannot 
+  target directly; but I managed to include that square in my spell's 
+  path by using p to target a location on the southern edge of the map.
   
-  注意射线 (bolt) 法术总是在法术路径上的第一个怪物处停止，但是光束 
-  (beam) 和喷吐 (breath) 法术会影响所有方格，并且如果需要，球体 (ball) 
-  法术可以飞过怪物的头顶到达目标方格。如果在世界大地图上使用 * 
-  命令，它会关联到类似的 look 命令。使用 * 命令不消耗时间。
+  Note that bolt spells always stop at the first monster in the spell's 
+  path, but beam and breath spells affect all squares, and ball spells 
+  can reach the target square by flying over monsters' heads if 
+  necessary. If the * command is used on the overworld map, it hooks 
+  into the similar look command. Using the * command consumes no time.
 
-观察命令 (Looking Commands)
+Looking Commands
 
-  显示怪物列表 (Y) 或 ([)
-  此命令显示所有当前可见怪物的列表。这是判断附近是否有 Unique 
-  或其他具有威胁性怪物的快捷方法，最常用于召唤或探测之后。
+  Display Monster List (Y) or ([)
+  This command displays a list of all monsters currently visible. This 
+  is a quick way to tell if there are any uniques or other threatening 
+  monsters nearby, and is most commonly used immediately after a summon 
+  or detection.
 
-  显示物品列表 (])
-  
-  此命令显示楼层上所有已知物品的列表，以及其他有趣的附近特征，如商店或地
-  下城入口。在物品列表处于活动状态时按 S 
-  会切换列表中是否包含楼梯。物品列表是定位楼梯、神器、未鉴定物品和楼层上
-  其他有趣目标的便捷方法，并且通过向下滚动到目标并按 J 
-  就可以直接前往该目标。
+  Display Object List (])
+  This command displays a list of all known objects on the level, as 
+  well as other interesting nearby features such as shops or dungeon 
+  entrances. Pressing S with the object list active toggles whether 
+  stairs are included in the object list. The object list is a handy 
+  way to locate stairs, artifacts, unidentified items and other targets 
+  of interest on the level, and makes it possible to travel to such 
+  targets directly by scrolling down to the target and pressing J.
 
-  全屏地图 (M)
-  
-  此命令将显示整个地下城的地图，按比例缩放以适合单个屏幕。由于比例的原因
-  ，只有主要的地形特征可见，甚至一些重要物品也不会显示在地图上。这对于快
-  速识别地下城的未探索区域或确定你相对于地下城边缘的位置特别有用。此命令
-  不消耗时间。
+  Full Screen Map (M)
+  This command will show a map of the entire dungeon, scaled to fit on 
+  a single screen. Only the major dungeon features will be visible 
+  because of the scale, so even some important objects may not show up 
+  on the map. This is particularly useful for quickly identifying 
+  unexplored areas of the dungeon or determining your location relative 
+  to the dungeon's edges. This command takes no time.
   
     +------------------------------------------------------------------+
     |                          ######  #########                       |
@@ -485,50 +552,52 @@
     |            #...#                                                 |
     |            ###%#                                                 |
   
-  如果 墨家明器 
-  活动，指定物品可以显示在此地图上；但这是一个过时的功能，因为直接使用 
-  ] 物品列表总是更方便。
+  If the 墨家明器 is active, specified objects can be displayed on 
+  this map; this is an obsolete functionality, though, as it is always 
+  more convenient to just use the ] object list.
 
-  在地图上定位玩家 (L) 或 (W)
-  此命令让你滚动你的地图，查看当前地下城楼层的所有扇区，直到你按 
-  ESC，此时地图将根据需要重新以玩家为中心。要滚动地图，只需按任何“方向”
-  键即可。顶行将显示扇区位置，以及与你当前扇区的偏移量。此命令不消耗时间
-  。
+  Locate Player on Map (L) or Where is the Player? (W)
+  This command lets you scroll your map around, looking at all sectors 
+  of the current dungeon level, until you press escape, at which point 
+  the map will be re-centered on the player if necessary. To scroll the 
+  map around, simply press any of the "direction" keys. The top line 
+  will display the sector location, and the offset from your current 
+  sector. This command takes no time.
 
-  重新居中视口 (^V)
+  Recenter Viewport (^V)
+  This command re-centers the viewport on the player; the game does 
+  automatically adjust the viewport as you move, but only when you 
+  approach the edge. This command is a quicker alternative to the 
+  Locate Player on Map command just discussed, though some players go a 
+  step further and activate the center_player option ([c]).
+
+  Look Around (l) or Examine Things (x)
+  This command is used to look around at nearby monsters (to determine 
+  their type and health) and objects (to determine their type). It is 
+  also used to find out what objects (if any) are under monsters, and 
+  if a monster is currently inside a wall. This command takes no time.
   
-  此命令使视口重新以玩家为中心；当你在移动时，游戏确实会自动调整视口，但
-  仅当你接近边缘时。此命令是上面讨论的在地图上定位玩家命令的更快替代品，
-  尽管有些玩家更进一步，直接激活 center_player 选项 ([c])。
+  This command is very closely related to the * targeting command, and 
+  most of the targeting prompt's special keys also work in the look 
+  prompt. It is often convenient to use * instead of this command, 
+  especially if you wish to look at a monster; on the other hand, l/x 
+  is better for inspecting town buildings.
 
-  四处观察 (l) 或 (x)
+Message Commands
+
+  Repeat Level Feeling (^F)
+  Repeats the current feeling about the dungeon level.
+
+  View Previous Messages (^P)
+  This command shows you all the recent messages. You can scroll 
+  through them, or exit with ESCAPE. This command takes no time.
+
+  Take notes (:)
+  This command allows you to take notes, which will then appear in your 
+  message list (prefixed with "Note:"). This command takes no time. It 
+  also adds a tiny screenshot to your message log. For example:
   
-  此命令用于观察附近的怪物（以确定其类型和生命值）和物品（以确定其类型）
-  。它也用于查明怪物下方有什么物品（如果有的话），以及怪物当前是否在墙内
-  。此命令不消耗时间。
-  
-  此命令与 * 
-  瞄准命令非常相似，并且瞄准提示的大多数特殊键也可以在观察提示中起作用。
-  使用 * 
-  而不是此命令通常很方便，特别是如果你想观察一个怪物的话；另一方面，l/x 
-  更适合用于检查城镇建筑。
-
-消息命令 (Message Commands)
-
-  重复楼层感知 (^F)
-  重复当前对地下城楼层的感知提示。
-
-  显示历史消息 (^P)
-  此命令向你显示所有最近的消息。你可以滚动浏览它们，或按 ESCAPE 
-  退出。此命令不消耗时间。
-
-  记笔记 (:)
-  
-  此命令允许你记笔记，记录随后将出现在你的消息列表中（以“Note:”或“记录:”
-  为前缀）。此命令不消耗时间。它还会向你的消息日志添加一个微型屏幕截图。
-  例如：
-  
-    记录:  这些蝙蝠绝对死定了！！
+    Note: These bats are so dead!!
                   #.################.#
                   #..........<.......#
                   #.##############>#.#
@@ -548,290 +617,311 @@
       #................#
       ##################
     
-    正在瞄准一只果蝠。     
-    这只果蝠死掉了。   
+    Targetting a Fruit bat.
+    The Fruit bat dies.
     
-    正在瞄准一只果蝠。     
-    这只果蝠死掉了。   
+    Targetting a Fruit bat.
+    The Fruit bat dies.
     
-  状态命令 (Game Status Commands)
+  Game Status Commands
   
-    角色信息面板 (C)
+    Character Sheet (C)
+    Brings up a full description of your character, including your 
+    resistances, skill levels, current and potential stats, equipment, 
+    inventory, home inventory, average damage in melee and ranged 
+    combat, spell repertoire, quest history, and other information. 
+    From this screen, you can use the | command to create a character 
+    dump.
+  
+    Knowledge Menu (~)
+    The command opens a menu from which you can select or recall 
+    information about your character, artifacts, monsters, identified 
+    objects, etc.:
     
-    调出你角色的完整描述，包括你的抗性、技能等级、当前和潜力属性、装备、
-    物品栏、房屋库存、近战和远程战斗平均伤害、法术库、任务历史记录和其他
-    信息。在此屏幕中，你可以使用 | 命令创建角色导出文件 (dump)。
-  
-    知识菜单 (~)
+    Object Knowledge            Dungeon Knowledge                       
+      (a) Artifacts               (d) Dungeons                          
+      (o) Objects                 (q) Quests                            
+      (e) Egos                    (t) Terrain Symbols
+      (_) Auto Pick/Destroy                                             
+                                Self Knowledge                          
+    Monster Knowledge             (@) About Yourself                    
+      (m) Known Monsters          (W) Weapon Damage                     
+      (w) Wanted Monsters         (H) High Score List                   
+      (u) Remaining Uniques                                             
+      (k) Kill Count            Skills                                  
+      (p) Pets                    (P) Proficiency                       
+                                  (s) Spell Proficiency                 
     
-    该命令打开一个菜单，你可以从中选择或回忆有关你的角色、神器、怪物、已
-    鉴定物品等信息：
-    
-    物品知识                    地下城知识                              
-      (a) 神器                    (d) 地下城                            
-      (o) 物品                    (q) 任务                              
-      (e) Ego 物品                (t) 地形符号
-      (_) 自动拾取/摧毁                                                 
-                                自身知识                                
-    怪物知识                      (@) 关于你自己                        
-      (m) 已知怪物                (W) 武器伤害                          
-      (w) 悬赏怪物                (H) 高分榜                            
-      (u) 剩余的 Unique                                                 
-      (k) 击杀统计              技能                                    
-      (p) 宠物                    (P) 熟练度                            
-                                  (s) 法术熟练度                        
-    
-    如你所见，这里有大量的信息；随处逛逛，你就能发现有什么内容可用。
+    As you can see, there is a lot of information here; poke around and 
+    you will see what's available.
   
-    显示游戏时间 (^T) 或 (')
-    
-    此命令向你显示游戏中的当前日期和时间，通常带有一段简短评论。（不带评
-    论的基本信息也可以通过 C 角色信息面板获取。）
+    Display game time (^T) or (')
+    This command shows you current date and time in the game, usually 
+    with a short comment. (The basic information, without the comments, 
+    is also available through the C character sheet.)
   
-  存档与退出命令 (Saving and Exiting Commands)
+  Saving and Exiting Commands
   
-    保存并退出 (^X)
-    
-    要保存你的游戏以便以后返回游玩，请使用此命令。如果游戏由于系统错误而
-    崩溃，也（有望）会生成保存文件。在你死亡后，你可以使用你的保存文件以
-    相同的选项和背景知识再次开始游戏。
+    Save and Quit (^X)
+    To save your game so that you can return to it later, use this 
+    command. Save files will also be generated (hopefully) if the game 
+    crashes due to a system error. After you die, you can use your 
+    savefile to play again with the same options and lore.
   
-    保存 (^S)
-    
-    此命令保存游戏但不退出。如果你经常偏执地担心电脑在你玩游戏时崩溃，请
-    经常使用这个命令。
+    Save (^S)
+    This command saves the game but doesn't exit. Use this frequently 
+    if you are paranoid about having the computer crash while you are 
+    playing.
   
-    退出并自杀 (Q)
-    
-    杀死你的角色并退出游戏。系统会提示你以确保你真的想这么做，然后要求你
-    验证该选择。请注意，死掉的角色就永远死掉了。
+    Quit (commit suicide) (Q)
+    Kills your character and exits the game. You will be prompted to 
+    make sure you really want to do this, and then asked to verify that 
+    choice. Note that dead characters are dead forever.
   
-  用户偏好命令 (User Preference Commands)
+  User Preference Commands
   
-  有关用户偏好命令的描述以及此功能的详细说明，请参见 [d]。
+  See [d] for a description of the user preference commands together 
+  with a detailed description of this function.
   
-    与选项交互 (=)
-    
-    允许你与选项交互。请注意，使用作弊选项可能会将你的保存文件标记为不适
-    合高分榜。
+    Interact with Options (=)
+    Allosw you to interact with options. Note that using the cheat 
+    options may mark your savefile as unsuitable for the high score 
+    list.
   
-    与宏交互 (@)
-    
-    允许你与宏交互。你可以从用户偏好文件中加载或保存宏，创建各种类型的宏
-    ，或定义按键映射。
+    Interact with Macros (@)
+    Allows you to interact with macros. You may load or save macros 
+    from user pref files, create macros of various types, or define 
+    keymaps.
   
-    与视觉效果交互 (%)
-    
-    允许你与视觉效果交互。你可以从用户偏好文件中加载或保存视觉效果，或修
-    改怪物、对象和地形特征的属性/字符映射。
+    Interact with Visuals (%)
+    Allows you to interact with visuals. You may load or save visuals 
+    from user pref files, or modify the attr/char mappings for the 
+    monsters, objects, and terrain features.
   
-    与颜色交互 (&)
-    允许用户与颜色进行交互。此命令仅在某些系统上有效。
+    Interact with Colors (&)
+    Allows the user to interact with colors. This command only works on 
+    some systems.
    
-    重载 墨家明器 偏好       ($)
-    此命令将为 墨家明器 重新加载 "pickpref.prf" 和 
-    "pickpref-<<playername>>.prf"；仅当你在游戏期间使用外部文本编辑器编
-    辑过这些文件时才需要使用。
+    Reload 墨家明器 Preferences ($)
+    This command will reload "pickpref.prf" and 
+    "pickpref-<<playername>>.prf" for the 墨家明器; only needs to be 
+    used if you have edited these files during the game with an 
+    external text editor.
   
-    编辑 墨家明器 偏好       (_)
-    允许你编辑拾取偏好，并在 墨家明器 尚未激活时将其激活。ESC 
-    键将在此编辑器中打开菜单。你可以从命令菜单中查看和使用所有编辑命令。
-    按 ^Q 或 ^W 退出编辑器。
+    Edit 墨家明器 Preferences (_)
+    Allows you to edit your pickup preferences, and activates the 
+    墨家明器 if it was not yet active. The ESC key will open the 
+    menu in this editor. You can see and use all edit commands from the 
+    command menu. Press ^Q or ^W to quit the editor.
   
-  帮助命令 (Help)
+  Help
   
-    帮助 (?)
-    
-    调出在线帮助系统。在某些情况下（如在帮助系统内），它可能会调出特定的
-    帮助页面。
+    Help (?)
+    Brings up the online help system. In some situations (like within 
+    the help itself) it may bring up a specific help page.
   
-    查询符号含义 (/)
-    使用此命令查找某个字符代表什么；例如，通过按下 /.，你可以发现 . 
-    符号代表一个地板位置。注意如果你希望看到关于附近特定怪物的信息，你应
-    该使用 * 命令而不是此命令。
+    Identify Symbol (/)
+    Use this command to find out what a character stands for; for 
+    instance, by pressing /. you can find out that the . symbol stands 
+    for a floor spot. Note that if you wish to see information about a 
+    specific monster nearby, you should use the * command instead of 
+    this command.
     
+    If you do use Identify Symbol on a monster symbol, you will be 
+    reminded of the species corresponding to the symbol and get a list 
+    of all monsters of that species that you have seen. Similar 
+    information is available through the ~ Knowledge Menu.
     
-    如果你对怪物符号使用查询符号命令，你将被提示该符号对应的物种，并获得
-    你见过的所有该物种怪物的列表。类似的信息可通过 ~ 知识菜单获取。
-    
-    查询符号有四个特殊的组合键：Ctrl-A 回忆所有已知怪物，Ctrl-U 
-    回忆所有已知 Unique，Ctrl-N 回忆所有已知非 Unique，以及 Ctrl-M 
-    回忆所有匹配你输入字符串的已知怪物。按 k 
-    按击杀次数对这些列表排序，按 p 按怪物的原生深度对它们排序，按 ESC 
-    退出。
+    There are four special commands you can use with Identify Symbol: 
+    Ctrl-A to recall all known monsters, Ctrl-U to recall all known 
+    uniques, Ctrl-N to recall all known non-uniques and Ctrl-M to 
+    recall all known monsters matching a string you type. Press k to 
+    sort these lists by number of kills, p to sort them by the native 
+    depths of the monsters and ESC to exit.
    
-    游戏版本 (V)
+    Game Version (V)
+    This command will tell you what version of the game you are using, 
+    as well as the current size of the map. For more information, see 
+    [e].
+  
+  Extra Commands
+  
+    Repeat Last Command (n) or (X)
+    This command repeats the previously executed command with all its 
+    arguments. Very useful for repeatedly firing at or casting the same 
+    spell at a given enemy.
+  
+    Record Command (")
+    Commands that you enter may be recorded to any normal ASCII 
+    character register. In fact, every command that you manually enter 
+    is automatically recorded to the . register. When you repeat the 
+    last command, you are really playing back the contents of this 
+    special . register. But you can also record the next command to a 
+    register of your choosing and then play it back manually later; for 
+    example, the command sequence "Fmae*t records the command mae*t to 
+    the F register in addition to the . register. You can later play 
+    back this command with 'F whereas playing back with '. or n is only 
+    valid on the very next turn.
+  
+    Playback Command (')
+    As mentioned above, you may record commands with the " command and 
+    play them back later with the ' command. Commands are stored in 
+    registers, each of which is addressed with a single ASCII 
+    character. For example, if you record a command with "t<cmd>, then 
+    you may later play it back by pressing 't. These command registers 
+    are temporary and will be erased every time you restart the game. 
+    To view your recorded commands, choose the ' register (i.e., press 
+    '' from the top level). You can then enter the register you wish to 
+    use (e.g. ''t works the same as 't except that the register 
+    contents of all recorded commands are displayed to you after you 
+    press the second ').
     
-    此命令将告诉你正在使用的游戏版本，以及地图的当前大小。有关更多信息，
-    请参见 [e]。
+    The playback command is rarely used, as macros and keymaps ([f]) 
+    are usually preferable.
   
-  额外命令 (Extra Commands)
+    Toggle Choice Window (^I)
+    Toggles subwindow display between your inventory and your 
+    equipment. This command only applies if you have an 
+    inventory/equipment subwindow.
   
-    重复上次命令 (n) 或 (X)
-    
-    此命令重复上次执行的命令及其所有参数。对于向特定敌人反复射击或施展相
-    同法术非常有用。
-  
-    录制命令 (")
-    你输入的命令可以记录到任何正常的 ASCII 
-    字符寄存器中。实际上，你手动输入的每个命令都会自动记录到 . 
-    寄存器中。当你重复上一个命令时，你实际上是在回放这个特殊的 . 
-    寄存器的内容。但是你也可以将下一个命令记录到你选择的寄存器中，并在稍
-    后手动回放它；例如，命令序列 "Fmae*t 将命令 mae*t 除了记录到 . 
-    寄存器外，还记录到了 F 寄存器。你稍后可以用 'F 回放此命令，而用 '. 
-    或 n 回放仅在下一个回合有效。
-  
-    回放录制的命令 (')
-    如上所述，你可以使用 " 命令录制命令，并在稍后使用 ' 
-    命令回放它们。命令存储在寄存器中，每个寄存器用一个 ASCII 
-    字符寻址。例如，如果你使用 "t<cmd> 
-    录制了一个命令，那么你稍后可以通过按 't 
-    来回放它。这些命令寄存器是临时的，并且在每次重启游戏时都会被清除。要
-    查看你记录的命令，选择 ' 寄存器（即从顶层按 
-    ''）。然后你可以输入你想使用的寄存器（例如 ''t 的工作原理与 't 
-    相同，只是在你按下第二个 ' 
-    之后会向你显示所有已记录命令的寄存器内容）。
-    
-    回放命令很少使用，因为宏和按键映射 ([f]) 通常更佳。
-  
-    切换选择窗口 (^I)
-    
-    在物品栏和装备栏之间切换副窗口显示。此命令仅当你启用了物品栏/装备栏
-    副窗口时才适用。
-  
-    重绘屏幕 (^R)
-    此命令适应全局选项中的各种更改，并重绘所有窗口。当你在 angband.live 
-    上玩耍并且有人开始观看你的游戏时，使用此命令是一种礼貌；如果你觉得有
-    图形错误或者游戏没有正确响应你所做的视觉改变，也请使用此命令。有疑问
-    时，就用它。
+    Redraw Screen (^R)
+    This command adapts to various changes in global options, and 
+    redraws all of the windows. It is polite to use this command if 
+    somebody starts watching your game when you play on angband.live; 
+    also use this command if you feel there are graphical errors or the 
+    game has not properly responded to visual changes you made. When in 
+    doubt, use it.
           
-    创建屏幕截图 ())
-    
-    此命令创建当前屏幕的文档，然后在游戏的内部文件查看器中向你显示该文档
-    。然后你可以使用 | 命令将文档另存为纯文本或 html。要创建 html 
-    文件，只需给文件添加 html 
-    扩展名。注意如果你在启用了图形的情况下进行游戏，那么此命令将在创建屏
-    幕截图之前尝试将其转换为正常的文本显示。
+    Create screen dump ())
+    This command creates a document of the current screen and then 
+    displays that document to you in the game's internal file viewer. 
+    You may then save the document as either plaintext or as html, 
+    using the | command. To create an html file, simply give the file 
+    an html extension. Note that if you are playing with graphics 
+    enabled, then this command will attempt to convert to normal 
+    textual display before creating the screen dump.
   
-    指挥宠物 (p)
-    如果你有宠物，请使用此命令下达命令或切换宠物选项。详情请参见 [g]。
+    Command your pets (p)
+    If you have pets, use this command to give orders or toggle pet 
+    options. See [g] for details.
   
-  速查汇总表 (Summary)
+  Summary
   
-  物品栏命令 (Inventory)     原版 (Orig)     Roguelike
-    物品栏列表                  i                 
-    装备栏列表                  e                 
-    检视物品                    I                 
-    拾取物品                    g                 
-    丢弃物品                    d                 
-    摧毁物品                    k               ^D
-    穿戴/挥舞装备               w                 
-    脱下装备                    t                T
+  Inventory Commands         Original        Roguelike
+    Inventory List              i                 
+    Equipment List              e                 
+    Inspect Item                I                 
+    Get Objects                 g                 
+    Drop Item                   d                 
+    Destroy Item                k               ^D
+    Wear/Wield Equipment        w                 
+    Take Off Equipment          t                T
   
-  移动命令 (Movement)        原版 (Orig)     Roguelike
-    行走 (拾取)                 ;                 
-    行走 (翻转拾取)             -                 
-    跑步                        .                ,
-    上楼梯                      <                 
-    下楼梯                      >                 
-    方向键 (DIR)             7  8  9          y  k  u
+  Movement Commands          Original        Roguelike
+    Walk (with pickup)          ;                 
+    Walk (flip pickup)          -                 
+    Run                         .                ,
+    Go Up Staircase             <                 
+    Go Down Staircase           >                 
+    Direction Keys (DIR)     7  8  9          y  k  u
                              4     6          h     l
                              1  2  3          b  j  n
-    跑步                    SHIFT+DIR             
-    旅行至有趣物品              H               ^E
-    恢复旅行                    J                (
+    Run                     SHIFT+DIR             
+    Travel to Interesting Item  H               ^E
+    Resume Travelling           J                (
   
-  休息命令 (Resting)         原版 (Orig)     Roguelike
-    停留 (拾取)                 ,                .
-    休息                        R                 
+  Resting Commands           Original        Roguelike
+    Stay (pickup)               ,                .
+    Rest                        R                 
   
-  搜索命令 (Searching)       原版 (Orig)     Roguelike
-    搜索                        s                 
-    切换搜索模式                S                #
+  Searching Commands         Original        Roguelike
+    Search                      s                 
+    Toggle Search Mode          S                #
   
-  交互命令 (Alter)           原版 (Orig)     Roguelike
-    挖掘隧道                    T               ^T
-    打开门/箱子                 o                 
-    关门                        c                 
-    卡住门                      j                S
-    撞门                        B                f
-    解除陷阱/箱子               D                 
-    交互                        +                 
-    交互                    CTRL+DIR              
+  Alter Commands             Original        Roguelike
+    Tunnel                      T               ^T
+    Open a Door/Chest           o                 
+    Close a Door                c                 
+    Jam/Spike a Door            j                S
+    Bash/Force a Door           B                f
+    Disarm a Trap/Chest         D                 
+    Alter                       +                 
+    Alter                   CTRL+DIR              
   
-  法术命令 (Spell)           原版 (Orig)     Roguelike
-    浏览法术                    b                P
-    学习法术                    G                 
-    施放法术                    m                 
-    使用能力                    U                O
+  Spell Commands             Original        Roguelike
+    Browse/Peruse Spells        b                P
+    Gain Spell                  G                 
+    Cast Spell                  m                 
+    Use Power                   U                O
   
-  物品命令 (Object)          原版 (Orig)     Roguelike
-    进食                        E                 
-    添加燃料                    F                 
-    饮用药水                    q                 
-    阅读卷轴                    r                 
-    激活物品                    A                 
-    瞄准/使用魔杖               a                z
-    使用法杖                    u                Z
-    使用/激活魔棒               z                a
-    铭刻物品                    Z                {
-    移除铭刻                    }                 
+  Object Commands            Original        Roguelike
+    Eat Food                    E                 
+    Fuel Lantern/Torch          F                 
+    Quaff Potion                q                 
+    Read Scroll                 r                 
+    Activate Object             A                 
+    Aim/Zap Wand                a                z
+    Use/Zap Staff               u                Z
+    Zap/Activate Rod            z                a
+    Inscribe Object             Z                {
+    Uninscribe Object           }                 
   
-  投射命令 (Missile)         原版 (Orig)     Roguelike
-    射击/投掷                   f                t
-    投掷物品                    v                 
-    设置目标/四处观察           *                 
+  Missile Commands           Original        Roguelike
+    Fire Item                   f                t
+    Throw Item                  v                 
+    Set Target/Look Around      *                 
   
-  观察命令 (Looking)         原版 (Orig)     Roguelike
-    显示怪物列表                Y                [
-    显示物品列表                ]                 
-    全屏地图                    M                 
-    在地图上定位玩家            L                W
-    四处观察                    l                x
-    重新居中视口               ^V                 
+  Looking Commands           Original        Roguelike
+    Display Monster List        Y                [
+    Display Object List         ]                 
+    Full Screen Map             M                 
+    Locate Player on Map        L                W
+    Look Around                 l                x
+    Recenter Viewport          ^V                 
   
-  消息命令 (Message)         原版 (Orig)     Roguelike
-    重复楼层感知               ^F                 
-    显示历史消息               ^P                 
-    记笔记                      :                 
+  Message Commands           Original        Roguelike
+    Repeat Level Feeling       ^F                 
+    Previous Messages          ^P                 
+    Take Notes                  :                 
   
-  状态命令 (Status)          原版 (Orig)     Roguelike
-    角色信息面板                C                 
-    知识菜单                    ~                 
-    显示游戏时间               ^T                '
+  Game Status Commands       Original        Roguelike
+    Character Sheet             C                 
+    Knowledge Menu              ~                 
+    Display Game Time          ^T                '
   
-  存档退出 (Save/Quit)       原版 (Orig)     Roguelike
-    保存并退出                 ^X
-    保存                       ^S
-    退出并自杀                  Q
+  Save/Quit Commands         Original        Roguelike
+    Save and Quit              ^X
+    Save                       ^S
+    Quit/Commit Suicide         Q
   
-  用户偏好 (User Pref)       原版 (Orig)     Roguelike
-    与选项交互                  =
-    与宏交互                    @
-    与视觉效果交互              %
-    与颜色交互                  &
-    重载 墨家明器 偏好       $
-    编辑 墨家明器 偏好       _
+  User Preference Commands   Original        Roguelike
+    Interact with Options       =
+    Interact with Macros        @
+    Interact with Visuals       %
+    Interact with Colors        &
+    Reload 墨家明器 Prefs    $
+    Edit 墨家明器 Prefs      _
   
-  帮助命令 (Help)            原版 (Orig)     Roguelike
-    帮助                        ?
-    查询符号含义                /
-    游戏版本                    V
+  Help Commands              Original        Roguelike
+    Help                        ?
+    Identify Symbol             /
+    Game Version                V
   
-  额外命令 (Extra)           原版 (Orig)     Roguelike
-    重复上次命令                n                X
-    切换选择窗口               ^I                 
-    重绘屏幕                   ^R                 
-    创建屏幕截图                )                 
-    指挥宠物                    p                 
+  Extra Commands             Original        Roguelike
+    Repeat Last Command         n                X
+    Toggle Choice Window       ^I                 
+    Redraw Screen              ^R                 
+    Create Screen Dump          )                 
+    Command Pets                p                 
   
   
-  原版 (Original)  : Alexander Cutler and Andy Astrand
-  更新 (Updated)   : (2.7.6) by Russ Allbery (rra@cs.stanford.edu)
-  更新 (Updated)   : (2.7.9) by Ben Harrison (benh@phial.com)
-  更新 (Updated)   : Zangband 2.2.0 through 2.2.6c by Robert Ruehlmann
-  更新 (Updated)   : Zangband DevTeam
-  更新 (Updated)   : Hengband 1.7.0
-  更新 (Updated)   : PosChengband 4.0.0
-  更新 (Updated)   : RoguelikeFansBand 7.1.liquorice
+  Original   : Alexander Cutler and Andy Astrand
+  Updated    : (2.7.6) by Russ Allbery (rra@cs.stanford.edu)
+  Updated    : (2.7.9) by Ben Harrison (benh@phial.com)
+  Updated    : Zangband 2.2.0 through 2.2.6c by Robert Ruehlmann
+  Updated    : Zangband DevTeam
+  Updated    : Hengband 1.7.0
+  Updated    : PosChengband 4.0.0
+  Updated    : RoguelikeFansBand 7.1.liquorice
+  
   

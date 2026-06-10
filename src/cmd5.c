@@ -433,6 +433,117 @@ static int get_spell(int *sn, cptr prompt, int sval, bool learned, int use_realm
     return TRUE;
 }
 
+static int _custom_book_first_empty(obj_ptr book)
+{
+    int i;
+    for (i = 0; i < custom_book_capacity(book); i++)
+    {
+        if (!book->custom_book_realm[i])
+            return i;
+    }
+    return -1;
+}
+
+static int _custom_book_choose_overwrite(obj_ptr book)
+{
+    int i;
+    char choice;
+    rect_t display = ui_menu_rect();
+
+    screen_save();
+    Term_erase(display.x, display.y, display.cx);
+    put_str("这本书已经写满。覆盖哪一个法术？", display.y, display.x);
+    for (i = 0; i < custom_book_capacity(book); i++)
+    {
+        int r = book->custom_book_realm[i];
+        int s = book->custom_book_spell[i];
+        Term_erase(display.x, display.y + i + 1, display.cx);
+        if (r)
+        {
+            int row = display.y + i + 1;
+            c_put_str(TERM_WHITE, format(" %c) ", I2A(i)), row, display.x);
+            Term_putstr(display.x + 4, row, 23, TERM_WHITE, do_spell(r, s, SPELL_NAME));
+            Term_putstr(display.x + 29, row, 10, TERM_WHITE, realm_names[r]);
+        }
+    }
+    if (!get_com("覆盖哪一个法术？", &choice, FALSE))
+    {
+        screen_load();
+        return -1;
+    }
+    screen_load();
+
+    i = islower(choice) ? A2I(choice) : -1;
+    if (i < 0 || i >= custom_book_capacity(book))
+    {
+        bell();
+        return -1;
+    }
+    return i;
+}
+
+void custom_book_transcribe(obj_ptr book)
+{
+    obj_prompt_t prompt = {0};
+    int spell = -1;
+    int realm;
+    int slot;
+    char book_name[MAX_NLEN];
+
+    if (!obj_is_custom_book(book)) return;
+    object_desc(book_name, book, OD_NAME_ONLY);
+
+    if (p_ptr->blind || no_lite())
+    {
+        msg_print("你看不见！");
+        return;
+    }
+    if (p_ptr->confused)
+    {
+        msg_print("你太困惑了！");
+        return;
+    }
+
+    prompt.prompt = "从哪本书抄写法术？";
+    prompt.error = "你没有可以用来抄写的法术书。";
+    prompt.filter = obj_is_readable_book;
+    prompt.where[0] = INV_PACK;
+    prompt.where[1] = INV_FLOOR;
+    obj_prompt(&prompt);
+    if (!prompt.obj) return;
+
+    realm = tval2realm(prompt.obj->tval);
+    if (!get_spell(&spell, "抄写", prompt.obj->sval, TRUE, realm, FALSE))
+    {
+        if (spell == -2)
+            msg_print("你还没有学会那本书里的任何法术。");
+        return;
+    }
+
+    if (custom_book_has_spell(book, realm, spell))
+    {
+        msg_print("这本书里已经有这个法术了。");
+        return;
+    }
+
+    slot = _custom_book_first_empty(book);
+    if (slot < 0)
+        slot = _custom_book_choose_overwrite(book);
+    if (slot < 0) return;
+
+    if (!get_check(format("将%s写入%s？来源法术书会被消耗。", do_spell(realm, spell, SPELL_NAME), book_name)))
+        return;
+
+    custom_book_set_spell(book, slot, realm, spell);
+    obj_dec_number(prompt.obj, 1, TRUE);
+    obj_release(prompt.obj, OBJ_RELEASE_DELAYED_MSG);
+    object_aware(book);
+    gear_notice_id(book);
+    energy_use = 100;
+    p_ptr->window |= (PW_INVEN | PW_OBJECT);
+    msg_format("你将%s写入了%s。", do_spell(realm, spell, SPELL_NAME), book_name);
+}
+
 
 static bool item_tester_learn_spell(object_type *o_ptr)
 {
@@ -832,6 +943,80 @@ static int _politics_handler(obj_prompt_context_ptr context, int cmd)
 
 #define _CAST 1
 #define _BROWSE 2
+
+static bool _book_prompt_p(obj_ptr obj)
+{
+    return obj_is_readable_book(obj) || obj_is_custom_book(obj);
+}
+
+bool custom_book_select_spell(obj_ptr book, cptr prompt, int *realm, int *spell, bool browse)
+{
+    int i, ct = 0;
+    int slots[CUSTOM_BOOK_MAX_SPELLS];
+    char choice;
+    char out_val[160];
+    rect_t display = ui_menu_rect();
+
+    *realm = 0;
+    *spell = -1;
+    if (!obj_is_custom_book(book)) return FALSE;
+
+    for (i = 0; i < CUSTOM_BOOK_MAX_SPELLS; i++)
+    {
+        int r = book->custom_book_realm[i];
+        int s = book->custom_book_spell[i];
+        if (!r || s >= 32) continue;
+        if (spell_okay(s, TRUE, FALSE, r, browse))
+            slots[ct++] = i;
+    }
+
+    if (!ct)
+    {
+        *spell = -2;
+        return FALSE;
+    }
+
+    screen_save();
+    Term_erase(display.x, display.y, display.cx);
+    put_str("   名称                     领域       失败", display.y, display.x);
+    for (i = 0; i < ct; i++)
+    {
+        int slot = slots[i];
+        int r = book->custom_book_realm[slot];
+        int s = book->custom_book_spell[slot];
+        cptr name = do_spell(r, s, SPELL_NAME);
+        cptr rname = realm_names[r];
+        int fail = spell_chance(s, r);
+
+        Term_erase(display.x, display.y + i + 1, display.cx);
+        c_put_str(TERM_WHITE, format(" %c) ", I2A(i)), display.y + i + 1, display.x);
+        Term_putstr(display.x + 4, display.y + i + 1, 23, TERM_WHITE, name);
+        Term_putstr(display.x + 29, display.y + i + 1, 10, TERM_WHITE, rname);
+        c_put_str(TERM_WHITE, format("%3d%%", fail), display.y + i + 1, display.x + 41);
+    }
+
+    strnfmt(out_val, sizeof(out_val), "%s哪一个法术？", prompt);
+    if (!get_com(out_val, &choice, FALSE))
+    {
+        screen_load();
+        *spell = -1;
+        return FALSE;
+    }
+    screen_load();
+
+    i = islower(choice) ? A2I(choice) : -1;
+    if (i < 0 || i >= ct)
+    {
+        bell();
+        *spell = -1;
+        return FALSE;
+    }
+
+    *realm = book->custom_book_realm[slots[i]];
+    *spell = book->custom_book_spell[slots[i]];
+    return TRUE;
+}
+
 static obj_ptr _get_spellbook(int mode)
 {
     obj_prompt_t prompt = {0};
@@ -846,7 +1031,7 @@ static obj_ptr _get_spellbook(int mode)
 
     prompt.prompt = msg;
     prompt.error = "你没有可以阅读的书本。";
-    prompt.filter = obj_is_readable_book;
+    prompt.filter = _book_prompt_p;
     prompt.where[0] = INV_PACK;
     prompt.where[1] = INV_FLOOR;
 
@@ -985,16 +1170,28 @@ void do_cmd_cast(void)
     book = _get_spellbook(_CAST);
     if (!book) return;
 
-    if (p_ptr->pclass != CLASS_SORCERER && p_ptr->pclass != CLASS_RED_MAGE && book->tval == REALM2_BOOK)
+    if (obj_is_custom_book(book))
+    {
+        if (!custom_book_select_spell(book, spl_verb, &use_realm, &spell, FALSE))
+        {
+            if (spell == -2)
+                msg_format("你不知道这本书里的任何%s。", prayer);
+            return;
+        }
+        if (use_realm == p_ptr->realm2 && p_ptr->realm2)
+            increment = 32;
+    }
+    else if (p_ptr->pclass != CLASS_SORCERER && p_ptr->pclass != CLASS_RED_MAGE && book->tval == REALM2_BOOK)
         increment = 32;
 
     object_kind_track(book->k_idx);
     handle_stuff();
 
-    use_realm = tval2realm(book->tval);
+    if (!obj_is_custom_book(book))
+        use_realm = tval2realm(book->tval);
 
     /* Ask for a spell */
-    if (!get_spell(&spell, spl_verb, book->sval, TRUE, use_realm, FALSE))
+    if (!obj_is_custom_book(book) && !get_spell(&spell, spl_verb, book->sval, TRUE, use_realm, FALSE))
     {
         if (spell == -2)
             msg_format("你不知道那本书里的任何%s。", prayer);
@@ -1115,14 +1312,14 @@ void do_cmd_cast(void)
         /* Failure casting may activate some side effect */
         do_spell(use_realm, spell, SPELL_FAIL);
 
-        if ((book->tval == TV_CHAOS_BOOK) && (randint1(100) < spell))
+        if ((use_realm == REALM_CHAOS) && (randint1(100) < spell))
         {
             msg_print("你产生了一个混沌效果！");
             wild_magic(spell);
         }
-        else if ((book->tval == TV_DEATH_BOOK) && (randint1(100) < spell))
+        else if ((use_realm == REALM_DEATH) && (randint1(100) < spell))
         {
-            if ((book->sval == 3) && one_in_(2))
+            if ((!obj_is_custom_book(book) && book->sval == 3) && one_in_(2))
             {
                 sanity_blast(0, TRUE);
             }
@@ -1130,13 +1327,13 @@ void do_cmd_cast(void)
             {
                 msg_print("好痛！");
 
-                take_hit(DAMAGE_LOSELIFE, damroll(book->sval + 1, 6), "一个施放失败的死亡法术");
+                take_hit(DAMAGE_LOSELIFE, damroll(obj_is_custom_book(book) ? 3 : book->sval + 1, 6), "一个施放失败的死亡法术");
 
                 if ((spell > 15) && one_in_(6) && !p_ptr->hold_life)
                     lose_exp(spell * 250);
             }
         }
-        else if ((book->tval == TV_MUSIC_BOOK) && (randint1(200) < spell))
+        else if ((use_realm == REALM_MUSIC) && (randint1(200) < spell))
         {
             msg_print("地狱般的声音回荡着。");
             aggravate_monsters(0);
@@ -1387,23 +1584,48 @@ void do_cmd_browse(void)
     byte    spells[64];
     bool    _browse_loading_hack = FALSE;
 
-    if (!(p_ptr->realm1 || p_ptr->realm2) && (p_ptr->pclass != CLASS_SORCERER) && (p_ptr->pclass != CLASS_RED_MAGE))
-    {
-        msg_print("你无法阅读书本！");
-        return;
-    }
-
     if (p_ptr->special_defense & KATA_MUSOU)
         set_action(ACTION_NONE);
 
     book = _get_spellbook(_BROWSE);
     if (!book) return;
 
-    use_realm = tval2realm(book->tval);
-
     /* Track the object kind */
     object_kind_track(book->k_idx);
     handle_stuff();
+
+    if (obj_is_custom_book(book))
+    {
+        while (TRUE)
+        {
+            doc_ptr doc;
+
+            if (!custom_book_select_spell(book, "浏览", &use_realm, &spell, TRUE))
+            {
+                if (spell == -2)
+                    msg_print("没有可浏览的法术。");
+                break;
+            }
+
+            screen_save();
+            doc = doc_alloc(display.cx);
+            doc_printf(doc, "<color:B>%s</color> <color:D>(%s)</color>\n\n",
+                do_spell(use_realm, spell, SPELL_NAME), realm_names[use_realm]);
+            doc_insert(doc, do_spell(use_realm, spell, SPELL_DESC));
+            doc_display_aux(doc, "法术信息", 0, display);
+            doc_free(doc);
+            screen_load();
+        }
+        return;
+    }
+
+    if (!(p_ptr->realm1 || p_ptr->realm2) && (p_ptr->pclass != CLASS_SORCERER) && (p_ptr->pclass != CLASS_RED_MAGE))
+    {
+        msg_print("你无法阅读书本！");
+        return;
+    }
+
+    use_realm = tval2realm(book->tval);
 
     /* Extract spells */
     for (spell = 0; spell < 32; spell++)

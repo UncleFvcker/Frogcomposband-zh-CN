@@ -1,95 +1,101 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <body text="#ffffff" bgcolor="#000000"><pre>
-<font color="#00ffff">速度系统 (The Speed System)
+<font color="#00ffff">The Speed System
 
+</font><font color="#ffffff">Speed is one of the most important character (and monster) attributes 
+in the game; but it works in complicated and at times unintuitive ways. 
+Player and monster speeds can be displayed in either of two formats: as 
+</font><font color="#ff0000">raw speeds </font><font color="#ffffff">like </font><font color="#00ff00">-10</font><font color="#ffffff">, </font><font color="#00ff00">+0 </font><font color="#ffffff">or </font><font color="#00ff00">+10</font><font color="#ffffff">, where +0 is normal speed; or as </font><font color="#ff0000">energy 
+multipliers </font><font color="#ffffff">(</font><font color="#ff0000">effective speeds</font><font color="#ffffff">) such as </font><font color="#00ff00">0.5x</font><font color="#ffffff">, </font><font color="#00ff00">1.0x </font><font color="#ffffff">and </font><font color="#00ff00">2.0x</font><font color="#ffffff">, where 1.0x 
+is normal speed. The </font><font color="#ff0000">effective_speed </font><font color="#ffffff">display option (see <a href="option.html#effective_speed"></font><font color="#00ff00">[a]</a></font><font color="#ffffff">) toggles 
+between these display methods; effective speeds are the default in 
+Beginner Mode (they help explain to new players the practical meaning 
+of an otherwise obscure number), while raw speeds are the overall 
+default and what most experienced players are accustomed to.
 
-</font><font color="#ffffff">速度是游戏中最重要的角色（和怪物）属性之一；但它的运作方式既复杂，有时又
-有些反直觉。玩家和怪物的速度可以以两种格式之一显示：作为像 </font><font color="#00ff00">-10</font><font color="#ffffff">、</font><font color="#00ff00">+0 </font><font color="#ffffff">或 
-</font><font color="#00ff00">+10 </font><font color="#ffffff">这样的</font><font color="#ff0000">原始速度 (raw speeds)</font><font color="#ffffff">，其中 +0 是正常速度；或者作为像 
-</font><font color="#00ff00">0.5x</font><font color="#ffffff">、</font><font color="#00ff00">1.0x </font><font color="#ffffff">和 </font><font color="#00ff00">2.0x </font><font color="#ffffff">这样的</font><font color="#ff0000">能量倍数 (energy multipliers)</font><font color="#ffffff">（即</font><font color="#ff0000">有效速度 
-effective speeds</font><font color="#ffffff">），其中 1.0x 是正常速度。你可以通过 </font><font color="#ff0000">effective_speed 
-</font><font color="#ffffff">显示选项（参见 <a href="option.html#effective_speed"></font><font color="#00ff00">[a]</a>
-</font><font color="#ffffff">）在这两种显示方法之间切换；有效速度是“新手模式”下的默认设置（它们有助于
-向新玩家解释一个本来很晦涩的数字的实际意义），而原始速度是全局默认设置，
-也是大多数经验丰富的玩家所习惯的显示方式。
+For new players it should be enough to read the quick overview below; 
+the subsequent sections are highly technical, and explain the inner 
+workings of the speed system.
 
+<a name="TLDR"></a></font><font color="#c00000">Quick Overview for Newbies
 
-对于新玩家来说，阅读下面的快速概述就足够了；随后的部分具有极高的技术性，
-详细解释了速度系统的内部运作原理。
+</font><font color="#ffffff">Speed is hugely important, especially in the early game. More speed 
+means you get more turns compared to everybody else, whatever it is you 
+are doing - walking, fighting, zapping devices, or just standing there 
+taking way more punishment than you'd like. Often, replacing a damage 
+item with a speed item not only improves your speed, </font><font color="#00ff00">it effectively 
+also improves your damage output </font><font color="#ffffff">- yes, you might do less damage per 
+turn, but you also get more turns to deal damage in!
 
-<a name="TLDR"></a></font><font color="#c00000">新手快速概述
+</font><font color="#00ffff">Potions of Speed</font><font color="#ffffff">, which provide a temporary +10 speed bonus, are your 
+first and most important source of extra speed when you are getting 
+started. Going from +0 speed to +10 speed doubles your effective speed, 
+which needless to say makes an enormous difference! Potions of Speed 
+are not particularly rare, so use them freely, but not </font><font color="#ff0000">too </font><font color="#ffffff">freely - 
+unless you have a very large pile of them, it is best to save them for 
+situations where you really want to take on a particularly dangerous 
+monster (quests and dungeon boss fights come to mind!), and for sudden 
+emergencies like </font><font color="#ff0000">confusion lock </font><font color="#ffffff">(<a href="status.html#Confusion"></font><font color="#00ff00">[b]</a></font><font color="#ffffff">).
 
+Up to a raw speed of </font><font color="#00ff00">+26</font><font color="#ffffff">, the effects of extra speed are linear - +0 is 
+1.0x, +1 is 1.1x, +2 is 1.2x, +5 is 1.5x, +10 is 2.0x and so on. This 
+already means the returns for having more speed are diminishing: the 
+move from +0 to +10 (1.0x to 2.0x) doubles your speed, but +10 to +20 
+(2.0x to 3.0x) is only a 50% increase. After +26/3.6x, though, the 
+returns become even more diminishing - in fact, </font><font color="#ff0000">+27 is still 3.6x</font><font color="#ffffff">, the 
+extra +1 speed does nothing! +28 does give you 3.7x speed, and piling 
+on enough additional bonuses can eventually take you as high as 
++70/4.9x, the highest effective speed possible.
 
-</font><font color="#ffffff">速度极其重要，尤其是在游戏早期。无论你是在走路、战斗、使用魔法装置，还是
-仅仅站在那里被动挨打，更高的速度意味着你能比其他所有人获得更多的回合。通
-常情况下，用一件速度装备替换掉一件伤害装备，不仅能提高你的速度，</font><font color="#00ff00">实际上还
-能提高你的伤害输出</font><font color="#ffffff">——是的，你每回合造成的伤害可能会减少，但你也有更多的回
-合来造成伤害！
+If a monster is faster than you, it will occasionally get two moves in 
+a row against you; this is commonly known as a </font><font color="#ff0000">double-move</font><font color="#ffffff">, and is 
+often very dangerous. An extremely fast monster might even triple-move 
+or quadruple-move you! Of course, if you are faster than a monster, you 
+can turn the tables...
 
-</font><font color="#00ffff">速度药水 (Potions of Speed) </font><font color="#ffffff">能提供临时的 +10 
-速度加成，这是你刚起步时最重要且最基础的额外速度来源。从 +0 速度提升到 
-+10 
-速度会使你的有效速度翻倍，毫无疑问这会带来巨大的不同！速度药水并不是特别
-稀有，所以你可以自由使用，但也不要</font><font color="#ff0000">过于</font><font color="#ffffff">挥霍——除非你囤了非常多，否则最好把
-它们留到你真正想要对付特别危险的怪物（比如任务和地牢首领战！）以及应对像
-</font><font color="#ff0000">混乱锁死</font><font color="#ffffff">（<a href="status.html#Confusion"></font><font color="#00ff00">[b]</a></font><font color="#ffffff">）这种突发紧急情况时使用。
+The practical effects of speed are somewhat random, so you might 
+occasionally be double-moved by a monster who is technically slower 
+than you, or in turn double-move a monster faster than you are.
 
-直到原始速度达到 </font><font color="#00ff00">+26 </font><font color="#ffffff">之前，额外速度的效果是线性的：+0 是 1.0x，+1 是 
-1.1x，+2 是 1.2x，+5 是 1.5x，+10 是 
-2.0x，依此类推。这说明拥有更高速度的收益已经开始递减：从 +0 到 
-+10（1.0x 到 2.0x）使你的速度翻倍，但从 +10 到 +20（2.0x 到 
-3.0x）则只有 50% 的提升。不过，在 
-+26（3.6x）之后，收益递减得更加严重——事实上，</font><font color="#ff0000">+27 依然是 3.6x</font><font color="#ffffff">，这额外的 
-+1 速度没有任何作用！+28 确实会给你带来 3.7x 
-的速度，如果堆叠足够多的额外加成，最终可以将你推高到 
-+70（4.9x），这是可能达到的最高有效速度。
+Despite the high importance of speed, it is not the be all and end all; 
+you may want to compromise your speed to keep key resistances covered, 
+to get your stats up, or to equip a weapon with extremely high damage; 
+and Potions of Speed and other sources of temporary speed provide a lot 
+of help when it matters the most.
 
-如果怪物比你快，它偶尔会对你连续行动两次；这通常被称为</font><font color="#ff0000">连动 
-(double-move)</font><font color="#ffffff">，这往往是非常危险的。一个速度极快的怪物甚至可能对你进行三
-连动或四连动！当然，如果你比怪物快，你就可以扭转局势……
+<a name="UglyDetails"></a></font><font color="#c00000">Technical Explanation
 
+    </font><font color="#00ff00">This and the following sections cover the energy 
+    system, a very advanced topic, and largely consist of 
+    detailed, highly technical explanations of why all the 
+    easily understandable explanations given elsewhere are 
+    oversimplified. Full understanding of the energy system 
+    is in no way required to play and enjoy the game.
 
-速度的实际效果具有一定的随机性，因此你偶尔可能会被一只名义上比你慢的怪物
-连动，或者反过来对一只比你快的怪物进行连动。
+</font><font color="#ffffff">Almost every action you take in the game - walking, casting a spell, 
+hitting a monster, drinking a potion, refueling a lamp - consumes a 
+certain amount of </font><font color="#ff0000">energy</font><font color="#ffffff">. Most actions eat up exactly </font><font color="#00ffff">100 </font><font color="#ffffff">energy, and 
+so actions that cost 100 energy are frequently glossed as costing "1 
+turn" while 200 energy is "2 turns" (and 50 energy is "half a turn"); 
+this is technically inaccurate in more than one way, but still explains 
+the practical difference nicely.
 
+</font><font color="#00ff00">Actions themselves are instantaneous </font><font color="#ffffff">- it is recovering the lost energy 
+that takes time. This is where speed comes in. A speed of +0 (1.0x) 
+means you recover 10 * 1.0 = </font><font color="#00ffff">10 </font><font color="#ffffff">energy per game turn; a speed of 
++20/3.0x means you recover 10 * 3.0 = 30 energy per game turn. The 
+usual action cost being 100 energy, it will take many game turns of 
+silent energy recovery until you get another player turn - but monsters 
+might spend those game turns doing something else besides...
 
-尽管速度非常重要，但它并不是万能的；你可能会为了补齐关键抗性、提升属性、
-或装备一把基础伤害极高的武器而牺牲你的速度；而在最关键的时刻，速度药水和
-其他提供临时速度的手段会为你带来极大的帮助。
+<a name="Table"></a>The table below shows every possible speed from </font><font color="#c08040">-50 </font><font color="#ffffff">to </font><font color="#00ff00">+99</font><font color="#ffffff">, and the 
+energy recovery per game turn for each, indicated in </font><font color="#00ffff">blue</font><font color="#ffffff">. (There is no 
+underlying formula - the game is looking at the same table you are.) 
+Note the linearity of the table between -3/0.7x and +26/3.6x; most of 
+the game will be spent within this linear range.
 
-<a name="UglyDetails"></a></font><font color="#c00000">技术性解释
-
-    
-    </font><font color="#00ff00">本节及以下几节探讨了“能量系统”，这是一个非常进阶的主题，
-    其中包含大量且高度技术性的解释，以说明为什么其他地方容易
-    理解的描述往往过度简化了。完全理解能量系统绝不是游玩和享
-    受这款游戏所必需的条件。
-
-
-</font><font color="#ffffff">你在游戏中采取的几乎每一项行动——走路、施法、攻击怪物、喝药水、为灯笼添加
-燃料——都会消耗一定数量的</font><font color="#ff0000">能量 (energy)</font><font color="#ffffff">。大多数行动正好消耗 </font><font color="#00ffff">100 
-</font><font color="#ffffff">点能量，因此消耗 100 点能量的行动经常被笼统地称为消耗“1 个回合”，而 200 
-点能量则是“2 个回合”（50 
-点能量是“半个回合”）；严格来说这在很多方面都不准确，但依然能很好地解释实
-际差异。
-
-
-</font><font color="#00ff00">行动本身是瞬间发生的</font><font color="#ffffff">——需要时间的是恢复失去的能量。这就是速度发挥作用的地
-方。+0（1.0x）的速度意味着你每个游戏回合恢复 10 * 1.0 = </font><font color="#00ffff">10 
-</font><font color="#ffffff">点能量；+20（3.0x）的速度意味着你每个游戏回合恢复 10 * 3.0 = 30 
-点能量。由于通常的行动成本是 100 
-点能量，因此你需要经历许多个在后台静默恢复能量的“游戏回合 (game 
-turns)”，直到你获得下一个“玩家回合 (player 
-turn)”——但在这些游戏回合中，怪物们可能正忙着做别的事情……
-
-<a name="Table"></a>下表展示了从 </font><font color="#c08040">-50 </font><font color="#ffffff">到 </font><font color="#00ff00">+99 
-</font><font color="#ffffff">的每一种可能速度，以及每种速度下每个游戏回合恢复的能量，以</font><font color="#00ffff">蓝色</font><font color="#ffffff">标出。（没
-有底层公式——游戏查看的表格和你正在看的是同一个。）请注意，该表在 
--3（0.7x）和 
-+26（3.6x）之间呈线性变化；游戏的大部分时间都将在这个线性范围内度过。
-
-</font><font color="#c00000">速度/能量转换表
+</font><font color="#c00000">Speed/Energy Conversion Table
 
     </font><font color="#c08040">-50    </font><font color="#00ffff">1,  1,  1,  1,  1,  1,  1,  1,  1,  1   </font><font color="#c08040">-41
     -40    </font><font color="#00ffff">2,  2,  2,  2,  2,  2,  2,  2,  2,  2   </font><font color="#c08040">-31
@@ -108,228 +114,251 @@ turn)”——但在这些游戏回合中，怪物们可能正忙着做别的事
     +90   </font><font color="#00ffff">49, 49, 49, 49, 49, 49, 49, 49, 49, 49   </font><font color="#00ff00">+99
            </font><font color="#ff8000">0   1   2   3   4   5   6   7   8   9
     
-<a name="EnergyRandomness"></a></font><font color="#c00000">能量的随机性 (Energy Randomness)
+<a name="EnergyRandomness"></a></font><font color="#c00000">Energy Randomness
 
-</font><font color="#ffffff">所有行动的能量成本都具有一定的随机性。例如，走 1 格名义上消耗 100 
-点能量；但在任何一次特定行动中，如果你运气好，成本可能低至 67 
-点能量；如果你运气差，则可能高达 133 
-点。这听起来是一个很大的跨度范围，但在实际游玩中感觉起来要小得多；消耗通
-常会非常接近标称值，即使偏离到上限或下限，实际影响通常也小到玩家无法察觉
-。在较高速度下，随机性也会受到更多限制。尽管如此，时不时地，它确实会以一
-种极其痛苦的方式让你强烈地感受到它的存在……
+</font><font color="#ffffff">The energy costs of all actions are somewhat random. Walking 1 square, 
+for example, nominally costs 100 energy; but on any one occasion, the 
+cost might be as low as 67 energy if you are really lucky, or as high 
+as 133 if you are unlucky. This sounds like a very large range, but it 
+generally feels much narrower in play; the cost will usually stick 
+fairly close to the nominal value, and even when it wanders off to the 
+upper or lower limits, the practical effect is usually small enough to 
+not be noticed by the player. The randomness is also more limited at 
+higher speeds. Nevertheless, every once in a while it does make itself 
+very noticeable in an extremely painful way...
 
-能量的随机性对游戏有两个重要影响。它大大降低了“绕柱 
-(pillardancing)”、“放风筝 (monster 
-kiting)”以及其他依赖敌人严格按预期时间执行预期动作的古老 Angband 
-策略的有效性。它也</font><font color="#00ff00">增加了连动的频率和不可预测性</font><font color="#ffffff">，这意味着</font><font color="#00ff00">你可能会被一只名
-义上比你慢的怪物连动</font><font color="#ffffff">。要让这种连动不仅发生而且对你造成真正严重的伤害，你
-必须极其极其倒霉——但这是一款流程很长的游戏，有很多机会让坏运气降临到你头
-上……
+Energy randomness has two important effects on the game. It greatly 
+reduces the effectiveness of pillardancing, monster kiting and other 
+old Angband strategies that rely on an enemy doing what you expect when 
+you expect it. It also </font><font color="#00ff00">increases the frequency and unpredictability of 
+double-moves</font><font color="#ffffff">, and means </font><font color="#00ff00">you can be double-moved by a monster nominally 
+slower than you</font><font color="#ffffff">. For such a double-move to not just occur but occur in 
+a way that really hurts you, you will have to be very, very unlucky - 
+but it's a long game with many opportunities for bad luck to hit you...
 
+The double-move threat can be handled in any (or all) of several ways: 
+you can pile on more and more speed to reduce the frequency of monster 
+double-moves; you can invest in hit points and resistances (and heal 
+yourself as early as reasonable) to make the double-moves that happen 
+more survivable; you can try to keep fights against potentially deadly 
+double-movers to the absolute minimum; or you can simply accept the 
+non-zero but low risk of death, and count on it not happening; such 
+brave play can even help indirectly by allowing faster progress.
 
-应对连动威胁的方法有几种（你可以采用其中之一或全部）：你可以堆叠越来越多
-的速度，以降低怪物连动的频率；你可以投资生命值和抗性（并尽早合理地治疗自
-己），使发生的连动更容易挺过去；你可以尽量减少与潜在致命“连动怪”的战斗；
-或者你可以干脆接受这种并非为零但很低的死亡风险，并指望它不会发生；这种勇
-敢的打法甚至可以通过让你推进得更快来产生间接的帮助。
+<a name="EnergyCost"></a></font><font color="#c00000">Energy Cost of Actions
 
-<a name="EnergyCost"></a></font><font color="#c00000">行动的能量成本 (Energy Cost of Actions)
+</font><font color="#ffffff">While most player (and monster) actions consume 100 energy before 
+randomness is accounted for, this rule is by no means universal. 
+Walking into a normal square might only cost 100 energy; but </font><font color="#00ff00">walking 
+into a tree square consumes 200 energy </font><font color="#ffffff">because you have to find your 
+path and dodge all those low-hanging branches. (Levitating players, and 
+a few races like Ents and Centaurs who feel particularly at home in 
+forests, can move in wooded areas at normal speed.) Likewise, for most 
+races walking in snowy areas without Levitation consumes 133 energy at 
+a minimum - more if you are badly overburdened and get bogged down in 
+the snow. The good news is that monsters receive similar penalties!
 
-</font><font color="#ffffff">虽然大多数玩家（和怪物）的行动在计算随机性之前都消耗 100 
-点能量，但这绝非普遍规律。走进一个普通格子里可能只需要消耗 100 
-点能量；但是</font><font color="#00ff00">走进有树木的格子会消耗 200 
-点能量</font><font color="#ffffff">，因为你必须寻找路径并躲避所有那些低垂的树枝。（处于漂浮状态的玩家
-，以及像树人或半人马这类在森林中感觉如鱼得水的少数种族，可以在树林区域以
-正常速度移动。）同样地，对于大多数种族来说，在没有漂浮状态的情况下在雪地
-中行走至少要消耗 133 
-点能量——如果你严重超载并在雪地中陷入泥沼，消耗会更多。好消息是，怪物也会
-受到类似的惩罚！
+The action cost of archery depends on how many shots you get per round; 
+if you have 1.6 shots per round, that simply means each individual shot 
+only consumes 100 / 1.6 = 62 energy (and so you would be at less risk 
+of a nasty double-move while shooting!). Note that melee blows do not 
+work in the analogous way; a turn of melee always consumes a nominal 
+100 energy, except in the special situation where a Beorning in bear 
+form, a Berserker or a character with the Fantastic Frenzy demigod 
+talent kills a monster in the middle of the round.
 
-箭术的行动成本取决于你每回合能射击多少次；如果你每回合能射击 1.6 
-次，那仅仅意味着每一次单独的射击只消耗 100 / 1.6 = 62 
-点能量（因此你在射击时被怪物恶性连动的风险会更低！）。请注意，近战打击的
-运作方式与此不同；一回合的近战名义上总是消耗 100 
-点能量，除非是在特殊情况下：化身为熊的比翁人、狂战士，或是拥有“癫狂杀戮”
-半神天赋的角色在回合中途击杀了一只怪物。
+Some spells and class powers have special action costs, costing less 
+(or more commonly more!) than the standard 100 energy. Changing shape 
+as a Beorning, for example, costs 200 energy; and Hounds can activate 
+the Stalk toggle without any energy cost at all.
 
+Even the cost of common actions like walking and book spellcasting is 
+not completely fixed. The </font><font color="#00ff00">Fleet of Foot </font><font color="#ffffff">demigod talent (<a href="Demigods.html#Powers"></font><font color="#00ff00">[c]</a></font><font color="#ffffff">) reduces 
+the energy cost of walking by 40% (from 100 to 60); </font><font color="#00ff00">Quick Walk </font><font color="#ffffff">on 
+Ninjas (and Ninja-Lawyers) is even more effective. Yellow-Mages can 
+cast spells extremely rapidly, consuming far less than 100 energy per 
+spell; Yeqrezh Disciples with the Quick Spelling gift can also cast 
+spells rapidly, though not as fast as Yellow-Mages. Devicemasters can 
+use their speciality devices in less than a full turn.
 
-某些法术和职业能力有特殊的行动成本，它们消耗的能量少于（或者通常多于！）
-标准的 100 点能量。例如，比翁人变身需要消耗 200 
-点能量；而猎犬种族可以在不消耗任何能量的情况下激活“潜行 (Stalk)”开关。
+<a name="StatusEffects"></a></font><font color="#c00000">Temporary Haste and Slowness
 
-甚至连走路和使用书本施法这类常见动作的成本也不是完全固定的。“</font><font color="#00ff00">健步如飞 
-(Fleet of Foot)</font><font color="#ffffff">”半神天赋（<a href="Demigods.html#Powers"></font><font color="#00ff00">[c]</a></font><font color="#ffffff">）会将步行的能量成本降低 40%（从 100 降至 
-60）；忍者（以及忍者律师）的“</font><font color="#00ff00">快速行走 (Quick 
-Walk)</font><font color="#ffffff">”甚至更有效。黄衣法师施法极快，每个法术消耗的能量远低于 100 
-点；获得“快速施法 (Quick 
-Spelling)”恩赐的耶克雷什信徒也能快速施法，不过没有黄衣法师那么快。装置大
-师使用他们的专精魔法装置所花的时间也少于一整个回合。
+</font><font color="#ffffff">Temporary effects can make you significantly faster or slower. 
+</font><font color="#00ffff">Temporary speed </font><font color="#ffffff">or </font><font color="#00ffff">haste </font><font color="#ffffff">usually refers to a speed bonus of +10; this 
+is what </font><font color="#00ffff">Potions of Speed </font><font color="#ffffff">and spells like </font><font color="#00ffff">Haste Self </font><font color="#ffffff">provide. As noted 
+above, this can double (or potentially more than double) your speed in 
+the early game! In the late game, when your unhasted base speed is 
+higher, the effects of temporary speed will be less dramatic; yet it 
+remains strong enough to be a key part of your toolkit into the latest 
+parts of the game. </font><font color="#c08040">Staves of Speed </font><font color="#ffffff">and </font><font color="#ff00ff">Rods of Heroic Speed </font><font color="#ffffff">may even 
+allow you to spend almost the entire endgame hasted.
 
-<a name="StatusEffects"></a></font><font color="#c00000">临时加速与减速 (Temporary Haste and Slowness)
+</font><font color="#c08040">Temporary slowness </font><font color="#ffffff">is usually caused by monster spells or attacks, 
+although it can also be induced by other sources like traps, potions 
+and mutations. It comes in two different forms: a lump penalty of -10 
+to speed (the opposite of haste), and incremental mini-slowness that 
+can range from -1 to -10. These two types of slowness partially 
+combine, for an overall penalty of up to -12 if you are afflicted with 
+both; see <a href="status.html#Slowness"></font><font color="#00ff00">[d]</a> </font><font color="#ffffff">for more detail.
 
-</font><font color="#ffffff">临时状态效果可以让你显著变快或变慢。</font><font color="#00ffff">临时速度 (Temporary speed) </font><font color="#ffffff">或</font><font color="#00ffff">加速 
-(haste)</font><font color="#ffffff">通常指 +10 的速度加成；这就是</font><font color="#00ffff">速度药水 (Potions of 
-Speed)</font><font color="#ffffff">以及像</font><font color="#00ffff">自我加速 (Haste 
-Self)</font><font color="#ffffff">这样的法术所提供的效果。如上所述，这在游戏早期可以使你的速度翻倍（
-或可能超过翻倍）！在游戏后期，当你未加速的基础速度较高时，临时速度的效果
-将不那么引人注目；但它依然足够强大，是你在游戏极后期依然不可或缺的关键手
-段。</font><font color="#c08040">速度法杖 (Staves of Speed)</font><font color="#ffffff">和</font><font color="#ff00ff">英雄速度魔棒 (Rods of Heroic 
-Speed)</font><font color="#ffffff">甚至可以让你在几乎整个大后期都保持加速状态。
+<a name="MonsterSpeed"></a></font><font color="#c00000">Monster Speed
 
-</font><font color="#c08040">临时减速 (Temporary 
-slowness)</font><font color="#ffffff">通常是由怪物的法术或攻击引起的，尽管它也可以由陷阱、药水和突变
-等其他来源引发。它有两种不同的形式：一种是对速度一次性扣除 
--10（加速的反面），另一种是范围从 -1 到 -10 
-的递增微型减速。这两种类型的减速可以部分叠加，如果你同时受到这两种减速的
-影响，总的惩罚最高可达 -12；更多详情请参见 <a href="status.html#Slowness"></font><font color="#00ff00">[d]</a></font><font color="#ffffff">。
+</font><font color="#ffffff">Monsters use the same speed system players do; they use the same energy 
+table, they usually consume 100 energy per action (and apply the same 
+energy randomness formula), they recover energy the same way players 
+do, they can be temporarily hasted or slowed in the same ways; they 
+receive similar (though not always identical) energy cost penalties for 
+certain moves, like entering a tree square without the ability to fly 
+or pass through obstacles.
 
-<a name="MonsterSpeed"></a></font><font color="#c00000">怪物速度 (Monster Speed)
+One important note, though, is that individual non-unique monsters can 
+be somewhat faster or slower than the average for their race. If you 
+are at +2 speed and still getting double-moved by a "+0 speed" hill 
+orc, you might just be unlucky with the energy randomness... but you 
+might also be dealing with an unusually fast orc. Probing such a 
+monster will reveal its individual speed.
 
-</font><font color="#ffffff">怪物使用的速度系统与玩家相同；它们使用相同的能量表，通常每个行动消耗 
-100 
-点能量（并应用相同的能量随机性公式），它们以玩家相同的方式恢复能量，也能
-以相同的方式被临时加速或减速；在执行某些移动时（如在没有飞行或穿墙能力的
-情况下进入树木格子），它们会受到类似（虽不总是完全相同）的能量成本惩罚。
+<a name="WhereGet"></a></font><font color="#c00000">Where Do I Get More Speed?
 
+</font><font color="#ffffff">Even with a Rod of Heroic Speed, temporary speed can only take you so 
+far; sooner or later, you need to get your unhasted base speed up as 
+well. You might get some speed from your race, class, personality or 
+mutations; but the most important source of speed bonuses will always 
+be your </font><font color="#ff0000">equipment</font><font color="#ffffff">. Rings of Speed, Boots of Speed, and artifacts and 
+ego items with speed bonuses will eventually take you to +16 (meaning 
++26 hasted!) and most likely well beyond.
 
+Speed items, like most items, can drop anywhere; but if you desperately 
+need a speed item specifically, there are three good places to look. 
+The </font><font color="#00ff00">Cloning Pits </font><font color="#ffffff">quest is fairly dangerous, and its rewards are random 
+within limits; but quite often the reward will be a pair of valuable 
+artifact boots with a speed bonus on it. The </font><font color="#c00000">Underground City </font><font color="#ffffff">quest is 
+even more dangerous, but a Ring of Speed is guaranteed to appear there, 
+and is often stronger than other speed rings at the same depth. 
+Finally, there is a </font><font color="#ff00ff">jeweller </font><font color="#ffffff">in the town of Zul who sells rings and 
+amulets, often including Rings of Speed and sometimes an Amulet of 
+Trickery with speed bonuses. He might even bring out new merchandise if 
+you pay him enough!
 
-但有一点需要注意，即使是同一种族的非唯一怪物个体，其速度也可能比该种族的
-平均速度稍快或稍慢。如果你的速度是 +2，但仍然被一只“速度 
-+0”的山丘兽人连动，你可能只是运气不好遭遇了能量波动的随机性……但也可能你
-遇到的是一只速度异常快的兽人。对这种怪物使用“探测 
-(Probe)”法术将揭示它的个体速度。
+Note that if you ride a pet, your speed (for all purposes!) will depend 
+entirely on your Riding skill and the speed of your mount. Speed 
+equipment will not help you any, nor will quaffing a Potion of Speed; 
+you can, however, temporarily haste the mount. Many mounts are very 
+fast, allowing you to reach a high speed without much investment in 
+speed equipment - but watch out, that could come back to bite you if 
+you get thrown off...
 
-<a name="WhereGet"></a></font><font color="#c00000">我从哪里获取更多速度？
+<a name="Burden"></a></font><font color="#c00000">Overburdening
 
+</font><font color="#ffffff">You can only carry so much weight without it slowing you down; and 
+overburdening is the bane of speed, especially for early-game 
+characters with low Strength.
 
-</font><font color="#ffffff">即使拥有“英雄速度魔棒”，临时速度所能达到的上限依然有限；迟早有一天，你需
-要提高你未加速的基础速度。你可以从你的种族、职业、性格或突变中获得一些速
-度；但最重要的速度加成来源永远是你的</font><font color="#ff0000">装备 
-(equipment)</font><font color="#ffffff">。速度戒指、速度靴子、以及附带速度加成的神器和 ego 
-物品最终会带你达到 +16 速度（意味着加速后能达到 
-+26！），并且很可能会远超于此。
+Your burden limit ranges from 50 pounds at minimum STR to 195 pounds at 
+maximum STR; and all carried objects - your inventory items, your 
+equipment, the projectiles in your quiver, even the ice bag and 
+infusions of an Igor Alchemist - count towards that limit. The </font><font color="#ff8000">i </font><font color="#ffffff">Show 
+Inventory command (and the closely related </font><font color="#ff8000">e </font><font color="#ffffff">Show Equipment command) 
+include a line showing the total weight of all items presently carried, 
+and how it compares (as a percentage) to the maximum capacity. If the 
+percentage exceeds 100, you are </font><font color="#ff0000">overburdened</font><font color="#ffffff">.
 
+Mild overburdening does not actually affect your speed at all (although 
+it will cause you to drown in deep water if you lack Levitation). The 
+first -1 to speed kicks in at 120% of capacity, with another -1 for 
+every additional 20 percentage points. This doesn't sound too bad (and 
+mostly isn't!), but in the early game it can get very severe. The most 
+common cause of truly major overburdening is exceptionally heavy quest 
+loot (in which case the quest is hopefully over, and you can soon sell 
+the loot or drop it at home); but unexpected severe overburdening can 
+also happen if you spend too much time around strength-drainers...
 
-速度装备和大多数物品一样，可能在任何地方掉落；但如果你极度迫切需要特定的
-速度物品，有三个好地方可以寻找。</font><font color="#00ff00">克隆坑 (Cloning Pits) 
-</font><font color="#ffffff">任务相当危险，其奖励在一定范围内也是随机的；但很多时候奖励会是一双带有速
-度加成的珍贵神器靴子。</font><font color="#c00000">地下城市 (Underground City) 
-</font><font color="#ffffff">任务甚至更危险，但那里保证会出现一枚速度戒指，而且通常比相同深度的其他速
-度戒指更强。最后，在祖尔镇 (Zul) 有一位</font><font color="#ff00ff">珠宝商 
-(jeweller)</font><font color="#ffffff">出售戒指和护身符，经常包括速度戒指，有时还会有带有速度加成的诡
-术护身符 (Amulet of 
-Trickery)。如果你付给他足够多的钱，他甚至可能拿出新货！
+Riding characters have special burden limits, which depend on their 
+Riding proficiency and the level of the mount.
 
+<a name="Indicator"></a></font><font color="#c00000">Speed Display
 
-请注意，如果你骑乘宠物，你的速度（出于所有计算目的！）将完全取决于你的“
-骑乘”技能和坐骑的速度。速度装备对你没有任何帮助，喝速度药水也没有用；不
-过，你可以对坐骑施加临时加速。许多坐骑速度非常快，这让你无需在速度装备上
-投入太多就能达到很高的速度——但要小心，如果你被甩下来，这可能会反噬你……
+</font><font color="#ffffff">Unless your speed is exactly +0, it will be displayed in the main 
+screen sidebar, below the hit points, spell points and various 
+health/status bars.
 
-<a name="Burden"></a></font><font color="#c00000">负重超载 (Overburdening)
+The coloring of the sidebar speed display varies depending on your 
+status. The examples below show raw speeds, but the same colors are 
+used to display effective speed:
 
-
-</font><font color="#ffffff">你可以携带的重量是有限的，一旦超过就会拖慢你的速度；而超载是速度的克星，
-尤其对于那些早期力量 (STR) 较低的角色而言。
-
-你的负重上限范围从最低力量时的 50 磅到最高力量时的 195 
-磅不等；所有携带的物品——你的物品栏里的东西、你穿戴的装备、箭袋里的弹药，
-甚至包括伊戈尔炼金术士的冰袋和浸剂——都计入该上限。</font><font color="#ff8000">i 
-</font><font color="#ffffff">显示物品栏命令（以及密切相关的 </font><font color="#ff8000">e 
-</font><font color="#ffffff">显示装备命令）包含一行信息，显示当前携带所有物品的总重量，以及它与最大容
-量的对比（以百分比形式）。如果百分比超过 100，你就是</font><font color="#ff0000">负重超载 
-(overburdened)</font><font color="#ffffff">了。
-
-
-轻微的超载实际上根本不会影响你的速度（尽管如果你缺乏漂浮能力，它会导致你
-在深水中溺水）。第一个 -1 速度的惩罚在达到容量的 120% 
-时触发，之后每增加 20 个百分点，速度就会再 
--1。这听起来似乎不算太糟（大多数情况下确实如此！），但在游戏早期，它可能
-会变得非常严重。导致真正严重超载的最常见原因是异常沉重的任务战利品（这种
-情况下，希望任务已经结束，你可以很快卖掉战利品或把它们扔在家里）；但如果
-你在那些能吸取力量的怪物周围待得太久，也可能会发生意想不到的严重超载……
-
-
-骑乘角色的负重上限有特殊的规定，这取决于他们的“骑乘”熟练度和坐骑的等级。
-
-
-<a name="Indicator"></a></font><font color="#c00000">速度显示 (Speed Display)
-
-</font><font color="#ffffff">除非你的速度恰好是 
-+0，否则它将显示在主屏幕侧边栏中，位于生命值、法力值和各种健康/状态栏的
-下方。
-
-
-侧边栏速度显示的颜色会根据你的状态而变化。以下示例显示了原始速度，但有效
-速度也使用相同的颜色：
-
-   </font><font color="#ffff00">快速 (+43)    </font><font color="#ffffff">玩家被暂时加速
-   </font><font color="#00ffff">快速 (+43)    </font><font color="#ffffff">玩家骑乘在一匹被加速的坐骑上
-   </font><font color="#00ff00">快速 (+33)    </font><font color="#ffffff">玩家速度大于 +0，但未处于减速或加速状态
-   </font><font color="#008040">快速 (+33)    </font><font color="#ffffff">坐骑速度大于 +0，但未处于减速或加速状态
-   </font><font color="#ff00ff">快速 (+23)    </font><font color="#ffffff">玩家被暂时减速或骑乘在一匹被减速的坐骑上
-   </font><font color="#ff0000">快速 (+33)    </font><font color="#ffffff">玩家同时被同等程度地加速和减速
-   </font><font color="#ff8000">快速 (+21)    </font><font color="#ffffff">玩家正在进行冗长演说 (仅限政客)
-   </font><font color="#c08040">缓慢 (-3)     </font><font color="#ffffff">玩家速度低于 +0，但未处于减速或加速状态
-   </font><font color="#c00000">缓慢 (-3)     </font><font color="#ffffff">坐骑速度低于 +0，但未处于减速或加速状态
+   </font><font color="#ffff00">Fast (+43)    </font><font color="#ffffff">Player is temporarily hasted
+   </font><font color="#00ffff">Fast (+43)    </font><font color="#ffffff">Player is riding a hasted mount
+   </font><font color="#00ff00">Fast (+33)    </font><font color="#ffffff">Player is faster than +0, but not slowed or hasted
+   </font><font color="#008040">Fast (+33)    </font><font color="#ffffff">Mount is faster than +0, but not slowed or hasted
+   </font><font color="#ff00ff">Fast (+23)    </font><font color="#ffffff">Player is temporarily slowed or riding a slowed mount
+   </font><font color="#ff0000">Fast (+33)    </font><font color="#ffffff">Player is temporarily hasted and slowed in equal amounts
+   </font><font color="#ff8000">Fast (+21)    </font><font color="#ffffff">Player is filibustering (Politicians only)
+   </font><font color="#c08040">Slow (-3)     </font><font color="#ffffff">Player is slower than +0, but not slowed or hasted
+   </font><font color="#c00000">Slow (-3)     </font><font color="#ffffff">Mount is slower than +0, but not slowed or hasted
    
-正如本文档开头所述，速度显示可以显示为</font><font color="#ff0000">原始速度 (raw speed)</font><font color="#ffffff">或</font><font color="#ff0000">能量倍数 
-(energy 
-multiplier)</font><font color="#ffffff">（即有效速度）。两种显示方法都有其优缺点。原始速度能以直观的
-方式反映加成和减值的影响——如果你以 +2 速度开始并受到了 -10 
-的惩罚，你最终会得到 -8 的速度。然而，它没有告诉你的是，-8 
-的速度实际上意味着什么！有效速度会告诉你，-10 的惩罚使你的速度从 1.2x 
-降到了 
-0.5x——你的速度被砍掉了一大半！——这是非常重要的实用信息；但它让人难以理解
-为什么 1.2x 的速度加上 -10 的惩罚后会变成 0.5x 
-的速度。由于在任何特定时刻只使用一种显示方法，因此了解两者都是有帮助的，
-因为它们可以互相解释。
+As noted at the top of this document, speed displays can show either 
+the </font><font color="#ff0000">raw speed </font><font color="#ffffff">or the </font><font color="#ff0000">energy multiplier </font><font color="#ffffff">(effective speed). Both display 
+methods have their advantages and disadvantages. Raw speed is affected 
+by bonuses and maluses in intuitive ways - if you start with +2 speed 
+and add a -10 penalty, you end up with -8 speed. What it doesn't tell 
+you, though, is what -8 speed actually means! Effective speed will tell 
+you the -10 penalty took you from 1.2x speed to 0.5x speed - your speed 
+was cut in less than half! - which is important practical information; 
+but it leaves it quite mysterious why a speed of 1.2x plus a -10 
+penalty should add up to a speed of 0.5x. While only one display method 
+is used at a given time, it helps to understand both, as each is 
+explained by the other.
+
+A slightly different speed display appears near the top of your 
+Character Sheet; this display uses generally similar coloring, but 
+shows the base speed and temporary effects separately. It is also the 
+only speed display in the game that always displays the raw speed; if 
+you otherwise you effective speeds, it is the other place (besides the <a href="speedsys.html#Table">
+</font><font color="#00ff00">[e]</a> </font><font color="#ffffff">conversion table above) that will tell you what your raw speed is.
+
+<a name="Timers"></a></font><font color="#c00000">Duration of Timed Effects
+
+</font><font color="#ffffff">There is a fundamental disconnect between </font><font color="#ff0000">game turns </font><font color="#ffffff">and </font><font color="#ff0000">player turns</font><font color="#ffffff">. 
+In the early game, with actions costing 100 energy and the player (at 
++0 speed) recovering 10 energy per game turn, there are on average 10 
+game turns to each player turn... but that discounts energy randomness, 
+and not all actions have the same cost! Walk into a tree and you have 
+20 game turns to a player turn; quaff a potion of speed and you have 
+only 5 game turns to a player turn; sleep for the night at the inn, and 
+40,000 game turns might go by in the blink of an eye.
+
+Game turns are when the game processes the player, the monsters, and 
+everything else; but it is also possible to think of a game turn as a 
+fixed unit of time. Indeed, game dates and the day-night cycle are 
+based entirely on the game turn as the underlying unit, with 100,000 
+game turns corresponding to 24 hours.
+
+A player turn, on the other hand, does not represent any fixed amount 
+of time; it is simply an opportunity to do things and to consume 
+energy, which itself cannot be directly converted to either game turns 
+or player turns.
+
+This disconnect is the key to understanding durations and why they 
+sometimes work in unintuitive ways. Durations </font><font color="#ff00ff">usually </font><font color="#ffffff">correspond to a 
+fixed amount of time, and so do </font><font color="#ff0000">not </font><font color="#ffffff">correspond to a fixed amount of 
+player turns; a duration of "25 turns" actually means 250 game turns, 
+which is 25 "average" player turns at +0 speed, but could easily mean 
+100 actual player turns by the endgame.
+
+Some oddball timed effects are decremented on player turns rather than 
+on every tenth game turn, and so their durations correspond to player 
+turns and not time. Effects of this type include temporary Light Speed 
+and the No Spells status. For all other effects you can safely assume 
+that any durations displayed use a unit of 10 game turns.
+
+Wounds and the poison counter are processed once per player turn, the 
+poison counter being fully independent of time. (Wound damage adjusts 
+for time, so the total cut damage suffered is ultimately the same over 
+a fixed amount of time rather than a fixed amount of player turns.)
 
 
-角色面板顶部附近会有一个略有不同的速度显示；该显示通常使用相似的颜色，但
-会分开显示基础速度和临时效果。这也是游戏中唯一总是显示“原始速度”的地方；
-如果除了那里你还在使用“有效速度”，那么这是除了上方 <a href="speedsys.html#Table"></font><font color="#00ff00">[e]</a> 
-</font><font color="#ffffff">转换表之外的另一个能告诉你当前原始速度的地方。
 
-<a name="Timers"></a></font><font color="#c00000">计时效果的持续时间 (Duration of Timed Effects)
+</font><font color="#404040">Original   : RoguelikeFansBand 7.1.salmiak
 
-</font><font color="#ff0000">游戏回合 (game turns)</font><font color="#ffffff">和</font><font color="#ff0000">玩家回合 (player 
-turns)</font><font color="#ffffff">之间存在根本性的脱节。在游戏早期，当行动成本为 100 能量且玩家（以 
-+0 速度）每个游戏回合恢复 10 能量时，平均每个玩家回合对应 10 
-个游戏回合……但这忽略了能量的随机性，而且并非所有行动的成本都相同！撞到一
-棵树，一个玩家回合相当于 20 
-个游戏回合；喝下一瓶速度药水，一个玩家回合只有 5 
-个游戏回合；在旅馆住一晚，40,000 个游戏回合可能在眨眼间就过去了。
-
-
-游戏回合是游戏处理玩家、怪物以及其他所有事物的基础单位；但你也可以把一个
-游戏回合看作是一个固定的时间单位。事实上，游戏内的日期和昼夜交替完全基于
-作为底层单位的游戏回合，100,000 个游戏回合对应 24 小时。
-
-
-另一方面，玩家回合并不代表任何固定的时间量；它仅仅是一个采取行动和消耗能
-量的机会，其本身不能直接换算为游戏回合或玩家回合。
-
-
-这种脱节是理解效果持续时间以及为什么它们有时以违反直觉的方式运作的关键。
-持续时间</font><font color="#ff00ff">通常</font><font color="#ffffff">对应于固定的时间量，因此</font><font color="#ff0000">不对应</font><font color="#ffffff">于固定的玩家回合数；“25 
-回合”的持续时间实际上意味着 250 个游戏回合，在 +0 速度下这是 25 
-个“平均”玩家回合，但到了游戏后期，它很容易意味着 100 个实际的玩家回合。
-
-
-一些古怪的计时效果是在“玩家回合”而不是每十个游戏回合递减的，因此它们的持
-续时间对应于玩家回合而不是时间。这类效果包括临时的光速状态 (Light 
-Speed) 和禁魔状态 (No 
-Spells)。对于所有其他效果，你可以安全地假设任何显示的持续时间都使用 10 
-个游戏回合作为单位。
-
-流血创伤 (Wounds) 
-和毒素计数器每个玩家回合处理一次，毒素计数器完全独立于时间。（创伤伤害会
-根据时间进行调整，因此在固定时间内受到的割伤总伤害最终是相同的，而不是在
-固定的玩家回合数内相同。）
-
-
-
-</font><font color="#404040">原始版本   : RoguelikeFansBand 7.1.salmiak
 
 </font></pre></body></html>

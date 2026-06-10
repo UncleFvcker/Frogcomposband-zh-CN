@@ -1,4 +1,4 @@
-<style:title>种族 (The Races)</style>
+﻿<style:title>种族 (The Races)</style>
 世界上有许多种族，大多数种族都有各自的优势和劣势。一般来说，一个种族越强大，其<color:keyword>经验惩罚 (Experience Penalty)</color>就越高，升级所需的时间也就越长。
 
 有关<color:keyword>属性 (Stats)</color>的详细信息，请参阅 <link:birth.txt#PrimaryStats>。有关<color:keyword>技能 (Skills)</color>的信息，请参阅 <link:birth.txt#PrimarySkills>。本文档中的技能描述<color:v>仅供比较参考</color>；它们能告诉你一个种族相较于其他种族有多优秀，但不应将其作为你初出茅庐的角色将拥有的确切技能等级指标。通常来说，技能受等级、种族、职业、属性和装备的共同影响。请参阅下方的种族能力表 <link:Races.txt#Tables> 以快速比较各个种族。
@@ -642,6 +642,20 @@
 基础生命      21        箭术        <color:o>一般         </color>
 经验惩罚     175%       暗视        0'
 </style></indent>
+<topic:Maia><color:o>Maia</color>
+迈雅是与维拉相随的次级神灵，能以精灵或人类的形貌行走于凡世。他们拥有优秀的心智与魔法装置能力，经验成长极慢，但会得到店主特别的敬畏。迈雅在20级时必须选择启明或堕落；启明者获得光与秩序的力量，能在捡起物品时感知诅咒，高等级时能屠杀邪恶；堕落者获得火焰与黑暗的力量，能轻易脱下轻度诅咒的装备。完成选择后，迈雅不再需要凡俗食物。
+
+  <indent><style:table><color:G>属性                    技能</color>
+力量          +2        解除陷阱    <color:R>较差         </color>
+智力          +3        装置        <color:G>优秀         </color>
+感知          +3        豁免        <color:o>一般         </color>
+敏捷          +1        潜行        <color:o>一般         </color>
+体质          +1        搜索        <color:o>一般         </color>
+魅力          +2        察觉        <color:y>良好         </color>
+生命倍率     100%       近战        <color:o>一般         </color>
+基础生命      22        箭术        <color:o>一般         </color>
+经验惩罚     400%       暗视      100'
+</style></indent>
 <topic:Mindflayer><color:o>Mindflayer</color>
 夺心魔是一个隐秘而神秘的古老种族。他们的文明很可能比任何其他种族都要古老；他们的智力和感知是自然保持永远维持不会下降的，并且高到足以使夺心魔成为高效的施法者，但他们的物理属性就没那么令人钦佩了。随着等级的提升，他们能学会看到隐形生物，最终发展出心灵感应视力。
 
@@ -732,6 +746,7 @@
 魔像          +4   -5   -5   -2   +4   +0  105%  +23  185%  120%
 克拉克人      +2   -1   -1   +1   +2   +1  105%  +23  170%  115%
 库塔          +0   -1   -1   +1   +2   +2  102%  +21  175%   95%
+迈雅          +2   +3   +3   +1   +1   +2  100%  +22  400%   75%
 夺心魔        -3   +4   +4   +0   -2   -1   97%  +18  150%  115%
 冬贝利        +4   +0   -2   -4   +5   +0  108%  +26  175%  115%
 伊克人        -2   +1   -2   +1   -2   -4   92%  +14   70%  105%
@@ -784,6 +799,7 @@
 魔像         <color:r>差劣         </color> <color:r>差劣         </color> <color:y>良好         </color> <color:R>较差         </color>
 克拉克人     <color:G>优秀         </color> <color:R>较差         </color> <color:o>一般         </color> <color:o>一般         </color>
 库塔         <color:R>较差         </color> <color:o>一般         </color> <color:o>一般         </color> <color:g>卓越         </color>
+迈雅         <color:R>较差         </color> <color:G>优秀         </color> <color:o>一般         </color> <color:o>一般         </color>
 夺心魔       <color:G>优秀         </color> <color:G>优秀         </color> <color:y>良好         </color> <color:y>良好         </color>
 冬贝利       <color:r>差劣         </color> <color:R>较差         </color> <color:o>一般         </color> <color:y>良好         </color>
 伊克人       <color:o>一般         </color> <color:o>一般         </color> <color:y>良好         </color> <color:G>优秀         </color>
@@ -836,6 +852,7 @@
 魔像         <color:R>较差         </color> <color:R>较差         </color> <color:g>卓越         </color> <color:o>一般         </color>   40'
 克拉克人     <color:R>较差         </color> <color:o>一般         </color> <color:y>良好         </color> <color:y>良好         </color>   20'
 库塔         <color:R>较差         </color> <color:r>差劣         </color> <color:o>一般         </color> <color:o>一般         </color>    0'
+迈雅         <color:o>一般         </color> <color:y>良好         </color> <color:o>一般         </color> <color:o>一般         </color>  100'
 夺心魔       <color:G>优秀         </color> <color:y>良好         </color> <color:r>差劣         </color> <color:R>较差         </color>   40'
 冬贝利       <color:R>较差         </color> <color:D>极差         </color> <color:g>卓越         </color> <color:R>较差         </color>   20'
 伊克人       <color:G>优秀         </color> <color:G>优秀         </color> <color:R>较差         </color> <color:o>一般         </color>   20'

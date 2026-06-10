@@ -1586,6 +1586,12 @@ void object_desc(char *buf, object_type *o_ptr, u32b mode)
             break;
         }
 
+        case TV_CUSTOM_BOOK:
+        {
+            basenm = (mode & OD_INTERNAL_NAME) ? "& Custom Spellbook~ %" : "& 自定义法术书~ %";
+            break;
+        }
+
         /* Magic Books */
         case TV_LIFE_BOOK:
         {

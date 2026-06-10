@@ -1,4 +1,4 @@
-兽人
+﻿Orcs
 
 Orcs are Morgoth's creation and the backbone of his armies. They are 
 accustomed to caves and tunnels, and resist darkness but tend to be 
@@ -10,7 +10,7 @@ strength, and generally have little trouble brushing aside weak enemies
 like kobolds; yet in the deep dungeons, where the strongest fighters 
 and most powerful magicians reside, orcs are rarely seen.
 
-兽人战士
+Orc fighter
 The most common and familiar type of orc, fighter orcs are feared 
 around the world for their strength, endurance, brutality and low 
 cunning. They start their careers as a lowly Snaga, but will eventually 
@@ -18,17 +18,17 @@ develop into Uruk-hai or even mighty warlords, capable of summoning and
 controlling armies of lesser orcs.
 
   Stats                   Skills
-  Strength      -1        Disarming   一般       
-  Intelligence  -4        Device      极差       
-  Wisdom        -5        Save        贫弱       
-  Dexterity     +0        Stealth     贫弱       
-  Constitution  +0        Searching   贫弱       
-  Charisma      -5        Perception  糟糕       
-  Life Rating   99%       Melee       优秀       
-  Base HP       30        Archery     优秀       
+  Strength      -1        Disarming   Fair         
+  Intelligence  -4        Device      Very Bad     
+  Wisdom        -5        Save        Poor         
+  Dexterity     +0        Stealth     Poor         
+  Constitution  +0        Searching   Poor         
+  Charisma      -5        Perception  Bad          
+  Life Rating   99%       Melee       Excellent    
+  Base HP       30        Archery     Excellent    
   Experience   100%       Infravision 30'
   
-兽人萨满
+Orc shaman
 Orc shamans and warlocks are more cunning than the average orc and have 
 learned rudimentary magic from their black masters. They can detect 
 threats, blink out of dangerous situations and easily dispatch weak 
@@ -37,38 +37,38 @@ magic devices as their fighter kin, but like all orcs they tend to have
 trouble when the going really gets tough.
 
   Stats                   Skills
-  Strength      -1        Disarming   一般       
-  Intelligence  -1        Device      贫弱       
-  Wisdom        -5        Save        一般       
-  Dexterity     -1        Stealth     贫弱       
-  Constitution  -1        Searching   一般       
-  Charisma      -5        Perception  贫弱       
-  Life Rating   92%       Melee       良好       
-  Base HP       28        Archery     良好       
+  Strength      -1        Disarming   Fair         
+  Intelligence  -1        Device      Poor         
+  Wisdom        -5        Save        Fair         
+  Dexterity     -1        Stealth     Poor         
+  Constitution  -1        Searching   Fair         
+  Charisma      -5        Perception  Poor         
+  Life Rating   92%       Melee       Good         
+  Base HP       28        Archery     Good         
   Experience   100%       Infravision 30'
   
-表 1 - 兽人属性加成表
+Table 1 - Orc Statistic Bonus Table
 
                   STR  INT  WIS  DEX  CON  CHR  Life  BHP  Exp  Shop
-兽人战士       -1   -4   -5   +0   +0   -5   99%  +30  100%  140%
-兽人萨满       -1   -1   -5   -1   -1   -5   92%  +28  100%  140%
+Orc fighter        -1   -4   -5   +0   +0   -5   99%  +30  100%  140%
+Orc shaman         -1   -1   -5   -1   -1   -5   92%  +28  100%  140%
 
 
-表 2 - 兽人技能加成表 I
+Table 2 - Orc Skill Bonus Table I
 
-                  解除陷阱  使用装置  豁免        潜行       
-兽人战士      一般        极差        贫弱        贫弱       
-兽人萨满      一般        贫弱        一般        贫弱       
-
-
-表 3 - 兽人技能加成表 II
-
-                  搜索        察觉        近战        箭术        红外
-兽人战士      贫弱        糟糕        优秀        优秀          30'
-兽人萨满      一般        贫弱        良好        良好          30'
+                  Disarming     Device        Save          Stealth      
+Orc fighter       Fair          Very Bad      Poor          Poor         
+Orc shaman        Fair          Poor          Fair          Poor         
 
 
+Table 3 - Orc Skill Bonus Table II
+
+                  Searching     Perception    Melee         Archery       Infra
+Orc fighter       Poor          Bad           Excellent     Excellent       30'
+Orc shaman        Fair          Poor          Good          Good            30'
 
 
-自动生成于 RoguelikeFansBand 7.4。
+
+
+Automatically generated for RoguelikeFansBand 7.2.salmiak.
 

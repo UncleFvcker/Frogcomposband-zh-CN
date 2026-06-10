@@ -740,6 +740,13 @@ extern bool autopick_autoregister(object_type *o_ptr);
 extern void do_cmd_edit_autopick(void);
 extern bool object_is_icky(object_type *o_ptr, bool assume_id);
 
+/* obj.c */
+extern bool obj_is_custom_book(obj_ptr obj);
+extern int custom_book_capacity(obj_ptr obj);
+extern int custom_book_count(obj_ptr obj);
+extern bool custom_book_has_spell(obj_ptr obj, int realm, int spell);
+extern void custom_book_set_spell(obj_ptr obj, int slot, int realm, int spell);
+
 /* birth.c */
 extern cptr realm_jouhou[VALID_REALM];
 extern bool birth_hack;
@@ -936,6 +943,8 @@ extern void msg_add_tiny_screenshot(int cx, int cy);
 /* cmd5.c */
 extern cptr spell_category_name(int tval);
 extern cptr spell_category_verb(int tval);
+extern bool custom_book_select_spell(obj_ptr book, cptr prompt, int *realm, int *spell, bool browse);
+extern void custom_book_transcribe(obj_ptr book);
 extern void do_cmd_browse(void);
 extern void do_cmd_study(void);
 extern void do_cmd_cast(void);
@@ -2499,6 +2508,13 @@ extern race_t *imp_get_race(void);
 extern race_t *klackon_get_race(void);
 extern race_t *kobold_get_race(void);
 extern race_t *kutar_get_race(void);
+extern race_t *maia_get_race(int psubrace);
+extern bool    maia_is_enlightened(void);
+extern bool    maia_is_corrupted(void);
+extern bool    maia_no_food(void);
+extern bool    maia_forbids_realm(int realm);
+extern int     maia_light_bonus(void);
+extern void    maia_sense_object(object_type *o_ptr);
 extern race_t *mindflayer_get_race(void);
 extern race_t *nibelung_get_race(void);
 extern race_t *ogre_get_race(void);
@@ -2523,6 +2539,7 @@ extern race_t *yeek_get_race(void);
 extern race_t *zombie_get_race(void);
 
 extern void equip_shuffle(cptr tag); /* For shapeshifters ... */
+extern equip_template_ptr equip_current_template(void);
 extern void set_equip_template(equip_template_ptr new_template);
 
 /* Monster Races */
@@ -2602,6 +2619,14 @@ extern void    possessor_set_current_r_idx(int r_idx);
 extern void    possessor_explode(int dam);
 extern void    possessor_init_race_t(race_t *race_ptr, int default_r_idx);
 extern void    possessor_do_auras(mon_ptr mon);
+extern bool    possessor_is_active(void);
+extern bool    possessor_is_(void);
+extern bool    mimic_is_(void);
+extern bool    ethereal_mimic_is_(void);
+extern bool    ethereal_mimic_is_mimicking(void);
+extern bool    ethereal_mimic_can_mimic(int r_idx);
+extern bool    ethereal_mimic_is_learned(int r_idx);
+extern int     ethereal_mimic_kill_requirement(int r_idx);
 extern void    mimic_dispel_player(void);
 extern void    mimic_on_kill_monster(int r_idx);
 extern int     mimic_max_lvl(void);
@@ -2805,6 +2830,7 @@ extern cptr     gray_mage_speciality_name(int psubclass);
 extern cptr     gray_mage_speciality_desc(int psubclass);
 
 extern class_t *high_mage_get_class(void);
+extern class_t *ethereal_mimic_get_class(void);
 extern bool     imitator_cast(bool revenge);
 extern class_t *imitator_get_class(void);
 extern class_t *lawyer_get_class(void);

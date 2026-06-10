@@ -1,2197 +1,2442 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <body text="#ffffff" bgcolor="#000000"><pre>
-<a name="salmiak"></a><font color="#ff0000">RoguelikeFansBand 7.1.salmiak </font><font color="#ffffff">的更新日志：
+<a name="salmiak"></a><font color="#ffffff">Changes in </font><font color="#ff0000">RoguelikeFansBand 7.1.salmiak</font><font color="#ffffff">:
 
-* 添加了新地下城，并随机化了实际出现的地下城
+* Added new dungeons and randomized which dungeons actually appear
 
-* 添加了新物品、ego 类型、神器、物品诅咒、地形特征以及随机神器名称
+* Added new objects, ego types, artifacts, item curses, terrain 
+features and random artifact names
 
-* 添加了新怪物（包括将“超级赛博巨龙天使恶魔巫妖 (Greater Cyber Wyrm 
-Angel Daemon Lich)”作为通关后专属怪物重新引入）
+* Added new monsters (including the reintroduction of the Greater Cyber 
+Wyrm Angel Daemon Lich as an exclusively postgame monster)
 
-* 添加了新的玩家怪物种族（木乃伊 Mummy），基于 Pos-R 中的受咒者 
-(Maledicts)
+* Added new player-monster race (Mummy) based on Maledicts from Pos-R
 
-* 迁移到了 32 色调色板并更改了许多怪物的颜色
--- 注意：如果你的平台不支持超过 16 种颜色，或者 RoguelikeFansBand 
-  针对你平台的着色代码有问题，请使用 --disable-xtra-colours 
-  编译以仅保留 16 色。如果你的平台确实支持超过 16 
-  种颜色但你希望坚持使用 16 
-  色（出于怀旧原因或为了颜色之间有更大的对比度），请加载 
-  user-lim.prf（在游戏中输入 &amp;4 会自动执行此操作），或使用 '&amp;' 
-  命令修改颜色
--- 特别感谢 Oneiron 帮我调试 32 色调色板
+* Moved to a 32-color palette and changed the colors of many monsters
+-- NOTES: If your platform does not support more than 16 colors, or 
+  RoguelikeFansBand's coloring code for your platform is faulty, compile 
+  with --disable-xtra-colours to retain use of 16 colors only. If your 
+  platform does support more than 16 colors but you wish to stick to 16 
+  (from nostalgic reasons or for greater contrast between colors), load 
+  user-lim.prf (typing &amp;4 in-game does this automatically) or otherwise 
+  modify the colors with the '&amp;' command
+-- Special thanks to Oneiron for helping me debug the 32-color palette
 
-* 城镇服务能够以附魔一把武器的价格为多把武器附魔；这已被修复（感谢 
-Thraalbee 报告）
+* Town services could enchant multiple weapons for the price of one; 
+this has been fixed (thanks to Thraalbee for reporting)
 
-* 即使玩家没有通关，也会给出天堂 (Heaven) 和地狱 (Hell) 
-的方向指示；这已被修复（感谢 Marty 和 ster 报告）
+* Directions were given for Heaven and Hell even if the player had not 
+won; this has been fixed (thanks to Marty and ster for reporting)
 
-* 修复了完成水晶石堡任务 (Crystal Quest) 后使用传送楼层法术时的 
-Bug（感谢 bostock 报告）
+* Fixed bug when Teleport Level was used after completing Crystal Quest 
+(thanks to bostock for reporting)
 
-* 修复了恰好在回城生效时走楼梯的 Bug（感谢 wobbly 和 bostock 报告）
+* Fixed bug when stairs were taken just when recall kicked in (thanks 
+to wobbly and bostock for reporting)
 
-* 修复了手榴弹爆炸有时会导致伪装成“玩家”的怪物暂时出现的 Bug（感谢 
-wobbly 报告）
+* Fixed bug with hand grenade explosions sometimes causing a "player" 
+fake monster to temporarily appear (thanks to wobbly for reporting)
 
-* 修复了多重效果的怪物攻击有时会重复杀死对手的 Bug（感谢 bostock 报告）
+* Fixed bug with multi-effect monster blows sometimes killing an 
+opponent repeatedly (thanks to bostock for reporting)
 
-* 修复了对坐骑进行加速和治疗时自动瞄准的 Bug（感谢 bostock 报告）
+* Fixed bug with autotargeting the mount for hasting and healing 
+(thanks to bostock for reporting)
 
-* 修复了在荒野房间生成的魔法装置没有效果的 Bug（感谢 bostock 报告）
+* Fixed bug with devices in wilderness rooms generating with no effect 
+(thanks to bostock for reporting)
 
-* 修复了标准神器如果是从其他楼层带过来的，就会从地板上消失的 Bug（感谢 
-bostock 报告）
+* Fixed bug with standard artifacts disappearing from the floor if they 
+had been carried there from another level (thanks to bostock for 
+reporting)
 
-* 修复了如果替身术 (Kawarimi) 在回合中触发，忍者仍会继续攻击的 
-Bug（感谢 bostock 报告）
+* Fixed bug with Ninjas continuing to attack if Kawarimi was triggered 
+mid-turn (thanks to bostock for reporting)
 
-* 具有时效的怪物状态在世界大地图上没有被处理；这已被修复（感谢 bostock 
-报告）
+* Timed monster statuses were not processed in the overworld; this has 
+been fixed (thanks to bostock for reporting)
 
-* 修复了雕像堆叠的旧 Bug（感谢 kt 报告）
+* Fixed old bug with statue stacking (thanks to kt for reporting)
 
-* 修复了在 always_pickup（自动拾取）开启且简易销毁器 (Easy Destroyer) 
-未开启时，垃圾自动拾取导致的无限循环 Bug（感谢 DavidMedley 报告）
+* Fixed infinite loop on junk autoget when always_pickup was on and the 
+Easy Destroyer was not on (thanks to DavidMedley for reporting)
 
-* 
-修复了当物品列表子窗口开启，且直接从地板上装备具有特定属性的物品时导致的
-崩溃 Bug（感谢 caruso 报告）
+* Fixed crash when the object list subwindow was on and an item with 
+specific properties was equipped from the floor (thanks to caruso for 
+reporting)
 
-* 
-从地板上投掷法力恢复药水可能会导致它自己产生一个幻影副本爆炸；这已被修复
+* A potion of Restore Mana thrown from the floor could cause a phantom 
+copy of itself to explode; this has been fixed
 
+* Bumping into mountains while confused consumed no time; this has been 
+fixed (thanks to Hugo for reporting)
 
-* 在混乱状态下撞到山脉不消耗时间；这已被修复（感谢 Hugo 报告）
+* Fixed weirdness on player beholders with mutational innate attacks 
+(thanks to Karkaroth for reporting)
 
-* 修复了带有变异天生攻击的玩家眼魔 (Beholders) 的异常问题（感谢 
-Karkaroth 报告）
+* Fixed annoying and inconsistent handling of erratic movement on 
+mounts (thanks to budswell for reporting)
 
-* 修复了在坐骑上对不稳定移动令人恼火且不一致的处理问题（感谢 budswell 
-报告）
+* Fixed bug with newly acquired locked mutations not affecting 
+regeneration properly (thanks to ster for reporting)
 
-* 修复了新获得的锁定变异未能正确影响生命恢复的 Bug（感谢 ster 报告）
+* Fixed bug with insurance and player-elemental item destruction
 
-* 修复了玩家元素导致物品被毁时的保险 Bug
+* Fixed bug with inappropriate handling of insured items left behind on 
+a level the player subsequently returned to
 
-* 修复了对留在玩家随后返回的楼层上的受保物品处理不当的 Bug
+* Fixed crash on shop shuffle if too many items had been reserved
 
-* 修复了如果在商店刷新进货 (shop shuffle) 时保留了太多物品会导致的崩溃 
-Bug
+* Fixed ancient bugs with the wilderness terrain-selection algorithm, 
+and adjusted some numbers that had been optimized for the buggy version
 
-* 修复了荒野地形选择算法中的古老 Bug，并调整了一些原先为了适应这些 Bug 
-而被优化过的数值
+* Fixed various types of weirdness with Bunshin; it is now generally 
+less useful against auras, but more useful in a number of other 
+situations where it previously did not apply
 
-* 修复了关于分身术 (Bunshin) 
-的各种异常问题；它现在通常对灵气防御没那么有用了，但在它以前不适用的许多
-其他情况中变得更加有用了
+* Fixed minor bug with innate attack damage calculations
 
-* 修复了天生攻击伤害计算中的小 Bug
+* Fixed weirdness with charmed clones
 
-* 修复了被魅惑克隆体的异常问题
+* Fixed yet another loophole to anti-scumming item/gold drop limits
 
-* 修复了反刷怪物品/金币掉落限制的又一个漏洞
+* Fixed incorrect pluralization of some quiver egos
 
-* 修复了一些箭袋 ego 错误的复数形式
+* Fixed weirdness with door placement in cavern areas
 
-* 修复了洞穴区域中门放置的异常问题
+* Fixed occasional weirdness with stair placement after quest 
+completion
 
-* 修复了任务完成后楼梯放置偶尔出现的异常问题
+* Multiple items could be reserved for the price of one; this has been 
+fixed
 
-* 原本可以用一件物品的价格预订多件物品；这已被修复
+* Turncounts in character dumps now properly account for midnight 
+starts (this does not apply retroactively)
 
-* 角色转储中的回合数现在正确地计算了午夜开局的时间（这不具有追溯效力）
+* Changed the power of confusion effects, they should now at least 
+resemble the claimed powers
 
-* 改变了混乱效果的威力，它们现在至少应该看起来和宣称的威力差不多了
+* Fixed issue with the powers of Slow Monster bolt spells (thanks to 
+Saru for reporting)
 
-* 修复了减速怪物射线法术威力的问题（感谢 Saru 报告）
+* Allowed Samurai to view damage averages for Kendo attack techniques 
+(thanks to ster for suggesting)
 
-* 允许武士查看剑道 (Kendo) 攻击技巧的平均伤害（感谢 ster 建议）
+* Renamed weak Beam of Light to "Moonbeam" to more clearly distinguish 
+it from strong Beam of Light (thanks to bostock for suggesting)
 
-* 将较弱的圣光射线 (Beam of Light) 重命名为“月光射线 
-(Moonbeam)”，以更清楚地将它与强效圣光射线区分开来（感谢 bostock 建议）
+* Slightly relaxed capture-balling requirements for hostile monsters to 
+prevent some low-HP monsters from being captureable at all (thanks to 
+caruso for bringing this up)
 
-* 略微放宽了对敌对怪物的捕获球捕捉要求，以防止一些低 HP 
-怪物根本无法被捕捉（感谢 caruso 提出）
+* Added option (on by default) to limit quantity prompts in shops to 
+the highest amount that is both available and affordable (thanks to 
+caruso for suggesting)
 
-* 
-添加了选项（默认开启），将商店中的数量提示限制为既有库存又买得起的最高数
-量（感谢 caruso 建议）
+* Added option (off by default) to indicate unknown item flavors in 
+shops (thanks to caruso for suggesting)
 
-* 添加了选项（默认关闭），在商店中标识未知物品的特性提示信息 
-(flavors)（感谢 caruso 建议）
+* Added option (off by default) to display the nominal energy cost of 
+the most recent action (thanks to Bucephalus for suggesting)
 
-* 添加了选项（默认关闭），显示最近一次行动的名义能量消耗（感谢 
-Bucephalus 建议）
+* Added option (on by default) to extend the unknown attribute 
+indicator '?' to cover random dragon resistances (thanks to bostock for 
+bringing this up)
 
-* 添加了选项（默认开启），将未知属性指示器 '?' 
-扩展到随机龙族抗性上（感谢 bostock 提出）
+* Combined the empty_levels option with the ironman_empty_levels option
 
-* 将 empty_levels 选项与 ironman_empty_levels 选项合并了
+* Allowed using Home/End and 7/1 to immediately move to the beginning 
+or end of a long home or museum inventory (thanks to Melum for 
+suggesting)
 
-* 允许使用 Home/End 和 7/1 
-直接移动到很长的家或博物馆物品列表的开头或结尾（感谢 Melum 建议）
+* Renamed the "Cause Wounds" monster spells/auras to various types of 
+"Curse", making it less unintuitive that most of them can curse the 
+equipment
 
-* 将“造成伤口 (Cause Wounds)”的怪物法术/灵气重命名为各种类型的“诅咒 
-(Curse)”，使其多数能诅咒装备这一设定不再那么反直觉
+* Changed the Patient personality to be more the opposite of Hasty; it 
+now has slightly better stats and skills than before, but gives a speed 
+penalty
 
-* 改变了耐心 (Patient) 性格，使其更像是匆忙 (Hasty) 
-的对立面；它现在比以前有稍微好一点的属性和技能，但会带来速度惩罚
+* Potions of New Life now shuffle Split personalities (thanks to Aav 
+for suggesting)
 
-* 重生药水现在会重置洗牌分裂 (Split) 性格（感谢 Aav 建议）
+* Improved the object list and monster list UI (thanks to kt and 
+bostock for suggestions)
+- allowed customizing the lists' width
+- allowed looping between the first and last entry with Up/Down arrows
+- the object list now displays visible stairs if no objects are visible
 
-* 改进了物品列表和怪物列表的 UI（感谢 kt 和 bostock 提供建议）
-- 允许自定义列表的宽度
-- 允许使用上/下方向键在第一条和最后一条目之间循环滚动
-- 如果没有可见物品，物品列表现在会显示可见的楼梯
+* Allowed scrolling long monster descriptions while targeting
 
-* 允许在瞄准时滚动查看长长的怪物描述
+* Allowed the Gloves of the Master Tonberry to generate for Tonberries
 
-* 允许提灯怪大师手套 (Gloves of the Master Tonberry) 为提灯怪生成
+* Allowed pets to recall with player from slightly further away
 
-* 允许宠物在离玩家稍微远一点的地方也能跟随回城
+* Average rings, amulets and Feanorian Lamps are now identified on 
+pseudo-ID
 
-* 普通的戒指、护身符和费诺的提灯 (Feanorian Lamps) 
-现在通过伪鉴定即可直接被完全鉴定
+* Buffed Dwarven body armour again, it now has much more potential 
+upside
 
-* 再次加强了矮人板甲，它现在有更多潜在的上升空间
+* A number of additional uniques, most notably Mandor, now resist 
+confusion
 
-* 许多新增的 Unique，最著名的是曼多 (Mandor)，现在可以抵抗混乱了
+* Player quylthulgs can now (usually) summon around a target location 
+starting at CL 20, regardless of which options they use
 
-* 从角色等级 20 开始，玩家夸尔苏格 (quylthulgs) 
-现在（通常）可以在目标位置周围召唤，无论他们使用的是什么选项
+* Changed the special Bloodrip player-cutting mechanic; it is now less 
+severe but happens more often, and happens in melee rather than at 
+random times (thanks to bostock, ster and MITZE for feedback)
 
-* 改变了血液撕裂 (Bloodrip) 
-特殊的玩家割伤机制；它现在没有那么严重了，但发生得更频繁，并且发生在近战
-中而不是随机时间发生（感谢 bostock、ster 和 MITZE 提供的反馈）
+* Changed hallucination to make it more difficult to figure out which 
+monsters are real
 
-* 改变了幻觉状态，使其更难弄清楚哪些怪物是真实的
+* Automatic combining of pack ammo with quiver ammo now happens even if 
+the ammo is unsuitable for the current shooter
 
-* 
-将背包弹药自动组合到箭袋弹药中的功能现在会一直发生，即使该弹药不适合当前
-的射击武器
+* Tweaked the confusion-resistance message for already confused 
+monsters (thanks to Bucephalus for suggesting)
 
-* 调整了已混乱怪物获得混乱抗性时的提示信息（感谢 Bucephalus 建议）
+* Tweaked Rune-Knight mana gain formula
 
-* 调整了符文骑士的法力获取公式
+* Slightly tweaked the effects of Easy-Spell/Dec-Mana on spell fail 
+rates
 
-* 略微调整了简易施法 (Easy-Spell)/减少法力消耗 (Dec-Mana) 
-对法术失败率的影响
+* Re-allowed the use of Destruction in Witch Wood as a reduced-power 
+special effect
 
-* 重新允许在女巫森林 (Witch Wood) 使用毁灭 (Destruction) 
-法术，作为一种威力减弱的特殊效果
+* Tweaked the XP values of many monsters
 
-* 调整了许多怪物的经验值
+* Dungeon entrance guardians are no longer vulnerable to genocide
 
-* 地下城入口守卫不再受群体灭绝 (Genocide) 影响
+* Life ratings are now displayed by default on a scale of 0 to 76, 
+rather than on a percentage scale of 87% to 117%; this is purely a 
+display change, intended both to permit greater accuracy and to 
+distinguish them even more clearly from the unrelated racial and 
+CON/equipment-based HP multipliers
 
-* 生命评级 (Life ratings) 现在默认在 0 到 76 的范围内显示，而不是在 87% 
-到 117% 
-的百分比范围内显示；这纯粹是一个显示上的变化，旨在允许更高的精度，并将其
-与不相关的种族和体质/装备提供的 HP 倍率更清楚地区分开来
+* Trap warnings now reveal the trap
 
-* 陷阱警告现在会揭示陷阱
+* 墨家明器 is now applied to items on shop-ID and museum-ID
 
-* 墨家明器 (自动拾取销毁器) 现在适用于商店鉴定和博物馆鉴定的物品
+* The in-game high score list now adjusts scores for options and 
+accomplishments (this does not apply retroactively)
 
-* 游戏内的高分榜现在会根据选项和成就调整分数（这不具有追溯效力）
+* Race change attempts disallowed by competition mode now trigger the 
+Baby Foul Curse instead (also, the Baby Foul Curse is now more evil)
 
-* 因竞赛模式 (competition mode) 
-不允许而尝试改变种族的行为，现在会触发弱效恶毒诅咒 (Baby Foul Curse) 
-作为惩罚（另外，弱效恶毒诅咒现在更邪恶了）
+* Pass-wall monsters and players are no longer slowed by trees
 
-* 穿墙怪物和玩家不再被树木减速
+* Nerfed humans (instead of the second demigod talent at CL 40, they 
+now receive a primary-stat-dependent weakness at CL 35)
 
-* 削弱了人类（在角色等级 35 时获得依赖主属性的弱点，而不是在 40 
-级时获得第二个半神天赋）
+* Allowed the recall interface to give a multi-column dungeon list
 
-* 允许回城界面提供多列的地下城列表
+* Changed innate attack damage display to show the damage for each 
+effect separately instead of combining it with the damage from the 
+first effect
 
-* 
-更改了天生攻击伤害显示，分别显示每个效果的伤害，而不是将其与第一个效果的
-伤害合并
+* Further reduced energy randomness, it is now more strictly limited at 
+higher speeds
 
-* 进一步减少了能量的随机性，它现在在高速下受到更严格的限制
+* Replaced the hidden ability of some Mage-type classes to recover mana 
+twice as fast with a public "Mana Recovery" object flag. Also, 
+effective HP regen and effective SP regen are now displayed separately 
+on the character sheet for transparency
 
-* 
-移除了一些法师系职业隐藏的恢复法力速度加倍的能力，取而代之的是公开的“法
-力恢复 (Mana Recovery)”物品标志。此外，为了透明度，有效的 HP 恢复和 SP 
-恢复现在在角色面板上分开显示
+* Destruction no longer always works on summoned monsters, except in 
+instant-coffee mode. It still always works on "nice" summons (i.e. most 
+high-level monsters the turn after they appear), and summoned monsters 
+never gain destruction immunity
 
-* 毁灭法术 (Destruction) 不再对召唤怪总是有效，除非在速溶模式 
-(instant-coffee mode) 
-下。它仍然总是对“友好”的召唤物有效（即它们出现后那一回合的大多数高级怪物
-），并且召唤出来的怪物永远不会获得毁灭免疫
+* Allowed monsters to resist disintegration
 
-* 允许怪物抵抗解离
+* Allowed two-handed wielding of baseball bats
 
-* 允许双手持握棒球棍
+* Additional monster health bar coloring:
+- temporary slowness is indicated with dark grey stars (lowest 
+priority)
+- temporary haste is indicated with violet brackets
+- a high monster power (above 133.3%) is indicated with dark blue 
+brackets
 
-* 增加了怪物血条颜色标识：
-- 暂时的减速用深灰色星号表示（最低优先级）
-- 暂时的加速用紫罗兰色括号表示
-- 高怪物能量（133.3% 以上）用深蓝色括号表示
+* Wilderness level display in the immediate vicinity of a dungeon 
+entrance now indicates which dungeon it is, e.g. "Wilderness (Angband): 
+L1" instead of just "Wilderness: L1"
 
-* 在地下城入口附近的荒野层显示现在会指示是哪个地下城，例如“Wilderness 
-(Angband): L1”，而不仅仅是“Wilderness: L1”
+* Allowed Beorning Rage-Mages to use Rage in bear form (thanks to 
+clouded for suggesting)
 
-* 允许换皮人 (Beorning) 狂怒法师在熊形态下使用狂怒 (Rage)（感谢 clouded 
-建议）
+* The 'U'/'O' power selection menu now displays the stats involved in 
+determining fail rates
 
-* 'U'/'O' 能力选择菜单现在会显示决定失败率的属性统计
+* Further improved and updated the help
 
-* 进一步改进和更新了帮助文件
-
-* 各种微小的调整和代码改进
+* Various minor tweaks and code improvements
 
 -------------------------------------------------------
 
 
-<a name="liquorice"></a></font><font color="#ff0000">RoguelikeFansBand 7.1.liquorice </font><font color="#ffffff">的更新日志：
+<a name="liquorice"></a>Changes in </font><font color="#ff0000">RoguelikeFansBand 7.1.liquorice</font><font color="#ffffff">:
 
-* 添加了一个新玩家种族（伊戈尔 Igor）
+* Added a new player race (Igor)
 
-* 添加了一个新性格（分裂 Split）
+* Added a new personality (Split)
 
-* 重新实现了蓝魔道士 (Blue-Mage) 职业
+* Re-implemented the Blue-Mage class
 
-* 更新了游戏内帮助
+* Updated the in-game help
 
-* 游戏速度现在从种族/职业菜单中选择，而不是作为出生选项。添加了速溶模式 
-(instant-coffee 
-mode，超加速游戏)；注意这个模式比普通的茶歇模式难得多，不推荐给游戏新手
+* Game speed is now selected from the race/class menu rather than as a 
+birth option. Added instant-coffee mode (ultra-accelerated game); note 
+that this mode is much harder than normal coffee-break mode, and not 
+recommended for players new to the game
 
-* 
-添加了许多新的随机神器名称；另外，随机神器武器现在有时会从特定于武器类型
-的子列表中提取名称，并且游戏会尽量将神器名称的重复降到最低
+* Added many new random artifact names; also, random artifact weapons 
+now sometimes pull their names from sub-lists specific to the type of 
+weapon, and the game tries to keep repetition of artifact names to a 
+minimum
 
-* 在奴隶模式 (thrall mode) 下，夸尔苏格 (Quylthulgs) 
-会在游戏开始时崩溃；这已被修复（感谢 meltdown 报告）
+* Quylthulgs crashed on game start in thrall mode; this has been fixed 
+(thanks to meltdown for reporting)
 
-* 
-从任务楼层的下行楼梯逃离时没有给出警告（这对某些信徒职业是可能的）；这已
-被修复（感谢 OmniNegro 报告）
+* No warning was given on escaping downstairs from a quest level 
+(possible for some Disciples); this has been fixed (thanks to OmniNegro 
+for reporting)
 
-* 吃完食物后没有正确检查负重；这已被修复
+* Burdening was not checked properly after eating food; this has been 
+fixed
 
-* 从不应用 墨家明器 销毁器的选项也关闭了简易自动销毁器 (easy 
-auto-destroyer)；这已被修复
+* The option to never apply the 墨家明器 also turned off the easy 
+auto-destroyer; this has been fixed
 
-* 修复了外围 makefiles 中的错别字，这些错别字在通过 "make install" 
-安装游戏时会导致问题（感谢 isnok 和 Kreutzer 报告）
+* Fixed typos in outlying makefiles that caused problems if "make 
+install" was used to install the game (thanks to isnok and Kreutzer for 
+reporting)
 
-* 在开启 ironman_downward（只能下楼梯）时，可能会被星界传送 
-(nexus-warped) 到封闭的地下城中；这已被修复
+* It was possible to get nexus-warped to closed dungeons with 
+ironman_downward on; this has been fixed
 
-* 投射物在放入箭袋时没有失去“已装备 (Worn)”标签；这已被修复
+* Projectiles did not lose the "Worn" tag on being placed in the 
+quiver; this has been fixed
 
-* 
-玩家迟缓猎犬和赫尔墨斯半神的免疫减速功能，没有对增量减速生效；这已被修复
-（感谢 ster 和 Marty 报告）
+* The slowing immunity of player inertia hounds and Hermes demigods did 
+not apply to incremental slowing; this has been fixed (thanks to ster 
+and Marty for reporting)
 
-* 无法在 angband.live 上使用方向键进行 墨家明器 
-或选项菜单的导航；这已被修复
+* Arrow keys could not be used for 墨家明器 or option menu 
+navigation on angband.live; this has been fixed
 
-* 对于三位一体 (Troika) 
-的信徒，如果杀死一只怪物导致赞助神驱散了剩余的怪物，任务没有被正确标记为
-已完成；这已被修复（感谢 bostock 报告）
+* Quests were not properly flagged as completed on Troika disciples if 
+killing a monster caused the patron to dispel the remaining monsters; 
+this has been fixed (thanks to bostock for reporting)
 
-* 
-修复了一个漏洞，该漏洞允许在除了钢龙之外的任何龙上选择任何龙之领域（感谢
- OmniNegro 报告）
+* Fixed an exploit that allowed selecting any dragon realm on any 
+dragon except Steel Dragon (thanks to OmniNegro for reporting)
 
-* 修复了在请求任务后立即显示重铸细节时的视觉故障（感谢 bostock 报告）
+* Fixed visual glitch when reforge details were shown immediately after 
+requesting a quest (thanks to bostock for reporting)
 
-* 修复了没有坐骑的戒指 (Ring) 玩家在使用自动拾取 (autoget) 时的无限循环 
-Bug（感谢 bostock 报告）
+* Fixed infinite loop when a player Ring with no mount tried to use 
+autoget (thanks to bostock for reporting)
 
-* 在附身者、灰魔道士或技能大师身上施法没有触发脆弱 (Fragile) 
-疲劳；这已被修复（感谢 ster 报告灰魔道士的问题）
+* Casting spells on a Possessor, Gray-Mage or Skillmaster did not 
+trigger Fragile fatigue; this has been fixed (thanks to ster for 
+reporting the problem on Gray-Mages)
 
-* 肮脏的破布 (Filthy Rags) 无法获得维持生命 (Hold 
-Life)；这已被修复（感谢 Aav 报告）
+* Filthy Rags could not get Hold Life; this has been fixed (thanks to 
+Aav for reporting)
 
-* 如果魔法吞噬者 (Magic-Eaters) 吸收的物品被铭刻过，则“重复上一个命令 
-(Repeat Last Command)”无法在他们身上正常工作；这已被修复
+* The "repeat" command did not work properly on Magic-Eaters if 
+absorbed items had been inscribed; this has been fixed
 
-* 
-魔法吞噬者只能在他们背包中也有同类型装置的情况下才能使用地板上的装置；这
-已被修复
+* Magic-Eaters could only use floor devices if they also had pack 
+devices of the same type; this has been fixed
 
-* 修复了魔法吞噬者物品标签与菜单命令之间的冲突
+* Fixed conflict between Magic-Eater item labels and menu commands
 
-* 修复了一些最近添加的怪物身体类型不恰当的问题（感谢 clouded 报告）
+* Fixed inappropriate body types on some recently added monsters 
+(thanks to clouded for reporting)
 
-* 
-天生攻击可以触发怪物混乱卷轴，但不能触发触碰混乱诅咒法术；这已被修复（感
-谢 clouded 报告）
+* Innate attacks could trigger the Monster Confusion scroll but not the 
+Touch of Confusion hex spell; this has been fixed (thanks to clouded 
+for reporting)
 
-* 修复了在存在相反的非抵抗标志时出现的显示异常
+* Fixed display weirdness in situations with opposite non-resist flags 
+present
 
-* 修复了跟踪由工匠龙 (Craft dragon) 重铸物品来源的 Bug
+* Fixed bug in tracking the origins of items reforged by Craft dragons
 
-* 玩家不死眼魔以前容易被吸取生命；这已被修复
+* Player Undead Beholders were vulnerable to life drain; this has been 
+fixed
 
-* 修复了在肮脏的破布玩家身上显示装置威力加成时的 Bug（感谢 Aav 报告）
+* Fixed bug in display of device power bonuses on a player Filthy Rag 
+(thanks to Aav for reporting)
 
-* 修复了当玩家取消第一次法术提示时，在戒指玩家身上重复上一个命令的 
-Bug（感谢 bostock 报告）
+* Fixed bug with Repeat Last Command on rings when the player cancelled 
+the first spell prompt (thanks to bostock for reporting)
 
-* 跑步只在第一步检查混乱状态；这已被修复（感谢 Hugo 报告）
+* Running only checked for confusion on the first step; this has been 
+fixed (thanks to Hugo for reporting)
 
-* 修复了剩下的一个百万分之一几率能导致双倍属性提升奖励的漏洞（感谢 Hugo 
-报告）
+* Fixed remaining one-in-a-million loophole that could cause double 
+stat gain rewards (thanks to Hugo for reporting)
 
-* 修复了家里有麻烦 (Trouble at Home) 任务失败信息格式错误的 Bug（感谢 
-Hugo 报告）
+* Fixed malformatted failure message for the Trouble at Home quest 
+(thanks to Hugo for reporting)
 
-* 永久种族改变后装备槽没有重新计算；这已被修复（感谢 clouded 报告）
+* Equipment slots were not recalculated after a permanent race change; 
+this has been fixed (thanks to clouded for reporting)
 
-* 怪物多态变化或进化后，怪物列表子窗口没有正确更新；这已被修复
+* Monster list subwindows did not update properly after monster 
+polymorph or evolution; this has been fixed
 
-* 修复了一个有时导致群体鉴定 (Mass Identify) 消耗不合理电量的 Bug
+* Fixed a bug that sometimes caused Mass Identify to consume an 
+inappropriate amount of charges
 
-* 修复了 online_macros 选项的问题
+* Fixed problems with the online_macros option
 
-* 修复了一些非 Windows 安装下出生菜单视觉效果异常的问题
+* Fixed weirdness with birth menu visuals on some non-Windows 
+installations
 
-* 修复了当戒指吸收了实际上戒指不可用的激活能力时，误导性的“你获得了 X 
-能力”信息
+* Fixed misleading "You have gained the power of X" messages when a 
+ring absorbed an activation not actually available to rings
 
-* 修复了误导性的控心者法术/能力描述
+* Fixed misleading Psion spell/power descriptions
 
-* 长柄武器大师现在只能在成功命中时绊倒对手（正如描述中所声明的那样）
+* Polearm Weaponmasters can now only trip opponents on successful hits 
+(as was already claimed by the description)
 
-* 
-鲜血骑士和鲜血法师变形为无血的无生命生物时，不能再使用魔法，修复了一些异
-常（感谢 ster 指出这一点）
+* Blood-Knights and Blood-Mages can no longer use magic while 
+polymorphed into bloodless nonliving creatures, fixing some weirdness 
+(thanks to ster for pointing this out)
 
-* 堵住了一个漏洞，该漏洞允许通过使用宠物或友方怪物轻松杀死复活机器 
-(Resurrection Machine)（感谢 Aav 和 ster 发现）
+* Plugged an exploit that allowed killing the Resurrection Machine 
+easily by using pets or friendly monsters (thanks to Aav and ster for 
+discovering)
 
-* 
-增加了允许的独特物品铭刻或随机神器名称的最大数量；另外，如果超过限制，现
-在会使用备用紧急名称（感谢 MITZE 触发了这一限制...）
+* Increased the maximum number of distinct object inscriptions or 
+random artifact names allowed; also, an emergency name is now used if 
+the limit is exceeded (thanks to MITZE for triggering the limit...)
 
-* 关于无处可见的怪物的神秘提示信息现在应该发生得更少了
+* Mysterious messages about monsters who are nowhere to be seen should 
+now happen less often
 
-* 吸血攻击造成的伤害不能再超过被吸血怪物的当前 HP
+* Vampiric drain can no longer exceed the HP of the monster being 
+drained
 
-* 略微削弱了玩家九头蛇 (Hydras)（稍微降低了命中加成和生命评级修正值）
+* Nerfed player Hydras a mite (slightly lowered to-hit bonuses and life 
+rating modifier)
 
-* 添加了“仅限近战挑战 (melee challenge)”和“禁止近战挑战 (no-melee 
-challenge)”选项（即“怪物只能被玩家近战伤害”和“怪物不能被玩家近战伤害”）
+* Added "melee challenge" and "no-melee challenge" options (i.e. 
+"monsters can only be damaged by the player's melee" and "monsters 
+cannot be damaged by the player's melee")
 
-* 添加了新选项，将所有被 墨家明器 
-标记为待销毁的物品留在地板上（即使开启了 always_pickup 自动拾取）
+* Added new option to leave on the floor all items marked for 
+destruction by the 墨家明器 (even if always_pickup is on)
 
-* 添加了新选项（默认开启），在旅行时忽略所有已鉴定的物品
+* Added new option (on by default) to ignore all identified items while 
+travelling
 
-* 
-添加了一个选项，可以改变被通缉尸体的奖励发放顺序，从默认的（奖励取决于通
-缉怪物在列表上的位置）更改为基于交出通缉怪物尸体的数量
+* Added an option to change the order in which rewards for wanted 
+corpses are given from the default (reward depends on unique's position 
+on list of wanted uniques) to being based on the number of wanted 
+uniques turned in
 
-* 
-自动拾取条目“items”（又称“拾取所有物品”）现在在物品列表命令的“通缉物品 
-(Wanted 
-Objects)”部分中被忽略（在所有其他情况下该条目仍正常工作）。这允许在关闭 
-always_pickup 的情况下拾取所有物品（这可能是大家想要的，例如避免覆盖 
-墨家明器 自动销毁）而不会弄乱“通缉物品”列表
+* The autopick entry "items" (aka "pick up all items") is now ignored 
+for the purposes of the object list command's Wanted Objects section 
+(in every other case the entry still works normally). This allows 
+picking up all items with always_pickup off (which may be desirable to 
+e.g. not override 墨家明器 autodestruction) without cluttering the 
+Wanted Objects list
 
-* 添加了铁碎棒 (Tetsubo) 和棒球棍 (Baseball Bat) 
-作为棍棒武器大师的偏好武器（感谢 Aav 建议）
+* Added Tetsubo and Baseball Bat as favored weapons for Club 
+weaponmasters (thanks to Aav for suggesting this)
 
-* 
-行走速度修正如“健步如飞”、“怯懦”奖励、“跛行”变异等不再适用于骑乘时（感谢
- Aav 提出）
+* Walking speed modifiers like Fleet of Foot, Craven bonus, Limp 
+mutation etc. no longer apply to riding (thanks to Aav for bringing 
+this up)
 
-* 防止在茶歇模式的黑市中睡觉刷怪 (sleepscumming)（感谢 clouded 提出）
+* Prevented sleepscumming the coffee-break Black Market (thanks to 
+clouded for bringing this up)
 
-* 在茶歇模式下宠物击杀怪物现在能提供加速经验（感谢 clouded 提出）
+* Pet kills now give accelerated XP in coffee-break mode (thanks to 
+clouded for bringing this up)
 
-* “恢复生命 (Restore 
-life)”诅咒法术现在除了恢复属性和经验外还会恢复生命点（感谢 clouded 
-建议）
+* The 'Restore life' Hex spell now restores life points in addition to 
+stats and experience (thanks to clouded for suggesting)
 
-* 库塔 (Kutars) 的“横向膨胀”现在提供与等级无关的 +35 AC，并能与其他临时 
-AC 增益叠加（感谢 Bucephalus 建议）
+* Kutars' Expand Horizontally is now a level-independent +35 AC, and 
+can stack with other temporary AC buffs (thanks to Bucephalus for 
+suggesting)
 
-* 完全改变了长柄武器专精武器大师的“收割 
-(Reaping)”技能；它现在是吸血效果而不是给予幽灵形态 
-(wraithform)，不能再被利用来轻松杀死高 AC 敌人如金属液态史莱姆
+* Completely changed Reaping on Polearm-speciality Weaponmasters; it is 
+now a vampiric effect instead of granting wraithform, and can no longer 
+be exploited to easily kill high-AC enemies such as the Metal Babble
 
-* 
-如果玩家失明或混乱，长柄武器大师针对移动到相邻方格怪物的特殊自动攻击将不
-再起作用
+* Polearm Weaponmasters' special automatic attacks against monsters 
+moving to adjacent squares no longer work if the player is blind or 
+confused
 
-* 玩家六臂蛇魔 (Mariliths) 
-再次被允许使用盾牌（尽管这会让他们感到反胃并且受到严重的近战惩罚）
+* Player Mariliths are allowed to use shields again (although they are 
+icky and penalize melee quite heavily)
 
-* 弃用的怪物种族现在从剧透文件中被省略
+* Deprecated monster races are now omitted from spoiler files
 
-* 附身者向四个主方向发射的光束法术不再毫无用处地越过所有人
+* Possessor ball spells fired in compass directions no longer uselessly 
+overshoot everybody
 
-* 
-禁止骑乘带有母体怪物的怪物（消除了坐骑在母体消失时也会跟着消失的邪恶初见
-杀机制）
+* Disallowed riding monsters with a parent monster (eliminating the 
+evil gotcha mechanic of a mount disappearing when its parent 
+disappeared)
 
-* 如果没有保留旧职业，快速开始 (Quick Start) 
-角色的属性默认分配现在将被重新初始化
+* Stat default allocations are now re-initialized for Quick Start 
+characters if the old class is not retained
 
-* 允许从箭袋中投掷弹药
+* Allowed throwing ammo from the quiver
 
-* 稍微降低了抗性的随机性，尤其是多重抗性
+* Reduced resist randomness somewhat, especially with multiple levels 
+of resistance
 
-* 卓古路因 (Draugluin) 现在可以抵抗混乱
+* Draugluin now resists confusion
 
-* 尝试对不合适的目标使用神器创造卷轴不再消耗该卷轴
+* Trying to use a Scroll of Artifact Creation on an inappropriate 
+target no longer consumes the scroll
 
-* 增强了治疗怪物魔杖
+* Buffed wands of heal monster
 
-* 略微削弱了邪术师 (Warlocks) 和武器大师
+* Nerfed Warlocks and Weaponmasters a bit
 
-* 略微削弱了冥想 (Clear Mind)
+* Nerfed Clear Mind slightly
 
-* 醒神药水不再在城镇商店中生成
+* Potions of Clarity no longer generate in town shops
 
-* 允许使用堆叠中的一件物品作为重铸目标
+* Allowed using an item from a stack as a reforge target
 
-* 允许在瞄准模式下使用 'J' 和 '(' 
-键设置旅行目标；如果我们没有在瞄准法术、装置或投射物，这会自动开始一次新
-的旅行（感谢 Melum 建议）
+* Allowed using the 'J' and '(' keys in targeting mode to set a target 
+for travelling; if we weren't aiming a spell, device or projectile, 
+this automatically begins a new travel (thanks to Melum for suggesting)
 
-* 增加了在列表中显示未来已知种族/职业法术或能力的选项（灵感来自 
-Oposband 并应玩家要求）
+* Added options to display known future race/class spells or powers in 
+lists (inspired by Oposband and requested by players)
 
-* 改编了新 PosChengband 中对奥马拉克 (Omarax) 的重做（感谢 ster 
-提供此建议）
+* Adapted the Omarax rework from new PosChengband (thanks to ster for 
+this suggestion)
 
-* 改进了量身定制物品的生成，不再生成令人反胃的 (icky) ego 
-装备（比如给法师生成会造成妨碍的手套）
+* Improved generation of tailored items to disallow icky egos (such as 
+encumbering gloves on a mage-type)
 
-* 如果玩家同时被等量的加速和减速影响，速度指示器现在将显示为红色（感谢 
-bostock 建议）
+* The speed indicator is now displayed in red if the player is both 
+hasted and slowed in equal amounts (thanks to bostock for suggesting)
 
-* 怪物传说回忆现在会自动将所有已知为不死生物的怪物显示为免疫幽冥 
-(nether) 伤害
+* Monster lore now automatically displays all monsters known to be 
+undead as being immune to nether
 
-* 
-调整了法术熟练度的获取，不鼓励为了熟练度而在安全的角落里反复施放无用的法
-术
+* Tweaked spell proficiency gain to discourage repeatedly casting 
+useless spells in safe nooks for proficiency
 
-* 
-被魔法吞噬者吸收的带有铭刻的装置现在会保留其铭刻；此外，如果带有铭刻的装
-置被替换，旧装置的铭刻可以很容易地复制到新装置上
+* Inscribed devices absorbed by a Magic-Eater now retain their 
+inscriptions; also, if an inscribed device is replaced, the old 
+device's inscription can be easily copied to the new device
 
-* 恢复法力药水不再为被魔法吞噬者吸收的装置重新充能
+* Restore Mana no longer recharges devices absorbed by a Magic-Eater
 
-* 水、岩浆和核废料池现在会掩盖玩家赛博恶魔震天动地的脚步声
+* Water, lava and nukage pools now muffle the earth-shaking steps of 
+player Cyberdemons
 
-* 
-重新缩放了种族/职业/性格表中的技能描述（现在的总体规则是中等技能被描述为
-“一般 (fair)”，并且差异应该清晰但不会太夸张）
+* Rescaled skill discriptions in race/class/personality tables (the 
+general rule now is that average skills are described as "fair", and 
+differences should be clear without being too exaggerated)
 
-* 控心者 (Psionic) 的限时状态效果在耗尽时如果 disturb_state 
-选项开启，现在会打断休息和旅行（与以前的其他限时效果相同）
+* Psionic timed effects now disturb rest and travelling on running out 
+if the disturb_state option is on (the same way other timed effects 
+already did)
 
-* 允许控心者在不消耗回合的情况下取消任意门和心灵旅行
+* Allowed Psions to cancel Dimension Door and Psionic Travel without 
+spending a turn
 
-* 狼人和其他变形者现在可以在背包里的物品上使用“脱下 (take off)”命令
+* Werewolves and other shapeshifters can now use the "take off" command 
+on satchel items
 
-* Roguelike 的移动键 'j' 和 'k' 现在可用于在怪物和物品列表中移动（感谢 
-bostock 建议）
+* The roguelike movement keys 'j' and 'k' can now be used for movement 
+in the monster and object lists (thanks to bostock for suggesting)
 
-* 改进了对玩家姓名中数字和罗马数字的处理
-- 快速开始时，如果可能的话数字现在会自动加 1
-- 如果当前世代没有偏好文件，游戏现在会寻找具有较小数字的角色的偏好文件
+* Improved handling of numbers and Roman numerals in player names
+- numerals are now automatically bumped by 1 on quick-start if possible
+- the game now looks for pref files of characters with lower numerals 
+if no pref files are present for the current incarnation
 
-* 改进了 墨家明器 销毁器的功能
-- 在怪物上寻找 pickpref-[职业名称].prf 或 pickpref-[种族名称].prf（感谢 
-grodrigues 建议）
-- 寻找 pickpref-UserDefault.prf（本地默认拾取偏好）
-- 允许将当前偏好另存为（感谢 grodrigues 和 OmniNegro 建议）
-- 首次激活 墨家明器 时会在背包物品上生成铭刻（如果在出生时 墨家明器 
-已激活则在出生时生成）
-- 应用改进的处理玩家姓名中数字和罗马数字的功能
+* Improved 墨家明器 functionality
+- look for pickpref-[classname].prf, or pickpref-[racename].prf on 
+monsters (thanks to grodrigues for suggesting this)
+- look for pickpref-UserDefault.prf (local default pickprefs)
+- allowed Save As of current preferences (thanks to grodrigues and 
+OmniNegro for suggesting this)
+- inscribe pack objects when 墨家明器 is first activated (at birth 
+if 墨家明器 is active from the beginning)
+- apply the improved handling of numbers and Roman numerals in player 
+names
 
-* 在帮助中按 '!' 现在总是返回帮助主页
+* Pressing '!' in the help now always returns to the help main page
 
-* 允许在怪物列表中高亮显示宠物和友方怪物（默认开启；感谢 bostock 建议）
+* Allowed highlighting pets and friendly monsters in monster lists (on 
+by default; thanks to bostock for suggesting)
 
-* 改进了宠物/友方怪物的 AI
-- 宠物不再那么频繁地撞到玩家
-- 修复了光束法术的友军误伤
-- 修复了萨鲁曼灵能长枪的友军误伤
-- 如果已经指定了目标怪物，宠物现在会更积极和智能地寻路
+* Improved pet/friendly monster AI
+- pets no longer bump into the player so often
+- fixed friendly fire from bolts
+- fixed friendly fire from Saruman's psycho-spears
+- pets now pathfind more aggressively and intelligently if a target 
+monster has been specified
 
-* 各种微小的调整和代码改进
+* Various minor tweaks and code improvements
 
 -------------------------------------------------------
 
 
-<a name="chocolate"></a></font><font color="#ff0000">RoguelikeFansBand 7.1.chocolate </font><font color="#ffffff">的更新日志：
+<a name="chocolate"></a>Changes in </font><font color="#ff0000">RoguelikeFansBand 7.1.chocolate</font><font color="#ffffff">:
+
+* Added a new player class (Disciples; which are essentially three 
+classes rolled in one, because the three subclasses don't have much in 
+common)
+
+* Made quest lines less predictable (many quests now have an 
+alternative version that can take the place of the original; some of 
+the substitutes are simply different versions of the same basic quest, 
+but most are connected only through similar rewards and themes, and a 
+few are completely unrelated)
+
+* Added two new player races (Tomte and Beorning), one new player 
+monster race (Pumpkin) and three new personalities (Fragile, Sneaky and 
+Noble; thanks to emulord for suggesting Noble)
 
-* 添加了一个新的玩家职业（信徒 
-Disciples；它实际上是把三个职业合并在一起，因为它的三个子职业没有多少共
-同点）
+* Added many new random artifact names; also, random body armour, 
+shield, glove, boot, cloak and helm artifacts now sometimes pull their 
+names from a sub-list specific to their slot
 
-* 
-让任务线变得没那么可预测（许多任务现在都有可以替代原任务的替代版本；一些
-替代任务仅仅是同一基础任务的不同版本，但大多数任务只是在相似的奖励和主题
-上有关联，还有少数是完全无关的）
+* Added/re-added several options related to level generation
+- option to modify the level size algorithm (can take any of 13 values, 
+from "always tiny" to "always huge", allowing all players to pick their 
+preferred level size and to experiment)
+- option to have all rooms generate as vaults (greater vaults unless 
+one of the two smallest level size options is used)
+- option to increase monster density on small levels to match the 
+density in old versions of PosChengband
+- option to allow small levels even in dungeons with the "big" flag 
+(with the exception of Arena)
+- option to sometimes reshape levels with an extreme width-to-height 
+ratio
 
-* 添加了两个新玩家种族（托姆特 Tomte 和换皮人 
-Beorning），一个新玩家怪物种族（南瓜 Pumpkin）和三个新性格（脆弱 
-Fragile、鬼祟 Sneaky 和高贵 Noble；感谢 emulord 建议高贵）
+* Added "thrall mode" option (player starts on level 90, with a few 
+extra items to make survival possible; inspired by FAangband and other 
+variants with similar options)
 
-* 
-添加了许多新的随机神器名称；另外，随机的身体护甲、盾牌、手套、靴子、披风
-和头盔神器现在有时会从特定于它们装备槽的子列表中提取名称
+* Some key consumables are now guaranteed to generate in shops at birth
 
-* 添加/重新添加了几个与楼层生成相关的选项
-- 修改楼层尺寸算法的选项（可以采用从“总是极小”到“总是巨大”的 13 
-个值中的任何一个，允许所有玩家挑选他们喜欢的楼层尺寸并进行实验）
-- 拥有让所有房间都作为金库房间 (vault) 
-生成的选项（除非使用了两个最小的楼层尺寸选项之一，否则大多会生成大金库 
-(greater vaults)）
-- 增加小楼层上怪物密度的选项，以匹配旧版本 PosChengband 中的密度
-- 即使在带有“巨大 
-(big)”标签的地下城（除竞技场外）中也允许生成小楼层的选项
-- 有时以极端的宽高比重塑楼层形状的选项
+* Plugged holes in input flushing after casting/device failures
 
-* 增加了“奴隶模式 (thrall mode)”选项（玩家从地下城 90 
-层开始，带有一些额外的物品以确保可能存活；灵感来自 FAangband 
-以及具有类似选项的其他变体版）
+* Orc shamans crashed on casting attempts due to a missing magic 
+descriptor (a rage-mage hack I added shortly before the 7.1.toffee 
+release made this bug a lot more serious); this has been fixed (thanks 
+to aban for reporting)
 
-* 一些关键的消耗品现在保证会在开局的商店中生成
+* Monsters seen through fuzzy telepathy still appeared as "Monster" on 
+the tombstone; this has been fixed
 
-* 堵住了施法/使用装置失败后输入刷新的漏洞
+* Level feelings did not work properly with munchkin pseudo-ID; this 
+has been fixed
 
-* 兽人萨满由于缺少魔法描述符而在尝试施法时崩溃（在 7.1.toffee 
-版本发布前不久我添加的一个狂怒法师代码黑客行为使得这个 Bug 
-变得严重得多）；这已被修复（感谢 aban 报告）
+* Fixed an old PosChengband bug that allowed non-Burglary rogues to 
+learn the Burglary realm during the game (thanks to Tiltorax for 
+reporting)
 
-* 通过模糊心灵感应看到的怪物在墓碑上仍然显示为“Monster”；这已被修复
+* Bowmasters' Readied Shot caused strange and undesirable results when 
+triggered by an exploding monster; this has been fixed (thanks to Aav 
+for reporting)
 
-* 楼层感应在龙傲天 (Munchkin) 性格的伪鉴定中无法正常工作；这已被修复
+* Questors were not marked correctly in a random quest for chameleons; 
+this has hopefully been fixed
 
-* 修复了旧版 PosChengband 中的一个 Bug，该 Bug 允许非行窃 (Burglary) 
-领域的盗贼在游戏过程中学习行窃领域法术（感谢 Tiltorax 报告）
+* Archaeologists sometimes inappropriately received the "You feel you 
+are leaving something special behind" message (thanks to Draghmar for 
+reporting)
 
-* 弓箭大师的“准备射击 (Readied 
-Shot)”被爆炸的怪物触发时会导致奇怪且不良的结果；这已被修复（感谢 Aav 
-报告）
+* Deaths from unusual sources like traps and exploding mirrors were not 
+listed correctly (thanks to bostock for reporting)
 
-* 变色龙的随机任务中任务守卫没有被正确标记；这希望已经被修复了
+* Spell points were sometimes temporarily displayed incorrectly after a 
+spell was cancelled; this should be fixed now (thanks to bostock for 
+prompting)
 
-* 
-考古学家有时会不合时宜地收到“你觉得你留下了一些特别的东西”的提示信息（感
-谢 Draghmar 报告）
+* If a unique monster's clone was killed in the Monster Arena, the 
+unique itself was erroneously marked dead; this has been fixed (thanks 
+to the player who reported this - unfortunately I've forgotten who it 
+was)
 
-* 来自不寻常来源（如陷阱和爆炸的镜子）的死亡没有被正确列出（感谢 
-bostock 报告）
+* With a quest for non-unique monsters, summoning a pet of the target 
+species counted as a kill towards the quest's goal; this has been fixed 
+(thanks to bostock for reporting)
 
-* 取消施法后，法力值有时会暂时显示错误；这现在应该已经修复了（感谢 
-bostock 提醒）
+* Some monster spells were inappropriately inaccessible on Possessors 
+because they required mana but the monster's pseudo-class had no mana; 
+this has been fixed (thanks to clouded for reporting)
 
-* 如果一个 Unique 的克隆体在怪物竞技场被杀死，这个 Unique 
-本身也会被错误地标记为已死；这已被修复（感谢报告此问题的玩家——不幸的是我
-忘了是谁）
+* For players who had permanently race-polymorphed, the character sheet 
+sometimes listed inaccurate previous races; this has been fixed (thanks 
+to MITZE and Thraalbee for reporting)
 
-* 对于非 Unique 
-怪物的任务，召唤一只目标物种的宠物也会算作完成任务的击杀；这已被修复（感
-谢 bostock 报告）
+* Fixed a bug reported by Hugo (picking up items only sometimes 
+consumed time) by making picking up items never consume time
 
-* 
-附身者不合时宜地无法使用一些怪物法术，因为这些法术需要法力值，但该怪物的
-伪职业没有法力值；这已被修复（感谢 clouded 报告）
+* Directions could be given for collapsed dungeon entrances; this has 
+been fixed (thanks to bostock for reporting)
 
-* 
-对于永久种族多态变化的玩家，角色属性表上有时会列出不准确的先前种族；这已
-被修复（感谢 MITZE 和 Thraalbee 报告）
+* Artifact Feanorian Lamps were described as giving light with radius 
+3, but actually had radius 2; fixed by buffing the actual radius 
+(thanks to MITZE for reporting)
 
-* 修复了 Hugo 报告的一个 
-Bug（捡起物品只有在某些时候才消耗时间），改为捡起物品绝不消耗时间
+* Quickwalking characters with a low poison counter could walk 
+indefinitely without incurring any poison damage; this has been fixed 
+(thanks to Oneiron for reporting)
 
-* 在坍塌的地下城入口也能给出目标方向提示；这已被修复（感谢 bostock 
-报告）
+* Game-initial pets for Cavalry and Beastmasters were not placed 
+properly due to outdated assumptions in the code; this has been fixed 
+(thanks to Mitternatch for reporting)
 
-* 费诺的提灯 (Feanorian Lamps) 神器被描述为提供半径 3 
-的光照，但实际只有半径 2；通过加强实际半径修复了此问题（感谢 MITZE 
-报告）
+* Fixed several crashes/infinite loops with Berserkers getting 
+stat-drained (thanks to SethaWetha and Marty for reporting)
 
-* 
-具有快速行走能力且中毒计数器很低的角色可以无限行走而不会受到任何毒素伤害
-；这已被修复（感谢 Oneiron 报告）
+* Travelling ignored confusion; this has been fixed (thanks to bostock 
+for reporting)
 
-* 
-由于代码中过时的假设，骑兵和驯兽师开局自带的宠物没有被正确放置；这已被修
-复（感谢 Mitternatch 报告）
+* Autoget could get stuck in a loop trying to destroy artifacts; this 
+has been fixed (thanks to bostock for reporting)
 
-* 修复了狂战士被吸取属性时发生的几次崩溃/无限循环（感谢 SethaWetha 和 
-Marty 报告）
+* Fixed duplication of displayed dragon realm stat modifiers during 
+character creation (thanks to TauzentBlitz for reporting)
 
-* 自动旅行忽略了混乱状态；这已被修复（感谢 bostock 报告）
+* Alchemists who died with a heroism buff on could have that buff carry 
+over to their next incarnation; this has been fixed (thanks to 
+Wolpertinger for reporting)
 
-* 自动拾取 (Autoget) 可能会在试图销毁神器的循环中卡住；这已被修复（感谢 
-bostock 报告）
+* It was possible to die with positive HP if the player was 
+posthumously cured by a chaos patron; this can no longer happen (thanks 
+to Hugo for reporting)
 
-* 修复了创建角色时重复显示龙之领域属性修饰符的 Bug（感谢 TauzentBlitz 
-报告）
+* Recall dungeons were improperly initialized at birth, allowing 
+no-wilderness characters to recall to Warrens in some circumstances; 
+this has been fixed (thanks to Hugo for prompting me to discover this 
+bug)
 
-* 带着英雄气概 (heroism) 
-增益死亡的炼金术士可能会将该增益带到他们的下一世；这已被修复（感谢 
-Wolpertinger 报告）
+* Hex auras and Bard songs processed immediately on entering a new 
+level, allowing players to hurt following monsters repeatedly with no 
+retaliation; this has been fixed (thanks to Gwarl for reporting)
 
-* 如果玩家在死后被混沌赞助神治愈，就有可能以正 HP 
-死亡；这不会再发生了（感谢 Hugo 报告）
+* Some unusual situations (at least in Labyrinth) caused the game to 
+plot travel routes through undiscovered secret doors; this has been 
+fixed
 
-* 回城地下城在出生时初始化不当，使得在某些情况下关闭荒野 
-(no-wilderness) 的角色可以回城到兽穴 (Warrens)；这已被修复（感谢 Hugo 
-促使我发现这个 Bug）
+* Entrance guardians were not marked dead if killed by other monsters 
+(including pets); this has been fixed
 
-* 
-诅咒灵气和吟游诗人的歌曲在进入新楼层时立即处理，允许玩家反复伤害跟随着玩
-家下楼的怪物而不受反击；这已被修复（感谢 Gwarl 报告）
+* Item curse memory was not wiped for some unusual methods of 
+uncursing, causing non-existent curses to be displayed on inspection; 
+this has been fixed
 
-* 一些不寻常的情况（至少在迷宫 Labyrinth 
-中）导致游戏在未发现的秘密门中规划旅行路线；这已被修复
+* Character dumps through the high score list had weird turncount 
+indicators; this has been fixed (though not retroactively, so the 
+weirdness will persist for retired characters)
 
-* 
-如果入口守卫被其他怪物（包括宠物）杀死，它将不会被标记为死亡；这已被修复
+* Fixed a bug that sometimes allowed characters with chaos patrons to 
+select more than one stat-up on reaching a level divisible by five
 
+* Fixed missing burden checks after destroying items or equipping ammo 
+straight from the floor
 
-* 
-物品诅咒记忆对某些不寻常的解除诅咒方法没有被清除，导致检查时显示不存在的
-诅咒；这已被修复
+* If multiple chests were piled on the same square, only one of them 
+was accessible to the "disarm" and "open" commands; this has been fixed
 
-* 
-高分榜列表中的角色转储有奇怪的回合数指标；这已被修复（但没有追溯效力，所
-以对于退役的角色来说这种奇怪现象将继续存在）
+* Hopefully fixed bug with Politicians sometimes randomly crashing at 
+game start (I'm not 100% sure about this; if it still happens, please 
+report)
 
-* 
-修复了一个有时允许有混沌赞助神的角色在达到可被五整除的等级时选择多个属性
-提升的 Bug
+* Tweaked Nibelungs (they now have different bonuses, slightly lower 
+life rating and melee, and a lower XP modifier)
 
-* 修复了在直接从地板上摧毁物品或装备弹药后遗漏负重检查的问题
+* Skillmasters are no longer allowed to pick the Weapon Versatility 
+demigod talent (they received no benefits from it anyway, so this just 
+protects them from picking a useless talent)
 
-* 
-如果多个宝箱堆在同一个方格上，只有其中一个宝箱可以接受“解除陷阱”和“打开”
-命令；这已被修复
+* Werewolf psions can no longer change shape with Graft Weapon active 
+(thanks to MITZE for suggesting). Also, using Graft Weapon requires an 
+actual weapon
 
-* 希望修复了政客在游戏开始时有时会随机崩溃的 Bug（对此我不是 100% 
-确定；如果仍然发生，请报告）
+* Doppelganger shape changes no longer reset visuals (thanks to clouded 
+for suggesting this)
 
-* 调整了尼伯龙根人 
-(Nibelungs)（他们现在有不同的加成，稍微降低了生命评级和近战，以及更低的
-经验修正值）
+* Mimics and Possessors no longer get permanently gender-swapped by 
+temporarily mimicking/possessing a monster of the opposite sex (thanks 
+to Oneiron for suggesting this)
 
-* 技能大师 (Skillmasters) 不再被允许挑选“武器多面手 (Weapon 
-Versatility)”半神天赋（反正他们从中也得不到任何好处，这只是保护他们不去
-选一个无用的天赋）
+* Pets and friendly monsters no longer receive XP for killing other 
+pets or friendly monsters
 
-* 狼人控心者在激活嫁接武器 (Graft Weapon) 时不能再改变形状（感谢 MITZE 
-建议）。此外，使用嫁接武器需要一把实际的武器
+* Various class-specific attacks that cancel if an empty square is 
+attacked now always consume time if the player is blind (preventing the 
+player from attacking each square in turn until he finds one with a 
+monster in it)
 
-* 变形者 (Doppelganger) 改变形状不再重置视觉效果（感谢 clouded 
-提出此建议）
+* Being immune to charge draining now also protects from food draining
 
-* 模仿者和附身者 (Mimics and Possessors) 
-不再因为暂时模仿/拥有异性怪物而被永久改变性别（感谢 Oneiron 
-提出此建议）
+* Characters who die during the postgame no longer lose their Winner 
+status
 
-* 宠物和友方怪物杀死其他宠物或友方怪物不再获得 XP
+* Nerfed recharging somewhat
+- Staves of Restore Mana can no longer be recharged with spells or 
+devices
+- Blood-Mage damage from recharging spells now ignores invulnerability
+- Failed attempts to recharge a device from SP/HP now empty the target 
+device completely
 
-* 
-各种在攻击空方块时会被取消的职业特定攻击现在总是会消耗时间（如果玩家处于
-失明状态），以防止玩家依次攻击每个方块直到找到里面有怪物的一个
+* Politicians' probing/background check now also displays the 
+probability of successfully charming a monster with the current buffs 
+active
 
-* 免疫被吸取法杖充能现在也能防止被吸取食物
+* Reduced Hezrou and Barbazu group sizes a bit
 
-* 在通关后游戏中死亡的角色不再失去他们的赢家 (Winner) 状态
+* Slightly buffed player Filthy Rags
 
-* 一定程度上削弱了重新充能
-- 恢复法力法杖不再能用法术或装置重新充能
-- 鲜血法师通过充能法术造成的伤害现在无视无敌状态
-- 试图用 SP/HP 为一个装置充能失败时，现在会完全清空目标装置
+* Added new command (H in the regular keyset, ^E in the roguelike 
+keyset) for travelling to the nearest unidentified wanted item
 
-* 
-政客的探测/背景检查现在还会显示在当前增益激活的情况下，成功魅惑一个怪物
-的概率
+* The game now allows easy switching of ring fingers, and automatically 
+suggests doing so if it detects a combat/weaponmastery ring and a 
+non-combat ring being equipped the wrong way around. The easy switch 
+can be triggered either from the automatic prompt or by pressing 'W' 
+(regular keyset only), and costs no time
 
-* 稍微减少了狂战魔 (Hezrou) 和须魔 (Barbazu) 的群组规模
+* Potions of Restoring now also restore life levels
 
-* 稍微加强了玩家“肮脏的破布”
+* Tweaked Duelists a bit
+- the damage numbers on the character sheet are now more indicative
+- very weak monsters are no longer automatically challenged
+- retaliating against a monster no longer automatically challenges
+- slightly reduced top-end damage from Greater Wounding
+- Phase Charge is now slightly more expensive
+- removed the Nemesis effect
+- the weight limit formula is now more permissive in the early game and 
+less permissive in the late game
 
-* 添加了新命令（常规键位下的 H，Roguelike 键位下的 
-^E）用于旅行到最近的未鉴定通缉物品
+* Finishing Heaven is now a bit more interesting (adapted from 
+Frogspawn) (thanks to ster for testplaying and feedback)
 
-* 
-游戏现在允许轻松切换戒指佩戴的手指，如果检测到战斗/武器精通戒指和非战斗
-戒指装反了，游戏会自动建议这样做。简单切换既可以通过自动提示触发，也可以
-通过按 'W'（仅限常规键位）触发，并且不花费任何时间
+* Tweaked Rune-Knights a bit
 
-* 属性恢复药水现在除了恢复属性外还会恢复生命等级
+* Improved travel routing in areas with deep water and/or lava
 
-* 稍微调整了决斗者 (Duelists)
-- 角色面板上的伤害数值现在更具指示性
-- 非常弱的怪物不再自动被挑战
-- 反击怪物不再自动挑战
-- 略微降低了强效创伤 (Greater Wounding) 的高端伤害
-- 相位冲锋 (Phase Charge) 现在稍微更昂贵了一些
-- 删除了宿敌 (Nemesis) 效果
-- 负重限制公式现在在游戏早期更加宽松，在游戏后期更加严格
+* Increased the tunnelling bonus on shovels and picks
 
-* 完善天堂 (Heaven) 任务现在变得更有趣了一些（改编自 Frogspawn）（感谢 
-ster 帮忙测试并提供反馈）
+* Added a text display option to show device power in inventories if 
+known (copied from Composband)
 
-* 稍微调整了符文骑士 (Rune-Knights)
+* Added a disturbance option to alert when a wanted unique is killed 
+(thanks to Bucephalus for suggesting)
 
-* 改进了深水和/或岩浆区域的旅行路线规划
+* Added a disturbance option (on by default) to alert when the poison 
+counter is dangerously high (thanks to ster for suggesting)
 
-* 增加了铲子和镐的挖掘加成
+* Equipping an item with Auto-Identify now identifies all unidentified 
+items in your inventory (including itself)
 
-* 添加了文本显示选项，如果已知的话则在背包清单中显示装置法力值（复制自 
-Composband）
+* Allowed inscribing an item with '!1' to notify when it has 1 charge, 
+and '!!1' to notify when it's either fully recharged or has 1 charge 
+(thanks to wobbly for suggesting)
 
-* 增加了一个提示扰动选项，当通缉的 Unique 被杀死时发出警报（感谢 
-Bucephalus 建议）
+* Allowed use-ID'ing fear vulnerability on equipment (thanks to wobbly 
+for suggesting)
 
-* 
-增加了一个提示扰动选项（默认开启），当中毒计数器危险地高时发出警报（感谢
- ster 建议）
+* Reserving cheap objects is no longer hideously expensive
 
-* 
-装备带有自动鉴定的物品现在会鉴定你背包中所有未鉴定的物品（包括它自己）
+* Tunnelling attempts are no longer automatically repeated if the 
+attempt is completely futile
 
-* 允许用 '!1' 铭刻物品以在它只有 1 次充能时通知，用 '!!1' 
-在它完全充满或只有 1 次充能时通知（感谢 wobbly 建议）
+* Opening doors no longer disturbs travelling
 
-* 允许通过使用来鉴定装备上的恐惧易伤缺陷（感谢 wobbly 建议）
+* Updated the in-game FAQ
 
-* 预订便宜的物品不再贵得离谱了
-
-* 如果挖掘尝试完全徒劳，则挖掘尝试不再自动重复进行
-
-* 开门不再打断旅行
-
-* 更新了游戏内 FAQ
-
-* 各种微小的调整和代码改进
+* Various minor tweaks and code improvements
 
 -------------------------------------------------------
 
 
-<a name="toffee"></a></font><font color="#ff0000">RoguelikeFansBand 7.1.toffee </font><font color="#ffffff">的更新日志：
+<a name="toffee"></a>Changes in </font><font color="#ff0000">RoguelikeFansBand 7.1.toffee</font><font color="#ffffff">:
 
-* 随机的戒指和护身符神器现在偶尔会生成了
+* Random ring and amulet artifacts can now generate occasionally
 
-* 在阿南巴 (Anambar) 增加了一个提供银行和保险服务的新建筑
+* Added a new building in Anambar offering banking and insurance 
+services
 
-* 地下城入口现在更容易找到了
+* Dungeon entrances are now easier to locate
 
-* 增加了两个新的可玩怪物种族（兽人 Orc，肮脏的破布 Filthy Rag）
-[特别感谢所有帮我测试肮脏的破布的人！它们仍处于 Beta 
-阶段，因为我真的不知道破布的终局游戏会是什么样子。此外，大家都应该得到一
-个公平的警告，它们……不是很强，至少在游戏早期不强]
+* Added two new playable monster races (Orc, Filthy Rag)
+[Special thanks to everyone who helped me play-test filthy rags! They 
+are still a bit beta though because I don't really know what rag 
+endgame is like. Also, everybody should get a fair warning that they 
+are... not very strong, at least not in the early game]
 
-* 增加了一个新的可玩普通种族（Boit）
+* Added one new playable normal race (Boit)
 
-* 添加了新物品、ego 类型、神器和怪物
+* Added new objects, ego types, artifacts and monsters
 
-* 添加了新的随机神器名称
+* Added new random artifact names
 
-* 相同类型的多个玩家灵气现在可以堆叠以造成额外伤害
+* Multiple player auras of the same type can now stack for extra damage
 
-* 
-启用了种族/职业/变异能力的粘性标签（将一个能力永久附加到一个字母上，类似
-于 @ 铭刻对物品的作用）
+* Enabled sticky labels for race/class/mutation powers (permanently 
+attaching a power to one letter, similarly to what @ inscriptions do 
+for items)
 
-* 
-更新了竞技场对手名单（增加了幽灵霸王龙、木乃伊国王和不净者；远古炎魔根据
-其高额原生深度会在稍后才出现）。还调整了高端对手掉落的奖励
+* Updated the list of Arena opponents (spectral tyrannosaurus, mummy 
+king and great unclean one added; greater balrog appears much later in 
+accordance with its high native depth). Also tweaked the rewards 
+dropped by top-end opponents
 
-* 使抗性的减伤效果随机性稍微降低
+* Made damage reduction from resistances somewhat less random
 
-* 改变了割伤 (cut) 
-伤害的运作方式。伤害总额保持不变，但会更平均地承受（例如，玩家不会在第一
-回合承受 100 伤害然后在下一回合承受 0 伤害，而是会在两回合都承受 50 
-伤害）；并且不再会发生没有机会先治愈割伤就遭遇不幸的“瞬间流血致死”的情况
+* Changed how cut damage works. The total amount of damage remains the 
+same, but it is suffered more evenly (e.g. instead of taking 100 damage 
+one turn and 0 damage the turn after, the player will take 50 damage on 
+both turns); and unlucky "instableeding" with no opportunity to cure 
+the cut first can no longer happen
 
+* Changed orc colours to make uniques, warlords and sappers stand out 
+more
 
-* 更改了兽人的颜色，使 Unique、军阀和工兵更加显眼
+* Weaponsmiths can now improve equipped items without having to unequip 
+them
 
-* 武器匠现在可以强化已装备的物品，而不必先将它们脱下
+* Nappa the Saiyan resists confusion now
 
-* 赛亚人那巴 (Nappa the Saiyan) 现在可以抵抗混乱了
+* Many high-level demons now resist nether
 
-* 许多高级恶魔现在抵抗幽冥 (nether) 伤害
+* Polyphemus can now clear his head (some people seemed to be under the 
+impression that he already had this ability, convincing me that he 
+ought to)
 
-* 波吕斐摩斯 (Polyphemus) 
-现在可以冥想清醒头脑了（有些人似乎有他已经具备这种能力的错觉，这使我确信
-他应该有）
+* Leprechaun fanatics now do bomb damage (adapted from Frogspawn), 
+which can be resisted through rShard and rSound, instead of 
+unresistable raw damage
 
-* 矮妖狂热者 (Leprechaun fanatics) 现在会造成炸弹伤害（改编自 
-Frogspawn），它可以通过破片抗性 (rShard) 和声音抗性 (rSound) 
-来抵抗，而不是无法抵抗的真实伤害
+* Increased the chance of deep Angband levels being small (and reduced 
+their average size when they do generate as small)
 
-* 增加了深层 Angband 
-楼层变为小型楼层的几率（并在生成为小型时减小了它们的平均尺寸）
+* Destruction no longer works in Witch Wood (because it's outdoors)
 
-* 毁灭 (Destruction) 法术在女巫森林 (Witch Wood) 
-中不再生效（因为那里在户外）
+* Confusion now takes priority over stunning for monster health-bar 
+colouring
 
-* 在怪物血条颜色标识中，混乱状态现在的优先级高于震慑状态
+* Tweaked item valuation a bit
+- some devices, notably Staves of Healing and Staves of Destruction, 
+are worth more now
+- tweaked pval valuation, for most pvals the change is minimal, but 
+items with pvals of 1 and 2 are worth a bit more now
+- auras are worth a bit more now that they can stack
+- off-weapon vampirism brands had no score value; this has been fixed
+- off-amulet anti-magic no longer has a negative effect on the item's 
+value
+- valuation of activations now accounts for timeout length
+- fixed some weirdness with valuation of vulnerabilities
 
-* 稍微调整了物品估值
-- 一些装置，尤其是治疗法杖和毁灭法杖，现在更值钱了
-- 调整了 pval 估值，对于大多数 pval 变化微乎其微，但具有 1 和 2 的 pval 
-的物品现在值钱一点了
-- 灵气现在可以堆叠，因此稍微更值钱了
-- 武器之外的吸血属性附加没有计分价值；这已被修复
-- 护身符之外的反魔法不再对物品价值有负面影响
-- 激活能力的估值现在考虑了冷却时间的长度
-- 修复了一些关于易伤缺陷估值的异常
+* Fixed an old PosChengband bug that sometimes caused artifacts to be 
+permanently lost with no chance to ever find them at all (thanks to 
+bostock for reporting)
 
-* 修复了旧版 PosChengband 的一个 Bug，该 Bug 
-有时会导致神器永久丢失且再也没有机会找到（感谢 bostock 报告）
+* Fixed a bug with ESP Living not use-IDing properly
 
-* 修复了一个使用活物感应 (ESP Living) 无法正确在游戏内鉴定的 Bug
+* Fixed a loophole to anti-scumming item/gold drop limits
 
-* 修复了反刷怪物品/金币掉落限制的漏洞
+* Fixed generation of standarts from chests (previously, standart 
+generation depended on the level at which the chest was opened, while 
+generation of all other chest objects depended on the level of the 
+chest itself)
 
-* 修复了从宝箱中生成标准神器 (standarts) 
-的问题（以前，标准神器的生成取决于宝箱被打开时的楼层深度，而所有其他宝箱
-物品的生成取决于宝箱自身的深度）
+* Ammo breakage chances are now displayed correctly for snipers 
+browsing a sniping shot (thanks to TauzentBlitz for reporting)
 
-* 对于正在浏览狙击射击情况的狙击手 
-(snipers)，弹药破损几率现在显示正确了（感谢 TauzentBlitz 报告）
+* Fixed some weirdness with throwing calculations (thanks to 
+TauzentBlitz for reporting)
 
-* 修复了有关投掷计算的一些异常（感谢 TauzentBlitz 报告）
+* Fixed a number of closely related information leaks with unidentified 
+scrolls and potions (thanks to mewmew for reporting)
 
-* 修复了许多关于未鉴定卷轴和药水密切相关的信息泄露问题（感谢 mewmew 
-报告）
+* Some high-level monsters were missing the FORCE_SLEEP flag, allowing 
+them to immediately cast spells or breathe on the player when summoned; 
+this has been fixed
 
-* 一些高等级怪物缺少了强制睡眠 (FORCE_SLEEP) 
-标志，允许它们在被召唤出来时立刻对玩家施法或喷吐；这已被修复
+* Fixed a bug with scrolling in the object list while using the S 
+toggle
 
-* 修复了在使用 S 键切换时滚动查看物品列表的 Bug
+* Fixed a number of minor issues with the town of Thalos (item 
+recharging services were advertised but no longer truly available; two 
+buildings offered the same services, and a Thieves' Guild was specified 
+but had no location; it has now taken over one of the redundant 
+buildings)
 
-* 修复了萨洛斯 (Thalos) 
-镇的一些小问题（宣传有物品充能服务，但实际上不再提供；两座建筑提供了相同
-的服务，以及虽然指定了盗贼公会 (Thieves' Guild) 
-但没有为其分配位置；现在它接管了其中一座多余的建筑）
+* Fixed an infinite loop with Berserkers getting brain-smashed (thanks 
+to floatRand for reporting)
 
-* 修复了狂战士头部受到猛击时的一个无限循环问题（感谢 floatRand 报告）
+* The Bard invulnerability song "Fingolfin's Challenge" did not consume 
+an extra turn when the invulnerability ended; this has been fixed 
+(thanks to bostock for reporting)
 
-* 吟游诗人的无敌歌曲“芬国昐的挑战 (Fingolfin's 
-Challenge)”在无敌结束时没有消耗额外的回合；这已被修复（感谢 bostock 
-报告）
+* Fixed a bug with friendly fire from ancient dragons (thanks to 
+TauzentBlitz and Benly for reporting)
 
-* 修复了关于远古龙友军误伤的 Bug（感谢 TauzentBlitz 和 Benly 报告）
+* It was still possible for nexus effects to teleport the player out of 
+a dungeon quest level; this has been fixed (thanks to Oneiron for 
+reporting)
 
-* 星界传送效果仍然有可能将玩家传出地下城任务楼层；这已被修复（感谢 
-Oneiron 报告）
+* Player Rings could potentially conquer a single dungeon multiple 
+times; this has been fixed (thanks to Oneiron for reporting)
 
-* 玩家戒指有可能多次征服同一个地下城；这已被修复（感谢 Oneiron 报告）
+* Rage-Mages received a class bonus to spell capacity but were missing 
+the corresponding flag; this has been fixed (thanks to MITZE for 
+reporting)
 
-* 狂怒法师获得了法术容量的职业加成，但缺少相应的标志；这已被修复（感谢 
-MITZE 报告）
+* Fixed further travelling-related infinite or unintendedly lengthy 
+loops (thanks to bostock for reporting)
 
-* 进一步修复了与旅行相关的无限或意外冗长的循环（感谢 bostock 报告）
+* Fixed weird message when a named pet evolved (thanks to vertigo for 
+reporting)
 
-* 修复了具名宠物进化时的奇怪提示信息（感谢 vertigo 报告）
+* Fixed a bug that sometimes allowed summoning multiple copies of the 
+real unique in the Cloning Pits if enough of the clones were killed 
+first (thanks to Philip for reporting)
 
-* 修复了一个 Bug，该 Bug 有时允许在克隆人巢穴 (Cloning Pits) 
-杀死足够多克隆体的情况下，召唤出多个真正的 Unique 的副本（感谢 Philip 
-报告）
+* Fixed a bug with Endless Quiver behavior when combined with harps or 
+guns (thanks to wobbly for reporting)
 
-* 修复了无尽箭袋特性在与竖琴或枪械结合使用时的 Bug 行为（感谢 wobbly 
-报告）
+* The curse status indicator was not updated properly after Mundanity; 
+this has been fixed
 
-* 诅咒状态指示器在平庸化 (Mundanity) 之后没有正确更新；这已被修复
+* Reforging consumed game time but did not check if midnight had 
+passed; this has been fixed
 
-* 重铸消耗了游戏时间，但没有检查午夜是否已经过去；这已被修复
+* Being stunned sometimes made devices easier to use; this has been 
+fixed
 
-* 处于震慑状态有时会使装置更容易使用；这已被修复
+* Some menus, in particular the option UI and the demigod talent 
+selection UI, no longer work quite as badly in cases where the number 
+of options exceeds the number of available lines. Also fixed a minor 
+cursor placement issue on the autodestroyer options page
 
-* 
-一些菜单，特别是在选项界面和半神天赋选择界面，在选项数量超过可用行数时不
-再那么难用了。还修复了自动销毁器选项页上的一个小光标放置问题
+* Travel resumption sometimes produced strange results in the 
+wilderness; this has been fixed
 
-* 恢复自动旅行有时在荒野中产生奇怪的结果；这已被修复
+* Hex High-Mages lost the spelling indicator on entering the Arena but 
+did not actually stop spelling; this has been fixed
 
-* 
-诅咒高阶魔道士在进入竞技场时失去了拼写指示器，但实际上并没有停止施法；这
-已被修复
+* Potions of Salt Water did not cure poison despite promising to; this 
+has been fixed
 
-* 盐水药水承诺治愈中毒，但实际上并没有；这已被修复
+* Stair Creation spells could create normal stairs in all-shafts 
+dungeons and in coffee-break mode; this has been fixed
 
-* 创造楼梯法术会在全竖井地下城和茶歇模式中创造出普通楼梯；这已被修复
+* Insta-kill attacks (e.g. poison needle hits) could have their damage 
+reduced if the player was stunned; this has been fixed
 
-* 即死攻击（例如毒针命中）的伤害在玩家被震慑时可能会降低；这已被修复
+* Fixed weirdness with telekinesis prevention (the code only checked if 
+there was already an object in the target square; it didn't check for 
+traps, stairs, deep lava or even walls)
 
-* 
-修复了预防隔空取物的异常问题（代码仅检查了目标方格中是否已有物体；它没有
-检查是否有陷阱、楼梯、深层岩浆甚至是墙壁）
+* Fixed broken flavoring on the Hand of Vecna
 
-* 修复了维克那之手 (Hand of Vecna) 上损坏的提示特性 (flavoring)
+* Updated outdated makefiles that were causing problems for some Linux 
+users (thanks to introsp3ctive for reporting this problem)
 
-* 更新了给一些 Linux 用户带来麻烦的过时 makefiles（感谢 introsp3ctive 
-报告此问题）
+* Player breaths aimed in a direction rather than at a specific point 
+will no longer stop at the first monster hit
 
-* 指向某个方向而不是特定目标点的玩家喷吐，不再在击中第一个怪物时停止
+* Amberites can no longer embed themselves in rock with their own death 
+curses (allowing this sometimes resulted in strange or undesired 
+behavior, including non-generation of wanted corpses)
 
-* 安珀人 (Amberites) 
-的死亡诅咒不再能把他们自己埋进岩石中（允许这种情况有时会导致奇怪或不希望
-的行为，包括不生成通缉的尸体）
+* Spell-browsing UI now supports slightly longer spell descriptions
 
-* 法术浏览界面现在支持稍长一点的法术描述
+* Prevented ego diamond edges from generating with extra-high pvals
 
-* 防止了带有极高 pval 的钻石刀刃 (diamond edges) ego 武器生成
+* Deep puddles and shallow puddles now count as mimics for the 
+easy_mimics option (thanks to bostock for suggesting this)
 
-* 对于 
-easy_mimics（简单伪装怪）选项，深水坑和浅水坑现在算作伪装怪（感谢 
-bostock 建议）
+* Cancelling a Ring spell during the targetting phase no longer 
+consumes a turn (thanks to clouded for suggesting this)
 
-* 在目标设定阶段取消戒指施法不再消耗一回合（感谢 clouded 建议）
+* The automatic attack on Polearm weaponmasters no longer triggers on 
+pets or friendly monsters (thanks to Aav for suggesting this)
 
-* 针对长柄武器大师的自动攻击不再在宠物或友方怪物身上触发（感谢 Aav 
-建议）
+* The Hard Leather Boots of Feanor are now rarer
 
-* 费诺的硬皮靴 (Hard Leather Boots of Feanor) 现在变得更加稀有了
+* All stairs in the Graveyard dungeon are now shafts
 
-* 墓地 (Graveyard) 地下城中的所有楼梯现在都是竖井
+* Renamed the Mountain dungeon to Eyrie; all stairs there are now 
+shafts
 
-* 将山脉 (Mountain) 地下城重命名为鹰巢 
-(Eyrie)；这里所有的楼梯现在都是竖井
+* Monster polymorph race selection now accounts for the terrain (e.g. 
+if a monster is within a wall, it will try to polymorph into another 
+wall-passing monster, as was already the case for chameleons)
 
-* 
-怪物变形种族选择现在会考虑地形（例如，如果一个怪物在墙里，它会试图变形为
-另一个可以穿墙的怪物，这在以前对变色龙来说已经是这样了）
+* Slightly tweaked coffee-break mode's XP-gain and loot-generation 
+bonuses
 
-* 略微调整了茶歇模式的经验获取和战利品生成加成
+* In coffee-break mode, all late-game level guardians will now appear 
+on either odd levels or even levels
 
-* 在茶歇模式中，所有的后期楼层守卫现在都将出现在单数层或双数层
+* The Battlefield reward is now a rune sword instead of a scythe of 
+slicing (copied from Composband). Also, sword weaponmasters can now use 
+rune swords
 
-* 古战场 (Battlefield) 的奖励现在是符文剑 (rune sword) 而不是斩击镰刀 
-(scythe of slicing)（复制自 
-Composband）。此外，剑类武器大师现在可以使用符文剑了
+* The Restoration town service now restores life points and experience 
+in addition to stats (copied from Composband)
 
-* 城镇属性恢复 (Restoration) 
-服务现在除了恢复属性外，还能恢复生命点和经验值（复制自 Composband）
+* Allowed Chaos-Warriors and Chaotic characters to choose their patron 
+at character creation (copied from Composband)
 
-* 允许混沌战士 (Chaos-Warriors) 
-和混沌阵营的角色的在创建角色时选择他们的赞助神（复制自 Composband）
+* Buffed dwarven body armour (inspired by Composband)
 
-* 加强了矮人板甲（灵感来自 Composband）
+* Chaos patrons will no longer attempt (and fail) to curse the player's 
+equipment if the player is a Death-Sword, a Filthy Rag or a Ring; they 
+will hit the player with the Baby Foul Curse instead
 
-* 如果玩家是一把死亡之剑 (Death-Sword)、一块肮脏的破布 (Filthy Rag) 
-或一枚戒指 
-(Ring)，混沌赞助神将不再尝试（并失败）诅咒玩家的装备；作为替代，他们会用
-弱效恶毒诅咒打击玩家
+* Haste Monster and Heal Monster are no longer reflectable (thanks to 
+MITZE for suggesting this)
 
-* 怪物加速 (Haste Monster) 和怪物治疗 (Heal Monster) 
-法术不再能被反射（感谢 MITZE 提出此建议）
+* Tweaked Rage-Mages (thanks to MITZE for suggestions)
+- Rage-Mages can no longer gain SP from Clarity/Great Clarity/Restore 
+Mana
+- Rage-Mages can now use their skills through anti-magic shields
+- Rage-Mage spell letters are now fixed, allowing better macro use
+- Substituted "Dispel Curse" for "Summon Commando Team"
 
-* 调整了狂怒法师（感谢 MITZE 的建议）
-- 狂怒法师不再能从醒神/极效醒神/恢复法力药水获得法力值 (SP)
-- 狂怒法师现在可以透过反魔法护盾使用他们的技能
-- 狂怒法师的法术字母现在是固定的，允许更好地使用宏
-- 用“解除诅咒 (Dispel Curse)”替换了“召唤突击队 (Summon Commando Team)”
+* Confirmation is now always requested for alchemizing an inscribed 
+item, even if it has no value, and wanted corpses cannot be alchemized 
+at all (thanks to Draghmar for bringing this up). Also fixed an issue 
+with cancelling requests to alchemize parts of stacks
 
-* 
-现在炼金转化任何铭刻物品都要求确认，即使它没有价值；此外，通缉怪物的尸体
-根本无法被炼金转化（感谢 Draghmar 
-提出这一点）。还修复了取消对部分堆叠物品进行炼金转化请求的问题
+* Duelist Isolation now fully respects teleportation immunity (thanks 
+to bostock for bringing this up)
 
-* 决斗者 (Duelist) 的“孤立 (Isolation)”技能现在完全尊重传送免疫（感谢 
-bostock 提出这一点）
+* Most population-specific charming effects now report if a monster is 
+immune, similarly to what the generic charming effect already did 
+(thanks to vertigo for noting this)
 
-* 
-大多数针对特定种群的魅惑效果现在会报告怪物是否免疫，类似于通用魅惑效果之
-前所做的那样（感谢 vertigo 注意到这一点）
+* Tweaked disappearance of pets at low health (thanks to vertigo for 
+feedback)
 
-* 调整了宠物在低血量时消失的机制（感谢 vertigo 的反馈）
+* Some race/class/mutation powers will now be available even if the 
+player is confused or trembling in fear (e.g. the 'Stop Singing' 
+ability on Bards)
 
-* 
-一些种族/职业/变异能力现在即使玩家处于混乱或因恐惧颤抖时也能使用了（例如
-吟游诗人的“停止唱歌”能力）
+* Rings and Death-Swords now automatically *id* all items they absorb 
+(so the player isn't left checking the essence sheet to see what was 
+absorbed)
 
-* 戒指和死亡之剑现在会自动 *完全鉴定* 
-它们吸收的所有物品（这样玩家就不必一直在精华表上检查到底吸收了什么）
+* Player Demons and Balrogs now take some extra damage from Holy Fire
 
-* 玩家恶魔 (Demons) 和炎魔 (Balrogs) 现在会受到圣火 (Holy Fire) 
-的额外伤害
+* Player Angels and Archons now take some extra damage from Hell Fire
 
-* 玩家天使 (Angels) 和神圣使者 (Archons) 现在会受到地狱火 (Hell Fire) 
-的额外伤害
+* Made player Xorns a little more fragile
 
-* 使玩家索恩 (Xorns) 变得稍微脆弱一些
+* Nerfed monk melee a bit
 
-* 稍微削弱了武僧的近战
+* Nerfed tourists slightly
 
-* 略微削弱了游客 (tourists)
+* Buffed the Necklace of the Dwarves
 
-* 加强了矮人项链 (Necklace of the Dwarves)
+* Buffed the Infernal Deal demigod talent to make it more competitive 
+in the late game (inspired by Composband)
 
-* 加强了地狱契约 (Infernal Deal) 
-半神天赋，使其在游戏后期更具竞争力（灵感来自 Composband）
+* Added a new demigod talent (Strong Mind) that provides immunity to 
+mana draining
 
-* 增加了一个新的半神天赋（坚强心智 Strong 
-Mind），它提供免疫法力吸取的能力
+* The Craft spell "Walk through Wall" was replaced with 
+"Simplification" (which mundanifies an item)
 
-* 工匠 (Craft) 法术的“穿墙 (Walk through Wall)”被替换成了“简化 
-(Simplification)”（它将一件物品平庸化）
+* Autodestroy now ignores mundanified items
 
-* 自动销毁现在忽略平庸化的物品
+* Mundanity no longer works on ego items with a 99% discount
 
-* 平庸化 (Mundanity) 不再对具有 99% 折扣的 ego 物品生效
+* Updated player Tanar'ri (thanks to MITZE for the central idea)
+- the early forms, especially death quasit, are a bit more fragile now
+- mariliths can no longer wear shields, but get a bonus to 
+dual-wielding
+- reduced the XP modifier
 
-* 更新了玩家塔纳厘 (Tanar'ri) 恶魔（感谢 MITZE 提供核心想法）
-- 早期的形态，特别是死亡夸塞魔 (death quasit)，现在变得有点更脆弱了
-- 六臂蛇魔不再能穿戴盾牌，但获得了双持加成
-- 降低了经验修正值
+* Updated player vortices, especially the final form (aether vortex). 
+Aether vortices now have lower speed and melee damage than before, but 
+can choose one of three possible vortex powers (one giving increased 
+melee damage, one giving increased speed, and one allowing them to 
+control which element they breathe). Also fixed bugs with flags on some 
+vortex forms, removed the 1-in-66 chance of random movement, gave 
+plasma and disintegration vortices invisible "resists" to their 
+respective elements, and reduced off-weapon +At from +0.50 blows/unit 
+to +0.25 blows/unit
 
-* 更新了玩家漩涡 (vortices)，尤其是最终形态（以太漩涡 aether 
-vortex）。以太漩涡现在的速度和近战伤害比以前低了，但可以选择三种可能的漩
-涡能力之一（一种增加近战伤害，一种增加速度，还有一种允许他们控制自己喷吐
-的元素）。还修复了一些漩涡形态标志上的 Bug，移除了 1/66 
-机率发生随机移动的设定，赋予等离子和解离漩涡对其各自元素隐形的“抗性”，并
-将武器之外的攻击次数加成 (off-weapon +At) 从 +0.50 次攻击/单位 降低到 
-+0.25 次攻击/单位
+* Tweaked Kawarimi a bit (increased the chance of a blink-type effect 
+compared to a long-distance teleport)
 
-* 稍微调整了替身术 (Kawarimi)（与长距离传送相比，增加了触发闪现 (blink) 
-类型效果的几率）
+* Blood-Knight extra blows are now more gradual
 
-* 鲜血骑士的额外攻击次数现在变得更加平缓了
+* The healing penalty on Blood-Knights and Blood-Mages now applies to 
+vampirism
 
-* 鲜血骑士和鲜血法师的治疗惩罚现在也适用于吸血能力
+* Special-cased the weapon stat display for Poison Needles
 
-* 为毒针特殊处理了武器属性显示
+* Tweaked the skill description scale (earning most of the medium 
+rankings takes a bit more now, and Superb no longer covers such a large 
+range)
 
-* 
-调整了技能描述缩放比例（现在要获得大多数中等评价需要多花一点功夫，而且“
-出神入化 Superb”评价不再涵盖那么大的范围了）
+* Spawning Pits is now displayed as danger level 80 (with no effect on 
+anything in the quest, which remains unchanged)
 
-* 产卵坑 (Spawning Pits) 现在显示为危险等级 
-80（对任务中的任何内容没有影响，其保持不变）
+* Eating a Mushroom of Hallucination now sets mana to zero (unless 
+resisted), in addition to inducing hallucinations
 
-* 吃幻觉蘑菇除了诱发幻觉外，现在还会将法力值归零（除非有抵抗）
+* The "icky" autopicker keyword should now work for Weaponmasters
 
-* 自动拾取器 (autopicker) 的关键字 "icky" 现在对武器大师也应该生效了
+* Tweaked visibility of the Es and Dm flags to be more in line with the 
+actual availability of easy-spell and dec-mana to the player
 
-* 调整了 Es 和 Dm 标志的可见性，以更符合玩家实际获得简易施法 
-(easy-spell) 和减少法力消耗 (dec-mana) 的情况
+* Monsters are now always assumed visible for player death purposes (so 
+they should show up as "Killed by Yibb-Tstll, the Patient One" instead 
+of "Killed by the Monster", even if not visible)
 
-* 怪物对于导致玩家死亡的判定现在总是被假定为可见的（所以它应该显示为“被 
-伊波·兹特尔，耐心者 (Yibb-Tstll, the Patient One) 杀死”而不是“被 怪物 
-杀死”，即使它不可见）
+* Added a new help file listing basic tips and common mistakes to avoid
 
-* 增加了一个新的帮助文件，列出了避免常见错误的基本提示和常见误区
+* Added an option (on by default) to show explanatory statistics before 
+proceeding with a reforge
 
-* 添加了一个选项（默认开启），在继续重铸之前显示解释性的统计数据
+* Updated some outdated and misleading spell and item descriptions
 
-* 更新了一些过时且具有误导性的法术和物品描述
-
-* 各种微小的调整和代码改进
+* Various minor tweaks and code improvements
 
 -------------------------------------------------------
 
 
-<a name="cloudberry"></a></font><font color="#ff0000">RoguelikeFansBand 7.0.cloudberry </font><font color="#ffffff">的更新日志：
+<a name="cloudberry"></a>Changes in </font><font color="#ff0000">RoguelikeFansBand 7.0.cloudberry</font><font color="#ffffff">:
 
-* 改进了对在 angband.live 在线服务器上游玩的支持（在没有 Num Lock 
-键的键盘上发生的意外自动跑步，这一直是 angband.live 
-新手的长期问题，现在可以很容易地禁用了；并且游戏会尝试自动检测此问题并帮
-助玩家解决）
+* Improved support for play on the angband.live online server (unwanted 
+auto-running on keyboards with no Num Lock, which has been a perennial 
+problem for angband.live newcomers, can now be very easily disabled; 
+and the game attempts to detect this problem automatically and help the 
+player solve it)
 
-* 堵住了一个漏洞，该漏洞使得安珀人的血液诅咒在 7.0.nougat 
-被削弱后仍能产生比预期更致命的影响（感谢 Gwarl 不幸地发现了这一点）
+* Plugged a loophole that allowed Amberite blood curses to still be 
+deadlier than intended after the earlier nerf in 7.0.nougat (thanks to 
+Gwarl for being unlucky enough to discover this)
 
-* 远程武器现在拥有它们自己独立的随机神器名称列表，与近战武器分开
+* Ranged weapons now have their own list of random artifact names, 
+separate from that of melee weapons
 
-* 根据 Nivim 的想法彻底重新设计了玩家水元素 (Water Elementals)（也感谢 
-wobbly 对旧水元素的反馈）
+* Completely redesigned player Water Elementals based on Nivim's ideas 
+(thanks also to wobbly for the feedback on old water elementals)
 
-* 添加了一些新怪物和神器
+* Added some new monsters and artifacts
 
-* 添加了大多数以前缺少的数据的模仿者/附身者 (mimic/possessor) 数据
+* Added mimic/possessor data for most of the monsters that lacked it
 
-* 巨灵 (Djinnis) 现在抵抗火焰伤害
+* Djinnis now resist fire
 
-* 
-一些额外的怪物现在要么抵抗混乱，要么能迅速摆脱混乱。（值得注意的是，芬里
-斯 (Fenris)、梅格林 (Maeglin)、伊奥 (Eol) 和尤尔特 (Jurt) 
-现在抵抗混乱，鸟类 Unique 能迅速摆脱它；但鸟类 Unique 的 HP 
-略有降低以作为补偿）
+* Several additional monsters now either resist confusion or can shake 
+it off rapidly. (Notably, Fenris, Maeglin, Eol and Jurt now resist 
+confusion, and the bird uniques can shake it off rapidly; but the bird 
+uniques' HP was slightly reduced to compensate)
 
-* 两种主要类型的混乱攻击（GF_CONFUSION 和 
-GF_OLD_CONF）现在都会给怪物一个对抗效果的豁免检定；以前，只有 
-GF_OLD_CONF 会让怪物有豁免的机会
+* The two main types of confusion attack (GF_CONFUSION and GF_OLD_CONF) 
+now both give monsters a save against the effects; previously, only 
+GF_OLD_CONF gave monsters a save
 
-* 金库 (The Vault) 现在被描述为 35 级任务，而不是 30 
-级任务。（这个改变对其危险程度没有影响；它只是为了让玩家对其危险程度有更
-准确的了解。此更改对任务内物品的生成有轻微影响。）
+* The Vault is now described as a level 35 quest, instead of level 30. 
+(This change has no effect on how dangerous the quest actually is; it 
+is intended simply to give the player a more accurate idea of its 
+danger level. The change does have minor effects on object generation 
+within the quest.)
 
-* 交换了开启荒野大地图模式下鸦巢 (Crow's Nest) 和兽人营地 (Orc Camp) 
-的奖励
+* Swapped the wilderness-mode rewards of Crow's Nest and Orc Camp
 
-* 修复了醒神 (Clarity) 和极效醒神 (Great Clarity) 药水描述的一些小问题
+* Fixed minor issues with the descriptions for potions of Clarity and 
+Great Clarity
 
-* 
-在物品满载时，在家中（或在商店中）交换装备不再会将玩家踢出建筑物并出现错
-误的背包溢出警告
+* Swapping equipment at home (or in a shop) with a full inventory no 
+longer throws the player out of the building with an erroneous pack 
+overflow warning
 
-* 任务失败的日期没有被正确记录；这已被修复
+* The dates of quest failures were not recorded properly; this has been 
+fixed
 
-* 尝试召唤怪物的附身者会导致游戏崩溃；这已被修复（感谢 bostock 报告）
+* Attempting to summon monsters on a Possessor caused the game to 
+crash; this has been fixed (thanks to bostock for reporting)
 
-* 修复了被附身或被模仿的怪物具有长名字时角色属性表中的显示 Bug
+* Fixed a display bug in the character sheet when a monster with a long 
+name was being possessed or mimicked
 
-* 当玩家恶魔暂时变形为非恶魔时，人形怪物的尸体不再被自动摧毁（感谢 
-Mocht 报告）
+* Humanoid corpses are no longer auto-destroyed while a player demon is 
+temporarily polymorphed into a non-demon (thanks to Mocht for 
+reporting)
 
-* 玩家的陷阱在地下城的最底层不再能骰出活板门效果 (Trap Door 
-effect)（感谢 bostock 提出此建议）
+* Player traps can no longer roll the Trap Door effect on the bottom 
+level of a dungeon (thanks to bostock for suggesting this)
 
-* 削弱了神器竖琴 (harp 
-randarts)，并且稍微降低了非吟游诗人使用所有竖琴神器的威力
+* Nerfed harp randarts, and slightly reduced the power of all harp 
+artifacts for non-bards
 
-* 增加了对魔法吞噬者吸收装置的部分铭刻支持
+* Added partial inscription support for devices absorbed by 
+Magic-Eaters
 
-* 添加了一个选项以禁止永久改变玩家种族（主要用于未来的竞赛中）
+* Added an option to disallow permanent changes to the player's race 
+(intended mostly for use in future competitions)
 
-* 
-增加了一个选项：即使游戏是基于一个已死角色的存档文件开始的，也要以空的物
-品传说记录开局
+* Added an option to start with empty item lore even when the game is 
+based on a dead character's savefile
 
-* 改进了武士 (samurai)（在法术 UI 中添加了浏览支持，并从 Composband 
-导入了一些攻击文本描述，还略微降低了生命评级）
+* Improved samurai (added browsing support in the spell UI and imported 
+some attack flavor messages from Composband, and reduced the life 
+rating a bit)
 
-* 玩家果冻吃一堆物品现在能正确工作了
+* Player jellies eating a stack of objects works properly now
 
-* 当柳树老头被杀死时，柳树老头任务 (Old Man Willow quest) 
-现在视为已完成（复制自 Composband）
+* The Old Man Willow quest now counts as completed when Old Man Willow 
+is killed (copied from Composband)
 
-* 知识头盔和博学龙鳞甲 (Helmets of Knowledge and Dragon Armor of Lore) 
-现在提供自动鉴定而不是自动伪鉴定
+* Helmets of Knowledge and Dragon Armor of Lore now give auto-identify 
+instead of auto-pseudo-identify
 
-* 凯兰崔尔的玻璃瓶 (Phial of Galadriel) 现在提供黑暗抗性 (rDark) 以及 
-+5 搜索能力
+* The Phial of Galadriel now gives rDark and +5 to searching
 
-* 改进了当工匠法术 (Crafting) 有可能失败时的警告提示信息
+* Improved warning message when Crafting has a chance to fail
 
-* 降低了玩家召唤物获得的经验值（为了阻止玩家滥用召唤法杖来刷经验）
+* Reduced XP gain from player summons (to discourage spamming staves of 
+summoning for XP)
 
-* 削去了随机能量函数的极端情况
+* Clipped the extremes of the random energy function
 
-* 现在可以在中断旅行后使用 'J' 键（Roguelike 键位中的 '(' 
-键）恢复向同一目标的旅行
+* It is now possible to use the 'J' key (the '(' key in the roguelike 
+keyset) to resume travelling to the same target after being disturbed 
+mid-travel
 
-* 修改了当怪物伤害自己时的提示信息（感谢 murphy 报告此问题）
+* Modified the message when a monster hurts itself (thanks to murphy 
+for reporting this problem)
 
-* 
-在一些不寻常的情况下，僵尸化的混沌之蛇可能在正常的混沌之蛇还没有被杀死之
-前就生成了；这已被修复
+* In some unusual circumstances, the Zombified Serpent of Chaos could 
+be generated without the normal Serpent of Chaos having been killed 
+first; this has been fixed
 
-* “祝福武器 (Bless Weapon)”能力，以前有 1/3 
-的几率成功祝福一把强大的武器，有 2/3 
-的几率使其失去附魔，现在除了针对一些根本邪恶的物品的情况外，将总是会成功
-（感谢 wobbly 和 bostock 提供反馈）
+* The "Bless Weapon" power, which previously had a 1 in 3 chance of 
+successfully blessing a strong weapon and a 2 in 3 chance of 
+disenchanting it, will now always succeed except in the case of some 
+fundamentally unholy items (thanks to wobbly and bostock for their 
+feedback)
 
-* 狼人可以在潜行中从狼变成人类，并保持潜行状态；这已被修复（感谢 wobbly 
-报告）
+* Werewolves could change from wolf to human while stalking and still 
+stalk; this has been fixed (thanks to wobbly for reporting)
 
-* 武器匠不再能消除物品的商店折扣（感谢 CyclopsSlayer 提出这一点）
+* Weaponsmiths can no longer remove shop discounts from items (thanks 
+to CyclopsSlayer for bringing this up)
 
-* 修复了盾牌大师的几个问题（感谢 Fnord 报告）
+* Fixed several issues with shieldmasters (thanks to Fnord for 
+reporting)
 
-* 修复了使用鉴定了的 *锋利 (*Sharp*)* 武器描述的小问题
+* Fixed a minor issue with the description of use-IDed *Sharp* weapons
 
-* 削弱了死亡之剑的速度增益（感谢 Nivim 提出建议）
+* Toned down death-swords' speed gain a bit (thanks to Nivim for 
+suggesting)
 
-* 重新平衡了玩家怪物魔像 (player-monster golems)（感谢 Bucephalus 
-的反馈）
+* Rebalanced player-monster golems (thanks to Bucephalus for the 
+feedback)
 
-* 在没有任何近战攻击的情况下使用自动拾取 (autoget) 
-有时会导致游戏卡住并崩溃；这已被修复（感谢 bostock 的报告）
+* Using autoget with no melee attacks sometimes caused the game to get 
+stuck and crash; this has been fixed (thanks to bostock for the report)
 
-* 
-撞见没有近战攻击的隐形怪物现在需要花费一些时间了，尽管不到一整个回合（感
-谢 vertigo 提出此建议）
+* Bumping into an invisible monster with no melee attacks now costs a 
+bit of time, though less than a full turn (thanks to vertigo for 
+suggesting this)
 
-* 
-怪物携带的被盗物品列表没有被正确加载，导致这些物品掉入虚空；这已被修复
+* Lists of stolen objects carried by monsters were not loaded properly, 
+causing such objects to fall into a limbo; this has been fixed
 
-* 修复了怪物包的两个 
-Bug（其最显著的影响是有时无法正确标记地下城入口守卫被击杀）
+* Fixed two bugs with monster packs (their most notable effect was that 
+dungeon entrance guardians were sometimes not properly marked as 
+killed)
 
-* 被死亡之剑和戒指吸收的神器现在被标记为已找到，即使它还没有被鉴定
+* Artifacts absorbed by Death-Swords and Rings are now marked as found 
+even if not identified
 
-* 出于武器匠和死亡之剑吸收物品的目的，所有具有“杀戮 
-(Kill)”标签的物体现在都被视为具有相应的 Slay 标签（感谢 Prandar 
-提出这一点）
+* For the purposes of Weaponsmith and Death-Sword item absorption, all 
+objects with a Kill flag are now considered to also have the 
+corresponding Slay flag (thanks to Prandar for bringing this up)
 
-* 感知活物 (Sense Living) 一旦学会，就再也不会被关闭；这已被修复（感谢 
-wobbly 报告）
+* Sense Living, once acquired, was never turned off (thanks to wobbly 
+for reporting)
 
-* 埃及神话中的怪物现在有它们自己的怪物知识组了（感谢 Mocht 提出此建议）
+* Monsters from Egyptian mythology now have their own monster-knowledge 
+group (thanks to Mocht for suggesting this)
 
-* 
-耗尽充能的装置现在的优先级高于其他可能存在的问题（比如无法使用装置或因为
-太害怕而无法使用装置）（感谢 Mocht 提出此建议）
+* A device having no charges left now takes priority over other 
+possible problems (like failing to use the device or being too scared 
+to use it) (thanks to Mocht for suggesting this)
 
-* 血液药水 (Potions of Blood) 现在会自动被鉴定（感谢 Mocht 提出此建议）
+* Potions of Blood are now automatically identified (thanks to Mocht 
+for suggesting this)
 
-* 角色面板的装备属性表现在有震慑 (Stunning) 和生命评级 (Life Rating) 
-两行了（感谢 Mocht 提出生命评级的建议）
+* The character sheet's equipment flags table now has lines for 
+Stunning and Life Rating (thanks to Mocht for suggesting the latter)
 
-* 改进了手动拾取与自动拾取的交互
+* Improved interaction of manual pickup with auto-pickup
 
-* 
-邻近方格中存在的其他箱子或门/陷阱不再导致无法打开/解除玩家所站位置上的箱
-子的陷阱
+* The presence of other chests or doors/traps in adjacent squares no 
+longer makes it impossible to open/disarm a chest the player's standing 
+on
 
-* 多余的物品标志铭刻（比如 
-"Li;-Li"）现在应该不再出现了。此外，确保了这些标志对物品价值没有影响
+* Redundant object flag inscriptions (like "Li;-Li") should no longer 
+appear. Also, made sure such flags have no effect on the object's value
 
-* 物品估值忽略了魔法抗性；这已被修复
+* Item valuation ignored magic resistance; this has been fixed
 
-* 炼金术士不再从除药水之外的任何来源获得特殊的英雄气概/狂暴加成
+* Alchemists no longer receive special Hero/Berserk bonuses from any 
+source other than potions
 
-* 修复了一些狂怒法师法术 (Rage-Mage spells) 的 Bug（感谢 Aver 报告）
+* Fixed bugs with some Rage-Mage spells (thanks to Aver for reporting)
 
-* 修复了“投掷物品 (Throw Object)”荒野天赋（感谢 budswell 报告）
+* Fixed the Throw Object wild talent (thanks to budswell for reporting)
 
-* 添加了 Ighalli 的 effective_speed 选项（源自 
-V，将速度显示为能量乘数，在角色面板中除外）
+* Added Ighalli's effective_speed option from V (show speeds as energy 
+multipliers, except in the character sheet)
 
-* 添加了新的各职业专属奖励并调整了一些现有的奖励，使它们更加合适（感谢 
-Mocht 和 CyclopsSlayer 报告问题）
+* Added new class-specific rewards and tweaked some existing ones to 
+make them more appropriate (thanks to Mocht and CyclopsSlayer for 
+reporting issues)
 
-* 墨家明器 (自动拾取销毁器) 
-现在支持“充能次数多于”的物品描述符（例如，“staves more charges than 
-15:cure wounds#@uu!sdk”表示拿起至少有 16 
-次充能的治疗伤口法杖，并为其铭刻 @uu!sdk）
+* 墨家明器 now supports the "more charges than" item descriptor 
+(e.g. "staves more charges than 15:cure wounds#@uu!sdk" picks up staves 
+of cure wounds with at least 16 charges, and inscribes them with 
+@uu!sdk)
 
-* 墨家明器 (自动拾取销毁器) 现在支持加载其他角色的首选项文件（包括 
-pickpref.prf，即默认首选项文件）
+* 墨家明器 now supports loading other characters' preference 
+files (including pickpref.prf, the default preference file)
 
-* 宠物现在需要稍微长一点时间才会感到被冷落了
+* Pets take a bit longer to feel neglected now
 
-* 
-削弱了一些种族和职业（牧师、时间领主、果冻、钢龙、青铜龙人、盾牌大师、控
-心者、武僧，可能还有其他我忘记的）
+* Nerfed a number of races and classes slightly (priest, time-lord, 
+jelly, steel dragon, bronze draconian, shieldmaster, mindcrafter, monk, 
+possibly others that I forget)
 
-* 现在任何试图对娜迦群体灭绝的尝试（或者是 Roguelike 键位用户对索恩 
-xorns）都需要验证确认
+* Verification is now requested for any attempt to genocide nagas (or 
+xorns for users of the roguelike keyset)
 
-* 各种微小的调整和代码改进
+* Various minor tweaks and code improvements
 
 -------------------------------------------------------
 
 
-<a name="nougat"></a></font><font color="#ff0000">RoguelikeFansBand 7.0.nougat </font><font color="#ffffff">的更新日志：
+<a name="nougat"></a>Changes in </font><font color="#ff0000">RoguelikeFansBand 7.0.nougat</font><font color="#ffffff">:
+
+* Added two new races (Einheri and Werewolf). Einherjar are very 
+powerful but only receive partial benefits from magical healing. 
+Werewolves can (big surprise) assume either human or wolf shape, with 
+both shapes having their strengths and weaknesses (thanks to murphy and 
+CyclopsSlayer for their pre-release werewolf feedback)
+
+* Slowing is no longer a purely binary status (either no slowing or -10 
+to speed); while the binary slowing still exists, some forms of slowing 
+are now incremental and can take any value between no slowing and -10. 
+The two forms of slowing partially add together, so a player (or 
+monster) afflicted with both forms can be slowed by up to -12 in total
+(thanks to Derakon for this idea)
+
+* Shuffled some of the buildings in Anambar to reduce travel distances 
+(the shroomery/black market building and the archery guild building 
+switched places; the library is now in the formerly empty building 
+southwest of the main square, the beastmaster is now where the library 
+was, and the former beastmaster building is now empty)
 
-* 新增了两个种族（英灵战士 Einheri 和狼人 
-Werewolf）。英灵战士非常强大，但只能从魔法治疗中获得部分收益。狼人可以（
-惊喜吧）扮演人类或狼的形态，这两种形态都有其优点和缺点（感谢 murphy 和 
-CyclopsSlayer 提供的发行前狼人反馈）
+* Added more Egyptian gods, and a new dungeon they now inhabit. Added a 
+new birth option (single_pantheon) to play with only one of the two 
+pantheons currently in the game (Greek or Egyptian); selecting this 
+option will remove the other pantheon, and its associated dungeon, from 
+the game
+
+* Added new monsters and artifacts
 
-* 减速不再是一个纯粹的二元状态（要么不减速，要么减速 
--10）；虽然二元减速仍然存在，但一些形式的减速现在是渐进的，可以采用不减
-速和 -10 
-之间的任何值。两种形式的减速部分叠加，所以一个遭受这两种形式减速影响的玩
-家（或怪物）总共可以减速多达 -12
-（感谢 Derakon 提供的这个想法）
+* Added one new demigod power (Inspired Smithing, which improves 
+reforge results) and several new mutations (adapted from Frogspawn)
 
-* 调整了阿南巴 (Anambar) 
-的一些建筑物以减少旅行距离（蘑菇店/黑市建筑和箭术公会建筑互换了位置；图
-书馆现在在主广场西南以前空着的建筑物里，驯兽师现在在以前图书馆的地方，以
-前的驯兽师建筑物现在是空着的）
+* Coffee-break mode's modified level size algorithm is now always used 
+in the Angband dungeon (except in the case of games with 
+ironman_downward on and coffee_break off). Generally, this means 
+smaller levels in the early game
 
-* 
-增加了更多的埃及神灵，以及他们现在居住的一个新地下城。增加了一个新的出生
-选项 
-(single_pantheon，单神系)，可以只使用目前游戏中的两个神系（希腊或埃及）
-之一进行游戏；选择此选项会将另一个神系及其相关的地下城从游戏中移除
+* Beginner mode now uses the coffee_break option
 
-* 增加了新怪物和神器
+* Friendly monsters no longer trigger the Eldritch Horror sanity-blast
 
-* 增加了一个新的半神能力（激发锻造 Inspired 
-Smithing，它可以改善重铸结果）和几个新的变异（改编自 Frogspawn）
+* Replaced potions of resist electricity with potions of vigor, which 
+cure all temporary slowing effects (both binary and incremental) plus 
+stunning. (Potions of life now also cure all temporary slowing effects, 
+and potions of healing and *healing* and rods of angelic healing reduce 
+incremental slowing by 1)
 
-* 茶歇模式 (coffee-break mode) 修改后的楼层尺寸算法现在总是应用于 
-Angband 地下城（除非开启了 ironman_downward 并且关闭了 
-coffee_break）。通常，这意味着在游戏早期会生成更小的楼层
+* Fixed a bug that allowed alchemists to receive special benefits from 
+some potions just by inspecting them (thanks to TauzentBlitz for 
+reporting this)
 
-* 新手模式现在会默认使用 coffee_break（茶歇模式）选项
+* A list of allied uniques is now shown in the character sheet for 
+classes who can permanently befriend a monster (currently, just 
+politicians)
 
-* 友好怪物不再触发恐怖骇人 (Eldritch Horror) 的理智冲击
+* The player's life rating (if known) is now shown in the character 
+sheet (at the bottom of the Statistics section)
 
-* 用活力药水 (vigor) 
-替换了抵抗闪电药水，它能治愈所有暂时的减速效果（包括二元和渐进的减速）以
-及震慑。生命药水 (life) 
-现在也能治愈所有暂时的减速效果，治疗药水和*治疗*药水以及天使治疗魔棒会将
-渐进减速减少 1
+* Tweaked item valuation again (items with high-pval weaponmastery are 
+now worth more)
 
-* 修复了一个允许炼金术士仅仅通过检查一些药水就能获得特殊增益的 
-Bug（感谢 TauzentBlitz 报告此问题）
+* Coffee-break mode's max reforge power bonus (accelerated reforging) 
+is now permanently reduced if the character fails any of the random 
+Angband quests
 
-* 
-现在可以在可以永久结交怪物的朋友的职业（目前只有政客）的角色属性表中显示
-友方 Unique 列表
+* Buffed the Fell Sorcery and One with Magic demigod powers. The effect 
+of Fell Sorcery on spell power was doubled. One with Magic now 
+successfully resists dispelling and anti-magic 77% of the time instead 
+of the old 50%, unless the player is mimicking or in wraithform (the 
+mimicking restriction does not apply to doppelgangers)
 
-* 
-玩家的生命评级（如果已知的话）现在显示在角色属性表中（在统计信息部分的底
-部）
+* Added a new scroll (Scroll of Inventory Protection). Unlike other 
+sources of temporary inventory protection (which only reduce the 
+chances of item damage), the scrolls provide complete protection
 
-* 再次调整了物品估值（具有高 pval 的武器精通物品现在价值更高）
+* Improved item parsing. It is now possible to specify an ego device, 
+as well as to specify a pile size, and specified devices are no longer 
+necessarily generated at the lowest level supported by the effect. Some 
+of the quest device rewards are now ego
 
-* 茶歇模式的最大重铸威力奖励（加速重铸）现在如果在任何随机 Angband 
-任务中失败，将永久降低
+* Fixed a bug that caused the Identify spell to not work properly for 
+Ring player-monsters (thanks to TauzentBlitz for reporting this). Also 
+changed the default point allocation for Rings per TauzentBlitz's 
+suggestion
 
-* 增强了堕落咒术 (Fell Sorcery) 和魔法合一 (One with Magic) 
-半神天赋。堕落咒术对法术威力的效果增加了一倍。除非玩家正在伪装或处于幽灵
-形态，魔法合一成功抵抗法术解除和反魔法的概率从以前的 50% 提高到了 
-77%（伪装限制不适用于变形者）
+* The show_discovery and always_dump_origins options are now on by 
+default due to their popularity
 
-* 增加了一种新卷轴（物品栏保护卷轴 Scroll of Inventory 
-Protection）。与其他提供临时物品栏保护（仅降低物品损坏几率）的手段不同，
-该卷轴提供完全保护
+* An item's weight is now displayed when the item is examined (thanks 
+to Mocht for reminding me of this)
 
-* 改进了物品解析。现在可以指定一个 ego 
-装置，以及指定堆叠大小，且指定的装置不再必须在对应效果支持的最低等级生成
-。一些任务奖励的装置现在是 ego 版本了
+* The proficiency screen didn't display proper statistics for player 
+death scythes; this has been fixed (thanks to Nivim for reporting this)
 
-* 修复了针对戒指玩家怪物的鉴定法术无法正常工作的 Bug（感谢 TauzentBlitz 
-报告此事）。还根据 TauzentBlitz 的建议更改了戒指的默认点数分配
+* "Cursed" status was not updated properly if the curse was broken by 
+an enchantment; this has been fixed
 
-* 由于 show_discovery (显示发现记录) 和 always_dump_origins 
-(总是转储物品来源) 选项很受欢迎，它们现在默认开启
+* Monsters can no longer tele-level the player out of dungeon quest 
+levels (in the case of fixed quests this caused an automatic quest 
+failure, which was highly annoying and somewhat unfair) (thanks to 
+Bucephalus for bringing this up)
 
-* 在检查物品时现在会显示物品重量（感谢 Mocht 提醒我这一点）
+* Item quests could become uncompletable for Death-Swords and 
+Weaponsmiths if they absorbed the item without picking it up first; 
+this has been fixed (thanks to Prandar for reporting this)
 
-* 熟练度界面没有正确显示死亡之剑和武器匠的统计数据；这已被修复（感谢 
-Nivim 报告此事）
+* Some *vorpal* weapons had misleading inscriptions due to lacking the 
+VORPAL flag; this has been fixed (thanks to Nivim for reporting this)
 
-* 如果诅咒被附魔打破，“被诅咒”状态没有正确更新；这已被修复
+* Monsters with long (2-square) melee were not able to use it 
+diagonally; this has been fixed
 
-* 怪物不能再通过传送楼层 (tele-level) 
-将玩家传出地下城任务楼层（在固定任务中这会导致任务自动失败，非常烦人而且
-有点不公平）（感谢 Bucephalus 提出这一点）
+* Shield weaponmasters were not allowed to use mithril shields; this 
+has been fixed (thanks to Bucephalus for reporting this)
 
-* 
-如果死亡之剑和武器匠在不捡起物品的情况下直接吸收它，可能导致物品任务无法
-完成；这已被修复（感谢 Prandar 报告此事）
+* One of the Trump Shuffle effects ("picture of a strange monster") 
+didn't work properly due to an old bug (thanks to bostock for reporting 
+this)
 
-* 一些 *斩首 (*vorpal*)* 武器由于缺少 VORPAL 
-标志而有误导性的铭刻；这已被修复（感谢 Nivim 报告此事）
+* Coffee-break mode inappropriately created normal down stairs instead 
+of a shaft to connect random dungeon quests on consecutive levels; this 
+has been fixed
 
-* 具有长（2格）近战攻击的怪物无法在对角线上使用它；这已被修复
+* Improved valuation of unidentified items, and fixed a longstanding 
+bug that allowed unidentified good, awful and average items to receive 
+a value bonus intended only for artifacts
 
-* 盾牌武器大师不允许使用秘银盾牌；这已被修复（感谢 Bucephalus 
-报告此事）
+* Failed attempts to close a door while confused now take some time 
+(although less than a full turn)
 
-* 由于一个旧 Bug，王牌洗牌 (Trump Shuffle) 
-的效果之一（“一张奇怪怪物的图片”）无法正常工作（感谢 bostock 报告此事）
+* Improved support for Adam Bolt's tiles by copying things from 
+ZAngband
 
-* 
-茶歇模式会不合时宜地生成普通下行楼梯而不是竖井来连接连续楼层上的随机地下
-城任务；这已被修复
+* Disease attacks can now cause temporary unwellness
 
-* 改进了对未鉴定物品的估值，并修复了一个长期存在的 Bug，该 Bug 
-允许未鉴定的良好 (good)、糟糕 (awful) 和一般 (average) 
-物品获得仅为神器准备的价值加成
+* Explosions can now have multiple effects (e.g. Internet Exploders now 
+slow the player a bit in addition to the time damage)
 
-* 在混乱时未能成功关门现在需要花费一些时间（虽然不到一整回合）
+* The location of permanent features (like stairs or permanent walls) 
+is no longer forgotten by the player after earthquakes or destruction
 
-* 改进了对 Adam Bolt 的图块支持（通过从 ZAngband 复制内容）
+* Tweaked the Mauler class. Their Close In spell can now be cancelled 
+during targetting without HP or energy loss (thanks to Mocht for that 
+suggestion), but their melee power, archery skills and life rating were 
+reduced a bit. (Don't worry - they still do silly damage with the right 
+weapons...)
 
-* 疾病攻击现在可能导致暂时的身体不适 (unwellness)
+* Made psions a little less overpowered
 
-* 爆炸现在可以产生多种效果（例如，IE 浏览器爆炸者 (Internet Exploders) 
-现在除了时间伤害外，还能使玩家略微减速）
+* Slightly lowered weaponsmiths' life rating
 
-* 地震或破坏后，玩家不再忘记永久性地形特征（如楼梯或永久性墙壁）的位置
+* Tweaked repeated targetting a bit. A new target is now always 
+requested if the old target was the player's mount, and also if the 
+player targetted himself and has moved since. Not cancelling the old 
+targets in these cases sometimes caused unexpected behavior, especially 
+with the use_old_target option on (thanks to FlauterFiddle for bringing 
+this up)
 
-* 调整了重锤手 (Mauler) 职业。他们的贴近 (Close In) 
-法术现在可以在瞄准时取消，而不会损失 HP 或能量（感谢 Mocht 
-提出此建议），但他们的近战威力、箭术技能和生命评级略有降低。（别担心——只
-要手持合适的武器，他们仍能造成愚蠢般高额的伤害...）
+* The Enchant Weapon and Enchant Armor object selection menus no longer 
+allow futile attempts to enchant items with the NO_ENCHANT flag (thanks 
+to murphy for suggesting this)
 
-* 使得控心者 (psions) 稍微没那么超模了
+* Vortex player-monsters now have a race boss (Wiruin)
 
-* 稍微降低了武器匠的生命评级
+* Slightly reduced the power of melee slays and brands
+(Gwarl's weapon die buff in ComPosband effectively made slays and 
+brands more powerful than they used to be, since their power depends on 
+dice; so for most weapons, the power of slays and brands now is fairly 
+similar to what it was in PosChengband before Gwarl's weapon buff)
 
-* 
-调整了重复瞄准。如果旧目标是玩家的坐骑，或者玩家瞄准了自己且已移动，现在
-总是会请求新目标。在这些情况下不取消旧目标有时会导致异常行为，特别是在使
-用 use_old_target 选项时（感谢 FlauterFiddle 提出这一点）
+* Fixed a number of bugs with melee slays and brands. (Most notably, 
+Slay *Living* didn't work properly [it had the same effect as normal 
+Slay Living])
 
-* 附魔武器 (Enchant Weapon) 和附魔护甲 (Enchant Armor) 
-物品选择菜单不再允许尝试给带有 NO_ENCHANT 
-标志的物品附魔这种徒劳无功的行为（感谢 murphy 建议此功能）
+* In some unusual cases, a single monster could be counted as a kill 
+for quest completion purposes more than once. In general, any player 
+strong enough to take "advantage" of this was better off just 
+curbstomping the quest the normal way, but the loopholes have been 
+plugged anyway
 
-* 漩涡玩家怪物现在有了一个种族 Boss（维鲁因 Wiruin）
+* Attempts to revive a quest target monster will now always fail
+
+* Oremorj the Cyberdemon Lord now has fewer hitpoints, but can 
+sometimes recover from confusion speedily
+
+* Elder storm giants now resist confusion
+
+* Sleeping in the inn or reforging an item now resets all timed flags
+
+* Nerfed the Sorcery Realm's Mass Stasis spell, which now has much 
+lower power and shorter duration if effective (it's still one of the 
+best spells in that realm...) Some other stasis/paralysing effects also 
+have shorter duration now
+
+* The Confusing Lights spell is now slightly weaker (staves of 
+Confusing Lights are not affected by this change)
 
-* 稍微降低了近战杀戮 (slays) 和属性附加 (brands) 的威力
-（Gwarl 在 ComPosband 
-中对武器骰子的加强实际上使得杀戮和属性附加比以前更强大，因为它们的威力取
-决于骰子；因此对于大多数武器来说，现在杀戮和属性附加的威力与 Gwarl 
-对武器加强之前的 PosChengband 相当）
+* Teleport Level and Word of Recall now request confirmation if the 
+player is about to recall/teleport out of a quest that cannot be 
+retaken
 
-* 修复了近战杀戮和属性附加的一些 Bug。（最值得注意的是，杀戮 *活物* 
-Slay *Living* 不能正常工作 [它的效果与普通杀戮活物相同]）
+* Retaking level 99 or 100 in coffee-break mode now slightly increases 
+the Serpent's mpower
 
-* 
-在一些不寻常的情况下，为计算任务完成情况，一只怪物可能会被多次计为击杀。
-一般来说，任何强大到足以“利用”这一点的玩家，最好还是以正常方式压制任务，
-但这些漏洞无论如何都已被堵上
+* Body armour of Celestial Protection sometimes has additional buffs 
+now, especially at high levels
 
-* 尝试复活任务目标怪物现在总是会失败
+* The "You have no artifacts to reforge" error message now displays the 
+reforge power limit (thanks to bostock for suggesting this)
 
-* 赛博恶魔领主奥雷莫吉 (Oremorj the Cyberdemon Lord) 现在的 HP 
-较少，但有时能从混乱中迅速恢复
+* Plugged wobbly's Black Market potion reserving exploit
 
-* 远古风暴巨人现在抵抗混乱
+* Androids can now use the Eat command (in addition to the old Quaff 
+command) to consume a flask of oil (thanks to Mocht and bostock for 
+suggesting this)
 
-* 在旅馆睡觉或重铸物品现在会重置所有限时标志
+* Made selling caps in key shops (armoury and weapon shop) friendlier 
+to the player, and removed some duplication in the shopkeeper list
 
-* 削弱了咒术领域的群体停滞 (Mass Stasis) 
-法术，如果生效，现在的威力要低得多，持续时间也短得多（它仍然是该领域最好
-的法术之一……）一些其他的停滞/麻痹效果现在持续时间也变短了
+* Slightly reduced the cost of reforging in coffee-break mode to 
+compensate for the more limited money supply
 
-* 惑人光彩 (Confusing Lights) 
-法术现在稍微弱了一些（惑人光彩法杖不受此更改影响）
+* Monsters summoned by Amberite blood curses now appear with more 
+energy needed, and therefore won't insta-kill the player unless the 
+player is paralyzed or has low speed
 
-* 传送楼层 (Teleport Level) 和回城言灵 (Word of Recall) 
-现在会在玩家即将传出无法重新接受的任务时请求确认
+* The Enchantment spell (available to mariliths and dragons, and as an 
+activation on the hammer of Hephaestus) now applies the usual 99% 
+discount to enchanted non-ego items (thanks to Bucephalus for 
+suggesting this)
 
-* 在茶歇模式中重接 99 层或 100 层的任务现在略微增加混沌之蛇的最大法力值 
-(mpower)
+* Ultra-powerful items from normally low-weight slots whose score 
+exceeds the reforge power cap of their native slot (e.g. Nenya or 
+Vilya) can now have the power cap of the destination slot applied to 
+them if reforged into a higher-weight slot
 
-* 天界庇护 (Celestial Protection) 
-的身体护甲现在有时会获得额外的增益，尤其是在高等级时
+* Added a new disturbance option ("Run past buried treasure"; on by 
+default)
 
-* “你没有神器可以重铸”的错误信息现在会显示重铸威力的上限（感谢 bostock 
-建议）
+* Experience from a monster kill is now reduced if 100 or more monsters 
+of that race have been killed. (Copied from Frogspawn; replaces the 
+previous exp reduction formula that only applied to breeders and kicked 
+in after 400 kills)
 
-* 堵住了 wobbly 保留黑市药水的漏洞
+* 墨家明器 now accepts "icky" as an adjective (so "!icky" means 
+"destroy all icky items", and "!nameless icky weapons" means "destroy 
+all icky melee weapons that aren't ego or artifact"). 墨家明器 
+defines icky items as either weapons that trigger icky wield, or gloves 
+that trigger encumbrance. It is possible that the "icky" keyword 
+doesn't work correctly for some classes yet; any such reports will be 
+appreciated (thanks to BobZero for this suggestion)
 
-* 人造人 (Androids) 现在可以使用食用 (Eat) 命令（以及旧的痛饮 Quaff 
-命令）来消耗油瓶 (flask of oil)（感谢 Mocht 和 bostock 建议此功能）
+* Added an option to deactivate the 墨家明器 (thanks to BobZero for 
+this suggestion)
 
-* 
-使得主要商店（护甲店和武器店）的出售上限对玩家更友好，并删除了店主列表中
-的一些重复项
+* It is now possible to inscribe a weapon with !? to request 
+confirmation of melee attacks, preventing accidental melee (this may be 
+desirable for pure magic users, or in the case of temporarily wielded 
+objects like shovels). The inscription may also include a monster level 
+(e.g. !?45 asks the player to confirm attacks against monsters of level 
+45 or above, but not against monsters of level 44 or below). Once an 
+attack against a monster has been confirmed, all further attacks 
+against that monster are automatically assumed to be acceptable. 
+Consecutive attacks against monsters of the same race are also assumed 
+to be intentional; for example, if the player confirms an attack 
+against an olog, all further attacks against ologs will be 
+automatically confirmed until the player attacks a monster who is not 
+an olog. Only the player's primary weapon is checked for the !? 
+inscription (thanks to BobZero for this suggestion)
 
-* 在茶歇模式中略微降低了重铸的成本，以补偿更受限的金钱供应
+* A -more- prompt is now given to alert the player whenever a device or 
+any inscribed item in the player's inventory is stolen or destroyed. 
+These warnings can be turned off in the disturbance options
+(thanks to kt for this suggestion)
 
-* 
-安珀人血液诅咒召唤出的怪物出现时需要更多的能量，因此除非玩家瘫痪或速度很
-慢，否则不会将玩家秒杀
+* Implemented some of bostock's suggested alchemist improvements:
+- Alchemists can now use the same infusion repeatedly with the 'n' 
+command
+- The Break Down and Create Infusion operations quantity prompts now 
+default to the whole stack
+- Infusions of Booze now warn the player on attempts to use them
+- Potions with special super-effects for alchemists now have different 
+descriptions when inspected by an alchemist
+- An infusion-browsing function existed but could not be accessed 
+in-game
 
-* 附魔 (Enchantment) 法术（可供六臂蛇魔和龙使用，以及赫菲斯托斯之锤 
-hammer of Hephaestus 的激活能力）现在对附魔非 ego 物品应用通常的 99% 
-折扣（感谢 Bucephalus 提出此建议）
+* Alchemist infusions are now only almost weightless, not totally 
+weightless (they weigh 0.05 lbs each, one-tenth of a potion's weight)
 
-* 
-通常低重量栏位的超强物品，其分数超过该原生栏位的重铸威力上限（例如水之戒
-南雅 Nenya 或气之戒维雅 
-Vilya），现在如果重铸到更高重量的栏位，可适用该目标栏位的威力上限
+* Requesting a new quest with the previous quest's reward waiting 
+outside no longer results in the permanent loss of the previous reward. 
+(Note that it is *only* quest rewards that aren't lost - any other 
+objects you may have left waiting outside will still be lost.)
 
-* 增加了一个新的打断提示选项（“跑过埋藏的财宝”；默认开启）
+* Added more random ring artifact names
 
-* 怪物击杀提供的经验现在会减少，如果该种族的怪物已被杀死 100 
-只或以上。（复制自 Frogspawn；取代了之前只适用于繁殖怪并在 400 
-次击杀后生效的经验减少公式）
+* Updated some of the help files
 
-* 墨家明器 销毁器现在接受 "icky" (令人反胃的) 作为修饰词（因此 "!icky" 
-意味着“摧毁所有 icky 物品”，而 "!nameless icky weapons" 
-意味着“摧毁所有非 ego 或神器的 icky 近战武器”）。墨家明器 将 icky 
-物品定义为触发挥舞限制的武器或触发妨碍的手套。有可能 "icky" 
-关键字对某些职业还不能正常工作；如果你发现此情况，麻烦进行报告（感谢 
-BobZero 建议此功能）
-
-* 添加了停用 墨家明器 的选项（感谢 BobZero 建议此功能）
-
-* 现在可以使用 !? 
-铭刻武器以在近战攻击前请求确认，防止意外近战（这对于纯魔法使用者或临时持
-有的如铁锹等物品可能是可取的）。铭刻还可以包括一个怪物等级（例如，!?45 
-要求玩家确认对等级 45 或以上的怪物进行攻击，但不对等级 44 
-或以下的怪物进行攻击）。一旦确认了对某个怪物的攻击，随后对该怪物的所有攻
-击都将自动视为可接受。对同一种族怪物的连续攻击也被视为有意的；例如，如果
-玩家确认了对奥罗克 (olog) 
-食人妖的攻击，此后对奥罗克的所有攻击都将自动被确认，直到玩家攻击了不是奥
-罗克的怪物为止。该功能只检查玩家的主手武器是否有 !? 铭刻（感谢 BobZero 
-建议此功能）
-
-* 
-现在每当玩家的背包中的装置或任何带有铭刻的物品被偷走或销毁时，系统都会给
-出一个 -more- 提示警告。这些警告可以在打断提示选项中关闭
-（感谢 kt 建议此功能）
-
-* 实现了一些 bostock 建议的炼金术士改进：
-- 炼金术士现在可以用 'n' 命令重复使用同一种注入液 (infusion)
-- 拆解和创建注入液操作的数量提示现在默认为整个堆叠
-- 在尝试使用烈酒 (Booze) 注入液时会警告玩家
-- 具有炼金术士特殊超级效果的药水在被炼金术士检查时有不同的描述
-- 存在一个浏览注入液的功能，但无法在游戏中访问
-
-* 炼金术士的注入液现在只是几乎没有重量，而不是完全没有重量（每个重 0.05 
-磅，是药水重量的十分之一）
-
-* 
-请求一个新任务而前一个任务的奖励还在外面等待，不再导致永久失去前一个奖励
-。（注意，只有任务奖励不会丢失——你留在外面的任何其他物品仍将丢失。）
-
-* 增加了更多的随机戒指神器名称
-
-* 更新了部分帮助文件
-
-* 各种微小的调整和代码改进
+* Various minor tweaks and code improvements
 
 -------------------------------------------------------
 
 
-<a name="mango"></a></font><font color="#ff0000">RoguelikeFansBand 7.0.mango </font><font color="#ffffff">的更新日志：
+<a name="mango"></a>Changes in </font><font color="#ff0000">RoguelikeFansBand 7.0.mango</font><font color="#ffffff">:
 
-* 引入了三个新性格（混沌 Chaotic、平庸 Mundane 和倒霉 
-Unlucky）并恢复了被移除的慵懒 (Lazy) 和龙傲天 (Munchkin) 性格。（感谢 
-MITZE 建议混沌性格并帮我设计它）
+* Introduced three new personalities (Chaotic, Mundane and Unlucky) and 
+restored the removed Lazy and Munchkin personalities. (Thanks to MITZE 
+for suggesting the Chaotic personality and helping me devise it)
 
-* 移植了 PosChengband-R 中的炼金术士 (Alchemist) 职业
+* Adapted the Alchemist class from PosChengband-R
 
-* 移植了 Frogspawn 中的政客 (Politician) 职业
+* Adapted the Politician class from Frogspawn
 
-* 恢复了特殊的慵懒 (Lazy) 神器（做了一些微调）
+* Restored the special Lazy artifacts (with some tweaks)
 
-* 
-改进了荒野设计（不同地形类型之间的边界现在不再那么难看——告别矩形海洋）
+* Improved wilderness design (borders between different types of 
+terrain are now less ugly - say goodbye to rectangular oceans)
 
-* 移植了 PosChengband-R 
-的茶歇模式（可选的加速游戏）[更快的经验获取和战利品掉落，没有荒野大地图
-，强制下降但允许回城] [目前可以重复打 DL99 和/或 DL100]
+* Adapted PosChengband-R's coffee-break mode (optional accelerated 
+game) [faster exp gain and loot, no wilderness, forced descent but 
+recall allowed] [it is currently possible to do DL99 and/or DL100 
+repeatedly]
 
-* 怯懦 (Craven) 
-性格现在会赋予对恐惧的易伤，但也赋予中等强度的快速行走（感谢 MITZE 
-建议）
+* The Craven personality now gives vulnerability to fear, but also a 
+moderate quick walk (thanks to MITZE for this suggestion)
 
-* 
-减弱了混沌赞助神的惩罚——它们现在发生得不那么频繁了，而且也没那么容易瞬间
-秒杀了（现在惩罚应该不可能直接秒杀一个完全健康的玩家了，虽然它们仍然可以
-杀死一个已经受伤的玩家，并且在高级别时 ty_curse 神罚仍然是一种可能性）
+* Toned down chaos patron punishments - they happen less often now, and 
+are less insta-killy (it should now be impossible for a punishment to 
+insta-kill a fully healthy player outright, although they can still 
+kill a player who was already hurt, and TY_CURSE is still a possibility 
+at high levels)
 
-* 
-施法怪物现在可以在玩家对他们造成伤害后使用法术作为回应，即使玩家不在他们
-的视线范围内或在他们的溅射攻击范围之外。这使得安全地通过滥用视线卡视野来
-杀死德鲁杰 (drujs) 或夸尔苏格 (quylthulgs) 变得更加困难（改编自 
-Frogspawn）
+* Spellcasting monsters can now use spells in response to being hurt by 
+the player, even if the player is not in their line of sight or within 
+range of their splash attacks. This makes it harder to kill drujs or 
+quylthulgs safely by abusing line of sight (adapted from Frogspawn)
+
+* Tweaked randart creation (bows are now more likely to have 
+slays/brands or a miscellaneous attribute; instead of 
+disproportionately generating randart armors with to-AC of exactly +20 
+or weapons with to-hit/dam of exactly +25,+25, the bonuses are now 
+somewhat more random)
 
-* 调整了随机神器的生成（弓现在更有可能有杀戮 (slays) /属性附加 (brands) 
-或是其他杂项属性；与以前不成比例地生成 +AC 正好为 +20 
-的随机神器护甲或命中/伤害加成正好为 +25,+25 
-的武器相比，现在的加成变得更随机了一些）
+* Tweaked item valuation (some resists are now worth a bit more, others 
+are now worth a bit less, and items with many high resists are worth a 
+bit more in general. Also, off-weapon slays were not properly valued, 
+while off-weapon brands are now somewhat less valuable)
 
-* 
-调整了物品估值（一些抗性现在更值钱，另一些不太值钱，拥有许多高抗性的物品
-通常更值钱了。此外，以前武器之外的杀戮属性未被正确估值，而武器之外的属性
-附加现在不那么值钱了）
+* Made the Crow's Nest quest saner; it would previously give either 
+heaps of good objects or very few good objects, now it's guaranteed to 
+have a moderate amount of them
+
+* Made the Orc Camp and Tidy the Laboratory quests more compact
+
+* Prevented the player from getting quite so many level-ups from Shadow 
+Fairies and Tidy the Laboratory
+
+* Added some new class-specific quest rewards (no, not for Sand Pit)
+
+* The default reward for Orc Camp is now a staff of enlightenment
+
+* Uniques and monster groups should no longer generate in Trouble at 
+Home
+
+* Due to an oversight, being poly_selfed with no_scrambling on could 
+have extremely bad, potentially lethal consequences; this has been 
+fixed
 
-* 使得鸦巢 (Crow's Nest) 
-任务更理智；以前它要么给你一堆好东西，要么就很少好东西，现在保证会提供中
-等数量的好东西
+* The names and descriptions of random (or reforged) artifacts based on 
+a standard artifact with the FULL_NAME flag will no longer be mangled
 
-* 让兽人营地 (Orc Camp) 和清理实验室 (Tidy the Laboratory) 
-任务变得更加紧凑
+* Fixed an old bug that sometimes caused staves of cure wounds to 
+appear as staves of healing (or vice versa) in the character sheet's 
+Statistics section
 
-* 防止了玩家从暗影妖精 (Shadow Fairies) 和清理实验室任务中升太多级
+* Fixed some serious bugs in the old code intended to prevent pets from 
+killing the player with friendly fire. (Also, this code now applies to 
+friendly monsters as well as pets; this is only fair, given what 
+happens when the player's spells cause collateral damage to friendly 
+monsters... Monsters with the "stupid" flag are an exception to this.)
 
-* 添加了一些针对职业的任务奖励（不，没有沙坑 Sand Pit 的奖励）
+* Fixed an old bug that caused quest monsters with escorts to not be 
+correctly marked as questors, making them not reappear if destructed
 
-* 兽人营地的默认奖励现在是一根启明法杖 (staff of enlightenment)
+* Fixed a bug that caused ninja-lawyers to be encumbered by any armor 
+at all, effectively lowering their max SP (thanks to OmniNegro for 
+reporting this)
 
-* Unique 怪物和怪物群组现在应该不再在家里有麻烦 (Trouble at Home) 
-任务中生成
+* Fixed an old bug with rings and death-swords absorbing stacks of 
+identical items (thanks to OmniNegro for reporting this)
 
-* 由于疏忽，在 no_scrambling (禁止属性打乱) 开启时变形 (poly_selfed) 
-可能会产生极其糟糕、甚至可能致命的后果；这已被修复
+* Fixed an old bug with teleporting mounts (thanks to TauzentBlitz for 
+reporting this)
 
-* 基于带有 FULL_NAME (全名) 
-标志的标准神器的随机（或重铸）神器，其名称和描述现在不再被弄乱
+* Fixed an old bug that caused attacks by beholders on other monsters 
+to be treated as attacks by the player (resulting in bizarre messages 
+and damage, giving the player free experience, and allowing beholders 
+to kill uniques). Also fixed a similar but unrelated bug that sometimes 
+caused the message "You invoke Anti-Magic" to appear when a monster 
+invoked it
 
-* 修复了一个旧 Bug，该 Bug 
-有时导致治疗伤口法杖在角色面板的统计信息部分显示为治疗法杖（反之亦然）
+* Fixed an old bug that caused listed skeleton rewards and actual 
+skeleton rewards to be out of sync (thanks to the person who reported 
+this bug. Unfortunately I forgot to note who it was)
 
-* 修复了为了防止宠物误伤玩家的旧代码中的一些严重 
-Bug。（此外，这些代码现在适用于友方怪物以及宠物；这是公平的，考虑到如果
-玩家的法术对友方怪物造成了附带伤害会发生什么... 带有“愚蠢 
-stupid”标签的怪物是此规则的例外。）
+* Fixed a minor bug with doppelgangers (they could gain a demigod power 
+if they levelled up in barbarian or dunadan form, but could only access 
+those powers normally in human or demigod form). Doppelganger 
+barbarians and dunedain no longer receive demigod powers on level-up
 
-* 修复了一个旧 Bug，该 Bug 
-导致带随从的任务怪物没有被正确标记为任务怪物，从而如果被毁灭 
-(destructed) 则不会重新出现
+* Fixed two old issues with possessors receiving monster lore on 
+possessing a corpse. The first issue was that if the player never saw 
+the monster alive, it would not count as seen, and would be ignored by 
+the knowledge menu. (All possessed monsters are now marked as seen.) 
+The second issue was that deprecated monsters were sometimes 
+inappropriately generated (this should no longer happen), and they were 
+also ignored by the knowledge menu. (Thanks to robinhood for reporting 
+this)
 
-* 修复了一个导致忍者律师 (ninja-lawyers) 被任何护甲阻碍，有效降低其最大 
-SP 的 Bug（感谢 OmniNegro 报告）
+* It is no longer possible to get unlimited hits against a monster by 
+letting it stair-follow the player repeatedly (thanks to Gwarl for 
+reporting this exploit)
 
-* 修复了戒指和死亡之剑吸收一堆完全相同物品的旧 Bug（感谢 OmniNegro 
-报告）
+* The use_old_target option no longer allows the player to ignore 
+confusion while targetting (thanks to bostock for reporting this 
+exploit)
 
-* 修复了传送坐骑的旧 Bug（感谢 TauzentBlitz 报告）
+* Plugged an old exploit that allowed weaponsmiths to permanently 
+remove slaying penalties from heavy body armor, cloaks of the bat etc. 
+by adding a token amount of Slaying essence to the item and then 
+removing that (there are some very specific circumstances in which this 
+exploit can still work, but the advantage gained should be minuscule 
+compared to before)
 
-* 修复了一个旧 Bug，该 Bug 导致眼魔 (Beholders) 
-对其他怪物的攻击被视为玩家的攻击（导致产生奇怪的信息和伤害，给玩家免费经
-验，并允许眼魔杀死 Unique 怪）。还修复了一个类似但不相关的 Bug，该 Bug 
-有时导致怪物触发反魔法时显示“你激发了反魔法 (You invoke 
-Anti-Magic)”信息
+* Monsters not currently visible are now always displayed as white in 
+the monster health bar, unless enhanced telepathy is used. This 
+prevents the health bar from accidentally revealing a monster's 
+identity (thanks to vertigo for reminding me of this)
 
-* 修复了一个旧 Bug，该 Bug 
-导致列表中的骷髅奖励和实际的骷髅奖励不同步（感谢报告此 Bug 
-的玩家。不幸的是我忘了那是谁了）
+* High-level adversaries in the Thalos Arena no longer drop gold 
+(thanks to Mocht for pointing out that they did)
 
-* 修复了变形者 (doppelgangers) 的一个小 
-Bug（如果在野蛮人或登丹人形态下升级，他们可以获得半神天赋，但只能在人类
-或半神形态下正常使用这些天赋）。野蛮人和登丹人形态的变形者不再在升级时获
-得半神天赋
+* Standard artifacts received as quest rewards were not marked as 
+"found", which caused the artifact counter in the character sheet to 
+not notice them, though the bug did not allow them to be actually 
+generated repeatedly (thanks to Mocht for reporting this)
 
-* 修复了关于附身者 (possessors) 
-在占据一具尸体时获得怪物传说信息的两个旧问题。第一个问题是，如果玩家从未
-见过活着的怪物，它就不会被视为已见，并被知识菜单忽略。（所有被占据的怪物
-现在都被标记为已见。）第二个问题是，已弃用的怪物有时被不合时宜地生成（这
-应该不再发生了），并且它们也被知识菜单忽略了。（感谢 robinhood 
-报告此问题）
+* Fixed a minor bug that caused the message "You have found something!" 
+to sometimes be displayed on rubble clearing even if nothing was 
+actually found (thanks to Mocht for reporting this). Also, tweaked item 
+generation in rubble (previously, items could only be found in 
+low-level rubble. Now there's a small chance of finding items in 
+high-level rubble too, but spamming for rubble items is harder)
 
-* 
-玩家不再能通过让怪物反复跟随玩家走楼梯来获得无限次对它的攻击机会了（感谢
- Gwarl 报告这个漏洞）
+* It is now possible to use the 'J' key to auto-travel to an 
+object-list or monster-list entry. (This was already possible with the 
+'`' key, but that option doesn't give full compatibility with 
+non-English keyboards)
 
-* use_old_target 选项不再允许玩家在瞄准时无视混乱状态（感谢 bostock 
-报告这个漏洞）
+* Level 10 of Icky Cave is now guaranteed to be small or smallish
 
-* 
-堵住了一个旧漏洞，该漏洞允许武器匠永久消除重型身体护甲、蝙蝠披风等的杀戮
-减益惩罚，方法是向物品添加极少量的杀戮本质，然后将其移除（在一些非常特定
-的情况下这个漏洞仍然有效，但获得的优势应该微乎其微）
+* All staircases generated in the Battlefield dungeon will now be 
+shafts
 
-* 
-当前不可见的怪物现在在怪物生命条中总是显示为白色，除非使用了增强的心灵感
-应。这可以防止生命条意外泄露怪物的身份（感谢 vertigo 提醒我这一点）
+* Tourists can now sell photographs for loose change at the 
+Journalists' Guild in Anambar
 
-* 萨洛斯竞技场 (Thalos Arena) 的高等级对手不再掉落金币（感谢 Mocht 
-指出他们以前会掉落）
+* Improved gray-mages' spell UI
 
-* 作为任务奖励收到的标准神器没有被标记为“找到 
-(found)”，导致角色属性面板上的神器计数器没有注意到它们，尽管这个 Bug 
-并没有允许它们真正地重复生成（感谢 Mocht 报告此问题）
+* Improved weapon proficiency display (it is now possible to see the 
+class-specific proficiency caps for each weapon in-game, and to view 
+the player's current proficiency as a percentage of either full mastery 
+or the class-specific cap)
 
-* 修复了一个小 Bug，该 Bug 
-有时导致即使清除废墟时实际上什么也没找到，也会显示“你发现了一些东西！(Yo
-u have found something!)”的消息（感谢 Mocht 
-报告此问题）。此外，调整了废墟中的物品生成（以前，只有在低等级的废墟中才
-能找到物品。现在高等级废墟中也有很小的几率找到物品，但不断尝试刷废墟物品
-变得更困难了）
+* Characters with levitation are no longer unable to deliberately jump 
+into trap doors
 
-* 现在可以使用 'J' 键自动旅行到物品列表或怪物列表中的某个条目。（使用 
-'`' 键已经可以实现，但那个选项对非英语键盘不完全兼容）
+* Scrolls will now ask for confirmation if reading them would have no 
+effect (e.g. Teleport Level or Genocide inside a quest)
 
-* 黏液洞穴 (Icky Cave) 的 10 楼现在保证是极小或较小的地图
+* Scrolls of Crafting now cancel outright if reading them is guaranteed 
+to not have an effect (however, in cases where reading them might have 
+an effect but doesn't, they still get used up like before)
 
-* 古战场 (Battlefield) 地下城生成的所有楼梯现在都是竖井
+* Nazguls are now immune to polymorphing
 
-* 游客 (Tourists) 现在可以将照片作为零钱卖给阿南巴 (Anambar) 的记者公会 
-(Journalists' Guild) 了
+* Made wands of tsunami slightly less overpowered
 
-* 改进了灰魔道士 (gray-mages) 的法术 UI 界面
+* The weapon shop now stocks projectiles and quivers more often during 
+the very early game (thanks to CyclopsSlayer for bringing up the 
+annoyance of not having any ammo)
 
-* 
-改进了武器熟练度的显示（现在可以在游戏中查看每种武器特定于职业的熟练度上
-限，并以满级精通或特定于职业上限的百分比查看玩家当前的熟练度）
+* Slightly nerfed the Death realm's Nether Storm spell
 
-* 拥有漂浮能力的角色不再无法故意跳入活板门陷阱
+* "Empty" barbarian talismans with nothing on them should no longer 
+generate
 
-* 
-如果阅读卷轴没有任何效果（比如在任务中阅读传送楼层或群体灭绝），现在会要
-求玩家进行确认
+* Monsters now cast spells slightly more intelligently (thanks to Mocht 
+for suggesting that they be able to learn about anti-teleportation)
 
-* 如果读取工匠卷轴 (Scrolls of Crafting) 
-保证不会产生任何效果，现在会直接取消（但在某些可能有效果却实际上没效果的
-情况下，它们还是会像以前一样被消耗掉）
+* Skillmasters no longer get Vampirism True cheaper than other classes
 
-* 戒灵 (Nazguls) 现在免疫多态变形
+* Races with more HP than spectres now have their racial HP reduced to 
+that of the spectre while in wraithform
 
-* 让海啸魔棒 (wands of tsunami) 稍微没那么超模了
+* All items in an object prompt are now guaranteed to have a slot label 
+(previously, conflicts caused by an inscribed item overriding another 
+object's slot label could cause objects to not have slot labels)
 
-* 在游戏非常早期的阶段，武器商店现在会更频繁地储备投射物和箭袋（感谢 
-CyclopsSlayer 提出没有弹药带来的烦恼）
+* All carried items now recharge fully while the player waits for a 
+reforge. (This is only fair, since sleeping in the inn has this effect, 
+even on short naps that consume less game time than a reforge does)
 
-* 稍微削弱了死亡领域的幽冥风暴 (Nether Storm) 法术
+* Limited the number of active monster traps (or glyphs of warding) the 
+player can concurrently have on a single level to 11, to discourage the 
+very tedious but effective approach of filling large chunks of the 
+level with traps before taking on a strong foe, and to encourage 
+careful trap placement when more moderate versions of this approach are 
+used. Rogues are exempt from this limit (because rogues). Primary-realm 
+Life casters are exempt in the special case of glyphs of warding, so 
+they can still freely use the Warding True spell
 
-* 不应该再生成什么都没有附加的“空”野蛮人护符 (barbarian talismans)
+* Identical quivers will now stack in inventories
 
-* 怪物现在施法更加智能了（感谢 Mocht 建议它们应该能够学习反传送能力）
+* Harps can generate for non-bards again
 
-* 技能大师获得真实吸血 (Vampirism True) 的代价不再比其他职业更便宜
+* Weapons of Gondolin now appear slightly earlier and sometimes have 
+random buffs
 
-* 生命值上限超过幽灵的种族，在进入幽灵形态 (wraithform) 时，其种族 HP 
-会降低到与幽灵同等水平
+* Improved the show_discovery option (in particular, a reforged object 
+is now recorded as discovered at the time of reforging, instead of 
+inheriting the base object's discovery date; it is also displayed as 
+"received" rather than "picked up" or "identified")
 
-* 
-对象提示列表中的所有物品现在保证都有插槽标签（以前，由具有铭刻的物品覆盖
-另一个物品的插槽标签引起的冲突，可能导致物品没有插槽标签）
+* The daily wanted monster is now updated at midnight even if the 
+player's sleeping in the inn (thanks to MITZE for suggesting this)
 
-* 
-玩家在等待重铸的过程中，所有携带的物品现在会完全重新充能。（这是很公平的
-，因为在旅馆睡觉会有这种效果，即使只是小睡片刻，消耗的游戏时间也比重铸要
-少）
+* Fixed various typos (don't worry! There are still plenty left)
 
-* 限制了玩家在单层能够同时拥有的处于激活状态下的怪物陷阱（或守护结界 
-glyphs of warding）数量为 11 
-个。这是为了阻止通过在对付强敌前于关卡内大面积布满陷阱这种乏味但有效的策
-略，并鼓励在使用该策略的温和版本时小心布置陷阱。盗贼 (Rogues) 
-豁免此限制（因为是盗贼）。主修生命领域的施法者在守护结界这一特例上豁免，
-因此他们仍然可以自由使用真实守护 (Warding True) 法术
+* The display_percentages option (which was a bit of an easy-mode) has 
+been combined with the wizard mode's "show damage/hit" features into a 
+new easy_damage birth option. (7.0.peppermint characters with 
+display_percentages on will have easy_damage turned on if they upgrade 
+to 7.0.mango)
 
-* 相同的箭袋现在可以在背包中堆叠了
+* Tweaked weapon proficiency slightly (characters who previously 
+started at Unskilled (-20) with a weapon will now start at Unskilled 
+(-10), unless Unskilled (-20) is their maximum proficiency for that 
+weapon). This has minimal effects on the game's balance or difficulty, 
+but reduces proficiency-grinding tedium a bit
 
-* 竖琴现在可以为非吟游诗人的角色生成了
+* Axemasters can now master hatchets (however, some of their melee 
+bonuses still don't apply to hatchets, only to larger axes)
 
-* 贡多林的武器 (Weapons of Gondolin) 
-现在出现的稍微更早一点，且有时会带有随机增益
+* Unidentified ammo is now automatically placed in the quiver if it is 
+known to combine with ammo already in the quiver
 
-* 改进了 show_discovery (显示发现记录) 
-选项（特别是，重铸物品的发现日期现在记录为重铸的时间，而不是继承基础物品
-的发现日期；它也显示为“获得 (received)”而不是“捡起 (picked up)”或“鉴定 
-(identified)”）
+* Pet uniques now have a chance of turning hostile if damaged by the 
+player (this does not apply to the player's current mount)
 
-* 即使玩家在旅店睡觉，每日通缉怪物现在也会在午夜更新（感谢 MITZE 
-提供此建议）
+* Monsters summoned by friendly monsters will now usually also be 
+friendly (except in the case of stupid summoners, e.g. quylthulgs)
 
-* 修复了多处拼写错误（别担心！还是有很多残留的）
+* Tweaked pet summoning (pets are now less likely to summon uniques, 
+especially strong uniques)
 
-* display_percentages (显示百分比) 
-选项（有点像简单模式）被结合了向导模式中的“显示伤害/命中”功能，合并为一
-个新的 easy_damage (简易伤害) 出生选项。（开启了 display_percentages 的 
-7.0.peppermint 角色在升级到 7.0.mango 时，将自动开启 easy_damage）
+* Friendly monsters now have a chance to turn hostile if their parent 
+monster (group leader or summoner) was friendly and turns hostile
 
-* 稍微调整了武器熟练度（之前开始时武器熟练度为“生疏 Unskilled 
-(-20)”的角色，现在开始时为“生疏 Unskilled (-10)”，除非“生疏 
-(-20)”是他们对该武器的最大熟练度）。这对游戏平衡或难度影响极小，但稍微减
-少了枯燥的熟练度研磨
+* Mana is now lost slightly faster if the player's pet upkeep factor is 
+too high; and if the upkeep is totally excessive, pets may feel 
+neglected and either dismiss themselves or turn hostile. (Thanks to 
+vertigo for his feedback on pet upkeep)
 
-* 斧头大师 (Axemasters) 现在可以精通短斧 
-(hatchets)（但是，他们的一些近战加成仍然不适用于短斧，只适用于更大的斧头
-）
+* Fixed a bizarre issue with mana loss (the hungrier the player was, 
+the slower mana was lost; if the player was fainting from hunger, no 
+mana was lost at all)
 
-* 如果未鉴定的弹药已知能与箭袋中现有的弹药合并，现在会自动放入箭袋中
+* It is now possible to use capture balls on pet uniques and Nazguls
 
-* 宠物 Unique 
-如果受到玩家伤害，现在有几率变敌对（不适用于玩家当前的坐骑）
+* Added more talk lines for friendly monsters
 
-* 
-由友方怪物召唤出来的怪物现在通常也会是友方的（蠢笨的召唤者除外，例如夸尔
-苏格）
+* Nerfed summoning staves in response to feedback from players. Staves 
+of Summon Hounds, Ants and Hydras now have a meaningful chance (1/3 to 
+1/4) of summoning hostile monsters (note that summon hydras summons 
+hostile reptiles rather than hostile hydras). Staves of Summon Monsters 
+have a lower (1/10) hostility chance, but cannot summon non-hostile 
+summoners
 
-* 调整了宠物召唤（宠物现在召唤出 Unique 的可能性变小了，特别是强大的 
-Unique）
+* Player-aligned (or player-summoned) monsters no longer receive XP for 
+killing other player-summoned monsters (plugging an exploit mentioned 
+by wobbly)
 
-* 
-如果其母体怪物（首领或召唤者）曾是友方且变为敌对，友方怪物现在也有几率变
-为敌对
+* Added more random artifact names (mostly for lamps and amulets)
 
-* 
-如果玩家宠物维护开销系数过高，法力流失速度会稍微变快；如果维护开销完全过
-高，宠物可能会感到被忽视并自我驱逐或变为敌对状态。（感谢 vertigo 
-提供他对宠物维护开销的反馈）
+* Added a random player name generator (based on Vanilla's random 
+artifact name generator). The generator mostly suggests 
+Tolkienian-sounding names, but sometimes offers a Latin-sounding name 
+instead
 
-* 
-修复了法力流失异常问题（玩家越饿，法力流失越慢；如果玩家饿晕了，根本不会
-流失法力）
+* Changed hitpoint warning default from 30% to 50%
 
-* 现在可以使用捕获球 (capture balls) 抓捕宠物 Unique 和戒灵 (Nazguls)
+* Cancelling a throw during the targetting phase no longer costs a turn
 
-* 为友方怪物添加了更多对话台词
+* The object list now displays all town buildings, not just shops 
+(partly copied from Composband 7.1.alpha). There is also a new option 
+to display stairs in the object list (useful if you want to dive and 
+can map the nearby area easily). This option can be speedily toggled in 
+the object list itself by pressing S
 
-* 响应玩家的反馈，削弱了召唤法杖。召唤猎犬 (Summon Hounds)、蚂蚁 (Ants) 
-和九头蛇 (Hydras) 法杖现在有相当几率（1/3 到 
-1/4）召唤出敌对怪物（注意，召唤九头蛇会召唤敌对的爬行动物而不是敌对的九
-头蛇）。召唤怪物法杖的敌对机率较低（1/10），但无法召唤非敌对的召唤者
+* The highscore list and the hidden oook data now give the maximum 
+level attained by a character, rather than current level
 
-* 玩家阵营的（或玩家召唤的）怪物杀死了其他玩家召唤的怪物时不再获得 
-XP（堵住了 wobbly 提到的漏洞）
+* Improved oook compatibility for character names with apostrophes 
+(thanks to pav for helping with this)
 
-* 增加了更多的随机神器名称（主要是灯和护身符）
+* Introduced options to display equipment origins in the character dump 
+(on as a default for winners and dead characters, off as a default for 
+living non-winners)
 
-* 添加了一个随机玩家名称生成器（基于 Vanilla 
-版本的随机神器名称生成器）。该生成器大多数推荐听起来像托尔金风格的名字，
-但有时也会提供听起来像拉丁语的名字
+* Random quest rewards can no longer be cursed (unless the game fails 
+to generate a reward that isn't cursed)
 
-* 将生命值警告默认值从 30% 更改为 50%
-
-* 在瞄准阶段取消投掷不再消耗回合
-
-* 物品列表现在显示所有的城镇建筑，而不仅仅是商店（部分复制自 Composband 
-7.1.alpha）。还有一个新选项能在物品列表中显示楼梯（如果你想下楼且能轻松
-绘制出附近区域的地图时很有用）。在物品列表中按 S 可以快速切换该选项
-
-* 高分榜以及隐藏的 oook 数据现在给出角色达到的最大等级，而不是当前等级
-
-* 改进了 oook 数据对带有撇号的角色名称的兼容性（感谢 pav 
-帮助完成此功能）
-
-* 
-引入了在角色转储中显示装备来源的选项（对于赢家和死去的角色默认开启，对于
-存活的非赢家角色默认关闭）
-
-* 随机任务奖励不再会被诅咒（除非游戏未能生成没被诅咒的奖励）
-
-* 各种微小的调整和代码改进
+* Various minor tweaks and code improvements
 
 -------------------------------------------------------
 
 
-<a name="peppermint"></a></font><font color="#ff0000">RoguelikeFansBand 7.0.peppermint </font><font color="#ffffff">的更新日志：
+<a name="peppermint"></a>Changes in </font><font color="#ff0000">RoguelikeFansBand 7.0.peppermint</font><font color="#ffffff">:
 
-* 彻底重制了关闭荒野大地图 (no-wilderness) 
-模式下的城镇，并修复了任务描述，使其在开启或关闭荒野大地图时都保持准确。
+* Totally revamped the no-wilderness town, and fixed quest descriptions 
+so they're accurate with both wilderness and no wilderness
 
+* Introduced a V-like system for tracking and describing object origins 
+(e.g. "Dropped by the Variant Maintainer on level 19 of Orc Cave."). 
+This system can be turned off (or expanded further) in the text display 
+options
 
-* 引入了一个类似 V 
-版本的系统，用于追踪和描述物品来源（如“由版本维护者在兽人洞穴第 19 
-层掉落。”）。这套系统可以在文本显示选项中关闭（或进一步扩展）
+* Added back the no_selling birth option. In no_selling mode, selling 
+items is disabled but gold drops are increased to compensate. The 
+intention is that selling players and non-selling players will 
+accumulate gold at roughly the same pace, but since this was calibrated 
+based on my own games, it may not hold for players with different 
+playstyles. No_selling mode does not have any effect on gold drops in 
+the wilderness
 
-* 恢复了 no_selling (禁售) 
-出生选项。在禁售模式下，出售物品被禁用，但金钱掉落量增加以作补偿。初衷是
-让买卖玩家与禁售玩家积累金钱的速度大致相同，但这基于我自己的游戏数据进行
-校准的，对于采用不同游玩风格的玩家可能并不适用。禁售模式对荒野大地图中的
-金钱掉落没有任何影响。
+* Added a new option (easy_mimics) for players who really hate mimics, 
+cloakers, death swords, wall monsters etc. and want to reglyph them. 
+Turning on easy_mimics makes these monsters use the 'x' glyph instead 
+of their normal glyph (the monsters will retain their normal color, 
+unless that's pitch black, in which case it's changed to a slightly 
+less black black). It also makes monsters with the ATTR_CLEAR flag 
+possible to see. (Note that easy_mimics does not affect tree monsters 
+or weird fumes, which can be recognized through their color, nor does 
+it affect creeping coins or death scythes)
 
-* 添加了一个新选项 
-(easy_mimics，简单伪装怪)，针对那些非常讨厌伪装怪、隐匿兽 
-(cloakers)、死亡之剑、墙壁怪物等且希望重新分配其字符图形的玩家。开启 
-easy_mimics 会使这些怪物使用 'x' 
-字符，而不是它们原有的字符（怪物的普通颜色将保留，除非本来是漆黑的，这会
-被改成稍微没那么黑的黑色）。它也能使带有 ATTR_CLEAR 
-标志（不可见）的怪物变得可见。（注意，easy_mimics 
-不影响树木怪物或奇怪的烟雾，这俩可以通过颜色来识别，也不影响爬行的金币和
-死亡镰刀）
+* Made easy_id stronger (it now *identifies* all items on walkover)
 
-* 使 easy_id (简易鉴定) 变得更强（现在它会在踩上去时 *完全鉴定* 
-所有物品）
+* It is now possible to request a new quest immediately after receiving 
+the reward for the old one, without the need to exit and re-enter the 
+building
 
-* 
-拿到旧任务的奖励后，现在可以立刻请求接取新任务了，而无需退出再重新进入建
-筑
+* Added a never_forget birth option for the ellipos types, which 
+essentially protects the player from amnesia and also gives ellipos's 
+easy labyrinth
 
-* 为 ellipos 类型添加了 never_forget (永不忘记) 
-出生选项，它本质上是保护玩家免于失忆，并提供 ellipos 独有的简易迷宫
+* Added two new birth options (no_chris and no_scrambling) that prevent 
+dungeon teleports and stat scrambling, respectively. (Both cause 
+different bad things to happen instead; they are not intended as 
+easy-mode, but as options for players who find chrissing and/or stat 
+scrambling unfun and think the game would be better if those effects 
+didn't exist.)
 
-* 添加了两个新的出生选项 (no_chris 禁传送 和 no_scrambling 
-禁打乱)，分别阻止地下城的陷阱传送与属性打乱。（这两个选项都会引发其他不
-同的负面后果；它们并不是作为简单模式，而是给那些觉得陷阱传送和/或属性打
-乱不好玩、觉得要是没有这些效果游戏会更好的玩家提供的选项。）
+* Added new monsters and tweaked existing ones
 
-* 添加了新怪物并微调了现有怪物
+* Adapted some changes to artifacts that Gwarl made for ComPosband 
+7.0.4
 
-* 采纳了 Gwarl 为 ComPosband 7.0.4 制作的一些关于神器的改动
+* Added a new quest in Zul that enables teleporting between Zul and 
+other towns if successfully completed
+[A fair warning about this quest. It's not *that* hard if you have 
+great stealth, but if you have poor stealth - or worse, aggravation - 
+things can get... entertaining. This is true of most quests of course, 
+but particularly true here. Doing it with both aggravation and low 
+speed is not recommended, and Sexy characters should treat it as an 
+endgame quest and approach it with extreme caution.]
 
-* 祖尔 (Zul) 镇添加了一个新任务，成功完成后即可在祖尔和其他城镇之间传送
-[关于这个任务的善意警告：如果你的潜行能力极佳，那它就没 *那么* 
-难；但如果你潜行能力较差——更糟糕的是如果你有激怒 (aggravation) 
-属性——情况可能会变得……很有娱乐性。这适用于游戏中的大多数任务，但在这个任
-务中尤为突出。不建议同时顶着激怒属性和低速度去尝试。拥有性感 (Sexy) 
-性格的角色应将此任务视为游戏终局级别的挑战，并极其谨慎地对待。]
+* Rings and Death Swords are no longer limited to 1x free action or see 
+invisible
 
-* 戒指和死亡之剑的“自由行动 (free action)”或“识破隐形 (see 
-invisible)”能力不再局限于只生效一次
+* Fixed a bug in Thalos that made the library inaccessible in late game
 
-* 修复了萨洛斯 (Thalos) 镇图书馆在游戏后期变得无法进入的 Bug
+* Fixed a bug with lawyer *identify* (it cost zero mana and allowed the 
+player to also do normal identify on a different item)
 
-* 修复了律师 (lawyer) 的 *完全鉴定* 的 
-Bug（它不消耗法力，并且允许玩家对另一个物品进行普通鉴定）
+* Fixed a bug that caused items in the home display to be sometimes 
+shown with a value of zero
 
-* 修复了家里展示的物品有时显示价值为零的 Bug
+* Fixed an old bug that caused some timed effects to be decreased on 
+game load, allowing the player to cure fear by saving and loading 
+repeatedly. (Something similar may still happen with other things, the 
+code needs closer scrutiny)
 
-* 修复了一个旧 Bug，该 Bug 
-会在游戏加载时降低某些限时效果的持续时间，从而允许玩家通过反复保存和加载
-来治愈恐惧。（由于其他效果可能仍有类似的问题，代码需要更仔细地排查）
+* Fixed an old PosChengband bug that allowed hidden information about 
+immunities to leak to the player through the character sheet
 
-* 修复了旧版 PosChengband 中的一个 
-Bug，它允许通过角色属性面板将关于免疫特性的隐藏信息泄露给玩家
+* Fixed an old PosChengband bug that sometimes caused the game to crash 
+on mangy leper attacks due to division by zero (thanks to Hugo for 
+spotting and reporting it)
 
-* 修复了旧版 PosChengband 中的一个 
-Bug，在遭到患病的麻风病人攻击时因除以零有时导致游戏崩溃（感谢 Hugo 
-发现并报告此事）
+* Fixed an ancient bug that made quests uncompletable if one of the 
+target monsters evolved or got polymorphed (this should now be 
+impossible), and tweaked monster evolution code (all of which is now in 
+time_lord.c, instead of being needlessly duplicated)
 
-* 修复了一个古老的 
-Bug：如果其中一个目标怪物进化或被多态变形（现在应该不可能了），任务将无
-法完成，并微调了怪物进化代码（现在这些代码都在 time_lord.c 
-中，而不是无谓地被重复堆砌）
+* Fixed a problem with using the '-' key to select a floor item in the 
+inscription menu
 
-* 修复了在铭刻菜单中使用 '-' 键选择地板上物品的问题
+* Fixed an old bug that caused the game to crash with quest_unique off 
+if too many target monsters were killed in a random Angband quest
 
-* 修复了一个旧 Bug，如果开启了 quest_unique (任务限定唯一怪) ，并在随机 
-Angband 任务中杀死太多目标怪物，会导致游戏崩溃
+* Fixed an old bug that allowed skeletons to double their food pile by 
+eating from it
 
-* 修复了一个旧 Bug，允许骷髅从自己的食物堆里吃东西来使其翻倍
+* Fixed an old bug that caused the wilderness to not generate properly 
+(potentially causing crashes) if the player saved and loaded the game 
+inside the arena
 
-* 修复了一个旧 
-Bug，如果玩家在竞技场内存档并读取，荒野将无法正确生成（这可能导致崩溃）
+* Fixed a minor bug with using an unidentified device of detect traps, 
+which didn't mark grids as trap-detected even in cases where the 
+effect's obviousness meant there was no need to avoid spoiling (thanks 
+to nikheizen for reporting this)
 
-* 修复了未鉴定的陷阱探测装置的一个小 
-Bug：即使由于该装置明显的效果导致不需要防剧透的情况下，该装置也不会将网
-格标记为已探测到陷阱（感谢 nikheizen 报告此事）
+* Plugged a number of old loopholes that allowed doppelgangers to 
+retain their demigod powers in forms other than Human and Demigod 
+(thanks to murphy for reporting this)
 
-* 
-堵住了一些旧漏洞，这些漏洞允许变形者在人类和半神以外的其他形态下保留他们
-的半神能力（感谢 murphy 报告此事）
+* Plugged an old information leak when uppercase keys were used in the 
+object prompt (thanks to murphy for reporting this as well)
 
-* 堵住了一个在物品提示界面输入大写字母会导致信息泄漏的旧漏洞（同时感谢 
-murphy 报告此事）
+* Objects thrown at a wall now land on the last square before the wall, 
+rather than attempting to land on the wall itself and ending up placed 
+on a random square adjacent to it (potentially creating the impression 
+of an object flying through a wall - thanks to bostock for reminding me 
+of this)
 
-* 
-扔向墙壁的物品现在会掉落在墙壁前的最后一个格子中，而不是试图掉落在墙壁本
-身并最终落在附近随机的一个格子中（这可能会给人造成物品飞墙而过的错觉——感
-谢 bostock 提醒我此事）
+* Destroying high-level law books now gives XP where appropriate 
+(thanks to bostock for this too)
 
-* 在适用的情况下，销毁高级律法书 (law books) 现在会给予经验值 
-XP（同时也感谢 bostock 报告此事）
+* Slightly lowered the max power of ultra-strong deep dungeon randarts
 
-* 略微降低了超强深层地下城随机神器 (randart) 的最大威力
+* Slightly changed how the reforge cap is calculated to compensate for 
+it now being easier to acquire fame (due to the increased number of 
+quests). The cap now increases slightly slower in the fame range 128 to 
+223 (early late game), with no effect on either midgame reforging or 
+very-late-game reforging. Essentially, the idea behind this change is 
+to keep midgame reforging viable and keep late game reforging strong, 
+but still make it somewhat harder to reach the late game reforge power
 
-* 
-由于现在更容易获取声望（任务数量增加了），略微修改了重铸威力上限的计算方
-式以作补偿。在声望 128 到 
-223（游戏中后期）区间，威力上限增加得略微更慢，对游戏中期或非常晚期的重
-铸没有影响。基本上，此更改的理念是保持中期重铸的可行性，并保持后期重铸的
-强大，但让达到游戏后期重铸的威力门槛变得稍微困难一点
+* Removed rogues' class life rating bonus
 
-* 移除了盗贼 (rogues) 的职业生命评级加成
+* Mine and Heaven now have bottom guardians
 
-* 矿坑 (Mine) 和天堂 (Heaven) 任务现在有了最终的楼层守卫
+* Made the black aura worse
 
-* 让黑色诅咒灵气变得更糟糕了
+* Amulets of anti-summoning can no longer be generated on a shuffle
 
-* 刷新商店进货现在不再能生成反召唤护身符
+* Snotlings and doppelgangers can no longer shuffle for mushrooms
 
-* 屁精和变形者不再能通过刷新商店进货刷出蘑菇了
+* Added a new deep cloak ego
 
-* 添加了一个新的 deep cloak ego
+* Added new artifacts
 
-* 添加了新神器
+* Added more race-specific rewards for unusual races
 
-* 为一些不同寻常的种族增加了更多对应的种族特有奖励
+* Made the Death realm's Vampirism True spell considerably more 
+expensive
 
-* 使死亡领域的真实吸血 (Vampirism True) 法术变得更加昂贵
+* Nerfed the Law realm's Expert Trap spell
 
-* 削弱了律法领域的专家陷阱 (Expert Trap) 法术
+* Made lawyer melee slightly weaker
 
-* 使律师近战变得稍微弱一点
+* Improved savefile compatibility when new uniques are added
 
-* 改进了添加新的 Unique 怪物时的存档文件兼容性
+* Reduced the number of non-town monsters, and especially monster 
+groups, that appear in areas near towns
 
-* 减少了城镇附近区域出现的非城镇怪物（特别是怪物群落）数量
+* Some early random Angband quests have a 20% chance to generate a 
+bonus reward (to compensate for an earlier change by Chris in 
+PosChengband that affected these quests negatively)
 
-* 一些早期的随机 Angband 任务有 20% 的几率生成额外奖励（补偿了之前 
-Chris 在 PosChengband 中对这些任务造成的负面改动）
+* Made melee attacks slightly more likely to break a glyph of warding
 
-* 使近战攻击稍微更有可能打破守护结界 (glyph of warding)
+* The Hideout entrance, while still in Outpost, has been moved south; 
+and the player now starts the game on the Warrens entrance, not the 
+Hideout one. [Copied from ComPosband 7.1.0a]
 
-* 藏身处 (Hideout) 的入口虽仍在前哨镇 
-(Outpost)，但已向南移；玩家现在会在兽穴 (Warrens) 
-的入口处开始游戏，而非藏身处。[复制自 ComPosband 7.1.0a]
+* Imported new random artifact names from ComPosband 7.1.0a
 
-* 导入了来自 ComPosband 7.1.0a 的新随机神器名称
+* Potions of cure critical wounds no longer cure poison [they were 
+never intended to in ComPosband, and it was weird that they did when 
+potions of healing did not]
 
-* 治疗严重伤口药水不再能治愈中毒了 [在 ComPosband 
-中，它们原本就不应有此效果，且鉴于治疗药水都不能解毒，严重伤口药水却能解
-毒这就很奇怪]
+* Tweaked the walls of Crystal Castle
+[Copied from ComPosband 7.0.4]
 
-* 调整了水晶石堡 (Crystal Castle) 墙壁的设置
-[复制自 ComPosband 7.0.4]
+* Introduced a new flag that gives confused monsters a chance to shake 
+their confusion off super-fast before they move. (Currently, no monster 
+actually has this flag, apart from Utgard-Loke)
 
-* 
-引入了一个新标志，让混乱的怪物有机会在移动前超快地摆脱混乱状态。（目前，
-除了乌特加德-洛基 Utgard-Loke 之外，没有怪物实际拥有此标志）
+* Monsters should no longer generate on top of enclosed 1x1 dark pits
 
-* 怪物现在不应该在封闭的 1x1 黑暗深坑中生成了
+* Made the Temple more likely to stock potions of cure serious wounds 
+during the early game
 
-* 使得圣殿在游戏早期更有可能库存治疗严重伤口药水了
+* Corrected a minor issue with fear message grammar after a throw 
+attack
 
-* 纠正了投掷攻击后恐惧提示信息语法的微小问题
+* Improved the oook data in HTML character dumps (it now gives max exp 
+rather than cur exp, and also gives the player's true race rather than 
+a race they were temporarily polymorphed into or mimicking)
 
-* 改进了 HTML 角色转储中的 oook 
-数据（现在给出了最大经验值而不是当前经验值，并且也给出了玩家的真实种族，
-而不是他们临时变形或模仿的种族）
+* Moved the Volcano, Dragon Slayer and Demon Slayer quests much deeper
 
-* 将火山 (Volcano)、屠龙者 (Dragon Slayer) 和屠魔者 (Demon Slayer) 
-任务移动到了更深的楼层
-
-* 更新了游戏内 FAQ
+* Updated the in-game FAQ
 
 -------------------------------------------------------
 
 
-<a name="strawberry"></a></font><font color="#ff0000">RoguelikeFansBand 7.0.strawberry </font><font color="#ffffff">的更新日志（相比于 ComPosband 7.0.3）：
+<a name="strawberry"></a>Changes in </font><font color="#ff0000">RoguelikeFansBand 7.0.strawberry </font><font color="#ffffff">(compared to ComPosband 
+7.0.3):
 
-* 
-重新平衡了神器重铸系统。目标是在阻止生成过于离谱强力的物品的同时，依然允
-许非常强力的物品存在（所以玩家有理由期望在游戏终局以及最终决战中使用重铸
-物品）。名望在重铸中的重要性略微降低了，使早期/中期的重铸更具吸引力，不
-过在现实中，重铸可能仍大多是游戏后期的手段。栏位权重也稍微作了调整，影响
-了重铸和随机神器的生成。移除了源神器威力的 90000 
-的硬上限，尽管更强大的神器仍会被当作拥有 90000 
-威力处理，或者是更低权重的栏位。这防止了某些超强物品因为不直接适合玩家的
-需求，并且无法被重铸时，实际上比低级物品更糟的情况。现在重铸也稍微便宜了
-一点
+* Rebalanced artifact reforging. The goal was to prevent silly-powerful 
+items while still allowing very strong items (so a character can 
+reasonably expect to use reforged items in the endgame and final 
+fights). The importance of fame in reforging was reduced slightly to 
+make early/mid-game reforging more appealing, though realistically 
+reforging will likely remain mostly a late-game thing. Slot weights 
+were also adjusted slightly, with effects on both reforging and randart 
+creation. The hard cap of 90000 on the source artifact's power was 
+removed, although stronger artifacts will still be treated as if they 
+had a power of 90000, or even less for less weighty slots. This 
+prevents situations in which a very strong item is effectively worse 
+than a weaker item because it doesn't fit the player's needs directly 
+and cannot ever be reforged. Reforging is now also slightly cheaper
 
-* 重新平衡了商店刷新进货。ComPosband 
-中引入的廉价刷新使得角色很容易就能获取大量荒谬强力的消耗品，只要他们找到
-了地下城商店并拥有足够的钱。廉价的商店刷新功能被保留了，但是许多最强力的
-物品（比如治疗药水、*治疗*药水、生命药水、属性药水、群体灭绝卷轴、大规模
-灭绝卷轴以及重生药水）不能再通过刷新进货生成了。此外，黑市刷新现在更昂贵
-了
+* Rebalanced shop shuffling. The cheap shuffling introduced in 
+ComPosband allowed characters to acquire silly piles of extremely 
+powerful consumables very easily, as long as they found a dungeon shop 
+and had enough money. The cheap shuffling has been retained, but many 
+of the most powerful items (like !Healing, !*Healing*, !Life, stat 
+potions, ?Genocide, ?MassGenocide and !NewLife) can no longer be 
+generated on a shuffle. Also, Black Market shuffling is more expensive 
+now
 
-* 迁移了萨洛斯 (Thalos)，在萨洛斯原址增加了新城镇（阿南巴 
-Anambar）。美化了萨洛斯地图（并编辑了 t_pref 
-包含更多的地形类型）。奥林匹斯山 (Mt. Olympus) 
-现在更加容易抵达了，因为萨洛斯比之前的任何城镇都离它更近（最初，我将萨洛
-斯移得离奥林匹斯山更近，但后来我觉得我还没那么恨你们这些玩家）。有一个选
-项可以设置一旦玩家访问了包括前哨镇 (Outpost) 
-在内的其他任意两个城镇，就允许传送到萨洛斯（因为我觉得我也不希望你们这些
-玩家恨我……！）
+* Moved Thalos, and added a new town (Anambar) where Thalos used to be. 
+Prettied up the Thalos map (and edited t_pref to include additional 
+terrain types). Mt. Olympus is now slightly more accessible since 
+Thalos is closer to it than any town was before (originally, I moved 
+Thalos even closer to Mt. Olympus, but then I decided I didn't hate you 
+players enough). There's an option to allow teleporting to Thalos as 
+soon as any two other towns (including Outpost) have been visited 
+(because I decided I didn't want you players to hate me either...!)
 
-* 修复了一个古老的 PosChengband 
-Bug，在这种情况下，任务种子会在保存/读取时丢失，意味着退出游戏后再读取任
-务的玩家将会收到任务种子为 
-0，并且结果总是从假设的随机奖励列表中获得第一个物品
+* Fixed an old PosChengband bug where quest seeds were lost on 
+save/load, meaning players who exited the game after requesting a quest 
+would receive a seed of 0 for that quest and consequently always get 
+the first item from a list of supposedly random rewards
 
-* 修复了另一个古老的 PosChengband Bug，即通过模糊心灵感应看到的 
-Unique，其名字前面有时会额外多出一个 "the"（比如 "The Gertrude dies."）
+* Fixed another old PosChengband bug whereby uniques seen through fuzzy 
+telepathy would sometimes acquire a stray "the" in front of their name 
+(e.g. "The Gertrude dies.")
 
-* 修复了 Windows 上关于文件处理的一个古老 Bug
+* Fixed an old bug with file handling on Windows
 
-* 修复了几个与武器杀戮属性相关的古老的小 Bug（具有混沌属性的武器由于有 
-KILL_EVIL 标志而不是 KILL_GOOD 
-标志而对善良阵营怪物造成了大量的额外伤害；具有 KILL_HUMAN 
-的投射物显示的伤害不匹配其实际伤害；在角色面板上，*人类 (Human)* 
-杀戮属性的统计数据显示给了具有 KILL_LIVING 标志的武器，而不是具有 
-KILL_HUMAN 的武器）
+* Fixed several minor old bugs related to weapon slays (chaos weapons 
+were getting massive extra damage against good monsters from the 
+KILL_EVIL flag instead of the KILL_GOOD flag; the displayed damage for 
+a KILL_HUMAN missile didn't match the actual damage; in the character 
+sheet, the *Human* slay's statistics were displayed for weapons with 
+KILL_LIVING rather than weapons with KILL_HUMAN)
 
-* 更新了传闻列表和各种荒诞名称的列表
+* Updated the rumor list and silly name list
 
-* 添加了一个新魔法领域（律法 Law）以及两个新职业（律师 Lawyer 和 
-忍者律师 Ninja-Lawyer）
+* Added a new realm (Law) and two new classes (Lawyer and Ninja-Lawyer)
 
-* 添加了新怪物（并恢复了被删除的埃及神灵）
+* Added new monsters (and restored the deleted Egyptian gods)
 
-* 添加了几个神器（并带回了“GHB 的 T恤 GHB's T-shirt”）
+* Added a few artifacts (and brought back the GHB's T-shirt)
 
-* 添加了新的随机神器名称
+* Added new random artifact names
 
-* 
-添加了新任务（实际上我觉得现在游戏早期的任务可能有点太多了；非常欢迎提供
-有关任务数量、玩家喜欢或不喜欢的任务 [无论是新任务还是旧任务] 
-的反馈；当然，你并不需要在游戏对应深度的进程中必须完成每个任务）
+* Added new quests (I actually feel like there may be too many 
+early-game quests now; feedback on the number of quests, and quests 
+[whether new or old] that players like or don't like, would be 
+particularly welcome; of course, there is no need to attempt to do 
+every quest in the game at depth)
 
-* 在 ComPosband 中，如果任务楼层出现 Bug 
-未能正确生成，游戏将会崩溃，并迫使玩家在恢复游玩时任务自动失败。在 
-RoguelikeFansBand 
-中，虽然游戏仍然会崩溃，但玩家在恢复游玩时可以继续正常游戏，并且在问题修
-复后可以重新接取该任务。这应该能让开发者和试玩玩家的生活轻松一些
+* In ComPosband, if a quest level was buggy and didn't generate 
+properly, the game would crash and the player would be forced to fail 
+it on resuming play. In RoguelikeFansBand, while the game will still 
+crash, the player can continue normally on resumption and can retake 
+the quest after it has been fixed. This should make life easier for 
+both developers and test-players
 
-* 给艾尔德拉克 (Eldraks/土巨魔) 
-提供了一个显著的增益，他们现在比双头巨人 (ettins) 更强了（因此，在巨魔 
-troll 
-进化序列中对换了双头巨人和艾尔德拉克的位置；然而，玩家巨魔仍然会进化成双
-头巨人而不是艾尔德拉克）
+* Gave eldraks a significant buff, they are now stronger than ettins 
+(consequently, swapped ettin and eldrak in the troll evolution 
+sequence; however, player trolls still evolve into ettins rather than 
+eldraks)
 
-* 一小部分怪物现在可以在 2 
-格外发起近战攻击。（这很公平——玩家武士、龙族和手持鞭子的考古学家就可以这
-么做！）目前唯一拥有这种能力的怪物是大型恐龙、新手考古学家、炎魔、武士、
-哥斯拉 (Godzilla) 和耶梦加得 
-(Jormungand)。（耶梦加得以前是一个软柿子守卫，现在也获得了一些其他的增益
-；最显著的是，它现在有了 CAN_SWIM 标签，而不是 AQUATIC 标签。）
+* A small number of monsters can now initiate melee attacks from 2 
+squares away. (Fair's fair - player samurai, dragons and archaeologists 
+with whips can do this!) Currently the only monsters with this ability 
+are large dinosaurs, novice archaeologists, balrogs, samurai, Godzilla 
+and Jormungand. (Jormungand, who was a soft guardian for its depth, 
+also received a number of other buffs; most notably, it now has the 
+CAN_SWIM flag instead of the AQUATIC flag.)
 
-* 通过削弱分身术 (Bunshin)（现在有 1/3 的机率闪避攻击，而不是 
-1/2）和交换位置 (Swap 
-Position)（现在要求完美的清晰视线），并更改了他们的承重上限公式，忍者不
-再那么不可理喻了。交换位置的削弱也影响相关的变异和荒野天赋（重量限制的变
-化不影响有重量限制的其他职业，除了忍者律师）
+* Made ninjas slightly less outrageous by nerfing Bunshin (which now 
+gives a 1-in-3 chance of evading attacks, not 1-in-2) and Swap Position 
+(which now requires perfectly clear line of sight) and changing their 
+weight limit equation. The Swap Position nerf also affects the relevant 
+mutation and wild talent (the weight limit change does not affect other 
+classes with a weight limit, apart from ninja-lawyers)
 
-* 恢复了关闭美德进行游戏的选项
+* Restored the option of playing without virtues
 
-* 
-修复了各处的一些拼写错误。（我知道这会冒犯某些人！但看到仍有大量错别字存
-在，他们或许能得到些许慰藉。）
+* Fixed some typos here and there. (I know this will offend some 
+people! But they can take solace in that there are still plenty left.)
 
-* 增强了路西法 (Lucifer) 的强度并使其成为地狱 (Hell) 的楼层最终 Boss
+* Buffed Lucifer and made him dungeon boss of Hell
 
-* 侏儒苏丹 (Sultan the Midget) 的名字改回侏儒斯纳夫 (Snafu the 
-Midget)（因为一城一苏丹原则——在萨洛斯已经有个苏丹了）
+* The name of Sultan the Midget was reverted back to Snafu the Midget 
+(because of the one-Sultan rule - there's a sultan in Thalos)
 
-* 在沿海城镇，玩家现在不太可能遭遇危险的高级海洋怪物伏击
+* Players are now less likely to be ambushed by dangerous high-level 
+sea monsters in coastal towns
 
-* 增加了一些适应非英语键盘以便在 angband.live 进行游戏的选项：用 Y 和 Z 
-替代 [ 和 {，Ctrl+Y 替代 Ctrl+W，Ctrl+E 替代 @ 以及 Ctrl+O 替代 ]
+* Added some alternatives for non-English keyboards to support play on 
+angband.live: Y and Z for [ and {, Ctrl+Y for Ctrl+W, Ctrl+E for @ and 
+Ctrl+O for ]
 
-* 让自由行动 (free action) 变得更强了，因为 Chris 
-的系统有些令人困惑而且不受欢迎，尽管此处的改变没有 Gwarl 在 ComPosband 
-7.0.4 中做的那么大。在 RoguelikeFansBand 中拥有 1 层自由行动的效果和 
-ComPosband 7.0.3（以及最后版本的 PosChengband）相同。拥有 2 
-层自由行动在 RoguelikeFansBand 
-中稍强一些（它使得对低级怪物有完全的麻痹免疫），拥有 3 
-层自由行动可以免疫所有怪物，除了一些特例，比如 ty_curse 神罚
+* Made free action stronger because Chris's system was somewhat 
+confusing and unpopular, though the change here is not as big as what 
+Gwarl did in ComPosband 7.0.4. 1 source of free action works the same 
+in RoguelikeFansBand as in ComPosband 7.0.3 (and the last versions of 
+PosChengband). 2 sources are slightly stronger in RoguelikeFansBand (and 
+give total paralysis immunity against low-level monsters), and 3 
+sources give total immunity against all monsters, except in special 
+cases like ty_curse
 
-* 改变了当前 SP (法力值) 的计算方式，在经历过影响最大 SP 变化的操作后
+* Changed how cur SP is calculated after a change to max SP
 
-* 恢复了旧的非模糊心灵感应作为可选选项。Chris 
-引入的模糊心灵感应仍是默认设置
+* Restored the old non-fuzzy telepathy as an option. Chris's fuzzy 
+telepathy is still the default
 
-* 添加了一个选项（默认关闭），强制在装置/施法失败时出现 
--more-（按空格继续）提示
+* Added an option (off by default) to force a -more- prompt on 
+device/spell fails
 
-* 尝试魅惑拥有隐藏属性 NOPET（禁止作为宠物）的怪物时，系统将提示“X 免疫 
-(immune)”，而非“X 抵抗 (resists)”；由于 NOPET 
-属性容易惹玩家不满且迫使玩家猜测怪物是否具有该属性。（另外，怪物现在稍微
-没那么容易获得 NOPET 标签了。）
+* Attempts to charm a monster with the hidden NOPET flag now give the 
+message "X is immune", rather than "X resists"; the NOPET flag is 
+unpopular enough without it making players guess whether the monster 
+has it or not. (It's also now slightly harder for monsters to acquire 
+the NOPET flag.)
 
-* 注释掉了 Windows 的偏好文件 (font-win.prf)。Windows 
-用户将注意到这一点作为墙壁和山脉默认外观的变化
+* Commented out the Windows pref file (font-win.prf). Windows users 
+will notice this as a change to the default appearance of walls and 
+mountains
 
-* 各种微小的调整和代码改进
+* Various minor tweaks and code improvements
 
-从 ComPosband 7.0.4 复制或改编的更改：
+Changes copied or adapted from ComPosband 7.0.4:
 
-* 增加了 Gwarl 的新任务并采纳了他对现有任务的一些改动
+* Added Gwarl's new quests and adopted some of his changes to existing 
+quests
 
-* 藏身处 (Hideout) 的入口现在在前哨镇 (Outpost)，黏液洞穴 (Icky Cave) 
-的入口现在在萨洛斯 (Thalos)
+* The entrance to Hideout is now in Outpost, and the entrance to Icky 
+Cave is now in Thalos
 
-* 适配了新的强酸地板
+* Adapted the new acid floor
 
-* 魔法店现在出售进攻性魔杖了
+* Magic shop now sells offensive wands
 
-* 迁移了潮汐洞穴 (Tidal Cave)
+* Moved Tidal Cave
 
-* 古战场 (Battlefield) 的入口守卫现在是黑暗幽灵 (black wraith) 
-而不是坟墓尸妖 (grave wight) 
+* Battlefield's entrance guardian is now a black wraith instead of a 
+grave wight
 
-* 更改了水晶石堡 (Crystal Castle) 玻璃地板外观的视觉效果
+* Visual change to the appearance of Crystal Castle's glass floor
 
-* 添加了 Gwarl 对非骑行专精的增强
+* Added Gwarl's buff to non-specialist riding
 
-* 调整了一些物品的深度和稀有度，特别是龙鳞甲（但不如 ComPosband 7.0.4 
-调整的程度那么大）
+* Tweaked the depth and rarity of a number of items, especially dragon 
+scale mails (but not quite to the same extent as in ComPosband 7.0.4)
 
-* 调整了一些怪物
+* Tweaked a number of monsters
 
 -------------------------------------------------------
 
-<a name="ancient"></a>有关古代史，请参阅 <a href="vers_old.html"></font><font color="#00ff00">[a]</a></font><font color="#ffffff">。
+<a name="ancient"></a>For ancient history, see <a href="vers_old.html"></font><font color="#00ff00">[a]</a></font><font color="#ffffff">.
+
 </font></pre></body></html>

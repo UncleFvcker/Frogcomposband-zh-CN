@@ -1,815 +1,877 @@
 <!DOCTYPE html>
 <html>
 <body text="#ffffff" bgcolor="#000000"><pre>
-<font color="#00ffff">物品 (Objects)
+<font color="#00ffff">Objects
 
+</font><font color="#ffffff">Objects are a key aspect of the game; much of your effort will be 
+devoted to acquiring better, and then even better, objects. Whether 
+they are potions to heal you during a difficult fight, scrolls to 
+teleport you out of danger, armor to protect you from fire-breathing 
+dragons, or swords to slay the minions of evil, objects permeate every 
+aspect of your journey from the safety of towns to the dread lair of 
+the Serpent of Chaos. Naked, you are nothing; be well-equipped, and 
+perhaps, just maybe, you will stand a chance.
 
-</font><font color="#ffffff">物品是游戏的一个关键方面；你的大部分努力都将投入到获取更好、然后再更好的
-物品上。无论是在艰难战斗中治疗你的药水，将你传送出危险的卷轴，保护你免受
-喷火巨龙伤害的盔甲，还是斩杀邪恶爪牙的剑，物品渗透到了你旅程的方方面面，
-从安全的城镇一直到混沌之蛇那可怕的巢穴。赤手空拳，你什么都不是；装备精良
-，也许，仅仅是也许，你才有一线生机。
+There are various types of objects, each with its own symbol for 
+display, and often with its own command for use. These will be 
+described fully in the reference section near the end of this document 
+(<a href="objects.html#Reference"></font><font color="#00ff00">[a]</a> </font><font color="#ffffff">to skip there); for now, here is an overview.
 
+First, there are objects you may wield or wear as </font><font color="#ff0000">equipment</font><font color="#ffffff">. This 
+includes melee weapons (swords, axes, pikes, lances, etc.); armor such 
+as suits of chain mail, shields, helmets, cloaks, gloves and boots; 
+jewelry (rings and amulets); and light sources like torches and 
+lanterns. All of these objects must be equipped with the </font><font color="#ff8000">w </font><font color="#ffffff">command to 
+wield or wear them, but your equipment slots are limited; generally, 
+you only have one or two slots for any one type of item. Your equipment 
+is never going to be perfect; you will spend the entire game trying to 
+fill these slots with better and better (and better) gear.
 
-游戏中有各种类型的物品，每种都有自己的显示符号，并且通常有自己的使用命令
-。这些将在本文档末尾的参考部分进行全面描述（<a href="objects.html#Reference"></font><font color="#00ff00">[a]</a> 
-</font><font color="#ffffff">跳转到那里）；现在，这里先做一个概述。
+Next, there are objects you carry around in your </font><font color="#ff0000">pack </font><font color="#ffffff">for utility 
+purposes, or as provisions. Of course, you need to eat: killing stuff 
+is hard work! Equally, you need spare torches (or oil for your lantern) 
+to ensure illumination in the dark, dank places where evil lurks. But 
+even more, you need magical objects to survive: </font><font color="#ff0000">spellbooks </font><font color="#ffffff">(if you are 
+playing a book class); </font><font color="#ff0000">scrolls </font><font color="#ffffff">which all but the stupidest may read; 
+magical </font><font color="#ff0000">potions </font><font color="#ffffff">which any may drink; and </font><font color="#ff0000">magic devices </font><font color="#ffffff">(wands, rods and 
+staves). Each scroll and magic device produces its own particular spell 
+effect when used; most of these effects are good in one way or another 
+(offense, healing, speed, teleportation etc.), but some are bad or only 
+useful in rare circumstances.
 
-首先，有你可以挥舞或穿戴作为</font><font color="#ff0000">装备 
-(equipment)</font><font color="#ffffff">的物品。这包括近战武器（剑、斧、长矛、骑枪等）；盔甲如锁子甲
-、盾牌、头盔、斗篷、手套和靴子；首饰（戒指和护身符）；以及光源如火把和灯
-笼。所有这些物品都必须使用 </font><font color="#ff8000">w 
-</font><font color="#ffffff">命令来穿戴或挥舞它们，但你的装备槽是有限的；通常，对于任何一种类型的物品
-你只有一到两个槽位。你的装备永远不可能是完美的；你将花费整个游戏的时间试
-图用越来越好（再好一点）的装备来填满这些槽位。
+Finally, there are precious metals such as </font><font color="#ff0000">gold</font><font color="#ffffff">. If you are a dwarf, 
+you will barely resist singing of your longing for the lost, ancient 
+treasures of yore; but other players will find gold just as useful, for 
+it is the currency of the realm, accepted by shopkeepers everywhere. 
+You can dig for gold or kill monsters for what they have in their 
+pockets, but don't lose sight of your real purpose: your ultimate 
+objective is to slay the Serpent of Chaos, and gold is but a tool that 
+will help you get there.
 
-接下来，有你为了实用目的或作为补给品而装在</font><font color="#ff0000">背包 
-(pack)</font><font color="#ffffff">里随身携带的物品。当然，你需要吃东西：杀戮可是个力气活！同样，你需
-要备用的火把（或灯笼油）以确保在邪恶潜伏的阴暗潮湿处有光照。但你更需要的
-是生存用的魔法物品：</font><font color="#ff0000">法术书 
-(spellbooks)</font><font color="#ffffff">（如果你玩的是读书施法的职业）；除了最蠢的人之外都能阅读的</font><font color="#ff0000">卷
-轴 (scrolls)</font><font color="#ffffff">；任何人都能喝的魔法</font><font color="#ff0000">药水 (potions)</font><font color="#ffffff">；以及</font><font color="#ff0000">魔法装置 (magic 
-devices)</font><font color="#ffffff">（魔杖、魔棒和法杖）。每种卷轴和魔法装置在使用时都会产生其特定的
-法术效果；这些效果大多在某种程度上是有益的（进攻、治疗、加速、传送等），
-但有些是有害的或仅在极少数情况下有用。
+The next chapters will explain objects in more detail; we will begin 
+with how you get objects, then discuss how you learn about their 
+powers, and finally discuss how to use them. At the end, we will give a 
+table of all the types of objects you might encounter, at a broad 
+level. This is a helpfile, and not a spoiler page (and also only 10 
+times as long as you'd like, not 100 times), so we won't be listing 
+everything that objects might do...
 
-最后，还有贵金属，比如</font><font color="#ff0000">金币 
-(gold)</font><font color="#ffffff">。如果你是一个矮人，你将几乎无法抑制对昔日失落的古老财宝的渴望而高
-歌；但其他玩家也会发现金币同样有用，因为它是这个王国的流通货币，被各地的
-店主所接受。你可以挖掘金子或杀死怪物来获取它们口袋里的钱，但不要忘记你的
-真正目的：你的最终目标是杀死混沌之蛇，而金子不过是帮助你达到目的的一个工
-具。
+<a name="Acquisition"></a></font><font color="#c00000">Where Can I Get Stuff?
 
+</font><font color="#ffffff">Every player is born with a starting kit of a few objects to get them 
+started on their adventures. The starting kit depends on which class 
+you play, but usually it includes a cheap weapon, some torches and 
+armor, a few rations of food, and maybe some items particularly 
+suitable for your race or class (like spellbooks on a mage). You also 
+begin with enough gold to let you buy additional supplies (like </font><font color="#00ff00">Scrolls 
+of Teleportation </font><font color="#ffffff">or </font><font color="#00ff00">Potions of Cure Serious Wounds</font><font color="#ffffff">) from the various 
+shops in the town. Most shops specialize in a particular class of 
+objects (like weapons, bows and arrows at the Weapon Shop); but there 
+is also the Black Market, an unregulated forum to buy and sell just 
+about anything... at exorbitant prices. Often, you can buy a really 
+great object there, but you need to be pretty rich! See <a href="town.html#Shopping"></font><font color="#00ff00">[b]</a> </font><font color="#ffffff">for the 
+basics of shopping, and <a href="town.html#TheShops"></font><font color="#00ff00">[c]</a> </font><font color="#ffffff">for a list of shops.
 
-接下来的章节将更详细地解释物品；我们将从你如何获取物品开始，然后讨论你如
-何了解它们的力量，最后讨论如何使用它们。在末尾，我们将从宏观层面上提供一
-个你可能会遇到的所有物品类型的表格。这是一份帮助文档，而不是剧透页面（而
-且它的长度只是你想要的10倍，而不是100倍），所以我们不会列出物品可能产生
-的所有效果……
+So </font><font color="#ff0000">town stores </font><font color="#ffffff">are the first place you will get items from, and they 
+remain a useful source of basic supplies throughout the game. The most 
+valuable objects, though, can only be found deep in the dungeons. 
+Sometimes you get lucky and spot something valuable just lying on the 
+ground for anyone to take - left behind by previous adventurers, maybe? 
+But this is not very common: monsters, too, like to pick up treasures. 
+Indeed, it is mostly by </font><font color="#ff0000">killing monsters </font><font color="#ffffff">that you will acquire items; 
+many monsters carry objects or money, which you can retrieve should you 
+prove skillful enough to defeat them.
 
-<a name="Acquisition"></a></font><font color="#c00000">我能从哪里获得物品？
+</font><font color="#ff0000">Town quests </font><font color="#ffffff">(<a href="town.html#TownQuests"></font><font color="#00ff00">[d]</a></font><font color="#ffffff">) are also a good source of valuable items; often, you 
+will both find something useful in the quest itself and then get a nice 
+object as a reward for your good work. Finally, there is one place in 
+the dungeons where good floor items can be relied on: </font><font color="#ff0000">treasure vaults</font><font color="#ffffff">. 
+Vaults are usually well-guarded, both by traps and by highly dangerous 
+monsters - but as any adventurous hobbit will tell you, sneaking and 
+burglary can still go a long way...
 
+Objects can be picked up by moving on top of them and using the </font><font color="#ff8000">g</font><font color="#ffffff">et 
+command. Turning on the </font><font color="#ff0000">always_pickup </font><font color="#ffffff">option automatizes picking up at 
+no extra cost to you - indeed, it allows you to move to a square and 
+pick up the items there in a single turn! But indiscriminately picking 
+everything up soon fills your inventory with useless dead weight; so 
+many players prefer to pick things up manually in combination with use 
+of the </font><font color="#ff0000">墨家明器 </font><font color="#ffffff">(<a href="editor.html"></font><font color="#00ff00">[e]</a></font><font color="#ffffff">), an automatic system based on modifiable rules 
+that (hopefully) picks up useful items while destroying junk. During 
+your quest to defeat the Serpent you may find tens of thousands of 
+objects, so it is nice to have an automatic way to deal with them; and 
+if you find the 墨家明器 overeager to destroy things, you can turn 
+on </font><font color="#ff0000">always_pickup </font><font color="#ffffff">or the </font><font color="#ff0000">leave_mogaminator </font><font color="#ffffff">option (<a href="option.html#leave_mogaminator"></font><font color="#00ff00">[f]</a></font><font color="#ffffff">) to make sure 
+only true junk is eliminated.
 
-</font><font color="#ffffff">每个玩家出生时都会带着一个包含少量物品的初始装备包，以帮助他们开始冒险。
-初始装备包取决于你玩的职业，但通常它包括一把便宜的武器、一些火把和盔甲、
-几份食物口粮，也许还有一些特别适合你的种族或职业的物品（比如法师的法术书
-）。你开局时还会带着足够的金币，让你能从镇上的各个商店购买额外的补给品（
-比如</font><font color="#00ff00">传送卷轴</font><font color="#ffffff">或</font><font color="#00ff00">重伤治疗药水</font><font color="#ffffff">）。大多数商店专门销售特定类别的物品（比如武器
-店卖武器和弓箭）；但也有黑市 (Black 
-Market)，一个不受管制的场所，你可以买卖几乎任何东西……以极高的价格。通常
-，你可以在那里买到一件真正的好东西，但你必须相当富有！关于购物的基础知识
-见 <a href="town.html#Shopping"></font><font color="#00ff00">[b]</a></font><font color="#ffffff">，商店列表见 <a href="town.html#TheShops"></font><font color="#00ff00">[c]</a></font><font color="#ffffff">。
+<a name="Knowledge"></a></font><font color="#c00000">OK, I Found Something. What Does It Do?
 
-所以</font><font color="#ff0000">城镇商店 (town 
-stores)</font><font color="#ffffff">是你获取物品的第一个地方，并且它们在整个游戏中仍然是获取基础补给
-品的有用来源。然而，最贵重的物品只能在地下城深处找到。有时候你运气好，会
-发现一些有价值的东西就躺在地上任人拿取——也许是以前的冒险者留下来的？但这
-并不常见：怪物也喜欢捡财宝。事实上，你主要是通过</font><font color="#ff0000">击杀怪物 (killing 
-monsters)</font><font color="#ffffff">来获取物品的；许多怪物身上携带着物品或钱财，如果你证明自己有足
-够的技巧击败它们，你就可以取回这些东西。
+</font><font color="#ffffff">When you find an object, you won't know much about it. For example, it 
+might be described simply as "a Long Sword", with no other information 
+given. You can tell it's a weapon, and therefore that you can wield it 
+if you are so inclined... but, is this particular long sword any good? 
+Is it magical? Cursed? What other bonuses might it have? This object is 
+what we call </font><font color="#ff0000">unidentified</font><font color="#ffffff">, and you will usually want to learn a bit 
+more about it before deciding to wield it.
 
-</font><font color="#ff0000">城镇任务 (Town quests) </font><font color="#ffffff">(<a href="town.html#TownQuests"></font><font color="#00ff00">[d]</a></font><font color="#ffffff">) 
-也是获取贵重物品的好来源；通常，你不仅能在任务本身中找到有用的东西，还能
-在出色完成工作后得到一件不错的物品作为奖励。最后，地下城中有一个地方必定
-会生成优秀的地板掉落物：</font><font color="#ff0000">宝库 (treasure 
-vaults)</font><font color="#ffffff">。宝库通常防守严密，既有陷阱，也有极度危险的怪物——但正如任何一个
-喜欢冒险的霍比特人会告诉你的那样，潜行和行窃依然能大显身手……
+Given time, your character will sense the quality of most unidentified 
+objects in their pack. This ability is called pseudo-identification or 
+more simply </font><font color="#ff0000">pseudo-ID</font><font color="#ffffff">, and its strength (how much it reveals) and speed 
+(whether it kicks in immediately or with some delay) will depend on 
+your class, wisdom, character level and mode of play. Pseudo-ID is your 
+first line of defense against the onslaught of junk objects; pick stuff 
+up, wait a bit if needed (while continuing to play, of course), and 
+learn which objects are junk and which might be worthy of further 
+investigation. Note that </font><font color="#ffff00">pseudo-ID works best on wearable items</font><font color="#ffffff">; it is 
+less useful for magic devices, and does not work for scrolls, potions 
+or edibles at all. See <a href="objects.html#Pseudo-ID"></font><font color="#00ff00">[g]</a> </font><font color="#ffffff">below for more information, and a list and 
+explanation of all pseudo-ID object feelings.
 
-走到物品上方并使用 </font><font color="#ff8000">g</font><font color="#ffffff">et (拾取) 命令可以捡起物品。开启 </font><font color="#ff0000">always_pickup 
-(始终拾取) 
-</font><font color="#ffffff">选项可以让你在不消耗额外回合的情况下自动拾取物品——事实上，这允许你移动到
-一个方格并在同一回合内捡起那里的物品！但不加区分地把所有东西都捡起来很快
-就会让你的物品栏塞满毫无用处的死重；所以许多玩家更喜欢结合使用 </font><font color="#ff0000">墨家明器 
-</font><font color="#ffffff">(<a href="editor.html"></font><font color="#00ff00">[e]</a></font><font color="#ffffff">) 
-手动拾取物品，这是一个基于可修改规则的自动系统，它（理想情况下）会在摧毁
-垃圾的同时捡起有用的物品。在击败混沌之蛇的旅途中，你可能会发现数以万计的
-物品，因此有一个自动处理它们的方法是很好的；如果你发现墨家明器过于热衷于
-摧毁物品，你可以开启 </font><font color="#ff0000">always_pickup </font><font color="#ffffff">或 </font><font color="#ff0000">leave_mogaminator (保留墨家明器) 
-</font><font color="#ffffff">选项 (<a href="option.html#leave_mogaminator"></font><font color="#00ff00">[f]</a></font><font color="#ffffff">)，以确保只有真正的垃圾被销毁。
+If this rough object feeling is promising, you will probably want to 
+</font><font color="#ff0000">Identify </font><font color="#ffffff">the object. The ideal way to do this is with either a spell or 
+with a </font><font color="#c08040">Staff of Identify</font><font color="#ffffff">; but most characters never get an Identify 
+spell, and Staves of Identify are expensive. Until you can afford one, 
+you can use Scrolls of Identify or the town service provided by Count 
+Uldrik as a stopgap; and magical devices can often be identified simply 
+by trying them out.
 
-<a name="Knowledge"></a></font><font color="#c00000">好的，我找到了一个东西。它有什么用？
+Identifying an object reveals its full name, damage dice or multipliers 
+(if any), and magical bonuses to accuracy, deadliness and armor class. 
+The object's name tells you whether the item is a valuable </font><font color="#ff0000">ego </font><font color="#ffffff">or even 
+an </font><font color="#ff0000">artifact</font><font color="#ffffff">; and Identify will also tell you if the object has a curse 
+on it. </font><font color="#ff8000">I</font><font color="#ffffff">nspecting an identified item will show everything you learned, 
+as well as provide a rough estimate of the object's monetary value.
 
+In the case of ego items and artifacts Identify may not be enough; 
+special powers might remain hidden. Sometimes those extra powers can be 
+learned simply by equipping and using the object (though this is risky 
+with cursed items!); for example, you will notice if the item increases 
+your stats. Other attributes might take much longer to learn, though; 
+if the item grants resistance to fire, you would need to get hit with a 
+fire attack to find out.
 
-</font><font color="#ffffff">当你找到一个物品时，你对它的了解并不多。例如，它可能被简单地描述为“一把
-长剑 (a Long 
-Sword)”，没有给出其他信息。你能看出它是一把武器，因此如果你愿意，你可以
-挥舞它……但是，这把特定的长剑好用吗？它有魔法吗？有诅咒吗？它还可能有其他
-什么加成？这件物品就是我们所说的</font><font color="#ff0000">未鉴定 
-(unidentified)</font><font color="#ffffff">的，在决定挥舞它之前，你通常会想对它多了解一点。
+It is possible to learn everything about an object this way, but doing 
+so is much too time-consuming, especially as the game progresses. There 
+are two much quicker ways to learn everything: </font><font color="#ff0000">*Identify* </font><font color="#ffffff">and </font><font color="#ff0000">selling</font><font color="#ffffff">. 
+The first is available as a spell, scroll, device or town service, and 
+is somewhat expensive; but it instantly reveals everything about the 
+item. The second method is to simply sell an item to a shop; this 
+produces the same result (the item is *Identified* by the shopkeeper) 
+and is the opposite of expensive (you're the one who makes money!); but 
+if the item turned out to be actually good, </font><font color="#ffff00">getting it back </font><font color="#ffffff">could be 
+very expensive indeed...
 
+<a name="Quality"></a></font><font color="#c00000">How Good is this Object, Anyway?
 
-随着时间的推移，你的角色会感知到他们背包中大多数未鉴定物品的品质。这种能
-力被称为伪鉴定或更简单地称为</font><font color="#ff0000">伪鉴定 
-(pseudo-ID)</font><font color="#ffffff">，它的强度（揭示多少信息）和速度（是立即生效还是有一些延迟）
-取决于你的职业、感知、角色等级和游玩模式。伪鉴定是你抵御垃圾物品冲击的第
-一道防线；把东西捡起来，如果需要的话等一会儿（当然，同时继续玩），了解哪
-些物品是垃圾，哪些可能值得进一步调查。请注意，</font><font color="#ffff00">伪鉴定在可穿戴物品上效果最
-好</font><font color="#ffffff">；它对魔法装置的作用较小，对卷轴、药水或食物完全无效。请参阅下文的 <a href="objects.html#Pseudo-ID">
-</font><font color="#00ff00">[g]</a> </font><font color="#ffffff">以获取更多信息，以及所有伪鉴定物品感觉的列表和解释。
+</font><font color="#ffffff">The broad quality of equipment is given by the strong version of 
+pseudo-ID: objects are, in increasing order of quality, either </font><font color="#ff0000">average</font><font color="#ffffff">, 
+</font><font color="#ff0000">good</font><font color="#ffffff">/</font><font color="#ff0000">bad</font><font color="#ffffff">, </font><font color="#ff0000">excellent</font><font color="#ffffff">/</font><font color="#ff0000">awful </font><font color="#ffffff">or </font><font color="#ff0000">special</font><font color="#ffffff">/</font><font color="#ff0000">terrible</font><font color="#ffffff">. What does this mean?
 
-如果这种粗略的物品感觉很有希望，你可能会想去</font><font color="#ff0000">鉴定 
-(Identify)</font><font color="#ffffff">该物品。最理想的方法是使用法术或</font><font color="#c08040">鉴定法杖 (Staff of 
-Identify)</font><font color="#ffffff">；但大多数角色永远得不到鉴定法术，而鉴定法杖又很贵。在你买得起
-之前，你可以使用鉴定卷轴或由乌尔德里克伯爵 (Count Uldrik) 
-提供的城镇服务作为权宜之计；而魔法装置通常只需试用一下就能被鉴定出来。
+If you did some shopping, then you probably saw what average equipment 
+looks like. For example, you might have seen this inventory at the 
+Weapon Smiths:
 
-
-鉴定一件物品会揭示其全名、伤害骰或倍率（如果有的话），以及对准确度、致命
-性和护甲等级的魔法加成。物品的名称会告诉你该物品是否是一件贵重的</font><font color="#ff0000">ego物品
-</font><font color="#ffffff">甚至是一件</font><font color="#ff0000">神器 (artifact)</font><font color="#ffffff">；鉴定还会告诉你该物品是否带有诅咒。</font><font color="#ff8000">I</font><font color="#ffffff">nspect 
-(检查) 
-一件已鉴定的物品会显示你所了解到的所有信息，以及提供该物品货币价值的粗略
-估计。
-
-对于 
-ego物品和神器，简单的鉴定可能不够；特殊能力可能仍然隐藏着。有时那些额外
-的力量可以通过简单地装备和使用物品来了解（尽管对被诅咒的物品这样做有风险
-！）；例如，你会注意到该物品是否增加了你的属性。然而，其它属性可能需要更
-长的时间来了解；如果该物品提供对火焰的抗性，你需要被火焰攻击击中才能发现
-这一点。
-
-
-通过这种方式有可能了解关于一件物品的所有信息，但这样做太费时间了，尤其是
-随着游戏的进行。有两种更快的方法来了解一切：</font><font color="#ff0000">*全面鉴定* (*Identify*) 
-</font><font color="#ffffff">和</font><font color="#ff0000">出售 
-(selling)</font><font color="#ffffff">。第一种方法可以通过法术、卷轴、装置或城镇服务获得，价格有点贵
-；但它能立即揭示物品的一切。第二种方法是干脆把物品卖给商店；这会产生相同
-的结果（物品被店主*全面鉴定*了），并且它完全不贵（毕竟你是赚钱的那方！）
-；但是如果那件物品其实真的很好，</font><font color="#ffff00">再把它买回来</font><font color="#ffffff">可能会非常昂贵……
-
-<a name="Quality"></a></font><font color="#c00000">这件物品到底有多好？
-
-</font><font color="#ffffff">装备的大致品质由强化版的伪鉴定给出：物品按品质从低到高排列，分为</font><font color="#ff0000">普通的 
-(average)</font><font color="#ffffff">、</font><font color="#ff0000">良好的 (good)</font><font color="#ffffff">/</font><font color="#ff0000">劣质的 (bad)</font><font color="#ffffff">、</font><font color="#ff0000">优秀的 (excellent)</font><font color="#ffffff">/</font><font color="#ff0000">糟糕的 
-(awful) </font><font color="#ffffff">或</font><font color="#ff0000">特殊的 (special)</font><font color="#ffffff">/</font><font color="#ff0000">可怕的 (terrible)</font><font color="#ffffff">。这是什么意思呢？
-
-如果你去买过东西，那你可能见过普通装备长什么样。例如，你可能在武器匠 
-(Weapon Smiths) 那里看到过这份库存：
-
-    </font><font color="#c08040">Solvistani the Ranger (Wood-Elf)                     </font><font color="#00ff00">武器匠 </font><font color="#ffffff">(</font><font color="#c00000">25000</font><font color="#ffffff">)         
+    </font><font color="#c08040">Solvistani the Ranger (Wood-Elf)                     </font><font color="#00ff00">Weapon Smiths </font><font color="#ffffff">(</font><font color="#c00000">25000</font><font color="#ffffff">)  
                                                                                 
-    物品描述                                                       重量    价格 
- a) </font><font color="#ff00ff">? </font><font color="#00ffff">一本狂怒法术书 [北方惊魂]                                 </font><font color="#ffffff">3.0 lbs   </font><font color="#404040">1610
- </font><font color="#ffffff">b) </font><font color="#c08040">~ 一个箭袋 [100]                                              </font><font color="#ffffff">1.0 lbs    423
- c) </font><font color="#c08040">~ 一个箭袋 [70]                                               </font><font color="#ffffff">1.0 lbs     61
- d) </font><font color="#c0c0c0">| </font><font color="#ffffff">一把细剑 (1d8) (+0,+0) {降价25%}                           4.0 lbs     35
- e) </font><font color="#c0c0c0">| </font><font color="#ffffff">一把小剑 (1d8) (+0,+0)                                      7.5 lbs     89
- f) </font><font color="#c0c0c0">| </font><font color="#ffffff">一把短剑 (1d8) (+0,+0)                                      8.0 lbs     95
- g) </font><font color="#c0c0c0">| </font><font color="#ffffff">一把军刀 (1d9) (+0,+0)                                      5.0 lbs     68
- h) </font><font color="#c0c0c0">| </font><font color="#ffffff">一把阔剑 (2d6) (+0,+0)                                     15.0 lbs    330
- i) </font><font color="#c0c0c0">| </font><font color="#ffffff">一把巨剑 (3d5) (+0,+0)                                     14.0 lbs    411
- j) </font><font color="#808080">/ </font><font color="#ffffff">一把镰刀 (2d4) (+0,+0)                                      7.0 lbs    182
- k) </font><font color="#ffff00">/ </font><font color="#ffffff">2 把三叉戟 (1d10) (+0,+0)                                   7.0 lbs    192
- l) </font><font color="#808080">/ </font><font color="#ffffff">一把钩镰枪 (1d12) (+0,+0)                                  15.5 lbs    319
- m) </font><font color="#808080">/ </font><font color="#ffffff">一把阔斧 (2d7) (+5,+2)                                     13.0 lbs   </font><font color="#404040">1340
- </font><font color="#ffffff">n) </font><font color="#808080">/ </font><font color="#ffffff">一把骑枪 (2d10) (+0,+0)                                    30.0 lbs    </font><font color="#404040">750
- </font><font color="#ffffff">o) </font><font color="#808080">/ </font><font color="#ffffff">一把战斗斧 (2d9) (+4,+3)                                   17.0 lbs   </font><font color="#404040">1700
- </font><font color="#ffffff">p) </font><font color="#804000">} 一把短弓 (x2.50) (+3,+6)                                    </font><font color="#ffffff">3.0 lbs   </font><font color="#404040">1540
- </font><font color="#ffffff">q) </font><font color="#808080">{ </font><font color="#c08040">43 支弩箭 (3d5) (+0,+0)                                     </font><font color="#ffffff">0.3 lbs      6
- r) </font><font color="#c08040">{ 39 支箭矢 (3d4) (+0,+0)                                     </font><font color="#ffffff">0.2 lbs      3
+    Item Description                                               Weight  Price
+ a) </font><font color="#ff00ff">? </font><font color="#00ffff">a Rage Spellbook [Northern Frights]                         </font><font color="#ffffff">3.0 lbs   </font><font color="#404040">1610
+ </font><font color="#ffffff">b) </font><font color="#c08040">~ a Quiver [100]                                              </font><font color="#ffffff">1.0 lbs    423
+ c) </font><font color="#c08040">~ a Quiver [70]                                               </font><font color="#ffffff">1.0 lbs     61
+ d) </font><font color="#c0c0c0">| </font><font color="#ffffff">a Rapier (1d8) (+0,+0) {25% off}                            4.0 lbs     35
+ e) </font><font color="#c0c0c0">| </font><font color="#ffffff">a Small Sword (1d8) (+0,+0)                                 7.5 lbs     89
+ f) </font><font color="#c0c0c0">| </font><font color="#ffffff">a Short Sword (1d8) (+0,+0)                                 8.0 lbs     95
+ g) </font><font color="#c0c0c0">| </font><font color="#ffffff">a Sabre (1d9) (+0,+0)                                       5.0 lbs     68
+ h) </font><font color="#c0c0c0">| </font><font color="#ffffff">a Broad Sword (2d6) (+0,+0)                                15.0 lbs    330
+ i) </font><font color="#c0c0c0">| </font><font color="#ffffff">a Bastard Sword (3d5) (+0,+0)                              14.0 lbs    411
+ j) </font><font color="#808080">/ </font><font color="#ffffff">a Sickle (2d4) (+0,+0)                                      7.0 lbs    182
+ k) </font><font color="#ffff00">/ </font><font color="#ffffff">2 Tridents (1d10) (+0,+0)                                   7.0 lbs    192
+ l) </font><font color="#808080">/ </font><font color="#ffffff">a Fauchard (1d12) (+0,+0)                                  15.5 lbs    319
+ m) </font><font color="#808080">/ </font><font color="#ffffff">a Broad Axe (2d7) (+5,+2)                                  13.0 lbs   </font><font color="#404040">1340
+ </font><font color="#ffffff">n) </font><font color="#808080">/ </font><font color="#ffffff">a Lance (2d10) (+0,+0)                                     30.0 lbs    </font><font color="#404040">750
+ </font><font color="#ffffff">o) </font><font color="#808080">/ </font><font color="#ffffff">a Battle Axe (2d9) (+4,+3)                                 17.0 lbs   </font><font color="#404040">1700
+ </font><font color="#ffffff">p) </font><font color="#804000">} a Short Bow (x2.50) (+3,+6)                                 </font><font color="#ffffff">3.0 lbs   </font><font color="#404040">1540
+ </font><font color="#ffffff">q) </font><font color="#808080">{ </font><font color="#c08040">43 Bolts (3d5) (+0,+0)                                      </font><font color="#ffffff">0.3 lbs      6
+ r) </font><font color="#c08040">{ 39 Arrows (3d4) (+0,+0)                                     </font><font color="#ffffff">0.2 lbs      3
  
+Here, we see a bunch of different types of weapons, each of which is 
+fully *Identified* (as objects in town shops always are). They don't 
+look very impressive, though! First of all, you can notice that each 
+type of weapon has different </font><font color="#ff0000">damage dice</font><font color="#ffffff">: 3d5 or the like. These work 
+in a very simple way: for example, a 3d5 Bastard Sword means rolling 
+three five-sided dice (which gives an average of 9 damage per strike), 
+while a 1d9 Sabre (roll a single nine-sided die, if such a thing could 
+be imagined!) gives an average of 5 damage per blow.
 
-在这里，我们看到了一堆不同类型的武器，每一件都已经被完全*全面鉴定*了（因
-为在城镇商店里的物品总是如此）。不过它们看起来并不那么令人印象深刻！首先
-，你会注意到每种武器都有不同的</font><font color="#ff0000">伤害骰 (damage 
-dice)</font><font color="#ffffff">：3d5之类的。这些工作原理非常简单：例如，一把 3d5 
-的巨剑意味着掷出三个五面骰（平均每次攻击造成 9 点伤害），而一把 1d9 
-的军刀（掷出一个九面骰，如果能想象出这种东西的话！）平均每次打击造成 5 
-点伤害。
+Next, you may notice that (+0,+0) is repeated over and over again. 
+That's because all of these objects are </font><font color="#ff0000">average</font><font color="#ffffff">. Hey, this small-town 
+Weapon Smith is no wizard; he just forges weapons of average quality, 
+and might occasionally buy something more interesting from intrepid 
+adventurers (like yourself!). The (+0,+0) simply gives the object's 
+combat bonuses: the first +0 is the accuracy (</font><font color="#ff0000">to-hit</font><font color="#ffffff">) bonus, which 
+affects your chance to hit monsters with that weapon; the second +0 is 
+the damage bonus (</font><font color="#ff0000">to-dam</font><font color="#ffffff">), which gets added to the total rolled by the 
+damage dice if you land a blow with that weapon.
 
-接下来，你可能会注意到 (+0,+0) 
-被一遍又一遍地重复。这是因为所有这些物品都是</font><font color="#ff0000">普通的 
-(average)</font><font color="#ffffff">。嘿，这个小镇的武器匠可不是什么巫师；他只锻造普通品质的武器，
-偶尔可能会从勇敢的冒险者（比如你！）那里买到一些更有趣的东西。这个 
-(+0,+0) 简单地给出了物品的战斗加成：第一个 +0 是准确度加成（</font><font color="#ff0000">命中加成 
-to-hit</font><font color="#ffffff">），影响你用该武器击中怪物的几率；第二个 +0 是伤害加成（</font><font color="#ff0000">伤害加成 
-to-dam</font><font color="#ffffff">），如果你用该武器击中目标，它会被加到伤害骰掷出的总和中。
+Objects can be magically enhanced, at which point they become </font><font color="#ff0000">good 
+</font><font color="#ffffff">objects. This means nothing more than that (+0,+0) becomes something 
+non-zero, giving you bonuses either to hit, or to damage, or both. For 
+example, you might have noticed that </font><font color="#804000">Short Bow (x2.50) (+3,+6)</font><font color="#ffffff">. The 
+(x2.50) is part of every average short bow, and is called the </font><font color="#ff0000">damage 
+multiplier</font><font color="#ffffff">; see <a href="attack.html#MissileLaunch"></font><font color="#00ff00">[h]</a> </font><font color="#ffffff">for an explanation of that. But bows have </font><font color="#ff0000">combat 
+bonuses </font><font color="#ffffff">just as melee weapons do, and they mean the same thing here: 
+the bow gives +3 to hit (making you more accurate with it), and +6 to 
+damage (making you more deadly as well). That would be a nice starting 
+bow - but alas, it costs 1540 gold pieces, which is more than I have.
 
-物品可以被魔法强化，这时它们就变成了</font><font color="#ff0000">良好的 (good)</font><font color="#ffffff">物品。这仅仅意味着 
-(+0,+0) 
-变成了某个非零的数值，在命中或伤害方面，或者两者同时为你提供加成。例如，
-你可能注意到了那把</font><font color="#804000">短弓 (x2.50) (+3,+6)</font><font color="#ffffff">。这个 (x2.50) 
-是每把普通短弓自带的一部分，被称为</font><font color="#ff0000">伤害倍率 (damage 
-multiplier)</font><font color="#ffffff">；有关它的解释，请参阅 <a href="attack.html#MissileLaunch"></font><font color="#00ff00">[h]</a></font><font color="#ffffff">。但弓就像近战武器一样有</font><font color="#ff0000">战斗加成 
-(combat bonuses)</font><font color="#ffffff">，且在这里含义相同：这把弓提供 +3 
-命中（让你射得更准），以及 +6 
-伤害（让你也更致命）。那将是一把很好的初始短弓——但唉，它要卖 1540 
-金币，我身上的钱根本不够。
+<a name="EgoItems"></a></font><font color="#c08040">Excellent Objects
 
-<a name="EgoItems"></a></font><font color="#c08040">优秀的物品 (Excellent Objects)
+</font><font color="#ffffff">So that's average and good objects. What about excellent objects? And 
+special objects? Excellent objects are called </font><font color="#ff0000">ego items </font><font color="#ffffff">(a term of 
+mysterious origin), and each ego item represents a particular ego type. 
+For example, a </font><font color="#ffff00">Long Sword of Slaying (2d6) (+7,+3) {/o} </font><font color="#ffffff">represents the 
+</font><font color="#ff0000">Slaying </font><font color="#ffffff">weapon ego type! Ego types vary greatly; some egos predictably 
+always give the same bonuses to an item, while others are much more 
+random. The Slaying ego is somewhat random within limits - </font><font color="#ffff00">what exactly 
+does that weapon slay? </font><font color="#ffffff">Our example long sword, for instance, slays orcs 
+(I can tell without inspection by the </font><font color="#ff0000">{/o}</font><font color="#ffffff">); but the next Slaying 
+weapon you find might slay demons and animals instead.
 
+Our example sword is not a particularly powerful or exciting ego item; 
+it is simply more deadly against orcs. More precisely, it will do 2.8 
+times as much damage from the base damage dice against orcs: roll two 
+six-sided dice (2d6), add up the result, and multiply by 2.8 if the 
+monster struck is an orc; then add in the +3 damage bonus, and maybe 
+other damage bonuses from elsewhere. Slays are a fairly common ego 
+weapon effect; but ego items can do many other things as well, like 
+boost your stats, give you resistances or other important abilities, or 
+even activate for various magical effects.
 
-</font><font color="#ffffff">这就是普通的和良好的物品。那么优秀的物品呢？还有特殊的物品呢？优秀的物品
-被称为</font><font color="#ff0000">ego物品 (ego 
-items)</font><font color="#ffffff">（一个起源神秘的术语，指具有魔法词缀的物品），每件 
-ego物品都代表一种特定的 ego类型。例如，一把 </font><font color="#ffff00">杀戮长剑 (Long Sword of 
-Slaying) (2d6) (+7,+3) {/o} </font><font color="#ffffff">代表了</font><font color="#ff0000">杀戮 (Slaying)</font><font color="#ffffff">武器 
-ego类型！ego类型差异很大；有些 
-ego可预测地总是给物品相同的加成，而有些则要随机得多。杀戮 
-ego在一定范围内有些随机——</font><font color="#ffff00">那把武器到底屠杀什么？ 
-</font><font color="#ffffff">例如我们的这把长剑，它屠杀兽人（我不用检查，光看 </font><font color="#ff0000">{/o} 
-</font><font color="#ffffff">就能知道）；但你找到的下一把杀戮武器可能屠杀的是恶魔和动物。
+Initially, your character will not know very much about ego items; so 
+some of their effects might remain hidden after simple Identify. For 
+example, the Long Sword might show as </font><font color="#ffff00">a Long Sword of Slaying (2d6) 
+(+7,+3) {?} </font><font color="#ffffff">until we discovered (through selling, *Identify* or by 
+hitting an orc) that it slays orcs. But learning this new fact also 
+teaches us something new about the Slaying ego: the next time we find a 
+Slaying weapon that slays orcs, simple Identify will let us recognize 
+the orc slay, although other slays on the weapon might still be hidden.
 
-我们作为例子的这把剑并不是一件特别强大或令人兴奋的 
-ego物品；它仅仅是对兽人更致命而已。更准确地说，在对抗兽人时，它将造成基
-于基础伤害骰 2.8 倍的伤害：掷出两个六面骰 
-(2d6)，把结果加起来，如果击中的怪物是兽人，则乘以 2.8；然后再加入 +3 
-伤害加成，或许还有从其他地方获得的其它伤害加成。杀戮是一种相当常见的武器
- ego效果；但 
-ego物品还能发挥许多其它作用，比如提升你的属性、赋予你抗性或其它重要能力
-，甚至能激活产生各种魔法效果。
+<a name="SpecialItems"></a></font><font color="#c08040">Special Objects
 
-起初，你的角色对 
-ego物品知之甚少；所以简单鉴定后，它们的一些效果可能仍然隐藏着。例如，这
-把长剑在被我们（通过出售、*全面鉴定*或击中兽人）发现它能屠杀兽人之前，可
-能只会显示为 </font><font color="#ffff00">杀戮长剑 (2d6) (+7,+3) 
-{?}</font><font color="#ffffff">。但了解到这个新事实也教会了我们关于杀戮 
-ego的新知识：下次我们再找到一把同样屠杀兽人的杀戮武器时，简单的鉴定就会
-让我们认出兽人杀戮属性，尽管该武器上可能仍隐藏着其它杀戮属性。
+</font><font color="#ffffff">Special objects are </font><font color="#ff0000">artifacts</font><font color="#ffffff">. Think of these as unique objects: you 
+can only find any one artifact once in a particular game, and they can 
+be substantially more powerful than an ordinary ego item. Like egos, 
+artifacts can give combat bonuses, armor bonuses, stat bonuses, 
+resistances, abilities, slays and other (generally) nice stuff. There 
+are two basic types of artifact: </font><font color="#ff0000">standard artifacts</font><font color="#ffffff">, which are the same 
+in every game, and </font><font color="#ff0000">random artifacts</font><font color="#ffffff">, which are highly unpredictable. 
+Generally, you will want to *Identify* every artifact you find; even if 
+you have played the game before and recognize a familiar standard 
+artifact, it might have some random bonus.
 
-<a name="SpecialItems"></a></font><font color="#c08040">特殊的物品 (Special Objects)
+Artifacts are almost indestructible; they cannot be harmed by the base 
+elements, are more resistant to disenchantment than other items, and 
+can only be completely destroyed in exotic circumstances.
 
-</font><font color="#ffffff">特殊的物品就是</font><font color="#ff0000">神器 
-(artifacts)</font><font color="#ffffff">。把这些想象成独一无二的物品：在特定的一局游戏中，你只能找到
-某一件神器一次，它们可能比普通的 ego物品强大得多。像 
-ego物品一样，神器可以提供战斗加成、护甲加成、属性加成、抗性、能力、杀戮
-属性以及其它（通常）很棒的东西。神器有两种基本类型：</font><font color="#ff0000">标准神器 (standard 
-artifacts)</font><font color="#ffffff">，在每局游戏中都是一样的；以及</font><font color="#ff0000">随机神器 (random 
-artifacts)</font><font color="#ffffff">，它们极其不可预测。通常，你会想要对你找到的每一件神器进行*全
-面鉴定*；即使你以前玩过这个游戏并且认出了一件熟悉的标准神器，它也可能带
-有一些随机加成。
+<a name="CursedItems"></a></font><font color="#c08040">Cursed Objects
 
+</font><font color="#ffffff">What about the evil end of the pseudo-ID spectrum (bad -&gt; awful -&gt; 
+terrible)? These objects are </font><font color="#ff0000">cursed</font><font color="#ffffff">, but they need not be junk. Well, 
+bad objects are just the opposite of good ones, so they genuinely are 
+junk; but awful objects are ego items that happen to have some bad 
+attributes (either because of a random curse or because the ego type is 
+inherently cursed), and terrible items are artifacts that similarly 
+have bad attributes on top of the good. Whether or not these items 
+remain useful is up to you to determine: sometimes they are junk, 
+sometimes the good can outweigh the bad. In either case, you will need 
+*identify* to discover everything.
 
-神器几乎是坚不可摧的；它们不会被基础元素伤害，比其他物品更能抵抗解除魔法
-，并且只会在奇异的环境下被完全摧毁。
+All cursed items have one thing in common: </font><font color="#ffff00">you cannot take off cursed 
+equipment while it is still cursed</font><font color="#ffffff">. Most equipment can be uncursed; 
+this will allow you to take it off, but will not necessarily remove all 
+of its other downsides.
 
-<a name="CursedItems"></a></font><font color="#c08040">被诅咒的物品 (Cursed Objects)
+We've talked a lot about equipment; it is time to move on to utility 
+objects you might want to carry in your inventory.
 
-</font><font color="#ffffff">那么伪鉴定光谱中邪恶的那一端（劣质的 bad -&gt; 糟糕的 awful -&gt; 可怕的 
-terrible）又如何呢？这些物品是</font><font color="#ff0000">被诅咒的 
-(cursed)</font><font color="#ffffff">，但它们不一定是垃圾。好吧，劣质的 (bad) 
-物品正好是良好的物品的反面，所以它们确实是垃圾；但糟糕的 (awful) 
-物品是碰巧有一些坏属性的 ego物品（要么是因为随机诅咒，要么是因为该 
-ego类型固有地带有诅咒），而可怕的 (terrible) 
-物品是在良好属性之上同样带有一些坏属性的神器。这些物品是否仍然有用取决于
-你自己的判断：有时它们是垃圾，有时好处可以盖过坏处。在这两种情况下，你都
-需要*全面鉴定*才能发现一切。
+<a name="Flavors"></a></font><font color="#c00000">Object Flavors
 
+</font><font color="#ffffff">Mushrooms, potions and scrolls have </font><font color="#ff0000">flavors</font><font color="#ffffff">: you might find a </font><font color="#c08040">Black 
+Spotted Mushroom </font><font color="#ffffff">or a </font><font color="#00ffff">Bubbling Potion</font><font color="#ffffff">. Flavors and item effects go 
+hand-in-hand; if the bubbling potion turns out to be a Potion of 
+Healing, then all other bubbling potions are also Potions of Healing 
+and all Potions of Healing will be bubbling potions.
 
-所有被诅咒的物品都有一个共同点：</font><font color="#ffff00">只要它还带有诅咒，你就无法脱下被诅咒的装
-备</font><font color="#ffffff">。大多数装备都可以被解除诅咒；这将允许你脱下它，但不一定能消除它的所有
-其它负面影响。
+Flavored items can be fully identified with normal Identify (you can 
+also try to identify them by using them... if you are very brave). By 
+default, flavors are only displayed for unidentified items; once you 
+have identified one Bubbling Potion, both it and all future Bubbling 
+Potions will be displayed simply as </font><font color="#00ffff">Potions of Healing</font><font color="#ffffff">.
 
+You only need to identify any given flavor once per game; but </font><font color="#00ff00">flavors 
+change between games. </font><font color="#ffffff">Next game you play, Bubbling Potions might be 
+Potions of Salt Water instead!
 
-关于装备我们已经谈了很多；现在该谈谈你可能想在物品栏中携带的实用物品了。
+<a name="Jewelry"></a></font><font color="#c00000">Jewelry
 
+</font><font color="#ffffff">While rings and amulets are wearable objects, they differ from weapons 
+and armor in an important way: there is no such thing as </font><font color="#ff0000">good </font><font color="#ffffff">jewelry. 
+Rings and amulets are always either average, ego or artifacts; average 
+jewelry has no effect at all, and is only useful for reforging.
 
-<a name="Flavors"></a></font><font color="#c00000">物品风味 (Object Flavors)
+There aren't very many different jewelry ego types, but those that do 
+exist allow high variability; the ego type is essentially a theme that 
+allows a particular set of attributes, but which of those attributes 
+any one piece of jewelry generates with is very random.
 
-</font><font color="#ffffff">蘑菇、药水和卷轴都有</font><font color="#ff0000">风味 (flavors)</font><font color="#ffffff">：你可能会找到一个 </font><font color="#c08040">黑斑蘑菇 (Black 
-Spotted Mushroom) </font><font color="#ffffff">或一瓶 </font><font color="#00ffff">冒泡的药水 (Bubbling 
-Potion)</font><font color="#ffffff">。风味和物品效果是相对应的；如果冒泡的药水被证明是一瓶治疗药水，
-那么所有其他冒泡的药水也都是治疗药水，并且所有的治疗药水都将是冒泡的药水
-。
+<a name="Lore"></a></font><font color="#c00000">Object Lore
 
+</font><font color="#ffffff">Every time you identify any attribute on an ego item or a standard 
+artifact, you also learn about the artifact or ego item type. This is 
+called </font><font color="#ff0000">object lore </font><font color="#ffffff">and will help you recognize the same attribute on 
+similar future items, without the need to *Identify*. By default, 
+object lore is kept in your savefile after death just like monster 
+lore, although you can change this with the </font><font color="#ff0000">empty_lore </font><font color="#ffffff">option (<a href="option.html#empty_lore"></font><font color="#00ff00">[i]</a></font><font color="#ffffff">).
 
-带风味的物品可以通过常规鉴定来完全鉴定（你也可以试着通过使用它们来鉴定……
-如果你非常勇敢的话）。默认情况下，风味只显示给未鉴定的物品；一旦你鉴定了
-一瓶冒泡的药水，它和未来所有冒泡的药水都将简单地显示为 </font><font color="#00ffff">治疗药水 
-(Potions of Healing)</font><font color="#ffffff">。
+You can view your current artifact and ego lore at any time through the 
+</font><font color="#ff8000">~ </font><font color="#ffffff">Knowledge Menu. There is no real advantage to doing so, but it can be 
+a fun distraction!
 
-在每局游戏中，你只需要鉴定一次任何给定的风味；但是 
-</font><font color="#00ff00">风味在不同游戏之间会改变。 
-</font><font color="#ffffff">在你玩的下一局游戏中，冒泡的药水可能就变成了盐水药水！
+<a name="Devices"></a></font><font color="#c00000">Devices
 
-<a name="Jewelry"></a></font><font color="#c00000">首饰 (Jewelry)
+</font><font color="#ffffff">Magical devices include wands, staves and rods. Since these are 
+available in town, I'll talk you through one example in detail without 
+much of a guilty conscience over spoilers. Here's a basic wand:
 
+</font><font color="#008040">a Wand: </font><font color="#00ff00">Stinking Cloud
+  </font><font color="#c08040">This device has the following magical strength:
+  </font><font color="#ffffff">Power  : </font><font color="#00ff00">13
+  </font><font color="#ffffff">Mana   : </font><font color="#ffff00">10</font><font color="#ffffff">/</font><font color="#00ff00">39
 
-</font><font color="#ffffff">虽然戒指和护身符是可穿戴的物品，但它们在重要的一点上与武器和盔甲不同：不
-存在</font><font color="#ff0000">良好的 
-(good)</font><font color="#ffffff">首饰这种东西。戒指和护身符总是普通、ego物品或神器；普通首饰完全没
-有任何效果，仅对重铸有用。
+  </font><font color="#c08040">This device is loaded with a spell:
+  </font><font color="#ffffff">Spell  : </font><font color="#00ffff">Stinking Cloud
+  </font><font color="#ffffff">Info   : dam 15
+  Level  : </font><font color="#00ff00">8
+  </font><font color="#ffffff">Cost   : </font><font color="#00ff00">4
+  </font><font color="#ffffff">Charges: </font><font color="#ffff00">2</font><font color="#ffffff">/</font><font color="#00ff00">9
+  </font><font color="#ffffff">Fail   : </font><font color="#00ff00">2.4%
+  </font><font color="#ffffff">Desc   : It fires a ball of poison.
 
-并没有太多不同的首饰 
-ego类型，但那些确实存在的类型允许极高的可变性；ego类型本质上是一个主题，
-它允许一组特定的属性出现，但某件首饰具体生成了哪些属性是非常随机的。
+It may help if you already familiar with spellcasting, since one way to 
+think of devices is as spellcasters with access to a single spell. The 
+device, just like a spellcaster, has a casting level (labelled as 
+</font><font color="#ff0000">Power</font><font color="#ffffff">) and spell points (</font><font color="#ff0000">Mana</font><font color="#ffffff">); and the spell it is loaded with has a 
+</font><font color="#ff0000">spell level</font><font color="#ffffff">, </font><font color="#ff0000">mana cost </font><font color="#ffffff">and </font><font color="#ff0000">fail rate </font><font color="#ffffff">just as normal spells do.
 
-<a name="Lore"></a></font><font color="#c00000">物品图鉴 (Object Lore)
+The </font><font color="#ff0000">Power </font><font color="#ffffff">of a device determines how much mana the device can have, 
+which spell effects it had a chance to generate with, and how difficult 
+it is to use. Power also determines how strong the spell is; sometimes 
+this has no practical meaning at all, but in our Stinking Cloud example 
+the </font><font color="#ff0000">dam 15 </font><font color="#ffffff">is a direct result of the device's power.
 
-</font><font color="#ffffff">每次你鉴定出 ego物品或标准神器上的某个属性时，你也会学到关于该神器或 
-ego物品类型的知识。这被称为</font><font color="#ff0000">物品图鉴 (object 
-lore)</font><font color="#ffffff">，它将帮助你在未来识别出相似物品上的相同属性，而无需进行*全面鉴定*
-。默认情况下，死亡后物品图鉴会像怪物图鉴一样保存在你的存档文件中，尽管你
-可以通过 </font><font color="#ff0000">empty_lore </font><font color="#ffffff">选项 (<a href="option.html#empty_lore"></font><font color="#00ff00">[i]</a></font><font color="#ffffff">) 更改这一点。
+The </font><font color="#ff0000">Mana </font><font color="#ffffff">of the device indicates how many times the device can be used 
+before it needs to "rest" a bit. Traditionally, this has been displayed 
+as </font><font color="#ff0000">charges</font><font color="#ffffff">; our example device has 2 charges right now, but 9 when 
+fully charged. You can see this matches the device's mana and the 
+spell's mana cost: with its current </font><font color="#ffff00">10 </font><font color="#ffffff">mana, the wand has 10/4 = 2 (and 
+a half) charges, and at full </font><font color="#00ff00">39 </font><font color="#ffffff">mana it would have 9 charges and a bit.
 
-你可以随时通过 </font><font color="#ff8000">~ </font><font color="#ffffff">知识菜单 (Knowledge Menu) 查看你当前的神器和 
-ego物品图鉴。这样做并没有什么实质性的好处，但这是一种有趣的消遣！
+There is no need to throw a device away once all of its charges have 
+been spent: devices also resemble spellcasters in that their mana 
+regenerates. This happens much faster on rods than on wands or staves.
 
-<a name="Devices"></a></font><font color="#c00000">装置 (Devices)
+The </font><font color="#ff0000">Fail Rate </font><font color="#ffffff">of the device indicates the probability that you fail to 
+use it successfully. This depends on the device's power, the player's 
+</font><font color="#ff0000">device skill</font><font color="#ffffff">, and the inherent difficulty of the spell effect itself. 
+Fail rates never hit zero, but our example wand comes pretty close at 
+</font><font color="#00ff00">2.4%</font><font color="#ffffff">; due to its low level and fairly unimpressive effect, it is very 
+easy to use. Devices differ from spellcasters in that failed attempts 
+to use a device do not consume mana.
 
-</font><font color="#ffffff">魔法装置包括魔杖 (wands)、法杖 (staves) 和魔棒 
-(rods)。由于这些在镇上就能买到，我将详细为你讲解一个例子，而不会因为剧透
-感到内疚。这是一根基础的魔杖：
-
-</font><font color="#008040">一根魔杖：</font><font color="#00ff00">臭云术
-  </font><font color="#c08040">该装置具有以下魔法强度：
-  </font><font color="#ffffff">威力   : </font><font color="#00ff00">13
-  </font><font color="#ffffff">法力   : </font><font color="#ffff00">10</font><font color="#ffffff">/</font><font color="#00ff00">39
-
-  </font><font color="#c08040">该装置装载了一个法术：
-  </font><font color="#ffffff">法术   : </font><font color="#00ffff">臭云术
-  </font><font color="#ffffff">信息   : 伤害 15
-  等级   : </font><font color="#00ff00">8
-  </font><font color="#ffffff">消耗   : </font><font color="#00ff00">4
-  </font><font color="#ffffff">充能   : </font><font color="#ffff00">2</font><font color="#ffffff">/</font><font color="#00ff00">9
-  </font><font color="#ffffff">失败率 : </font><font color="#00ff00">2.4%
-  </font><font color="#ffffff">描述   : 发射一个毒球。
-
-
-如果你已经熟悉施法，那可能会有所帮助，因为理解装置的一种方法是把它们想象
-成只能使用单一法术的施法者。就像施法者一样，装置有一个施法等级（标记为</font><font color="#ff0000">威
-力 Power</font><font color="#ffffff">）和法术点数（</font><font color="#ff0000">法力 
-Mana</font><font color="#ffffff">）；而它所装载的法术有一个</font><font color="#ff0000">法术等级</font><font color="#ffffff">、</font><font color="#ff0000">法力消耗
-</font><font color="#ffffff">和</font><font color="#ff0000">失败率</font><font color="#ffffff">，就像普通法术一样。
-
-装置的</font><font color="#ff0000">威力 
-(Power)</font><font color="#ffffff">决定了该装置能拥有多少法力，它生成时有可能附带哪些法术效果，以及
-使用它有多难。威力也决定了法术的强度；有时这根本没有实际意义，但在我们的
-臭云术例子中，</font><font color="#ff0000">伤害 15 </font><font color="#ffffff">是该装置威力的直接结果。
-
-装置的</font><font color="#ff0000">法力 
-(Mana)</font><font color="#ffffff">表明在装置需要“休息”一下之前可以使用多少次。传统上，这被显示为</font><font color="#ff0000">充能
-数 (charges)</font><font color="#ffffff">；我们作为例子的装置现在有 2 发充能，但在完全充满时有 9 
-发。你可以看到这与装置的法力和法术的法力消耗是相符的：以它目前的 </font><font color="#ffff00">10 
-</font><font color="#ffffff">点法力，这根魔杖有 10/4 = 2（半）发充能，而在充满的 </font><font color="#00ff00">39 </font><font color="#ffffff">点法力时，它将有 
-9 发多一点的充能。
-
-
-一旦装置的所有充能都用光了，没有必要把它扔掉：装置在法力会再生这一点上也
-类似于施法者。魔棒 (rods) 上的再生速度要比魔杖 (wands) 或法杖 (staves) 
-快得多。
-
-装置的</font><font color="#ff0000">失败率 (Fail 
-Rate)</font><font color="#ffffff">表明你使用它失败的概率。这取决于装置的威力、玩家的</font><font color="#ff0000">装置技能</font><font color="#ffffff">以及该法
-术效果本身的固有难度。失败率永远不会降到零，但我们作为例子的魔杖在 </font><font color="#00ff00">2.4% 
-</font><font color="#ffffff">时已经非常接近了；由于其等级低且效果相当不起眼，它非常容易使用。装置与施
-法者的不同之处在于，使用装置失败不会消耗法力。
-
-和装备一样，装置也可以是 ego物品；但是普通装置和 
-ego装置之间的差距比普通装备和 
-ego装备之间的差距要小得多。ego类型只是简单地赋予该装置少数几个特殊属性之
-一：
+Devices, like equipment, can be ego; but the difference between average 
+devices and ego devices is much smaller than that between average and 
+ego equipment. The ego type simply gives the device one of a handful of 
+special attributes:
    
-   </font><font color="#c08040">威力 (Power)         </font><font color="#ffffff">该装置的法术比其施法等级所暗示的更强大。
-   </font><font color="#c08040">简易 (Simplicity)    </font><font color="#ffffff">该装置比其效果和施法等级所暗示的更容易使用。
-   </font><font color="#c08040">维持 (Holding)       </font><font color="#ffffff">该装置能抵抗怪物吸取其充能。
-   </font><font color="#c08040">再生 (Regeneration)  </font><font color="#ffffff">该装置的法力再生速度比通常快得多（每点 pval 
-                        +100% 恢复速度）。
-   </font><font color="#c08040">抗性 (Resistance)    </font><font color="#ffffff">该装置不会被基础元素摧毁。
-   </font><font color="#c08040">容量 (Capacity)      </font><font color="#ffffff">该装置拥有一个异常庞大的法力池。
-   </font><font color="#c08040">迅捷 (Quickness)     </font><font color="#ffffff">使用该装置消耗的回合数少于一个完整回合（每点 
-                        pval -10% 能量消耗）。
+   </font><font color="#c08040">Power         </font><font color="#ffffff">The device's spells are more powerful than its casting 
+                 level would indicate.
+   </font><font color="#c08040">Simplicity    </font><font color="#ffffff">The device is easier to use than its effect and 
+                 casting level would indicate.
+   </font><font color="#c08040">Holding       </font><font color="#ffffff">The device is resistant to having its charges drained 
+                 by monsters.
+   </font><font color="#c08040">Regeneration  </font><font color="#ffffff">The device's mana regenerates much faster than 
+                 normally (+100% regen per pval point).
+   </font><font color="#c08040">Resistance    </font><font color="#ffffff">The device cannot be destroyed by the base elements.
+   </font><font color="#c08040">Capacity      </font><font color="#ffffff">The device has an unusually large mana pool.
+   </font><font color="#c08040">Quickness     </font><font color="#ffffff">Using the device consumes less than a full turn (-10% 
+                 energy cost per pval point).
    
-有关魔杖 (wands)、魔棒 (rods) 和法杖 (staves) 
-之间，以及有些类似的卷轴和药水之间的区别概述，请参阅 <a href="faq.html#DeviceTypes"></font><font color="#00ff00">[j]</a></font><font color="#ffffff">。
+See <a href="faq.html#DeviceTypes"></font><font color="#00ff00">[j]</a> </font><font color="#ffffff">for an overview of the differences between wands, rods and 
+staves, as well as the somewhat similar scrolls and potions.
 
-<a name="Spellbooks"></a></font><font color="#c00000">法术书 (Spellbooks)
+<a name="Spellbooks"></a></font><font color="#c00000">Spellbooks
 
+</font><font color="#ffffff">Many spellcasters need books in order to learn and cast spells. Books 
+do not require identification, and each spellbook of the same type is 
+exactly the same. No issues of object knowledge or quality to worry 
+about! See <a href="magic.html#Spellbook"></font><font color="#00ff00">[k]</a> </font><font color="#ffffff">for more on spellbooks and the magic system.
 
-</font><font color="#ffffff">许多施法者需要书本才能学习和施放法术。书本不需要鉴定，并且每一本同类型的
-法术书都是完全一样的。不用担心物品知识或品质的问题！有关法术书和魔法系统
-的更多信息，请参阅 <a href="magic.html#Spellbook"></font><font color="#00ff00">[k]</a></font><font color="#ffffff">。
+<a name="Inscriptions"></a></font><font color="#c00000">Object Inscriptions
 
-<a name="Inscriptions"></a></font><font color="#c00000">物品铭刻 (Object Inscriptions)
+</font><font color="#ffffff">This is an advanced topic which you may want to skip if you are just 
+getting started; but </font><font color="#ff0000">inscriptions</font><font color="#ffffff">, once learned, are very powerful and 
+useful. 墨家明器 automatically inscribes some items, so 
+activating it is a good way to both get easy utility out of 
+inscriptions and to see how they work in practice.
 
-</font><font color="#ffffff">这是一个进阶话题，如果你刚刚开始玩，你可能想跳过它；但</font><font color="#ff0000">铭刻 
-(inscriptions)</font><font color="#ffffff">一旦学会，就会非常强大且有用。墨家明器 
-会自动为一些物品添加铭刻，所以激活它既是轻松利用铭刻的好方法，也是观察它
-们在实践中如何工作的好方法。
+Inscriptions are text appended to individual objects; the game uses 
+inscriptions on an object to communicate information to you, and you 
+can use inscriptions to communicate back to the game.
 
+To add an inscription, use the </font><font color="#ff8000">{ </font><font color="#ffffff">command, then type whatever you like. 
+If you later decide to remove that inscription, use </font><font color="#ff8000">}</font><font color="#ffffff">. Note that 
+inscriptions are displayed to you inside curly braces as {inscription}, 
+so the inscription commands themselves should be easy to remember. In 
+the original keyset, the </font><font color="#ff8000">Z </font><font color="#ffffff">key is functionally identical with </font><font color="#ff8000">{</font><font color="#ffffff">, and 
+can be used as a convenient substitute if </font><font color="#ff8000">{ </font><font color="#ffffff">is hard to access on your 
+system or keyboard.
 
-铭刻是附加到单个物品上的文本；游戏使用物品上的铭刻来向你传达信息，而你可
-以使用铭刻向游戏反馈信息。
-
-要添加铭刻，请使用 </font><font color="#ff8000">{ 
-</font><font color="#ffffff">命令，然后输入任何你喜欢的内容。如果你后来决定移除该铭刻，使用 
-</font><font color="#ff8000">}</font><font color="#ffffff">。请注意，铭刻在你看来是显示在花括号内的，如 
-{铭刻文本}，所以铭刻命令本身应该很容易记住。在原版键位设置中，</font><font color="#ff8000">Z 
-</font><font color="#ffffff">键在功能上与 </font><font color="#ff8000">{ </font><font color="#ffffff">完全相同，如果 </font><font color="#ff8000">{ 
-</font><font color="#ffffff">在你的系统或键盘上很难按到，它可以作为一种方便的替代。
-
-<a name="FakeInsc"></a>  </font><font color="#ff8000">伪装铭刻 (Fake Inscriptions)
+<a name="FakeInsc"></a>  </font><font color="#ff8000">Fake Inscriptions
   
+  </font><font color="#ffffff">These are added by the game to communicate information to the player. 
+  Pseudo-ID, for example, communicates the quality of an item through a 
+  fake inscription; so you might have "a Long Sword {special}" where 
+  the object feeling is displayed as an inscription between curly 
+  braces. These inscriptions are "fake" in that no literal inscription 
+  is involved; the game simply displays the information as if it were 
+  an inscription. Fake inscriptions include the following:
   
-  </font><font color="#ffffff">这些是由游戏自动添加的，用于向玩家传达信息。例如，伪鉴定通过伪装铭刻传
-  达物品的品质；因此你可能会有一个“长剑 
-  {优秀的}”，物品感觉被当作铭刻显示在花括号之间。这些铭刻之所以是“伪装”
-  的，是因为不涉及字面意义上的用户铭刻；游戏只是像铭刻一样显示这些信息。
-  伪装铭刻包括以下内容：
+  </font><font color="#00ff00">Type             Comment
+  </font><font color="#ffffff">Pseudo-ID        Displays the quality of the object as average, good, 
+                   excellent, etc. These inscriptions will be removed 
+                   once the player identifies the object.
+  Discount         If an item is purchased at a discount, this fake 
+                   inscription displays that discount. You can turn it 
+                   off with the <a href="option.html#show_discounts"></font><font color="#00ff00">[l]</a> </font><font color="#ffffff">show_discounts option.
+  Abbreviations    Indicate the resistances, slays, stat bonuses and 
+                   other attributes an item has. See <a href="objects.html#InscriptionAbbrev"></font><font color="#00ff00">[m]</a> </font><font color="#ffffff">below for a 
+                   list of the abbreviations that might appear.
   
-  </font><font color="#00ff00">类型             注释
-  </font><font color="#ffffff">伪鉴定           
-                   将物品的品质显示为普通的、良好的、优秀的等。一旦玩家
-                   鉴定了该物品，这些铭刻就会被移除。
-  降价             
-                   如果以折扣价购买了一件物品，这种伪装铭刻会显示该折扣
-                   。你可以通过 <a href="option.html#show_discounts"></font><font color="#00ff00">[l]</a> </font><font color="#ffffff">show_discounts 选项关闭它。
-  缩写             
-                   表明物品拥有的抗性、杀戮、属性加成和其它属性。有关可
-                   能出现的缩写列表，请参见下文的 <a href="objects.html#InscriptionAbbrev"></font><font color="#00ff00">[m]</a></font><font color="#ffffff">。
+<a name="RealInsc"></a>  </font><font color="#ff8000">Useful Inscriptions
   
-<a name="RealInsc"></a>  </font><font color="#ff8000">实用铭刻 (Useful Inscriptions)
+  </font><font color="#ffffff">"Real" inscriptions include those you type in yourself, using the </font><font color="#ff8000">{ 
+  </font><font color="#ffffff">command, as well as those added by the 墨家明器. These 
+  inscriptions can be any text you like, maybe a note to yourself "this 
+  potion is probably Speed" before you have officially identified it. 
+  Alternatively, you can use special syntax to communicate your 
+  preferences to the game; let's call these </font><font color="#ff0000">useful inscriptions</font><font color="#ffffff">.
   
-  </font><font color="#ffffff">“真实”铭刻包括那些你使用 </font><font color="#ff8000">{ 
-  </font><font color="#ffffff">命令自己输入的铭刻，以及墨家明器添加的铭刻。这些铭刻可以是任何你喜欢的
-  文本，也许是给你自己的一个备忘录，比如在你正式鉴定它之前写上“这瓶药水
-  可能是加速”。或者，你可以使用特殊语法向游戏传达你的偏好；我们称这些为
-  </font><font color="#ff0000">实用铭刻 (useful inscriptions)</font><font color="#ffffff">。
+  The most useful use of the useful inscriptions (sorry!) is to control 
+  object selection when entering a given command. For example, when a 
+  Mage goes to cast a spell (using the </font><font color="#ff8000">m </font><font color="#ffffff">command), they are prompted 
+  for a spellbook, which they must select from their inventory. By 
+  default, this choice is made through a letter label corresponding to 
+  the book's position in a list of all available books, for example:
   
+  </font><font color="#00ff00">Inventory
+   </font><font color="#ffffff">a) </font><font color="#ff0000">? a Chaos Spellbook [Sign of Chaos]
+   </font><font color="#ffffff">b) </font><font color="#ff0000">? a Chaos Spellbook [Chaos Mastery]
+   </font><font color="#ffffff">c) </font><font color="#00ffff">? a Sorcery Spellbook [Beginner's Handbook]
+   </font><font color="#ffffff">d) </font><font color="#00ffff">? a Sorcery Spellbook [Master Sorcerer's Handbook]
   
-  实用铭刻最实用的用途（抱歉拗口了！）是在输入给定命令时控制物品的选择。
-  例如，当法师去施放法术（使用 </font><font color="#ff8000">m 
-  </font><font color="#ffffff">命令）时，系统会提示他们需要一本法术书，他们必须从物品栏中选择。默认情
-  况下，这个选择是通过一个对应于书本在所有可用书本列表中位置的字母标签做
-  出的，例如：
+  </font><font color="#ffffff">I only have 4 spellbooks at the moment, so this choice is not too 
+  bad. But let's say I get very used to casting spells from my [Chaos 
+  Mastery] book with something like </font><font color="#ff8000">mbe</font><font color="#ffffff">, where </font><font color="#ff8000">e </font><font color="#ffffff">corresponds to a 
+  particular spell in that book. Now, along comes an arch-vile who 
+  burns up one of my books, perhaps my [Sign of Chaos]. Now, the prompt 
+  for a spellbook looks like:
   
-  </font><font color="#00ff00">物品栏
-   </font><font color="#ffffff">a) </font><font color="#ff0000">? 一本混沌法术书 [混沌印记]
-   </font><font color="#ffffff">b) </font><font color="#ff0000">? 一本混沌法术书 [混沌精通]
-   </font><font color="#ffffff">c) </font><font color="#00ffff">? 一本咒术法术书 [初学者手册]
-   </font><font color="#ffffff">d) </font><font color="#00ffff">? 一本咒术法术书 [大师咒术师手册]
+  </font><font color="#00ff00">Inventory
+   </font><font color="#ffffff">a) </font><font color="#ff0000">? a Chaos Spellbook [Chaos Mastery]
+   </font><font color="#ffffff">b) </font><font color="#00ffff">? a Sorcery Spellbook [Beginner's Handbook]
+   </font><font color="#ffffff">c) </font><font color="#00ffff">? a Sorcery Spellbook [Master Sorcerer's Handbook]
   
-  </font><font color="#ffffff">我现在只有 4 
-  本法术书，所以这个选择还不算太糟。但假设我非常习惯于用类似 </font><font color="#ff8000">mbe 
-  </font><font color="#ffffff">的按键从我的 [混沌精通] 书中施放法术，其中 </font><font color="#ff8000">e 
-  </font><font color="#ffffff">对应于那本书中的一个特定法术。现在，来了一个高阶劣魔，烧掉了我的一本书
-  ，也许是我的 [混沌印记]。现在，法术书的提示变成了这样：
+  </font><font color="#ffffff">If I fail to notice that the letters for my books changed, or if I am 
+  so darned used to typing </font><font color="#ff8000">mbe </font><font color="#ffffff">for the spell I want - or if I built a 
+  macro for the spell I wanted - I am in for a nasty surprise. Instead 
+  of casting the spell I want from [Chaos Mastery], I'll be casting 
+  something else entirely from my [Beginner's Handbook]!
   
-  </font><font color="#00ff00">物品栏
-   </font><font color="#ffffff">a) </font><font color="#ff0000">? 一本混沌法术书 [混沌精通]
-   </font><font color="#ffffff">b) </font><font color="#00ffff">? 一本咒术法术书 [初学者手册]
-   </font><font color="#ffffff">c) </font><font color="#00ffff">? 一本咒术法术书 [大师咒术师手册]
+  This type of reordering happens with all kinds of objects: your 
+  inventory sorts itself as you find stuff, and objects move around. As 
+  they move, the letters you enter to select them move around as well. 
+  To deal with these situations, use the special inscription of the 
+  form: @</font><font color="#00ff00">Command-Letter</font><font color="#ff0000">Choice-Label</font><font color="#ffffff">. For example, perhaps I should try 
+  adding </font><font color="#ff00ff">@mb </font><font color="#ffffff">to my [Chaos Mastery]? And to illustrate a point, I will 
+  actually inscribe it with "Master of @mb Chaos" (the point being that 
+  @mb just needs to be part of the inscription, not the entire 
+  inscription). Now, here is what I see:
   
+  </font><font color="#00ff00">Inventory
+   </font><font color="#ffffff">b) </font><font color="#ff0000">? a Chaos Spellbook [Chaos Mastery] {Master of @mb Chaos}
+   </font><font color="#ffffff">a) </font><font color="#00ffff">? a Sorcery Spellbook [Beginner's Handbook]
+   </font><font color="#ffffff">c) </font><font color="#00ffff">? a Sorcery Spellbook [Master Sorcerer's Handbook]
   
-  </font><font color="#ffffff">如果我没有注意到我的法术书的字母改变了，或者如果我他妈的太习惯于为我想
-  要的法术输入 </font><font color="#ff8000">mbe 
-  </font><font color="#ffffff">了——或者如果我为我想要的法术建了一个宏——我就会大吃一惊。我将不会从 
-  [混沌精通] 中施放我想要的法术，而是完全从我的 [初学者手册] 
-  中施放其它乱七八糟的东西！
+  </font><font color="#ffffff">Better, but not ideal; my copy of [Beginner's Handbook] has 
+  unexpectedly moved to the a) slot, which will likely also throw me 
+  off! This illustrates an important principle with regard to 
+  spellbooks: if you inscribe one spellbook, it is a good idea to 
+  inscribe all of them. Most players use @ma through @md for their 
+  first realm of magic (each realm has four spellbooks) and @me through 
+  @mh for their second realm; the 墨家明器 even does this 
+  automatically. Let's see what effect this has:
   
+  </font><font color="#00ff00">Inventory
+   </font><font color="#ffffff">b) </font><font color="#ff0000">? a Chaos Spellbook [Chaos Mastery] {Master of @mb Chaos}
+   </font><font color="#ffffff">e) </font><font color="#00ffff">? a Sorcery Spellbook [Beginner's Handbook] {@me}
+   </font><font color="#ffffff">f) </font><font color="#00ffff">? a Sorcery Spellbook [Master Sorcerer's Handbook] {@mf}
   
-  这种类型的重新排序会发生在各种物品上：当你在寻找东西时，你的物品栏会自
-  行排序，物品也会随之移动。随着它们的移动，你输入来选择它们的字母也会跟
-  着改变。为了处理这些情况，可以使用以下格式的特殊铭刻：@</font><font color="#00ff00">命令字母</font><font color="#ff0000">选择标
-  签</font><font color="#ffffff">。例如，也许我应该尝试把 </font><font color="#ff00ff">@mb </font><font color="#ffffff">加到我的 [混沌精通] 
-  上？为了说明一个重点，我实际上会在上面铭刻“Master of @mb 
-  Chaos”（重点是 @mb 
-  只需要成为铭刻的一部分，而不需要是整个铭刻）。现在，我看到的是：
+  </font><font color="#ffffff">That's better. My inventory, you remember, still looks like this:
   
-  </font><font color="#00ff00">物品栏
-   </font><font color="#ffffff">b) </font><font color="#ff0000">? 一本混沌法术书 [混沌精通] {Master of @mb Chaos}
-   </font><font color="#ffffff">a) </font><font color="#00ffff">? 一本咒术法术书 [初学者手册]
-   </font><font color="#ffffff">c) </font><font color="#00ffff">? 一本咒术法术书 [大师咒术师手册]
+  </font><font color="#00ff00">Inventory </font><font color="#0000ff">| </font><font color="#404040">Equipment                                                         
+   </font><font color="#ffffff">a) </font><font color="#ff0000">? a Chaos Spellbook [Chaos Mastery] {Master of @mb Chaos}
+   </font><font color="#ffffff">b) </font><font color="#00ffff">? a Sorcery Spellbook [Beginner's Handbook] {@me}
+   </font><font color="#ffffff">c) </font><font color="#00ffff">? a Sorcery Spellbook [Master Sorcerer's Handbook] {@mf}
+   </font><font color="#ffffff">d) </font><font color="#c08040">, 9 Rations of Food
+   </font><font color="#ffffff">e) </font><font color="#804000">~ </font><font color="#ffff00">4 Wooden Torches (with 3500 turns of light)
   
-  </font><font color="#ffffff">好多了，但还不理想；我的 [初学者手册] 意料之外地移到了 a) 
-  槽位，这可能也会干扰到我！这说明了一个关于法术书的重要原则：如果你给一
-  本法术书铭刻，最好把所有的法术书都铭刻上。大多数玩家对他们的第一个魔法
-  领域使用 @ma 到 @md（每个领域有四本法术书），对他们的第二个领域使用 
-  @me 到 @mh；墨家明器甚至会自动执行此操作。让我们看看这有什么效果：
+  </font><font color="#ffffff">All we are doing is using inscriptions to change the lettering of 
+  choices, and then, only for the </font><font color="#ff8000">m </font><font color="#ffffff">command. If I </font><font color="#ff8000">b</font><font color="#ffffff">rowse my spellbooks, 
+  I am back in my original situation. Of course, I can rectify this by 
+  appending inscriptions of the form @ba through @bh to all of my 
+  books; or, since I don't use the Browse command that often, I can 
+  simply slow down and read the prompt.
   
-  </font><font color="#00ff00">物品栏
-   </font><font color="#ffffff">b) </font><font color="#ff0000">? 一本混沌法术书 [混沌精通] {Master of @mb Chaos}
-   </font><font color="#ffffff">e) </font><font color="#00ffff">? 一本咒术法术书 [初学者手册] {@me}
-   </font><font color="#ffffff">f) </font><font color="#00ffff">? 一本咒术法术书 [大师咒术师手册] {@mf}
+  There is another option, though: instead of using the format 
+  @</font><font color="#00ff00">Command-Letter</font><font color="#ff0000">Choice-Label</font><font color="#ffffff">, I could use @</font><font color="#ff0000">Choice-Digit </font><font color="#ffffff">where the 
+  label is a single digit between 0 and 9 and the command-letter is 
+  omitted. For example, I could inscribe my books with </font><font color="#ff00ff">@1 </font><font color="#ffffff">through </font><font color="#ff00ff">@8</font><font color="#ffffff">:
   
-  </font><font color="#ffffff">这样好多了。你记得，我的物品栏仍然是这样的：
+  </font><font color="#00ff00">Inventory
+   </font><font color="#ffffff">1) </font><font color="#ff0000">? a Chaos Spellbook [Sign of Chaos] {@1}
+   </font><font color="#ffffff">2) </font><font color="#ff0000">? a Chaos Spellbook [Chaos Mastery] {@2}
+   </font><font color="#ffffff">5) </font><font color="#00ffff">? a Sorcery Spellbook [Beginner's Handbook] {@5}
+   </font><font color="#ffffff">6) </font><font color="#00ffff">? a Sorcery Spellbook [Master Sorcerer's Handbook] {@6}
   
-  </font><font color="#00ff00">物品栏    </font><font color="#0000ff">| </font><font color="#404040">装备                                                           
-   </font><font color="#ffffff">a) </font><font color="#ff0000">? 一本混沌法术书 [混沌精通] {Master of @mb Chaos}
-   </font><font color="#ffffff">b) </font><font color="#00ffff">? 一本咒术法术书 [初学者手册] {@me}
-   </font><font color="#ffffff">c) </font><font color="#00ffff">? 一本咒术法术书 [大师咒术师手册] {@mf}
-   </font><font color="#ffffff">d) </font><font color="#c08040">, 9 份食物口粮
-   </font><font color="#ffffff">e) </font><font color="#804000">~ </font><font color="#ffff00">4 根木火把 (剩余 3500 回合光照)
+  </font><font color="#ffffff">Now, I can cast my desired spell with </font><font color="#ff8000">m2e</font><font color="#ffffff">, browse my [Master 
+  Sorcerer's Handbook] with </font><font color="#ff8000">b6 </font><font color="#ffffff">and learn a new spell from [Sign of 
+  Chaos] with </font><font color="#ff8000">G1</font><font color="#ffffff">; the same numbers apply for all commands.
   
-  </font><font color="#ffffff">我们所做的只是使用铭刻来改变选项的字母编号，而且，只针对 </font><font color="#ff8000">m 
-  </font><font color="#ffffff">命令。如果我 </font><font color="#ff8000">b</font><font color="#ffffff">rowse (浏览) 
-  我的法术书，我又回到了最初的情况。当然，我可以通过在所有书本后附加 
-  @ba 到 @bh 
-  形式的铭刻来纠正这个问题；或者，既然我不经常使用浏览命令，我干脆放慢速
-  度自己读一下提示就好了。
+<a name="WhatElse"></a>  </font><font color="#c08040">What Else Can Inscriptions Do?
   
-  不过还有另一个选择：我不使用 @</font><font color="#00ff00">命令字母</font><font color="#ff0000">选择标签 </font><font color="#ffffff">的格式，而是使用 
-  @</font><font color="#ff0000">选择数字 </font><font color="#ffffff">的格式，其中标签是 0 到 9 
-  之间的一个数字，并且省略了命令字母。例如，我可以在我的书上铭刻 </font><font color="#ff00ff">@1 </font><font color="#ffffff">到 
-  </font><font color="#ff00ff">@8</font><font color="#ffffff">：
+  </font><font color="#ffffff">Controlling object selection letters is not the only useful 
+  inscription; you can also have the game prompt for confirmation when 
+  attempting to use an object with a given command. For example, 
+  suppose you just found </font><font color="#00ffff">a Potion of Super-Duper Healing</font><font color="#ffffff">, and you 
+  really want to make sure you do not quaff it by mistake. To protect 
+  this potion from accidental quaffing, add the inscription </font><font color="#ff00ff">!q</font><font color="#ffffff">, which 
+  is of the form !</font><font color="#00ff00">Command-Letter</font><font color="#ffffff">. Now, whenever I try to </font><font color="#ff8000">q</font><font color="#ffffff">uaff the 
+  potion - whether accidentally or intentionally - the game will prompt 
+  me for confirmation.
   
-  </font><font color="#00ff00">物品栏
-   </font><font color="#ffffff">1) </font><font color="#ff0000">? 一本混沌法术书 [混沌印记] {@1}
-   </font><font color="#ffffff">2) </font><font color="#ff0000">? 一本混沌法术书 [混沌精通] {@2}
-   </font><font color="#ffffff">5) </font><font color="#00ffff">? 一本咒术法术书 [初学者手册] {@5}
-   </font><font color="#ffffff">6) </font><font color="#00ffff">? 一本咒术法术书 [大师咒术师手册] {@6}
+  If I am paranoid, I can increase the prompting with the inscription 
+  !q!q, or even !q!q!q!q; the game will prompt me once for each !q in 
+  the inscription, making extra-sure that I only have myself to blame 
+  when I still quaff this potion by mistake.
   
-  </font><font color="#ffffff">现在，我可以用 </font><font color="#ff8000">m2e </font><font color="#ffffff">施放我想要的法术，用 </font><font color="#ff8000">b6 </font><font color="#ffffff">浏览我的 
-  [大师咒术师手册]，用 </font><font color="#ff8000">G1 </font><font color="#ffffff">从 [混沌印记] 
-  中学习一个新法术；相同的数字适用于所有命令。
+  A related inscription is </font><font color="#ff00ff">!*</font><font color="#ffffff">; it works on the same principle as </font><font color="#ff00ff">!q</font><font color="#ffffff">, 
+  but uses the wild-card </font><font color="#ff00ff">* </font><font color="#ffffff">to have the game prompt you for every 
+  command that uses the object. You cannot quaff it by accident, sell 
+  it by accident, drop it by accident, destroy it by accident... we 
+  cater to the most paranoid of players!
   
-<a name="WhatElse"></a>  </font><font color="#c08040">铭刻还能做什么？
+  So we have @</font><font color="#00ff00">Command-Letter</font><font color="#ff0000">Choice-Label </font><font color="#ffffff">as well as @</font><font color="#ff0000">Choice-Digit </font><font color="#ffffff">to 
+  control object labeling; and !</font><font color="#00ff00">Command-Letter </font><font color="#ffffff">to add confirmation 
+  prompts before using an object in various ways. What else can we do? 
+  Quite a bit actually. Try the following:
   
+  </font><font color="#00ff00">Inscription  Meaning
+      </font><font color="#ffffff">!!       Disturb the player when the inscribed object (typically 
+               a magical device, but this also works for equipment 
+               activations) is fully recharged. This means you can 
+               issue a long rest command like </font><font color="#ff8000">R777\r </font><font color="#ffffff">to rest for 777 
+               turns, and the game will interrupt your dozing once your 
+               device is ready for use again (unless it still hasn't 
+               finished recharging, which is a real possibility...)
+      !1       Disturb the player when the inscribed device has 
+               recharged enough to have 1 charge again.
+      =g       Automatically pick this object up. Use this on your 
+               arrows and such, and you can quickly regather discharged 
+               ammunition after a lengthy shooting battle.
+      .        Suppress the prompt for random teleportation on objects 
+               with this attribute.
+      $        Suppress the warning prompt for items that warn you 
+               before taking dangerous actions. Of course, this defeats 
+               the warning altogether, but sometimes you are confident 
+               enough in your own decisions to forgo second-guessing by 
+               pretentious jewelry.
+      !?       Request confirmation of melee attacks, a handy 
+               inscription if you are so weak in physical combat that 
+               any melee you might engage in would likely be 
+               accidental. The inscription can be combined with a 
+               monster level, e.g. !?40, to only request confirmation 
+               for attacks against monsters of (in this example) level 
+               40 or above.
   
-  </font><font color="#ffffff">控制物品选择字母并不是唯一实用的铭刻；你也可以让游戏在尝试用给定命令使
-  用物品时提示确认。例如，假设你刚找到一瓶 
-  </font><font color="#00ffff">超级无敌治疗药水</font><font color="#ffffff">，你真的想确保自己不会误喝了它。为了保护这瓶药水不被意
-  外饮用，添加铭刻 </font><font color="#ff00ff">!q</font><font color="#ffffff">，它的格式是 !</font><font color="#00ff00">命令字母</font><font color="#ffffff">。现在，无论我何时试图 </font><font color="#ff8000">q</font><font color="#ffffff">uaff 
-  (饮用) 这瓶药水——无论是意外还是故意的——游戏都会提示我确认。
+  Finally, there is also a special inscription form ^</font><font color="#00ff00">Command-Letter</font><font color="#ffffff">. 
+  Adding this to a worn piece of equipment causes the game to prompt 
+  for verification every time you attempt the indicated command, even 
+  if the command is one not involving the object in question. If you 
+  like, you could inscribe (say) </font><font color="#ff00ff">^&lt;^&gt; </font><font color="#ffffff">on your boots; and the game will 
+  now prompt for confirmation every time you attempt to use the </font><font color="#ff8000">&lt; </font><font color="#ffffff">and </font><font color="#ff8000">&gt; 
+  </font><font color="#ffffff">commands!
   
-  如果我是个偏执狂，我可以用 !q!q，甚至 !q!q!q!q 
-  铭刻来增加提示次数；铭刻中每有一个 
-  !q，游戏就会提示我一次，这能让我格外确信，如果我还是误喝了这瓶药水，我
-  只能怪我自己。
+    </font><font color="#00ff00">Command letters used in inscriptions must always match 
+    the commands of the </font><font color="#ff8000">underlying keyset</font><font color="#00ff00">. If you use the 
+    default Original Keyset this is not a problem, but if 
+    you have switched to the roguelike keyset, stay alert, 
+    as you may need to use unfamiliar command-letters.
   
-  一个相关的铭刻是 </font><font color="#ff00ff">!*</font><font color="#ffffff">；它和 </font><font color="#ff00ff">!q </font><font color="#ffffff">的工作原理相同，但使用通配符 </font><font color="#ff00ff">* 
-  </font><font color="#ffffff">让游戏在使用该物品的每个命令上都提示你。你不可能意外地喝掉它、意外地卖
-  掉它、意外地扔掉它、意外地摧毁它……我们迎合了最偏执的玩家！
-  
-  因此，我们有 @</font><font color="#00ff00">命令字母</font><font color="#ff0000">选择标签 </font><font color="#ffffff">以及 @</font><font color="#ff0000">选择数字 </font><font color="#ffffff">来控制物品标签；而 
-  !</font><font color="#00ff00">命令字母 
-  </font><font color="#ffffff">可以在以各种方式使用物品之前添加确认提示。我们还能做什么呢？其实能做的
-  还有很多。试试以下这些：
-  
-  </font><font color="#00ff00">铭刻         含义
-      </font><font color="#ffffff">!!       
-               当被铭刻的物品（通常是魔法装置，但也适用于装备的主动激活
-               能力）完全充满电时打断玩家。这意味着你可以发出一个长休息
-               命令，比如 </font><font color="#ff8000">R777\r </font><font color="#ffffff">休息 777 
-               个回合，一旦你的装置准备好再次使用（除非它还是没充满电，
-               这真的很有可能……），游戏就会打断你的打盹。
-      !1       当被铭刻的装置恢复了足够达到 1 发充能的法力时打断玩家。
-      =g       
-               自动拾取此物品。在你的箭矢之类东西上使用它，你就能在漫长
-               的射击战斗后迅速重新收集发射出去的弹药。
-      .        禁止带有此属性的物品出现随机传送提示。
-      $        
-               禁止危险行动前警告你的物品警告提示。当然，这完全破坏了警
-               告机制，但有时你对自己的决定足够自信，不想听那些自命不凡
-               的首饰在那里指手画脚。
-      !?       
-               请求确认近战攻击，如果你在物理战斗中太弱，以至于你可能卷
-               入的任何近战都很可能是意外的，那么这是一个方便的铭刻。该
-               铭刻可以与怪物等级结合使用，例如 
-               !?40，表示仅要求确认针对等级达到 40 
-               或以上（在此例中）怪物的攻击。
-  
-  最后，还有一种特殊形式的铭刻 
-  ^</font><font color="#00ff00">命令字母</font><font color="#ffffff">。将其添加到穿戴的装备上后，每当你尝试指示的命令时，游戏都会
-  提示进行验证，即使该命令不涉及正在讨论的物品。如果你愿意，你可以（例如
-  ）在你的靴子上铭刻 </font><font color="#ff00ff">^&lt;^&gt;</font><font color="#ffffff">；现在，每当你尝试使用上下楼梯命令 </font><font color="#ff8000">&lt; </font><font color="#ffffff">和 </font><font color="#ff8000">&gt; 
-  </font><font color="#ffffff">时，游戏都会提示确认！
-  
-    
-    </font><font color="#00ff00">铭刻中使用的命令字母必须始终匹配</font><font color="#ff8000">底层键位设置</font><font color="#00ff00">的命令。如果
-    你使用默认的原版键位，这不是问题；但如果你切换到了 
-    roguelike 
-    键位，请保持警惕，因为你可能需要使用不熟悉的命令字母。
-  
-<a name="Reference"></a></font><font color="#00ffff">参考部分
+<a name="Reference"></a></font><font color="#00ffff">The Reference Section
 
-<a name="ObjectSymbols"></a></font><font color="#c00000">物品符号
+<a name="ObjectSymbols"></a></font><font color="#c00000">Object Symbols
 
-  </font><font color="#00ffff">!   </font><font color="#ffffff">药水、烧瓶 (Potions, flasks)       </font><font color="#ff8000">/   </font><font color="#ffffff">长柄武器 (Polearms)
-  ?   卷轴、法术书 (Scrolls, spellbooks) </font><font color="#c0c0c0">|   </font><font color="#ffffff">有刃武器 (Edged weapons)
-  </font><font color="#c08040">,   </font><font color="#ffffff">蘑菇、食物 (Mushrooms/food)        </font><font color="#00ffff">\   </font><font color="#ffffff">钝器 (Hafted weapons)
-  </font><font color="#c00000">-   </font><font color="#ffffff">魔棒 (</font><font color="#c00000">总是深红色</font><font color="#ffffff">)                </font><font color="#c08040">}   </font><font color="#ffffff">远程武器 (Ranged weapons)
-  </font><font color="#00ffff">-   </font><font color="#ffffff">魔杖 (</font><font color="#00ffff">总是浅蓝色)                </font><font color="#808080">{   </font><font color="#ffffff">弹药 (Ammunition)
-  </font><font color="#c08040">_   </font><font color="#ffffff">法杖 (Staves)                      </font><font color="#c08040">(   </font><font color="#ffffff">软甲、斗篷 (Soft armor, 
-cloaks)
-  </font><font color="#008040">=   </font><font color="#ffffff">戒指 (Rings)                       </font><font color="#808080">[   </font><font color="#ffffff">硬甲 (Hard armor)
-  </font><font color="#ffff00">"   </font><font color="#ffffff">护身符 (Amulets)                   </font><font color="#c08040">]   </font><font color="#ffffff">杂项护甲 (Misc. armor)
-  </font><font color="#ffff00">$   </font><font color="#ffffff">金币或宝石 (Gold or gems)          </font><font color="#808080">)   </font><font color="#ffffff">盾牌 (Shields)
-  </font><font color="#ff8000">~   </font><font color="#ffffff">灯笼、铁蒺藜、箭袋                 </font><font color="#ff8000">&amp;   </font><font color="#ffffff">宝箱 (Chests)
-  </font><font color="#c00000">~   </font><font color="#ffffff">垃圾、木棍、骷髅骨架等             </font><font color="#0000ff">*   </font><font color="#ffffff">不寻常的物品 (Unusual 
-objects)
-  </font><font color="#0000ff">`   </font><font color="#ffffff">雕像、手办模型                     
+  </font><font color="#00ffff">!   </font><font color="#ffffff">Potions, flasks                 </font><font color="#ff8000">/   </font><font color="#ffffff">Polearms
+  ?   Scrolls, spellbooks             </font><font color="#c0c0c0">|   </font><font color="#ffffff">Edged weapons
+  </font><font color="#c08040">,   </font><font color="#ffffff">Mushrooms/food                  </font><font color="#00ffff">\   </font><font color="#ffffff">Hafted weapons
+  </font><font color="#c00000">-   </font><font color="#ffffff">Rods (</font><font color="#c00000">always dark red</font><font color="#ffffff">)          </font><font color="#c08040">}   </font><font color="#ffffff">Ranged weapons
+  </font><font color="#00ffff">-   </font><font color="#ffffff">Wands (</font><font color="#00ffff">always light blue)       </font><font color="#808080">{   </font><font color="#ffffff">Ammunition
+  </font><font color="#c08040">_   </font><font color="#ffffff">Staves                          </font><font color="#c08040">(   </font><font color="#ffffff">Soft armor, cloaks
+  </font><font color="#008040">=   </font><font color="#ffffff">Rings                           </font><font color="#808080">[   </font><font color="#ffffff">Hard armor
+  </font><font color="#ffff00">"   </font><font color="#ffffff">Amulets                         </font><font color="#c08040">]   </font><font color="#ffffff">Misc. armor
+  </font><font color="#ffff00">$   </font><font color="#ffffff">Gold or gems                    </font><font color="#808080">)   </font><font color="#ffffff">Shields
+  </font><font color="#ff8000">~   </font><font color="#ffffff">Lamps, spikes, quivers          </font><font color="#ff8000">&amp;   </font><font color="#ffffff">Chests
+  </font><font color="#c00000">~   </font><font color="#ffffff">Junk, sticks, skeletons, etc    </font><font color="#0000ff">*   </font><font color="#ffffff">Unusual objects
+  </font><font color="#0000ff">`   </font><font color="#ffffff">Statues, figurines
 
-<a name="ObjectCommands"></a></font><font color="#c00000">物品使用命令
+<a name="ObjectCommands"></a></font><font color="#c00000">Commands for Using Objects
 
-</font><font color="#ffffff">当用 </font><font color="#ff00ff">/ </font><font color="#ffffff">分隔两个命令时，第一个是原版键位设置中的命令，第二个是 roguelike 
-键位设置中的命令。
+</font><font color="#ffffff">Where two commands separated by a </font><font color="#ff00ff">/ </font><font color="#ffffff">are indicated, the first is the 
+command in the standard keyset and the second the command in the 
+roguelike keyset.
 
-  </font><font color="#00ffff">!  </font><font color="#ffffff">药水 (Potion)        </font><font color="#ff8000">q</font><font color="#ffffff">uaff (饮用)
-  ?  卷轴 (Scroll)        </font><font color="#ff8000">r</font><font color="#ffffff">ead (阅读)
-  </font><font color="#ff0000">?  </font><font color="#ffffff">法术书 (Spellbook)   </font><font color="#ff8000">b</font><font color="#ffffff">rowse</font><font color="#ff00ff">/</font><font color="#ff8000">p</font><font color="#ffffff">eruse (浏览), </font><font color="#ff8000">G</font><font color="#ffffff">ain (学习), </font><font color="#ff8000">m </font><font color="#ffffff">(施法)
-  </font><font color="#c08040">,  </font><font color="#ffffff">食物/蘑菇            </font><font color="#ff8000">E</font><font color="#ffffff">at (吃)
-  </font><font color="#00ffff">-  </font><font color="#ffffff">魔杖 (Wand)          </font><font color="#ff8000">a</font><font color="#ffffff">im</font><font color="#ff00ff">/</font><font color="#ff8000">z</font><font color="#ffffff">ap (瞄准/发射)
-  </font><font color="#c00000">-  </font><font color="#ffffff">魔棒 (Rod)           </font><font color="#ff8000">z</font><font color="#ffffff">ap</font><font color="#ff00ff">/</font><font color="#ff8000">a</font><font color="#ffffff">ctivate (释放/激活)
-  </font><font color="#c08040">_  </font><font color="#ffffff">法杖 (Staff)         </font><font color="#ff8000">u</font><font color="#ffffff">se</font><font color="#ff00ff">/</font><font color="#ff8000">Z</font><font color="#ffffff">ap (使用)
-  </font><font color="#ff8000">&amp;  </font><font color="#ffffff">宝箱 (Chest)         </font><font color="#ff8000">s</font><font color="#ffffff">earch (搜索陷阱), </font><font color="#ff8000">D</font><font color="#ffffff">isarm (解除), </font><font color="#ff8000">o</font><font color="#ffffff">pen (打开)
-  </font><font color="#808080">{  </font><font color="#ffffff">弹药 (Ammo)          </font><font color="#ff8000">f</font><font color="#ffffff">ire</font><font color="#ff00ff">/</font><font color="#ffffff">shoot at </font><font color="#ff8000">t</font><font color="#ffffff">arget (向目标射击), </font><font color="#ff8000">w</font><font color="#ffffff">ield 
-(放入箭袋)
+  </font><font color="#00ffff">!  </font><font color="#ffffff">Potion        </font><font color="#ff8000">q</font><font color="#ffffff">uaff
+  ?  Scroll        </font><font color="#ff8000">r</font><font color="#ffffff">ead
+  </font><font color="#ff0000">?  </font><font color="#ffffff">Spellbook     </font><font color="#ff8000">b</font><font color="#ffffff">rowse</font><font color="#ff00ff">/</font><font color="#ff8000">p</font><font color="#ffffff">eruse, </font><font color="#ff8000">G</font><font color="#ffffff">ain a spell, </font><font color="#ff8000">m </font><font color="#ffffff">to cast
+  </font><font color="#c08040">,  </font><font color="#ffffff">Food/Mushroom </font><font color="#ff8000">E</font><font color="#ffffff">at
+  </font><font color="#00ffff">-  </font><font color="#ffffff">Wand          </font><font color="#ff8000">a</font><font color="#ffffff">im</font><font color="#ff00ff">/</font><font color="#ff8000">z</font><font color="#ffffff">ap
+  </font><font color="#c00000">-  </font><font color="#ffffff">Rod           </font><font color="#ff8000">z</font><font color="#ffffff">ap</font><font color="#ff00ff">/</font><font color="#ff8000">a</font><font color="#ffffff">ctivate
+  </font><font color="#c08040">_  </font><font color="#ffffff">Staff         </font><font color="#ff8000">u</font><font color="#ffffff">se</font><font color="#ff00ff">/</font><font color="#ff8000">Z</font><font color="#ffffff">ap
+  </font><font color="#ff8000">&amp;  </font><font color="#ffffff">Chest         </font><font color="#ff8000">s</font><font color="#ffffff">earch for trap, </font><font color="#ff8000">D</font><font color="#ffffff">isarm, </font><font color="#ff8000">o</font><font color="#ffffff">pen
+  </font><font color="#808080">{  </font><font color="#ffffff">Ammo          </font><font color="#ff8000">f</font><font color="#ffffff">ire</font><font color="#ff00ff">/</font><font color="#ffffff">shoot at </font><font color="#ff8000">t</font><font color="#ffffff">arget, </font><font color="#ff8000">w</font><font color="#ffffff">ield to put in quiver
 
-对于大多数装备，你只需使用 </font><font color="#ff8000">w</font><font color="#ffffff">ear (穿戴) 命令：
-</font><font color="#ff8000">/</font><font color="#c0c0c0">|</font><font color="#00ffff">\</font><font color="#c08040">} </font><font color="#ffffff">武器/弓 (Weapons/Bows) </font><font color="#ff8000">w</font><font color="#ffffff">ield (挥舞), </font><font color="#ff8000">t</font><font color="#ff00ff">/</font><font color="#ff8000">T</font><font color="#ffffff">ake off (脱下)
-</font><font color="#c08040">(</font><font color="#808080">[</font><font color="#c08040">]</font><font color="#808080">) </font><font color="#ffffff">盔甲 (Armor)           </font><font color="#ff8000">w</font><font color="#ffffff">ear (穿戴), </font><font color="#ff8000">t</font><font color="#ff00ff">/</font><font color="#ff8000">T</font><font color="#ffffff">ake off (脱下)
-  </font><font color="#008040">=  </font><font color="#ffffff">戒指 (Ring)            </font><font color="#ff8000">w</font><font color="#ffffff">ear (穿戴), </font><font color="#ff8000">t</font><font color="#ff00ff">/</font><font color="#ff8000">T</font><font color="#ffffff">ake off (脱下)
-  </font><font color="#ffff00">"  </font><font color="#ffffff">护身符 (Amulet)        </font><font color="#ff8000">w</font><font color="#ffffff">ear (穿戴), </font><font color="#ff8000">t</font><font color="#ff00ff">/</font><font color="#ff8000">T</font><font color="#ffffff">ake off (脱下)
-  </font><font color="#c08040">~  </font><font color="#ffffff">箭袋 (Quiver)          </font><font color="#ff8000">w</font><font color="#ffffff">ear (穿戴), </font><font color="#ff8000">d</font><font color="#ffffff">rop (丢下弹药), </font><font color="#ff8000">t</font><font color="#ff00ff">/</font><font color="#ff8000">T</font><font color="#ffffff">ake off 
-(脱下)
-  </font><font color="#c08040">~  </font><font color="#ffffff">灯笼 (Lantern)         </font><font color="#ff8000">w</font><font color="#ffffff">ear (穿戴), </font><font color="#ff8000">t</font><font color="#ff00ff">/</font><font color="#ff8000">T</font><font color="#ffffff">ake off (脱下), </font><font color="#ff8000">F</font><font color="#ffffff">uel 
-(添加燃料)
+With most equipment, you simply need to use the </font><font color="#ff8000">w</font><font color="#ffffff">ear command:
+</font><font color="#ff8000">/</font><font color="#c0c0c0">|</font><font color="#00ffff">\</font><font color="#c08040">} </font><font color="#ffffff">Weapons/Bows  </font><font color="#ff8000">w</font><font color="#ffffff">ield, </font><font color="#ff8000">t</font><font color="#ff00ff">/</font><font color="#ff8000">T</font><font color="#ffffff">ake off
+</font><font color="#c08040">(</font><font color="#808080">[</font><font color="#c08040">]</font><font color="#808080">) </font><font color="#ffffff">Armor         </font><font color="#ff8000">w</font><font color="#ffffff">ear, </font><font color="#ff8000">t</font><font color="#ff00ff">/</font><font color="#ff8000">T</font><font color="#ffffff">ake off
+  </font><font color="#008040">=  </font><font color="#ffffff">Ring          </font><font color="#ff8000">w</font><font color="#ffffff">ear, </font><font color="#ff8000">t</font><font color="#ff00ff">/</font><font color="#ff8000">T</font><font color="#ffffff">ake off
+  </font><font color="#ffff00">"  </font><font color="#ffffff">Amulet        </font><font color="#ff8000">w</font><font color="#ffffff">ear, </font><font color="#ff8000">t</font><font color="#ff00ff">/</font><font color="#ff8000">T</font><font color="#ffffff">ake off
+  </font><font color="#c08040">~  </font><font color="#ffffff">Quiver        </font><font color="#ff8000">w</font><font color="#ffffff">ear, </font><font color="#ff8000">d</font><font color="#ffffff">rop ammo, </font><font color="#ff8000">t</font><font color="#ff00ff">/</font><font color="#ff8000">T</font><font color="#ffffff">ake off
+  </font><font color="#c08040">~  </font><font color="#ffffff">Lantern       </font><font color="#ff8000">w</font><font color="#ffffff">ear, </font><font color="#ff8000">t</font><font color="#ff00ff">/</font><font color="#ff8000">T</font><font color="#ffffff">ake off, </font><font color="#ff8000">F</font><font color="#ffffff">uel
 
-<a name="WeirdNumbers"></a></font><font color="#c00000">物品上的数字
+<a name="WeirdNumbers"></a></font><font color="#c00000">Numbers on Items
 
-     </font><font color="#ffffff">(2d6)            伤害骰
-     </font><font color="#804000">(x2.50)          </font><font color="#ffffff">伤害倍率 (仅限发射器)
-     (+4,+6)          命中和伤害加成
-     </font><font color="#808080">(-2)             </font><font color="#ffffff">命中惩罚 (仅限盔甲)
-     </font><font color="#c08040">(+2)             </font><font color="#ffffff">伤害加成 (仅限靴子和手套)
-     [15,+10]         基础 AC (护甲等级) 和加成 AC
-     [+10]            加成 AC (没有基础 AC 的物品)
-     (+2)             Pval (属性和能力加成值的大小)
-     {+15%}           装置威力加成
-     &lt;+15%&gt;           法术威力加成
-     [+15%]           法术容量加成
+     </font><font color="#ffffff">(2d6)            Damage dice
+     </font><font color="#804000">(x2.50)          </font><font color="#ffffff">Damage multiplier (shooters only)
+     (+4,+6)          Accuracy and damage bonuses
+     </font><font color="#808080">(-2)             </font><font color="#ffffff">Accuracy penalty (armor only)
+     </font><font color="#c08040">(+2)             </font><font color="#ffffff">Damage bonus (boots and gloves only)
+     [15,+10]         Base AC (Armor Class) and bonus AC
+     [+10]            Bonus AC (items with no base AC)
+     (+2)             Pval (size of stat and ability bonuses)
+     {+15%}           Device power bonus
+     &lt;+15%&gt;           Spell power bonus
+     [+15%]           Spell capacity bonus
 
-<a name="Equipment"></a></font><font color="#c00000">装备 (Equipment)
+<a name="Equipment"></a></font><font color="#c00000">Equipment
 
-</font><font color="#ffffff">你能穿戴装备的数量和种类取决于你种族的体型。最常见的是类人体型：
+</font><font color="#ffffff">The number and kinds of equipment you may wear depends on your racial 
+body type. The usual body type is humanoid:
 
- a) </font><font color="#c0c0c0">| </font><font color="#ffffff">右手      : 一把匕首 (1d5) (+0,+0)
- b) </font><font color="#c08040">) </font><font color="#ffffff">左手      : </font><font color="#c08040">一个小皮盾 [3,+0]
- </font><font color="#ffffff">c) </font><font color="#c08040">} </font><font color="#ffffff">射击      : </font><font color="#804000">一把短弓 (x2.50) (+3,+6)
- </font><font color="#ffffff">d) </font><font color="#c08040">~ </font><font color="#ffffff">箭袋      : </font><font color="#c08040">一个箭袋 [0 of 80]
- </font><font color="#ffffff">e) </font><font color="#008040">= </font><font color="#ffffff">右手戒指  : </font><font color="#c00000">一枚战斗戒指 (+5,+0) {Fe A:Earthquake}
- </font><font color="#ffffff">f) </font><font color="#008040">= </font><font color="#ffffff">左手戒指  : </font><font color="#c00000">一枚保护戒指 [+1] {Wr~L(Wi}
- </font><font color="#ffffff">g) </font><font color="#ffff00">" </font><font color="#ffffff">颈部      : </font><font color="#ff8000">一个护身符
- </font><font color="#ffffff">h) </font><font color="#804000">~ </font><font color="#ffffff">光源      : </font><font color="#ffff00">一根木火把 (剩余 1999 回合光照)
- </font><font color="#ffffff">i) </font><font color="#c08040">( </font><font color="#ffffff">身体      : </font><font color="#808080">软皮甲 [4,+0]
- </font><font color="#ffffff">j) </font><font color="#008040">( </font><font color="#ffffff">斗篷      : </font><font color="#c08040">一件斗篷 [1,+3]
- </font><font color="#ffffff">k) </font><font color="#808080">] </font><font color="#ffffff">头部      : </font><font color="#c08040">一顶铁盔 [5,+5]
- </font><font color="#ffffff">l) </font><font color="#c08040">] </font><font color="#ffffff">手部      : </font><font color="#c08040">一副皮手套 [1,+5]
- </font><font color="#ffffff">m) </font><font color="#c08040">] </font><font color="#ffffff">脚部      : </font><font color="#c08040">一双软皮靴 [2,+3]
+ a) </font><font color="#c0c0c0">| </font><font color="#ffffff">Right Hand: a Dagger (1d5) (+0,+0)
+ b) </font><font color="#c08040">) </font><font color="#ffffff">Left Hand : </font><font color="#c08040">a Small Leather Shield [3,+0]
+ </font><font color="#ffffff">c) </font><font color="#c08040">} </font><font color="#ffffff">Shooting  : </font><font color="#804000">a Short Bow (x2.50) (+3,+6)
+ </font><font color="#ffffff">d) </font><font color="#c08040">~ </font><font color="#ffffff">Quiver    : </font><font color="#c08040">a Quiver [0 of 80]
+ </font><font color="#ffffff">e) </font><font color="#008040">= </font><font color="#ffffff">Right Ring: </font><font color="#c00000">a Ring of Combat (+5,+0) {Fe A:Earthquake}
+ </font><font color="#ffffff">f) </font><font color="#008040">= </font><font color="#ffffff">Left Ring : </font><font color="#c00000">a Ring of Protection [+1] {Wr~L(Wi}
+ </font><font color="#ffffff">g) </font><font color="#ffff00">" </font><font color="#ffffff">Neck      : </font><font color="#ff8000">an Amulet
+ </font><font color="#ffffff">h) </font><font color="#804000">~ </font><font color="#ffffff">Light     : </font><font color="#ffff00">a Wooden Torch (with 1999 turns of light)
+ </font><font color="#ffffff">i) </font><font color="#c08040">( </font><font color="#ffffff">Body      : </font><font color="#808080">Soft Leather Armour [4,+0]
+ </font><font color="#ffffff">j) </font><font color="#008040">( </font><font color="#ffffff">Cloak     : </font><font color="#c08040">a Cloak [1,+3]
+ </font><font color="#ffffff">k) </font><font color="#808080">] </font><font color="#ffffff">Head      : </font><font color="#c08040">an Iron Helm [5,+5]
+ </font><font color="#ffffff">l) </font><font color="#c08040">] </font><font color="#ffffff">Hands     : </font><font color="#c08040">a Set of Leather Gloves [1,+5]
+ </font><font color="#ffffff">m) </font><font color="#c08040">] </font><font color="#ffffff">Feet      : </font><font color="#c08040">a Pair of Soft Leather Boots [2,+3]
 
-</font><font color="#ffffff">许多</font><font color="#c00000">怪物 
-(Monster)</font><font color="#ffffff">模式种族拥有独特的体型，去适应不同的装备可能性正是扮演怪物游玩
-的乐趣之一！
+</font><font color="#ffffff">Many </font><font color="#c00000">Monster </font><font color="#ffffff">mode races have unique body types, and adapting to 
+different equipment possibilities is part of the fun of playing as a 
+monster!
 
-<a name="Inventory"></a></font><font color="#c00000">物品栏/背包 (Inventory/Pack)
+<a name="Inventory"></a></font><font color="#c00000">Inventory/Pack
 
-</font><font color="#ffffff">你背包的大小也有细微差异，但大多数角色在物品栏中有 26 
-个槽位。你可以把你喜欢的任何物品放在背包里，而且物品会按允许的方式自动排
-序和堆叠；然而，如果你的背包变得太重，你的角色会变得</font><font color="#ff0000">负重超载 
-(encumbered)</font><font color="#ffffff">，并会逐渐走得越来越慢。使用 </font><font color="#ff8000">e</font><font color="#ffffff">quipment 
-命令查看你的装备，使用 </font><font color="#ff8000">i</font><font color="#ffffff">nventory 命令查看你的物品栏。使用 </font><font color="#ff8000">I</font><font color="#ffffff">nspect 
-(检查) 命令详细检查物品。使用 </font><font color="#ff8000">g</font><font color="#ffffff">et (拾取) 命令向你的背包添加物品，并使用 
-</font><font color="#ff8000">w</font><font color="#ffffff">ear (穿戴) 命令装备物品以供使用。你可以用 </font><font color="#ff8000">t</font><font color="#ffffff">ake off (脱下) 
-命令卸下已装备的物品，用 </font><font color="#ff8000">d</font><font color="#ffffff">rop (丢下) 命令将物品放在地上，或者用 </font><font color="#ff8000">k</font><font color="#ffffff">ill 
-(摧毁) 命令来销毁物品。
+</font><font color="#ffffff">The size of your pack also slightly varies, but most characters have 26 
+slots in their inventory. You can place any object you like in your 
+pack, and objects here will sort and stack as allowed; however, should 
+your pack grow too heavy, your character will become </font><font color="#ff0000">encumbered </font><font color="#ffffff">and 
+will gradually move slower and slower. View your equipment with the 
+</font><font color="#ff8000">e</font><font color="#ffffff">quipment command, and your inventory with the </font><font color="#ff8000">i</font><font color="#ffffff">nventory command. 
+Examine items in detail with the </font><font color="#ff8000">I</font><font color="#ffffff">nspect command. Add objects to your 
+pack with the </font><font color="#ff8000">g</font><font color="#ffffff">et command and equip objects for use with the </font><font color="#ff8000">w</font><font color="#ffffff">ear 
+command. You can remove an equipped object with the </font><font color="#ff8000">t</font><font color="#ffffff">ake off command, 
+and discard an item with either the </font><font color="#ff8000">d</font><font color="#ffffff">rop command, which places the item 
+on the ground, or the </font><font color="#ff8000">k</font><font color="#ffffff">ill command, which destroys the object.
 
-<a name="Pseudo-ID"></a></font><font color="#c00000">伪鉴定 (Pseudo-ID)
+<a name="Pseudo-ID"></a></font><font color="#c00000">Pseudo-ID
 
+</font><font color="#ffffff">To recap, pseudo-ID is the ability to roughly sense the quality of 
+unidentified objects in your pack (or equipment!), and it comes in two 
+forms: strong and weak. The speed and strength of the sensing varies 
+with class, wisdom, and virtue of the player. From birth in 
+coffee-break mode, and from CL20 otherwise, players automatically sense 
+the quality of objects underfoot, and this sensing is always strong 
+regardless of class; so weak pseudo-ID is only relevant in the early 
+game.
 
-</font><font color="#ffffff">简而言之，伪鉴定是粗略感知背包（或装备！）中未鉴定物品品质的能力，它有两
-种形式：强和弱。感知的速度和强度随玩家的职业、感知属性和道德值而变化。在
-茶歇模式 (coffee-break) 中从出生起，而在其他模式中从 20 
-级起，玩家会自动感知脚下物品的品质，并且无论职业如何这种感知总是强的；因
-此弱伪鉴定只在游戏前期起作用。
-
-伪鉴定通过该物品上的伪装铭刻传达物品品质。例如，你可能会有一个 长剑 
-{优秀的} 或 硬皮甲 {可怕的}。这些物品感觉的含义由下表指示：
+Pseudo-ID communicates the quality of an object via a fake inscription 
+on that object. For example, you might have a Long Sword {excellent} or 
+Hard Studded Leather {terrible}. The meanings of these object feelings 
+are indicated by the tables below:
   
-  </font><font color="#ff8000">表格 1 - 强伪鉴定
-  </font><font color="#00ff00">铭刻           含义
-  </font><font color="#ffffff">可怕的 (Terrible) 一个被诅咒的神器
-  糟糕的 (Awful)    一个被诅咒的 ego物品
-  劣质的 (Bad)      一件被诅咒的无名物品
-  普通的 (Average)  一件普通物品
-  良好的 (Good)     一件被附魔的物品
-  优秀的 (Excellent)一件非诅咒 ego物品
-  特殊的 (Special)  一件非诅咒神器
+  </font><font color="#ff8000">Table 1 - Strong Pseudo-ID
+  </font><font color="#00ff00">Inscription    Meaning
+  </font><font color="#ffffff">Terrible       a cursed artifact
+  Awful          a cursed ego item
+  Bad            a cursed nameless item
+  Average        an average item
+  Good           an enchanted item
+  Excellent      a non-cursed ego item
+  Special        a non-cursed artifact
   
-  或者换一种说法：
+  Or, to put this another way:
   
-                     </font><font color="#00ff00">Ego物品      神器 (Artifacts)
-  </font><font color="#ffffff">普通的 -&gt; 良好的 -&gt; 优秀的 -&gt; 特殊的
-         -&gt; 劣质的 -&gt; 糟糕的 -&gt; 可怕的
+                     </font><font color="#00ff00">Egos         Artifacts
+  </font><font color="#ffffff">Average -&gt; Good -&gt; Excellent -&gt; Special
+          -&gt; Bad  -&gt; Awful     -&gt; Terrible
   
-  </font><font color="#ff8000">表格 2 - 弱伪鉴定
-  </font><font color="#00ff00">铭刻           含义
-  </font><font color="#ffffff">普通的 (Average)  一件普通物品
-  被诅咒的 (Cursed) 一件被诅咒的物品（包括被诅咒的 ego物品和神器）
-  附了魔的 (Enchanted)一件被附魔的物品（包括良好的 ego物品和神器）
+  </font><font color="#ff8000">Table 2 - Weak Pseudo-ID
+  </font><font color="#00ff00">Inscription    Meaning
+  </font><font color="#ffffff">Average        an average item
+  Cursed         a cursed item (includes cursed ego items and 
+                 artifacts)
+  Enchanted      an enchanted item (includes good ego items and 
+                 artifacts)
   
-<a name="InscriptionAbbrev"></a></font><font color="#c00000">缩写列表 (List of Abbreviations)
+<a name="InscriptionAbbrev"></a></font><font color="#c00000">List of Abbreviations
 
-  </font><font color="#ffffff">At : 额外攻击次数                   Ac : 抵抗酸液
-  Sp : 影响速度                       El : 抵抗闪电
-  St : 影响力量                       Fi : 抵抗火焰
-  In : 影响智力                       Co : 抵抗寒冷
-  Wi : 影响感知                       Po : 抵抗毒素
-  Dx : 影响敏捷                       Li : 抵抗强光
-  Cn : 影响体质                       Dk : 抵抗黑暗
-  Ch : 影响魅力                       Cf : 抵抗困惑
-  Md : 影响装置技能                   Nt : 抵抗虚空
-  Sl : 影响潜行                       Nx : 抵抗时空
-  Sr : 影响搜索能力                   So : 抵抗音波
-  If : 影响红外视觉                   Sh : 抵抗碎片
-  Dg : 影响挖掘能力                   Ca : 抵抗混沌
-  Lf : 影响生命倍率                   Di : 抵抗解除魔法
-  *Ac: 免疫酸液                       Ti : 抵抗时间
-  *El: 免疫闪电                       Bl : 抵抗失明
-  *Fi: 免疫火焰                       Fe : 抵抗恐惧
-  *Co: 免疫寒冷
+  </font><font color="#ffffff">At : extra blows                    Ac : resistance to acid
+  Sp : affects speed                  El : resistance to electricity
+  St : affects strength               Fi : resistance to fire
+  In : affects intelligence           Co : resistance to cold
+  Wi : affects wisdom                 Po : resistance to poison
+  Dx : affects dexterity              Li : resistance to light
+  Cn : affects constitution           Dk : resistance to darkness
+  Ch : affects charisma               Cf : resistance to confusion
+  Md : affects device skill           Nt : resistance to nether
+  Sl : affects stealth                Nx : resistance to nexus
+  Sr : affects searching ability      So : resistance to sound
+  If : affects infravision            Sh : resistance to shards
+  Dg : affects tunneling ability      Ca : resistance to chaos
+  Lf : affects life multiplier        Di : resistance to disenchantment
+  *Ac: immune to acid                 Ti : resistance to time
+  *El: immune to electricity          Bl : resistance to blindness
+  *Fi: immune to fire                 Fe : resistance to fear
+  *Co: immune to cold
 
-  Es : 易于施法                       [F : 火焰护盾
-  Dm : 减少法力消耗                   [E : 闪电护盾
-  Th : 适合投掷                       [C : 寒冰护盾
-  Rf : 反射                           [Sh: 碎片光环
-  Fa : 自由行动                       [At: 报复光环
-  Si : 识破隐形                       [M : 反魔法护盾
-  Hl : 维持生命                       [T : 阻止传送
-  Sd : 减缓消化                       [Sm: 反召唤护盾
-  Rg : 快速再生                       [Mr: 抵抗魔法
-  Rm : 法力恢复                   |A : 酸液烙印
-  Lv : 漂浮                       |E : 闪电烙印
-  Nv : 夜视                       |F : 火焰烙印
-  Lu : 额外光照                   |Co: 寒冷烙印
-  Wr : 提供警告                   |P : 毒素烙印
-  Xm : 射击额外威力               |Dk: 黑暗烙印
-  Xs : 额外射击 (射速)            |Ca: 混沌印记
-  Te : 随机传送                   |V : 吸血武器
-  Ag : 激怒怪物                   |Q : 冲击武器
-  Bs : 被祝福                     |St: 击中震慑
-  Ty : 远古邪恶诅咒               |S : 锋利武器
-  Ds : 黑暗                       |SS: 极度锋利武器
-  Wm : 武器精通 (额外伤害骰)      |M : 法力烙印
-  Id : 学识精通 (自动鉴定)        
+  Es : easy spell                     [F : fiery sheath
+  Dm : decreases mana consumption     [E : electric sheath
+  Th : suitable for throwing          [C : cold sheath
+  Rf : reflection                     [Sh: aura of shards
+  Fa : free action                    [At: aura of retaliation
+  Si : see invisible                  [M : anti-magic shell
+  Hl : hold life                      [T : prevents teleportation
+  Sd : slow digestion                 [Sm: anti-summoning shell
+  Rg : regeneration                   [Mr: magic resistance
+  Rm : mana recovery                  |A : acid brand
+  Lv : levitation                     |E : electricity brand
+  Nv : night vision                   |F : fire brand
+  Lu : extra light                    |Co: cold brand
+  Wr : provides warning               |P : poison brand
+  Xm : extra might when shooting      |Dk: darkness brand
+  Xs : extra shots (shooting speed)   |Ca: mark of chaos
+  Te : random teleportation           |V : vampiric weapon
+  Ag : aggravate monsters             |Q : impact weapon
+  Bs : blessed                        |St: hits to stun
+  Ty : ancient foul curse             |S : sharp weapon
+  Ds : darkness                       |SS: really sharp weapon
+  Wm : weaponmastery (extra dice)     |M : mana brand
+  Id : loremastery (auto-identify)
 
-  /* : 屠杀邪恶                   /X* : *屠杀*邪恶
-  /p : 屠杀人类                   /Xp : *屠杀*人类
-  /D : 屠杀龙类                   /XD : *屠杀*龙类
-  /o : 屠杀兽人                   /Xo : *屠杀*兽人
-  /T : 屠杀巨魔                   /XT : *屠杀*巨魔
-  /P : 屠杀巨人                   /XP : *屠杀*巨人
-  /U : 屠杀恶魔                   /XU : *屠杀*恶魔
-  /L : 屠杀死灵                   /XL : *屠杀*死灵
-  /Z : 屠杀动物                   /XZ : *屠杀*动物
-  /A : 屠杀善良                   
-  /Lv: 屠杀活物                   
+  /* : slay evil                      /X* : *slay* evil
+  /p : slay human                     /Xp : *slay* human
+  /D : slay dragon                    /XD : *slay* dragon
+  /o : slay orc                       /Xo : *slay* orc
+  /T : slay troll                     /XT : *slay* troll
+  /P : slay giant                     /XP : *slay* giant
+  /U : slay demon                     /XU : *slay* demon
+  /L : slay undead                    /XL : *slay* undead
+  /Z : slay animal                    /XZ : *slay* animal
+  /A : slay good
+  /Lv: slay living
 
-  ~Tele : 心灵感应                (St : 维持力量
-  ~Evil : 感知邪恶                (In : 维持智力
-  ~Good : 感知善良                (Wi : 维持感知
-  ~Nolv : 感知非活物              (Dx : 维持敏捷
-  ~Lvng : 感知活物                (Cn : 维持体质
-  ~p : 感知人类                   (Cn : 维持魅力
-  ~D : 感知龙类                   
-  ~o : 感知兽人                   
-  ~T : 感知巨魔                   
-  ~P : 感知巨人                   
-  ~U : 感知恶魔                   
-  ~L : 感知死灵                   
-  ~Z : 感知动物                   
+  ~Tele : telepathy                   (St : sustain strength
+  ~Evil : ESP evil                    (In : sustain intelligence
+  ~Good : ESP good                    (Wi : sustain wisdom
+  ~Nolv : ESP non-living              (Dx : sustain dexterity
+  ~Lvng : ESP living                  (Cn : sustain constitution
+  ~p : ESP human                      (Cn : sustain charisma
+  ~D : ESP dragon
+  ~o : ESP orc
+  ~T : ESP troll
+  ~P : ESP giant
+  ~U : ESP demon
+  ~L : ESP undead
+  ~Z : ESP animal
 
-例如，具有基础抗性的盔甲将显示为 {AcElFiCo}，而一把极好的武器可能显示为 
-{Cn;LuAg|VS/XU/*~U}，意思是它提供体质加成，增加光照范围，激怒怪物，具有
-吸血和锋利属性（|V 和 |S；注意第二个 | 
-不会重复），拥有*屠杀*恶魔属性，同时屠杀邪恶并且提供感知恶魔。（快速测验
-：这是哪件物品？）
+For example, armor with base resistance would display as {AcElFiCo} 
+while a really good weapon might display as {Cn;LuAg|VS/XU/*~U}, 
+meaning it gives a bonus to Constitution, grants increased light 
+radius, aggravates monsters, is both vampiric and sharp (|V and |S; 
+notice the second | does not repeat), has *slay* demons, also slays 
+evil and grants ESP demons as well. (Quick quiz: which item is it?)
 
-有关这些物品属性的更详细解释，请参阅 <a href="objflags.html#Flags"></font><font color="#00ff00">[n]</a></font><font color="#ffffff">。
+See <a href="objflags.html#Flags"></font><font color="#00ff00">[n]</a> </font><font color="#ffffff">for a more detailed explanation of these object properties.
 
-<a name="InscriptionSummary"></a></font><font color="#c00000">铭刻：总结 (Inscriptions: Summary)
+<a name="InscriptionSummary"></a></font><font color="#c00000">Inscriptions: Summary
 
-</font><font color="#c08040">铭刻格式             含义
-</font><font color="#ffffff">@</font><font color="#00ff00">命令字母</font><font color="#ff0000">选择标签
-                     
-                     </font><font color="#ffffff">每当发出“命令字母”对应的命令时，使用给定的选择标签
-                     （a-z、A-Z 或 0-9）来选择带有该铭刻的物品。
+</font><font color="#c08040">Inscription Form     Meaning
+</font><font color="#ffffff">@</font><font color="#00ff00">Command-Letter</font><font color="#ff0000">Choice-Label
+                     </font><font color="#ffffff">Use the given choice label (a-z, A-Z or 0-9) to 
+                     select the inscribed object whenever the 
+                     Command-Letter command is issued.
 
-@</font><font color="#ff0000">选择数字           
-                    </font><font color="#ffffff">每当发出任何命令时，使用给定的选择数字（0-9）来选择
-                    带有该铭刻的物品。
+@</font><font color="#ff0000">Choice-Digit        </font><font color="#ffffff">Use the given choice digit (0-9) to select the 
+                     inscribed object whenever any command is issued.
 
-!</font><font color="#00ff00">命令字母           
-                    </font><font color="#ffffff">每当试图使用“命令字母”对应的命令来使用该物品时，提示
-                    确认。
+!</font><font color="#00ff00">Command-Letter      </font><font color="#ffffff">Prompt for verification whenever attempting to use 
+                     the inscribed object with the Command-Letter 
+                     command.
 
-!*                   每当试图使用任何命令来使用该物品时，提示确认。
+!*                   Prompt for verification whenever attempting to use 
+                     the inscribed object with any command.
 
-!!                   每当带有该铭刻的物品完全充满电时，打断玩家。
+!!                   Disturb the player whenever the inscribed object 
+                     is fully recharged.
 
-!1                   每当带有该铭刻的物品恢复到至少有 1 
-                     发充能时，打断玩家。
+!1                   Disturb the player whenever the inscribed object 
+                     has recharged enough to have 1 charge.
 
-=g                   自动拾取带有该铭刻的物品。
-.                    禁止随机传送提示。
-$                    禁止警告提示。
-!?                   请求确认近战攻击。
+=g                   Automatically pick up the inscribed object.
+.                    Disable prompt for random teleportation.
+$                    Disable warning prompt.
+!?                   Request confirmation for melee attacks.
 
-^</font><font color="#00ff00">命令字母           
-                    </font><font color="#ffffff">只要当前正穿着带有该铭刻的物品，每当发出“命令字母”对
-                    应的命令时，提示确认。
+^</font><font color="#00ff00">Command-Letter      </font><font color="#ffffff">Prompt for verification whenever the 
+                     Command-Letter command is issued, provided the 
+                     inscribed object is currently being worn.
 
-如果对此不清楚，请务必阅读 <a href="objects.html#Inscriptions"></font><font color="#00ff00">[o]</a></font><font color="#ffffff">。
+Be sure to read <a href="objects.html#Inscriptions"></font><font color="#00ff00">[o]</a> </font><font color="#ffffff">if this is unclear to you.
 
 </font><font color="#404040">--
 Original   : (??)
@@ -819,5 +881,6 @@ Updated    : Hengband 1.3.0
 Updated    : PosChengband 4.0.0
 Updated    : RoguelikeFansBand 7.1.chocolate
 Updated    : RoguelikeFansBand 7.1.liquorice
+
 
 </font></pre></body></html>

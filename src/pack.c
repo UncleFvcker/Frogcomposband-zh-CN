@@ -55,6 +55,7 @@ void pack_carry(obj_ptr obj)
      * a bit comical if the player gets a large floor pile? */
     object_mitze(obj, MITZE_PICKUP);
     if ((!obj) || (!obj->k_idx)) return;
+    maia_sense_object(obj);
     stats_on_pickup(obj);
     if (quiver_likes(obj))
         quiver_carry(obj);
@@ -503,4 +504,3 @@ void pack_save(savefile_ptr file)
         obj_save(obj, file);
     }
 }
-

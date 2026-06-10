@@ -1,73 +1,73 @@
-半神血统
+﻿Demigod Parentage
 
+The term demigod is commonly used to describe mythological figures 
+whose one parent was a god and whose other parent was human; as such, 
+demigods are human-god hybrids and are quite powerful. Demigods receive 
+special abilities depending on their parentage.
 
-半神一词通常用于描述神话人物，他们的一位父母是神，另一位则是人类；因此，
-半神是人与神的混血儿，拥有极其强大的力量。半神会根据其神明父母的血统获得
-特殊的能力。
-
-次神
-作为某个不知名小神的后代，你没有获得任何初始能力。
+Minor-God
+Fathered by a minor god, you gain no starting powers.
 
   Stats                   Skills
-  Strength      +1        Disarming   一般       
-  Intelligence  +1        Device      一般       
-  Wisdom        +1        Save        一般       
-  Dexterity     +1        Stealth     贫弱       
-  Constitution  +1        Searching   一般       
-  Charisma      +1        Perception  糟糕       
-  Life Rating  100%       Melee       极好       
-  Base HP       20        Archery     良好       
+  Strength      +1        Disarming   Fair         
+  Intelligence  +1        Device      Fair         
+  Wisdom        +1        Save        Fair         
+  Dexterity     +1        Stealth     Poor         
+  Constitution  +1        Searching   Fair         
+  Charisma      +1        Perception  Bad          
+  Life Rating  100%       Melee       Very Good    
+  Base HP       20        Archery     Good         
   Experience   180%       Infravision 0'
   
-宙斯
+Zeus
 Zeus, King of the gods and ruler of Mount Olympus, is god of the Sky 
 and Thunder, and nominal husband of Hera. You inherit increased stature 
 and your divine birth will be marked by your aura of electricity. You 
 also resist lightning.
 
   Stats                   Skills
-  Strength      +2        Disarming   良好       
-  Intelligence  +2        Device      良好       
-  Wisdom        +2        Save        良好       
-  Dexterity     +2        Stealth     贫弱       
-  Constitution  +2        Searching   一般       
-  Charisma      +2        Perception  糟糕       
-  Life Rating  100%       Melee       卓越       
-  Base HP       20        Archery     良好       
+  Strength      +2        Disarming   Good         
+  Intelligence  +2        Device      Good         
+  Wisdom        +2        Save        Good         
+  Dexterity     +2        Stealth     Poor         
+  Constitution  +2        Searching   Fair         
+  Charisma      +2        Perception  Bad          
+  Life Rating  100%       Melee       Superb       
+  Base HP       20        Archery     Good         
   Experience   250%       Infravision 0'
   
-波塞冬
+Poseidon
 Poseidon, Brother of Zeus, is Lord of the Seas and Storm. You inherit 
 elemental protection and corrosive attacks that melt the armor of your 
 foes.
 
   Stats                   Skills
-  Strength      +2        Disarming   一般       
-  Intelligence  +1        Device      一般       
-  Wisdom        +1        Save        一般       
-  Dexterity     +2        Stealth     贫弱       
-  Constitution  +1        Searching   一般       
-  Charisma      +1        Perception  糟糕       
-  Life Rating  100%       Melee       优秀       
-  Base HP       20        Archery     良好       
+  Strength      +2        Disarming   Fair         
+  Intelligence  +1        Device      Fair         
+  Wisdom        +1        Save        Fair         
+  Dexterity     +2        Stealth     Poor         
+  Constitution  +1        Searching   Fair         
+  Charisma      +1        Perception  Bad          
+  Life Rating  100%       Melee       Excellent    
+  Base HP       20        Archery     Good         
   Experience   240%       Infravision 0'
   
-哈迪斯
+Hades
 Hades is Ruler of the Underworld. You gain resistance to nether forces, 
 increased fortitude and have a firm grasp on your life and health.
 
   Stats                   Skills
-  Strength      +1        Disarming   一般       
-  Intelligence  +1        Device      一般       
-  Wisdom        +1        Save        良好       
-  Dexterity     +1        Stealth     一般       
-  Constitution  +3        Searching   一般       
-  Charisma      +1        Perception  糟糕       
-  Life Rating  107%       Melee       优秀       
-  Base HP       20        Archery     良好       
+  Strength      +1        Disarming   Fair         
+  Intelligence  +1        Device      Fair         
+  Wisdom        +1        Save        Good         
+  Dexterity     +1        Stealth     Fair         
+  Constitution  +3        Searching   Fair         
+  Charisma      +1        Perception  Bad          
+  Life Rating  107%       Melee       Excellent    
+  Base HP       20        Archery     Good         
   Experience   240%       Infravision 0'
   
-雅典娜
+Athena
 Athena is the great goddess of wisdom and the protector of Athens. She 
 was born of Zeus and the Titan Metis, and her cunning far surpasses 
 that of the other deities. You inherit great clarity of thought and 
@@ -77,17 +77,17 @@ cost rather than the full amount. You also have a firm grip on your
 mental prowess.
 
   Stats                   Skills
-  Strength      +1        Disarming   一般       
-  Intelligence  +3        Device      极好       
-  Wisdom        +1        Save        一般       
-  Dexterity     +1        Stealth     贫弱       
-  Constitution  +1        Searching   一般       
-  Charisma      +1        Perception  糟糕       
-  Life Rating  100%       Melee       极好       
-  Base HP       20        Archery     良好       
+  Strength      +1        Disarming   Fair         
+  Intelligence  +3        Device      Very Good    
+  Wisdom        +1        Save        Fair         
+  Dexterity     +1        Stealth     Poor         
+  Constitution  +1        Searching   Fair         
+  Charisma      +1        Perception  Bad          
+  Life Rating  100%       Melee       Very Good    
+  Base HP       20        Archery     Good         
   Experience   240%       Infravision 0'
   
-阿瑞斯
+Ares
 Ares is the bold son of Zeus and Hera, whose very name is feared and 
 respected by warriors and citizens alike. His legendary combat prowess 
 exceeds that of Zeus and Poseidon, but he is less skilled in wiles than 
@@ -98,17 +98,17 @@ your stealth as you call out challenges to all that you meet. And your
 resistance to magic is suspect as well.
 
   Stats                   Skills
-  Strength      +3        Disarming   一般       
-  Intelligence  +1        Device      一般       
-  Wisdom        +1        Save        贫弱       
-  Dexterity     +1        Stealth     糟糕       
-  Constitution  +1        Searching   一般       
-  Charisma      +1        Perception  糟糕       
-  Life Rating  100%       Melee       卓越       
-  Base HP       20        Archery     良好       
+  Strength      +3        Disarming   Fair         
+  Intelligence  +1        Device      Fair         
+  Wisdom        +1        Save        Poor         
+  Dexterity     +1        Stealth     Bad          
+  Constitution  +1        Searching   Fair         
+  Charisma      +1        Perception  Bad          
+  Life Rating  100%       Melee       Superb       
+  Base HP       20        Archery     Good         
   Experience   240%       Infravision 0'
   
-赫尔墨斯
+Hermes
 Hermes, the Messenger, is the extremely cunning diplomat used by the 
 Olympians to negotiate truces. With his Winged Sandals and his powerful 
 magic, there is no place barred from him, and there is no way to detain 
@@ -117,34 +117,34 @@ Your stealth is better than your brethren and your speed will increase
 with experience.
 
   Stats                   Skills
-  Strength      +1        Disarming   优秀       
-  Intelligence  +1        Device      一般       
-  Wisdom        +1        Save        一般       
-  Dexterity     +1        Stealth     良好       
-  Constitution  +1        Searching   优秀       
-  Charisma      +1        Perception  良好       
-  Life Rating  100%       Melee       极好       
-  Base HP       20        Archery     良好       
+  Strength      +1        Disarming   Excellent    
+  Intelligence  +1        Device      Fair         
+  Wisdom        +1        Save        Fair         
+  Dexterity     +1        Stealth     Good         
+  Constitution  +1        Searching   Excellent    
+  Charisma      +1        Perception  Good         
+  Life Rating  100%       Melee       Very Good    
+  Base HP       20        Archery     Good         
   Experience   240%       Infravision 0'
   
-阿波罗
+Apollo
 Apollo has been variously recognized as a god of light and the sun, 
 truth and prophecy, medicine, healing, plague, music, poetry, arts, 
 archery, and more. You inherit powers of illumination and are 
 completely immune to light based attacks. You are seldom blinded.
 
   Stats                   Skills
-  Strength      +1        Disarming   一般       
-  Intelligence  +1        Device      良好       
-  Wisdom        +1        Save        一般       
-  Dexterity     +1        Stealth     贫弱       
-  Constitution  +1        Searching   一般       
-  Charisma      +1        Perception  糟糕       
-  Life Rating  100%       Melee       极好       
-  Base HP       20        Archery     良好       
+  Strength      +1        Disarming   Fair         
+  Intelligence  +1        Device      Good         
+  Wisdom        +1        Save        Fair         
+  Dexterity     +1        Stealth     Poor         
+  Constitution  +1        Searching   Fair         
+  Charisma      +1        Perception  Bad          
+  Life Rating  100%       Melee       Very Good    
+  Base HP       20        Archery     Good         
   Experience   230%       Infravision 0'
   
-阿尔忒弥斯
+Artemis
 Artemis was often described as the daughter of Zeus and Leto, and the 
 twin sister of Apollo. She was the Hellenic goddess of the hunt, wild 
 animals, wilderness, childbirth, virginity and young girls, bringing 
@@ -154,17 +154,17 @@ nimble. Your skills with the bow are unmatched and you shoot arrows
 with increased range and deadliness.
 
   Stats                   Skills
-  Strength      +1        Disarming   一般       
-  Intelligence  +1        Device      一般       
-  Wisdom        +1        Save        一般       
-  Dexterity     +3        Stealth     贫弱       
-  Constitution  +1        Searching   一般       
-  Charisma      +1        Perception  糟糕       
-  Life Rating  100%       Melee       极好       
-  Base HP       20        Archery     优秀       
+  Strength      +1        Disarming   Fair         
+  Intelligence  +1        Device      Fair         
+  Wisdom        +1        Save        Fair         
+  Dexterity     +3        Stealth     Poor         
+  Constitution  +1        Searching   Fair         
+  Charisma      +1        Perception  Bad          
+  Life Rating  100%       Melee       Very Good    
+  Base HP       20        Archery     Excellent    
   Experience   230%       Infravision 0'
   
-赫菲斯托斯
+Hephaestus
 Hephaestus was the god of technology, blacksmiths, craftsmen, artisans, 
 sculptors, metals, metallurgy, fire and volcanoes. Like other mythic 
 smiths but unlike most other gods, Hephaestus was lame, which gave him 
@@ -173,51 +173,51 @@ the gods. You inherit powers of enchantment and protection. Your
 equipment will not suffer diminution by corrosion or magical attack.
 
   Stats                   Skills
-  Strength      +1        Disarming   一般       
-  Intelligence  +1        Device      一般       
-  Wisdom        +1        Save        一般       
-  Dexterity     +1        Stealth     贫弱       
-  Constitution  +1        Searching   一般       
-  Charisma      +1        Perception  糟糕       
-  Life Rating  100%       Melee       卓越       
-  Base HP       20        Archery     良好       
+  Strength      +1        Disarming   Fair         
+  Intelligence  +1        Device      Fair         
+  Wisdom        +1        Save        Fair         
+  Dexterity     +1        Stealth     Poor         
+  Constitution  +1        Searching   Fair         
+  Charisma      +1        Perception  Bad          
+  Life Rating  100%       Melee       Superb       
+  Base HP       20        Archery     Good         
   Experience   230%       Infravision 0'
   
-赫拉
+Hera
 Hera was the wife and one of three sisters of Zeus. Her chief function 
 was as the goddess of women and marriage. You inherit great clarity of 
 mind and capacity for magic. You are very wise and have a firm grasp on 
 your magical energy, which is even augmented.
 
   Stats                   Skills
-  Strength      +1        Disarming   一般       
-  Intelligence  +1        Device      良好       
-  Wisdom        +3        Save        良好       
-  Dexterity     +1        Stealth     贫弱       
-  Constitution  +1        Searching   一般       
-  Charisma      +1        Perception  糟糕       
-  Life Rating  100%       Melee       极好       
-  Base HP       20        Archery     良好       
+  Strength      +1        Disarming   Fair         
+  Intelligence  +1        Device      Good         
+  Wisdom        +3        Save        Good         
+  Dexterity     +1        Stealth     Poor         
+  Constitution  +1        Searching   Fair         
+  Charisma      +1        Perception  Bad          
+  Life Rating  100%       Melee       Very Good    
+  Base HP       20        Archery     Good         
   Experience   220%       Infravision 0'
   
-德墨忒尔
+Demeter
 Demeter is the goddess of the harvest, who presided over grains, the 
 fertility of the earth, and the seasons. You gain powers of 
 regeneration, healing, and temperance. Eventually, you will become 
 resistant to the ravages of time.
 
   Stats                   Skills
-  Strength      +1        Disarming   一般       
-  Intelligence  +1        Device      一般       
-  Wisdom        +1        Save        良好       
-  Dexterity     +1        Stealth     贫弱       
-  Constitution  +1        Searching   一般       
-  Charisma      +1        Perception  糟糕       
-  Life Rating  100%       Melee       极好       
-  Base HP       20        Archery     良好       
+  Strength      +1        Disarming   Fair         
+  Intelligence  +1        Device      Fair         
+  Wisdom        +1        Save        Good         
+  Dexterity     +1        Stealth     Poor         
+  Constitution  +1        Searching   Fair         
+  Charisma      +1        Perception  Bad          
+  Life Rating  100%       Melee       Very Good    
+  Base HP       20        Archery     Good         
   Experience   220%       Infravision 0'
   
-阿佛洛狄忒
+Aphrodite
 Aphrodite is the Greek goddess of love, beauty, pleasure, and 
 procreation. You inherit her sex appeal. As such, your pets are more 
 obedient and shopkeepers fawn over you in their efforts to please you. 
@@ -225,71 +225,71 @@ You may kiss monsters and they might even decide to follow you with
 slavish devotion, though sometimes this just angers them.
 
   Stats                   Skills
-  Strength      +1        Disarming   一般       
-  Intelligence  +1        Device      一般       
-  Wisdom        +1        Save        一般       
-  Dexterity     +1        Stealth     贫弱       
-  Constitution  +1        Searching   一般       
-  Charisma      +3        Perception  糟糕       
-  Life Rating  100%       Melee       极好       
-  Base HP       20        Archery     良好       
+  Strength      +1        Disarming   Fair         
+  Intelligence  +1        Device      Fair         
+  Wisdom        +1        Save        Fair         
+  Dexterity     +1        Stealth     Poor         
+  Constitution  +1        Searching   Fair         
+  Charisma      +3        Perception  Bad          
+  Life Rating  100%       Melee       Very Good    
+  Base HP       20        Archery     Good         
   Experience   220%       Infravision 0'
   
-表 1 - 半神属性加成表
+Table 1 - Demigod Statistic Bonus Table
 
                STR  INT  WIS  DEX  CON  CHR  Life  Exp  Shop
-次神          +1   +1   +1   +1   +1   +1  100%  180%  100%
-宙斯          +2   +2   +2   +2   +2   +2  100%  250%   90%
-波塞冬       +2   +1   +1   +2   +1   +1  100%  240%  100%
-哈迪斯       +1   +1   +1   +1   +3   +1  107%  240%  100%
-雅典娜       +1   +3   +1   +1   +1   +1  100%  240%  100%
-阿瑞斯       +3   +1   +1   +1   +1   +1  100%  240%  100%
-赫尔墨斯    +1   +1   +1   +1   +1   +1  100%  240%  100%
-阿波罗       +1   +1   +1   +1   +1   +1  100%  230%  100%
-阿尔忒弥斯  +1   +1   +1   +3   +1   +1  100%  230%  100%
-赫菲斯托斯  +1   +1   +1   +1   +1   +1  100%  230%  100%
-赫拉          +1   +1   +3   +1   +1   +1  100%  220%  100%
-德墨忒尔    +1   +1   +1   +1   +1   +1  100%  220%  100%
-阿佛洛狄忒  +1   +1   +1   +1   +1   +3  100%  220%   70%
+Minor-God       +1   +1   +1   +1   +1   +1  100%  180%  100%
+Zeus            +2   +2   +2   +2   +2   +2  100%  250%   90%
+Poseidon        +2   +1   +1   +2   +1   +1  100%  240%  100%
+Hades           +1   +1   +1   +1   +3   +1  107%  240%  100%
+Athena          +1   +3   +1   +1   +1   +1  100%  240%  100%
+Ares            +3   +1   +1   +1   +1   +1  100%  240%  100%
+Hermes          +1   +1   +1   +1   +1   +1  100%  240%  100%
+Apollo          +1   +1   +1   +1   +1   +1  100%  230%  100%
+Artemis         +1   +1   +1   +3   +1   +1  100%  230%  100%
+Hephaestus      +1   +1   +1   +1   +1   +1  100%  230%  100%
+Hera            +1   +1   +3   +1   +1   +1  100%  220%  100%
+Demeter         +1   +1   +1   +1   +1   +1  100%  220%  100%
+Aphrodite       +1   +1   +1   +1   +1   +3  100%  220%   70%
 
 
-表 2 - 半神技能加成表 I
+Table 2 - Demigod Skill Bonus Table I
 
-             解除陷阱  使用装置  豁免        潜行       
-次神       一般        一般        一般        贫弱       
-宙斯       良好        良好        良好        贫弱       
-波塞冬    一般        一般        一般        贫弱       
-哈迪斯    一般        一般        良好        一般       
-雅典娜    一般        极好        一般        贫弱       
-阿瑞斯    一般        一般        贫弱        糟糕       
-赫尔墨斯 优秀        一般        一般        良好       
-阿波罗    一般        良好        一般        贫弱       
-阿尔忒弥 一般        一般        一般        贫弱       
-赫菲斯托 一般        一般        一般        贫弱       
-赫拉       一般        良好        良好        贫弱       
-德墨忒尔 一般        一般        良好        贫弱       
-阿佛洛狄 一般        一般        一般        贫弱       
-
-
-表 3 - 半神技能加成表 II
-
-             搜索        察觉        近战        箭术        红外
-次神       一般        糟糕        极好        良好           0'
-宙斯       一般        糟糕        卓越        良好           0'
-波塞冬    一般        糟糕        优秀        良好           0'
-哈迪斯    一般        糟糕        优秀        良好           0'
-雅典娜    一般        糟糕        极好        良好           0'
-阿瑞斯    一般        糟糕        卓越        良好           0'
-赫尔墨斯 优秀        良好        极好        良好           0'
-阿波罗    一般        糟糕        极好        良好           0'
-阿尔忒弥 一般        糟糕        极好        优秀           0'
-赫菲斯托 一般        糟糕        卓越        良好           0'
-赫拉       一般        糟糕        极好        良好           0'
-德墨忒尔 一般        糟糕        极好        良好           0'
-阿佛洛狄 一般        糟糕        极好        良好           0'
+             Disarming     Device        Save          Stealth      
+Minor-God    Fair          Fair          Fair          Poor         
+Zeus         Good          Good          Good          Poor         
+Poseidon     Fair          Fair          Fair          Poor         
+Hades        Fair          Fair          Good          Fair         
+Athena       Fair          Very Good     Fair          Poor         
+Ares         Fair          Fair          Poor          Bad          
+Hermes       Excellent     Fair          Fair          Good         
+Apollo       Fair          Good          Fair          Poor         
+Artemis      Fair          Fair          Fair          Poor         
+Hephaestus   Fair          Fair          Fair          Poor         
+Hera         Fair          Good          Good          Poor         
+Demeter      Fair          Fair          Good          Poor         
+Aphrodite    Fair          Fair          Fair          Poor         
 
 
-表 4 - 半神特殊能力
+Table 3 - Demigod Skill Bonus Table II
+
+             Searching     Perception    Melee         Archery       Infra
+Minor-God    Fair          Bad           Very Good     Good             0'
+Zeus         Fair          Bad           Superb        Good             0'
+Poseidon     Fair          Bad           Excellent     Good             0'
+Hades        Fair          Bad           Excellent     Good             0'
+Athena       Fair          Bad           Very Good     Good             0'
+Ares         Fair          Bad           Superb        Good             0'
+Hermes       Excellent     Good          Very Good     Good             0'
+Apollo       Fair          Bad           Very Good     Good             0'
+Artemis      Fair          Bad           Very Good     Excellent        0'
+Hephaestus   Fair          Bad           Superb        Good             0'
+Hera         Fair          Bad           Very Good     Good             0'
+Demeter      Fair          Bad           Very Good     Good             0'
+Aphrodite    Fair          Bad           Very Good     Good             0'
+
+
+Table 4 - Demigod Special Powers
 
 All demigods have access to special powers. When they reach level 20, 
 they may choose a single power from the following list. When they reach 
@@ -297,98 +297,104 @@ level, 40, they may choose another. These powers can never be removed
 or changed, so you might want to study this list to decide which powers 
 you will choose for your character.
 
-  不可触碰
-  提供 +20 护甲。
+  Ambidexterity
+  Gives a bonus equivalent to 15 percentage points of dual-wielding 
+  skill.
 
-  不屈不挠
-  提供生命值加成（每角色等级 +1 HP）。
+  Arcane Mastery
+  Reduces spell failure chances by 3 percentage points (maximum and 
+  minimum failure chances are still respected).
 
-  个人崇拜
-  
-  被召唤出的敌对怪物有最高50%的几率变为友好甚至成为宠物，这取决于它们的
-  等级和玩家的魅力。
+  Astral Guide
+  Reduces time needed for player-induced teleports by 67% to 70%.
 
-  健步如飞
-  行走消耗的能量减少 40%。
+  Black Marketeer
+  Gives you favorable pricing in the black market (all items 
+  half-price).
 
-  博学者
-  在你捡起物品时自动鉴定。
+  Cult of Personality
+  Summoned hostile monsters have an up to 50% chance to become friendly 
+  or even pets, depending on their level and the player's charisma.
 
-  奇妙狂乱
-  
-  保留在不到一回合内击杀怪物时剩余的能量，同时赋予你施展“旋风攻击(Whirlw
-  ind Attack)”的能力，允许你消耗 50 SP 或 HP 攻击所有相邻的怪物。
+  Demonic Grasp
+  Gives immunity to charge draining.
 
-  奥术精通
-  降低 3% 的法术失败率（最大和最小失败率仍然适用）。
+  Evasion
+  Reduces damage from all enemy breath attacks, rockets and rocks by 
+  between 11% and 20%, and gives a 50% chance to avoid earthquakes.
 
-  左右开弓
-  提供相当于15个百分点的双持技能加成。
+  Fantastic Frenzy
+  Saves the energy left over when a monster is killed in less than one 
+  turn, and also gives the power of Whirlwind Attack, which allows you 
+  to attack all adjacent monsters at a cost of 50 SP or HP.
 
-  强韧心智
-  使你免疫法力吸取。
+  Fast Learner
+  You gain 20% more experience for each monster slain.
 
-  快速学习者
-  你每击杀一只怪物将获得多 20% 的经验值。
+  Fell Sorcery
+  Your spells will grow more powerful (+15% spellpower), at the cost of 
+  a slight penalty to your strength, dexterity and constitution.
 
-  快速阅读
-  让你阅读卷轴的速度变为原来的两倍。
+  Fleet of Foot
+  Walking costs 40% less energy.
 
-  恐怖巫术
-  你的法术将变得更强大 (+15% 
-  法术强度)，代价是力量、敏捷和体质会受到轻微的惩罚。
+  Infernal Deal
+  You will regain HP whenever a nearby enemy monster is slain, the 
+  amount equalling two-thirds of the monster's native level.
 
-  恶魔之握
-  免疫充能流失。
+  Inspired Smithing
+  You will receive better results from item reforging (10% average 
+  value improvement).
 
-  恶魔契约
-  
-  每当附近的一只敌对怪物被击杀时，你将恢复HP，恢复量相当于怪物原生等级的
-  三分之二。
+  Loremaster
+  Automatically identifies items as you pick them up.
 
-  悄步前行
-  使你的潜行能力提升 3。
+  One with Magic
+  Gives a 77% chance to resist Antimagic and Dispel Magic (lower while 
+  polymorphed or in wraithform).
 
-  无双狙击手
-  用远程武器伤害怪物不再引发反击。
+  Peerless Sniper
+  Damaging a monster with a missile weapon no longer provokes a 
+  retaliation.
 
-  无双追踪者
-  赋予映射周围环境并探测附近怪物的能力。
+  Peerless Tracker
+  Gives the ability to map your surroundings and detect nearby 
+  monsters.
 
-  星界向导
-  将玩家触发的传送所需时间减少 67% 到 70%。
+  Potion Chugger
+  Allows you to drink potions twice as fast.
 
-  武器多面手
-  允许你对任何武器达到完全精通（但这不能消除不适合武器带来的惩罚）。
+  Sacred Vitality
+  Gives a 20% bonus to all healing effects.
 
-  灵感锻造
-  在物品重铸时，你将获得更好的结果（平均价值提高 10%）。
+  Speed Reader
+  Allows you to read scrolls twice as fast.
 
-  狂饮药水
-  让你喝药水的速度变为原来的两倍。
+  Strong Mind
+  Makes you immune to mana draining.
 
-  神圣活力
-  提供 20% 的所有治疗效果加成。
+  Subtle Casting
+  Damaging a monster with distance magic no longer provokes a 
+  retaliation.
 
-  诡异心智
-  保护你的心智免受幻觉和不可名状的恐怖的侵害。
+  Tread Softly
+  Increases your stealth by 3.
 
-  闪避
-  将所有敌人喷吐攻击、火箭和岩石的伤害降低 11% 到 20%，并有 50% 
-  的几率避开地震。
+  Untouchable
+  Gives +20 to armor class.
 
-  隐秘施法
-  用远程魔法伤害怪物不再引发反击。
+  Unyielding
+  Gives a bonus to hit points (+1 HP per character level).
 
-  魔法亲和
-  提供 77% 
-  的几率抵抗反魔法和解除魔法（在变形或处于怨灵形态时几率较低）。
+  Weapon Versatility
+  Allows you to reach full proficiency with any weapon (but does not 
+  make icky weapons non-icky).
 
-  黑市商人
-  让你在黑市中享受优惠价格（所有物品半价）。
+  Weird Mind
+  Protects your mind from hallucination and Eldritch Horrors.
 
 
-表 5 - 人类弱点
+Table 5 - Human Weaknesses
 
 Normal humans receive one demigod talent, but they also acquire a 
 special human weakness on reaching level 35. Each weakness corresponds 
@@ -397,42 +403,47 @@ their primary spellcasting stat. Characters with no spell stat are
 assumed to be warrior-like and receive the Unbalancing Strikes 
 weakness.
 
-  失衡打击
-  
-  力量是你最大的资本；但你现在打击的威力大到难以控制。你在近战中造成的每
-  一次暴击都会使你失去平衡；在那个回合中你无法造成更多的暴击，而且因为你
-  需要额外的时间来恢复平衡，这样的回合将消耗 1.2 回合而不是 1 回合。
+  Unbalancing Strikes
+  Strength is your greatest asset; but you now hit with too much power 
+  to control. Every critical hit you score in melee will unbalance you; 
+  you cannot score further criticals in that round, and since you need 
+  extra time to regain your balance, such a round will consume 1.2 
+  turns instead of 1.
 
-  想象力过于丰富
-  
-  作为人类，你的大脑高度发达——但也许有时好事过了头？你过于丰富的想象力使
-  你容易感到恐惧，在所有与恐惧相关的玩家/怪物交互中，你的有效角色等级会
-  降低 10 级。
+  Overactive Imagination
+  Your brain is highly developed - for a human - but perhaps sometimes 
+  you can have too much of a good thing? Your overactive imagination 
+  makes you vulnerable to fear, and reduces your effective character 
+  level by 10 for all fear-related player/monster interactions.
 
-  与神同调
-  
-  你极其明智，并花费了大量时间冥想，以至于你的思想现在已完全与神性同调；
-  但结果是，你感觉与邪恶怪物没有任何联系。你无法通过心灵感应探测到任何邪
-  恶怪物，即使使用心灵感应法术或装备也不行。
+  Attuned to God
+  You are extremely wise, and have spent so much time in meditation 
+  that your mind is now fully attuned to the divine; but as a 
+  consequence, you feel no connection to evil monsters. You cannot 
+  detect any evil monster telepathically, even with spells or equipment 
+  of telepathy.
 
-  敏捷超乎肉体
-  
-  敏捷是你最强的优势；但这具人类躯体能承受的极限是有限的。你在打击怪物、
-  躲避敌人攻击或发射弹药时有时会拉伤肌肉；这会暂时使你的速度降低 10。
+  Nimbler than Your Body
+  Agility is your strongest point; but there is only so much you can do 
+  in a human body. You sometimes sprain a muscle while hitting 
+  monsters, dodging enemy blows or firing projectiles; this temporarily 
+  reduces your speed by 10.
 
-  逼近极限
-  
-  你的体质和耐力非同凡响；但就像许多高强度运动员一样，你的免疫系统难以跟
-  上。你会频繁地感到身体不适，这会暂时降低你的体质和敏捷。
+  Pushed to the Limits
+  Your constitution and endurance are extraordinary; but as with many 
+  highly athletic people, your immune system has trouble keeping up. 
+  You suffer from frequent bouts of unwellness which temporarily 
+  decrease your Constitution and Dexterity.
 
-  过度自信
-  
-  你也许极具魅力；但过度沉醉于自己的炒作中会导致过度自信和马虎。由于缺乏
-  足够的专注，你的近战和射击精度、以及使用装置和法术的失败率会受到惩罚，
-  类似于“懒惰”性格带来的效果。
+  Overconfidence
+  Highly charismatic you may be; but getting too caught up in your own 
+  hype results in overconfidence and sloppy work. Lack of sufficient 
+  concentration gives you penalties to melee and shooting accuracy and 
+  to device and spell failure rates, similar to those from the Lazy 
+  personality.
 
 
 
 
-自动生成于 RoguelikeFansBand 7.4。
+Automatically generated for RoguelikeFansBand 7.2.salmiak.
 

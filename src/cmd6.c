@@ -357,7 +357,7 @@ static void do_cmd_eat_food_aux(obj_ptr obj)
     }
 
     /* Food can feed the player */
-    if (no_food)
+    if (no_food || maia_no_food())
     {
     }
     else if ( prace_is_(RACE_VAMPIRE)
@@ -596,7 +596,10 @@ static void do_cmd_quaff_potion_aux(obj_ptr obj)
     water_mana_action(FALSE, (obj->sval == SV_POTION_WATER) ? 20 : 10);
 
     /* Potions can feed the player */
-    switch (p_ptr->mimic_form)
+    if (maia_no_food())
+    {
+    }
+    else switch (p_ptr->mimic_form)
     {
     case MIMIC_NONE:
         switch (p_ptr->prace)
@@ -1515,6 +1518,12 @@ static void do_cmd_activate_aux(obj_ptr obj)
 
     obj_flags_known(obj, flgs);
 
+    if (obj_is_custom_book(obj))
+    {
+        custom_book_transcribe(obj);
+        return;
+    }
+
     /* Take a turn */
     energy_use = 100;
 
@@ -1567,6 +1576,8 @@ static void do_cmd_activate_aux(obj_ptr obj)
 
 static bool _activate_p(object_type *o_ptr)
 {
+    if (obj_is_custom_book(o_ptr)) return TRUE;
+    if (o_ptr->loc.where != INV_EQUIP && o_ptr->loc.where != INV_SPECIAL3) return FALSE;
     return /*obj_is_identified(o_ptr) &&*/ obj_has_effect(o_ptr);
 }
 
@@ -1581,7 +1592,9 @@ void do_cmd_activate(void)
     prompt.error = "你没有可以激活的物品。";
     prompt.filter = _activate_p;
     prompt.where[0] = INV_EQUIP;
-    if (get_race()->bonus_pack2) prompt.where[1] = INV_SPECIAL3;
+    prompt.where[1] = INV_PACK;
+    prompt.where[2] = INV_FLOOR;
+    if (get_race()->bonus_pack2) prompt.where[3] = INV_SPECIAL3;
     prompt.flags = INV_SHOW_FAIL_RATES;
 
     obj_prompt(&prompt);

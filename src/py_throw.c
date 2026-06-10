@@ -525,7 +525,7 @@ static void _display_weapon_slay(int base_mult, int slay_mult, bool force, int t
     if (p_ptr->stun)
         dam -= dam * MIN(100, p_ptr->stun) / 150;
 
-    doc_printf(doc, "<color:%c> %-7.7s</color>", attr_to_attr_char(color), format("%^s", name));
+    doc_printf(doc, "<color:%c> %s</color><tab:10>", attr_to_attr_char(color), name);
     doc_printf(doc, ": %d/%d [%d.%02dx]\n",
                     dam, num_throw * dam / 100,
                     mult/100, mult%100);
@@ -602,32 +602,32 @@ void py_throw_doc(py_throw_ptr context, doc_ptr doc)
     object_desc(context->obj_name, context->obj, OD_COLOR_CODED | OD_NAME_AND_ENCHANT | OD_THROWING);
     doc_printf(cols[0], "<color:y> 投掷物:</color> <indent><style:indent>%s</style></indent>\n", context->obj_name);
 
-    doc_printf(cols[0], "%-7.7s: %d.%d 磅\n", "重量", context->obj->weight/10, context->obj->weight%10);
-    doc_printf(cols[0], " %-7.7s: %d + %d = %d\n", "命中加成", to_h, p_ptr->shooter_info.dis_to_h, to_h + p_ptr->shooter_info.dis_to_h);
+    doc_printf(cols[0], "重量<tab:10>: %d.%d 磅\n", context->obj->weight/10, context->obj->weight%10);
+    doc_printf(cols[0], "命中加成<tab:10>: %d + %d = %d\n", to_h, p_ptr->shooter_info.dis_to_h, to_h + p_ptr->shooter_info.dis_to_h);
 
-    doc_printf(cols[0], " %-7.7s: %d\n", "射程", context->range);
+    doc_printf(cols[0], "射程<tab:10>: %d\n", context->range);
     if (p_ptr->wizard && 0)
-        doc_printf(cols[0], "%-7.7s: %d (31可回旋；38可接住)\n", "回旋率", context->back_chance);
-    doc_printf(cols[0], " %-7.7s: %d%%\n", "回旋", 99*(1000 - MAX(0, (30 - context->back_chance))*1000/30)/1000);
-    doc_printf(cols[0], " %-7.7s: %d%%\n", "接住", 99*(1000 - MAX(0, (37 - context->back_chance))*1000/30)/1000);
-    doc_printf(cols[0], "%-7.7s: %d.%2.2dx\n", "倍率", context->mult/100, context->mult%100);
-    doc_printf(cols[0], " %-7.7s: %d.%2.2d\n", "投掷次数", num_throw/100, num_throw%100);
+        doc_printf(cols[0], "回旋率<tab:10>: %d (31可回旋；38可接住)\n", context->back_chance);
+    doc_printf(cols[0], "回旋<tab:10>: %d%%\n", 99*(1000 - MAX(0, (30 - context->back_chance))*1000/30)/1000);
+    doc_printf(cols[0], "接住<tab:10>: %d%%\n", 99*(1000 - MAX(0, (37 - context->back_chance))*1000/30)/1000);
+    doc_printf(cols[0], "倍率<tab:10>: %d.%2.2dx\n", context->mult/100, context->mult%100);
+    doc_printf(cols[0], "投掷次数<tab:10>: %d.%2.2d\n", num_throw/100, num_throw%100);
 
     mult = mult * crit.mul / 100;
     to_d = to_d + crit.to_d/100;
 
-    doc_printf(cols[0], "<color:G> %-7.7s</color>\n", "伤害");
+    doc_printf(cols[0], "<color:G> 伤害</color>\n");
 
     if (!have_flag(context->flags, OF_BRAND_ORDER))
     {
         if (crit.to_d)
         {
-            doc_printf(cols[0], "%-7.7s: %d.%02dx + %d.%02d\n", "暴击",
+            doc_printf(cols[0], "暴击<tab:10>: %d.%02dx + %d.%02d\n",
                             crit.mul/100, crit.mul%100, crit.to_d/100, crit.to_d%100);
         }
         else
         {
-            doc_printf(cols[0], "%-7.7s: %d.%02dx (%d.%d%%)\n", "暴击",
+            doc_printf(cols[0], "暴击<tab:10>: %d.%02dx (%d.%d%%)\n",
                             crit.mul/100, crit.mul%100, crit_pct / 10, crit_pct % 10);
         }
     }

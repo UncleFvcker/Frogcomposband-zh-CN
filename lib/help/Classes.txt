@@ -1,4 +1,4 @@
-<style:title>职业介绍 (The Classes)</style>
+﻿<style:title>职业介绍 (The Classes)</style>
 
 没有哪个决定比选择玩什么职业更重要了。下面将按主要优势或游玩风格（如近战、箭术、武术、魔法、装置、混合等）将众多可用职业进行粗略分类。每个职业的主要施法属性已被<color:v>高亮</color>显示。
 
@@ -597,6 +597,22 @@
 基础HP         8        箭术        <color:y>良好         </color>
 经验系数     140%
 </style></indent>
+<topic:Ethereal-Mimic><color:o>缥缈模仿者 (Ethereal-Mimic)</color>
+缥缈模仿者是能够学习怪物形态的战士。他们在未变身时使用普通人形身体和装备栏位；一旦变身，就会继承目标形态的身体结构、抗性、法术、吐息和天然攻击，从而用敌人的形体反过来适应地下城。
+
+缥缈模仿者通过击杀非唯一怪物来理解其形体；当击杀数量达到该怪物等级后，就能永久学会该形态。使用职业能力时可以输入怪物序号来变身，怪物序号可在知识菜单的怪物知识中查询。由于可学习形态数量可能很多，这种方式也便于玩家为常用形态编写稳定的宏。唯一怪物不能被学习或模仿。
+
+  <indent><style:table><color:G>属性 (Stats)            技能 (Skills)</color>
+力量 (STR)   <color:w> +2</color>        解除陷阱    <color:y>良好         </color>
+智力 (INT)   <color:w> +1</color>        魔法装置    <color:o>一般         </color>
+感知 (WIS)   <color:w> -1</color>        豁免        <color:o>一般         </color>
+敏捷 (DEX)   <color:w> +1</color>        潜行        <color:r>糟糕         </color>
+体质 (CON)   <color:w> +2</color>        搜索        <color:o>一般         </color>
+魅力 (CHR)   <color:w> +0</color>        察觉        <color:R>较差         </color>
+生命乘数     105%       近战        <color:b>英雄         </color>
+基础HP        16        箭术        <color:g>极佳         </color>
+经验系数     175%
+</style></indent>
 </indent>
 <style:heading>骑乘 (Riding)</style>
   <indent><topic:Beastmaster><color:o>兽王 (Beastmaster)</color>
@@ -879,6 +895,7 @@ Paladin        +2   -3 <color:v>  +1 </color>  +0   +2   +2  110%  +12  135%
 Ranger         +2   +0 <color:v>  +2 </color>  +1   +1   +0  106%   +8  140%
 Red-Mage       +2 <color:v>  +2 </color>  -1   +1   +0   -1  106%   +8  140%
 Warrior-Mage   +2 <color:v>  +2 </color>  -1   +1   +0   +1  105%   +8  140%
+Ethereal-Mimic +2   +1   -1   +1   +2   +0  105%  +16  175%
 Beastmaster    +1   -1   -1   +1   +0 <color:v>  +2 </color> 103%   +6  120%
 Cavalry        +2   -2   -2   +2   +2   +1  111%  +10  120%
 Mindcrafter    -1   +0 <color:v>  +3 </color>  -1   -1   +2   99%   +4  125%
@@ -935,6 +952,7 @@ Paladin       <color:R>Poor         </color> <color:o>Fair         </color> <col
 Ranger        <color:o>Fair         </color> <color:G>Excellent    </color> <color:o>Fair         </color> <color:o>Fair         </color>
 Red-Mage      <color:R>Poor         </color> <color:y>Very Good    </color> <color:o>Fair         </color> <color:R>Poor         </color>
 Warrior-Mage  <color:o>Fair         </color> <color:y>Good         </color> <color:o>Fair         </color> <color:R>Poor         </color>
+Ethereal-Mimic <color:y>Good         </color> <color:o>Fair         </color> <color:o>Fair         </color> <color:r>Bad          </color>
 Beastmaster   <color:R>Poor         </color> <color:o>Fair         </color> <color:o>Fair         </color> <color:R>Poor         </color>
 Cavalry       <color:o>Fair         </color> <color:r>Bad          </color> <color:o>Fair         </color> <color:R>Poor         </color>
 Mindcrafter   <color:o>Fair         </color> <color:y>Very Good    </color> <color:o>Fair         </color> <color:o>Fair         </color>
@@ -991,6 +1009,7 @@ Paladin       <color:R>Poor         </color> <color:r>Bad          </color> <col
 Ranger        <color:o>Fair         </color> <color:R>Poor         </color> <color:y>Good         </color> <color:y>Very Good    </color>
 Red-Mage      <color:R>Poor         </color> <color:r>Bad          </color> <color:y>Good         </color> <color:R>Poor         </color>
 Warrior-Mage  <color:R>Poor         </color> <color:R>Poor         </color> <color:y>Good         </color> <color:y>Good         </color>
+Ethereal-Mimic <color:o>Fair         </color> <color:R>Poor         </color> <color:b>Heroic       </color> <color:g>Superb       </color>
 Beastmaster   <color:R>Poor         </color> <color:R>Poor         </color> <color:o>Fair         </color> <color:b>Heroic       </color>
 Cavalry       <color:R>Poor         </color> <color:r>Bad          </color> <color:G>Excellent    </color> <color:b>Heroic       </color>
 Mindcrafter   <color:R>Poor         </color> <color:R>Poor         </color> <color:o>Fair         </color> <color:y>Good         </color>

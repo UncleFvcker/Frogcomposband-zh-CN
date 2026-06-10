@@ -1,4 +1,4 @@
-门徒
+﻿Disciples
 
 Trusted followers of mysterious ancient spirits known as the 'Purples', 
 the Disciples roam the world running errands for their masters, 
@@ -9,7 +9,7 @@ as the Troika. Each of the Purples expects different things of their
 Disciples, and each helps them achieve their ends in very different 
 ways.
 
-卡罗特
+Karrot
 Karrot is a proud and ambitious Purple, convinced that it is his 
 destiny to one day rule the universe; but rather than getting 
 personally involved, he has assigned to his Disciples the task of 
@@ -40,17 +40,17 @@ rarer abilities...
 Karrot's disciples depend on Intelligence to make their spells work.
 
   Stats                   Skills
-  Strength      -1        Disarming   一般       
-  Intelligence  +1        Device      优秀       
-  Wisdom        -1        Save        良好       
-  Dexterity     +0        Stealth     一般       
-  Constitution  -1        Searching   一般       
-  Charisma      +1        Perception  贫弱       
-  Life Rating   95%       Melee       良好       
-  Base HP       14        Archery     良好       
+  Strength      -1        Disarming   Fair         
+  Intelligence  +1        Device      Excellent    
+  Wisdom        -1        Save        Good         
+  Dexterity     +0        Stealth     Fair         
+  Constitution  -1        Searching   Fair         
+  Charisma      +1        Perception  Poor         
+  Life Rating   95%       Melee       Good         
+  Base HP       14        Archery     Good         
   Experience   125%
   
-耶克雷什
+Yeqrezh
 Yeqrezh is the friendliest of the Purples, supportive of his Disciples 
 and willing to let them find their own way. Disciples of Yeqrezh will 
 learn 20 spells over the course of the game - one every two character 
@@ -75,17 +75,17 @@ push-the-envelope approach. Yeqrezh's disciples, like Karrot's, rely on
 Intelligence to power their spells.
 
   Stats                   Skills
-  Strength      +0        Disarming   一般       
-  Intelligence  +1        Device      一般       
-  Wisdom        +1        Save        一般       
-  Dexterity     +0        Stealth     一般       
-  Constitution  -3        Searching   贫弱       
-  Charisma      +0        Perception  贫弱       
-  Life Rating   90%       Melee       良好       
-  Base HP       12        Archery     优秀       
+  Strength      +0        Disarming   Fair         
+  Intelligence  +1        Device      Fair         
+  Wisdom        +1        Save        Fair         
+  Dexterity     +0        Stealth     Fair         
+  Constitution  -3        Searching   Poor         
+  Charisma      +0        Perception  Poor         
+  Life Rating   90%       Melee       Good         
+  Base HP       12        Archery     Excellent    
   Experience   115%
   
-特罗伊卡
+Troika
 The Troika is a group of three closely related Purples working together 
 - Guntujant, Uxip and Sohoglyth. Guntujant is a capricious Purple who 
 follows the careers of his servants very closely, and rewards and 
@@ -113,47 +113,48 @@ especially uniques. Strength determines the spellcasting ability of a
 Troika disciple.
 
   Stats                   Skills
-  Strength      +1        Disarming   良好       
-  Intelligence  +0        Device      糟糕       
-  Wisdom        -1        Save        糟糕       
-  Dexterity     +1        Stealth     一般       
-  Constitution  +2        Searching   贫弱       
-  Charisma      +0        Perception  贫弱       
-  Life Rating  108%       Melee       优秀       
-  Base HP       23        Archery     良好       
+  Strength      +1        Disarming   Good         
+  Intelligence  +0        Device      Bad          
+  Wisdom        -1        Save        Bad          
+  Dexterity     +1        Stealth     Fair         
+  Constitution  +2        Searching   Poor         
+  Charisma      +0        Perception  Poor         
+  Life Rating  108%       Melee       Excellent    
+  Base HP       23        Archery     Good         
   Experience   150%
   
 TIP: The special random quests for Karrot and Troika disciples can only 
-appear 如果你所在的层数足够深，使得该任务具有挑战性。按下 CTRL+Freveals 
-your patron's opinion of your current depth. The Purples also like you 
-to visit many different dungeons; do not expect a large number of 
-assignments in a single dungeon, unless 你在没有荒野的模式下游玩。
+appear if you are sufficiently deep for the quest to be challenging. 
+Pressing CTRL+F reveals your patron's opinion of your current depth. 
+The Purples also like you to visit many different dungeons; do not 
+expect a large number of assignments in a single dungeon, unless you 
+are playing with no wilderness.
 
-表 1 - 门徒属性加成表
+Table 1 - Disciple Statistic Bonus Table
 
                   STR  INT  WIS  DEX  CON  CHR  Life  BHP  Exp
-卡罗特          -1   +1   -1   +0   -1   +1   95%  +14  125%
-耶克雷什       +0   +1   +1   +0   -3   +0   90%  +12  115%
-特罗伊卡       +1   +0   -1   +1   +2   +0  108%  +23  150%
+Karrot             -1   +1   -1   +0   -1   +1   95%  +14  125%
+Yeqrezh            +0   +1   +1   +0   -3   +0   90%  +12  115%
+Troika             +1   +0   -1   +1   +2   +0  108%  +23  150%
 
 
-表 2 - 门徒技能加成表 I
+Table 2 - Disciple Skill Bonus Table I
 
-                  解除陷阱  使用装置  豁免        潜行       
-卡罗特         一般        优秀        良好        一般       
-耶克雷什      一般        一般        一般        一般       
-特罗伊卡      良好        糟糕        糟糕        一般       
-
-
-表 3 - 门徒技能加成表 II
-
-                  搜索        察觉        近战        箭术       
-卡罗特         一般        贫弱        良好        良好       
-耶克雷什      贫弱        贫弱        良好        优秀       
-特罗伊卡      贫弱        贫弱        优秀        良好       
+                  Disarming     Device        Save          Stealth      
+Karrot            Fair          Excellent     Good          Fair         
+Yeqrezh           Fair          Fair          Fair          Fair         
+Troika            Good          Bad           Bad           Fair         
 
 
-表 4 - 耶克瑞什天赋
+Table 3 - Disciple Skill Bonus Table II
+
+                  Searching     Perception    Melee         Archery      
+Karrot            Fair          Poor          Good          Good         
+Yeqrezh           Poor          Poor          Good          Excellent    
+Troika            Poor          Poor          Excellent     Good         
+
+
+Table 4 - Yeqrezh Talents
 
 Disciples of Yeqrezh can choose five special gifts, one every ten 
 levels. These gifts can take the form of new abilities, physical 
@@ -162,72 +163,75 @@ only be picked once. Once you have selected a gift, you can never go
 back on your decision, so you might want to study this list to decide 
 which gifts to choose for your character.
 
-  紫色肌肉
-  提供 +2 力量（STR）和 +2 敏捷（DEX）。
+  Purple Muscles
+  Gives +2 STR and +2 DEX.
 
-  紫色活力
-  所有治疗效果恢复的生命值将比平时多 10%。
+  Purple Vitality
+  All healing effects will give 10% more HP than normally.
 
-  紫色速度
-  提供 +1 速度。
+  Purple Speed
+  Gives +1 speed.
 
-  紫色致命
-  提供 +8 的近战伤害加成（不适用于天生攻击）。
+  Purple Deadliness
+  Gives +8 melee to-dam (not applied to innate attacks).
 
-  紫色潜行
-  提供 +4 潜行。
+  Purple Stealth
+  Gives +4 stealth.
 
-  紫色防护
-  提供 +15 护甲（AC）。
+  Purple Protection
+  Gives +15 AC.
 
-  装置精通
-  赋予相当于 +1 装置精通(Md) 的装置技能。
+  Device Mastery
+  Gives device skills equal to +1 Md.
 
-  急速射击
-  提供相当于 +1 额外射击(Xs) 的射击速度加成。
+  Rapid Shooting
+  Gives a shooting speed increase equal to +1 Xs.
 
-  强力咒术
-  使你的法术强度提高 +15%，但会降低你 3 点生命乘数。
+  Power Sorcery
+  Increases your spellpower by +15%, but decreases your life multiplier 
+  by 3 points.
 
-  紧张施法
-  使你的法术强度提高 +15%，但会让你变得容易恐惧。
+  Nervous Casting
+  Increases your spellpower by +15%, but makes you vulnerable to fear.
 
-  轻松施法
-  降低 4 个百分点的法术失败率。
+  Easy Casting
+  Lowers spell fail rates by 4 percentage points.
 
-  敏捷施法
-  施放法术只需消耗通常 93% 的时间。
+  Quick Spelling
+  Casting a spell will only consume 93% of the usual time.
 
-  快速恢复
-  提供 +100% 再生率。
+  Speedy Recovery
+  Gives +100% regeneration.
 
-  彩票
-  你将从耶克列日那里收到三张*获取*卷轴。
+  Lottery Tickets
+  You will receive three scrolls of *Acquirement* from Yeqrezh.
 
-  死亡笔记
-  你将从耶克列日那里收到五张群体大屠杀卷轴。
+  Notes of Death
+  You will receive five scrolls of Mass Genocide from Yeqrezh.
 
-  生命精华
-  你将从耶克列日那里收到三瓶生命药水。
+  Essence of Life
+  You will receive three potions of Life from Yeqrezh.
 
-  耶克记忆
-  立即提升 5 个角色等级。
+  Yeqrezh's Memories
+  Immediately gives another 5 character levels.
 
-  怪异思维
-  保护你的心智免受幻觉和不可名状的恐怖的侵害。
+  Strange Mind
+  Protects your mind from hallucination and Eldritch Horrors.
 
-  坚韧思维
-  使你免疫法力吸取。
+  Strong Mind
+  Makes you immune to mana draining.
 
-  实物教学
-  允许你感知远处物品的品质，并自动鉴定你踩到的所有物品。
+  Object Lessons
+  Allows you to sense the quality of distant objects and automatically 
+  identify all objects you walk over.
 
-  王牌洗牌
-  使你能够使用“洗牌”法术，并在抽到“审判”牌时自动获得自我感知效果。
+  Trump Shuffling
+  Gives you access to the Shuffle spell, and automatically gives Self 
+  Knowledge if the Judgement card is drawn.
 
 
 
 
 
-自动生成于 RoguelikeFansBand 7.4。
+Automatically generated for RoguelikeFansBand 7.2.salmiak.
 

@@ -1,467 +1,537 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <body text="#ffffff" bgcolor="#000000"><pre>
-<font color="#00ffff">魔法系统 (The Magic System)
-
-
-</font><font color="#ffffff">在平凡与世俗的表象之下，潜藏着不可预测的魔法力量。有些人能接触到这些力量
-，并在此过程中获得强大的能力。其他人则避开这些未解且不可解释的事物。是否
-使用魔法取决于你，并取决于你选择游玩哪个职业。用战士尽情砍杀，那么魔法将
-永远对你是个谜；选择法师的生活，宇宙的永恒秘密或许会向你敞开。
-
-
-魔法有多种形式。魔法药水可以被任何角色使用，哪怕是目不识丁的未开化狂战士
- 
-(Berserkers)。魔法卷轴、魔杖、魔棒和法杖可供除狂战士外的所有职业使用，但
-需要一定的技能才能正确使用；这些魔法形式在别处讨论，这里不再详述。最后，
-只有少数人能直接接触魔法力量，施放杀戮或治愈的法术；学习的法术或旅行的法
-术；魅惑或放逐的法术；正是在这里，我们即将踏入施法者的领域。
-
-<a name="Types"></a></font><font color="#c00000">施法者类型
-
-
-</font><font color="#ffffff">施法者主要有两种：一种是通过博大精深的古籍来接触魔法的人，另一种是通过精
-神专注直接获得力量或能力的人。此外，还有</font><font color="#ff0000">特殊技艺 (special 
-techniques)</font><font color="#ffffff">，它们可能不是传统魔法，但遵循大部分与魔法相同的规则；它们实
-际上可以归入前两类之一。</font><font color="#ff0000">种族能力 (Racial powers) 
-</font><font color="#ffffff">及其它类似能力是由种族、职业或突变赋予的，而非魔法能力，其运作方式也有所
-不同。
-
-</font><font color="#ff0000">书本施法者 (Book spellcasters) 
-</font><font color="#ffffff">是传统的魔法使用职业；他们必须寻找（或购买）合适的法术书来学习，并在施法
-时阅读这些书，这需要明亮的眼睛和充足的光线。</font><font color="#ff0000">非书本施法者 (Non-book 
-spellcasters) 
-</font><font color="#ffffff">随着经验和理解的增长自动获得力量，有时可以在黑暗中或失明时唤起他们的魔法
-。少数职业，包括原力武士 (Force-Trainers) 和忍者律师 
-(Ninja-Lawyers)，可以同时使用书本和非书本魔法。
-
-所有施法者都需要一个清醒、不困惑的头脑，以及一个功能正常的 </font><font color="#ff8000">m 
-</font><font color="#ffffff">键，才能接触魔法。几乎所有施法者还需要</font><font color="#ff0000">法术点数 (spell points) 
-</font><font color="#ffffff">(SP，法力值) 
-来施法；法力值衡量施法者的专注力和魔法能量，没有它法术就会失败。一些施法
-者可能能够用生命值 (HP) 
-替代法力值（这在种族能力中比在普通魔法中更常见）；有些法术对施法者来说太
-容易了，根本不需要法力值。所有施法者都有一个</font><font color="#ff0000">主属性 (primary 
-stat)</font><font color="#ffffff">或</font><font color="#ff0000">施法属性 (spellcasting 
-stat)</font><font color="#ffffff">；他们的施法能力以及法力池的大小都取决于这个属性。</font><font color="#ff0000">反魔法 
-(Anti-magic) 
-</font><font color="#ffffff">总是会阻止这种类型的魔法，尽管它可能不会影响某些在其他方面与魔法无异的特
-殊技艺。
-
-种族能力（及其他类似能力）使用 </font><font color="#ff8000">U </font><font color="#ffffff">键（在 roguelike 键位中是 
-</font><font color="#ff8000">O</font><font color="#ffffff">）来施放。种族能力也需要法力值，但不是绝对的；用 HP 
-替代很常见。种族能力和法术一样，取决于施法属性；但是，所有书本法术都依赖
-同一个施法属性，而每个种族能力都有其自己特定的属性。种族能力不受反魔法影
-响。
-
-本文档的主体是关于书本施法，以及书本施法者可用的各种魔法领域。
-
-<a name="Spellbook"></a></font><font color="#c00000">法术书魔法
-
-</font><font color="#ffffff">所有法术书都属于游戏中的众多</font><font color="#ff0000">魔法领域 (magic 
-realms)</font><font color="#ffffff">之一。大多数书本施法者只能学习一两个领域，在角色创建时从广泛的选
-项中选择；可供选择的领域取决于你的职业。每个领域正好包含四本书，每本书包
-含八个法术，尽管即使你专精该领域，其中一些法术也可能对你不可用。少数职业
-，比如巫师 (Sorcerers)，遵循特殊规则，不受两个领域的限制。
-
-拥有两个领域的职业有一个</font><font color="#ff0000">主领域 (primary realm)</font><font color="#ffffff">和一个</font><font color="#ff0000">副领域 (secondary 
-realm)</font><font color="#ffffff">。主领域是你真正精通的领域；你在副领域中的施法失败率更高，而且永远
-无法完全掌握其法术。副领域确实有一个优势：与主领域不同，它可以在游戏过程
-中改变。为此，只需从你想切换到的领域的法术书中 </font><font color="#ff8000">G </font><font color="#ffffff">学习 (Gain) 
-一个法术。但是，你会忘记在旧领域中学到的任何法术，而且你在游戏过程中能学
-习的法术总数是有限的；所以请明智且节制地使用这个能力。
-
-大多数领域都有两本便宜的</font><font color="#ff0000">城镇书 (town 
-books)</font><font color="#ffffff">，可以经常在商店里找到，还有两本稀有且有价值的</font><font color="#ff0000">地下城书 (dungeon 
-books)</font><font color="#ffffff">，无法轻易获得。传闻女巫森林 (Witch Wood) 
-的女巫们收藏了不少精美的地下城法术书……
-
-<a name="Proficiency"></a></font><font color="#c00000">法术熟练度 (Spell Proficiency)
-
-
-</font><font color="#ffffff">你对某个特定的书本法术经验越丰富，该法术的失败率和法力消耗就越低。这被称
-为</font><font color="#ff0000">法术熟练度</font><font color="#ffffff">，由几个大致的标签表示：</font><font color="#00ff00">生疏 (Unskilled)</font><font color="#ffffff">，</font><font color="#00ff00">入门 
-(Beginner)</font><font color="#ffffff">，</font><font color="#00ff00">熟练 (Skilled)</font><font color="#ffffff">，</font><font color="#00ff00">专家 (Expert) </font><font color="#ffffff">和 </font><font color="#00ff00">大师 
-(Master)</font><font color="#ffffff">。每次使用法术，你都会获得一些该法术的熟练度，尽管只有在地下城深
-处才能获得有意义的经验；在安全的城镇里一遍又一遍地施展法术对你帮助不大。
-
-
-大多数（尽管不是全部）职业还有另一种提高熟练度的方法：使用 </font><font color="#ff8000">G 
-</font><font color="#ffffff">命令对同一个法术进行第二次（或第三次）学习。这将使你（至少）达到下一个标
-签等级，并保留你迈向再下一等级已经取得的一些进度；但这也消耗了你可分配的
-法术学习机会之一，这意味着如果你没找到“法术卷轴 (Scroll of 
-Spell)”，另一个法术可能永远无法被学习。
-
-
-一般来说，所有玩家开始时对每个法术都是“生疏”熟练度，可以“大师”掌握主领域
-的所有法术，并且如果他们有副领域，可以达到“专家”级别的副领域法术。</font><font color="#ff0000">巫师 
-(Sorcerers)</font><font color="#ffffff">和</font><font color="#ff0000">红法师 
-(Red-Mages)</font><font color="#ffffff">不受两个领域限制，在熟练度方面遵循特殊规则；巫师自动“大师”掌
-握他们能访问的所有法术，而红法师对他们所有的法术都是“熟练”。</font><font color="#ff0000">技能大师 
-(Skillmasters)</font><font color="#ffffff">的熟练度也很特殊，仅由他们在该领域投资的技能点数决定。这三
-个职业无法通过施法来获得熟练度。
-
-<a name="Book"></a></font><font color="#c00000">法术书界面说明
-
-</font><font color="#ffffff">这是一个年轻角色按 </font><font color="#ff8000">m </font><font color="#ffffff">并选择法术书后可能会看到的界面：
-
-(法术 a-h, *=列表, ESC=退出) 施放哪个法术？(Cast which spell?)                  
-     名称 (Name)             熟练(Prof) 级别 SP 失败 描述
-  a) 魔法飞弹                  [入]   1   2   5% 伤害 3d4
-  </font><font color="#00ffff">b) 破坏陷阱与门              [生]   1   4   9% 未知
-  </font><font color="#00ff00">c) 闪光术                    [生]   2   4  15% 未尝试
-  </font><font color="#ffffff">d) 困惑之触                  [生]   5   8  49%
-  </font><font color="#00ffff">e) 法力爆发                  [生]   9  10  91% 未知
-  f) 火焰矢                    [生]  13  15  95% 未知
-  g) 原力之拳                  [生]  14  15  95% 未知
-  h) 传送自身                  [生]  15  15  95% 未知
-
-
-</font><font color="#ffffff">每个法术都会标明其标签（该法术的按键）、名称、你的熟练度、可以首次学习该
-法术的角色等级、法力消耗、失败率以及一些附加信息。法术 </font><font color="#00ff00">闪光术 (Flash of 
-Light) </font><font color="#ffffff">显示为 </font><font color="#00ff00">绿色</font><font color="#ffffff">，因为角色已经学习了它但尚未尝试施放；魔法飞弹 (Magic 
-Missile) 和困惑之触 (Touch of Confusion) 
-显示为白色，因为它们已被学习并成功施放过，而其他法术全都是 </font><font color="#00ffff">浅蓝色 
-</font><font color="#ffffff">以表明尚未被学习。魔法飞弹已经达到 [入]门 ([Be]ginner) 
-熟练度，而其他七个法术仍然是 [生]疏。
-极短的附加信息并不能告诉我们太多内容；魔法飞弹 (Magic Missile) 造成 3d4 
-伤害，大概就是一发魔法飞弹，但其他法术就不那么一目了然了。除了 </font><font color="#ff8000">m 
-</font><font color="#ffffff">命令外，我们可以使用 </font><font color="#ff8000">b </font><font color="#ffffff">浏览 (Browse) 命令（在 roguelike 键位中是 </font><font color="#ff8000">P </font><font color="#ffffff">- 
-Peruse）来了解更多：
-
-(法术 a-h, *=列表, ESC=退出) 浏览哪个法术？(Browse which spell?)
-     名称 (Name)             熟练(Prof) 级别 SP 失败 描述
-  a) 魔法飞弹                  [入]   1   2   5% 伤害 3d4
-  </font><font color="#00ffff">b) 破坏陷阱与门              [生]   1   4   9% 未知
-  </font><font color="#00ff00">c) 闪光术                    [生]   2   4  15% 未尝试
-  </font><font color="#ffffff">d) 困惑之触                  [生]   5   8  49%
-  </font><font color="#00ffff">e) 法力爆发                  [生]   9  10  91% 未知
-  f) 火焰矢                    [生]  13  15  95% 未知
-  g) 原力之拳                  [生]  14  15  95% 未知
-  h) 传送自身                  [生]  15  15  95% 未知
-
-  </font><font color="#ffff00">永久照亮附近区域及房间内部。
-
-</font><font color="#ffffff">这里我查看了闪光术 (Flash of 
-Light)；描述清楚地表明这是一个照明法术，而不是，比如说，一道光束攻击。
-
-<a name="WhichSpell"></a></font><font color="#c00000">我应该学习哪些法术？
-
-
-</font><font color="#ffffff">少数施法职业（通常是那些与感知或神职相关的职业）无法直接控制他们能获得哪
-些法术；当他们使用 </font><font color="#ff8000">G </font><font color="#ffffff">学习法术 (Gain a Spell) 
-命令时，他们的神明会随机为他们选择一个新法术。不过，大多数职业可以选择特
-定的法术来学习；如上所述，他们甚至可以反复学习同一个法术！
-
-通常来说，你</font><font color="#ff0000">最终 
-(eventually)</font><font color="#ffffff">能够学习你所属领域（或多个领域）中的所有法术；例外情况是如果
-你在游戏中途切换了副领域，或者你多次学习了同一个法术，但即便如此，你仍然
-可以通过法术卷轴 (Scrolls of Spell) 
-获得新的法术槽。因此，问题不在于“我应该学哪些法术？”——你将会学习所有或几
-乎所有法术——而在于</font><font color="#ffff00">你现在立刻该学哪个法术</font><font color="#ffffff">。
-
-
-书本施法者在游戏前期往往很难击杀怪物，所以如果你的第一个法术是像魔法飞弹
-这种</font><font color="#ff0000">攻击性 
-(offensive)</font><font color="#ffffff">法术，会很有帮助。即使没有攻击性法术，你也能让一个法师起步，
-但这需要极大的谨慎和耐心！一旦你有了可靠的攻击手段，像探测、逃生和增益这
-样的辅助法术就会变得更有吸引力。
-
-<a name="MagicRealms"></a></font><font color="#c00000">通用魔法领域 (General Magic Realms)
-
-
-</font><font color="#ffffff">这些魔法领域可作为主领域和副领域供各种职业使用，但不一定适用于所有书本施
-法者。
-
-<a name="Life"></a></font><font color="#00ff00">生命 (Life)
-  
-  </font><font color="#ffffff">生命魔法非常擅长治疗；它主要依赖治疗、防护和探测法术。这个领域没有直接
-  的伤害法术，至少对活物没有，尽管有传言说它有一些令亡者极度恐惧的高阶法
-  术。生命被认为是一个“善良”的领域；如果开启了美德 (virtues) 
-  系统，当施法者的阵营偏向邪恶时，生命法术的失败率会上升，而当施法者与善
-  良阵营结盟时，失败率会下降。
-
-<a name="Sorcery"></a></font><font color="#00ff00">咒术 (Sorcery)
-  
-  </font><font color="#ffffff">咒术是一个实用性领域，包含附魔和通用法术。它提供了极佳的辅助法术（例如
-  用于逃跑的传送术，甚至无敌结界），提高你战斗胜率的法术（减速怪物、加速
-  自身、困惑怪物），最重要的是，还有大量用于收集信息的法术：除了常规的探
-  测和鉴定法术外，其中一本标准法术书中还有一个名为“真实鉴定 (Identify 
-  True)”的法术，能让你完全了解给定物品的所有属性 
-  (*完全鉴定*)！在稀有法术书中，还有一些法术可以保护你物品栏中的装备，甚
-  至将不需要的物品变成金币。然而，咒术有一个弱点：它没有任何法术可以对你
-  的敌人造成直接伤害。
-
-<a name="Nature"></a></font><font color="#00ff00">自然 (Nature)
-  
-  </font><font color="#ffffff">自然魔法让你成为元素大师；它提供防护、探测、治愈和攻击法术，最重要的是
-  ，提供改变周围地形特征的法术。自然还提供了“草药治疗 (Herbal 
-  Healing)”，这是生命魔法领域之外唯一强大的治疗法术。由于自然寻求平衡与
-  和谐，当施法者的阵营变得极其善良或极其邪恶时，自然法术的失败率都会上升
-  。
-
-<a name="Chaos"></a></font><font color="#00ff00">混沌 (Chaos)
-  
-  </font><font color="#ffffff">混沌是解构与毁灭的本源元素，混沌法术是你能想象到的最可怕的毁灭武器。从
-  魔法飞弹、火焰矢，到中阶的火球术和末日之矢，最后再到唤起罗格鲁斯 
-  (Invoke 
-  Logrus)、法力风暴和召唤虚空等令人敬畏的法术，混沌提供了一个几乎无可匹
-  敌的攻击法术武器库。混沌是提供“毁灭术 
-  (Destruction)”的两个领域之一。施法者还可以召唤原始的混沌力量来诱发敌人
-  甚至自身的突变；但除此之外，混沌没有防护性法术。当心！众所周知，混沌法
-  术极易产生反噬，导致不想要的副作用。
-
-<a name="Death"></a></font><font color="#00ff00">死亡 (Death)
-  
-  </font><font color="#ffffff">没有比死亡魔法的死灵法术更污秽、更邪恶的法术类别了。这些法术相对难以学
-  习，但在高等级时，这些法术赋予了施法者掌控生者和不死者的力量。毒素、吸
-  血、死亡法术，甚至虚空 (Nether) 
-  的力量都可以由施法者引导。如果一个死亡巫师找到了传奇典籍《死灵之书 
-  (Necronomicon)》，他绝对能获得极其强大的力量，但要付出代价：很少有研究
-  过那本被诅咒的典籍的人还能保持理智。由于这是一个邪恶的领域，如果开启了
-  美德系统，善良阵营施法者的死亡法术失败率会上升。
-
-<a name="Trump"></a></font><font color="#00ff00">王牌 (Trump)
-  
-  </font><font color="#ffffff">王牌魔法似乎是一种独立的力量源泉，即便它被认为与混沌有关。尽管它缺乏混
-  沌魔法那种不可预测的混沌副作用，但它有几个法术的具体效果或多或少是随机
-  的。其中一个法术是洗牌术 
-  (Shuffle)：王牌法术书实际上由一套“王牌塔罗牌”组成，而洗牌术允许施法者
-  洗牌并随机抽取一张。效果取决于抽到的牌，且并不总是令人愉快的。王牌传送
-  门是一种主要的交通方式，该领域拥有一套令人赞叹的传送法术选择。在召唤生
-  物方面，王牌魔法无与伦比；但并不是所有怪物都乐意被王牌使用者强行拉到另
-  一个地方。唯一绝对忠诚的召唤生物是幻影仆从 (Phantasmal 
-  Servants)，它们没有自己的意志……但如果你虐待它们，它们也许会萌生出意志
-  。
-
-<a name="Arcane"></a></font><font color="#00ff00">奥秘 (Arcane)
-  
-  </font><font color="#ffffff">奥秘，甚至比咒术更算得上是一个万金油领域；它试图提供其他领域的所有实用
-  法术，并拥有几个独有的法术。奥秘的缺点是它缺乏真正强大的法术，而且它的
-  许多法术比其他领域的同类法术消耗更多法力。奥秘是唯一没有地下城法术书的
-  领域；所有四本奥秘书都可以在镇上买到。奥秘为其他领域提供了很好的辅助支
-  撑，但只专精这一个领域的角色可能会觉得它太有局限性了。
-
-<a name="Craft"></a></font><font color="#00ff00">工匠 (Craft)
-  
-  </font><font color="#ffffff">作为附魔的领域，工匠魔法提供强化玩家及其装备的法术，甚至能锻造出强大的
-  新魔法物品。玩家强化包括额外的抗性、速度、护甲和战斗技能。物品强化包括
-  魔法加成和暂时的元素杀戮属性，当应用在合适的武器上时会非常强大。最后，
-  锻造或工艺可以将一件现有的物品变成随机的词缀物品，这在这个魔法领域中是
-  非常独特的。甚至有传言说，工匠魔法允许施法者强化他们的攻击伤害，利用他
-  们自己的法力来驱动无人能挡的强大杀戮之力。但这可能只是个传言……
-
-<a name="Daemon"></a></font><font color="#00ff00">恶魔 (Daemon)
-  </font><font color="#ffffff">恶魔魔法提供带有火焰或虚空 (Nether) 
-  属性的强大攻击法术。有几个探测法术可以提供附近区域的地图或临时心灵感应
-  。恶魔魔法还提供临时变形法术，允许施法者变成恶魔甚至强大的恶魔领主。恶
-  魔是一个邪恶的领域；如果开启了美德系统，偏向善良的施法者的恶魔法术失败
-  率会上升。
-
-<a name="Crusade"></a></font><font color="#00ff00">圣战 (Crusade)
-  
-  </font><font color="#ffffff">圣战是终极的“善良”领域；它有一些攻击法术，但主要用于伤害和放逐邪恶的污
-  秽爪牙，对善良怪物不是很有效。如果开启了美德系统，偏向邪恶的施法者的圣
-  战法术失败率会上升。
-
-<a name="Armageddon"></a></font><font color="#00ff00">毁灭 (Armageddon)
-  
-  </font><font color="#ffffff">死亡。毁灭。屠戮。这个领域不懂别的，每一个法术都是直接的攻击性法术。从
-  元素攻击到强大的吐息攻击，毁灭领域在纯粹伤害方面无可匹敌。寻求更平衡的
-  方法也许更好，连混沌魔法都提供了一些实用法术来补充进攻；但是，如果你想
-  要的只是终极的破坏力，那就选它吧。
-
-<a name="OtherMagicRealms"></a></font><font color="#c00000">职业专属魔法领域 (Class-Specific Magic Realms)
-
-
-</font><font color="#ffffff">除了上面列出的领域外，还有一些职业专属的法术领域。这些领域也使用书本来获
-取魔法，但其运作方式可能与普通法术书领域略有不同。
-
-<a name="Law"></a></font><font color="#00ff00">律法 (Law)
-  </font><font color="#ffffff">律法领域是律师 (Lawyers) 
-  的专长。它介于通用魔法和职业专属魔法之间——非专精者也可以学习，但没有其
-  他职业能像律师那样轻松或完全地掌握它。律法领域提供了一套相当全面的实用
-  技巧，允许其使用者探测威胁和机遇、迷惑敌人、设置陷阱、魅惑潜在的朋友并
-  从危险的境地中脱身；但它几乎没有直接的攻击选项。
-
-<a name="Music"></a></font><font color="#00ff00">音乐 (Music)
-  </font><font color="#ffffff">这是吟游诗人 (Bards) 
-  独有的领域，通过歌唱赋予力量。因此，一次只能唱一首法术歌曲，只要歌唱继
-  续，各种法术的效果就会持续（并可能变强）。阅读卷轴或喝药水会打断当前的
-  歌曲，中止其效果。某些竖琴可以增强这种形式的魔法。
-
-<a name="Hex"></a></font><font color="#00ff00">诅咒 (Hex)
-  </font><font color="#ffffff">高阶法师 (High-Mage) 
-  独有的诅咒魔法靠咒骂维生；说真的，这四本诅咒法术书里充满了不堪入目的秽
-  语。大多数诅咒法术像吟游诗人的歌曲一样持续施放；但它们是咏唱而不是歌唱
-  ，而且可以同时编织多个咏唱，将诗句与诗句、诅咒与诅咒交织在一起，允许施
-  法者同时获得多种效果。然而，并发法术的数量受到严格限制，只随着等级缓慢
-  增加。虽然阅读卷轴会打断诅咒法师所有污秽的咏唱，但我听说过有诅咒法师通
-  过鼻子吸入药水，而法术却没有丝毫停顿；但我发现这很难令人相信，而且相当
-  滑稽。
-
-<a name="Burglary"></a></font><font color="#00ff00">行窃 (Burglary)
-  </font><font color="#ffffff">这是游荡者 (Rogue) 
-  首选且独有的领域。该领域在探测和一般潜行方面很强，还提供了设置陷阱、扒
-  窃、与盗贼交涉以及暗杀沉睡敌人的能力。与范围固定的普通探测不同，行窃法
-  术的作用区域会随着施法者等级的提高而增加，最终覆盖当前地下城的整个楼层
-  。真正的窃贼对危险有敏锐的眼光，并可能提前规划好逃跑路线。他们可以加速
-  逃离棘手的境地。他们可以检查他们的偷窃所得（战利品），从而非常清楚他们
-  ……咳咳……“找到”的财宝质量如何。行窃游荡者在世界各地的黑市中广为人知，并
-  作为新货源的主要提供者受到优待；但这几乎算不上什么魔法事实，不是吗？
-
-<a name="Necromancy"></a></font><font color="#00ff00">死灵 (Necromancy)
-  </font><font color="#ffffff">死灵法师 (Necromancer) 
-  专属领域，这是不死生物的污秽领域，允许施法者与死者交流并最终控制死者。
-  死者有很多东西可以提供，包括关于这个世界及其包含物品的知识。作为仆从，
-  它们很难被杀死，因为它们已经死了！此外，这个领域提供了一些非常独特的东
-  西：用致命的（死气沉沉的）力量触碰敌人的能力。起初，死灵法师的触碰很微
-  弱，带有寒冷、黑暗或毒素属性，但最终触碰会变得更强，一点一点地偷走生命
-  ，也许，可能，最终会瞬间抽干。但谁能确切知道呢，毕竟那些确实学到了污秽
-  死灵秘密的人已经不在我们身边了？
-
-<a name="Rage"></a></font><font color="#00ff00">狂怒 (Rage)
-  </font><font color="#ffffff">狂怒与其说是魔法，不如说是一种特殊技艺。这个领域是狂怒法师 
-  (Rage-Mages) 
-  的专属，他们是所有魔法事物的死敌。诚然，技艺是从书本上学到的，但获取法
-  术的仪式包括在过程中销毁书本，这意味着狂怒法师从他们找到的每本书中只能
-  学习一个法术。而一旦学会，施放该技艺就不再需要书本了，这也许是件幸事。
-  这个领域提供各种战斗技艺，以及纯粹靠吼声震碎魔法敌人的天赋。
-
-<a name="Kendo"></a></font><font color="#00ff00">剑道 (Kendo)
-  </font><font color="#ffffff">另一个技艺领域，剑道是武士 (Samurai) 
-  独有的，提供强大的天赋以直接增强近战的效率。天赋是从书中学习的，但一旦
-  学会，就可以自由使用而无需再查阅书本。
-
-<a name="CastingSpells"></a></font><font color="#c00000">关于施法 (On Casting Spells)
-
-
-</font><font color="#ffffff">选择施法角色的玩家在游戏过程中可能会注意到一些不寻常的现象。以下是一些关
-于正在发生什么的提示和技巧。
-
-</font><font color="#00ff00">护甲与施法 (Armor and Spell Casting)
-  
-  </font><font color="#ffffff">大多数施法职业在挥舞护甲和武器的总体组合重量超过一定限度时会受到惩罚，
-  尽管惩罚的幅度、允许的最大重量以及武器计入最大重量的程度因职业而异。超
-  过重量限制会降低你的最大法力值 (SP)；发生这种情况时你会收到警告。
-
-</font><font color="#00ff00">手套妨碍 (Glove Encumbrance)
-  
-  </font><font color="#ffffff">许多施法者，尤其是法师，需要他们的手指自由活动以进行伴随法术的复杂手势
-  ，因此戴手套会受到严重的惩罚。提供自由行动 (Free 
-  Action)、敏捷或使用魔法装置技能的物品是一个例外，可以正常穿戴；且并非
-  所有使用魔法或书本的职业都受到这种限制。
-
-</font><font color="#00ff00">法术持续时间 (Spell Durations)
-  
-  </font><font color="#ffffff">有些法术（如加速自身或抗性）提供的效果会在一段时间后消退。除了极少数例
-  外，多次施放此类法术在持续时间上是不可累加的；换句话说，将一个持续时间
-  为 20 回合的法术施放三次并不会导致 60 
-  回合的持续时间。通常，后续施法只会给总持续时间增加一小部分。
-
-<a name="SpellTypes"></a></font><font color="#c00000">法术类型 (Spell Types)
-
-</font><font color="#00ff00">投射与光束法术 (Bolts and Beams)
-  </font><font color="#ffffff">投射和光束法术瞄准一个方向或目标。投射法术 (bolt) 
-  会击中其目标方向上的第一个怪物或障碍物，它可能并非预期的目标。另一方面
-  ，光束法术 (beam) 
-  将在射击方向上击中射程内的每一个目标，直到碰到墙壁或其他障碍物。具有反
-  射 (Reflection) 能力的怪物有 75% 
-  的几率反射投射法术，但光束法术不受影响。与投射不同，光束可以损坏地上的
-  物品。许多投射法术有随机的几率生成光束。
-
-</font><font color="#00ff00">球状法术 (Balls)
-  
-  </font><font color="#ffffff">球状法术与投射在几个方面有所不同：它们总是会击中预期目标（如果目标在视
-  线内有效的话）；它们有爆炸半径（因法术而异）；且它们不能被反射。半径值
-  为一或更大的球除了影响目标方格本身外，还会影响周围的区域；这会波及额外
-  的怪物、物品或地形，尽管只有中心方格承受全额伤害。当球状法术指向墙里的
-  怪物时，球会在墙前爆炸，使怪物受到的伤害减半，因为它不在爆炸中心。几乎
-  所有球状法术都可以瞄准，虽然有少数法术总是以玩家为中心（在这种情况下玩
-  家不会受到任何伤害）。
-
-</font><font color="#00ff00">视线内法术 (Line-of-Sight)
-  
-  </font><font color="#ffffff">视线内法术影响当前在你角色视线内的所有怪物，包括隐形或以其他方式未被看
-  见的怪物。视线内法术不能，也不需要瞄准。
-
-</font><font color="#00ff00">区域法术 (Area)
-  
-  </font><font color="#ffffff">区域法术影响玩家周围的一个区域。区域的大小可能有很大差异；例如，照亮区
-  域 (Light Area) 会照亮一个房间，而探测陷阱 (Detect Traps) 和群体灭绝 
-  (Mass Genocide) 
-  影响特定半径内的所有方格（无视视线阻挡），普通的灭绝术 (Genocide) 
-  则影响整个楼层。区域法术不能瞄准。
-
-</font><font color="#00ff00">其他 (Other)
-  
-  </font><font color="#ffffff">许多法术，如鉴定或传送自身，并不指向外部，而是影响玩家或玩家携带的物品
-  。增益 (Buff) 
-  法术提供临时好处，如加速或元素抗性，且几乎总是有持续时间。治疗法术治愈
-  状态效果并恢复失去的生命值。自己游玩去发现还有什么别的法术吧！
-
-<a name="Macros"></a></font><font color="#c00000">使用宏来施法 (Using Macros to Cast Spells)
-
-</font><font color="#00ff00">宏 (Macros) </font><font color="#ffffff">和 </font><font color="#00ff00">按键映射 (keymaps) 
-</font><font color="#ffffff">是有些进阶的主题；在游戏期间绝非必须使用宏，所以你可以跳过本节。不过，宏
-背后的基本原理并不难掌握。
-
-
-施放一个书本法术至少需要三次按键——一次选择施法命令，一次选择正确的书，一
-次选择正确的法术。三次按键不算多，但在漫长的游戏过程中，你可能会将某些法
-术施放 1000 
-次甚至更多，积少成多！这就是为什么给常用法术设置单键宏或按键映射通常会很
-方便的主要原因。
-
-回到我们之前的示例法术书：
-
-(法术 a-h, *=列表, ESC=退出) 施放哪个法术？(Cast which spell?)                  
-     名称 (Name)             熟练(Prof) 级别 SP 失败 描述
-  a) 魔法飞弹                  [入]   1   2   5% 伤害 3d4
-  </font><font color="#00ffff">b) 破坏陷阱与门              [生]   1   4   9% 未知
-  </font><font color="#00ff00">c) 闪光术                    [生]   2   4  15% 未尝试
-  </font><font color="#ffffff">d) 困惑之触                  [生]   5   8  49%
-  </font><font color="#00ffff">e) 法力爆发                  [生]   9  10  91% 未知
-  f) 火焰矢                    [生]  13  15  95% 未知
-  g) 原力之拳                  [生]  14  15  95% 未知
-  h) 传送自身                  [生]  15  15  95% 未知
-
-</font><font color="#ffffff">假设这是法术书 </font><font color="#ff0000">a</font><font color="#ffffff">，而且我已将其铭刻为 </font><font color="#ff0000">@ma</font><font color="#ffffff">，以确保它始终作为法术书 
-</font><font color="#ff0000">a</font><font color="#ffffff">，而不会突然改变在物品栏中的槽位（有关铭刻的更多细节，请参见 <a href="objects.html#Inscriptions"></font><font color="#00ff00">[a]</a>
-</font><font color="#ffffff">）。这意味着我将键入 </font><font color="#ff8000">mac 
-</font><font color="#ffffff">来施放闪光术照明，如果我没有早早暴毙，这可能是我在一次游戏中要做几百次的
-操作。
-
-使用 </font><font color="#ff8000">@ </font><font color="#ffffff">宏菜单命令，我可以创建一个新宏，使用 </font><font color="#ff8000">F6 </font><font color="#ffffff">键作为触发器，并将 </font><font color="#ff8000">mac 
-</font><font color="#ffffff">作为其对应的操作。（按键映射通常比宏更好；但 F6 
-键只能作为宏触发器，不能作为按键映射触发器，所以如果我想用它，就只能设为
-宏。）
-现在我可以用 F6 
-键一键照明房间了……下次我玩一个带有不同照明法术的其他角色时，我可以把 </font><font color="#ff8000">F6 
-</font><font color="#ffffff">映射到新法术上，继续使用相同的键，而不必记住新的按键序列。
-
-    
-    </font><font color="#00ff00">始终将你的宏和按键映射保存到文件中。否则，当你退出游戏时
-    它们就会丢失。
-
-</font><font color="#ffffff">现在假设我也想为魔法飞弹设置一个宏。我可以简单地将 </font><font color="#ff8000">F1 </font><font color="#ffffff">映射到序列 
-</font><font color="#ff8000">maa</font><font color="#ffffff">（实际上，我个人就会这么做）；但有些玩家喜欢更进一步，将其映射为 
-</font><font color="#ff8000">maa*5</font><font color="#ffffff">，这样宏就会自动选择一个目标。这有个缺点，你可能会打偏到你不想打的
-目标上；但如果你只是在把魔法飞弹狂轰乱炸到一群弱小敌人中，那可能就不那么
-重要了。
-
-请注意，与 </font><font color="#ff8000">maa </font><font color="#ffffff">宏相比，</font><font color="#ff8000">maa*5 
-</font><font color="#ffffff">宏即使多次施放，对每个敌人也只节省了两次按键；而 </font><font color="#ff8000">maa </font><font color="#ffffff">宏本身与依次按下 
-m-a-a-*-5 
-每个键相比，对每个敌人也只节省了两次按键。这是因为在第一次施法后，可以使
-用单键 </font><font color="#ff8000">n </font><font color="#ffffff">命令（roguelike 键位中的 </font><font color="#ff8000">X</font><font color="#ffffff">）来重复法术本身和目标的选取。
-
-
-</font><font color="#404040">最初版     : (??)
-更新       : (??)
-更新       : Zangband DevTeam
-更新       : Hengband 1.7.2
-更新       : PosChengband 7.0.0
-更新       : RoguelikeFansBand 7.1.liquorice
+<font color="#00ffff">The Magic System
+
+</font><font color="#ffffff">Just beneath the surface of the commonplace and mundane lurks the 
+unpredictable and magical. Some may access these forces, gaining great 
+powers in the process. Others eschew the unexplained and unexplainable. 
+Whether you use magic is up to you, and depends upon which class you 
+choose to play. Hack and slash with the warrior, and magic will forever 
+remain a mystery to you; choose the life of a Mage, and the eternal 
+secrets of the universe may be revealed to you.
+
+Magic is available in many forms. Magical potions can be used by any 
+characters, even the illiterate and uncivilized Berserkers. Magical 
+scrolls, wands, rods and staves are available to all classes except 
+Berserker, but require some skill to use correctly; these forms of 
+magic are discussed elsewhere and not covered here in detail. Finally, 
+there are the select few who access the forces of magic directly, 
+casting spells to slay and spells to heal; spells to learn and spells 
+to travel; spells to beguile and spells to banish; it is here, into the 
+realm of the spellcaster, that we now shall journey.
+
+<a name="Types"></a></font><font color="#c00000">Spellcaster Types
+
+</font><font color="#ffffff">There are two main kinds of spellcaster: those who use ancient books of 
+erudition to access the magical, and those who gain powers or abilities 
+directly through their mental focus. In addition, there are </font><font color="#ff0000">special 
+techniques</font><font color="#ffffff">, which may not be traditional magic but obey most of the 
+same rules as magic does; these may effectively fall into either of the 
+first two categories. </font><font color="#ff0000">Racial powers </font><font color="#ffffff">and other similar abilities are 
+granted by race, class or mutations rather than magical ability, and 
+work in somewhat different ways.
+
+</font><font color="#ff0000">Book spellcasters </font><font color="#ffffff">are the traditional magic-user classes; they must 
+find (or purchase) appropriate spellbooks to learn from, and read from 
+those books as they cast spells, requiring clear eyes and light to see 
+with. </font><font color="#ff0000">Non-book spellcasters </font><font color="#ffffff">gain their powers automatically as they 
+grow in experience and understanding, and can sometimes invoke their 
+magic in the dark or while blind. A small number of classes, including 
+Force-Trainers and Ninja-Lawyers, can use both book and non-book magic.
+
+All spellcasters require a clear, unconfused mind, as well as a 
+functional </font><font color="#ff8000">m </font><font color="#ffffff">key, to access the magical. Nearly all spellcasters also 
+need </font><font color="#ff0000">spell points </font><font color="#ffffff">(SP, mana) to cast spells; mana measures the 
+spellcaster's concentration and magical energy, and without it spells 
+will fail. Some casters may be able to substitute hit points for mana 
+(this is more commonly the case for racial powers than normal magic); 
+and some spells may come to the caster so easily they require no mana 
+at all. All spellcasters have a </font><font color="#ff0000">primary stat </font><font color="#ffffff">or </font><font color="#ff0000">spellcasting stat</font><font color="#ffffff">; 
+their ability to cast spells, as well as the size of their mana pool, 
+depends on this stat. </font><font color="#ff0000">Anti-magic </font><font color="#ffffff">always prevents magic of this type, 
+though it may not affect some special techniques that are otherwise 
+indistinguishable from magic.
+
+Racial powers (and other similar powers) are used with the </font><font color="#ff8000">U </font><font color="#ffffff">key (</font><font color="#ff8000">O </font><font color="#ffffff">in 
+the roguelike keyset). Racial powers also require mana, but not 
+absolutely; it is common to substitute HP. Racial powers, like spells, 
+depend on a spellcasting stat; but while all spells rely on the same 
+casting stat, each racial power has its own stat. Racial powers are not 
+affected by anti-magic.
+
+The bulk of this document is about book spellcasting, and the various 
+magic realms available to book casters.
+
+<a name="Spellbook"></a></font><font color="#c00000">Spellbook Magic
+
+</font><font color="#ffffff">All spellbooks belong to one of the many </font><font color="#ff0000">magic realms </font><font color="#ffffff">in the game. Most 
+book spellcasters are limited to one or two realms, chosen from a wider 
+list of options during character creation; which realms are open for 
+selection depends on your class. Each realm contains exactly four 
+books, and each book contains eight spells, though some of these spells 
+may be unavailable to you even if you specialize in the right realm. A 
+few classes, such as Sorcerers, follow special rules and are not 
+limited to two realms.
+
+Classes with two realms have a </font><font color="#ff0000">primary realm </font><font color="#ffffff">and a </font><font color="#ff0000">secondary realm</font><font color="#ffffff">. The 
+primary realm is the one you are truly proficient in; your fail rates 
+are higher in the secondary realm, and you will never be able to fully 
+master its spells. The secondary realm does have one advantage: unlike 
+the primary realm, it can be changed during the game. To achieve this, 
+simply </font><font color="#ff8000">G</font><font color="#ffffff">ain a spell from a book of the realm you wish to switch to. 
+However, you will forget any spells you learned in the old realm, and 
+the number of total spells you can learn during the game is limited; so 
+use this power wisely and sparingly.
+
+Most realms have two cheap </font><font color="#ff0000">town books </font><font color="#ffffff">that can be regularly found in 
+shops, and two rare and valuable </font><font color="#ff0000">dungeon books </font><font color="#ffffff">that cannot be acquired 
+so easily. It is rumoured that the witches of Witch Wood have a nice 
+collection of dungeon books...
+
+<a name="Proficiency"></a></font><font color="#c00000">Spell Proficiency
+
+</font><font color="#ffffff">The more experience you have with a particular book spell, the lower 
+your fail rates and mana cost for that spell. This is called </font><font color="#ff0000">spell 
+proficiency</font><font color="#ffffff">, and is indicated by the rough labels </font><font color="#00ff00">Unskilled</font><font color="#ffffff">, </font><font color="#00ff00">Beginner</font><font color="#ffffff">, 
+</font><font color="#00ff00">Skilled</font><font color="#ffffff">, </font><font color="#00ff00">Expert </font><font color="#ffffff">and </font><font color="#00ff00">Master</font><font color="#ffffff">. Every time you use a spell, you gain some 
+proficiency with that spell, although serious experience can only be 
+gained deep in the dungeon; casting a spell over and over again in the 
+safety of a town will not help you much.
+
+Most (though not all) classes also have an alternative way to gain 
+proficiency: by studying the same spell a second (or third) time with 
+the </font><font color="#ff8000">G </font><font color="#ffffff">command. This will take you (at a minimum) to the next labeled 
+level of proficiency, and retain some of whatever progress you had 
+already made towards the next level; but it also consumes one of your 
+allocated opportunities to learn a spell, and means another spell might 
+remain unstudied forever unless you find a Scroll of Spell.
+
+In general, all players start with Unskilled proficiency with every 
+spell, can Master all spells in their first realm, and can reach Expert 
+level in all spells in their second realm if they have one. </font><font color="#ff0000">Sorcerers 
+</font><font color="#ffffff">and </font><font color="#ff0000">Red-Mages</font><font color="#ffffff">, who are not limited to two realms, follow special rules 
+regarding proficiency; Sorcerers automatically Master all spells they 
+have access to, while Red-Mages are Skilled in all of their spells. The 
+proficiency of </font><font color="#ff0000">Skillmasters </font><font color="#ffffff">is also special, and determined solely by 
+how many skill points they have invested in the realm. These three 
+classes gain no proficiency from using a spell.
+
+<a name="Book"></a></font><font color="#c00000">What a Spellbook Looks Like
+
+</font><font color="#ffffff">This is what a young character might see on pressing </font><font color="#ff8000">m </font><font color="#ffffff">and selecting a 
+spellbook:
+
+(Spells a-h, *=List, ESC=exit) Cast which spell?                                
+     Name                    Profic Lvl  SP Fail Desc
+  a) Magic Missile             [Be]   1   2   5% dam 3d4
+  </font><font color="#00ffff">b) Trap / Door Destruction   [Un]   1   4   9% unknown
+  </font><font color="#00ff00">c) Flash of Light            [Un]   2   4  15% untried
+  </font><font color="#ffffff">d) Touch of Confusion        [Un]   5   8  49%
+  </font><font color="#00ffff">e) Mana Burst                [Un]   9  10  91% unknown
+  f) Fire Bolt                 [Un]  13  15  95% unknown
+  g) Fist of Force             [Un]  14  15  95% unknown
+  h) Teleport Self             [Un]  15  15  95% unknown
+
+</font><font color="#ffffff">Indicated for each spell are the spell's label (the key for that 
+spell), the spell's name, your proficiency, the character level at 
+which the spell can first be learned, mana cost, fail rate and some 
+additional information. The spell </font><font color="#00ff00">Flash of Light </font><font color="#ffffff">is shown in </font><font color="#00ff00">green 
+</font><font color="#ffffff">because the character has studied it but not yet attempted to cast it; 
+Magic Missile and Touch of Confusion are shown in white because they 
+have been both studied and successfully cast, while the other spells 
+are all </font><font color="#00ffff">light blue </font><font color="#ffffff">to indicate they have not been studied yet. Magic 
+Missile is already up to [Be]ginner proficiency, while the other seven 
+spells are still [Un]skilled.
+
+The very brief additional info does not tell us much; Magic Missile 
+does 3d4 damage, and is presumably a magical missile, but the other 
+spells are not as self-explanatory. Instead of </font><font color="#ff8000">m</font><font color="#ffffff">, we can use the </font><font color="#ff8000">b 
+</font><font color="#ffffff">Browse command (</font><font color="#ff8000">P </font><font color="#ffffff">for Peruse in the roguelike keyset) to learn more:
+
+(Spells a-h, *=List, ESC=exit) Browse which spell?
+     Name                    Profic Lvl  SP Fail Desc
+  a) Magic Missile             [Be]   1   2   5% dam 3d4
+  </font><font color="#00ffff">b) Trap / Door Destruction   [Un]   1   4   9% unknown
+  </font><font color="#00ff00">c) Flash of Light            [Un]   2   4  15% untried
+  </font><font color="#ffffff">d) Touch of Confusion        [Un]   5   8  49%
+  </font><font color="#00ffff">e) Mana Burst                [Un]   9  10  91% unknown
+  f) Fire Bolt                 [Un]  13  15  95% unknown
+  g) Fist of Force             [Un]  14  15  95% unknown
+  h) Teleport Self             [Un]  15  15  95% unknown
+
+  </font><font color="#ffff00">Lights up nearby area and the inside of a room permanently.
+
+</font><font color="#ffffff">Here I'm looking into the Flash of Light spell; the description makes 
+it clear this is an illumination spell and not, say, a bolt of light.
+
+<a name="WhichSpell"></a></font><font color="#c00000">Which Spells Should I Study?
+
+</font><font color="#ffffff">A few spellcasting classes, generally those associated with Wisdom or 
+priesthood, have no direct control over which spells they gain; when 
+they use the </font><font color="#ff8000">G </font><font color="#ffffff">Gain a Spell command, their gods select a new spell for 
+them at random. Most classes, though, can choose a specific spell to 
+study; as noted above, they can even study the same spell repeatedly!
+
+As a rule, you can </font><font color="#ff0000">eventually </font><font color="#ffffff">learn all spells in your realm or realms; 
+the exceptions are if you swapped your secondary realm mid-game or if 
+you studied a single spell more than once, and even then you can gain 
+new spell slots with Scrolls of Spell. So the question is not so much 
+"which spells should I study?" - you will study all or nearly all of 
+them - as it is </font><font color="#ffff00">which spell you should study right now</font><font color="#ffffff">.
+
+Book spellcasters often have a hard time killing monsters in the early 
+game, so it helps if your first spell is something </font><font color="#ff0000">offensive </font><font color="#ffffff">like Magic 
+Missile. You can get a mage off the ground without offensive spells, 
+but it takes care and patience! Once you have solid offensive options, 
+utility spells like detection, escapes and buffs become more inviting.
+
+<a name="MagicRealms"></a></font><font color="#c00000">General Magic Realms
+
+</font><font color="#ffffff">These magic realms are available as first and second realms to a wide 
+variety of classes, though not necessarily to all book spellcasters.
+
+<a name="Life"></a></font><font color="#00ff00">Life
+  </font><font color="#ffffff">Life magic is very good for healing; it relies mostly on healing, 
+  protection and detection spells. This realm has no direct damage 
+  spells, at least against the living, though there are rumors of some 
+  high-level spells greatly feared by the already dead. Life is 
+  considered a "good" realm; if virtues are on, the fail rate of Life 
+  spells goes up if the caster's alignment tends towards evil, and down 
+  if the caster is aligned with the forces of good.
+
+<a name="Sorcery"></a></font><font color="#00ff00">Sorcery
+  </font><font color="#ffffff">Sorcery is a utility realm, including enchantment and general spells. 
+  It provides superb utility spells (such as Teleport spells for 
+  fleeing and even Globe of Invulnerability), spells to enhance your 
+  odds in combat (Slow Monster, Haste Self, Confuse Monster) and, most 
+  importantly, a vast selection of spells for gathering information: in 
+  addition to the usual detection and identify spells, one of the 
+  standard spellbooks has a spell called Identify True, which gives you 
+  full knowledge of a given object! In the rare books, there are spells 
+  with which you can protect your inventory items or even turn unwanted 
+  items to gold. However, Sorcery has one weakness: it has no spells to 
+  deal direct damage to your enemies.
+
+<a name="Nature"></a></font><font color="#00ff00">Nature
+  </font><font color="#ffffff">Nature magic makes you a master of the elements; it provides 
+  protection, detection, curing and attack spells, and most 
+  importantly, spells that change surrounding geographical features. 
+  Nature also offers Herbal Healing, which is the only powerful healing 
+  spell outside the realm of Life magic. Since Nature seeks balance and 
+  harmony, fail rates of Nature spells go up when the caster's 
+  alignment becomes very good or evil.
+
+<a name="Chaos"></a></font><font color="#00ff00">Chaos
+  </font><font color="#ffffff">Chaos is the very element of unmaking, and Chaos spells are the most 
+  terrible weapons of destruction imaginable. From Magic Missile and 
+  Fire Bolt to the medium level Fire Ball and Doom Bolt, and finally to 
+  the awesome spells of Invoke Logrus, Mana Storm and Call the Void, 
+  Chaos offers an almost unsurpassable arsenal of attack spells. Chaos 
+  is one of two realms to provide the Destruction spell. The caster can 
+  also call on the primal forces of Chaos to induce mutations in 
+  enemies and even themselves; but apart from this, Chaos has no 
+  protective spells. Beware! Chaos spells are known to backfire easily 
+  and produce undesired effects.
+
+<a name="Death"></a></font><font color="#00ff00">Death
+  </font><font color="#ffffff">There is no fouler nor more evil category of spells than the 
+  necromantic spells of Death Magic. These spells are relatively hard 
+  to learn, but at higher levels the spells give the caster power over 
+  living and the (un)dead. Poison, vampirism, death spells, and even 
+  the forces of nether can be directed by the caster. Should a Death 
+  wizard find the legendary tome Necronomicon, he can expect to gain 
+  very great powers indeed, but at a cost: few that have studied that 
+  accursed tome have retained their sanity. Since this is an evil 
+  realm, the fail rates of Death spells go up for good-aligned casters 
+  if virtues are turned on.
+
+<a name="Trump"></a></font><font color="#00ff00">Trump
+  </font><font color="#ffffff">Trump magic seems an independent source of power, even if supposedly 
+  associated with Chaos. Although it lacks the unpredictable chaotic 
+  side-effects of Chaos magic, it has a few spells whose exact effects 
+  seem more or less random. One such spell is Shuffle: the Trump 
+  spellbooks actually consist of decks of trumps, and the Shuffle spell 
+  allows the caster to shuffle the deck and pick one card at random. 
+  The effect depends on the card picked, and is not always pleasant. 
+  The Trump gateways are a major method of transportation, and the 
+  realm has an admirable selection of teleportation spells. Trump magic 
+  has no equal when it comes to summoning creatures; but not all 
+  monsters appreciate being drawn to another place by the Trump user. 
+  The only summoned creatures whose loyalty is fully guaranteed are the 
+  Phantasmal Servants, who lack a will of their own... but might 
+  develop one if you treat them badly.
+
+<a name="Arcane"></a></font><font color="#00ff00">Arcane
+  </font><font color="#ffffff">Arcane, even more than Sorcery, is a general-purpose realm; it 
+  attempts to offer all the utility spells of other realms, as well as 
+  a few of its own. The downside of Arcane is that it is somewhat 
+  lacking in really powerful spells, and many of its spells are more 
+  expensive than their cousins in other realms. Arcane is the only 
+  realm with no dungeon spellbooks; all four Arcane books can be bought 
+  in town. Arcane offers good support to other realms, but characters 
+  with just one realm may find it too limited.
+
+<a name="Craft"></a></font><font color="#00ff00">Craft
+  </font><font color="#ffffff">As the realm of enchantment, Craft magic offers spells to enhance the 
+  player and his equipment, and even to forge new powerful magical 
+  objects. Player enhancements include extra resistance, speed, armor 
+  and combat skills. Item enhancements include magical bonuses and 
+  temporary elemental slays, which can be quite powerful when applied 
+  to the right sort of weapon. Finally, forging or crafting turns an 
+  existing object into a random ego item and is quite unique to this 
+  magic realm. It is even said that Craft magic allows the caster to 
+  enhance their offensive damage, using their own mana to power mighty 
+  slays that none may resist. But this may just be a rumor...
+
+<a name="Daemon"></a></font><font color="#00ff00">Daemon
+  </font><font color="#ffffff">Daemon magic offers powerful attack spells with the properties of 
+  Fire or Nether. There are a few detection spells which provide a map 
+  of the nearby area or temporary telepathy. Daemon magic also provides 
+  temporary transformation spells which allow caster to become a Demon 
+  or even a mighty Demon Lord. Daemon is an evil realm; if virtues are 
+  on, the fail rates of Daemon spells go up for casters aligned towards 
+  good.
+
+<a name="Crusade"></a></font><font color="#00ff00">Crusade
+  </font><font color="#ffffff">Crusade is the ultimate "good" realm; it has some attack spells, but 
+  they are mostly used for harming and banishing foul minions of evil, 
+  and are not very effective against a good monster. If virtues are on, 
+  the fail rates of Crusade spells go up for casters aligned with evil.
+
+<a name="Armageddon"></a></font><font color="#00ff00">Armageddon
+  </font><font color="#ffffff">Death. Destruction. Slaughter. This realm knows nothing else and 
+  every spell is a direct offensive spell. From elemental attacks to 
+  mighty breath attacks, Armageddon is unparalleled in raw damage. It 
+  might be better to seek a more balanced approach, and even Chaos 
+  magic offers some utility spells to complement the offense; still, if 
+  you want the ultimate in destruction, look no further.
+
+<a name="OtherMagicRealms"></a></font><font color="#c00000">Class-Specific Magic Realms
+
+</font><font color="#ffffff">In addition to the realms listed above, there are a few class-specific 
+spell realms. These realms also use books to gain access to magic but 
+might behave slightly differently than normal spellbook realms.
+
+<a name="Law"></a></font><font color="#00ff00">Law
+  </font><font color="#ffffff">The realm of Law is the speciality of Lawyers. It straddles the line 
+  between general and class-specific magic - it can be studied by 
+  non-specialists, but no other class can master it as easily or 
+  completely as the Lawyer. The Law realm offers a fairly comprehensive 
+  set of utility tricks, allowing its practitioner to detect threats 
+  and opportunities, mystify enemies, set traps, charm potential 
+  friends and weasel out of dangerous situations; but it offers few 
+  direct offensive options.
+
+<a name="Music"></a></font><font color="#00ff00">Music
+  </font><font color="#ffffff">Unique to Bards, this realm grants power through song. As such, only 
+  a single spell may be sung at a time, and the effects of the various 
+  spells endure (and perhaps grow stronger) so long as the song is 
+  continued. Reading a scroll, or quaffing a potion, interrupts the 
+  current song, discontinuing its effects. Certain harps may enhance 
+  this form of magic.
+
+<a name="Hex"></a></font><font color="#00ff00">Hex
+  </font><font color="#ffffff">Unique to the High-Mage, Hex magic thrives on curses; truly, the four 
+  Hex spellbooks are full of language not fit for printing. Most Hex 
+  spells are cast continually, like the musical songs of the bard; but 
+  they are chanted rather than sung, and multiple chants may be woven 
+  at once, inter-weaving verse upon verse, and hex upon hex, allowing 
+  the caster to get more than one effect going at a time. However, the 
+  number of concurrent spells is strictly limited, increasing only 
+  slowly with level. While reading a scroll interrupts all of Hex 
+  casters' foul chants, I've heard tell of Hex mages inhaling potions 
+  through their nose without the least pause in the spell; but I find 
+  this rather hard to believe, and quite silly besides.
+
+<a name="Burglary"></a></font><font color="#00ff00">Burglary
+  </font><font color="#ffffff">This is the preferred realm of the Rogue, and unique to that class. 
+  Strong in detection and general sneakiness, this realm also offers 
+  the ability to set traps, to pick pockets, to negotiate with thieves, 
+  and to assassinate sleeping foes. Unlike normal detection, whose 
+  range is fixed, burglary spells increase the area of effect with the 
+  level of the caster, ultimately applying to the entire level of the 
+  current dungeon. The true burglar has a good eye for danger and may 
+  map out their escape route in advance. They can make haste to escape 
+  a tricky situation. They may examine the proceeds of their thievery 
+  (their loot) and consequently have a very good idea of the quality of 
+  the treasures they... ahem... find. Burglary rogues are well known to 
+  the Black Markets of the world, and treated well as the principal 
+  source of new inventory; but that is hardly a magical fact, or is it?
+
+<a name="Necromancy"></a></font><font color="#00ff00">Necromancy
+  </font><font color="#ffffff">Exclusive to the Necromancer, this is the foul realm of undeath 
+  allowing the caster to communicate with, and ultimately control, the 
+  deceased. And the dead have lots to offer, including knowledge of 
+  this world and the objects it contains. As servants, they are hard to 
+  kill, being dead already! In addition, this realm offers something 
+  quite unique: the ability to touch foes with deadly (undeadly) 
+  powers. At first, the touch of the necromancer is weak, being cold, 
+  or dark, or poisonous, but eventually the touch grows stronger, 
+  stealing life little by little, and perhaps, maybe, eventually all at 
+  once. But who knows for certain, as those that did learn the foul 
+  necromantic secrets are with us no more?
+
+<a name="Rage"></a></font><font color="#00ff00">Rage
+  </font><font color="#ffffff">A special technique rather than magic, this realm is unique to the 
+  Rage-Mages, sworn enemies of all things magical. Talents are learned 
+  from books, to be sure, but the ritual of gaining spells involves the 
+  destruction of the book in the process, meaning the Rage-Mage can 
+  only learn one spell from each book they find. And once learned, the 
+  book is no longer required to cast the technique, which is perhaps 
+  fortunate. This realm offers various combat techniques, as well as 
+  the talent to simply shout down magical enemies.
+
+<a name="Kendo"></a></font><font color="#00ff00">Kendo
+  </font><font color="#ffffff">Another technique realm, Kendo is unique to the Samurai, offering 
+  powerful talents to directly enhance the effectiveness of melee. 
+  Talents are learned from books, but, once learned, may be freely used 
+  without further reference to the book.
+
+<a name="CastingSpells"></a></font><font color="#c00000">On Casting Spells
+
+</font><font color="#ffffff">Players who select spellcasting characters may notice a few unusual 
+phenomena during the course of the game. Here are a few tips and hints 
+on what may be happening.
+
+</font><font color="#00ff00">Armor and Spell Casting
+  </font><font color="#ffffff">Most spellcasting classes are penalized for wielding armor and 
+  weapons above a certain total combined weight, though the size of the 
+  penalty, the maximum weight allowed and the extent to which weapons 
+  count towards that maximum vary widely from class to class. Exceeding 
+  the weight limit reduces your maximum SP; you are warned when this 
+  happens.
+
+</font><font color="#00ff00">Glove Encumbrance
+  </font><font color="#ffffff">Many spellcasters, in particular mages, need their fingers free for 
+  the intricate gestures that accompany a spell and are therefore 
+  heavily penalized for wearing gloves on their hands. Items that grant 
+  Free Action, Dexterity or Magic Device Skill are an exception to this 
+  and can be worn normally; and not all magical or book-using classes 
+  are limited in this way.
+
+</font><font color="#00ff00">Spell Durations
+  </font><font color="#ffffff">Some spells such as Haste-Self or Resistance grant an effect which 
+  wears off after a certain period of time. With very few exceptions, 
+  multiple castings of such spells are not cumulative in terms of the 
+  duration of the spell; in other words, casting a spell which has a 
+  duration of 20 turns three times will not result in a duration of 60 
+  turns. Typically, subsequent castings will add only a small amount to 
+  the total duration.
+
+<a name="SpellTypes"></a></font><font color="#c00000">Spell Types
+
+</font><font color="#00ff00">Bolts and Beams
+  </font><font color="#ffffff">Bolt and beam spells are aimed in a direction or at a target. A bolt 
+  spell will hit the first monster or obstruction in its targeted 
+  direction, which may or may not have been the intended target. A beam 
+  spell, on the other hand, will hit every target within range in the 
+  direction of fire until it hits a wall or other obstacle. Monsters 
+  with Reflection have a 75% chance to reflect bolts, but beams are not 
+  affected. Beams, unlike bolts, can damage objects. Many bolt spells 
+  have a random chance to generate beams.
+
+</font><font color="#00ff00">Balls
+  </font><font color="#ffffff">Ball spells differ from bolts in several ways: they always hit the 
+  intended target (if it was a valid target in line of sight); they 
+  have a radius (which varies from spell to spell); and they cannot be 
+  reflected. A radius value of one or more will result in the spell 
+  affecting the area around the target square in addition to the target 
+  itself; this can affect additional monsters, objects or terrain, 
+  though only the target square suffers full damage. When ball spells 
+  are directed at monsters in walls, the ball will blow up in front of 
+  the wall, reducing the damage taken by the monster to half since it 
+  is not at the epicenter. Almost all ball spells can be aimed, though 
+  a few are always centered on the player (the player does not take any 
+  damage in this case).
+
+</font><font color="#00ff00">Line-of-Sight
+  </font><font color="#ffffff">Line-of-sight spells affect all monsters that that are currently in 
+  your character's line of sight, including invisible and otherwise 
+  unseen monsters. Line-of-sight spells cannot, and need not, be aimed.
+
+</font><font color="#00ff00">Area
+  </font><font color="#ffffff">Area spells affect an area around the player. The size of the area 
+  can vary considerably; for example, Light Area illuminates a single 
+  room, while Detect Traps and Mass Genocide affect all squares within 
+  a specific radius (regardless of line of sight), and normal Genocide 
+  affects the entire level. Area spells cannot be aimed.
+
+</font><font color="#00ff00">Other
+  </font><font color="#ffffff">Many spells, like Identify or Teleport Self, are not directed outside 
+  and affect the player or objects carried by the player. Buff spells 
+  provide temporary benefits such as haste or elemental resistance, and 
+  almost always have a duration. Healing spells cure status effects and 
+  give back lost hit points. Play the game and find out what else there 
+  is!
+
+<a name="Macros"></a></font><font color="#c00000">Using Macros to Cast Spells
+
+</font><font color="#00ff00">Macros </font><font color="#ffffff">and </font><font color="#00ff00">keymaps </font><font color="#ffffff">are a somewhat advanced topic; it is by no means 
+necessary to ever use a macro during a game, so you can skip this 
+section if you wish. The basics behind macros, though, are not that 
+hard to grasp.
+
+Casting a book spell requires a minimum of three keypresses - one to 
+select the spell command, one to select the right book and one to 
+select the right spell. Three keypresses is not that much, but over the 
+course of a long game you might cast some spells 1000 times or even 
+more, so it adds up! This is the main reason single-key macros or 
+keymaps for common spells are often convenient.
+
+Going back to our earlier example book:
+
+(Spells a-h, *=List, ESC=exit) Cast which spell?                                
+     Name                    Profic Lvl  SP Fail Desc
+  a) Magic Missile             [Be]   1   2   5% dam 3d4
+  </font><font color="#00ffff">b) Trap / Door Destruction   [Un]   1   4   9% unknown
+  </font><font color="#00ff00">c) Flash of Light            [Un]   2   4  15% untried
+  </font><font color="#ffffff">d) Touch of Confusion        [Un]   5   8  49%
+  </font><font color="#00ffff">e) Mana Burst                [Un]   9  10  91% unknown
+  f) Fire Bolt                 [Un]  13  15  95% unknown
+  g) Fist of Force             [Un]  14  15  95% unknown
+  h) Teleport Self             [Un]  15  15  95% unknown
+
+</font><font color="#ffffff">Suppose this is book </font><font color="#ff0000">a</font><font color="#ffffff">, and furthermore that I have inscribed the book 
+as </font><font color="#ff0000">@ma </font><font color="#ffffff">to make sure it will always be book </font><font color="#ff0000">a </font><font color="#ffffff">and not suddenly change 
+slots (see <a href="objects.html#Inscriptions"></font><font color="#00ff00">[a]</a> </font><font color="#ffffff">for more details on inscriptions). This means I'll be 
+typing </font><font color="#ff8000">mac </font><font color="#ffffff">to cast the Flash of Light illumination spell, something I 
+will likely do several hundred times in a game if I don't die early.
+
+Using the </font><font color="#ff8000">@ </font><font color="#ffffff">command, I can create a new macro with the </font><font color="#ff8000">F6 </font><font color="#ffffff">key as the 
+trigger and </font><font color="#ff8000">mac </font><font color="#ffffff">as the action. (Keymaps are generally preferable to 
+macros; but the F6 key is only acceptable as a macro trigger, not a 
+keymap trigger, so if that's what I wish to use it has to be a macro.)
+I can now use the F6 key to illuminate rooms with a single keypress... 
+and the next time I play a different character with a different 
+illumination spell, I can map </font><font color="#ff8000">F6 </font><font color="#ffffff">to the new spell and keep using the 
+same key instead of having to memorize a new sequence.
+
+    </font><font color="#00ff00">Always append your macros and keymaps to a file. 
+    Otherwise, they will be lost when you exit the game.
+
+</font><font color="#ffffff">Now suppose I want to have a macro for Magic Missile as well. I could 
+simply map </font><font color="#ff8000">F1 </font><font color="#ffffff">to the sequence </font><font color="#ff8000">maa </font><font color="#ffffff">(indeed, this is what I personally 
+would do); but some players like to go further and map it to </font><font color="#ff8000">maa*5</font><font color="#ffffff">, so 
+the macro automatically selects a target as well. This has the downside 
+that you might not get the target you would like best; but if you are 
+just spamming magic missiles into a crowd of weak enemies, that will 
+probably not matter so much.
+
+Note that an </font><font color="#ff8000">maa*5 </font><font color="#ffffff">macro only saves two keypresses per enemy over an 
+</font><font color="#ff8000">maa </font><font color="#ffffff">macro, even if the spell is used more than once; and the </font><font color="#ff8000">maa </font><font color="#ffffff">macro 
+itself only saves two keypresses per enemy compared to just pressing 
+every key in the sequence m-a-a-*-5. This is because after the first 
+cast, the single-key </font><font color="#ff8000">n </font><font color="#ffffff">command (</font><font color="#ff8000">X </font><font color="#ffffff">in the roguelike keyset) can be used 
+to repeat both the spell and the targetting.
+
+
+</font><font color="#404040">Original   : (??)
+Updated    : (??)
+Updated    : Zangband DevTeam
+Updated    : Hengband 1.7.2
+Updated    : PosChengband 7.0.0
+Updated    : RoguelikeFansBand 7.1.liquorice
+
 
 </font></pre></body></html>

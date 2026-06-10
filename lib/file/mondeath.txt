@@ -1,4 +1,4 @@
-N:19:Nick the Butcher
+﻿N:19:Nick the Butcher
 sighs, 'Was that really worth it, for the sake of a cheap item?'
 
 N:53:Grip, Farmer Maggot's dog
@@ -62,12 +62,12 @@ N:1018:Raou
 points at himself and shouts, 'I finished my life with no regrets!'
 
 N:1063:lousy, the King of louses
-says, 'Ah, FrogComposband is too difficult!  I'm going back to ComPosband!!'
+says, 'Ah, RoguelikeFansBand is too difficult!  I'm going back to ComPosband!!'
 
 N:1094:The Variant Maintainer
-says, 'I guess FrogComposband is too easy!'
+says, 'I guess RoguelikeFansBand is too easy!'
 says, 'Wait until you see me next release!'
-says, 'FrogComposband is too difficult, I'm going back to Composband!'
+says, 'RoguelikeFansBand is too difficult, I'm going back to Composband!'
 says, 'Well, Composband was much more fun than this!'
 says, 'Now what's going to happen to my No Teleporting code?'
 says, 'I died, so that means there will be changes.'

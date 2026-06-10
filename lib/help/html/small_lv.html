@@ -1,96 +1,103 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <body text="#ffffff" bgcolor="#000000"><pre>
-<font color="#00ffff">地牢层大小选项 (Level Size Options)
+<font color="#00ffff">Level Size Options
 
-</font><font color="#ffffff">RoguelikeFansBand 
-中地牢层的大小因地牢而异，且因深度而异，但均适用相同的基础系统：地牢层的
-宽度始终是 66 格的倍数（最大不超过 198），高度始终是 22 
-格的倍数（最大不超过 66）。某些地牢被标记为</font><font color="#ff0000">大型 
-(big)</font><font color="#ffffff">，这意味着它们通常总是生成尽可能大的地牢层（198x66），而“迷宫 
-(Labyrinth)”、“兽穴 (Warrens)”和“矿坑 (Mine)”则被标记为</font><font color="#ff0000">最小 
-(smallest)</font><font color="#ffffff">，这意味着它们总是生成尽可能小的地牢层（66x22）。某些地牢（尤
-其是主地牢，安格班 Angband）遵循</font><font color="#ff0000">茶歇模式 
-(coffee-break)</font><font color="#ffffff">的地牢生成规则，这意味着地牢层的平均大小会随着深度的增加而
-增加；在浅层会非常频繁地创建小型地牢，但当玩家到达深层地牢时，这些“小型”
-地牢层的面积开始接近大型地牢层，通常为 198x44 或 
-132x66。其余的地牢遵循</font><font color="#ff0000">标准生成 (standard generation)</font><font color="#ffffff">规则，这意味着有 
-1/5 的几率生成偏小的地牢层（排除了极小的地牢层），有 4/5 的几率生成 
-198x66 的大型地牢层。
+</font><font color="#ffffff">The size of RoguelikeFansBand levels varies from dungeon to dungeon, and 
+from depth to depth, but the same basic system applies: the width of a 
+level is always a multiple of 66 grids (no greater than 198), and the 
+height of a level is always a multiple of 22 grids (no greater than 
+66). Some dungeons are flagged </font><font color="#ff0000">big</font><font color="#ffffff">, meaning they normally always 
+generate the largest possible levels (198x66), while Labyrinth, Warrens 
+and Mine are marked </font><font color="#ff0000">smallest</font><font color="#ffffff">, meaning they always generate the smallest 
+possible levels (66x22). Some dungeons (notably the main dungeon, 
+Angband) obey </font><font color="#ff0000">coffee-break </font><font color="#ffffff">level generation, which means the average 
+size of levels increases with depth; small levels are very frequently 
+created, but by the time the player reaches the deep dungeons, these 
+"small" levels start approaching big levels in size and are typically 
+198x44 or 132x66. The remaining dungeons follow </font><font color="#ff0000">standard generation</font><font color="#ffffff">, 
+which means there is a 1 in 5 chance of generating a smallish level 
+(very small levels are excluded) and a 4 in 5 chance of generating a 
+big 198x66 level.
 
-修改 </font><font color="#c00000">地牢层大小 (level size) 
-</font><font color="#ffffff">这个出生/建卡选项，允许你除了遵循上述概述的标准方法外，还能从 10 
-种略有不同的生成地牢层大小的方法中进行选择。为了清晰起见，本说明使用 
-</font><font color="#00ff00">1x1 </font><font color="#ffffff">来指代一个 66x22 的区块；因此，例如 </font><font color="#00ff00">2x3 </font><font color="#ffffff">意味着地牢层宽 132 格、高 
-66 格。所有选项都将 1x2 和 2x1（或 2x3 和 3x2 
-等）同等对待，尽管实际生成的地牢层比例不同（66x44 / 132x22）。</font><font color="#ff8000">除了“庞大 
-(Huge)”选项外，这些选项都不会对三个“最小”地牢（它们总是生成微小地牢层）
-或竞技场 (Arena) 地牢（它总是生成庞大地牢层）产生任何影响。 
-</font><font color="#00ffff">当且仅当启用 </font><font color="#c00000">no_big_dungeons </font><font color="#00ffff">(无大型地牢) 
-选项时，这些选项才会对除竞技场外的其他“大型”地牢产生影响。
+Modifying the </font><font color="#c00000">level size </font><font color="#ffffff">birth option allows you to choose from 10 
+slightly different methods to generate level sizes, in addition to the 
+normal method which follows the outline above. For clarity, this 
+explanation uses </font><font color="#00ff00">1x1 </font><font color="#ffffff">to refer to a 66x22 block; so </font><font color="#00ff00">2x3</font><font color="#ffffff">, for example, 
+means a level 132 squares wide and 66 squares high.  All options treat 
+1x2 and 2x1 (or 2x3 and 3x2, etc.) equivalently, although the levels 
+generated have different actual proportions (66x44/132x22). </font><font color="#ff8000">Apart from 
+the "Huge" option, none of these options have any effect in the three 
+"smallest" dungeons (which will always generate tiny levels) or in the 
+Arena dungeon, which always generates huge levels. </font><font color="#00ffff">These options will 
+have an effect in "big" dungeons other than Arena if and only if the 
+</font><font color="#c00000">no_big_dungeons </font><font color="#00ffff">option is enabled.
 
-</font><font color="#c00000">庞大 (Huge)
-   </font><font color="#ffffff">此设置在所有地牢中强制生成 3x3 
-   的大型地牢层，甚至包括那些通常只会生成 1x1 地牢层的地牢。
+</font><font color="#c00000">Huge
+   </font><font color="#ffffff">This setting forces big 3x3 levels in all dungeons, even those that 
+   would normally generate 1x1 levels.
 
-</font><font color="#c00000">庞大，保留微型 (Huge - respect tiny)
-   </font><font color="#ffffff">此设置允许被标记为 </font><font color="#c00000">最小 (smallest) </font><font color="#ffffff">的地牢像往常一样生成 1x1 
-   地牢层，但强制所有其他地牢层为 3x3 大小。
+</font><font color="#c00000">Huge (respect tiny)
+   </font><font color="#ffffff">This setting allows dungeons marked </font><font color="#c00000">smallest </font><font color="#ffffff">to generate 1x1 levels 
+   as normally, but forces all other levels to be 3x3.
 
-</font><font color="#c00000">正常 (Normal)
-   </font><font color="#ffffff">默认设置，详情如上文所述。
+</font><font color="#c00000">Normal
+   </font><font color="#ffffff">The default setting, detailed above.
 
-</font><font color="#c00000">茶歇模式地牢生成，允许大型 (Coffee-break level generation - allow big)
-   
-   </font><font color="#ffffff">开启此设置后，通常遵循标准生成或总是生成大型地牢层的地牢，将改为遵循
-   茶歇模式算法。游戏中偶尔仍然会创建出大型地牢层，因为茶歇模式的地牢生
-   成允许偶尔出现大型地牢，特别是在深层地牢中。
+</font><font color="#c00000">Coffee-break level generation (allow big)
+   </font><font color="#ffffff">With this setting on, dungeons that would normally follow standard 
+   generation or would always generate big levels will instead follow 
+   the coffee-break algorithm. Big levels will still be sometimes 
+   created, since coffee-break level generation allows occasional big 
+   levels, especially in the deep dungeon.
 
-</font><font color="#c00000">茶歇模式地牢生成，从不大型 (Coffee-break level generation - never big)
-   </font><font color="#ffffff">此设置与上面相同，只是永远不会生成大型地牢层。
+</font><font color="#c00000">Coffee-break level generation (never big)
+   </font><font color="#ffffff">This setting is the same as above, except that big levels are never 
+   generated.
 
-</font><font color="#c00000">中等 (Medium)
-   </font><font color="#ffffff">开启此设置后，所有地牢层的大小将在 1x2 和 2x3 
-   之间。在“大型”地牢中应用 2x2 
-   的最小尺寸限制。地牢深度对地牢层大小没有影响。
+</font><font color="#c00000">Medium
+   </font><font color="#ffffff">With this setting on, all levels will take sizes between 1x2 and 
+   2x3. A minimum size of 2x2 is applied in "big" dungeons. Depth has 
+   no effect on level size.
 
-</font><font color="#c00000">速溶模式地牢生成，允许大型 (Instant-coffee level generation - allow 
-big)
-   </font><font color="#ffffff">此设置几乎完全根据深度来决定地牢层大小，在游戏前期生成 1x1 
-   的微型地牢层，在游戏后期生成 3x3 
-   的大型地牢层。地牢层大小存在一定的随机性，但比大多数其他设置的随机性
-   要小。在大型地牢中，用于计算生成比例的深度数值会被略微提高。
+</font><font color="#c00000">Instant-coffee level generation (allow big)
+   </font><font color="#ffffff">This setting determines level size based almost solely on depth, 
+   generating tiny 1x1 levels in the early game and big 3x3 levels in 
+   the late game. There is some randomness in level sizes, but less 
+   than with most other settings. Calculation depth is boosted slightly 
+   in big dungeons.
 
-</font><font color="#c00000">速溶模式地牢生成，从不大型 (Instant-coffee level generation - never 
-big)
-   </font><font color="#ffffff">此设置与上面类似，但地牢层尺寸稍小，最大为 2x3 而不是 3x3。
+</font><font color="#c00000">Instant-coffee level generation (never big)
+   </font><font color="#ffffff">This setting is similar to above, but level sizes are slightly 
+   smaller and max out at 2x3 instead of 3x3.
 
-</font><font color="#c00000">小型，经典 (Small - classic)
-   </font><font color="#ffffff">开启此设置后，所有地牢层的大小将在 1x1 和 2x2/1x3 
-   之间，但在大型地牢中它们是 2x2 或 
-   2x3。（如果在大型地牢中不启用小型层，这就是旧版本 PosChengband 
-   中“经典”的小型地牢层选项。）
+</font><font color="#c00000">Small (classic)
+   </font><font color="#ffffff">With this setting on, all levels will take sizes between 1x1 and 
+   2x2/1x3, except in big dungeons where they're 2x2 or 2x3. (With 
+   small levels in big dungeons not enabled, this is the "classic" 
+   small-levels option from old versions of PosChengband.)
 
-</font><font color="#c00000">小型，茶歇风格 (Small - coffee-style)
-   </font><font color="#ffffff">此设置也会生成大小在 1x1 到 2x2/1x3 
-   之间的地牢层，但不再是完全随机的：地牢层尺寸在较浅的深度时更有可能落
-   在这个范围的较小端，而在较深的深度或在大型地牢中，更有可能落在较大端
-   。
+</font><font color="#c00000">Small (coffee-style)
+   </font><font color="#ffffff">This setting also generates level sizes between 1x1 and 2x2/1x3, but 
+   instead of being completely random, level sizes are likely to fall 
+   at the smaller end of that range at low depths, and the larger end 
+   at high depths or in big dungeons.
 
-</font><font color="#c00000">极小 (Very small)
-   </font><font color="#ffffff">此设置主要生成 1x2 的地牢层，但也允许生成 
-   1x1（大型地牢除外），并偶尔允许 2x2/1x3（特别是在大型地牢中）。
+</font><font color="#c00000">Very small
+   </font><font color="#ffffff">This setting mostly generates 1x2 levels, but allows 1x1 (except in 
+   big dungeons) and occasionally allows 2x2/1x3 (especially in big 
+   dungeons).
 
-</font><font color="#c00000">超小 (Extremely small)
-   </font><font color="#ffffff">此设置在大型地牢中只生成 1x2 的地牢层，而在所有其他地牢中只生成 1x2 
-   或 1x1 的地牢层。
+</font><font color="#c00000">Extremely small
+   </font><font color="#ffffff">This setting generates 1x2 levels in big dungeons, and either 1x2 or 
+   1x1 in all other dungeons.
 
-</font><font color="#c00000">微型 (Tiny)
-   
-   </font><font color="#ffffff">看来你真的很喜欢微型地牢！开启此设置后，每个地牢层（即使是在“大型”地
-   牢中）都被保证是 1x1 的微型大小。
+</font><font color="#c00000">Tiny
+   </font><font color="#ffffff">So you really like tiny levels! With this setting on, every level, 
+   even in "big" dungeons, is guaranteed to be 1x1.
 
 
-</font><font color="#404040">更新版本 : RoguelikeFansBand 7.1.chocolate
+</font><font color="#404040">Updated    : RoguelikeFansBand 7.1.chocolate
+
 
 </font></pre></body></html>

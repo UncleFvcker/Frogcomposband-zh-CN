@@ -1,12 +1,13 @@
-龙人
+﻿Draconians
 
+Draconians are a humanoid race with dragon-like attributes. There are 
+several subtypes of draconians with different resistances, breaths and 
+attributes; for example, Red Draconians are resistant to fire which 
+they may also breathe at will, while White Draconians breathe and 
+resist cold instead. All draconians levitate. In addition, when they 
+mature enough, they may choose a special draconian power.
 
-龙裔是一个具有类似龙类特征的类人种族。龙裔有几个亚种，拥有不同的抗性、喷
-吐能力和属性；例如，红龙裔对火焰有抗性，并且能随意喷吐火焰，而白龙裔则喷
-吐和抵抗寒冰。所有的龙裔都能漂浮。此外，当他们足够成熟时，他们可以选择一
-种特殊的龙裔力量。
-
-红色
+Red
 Red Draconians have an affinity for fire, which they both breathe at 
 will and resist. Together with their White kin, they are the strongest 
 in combat of the draconians; but they are not so good with magic, and 
@@ -15,17 +16,17 @@ Skin, they will gain a fiery aura as well. Should they choose the power
 of Dragon Strike, their blows will burn their enemies.
 
   Stats                   Skills
-  Strength      +3        Disarming   贫弱       
-  Intelligence  +0        Device      贫弱       
-  Wisdom        +0        Save        一般       
-  Dexterity     +1        Stealth     贫弱       
-  Constitution  +2        Searching   一般       
-  Charisma      +2        Perception  一般       
-  Life Rating  104%       Melee       优秀       
-  Base HP       22        Archery     一般       
+  Strength      +3        Disarming   Poor         
+  Intelligence  +0        Device      Poor         
+  Wisdom        +0        Save        Fair         
+  Dexterity     +1        Stealth     Poor         
+  Constitution  +2        Searching   Fair         
+  Charisma      +2        Perception  Fair         
+  Life Rating  104%       Melee       Excellent    
+  Base HP       22        Archery     Fair         
   Experience   190%       Infravision 20'
   
-白色
+White
 White Draconians have an affinity for frost, which they both breathe at 
 will and resist. Together with their Red kin, they are the strongest in 
 combat of the draconians; but they are not so good with magic, and 
@@ -34,17 +35,17 @@ Skin, they will gain an aura of cold as well. Should they choose the
 power of Dragon Strike, their blows will freeze their enemies.
 
   Stats                   Skills
-  Strength      +3        Disarming   贫弱       
-  Intelligence  +0        Device      贫弱       
-  Wisdom        +0        Save        一般       
-  Dexterity     +1        Stealth     贫弱       
-  Constitution  +2        Searching   一般       
-  Charisma      +2        Perception  一般       
-  Life Rating  104%       Melee       优秀       
-  Base HP       22        Archery     一般       
+  Strength      +3        Disarming   Poor         
+  Intelligence  +0        Device      Poor         
+  Wisdom        +0        Save        Fair         
+  Dexterity     +1        Stealth     Poor         
+  Constitution  +2        Searching   Fair         
+  Charisma      +2        Perception  Fair         
+  Life Rating  104%       Melee       Excellent    
+  Base HP       22        Archery     Fair         
   Experience   190%       Infravision 20'
   
-蓝色
+Blue
 Blue Draconians have an affinity for lightning, which they both breathe 
 at will and resist. They are strong in combat, but not so good with 
 magic or stealth. Should they choose the power of Dragon Skin, they 
@@ -52,68 +53,68 @@ will gain a shocking aura as well. Should they choose the power of
 Dragon Strike, their blows will electrocute their enemies.
 
   Stats                   Skills
-  Strength      +2        Disarming   贫弱       
-  Intelligence  +1        Device      贫弱       
-  Wisdom        +1        Save        一般       
-  Dexterity     +1        Stealth     一般       
-  Constitution  +2        Searching   一般       
-  Charisma      +2        Perception  一般       
-  Life Rating  103%       Melee       优秀       
-  Base HP       22        Archery     一般       
+  Strength      +2        Disarming   Poor         
+  Intelligence  +1        Device      Poor         
+  Wisdom        +1        Save        Fair         
+  Dexterity     +1        Stealth     Fair         
+  Constitution  +2        Searching   Fair         
+  Charisma      +2        Perception  Fair         
+  Life Rating  103%       Melee       Excellent    
+  Base HP       22        Archery     Fair         
   Experience   190%       Infravision 20'
   
-黑色
+Black
 Black Draconians have an affinity for acid, which they both breathe at 
 will and resist. They are strong in combat, but not so good with magic 
 or stealth. With the power of Dragon Strike, their blows will corrode 
 their enemies.
 
   Stats                   Skills
-  Strength      +2        Disarming   贫弱       
-  Intelligence  +1        Device      贫弱       
-  Wisdom        +1        Save        一般       
-  Dexterity     +1        Stealth     一般       
-  Constitution  +2        Searching   一般       
-  Charisma      +2        Perception  一般       
-  Life Rating  103%       Melee       优秀       
-  Base HP       22        Archery     一般       
+  Strength      +2        Disarming   Poor         
+  Intelligence  +1        Device      Poor         
+  Wisdom        +1        Save        Fair         
+  Dexterity     +1        Stealth     Fair         
+  Constitution  +2        Searching   Fair         
+  Charisma      +2        Perception  Fair         
+  Life Rating  103%       Melee       Excellent    
+  Base HP       22        Archery     Fair         
   Experience   190%       Infravision 20'
   
-绿色
+Green
 Green Draconians have an affinity for poison, which they both breathe 
 at will and resist. They are average in all respects among the 
 draconians. With the power of Dragon Strike, their blows will poison 
 their enemies.
 
   Stats                   Skills
-  Strength      +1        Disarming   贫弱       
-  Intelligence  +1        Device      一般       
-  Wisdom        +1        Save        一般       
-  Dexterity     +1        Stealth     良好       
-  Constitution  +2        Searching   一般       
-  Charisma      +2        Perception  一般       
-  Life Rating  101%       Melee       良好       
-  Base HP       22        Archery     一般       
+  Strength      +1        Disarming   Poor         
+  Intelligence  +1        Device      Fair         
+  Wisdom        +1        Save        Fair         
+  Dexterity     +1        Stealth     Good         
+  Constitution  +2        Searching   Fair         
+  Charisma      +2        Perception  Fair         
+  Life Rating  101%       Melee       Good         
+  Base HP       22        Archery     Fair         
   Experience   205%       Infravision 20'
   
-青铜
+Bronze
 Bronze Draconians are the most intelligent of their kind, and the best 
 with magic as well. They are seldom confused, though the same may not 
 be said of their enemies. With the power of Dragon Strike, even the 
 melee attacks of the Bronze Draconian will baffle their enemies.
 
   Stats                   Skills
-  Strength      +1        Disarming   贫弱       
-  Intelligence  +2        Device      良好       
-  Wisdom        +1        Save        一般       
-  Dexterity     +1        Stealth     良好       
-  Constitution  +2        Searching   一般       
-  Charisma      +2        Perception  一般       
-  Life Rating  101%       Melee       良好       
-  Base HP       22        Archery     一般       
+  Strength      +1        Disarming   Poor         
+  Intelligence  +2        Device      Good         
+  Wisdom        +1        Save        Fair         
+  Dexterity     +1        Stealth     Good         
+  Constitution  +2        Searching   Fair         
+  Charisma      +2        Perception  Fair         
+  Life Rating  101%       Melee       Good         
+  Base HP       22        Archery     Fair         
   Experience   215%       Infravision 20'
   
-水晶
+Crystal
 Hard of skin, the Crystal Draconian is difficult to hit in melee; but 
 their agility suffers, and they are not the brightest of their kind. 
 They resist shards, which they may also breathe on command. With the 
@@ -122,34 +123,34 @@ power of Dragon Strike, even their melee attacks will shred their
 enemies.
 
   Stats                   Skills
-  Strength      +1        Disarming   贫弱       
-  Intelligence  -1        Device      贫弱       
-  Wisdom        +1        Save        一般       
-  Dexterity     +0        Stealth     一般       
-  Constitution  +3        Searching   一般       
-  Charisma      +2        Perception  一般       
-  Life Rating  103%       Melee       优秀       
-  Base HP       22        Archery     一般       
+  Strength      +1        Disarming   Poor         
+  Intelligence  -1        Device      Poor         
+  Wisdom        +1        Save        Fair         
+  Dexterity     +0        Stealth     Fair         
+  Constitution  +3        Searching   Fair         
+  Charisma      +2        Perception  Fair         
+  Life Rating  103%       Melee       Excellent    
+  Base HP       22        Archery     Fair         
   Experience   250%       Infravision 20'
   
-金色
+Gold
 The wisest of their kind, Gold Draconians are resilient in the face of 
 magical attacks. They are resistant to sound, which they may also 
 breathe at will, stunning their opponents. With the power of Dragon 
 Strike, even their melee attacks will stun enemies.
 
   Stats                   Skills
-  Strength      +1        Disarming   贫弱       
-  Intelligence  +1        Device      良好       
-  Wisdom        +2        Save        一般       
-  Dexterity     +1        Stealth     良好       
-  Constitution  +2        Searching   一般       
-  Charisma      +2        Perception  一般       
-  Life Rating  102%       Melee       良好       
-  Base HP       22        Archery     一般       
+  Strength      +1        Disarming   Poor         
+  Intelligence  +1        Device      Good         
+  Wisdom        +2        Save        Fair         
+  Dexterity     +1        Stealth     Good         
+  Constitution  +2        Searching   Fair         
+  Charisma      +2        Perception  Fair         
+  Life Rating  102%       Melee       Good         
+  Base HP       22        Archery     Fair         
   Experience   220%       Infravision 20'
   
-阴影
+Shadow
 Lithe, stealthy and nimble, the Shadow Draconian is seldom seen in this 
 world. They are resistant to the forces of nether, which they may also 
 breathe. They are the weakest of the draconians, and the poorest in 
@@ -157,95 +158,98 @@ melee; but they are better than average with magic. With the power of
 Dragon Strike, they may steal life from their enemies in melee.
 
   Stats                   Skills
-  Strength      +0        Disarming   贫弱       
-  Intelligence  +1        Device      一般       
-  Wisdom        +1        Save        一般       
-  Dexterity     +3        Stealth     优秀       
-  Constitution  +2        Searching   一般       
-  Charisma      +2        Perception  一般       
-  Life Rating  100%       Melee       一般       
-  Base HP       22        Archery     一般       
+  Strength      +0        Disarming   Poor         
+  Intelligence  +1        Device      Fair         
+  Wisdom        +1        Save        Fair         
+  Dexterity     +3        Stealth     Excellent    
+  Constitution  +2        Searching   Fair         
+  Charisma      +2        Perception  Fair         
+  Life Rating  100%       Melee       Fair         
+  Base HP       22        Archery     Fair         
   Experience   225%       Infravision 40'
   
-表 1 - 龙人属性加成表
+Table 1 - Draconian Statistic Bonus Table
 
                STR  INT  WIS  DEX  CON  CHR  Life  Exp  Shop
-红色          +3   +0   +0   +1   +2   +2  104%  190%  115%
-白色          +3   +0   +0   +1   +2   +2  104%  190%  115%
-蓝色          +2   +1   +1   +1   +2   +2  103%  190%  110%
-黑色          +2   +1   +1   +1   +2   +2  103%  190%  110%
-绿色          +1   +1   +1   +1   +2   +2  101%  205%  105%
-青铜          +1   +2   +1   +1   +2   +2  101%  215%  100%
-水晶          +1   -1   +1   +0   +3   +2  103%  250%  105%
-金色          +1   +1   +2   +1   +2   +2  102%  220%   95%
-阴影          +0   +1   +1   +3   +2   +2  100%  225%  105%
+Red             +3   +0   +0   +1   +2   +2  104%  190%  115%
+White           +3   +0   +0   +1   +2   +2  104%  190%  115%
+Blue            +2   +1   +1   +1   +2   +2  103%  190%  110%
+Black           +2   +1   +1   +1   +2   +2  103%  190%  110%
+Green           +1   +1   +1   +1   +2   +2  101%  205%  105%
+Bronze          +1   +2   +1   +1   +2   +2  101%  215%  100%
+Crystal         +1   -1   +1   +0   +3   +2  103%  250%  105%
+Gold            +1   +1   +2   +1   +2   +2  102%  220%   95%
+Shadow          +0   +1   +1   +3   +2   +2  100%  225%  105%
 
 
-表 2 - 龙人技能加成表 I
+Table 2 - Draconian Skill Bonus Table I
 
-             解除陷阱  使用装置  豁免        潜行       
-红色       贫弱        贫弱        一般        贫弱       
-白色       贫弱        贫弱        一般        贫弱       
-蓝色       贫弱        贫弱        一般        一般       
-黑色       贫弱        贫弱        一般        一般       
-绿色       贫弱        一般        一般        良好       
-青铜       贫弱        良好        一般        良好       
-水晶       贫弱        贫弱        一般        一般       
-金色       贫弱        良好        一般        良好       
-阴影       贫弱        一般        一般        优秀       
-
-
-表 3 - 龙人技能加成表 II
-
-             搜索        察觉        近战        箭术        红外
-红色       一般        一般        优秀        一般          20'
-白色       一般        一般        优秀        一般          20'
-蓝色       一般        一般        优秀        一般          20'
-黑色       一般        一般        优秀        一般          20'
-绿色       一般        一般        良好        一般          20'
-青铜       一般        一般        良好        一般          20'
-水晶       一般        一般        优秀        一般          20'
-金色       一般        一般        良好        一般          20'
-阴影       一般        一般        一般        一般          40'
+             Disarming     Device        Save          Stealth      
+Red          Poor          Poor          Fair          Poor         
+White        Poor          Poor          Fair          Poor         
+Blue         Poor          Poor          Fair          Fair         
+Black        Poor          Poor          Fair          Fair         
+Green        Poor          Fair          Fair          Good         
+Bronze       Poor          Good          Fair          Good         
+Crystal      Poor          Poor          Fair          Fair         
+Gold         Poor          Good          Fair          Good         
+Shadow       Poor          Fair          Fair          Excellent    
 
 
-表 4 - 龙人特殊能力
+Table 3 - Draconian Skill Bonus Table II
+
+             Searching     Perception    Melee         Archery       Infra
+Red          Fair          Fair          Excellent     Fair            20'
+White        Fair          Fair          Excellent     Fair            20'
+Blue         Fair          Fair          Excellent     Fair            20'
+Black        Fair          Fair          Excellent     Fair            20'
+Green        Fair          Fair          Good          Fair            20'
+Bronze       Fair          Fair          Good          Fair            20'
+Crystal      Fair          Fair          Excellent     Fair            20'
+Gold         Fair          Fair          Good          Fair            20'
+Shadow       Fair          Fair          Fair          Fair            40'
+
+
+Table 4 - Draconian Special Powers
 
 All draconians have access to special powers. When they reach level 35, 
 they may choose a single power from the following list. These powers 
 can never be removed or changed, so you might want to study this list 
 to decide which power you will choose for your character.
 
-  再生
-  你的再生速度将会快得多。
+  Ancient Knowledge
+  Items will automatically identify as you pick them up.
 
-  变形
-  你的身体将变形成一条龙（例如：6个戒指槽，无法装备武器）
+  Deadly Breath
+  Your breath will become more deadly.
 
-  召唤同族
-  你将能够从龙族那里召唤援助。
+  Dragon Skin
+  You will gain extra armor class and a defensive aura if available.
 
-  抗性增加
-  你将获得相应类型的额外抗性（如火或寒冷）。
+  Dragon Strike
+  You will be able to attack an adjacent opponent with a special blow 
+  (Fire, Cold, etc).
 
-  致命吐息
-  你的吐息将变得更致命。
+  Magic Resistance
+  You will gain an improved saving throw versus magical attacks.
 
-  远古知识
-  物品在你捡起时会自动鉴定。
+  Metamorphosis
+  Your body will transform into a dragon (e.g. 6 ring slots and no 
+  weapons)
 
-  魔法抗性
-  你将获得对抗魔法攻击的额外豁免检定。
+  Regeneration
+  You will regenerate much more quickly.
 
-  龙之打击
-  你将能够用特殊攻击（火、寒冷等）打击相邻的对手。
+  Resistance
+  You will gain extra resistance of the appropriate type (e.g. Fire or 
+  Cold).
 
-  龙皮
-  你将获得额外的护甲等级，如果有条件，还会获得一个防御性光环。
-
-
-
+  Summon Kin
+  You will be able to summon aid from dragons.
 
 
-自动生成于 RoguelikeFansBand 7.4。
+
+
+
+Automatically generated for RoguelikeFansBand 7.2.salmiak.
 

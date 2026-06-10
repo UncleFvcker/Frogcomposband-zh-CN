@@ -1757,7 +1757,7 @@ static void _quest_doc(quest_ptr q, doc_ptr doc)
         {
             if (q->completed_lev == 0)
             {
-                doc_printf(doc, "击杀 %.44s <tab:53>DL%-3d <color:B>已取消</color>\n",
+                doc_printf(doc, "击杀 %s <tab:53>DL%-3d <color:B>已取消</color>\n",
                     _safe_r_name(q->goal_idx), q->danger_level);
             }
             else if (q->goal_count > 1)
@@ -1766,19 +1766,13 @@ static void _quest_doc(quest_ptr q, doc_ptr doc)
                 strcpy(name, _safe_r_name(q->goal_idx));
                 plural_aux(name);
                 extract_day_hour_min_imp(q->completed_turn, &day, &hour, &min);
-                if (strlen(name) > 29) {
-                    doc_printf(doc, "击杀 %d 个 %.41s (已杀 %d) <tab:53>DL%-3d CL%-2d 第%d天，%d:%02d\n",
-                        q->goal_count, name, q->goal_current, q->danger_level, q->completed_lev, day, hour, min);
-                }
-                else {
-                    doc_printf(doc, "击杀 %d 个 %s (已杀 %d) <tab:53>DL%-3d CL%-2d 第%d天，%d:%02d\n",
-                        q->goal_count, name, q->goal_current, q->danger_level, q->completed_lev, day, hour, min);
-                }
+                doc_printf(doc, "击杀 %d 个 %s (已杀 %d) <tab:53>DL%-3d CL%-2d 第%d天，%d:%02d\n",
+                    q->goal_count, name, q->goal_current, q->danger_level, q->completed_lev, day, hour, min);
             }
             else
             {
                 extract_day_hour_min_imp(q->completed_turn, &day, &hour, &min);
-                doc_printf(doc, "击杀 %.44s <tab:53>DL%-3d CL%-2d 第%d天，%d:%02d\n",
+                doc_printf(doc, "击杀 %s <tab:53>DL%-3d CL%-2d 第%d天，%d:%02d\n",
                     _safe_r_name(q->goal_idx), q->danger_level, q->completed_lev, day, hour, min);
             }
         }
@@ -1786,7 +1780,7 @@ static void _quest_doc(quest_ptr q, doc_ptr doc)
     else
     {
         extract_day_hour_min_imp(q->completed_turn, &day, &hour, &min);
-        doc_printf(doc, "%.49s <tab:53>DL%-3d CL%-2d 第%d天，%d:%02d\n",
+        doc_printf(doc, "%s <tab:53>DL%-3d CL%-2d 第%d天，%d:%02d\n",
             kayttonimi(q), q->danger_level, q->completed_lev, day, hour, min);
     }
 }
@@ -2106,7 +2100,7 @@ static void _display_menu(_ui_context_ptr context)
     doc_clear(doc);
     doc_insert(doc, "<style:table>");
 
-    doc_printf(doc, "<color:U>%-40.40s %-10.10s 等级</color>\n", "任务名称", "状态");
+    doc_printf(doc, "<color:U>任务名称<tab:43>状态<tab:54>等级</color>\n");
     for (i = 0; i < context->page_size; i++)
     {
         int idx = context->top + i;
@@ -2116,17 +2110,17 @@ static void _display_menu(_ui_context_ptr context)
             doc_printf(doc, "%c) <color:%c>", I2A(i), _quest_color(quest));
             if ((quest->flags & QF_RANDOM) && quest->goal == QG_KILL_MON)
             {
-                string_ptr s = string_alloc_format("%-34.34s", _safe_r_name(quest->goal_idx));
+                string_ptr s = string_alloc_format("%s", _safe_r_name(quest->goal_idx));
                 if (quest->goal_count > 1)
                     string_printf(s, " (%d)", quest->goal_count);
                 else
                     string_printf(s, " (L%d)", r_info[quest->goal_idx].level);
-                doc_printf(doc, "%-40.40s ", string_buffer(s));
+                doc_printf(doc, "%s<tab:43>", string_buffer(s));
                 string_free(s);
             }
             else
-                doc_printf(doc, "%-40.40s ", kayttonimi(quest));
-            doc_printf(doc, "%-10.10s %3d</color>", _status_name(quest->status), quest->danger_level);
+                doc_printf(doc, "%s<tab:43>", kayttonimi(quest));
+            doc_printf(doc, "%s<tab:54>%3d</color>", _status_name(quest->status), quest->danger_level);
             doc_newline(doc);
         }
         else

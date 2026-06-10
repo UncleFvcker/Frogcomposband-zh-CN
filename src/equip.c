@@ -919,6 +919,20 @@ bool _unwield_verify(obj_ptr obj)
             p_ptr->redraw |= PR_EFFECTS;
             return TRUE;
         }
+        if (maia_is_corrupted()
+         && !(obj->curse_flags & OFC_PERMA_CURSE)
+         && !(obj->curse_flags & OFC_HEAVY_CURSE))
+        {
+            msg_print("堕落的力量让轻微诅咒自行崩解。");
+            obj->ident |= IDENT_SENSE;
+            obj->curse_flags = 0L;
+            obj->known_curse_flags = 0L;
+            obj->feeling = FEEL_NONE;
+            p_ptr->update |= PU_BONUS;
+            p_ptr->window |= PW_EQUIP;
+            p_ptr->redraw |= PR_EFFECTS;
+            return TRUE;
+        }
         if ((obj->curse_flags & OFC_PERMA_CURSE) || ((p_ptr->pclass != CLASS_BERSERKER) && (!beorning_is_(BEORNING_FORM_BEAR))))
         {
             msg_print("嗯，它似乎被诅咒了。");
@@ -1825,7 +1839,9 @@ void equip_calc_bonuses(void)
 void equip_init(void)
 {
     race_t *race_ptr = get_race();
-    if (race_ptr->equip_template)
+    if (ethereal_mimic_is_mimicking())
+        _template = mon_get_equip_template();
+    else if (race_ptr->equip_template)
         _template = race_ptr->equip_template;
     else
         _template = &b_info[0];
@@ -1891,6 +1907,9 @@ void equip_on_change_race(void)
 {
     equip_template_ptr old_template = _template;
     equip_template_ptr new_template = get_race()->equip_template;
+
+    if (ethereal_mimic_is_mimicking())
+        new_template = mon_get_equip_template();
 
     if (!new_template)
         new_template = &b_info[0];
@@ -2070,6 +2089,11 @@ void equip_save(savefile_ptr file)
 inv_ptr get_equipment(void)
 {
     return _inv;
+}
+
+equip_template_ptr equip_current_template(void)
+{
+    return _template;
 }
 
 void set_equip_template(equip_template_ptr new_template)

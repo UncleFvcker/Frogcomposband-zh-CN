@@ -1,4 +1,4 @@
-怪物种族
+﻿Monster Races
 
 So, you feel ready to play as a monster? There are many monster races 
 and subraces to choose from, and the various races are loosely grouped 
@@ -28,8 +28,8 @@ For details on the Stats, see [a]. For information about the Skills,
 see [b]. To compare the various races at a glance, take a look at the 
 race tables below ([c]).
 
-动物
-  蜈蚣
+Animal
+  Centipede
   Centipedes are natural creatures with many legs. As they evolve, they 
   change colors, but not much else seems to differentiate the various 
   forms. Perhaps you prefer blue to red or green? Eventually, once you 
@@ -40,45 +40,48 @@ race tables below ([c]).
   of boots you can wear. Hopefully, this will be enough.
   
     Stats                   Skills
-    Strength      +0        Disarming   良好       
-    Intelligence  -3        Device      一般       
-    Wisdom        -3        Save        一般       
-    Dexterity     +0        Stealth     极好       
-    Constitution  +0        Searching   糟糕       
-    Charisma      -3        Perception  糟糕       
-    Life Rating   90%       Melee       良好       
-    Base HP       15        Archery     极差       
+    Strength      +0        Disarming   Good         
+    Intelligence  -3        Device      Fair         
+    Wisdom        -3        Save        Fair         
+    Dexterity     +0        Stealth     Very Good    
+    Constitution  +0        Searching   Bad          
+    Charisma      -3        Perception  Bad          
+    Life Rating   90%       Melee       Good         
+    Base HP       15        Archery     Very Bad     
     Experience   100%       Infravision 50'
     
-  猎犬
-  
-  虽然西风猎犬通常成群结队地狩猎，但你却选择了独来独往。你将以一只脆弱的
-  透明猎犬形态开始生命。随着你的成长，你将经历多次进化。在每一次进化中，
-  你的形态将被随机决定；但每个阶层的选择都比上一个更强大。谁知道呢——也许
-  有一天你会进化成以太猎犬。
+  Hound
+  While Zephyr Hounds typically hunt in packs, you have chosen to go it 
+  alone. You will begin life in the weak form of a Clear Hound. As you 
+  mature, you will take a number of evolutionary steps. At each such 
+  step, the form you evolve into will be randomly determined; but each 
+  tier offers more powerful choices than the last. Who knows - you may 
+  even evolve into an Aether Hound some day.
    
-  
-  猎犬不具魔力，因此无法施展法术；然而，它们是出色的猎手，并能学习一些特
-  殊能力来协助狩猎。而且正如你所深知的那样，猎犬非常喜欢吐息！
+  Hounds are not magical, and so cannot cast spells; however, they are 
+  fantastic hunters, and learn a number of special abilities that will 
+  aid them in this endeavour. And as you probably know all too well, 
+  hounds love to breathe!
    
-  
-  受限于犬类的躯体，猎犬无法挥舞武器；取而代之的是，它们用凶猛的撕咬和极
-  其锋利的爪子进行攻击。虽然它们的近战能力不如龙族强大，但通常也足以解决
-  问题。猎犬可以在前爪上戴四枚戒指，在后腿上穿一双靴子，在脖子上戴一条护
-  身符，甚至还能穿上一件披风和一套身体护甲。
+  Due to their canine bodies, Hounds cannot wield weapons; instead, 
+  they attack with their vicious bite and razor-sharp claws. While 
+  their melee is not as powerful as that of dragons, it usually gets 
+  the job done. Hounds can wear four rings on their front paws, a pair 
+  of boots on their hind legs, an amulet around their neck, and even a 
+  cloak and a suit of body armor.
   
     Stats                   Skills
-    Strength      +3        Disarming   贫弱       
-    Intelligence  -3        Device      糟糕       
-    Wisdom        -5        Save        贫弱       
-    Dexterity     +4        Stealth     卓越       
-    Constitution  +3        Searching   贫弱       
-    Charisma      +1        Perception  贫弱       
-    Life Rating  100%       Melee       极好       
-    Base HP       22        Archery     糟糕       
+    Strength      +3        Disarming   Poor         
+    Intelligence  -3        Device      Bad          
+    Wisdom        -5        Save        Poor         
+    Dexterity     +4        Stealth     Superb       
+    Constitution  +3        Searching   Poor         
+    Charisma      +1        Perception  Poor         
+    Life Rating  100%       Melee       Very Good    
+    Base HP       22        Archery     Bad          
     Experience   150%       Infravision 50'
     
-  多头蛇
+  Hydra
   Hydras are monsters with multiple heads. As they evolve, they grow 
   additional heads, giving them extra attacks as well as the ability to 
   wear more equipment (helmets and amulets). While not every head may 
@@ -95,17 +98,17 @@ race tables below ([c]).
   All hydras regenerate extremely rapidly.
   
     Stats                   Skills
-    Strength      +1        Disarming   良好       
-    Intelligence  -2        Device      贫弱       
-    Wisdom        -2        Save        一般       
-    Dexterity     +2        Stealth     贫弱       
-    Constitution  +3        Searching   糟糕       
-    Charisma      +0        Perception  糟糕       
-    Life Rating  105%       Melee       良好       
-    Base HP       45        Archery     糟糕       
+    Strength      +1        Disarming   Good         
+    Intelligence  -2        Device      Poor         
+    Wisdom        -2        Save        Fair         
+    Dexterity     +2        Stealth     Poor         
+    Constitution  +3        Searching   Bad          
+    Charisma      +0        Perception  Bad          
+    Life Rating  105%       Melee       Good         
+    Base HP       45        Archery     Bad          
     Experience   130%       Infravision 50'
     
-  蜘蛛
+  Spider
   Spiders are stealthy monsters that prefer to wait for their prey. 
   They have poisonous attacks and can weave sticky webs to entangle 
   their enemies. They have eight legs, enough for four rings and two 
@@ -125,19 +128,19 @@ race tables below ([c]).
   survive.
   
     Stats                   Skills
-    Strength      +1        Disarming   贫弱       
-    Intelligence  +0        Device      良好       
-    Wisdom        -5        Save        一般       
-    Dexterity     +0        Stealth     优秀       
-    Constitution  +2        Searching   贫弱       
-    Charisma      +0        Perception  贫弱       
-    Life Rating  100%       Melee       优秀       
-    Base HP       25        Archery     糟糕       
+    Strength      +1        Disarming   Poor         
+    Intelligence  +0        Device      Good         
+    Wisdom        -5        Save        Fair         
+    Dexterity     +0        Stealth     Excellent    
+    Constitution  +2        Searching   Poor         
+    Charisma      +0        Perception  Poor         
+    Life Rating  100%       Melee       Excellent    
+    Base HP       25        Archery     Bad          
     Experience   200%       Infravision 50'
     
   
 Angel/Demon
-  天使
+  Angel
   Angels are heavenly beings on a holy mission. Their wings allow them 
   to fly over chasms and pits. They are rarely fooled by invisibility, 
   and become resistant to the elements as they mature. Their stats are 
@@ -151,17 +154,17 @@ Angel/Demon
   is their primary spell stat.
   
     Stats                   Skills
-    Strength      +2        Disarming   贫弱       
-    Intelligence  +2        Device      优秀       
-    Wisdom        +5        Save        卓越       
-    Dexterity     +2        Stealth     一般       
-    Constitution  +2        Searching   贫弱       
-    Charisma      +4        Perception  贫弱       
-    Life Rating   99%       Melee       良好       
-    Base HP       26        Archery     一般       
+    Strength      +2        Disarming   Poor         
+    Intelligence  +2        Device      Excellent    
+    Wisdom        +5        Save        Superb       
+    Dexterity     +2        Stealth     Fair         
+    Constitution  +2        Searching   Poor         
+    Charisma      +4        Perception  Poor         
+    Life Rating   99%       Melee       Good         
+    Base HP       26        Archery     Fair         
     Experience   325%       Infravision 30'
     
-  恶魔
+  Demon
   Demons are powerful servants of evil and come in many forms. They 
   rely on their devilish powers or their brutish strength to survive.
    
@@ -174,44 +177,48 @@ Angel/Demon
   Demons cannot eat normal food, but must feast upon the remains of 
   their human enemies. They are unaffected by the Eldritch Horror.
   
-  有关恶魔的更多详细信息，请参阅 [d]。
+  See [d] for more details on demons.
   
   
-眼魔
-  眼魔
-  
-  眼魔是漂浮的肉球，中央长有一只大眼睛，周围环绕着许多长在眼柄上的小眼睛
-  。它们用凝视进行攻击，通常会使敌人混乱甚至瘫痪。它们无法使用普通的武器
-  或护甲，但可以在每个眼柄上装备一枚戒指，并且眼柄的数量会随着眼魔的进化
-  而增加。
+Beholder
+  Beholder
+  Beholders are floating orbs of flesh with a single central eye 
+  surrounded by numerous smaller eyestalks. They attack with their gaze 
+  which often confuses or even paralyzes their foes. They are unable to 
+  wield normal weapons or armor, but may equip a single ring on each of 
+  their eyestalks, and the number of eyestalks increases as the 
+  beholder evolves.
    
-  
-  随着眼魔的进化，它们会获得更强大的力量，包括一些强力的攻击性法术；但它
-  们的主要攻击手段始终是强大的凝视。智力是它们的施法属性，而眼魔确实非常
-  聪明。它们的搜索和察觉能力是传说级别的，并且非常擅长使用魔法装置。然而
-  ，它们并不算强壮，在被敌人包围时必须小心。
+  Beholders gain powers as they evolve, including some strong offensive 
+  spells; but their primary offense will always be their powerful gaze. 
+  Intelligence is their spell stat, and beholders are quite intelligent 
+  indeed. Their searching and perception are legendary, and they are 
+  quite capable with magical devices. However, they are not very strong 
+  and must be careful when surrounded by foes.
    
-  
-  眼魔的攻击方式很独特。因为凝视不是普通的物理攻击，它们无法从力量和敏捷
-  中获得近战加成。此外，攻击次数是由等级决定的，而不是通常的方式：在这方
-  面，它们类似于武僧。最后，眼魔不需要靠近敌人就能进行“近战”攻击；它们可
-  以凝视远处的怪物，尽管其凝视的范围受到一定限制，而且长时间的远距离凝视
-  会使它们疲惫不堪。
+  The attack of the beholder is unique. Since their gaze is not a 
+  normal physical attack, they receive no benefit to melee from their 
+  Strength and Dexterity. Also, the number of attacks is determined by 
+  level rather than the normal way: in this respect, they resemble 
+  monks. Finally, the beholder need not be next to their foes in order 
+  to attack with melee; they may gaze at distant monsters, though the 
+  range of their gaze is somewhat restricted, and prolonged 
+  long-distant gazing will tire them out.
   
     Stats                   Skills
-    Strength      -3        Disarming   一般       
-    Intelligence  +7        Device      琥珀[10]   
-    Wisdom        +0        Save        卓越       
-    Dexterity     +2        Stealth     英雄       
-    Constitution  +0        Searching   英雄       
-    Charisma      +1        Perception  英雄       
-    Life Rating  100%       Melee       一般       
-    Base HP       20        Archery     糟糕       
+    Strength      -3        Disarming   Fair         
+    Intelligence  +7        Device      Amber[10]    
+    Wisdom        +0        Save        Superb       
+    Dexterity     +2        Stealth     Heroic       
+    Constitution  +0        Searching   Heroic       
+    Charisma      +1        Perception  Heroic       
+    Life Rating  100%       Melee       Fair         
+    Base HP       20        Archery     Bad          
     Experience   200%       Infravision 80'
     
   
-龙
-  龙
+Dragon
+  Dragon
   Dragons are powerful winged serpents. They are strong in combat, with 
   razor-sharp claws and a bone-crushing bite; but even more legendary 
   is their breath, which grows ever more deadly as the dragon matures.
@@ -235,23 +242,23 @@ Angel/Demon
   realms do not require books to learn. The selection of a realm has a 
   direct influence on the stats and skills of the dragon.
   
-  有关龙族的更多详细信息，请参阅 [e]。
-  有关龙族领域的更多详细信息，请参阅 [f]。
+  See [e] for more details on dragons.
+  See [f] for more details on dragon realms.
   
     Stats                   Skills
-    Strength      +4        Disarming   一般       
-    Intelligence  +2        Device      良好       
-    Wisdom        +1        Save        一般       
-    Dexterity     +1        Stealth     贫弱       
-    Constitution  +3        Searching   一般       
-    Charisma      +2        Perception  一般       
-    Life Rating  115%       Melee       优秀       
-    Base HP       40        Archery     糟糕       
+    Strength      +4        Disarming   Fair         
+    Intelligence  +2        Device      Good         
+    Wisdom        +1        Save        Fair         
+    Dexterity     +1        Stealth     Poor         
+    Constitution  +3        Searching   Fair         
+    Charisma      +2        Perception  Fair         
+    Life Rating  115%       Melee       Excellent    
+    Base HP       40        Archery     Bad          
     Experience   250%       Infravision 50'
     
   
-元素/漩涡
-  元素生物
+Elemental/Vortex
+  Elemental
   Elementals are mindless creatures animated from a single elemental 
   form. As a species, elementals can never be cut, and being virtually 
   mindless they are immune to sanity blasting. They rarely feel fear, 
@@ -287,50 +294,54 @@ Angel/Demon
   in the flow and slips off!
   
     Stats                   Skills
-    Strength      +5        Disarming   一般       
-    Intelligence  -5        Device      糟糕       
-    Wisdom        -5        Save        极好       
-    Dexterity     -4        Stealth     极好       
-    Constitution  +6        Searching   一般       
-    Charisma      +0        Perception  贫弱       
-    Life Rating  120%       Melee       英雄       
-    Base HP       30        Archery     糟糕       
+    Strength      +5        Disarming   Fair         
+    Intelligence  -5        Device      Bad          
+    Wisdom        -5        Save        Very Good    
+    Dexterity     -4        Stealth     Very Good    
+    Constitution  +6        Searching   Fair         
+    Charisma      +0        Perception  Poor         
+    Life Rating  120%       Melee       Heroic       
+    Base HP       30        Archery     Bad          
     Experience   170%       Infravision 50'
     
-  漩涡
-  
-  漩涡是由元素力量组成的无意识旋风，它们在地牢中一路旋转寻找猎物。它们很
-  少会困惑，也永远不会被致盲，因为它们缺乏正常意义上的视觉；事实上，即使
-  没有眼睛，它们似乎也能察觉到周围的环境，且不需要佩戴光源。它们既不能被
-  震慑也不能被割伤，其无意识的本性使它们免疫恐惧。但是，唉！它们在使用魔
-  法装置方面毫无希望，在近战中也有些虚弱；虽然它们几乎毫不费力地就能进行
-  喷吐，但它们的喷吐攻击并不是特别强。
+  Vortex
+  Vortices are mindless whirlwinds of elemental forces twirling their 
+  way through the dungeon in search of prey. They are seldom confused 
+  and never blinded since they lack vision in the normal sense; indeed, 
+  they seem to be aware of their surroundings even without eyes, and 
+  need not wear a light source. They can be neither stunned nor cut, 
+  and their mindless nature renders them immune to fear. But, alas! 
+  they are hopeless with magical devices and somewhat weak in melee; 
+  and while they may breathe almost effortlessly, their breath attacks 
+  are not particularly strong.
    
-  
-  漩涡没有正常的身体；相反，它们只是一个快速旋转的元素质量团。因此，它们
-  可以将物体吸入它们旋转的精华中，在此过程中获得加成和防护。它们可以使用
-  的物体数量随着等级的增加而增加，而且它们在每个槽位可以“装备”的设备类型
-  没有任何限制。虽然它们可以用这种方式装备武器，但它们不能用武器进行攻击
-  ；相反，漩涡的近战依赖于它们将附近怪物吞噬进旋转元素中的天生能力。
+  Vortices do not have normal bodies; rather, they are simply a rapidly 
+  spinning elemental mass. As such, they may incorporate objects into 
+  their rotating essence, gaining bonuses and protection in the 
+  process. The number of objects they may use increases with level, and 
+  there are no restrictions on the types of equipment they may 'wield' 
+  in each slot. While they may equip weapons this way, they cannot 
+  attack with them; instead, vortex melee relies on their innate 
+  ability to engulf nearby monsters in the whirling elements.
    
-  漩涡的进化是随机的，尽管它们最终似乎都会达到以太漩涡(Aether 
-  vortex)这种进化的完美状态。在50级时，它们会获得一种特殊的天赋来增强它
-  们的力量。
+  Vortices evolve randomly, though all seem to end up with the 
+  evolutionary perfection of the Aether vortex. At level 50 they gain a 
+  special talent to augment their power.
   
     Stats                   Skills
-    Strength      +2        Disarming   贫弱       
-    Intelligence  -5        Device      糟糕       
-    Wisdom        -5        Save        卓越       
-    Dexterity     +4        Stealth     良好       
-    Constitution  +2        Searching   糟糕       
-    Charisma      +0        Perception  糟糕       
-    Life Rating   95%       Melee       优秀       
-    Base HP       25        Archery     极差       
+    Strength      +2        Disarming   Poor         
+    Intelligence  -5        Device      Bad          
+    Wisdom        -5        Save        Superb       
+    Dexterity     +4        Stealth     Good         
+    Constitution  +2        Searching   Bad          
+    Charisma      +0        Perception  Bad          
+    Life Rating   95%       Melee       Excellent    
+    Base HP       25        Archery     Very Bad     
     Experience   125%       Infravision 0'
     
   
-魔像
-  魔像
+Golem
+  Golem
   Golems are creatures animated by powerful magics: living stone 
   conjured to serve their creators. But you have broken loose and are 
   running amok!
@@ -353,19 +364,19 @@ Angel/Demon
   last form takes nearly forever to build.
   
     Stats                   Skills
-    Strength      +4        Disarming   一般       
-    Intelligence  -4        Device      糟糕       
-    Wisdom        -4        Save        卓越       
-    Dexterity     -3        Stealth     糟糕       
-    Constitution  +4        Searching   糟糕       
-    Charisma      +2        Perception  糟糕       
-    Life Rating  108%       Melee       英雄       
-    Base HP       50        Archery     贫弱       
+    Strength      +4        Disarming   Fair         
+    Intelligence  -4        Device      Bad          
+    Wisdom        -4        Save        Superb       
+    Dexterity     -3        Stealth     Bad          
+    Constitution  +4        Searching   Bad          
+    Charisma      +2        Perception  Bad          
+    Life Rating  108%       Melee       Heroic       
+    Base HP       50        Archery     Poor         
     Experience   200%       Infravision 50'
     
   
-果冻
-  胶质怪
+Jelly
+  Jelly
   Jellies are acidic creatures, quietly patrolling their surroundings 
   in search of objects to absorb. They are quite stealthy for most of 
   their lives. They don't wear equipment on their bodies the way normal 
@@ -395,36 +406,37 @@ Angel/Demon
   additional, powerful evolutionary step late in life.
   
     Stats                   Skills
-    Strength      +3        Disarming   良好       
-    Intelligence  -7        Device      糟糕       
-    Wisdom        -7        Save        良好       
-    Dexterity     +2        Stealth     卓越       
-    Constitution  +3        Searching   贫弱       
-    Charisma      -1        Perception  糟糕       
-    Life Rating   99%       Melee       英雄       
-    Base HP       40        Archery     糟糕       
+    Strength      +3        Disarming   Good         
+    Intelligence  -7        Device      Bad          
+    Wisdom        -7        Save        Good         
+    Dexterity     +2        Stealth     Superb       
+    Constitution  +3        Searching   Poor         
+    Charisma      -1        Perception  Bad          
+    Life Rating   99%       Melee       Heroic       
+    Base HP       40        Archery     Bad          
     Experience   150%       Infravision 0'
     
-  库尔苏格
-  
-  库尔苏格是一堆令人作呕的、不断颤动和脉动的肉块，几乎无法移动。在身体上
-  ，它们非常可怜。然而，它们控制他人服从命令的能力是传说级别的，并且在情
-  况不妙时它们非常擅长逃跑。库尔苏格没有任何物理攻击能力。
+  Quylthulg
+  Quylthulgs are disgusting, quivering mounds of pulsating flesh, 
+  scarcely able to move about. Physically, they are pathetic. However, 
+  their ability to control others to do their bidding is legendary, and 
+  they are quite capable of fleeing when the going gets tough. 
+  Quylthulgs have no physical attacks.
   
     Stats                   Skills
-    Strength      -3        Disarming   一般       
-    Intelligence  -3        Device      英雄       
-    Wisdom        -3        Save        极好       
-    Dexterity     -3        Stealth     卓越       
-    Constitution  -3        Searching   贫弱       
-    Charisma      +8        Perception  一般       
-    Life Rating   95%       Melee       极差       
-    Base HP        0        Archery     极差       
+    Strength      -3        Disarming   Fair         
+    Intelligence  -3        Device      Heroic       
+    Wisdom        -3        Save        Very Good    
+    Dexterity     -3        Stealth     Superb       
+    Constitution  -3        Searching   Poor         
+    Charisma      +8        Perception  Fair         
+    Life Rating   95%       Melee       Very Bad     
+    Base HP        0        Archery     Very Bad     
     Experience   150%       Infravision 50'
     
   
-小妖精
-  小妖精
+Leprechaun
+  Leprechaun
   Leprechauns are small, mischievous creatures, always scheming for 
   gold. They are weak, but quick and stealthy. For combat, they prefer 
   not to use weapons at all; rather, by keeping their weapon hand free, 
@@ -453,147 +465,163 @@ Angel/Demon
   to say, greed is good when you're a leprechaun!
   
     Stats                   Skills
-    Strength      -6        Disarming   良好       
-    Intelligence  +1        Device      琥珀[2]    
-    Wisdom        +1        Save        良好       
-    Dexterity     +7        Stealth     琥珀[10]   
-    Constitution  -2        Searching   一般       
-    Charisma      -2        Perception  贫弱       
-    Life Rating   80%       Melee       一般       
-    Base HP       15        Archery     一般       
+    Strength      -6        Disarming   Good         
+    Intelligence  +1        Device      Amber[2]     
+    Wisdom        +1        Save        Good         
+    Dexterity     +7        Stealth     Amber[10]    
+    Constitution  -2        Searching   Fair         
+    Charisma      -2        Perception  Poor         
+    Life Rating   80%       Melee       Fair         
+    Base HP       15        Archery     Fair         
     Experience   150%       Infravision 50'
     
   
-拟态者/附身者
-  死亡之剑
+Mimic/Possessor
+  Death-Sword
+  Death-Swords are mighty weapons animated by magical means. As such, 
+  they are unable to use equipment the way other players can; instead, 
+  they simply are a weapon of their current form. But never fear: Death 
+  Swords have the power to absorb magical essences from the weapons 
+  they find, gaining power in the process.
   
-  死亡之剑是通过魔法手段活化的强大武器。因此，它们无法像其他玩家那样使用
-  装备；相反，它们本身就是处于当前形态的武器。但不必担心：死亡之剑有能力
-  从它们找到的武器中吸收魔法精华，并在此过程中获得力量。
-  
-  
-  随着死亡之剑等级的提升，它将进化成越来越强大的武器。更高级的武器需要更
-  多的精华来附魔，有时会导致能力的暂时丧失；但随着你深入地牢，魔法武器也
-  会变得更容易找到，因此任何失去的力量通常很快就能恢复。
+  As a Death-Sword gains levels, it will evolve into stronger and 
+  stronger weapons. More advanced weapons require more essences to 
+  enchant, sometimes causing a temporary loss of abilities; but magical 
+  weapons also become easier to find as you descend deeper into the 
+  pits, and so any lost powers are usually quickly recovered.
   
     Stats                   Skills
-    Strength      +4        Disarming   良好       
-    Intelligence  -5        Device      贫弱       
-    Wisdom        -5        Save        极好       
-    Dexterity     +1        Stealth     良好       
-    Constitution  +4        Searching   贫弱       
-    Charisma      +0        Perception  糟糕       
-    Life Rating  100%       Melee       极好       
-    Base HP       30        Archery     糟糕       
+    Strength      +4        Disarming   Good         
+    Intelligence  -5        Device      Poor         
+    Wisdom        -5        Save        Very Good    
+    Dexterity     +1        Stealth     Good         
+    Constitution  +4        Searching   Poor         
+    Charisma      +0        Perception  Bad          
+    Life Rating  100%       Melee       Very Good    
+    Base HP       30        Archery     Bad          
     Experience   150%       Infravision 30'
     
-  破布
-  
-  一堆又脏又旧、饱经风霜的衣服，在魔法的作用下（或者仅仅是因为积聚了足够
-  的微生物）获得了生命和意识，并且充满了报复那些干净、光亮、时髦的板甲的
-  强烈欲望。某种东西，很可能是一层厚厚的污垢，将一双旧靴子和两只普通的皮
-  手套永久地粘附在最初的破布上，使它能够四处走动并痛打敌人。如果你觉得这
-  东西现在看起来很丑，那就等它找到其他的防护护甲，并有时间将其拆解吸收掉
-  其中的魔法属性之后再说吧……
+  Filthy Rag
+  A pile of dirty, old, timeworn clothing, brought to life and 
+  sentience by magic (or perhaps just by accumulating enough 
+  micro-organisms) and filled with a strong desire to get back at all 
+  those clean, polished, fashionable plate mails. Something, likely a 
+  thick layer of grime, has permanently attached an old pair of boots 
+  and two plain leather gloves to the original rag, allowing it to walk 
+  about and punch enemies. If you think the thing looks ugly now, just 
+  wait until it's found some other protective armour and has had the 
+  time to take it apart and absorb its magical qualities...
   
     Stats                   Skills
-    Strength      -1        Disarming   良好       
-    Intelligence  -1        Device      贫弱       
-    Wisdom        -1        Save        极好       
-    Dexterity     -1        Stealth     良好       
-    Constitution  -2        Searching   贫弱       
-    Charisma      -4        Perception  糟糕       
-    Life Rating   98%       Melee       良好       
-    Base HP       20        Archery     糟糕       
+    Strength      -1        Disarming   Good         
+    Intelligence  -1        Device      Poor         
+    Wisdom        -1        Save        Very Good    
+    Dexterity     -1        Stealth     Good         
+    Constitution  -2        Searching   Poor         
+    Charisma      -4        Perception  Bad          
+    Life Rating   98%       Melee       Good         
+    Base HP       20        Archery     Bad          
     Experience   110%       Infravision 20'
     
-  模仿者
-  
-  模仿者类似于附身者；但模仿者不是控制被击败者的尸体，而是模仿他们周围的
-  存在。这使得模仿者能够呈现出他们尚未征服的敌人的形态，这是非常实用的。
-  然而，这里有一个小小的代价：模仿者只能复制他们看到的东西！这种限制迫使
-  模仿者比附身者更频繁地改变形态，因为当本体不在附近时，他们对当前躯体的
-  认知会迅速消退。偶尔，模仿者能够将特定形态记忆得足够好，以便在没有本体
-  可模仿的情况下再次使用，尽管这种情况并不经常发生，而且模仿者只能记忆很
-  少的形态。要有机会做到这一点，模仿者必须在杀死本体时处于所需的形态。
+  Mimic
+  Mimics are similar to Possessors; but instead of controlling the 
+  corpses of the vanquished, the mimic imitates those about them. This 
+  allows the mimic to assume the forms of foes they have yet to 
+  conquer, which is quite useful. However, there is a small catch: 
+  mimics can only copy what they see! This limitation forces a mimic to 
+  change forms much more often than a possessor would, as knowledge of 
+  their current body rapidly fades when the original is no longer 
+  about. Occasionally, the mimic is able to memorize a particular form 
+  well enough to use it again without the original body to imitate, 
+  though this does not happen very often and the mimic can only 
+  memorize a small number of forms. To have a chance of this, the mimic 
+  must be in the desired form when slaying the original.
    
-  
-  模仿者的属性、技能、法术、抗性和天生能力由他们呈现的形态决定；在呈现新
-  躯体后，一定要检查种族能力命令 (U/O) 和魔法命令 
-  (m)。当前形态也决定了施法属性；例如，新手牧师的模仿形态使用感知，而新
-  手魔法师的模仿形态则依赖智力。
+  The stats, skills, spells, resistances and innate powers of a mimic 
+  are determined by the form they assume; be sure to check both the 
+  racial power command (U/O) and the magic command (m) after assuming a 
+  new body. The current form also determines the spell stat; for 
+  example, a novice priest mimic uses wisdom, while a novice mage mimic 
+  relies on intelligence.
   
     Stats                   Skills
-    Strength      +0        Disarming   贫弱       
-    Intelligence  +1        Device      良好       
-    Wisdom        -1        Save        一般       
-    Dexterity     +2        Stealth     贫弱       
-    Constitution  +0        Searching   贫弱       
-    Charisma      -1        Perception  贫弱       
-    Life Rating  108%       Melee       极好       
-    Base HP       15        Archery     优秀       
+    Strength      +0        Disarming   Poor         
+    Intelligence  +1        Device      Good         
+    Wisdom        -1        Save        Fair         
+    Dexterity     +2        Stealth     Poor         
+    Constitution  +0        Searching   Poor         
+    Charisma      -1        Perception  Poor         
+    Life Rating  108%       Melee       Very Good    
+    Base HP       15        Archery     Excellent    
     Experience   250%       Infravision 0'
     
-  附身者
-  
-  附身者是一种古怪的生物，在自然形态下完全无害。然而，它们能够附身于被它
-  们杀死的怪物尸体上，并根据当前躯体获得相应的力量和能力。因此，它们可以
-  变得非常强大！不幸的是，并非所有种类的怪物都会掉落尸体，因此获得合适的
-  尸骸来栖身可能很困难。如果附身者离开他们当前的躯体，他们所有的装备（除
-  了光源）都将被移除，并暂时回到他们原生、脆弱的状态。最后，离开当前躯体
-  通常会摧毁那具尸骸，因此附身者只有在手头有更好的尸骸时（并且附近没有怪
-  物时！）才应该这样做。附身者通常完全控制它们居住的身体；但在极低的生命
-  值下，这种控制变得难以维持，遭受严重伤害的附身者有很小的几率被从躯体中
-  弹出。
+  Possessor
+  The Possessor is an odd creature, completely harmless in its natural 
+  form. However, they are capable of possessing the corpses of monsters 
+  they have slain, and gain powers and abilities based on their current 
+  body. As such, they can become quite powerful indeed! Unfortunately, 
+  not every type of monster will drop a corpse, and getting suitable 
+  corspes to inhabit can be difficult. If the possessor ever leaves 
+  their current body, all of their equipment will be removed (except a 
+  light source) and they will temporarily return to their native, 
+  vulnerable state. Finally, leaving their current body will destroy 
+  that corpse most of the time, so the possessor should only do so if 
+  they have a better corpse on hand (and also only if there are no 
+  monsters nearby!). Possessors normally have full control of the body 
+  they inhabit; but at very low health this control becomes hard to 
+  maintain, and a possessor who suffers serious damage has a small 
+  chance of being ejected from the body.
    
-  
-  附身者的属性、技能、法术、抗性和天生能力由他们占据的躯干决定；在附身新
-  躯体后，一定要检查种族能力命令 (U/O) 和魔法命令 
-  (m)。当前的身体也决定了施法属性；例如，新手牧师的附身躯干使用感知，而
-  新手魔法师的附身躯干则依赖智力。
+  The stats, skills, spells, resistances and innate powers of a 
+  possessor are determined by the body they inhabit; be sure to check 
+  both the racial power command (U/O) and the magic command (m) after 
+  possessing a new body. The current body also determines the spell 
+  stat; for example, a novice priest possessor uses wisdom, while a 
+  novice mage possessor relies on intelligence.
   
     Stats                   Skills
-    Strength      -4        Disarming   糟糕       
-    Intelligence  +0        Device      糟糕       
-    Wisdom        -3        Save        贫弱       
-    Dexterity     +0        Stealth     英雄       
-    Constitution  -4        Searching   贫弱       
-    Charisma      -7        Perception  贫弱       
-    Life Rating   60%       Melee       贫弱       
-    Base HP       15        Archery     糟糕       
+    Strength      -4        Disarming   Bad          
+    Intelligence  +0        Device      Bad          
+    Wisdom        -3        Save        Poor         
+    Dexterity     +0        Stealth     Heroic       
+    Constitution  -4        Searching   Poor         
+    Charisma      -7        Perception  Poor         
+    Life Rating   60%       Melee       Poor         
+    Base HP       15        Archery     Bad          
     Experience   250%       Infravision 70'
     
-  戒指
-  戒指是通过魔法手段活化的有感知的生物。
+  Ring
+  Rings are sentient creatures animated by magical means.
    
-  
-  戒指不能穿戴普通装备；相反，它们本身就是一枚被魔法附魔的戒指。戒指拥有
-  一小部分天生能力。由于戒指无法自行移动，它需要诱惑附近的怪物戴上它。魔
-  法戒指往往会腐化它们的主人，随着时间的推移，佩戒者会发现自己的意志已不
-  再属于自己！
+  Rings cannot wear normal equipment; rather, they simply are a ring, 
+  magically enchanted. Rings have a small arsenal of innate powers. 
+  Since the ring is unable to move on its own, it will need to lure a 
+  nearby monster into wearing it. Magic rings tend to corrupt their 
+  owners, and over time, the ring-bearer will find that his will is not 
+  his own!
    
+  Rings can absorb magic from the jewelry (rings or amulets) that they 
+  find, and gain resistances, attributes and additional spells this 
+  way. Rings have no physical attacks; instead, they may blast enemies 
+  with mighty spells (once absorbed, of course), or they may simply lie 
+  back and let their current bearer do the fighting for them.
   
-  戒指可以从找到的珠宝（戒指或护身符）中吸收魔法，并通过这种方式获得抗性
-  、属性和额外的法术。戒指没有任何物理攻击能力；相反，它们可以用强大的法
-  术轰击敌人（当然，前提是已经吸收了法术），或者它们可以简单地躺平，让当
-  前的佩戒者替它们战斗。
-  
-  有关戒指的更多详细信息，请参阅 [g]。
+  See [g] for more details on rings.
   
     Stats                   Skills
-    Strength      -3        Disarming   一般       
-    Intelligence  +4        Device      卓越       
-    Wisdom        +1        Save        良好       
-    Dexterity     +0        Stealth     极好       
-    Constitution  -1        Searching   贫弱       
-    Charisma      +3        Perception  贫弱       
-    Life Rating   85%       Melee       糟糕       
-    Base HP       10        Archery     糟糕       
+    Strength      -3        Disarming   Fair         
+    Intelligence  +4        Device      Superb       
+    Wisdom        +1        Save        Good         
+    Dexterity     +0        Stealth     Very Good    
+    Constitution  -1        Searching   Poor         
+    Charisma      +3        Perception  Poor         
+    Life Rating   85%       Melee       Bad          
+    Base HP       10        Archery     Bad          
     Experience   150%       Infravision 50'
     
   
 Orc/Troll/Giant
-  巨人
+  Giant
   Giants are humanoids of immense stature. There are several types of 
   giants. Fire, Frost and Storm giants are elemental giants, and gain 
   elemental resistances, slays and even attacks appropriate for their 
@@ -609,17 +637,17 @@ Orc/Troll/Giant
   innate attacks.
   
     Stats                   Skills
-    Strength      +8        Disarming   一般       
-    Intelligence  -3        Device      糟糕       
-    Wisdom        -3        Save        贫弱       
-    Dexterity     -2        Stealth     糟糕       
-    Constitution  +5        Searching   贫弱       
-    Charisma      +1        Perception  糟糕       
-    Life Rating  117%       Melee       英雄       
-    Base HP       46        Archery     一般       
+    Strength      +8        Disarming   Fair         
+    Intelligence  -3        Device      Bad          
+    Wisdom        -3        Save        Poor         
+    Dexterity     -2        Stealth     Bad          
+    Constitution  +5        Searching   Poor         
+    Charisma      +1        Perception  Bad          
+    Life Rating  117%       Melee       Heroic       
+    Base HP       46        Archery     Fair         
     Experience   200%       Infravision 50'
     
-  兽人
+  Orc
   Orcs are Morgoth's creation and the backbone of his armies. They are 
   accustomed to caves and tunnels, and resist darkness but tend to be 
   vulnerable to light. Orcs are ugly, brutish pillagers by reputation 
@@ -631,38 +659,38 @@ Orc/Troll/Giant
   strongest fighters and most powerful magicians reside, orcs are 
   rarely seen.
   
-  有关兽人的更多详细信息，请参阅 [h]。
+  See [h] for more details on orcs.
   
     Stats                   Skills
-    Strength      -1        Disarming   一般       
-    Intelligence  -4        Device      极差       
-    Wisdom        -5        Save        贫弱       
-    Dexterity     +0        Stealth     贫弱       
-    Constitution  +0        Searching   贫弱       
-    Charisma      -5        Perception  糟糕       
-    Life Rating   99%       Melee       优秀       
-    Base HP       30        Archery     优秀       
+    Strength      -1        Disarming   Fair         
+    Intelligence  -4        Device      Very Bad     
+    Wisdom        -5        Save        Poor         
+    Dexterity     +0        Stealth     Poor         
+    Constitution  +0        Searching   Poor         
+    Charisma      -5        Perception  Bad          
+    Life Rating   99%       Melee       Excellent    
+    Base HP       30        Archery     Excellent    
     Experience   100%       Infravision 30'
     
-  巨魔
+  Troll
   Trolls are disgusting creatures: big, strong and stupid. They make 
   excellent warriors, but are hopeless with magical devices. Trolls 
   have incredible powers of regeneration.
   
     Stats                   Skills
-    Strength      +5        Disarming   贫弱       
-    Intelligence  -5        Device      糟糕       
-    Wisdom        -5        Save        贫弱       
-    Dexterity     -1        Stealth     贫弱       
-    Constitution  +5        Searching   贫弱       
-    Charisma      +0        Perception  糟糕       
-    Life Rating  112%       Melee       卓越       
-    Base HP       50        Archery     贫弱       
+    Strength      +5        Disarming   Poor         
+    Intelligence  -5        Device      Bad          
+    Wisdom        -5        Save        Poor         
+    Dexterity     -1        Stealth     Poor         
+    Constitution  +5        Searching   Poor         
+    Charisma      +0        Perception  Bad          
+    Life Rating  112%       Melee       Superb       
+    Base HP       50        Archery     Poor         
     Experience   150%       Infravision 50'
     
   
-不死生物
-  巫妖
+Undead
+  Lich
   Liches are the undead forms of former sorcerers. Their magic is 
   strong, but their fighting skills weak. As undead, they quickly gain 
   resistance to cold, poison and nether, and these resistances increase 
@@ -679,48 +707,51 @@ Orc/Troll/Giant
   touch, though, melee will never be their strong suit.
   
     Stats                   Skills
-    Strength      -3        Disarming   一般       
-    Intelligence  +4        Device      英雄       
-    Wisdom        -4        Save        良好       
-    Dexterity     +2        Stealth     良好       
-    Constitution  -1        Searching   极好       
-    Charisma      +1        Perception  一般       
-    Life Rating   90%       Melee       糟糕       
-    Base HP       18        Archery     糟糕       
+    Strength      -3        Disarming   Fair         
+    Intelligence  +4        Device      Heroic       
+    Wisdom        -4        Save        Good         
+    Dexterity     +2        Stealth     Good         
+    Constitution  -1        Searching   Very Good    
+    Charisma      +1        Perception  Fair         
+    Life Rating   90%       Melee       Bad          
+    Base HP       18        Archery     Bad          
     Experience   225%       Infravision 50'
     
-  木乃伊
+  Mummy
+  Zombies and mummies are among the most feared of all undead races. 
+  Evil curses are a mummy's bread and butter; not only can they hex 
+  their opponents, they can also curse and uncurse their own equipment 
+  at will; and the stronger and more numerous the curses they are 
+  wrapped in, the greater their magical powers. Of course, they will 
+  also have to cope with being cursed...
   
-  僵尸和木乃伊是所有不死种族中最令人畏惧的存在之一。邪恶诅咒是木乃伊赖以
-  生存的根本；它们不仅能对敌人施加恶咒，还能随意给自己的装备增加或解除诅
-  咒；它们身上缠绕的诅咒越强、越多，其魔力就越强大。当然，它们也必须承受
-  被诅咒的负面影响……
+  You begin unlife as a humble Zombified human, with few curses or 
+  other abilities at your disposal; but soon you will evolve into a a 
+  Mummified human, and things really start picking up. Mummy evolution 
+  is somewhat random - you might find yourself a strong but stupid 
+  Draugr or a wily but weak Mummified sorcerer - but ultimately, you 
+  will combine strength and magic in the spine-chilling final form of a 
+  Mummy king.
   
-  
-  你以卑微的僵尸化人类开始你的不死生涯，几乎没有诅咒或其他能力可用；但很
-  快你就会进化成木乃伊化人类，情况将大有起色。木乃伊的进化在一定程度上是
-  随机的——你可能会发现自己变成了强壮但愚笨的尸鬼，或者是狡猾但虚弱的木乃
-  伊术士——但最终，你将在令人毛骨悚然的最终形态“木乃伊王”中把力量与魔法结
-  合在一起。
-  
-  
-  作为陵墓和黑夜的生物，僵尸和木乃伊在没有光的情况下也能看得很清楚；事实
-  上，携带光源会削弱它们诅咒的黑暗能量。在近战中，它们更倾向于依赖自身的
-  天生攻击；装备武器只会分散它们真正的战斗技巧，仅在游戏极初期算是一个可
-  行的进攻选择。
+  Being creatures of tombs and the night, zombies and mummies can 
+  easily see without a light; indeed, carrying a light source saps the 
+  dark energy of their curses. In melee, they prefer to rely on their 
+  innate attacks; equipping a weapon serves only to distract them from 
+  their real fighting skills, and is only a viable offensive option in 
+  the earliest parts of the game.
   
     Stats                   Skills
-    Strength      -1        Disarming   贫弱       
-    Intelligence  -2        Device      极差       
-    Wisdom        -3        Save        良好       
-    Dexterity     -2        Stealth     贫弱       
-    Constitution  +0        Searching   贫弱       
-    Charisma      -1        Perception  糟糕       
-    Life Rating  100%       Melee       优秀       
-    Base HP       22        Archery     良好       
+    Strength      -1        Disarming   Poor         
+    Intelligence  -2        Device      Very Bad     
+    Wisdom        -3        Save        Good         
+    Dexterity     -2        Stealth     Poor         
+    Constitution  +0        Searching   Poor         
+    Charisma      -1        Perception  Bad          
+    Life Rating  100%       Melee       Excellent    
+    Base HP       22        Archery     Good         
     Experience   135%       Infravision 50'
     
-  吸血鬼
+  Vampire
   One of the mightier undead creatures, the Vampire is an awe-inspiring 
   sight. Yet this dread creature has a serious weakness: the bright 
   rays of sun are its bane, and it will need to flee the surface to the 
@@ -739,19 +770,19 @@ Orc/Troll/Giant
   limited shapeshifting abilities and a powerful, hypnotic gaze.
   
     Stats                   Skills
-    Strength      +4        Disarming   贫弱       
-    Intelligence  +1        Device      优秀       
-    Wisdom        -3        Save        一般       
-    Dexterity     +2        Stealth     英雄       
-    Constitution  -2        Searching   一般       
-    Charisma      +4        Perception  一般       
-    Life Rating   96%       Melee       优秀       
-    Base HP       20        Archery     贫弱       
+    Strength      +4        Disarming   Poor         
+    Intelligence  +1        Device      Excellent    
+    Wisdom        -3        Save        Fair         
+    Dexterity     +2        Stealth     Heroic       
+    Constitution  -2        Searching   Fair         
+    Charisma      +4        Perception  Fair         
+    Life Rating   96%       Melee       Excellent    
+    Base HP       20        Archery     Poor         
     Experience   250%       Infravision 50'
     
   
-其他
-  南瓜怪
+Other
+  Pumpkin
   The creations of some differently normal scientist who thought 
   sentient blood-thirsty pumpkins would be a great idea, these 
   creatures begin their lives as pumpkin-headed humanoids; over time, 
@@ -762,136 +793,139 @@ Orc/Troll/Giant
   Also, the bites of the deadliest pumpkins are said to be vampiric...
   
     Stats                   Skills
-    Strength      +1        Disarming   糟糕       
-    Intelligence  -2        Device      贫弱       
-    Wisdom        -2        Save        良好       
-    Dexterity     +0        Stealth     贫弱       
-    Constitution  +1        Searching   贫弱       
-    Charisma      -2        Perception  糟糕       
-    Life Rating  102%       Melee       卓越       
-    Base HP       15        Archery     贫弱       
+    Strength      +1        Disarming   Bad          
+    Intelligence  -2        Device      Poor         
+    Wisdom        -2        Save        Good         
+    Dexterity     +0        Stealth     Poor         
+    Constitution  +1        Searching   Poor         
+    Charisma      -2        Perception  Bad          
+    Life Rating  102%       Melee       Superb       
+    Base HP       15        Archery     Poor         
     Experience   115%       Infravision 20'
     
-  索恩
-  
-  索恩是体型巨大的土元素生物。它们生命之初是土巨怪，这是一种奇异的生物，
-  拥有能切开岩石的巨大下颚和能使敌人困惑的耀眼双目。在进化的这个阶段，它
-  们的身体隐约呈现人形，这允许它们戴头盔、护身符、斗篷甚至一双靴子；然而
-  ，一旦土巨怪进一步进化，它就不能再穿戴这些物品了。取而代之的是，成年的
-  索恩可以利用它四条粗壮的手臂来装备武器、盾牌、戒指和手套；成熟的索恩也
-  可以毫不费力地穿过岩石。
+  Xorn
+  Xorns are massive creatures of earth. They begin life as an Umber 
+  Hulk, a bizarre creature with large mandibles capable of slicing 
+  through rock and glaring eyes capable of confusing foes. At this 
+  stage in their evolution their body is vaguely humanoid, allowing 
+  them to wear a helmet, an amulet, a cloak and even a pair of boots; 
+  once the Umber Hulk evolves further, however, it can no longer wear 
+  these items. Instead, a grown Xorn can use its four massive arms for 
+  weapons, shields, rings and gloves; mature Xorns can also pass 
+  effortlessly through rock.
    
-  
-  索恩没有主动的魔法能力，而是依靠它们隐藏在岩石中的能力以及多出的手臂在
-  近战中提供的优势。像大多数战士角色一样，索恩在击杀怪物方面非常有效，但
-  在使用高级魔法装置时会遇到困难。
+  Xorns have no active magical powers, but instead rely on their 
+  ability to hide in rocks and the advantage that their extra arms 
+  provide them in melee. Xorns, like most warrior characters, are very 
+  effective at killing monsters but have problems with advanced magic 
+  devices.
   
     Stats                   Skills
-    Strength      +4        Disarming   良好       
-    Intelligence  -4        Device      糟糕       
-    Wisdom        -2        Save        贫弱       
-    Dexterity     -1        Stealth     贫弱       
-    Constitution  +2        Searching   贫弱       
-    Charisma      -1        Perception  糟糕       
-    Life Rating  104%       Melee       极好       
-    Base HP       25        Archery     糟糕       
+    Strength      +4        Disarming   Good         
+    Intelligence  -4        Device      Bad          
+    Wisdom        -2        Save        Poor         
+    Dexterity     -1        Stealth     Poor         
+    Constitution  +2        Searching   Poor         
+    Charisma      -1        Perception  Bad          
+    Life Rating  104%       Melee       Very Good    
+    Base HP       25        Archery     Bad          
     Experience   150%       Infravision 50'
     
   
-表 1 - 种族属性加成表
+Table 1 - Race Statistic Bonus Table
 
              STR  INT  WIS  DEX  CON  CHR  Life  BHP  Exp  Shop
-蜈蚣        +0   -3   -3   +0   +0   -3   90%  +15  100%  120%
-猎犬        +3   -3   -5   +4   +3   +1  100%  +22  150%  110%
-多头蛇     +1   -2   -2   +2   +3   +0  105%  +45  130%  130%
-蜘蛛        +1   +0   -5   +0   +2   +0  100%  +25  200%  115%
-天使        +2   +2   +5   +2   +2   +4   99%  +26  325%   90%
-眼魔        -3   +7   +0   +2   +0   +1  100%  +20  200%  140%
-龙           +4   +2   +1   +1   +3   +2  115%  +40  250%  130%
-元素生物  +5   -5   -5   -4   +6   +0  120%  +30  170%  120%
-漩涡        +2   -5   -5   +4   +2   +0   95%  +25  125%  120%
-魔像        +4   -4   -4   -3   +4   +2  108%  +50  200%  130%
-胶质怪     +3   -7   -7   +2   +3   -1   99%  +40  150%  125%
-库尔苏格  -3   -3   -3   -3   -3   +8   95%   +0  150%  120%
-小妖精     -6   +1   +1   +7   -2   -2   80%  +15  150%   85%
-死亡之剑  +4   -5   -5   +1   +4   +0  100%  +30  150%  110%
-破布        -1   -1   -1   -1   -2   -4   98%  +20  110%  120%
-模仿者     +0   +1   -1   +2   +0   -1  108%  +15  250%  110%
-附身者     -4   +0   -3   +0   -4   -7   60%  +15  250%  110%
-戒指        -3   +4   +1   +0   -1   +3   85%  +10  150%  110%
-巨人        +8   -3   -3   -2   +5   +1  117%  +46  200%  130%
-兽人        -1   -4   -5   +0   +0   -5   99%  +30  100%  140%
-巨魔        +5   -5   -5   -1   +5   +0  112%  +50  150%  135%
-巫妖        -3   +4   -4   +2   -1   +1   90%  +18  225%  135%
-木乃伊     -1   -2   -3   -2   +0   -1  100%  +22  135%  120%
-吸血鬼     +4   +1   -3   +2   -2   +4   96%  +20  250%  130%
-南瓜怪     +1   -2   -2   +0   +1   -2  102%  +15  115%  110%
-索恩        +4   -4   -2   -1   +2   -1  104%  +25  150%  120%
+Centipede     +0   -3   -3   +0   +0   -3   90%  +15  100%  120%
+Hound         +3   -3   -5   +4   +3   +1  100%  +22  150%  110%
+Hydra         +1   -2   -2   +2   +3   +0  105%  +45  130%  130%
+Spider        +1   +0   -5   +0   +2   +0  100%  +25  200%  115%
+Angel         +2   +2   +5   +2   +2   +4   99%  +26  325%   90%
+Beholder      -3   +7   +0   +2   +0   +1  100%  +20  200%  140%
+Dragon        +4   +2   +1   +1   +3   +2  115%  +40  250%  130%
+Elemental     +5   -5   -5   -4   +6   +0  120%  +30  170%  120%
+Vortex        +2   -5   -5   +4   +2   +0   95%  +25  125%  120%
+Golem         +4   -4   -4   -3   +4   +2  108%  +50  200%  130%
+Jelly         +3   -7   -7   +2   +3   -1   99%  +40  150%  125%
+Quylthulg     -3   -3   -3   -3   -3   +8   95%   +0  150%  120%
+Leprechaun    -6   +1   +1   +7   -2   -2   80%  +15  150%   85%
+Death-Sword   +4   -5   -5   +1   +4   +0  100%  +30  150%  110%
+Filthy Rag    -1   -1   -1   -1   -2   -4   98%  +20  110%  120%
+Mimic         +0   +1   -1   +2   +0   -1  108%  +15  250%  110%
+Possessor     -4   +0   -3   +0   -4   -7   60%  +15  250%  110%
+Ring          -3   +4   +1   +0   -1   +3   85%  +10  150%  110%
+Giant         +8   -3   -3   -2   +5   +1  117%  +46  200%  130%
+Orc           -1   -4   -5   +0   +0   -5   99%  +30  100%  140%
+Troll         +5   -5   -5   -1   +5   +0  112%  +50  150%  135%
+Lich          -3   +4   -4   +2   -1   +1   90%  +18  225%  135%
+Mummy         -1   -2   -3   -2   +0   -1  100%  +22  135%  120%
+Vampire       +4   +1   -3   +2   -2   +4   96%  +20  250%  130%
+Pumpkin       +1   -2   -2   +0   +1   -2  102%  +15  115%  110%
+Xorn          +4   -4   -2   -1   +2   -1  104%  +25  150%  120%
 
 
-表 2 - 种族技能加成表 I
+Table 2 - Race Skill Bonus Table I
 
-             解除陷阱  使用装置  豁免        潜行       
-蜈蚣       良好        一般        一般        极好       
-猎犬       贫弱        糟糕        贫弱        卓越       
-多头蛇    良好        贫弱        一般        贫弱       
-蜘蛛       贫弱        良好        一般        优秀       
-天使       贫弱        优秀        卓越        一般       
-眼魔       一般        琥珀[10]    卓越        英雄       
-龙          一般        良好        一般        贫弱       
-元素生物 一般        糟糕        极好        极好       
-漩涡       贫弱        糟糕        卓越        良好       
-魔像       一般        糟糕        卓越        糟糕       
-胶质怪    良好        糟糕        良好        卓越       
-库尔苏格 一般        英雄        极好        卓越       
-小妖精    良好        琥珀[2]     良好        琥珀[10]   
-死亡之剑 良好        贫弱        极好        良好       
-破布       良好        贫弱        极好        良好       
-模仿者    贫弱        良好        一般        贫弱       
-附身者    糟糕        糟糕        贫弱        英雄       
-戒指       一般        卓越        良好        极好       
-巨人       一般        糟糕        贫弱        糟糕       
-兽人       一般        极差        贫弱        贫弱       
-巨魔       贫弱        糟糕        贫弱        贫弱       
-巫妖       一般        英雄        良好        良好       
-木乃伊    贫弱        极差        良好        贫弱       
-吸血鬼    贫弱        优秀        一般        英雄       
-南瓜怪    糟糕        贫弱        良好        贫弱       
-索恩       良好        糟糕        贫弱        贫弱       
-
-
-表 3 - 种族技能加成表 II
-
-             搜索        察觉        近战        箭术        红外
-蜈蚣       糟糕        糟糕        良好        极差          50'
-猎犬       贫弱        贫弱        极好        糟糕          50'
-多头蛇    糟糕        糟糕        良好        糟糕          50'
-蜘蛛       贫弱        贫弱        优秀        糟糕          50'
-天使       贫弱        贫弱        良好        一般          30'
-眼魔       英雄        英雄        一般        糟糕          80'
-龙          一般        一般        优秀        糟糕          50'
-元素生物 一般        贫弱        英雄        糟糕          50'
-漩涡       糟糕        糟糕        优秀        极差           0'
-魔像       糟糕        糟糕        英雄        贫弱          50'
-胶质怪    贫弱        糟糕        英雄        糟糕           0'
-库尔苏格 贫弱        一般        极差        极差          50'
-小妖精    一般        贫弱        一般        一般          50'
-死亡之剑 贫弱        糟糕        极好        糟糕          30'
-破布       贫弱        糟糕        良好        糟糕          20'
-模仿者    贫弱        贫弱        极好        优秀           0'
-附身者    贫弱        贫弱        贫弱        糟糕          70'
-戒指       贫弱        贫弱        糟糕        糟糕          50'
-巨人       贫弱        糟糕        英雄        一般          50'
-兽人       贫弱        糟糕        优秀        优秀          30'
-巨魔       贫弱        糟糕        卓越        贫弱          50'
-巫妖       极好        一般        糟糕        糟糕          50'
-木乃伊    贫弱        糟糕        优秀        良好          50'
-吸血鬼    一般        一般        优秀        贫弱          50'
-南瓜怪    贫弱        糟糕        卓越        贫弱          20'
-索恩       贫弱        糟糕        极好        糟糕          50'
+             Disarming     Device        Save          Stealth      
+Centipede    Good          Fair          Fair          Very Good    
+Hound        Poor          Bad           Poor          Superb       
+Hydra        Good          Poor          Fair          Poor         
+Spider       Poor          Good          Fair          Excellent    
+Angel        Poor          Excellent     Superb        Fair         
+Beholder     Fair          Amber[10]     Superb        Heroic       
+Dragon       Fair          Good          Fair          Poor         
+Elemental    Fair          Bad           Very Good     Very Good    
+Vortex       Poor          Bad           Superb        Good         
+Golem        Fair          Bad           Superb        Bad          
+Jelly        Good          Bad           Good          Superb       
+Quylthulg    Fair          Heroic        Very Good     Superb       
+Leprechaun   Good          Amber[2]      Good          Amber[10]    
+Death-Sword  Good          Poor          Very Good     Good         
+Filthy Rag   Good          Poor          Very Good     Good         
+Mimic        Poor          Good          Fair          Poor         
+Possessor    Bad           Bad           Poor          Heroic       
+Ring         Fair          Superb        Good          Very Good    
+Giant        Fair          Bad           Poor          Bad          
+Orc          Fair          Very Bad      Poor          Poor         
+Troll        Poor          Bad           Poor          Poor         
+Lich         Fair          Heroic        Good          Good         
+Mummy        Poor          Very Bad      Good          Poor         
+Vampire      Poor          Excellent     Fair          Heroic       
+Pumpkin      Bad           Poor          Good          Poor         
+Xorn         Good          Bad           Poor          Poor         
 
 
+Table 3 - Race Skill Bonus Table II
+
+             Searching     Perception    Melee         Archery       Infra
+Centipede    Bad           Bad           Good          Very Bad        50'
+Hound        Poor          Poor          Very Good     Bad             50'
+Hydra        Bad           Bad           Good          Bad             50'
+Spider       Poor          Poor          Excellent     Bad             50'
+Angel        Poor          Poor          Good          Fair            30'
+Beholder     Heroic        Heroic        Fair          Bad             80'
+Dragon       Fair          Fair          Excellent     Bad             50'
+Elemental    Fair          Poor          Heroic        Bad             50'
+Vortex       Bad           Bad           Excellent     Very Bad         0'
+Golem        Bad           Bad           Heroic        Poor            50'
+Jelly        Poor          Bad           Heroic        Bad              0'
+Quylthulg    Poor          Fair          Very Bad      Very Bad        50'
+Leprechaun   Fair          Poor          Fair          Fair            50'
+Death-Sword  Poor          Bad           Very Good     Bad             30'
+Filthy Rag   Poor          Bad           Good          Bad             20'
+Mimic        Poor          Poor          Very Good     Excellent        0'
+Possessor    Poor          Poor          Poor          Bad             70'
+Ring         Poor          Poor          Bad           Bad             50'
+Giant        Poor          Bad           Heroic        Fair            50'
+Orc          Poor          Bad           Excellent     Excellent       30'
+Troll        Poor          Bad           Superb        Poor            50'
+Lich         Very Good     Fair          Bad           Bad             50'
+Mummy        Poor          Bad           Excellent     Good            50'
+Vampire      Fair          Fair          Excellent     Poor            50'
+Pumpkin      Poor          Bad           Superb        Poor            20'
+Xorn         Poor          Bad           Very Good     Bad             50'
 
 
-自动生成于 RoguelikeFansBand 7.4。
+
+
+Automatically generated for RoguelikeFansBand 7.2.salmiak.
 

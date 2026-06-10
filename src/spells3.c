@@ -3461,6 +3461,8 @@ bool spell_okay(int spell, bool learned, bool study_pray, int use_realm, bool br
 	/* Can always browse spells */
 	if (browse) return (TRUE);
 
+    if (maia_forbids_realm(use_realm)) return (FALSE);
+
     /* Spell is illegal */
     if (lawyer_hack(s_ptr, LAWYER_HACK_LEVEL) > p_ptr->lev) return (FALSE);
 

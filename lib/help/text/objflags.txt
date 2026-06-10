@@ -1,905 +1,989 @@
-装备属性 (Equipment Properties)
+﻿Equipment Properties
+
+Each object in RoguelikeFansBand has certain basic properties: base AC 
+(armor class), bonus AC, damage dice (or a damage multiplier on ranged 
+weapons), an accuracy (to-hit) bonus, a damage (to-dam) bonus, and a 
+pval indicating the size of various other bonuses. Some or all of these 
+attributes can be zero or otherwise irrelevant, and they are usually 
+only displayed when they actually matter; for example, damage dice are 
+only indicated on melee weapons and on projectiles.
+
+Objects, particularly equipment, may also have additional attributes; 
+these are simply present or absent, though their exact effects may 
+still depend on additional factors like the item type or the pval. This 
+document collectively calls these flag attributes, since the game can 
+use simple on-or-off flags to track their presence on the object. There 
+are many types of flag attributes - some provide bonuses like extra 
+strength or speed, some give abilities like night-vision or telepathy, 
+some make you resistant (or vulnerable) to specific types of damage, 
+some surround you with elemental auras, some make weapons deadlier 
+against specific opponents, and so on - but all of these attributes are 
+simply present or absent, practically all are indicated when you 
+inspect an *identified* object with the I command, and nearly all are 
+indicated in the object's short description through a specific 
+abbreviation. (See [a] for a quick list of these abbreviations.)
+
+Finally, pieces of equipment may have curses on them. Curses are 
+usually (but not always) removable; and they are usually (but not 
+always) separate from flag attributes in that they are not permanent.
+
+This lengthy help file lists and explains most object properties, 
+including all publicly indicated flag attributes, though much of the 
+information given here can also be found elsewhere in the help.
+There is no need to read this document in any detail before starting 
+play, or during play; it should be considered reference material, and 
+may contain detailed spoilers about items you have yet to see.
+
+Basic Properties
+
+Damage Dice - (2d6)
+
+Damage dice indicate the basic damage delivered by an object when you 
+hit a monster with them. (Your actual total damage on a hit will also 
+depend on many other factors, such as slays, brands, damage bonuses and 
+critical hits.)
+
+Damage dice are only displayed on melee weapons and on projectiles; 
+they are indicated as (XdY), meaning the game will roll X separate dice 
+with Y sides each, and add up the damage. The damage dice of a weapon 
+usually depend on the object kind - for example, most short swords are 
+(1d8) and most long swords (2d6) - but sometimes you can find a 
+dice-boosted weapon (or projectile) with unusually high dice for the 
+underlying kind.
+
+Damage Multiplier - (x3.50)
+
+Damage multipliers are a property exclusive to ranged weapons. They 
+multiple the damage dice and to-dam bonuses of any projectile fired 
+with the weapon. Like damage dice, damage multipliers are based on the 
+object kind, though they are frequently boosted on artifacts and ego 
+items.
+
+Combat Bonuses - (+6,+9)
+
+Combat bonuses consist of the accuracy bonus (to-hit) and the damage 
+bonus (to-dam). On melee weapons, shooters and projectiles these are 
+always indicated as (+X,+Y), even when zero; on other items they are 
+only indicated when non-zero. Typically, even on non-weapons, both 
+values are indicated for clarity if either of them is non-zero; but on 
+gloves, boots and body armor it sometimes happens that only one value 
+is indicated, as (-X) or (+Y). Such a single value can be assumed to be 
+an accuracy penalty if negative, and a damage bonus if positive. (The 
+display format for a single positive damage bonus is identical to the 
+display format for a pval; but combat bonuses are listed before armor 
+bonuses while pvals are listed after, and single-value combat display 
+only occurs on armor, so the two can always be told apart.)
+
+The applicability of a combat bonus may not always be entirely clear: 
+the bonus might apply only to melee, only to archery, to both melee and 
+archery, or even apply exclusively to magical combat (in which case it 
+boosts spell damage). The bonuses might also not apply to every weapon, 
+or could be divided between several weapons in case of dual-wielding.
+
+As a rule, combat bonuses on a melee weapon or ranged weapon only apply 
+to the weapon itself; melee bonuses from rings only apply to the weapon 
+in the same hand as the ring (two rings can affect a single weapon only 
+if that weapon is wielded with both hands); melee bonuses from gloves 
+are divided among weapons wielded with the same pair of arms; and other 
+melee bonuses are divided among all weapons. On characters with innate 
+attacks but no melee weapons, all off-weapon melee bonuses are fully 
+applied to the innate attacks.
+
+Melee-themed items like Rings of Combat and Gloves of Slaying 
+exclusively boost melee; archery-themed items like Rings of Archery and 
+Gloves of the Sniper exclusively boost archery; magic-themed items like 
+Rings of Wizardry and Pointy Hats of the Magi exclusively boost spell 
+damage (these items always have a to-hit of zero); and most other 
+items, including all random artifacts, boost both melee and archery but 
+not spell damage. Cloaks of Cowardice and Cloaks of the Bat exclusively 
+penalize melee.
+
+Armor Class - [14,+0]
+
+Objects can contribute to the player's armor class (AC) through two 
+different numbers: base AC and bonus AC (to-AC). Armor-type items (body 
+armors, shields, cloaks, gloves, helmets and boots) provide both base 
+AC and bonus AC, and both are always indicated on these items (even 
+when they are zero). Non-armor items never have base AC, but may 
+sometimes have bonus AC; as an example, rings of protection frequently 
+give a magical AC boost.
+
+Base AC typically depends on the object kind; for example, blue dragon 
+scale mail provides 40 base AC while filthy rags provide 1. In rare 
+cases, artifacts may have boosted base AC.
+
+Non-magical items usually have a bonus AC of zero, although on specific 
+object kinds (such as dragon scale mails) the default bonus AC can also 
+be non-zero. The fundamental difference between base AC and bonus AC is 
+that base AC is fixed, and cannot ever be improved or damaged; bonus AC 
+can be magically enchanted (or improved through smithcraft), but is 
+also subject to damage from disenchantment and acid.
+
+Base AC and bonus AC are indicated as [X,+Y] on armor (even if zero), 
+and as [+Y] (or [-Y]) on non-armor if other than zero.
+
+Pval - (+3)
+
+All objects have exactly one pval, displayed as (+X) if non-zero. The 
+pval determines the size of any additional bonuses (or penalties) on 
+the item; for example, an item with +Speed, -Strength and a pval of 3 
+will give +3 to speed and -3 to strength.
+
+Weight - 14.0 lbs
+
+The weight of the item, displayed in pounds. Weight can have several 
+effects, depending on your character and the type of the item. If the 
+total weight of all items carried and equipped is too high, you may 
+become overburdened; see [b] for more infomration.
+
+Lighter weapons are easier to wield effectively, easier to dual-wield 
+effectively, require less strength and dexterity to maximize your blow 
+count with, and are usually helped more by to-dam bonuses (due to the 
+higher blow count); but heavier weapons give stronger critical hits, 
+can be wielded with two hands if desired, usually have higher dice, and 
+are typically helped more by slays and brands (due to the higher dice). 
+The game does not inherently favor either light or heavy weapons; both 
+are competitive throughout the game, although specific classes may 
+strongly prefer one or the other. (Maulers tend to go with the heaviest 
+weapon they find, while Duelists prefer something extremely light.)
+
+On melee characters, armor weight is mainly a consideration insofar as 
+it contributes to overburdening. Spellcasters may become encumbered if 
+the total weight of the armor worn exceeds a specific limit; this will 
+proportionally reduce the size of the spellcaster's mana pool. Some 
+other classes, like Mystics and Ninjas, also have class-specific total 
+armor weight limits; these weight limits are CL-dependent, and 
+exceeding them causes class-specific penalties and/or a loss of 
+class-specific bonuses.
+
+Activations - {A:Breathe Fire}
+
+Some items have an activation: a special effect you can occasionally 
+trigger (with the A command) if you have the item equipped. Activations 
+can be either native to the object kind, like breathing fire on a Red 
+Dragon Scale Mail, or specific to a given powerful object. Items never 
+have more than one activation.
+
+Activations resemble magical devices in that using them requires device 
+skill, and powerful activations are likely to fail if your device skill 
+is too low. (Due to their abysmal device skill, Berserkers can never 
+activate an item.) Activations also have a timeout, indicating how 
+frequently they can be triggered; it is as if the activation were a 
+device with a single charge, requiring a specific amount of turns to 
+pass before it can be used again. Items waiting to regain their 
+activation power are marked as {charging}; activation timers only count 
+down while the item is equipped, so {charging} items in your inventory 
+will remain {charging} indefinitely.
+
+Flag Attributes
+
+Flag attributes are simply present or absent, although their exact 
+effects may depend on the object's type and (in the case of bonuses or 
+penalties) the size of the pval. Flag attributes are indicated with 
+specific abbreviations in the object's description. The applicability 
+of combat flag attributes to combat is generally identical to the 
+applicability of combat bonuses to combat (see [c] above), with the 
+exception that off-weapon slays and brands can only be applied to 
+innate attacks in special cases.
+
+Bonuses and Penalties
+
+Bonuses and maluses form the first and second groups in a list of flag 
+abbreviations (such as {InWiCh;-StDxCn;AcElFiCoPoLiDkCfNtNxCa;AgTy}). 
+The size of the bonus or penalty is determined by the object's pval.
+
+Attack Speed - {At}, {-At}
+
+The bonus gives 0.50 extra blows per unit of pval, divided between all 
+applicable weapons. The penalty deducts 1.00 blows from all applicable 
+weapons per unit of pval.
+
+Speed - {Sp}, {-Sp}
+Strength - {St}, {-St}
+Intelligence - {In}, {-In}
+Wisdom - {Wi}, {-Wi}
+Dexterity - {Dx}, {-Dx}
+Constitution - {Cn}, {-Cn}
+Charisma - {Ch}, {-Ch}
+Stealth - {Sl}, {-Sl}
+
+These bonuses and maluses simply increase or decrease the appropriate 
+statistic by the pval amount.
+
+Magic Mastery - {Md}, {-Md}
+
+Increases or decreases device skill by 8 per unit of pval. The penalty 
+version automatically triggers a penalty to device power as well.
+
+Searching - {Sr}
+
+Increases Searching skill and Perception skill by 5 per unit of pval.
+
+Infravision - {If}
+
+Increases infravision range by 1 square per unit of pval.
+
+Digging - {Dg}
+
+Increases digging ability by 20 per unit of pval (comparable to the 
+bonus from digging with an implement 20 pounds heavier).
+
+Life - {Lf}, {-Lf}
+
+Increases or decreases your constitution-based life multiplier by 3 
+percentage points per unit of pval.
+
+Device Power - {+10%}, {-10%}
+Spell Power - <+23%>, <-23%>
+Spell Capacity - [+15%], [-15%]
+
+These three bonuses (and their corresponding penalty forms) are special 
+cases, in that they are listed in object descriptions with the basic 
+properties and not with other flag attributes. This is because the size 
+of the bonus is somewhat unusual, and would otherwise be highly unclear 
+without Inspection: 5 percentage points per unit of pval for device 
+power and spell capacity, and 100/13 (approximately 7.69) percentage 
+points per unit of pval for spell power.
+
+Spell power and spell capacity (max-SP modifier) can appear as either 
+bonuses or penalties. Device power by itself only appears as a bonus; 
+but -Md (the device skill penalty) also contributes negative device 
+power, and is effectively the penalty version of both +DeviceSkill and 
++DevicePower.
+
+Resistances, Immunities and Vulnerabilities
+
+Immunities, vulnerabilities and resistances each form an abbreviation 
+group. Resistances mitigate both the damage and the side-effects of the 
+corresponding damage types, or elements; multiple sources of the same 
+resistance stack in a specific, non-linear way. A vulnerability cancels 
+out one source of resistance, or provides a corresponding damage 
+increase if there are no resistances to cancel out. Immunities fully 
+eliminate all damage and side effects from the corresponding element.
+
+See [d] for more details on how resistances work, and [e] for comments 
+about the effects and relative importance of individual resistances.
+
+Acid - {Ac}, {*Ac}, {-Ac}
+Electricity - {El}, {*El}, {-El}
+Fire - {Fi}, {*Fi}, {-Fi}
+Cold - {Co}, {*Co}, {-Co}
+Poison - {Po}, {-Po}
+
+These five resistances are collectively known as the low resistances or 
+base resistances; the latter term is more usually applied to the four 
+most common resistances only, excluding poison. Low resistances all 
+follow the same damage reduction curve: 50% with one source of 
+resistance, 65% with two, 72% with three, 75% with four (and so on). 
+Side-effect calculations compare the resistance level to a 66-sided die 
+for item destruction, and a 55-sided die for other side effects. The 
+low resistances, and the four base resistances in particular, are the 
+most important resistances in the early game.
+
+While all resistances except time have a corresponding vulnerability 
+flag, the four base resistances are the only ones with a corresponding 
+immunity flag. It is possible to acquire other immunities, but only 
+through the character's race or class.
+
+Light - {Li}, {-Li}
+Dark - {Dk}, {-Dk}
+Confusion - {Cf}, {-Cf}
+Nether - {Nt}, {-Nt}
+Nexus - {Nx}, {-Nx}
+Sound - {So}, {-So}
+Shards - {Sh}, {-Sh}
+Chaos - {Ca}, {-Ca}
+Disenchantment - {Di}, {-Di}
+Time - {Ti}
+Blindness - {Bl}, {-Bl}
+
+These are the high resistances; they are grouped together with the low 
+resistances in object descriptions, but work in a somewhat different 
+way. High resistances reduce damage by 30% with one source item, 40% 
+with two, 45% with three, 47% with four etc.; side effects compare the 
+resistance level to a 41-sided die for item destruction, a 31-sided die 
+for item disenchantment and a 33-sided die for other effects.
+
+Fear - {Fe}, {-Fe}
+
+While grouped with the other resistances, fear resistance is a special 
+case and works in a very different way. See [f] for more details on 
+fear and how to resist it.
+
+Miscellaneous Abilities
+
+This flag group contains a variety of miscellaneous abilities, most 
+(but not all) of them positive. Several of the attributes in this group 
+- Extra Might, Extra Shots and Weaponmastery - are functionally 
+pval-dependent bonuses, but are traditionally abbreviated with the 
+ability group.
+
+For attributes said to have a 1-in-X chance of triggering a specific 
+effect each turn, "turn" is used as shorthand for a unit of 10 game 
+turns. (See [g] for a detailed technical explanation.)
+
+Easy Spellcasting - {Es}
+Decreased Mana Costs - {Dm}
+
+These attributes affect your spellcasting efficiency. Easy Spellcasting 
+reduces spell failure rates by 4 percentage points, with an additional 
+1-point reduction for non-book spells and Rage techniques which ignores 
+minimum failrates; the Easy Spell reductions are cumulative with the 
+realm-specific bonuses from realm lights. Decreased Mana Costs reduces 
+spell mana costs to 75% of the original cost; this reduction does not 
+stack with the bonuses from a realm light. Having more than one source 
+of Es or Dm does not provide any additional benefits.
+
+The Es and Dm flags are special in that not all characters receive the 
+same benefits from them; some receive no benefits at all, and some 
+receive the benefits from specific items only. Accordingly, the Es and 
+Dm flags are displayed to the player only when relevant, and otherwise 
+hidden (even on Inspection); if you see a Ring of Wizardry with a high 
+item score but seemingly no special attributes on it, it probably has 
+either hidden Es or hidden Dm or both.
+
+Throwing - {Th}
+
+Marks a weapon as suitable for throwing. This attribute increases a 
+throw's damage multiplier by 1 and also increases the maximum range for 
+throwing the object. Ninjas and Ninja-Lawyers receive special bonuses 
+for throwing swords with the Throwing flag.
+
+Reflection - {Rf}
+
+Gives the player a 75% chance of reflecting an incoming bolt spell. 
+Multiple sources of Reflection do not stack. See [h] for details.
+
+Free Action - {Fa}
+
+Provides free action. One level of Free Action gives you a saving throw 
+against paralysis (which also speeds up recovery if you do get 
+paralyzed); two levels of Free Action give you complete paralysis 
+protection against monsters of level 41 and below, and two saving 
+throws against high-level monsters; three levels of Free Action make 
+you immune to paralysis, except in the special case of the Ancient Foul 
+Curse. Free Action also protects you from slowing spells, and mitigates 
+the side effects of inertia.
+
+See Invisible - {Si}
+
+Each source of See Invisible gives you one additional chance to spot a 
+given invisible monster. Searching skill improves the success rate of 
+See Invisible rolls; even multiple sources of See Invisible will be 
+highly unreliable if your Searching skill is poor.
+
+Hold Life - {Hl}
+
+Each source of Hold Life gives you one additional roll against 
+experience drain and one additional roll against unlife attacks. 
+(Charisma improves the success rate of unlife saves; experience-drain 
+saves have a fixed probability, depending only on the strength of the 
+attack.) In the case that all XP-drain saves fail, the amount of XP 
+lost is still radically reduced for characters with at least one source 
+of Hold Life.
+
+Slow Digestion - {Sd}
+
+Slow Digestion halves your digestion rate and protects you from the 
+side-effects of the Nausea mutation. Multiple sources of Slow Digestion 
+do not stack.
+
+Regeneration - {Rg}
+
+Regeneration increases your base regeneration rate by 100 percentage 
+points, thereby speeding up your HP regeneration, SP regeneration and 
+digestion. Multiple sources of Regeneration will stack.
+
+Mana Recovery - {Rm}
+
+Mana Recovery doubles your SP regeneration rate (after accounting for 
+all other regeneration bonuses and penalties). Multiple sources of Mana 
+Recovery will not stack.
+
+Levitation - {Lv}
+
+Allows you to fly over dark pits and mountainous wilderness, prevents 
+overburdened characters from drowning in deep water, reduces damage 
+from standing in (or over) lava or toxic waste, reduces damage from 
+Gravity and Air attacks, mitigates the side effects of Gravity and 
+Storm Winds, eliminates movement speed penalties in wooded or snowy 
+areas, and protects you from some types of floor traps (unless you go 
+out of your way to trigger them). Multiple sources of Levitation do not 
+stack.
+
+Night Vision - {Nv}
+
+Allows you to see your surroundings without requiring illumination.
+
+Permanent Light - {Lu}
+
+Increases your light radius by 1. Multiple sources of permanent light 
+will stack. Weapons with this attribute deal extra damage when used 
+against monsters vulnerable to light.
+
+Warning - {Wr}
+
+The item warns you when you are about to step into a trap, and glows 
+with a specific warning color if a new unique is generated on the 
+level. The color of the glow depends on the unique's native depth 
+compared to the player's level, ranging from black for the most 
+dangerous uniques to purple, deep red, red, pink and white.
+
+Extra Might - {Xm}
+
+Increases your shooter's damage multiplier by 0.20*(reciprocal of the 
+shooter kind's native shots per turn)*pval.
+
+Extra Shots - {Xs}
+
+Improves your shooting speed by (0.15 shots/turn)*(shooter kind's 
+native shots/turn)*pval.
+
+Random Teleportation - {Te}
+
+On cursed items, gives a 1-in-200 chance each turn of triggering an 
+uncontrollable random teleport. On other items, gives a 1-in-200 chance 
+each turn of prompting for a random teleport, and lets you attempt to 
+follow nearby monsters when they teleport away. Adding the . character 
+to the item's inscription will automatically dismiss all prompts for a 
+random teleport.
+
+Aggravation - {Ag}
+
+Wakes up and offends all nearby monsters. This attribute can also 
+appear as a removable curse, in which case it has no abbreviation and 
+is only indicated on inspection.
+
+Blessed - {Bs}
+
+Blessed items are somewhat resistant to being cursed. (They do not help 
+you resist cursing otherwise; the protection applies only to the item 
+itself.) Good-aligned Priests can use swords and polearms without 
+penalties only if the weapon is blessed.
+
+*Ancient Foul Curse* - {Ty}
+
+Gives a 1-in-200 chance each turn of triggering the Ancient Foul Curse. 
+This attribute can also appear as a removable curse, in which case it 
+has no abbreviation and is only indicated on inspection.
+
+Permanent Darkness - {Ds}
+
+Decreases your light radius by 1 on most items, by 2 on lanterns and by 
+3 on advanced lamps. Multiple sources of permanent darkness will stack.
+
+Weaponmastery (Extra Dice) - {Wm}
+
+Gives 1 extra damage die per unit of pval, divided between applicable 
+weapons. Since Weaponmastery increases the number of dice (the X in the 
+(XdY)), it is strongest when applied to weapons with many damage sides 
+(a high Y); slays, brands and sharpness (especially *sharpness*) also 
+work together well with Weaponmastery.
+
+Auto-Identify - {Id}
+
+Automatically identifies all items you walk over, as well as all 
+inventory items and equipment.
+
+Auras and Shells
+
+This abbreviation group contains elemental auras, protective magical 
+sheaths, and attributes which interfere with the normal actions of the 
+player or monsters.
+
+Aura of Fire - {[F}
+Aura of Electricity - {[E}
+Aura of Cold - {[C}
+Aura of Shards - {[Sh}
+
+The four elemental auras all work in the same way: each time a monster 
+hits you in melee, they will take some elemental damage from the aura. 
+The strength of the aura depends on the player's level and the number 
+of aura sources; multiple sources of the same aura partially stack, 
+each source adding 2 damage dice to the original aura.
+
+Being surrounded by an aura of fire additionally increases your light 
+radius by 1 if it would otherwise be 0 or lower. This can sometimes 
+make fire auras inconvenient for Ninjas and Ninja-Lawyers.
+
+Aura of Retaliation/Revenge - {[At}
+
+With this aura, each a time monster hits you in melee, you retaliate by 
+hitting them back. This aura is extremely powerful on characters with 
+low blow counts but high damage per hit, such as duelists.
+
+Anti-Magic Shell - {[M}
+
+Gives an extremely high saving throw, but also prevents you from 
+casting spells with the m command. (Some classes who use the m command 
+for class-specific techniques other than spells are still allowed to 
+use them; these include berserkers, blood-knights, weaponmasters, 
+maulers, alchemists, rage-mages, mimics and possessors, but not ninjas 
+or samurai.)
+
+Anti-magic is not a saving throw bonus; it simply guarantees a very 
+high saving throw, regardless of how good or bad your saving throw 
+would otherwise be. (The quality of your saving throw will be somewhat 
+level-dependent, but even at low CL you can reliably shrug off nearly 
+all curses.)
+
+Anti-Teleportation Shell - {[T}
+
+Prevents you from teleporting or being teleported by magical means. 
+(Non-magical teleportation may still occur in some rare cases.) On most 
+characters this attribute is very undesirable, since teleportation is 
+often your best escape from a dangerous situation; berserkers may 
+sometimes accept it, but even for them it is at best a mixed blessing.
+
+Anti-Summoning Shell - {[Sm}
+
+One of the rarest and most valuable object attributes, the 
+anti-summoning shell blocks two-thirds of all summons. (This includes 
+your own summons, so summon-based characters like Quylthulgs may not 
+consider it exclusively good.)
+
+Magic Resistance - {[Mr}
+
+Reduces the damage from all non-innate monster spells by 5 percentage 
+points per unit of pval. Innate pseudo-spells like breaths, rockets or 
+boulders are not affected.
+
+Slays and Brands
+
+Brands, slays and *slays* increase an attack's damage against specific 
+monsters. (As a rule, brands are elemental and increase your damage 
+against monsters who do not resist that element, while slays increase 
+your damage against specific monster categories like animals or orcs; a 
+*slay* [or kill attribute] is simply a more powerful slay.) Melee slays 
+and brands work by multiplying a weapon's dice roll; archery slays and 
+brands work by multiplying both the dice roll of the projectile and the 
+damage bonus of the projectile. For this reason, archery slays have 
+lower multipliers than melee slays.
+
+Slays and brands generally do not stack; if multiple slays or brands 
+could apply to a single attack, only the strongest slay or brand is 
+applied. The only exceptions to this are the Mark of Chaos, which 
+partially combines with other slays; Force Brand, which fully combines 
+with other slays; and class-specific brands like the Samurai brands 
+(which never generate as object flags). The Permanent Light weapon 
+attribute (Lu) acts like a weak brand against monsters hurt by weak 
+light, and can also stack somewhat with normal brands.
+
+Several pseudo-brands with effects other than multiplying the dice are 
+grouped together with the "true" brands; these generally do not affect 
+damage at all, but stack fully with slays and brands (and each other) 
+in the sense that they can apply to the same attack.
+
+Brands, *slays* and slays each form an abbreviation group. See [i] for 
+a more detailed overview of how slays and brands work.
+
+Acid Brand - {|A}
+Lightning Brand - {|E}
+Flame Tongue (Fire Brand) - {|F}
+Cold Brand - {|Co}
+Viper's Fang (Poison Brand) - {|P}
+Shadow Sweep (Darkness Brand) - {|Dk}
+
+The six elemental brands proper all have mid-tier dice multipliers: 
+x1.62 for archery, x2.40 for normal melee, and x3.20 when augmented by 
+the Mark of Chaos rolling the same brand.
+
+Mark of Chaos - {|Ca}
+
+The Mark of Chaos is a special brand; on each hit, it will randomly 
+present itself as one of five common brands or one of ten common slays. 
+If the brand or slay rolled was one the weapon did not already have, 
+the weapon will simply act as if it did have that brand; if the brand 
+was already present, it is made stronger by the Mark of Chaos.
+
+In addition to the random brand or slay (which is always rolled), the 
+Mark of Chaos has a 3 in 35 chance of making the hit vampiric and a 2 
+in 175 chance of applying the Touch of Confusion.
+
+Vampiric Weapon - {|V}
+
+Vampirism is a special brand; it has no effect on the dice roll, but 
+instead drains life from the monster attacked (reducing its maximum HP 
+by one-eighth of the damage dealt) and heals the player by 2d(dam/6) 
+hit points. (If the player's life points were reduced, vampirism will 
+heal life points instead.) Vampiric healing is limited to 50 HP per 
+round of attacks against a monster on most characters, and to 100 HP 
+per round of attacks against a monster on Monster-mode vampires. 
+Vampiric healing is multiplied by the mutation HP regeneration 
+modifier.
+
+Vampirism only works against living monsters; it has no effect on 
+demons, undead or the nonliving.
+
+Earthquakes (Impact Weapon) - {|Q}
+
+The impact brand is a special brand; it has no effect on the dice roll, 
+but instead has a chance to stun and cause earthquakes on successful 
+hits. The stunning and earthquakes will always occur if the damage roll 
+exceeds 50 after multipliers; otherwise, stunning will not occur and 
+earthquakes have a 1 in 7 chance of occurring.
+
+Stunning - {|St}
+
+Stunning is a special brand; it has no effect on the dice roll, but 
+instead stuns monsters on successful hits.
+
+Sharpness (Vorpal) - {|S}
+*Sharpness* (*Vorpal*) - {|SS}
+
+Sharpness and *Sharpness* are special brands; they do not represent a 
+dice multiplier per se, but occasionally trigger special vorpal 
+critical hits (see [j]) which do multiply the dice. Vorpal criticals 
+are highly random in the short run, but in the long run Sharpness 
+averages as a 11/9 (x1.22) dice multiplier and *Sharpness* averages as 
+a 5/3 (x1.67) dice multiplier. While these multipliers are fairly 
+modest, they fully stack with all other dice multipliers (and with dice 
+boosters like Weaponmastery); this potentially makes them highly 
+valuable on weapons with high dice, especially if normal slays or 
+brands also apply.
+
+Force Brand (Mana Brand) - {|M}
+
+Mana Brand is a special brand; it combines with all other slays and 
+brands, increasing the dice multiplier by 50% and then adding another 
+140 percentage points. (This effectively makes it a x2.9 multiplier 
+when it exists in isolation.) The mana brand is highly powerful but 
+consumes mana rapidly, and only functions while the player still has 
+mana; if the player has no mana or runs out of mana, the mana brand 
+becomes useless.
+
+*Slay*/Slay Evil - {/X*}, {/*}
+*Slay*/Slay Good - {/XA}, {/A}
+*Slay*/Slay Living - {/XLv}, {/Lv}
+
+Low-tier slays, making a weapon or projectile especially deadly against 
+the specified group (evil monsters, good monsters or living monsters). 
+Slay multipliers of x1.43 for archery, x1.90 for melee and x2.53 when 
+strengthened by Mark of Chaos; kill multipliers of x1.86 for archery, 
+x3.20 for melee and x4.00 when strengthened by Mark of Chaos. Note that 
+living monsters do not have any specific "living" flag; a living 
+monster is simply any monster who is not nonliving, a demon or an 
+undead.
+
+*Slay*/Slay Humans - {/Xp}, {/p}
+*Slay*/Slay Animals - {/XZ}, {/Z}
+
+Mid-tier slays, making a weapon or projectile especially deadly against 
+the specified group (humans or natural creatures). Slay multipliers of 
+x1.62 for archery, x2.40 for melee and x3.20 when strengthened by Mark 
+of Chaos; kill multipliers of x2.34 for archery, x3.70 for melee and 
+x4.62 when strengthened by Mark of Chaos.
+
+*Slay*/Slay Dragons - {/XD}, {/D}
+*Slay*/Slay Orcs - {/Xo}, {/o}
+*Slay*/Slay Trolls - {/XT}, {/T}
+*Slay*/Slay Giants - {/XP}, {/P}
+*Slay*/Slay Demons - {/XU}, {/U}
+*Slay*/Slay Undead - {/XL}, {/L}
+
+High-tier slays, making a weapon or projectile especially deadly 
+against the specified group. Slay multipliers of x1.90 for archery, 
+x2.80 for melee and x3.73 when strengthened by Mark of Chaos; kill 
+multipliers of x2.80 for archery, x4.50 for melee and x5.62 when 
+strengthened by Mark of Chaos.
+
+Telepathies
+
+Various forms of extra-sensory perception are categorized into two 
+abbreviation groups; one for broad telepathy, one for limited types.
+
+Telepathy - {~Tele}
+
+"Full" telepathy. Unlike other forms of telepathy, it only detects 
+monsters with minds; it always detects monsters with "normal" minds, 
+occasionally detects monsters with "weird" minds (including most ants, 
+worms and spiders), and does not detect monsters with no/empty minds 
+(including most molds, jellies, golems and vortices).
+
+Sense Evil - {~Evil}
+Sense Good - {~Good}
+Sense Nonliving - {~Nolv}
+Sense Uniques - {~Uniq}
+Sense Living - {~Lvng}
+
+Wide telepathies, detecting all monsters in the specified group 
+(regardless of whether they have weird or empty minds). "Living" 
+monsters are any monsters who are not demons, undead or nonliving.
+
+Sense Humans - {~p}
+Sense Dragons - {~D}
+Sense Orcs - {~o}
+Sense Trolls - {~T}
+Sense Giants - {~P}
+Sense Demons - {~U}
+Sense Undead - {~L}
+Sense Animals/Natural Creatures - {~Z}
+
+Limited telepathies, detecting all monsters in the specified group. 
+There is no fundamental difference between this group and the wide 
+telepathies; the distinction is entirely arbitrary, based mostly on 
+abbreviation simplicity.
+
+Sustains
+
+The six stat sustains form the final group of abbreviation flags.
+
+Sustain Strength - {(St}
+Sustain Intelligence - {(In}
+Sustain Wisdom - {(Wi}
+Sustain Dexterity - {(Dx}
+Sustain Constitution - {(Cn}
+Sustain Charisma - {(Ch}
+
+These attributes protect the relevant stat from most types of temporary 
+drain and make the stat somewhat resistant to being scrambled. Sustains 
+do not prevent temporary loss of stats to time attacks, and generally 
+do not protect against permanent stat drain (from patron punishments, 
+potions of ruination, disease attacks or other sources).
+
+Attributes Visible on Inspection
+
+These flag attributes have no corresponding abbreviation, but are 
+indicated on Inspection if known.
+
+Ignores Acid (Rustproof)
+Ignores Electricity
+Ignores Fire
+Ignores Cold
+
+The four elemental ignore flags protect the object itself from being 
+harmed by that element. Ignoring acid is particularly useful on armor, 
+since it prevents loss of AC to acidic corrosion.
+
+Items with all four ignore flags are described as "cannot be harmed by 
+the elements". While such items technically only resist the four base 
+elements, they are generally safe from all harm in your inventory. (The 
+distinction becomes relevant if the object is on the floor, in which 
+case it may be destroyed by higher elements if it isn't an artifact.)
+
+Unenchantable
+
+Unenchantable items cannot be enchanted, turned into artifacts or ego 
+items, or otherwise improved by any magical or non-magical means.
+
+Suitable for Riding
+
+Weapons with this attribute can be used while mounted without incurring 
+accuracy penalties. Cavalry and Skillmasters receive special combat 
+bonuses for using Riding weapons while riding.
+
+Dual Wielding (Genji)
+
+Gives a bonus equivalent to 23 percentage points of dual-wielding 
+proficiency, and somewhat reduces dual-wielding penalties on heavy 
+weapons. Additionally, damage bonuses from high Strength (which are 
+normally reduced on dual-wielded weapons unless the character is a 
+Berserker or has completely mastered dual-wielding) are allowed to 
+apply as usual.
+
+The Genji bonuses stack with dual-wielding proficiency and with the 
+Easy Dual-Wielding bonus on Mariliths and Dagger-speciality 
+Weaponmasters. They do not stack with the Ambidexterity demigod talent, 
+which becomes useless with Genji. On characters with multiple sets of 
+arms, only one pair of weapons will receive the Genji benefits.
+
+Drains Experience
+
+Gives a 1-in-4 chance every turn of permanently draining a small amount 
+of experience. Although the amount of experience drained is somewhat 
+CL-dependent, the penalty is more noticeable at low CLs, when 
+experience gain is slower and the drain represents a higher percentage 
+of total XP. This attribute can also appear as a removable curse.
+
+Negates Invulnerability
+
+Renders worthless all invulnerability spheres, including your own.
+
+Equipment Curses
+
+Curses are usually removable object attributes with negative effects. 
+Some curses (like the Ancient Foul Curse) can occasionally appear as 
+normal, unremovable flag attributes; the Permanent Curse is also 
+unremovable, even though it is not a normal flag attribute.
+
+Items with removable curses are invariably sticky, meaning they cannot 
+be removed without uncursing the item first. (Berserkers and 
+bear-shaped Beornings are an exception to this; they can uncurse Cursed 
+and Heavily Cursed items simply by taking them off. Mummies can also 
+unequip most cursed items at will, without uncursing them.) If you 
+equip a sticky item, a curse indicator (Cursed, CURSED or *CURSED*, 
+depending on the strength of the strongest sticky curse on any item 
+equipped) will appear in the main sidebar.
+
+Items with unremovable curses (other than the Permanent Curse) are not 
+necessarily sticky, although they usually at least start out with a 
+sticky curse.
+
+As a rule, multiple instances of the same curse do not stack; two items 
+with the Ancient Foul Curse are not any worse than one. The only 
+exceptions to this are the Low AC curse and the Extra Spell Fails 
+curse, which have cumulative effects.
+
+Cursed
+Heavily Cursed
+Permanently Cursed
+
+The simplest curses; these curses simply make the item sticky. At least 
+one of these curses is always present on any item with another 
+removable curse on it, but they can also exist on otherwise curse-free 
+items. A Cursed item can be uncursed with Remove Curse; a Heavily 
+Cursed item can only be uncursed with *Remove Curse*; a Permanent Curse 
+cannot be uncursed, although other temporary curses on the permanently 
+cursed item can still be removed with *Remove Curse*. (A permanent 
+curse is technically removable by mundanizing the item, although 
+Berserkers have no way of accomplishing this.)
+
+Adds Weak Curses
+
+Gives a 1-in-2000 chance per turn of adding new weak curses to the 
+item.
 
-RoguelikeFansBand 中的每件物品都有某些基本属性：基础 AC (基础护甲等级, 
-base AC)、加成 AC (bonus AC)、伤害骰 (damage 
-dice，或远程武器上的伤害倍率)、准确度 (命中加成, to-hit) 加成、伤害 
-(伤害加成, to-dam) 加成，以及一个表明各种其他加成大小的 pval 
-(属性修正值)。这些属性中的部分或全部可能为零或无关紧要，并且通常只有在它
-们实际起作用时才会显示；例如，伤害骰仅在近战武器和弹药上显示。
+Attracts Animals
 
+Gives a 1-in-2500 chance per turn of summoning hostile animals.
 
-物品，特别是装备，还可能具有附加属性；这些属性要么存在，要么不存在，尽管
-它们的确切效果可能仍然取决于其他因素，如物品类型或 
-pval。本文档将这些统称为标志属性 (flag 
-attributes)，因为游戏可以使用简单的开或关 (on-or-off) 
-标志来跟踪它们在物品上的存在。标志属性有许多类型——有些提供加成，如额外的
-力量或速度；有些赋予能力，如夜视或心灵感应；有些让你对特定类型的伤害具有
-抗性（或易伤）；有些用元素光环围绕你；有些使武器对特定对手更致命，等等——
-但所有这些属性都只是简单的存在或不存在。实际上，当你使用 Inspect 
-命令检查已鉴定的物品时，绝大多数属性都会被标明，且几乎所有属性都会通过特
-定的缩写 
-(abbreviation)显示在物品的简短描述中。（有关这些缩写的快速列表，请参阅 
-[a]。）
+Catlike Tread
+
+Reduces your stealth by 4. (Cats may move quietly in theory, but 
+orchestral accompaniment will give them away!)
+
+Cowardice
 
-最后，装备上可能附带诅咒 
-(curses)。诅咒通常（但不总是）可以被移除；它们通常（但不总是）与标志属性
-不同，因为它们不是永久的。
+Gives a 1-in-1500 chance per turn of making you scared.
+
+Dispels Magic
+
+Gives a 1-in-128 chance per turn of attempting to dispel random buffs 
+1d20 times.
 
+Drains HP
 
-这份冗长的帮助文件列出并解释了大多数物品属性，包括所有公开指示的标志属性
-，尽管这里给出的大部分信息也可以在帮助文档的其他地方找到。
+Gives a 1-in-666 chance per turn of draining 2*CL hit points, 
+potentially killing you outright if your hit points are very low.
 
-在开始游玩之前或游戏过程中，你没有必要详细阅读本文档；它应被视为参考资料
-，并且可能包含有关你尚未见过的物品的详细剧透。
+Drains Mana
 
-基本属性 (Basic Properties)
+Gives a 1-in-666 chance per turn of draining CL spell points.
 
-伤害骰 (Damage Dice) - (2d6)
+Drains Devices
+
+Gives a 1-in-333 chance per turn of attempting to drain charges from a 
+random device in your inventory. (Carrying multiple devices does not 
+increase the probability of the curse processing, but does increase the 
+probability that it successfully locates a device to drain.)
 
+Extra Device Fails
 
-伤害骰指示了当你用该物品击中怪物时所造成的的基础伤害。（你击中时的实际总
-伤害还将取决于许多其他因素，如屠杀、烙印、伤害加成和暴击。）
+Decreases your device skill by 10 points (-1.25 Md) if the item is 
+heavily or permanently cursed, and by 5 points if the item is lightly 
+cursed. Only the strongest instance of this curse applies.
 
-伤害骰仅在近战武器和弹药上显示；它们被表示为 (XdY)，这意味着游戏将掷出 
-X 个分别有 Y 
-面的骰子，并将伤害相加。武器的伤害骰通常取决于物品的种类——例如，大多数短
-剑是 (1d8)，大多数长剑是 (2d6)——但有时你可以找到一把骰数增强 
-(dice-boosted)的武器（或弹药），它具有比其基础种类异常高的伤害骰。
+Extra Spell Fails
 
-伤害倍率 (Damage Multiplier) - (x3.50)
+Increases your spell fail rates by 3 points if the item is lightly 
+cursed, and 10 points if the item is heavily or permanently cursed. 
+Multiple instances of this curse on separate items will stack.
 
+Fast Digestion
 
-伤害倍率是远程武器独有的属性。它们会乘上使用该武器发射的任何弹药的伤害骰
-和伤害加成。像伤害骰一样，伤害倍率基于物品种类，尽管它们在神器和 
-ego物品上经常得到增强。
+Increases your digestion rate by an amount equivalent to a 
+300-percentage-point regeneration bonus.
 
-战斗加成 (Combat Bonuses) - (+6,+9)
+Irritates Airways
 
-战斗加成由命中加成 (准确度, to-hit) 和伤害加成 (to-dam) 
-组成。在近战武器、发射器和弹药上，这些总是显示为 
-(+X,+Y)，即使为零也是如此；在其他物品上，它们仅在非零时显示。通常，即使
-在非武器上，如果其中任何一个非零，为了清晰起见，这两个值也都会显示；但在
-手套、靴子和躯干盔甲上，有时会发生只显示一个值的情况，如 (-X) 或 
-(+Y)。如果是负数，这样的单一值可以被假定为命中惩罚，如果是正数，则为伤害
-加成。（单一正数伤害加成的显示格式与 pval 
-的显示格式相同；但战斗加成列在护甲加成之前，而 pval 
-列在之后，并且单值战斗显示仅出现在盔甲上，因此两者总是可以区分开来的。）
+Gives a 1-in-888 chance per turn of making you unwell. This curse has 
+no effect on characters of nonliving races.
 
+Low AC
 
+Reduces your AC by 10 if the item is lightly cursed, and by 30 if it's 
+heavily or permanently cursed. This curse only generates on armor. 
+Multiple instances of this curse on separate items will stack.
 
-战斗加成的适用性并不总是完全清楚：加成可能仅适用于近战、仅适用于箭术、同
-时适用于近战和箭术，甚至专门适用于魔法战斗（在这种情况下它会提升法术伤害
-）。加成也可能不适用于每一件武器，或者在双持的情况下被分配在几件武器之间
-。
+Miss Blows
 
+Reduces the weapon's to-hit by 5 if the item is lightly cursed, and by 
+15 if it's heavily or permanently cursed. This curse only generates on 
+weapons, and the penalty is not applied to any other weapons used.
 
-通常来说，近战武器或远程武器上的战斗加成仅适用于该武器本身；戒指上的近战
-加成仅适用于与戒指在同一侧手的武器（两枚戒指只有在该武器被双手握持时才能
-同时影响它）；手套上的近战加成会分配给由同一双手挥舞的所有武器；其他近战
-加成则会分配给所有武器。对于具有天生攻击能力但没有近战武器的角色，所有非
-武器上的近战加成都将完全应用于天生攻击。
+Open Wounds
 
+Reduces your wound recovery rate to one-third of what it would 
+otherwise be.
 
-战斗主题的物品（如战斗戒指和杀戮手套）专门提升近战；箭术主题的物品（如箭
-术戒指和狙击手套）专门提升箭术；魔法主题的物品（如巫术戒指和法师尖帽）专
-门提升法术伤害（这些物品的命中加成总是零）；大多数其他物品，包括所有随机
-神器，都同时提升近战和箭术，但不提升法术伤害。懦弱斗篷 (Cloaks of 
-Cowardice) 和蝙蝠斗篷 (Cloaks of the Bat) 则专门对近战造成惩罚。
+Slow Regeneration
 
-护甲等级 (Armor Class) - [14,+0]
+Slashes your regeneration rate to one-fifth of what it would otherwise 
+be.
 
-物品可以通过两个不同的数值影响玩家的护甲等级 (AC)：基础 AC 和加成 AC 
-(to-AC)。护甲类物品（躯干盔甲、盾牌、斗篷、手套、头盔和靴子）同时提供基
-础 AC 和加成 
-AC，且这两者总是显示在这些物品上（即使它们为零）。非护甲物品从没有基础 
-AC，但有时可能有加成 AC；例如，保护戒指 (rings of protection) 
-经常提供魔法 AC 增强。
+Adds Heavy Curses
 
-基础 AC 通常取决于物品种类；例如，蓝龙鳞甲提供 40 基础 
-AC，而肮脏的破布提供 1 基础 AC。在极少数情况下，神器的基础 AC 
-可能会得到增强。
+Gives a 1-in-2000 chance per turn of adding new heavy curses to the 
+item. This curse only generates on heavily cursed items.
 
-非魔法物品的加成 AC 
-通常为零，尽管在特定的物品种类上（如龙鳞甲），默认的加成 AC 
-也可能非零。基础 AC 和加成 AC 的根本区别在于，基础 AC 
-是固定的，永远不会被提升或损坏；加成 AC 
-可以被魔法附魔（或通过锻造术提升），但也容易受到解除魔法和酸液的损害。
+Aggravates
 
-在盔甲上，基础 AC 和加成 AC 显示为 
-[X,+Y]（即使为零），而在非盔甲物品上，如果不为零则显示为 [+Y]（或 
-[-Y]）。
+Awakens and offends all nearby monsters. This curse only generates on 
+heavily cursed items, though it may also appear as a normal unremovable 
+flag attribute.
 
-Pval (属性修正值) - (+3)
+Attracts Demons
 
-所有物品都有且仅有一个 pval，如果非零则显示为 (+X)。pval 
-决定了物品上任何额外加成（或惩罚）的数值大小；例如，一件带有 
-+速度、-力量 且 pval 为 3 的物品将提供 +3 速度和 -3 力量。
+Gives a 1-in-1111 chance per turn of summoning hostile demons. This 
+curse only generates on heavily cursed items.
 
-重量 (Weight) - 14.0 lbs
+Attracts Dragons
 
-物品的重量，以磅 (lbs) 
-为单位显示。重量可能有几种影响，具体取决于你的角色和物品类型。如果携带和
-装备的所有物品总重量过高，你可能会变得负重超载 
-(overburdened)；有关更多信息，请参阅 [b]。
+Gives a 1-in-800 chance per turn of summoning hostile dragons. This 
+curse only generates on heavily cursed items.
 
+Drains Experience
 
-较轻的武器更容易有效地挥舞，更容易有效地双持，需要较少的力量和敏捷来达到
-最大攻击次数，并且通常更能从伤害加成 (to-dam) 
-中获益（因为攻击次数较高）；但较重的武器能造成更强的暴击，如果需要可以双
-手握持，通常具有更高的伤害骰，并且典型地更能从屠杀和烙印中获益（因为伤害
-骰较高）。游戏本质上并不偏袒轻武器或重武器；两者在整个游戏中都很有竞争力
-，尽管特定职业可能会强烈偏好其中一种。（碎击者 (Maulers) 
-倾向于使用他们能找到的最重武器，而决斗者 (Duelists) 
-则偏好极其轻盈的武器。）
+Gives a 1-in-4 chance per turn of permanently draining a small amount 
+of experience. Although the amount of experience drained is somewhat 
+CL-dependent, the penalty is more noticeable at low CLs, when 
+experience gain is slower and the drain represents a higher percentage 
+of total XP. This curse only generates on heavily cursed items, though 
+it may also appear as a normal unremovable flag attribute.
 
+Induces Harmful Mutations
 
-对于近战角色，盔甲的重量主要是在导致负重超载的层面上需要被考虑。而如果穿
-戴的盔甲总重量超过特定限制，施法者可能会进入装备妨碍 (encumbered) 
-状态；这将按比例缩减施法者的法力池上限。其他一些职业，如秘术师 
-(Mystics) 和忍者 
-(Ninjas)，也有特定于职业的盔甲总重量限制；这些重量限制取决于角色等级 
-(CL)，超过它们会导致特定于职业的惩罚和/或失去特定于职业的加成。
+Gives a 1-in-1500 chance per turn of giving you a harmful mutation 
+(randomly pulled from the list of all mutations whose likelihood is 
+increased on Unlucky characters and decreased on Lucky characters). 
+This curse only generates on heavily cursed items.
 
-主动激活 (Activations) - {A:Breathe Fire}
+Invites Danger
 
-一些物品具有主动激活 
-(activation)：这是一种特殊效果，如果你装备了该物品，你偶尔可以触发它（使
-用 A 
-命令）。主动激活可能是物品种类固有的，如红龙鳞甲上的喷吐火焰，也可能是特
-定强大物品独有的。物品绝不会有超过一个主动激活能力。
+Increases the monster generation level for summoned hostile monsters by 
+4 or (DL+15)/10, whichever is higher; also increases the likelihood of 
+hostile summons generating out-of-depth. This curse only generates on 
+heavily cursed items.
 
+Random Teleportation
 
-主动激活类似于魔法装置，使用它们需要装置技能，如果你的装置技能太低，强大
-的激活很可能会失败。（由于他们糟糕透顶的装置技能，狂战士 (Berserkers) 
-永远无法激活物品。）主动激活也有一个冷却时间 
-(timeout)，表明它们可以被触发的频率；就好像激活是一个只有单发充能的装置
-，需要经过特定数量的回合才能再次使用。正在等待恢复其激活力量的物品会被标
-记为 {充能中 
-charging}；激活计时器只有在装备该物品时才会倒数，因此你物品栏中处于 
-{充能中} 的物品将无限期地保持 {充能中} 状态。
+Gives a 1-in-200 chance per turn of triggering an uncontrollable random 
+teleport. This curse only generates on heavily cursed items; it can 
+also appear as a normal unremovable flag, in which case it functions 
+somewhat differently and isn't necessarily a negative attribute.
 
-标志属性 (Flag Attributes)
+Baby Foul Curse
 
+Gives a 1-in-200 chance per turn of triggering the Baby Foul Curse. 
+This curse only generates on heavily cursed items.
 
-标志属性只是简单的存在或不存在，尽管它们的确切效果可能取决于物品的类型和
-（在加成或惩罚的情况下）pval 
-的大小。标志属性在物品描述中用特定的缩写表示。战斗标志属性对战斗的适用性
-通常与战斗加成对战斗的适用性相同（见上文 [c]
-），例外情况是：在特殊情况下，非武器上的屠杀和烙印只能应用于天生攻击。
+*Ancient Foul Curse*
 
-加成与惩罚 (Bonuses and Penalties)
-
-加成与惩罚构成了标志缩写列表中的第一和第二组（例如 
-{InWiCh;-StDxCn;AcElFiCoPoLiDkCfNtNxCa;AgTy}
-）。加成或惩罚的数值大小由物品的 pval 决定。
-
-攻击速度 (Attack Speed) - {At}, {-At}
-
-加成会为你提供每点 pval 0.50 次的额外攻击次数 
-(blows)，分配在所有适用的武器上。惩罚会从所有适用武器中每点 pval 扣除 
-1.00 次攻击次数。
-
-速度 (Speed) - {Sp}, {-Sp}
-力量 (Strength) - {St}, {-St}
-智力 (Intelligence) - {In}, {-In}
-感知 (Wisdom) - {Wi}, {-Wi}
-敏捷 (Dexterity) - {Dx}, {-Dx}
-体质 (Constitution) - {Cn}, {-Cn}
-魅力 (Charisma) - {Ch}, {-Ch}
-潜行 (Stealth) - {Sl}, {-Sl}
-
-这些加成和惩罚只是简单地将相应属性增加或减少 pval 数值的量。
-
-魔法精通 (Magic Mastery) - {Md}, {-Md}
-
-每点 pval 增加或减少装置技能 8 
-点。惩罚版本也会自动触发对装置威力的惩罚。
-
-搜索 (Searching) - {Sr}
-
-每点 pval 增加 5 点搜索技能和察觉技能。
-
-红外视觉 (Infravision) - {If}
-
-每点 pval 增加 1 格红外视觉范围。
-
-挖掘 (Digging) - {Dg}
-
-每点 pval 增加 20 点挖掘能力（相当于使用重了 20 
-磅的工具挖掘所带来的加成）。
-
-生命 (Life) - {Lf}, {-Lf}
-
-每点 pval 增加或减少你基于体质的生命倍率 3 个百分点。
-
-装置威力 (Device Power) - {+10%}, {-10%}
-法术威力 (Spell Power) - <+23%>, <-23%>
-法术容量 (Spell Capacity) - [+15%], [-15%]
-
-
-这三种加成（及其相应的惩罚形式）是特例，它们在物品描述中与基本属性列在一
-起，而不是与其他标志属性列在一起。这是因为加成的数值大小有些不同寻常，如
-果不进行 Inspect (检查)，会非常不清楚：装置威力和法术容量每点 pval 为 5 
-个百分点，法术威力每点 pval 为 100/13（约 7.69）个百分点。
-
-法术威力和法术容量（最大 SP 
-修正）可以显示为加成或惩罚。装置威力本身只显示为加成；但是 
--Md（装置技能惩罚）也会贡献负数的装置威力，实际上它是 +装置技能 和 
-+装置威力 两者的惩罚版本。
-
-抗性、免疫与易伤 (Resistances, Immunities and Vulnerabilities)
-
-
-免疫、易伤和抗性各组成一个缩写组。抗性会同时减轻对应伤害类型（或元素）的
-伤害和副作用；相同抗性的多个来源以特定的非线性方式叠加。易伤会抵消一个抗
-性来源，或者如果没有可以抵消的抗性，则提供相应的伤害增加。免疫能完全消除
-来自相应元素的所有伤害和副作用。
-
-有关抗性工作原理的更多详情，请参阅 [d]
-；有关单个抗性效果和相对重要性的评论，请参阅 [e]。
-
-酸液 (Acid) - {Ac}, {*Ac}, {-Ac}
-闪电 (Electricity) - {El}, {*El}, {-El}
-火焰 (Fire) - {Fi}, {*Fi}, {-Fi}
-寒冷 (Cold) - {Co}, {*Co}, {-Co}
-毒素 (Poison) - {Po}, {-Po}
-
-这五种抗性统称为低级抗性 (low resistances)或基础抗性 (base 
-resistances)；后者通常仅指代四种最常见的抗性，不包括毒素。低级抗性都遵循
-相同的伤害减免曲线：一个抗性来源减免 50%，两个减免 65%，三个减免 
-72%，四个减免 
-75%（以此类推）。副作用的计算通过将抗性等级与一个针对物品毁坏的 66 
-面骰，以及一个针对其他副作用的 55 
-面骰进行比较得出。低级抗性，特别是四种基础抗性，是游戏前期最重要的抗性。
-
-
-
-虽然除了时间之外的所有抗性都有相应的易伤标志，但只有四种基础抗性才有相应
-的免疫标志。有可能获得其他免疫，但只能通过角色的种族或职业来获得。
-
-强光 (Light) - {Li}, {-Li}
-黑暗 (Dark) - {Dk}, {-Dk}
-困惑 (Confusion) - {Cf}, {-Cf}
-虚空 (Nether) - {Nt}, {-Nt}
-时空 (Nexus) - {Nx}, {-Nx}
-音波 (Sound) - {So}, {-So}
-碎片 (Shards) - {Sh}, {-Sh}
-混沌 (Chaos) - {Ca}, {-Ca}
-解除魔法 (Disenchantment) - {Di}, {-Di}
-时间 (Time) - {Ti}
-失明 (Blindness) - {Bl}, {-Bl}
-
-这些是高级抗性 (high 
-resistances)；在物品描述中，它们与低级抗性分组在一起，但工作方式略有不同
-。高级抗性在拥有一个来源物品时减少 30% 伤害，两个来源时减少 
-40%，三个来源减少 45%，四个来源减少 47% 
-等等；副作用的计算通过将抗性等级与针对物品破坏的 41 
-面骰、针对物品解除附魔的 31 面骰以及针对其他效果的 33 
-面骰进行比较得出。
-
-恐惧 (Fear) - {Fe}, {-Fe}
-
-
-虽然与其他抗性分在一起，但恐惧抗性是一个特例，它的工作方式非常不同。有关
-恐惧以及如何抵抗它的更多详细信息，请参阅 [f]。
-
-杂项能力 (Miscellaneous Abilities)
-
-
-此标志组包含各种杂项能力，它们中的大多数（但不全是）都是正面的。此组中的
-几个属性——额外威力 (Extra Might)、额外射速 (Extra Shots) 和武器精通 
-(Weaponmastery)——在功能上是依赖 pval 
-的加成，但传统上缩写归类在能力组中。
-
-对于那些说明每回合有 1/X 的几率触发特定效果的属性，这里的“回合 
-(turn)”是指 10 个游戏回合单位的简称。（详尽的技术说明请参阅 [g]。）
-
-易于施法 (Easy Spellcasting) - {Es}
-减少法力消耗 (Decreased Mana Costs) - {Dm}
-
-这些属性会影响你的施法效率。易于施法可使法术失败率降低 4 
-个百分点，对于无视最低失败率的非书本法术和狂怒技能会额外降低 1 
-点；易于施法的减免可与来自领域光源的领域特定加成叠加。减少法力消耗会将法
-术法力消耗降低至原消耗的 75%；此减免不与领域光源的加成叠加。拥有多个 Es 
-或 Dm 来源不会提供任何额外的好处。
-
-Es 和 Dm 
-标志是特殊的，因为并非所有角色都能从中获得相同的好处；有些角色根本得不到
-任何好处，而有些角色只能从特定物品中获得好处。因此，Es 和 Dm 标志 
-仅在相关时才向玩家显示，否则会被隐藏（即使在 Inspect 
-检查时）；如果你看到一枚具有很高物品评分但似乎没有任何特殊属性的巫术戒指
-，它可能具有隐藏的 Es 或隐藏的 Dm，或者两者都有。
-
-投掷 (Throwing) - {Th}
-
-将武器标记为适合投掷。此属性会将投掷的伤害倍率增加 
-1，并增加投掷该物品的最大射程。忍者 (Ninjas) 和忍者律师 (Ninja-Lawyers) 
-在投掷带有此投掷标志的剑时会获得特殊加成。
-
-反射 (Reflection) - {Rf}
-
-赋予玩家 75% 的几率反射来袭的射线法术。多个反射来源不叠加。详情见 [h]。
-
-自由行动 (Free Action) - {Fa}
-
-
-提供自由行动。一级自由行动赋予你一次对抗麻痹的豁免判定（如果你真的被麻痹
-了，它也会加快恢复速度）；二级自由行动使你完全免疫 41 
-级及以下怪物的麻痹，并对抗高级怪物的麻痹提供两次豁免判定；三级自由行动使
-你完全免疫麻痹，特例是远古邪恶诅咒。自由行动还可以保护你免受减速法术的影
-响，并减轻惯性 (inertia) 的副作用。
-
-识破隐形 (See Invisible) - {Si}
-
-
-每个识破隐形来源赋予你一次额外发现给定隐形怪物的机会。搜索技能会提高识破
-隐形判定的成功率；如果你的搜索技能很差，即使有多个识破隐形来源也会非常不
-可靠。
-
-维持生命 (Hold Life) - {Hl}
-
-每个维持生命来源为你提供一次对抗经验吸取的额外判定，以及一次对抗反生命 
-(unlife) 
-攻击的额外判定。（魅力会提高反生命攻击豁免的成功率；经验吸取豁免具有固定
-的概率，仅取决于攻击的强度。）在所有 XP 
-吸取豁免都失败的情况下，拥有至少一个维持生命来源的角色损失的 XP 
-量仍会大幅减少。
-
-减缓消化 (Slow Digestion) - {Sd}
-
-减缓消化会将你的消化率减半，并保护你免受恶心 (Nausea) 
-变异的副作用。多个减缓消化来源不叠加。
-
-再生 (Regeneration) - {Rg}
-
-再生会增加你的基础再生率 100 个百分点，从而加快你的 HP 再生、SP 
-再生和消化。多个再生来源会叠加。
-
-法力恢复 (Mana Recovery) - {Rm}
-
-法力恢复使你的 SP 
-再生率翻倍（在计算所有其他再生加成和惩罚之后）。多个法力恢复来源不叠加。
-
-
-漂浮 (Levitation) - {Lv}
-
-
-允许你飞越黑暗坑洞和山区荒野，防止负重超载的角色在深水中淹死，减少站在熔
-岩或有毒废料中（或上方）造成的伤害，减轻重力 (Gravity) 和风暴 (Storm) 
-攻击的副作用，消除树林或积雪区域的移动速度惩罚，并保护你免受某些类型的地
-板陷阱的伤害（除非你故意去触发它们）。多个漂浮来源不叠加。
-
-夜视 (Night Vision) - {Nv}
-
-允许你在不需要光源的情况下看到周围环境。
-
-永久光照 (Permanent Light) - {Lu}
-
-增加你的光照范围 1 
-格。多个永久光照来源会叠加。具有此属性的武器在用于攻击易受光照伤害的怪物
-时会造成额外伤害。
-
-警告 (Warning) - {Wr}
-
-该物品会在你即将踏入陷阱时警告你，如果当前层生成了新的暗金怪物 
-(Unique，唯一怪物)，它会发出特定的警告颜色光芒。发光的颜色取决于该怪物的
-原生深度与玩家等级的比较，范围从最危险怪物的黑色，到紫色、深红色、红色、
-粉色和白色。
-
-额外威力 (Extra Might) - {Xm}
-
-增加你的发射器的伤害倍率，数值为 0.20 * 
-(该发射器种类原生每回合射击次数的倒数) * pval。
-
-额外射速 (Extra Shots) - {Xs}
-
-提高你的射击速度，数值为 (0.15 射击次数/回合) * 
-(发射器种类原生每回合射击次数) * pval。
-
-随机传送 (Random Teleportation) - {Te}
-
-在被诅咒的物品上，每回合有 1/200 
-的几率触发不可控的随机传送。在其他物品上，每回合有 1/200 
-的几率弹出随机传送的提示，并允许你尝试跟随附近传送离开的怪物。在物品铭刻
-中添加字符 . 会自动忽略所有关于随机传送的提示。
-
-激怒 (Aggravation) - {Ag}
-
-
-唤醒并激怒附近所有怪物。此属性也可以作为可移除的诅咒出现，在这种情况下它
-没有缩写，仅在检查时标明。
-
-被祝福 (Blessed) - {Bs}
-
-
-被祝福的物品能稍微抵抗被施加诅咒。（否则它们无助于你抵抗诅咒；保护仅适用
-于该物品本身。）善良阵营的牧师 (Priests) 
-只有在武器被祝福时，才能无惩罚地使用剑和长柄武器。
-
-*远古邪恶诅咒* (*Ancient Foul Curse*) - {Ty}
-
-每回合有 1/200 
-的几率触发远古邪恶诅咒。此属性也可以作为可移除的诅咒出现，在这种情况下它
-没有缩写，仅在检查时标明。
-
-永久黑暗 (Permanent Darkness) - {Ds}
-
-使你的光照范围在大多数物品上减少 1，在灯笼上减少 2，在高级提灯上减少 
-3。多个永久黑暗来源会叠加。
-
-武器精通 [额外伤害骰] (Weaponmastery [Extra Dice]) - {Wm}
-
-提供每点 pval 1 
-个额外的伤害骰，分配在适用的武器上。由于武器精通增加了骰子的数量（即 
-(XdY) 中的 X），它应用于具有多面骰子（高 Y 
-值）的武器时最为强大；屠杀、烙印和锋利（尤其是 
-*极度锋利*）也能与武器精通极好地配合。
-
-自动鉴定 (Auto-Identify) - {Id}
-
-自动鉴定你走过的所有物品，以及物品栏和装备中的所有物品。
-
-光环与护盾 (Auras and Shells)
-
-
-此缩写组包含元素光环、保护性的魔法护盾以及干扰玩家或怪物正常行动的属性。
-
-
-火焰光环 (Aura of Fire) - {[F}
-闪电光环 (Aura of Electricity) - {[E}
-寒冷光环 (Aura of Cold) - {[C}
-碎片光环 (Aura of Shards) - {[Sh}
-
-
-这四个元素光环的工作方式相同：每次怪物在近战中击中你时，他们都会受到光环
-的一些元素伤害。光环的强度取决于玩家的等级和光环来源的数量；相同光环的多
-个来源会部分叠加，每个来源为原始光环增加 2 个伤害骰。
-
-被火焰光环包围还会使你的光照范围增加 1（如果它原本为 0 
-或更低）。这有时会使火焰光环对忍者和忍者律师来说很不方便。
-
-报复光环/复仇光环 (Aura of Retaliation/Revenge) - {[At}
-
-
-拥有此光环时，每次怪物在近战中击中你，你都会通过反击进行报复。这种光环在
-攻击次数少但单次命中伤害高的角色（例如决斗者 Duelists）身上极其强大。
-
-反魔法护盾 (Anti-Magic Shell) - {[M}
-
-赋予极高的豁免判定，但也阻止你使用 m 命令施放法术。（一些使用 m 
-命令施放特定职业技能而非标准法术的职业仍然可以使用它们；包括狂战士、血骑
-士、武器大师、碎击者、炼金术士、狂怒法师、模仿者和附身者，但不包括忍者或
-武士。）
-
-
-反魔法不是一种豁免加成；它只是保证极高的豁免判定，无论你原本的豁免判定有
-多好或多坏。（你的豁免判定质量会在某种程度上依赖于等级，但即使在低 CL 
-时，你也能可靠地抵抗几乎所有诅咒。）
-
-反传送护盾 (Anti-Teleportation Shell) - {[T}
-
-
-防止你通过魔法手段传送或被传送。（非魔法传送在某些极少数情况下仍可能发生
-。）对于大多数角色来说，此属性非常不理想，因为传送通常是你逃离危险情况的
-最佳手段；狂战士有时可能会接受它，但即使对他们来说，这充其量也是一把双刃
-剑。
-
-反召唤护盾 (Anti-Summoning Shell) - {[Sm}
-
-
-最罕见和最有价值的物品属性之一，反召唤护盾会阻挡三分之二的所有召唤物。（
-这包括你自己的召唤物，所以像 Q兽 (Quylthulgs) 
-这种基于召唤的角色可能并不觉得它全是好处。）
-
-魔法抗性 (Magic Resistance) - {[Mr}
-
-使所有非天生怪物法术造成的伤害减少，每点 pval 减少 5 
-个百分点。天生伪法术（如吐息、火箭或巨石）不受影响。
-
-屠杀与烙印 (Slays and Brands)
-
-烙印、屠杀和 *屠杀* 
-增加对特定怪物攻击的伤害。（通常来说，烙印是基于元素的，会增加你对不抵抗
-该元素的怪物的伤害，而屠杀会增加你对特定怪物类别如动物或兽人的伤害；*屠
-杀* [或致命属性 kill attribute] 
-仅仅是更强大的屠杀。）近战屠杀和烙印通过乘以武器的伤害骰子生效；箭术屠杀
-和烙印通过乘以弹药的伤害骰子和弹药的伤害加成来生效。出于这个原因，箭术屠
-杀的倍率低于近战屠杀的倍率。
-
-
-屠杀和烙印通常不会叠加；如果多个屠杀或烙印可能应用于同一次攻击，则只有最
-强的屠杀或烙印适用。唯一的例外是：混沌印记 (Mark of 
-Chaos)，它会与其他屠杀部分结合；原力烙印 (Force 
-Brand)，它会与其他屠杀完全结合；以及特定职业的烙印，如武士烙印（它们从不
-作为物品标志生成）。永久光照武器属性 (Lu) 
-的作用类似于针对受到弱光伤害的怪物的弱烙印，并且在某种程度上可以与普通烙
-印叠加。
-
-
-几个具有增加骰子之外效果的伪烙印被与“真正”的烙印归为一组；它们通常根本不
-影响伤害，但会与屠杀和烙印（以及彼此）完全叠加，这意味着它们可以应用于同
-一次攻击。
-
-
-烙印、*屠杀*和屠杀各形成一个缩写组。有关屠杀和烙印如何工作的更详细概述，
-请参阅 [i]。
-
-酸液烙印 (Acid Brand) - {|A}
-闪电烙印 (Lightning Brand) - {|E}
-火炎舌 [火焰烙印] (Flame Tongue [Fire Brand]) - {|F}
-寒冷烙印 (Cold Brand) - {|Co}
-毒蛇牙 [毒素烙印] (Viper's Fang [Poison Brand]) - {|P}
-暗影扫击 [黑暗烙印] (Shadow Sweep [Darkness Brand]) - {|Dk}
-
-这六种纯正的元素烙印都具有中等梯队的骰子倍率：箭术为 x1.62，普通近战为 
-x2.40，当混沌印记也投出同一烙印进行强化时为 x3.20。
-
-混沌印记 (Mark of Chaos) - {|Ca}
-
-
-混沌印记是一种特殊的烙印；在每次击中时，它会随机表现为五种常见烙印之一或
-十种常见屠杀之一。如果掷出的烙印或屠杀是武器原本没有的，武器将简单地表现
-为就像它拥有该烙印一样；如果烙印已经存在，它会被混沌印记强化。
-
-除了随机烙印或屠杀（每次必定掷出）外，混沌印记有 3/35 
-的几率使攻击具有吸血属性，有 2/175 的几率施加困惑之触 (Touch of 
-Confusion)。
-
-吸血武器 (Vampiric Weapon) - {|V}
-
-
-吸血属性是一种特殊的烙印；它对掷骰没有影响，而是从被攻击的怪物身上吸取生
-命（减少其最大 HP 量，等于造成伤害的 1/8），并治愈玩家 2d(伤害/6) 
-的生命值。（如果玩家的生命上限被降低了，吸血属性将优先治愈生命上限。）在
-大多数角色身上，在一轮对怪物的攻击中，吸血治疗上限为 50 
-HP；而在怪物模式的吸血鬼身上，治疗上限为 100 HP。吸血治疗会乘以变异 HP 
-再生修正系数。
-
-吸血属性仅对活物有效；它对恶魔、不死生物或非活物没有效果。
-
-地震 [冲击武器] (Earthquakes [Impact Weapon]) - {|Q}
-
-
-冲击烙印是一种特殊的烙印；它对掷骰没有影响，而是在成功击中时有几率震慑并
-引发地震。如果倍率加成后的伤害掷骰超过 
-50，则必定发生震慑和地震；否则，不会发生震慑，地震发生的几率为 1/7。
-
-震慑 (Stunning) - {|St}
-
-震慑是一种特殊的烙印；它对掷骰没有影响，而是在成功击中时使怪物震慑。
-
-锋利 [斩首/斩星] (Sharpness [Vorpal]) - {|S}
-*极度锋利* [*极度斩首/斩星*] (*Sharpness* [*Vorpal*]) - {|SS}
-
-
-锋利和*极度锋利*是特殊的烙印；它们本身并不代表骰子倍率，但偶尔会触发特殊
-的斩星暴击（见 [j]
-），从而倍增骰子。斩星暴击在短期内是高度随机的，但从长远来看，锋利平均相
-当于 11/9 (x1.22) 的骰子倍率，而*极度锋利*平均相当于 5/3 (x1.67) 
-的骰子倍率。虽然这些倍率相当适中，但它们与所有其他骰子倍率（以及武器精通
-等骰数增强器）完全叠加；这有可能使它们在高伤害骰的武器上极具价值，特别是
-当普通屠杀或烙印也适用时。
-
-原力烙印 [法力烙印] (Force Brand [Mana Brand]) - {|M}
-
-法力烙印是一种特殊的烙印；它与所有其他屠杀和烙印结合，将骰子倍率增加 
-50%，然后再增加 140 个百分点。（实际上，当它单独存在时，它是一个 x2.9 
-的倍率。）法力烙印非常强大，但会快速消耗法力，并且仅在玩家仍有法力时起作
-用；如果玩家没有法力或法力耗尽，法力烙印将变得毫无用处。
-
-*屠杀*/屠杀邪恶 (*Slay*/Slay Evil) - {/X*}, {/*}
-*屠杀*/屠杀善良 (*Slay*/Slay Good) - {/XA}, {/A}
-*屠杀*/屠杀活物 (*Slay*/Slay Living) - {/XLv}, {/Lv}
-
-
-低层级的屠杀，使武器或弹药对特定群体（邪恶怪物、善良怪物或活着的怪物）特
-别致命。屠杀倍率 (Slay) 为：箭术 x1.43，近战 
-x1.90，当被混沌印记强化时为 x2.53；极度屠杀倍率 (*slay* / kill) 
-为：箭术 x1.86，近战 x3.20，当被混沌印记强化时为 
-x4.00。请注意，活物怪物没有任何特定的“活物”标志；只要不是非活物、恶魔或
-不死生物的怪物，就是一个活着的怪物。
-
-*屠杀*/屠杀人类 (*Slay*/Slay Humans) - {/Xp}, {/p}
-*屠杀*/屠杀动物 (*Slay*/Slay Animals) - {/XZ}, {/Z}
-
-
-中层级的屠杀，使武器或弹药对特定群体（人类或自然生物）特别致命。屠杀倍率
-为：箭术 x1.62，近战 x2.40，当被混沌印记强化时为 
-x3.20；极度屠杀倍率为：箭术 x2.34，近战 x3.70，当被混沌印记强化时为 
-x4.62。
-
-*屠杀*/屠杀龙类 (*Slay*/Slay Dragons) - {/XD}, {/D}
-*屠杀*/屠杀兽人 (*Slay*/Slay Orcs) - {/Xo}, {/o}
-*屠杀*/屠杀巨魔 (*Slay*/Slay Trolls) - {/XT}, {/T}
-*屠杀*/屠杀巨人 (*Slay*/Slay Giants) - {/XP}, {/P}
-*屠杀*/屠杀恶魔 (*Slay*/Slay Demons) - {/XU}, {/U}
-*屠杀*/屠杀死灵 (*Slay*/Slay Undead) - {/XL}, {/L}
-
-高层级的屠杀，使武器或弹药对特定群体特别致命。屠杀倍率为：箭术 
-x1.90，近战 x2.80，当被混沌印记强化时为 x3.73；极度屠杀倍率为：箭术 
-x2.80，近战 x4.50，当被混沌印记强化时为 x5.62。
-
-心灵感应 (Telepathies)
-
-各种形式的超感官知觉 (ESP) 
-被分类为两个缩写组；一个是广泛的心灵感应，一个是有限的类型。
-
-心灵感应 (Telepathy) - {~Tele}
-
-
-“完全”的心灵感应。与其他形式的心灵感应不同，它仅检测有心智的怪物；它总是
-检测具有“正常”心智的怪物，偶尔检测具有“怪异”心智的怪物（包括大多数蚂蚁、
-蠕虫和蜘蛛），且不检测没有/空心智的怪物（包括大多数霉菌、果冻、魔像和旋
-风）。
-
-感知邪恶 (Sense Evil) - {~Evil}
-感知善良 (Sense Good) - {~Good}
-感知非活物 (Sense Nonliving) - {~Nolv}
-感知唯一怪物 (Sense Uniques) - {~Uniq}
-感知活物 (Sense Living) - {~Lvng}
-
-
-广泛的心灵感应，检测指定组中的所有怪物（无论它们具有怪异心智还是空心智）
-。“活物”怪物是指任何非恶魔、非不死生物或非非活物的怪物。
-
-感知人类 (Sense Humans) - {~p}
-感知龙类 (Sense Dragons) - {~D}
-感知兽人 (Sense Orcs) - {~o}
-感知巨魔 (Sense Trolls) - {~T}
-感知巨人 (Sense Giants) - {~P}
-感知恶魔 (Sense Demons) - {~U}
-感知死灵 (Sense Undead) - {~L}
-感知动物/自然生物 (Sense Animals/Natural Creatures) - {~Z}
-
-
-有限的心灵感应，检测指定组中的所有怪物。这个组和广泛的心灵感应组之间并没
-有根本的区别；这种区分完全是任意的，主要是基于缩写的简便性。
-
-属性维持 (Sustains)
-
-六种属性维持构成了缩写标志的最后一组。
-
-维持力量 (Sustain Strength) - {(St}
-维持智力 (Sustain Intelligence) - {(In}
-维持感知 (Sustain Wisdom) - {(Wi}
-维持敏捷 (Sustain Dexterity) - {(Dx}
-维持体质 (Sustain Constitution) - {(Cn}
-维持魅力 (Sustain Charisma) - {(Ch}
-
-
-这些属性可以保护相关基础属性免受大多数类型的暂时吸取，并使该属性具有一定
-的抗属性错乱 (scrambled) 
-能力。维持属性并不能防止时间攻击导致的基础属性暂时丧失，并且通常不能抵御
-基础属性的永久吸取（例如来自守护神的惩罚、毁灭药水、疾病攻击或其他来源）
-。
-
-检查时可见的属性 (Attributes Visible on Inspection)
-
-这些标志属性没有对应的缩写，但在已知时会在 Inspect (检查) 时标明。
-
-免疫酸液 [防锈] (Ignores Acid [Rustproof])
-免疫闪电 (Ignores Electricity)
-免疫火焰 (Ignores Fire)
-免疫寒冷 (Ignores Cold)
-
-
-这四个元素免疫标志可以保护物品本身免受该元素的伤害。免疫酸液对盔甲特别有
-用，因为它可以防止酸液腐蚀导致 AC 的永久损失。
-
-
-具有所有四个免疫标志的物品会被描述为“不会被元素伤害”。虽然这类物品在技术
-上只抵抗四种基础元素，但它们在你的物品栏中通常不会受到任何伤害。（如果物
-品在地上，这一区别就变得相关了，在这种情况下，如果它不是神器，就可能会被
-高级元素摧毁。）
-
-不可附魔 (Unenchantable)
-
-不可附魔的物品无法被附魔、变为神器或 
-ego物品，也无法通过任何魔法或非魔法手段进行强化。
-
-适合骑乘 (Suitable for Riding)
-
-具有此属性的武器可以在骑乘时使用，而不会招致命中惩罚。骑兵 (Cavalry) 
-和技能大师 (Skillmasters) 在骑乘时使用骑乘武器会获得特殊的战斗加成。
-
-双持 [源氏] (Dual Wielding [Genji])
-
-提供相当于 23 
-个百分点双持熟练度的加成，并在一定程度上降低重型武器的双持惩罚。此外，来
-自高力量的伤害加成（正常情况下在双持武器上会减少，除非该角色是狂战士或已
-完全精通双持）被允许照常发挥作用。
-
-源氏加成可与双持熟练度以及六臂蛇魔 (Mariliths) 
-和专精匕首的武器大师的“易于双持”加成叠加。它们不与双巧手 
-(Ambidexterity) 
-半神天赋叠加，拥有源氏后该天赋将变得无用。对于具有多双手臂的角色，只有一
-对武器将获得源氏的好处。
-
-吸取经验 (Drains Experience)
-
-每回合有 1/4 
-的几率永久吸取少量的经验值。尽管被吸取的经验值数量在某种程度上取决于 
-CL，但在低 CL 
-时这种惩罚更为明显，因为那时经验获取较慢，而这种吸取占了总 XP 
-的很大比例。此属性也可以作为可移除的诅咒出现。
-
-使无敌失效 (Negates Invulnerability)
-
-使所有无敌结界毫无价值，包括你自己的。
-
-装备诅咒 (Equipment Curses)
-
-
-诅咒通常是具有负面效果的可移除物品属性。一些诅咒（如远古邪恶诅咒）偶尔可
-以作为正常的、不可移除的标志属性出现；永久诅咒也是不可移除的，尽管它不是
-正常的标志属性。
-
-带有可移除诅咒的物品总是有粘性的 
-(sticky)，这意味着如果不先给物品解除诅咒，就无法取下它们。（狂战士和处于
-熊形态的比翁人 Beornings 
-是个例外；他们只需直接脱下被诅咒和被重度诅咒的物品就能解除其诅咒。木乃伊
- Mummies 
-也可以随意卸下大多数被诅咒的物品，而无需解除它们的诅咒。）如果你装备了一
-件粘性物品，主侧边栏中会出现一个诅咒指示器（Cursed、CURSED 或 
-*CURSED*，取决于所装备的任何物品上最强的粘性诅咒的强度）。
-
-
-带有不可移除诅咒（非永久诅咒的情况）的物品不一定有粘性，尽管它们通常至少
-在开始时带有粘性诅咒。
-
-
-通常情况下，同一个诅咒的多个实例不会叠加；两件带有远古邪恶诅咒的物品并不
-比一件更糟。唯一的例外是低护甲等级诅咒和额外法术失败诅咒，它们具有累积效
-应。
-
-被诅咒的 (Cursed)
-被重度诅咒的 (Heavily Cursed)
-永久被诅咒的 (Permanently Cursed)
-
-
-最简单的诅咒；这些诅咒只是让物品变得具有粘性。在带有任何其他可移除诅咒的
-物品上，必定至少存在这些诅咒中的一种，但它们也可以存在于其他方面没有诅咒
-的物品上。被诅咒的物品可以使用解除诅咒 (Remove Curse) 
-来解咒；被重度诅咒的物品只能使用 *解除诅咒* (*Remove Curse*) 
-来解咒；永久诅咒无法被解除，尽管永久诅咒物品上的其他暂时诅咒仍然可以用 
-*解除诅咒* 移除。（通过将物品变为凡品 
-mundanizing，永久诅咒在技术上是可移除的，尽管狂战士无法做到这一点。）
-
-添加弱诅咒 (Adds Weak Curses)
-
-每回合有 1/2000 的几率向物品添加新的弱诅咒。
-
-吸引动物 (Attracts Animals)
-
-每回合有 1/2500 的几率召唤敌对动物。
-
-猫步 (Catlike Tread)
-
-使你的潜行降低 
-4。（猫在理论上也许走路无声，但随之而来的管弦乐伴奏会暴露它们！）
-
-懦弱 (Cowardice)
-
-每回合有 1/1500 的几率使你陷入恐惧状态。
-
-解除魔法 (Dispels Magic)
-
-每回合有 1/128 的几率尝试解除随机增益状态 1d20 次。
-
-吸取生命 (Drains HP)
-
-每回合有 1/666 的几率吸取 2*CL 
-的生命值，如果你的生命值非常低，可能会直接杀死你。
-
-吸取法力 (Drains Mana)
-
-每回合有 1/666 的几率吸取 CL 的法力值。
-
-吸取装置 (Drains Devices)
-
-每回合有 1/333 
-的几率尝试从物品栏里的随机装置中吸取充能次数。（携带多个装置不会增加诅咒
-生效的几率，但会增加成功找到装置来吸取的几率。）
-
-额外装置失败 (Extra Device Fails)
-
-如果该物品被重度或永久诅咒，则降低你的装置技能 10 点（-1.25 
-Md），如果该物品被轻度诅咒，则降低 5 点。只有此诅咒的最强实例适用。
-
-额外法术失败 (Extra Spell Fails)
-
-如果该物品被轻度诅咒，则增加你的法术失败率 3 
-点，如果该物品被重度或永久诅咒，则增加 10 
-点。各个物品上此诅咒的多个实例会叠加。
-
-快速消化 (Fast Digestion)
-
-增加你的消化率，增加量相当于 300 个百分点的再生加成。
-
-刺激呼吸道 (Irritates Airways)
-
-每回合有 1/888 的几率使你感到不适 
-(unwell)。这个诅咒对非活物种族的角色没有影响。
-
-低护甲等级 (Low AC)
-
-如果该物品被轻度诅咒，则降低你的 AC 10 
-点，如果该物品被重度或永久诅咒，则降低 30 
-点。此诅咒仅在盔甲上生成。各个物品上此诅咒的多个实例会叠加。
-
-挥空 (Miss Blows)
-
-如果该物品被轻度诅咒，则降低武器的命中加成 5 
-点，如果被重度或永久诅咒，则降低 15 
-点。此诅咒仅在武器上生成，且该惩罚不会应用于你使用的任何其他武器。
-
-伤口撕裂 (Open Wounds)
-
-将你的伤口恢复率降低至原来的三分之一。
-
-缓慢再生 (Slow Regeneration)
-
-将你的再生率大幅削减至原来的五分之一。
-
-添加重诅咒 (Adds Heavy Curses)
-
-每回合有 1/2000 
-的几率向该物品添加新的重度诅咒。此诅咒仅在被重度诅咒的物品上生成。
-
-激怒 (Aggravates)
-
-
-唤醒并激怒附近的所有怪物。此诅咒仅在被重度诅咒的物品上生成，尽管它也可能
-作为正常的不可移除的标志属性出现。
-
-吸引恶魔 (Attracts Demons)
-
-每回合有 1/1111 的几率召唤敌对恶魔。此诅咒仅在被重度诅咒的物品上生成。
-
-吸引龙类 (Attracts Dragons)
-
-每回合有 1/800 的几率召唤敌对龙类。此诅咒仅在被重度诅咒的物品上生成。
-
-吸取经验 (Drains Experience)
-
-每回合有 1/4 
-的几率永久吸取少量的经验值。尽管被吸取的经验值数量在某种程度上取决于 
-CL，但在低 CL 
-时这种惩罚更为明显，因为那时经验获取较慢，而这种吸取占了总 XP 
-的很大比例。此诅咒仅在被重度诅咒的物品上生成，尽管它也可能作为正常的不可
-移除的标志属性出现。
-
-引发有害变异 (Induces Harmful Mutations)
-
-每回合有 1/1500 的几率赋予你一种有害变异（从所有那些“在不幸 
-Lucky-角色身上几率增加，在幸运 
-Lucky+角色身上几率减少的变异”列表中随机抽取）。此诅咒仅在被重度诅咒的物
-品上生成。
-
-招惹危险 (Invites Danger)
-
-将召唤敌对怪物的怪物生成等级提高 4 级或 (DL+15)/10 
-级，取较高者；也会增加深层怪物 (out-of-depth) 
-被召唤出的可能性。此诅咒仅在被重度诅咒的物品上生成。
-
-随机传送 (Random Teleportation)
-
-每回合有 1/200 
-的几率触发不可控的随机传送。此诅咒仅在被重度诅咒的物品上生成；它也可以作
-为正常的不可移除标志出现，在这种情况下，它的功能略有不同，并且不一定是个
-负面属性。
-
-次级邪恶诅咒 / 幼年邪恶诅咒 (Baby Foul Curse)
-
-每回合有 1/200 
-的几率触发次级邪恶诅咒。此诅咒仅在被重度诅咒的物品上生成。
-
-*远古邪恶诅咒* (*Ancient Foul Curse*)
-
-每回合有 1/200 
-的几率触发远古邪恶诅咒。此诅咒仅在被重度诅咒的物品上生成，尽管它也可能作
-为正常的不可移除的标志属性出现。
+Gives a 1-in-200 chance per turn of triggering the Ancient Foul Curse. 
+This curse only generates on heavily cursed items, though it may also 
+appear as a normal unremovable flag attribute.
 
 
 Original   : RoguelikeFansBand 7.1.raspberry
+
 

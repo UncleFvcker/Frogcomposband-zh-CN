@@ -1,91 +1,95 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <body text="#ffffff" bgcolor="#000000"><pre>
-<font color="#00ffff">子窗口 (Subwindows)
+<font color="#00ffff">Subwindows
 
+</font><font color="#ffffff">In addition to the main game display terminal, which is always visible 
+(and can show anything from dungeon maps to helpfiles), the game allows 
+you to use up to seven </font><font color="#ff0000">subwindows</font><font color="#ffffff">; these are optional, additional 
+display terminals used to keep important information permanently on the 
+screen. Subwindows are numbered </font><font color="#ff0000">Term-1 </font><font color="#ffffff">through </font><font color="#ff0000">Term-7 </font><font color="#ffffff">(the main display 
+is Term-0).
 
-</font><font color="#ffffff">除了始终可见（并且可以显示从地下城地图到帮助文件的任何内容）的游戏主显示
-终端之外，游戏还允许你使用最多七个</font><font color="#ff0000">子窗口 
-(subwindows)</font><font color="#ffffff">；这些是可选的额外显示终端，用于将重要信息永久保留在屏幕上。
-子窗口的编号从 </font><font color="#ff0000">Term-1 </font><font color="#ffffff">到 </font><font color="#ff0000">Term-7</font><font color="#ffffff">（主显示终端为 Term-0）。
+<a name="WhyGood"></a></font><font color="#c08040">Why Subwindows Are Good
 
-<a name="WhyGood"></a></font><font color="#c08040">为什么子窗口很有用
+</font><font color="#ffffff">The most commonly used subwindows are </font><font color="#ff0000">monster list</font><font color="#ffffff">, </font><font color="#ff0000">object list</font><font color="#ffffff">, </font><font color="#ff0000">pack 
+inventory </font><font color="#ffffff">and </font><font color="#ff0000">recent messages</font><font color="#ffffff">. The monster list, in particular, is very 
+convenient - a common cause of death is not realizing that there was a 
+dangerous monster nearby, and this is much less likely to happen with a 
+monster list subwindow there to alert you.
 
-</font><font color="#ffffff">最常用的子窗口包括</font><font color="#ff0000">怪物列表 (monster list)</font><font color="#ffffff">、</font><font color="#ff0000">物品列表 (object 
-list)</font><font color="#ffffff">、</font><font color="#ff0000">背包物品栏 (pack inventory)</font><font color="#ffffff">和</font><font color="#ff0000">最近消息 (recent 
-messages)</font><font color="#ffffff">。尤其是怪物列表非常方便——游戏中常见的死因就是没有意识到附近有
-危险怪物，而如果有一个怪物列表子窗口在旁边提醒你，这种情况发生的可能性就
-会大大降低。
+The object list is likewise handy: it allows you to see at a glance if 
+you're missing anything on the level, especially since the most 
+valuable objects (and/or those wanted by the 墨家明器) will be 
+displayed near the top. An object list subwindow will also help you 
+quickly locate quest or dungeon entrances in towns and the wilderness.
 
+<a name="WhyBad"></a></font><font color="#c08040">Why Subwindows Are Bad
 
-物品列表同样也很方便：它能让你对本层是否有遗漏的物品一目了然，特别是因为
-最有价值的物品（以及/或者 墨家明器 
-所需求的物品）会显示在列表的最上方。物品列表子窗口还能帮助你在城镇或荒野
-中快速定位任务或地下城的入口。
+</font><font color="#ffffff">Space occupied by subwindows is space not occupied by the main display; 
+subwindows force you to make compromises with either the number of </font><font color="#ff0000">rows 
+</font><font color="#ffffff">and </font><font color="#ff0000">columns </font><font color="#ffffff">in the main display, the </font><font color="#ff0000">font size </font><font color="#ffffff">of the main display, or 
+both. If you have bad eyesight or a smallish monitor, I recommend 
+maximizing the font size by using no subwindows.
 
-<a name="WhyBad"></a></font><font color="#c08040">为什么子窗口也会有弊端
+Having no subwindows also allows you to keep an iron focus on the main 
+display, without the need to glance to the sides so often. Subwindows 
+do provide useful information, but that information is also available 
+through normal commands - </font><font color="#ff8000">i </font><font color="#ffffff">for the inventory, </font><font color="#ff8000">Y</font><font color="#ffffff">/</font><font color="#ff8000">[ </font><font color="#ffffff">for the monster 
+list, </font><font color="#ff8000">O</font><font color="#ffffff">/</font><font color="#ff8000">] </font><font color="#ffffff">for the object list, </font><font color="#ff8000">^P </font><font color="#ffffff">for recent messages - and these 
+commands provide additional functionality (inspect item, travel to 
+item, search for a message, etc.) not offered by subwindows.
 
+<a name="AngbandLive"></a></font><font color="#c08040">Setting up subwindows on angband.live
 
-</font><font color="#ffffff">子窗口占据的空间就是主显示屏被挤占的空间；子窗口会迫使你在主显示屏的</font><font color="#ff0000">行数
- (rows)</font><font color="#ffffff">和</font><font color="#ff0000">列数 (columns)</font><font color="#ffffff">、主显示屏的</font><font color="#ff0000">字体大小 (font 
-size)</font><font color="#ffffff">，或者两者之间做出妥协。如果你的视力不佳或显示器较小，我建议不要使
-用任何子窗口，以此来将主屏幕字体大小最大化。
+</font><font color="#ffffff">Set the four values on the angband.live play page - </font><font color="#ff0000">subwindow right 
+cols</font><font color="#ffffff">, </font><font color="#ff0000">subwindow right split</font><font color="#ffffff">, </font><font color="#ff0000">subwindow top rows </font><font color="#ffffff">and </font><font color="#ff0000">subwindow bottom 
+rows </font><font color="#ffffff">- to your favorite settings. The standard example values are 
+40/25/0/5 respectively. Start your character, then type </font><font color="#ff8000">=W </font><font color="#ffffff">during play 
+to determine what each of the subwindows should display.
 
+If the game crashes on start, you may have specified subwindows that 
+occupy too much space; try lower values or a smaller font size. Note 
+also that either "subwindow top rows" or "subwindow bottom rows" should 
+be zero.
 
-不使用子窗口还能让你将注意力全神贯注于主显示屏上，而不需要频繁地瞟向两边
-。子窗口确实提供了有用的信息，但这些信息也可以通过常规命令获取——</font><font color="#ff8000">i 
-</font><font color="#ffffff">打开背包，</font><font color="#ff8000">Y</font><font color="#ffffff">/</font><font color="#ff8000">[ </font><font color="#ffffff">打开怪物列表，</font><font color="#ff8000">O</font><font color="#ffffff">/</font><font color="#ff8000">] </font><font color="#ffffff">打开物品列表，</font><font color="#ff8000">^P 
-</font><font color="#ffffff">查看最近消息——而且这些命令还提供了子窗口不具备的额外功能（检查物品、自动
-寻路前往物品、搜索消息等）。
+To play on angband.live with no subwindows, simply keep all four values 
+at zero.
 
-<a name="AngbandLive"></a></font><font color="#c08040">在 angband.live 在线平台上设置子窗口
+<a name="Windows"></a></font><font color="#c08040">Setting up subwindows in offline play (Windows)
 
-</font><font color="#ffffff">在 angband.live 的游玩页面上，将四个参数——</font><font color="#ff0000">右侧子窗口列数 (subwindow 
-right cols)</font><font color="#ffffff">、</font><font color="#ff0000">右侧子窗口分割比例 (subwindow right split)</font><font color="#ffffff">、</font><font color="#ff0000">顶部子窗口行数 
-(subwindow top rows) </font><font color="#ffffff">和 </font><font color="#ff0000">底部子窗口行数 (subwindow bottom 
-rows)</font><font color="#ffffff">——设置为你最喜欢的数值。标准的示例值分别为 
-40/25/0/5。启动你的角色，然后在游戏过程中输入 </font><font color="#ff8000">=W 
-</font><font color="#ffffff">来决定每个子窗口应该显示什么内容。
+</font><font color="#ffffff">Select </font><font color="#ff0000">Window </font><font color="#ffffff">from the toolbar at the top and choose the </font><font color="#ff0000">Visibility 
+</font><font color="#ffffff">option to toggle each of the seven subwindows on or off. Use the mouse 
+to drag the newly activated subwindows to your favorite locations. Type 
+</font><font color="#ff8000">=W </font><font color="#ffffff">during play to tell the game what each subwindow should display.
 
+<a name="Linux"></a></font><font color="#c08040">Setting up subwindows in offline play (Linux with curses)
 
-如果游戏在启动时崩溃，你可能指定了占用过多屏幕空间的子窗口；尝试使用较小
-的值或较小的字体。还要注意，“顶部子窗口行数”或“底部子窗口行数”中应该至少
-有一个为 0。
-
-如果要在 angband.live 上以无子窗口模式游玩，只需将这四个值全部保持为 0 
-即可。
-
-<a name="Windows"></a></font><font color="#c08040">在离线模式中设置子窗口 (Windows 系统)
-
-</font><font color="#ffffff">从顶部的工具栏中选择 </font><font color="#ff0000">窗口 (Window)</font><font color="#ffffff">，然后选择 </font><font color="#ff0000">可见性 (Visibility) 
-</font><font color="#ffffff">选项来开启或关闭七个子窗口中的每一个。使用鼠标将新激活的子窗口拖动到你最
-喜欢的位置。在游戏过程中输入 </font><font color="#ff8000">=W</font><font color="#ffffff">，告诉游戏每个子窗口应该显示哪些内容。
-
-<a name="Linux"></a></font><font color="#c08040">在离线模式中设置子窗口 (带有 curses 的 Linux 系统)
-
-</font><font color="#ffffff">在启动游戏时，使用命令行来指定子窗口的大小和位置。以下是一些示例：
+</font><font color="#ffffff">Use the command line to specify subwindow size and placement as you 
+launch the game. Here are a few examples:
 
 </font><font color="#ffff00">$ ./RoguelikeFansBand -mgcu -uCrusher -- -right 57x26,*
 
-</font><font color="#ffffff">这指定了在主显示屏右侧开辟一条 57 
-列宽的子窗口区域；该区域将包含两个子窗口，一个高 26 
-行，另一个占据剩余的所有空间。
+</font><font color="#ffffff">This specifies a subwindow strip to the right of the main display that 
+is 57 columns wide; this strip will contain two subwindows, one that is 
+26 rows high and one that fills whatever space still remains.
 
 </font><font color="#ffff00">$ ./RoguelikeFansBand -mgcu -uCrusher -- -right 57x26,* -bottom *x10
 
-
-</font><font color="#ffffff">除了指定和前面相同的两个子窗口外，还在主显示屏下方指定了第三个子窗口（Te
-rm-3），它占据 10 行以及 (屏幕总宽度-57) 列。
+</font><font color="#ffffff">Specifies the same two subwindows as before plus a third subwindow 
+(Term-3) below the main display, occupying 10 rows and (TOTAL-57) 
+columns.
 
 </font><font color="#ffff00">$ ./RoguelikeFansBand -mgcu -uCrusher -- -bottom *x10 -right 57x26,*
 
-</font><font color="#ffffff">与上面的类似，只不过位于底部的子窗口现在变成了 
-Term-1，并且它能占据横向的每一列空间。
+</font><font color="#ffffff">Same as above, except that the subwindow at the bottom is now Term-1 
+and gets to occupy every column.
 
-在游戏过程中输入 </font><font color="#ff8000">=W </font><font color="#ffffff">来决定每个子窗口显示什么内容。
+Type </font><font color="#ff8000">=W </font><font color="#ffffff">during play to determine what each subwindow displays.
 
 
 </font><font color="#404040">--
-原始版本   : RoguelikeFansBand 7.1.liquorice
+Original   : RoguelikeFansBand 7.1.liquorice
+
 
 </font></pre></body></html>

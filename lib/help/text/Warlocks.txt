@@ -1,24 +1,28 @@
-邪术师
+﻿Warlocks
 
+Warlocks are a magical class; they derive their spells and powers not 
+from books, but from an eldritch pact made with a given class of 
+monsters. This pact is irrevocable and is made at the outset of the 
+Warlock's career. Depending on the class of monsters with whom they 
+ally, the warlock will gain unique bonuses, abilities and magical 
+powers; for example, alliance with the forces of the netherworld grants 
+resistances to poison and nether, enhanced constitution and spells to 
+control and conjure the unliving, as well as spells to access the 
+damaging forces of the netherworld directly. Each such alliance has 
+thematic bonuses and powers, and you can read the details in the 
+respective help sections.
 
-邪术师是一个魔法职业；他们的法术和力量并非源自书本，而是源自与特定怪物类
-别签订的邪术契约(eldritch 
-pact)。这份契约是不可撤销的，在邪术师生涯的最初就会缔结。根据他们结盟的
-怪物类别，邪术师将获得独特的加成、能力和魔法力量；例如，与幽冥世界的力量
-结盟可以获得对毒素和幽冥的抗性，增强的体质，控制和召唤不死生物的法术，以
-及直接使用幽冥世界破坏力的法术。每种结盟都有主题性的加成和力量，你可以在
-相应的帮助章节中阅读详情。
-
-
-与特定的怪物类别结盟会大幅降低邪术师与这些敌人战斗的能力。作为替代，邪术
-师寻求与他们的同类合作，或者可能支配它们；直接攻击很少成功。
+Allying with a given class of monsters dramatically reduces the 
+warlock's ability to fight these foes. Instead, the warlock seeks 
+cooperation with their brethren, or perhaps domination over them; 
+direct assaults are rarely successful.
  
+In addition to pact-related spells, all warlocks gain access to the 
+unique power of the Eldritch Blast. Their primary spell stat is 
+Charisma, since they seek dominion and alliance with their chosen kin, 
+and these monsters tend to have a strong will of their own.
 
-除了与契约相关的法术，所有邪术师都能获得“魔能爆”这一独特力量。他们的主要
-施法属性是魅力，因为他们寻求统治并与选定的眷族结盟，而这些怪物通常都有很
-强的自我意志。
-
-死灵
+Undead
 The undead are tough creatures, each having already survived death at 
 least once. Warlocks who make a pact with Undead will find themselves 
 gaining additional resistances such as cold, poison, darkness and 
@@ -32,17 +36,17 @@ allying with the undead substantially reduces the warlock's ability to
 fight these creatures.
 
   Stats                   Skills
-  Strength      -1        Disarming   贫弱       
-  Intelligence  +2        Device      卓越       
-  Wisdom        -3        Save        极好       
-  Dexterity     +0        Stealth     良好       
-  Constitution  +2        Searching   贫弱       
-  Charisma      +2        Perception  贫弱       
-  Life Rating  107%       Melee       一般       
-  Base HP       15        Archery     贫弱       
+  Strength      -1        Disarming   Poor         
+  Intelligence  +2        Device      Superb       
+  Wisdom        -3        Save        Very Good    
+  Dexterity     +0        Stealth     Good         
+  Constitution  +2        Searching   Poor         
+  Charisma      +2        Perception  Poor         
+  Life Rating  107%       Melee       Fair         
+  Base HP       15        Archery     Poor         
   Experience   135%
   
-龙类
+Dragons
 The bond between a Dragonrider and a Dragon is one of the strongest and 
 most enduring ties seen the world over. Each draws strength, power, and 
 encouragement from the other, and together they make a formidable foe. 
@@ -56,17 +60,17 @@ lance above all other weapons, and seek continuously the legendary
 'Dragonlance' which they view as their long-lost birthright.
 
   Stats                   Skills
-  Strength      +2        Disarming   贫弱       
-  Intelligence  +0        Device      良好       
-  Wisdom        +0        Save        贫弱       
-  Dexterity     -1        Stealth     贫弱       
-  Constitution  +1        Searching   贫弱       
-  Charisma      +2        Perception  贫弱       
-  Life Rating  102%       Melee       一般       
-  Base HP       10        Archery     贫弱       
+  Strength      +2        Disarming   Poor         
+  Intelligence  +0        Device      Good         
+  Wisdom        +0        Save        Poor         
+  Dexterity     -1        Stealth     Poor         
+  Constitution  +1        Searching   Poor         
+  Charisma      +2        Perception  Poor         
+  Life Rating  102%       Melee       Fair         
+  Base HP       10        Archery     Poor         
   Experience   130%
   
-天使
+Angels
 Angels are heavenly beings who use a variety of techniques to smite 
 those they view as evil. Warlocks who make pacts with Angels will also 
 find their saving throws significantly improved, and (eventually) their 
@@ -75,17 +79,17 @@ aligned with the forces of good, making a pact with Angels will reduce
 damage done to all good monsters by a substantial amount.
 
   Stats                   Skills
-  Strength      +1        Disarming   贫弱       
-  Intelligence  +1        Device      极好       
-  Wisdom        +2        Save        卓越       
-  Dexterity     +1        Stealth     贫弱       
-  Constitution  +1        Searching   贫弱       
-  Charisma      +3        Perception  糟糕       
-  Life Rating   98%       Melee       一般       
-  Base HP        4        Archery     贫弱       
+  Strength      +1        Disarming   Poor         
+  Intelligence  +1        Device      Very Good    
+  Wisdom        +2        Save        Superb       
+  Dexterity     +1        Stealth     Poor         
+  Constitution  +1        Searching   Poor         
+  Charisma      +3        Perception  Bad          
+  Life Rating   98%       Melee       Fair         
+  Base HP        4        Archery     Poor         
   Experience   150%
   
-恶魔
+Demons
 Demons are crafty creatures of Hell, using whatever means at their 
 disposal to bring down their enemies. Warlocks who make pacts with 
 Demons will find their abilities to use all magical devices improved, 
@@ -95,17 +99,17 @@ footsteps, and even gain immunity to fire. Making a pact with Demons
 will reduce damage done to all demons by a substantial amount.
 
   Stats                   Skills
-  Strength      +3        Disarming   贫弱       
-  Intelligence  +1        Device      卓越       
-  Wisdom       -10        Save        极好       
-  Dexterity     +1        Stealth     糟糕       
-  Constitution  +1        Searching   贫弱       
-  Charisma      +2        Perception  糟糕       
-  Life Rating  100%       Melee       极好       
-  Base HP       15        Archery     贫弱       
+  Strength      +3        Disarming   Poor         
+  Intelligence  +1        Device      Superb       
+  Wisdom       -10        Save        Very Good    
+  Dexterity     +1        Stealth     Bad          
+  Constitution  +1        Searching   Poor         
+  Charisma      +2        Perception  Bad          
+  Life Rating  100%       Melee       Very Good    
+  Base HP       15        Archery     Poor         
   Experience   150%
   
-猎犬
+Hounds
 An alliance with hounds is sneakily strong: hounds are fast, stealthy 
 and nimble, and the warlock will gain these attributes as well, in 
 addition to basic elemental resistances. They also gain decent melee, 
@@ -116,17 +120,17 @@ world. Still, wouldn't it be fun to have some of those annoying hounds
 on your side for a change?
 
   Stats                   Skills
-  Strength      +0        Disarming   贫弱       
-  Intelligence  -2        Device      一般       
-  Wisdom        -2        Save        贫弱       
-  Dexterity     +2        Stealth     极好       
-  Constitution  +2        Searching   贫弱       
-  Charisma      +1        Perception  贫弱       
-  Life Rating  102%       Melee       良好       
-  Base HP       12        Archery     贫弱       
+  Strength      +0        Disarming   Poor         
+  Intelligence  -2        Device      Fair         
+  Wisdom        -2        Save        Poor         
+  Dexterity     +2        Stealth     Very Good    
+  Constitution  +2        Searching   Poor         
+  Charisma      +1        Perception  Poor         
+  Life Rating  102%       Melee       Good         
+  Base HP       12        Archery     Poor         
   Experience   110%
   
-蜘蛛
+Spiders
 Of all the icky, crawling things in the world, you have chosen to make 
 an alliance with spiders? Sure, they are stealthy, and fast, and very 
 adept at hiding. Able to extrude a fine sticky substance to ensnare the 
@@ -138,17 +142,17 @@ both poison and nexus. They are a bit on the squishy side, though -
 that is, if you manage to catch one!
 
   Stats                   Skills
-  Strength      -1        Disarming   贫弱       
-  Intelligence  +0        Device      优秀       
-  Wisdom        -2        Save        贫弱       
-  Dexterity     +2        Stealth     卓越       
-  Constitution  +0        Searching   贫弱       
-  Charisma      +1        Perception  糟糕       
-  Life Rating   97%       Melee       一般       
-  Base HP        1        Archery     优秀       
+  Strength      -1        Disarming   Poor         
+  Intelligence  +0        Device      Excellent    
+  Wisdom        -2        Save        Poor         
+  Dexterity     +2        Stealth     Superb       
+  Constitution  +0        Searching   Poor         
+  Charisma      +1        Perception  Bad          
+  Life Rating   97%       Melee       Fair         
+  Base HP        1        Archery     Excellent    
   Experience   120%
   
-巨人
+Giants
 An alliance with giants and titans grants impressive physical strength 
 and fortitude, but other stats will generally suffer. Later in life, 
 you will gain giant-like resistances including sound, shards and chaos. 
@@ -160,53 +164,53 @@ Warlocks with this alliance are excellent fighters, being nearly
 indistiguishable in skill from Warriors!
 
   Stats                   Skills
-  Strength      +2        Disarming   贫弱       
-  Intelligence  -4        Device      糟糕       
-  Wisdom        -4        Save        贫弱       
-  Dexterity     -3        Stealth     糟糕       
-  Constitution  +2        Searching   贫弱       
-  Charisma      +0        Perception  糟糕       
-  Life Rating  112%       Melee       英雄       
-  Base HP       25        Archery     一般       
+  Strength      +2        Disarming   Poor         
+  Intelligence  -4        Device      Bad          
+  Wisdom        -4        Save        Poor         
+  Dexterity     -3        Stealth     Bad          
+  Constitution  +2        Searching   Poor         
+  Charisma      +0        Perception  Bad          
+  Life Rating  112%       Melee       Heroic       
+  Base HP       25        Archery     Fair         
   Experience   140%
   
-表 1 - 邪术师属性加成表
+Table 1 - Warlock Statistic Bonus Table
 
                   STR  INT  WIS  DEX  CON  CHR  Life  BHP  Exp
-死灵             -1   +2   -3   +0   +2   +2  107%  +15  135%
-龙类             +2   +0   +0   -1   +1   +2  102%  +10  130%
-天使             +1   +1   +2   +1   +1   +3   98%   +4  150%
-恶魔             +3   +1  -10   +1   +1   +2  100%  +15  150%
-猎犬             +0   -2   -2   +2   +2   +1  102%  +12  110%
-蜘蛛             -1   +0   -2   +2   +0   +1   97%   +1  120%
-巨人             +2   -4   -4   -3   +2   +0  112%  +25  140%
+Undead             -1   +2   -3   +0   +2   +2  107%  +15  135%
+Dragons            +2   +0   +0   -1   +1   +2  102%  +10  130%
+Angels             +1   +1   +2   +1   +1   +3   98%   +4  150%
+Demons             +3   +1  -10   +1   +1   +2  100%  +15  150%
+Hounds             +0   -2   -2   +2   +2   +1  102%  +12  110%
+Spiders            -1   +0   -2   +2   +0   +1   97%   +1  120%
+Giants             +2   -4   -4   -3   +2   +0  112%  +25  140%
 
 
-表 2 - 邪术师技能加成表 I
+Table 2 - Warlock Skill Bonus Table I
 
-                  解除陷阱  使用装置  豁免        潜行       
-死灵            贫弱        卓越        极好        良好       
-龙类            贫弱        良好        贫弱        贫弱       
-天使            贫弱        极好        卓越        贫弱       
-恶魔            贫弱        卓越        极好        糟糕       
-猎犬            贫弱        一般        贫弱        极好       
-蜘蛛            贫弱        优秀        贫弱        卓越       
-巨人            贫弱        糟糕        贫弱        糟糕       
-
-
-表 3 - 邪术师技能加成表 II
-
-                  搜索        察觉        近战        箭术       
-死灵            贫弱        贫弱        一般        贫弱       
-龙类            贫弱        贫弱        一般        贫弱       
-天使            贫弱        糟糕        一般        贫弱       
-恶魔            贫弱        糟糕        极好        贫弱       
-猎犬            贫弱        贫弱        良好        贫弱       
-蜘蛛            贫弱        糟糕        一般        优秀       
-巨人            贫弱        糟糕        英雄        一般       
+                  Disarming     Device        Save          Stealth      
+Undead            Poor          Superb        Very Good     Good         
+Dragons           Poor          Good          Poor          Poor         
+Angels            Poor          Very Good     Superb        Poor         
+Demons            Poor          Superb        Very Good     Bad          
+Hounds            Poor          Fair          Poor          Very Good    
+Spiders           Poor          Excellent     Poor          Superb       
+Giants            Poor          Bad           Poor          Bad          
 
 
+Table 3 - Warlock Skill Bonus Table II
+
+                  Searching     Perception    Melee         Archery      
+Undead            Poor          Poor          Fair          Poor         
+Dragons           Poor          Poor          Fair          Poor         
+Angels            Poor          Bad           Fair          Poor         
+Demons            Poor          Bad           Very Good     Poor         
+Hounds            Poor          Poor          Good          Poor         
+Spiders           Poor          Bad           Fair          Excellent    
+Giants            Poor          Bad           Heroic        Fair         
 
 
-自动生成于 RoguelikeFansBand 7.4。
+
+
+Automatically generated for RoguelikeFansBand 7.2.salmiak.
 

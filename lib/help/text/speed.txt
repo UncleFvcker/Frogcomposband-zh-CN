@@ -1,81 +1,92 @@
-游戏速度模式 (Game Speed Modes)
+﻿Game Speed Modes
 
-RoguelikeFansBand 
-提供几种不同的游戏速度模式，取决于你希望游戏玩多久以及多复杂。普通模式 
-(Normal mode) 是完整的 RoguelikeFansBand 
-体验；它开放了广阔的大地地图、众多的城镇、地牢以及其他模式中没有的支线任
-务。但如果你想玩一局较短的游戏，或者刚刚开始接触不想搞得太复杂，有两个加
-速游戏模式可供选择：非常快的茶歇模式 (coffee-break 
-mode)，以及极速的速溶模式 (instant-coffee mode)。
+RoguelikeFansBand offers several different game-speed modes, depending on 
+how long and complex you wish the game to be. Normal mode is the full 
+RoguelikeFansBand experience; it gives access to a vast wilderness, and 
+many towns, dungeons and side-quests not available in other modes. But 
+if you want to play a shorter game, or are just getting started and 
+don't want too many complications, there are two accelerated game modes 
+available: the very fast coffee-break mode, and the ultra-fast 
+instant-coffee mode.
 
-无论哪种模式，你的最终目标都保持不变：击杀混沌之蛇 (Serpent of 
-Chaos)，并在此之前击杀奥伯龙 
-(Oberon)以获得进入混沌之蛇巢穴的权限。但除此之外你能做的事情，以及你达到
-游戏后期的速度，很大程度上取决于你选择的游戏速度模式。
+Your ultimate goals remain the same regardless of mode: kill the 
+Serpent of Chaos, and before that, kill Oberon to gain access to the 
+Serpent's lair. But what else you can expect to do, and how quickly you 
+will reach the endgame, depends greatly on the game speed selected.
 
-普通模式：完整游戏 (Normal - full game)
+Normal (full game)
 
-这是传统的游戏速度，也是提供最完整游戏体验的模式。在一局完整的 
-RoguelikeFansBand 游戏中，你将与数以千计的怪物战斗，完成数十个任务，探索 
-30 
-多个地牢，并热切地检查成千上万可能具有魔法属性的物品。你可以在没有大地地
-图、只保留特殊茶歇模式城镇的情况下玩普通模式，但这极其不推荐。
+This is the traditional game speed, and the one that offers the most 
+complete game. In a full game of RoguelikeFansBand, you will fight 
+thousands of monsters, complete dozens of quests, explore more than 30 
+dungeons and eagerly inspect thousands of (potentially) magical 
+objects. It is possible to play in Normal Mode with the special 
+coffee-break town and no wilderness, but this is strongly not 
+recommended.
 
-普通速度模式下一局完整的游戏通常持续 15 到 150 
-小时。该模式通关的速通记录是 4 小时 6 分钟。
+A complete game in normal-speed mode typically lasts between 15 and 150 
+hours. The speedrun record for a full-game win is 4 hours and 6 
+minutes.
 
-茶歇模式：快速 (Coffee-Break Mode - fast)
+Coffee-Break Mode (fast)
 
-茶歇模式提供加速的游戏体验，包含更少的任务，只有一个地牢（安格班 
-Angband），一个城镇（特殊版本的“前哨镇 
-Outpost”）且没有大地地图。你探索的每一层都将比上一层更深；唯一的楼梯是每
-次让你下降两层的下行竖井 (downshafts)。你被允许使用“归返之语 (Word of 
-Recall)”法术或卷轴返回城镇。
+Coffee-break mode offers an accelerated game, with fewer quests, only 
+one dungeon (Angband), one town (a special version of Outpost) and no 
+wilderness. Every level you explore will be deeper than the one before; 
+the only staircases are downshafts that take you down two levels at a 
+time. You are allowed to return to the town by Word of Recall.
+
+Experience gain from killing monsters in the dungeon is much faster in 
+coffee-break mode (experience gain outside the dungeon is not 
+accelerated). The quality and quantity of monster item drops are also 
+both increased; and most forms of proficiency gain are accelerated. In 
+coffee-break mode, you get stronger faster, but also start running into 
+dangerous monsters more rapidly.
+
+Coffee-break mode uses a special level-size generation algorithm; in 
+general, levels tend to be very small in the early game and become 
+larger as the endgame approaches.
+
+Selecting Beginner Mode automatically turns coffee-break mode on, but 
+it is not necessarily easier than normal mode and not intended 
+exclusively for new players.
+
+A complete game in coffee-break mode typically lasts between 5 and 50 
+hours.
+
+Instant-Coffee Mode (ultra-fast)
+
+Instant-coffee mode is a super-accelerated game. It resembles 
+coffee-break mode, but is even more streamlined; dungeon levels with no 
+quests are skipped completely (effectively leaving only 13 levels in 
+the dungeon), the number of town quests is greatly reduced, experience 
+gain is accelerated even further (including outside the dungeon), and 
+loot quality is boosted even more than in coffee-break mode.
+
+A special feature of instant-coffee mode is that Potions of Healing, 
+Potions of *Healing* and Potions of Life - key items in both normal and 
+coffee-break play - never generate randomly. Instead, the ten random 
+Angband level guardians drop set amounts of these potions for you; kill 
+all ten (plus Oberon), and you will have 66 Potions of Healing and 7 
+Potions of *Healing*, hopefully enough for the end fight. A few 
+additional potions can be acquired from quests or the Arena or by 
+killing a god.
+
+Instant-coffee mode discourages grindy play; the more monsters you kill 
+on a given level, the less accelerated your experience gain is and the 
+fewer objects they drop. Monsters directly or indirectly summoned by 
+the player drop nothing and give no experience, and any summoned 
+monsters give reduced drops and experience once enough monsters have 
+been killed on the level. The experience factor scale is flattened 
+somewhat for instant-coffee play, making high experience factors less 
+punishing.
+
+Instant-coffee mode drops you in the thick of the action extremely 
+quickly. It is therefore not recommended for new players - unless you 
+wish to be overwhelmed! A complete game in instant-coffee mode 
+typically lasts between 2 and 15 hours.
 
 
-在茶歇模式中，在地牢中击杀怪物获得的经验要快得多（地牢外的经验获取不加速
-）。怪物掉落物品的质量和数量也都有所增加；而且大多数熟练度的获取也得到了
-加速。在茶歇模式中，你变强得更快，但也会更早地遇到危险的怪物。
+Original   : RoguelikeFansBand 7.1.liquorice
 
-
-茶歇模式使用一种特殊的地牢层大小生成算法；通常，游戏前期的地牢层往往非常
-小，并在接近游戏末期时变得越来越大。
-
-选择新手模式 (Beginner 
-Mode)会自动开启茶歇模式，但它不一定比普通模式更容易，也并不完全只是为新
-玩家准备的。
-
-茶歇模式下一局完整的游戏通常持续 5 到 50 小时。
-
-速溶模式：极速 (Instant-Coffee Mode - ultra-fast)
-
-
-速溶模式是一个超级加速的游戏模式。它类似于茶歇模式，但更加精简；没有任务
-的地牢层会被完全跳过（实际上地牢只剩下 13 
-层），城镇任务的数量大大减少，经验获取进一步加速（包括地牢外的经验），而
-且战利品质量的提升甚至超过了茶歇模式。
-
-速溶模式的一个特殊机制在于，治疗药水 (Potions of Healing)、*治疗*药水 
-(Potions of *Healing*) 和 生命药水 (Potions of Life) 
-——这些在普通模式和茶歇模式中的关键消耗品——永远不会随机生成。相反，十个随
-机的安格班楼层守卫 (level guardians) 
-会为你掉落固定数量的这些药水；击杀所有十个守卫（加上奥伯龙），你将拥有 
-66 瓶治疗药水和 7 
-瓶*治疗*药水，希望能足够你应对最终的战斗。你还可以从任务、竞技场 
-(Arena) 或击杀神祇来获得少量额外的药水。
-
-速溶模式不鼓励“刷刷刷 
-(grind)”的玩法；你在特定楼层击杀的怪物越多，你经验获取的加速效果就越弱，
-怪物掉落的物品也越少。由玩家直接或间接召唤的怪物不会掉落任何物品也不提供
-经验，并且一旦该楼层被击杀的怪物数量达到一定程度，任何怪物（包括其召唤物
-）提供的掉落和经验都会减少。在速溶模式中，经验系数 (experience factor) 
-的缩放比例被一定程度上抹平了，这使得高经验系数带来的惩罚没那么严重。
-
-
-速溶模式会极其迅速地将你投入激烈的战斗中。因此不推荐新玩家游玩——除非你想
-体验被高强怪物淹没的快感！速溶模式下一局完整的游戏通常持续 2 到 15 
-小时。
-
-
-原始版本   : RoguelikeFansBand 7.1.liquorice
 

@@ -1,461 +1,521 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <body text="#ffffff" bgcolor="#000000"><pre>
-<font color="#00ffff">地下城 (The Dungeons)
-
-
-</font><font color="#ffffff">尽管游戏包含一个广阔的世界，拥有多个城镇（大多数都提供特殊的城镇任务）以
-及一片巨大的荒野地区，但你冒险的大部分时间都将在地下城中度过。屏幕上出现
-的符号将代表地下城的墙壁、地板、物品、地貌特征以及潜伏在周围的生物。为了
-指引你的角色完成冒险，你需要输入单个字符的命令（参见 <a href="command.html"></font><font color="#00ff00">[a]</a></font><font color="#ffffff">）。
-
-<a name="MapSymbols"></a></font><font color="#c00000">地图上的符号
-
-
-</font><font color="#ffffff">地图上的符号可分为三类：地下城的地貌（如墙壁、地板、门和陷阱）；可以拾取
-的物品（如财宝、武器、魔法装置等）；以及可能在地下城中四处游荡的生物（它
-们大多对你的角色有生命威胁）。
-
-
-有些符号被用来代表不止一种实体，也有部分符号跨越了多个类别。默认情况下，
-“@” 符号被用来代表玩家角色。
-
-
-你不需要死记硬背所有的符号及其含义。使用“斜杠”命令（</font><font color="#ff8000">/</font><font color="#ffffff">）可以识别地图上出
-现的任何字符，你也可以使用 </font><font color="#ff8000">l </font><font color="#ffffff">观察命令和 </font><font color="#ff8000">* 
-</font><font color="#ffffff">瞄准命令来检查你所看到的地貌特征。玩了一段时间后，最常见的符号很快就会变
-得令人熟悉。
-
-有关城镇和荒野的符号，请参见 <a href="town.html#MapSymbols"></font><font color="#00ff00">[b]</a></font><font color="#ffffff">；有关怪物的符号，请参见 <a href="monster.html#MonsterSymbols"></font><font color="#00ff00">[c]</a>
-</font><font color="#ffffff">。你可以使用用户偏好文件或 </font><font color="#ff8000">% 
-</font><font color="#ffffff">命令来更改符号，尽管这相当高级；有时候走上这条路的新手玩家会深入到“视觉
-调整”的丛林中无法自拔，以至于忘记了玩游戏本身 :) 
-大多数玩家仅仅保留默认符号即可。
-
-  </font><font color="#c08040">不阻挡视线的地貌
-  </font><font color="#ffffff">.   地板                        </font><font color="#ff00ff">*   </font><font color="#ffffff">一面镜子
-  .   陷阱(隐藏)                  </font><font color="#ffff00">;   </font><font color="#ffffff">结界符文
-  </font><font color="#ff8000">^   </font><font color="#ffffff">陷阱(已发现)                </font><font color="#ff0000">;   </font><font color="#ffffff">爆炸符文
-  </font><font color="#804000">.   </font><font color="#ffffff">泥土                        </font><font color="#0000ff">;   </font><font color="#ffffff">惩戒之湿鳟鱼
-  </font><font color="#00ffff">~   </font><font color="#ffffff">浅水                        </font><font color="#00ffff">*   </font><font color="#ffffff">安伯图谱的一部分
-  </font><font color="#0000ff">~   </font><font color="#ffffff">深水                        </font><font color="#0000ff">*   </font><font color="#ffffff">安伯图谱的一部分
-  </font><font color="#c08040">~   </font><font color="#ffffff">浅层岩浆                    </font><font color="#c08040">'   </font><font color="#ffffff">开启的门
-  </font><font color="#c00000">~   </font><font color="#ffffff">深层岩浆                    </font><font color="#804000">'   </font><font color="#ffffff">破损的门
-  &lt;   上行楼梯                    '   开启的玻璃门
-  &gt;   下行楼梯                    </font><font color="#c00000">'   </font><font color="#ffffff">拉开的帷幕
-  </font><font color="#c08040">&lt;   </font><font color="#ffffff">上行竖井                    </font><font color="#404040">#   </font><font color="#ffffff">黑暗深坑
-  </font><font color="#c08040">&gt;   </font><font color="#ffffff">下行竖井                    </font><font color="#00ff00">~   </font><font color="#ffffff">浅层辐射池
-  </font><font color="#ff00ff">&gt;   </font><font color="#ffffff">地下城入口                  </font><font color="#008040">~   </font><font color="#ffffff">深层辐射池
-
-
-  </font><font color="#c08040">阻挡视线的地貌
-  </font><font color="#ffffff">#   花岗岩墙                    </font><font color="#c08040">#   </font><font color="#ffffff">永久墙
-  </font><font color="#808080">%   </font><font color="#ffffff">岩浆矿脉                    </font><font color="#40c000">#   </font><font color="#ffffff">树木
-  %   石英矿脉                    #   山壁
-  #   密门                        </font><font color="#c08040">+   </font><font color="#ffffff">关闭的门
-  #   玻璃墙                      </font><font color="#ff0000">'   </font><font color="#ffffff">拉上的帷幕
-  </font><font color="#ff8000">*   </font><font color="#ffffff">墙内财宝                    :   一堆碎石
-
-
-<a name="WithinDungeon"></a></font><font color="#c00000">地下城内部
-
-
-</font><font color="#ffffff">一旦你的角色储备了充足的食物、光源、护甲、武器和实用道具，他就准备好进入
-地下城了。移动到 </font><font color="#ff00ff">&gt; </font><font color="#ffffff">符号的上方，并使用 </font><font color="#ff0000">Down (下行) </font><font color="#ffffff">命令（</font><font color="#ff8000">&gt;</font><font color="#ffffff">）。
-
-
-你的角色将进入一个由相互连接的楼梯组成的迷宫，最终到达地下城第一层的某个
-地方。地下城的每一层高 50 英尺（因此地下城第 1 层有时被称为“50 英尺 (50 
-ft)”），可探索区域被永久的、无法破坏的岩壁所包围，这些岩壁将它们与处于相
-同深度的其他地下城楼层隔开。地下城楼层的大小各不相同，但它们始终是矩形的
-，有时会非常大——可能比屏幕大好几倍。
-
-在新手模式 (Beginner Mode) 和茶歇模式 (coffee-break mode) 
-中，一旦你离开某一层，就永远无法返回该层了，原因很简单——上行楼梯根本不存
-在，你进入的每一个地下城楼层都将比前一个更深。如果没有选择这些模式（以及
-铁人选项），只要你留在地下城内，就可以返回你离开过的楼层；尽管在同一深度
-同时存在许多不同的地下城楼层，但再次走同一段楼梯总会带你回到原来那一层。
-然而，一旦你离开地下城，你探索过的楼层就会全部丢失，永远无法找回；当你再
-次回到同一深度时，你会发现一个完全陌生的新楼层。不过，你可能会再次遇到一
-些你抛在身后的怪物！
-
-
-在地下城黑暗的深处，对充足照明的需求很快就会显现出来。有些房间已经被自然
-或魔法照亮，不需要额外的光线；但大多数隧道伸手不见五指，所以随身携带便携
-式光源是个好主意。如果没有光线，角色将无法视物。这会影响搜索、撬锁、解除
-陷阱、阅读卷轴、施放法术、查阅法术书、看清怪物等一切行动。所以千万小心，
-别让你的光源耗尽！
-
-
-角色必须装备火把、提灯或其他灯具来为自己提供照明。火把和提灯在使用时会消
-耗燃料，一旦燃料耗尽，它们就会停止发光。当光源快要耗尽时，系统会向你发出
-警告。你可以使用“添加燃料 
-(Fuel)”命令（“</font><font color="#ff8000">F</font><font color="#ffffff">”）来为提灯（使用油瓶）或火把（使用其他火把）补充燃料，因
-此随身携带多余的火把或油瓶总是个好主意。有传言称，世界上存在着极其强大的
-物品，它们会散发出永不熄灭的光芒。
-
-
-在地下城中可以找到惊人的财宝，但你的角色必须在许多可怕且极具挑战性的遭遇
-战中幸存下来，才能找到散落的财宝并将其安全带回城镇出售。
-
-<a name="Objects"></a></font><font color="#c00000">地下城中的物品
-
-
-</font><font color="#ffffff">地下城里到处都是等待被拾取和使用的物品。它们是怎么到那儿的？主要是那些在
-你之前进入地下城的愚蠢冒险者们留下的。他们被杀后，热心肠的生物把各种财宝
-散布到了地下城的各个角落。至于大多数被诅咒的物品，则是那些喜欢恶作剧的邪
-恶施法者放置的，如果你因为这些物品丧命，他们会非常享受这个笑话。
-
-这里要特别讨论一种物品——“归城卷轴 (Word of 
-Recall)”，你可以在地下城中找到它，或者在城镇的圣殿 (Temple) 和炼金店 
-(Alchemy Shop) 
-购买。它有两种作用方式，取决于你当前的位置。如果在地下城内阅读，它会将你
-传送回地表。</font><font color="#ffff00">在新手模式中，归城卷轴是你离开城镇后返回的唯一途径，</font><font color="#ffffff">因为新手
-模式会自动激活茶歇模式，从而禁用所有的上行楼梯。如果在表面阅读，归城卷轴
-会将你传送回你选择的、且之前曾访问过的任何一个地下城的返城点 (recall 
-point)。这使得该卷轴非常适合用来快速返回更深的楼层。卷轴被阅读后，法术生
-效需要一段时间，所以别指望它能在生死关头救你一命。如果在第一张卷轴生效前
-阅读第二张，将取消两张卷轴的效果。
-
-
-你在地下城中的返城点通常是你到达过该地下城的最深层数，但如果你在较浅的楼
-层阅读归城卷轴，你可以选择将其设置为更浅的楼层。有时将返城点设在最深层可
-能并不方便，原因有两个：第一，你可能在你曾到过的最深层还站不稳脚跟（甚至
-可能是不小心掉进了陷阱门才到了那里）；第二，有些地下城距离城镇很近，所以
-将返城点设在靠近地表的地方，可以方便地出入城镇！如果你在荒野中，这往往是
-抵达城镇最快的方式。
-
-有关物品的更完整描述请参阅文档其他部分（参见 <a href="objects.html"></font><font color="#00ff00">[d]</a></font><font color="#ffffff">）。
-
-<a name="Mining"></a></font><font color="#c00000">挖掘与采矿 (Mining)
-
-
-</font><font color="#ffffff">地下城里的许多宝藏只能通过挖掘墙壁来获得。每一层都有许多富矿，但必须去发
-现和挖掘。石英矿脉最丰富，产出的金属和宝石最多；岩浆矿脉中也会隐藏着一些
-财宝。
-
-如果没有镐或铁锹，挖掘是相当困难的，特别是如果你的力量 (Strength) 
-很低。镐和铁锹会为你的挖掘 (Digging) 
-能力提供加成，表示为“(+2)”、“(+3)”等；数字越高，工具的挖掘能力就越好。镐
-或铁锹也可能为你提供命中和伤害加成，因此可以用作武器。
-
-找到石英或岩浆矿脉后，角色可以装备镐或铁锹，并使用 </font><font color="#ff8000">T </font><font color="#ffffff">或 </font><font color="#ff8000">+ 
-</font><font color="#ffffff">命令开始挖出某个部分。当该部分被挖空后，你可以移动到矿脉的另一部分重新开
-始挖掘。由于花岗岩要坚硬得多、更难挖掘，因此通常最好沿着石英和岩浆挖掘并
-避开花岗岩，即使它挡在你的路上。到了某个阶段，比起直接杀怪并在地下城里发
-现物品去卖，费力去挖宝反而显得有些繁琐（许多玩家更喜欢从一开始就直接杀怪
-刷宝）。不过，矿脉依然是非常好的赚快钱来源，尤其是在游戏前期 (early 
-game)。
-
-即使是未经训练的眼睛，也能轻易看出某些矿脉蕴藏丰富（它们在地图上标有 </font><font color="#ff8000">* 
-</font><font color="#ffffff">符号）；但如果你的角色拥有“寻宝 (Treasure 
-Location)”卷轴、法杖或法术，你就可以轻松定位那些很可能隐藏在附近石英和岩
-浆中的更多财宝。这使得挖掘变得更加容易，也更有利可图。
-
-
-拥有高力量和/或重型武器的角色不需要铲子或镐也能挖掘。许多附魔武器甚至能
-为你的挖掘能力提供魔法加成，使它们在凿穿最坚硬的岩石时也非常有效。新手玩
-家有时会担心用珍贵的近战武器挖墙会把它弄断或损坏，但别担心，这绝不会发生
-！一些魔法法术和装置拥有在单回合内将任何石头（甚至是花岗岩）化为泥土的力
-量；这类法术和物品使挖掘变得更快、更方便，且通常不再需要更普通的挖掘工具
-。
-
-
-为了财宝去挖掘并非你想要挖隧道的唯一原因，甚至可能不是最常见的原因。在对
-抗危险怪物时，挖掘新的走廊以改变地形从而为你创造优势，通常是个好主意；有
-时你也希望进入被墙壁或你想避开的怪物挡住的区域。所以，即使你不打算挖宝，
-随身携带可以用于挖掘的东西也总是一个好主意；但这东西不一定非得是铲子或镐
-。
-
-<a name="Stairs"></a></font><font color="#c00000">楼梯与竖井 (Staircases and Shafts)
-
-
-</font><font color="#ffffff">楼梯是你深入地下城或从中爬出的方式。上行和下行楼梯的符号与你需要输入的命
-令字符相同：“&lt;”代表上行楼梯，“&gt;
-”代表下行楼梯。你必须将角色移动到楼梯上方才能使用它。竖井（“</font><font color="#c08040">&lt;</font><font color="#ffffff">”或“</font><font color="#c08040">&gt;
-</font><font color="#ffffff">”）本质上是更长的楼梯；除了极少数特殊情况外，它会带你上下两层，而不是仅
-仅一层。有些楼层可能没有常规楼梯，只有竖井；事实上，在新手模式中，所有的
-楼梯都会生成为竖井。
-
-
-每个地下城楼层都有两个或更多的下行楼梯，任务楼层（在杀死该层的最后一个任
-务怪物之前不会出现楼梯）以及地下城最底层的楼层（因为没有更深的地方可去了
-，所以永远不会有下行楼梯）除外。所有楼层也至少有一个上行楼梯，除非你在玩
-新手模式或茶歇模式，或者开启了 
-ironman_downward（铁人下行）选项。有时这些楼梯可能很难找到；你可能需要穿
-过一些隐藏得很好的密门，或者挖开障碍物才能到达那里，但只要你找得足够仔细
-，最终总能找到楼梯。楼梯和永久墙、商店大门一样，无法以任何手段被破坏。
-
-<a name="SecretDoors"></a></font><font color="#c00000">密门 (Secret Doors)
-
-
-</font><font color="#ffffff">地下城里有许多密门，用来迷惑和挫败那些愚蠢进入这里的冒险者。但凭借一些运
-气、技能和专注，你可以找到这些门；使用 </font><font color="#ff8000">s </font><font color="#ffffff">或 </font><font color="#ff8000">S 
-</font><font color="#ffffff">搜索命令来寻找密门。密门有时隐藏着房间或走廊，甚至可能是该层地下城的整个
-部分。有时它们只是隐藏着空空如也的小壁橱或死胡同。密门总是伪装成花岗岩墙
-的样子，绝不会是石英或岩浆。有关可能发现密门位置的提示，请参见 <a href="tang.html#SecretDoors"></font><font color="#00ff00">[e]</a></font><font color="#ffffff">！
-
-拥有极低搜索 (Searching) 
-技能的角色，无论搜索得多仔细，都可能完全无法发现密门。这通常只适用于狂战
-士 (Berserker) 职业，他们更喜欢用原始蛮力在墙上打出自己的通道。
-
-
-如果一扇门被卡住了，可以通过猛撞来打破它。这有时需要一些时间才能奏效，特
-别是当你的力量较低时。一旦门被撞开，它将永远报废并且无法关闭。许多怪物也
-非常擅长撞门……地下城中的生物通常知道密门的位置，并可能会使用它们；并且当
-它们穿过密门后，往往会把门敞开在你身后。
-
-<a name="Traps"></a></font><font color="#c00000">地板陷阱 (Floor Traps)
-
-
-</font><font color="#ffffff">密门并不是地下城里唯一表里不一的东西。一些地板砖上包含隐藏的陷阱，如果你
-不小心闯入，它们会伤害你或给你带来麻烦。有几个甚至是陷阱门 (trap 
-doors)，偏偏在你最不方便的时候把你直接丢到下一层。陷阱可以通过搜索 
-(</font><font color="#ff8000">S</font><font color="#ffffff">earching) 发现，就像密门一样，或者通过诸如“陷阱探测卷轴 (Scrolls of 
-Trap 
-Detection)”之类的魔法手段发现。（因为陷阱可能在任何地方，而地下城楼层通
-常很大，所以通常只有当你有特定理由预期附近有陷阱时，使用搜索操作才有意义
-。）RoguelikeFansBand 
-中的大多数陷阱都相当温和，所以如果你没有任何探测陷阱的物品也不是什么大问
-题；你只是偶尔会遇到麻烦，也许会有一些物品损坏，但这不会直接导致游戏结束
-。最可怕的陷阱非常罕见，并且仅在游戏末期 (late game) 
-才会出现，那时几乎所有的角色都会定期使用强大的魔法探测手段，这不仅能发现
-陷阱，还能发现密门以及更多东西。
-
-已知的地板陷阱在地图上用 </font><font color="#008040">^ </font><font color="#ffffff">符号表示。你可以使用 </font><font color="#ff8000">l </font><font color="#ffffff">观察命令或 </font><font color="#ff8000">* 
-</font><font color="#ffffff">瞄准命令更近距离地检查陷阱，这会告诉你它是哪种陷阱。你很快就会注意到陷阱
-是按颜色编码的；这个例子中的深绿色陷阱是四种毒气陷阱之一，它可能会让你短
-暂失明、中毒、困惑或麻痹。
-
-你可以使用 </font><font color="#ff8000">D </font><font color="#ffffff">解除 (disarm) 
-命令试图消除已知的陷阱，将该方块变回普通的地板。但解除并不保证一定能成功
-，你可能会在失败的尝试中再次触发陷阱……通常情况下，走进已知陷阱的格子会自
-动尝试解除它（除非你失明或困惑）；但是在极少数非常罕见的情况下，你可能实
-际上想故意触发陷阱而不做任何解除尝试。这可以通过 </font><font color="#ff8000">- </font><font color="#ffffff">键来实现。
-
-
-地板陷阱只对你起作用；怪物不用担心触发它们。这看起来显然很不公平，但从来
-没有人说过邪恶势力会给你公平的待遇！不过，少数几个职业有能力扭转局势，设
-置他们自己的地板陷阱让怪物踩进去。律师 (Lawyer) 
-在这方面很出名，但最强大的陷阱要属掌握行窃 (Burglary) 
-领域的游荡者布下的。
-
-<a name="Feelings"></a></font><font color="#c00000">关卡预感 (Level Feelings)
-
-
-</font><font color="#ffffff">一旦你在某个特定的地下城楼层停留了一段时间，你就会收到一个“关卡预感”，代
-表你的直觉告诉你关于该楼层发现的物品质量以及怪物难度的信息。在收到该消息
-后，你可以随时通过按 </font><font color="#ff8000">Ctrl-F </font><font color="#ffffff">来再次查看此消息。
-
-实际的“预感”信息是基于多种因素生成的。提高预感等级的事物包括：存在 
-Unique 怪物、超深度 (out-of-depth) 
-生成的怪物和物品、大型怪物群，以及未鉴定的神器和 ego 物品（参见 <a href="objects.html#EgoItems"></font><font color="#00ff00">[f]</a>
-</font><font color="#ffffff">）。预感仅仅代表你在收到预感那一刻的关卡状况，尽管它稍后可能会更新以反映
-新怪物或物品的存在。请注意，高等级的预感并不会引来危险的怪物或高品质的战
-利品；而是因为存在危险的怪物和高品质的战利品，才会产生高等级的预感。
-
-
-一般而言，预感消息越凶险，楼层的价值也越丰厚（或越致命）。从最平淡到最刺
-激，消息如下所示：
-
-     '真是个无聊的地方……'
-     '这一层看起来相当安全。'
-     </font><font color="#c0c0c0">'你不喜欢这个地方的样子。'
-     </font><font color="#c08040">'你感觉你的运气要变了……'
-     </font><font color="#ffff00">'你感到紧张。'
-     </font><font color="#ff8000">'你有一种不祥的预感……'
-     </font><font color="#ff0000">'你有一种非常不祥的预感……'
-     </font><font color="#c00000">'这一层看起来非常危险。'
-     </font><font color="#ff00ff">'脑海中充满了死亡的恐怖幻象，你几乎要晕倒了！'
-
-</font><font color="#ffffff">如果你选择了幸运 (Lucky) 性格，或以其他方式获得了“白色光环 (White 
-Aura)”好运变异，消息将以更乐观的形式出现：
-
-     '真是个无聊的地方……'
-     '这一层不可能全都是坏事……'
-     </font><font color="#c0c0c0">'你喜欢这个地方的样子……'
-     </font><font color="#c08040">'你感觉你的运气要变了……'
-     </font><font color="#ffff00">'你感到一种莫名的幸运……'
-     </font><font color="#ff8000">'你有一种好的预感……'
-     </font><font color="#ff0000">'你有一种非常好的预感……'
-     </font><font color="#c00000">'你有一种极好的预感……'
-     </font><font color="#ff00ff">'你对这一层有一种绝佳的预感。'
-
-</font><font color="#ffffff">另外还有两条预感消息用来表示特殊情况。如果你在按 </font><font color="#ff8000">Ctrl-F 
-</font><font color="#ffffff">时，停留在该层的时间还不足以形成预感，你将收到提示：
-
-     </font><font color="#808080">'看起来和其它层没什么两样。'
-
-</font><font color="#ffffff">你有时也可能足够幸运，收到以下消息：
-
-     </font><font color="#00ffff">'你觉得这一层有些特别之处。'
-
-
-</font><font color="#ffffff">特殊的预感意味着以下两种情况之一：要么是这一层有一件未被发现的特殊物品（
-神器）；要么是你的种族宿敌（种族 
-Boss）在这一层。大多数玩家种族甚至没有专属 
-Boss，所以通常是前者！随着你深入地下城，当你遇到越来越多的神器时，这种特
-殊预感会变得越来越常见。
-
-
-如果你认为你已经完全探索了一层，但未能找到承诺中的神器，请彻底检查物品列
-表（</font><font color="#ff8000">]</font><font color="#ffffff">）。通常，神器可能是一件你已经探测到但忘记去鉴定的物品。如果你莫名
-其妙地失去了这种特殊感觉，情况可能正好相反——有些非常心不在焉的玩家，众所
-周知会在不经意间鉴定出了昂贵的神器……
-
-
-请注意，一层楼有可能存在不止一件神器，甚至可能是一个装满神器的完整宝库。
-所以，除非你失去了那种特殊预感，或者你角色的生存受到了严重威胁，否则在没
-有完全探索完之前，绝对不应该离开带有特殊预感的楼层。
-
-<a name="RandomQuests"></a></font><font color="#c00000">随机任务 (Random Quests)
-
-</font><font color="#ffffff">每个角色在安格班 (Angband) 
-地下城中都会遇到十个随机任务（除非他们先死了）。默认情况下，每个任务是让
-你去杀死某个超深度 (out-of-depth) 生成的 Unique 
-怪物，不过你可以通过出生选项 <a href="option.html#quest_unique"></font><font color="#00ff00">[g]</a> 
-</font><font color="#ffffff">将其更改为杀死一定数量的某种随机类型怪物。请小心：Unique 
-怪物通常在它们原本的深度就非常强大，所以越级挑战它们尤其困难！
-
-
-在随机任务楼层上，只有在杀死最后的任务怪物后才会生成下行楼梯，这意味着在
-你完成任务之前，无法继续深入地下城。当你杀死任务怪物时，系统将生成下行楼
-梯，并且怪物会掉落一件或多件品质为“优秀 
-(excellent)”或以上的奖励物品。即便对于那些通常根本不掉落任何物品的怪物也
-是如此。
-
-
-安格班的随机任务会在随机深度出现，所以你无法准确猜测何时会遇到任务；不过
-你保证能在游戏的各个阶段遇到任务，因此，如果你很长时间都没有看到任何任务
-，可以预期下一个任务很快就会出现。
-
-
-如果某个任务对你来说太难了，你可以撤退到安全的地方（用卷轴回城，或走上行
-楼梯），直到你变得更强大。在新手模式和茶歇模式中，这会自动导致任务失败；
-在这些模式之外，任务怪物会耐心地等待你的回归，除非你刻意选择放弃任务。放
-弃任务是件丢脸的事，但了解自己的极限总比在鲁莽的尝试中死去（即使带着无上
-的荣誉）要好。如果你选择放弃任务，你的声望 (fame) 
-将会大幅降低，但至少你还活着，并能继续向着安格班深渊进发。
-
-<a name="FixedQuests"></a></font><font color="#c00000">固定任务 (Fixed Quests)
-
-
-</font><font color="#ffffff">地下城中还会出现几个额外的任务，这些任务对所有人来说都处于相同的深度，并
-且包含相同的怪物。其中一个你大概已经知道了——在安格班第 100 
-层杀死混沌之蛇 (Serpent of Chaos)！另一个是在安格班第 99 
-层杀死琥珀之王奥伯伦 (Oberon, King of 
-Amber)；这两个任务在你出生时就被指派了，必须完成它们才能赢得游戏。
-
-
-其他的固定任务是从城镇接取的；尽管城镇建筑通常提供的是城镇内的任务，但偶
-尔你也会接到一个地下城任务。其中你应该知道的一个是</font><font color="#ffff00">害虫防治 (Pest 
-Control)</font><font color="#ffffff">，也被称为</font><font color="#ffff00">座狼任务 (Warg Quest)</font><font color="#ffffff">——在兽穴 (Warrens) 第 5 层杀死 8 
-只座狼的任务，或者如果荒野被关闭（新手模式就是这样），则在安格班第 5 
-层。杀死 8 
-只座狼会给你相当多的经验值，所以完成这个任务能极大加快游戏前期的进度！但
-请注意，你必须先在前哨镇 (Outpost) 接取并完成“盗贼巢穴 (Thieves' 
-Hideout)”城镇任务，才能接取座狼任务。
-
-
-地下城的固定任务遵循与随机任务相同的规则，唯一的例外是，从城镇接取的固定
-任务，其奖励将由发布任务的 NPC 
-发放，而不是由怪物掉落；此外，离开城镇发放的固定任务所在的楼层会导致任务
-失败。杀死混沌之蛇和奥伯伦的任务不会失败；你想离开多少次都可以，尽管在茶
-歇模式（尤其是速溶模式，instant-coffee 
-Mode）中，这是不明智的，并且最终会使这些任务变得更难完成。
-
-<a name="Conquering"></a></font><font color="#c00000">征服地下城 (Conquering Dungeons)
-
-
-</font><font color="#ffffff">如果你在关闭荒野的情况下进行游戏（新手模式即是如此），游戏中只有一个地下
-城：安格班。但在开启荒野的情况下，地下城遍布各处——大约有三十个固定地下城
-，外加偶尔出现在荒野中的随机单层地下城。这些地下城中大多数都有自己的怪物
-主题和楼层生成规则，使它们与众不同。
-
-高级地下城通常有一个特殊的</font><font color="#ff0000">入口守卫 (entrance 
-guardian)</font><font color="#ffffff">：一个试图阻止你进入的危险怪物。几乎所有固定地下城都有一个</font><font color="#ff0000">最终
-守卫 (final guardian)</font><font color="#ffffff">，也就是</font><font color="#ff0000">地下城首领 (dungeon boss)</font><font color="#ffffff">——一个强大的 
-Unique 
-怪物，它必定会出现在地下城的最后一层（并且绝对不会出现在其他任何地方）。
-杀死 Boss 就能征服这个地下城，并获得一次免费的属性提升 (stat-up) 
-作为奖励。许多地下城 Boss 还会掉落一件珍贵的固定物品。
-
-地下城 Boss 
-不是任务怪物，你没有绝对必要去杀死它们任何一个；你可以在不征服除安格班以
-外的任何地下城的情况下赢得游戏。但除了奖励之外，杀死至少其中一些 Boss 
-也有很好的理由——但我们不想为你剧透太多 :)
-
-
-这种获取额外属性提升的来源，在无荒野玩法中是不可用的。为了弥补这一点，如
-果荒野处于关闭状态，完成安格班的随机任务会给予一次属性提升。
-
-有关荒野地下城的更多详细信息，请参阅 <a href="town.html#Dungeons"></font><font color="#00ff00">[h]</a></font><font color="#ffffff">。
-
-<a name="List"></a></font><font color="#c00000">荒野地下城及位置一览
-
-
-</font><font color="#ffffff">这是标准荒野地下城的完整列表……</font><font color="#ffff00">真的吗？</font><font color="#ffffff">地下城按最浅层数排列；为避免剧透（
-只有最浅的层数在大地图上可见），此处仅标出最浅的层数。
-
-
-请注意，你绝不可能在单次游戏中找到所有的这些地下城！为了限制地下城或万神
-殿的数量，总会有一些地下城被随机洗牌抹去；但只要你玩这款游戏的次数够多，
-你最终会征服所有的地下城。
+<font color="#00ffff">The Dungeons
+
+</font><font color="#ffffff">Although the game contains an extensive world featuring multiple towns 
+(most offering special town quests) as well as a large wilderness area, 
+the bulk of your adventuring will take place in the dungeons. Symbols 
+appearing on your screen will represent the dungeon's walls, floor, 
+objects, features, and creatures lurking about. In order to direct your 
+character through his adventure, you will enter single character 
+commands (see <a href="command.html"></font><font color="#00ff00">[a]</a></font><font color="#ffffff">).
+
+<a name="MapSymbols"></a></font><font color="#c00000">Symbols on Your Map
+
+</font><font color="#ffffff">Symbols on your map can be broken down into three categories: Features 
+of the dungeon such as walls, floor, doors, and traps; objects which 
+can be picked up such as treasure, weapons, magical devices, etc; and 
+creatures which may or may not move about the dungeon, but are mostly 
+harmful to your character's well-being.
+
+Some symbols are used to represent more than one type of entity, and 
+some symbols are used to represent entities in more than one category. 
+The "@" symbol (by default) is used to represent the character.
+
+It is not necessary to memorize all of the symbols and their meanings. 
+The "slash" command (</font><font color="#ff8000">/</font><font color="#ffffff">) will identify any character appearing on your 
+map, and the </font><font color="#ff8000">l </font><font color="#ffffff">look command and the </font><font color="#ff8000">* </font><font color="#ffffff">targetting command can also be 
+used to inspect the features you see. As you play a bit, the most 
+common symbols soon become familiar.
+
+See <a href="town.html#MapSymbols"></font><font color="#00ff00">[b]</a> </font><font color="#ffffff">for town and wilderness symbols and <a href="monster.html#MonsterSymbols"></font><font color="#00ff00">[c]</a> </font><font color="#ffffff">for monster symbols. 
+You can use user preference files or the </font><font color="#ff8000">% </font><font color="#ffffff">command to change symbols, 
+although that is quite advanced, and new players who do take that path 
+sometimes walk so deep into the forest of visuals that they forget to 
+play the game :) Most players just keep the default symbols.
+
+  </font><font color="#c08040">Features that do not block line of sight
+  </font><font color="#ffffff">.   Floor                       </font><font color="#ff00ff">*   </font><font color="#ffffff">A mirror
+  .   A trap (hidden)             </font><font color="#ffff00">;   </font><font color="#ffffff">A glyph of warding
+  </font><font color="#ff8000">^   </font><font color="#ffffff">A trap (known)              </font><font color="#ff0000">;   </font><font color="#ffffff">An explosive rune
+  </font><font color="#804000">.   </font><font color="#ffffff">Dirt                        </font><font color="#0000ff">;   </font><font color="#ffffff">Wet trout of punishment
+  </font><font color="#00ffff">~   </font><font color="#ffffff">Shallow water               </font><font color="#00ffff">*   </font><font color="#ffffff">Section of the Pattern
+  </font><font color="#0000ff">~   </font><font color="#ffffff">Deep water                  </font><font color="#0000ff">*   </font><font color="#ffffff">Section of the Pattern
+  </font><font color="#c08040">~   </font><font color="#ffffff">Shallow lava                </font><font color="#c08040">'   </font><font color="#ffffff">An open door
+  </font><font color="#c00000">~   </font><font color="#ffffff">Deep lava                   </font><font color="#804000">'   </font><font color="#ffffff">A broken door
+  &lt;   A staircase up              '   An open glass door
+  &gt;   A staircase down            </font><font color="#c00000">'   </font><font color="#ffffff">An open curtain
+  </font><font color="#c08040">&lt;   </font><font color="#ffffff">A shaft up                  </font><font color="#404040">#   </font><font color="#ffffff">A dark pit
+  </font><font color="#c08040">&gt;   </font><font color="#ffffff">A shaft down                </font><font color="#00ff00">~   </font><font color="#ffffff">Shallow nukage pool
+  </font><font color="#ff00ff">&gt;   </font><font color="#ffffff">Dungeon entrance            </font><font color="#008040">~   </font><font color="#ffffff">Deep nukage pool
+
+
+  </font><font color="#c08040">Features that block line of sight
+  </font><font color="#ffffff">#   A granite wall              </font><font color="#c08040">#   </font><font color="#ffffff">A permanent wall
+  </font><font color="#808080">%   </font><font color="#ffffff">A magma vein                </font><font color="#40c000">#   </font><font color="#ffffff">A tree
+  %   A quartz vein               #   A mountainside
+  #   A secret door               </font><font color="#c08040">+   </font><font color="#ffffff">A closed door
+  #   A glass wall                </font><font color="#ff0000">'   </font><font color="#ffffff">A closed curtain
+  </font><font color="#ff8000">*   </font><font color="#ffffff">Treasure in wall            :   A pile of rubble
+
+
+<a name="WithinDungeon"></a></font><font color="#c00000">Within the Dungeon
+
+</font><font color="#ffffff">Once your character is adequately supplied with food, light, armor, 
+weapons, and utility items, he is ready to enter the dungeon. Move on 
+top of the </font><font color="#ff00ff">&gt; </font><font color="#ffffff">symbol and use the </font><font color="#ff0000">Down </font><font color="#ffffff">command (</font><font color="#ff8000">&gt;</font><font color="#ffffff">).
+
+Your character will enter a maze of interconnecting staircases and 
+finally arrive somewhere on the first level of the dungeon. Each floor 
+of the dungeon is fifty feet high (thus dungeon level 1 is sometimes 
+called "50 ft"), and the explorable areas are surrounded by permanent, 
+unbreachable rock walls that separate them from other dungeon levels at 
+the same depth. The size of a dungeon level can vary, but they are 
+always rectangular and sometimes quite large, several times larger than 
+the screen.
+
+In Beginner Mode and coffee-break mode, once you leave a level you 
+cannot ever return there, simply because up-stairs do not exist and 
+every dungeon level you enter will be deeper than the one before it. If 
+these modes (and the ironman option) are not selected, you can return 
+to levels you have left as long as you remain inside the dungeon; 
+although many different dungeon levels co-exist at the same depth, 
+taking the same staircase again will always lead you to the same level. 
+But as soon as you leave the dungeon, the levels you explored are lost 
+and you will never find them again; upon your return to the same depth 
+you will discover a completely new level. You might, however, run again 
+into some of the monsters you left behind!
+
+In the dark depths of a dungeon, the need for sufficient illumination 
+soon becomes apparent. Some rooms have already been lit by nature or 
+magic, and need no further light; but most of the tunnels are pitch 
+dark, so it is a good idea to carry your own portable light source 
+around. If no light is present, the character will be unable to see. 
+This will affect searching, picking locks, disarming traps, reading 
+scrolls, casting spells, browsing books, seeing monsters, etc. So be 
+very careful not to run out of light!
+
+A character must wield a torch, lantern or some other lamp in order to 
+supply his own light. Torches and lantern burn fuel as they are used, 
+and once out of fuel, they stop supplying light. You will be warned as 
+the light approaches this point. You may use the "Fuel" command ("</font><font color="#ff8000">F</font><font color="#ffffff">") 
+to refuel your lantern (with flasks of oil) or your torch (with other 
+torches), so it is a good idea to carry extra torches or flasks of oil, 
+as appropriate. There are rumors of objects of exceptional power which 
+glow with their own never-ending light.
+
+Great treasures can be found in the dungeon, but your character must 
+survive many horrible and challenging encounters to find the treasure 
+lying about and take it safely back to the town to sell.
+
+<a name="Objects"></a></font><font color="#c00000">Objects in the Dungeon
+
+</font><font color="#ffffff">The dungeons are full of objects just waiting to be picked up and used. 
+How did they get there? Well, the main sources for useful items are all 
+the foolish adventurers that proceeded into the dungeon before you. 
+They get killed, and the helpful creatures scatter the various treasure 
+throughout the dungeon. Most cursed items are placed there by the 
+playful evil sorcerers, who enjoy a good joke when it gets you killed.
+
+One item in particular will be discussed here. The scroll of "Word of 
+Recall" can be found within the dungeon, or bought at the Temple and 
+Alchemy Shop in towns. It acts in two manners, depending upon your 
+current location. If read within the dungeon, it will teleport you back 
+to the surface. </font><font color="#ffff00">In Beginner Mode, Word of Recall is the only way to 
+return to the town once you have left it, </font><font color="#ffffff">since Beginner Mode activates 
+coffee-break mode which disables all up-stairs. If read on the surface, 
+Word of Recall will teleport you back down to your recall point in any 
+dungeon of your choice that you have previously visited. This makes the 
+scroll very useful for getting back to the deeper levels. Once the 
+scroll has been read it takes a while for the spell to act, so don't 
+expect it to save you in a crisis. Reading a second scroll before the 
+first has had a chance to take effect will cancel both scrolls.
+
+Your recall point in a dungeon is usually the deepest level you have 
+reached in that dungeon, but can be optionally set to a more shallow 
+level if you read Word of Recall on such a level. There are two reasons 
+it might be convenient not to have your recall point at the deepest 
+level. The first is if you are not truly comfortable yet at the deepest 
+level you visited; maybe you even fell there by accident through a trap 
+door. The second reason is that some dungeons are located close to 
+towns, so setting a recall point near the surface provides convenient 
+access to the town! This is often the fastest way to reach a town if 
+you are in the wilderness.
+
+A more complete description of objects is found elsewhere in the 
+documentation (see <a href="objects.html"></font><font color="#00ff00">[d]</a></font><font color="#ffffff">).
+
+<a name="Mining"></a></font><font color="#c00000">Mining
+
+</font><font color="#ffffff">Much of the treasure within the dungeon can be found only by mining it 
+out of the walls. Many rich strikes exist within each level, but must 
+be found and mined. Quartz veins are the richest, yielding the most 
+metals and gems, but magma veins will also have some treasures hidden 
+within.
+
+Mining is rather difficult without a pick or shovel, especially if your 
+Strength is low. Picks and shovels give a bonus to your Digging 
+ability, expressed as '(+2)', '(+3)' etc.; the higher the number, the 
+better the digging ability of the tool. A pick or shovel may also give 
+bonuses to your accuracy and damage, and can be used as a weapon.
+
+Having found a vein of quartz or magma, the character may wield his 
+pick or shovel and begin digging out a section with the </font><font color="#ff8000">T </font><font color="#ffffff">or </font><font color="#ff8000">+ </font><font color="#ffffff">command. 
+When that section is removed, you can move on to another section of the 
+vein and begin the process again. Since granite rock is much harder to 
+dig through, it is generally better to follow quartz and magma and 
+avoid the granite, even if it stands in your path. At a certain point, 
+it becomes more cumbersome to dig out treasure than to simply kill 
+monsters and discover items in the dungeon to sell (and many players 
+prefer to do this from the beginning). Nevertheless, treasure veins can 
+be a wonderful source of easy money, especially early in the game.
+
+Some vein sections are obviously promising even to the untrained eye 
+(these are denoted on the map with the </font><font color="#ff8000">* </font><font color="#ffffff">symbol); but if your character 
+has a scroll, staff, or spell of Treasure Location, you can easily 
+locate the many further treasures likely to be hidden within the quartz 
+and magma nearby. This makes mining much easier and more profitable.
+
+A character with high strength and/or a heavy weapon does not need a 
+shovel or a pick to dig. A number of enchanted weapons even give 
+magical bonuses to your Digging ability, making them highly effective 
+for digging through even the hardest rock. New players sometimes worry 
+they might break or harm their valuable melee weapons trying to tunnel 
+with them, but worry not, this will never happen! Some magical spells 
+and devices have the power to turn any stone, even granite, into mud in 
+a single turn; such spells and items make mining and digging faster and 
+more convenient, and generally remove the need for more mundane digging 
+tools.
+
+Mining for treasure is not the only, or necessarily even the most 
+common, reason you might wish to dig a tunnel. Digging new corridors to 
+modify the terrain to your advantage is often a good idea when fighting 
+dangerous monsters, and sometimes you will wish to access an area 
+otherwise blocked off by walls or by monsters you would like to avoid. 
+So it is always a good idea to carry something you can dig with, even 
+if you are not planning on mining for treasure; but it does not always 
+need to be a shovel or a pick.
+
+<a name="Stairs"></a></font><font color="#c00000">Staircases and Shafts
+
+</font><font color="#ffffff">Staircases are the manner in which you get deeper or climb out of the 
+dungeon. The symbols for the up and down staircases are the same as the 
+commands you need to type to use them: a "&lt;" represents an up staircase 
+and a "&gt;" represents a down staircase. You must move your character 
+over the staircase before you can use it. A shaft ("</font><font color="#c08040">&lt;</font><font color="#ffffff">" or "</font><font color="#c08040">&gt;</font><font color="#ffffff">") is 
+basically a longer staircase; it will take you two levels up or down, 
+instead of just one, except in a few special situations. Some levels 
+might have no regular staircases, only shafts; in fact, in Beginner 
+Mode, all staircases generate as shafts.
+
+Each dungeon level has two or more down staircases, except for quest 
+levels (which have none until the last quest monster on the level has 
+been killed) and the levels at the bottom of a dungeon (which never 
+have any downstairs because there's nowhere deeper to go!). All levels 
+also have at least one up staircase, unless you are playing in Beginner 
+Mode or coffee-break mode or have turned on the ironman_downward 
+option. Sometimes these staircases can be tricky to find; you might 
+have to go through some well-hidden secret doors, or dig through 
+obstructions to get there, but you can always locate the stairs 
+eventually if you look hard enough. Stairs, like permanent walls, and 
+the doors into shops, cannot be destroyed by any means.
+
+<a name="SecretDoors"></a></font><font color="#c00000">Secret Doors
+
+</font><font color="#ffffff">The dungeon has many secret doors to confuse and demoralize adventurers 
+foolish enough to enter. But with some luck, skill and concentration, 
+you can locate these doors; use the </font><font color="#ff8000">s </font><font color="#ffffff">or </font><font color="#ff8000">S </font><font color="#ffffff">searching commands to look 
+for a secret door. Secret doors sometimes hide rooms or corridors, or 
+even entire sections of that level of the dungeon. Sometimes they 
+simply hide small empty closets or a dead end. Secret doors always look 
+like granite walls, never quartz or magma. See <a href="tang.html#SecretDoors"></font><font color="#00ff00">[e]</a> </font><font color="#ffffff">for some tips on 
+where secret doors might be found!
+
+Characters with very low Searching skill may be completely unable to 
+discover the secret doors, no matter how meticulously they search. This 
+is generally only the case for Berserkers, who prefer to use their raw 
+power to create their own openings in the walls.
+
+If a door turns out to be stuck, it can be broken down by bashing it. 
+This sometimes takes a while to work, especially if your Strength is 
+low. Once a door is bashed open, it is forever useless and cannot be 
+closed. Many monsters are very good at bashing down doors... Creatures 
+in the dungeon will generally know the locations of secret doors and 
+may use them, and can often be counted on to leave them open behind 
+them when they pass through.
+
+<a name="Traps"></a></font><font color="#c00000">Floor Traps
+
+</font><font color="#ffffff">Secret doors are not the only things in the dungeon that are not quite 
+what they look like. Some floor tiles contain hidden traps, there to 
+harm or inconvenience you should you blunder into them. A few are even 
+trap doors, dropping you down to the next level just when it is least 
+convenient. Traps can be detected by </font><font color="#ff8000">S</font><font color="#ffffff">earching, just as secret doors, 
+or through magical means such as Scrolls of Trap Detection. (Since 
+traps could be anywhere and dungeon levels are often large, the 
+Searching option generally only makes sense if you have specific 
+reasons to expect a trap nearby.) Most traps in RoguelikeFansBand are 
+fairly benign, so it is not a big deal if you don't have any 
+trap-detection items; you'll be inconvenienced occasionally, maybe 
+suffer some item damage, but it will not cost you the game outright. 
+The spookiest traps are very rare and only appear in the late game, 
+when nearly all characters regularly use powerful magical detection 
+methods that reveal not only traps but also secret doors and much more 
+besides.
+
+Known floor traps are indicated on the map with the </font><font color="#008040">^ </font><font color="#ffffff">symbol. You can 
+use the </font><font color="#ff8000">l </font><font color="#ffffff">look command or the </font><font color="#ff8000">* </font><font color="#ffffff">targetting command to inspect a trap 
+more closely, telling you what kind of trap it is. You will quickly 
+notice traps are color-coded; the dark-green trap of this example is 
+one of four types of gas trap, and might briefly blind, poison, confuse 
+or paralyze you.
+
+You can use the </font><font color="#ff8000">D </font><font color="#ffffff">disarm command to attempt to eliminate a known trap, 
+turning the square back into a regular floor tile. Disarming is not 
+guaranteed to work, though, and you might trigger the trap again in a 
+failed attempt... Usually, walking into a known trap automatically 
+attempts to disarm the trap (unless you are blind or confused); but 
+there are a few very rare situations where you might actually wish to 
+deliberately trigger a trap without any attempt to disarm it. This can 
+be accomplished with the </font><font color="#ff8000">- </font><font color="#ffffff">key.
+
+Floor traps only affect you; monsters do not have to worry about 
+triggering them. This may seem patently unfair, but no one ever said 
+the forces of evil would give you a fair shake! A few classes, though, 
+have the ability to turn the tables and set their own floor traps for 
+monsters to walk into. Lawyers are notable for this, but the mightiest 
+traps of all are set by Burglary rogues.
+
+<a name="Feelings"></a></font><font color="#c00000">Level Feelings
+
+</font><font color="#ffffff">Once you have been on a particular dungeon level for a while, you will 
+receive a "level feeling" representing what your intuition tells you 
+about the quality of objects and the difficulty of the monsters found 
+on that level. You may check this message again at any time after 
+receiving it by pressing </font><font color="#ff8000">Ctrl-F</font><font color="#ffffff">.
+
+The actual "feeling" message is generated based on a number of factors. 
+Things which increase the feeling level include the presence of unique 
+monsters, out-of-depth monsters and objects, large monster groups, and 
+unidentified artifacts and ego items (see <a href="objects.html#EgoItems"></font><font color="#00ff00">[f]</a></font><font color="#ffffff">). A feeling is only 
+indicative of the level at the time you received the feeling, although 
+it may update later to reflect the presence of new monsters or items. 
+Note that high level feelings do not cause dangerous monsters or 
+quality loot; dangerous monsters and quality loot cause high feelings.
+
+In general, the nastier the feeling message, the better (or nastier) 
+the level. From least to most interesting, the messages are as follows:
+
+     'What a boring place...'
+     'This level looks reasonably safe.'
+     </font><font color="#c0c0c0">'You don't like the look of this place.'
+     </font><font color="#c08040">'You feel your luck is turning...'
+     </font><font color="#ffff00">'You feel nervous.'
+     </font><font color="#ff8000">'You have a bad feeling...'
+     </font><font color="#ff0000">'You have a very bad feeling...'
+     </font><font color="#c00000">'This level looks very dangerous.'
+     </font><font color="#ff00ff">'You nearly faint as horrible visions of death fill your mind!'
+
+</font><font color="#ffffff">If you selected the Lucky personality or have otherwise acquired the 
+"White Aura" good-luck mutation, the messages will appear in a more 
+optimistic form:
+
+     'What a boring place...'
+     'This level can't be all bad...'
+     </font><font color="#c0c0c0">'You like the look of this place...'
+     </font><font color="#c08040">'You feel your luck is turning...'
+     </font><font color="#ffff00">'You feel strangely lucky...'
+     </font><font color="#ff8000">'You have a good feeling...'
+     </font><font color="#ff0000">'You have a very good feeling...'
+     </font><font color="#c00000">'You have an excellent feeling...'
+     </font><font color="#ff00ff">'You have a superb feeling about this level.'
+
+</font><font color="#ffffff">There are also two other feeling messages to denote special things. If 
+you have not yet been on a level long enough to develop a feeling when 
+you press </font><font color="#ff8000">Ctrl-F</font><font color="#ffffff">, you will be given the prompt:
+
+     </font><font color="#808080">'Looks like any other level.'
+
+</font><font color="#ffffff">You may also occasionally be lucky enough to receive the following 
+message:
+
+     </font><font color="#00ffff">'You feel there is something special about this level.'
+
+</font><font color="#ffffff">A special feeling means one of two things, there is either an 
+undiscovered special item (artifact) on the level or your racial boss 
+is on the level. Most player races do not even have a boss, so it's 
+usually the former! As you get deeper on the dungeon, special feelings 
+become increasingly common as you encounter more artifacts.
+
+Thoroughly check the object list (</font><font color="#ff8000">]</font><font color="#ffffff">) if you think you have fully 
+explored a level but have failed to find the promised artifact. Often, 
+the artifact will be an item you already detected but forgot to 
+identify. If you mysteriously lose the special feeling, the opposite 
+might have happened - some very absent-minded players have been known 
+to identify valuable artifacts without noticing...
+
+Note that it is possible for a level to have more than one artifact, 
+maybe even an entire treasure vault full of artifacts. So you should 
+never leave a special level without fully exploring it unless you've 
+lost that special feeling or your character's continued survival is in 
+question.
+
+<a name="RandomQuests"></a></font><font color="#c00000">Random Quests
+
+</font><font color="#ffffff">Every character will encounter ten random quests in the dungeon of 
+Angband (unless they die first). By default, each quest is to kill a 
+certain out-of-depth unique monster, though you may change this to kill 
+a certain number of a random type of monster with a birth option <a href="option.html#quest_unique"></font><font color="#00ff00">[g]</a></font><font color="#ffffff">. 
+Be warned: unique monsters are generally powerful even at their native 
+depths, so fighting them out of depth is especially difficult!
+
+On random quest levels, no down staircases are generated until the last 
+quest monster is killed, which means that you cannot continue further 
+into the dungeon until you have completed your quest. When you kill the 
+quest monster, the down staircase will be created and the monster will 
+drop one or more bonus items of 'excellent' quality or above. This is 
+true even of monsters who normally drop nothing at all.
+
+The random quests in Angband will occur at random depths, so you won't 
+be able to guess exactly when you might encounter one, although you are 
+guaranteed to run into quests during all phases of the game and can 
+therefore expect another quest to appear soon if you have gone a long 
+time without seeing any.
+
+Should a given quest prove too difficult for you, you may retreat to 
+safety (recall to town, or take an up staircase) until you are more 
+powerful. In Beginner Mode and coffee-break mode, this automatically 
+fails the quest; outside these modes, the quest monster will patiently 
+await your return unless you deliberately choose to fail the quest. To 
+abandon the quest is to shame oneself, but it is better to know your 
+own limits than to die (even with full honor) in a foolhardy attempt at 
+completion. If you choose to fail a quest, your fame will be greatly 
+diminished, but at least you are alive and can continue your descent 
+deeper into the pits of Angband.
+
+<a name="FixedQuests"></a></font><font color="#c00000">Fixed Quests
+
+</font><font color="#ffffff">Several additional quests also appear in the dungeon that are always at 
+the same depth for everybody and involve the same monsters. One of 
+these you probably already know - kill the Serpent of Chaos on level 
+100 of Angband! Another is to kill Oberon, King of Amber, on level 99 
+of Angband; these two quests are assigned to you at birth, and must be 
+completed to win the game.
+
+Other such quests are received from towns; although town buildings 
+generally offer town quests, occasionally you will get a dungeon quest 
+instead. One such quest you should know about is </font><font color="#ffff00">Pest Control</font><font color="#ffffff">, also 
+known as the </font><font color="#ffff00">Warg Quest </font><font color="#ffffff">- a quest to kill eight Wargs on level 5 of 
+Warrens, or on level 5 of Angband if the wilderness is off (as is the 
+case in Beginner Mode). Killing eight Wargs will give you quite a lot 
+of experience, so completing this quest really speeds up the early 
+game! Note, though, that you must request and complete the Thieves' 
+Hideout town quest in Outpost before you can receive the Warg Quest.
+
+Fixed dungeon quests obey the same rules as the random ones, except 
+that for fixed quests received from a town the reward will be given to 
+you by the quest-giver instead of being dropped by a monster; also, 
+leaving the level of a fixed quest received from a town will fail the 
+quest. The quests to kill the Serpent of Chaos and Oberon cannot be 
+failed; you can leave them as many times as you wish, although in 
+coffee-break mode (and especially instant-coffee mode) this is unwise 
+and aventually makes them harder to complete.
+
+<a name="Conquering"></a></font><font color="#c00000">Conquering Dungeons
+
+</font><font color="#ffffff">If you are playing with the wilderness off (as is the case in Beginner 
+Mode), the game only has one dungeon: Angband. But with wilderness on, 
+there are dungeons all over the place - about thirty fixed ones, plus 
+random one-level dungeons that occasionally appear in the wilderness. 
+Most of these dungeons have their own monster theme and level 
+generation rules, setting them apart from the others.
+
+High-level dungeons often have a special </font><font color="#ff0000">entrance guardian</font><font color="#ffffff">: a dangerous 
+monster who will try to prevent you from getting in. Nearly all fixed 
+dungeons have a </font><font color="#ff0000">final guardian</font><font color="#ffffff">, or </font><font color="#ff0000">dungeon boss </font><font color="#ffffff">- a powerful unique you 
+can rely on to appear on the last level of the dungeon (and never 
+anywhere else). Kill the boss, and you conquer the dungeon and will 
+receive a free stat-up as your reward. Many dungeon bosses also drop a 
+valuable fixed item.
+
+Dungeon bosses are not quest monsters, and there is no absolute need to 
+kill any of them; you can win the game without conquering any dungeons 
+besides Angband. Even apart from the rewards, though, there is a good 
+reason to kill at least some of them - but we wouldn't want to spoil it 
+for you :)
+
+This source of extra stat-ups is not available in no-wilderness play. 
+To compensate for this, completing a random Angband quest gives a 
+stat-up if the wilderness is off.
+
+See <a href="town.html#Dungeons"></font><font color="#00ff00">[h]</a> </font><font color="#ffffff">for more details on wilderness dungeons.
+
+<a name="List"></a></font><font color="#c00000">Wilderness Dungeons and Where to Find Them
+
+</font><font color="#ffffff">This is a full list of the standard wilderness dungeons... </font><font color="#ffff00">or is it? 
+</font><font color="#ffffff">Dungeons are ordered by shallowest depth; and to avoid spoilers (only 
+the shallowest depth is visible on the overworld map) this is the only 
+depth indicated.
+
+Note that you will never find all of these dungeons in a single game! 
+Some will always be shuffled out of existence to limit the number of 
+dungeons or the number of pantheons; but play the game enough times, 
+and you will eventually conquer all of them.
   
-    </font><font color="#ff0000">兽穴             </font><font color="#00ff00">第 1 层    </font><font color="#ffffff">从前哨镇 (Outpost) 进入。
-    </font><font color="#ff0000">安格班           </font><font color="#00ff00">第 1 层    </font><font color="#ffffff">莫里凡特 (Morivant) 
-                                东北方，通关必经之地。包含随机任务。
-    </font><font color="#ff0000">巢穴             </font><font color="#00ff00">第 8 层    </font><font color="#ffffff">从前哨镇 (Outpost) 进入。
-    </font><font color="#ff0000">恶心洞穴         </font><font color="#00ff00">第 10 层  </font><font color="#ffffff">从萨罗斯 (Thalos) 进入。
-    </font><font color="#ff0000">潮汐洞穴         </font><font color="#00ff00">第 15 层  </font><font color="#ffffff">莫里凡特 (Morivant) 南方。
-    </font><font color="#ff0000">兽人洞穴         </font><font color="#00ff00">第 15 层  </font><font color="#ffffff">前哨镇 (Outpost) 北方。
-    </font><font color="#ff0000">巨魔洞穴         </font><font color="#00ff00">第 18 层  </font><font color="#ffffff">前哨镇 (Outpost) 北方。
-    </font><font color="#ff0000">奥兹平原         </font><font color="#00ff00">第 18 层  </font><font color="#ffffff">莫里凡特 (Morivant) 东南方。
-    </font><font color="#ff0000">迷宫             </font><font color="#00ff00">第 20 层  </font><font color="#ffffff">前哨镇 (Outpost) 西方。
-    </font><font color="#ff0000">卡美洛           </font><font color="#00ff00">第 20 层  </font><font color="#ffffff">前哨镇西方。
-                               经常与迷宫一起探索。
-    </font><font color="#ff0000">女巫森林         </font><font color="#00ff00">第 25 层  </font><font color="#ffffff">莫里凡特 (Morivant) 东南方。
-    </font><font color="#ff0000">古战场           </font><font color="#00ff00">第 30 层  </font><font color="#ffffff">莫里凡特东南方。
-                               经常在前往泰尔莫拉 (Telmora) 
-                               的途中探索。
-    </font><font color="#ff0000">孤山             </font><font color="#00ff00">第 30 层  </font><font color="#ffffff">莫里凡特西南方的群山中。
-                               需要悬浮 (levitation) 才能进入。
-    </font><font color="#ff0000">变色龙洞穴       </font><font color="#00ff00">第 30 层  </font><font color="#ffffff">泰尔莫拉东南方。
-    </font><font color="#ff0000">巨人大厅         </font><font color="#00ff00">第 30 层  </font><font color="#ffffff">安格班东南方的群山中。
-                               需要悬浮才能进入。
-    </font><font color="#ff0000">冰雪城堡         </font><font color="#00ff00">第 30 层  </font><font color="#ffffff">安格班东南方的群山中。
-                               推荐拥有悬浮能力。
-    </font><font color="#ff0000">鹰巢             </font><font color="#00ff00">第 40 层  </font><font color="#ffffff">泰尔莫拉西方的群山中。
-                               需要悬浮才能进入。
-    </font><font color="#ff0000">城堡             </font><font color="#00ff00">第 40 层  </font><font color="#ffffff">泰尔莫拉到安格维尔 (Angwil) 道路的东侧。
-    </font><font color="#ff0000">水晶城堡         </font><font color="#00ff00">第 40 层  </font><font color="#ffffff">莫里凡特西北方。
-                               由危险的以太巨龙 (Ethereal Dragon) 
-                               守卫。
-    </font><font color="#ff0000">反近战洞穴       </font><font color="#00ff00">第 40 层  </font><font color="#ffffff">莫里凡特北方。
-    </font><font color="#ff0000">反魔法洞穴       </font><font color="#00ff00">第 40 层  </font><font color="#ffffff">祖尔 (Zul) 东方。
-    </font><font color="#ff0000">竞技场           </font><font color="#00ff00">第 50 层  </font><font color="#ffffff">祖尔西方。
-    </font><font color="#ff0000">墓地             </font><font color="#00ff00">第 50 层  </font><font color="#ffffff">安格维尔东方。
-    </font><font color="#ff0000">火山             </font><font color="#00ff00">第 50 层  </font><font color="#ffffff">前哨镇西方。入口在熔岩地带。
-    </font><font color="#ff0000">努曼诺尔         </font><font color="#00ff00">第 55 层  </font><font color="#ffffff">阿南巴尔 (Anambar) 北方的深海。
-    </font><font color="#ff0000">亚特兰蒂斯       </font><font color="#00ff00">第 55 层  </font><font color="#ffffff">阿南巴尔北方的深海。
-    </font><font color="#ff0000">黑暗洞穴         </font><font color="#00ff00">第 55 层  </font><font color="#ffffff">安格维尔西北方。
-    </font><font color="#ff0000">灾难区           </font><font color="#00ff00">第 60 层  </font><font color="#ffffff">安格维尔西北方。
-    </font><font color="#ff0000">巨龙巢穴         </font><font color="#00ff00">第 60 层  </font><font color="#ffffff">安格维尔南方。
-    </font><font color="#ff0000">阿斯加德         </font><font color="#00ff00">第 64 层  </font><font color="#ffffff">墓地东北方的沼泽海岸。
-    </font><font color="#ff0000">金字塔古墓       </font><font color="#00ff00">第 64 层  </font><font color="#ffffff">泰尔莫拉西北方，鹰巢北方。
-    </font><font color="#ff0000">须弥山           </font><font color="#00ff00">第 72 层  </font><font color="#ffffff">鹰巢南方的群山中。
-                               需要悬浮才能进入。
-    </font><font color="#ff0000">矿井             </font><font color="#00ff00">第 75 层  </font><font color="#ffffff">阿南巴尔东北方的岛屿。
-    </font><font color="#ff0000">拉莱耶           </font><font color="#00ff00">第 80 层  </font><font color="#ffffff">黑暗洞穴西北方的深海。
-    </font><font color="#ff0000">奥林匹斯山       </font><font color="#00ff00">第 80 层  </font><font color="#ffffff">萨罗斯西北方的岛屿。
-    </font><font color="#ff0000">神秘洞穴         </font><font color="#00ff00">第 ? 层    </font><font color="#ffffff">??????
+    </font><font color="#ff0000">Warrens          </font><font color="#00ff00">Level 1   </font><font color="#ffffff">Accessed from Outpost.
+    </font><font color="#ff0000">Angband          </font><font color="#00ff00">Level 1   </font><font color="#ffffff">Northeast of Morivant, must be conquered 
+                               to win. Contains random quests.
+    </font><font color="#ff0000">Hideout          </font><font color="#00ff00">Level 8   </font><font color="#ffffff">Accessed from Outpost.
+    </font><font color="#ff0000">Icky Cave        </font><font color="#00ff00">Level 10  </font><font color="#ffffff">Accessed from Thalos.
+    </font><font color="#ff0000">Tidal Cave       </font><font color="#00ff00">Level 15  </font><font color="#ffffff">South of Morivant.
+    </font><font color="#ff0000">Orc Cave         </font><font color="#00ff00">Level 15  </font><font color="#ffffff">North of Outpost.
+    </font><font color="#ff0000">Troll Cave       </font><font color="#00ff00">Level 18  </font><font color="#ffffff">North of Outpost.
+    </font><font color="#ff0000">Plains of Oz     </font><font color="#00ff00">Level 18  </font><font color="#ffffff">Southeast of Morivant.
+    </font><font color="#ff0000">Labyrinth        </font><font color="#00ff00">Level 20  </font><font color="#ffffff">West of Outpost.
+    </font><font color="#ff0000">Camelot          </font><font color="#00ff00">Level 20  </font><font color="#ffffff">West of Outpost.
+                               Often visited together with Labyrinth.
+    </font><font color="#ff0000">Witch Wood       </font><font color="#00ff00">Level 25  </font><font color="#ffffff">Southeast of Morivant.
+    </font><font color="#ff0000">Battlefield      </font><font color="#00ff00">Level 30  </font><font color="#ffffff">Southeast of Morivant.
+                               Often visited en route to Telmora.
+    </font><font color="#ff0000">Lonely Mountain  </font><font color="#00ff00">Level 30  </font><font color="#ffffff">Mountains southwest of Morivant.
+                               Access requires levitation.
+    </font><font color="#ff0000">Chameleon Cave   </font><font color="#00ff00">Level 30  </font><font color="#ffffff">Southeast of Telmora.
+    </font><font color="#ff0000">Giant's Hall     </font><font color="#00ff00">Level 30  </font><font color="#ffffff">Mountains southeast of Angband.
+                               Access requires levitation.
+    </font><font color="#ff0000">Snow Castle      </font><font color="#00ff00">Level 30  </font><font color="#ffffff">Mountains southeast of Angband.
+                               Levitation recommended.
+    </font><font color="#ff0000">Eyrie            </font><font color="#00ff00">Level 40  </font><font color="#ffffff">Mountains west of Telmora.
+                               Access requires levitation.
+    </font><font color="#ff0000">Castle           </font><font color="#00ff00">Level 40  </font><font color="#ffffff">East of the road from Telmora to Angwil.
+    </font><font color="#ff0000">Crystal Castle   </font><font color="#00ff00">Level 40  </font><font color="#ffffff">Northwest of Morivant.
+                               Guarded by dangerous Ethereal Dragon.
+    </font><font color="#ff0000">Anti-melee Cave  </font><font color="#00ff00">Level 40  </font><font color="#ffffff">North of Morivant.
+    </font><font color="#ff0000">Anti-magic Cave  </font><font color="#00ff00">Level 40  </font><font color="#ffffff">East of Zul.
+    </font><font color="#ff0000">Arena            </font><font color="#00ff00">Level 50  </font><font color="#ffffff">West of Zul.
+    </font><font color="#ff0000">Graveyard        </font><font color="#00ff00">Level 50  </font><font color="#ffffff">East of Angwil.
+    </font><font color="#ff0000">Volcano          </font><font color="#00ff00">Level 50  </font><font color="#ffffff">West of Outpost. Entrance in lava field.
+    </font><font color="#ff0000">Numenor          </font><font color="#00ff00">Level 55  </font><font color="#ffffff">Deep sea north of Anambar.
+    </font><font color="#ff0000">Atlantis         </font><font color="#00ff00">Level 55  </font><font color="#ffffff">Deep sea north of Anambar.
+    </font><font color="#ff0000">Dark Cave        </font><font color="#00ff00">Level 55  </font><font color="#ffffff">Northwest of Angwil.
+    </font><font color="#ff0000">Disaster Area    </font><font color="#00ff00">Level 60  </font><font color="#ffffff">Northwest of Angwil.
+    </font><font color="#ff0000">Dragon's Lair    </font><font color="#00ff00">Level 60  </font><font color="#ffffff">South of Angwil.
+    </font><font color="#ff0000">Asgard           </font><font color="#00ff00">Level 64  </font><font color="#ffffff">Swampy coast northeast of Graveyard.
+    </font><font color="#ff0000">Pyramidal Mound  </font><font color="#00ff00">Level 64  </font><font color="#ffffff">Northwest of Telmora, north of Eyrie.
+    </font><font color="#ff0000">Mount Meru       </font><font color="#00ff00">Level 72  </font><font color="#ffffff">Mountains south of Eyrie.
+                               Access requires levitation.
+    </font><font color="#ff0000">Mine             </font><font color="#00ff00">Level 75  </font><font color="#ffffff">Island northeast of Anambar.
+    </font><font color="#ff0000">R'lyeh           </font><font color="#00ff00">Level 80  </font><font color="#ffffff">Deep sea northwest of the Dark Cave.
+    </font><font color="#ff0000">Mount Olympus    </font><font color="#00ff00">Level 80  </font><font color="#ffffff">Island northwest of Thalos.
+    </font><font color="#ff0000">Mystery Cave     </font><font color="#00ff00">Level ?   </font><font color="#ffffff">??????
     
   </font><font color="#404040">--
-  原版       : (??)
-  更新       : (??)
-  更新       : Zangband DevTeam
-  更新       : Hengband 1.0.11
-  更新       : PosChengband 4.0.0
-  更新       : RoguelikeFansBand 7.1.liquorice
+  Original   : (??)
+  Updated    : (??)
+  Updated    : Zangband DevTeam
+  Updated    : Hengband 1.0.11
+  Updated    : PosChengband 4.0.0
+  Updated    : RoguelikeFansBand 7.1.liquorice
+  
   
 </font></pre></body></html>

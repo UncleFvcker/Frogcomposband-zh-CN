@@ -1410,7 +1410,7 @@ static void _display_weapon_slay(int base_mult, int slay_mult, bool force, int b
     if (weaponmaster_get_toggle() == TOGGLE_ORDER_BLADE)
         min = max;
 
-    doc_printf(doc, "<color:%c> %s</color><tab:10>: %d [%d.%02dx]\n", attr_to_attr_char(color), format("%^s", name),
+    doc_printf(doc, "<color:%c> %s</color><tab:10>: %d [%d.%02dx]\n", attr_to_attr_char(color), name,
                     (min + max)/2,
                     mult/100, mult%100);
 }
@@ -2125,7 +2125,7 @@ static void _display_missile_slay(int bow_mult, int slay_mult, int crit_mult,
         dam -= dam * MIN(100, p_ptr->stun) / 150;
 
     doc_printf(doc, " <color:%c>%s</color><tab:10>: %d/%d\n",
-        attr_to_attr_char(color), format("%^s", name), dam, shots * dam / 100);
+        attr_to_attr_char(color), name, dam, shots * dam / 100);
 }
 
 
