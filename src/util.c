@@ -2635,14 +2635,15 @@ cptr quark_str(s16b i)
 {
     cptr q;
 
-    /* Return NULL for an invalid index */
-    if ((i < 1) || (i >= quark__num)) return NULL;
+    /* Invalid quarks can appear in old or crash-recovered savefiles. Treat
+       them as an empty inscription so callers that expect a string stay safe. */
+    if ((i < 1) || (i >= quark__num)) return "";
 
     /* Access the quark */
     q = quark__str[i];
 
     /* Return the quark */
-    return (q);
+    return q ? q : "";
 }
 
 
@@ -4051,6 +4052,13 @@ void request_command(int shopping)
         if (!o_ptr->inscription) continue;
 
         s = quark_str(o_ptr->inscription);
+        if (!s[0] && o_ptr->inscription != 1)
+        {
+            game_log_event("inscription", "cleared invalid equip inscription slot=%d tval=%d sval=%d insc=%u quark_num=%d",
+                i, o_ptr->tval, o_ptr->sval, o_ptr->inscription, quark__num);
+            o_ptr->inscription = 0;
+            continue;
+        }
         s = my_strchr(s, '^');
         while (s)
         {
@@ -4818,6 +4826,8 @@ char *my_strstr(const char *haystack, const char *needle)
  */
 char *my_strchr(const char *ptr, char ch)
 {
+    if (!ptr) return NULL;
+
     for ( ; *ptr != '\0'; ptr++)
     {
         if (*ptr == ch) return (char *)ptr;
