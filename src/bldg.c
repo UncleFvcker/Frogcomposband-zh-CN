@@ -2258,8 +2258,12 @@ static bool inn_comm(int cmd)
                 char Rumor[1024];
 
                 if (!get_rnd_line("rumors.txt", 0, Rumor))
-
                     msg_format("%s", Rumor);
+                else
+                {
+                    msg_print("酒保想了想，却没打听到任何新传闻。");
+                    return FALSE;
+                }
                 break;
             }
     }

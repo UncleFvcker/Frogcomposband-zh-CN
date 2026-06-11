@@ -2412,11 +2412,12 @@ static void prt_mon_health_bar(int m_idx, int row, int col)
 
 static void prt_health_bars(void)
 {
-    int i, row, col;
+    int i, row, col, max_row;
     rect_t r = ui_char_info_rect();
 
     row = r.y + ROW_HEALTH_BARS;
     col = r.x + COL_HEALTH_BARS;
+    max_row = row + COUNT_HEALTH_BARS;
 
     for (i = 0; i < COUNT_HEALTH_BARS; i++)
         Term_erase(col, row + i, r.cx);
@@ -2430,18 +2431,18 @@ static void prt_health_bars(void)
             prt_mon_health_bar(i, row++, col);
 
             /* sanity ... there should only be 4 monsters */
-            if (row >= ROW_HEALTH_BARS + COUNT_HEALTH_BARS) break;
+            if (row >= max_row) break;
         }
     }
     else
     {
-        if (display_hp_bar)
+        if (display_hp_bar && row < max_row)
             prt_hp_bar(row++, col);
-        if (display_sp_bar && p_ptr->msp)
+        if (display_sp_bar && p_ptr->msp && row < max_row)
             prt_sp_bar(row++, col);
-        if (display_food_bar)
+        if (display_food_bar && row < max_row)
             prt_food_bar(row++, col);
-        if (p_ptr->riding)
+        if (p_ptr->riding && row < max_row)
         {
             if (p_ptr->riding > 0 && p_ptr->riding < max_m_idx && m_list[p_ptr->riding].r_idx)
                 prt_mon_health_bar(p_ptr->riding, row++, col);
@@ -2451,7 +2452,7 @@ static void prt_health_bars(void)
                 p_ptr->riding = 0;
             }
         }
-        if (p_ptr->health_who && p_ptr->health_who != p_ptr->riding)
+        if (p_ptr->health_who && p_ptr->health_who != p_ptr->riding && row < max_row)
         {
             if (p_ptr->health_who > 0 && p_ptr->health_who < max_m_idx && m_list[p_ptr->health_who].r_idx)
                 prt_mon_health_bar(p_ptr->health_who, row++, col);
@@ -2461,7 +2462,7 @@ static void prt_health_bars(void)
                 health_track(0);
             }
         }
-        if (target_who > 0 && target_who != p_ptr->riding && target_who != p_ptr->health_who)
+        if (target_who > 0 && target_who != p_ptr->riding && target_who != p_ptr->health_who && row < max_row)
         {
             if (target_who < max_m_idx && m_list[target_who].r_idx)
                 prt_mon_health_bar(target_who, row++, col);
@@ -2471,7 +2472,7 @@ static void prt_health_bars(void)
                 target_who = 0;
             }
         }
-        if (target_who < 0)
+        if (target_who < 0 && row < max_row)
         {
             int dx = target_col - px;
             int dy = target_row - py;
@@ -5739,6 +5740,9 @@ void redraw_stuff(void)
     if ((p_ptr->redraw & PR_HP) && display_hp_bar)
         p_ptr->redraw |= PR_HEALTH_BARS;
     if ((p_ptr->redraw & PR_MANA) && display_sp_bar)
+        p_ptr->redraw |= PR_HEALTH_BARS;
+    if ((p_ptr->redraw & (PR_BASIC | PR_EXTRA | PR_WIPE)) &&
+        (display_hp_bar || display_sp_bar || display_food_bar))
         p_ptr->redraw |= PR_HEALTH_BARS;
     if (p_ptr->redraw & (PR_DEPTH|PR_BASIC))
         p_ptr->redraw |= PR_STATUS;

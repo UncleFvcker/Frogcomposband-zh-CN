@@ -34,6 +34,47 @@ bool ethereal_mimic_is_learned(int r_idx)
     return r_info[r_idx].r_pkills >= ethereal_mimic_kill_requirement(r_idx);
 }
 
+bool ethereal_mimic_martial_is_active(void)
+{
+    if (!ethereal_mimic_is_mimicking()) return FALSE;
+    if (!equip_has_slot_type(EQUIP_SLOT_WEAPON)) return TRUE;
+    if (!p_ptr->weapon_ct) return TRUE;
+    return FALSE;
+}
+
+int ethereal_mimic_martial_level(void)
+{
+    if (!ethereal_mimic_martial_is_active()) return 0;
+    return MIN(50, p_ptr->lev);
+}
+
+int ethereal_mimic_martial_hit_bonus(void)
+{
+    return ethereal_mimic_martial_level() * 2;
+}
+
+int ethereal_mimic_martial_damage_bonus(void)
+{
+    int lvl = ethereal_mimic_martial_level();
+    return lvl / 5 + (lvl * lvl) / 500;
+}
+
+int ethereal_mimic_martial_extra_chance(void)
+{
+    int lvl = ethereal_mimic_martial_level();
+    return MIN(50, (lvl / 5) * 5);
+}
+
+int ethereal_mimic_martial_ac_bonus(void)
+{
+    return ethereal_mimic_martial_level() / 2;
+}
+
+int ethereal_mimic_martial_speed_bonus(void)
+{
+    return ethereal_mimic_martial_level() / 6;
+}
+
 static void _set_current_r_idx(int r_idx)
 {
     if (r_idx == p_ptr->current_r_idx) return;
@@ -73,16 +114,10 @@ static void _mimic_spell(int cmd, variant *res)
     switch (cmd)
     {
     case SPELL_NAME:
-        if (p_ptr->current_r_idx)
-            var_set_string(res, "停止模仿");
-        else
-            var_set_string(res, "模仿");
+        var_set_string(res, "变形");
         break;
     case SPELL_DESC:
-        if (p_ptr->current_r_idx)
-            var_set_string(res, "返回你的原生形态，并恢复普通人形装备栏位。");
-        else
-            var_set_string(res, "输入怪物序号，拟态为你已经学会的非唯一怪物形态。");
+        var_set_string(res, "输入怪物序号，拟态为你已经学会的非唯一怪物形态。");
         break;
     case SPELL_CAST:
     {
@@ -90,13 +125,6 @@ static void _mimic_spell(int cmd, variant *res)
         int  r_idx;
 
         var_set_bool(res, FALSE);
-
-        if (p_ptr->current_r_idx)
-        {
-            _set_current_r_idx(0);
-            var_set_bool(res, TRUE);
-            return;
-        }
 
         if (!get_string("怪物序号: ", buf, sizeof(buf))) return;
         r_idx = atoi(buf);
@@ -124,6 +152,32 @@ static void _mimic_spell(int cmd, variant *res)
         var_set_bool(res, TRUE);
         break;
     }
+    default:
+        default_spell(cmd, res);
+        break;
+    }
+}
+
+static void _unmimic_spell(int cmd, variant *res)
+{
+    switch (cmd)
+    {
+    case SPELL_NAME:
+        var_set_string(res, "变回原形");
+        break;
+    case SPELL_DESC:
+        var_set_string(res, "返回你的原生形态，并恢复普通人形装备栏位。");
+        break;
+    case SPELL_CAST:
+        var_set_bool(res, FALSE);
+        if (!p_ptr->current_r_idx)
+        {
+            msg_print("你现在就是原生形态。");
+            return;
+        }
+        _set_current_r_idx(0);
+        var_set_bool(res, TRUE);
+        break;
     default:
         default_spell(cmd, res);
         break;
@@ -224,6 +278,9 @@ static power_info *_get_powers(void)
     if (p_ptr->current_r_idx)
         ct += possessor_get_powers(spells + ct, max - ct);
 
+    if (ct < max)
+        _add_power(&spells[ct++], 1, 0, 0, _unmimic_spell, A_DEX);
+
     spells[ct].spell.fn = NULL;
     return spells;
 }
@@ -242,6 +299,7 @@ static void _calc_stats(s16b stats[MAX_STATS])
 static void _calc_bonuses(void)
 {
     mon_race_ptr race;
+    int martial_lvl;
 
     if (!p_ptr->current_r_idx) return;
     race = &r_info[p_ptr->current_r_idx];
@@ -249,12 +307,30 @@ static void _calc_bonuses(void)
     possessor_calc_bonuses();
     if (race->body.life)
         p_ptr->life += race->body.life - 100;
+
+    martial_lvl = ethereal_mimic_martial_level();
+    if (martial_lvl)
+    {
+        int ac = ethereal_mimic_martial_ac_bonus();
+
+        p_ptr->to_a += ac;
+        p_ptr->dis_to_a += ac;
+        p_ptr->pspeed += ethereal_mimic_martial_speed_bonus();
+        if (martial_lvl >= 20) res_add(RES_CONF);
+        if (martial_lvl >= 30) res_add(RES_BLIND);
+    }
 }
 
 static void _get_flags(u32b flgs[OF_ARRAY_SIZE])
 {
     if (p_ptr->current_r_idx)
+    {
+        int martial_lvl = ethereal_mimic_martial_level();
+
         possessor_get_flags(flgs);
+        if (martial_lvl >= 20) add_flag(flgs, OF_RES_CONF);
+        if (martial_lvl >= 30) add_flag(flgs, OF_RES_BLIND);
+    }
 }
 
 static caster_info *_caster_info(void)
@@ -275,6 +351,24 @@ static void _character_dump(doc_ptr doc)
         use_graphics = FALSE;
         doc_printf(doc, "<topic:CurrentForm>================================ 当 前 的 形 态 (<color:keypress>C</color>) =================================\n\n");
         mon_display_possessor(race, doc);
+        if (ethereal_mimic_martial_is_active())
+        {
+            int lvl = ethereal_mimic_martial_level();
+            int ac = ethereal_mimic_martial_ac_bonus();
+            int speed = ethereal_mimic_martial_speed_bonus();
+
+            doc_newline(doc);
+            doc_printf(doc, "<color:y>拟态武术</color>：等级 <color:G>%d</color>  命中 <color:G>+%d</color>  身体伤害 <color:G>+%d</color>  额外攻击 <color:G>%d%%</color>\n",
+                lvl,
+                ethereal_mimic_martial_hit_bonus(),
+                ethereal_mimic_martial_damage_bonus(),
+                ethereal_mimic_martial_extra_chance());
+            doc_printf(doc, "          护甲 <color:G>+%d</color>  速度 <color:G>+%d</color>",
+                ac, speed);
+            if (lvl >= 20) doc_insert(doc, "  <color:G>混乱抗性</color>");
+            if (lvl >= 30) doc_insert(doc, "  <color:G>失明抗性</color>");
+            doc_newline(doc);
+        }
         doc_newline(doc);
         use_graphics = old_use_graphics;
     }
@@ -303,7 +397,7 @@ class_t *ethereal_mimic_get_class(void)
         skills_t xs = { 10,   8,  10,   0,   0,   0,  25,  20};
 
         me.name = "缥缈模仿者";
-        me.desc = "缥缈模仿者是能够学习怪物形态的战士。他们通过击杀非唯一怪物来理解其形体；当击杀数量达到该怪物等级后，就能永久模仿该形态。使用职业能力输入怪物序号即可变身，怪物序号可在怪物知识界面查询。未变身时他们使用普通人形装备栏位；变身后则继承目标形态的身体、抗性、法术、吐息和天然攻击。";
+        me.desc = "缥缈模仿者是能够学习怪物形态的战士。他们通过击杀非唯一怪物来理解其形体；当击杀数量达到该怪物等级后，就能永久模仿该形态。使用职业能力输入怪物序号即可变身，怪物序号可在怪物知识界面查询。未变身时他们使用普通人形装备栏位；变身后则继承目标形态的身体、抗性、法术、吐息和天然攻击。空手拟态或模仿没有武器槽位的形态时，拟态武术会随等级提升其身体攻击、护甲、速度和部分抗性。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] =  1;

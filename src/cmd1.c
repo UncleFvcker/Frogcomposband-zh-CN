@@ -4550,6 +4550,11 @@ bool move_player_effect(int ny, int nx, u32b mpe_mode)
         /* Redraw new spot */
         lite_spot(ny, nx);
 
+        /* Position-dependent visuals must be current before viewport_verify()
+         * performs an immediate full map redraw on panel changes. */
+        p_ptr->update |= (PU_VIEW | PU_LITE | PU_FLOW | PU_MON_LITE | PU_DISTANCE);
+        p_ptr->window |= PW_MONSTER_LIST | PW_OBJECT_LIST;
+
         /* Check for new panel (redraw map) */
         viewport_verify();
 
@@ -4580,10 +4585,6 @@ bool move_player_effect(int ny, int nx, u32b mpe_mode)
             /* Redraw map */
             p_ptr->redraw |= (PR_MAP);
         }
-
-        /* Update stuff */
-        p_ptr->update |= (PU_VIEW | PU_LITE | PU_FLOW | PU_MON_LITE | PU_DISTANCE);
-        p_ptr->window |= PW_MONSTER_LIST | PW_OBJECT_LIST;
 
         /* Position Targets are confusing. They should be dismissed when no longer valid.
          * Note: Originally, I had this check in target_okay(), which is, of course, called

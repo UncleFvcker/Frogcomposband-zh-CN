@@ -315,11 +315,9 @@ static bool _blow_is_masked(mon_blow_ptr blow)
 
     return FALSE;
 }
-static int _dam_boost(int method, int rlev)
+
+static bool _ethereal_mimic_martial_blow(int method)
 {
-    /* Most early monsters with innate attacks aren't worth possessing as
-       their damage is just too low ... Heck, a Mean Looking Mercenary with
-       a good longsword is usually a much better option! */
     switch (method)
     {
     case RBM_HIT:
@@ -331,10 +329,43 @@ static int _dam_boost(int method, int rlev)
     case RBM_SLASH:
     case RBM_BUTT:
     case RBM_CRUSH:
-        return  2 + (rlev + 4) / 5;
+        return TRUE;
     }
+    return FALSE;
+}
+
+static int _dam_boost(int method, int rlev)
+{
+    /* Most early monsters with innate attacks aren't worth possessing as
+       their damage is just too low ... Heck, a Mean Looking Mercenary with
+       a good longsword is usually a much better option! */
+    if (_ethereal_mimic_martial_blow(method))
+        return  2 + (rlev + 4) / 5;
     return 0;
 }
+
+static int _ethereal_mimic_martial_hit_bonus(int method)
+{
+    if (!_ethereal_mimic_martial_blow(method)) return 0;
+    return ethereal_mimic_martial_hit_bonus();
+}
+
+static int _ethereal_mimic_martial_damage_bonus(int method)
+{
+    if (!_ethereal_mimic_martial_blow(method)) return 0;
+    return ethereal_mimic_martial_damage_bonus();
+}
+
+static bool _ethereal_mimic_martial_extra_attack(int method)
+{
+    int chance = ethereal_mimic_martial_extra_chance();
+
+    if (!chance) return FALSE;
+    if (!_ethereal_mimic_martial_blow(method)) return FALSE;
+
+    return randint1(100) <= chance;
+}
+
 static int _vorpal_pct(mon_blow_ptr blow)
 {
     int i;
@@ -410,102 +441,115 @@ void possessor_attack(point_t where, bool *fear, bool *mdeath, int mode)
             return;
         }
 
-        skill = p_ptr->skills.thn + (p_ptr->to_h_m * BTH_PLUS_ADJ);
-        skill += blow->power;
-        if (p_ptr->stun)
-            skill -= skill * MIN(100, p_ptr->stun) / 150;
-        if (test_hit_norm(skill, ac, foe->ml))
         {
-            msg_format("你%s了 %s。", _hit_msg(blow), m_name_object);
-            for (j = 0; j < MAX_MON_BLOW_EFFECTS; j++)
+            int repeats = 1 + (_ethereal_mimic_martial_extra_attack(blow->method) ? 1 : 0);
+            int repeat;
+
+            for (repeat = 0; repeat < repeats; repeat++)
             {
-                mon_effect_ptr effect = &blow->effects[j];
-                int            dam;
-
                 if (*mdeath) break;
-                if (!effect->effect) break;
-                if (_skip_effect(effect->effect)) continue;
-                if (effect->pct && randint1(100) > effect->pct) continue;
+                if (foe->fx != where.x || foe->fy != where.y) break; /* teleport effect? */
 
-                /* The first effect is the base damage, and gets boosted by combat boosting
-                 * magic (e.g. rings of combat, weaponmaster, et. al.) */
-                if (j == 0)
-                {
-                    dam = damroll(effect->dd + p_ptr->innate_attack_info.to_dd, effect->ds);
-                    /* Translate CUT into vorpal since monsters cannot bleed the way players can */
-                    if (randint0(100) < _vorpal_pct(blow))
-                    {
-                        int m = 2;
-                        while (one_in_(4)) m++;
-                        dam *= m;
-                        switch (m)
-                        {
-                        case 2: msg_format("你<color:U>凿击</color>了 %s！", m_name_object); break;
-                        case 3: msg_format("你<color:y>致残</color>了 %s！", m_name_object); break;
-                        case 4: msg_format("你<color:R>割裂</color>了 %s！", m_name_object); break;
-                        case 5: msg_format("你<color:r>劈砍</color>了 %s！", m_name_object); break;
-                        case 6: msg_format("你<color:v>猛击</color>了 %s！", m_name_object); break;
-                        case 7: msg_format("你<color:v>开膛</color>了 %s！", m_name_object); break;
-                        default: msg_format("你<color:v>撕碎</color>了 %s！", m_name_object); break;
-                        }
-                    }
-                    dam += p_ptr->to_d_m; /* XXX Need to subtract out later for non-damage effects */
-                    dam += _dam_boost(blow->method, body->level);
-                }
-                /* Subsequent effects are add-ons, and should not be damage boosted */
-                else
-                    dam = damroll(effect->dd, effect->ds);
-
+                skill = p_ptr->skills.thn + (p_ptr->to_h_m * BTH_PLUS_ADJ);
+                skill += blow->power;
+                skill += _ethereal_mimic_martial_hit_bonus(blow->method);
                 if (p_ptr->stun)
-                    dam -= dam*MIN(100, p_ptr->stun) / 150;
-                if (blow->method == RBM_EXPLODE)
+                    skill -= skill * MIN(100, p_ptr->stun) / 150;
+                if (test_hit_norm(skill, ac, foe->ml))
                 {
-                    possessor_explode(dam);
-                    return;
-                }
-                switch (effect->effect)
-                {
-                case RBE_SHATTER:
-                    if (dam > 23) delay_quake = TRUE;
-                case RBE_HURT:
-                    dam = mon_damage_mod(foe, dam, FALSE);
-                    if (dam > 0)
-                        anger_monster(foe);
-                    *mdeath = mon_take_hit(foe->id, dam, DAM_TYPE_MELEE, fear, NULL);
-                    break;
-                case RBE_EAT_GOLD:
-                case RBE_EAT_ITEM:
-                case RBE_EAT_FOOD:
-                    if (leprechaun_steal(foe->id))
-                        steal_ct++;
-                    break;
-                case RBE_DISEASE:
-                    if (dam)
-                        gf_affect_m(GF_WHO_PLAYER, foe, GF_POIS, dam, GF_AFFECT_ATTACK);
-                    break;
-                case RBE_DRAIN_CHARGES:
-                    gf_affect_m(GF_WHO_PLAYER, foe, GF_DRAIN_MANA,
-                        (dam ? dam : p_ptr->lev), GF_AFFECT_ATTACK);
-                    break;
-                case RBE_VAMP:
-                    if (monster_living(foe_race) && gf_affect_m(GF_WHO_PLAYER, foe, GF_OLD_DRAIN, dam, GF_AFFECT_ATTACK))
+                    msg_format("你%s了 %s。", _hit_msg(blow), m_name_object);
+                    for (j = 0; j < MAX_MON_BLOW_EFFECTS; j++)
                     {
-                        msg_format("你从 %s 身上<color:D>吸取生命</color>！", m_name_object);
-                        hp_player(dam);
-                        /* XXX limit amt per turn? */
+                        mon_effect_ptr effect = &blow->effects[j];
+                        int            dam;
+
+                        if (*mdeath) break;
+                        if (!effect->effect) break;
+                        if (_skip_effect(effect->effect)) continue;
+                        if (effect->pct && randint1(100) > effect->pct) continue;
+
+                        /* The first effect is the base damage, and gets boosted by combat boosting
+                         * magic (e.g. rings of combat, weaponmaster, et. al.) */
+                        if (j == 0)
+                        {
+                            dam = damroll(effect->dd + p_ptr->innate_attack_info.to_dd, effect->ds);
+                            /* Translate CUT into vorpal since monsters cannot bleed the way players can */
+                            if (randint0(100) < _vorpal_pct(blow))
+                            {
+                                int m = 2;
+                                while (one_in_(4)) m++;
+                                dam *= m;
+                                switch (m)
+                                {
+                                case 2: msg_format("你<color:U>凿击</color>了 %s！", m_name_object); break;
+                                case 3: msg_format("你<color:y>致残</color>了 %s！", m_name_object); break;
+                                case 4: msg_format("你<color:R>割裂</color>了 %s！", m_name_object); break;
+                                case 5: msg_format("你<color:r>劈砍</color>了 %s！", m_name_object); break;
+                                case 6: msg_format("你<color:v>猛击</color>了 %s！", m_name_object); break;
+                                case 7: msg_format("你<color:v>开膛</color>了 %s！", m_name_object); break;
+                                default: msg_format("你<color:v>撕碎</color>了 %s！", m_name_object); break;
+                                }
+                            }
+                            dam += p_ptr->to_d_m; /* XXX Need to subtract out later for non-damage effects */
+                            dam += _dam_boost(blow->method, body->level);
+                            dam += _ethereal_mimic_martial_damage_bonus(blow->method);
+                        }
+                        /* Subsequent effects are add-ons, and should not be damage boosted */
+                        else
+                            dam = damroll(effect->dd, effect->ds);
+
+                        if (p_ptr->stun)
+                            dam -= dam*MIN(100, p_ptr->stun) / 150;
+                        if (blow->method == RBM_EXPLODE)
+                        {
+                            possessor_explode(dam);
+                            return;
+                        }
+                        switch (effect->effect)
+                        {
+                        case RBE_SHATTER:
+                            if (dam > 23) delay_quake = TRUE;
+                        case RBE_HURT:
+                            dam = mon_damage_mod(foe, dam, FALSE);
+                            if (dam > 0)
+                                anger_monster(foe);
+                            *mdeath = mon_take_hit(foe->id, dam, DAM_TYPE_MELEE, fear, NULL);
+                            break;
+                        case RBE_EAT_GOLD:
+                        case RBE_EAT_ITEM:
+                        case RBE_EAT_FOOD:
+                            if (leprechaun_steal(foe->id))
+                                steal_ct++;
+                            break;
+                        case RBE_DISEASE:
+                            if (dam)
+                                gf_affect_m(GF_WHO_PLAYER, foe, GF_POIS, dam, GF_AFFECT_ATTACK);
+                            break;
+                        case RBE_DRAIN_CHARGES:
+                            gf_affect_m(GF_WHO_PLAYER, foe, GF_DRAIN_MANA,
+                                (dam ? dam : p_ptr->lev), GF_AFFECT_ATTACK);
+                            break;
+                        case RBE_VAMP:
+                            if (monster_living(foe_race) && gf_affect_m(GF_WHO_PLAYER, foe, GF_OLD_DRAIN, dam, GF_AFFECT_ATTACK))
+                            {
+                                msg_format("你从 %s 身上<color:D>吸取生命</color>！", m_name_object);
+                                hp_player(dam);
+                                /* XXX limit amt per turn? */
+                            }
+                            break;
+                        default:
+                            gf_affect_m(GF_WHO_PLAYER, foe, effect->effect, dam, GF_AFFECT_ATTACK);
+                        }
+                        *mdeath = (foe->r_idx == 0);
                     }
-                    break;
-                default:
-                    gf_affect_m(GF_WHO_PLAYER, foe, effect->effect, dam, GF_AFFECT_ATTACK);
+                    if (_touched(blow) && !*mdeath)
+                        touch_zap_player(foe->id);
                 }
-                *mdeath = (foe->r_idx == 0);
+                else
+                {
+                    msg_print("你没打中。");
+                }
             }
-            if (_touched(blow) && !*mdeath)
-                touch_zap_player(foe->id);
-        }
-        else
-        {
-            msg_print("你没打中。");
         }
         if (mode == WEAPONMASTER_RETALIATION) break;
     }

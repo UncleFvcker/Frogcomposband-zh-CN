@@ -1770,8 +1770,8 @@ void do_cmd_options(void)
     /* Restore the screen */
     screen_load();
 
-    /* Hack - Redraw equippy chars */
-    p_ptr->redraw |= (PR_EQUIPPY);
+    /* Redraw the sidebar after visual option changes, including HP/SP bars. */
+    p_ptr->redraw |= (PR_BASIC | PR_EXTRA | PR_HEALTH_BARS | PR_EQUIPPY);
 }
 
 

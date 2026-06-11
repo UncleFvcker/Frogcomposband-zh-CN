@@ -1487,6 +1487,11 @@ void py_get_display_char_attr(char *c, byte *a)
  */
 static bool _graph_visuals = TRUE;
 
+static bool _graph_lite_gradient_needs_redraw(void)
+{
+    return _graph_visuals && !use_graphics;
+}
+
 typedef enum {
     GRAPH_VIS_VISIBLE,
     GRAPH_VIS_LIT,
@@ -3328,7 +3333,12 @@ void update_lite(void)
         c_ptr = &cave[y][x];
 
         /* Update fresh grids */
-        if (c_ptr->info & (CAVE_TEMP)) continue;
+        if (c_ptr->info & (CAVE_TEMP))
+        {
+            if (_graph_lite_gradient_needs_redraw())
+                cave_redraw_later(c_ptr, y, x);
+            continue;
+        }
 
         /* Add it to later visual update */
         cave_note_and_redraw_later(c_ptr, y, x);
@@ -3346,7 +3356,12 @@ void update_lite(void)
         c_ptr->info &= ~(CAVE_TEMP);
 
         /* Update stale grids */
-        if (c_ptr->info & (CAVE_LITE)) continue;
+        if (c_ptr->info & (CAVE_LITE))
+        {
+            if (_graph_lite_gradient_needs_redraw())
+                cave_redraw_later(c_ptr, y, x);
+            continue;
+        }
 
         /* Add it to later visual update */
         cave_redraw_later(c_ptr, y, x);

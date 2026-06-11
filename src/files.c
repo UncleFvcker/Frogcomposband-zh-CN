@@ -3664,6 +3664,10 @@ errr get_rnd_line(cptr file_name, int entry, char *output)
             /* Count the lines */
             line_num++;
 
+            /* Accept UTF-8 BOMs in text files edited by localization tools. */
+            if (line_num == 1 && (byte)buf[0] == 0xEF && (byte)buf[1] == 0xBB && (byte)buf[2] == 0xBF)
+                memmove(buf, buf + 3, strlen(buf + 3) + 1);
+
             /* Look for lines starting with 'N:' */
             if ((buf[0] == 'N') && (buf[1] == ':'))
             {

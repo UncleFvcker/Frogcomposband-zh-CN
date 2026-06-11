@@ -672,6 +672,50 @@ static int _rage_mage_count_spells(power_info *spells)
     return ct;
 }
 
+static int _find_power_by_name(power_info *spells, int ct, cptr name)
+{
+    int i;
+
+    for (i = 0; i < MIN(ct, 98); i++)
+    {
+        char spell_name[255];
+
+        my_strcpy(spell_name, get_spell_spoiler_name(spells[i].spell.fn), sizeof(spell_name));
+        if (streq(spell_name, name)) return i;
+    }
+    return -1;
+}
+
+static void _force_power_label(power_info *spells, int ct, char *labels, cptr name, char label)
+{
+    int i = _find_power_by_name(spells, ct, name);
+    int j;
+    char old_label;
+
+    if (i < 0) return;
+    if (labels[i] == label) return;
+
+    old_label = labels[i];
+    for (j = 0; j < MIN(ct, 98); j++)
+    {
+        if (labels[j] == label)
+        {
+            labels[j] = old_label;
+            break;
+        }
+    }
+    labels[i] = label;
+}
+
+static void _ethereal_mimic_force_power_labels(power_info *spells, int ct, char *labels)
+{
+    if (p_ptr->pclass != CLASS_ETHEREAL_MIMIC) return;
+
+    _force_power_label(spells, ct, labels, "变形", 'a');
+    _force_power_label(spells, ct, labels, "浏览形态", 'b');
+    _force_power_label(spells, ct, labels, "变回原形", 'c');
+}
+
 static int _choose_spell(power_info* spells, int ct, cptr verb, cptr desc, int max_cost, bool power, bool force_browsing)
 {
     int choice = -1;
@@ -765,6 +809,8 @@ static int _choose_spell(power_info* spells, int ct, cptr verb, cptr desc, int m
                 if ((paikka) && (paikka <= MAX_POWER_LABEL)) _make_sticky_label(&spells[i].spell, paikka - 1);
             }
         }
+
+        _ethereal_mimic_force_power_labels(spells, ct, labels);
     }
     else if (disciple_is_(DISCIPLE_TROIKA))
     {
