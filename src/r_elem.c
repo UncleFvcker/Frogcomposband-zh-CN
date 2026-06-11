@@ -1069,7 +1069,7 @@ static caster_info * _water_caster_info(void)
 
 static void _water_load_player(savefile_ptr file)
 {
-    if (savefile_is_older_than(file, 7, 0, 9, 3)) _toistot = 0;
+    if (savefile_is_older_than(file, 1,0,0,0)) _toistot = 0;
     else _toistot = savefile_read_byte(file);
 }
 

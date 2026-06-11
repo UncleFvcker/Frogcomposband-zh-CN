@@ -25,12 +25,10 @@
 #define VERSION_IS_DEVELOPMENT (FALSE)
 
 /*
- * The public product version was reset when the project became
- * RoguelikeFansBand, but the savefile format still follows the upstream
- * FrogComposband 7.x numbering used by savefile_is_older_than().
+ * RoguelikeFansBand starts its own savefile format line at 1.0.0.0.
  */
-#define SAVEFILE_VER_MAJOR 7
-#define SAVEFILE_VER_MINOR 4
+#define SAVEFILE_VER_MAJOR 1
+#define SAVEFILE_VER_MINOR 0
 #define SAVEFILE_VER_PATCH_ID 0
 #define SAVEFILE_VER_EXTRA 0
 

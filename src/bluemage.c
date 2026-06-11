@@ -155,8 +155,8 @@ static void _load(savefile_ptr file)
         for (j = 0; j < count; j++)
         {
             s16b effect = savefile_read_s16b(file);
-            s16b lore = savefile_is_older_than(file, 7, 1, 1, 2) ? 0 : savefile_read_s16b(file);
-            s16b seniority = savefile_is_older_than(file, 7, 1, 1, 3) ? 0 : savefile_read_s16b(file);
+            s16b lore = savefile_is_older_than(file, 1,0,0,0) ? 0 : savefile_read_s16b(file);
+            s16b seniority = savefile_is_older_than(file, 1,0,0,0) ? 0 : savefile_read_s16b(file);
             if ((i < MST_COUNT) && (!p_ptr->is_dead)) blue_mage_learn_spell_aux(i, effect, lore, seniority, FALSE);
         }
     }

@@ -24,11 +24,7 @@ void savefile_normalize_version(version_ptr version)
 {
     if (!version) return;
 
-    /*
-     * Early RoguelikeFansBand builds wrote the public 1.0.x version into the
-     * savefile header. The serialized data was still FrogComposband 7.x format,
-     * so normalize those headers before any savefile_is_older_than() checks.
-     */
+    /* Treat early 1.0.x headers as the new RoguelikeFansBand baseline. */
     if (version->major == 1 && version->minor == 0)
     {
         version->major = SAVEFILE_VER_MAJOR;

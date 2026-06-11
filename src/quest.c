@@ -1878,7 +1878,7 @@ void quests_load(savefile_ptr file)
         assert(q);
         q->status = savefile_read_byte(file);
         q->completed_lev = savefile_read_byte(file);
-        if (savefile_is_older_than(file, 7,0,6,7)) q->completed_turn = 0;
+        if (savefile_is_older_than(file, 1,0,0,0)) q->completed_turn = 0;
         else q->completed_turn = savefile_read_u32b(file);
         q->goal_current = savefile_read_s16b(file);
         q->seed  = savefile_read_u32b(file);
@@ -1894,7 +1894,7 @@ void quests_load(savefile_ptr file)
             a_info[q->goal_idx].gen_flags |= OFG_QUESTITEM;
     }
     _current = savefile_read_s16b(file);
-    if ((savefile_is_older_than(file, 7, 1, 1, 1)) && (!no_wilderness) && (r_info[MON_METATRON].max_num == 1))
+    if ((savefile_is_older_than(file, 1,0,0,0)) && (!no_wilderness) && (r_info[MON_METATRON].max_num == 1))
     {
         quest_ptr q = quests_get(QUEST_METATRON);
         assert(q);

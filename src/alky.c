@@ -1044,7 +1044,7 @@ static void _load_list(savefile_ptr file)
 	for (i = 0; i < _CTIER_MAX; i++){
 		_CHEM[i] = savefile_read_s32b(file);
 	}
-	if (savefile_is_older_than(file, 7, 0, 9, 0)) return;
+	if (savefile_is_older_than(file, 1,0,0,0)) return;
 	_alchemist_hero = savefile_read_u16b(file);
 	_alchemist_shero = savefile_read_u16b(file);
 }

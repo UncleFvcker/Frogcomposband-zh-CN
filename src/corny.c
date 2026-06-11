@@ -1611,7 +1611,7 @@ void cornucopia_save(savefile_ptr file)
 void cornucopia_load(savefile_ptr file)
 {
     int i, old_policies;
-    if (savefile_is_older_than(file, 7,0,9,4))
+    if (savefile_is_older_than(file, 1,0,0,0))
     {
         cornucopia_init();
         return;

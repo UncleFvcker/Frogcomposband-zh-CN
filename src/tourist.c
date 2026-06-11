@@ -72,7 +72,7 @@ static void _load_player(savefile_ptr file)
     u32b old_max_race;
     unsigned int i;
     _ini_photo_list();
-    if (savefile_is_older_than(file, 7, 0, 5, 2)) return;
+    if (savefile_is_older_than(file, 1,0,0,0)) return;
     old_max_race = savefile_read_u32b(file);
     for (i = 0; i < old_max_race; i++)
     {
