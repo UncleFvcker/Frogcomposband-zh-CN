@@ -3280,8 +3280,8 @@ EDIT_03278	low	quest	lib/edit/q_thieves.txt	3	D	the forces of Chaos. As the batt
 EDIT_03279	low	quest	lib/edit/q_thieves.txt	4	D	I find that I am having trouble controlling the thieves who are	控制那些开始潜入我城市的盗贼。如果你想	D:I find that I am having trouble controlling the thieves who are	任务对话多行拼接
 EDIT_03280	low	quest	lib/edit/q_thieves.txt	5	D	beginning to move into my city. If you wish to show your allegience	表达你的忠诚，你必须搜索这座城市，并摧毁那些把	D:beginning to move into my city. If you wish to show your allegience	任务对话多行拼接
 EDIT_03281	low	quest	lib/edit/q_thieves.txt	6	D	you must search the city and destroy the lair that these thieves	这里当成家的盗贼巢穴。我的部队报告说在	D:you must search the city and destroy the lair that these thieves	任务对话多行拼接
-EDIT_03282	low	quest	lib/edit/q_thieves.txt	7	D	call home. My troops report finding evidence of the thieves in the	东北区发现了盗贼的踪迹。你的任务是杀掉这些暴徒。	D:call home. My troops report finding evidence of the thieves in the	任务对话多行拼接
-EDIT_03283	low	quest	lib/edit/q_thieves.txt	8	D	northeastern quarter. Your task is to kill these ruffians.	（接上文，整句逻辑合并调整）	D:northeastern quarter. Your task is to kill these ruffians.	任务对话多行拼接
+EDIT_03282	low	quest	lib/edit/q_thieves.txt	7	D	call home. My troops report finding evidence of the thieves in the	东北区发现了盗贼的踪迹。	D:call home. My troops report finding evidence of the thieves in the	任务对话多行拼接
+EDIT_03283	low	quest	lib/edit/q_thieves.txt	8	D	northeastern quarter. Your task is to kill these ruffians.	你的任务是杀掉这些暴徒。	D:northeastern quarter. Your task is to kill these ruffians.	任务对话多行拼接
 EDIT_03284	low	quest	lib/edit/q_thieves.txt	12	D	Thank you for killing the band of thieves! Here is something	感谢你杀死了这伙盗贼！这里有些东西	D:Thank you for killing the band of thieves! Here is something	任务对话多行拼接
 EDIT_03285	low	quest	lib/edit/q_thieves.txt	13	D	I think you will enjoy.	我想你会喜欢的。	D:I think you will enjoy.	任务对话多行拼接
 EDIT_03286	low	quest	lib/edit/q_thieves.txt	17	D	It seems like this task was too difficult for you. Good that I	看来这个任务对你来说太难了。幸好我	D:It seems like this task was too difficult for you. Good that I	任务对话多行拼接
@@ -3486,8 +3486,8 @@ EDIT_03484	low	monster	lib/edit/r_info.txt	634	D	A large ant with powerful mandi
 EDIT_03485	low	monster	lib/edit/r_info.txt	636	N:name	Fruit bat	果蝠	N:37:Fruit bat	怪物名称
 EDIT_03486	low	monster	lib/edit/r_info.txt	646	D	A fast-moving pest.	一种移动迅速的害兽。	D:A fast-moving pest.	怪物描述
 EDIT_03487	low	monster	lib/edit/r_info.txt	648	N:name	Insect swarm	昆虫群	N:38:Insect swarm	怪物名称
-EDIT_03488	low	monster	lib/edit/r_info.txt	660	D	A lone insect may be harmless, but there's a whole swarm of	一只孤单的昆虫可能无害，但这里有一大群！	D:A lone insect may be harmless, but there's a whole swarm of	怪物描述多行拼接
-EDIT_03489	low	monster	lib/edit/r_info.txt	661	D	them here!	（接上文）	D:them here!	怪物描述多行拼接
+EDIT_03488	low	monster	lib/edit/r_info.txt	660	D	A lone insect may be harmless, but there's a whole swarm of	一只孤单的昆虫可能无害，	D:A lone insect may be harmless, but there's a whole swarm of	怪物描述多行拼接
+EDIT_03489	low	monster	lib/edit/r_info.txt	661	D	them here!	但这里有一大群！	D:them here!	怪物描述多行拼接
 EDIT_03490	low	monster	lib/edit/r_info.txt	663	N:name	Greater Hell-Beast	高阶地狱兽	N:39:Greater Hell-Beast	怪物名称
 EDIT_03491	low	monster	lib/edit/r_info.txt	680	D	This unholy abomination will crush you. Flee while you can!	这邪恶的怪物会粉碎你。趁现在还能逃，快跑吧！	D:This unholy abomination will crush you. Flee while you can!	怪物描述
 EDIT_03492	low	monster	lib/edit/r_info.txt	682	N:name	Shrieker mushroom patch	尖叫蘑菇丛	N:40:Shrieker mushroom patch	怪物名称

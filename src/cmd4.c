@@ -33,6 +33,119 @@ static cptr _stat_label_zh(int stat)
 
 static void browser_cursor(char ch, int *column, int *grp_cur, int grp_cnt, int *list_cur, int list_cnt);
 
+static int _cmd4_utf8_char_width(u32b cp)
+{
+    if (!cp) return 0;
+    if ( (0x1100 <= cp && cp <= 0x115F)
+      || (0x2E80 <= cp && cp <= 0xA4CF)
+      || (0xAC00 <= cp && cp <= 0xD7A3)
+      || (0xF900 <= cp && cp <= 0xFAFF)
+      || (0xFE10 <= cp && cp <= 0xFE19)
+      || (0xFE30 <= cp && cp <= 0xFE6F)
+      || (0xFF00 <= cp && cp <= 0xFF60)
+      || (0xFFE0 <= cp && cp <= 0xFFE6)
+      || (0x20000 <= cp && cp <= 0x3FFFD) )
+    {
+        return 2;
+    }
+    return 1;
+}
+
+static int _cmd4_utf8_decode(cptr s, u32b *cp)
+{
+    byte c0 = (byte)s[0];
+
+    if (c0 < 0x80)
+    {
+        *cp = c0;
+        return c0 ? 1 : 0;
+    }
+    if ((c0 & 0xE0) == 0xC0)
+    {
+        byte c1 = (byte)s[1];
+        if ((c1 & 0xC0) == 0x80)
+        {
+            *cp = ((u32b)(c0 & 0x1F) << 6) | (u32b)(c1 & 0x3F);
+            return 2;
+        }
+    }
+    if ((c0 & 0xF0) == 0xE0)
+    {
+        byte c1 = (byte)s[1];
+        byte c2 = (byte)s[2];
+        if (((c1 & 0xC0) == 0x80) && ((c2 & 0xC0) == 0x80))
+        {
+            *cp = ((u32b)(c0 & 0x0F) << 12) | ((u32b)(c1 & 0x3F) << 6) | (u32b)(c2 & 0x3F);
+            return 3;
+        }
+    }
+    if ((c0 & 0xF8) == 0xF0)
+    {
+        byte c1 = (byte)s[1];
+        byte c2 = (byte)s[2];
+        byte c3 = (byte)s[3];
+        if (((c1 & 0xC0) == 0x80) && ((c2 & 0xC0) == 0x80) && ((c3 & 0xC0) == 0x80))
+        {
+            *cp = ((u32b)(c0 & 0x07) << 18) | ((u32b)(c1 & 0x3F) << 12) | ((u32b)(c2 & 0x3F) << 6) | (u32b)(c3 & 0x3F);
+            return 4;
+        }
+    }
+
+    *cp = '?';
+    return 1;
+}
+
+static int _cmd4_utf8_text_width(cptr s)
+{
+    int i = 0;
+    int w = 0;
+
+    while (s[i])
+    {
+        u32b cp;
+        int len = _cmd4_utf8_decode(s + i, &cp);
+        if (!len) break;
+        w += _cmd4_utf8_char_width(cp);
+        i += len;
+    }
+    return w;
+}
+
+static void _cmd4_put_right(byte attr, cptr s, int row, int right_col)
+{
+    int col = right_col - _cmd4_utf8_text_width(s) + 1;
+    if (col < 0) col = 0;
+    Term_putstr(col, row, -1, attr, s);
+}
+
+static void _cmd4_display_option_row(byte attr, int row, cptr desc, cptr value, cptr key)
+{
+    int key_col, value_right, desc_w;
+
+    Term_erase(0, row, 255);
+
+    if (Term->wid >= 72)
+    {
+        key_col = MAX(56, Term->wid - 24);
+        value_right = key_col - 3;
+        desc_w = value_right - 10;
+
+        Term_putstr(0, row, desc_w, attr, desc);
+        _cmd4_put_right(attr, ":", row, value_right - 7);
+        _cmd4_put_right(attr, value, row, value_right);
+        Term_putstr(key_col, row, -1, attr, format("(%s)", key));
+    }
+    else
+    {
+        value_right = Term->wid - 2;
+        desc_w = MAX(20, value_right - 7);
+
+        Term_putstr(0, row, desc_w, attr, desc);
+        _cmd4_put_right(attr, ":", row, value_right - 4);
+        _cmd4_put_right(attr, value, row, value_right);
+    }
+}
+
 /*
  * A set of functions to maintain automatic dumps of various kinds.
  * -Mogami-
@@ -889,6 +1002,7 @@ void do_cmd_options_aux(int page, cptr info)
         {
             int rivi;
             byte a = TERM_WHITE;
+            cptr value = NULL;
 
             /* Color current option */
             if (i == k) a = TERM_L_BLUE;
@@ -896,75 +1010,69 @@ void do_cmd_options_aux(int page, cptr info)
             /* Display the option text */
             if (option_info[opt[i]].o_var == &random_artifacts)
             {
-                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
                 if (random_artifacts)
-                    strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%d%% ", random_artifact_pct);
+                    strnfmt(buf, sizeof(buf), "%d%%", random_artifact_pct);
                 else
-                    strcat(buf, "no  ");
-                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "(%.19s)", option_info[opt[i]].o_text);
+                    strnfmt(buf, sizeof(buf), "no");
+                value = buf;
             }
             else if (option_info[opt[i]].o_var == &ironman_empty_levels)
             {
-                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
-                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%s", empty_lv_description[generate_empty]);
+                strnfmt(buf, sizeof(buf), "%s", empty_lv_description[generate_empty]);
+                value = buf;
             }
             else if (option_info[opt[i]].o_var == &reduce_uniques)
             {
-                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
                 if (reduce_uniques)
-                    strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%d%% ", reduce_uniques_pct);
+                    strnfmt(buf, sizeof(buf), "%d%%", reduce_uniques_pct);
                 else
-                    strcat(buf, "no  ");
-                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "(%.19s)", option_info[opt[i]].o_text);
+                    strnfmt(buf, sizeof(buf), "no");
+                value = buf;
             }
             else if (option_info[opt[i]].o_var == &obj_list_width)
             {
-                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
-                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%-3d ", object_list_width);
-                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "(%.19s)", option_info[opt[i]].o_text);
+                strnfmt(buf, sizeof(buf), "%d", object_list_width);
+                value = buf;
             }
             else if (option_info[opt[i]].o_var == &mon_list_width)
             {
-                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
-                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%-3d ", monster_list_width);
-                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "(%.19s)", option_info[opt[i]].o_text);
+                strnfmt(buf, sizeof(buf), "%d", monster_list_width);
+                value = buf;
             }
             else if (option_info[opt[i]].o_var == &single_pantheon)
             {
-                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
-                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%d / %d", pantheon_count, PANTHEON_MAX - 1);
+                strnfmt(buf, sizeof(buf), "%d / %d", pantheon_count, PANTHEON_MAX - 1);
+                value = buf;
             }
             else if (option_info[opt[i]].o_var == &guaranteed_pantheon)
             {
-                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
                 if (pantheon_count == PANTHEON_MAX - 1)
                 {
-                    strcat(buf, "全部");
+                    strnfmt(buf, sizeof(buf), "全部");
                 }
                 else if ((game_pantheon) && (game_pantheon < PANTHEON_MAX))
                 {
-                    strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%.3s ", pant_list[game_pantheon].short_name);
+                    strnfmt(buf, sizeof(buf), "%.3s", pant_list[game_pantheon].short_name);
                 }
                 else
-                    strcat(buf, "无");
+                    strnfmt(buf, sizeof(buf), "无");
+                value = buf;
             }
             else if (option_info[opt[i]].o_var == &always_small_levels)
             {
-                strnfmt(buf, sizeof(buf), "%-48s: ", option_info[opt[i]].o_desc);
-                strnfmt(buf + strlen(buf), sizeof(buf) - strlen(buf), "%s ", lv_size_options[small_level_type]);
+                strnfmt(buf, sizeof(buf), "%s", lv_size_options[small_level_type]);
+                value = buf;
             }
             else
             {
-                strnfmt(buf, sizeof(buf), "%-48s: %s (%.19s)",
-                    option_info[opt[i]].o_desc,
-                    (*option_info[opt[i]].o_var ? "是" : "no "),
-                    option_info[opt[i]].o_text);
+                value = (*option_info[opt[i]].o_var ? "是" : "否");
             }
             if ((page == OPT_PAGE_AUTODESTROY) && i > 7) rivi = i + 5 - option_offset;
             else rivi = i + 2 - option_offset;
             if ((scroll_mode) && (rivi == Term->hgt - 1) && (i < n - 1)) c_prt(TERM_YELLOW, " (向下滚动查看更多选项)", rivi, 0);
             else if ((scroll_mode) && (rivi == 2) && (i > 0)) c_prt(TERM_YELLOW, " (向上滚动查看更多选项)", rivi, 0);
-            else if (((rivi >= 2) && (rivi < Term->hgt - 1)) || ((rivi == Term->hgt - 1) && ((i == n - 1) || (!scroll_mode)))) c_prt(a, buf, rivi, 0);
+            else if (((rivi >= 2) && (rivi < Term->hgt - 1)) || ((rivi == Term->hgt - 1) && ((i == n - 1) || (!scroll_mode))))
+                _cmd4_display_option_row(a, rivi, option_info[opt[i]].o_desc, value, option_info[opt[i]].o_text);
         }
 
         if ((page == OPT_PAGE_AUTODESTROY) && (k > 7)) l = 3;

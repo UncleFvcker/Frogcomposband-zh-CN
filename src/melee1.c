@@ -643,11 +643,9 @@ bool make_attack_normal(int m_idx)
                         if (object_is_artifact(obj)) continue;
                         if ((obj->tval == TV_CAPTURE) && (obj->pval > 0) && (r_info[obj->pval].ball_num)) continue;
 
-                        object_desc(o_name, obj, OD_OMIT_PREFIX);
+                        object_desc(o_name, obj, OD_OMIT_PREFIX | OD_NAME_ONLY | OD_COLOR_CODED);
 
-                        msg_format("【物品被偷】%sour %s %s！",
-                               ((obj->number > 1) ? "One of y" : "Y"),
-                               o_name, have_flag(obj->flags, OF_PLURAL) ? "被" : "被");
+                        msg_format("【物品被偷】你的%s被偷走了！", o_name);
 
                         virtue_add(VIRTUE_SACRIFICE, 1);
 
@@ -699,9 +697,7 @@ bool make_attack_normal(int m_idx)
                         if (object_is_artifact(obj)) continue;
 
                         object_desc(o_name, obj, OD_OMIT_PREFIX | OD_NAME_ONLY | OD_COLOR_CODED);
-                        msg_format("%sour %s %s被吃掉了！",
-                               ((obj->number > 1) ? "One of y" : "Y"),
-                               o_name, (((obj->number == 1) && (have_flag(obj->flags, OF_PLURAL))) ? "被" : "被"));
+                        msg_format("你的%s被吃掉了！", o_name);
 
                         obj->number--;
                         obj_release(obj, OBJ_RELEASE_QUIET);

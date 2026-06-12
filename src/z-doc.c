@@ -617,6 +617,51 @@ doc_pos_t doc_find_bookmark(doc_ptr doc, cptr name)
     return doc_pos_invalid();
 }
 
+static bool _doc_line_contains_utf8(doc_ptr doc, int y, cptr text)
+{
+    char buf[1024];
+    int x;
+    int pos = 0;
+
+    if (!text || !text[0]) return FALSE;
+    if (y < 0 || y > doc->cursor.y) return FALSE;
+
+    for (x = 0; x < doc->width && pos < (int)sizeof(buf) - 5; x++)
+    {
+        doc_char_ptr cell = doc_char(doc, doc_pos_create(x, y));
+        u32b cp = cell->uc ? cell->uc : (byte)cell->c;
+        char tmp[4];
+        int len;
+
+        if (cp == _DOC_UC_WIDE_TRAIL) continue;
+        if (!cp) cp = ' ';
+
+        len = _doc_utf8_encode(cp, tmp);
+        if (pos + len >= (int)sizeof(buf)) break;
+        memcpy(buf + pos, tmp, len);
+        pos += len;
+    }
+    buf[pos] = '\0';
+
+    return strstr(buf, text) != NULL;
+}
+
+doc_pos_t doc_find_bookmark_by_display_text(doc_ptr doc, cptr text)
+{
+    int i;
+
+    for (i = 0; i < vec_length(doc->bookmarks); i++)
+    {
+        doc_bookmark_ptr mark = vec_get(doc->bookmarks, i);
+
+        if (_doc_line_contains_utf8(doc, mark->pos.y, text))
+            return mark->pos;
+        if (_doc_line_contains_utf8(doc, mark->pos.y + 1, text))
+            return mark->pos;
+    }
+    return doc_pos_invalid();
+}
+
 static bool _line_test_str(doc_char_ptr cell, int ncell, cptr what, int nwhat)
 {
     int i;
@@ -2405,6 +2450,8 @@ int doc_display_help_aux(cptr file_name, cptr topic, rect_t display)
     if (topic)
     {
         doc_pos_t pos = doc_find_bookmark(doc, topic);
+        if (!doc_pos_is_valid(pos))
+            pos = doc_find_bookmark_by_display_text(doc, topic);
         if (doc_pos_is_valid(pos))
             top = pos.y;
     }

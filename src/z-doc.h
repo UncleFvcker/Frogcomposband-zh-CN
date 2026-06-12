@@ -153,6 +153,7 @@ int           doc_width(doc_ptr doc);
 doc_pos_t     doc_next_bookmark(doc_ptr doc, doc_pos_t pos);
 doc_pos_t     doc_prev_bookmark(doc_ptr doc, doc_pos_t pos);
 doc_pos_t     doc_find_bookmark(doc_ptr doc, cptr name);
+doc_pos_t     doc_find_bookmark_by_display_text(doc_ptr doc, cptr text);
 
 doc_pos_t     doc_find_next(doc_ptr doc, cptr text, doc_pos_t start);
 doc_pos_t     doc_find_prev(doc_ptr doc, cptr text, doc_pos_t start);

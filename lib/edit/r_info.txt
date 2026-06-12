@@ -657,8 +657,8 @@ F:POS_GAIN_AC
 P:Copy:Snotling:Tourist
 P:Life:50
 P:Body:Scrawny
-D:一只孤单的昆虫可能无害，但这里有一大群！
-D:（接上文）
+D:一只孤单的昆虫可能无害，
+D:但这里有一大群！
 
 N:39:Greater Hell-Beast
 G:U:s
