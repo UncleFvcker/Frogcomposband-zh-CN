@@ -378,6 +378,7 @@ static void do_cmd_wiz_change_aux(void)
 
     /* Hack for WARLOCK_DRAGONS. Of course, reading skill tables directly is forbidden, so this code is inherently wrong! */
     p_ptr->skill_exp[SKILL_RIDING] = MIN(skills_riding_max(), tmp_s16b);
+    p_ptr->skill_exp[SKILL_MINING] = MIN(skills_mining_max(), tmp_s16b);
 
     for (j = 0; j < 32; j++)
         p_ptr->spell_exp[j] = (tmp_s16b > SPELL_EXP_MASTER ? SPELL_EXP_MASTER : tmp_s16b);

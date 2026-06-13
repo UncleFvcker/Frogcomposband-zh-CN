@@ -264,7 +264,7 @@
   <color:g>=</color>   戒指 (Rings)                       <color:s>[</color>   硬甲 (Hard armor)
   <color:y>"</color>   护身符 (Amulets)                   <color:U>]</color>   杂项护甲 (Misc. armor)
   <color:y>$</color>   金币或宝石 (Gold or gems)          <color:s>)</color>   盾牌 (Shields)
-  <color:o>~</color>   灯笼、铁蒺藜、箭袋                 <color:o>&</color>   宝箱 (Chests)
+  <color:o>~</color>   灯笼、铁蒺藜、箭袋、包裹             <color:o>&</color>   宝箱 (Chests)
   <color:r>~</color>   垃圾、木棍、骷髅骨架等             <color:b>*</color>   不寻常的物品 (Unusual objects)
   <color:b>`</color>   雕像、手办模型                     
 
@@ -287,7 +287,7 @@
 <color:U>(</color><color:s>[</color><color:U>]</color><color:s>)</color> 盔甲 (Armor)           <color:keypress>w</color>ear (穿戴), <color:keypress>t</color><color:v>/</color><color:keypress>T</color>ake off (脱下)
   <color:g>=</color>  戒指 (Ring)            <color:keypress>w</color>ear (穿戴), <color:keypress>t</color><color:v>/</color><color:keypress>T</color>ake off (脱下)
   <color:y>"</color>  护身符 (Amulet)        <color:keypress>w</color>ear (穿戴), <color:keypress>t</color><color:v>/</color><color:keypress>T</color>ake off (脱下)
-  <color:U>~</color>  箭袋 (Quiver)          <color:keypress>w</color>ear (穿戴), <color:keypress>d</color>rop (丢下弹药), <color:keypress>t</color><color:v>/</color><color:keypress>T</color>ake off (脱下)
+  <color:U>~</color>  箭袋/包裹 (Quiver/Package) <color:keypress>w</color>ear (穿戴), <color:keypress>P</color>ut in (放入包裹), <color:keypress>d</color>rop (丢下), <color:keypress>t</color><color:v>/</color><color:keypress>T</color>ake off (取出/脱下)
   <color:U>~</color>  灯笼 (Lantern)         <color:keypress>w</color>ear (穿戴), <color:keypress>t</color><color:v>/</color><color:keypress>T</color>ake off (脱下), <color:keypress>F</color>uel (添加燃料)
 
 <topic:WeirdNumbers><style:heading>物品上的数字</style>
@@ -327,6 +327,10 @@
 <topic:Inventory><style:heading>物品栏/背包 (Inventory/Pack)</style>
 
 你背包的大小也有细微差异，但大多数角色在物品栏中有 26 个槽位。你可以把你喜欢的任何物品放在背包里，而且物品会按允许的方式自动排序和堆叠；然而，如果你的背包变得太重，你的角色会变得<color:keyword>负重超载 (encumbered)</color>，并会逐渐走得越来越慢。使用 <color:keypress>e</color>quipment 命令查看你的装备，使用 <color:keypress>i</color>nventory 命令查看你的物品栏。使用 <color:keypress>I</color>nspect (检查) 命令详细检查物品。使用 <color:keypress>g</color>et (拾取) 命令向你的背包添加物品，并使用 <color:keypress>w</color>ear (穿戴) 命令装备物品以供使用。你可以用 <color:keypress>t</color>ake off (脱下) 命令卸下已装备的物品，用 <color:keypress>d</color>rop (丢下) 命令将物品放在地上，或者用 <color:keypress>k</color>ill (摧毁) 命令来销毁物品。
+
+<topic:Packages><style:heading>包裹 (Packages)</style>
+
+包裹是一种装备在箭袋栏位的储物道具，可用于额外存放随身物品。装备包裹后，使用 <color:keypress>P</color> 命令可以把物品放入包裹；需要取出时，使用 <color:keypress>t</color> 命令切换到箭袋/包裹栏位，再选择要取出的物品。包裹适合携带暂时不需要频繁使用、但又不想留在家里的物品；取用时请留意重量和背包空间。
 
 <topic:Pseudo-ID><style:heading>伪鉴定 (Pseudo-ID)</style>
 

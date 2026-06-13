@@ -5296,6 +5296,136 @@ int feat_state(int feat, int action)
     return (feature_action_flags[action] & FAF_DESTROY) ? conv_dungeon_feat(f_ptr->destroyed) : feat;
 }
 
+static bool _mining_vein_p(feature_type *f_ptr)
+{
+    return have_flag(f_ptr->flags, FF_HAS_GOLD) || have_flag(f_ptr->flags, FF_MAY_HAVE_GOLD);
+}
+
+static int _mining_object_level(int mining)
+{
+    int level = MAX(object_level, dun_level);
+
+    level += MIN(20, mining / 500);
+    level += dun_level / 10;
+
+    return MIN(100, MAX(1, level));
+}
+
+static bool _place_mining_gold(int y, int x)
+{
+    object_type forge = {0};
+    int old_object_level = object_level;
+    int mining = skills_mining_current();
+    int bonus = 100 + MIN(200, MAX(0, dun_level) * 2) + mining / 80;
+    s32b au;
+    bool result = FALSE;
+
+    object_level = _mining_object_level(mining);
+    if (make_gold(&forge, FALSE))
+    {
+        au = (s32b)forge.pval * bonus / 100;
+        if (au > MAX_SHORT)
+            au = MAX_SHORT - randint0(1000);
+        forge.pval = au;
+        object_origins(&forge, ORIGIN_RUBBLE);
+        result = drop_near(&forge, -1, y, x) != 0;
+    }
+    object_level = old_object_level;
+    return result;
+}
+
+static bool _mining_extra_item_check(int mining)
+{
+    int chance = 3 + MAX(0, dun_level) / 15 + mining / 1000;
+
+    return randint0(100) < MIN(20, chance);
+}
+
+static int _mining_scaled_chance(int mining, int max_chance)
+{
+    mining = MAX(0, MIN(mining, WEAPON_EXP_MASTER));
+    return (max_chance * mining + WEAPON_EXP_MASTER / 2) / WEAPON_EXP_MASTER;
+}
+
+static u32b _mining_object_mode(int mining, bool *want_artifact)
+{
+    int art_chance = _mining_scaled_chance(mining, 5);
+    int great_chance = _mining_scaled_chance(mining, 20);
+    int good_chance = _mining_scaled_chance(mining, 40);
+    int roll = randint0(100);
+
+    *want_artifact = FALSE;
+    if (roll < art_chance)
+    {
+        *want_artifact = TRUE;
+        return AM_GOOD | AM_GREAT | AM_SPECIAL;
+    }
+    roll -= art_chance;
+
+    if (roll < great_chance)
+        return AM_GOOD | AM_GREAT;
+    roll -= great_chance;
+
+    if (roll < good_chance)
+        return AM_GOOD;
+
+    return 0L;
+}
+
+static bool _make_mining_object(object_type *forge, u32b mode, bool want_artifact)
+{
+    int attempts = want_artifact ? 20 : 1;
+    int i;
+
+    for (i = 0; i < attempts; i++)
+    {
+        object_wipe(forge);
+        if (!make_object(forge, mode, ORIGIN_RUBBLE)) continue;
+        if (!want_artifact || object_is_artifact(forge)) return TRUE;
+    }
+
+    if (want_artifact)
+    {
+        object_wipe(forge);
+        return make_object(forge, AM_GOOD | AM_GREAT, ORIGIN_RUBBLE);
+    }
+
+    return FALSE;
+}
+
+static bool _place_mining_object(int y, int x)
+{
+    object_type forge = {0};
+    int old_object_level = object_level;
+    int old_base_level = base_level;
+    int mining = skills_mining_current();
+    bool want_artifact = FALSE;
+    u32b mode = _mining_object_mode(mining, &want_artifact);
+    bool result = FALSE;
+
+    object_level = _mining_object_level(mining);
+    base_level = object_level;
+    if (_make_mining_object(&forge, mode, want_artifact))
+        result = drop_near(&forge, -1, y, x) != 0;
+    object_level = old_object_level;
+    base_level = old_base_level;
+    return result;
+}
+
+static void _mining_gain_for_feat(feature_type *old_f_ptr)
+{
+    int amount;
+
+    if (!character_dungeon) return;
+
+    if (have_flag(old_f_ptr->flags, FF_HAS_GOLD))
+        amount = 50 + old_f_ptr->power + MAX(0, dun_level) / 2;
+    else
+        amount = 8 + old_f_ptr->power / 2 + MAX(0, dun_level) / 8;
+
+    skills_mining_gain(amount);
+}
+
 /*
  * Takes a location and action and changes the feature at that
  * location through applying the given action.
@@ -5325,14 +5455,27 @@ void cave_alter_feat(int y, int x, int action)
     {
         feature_type *old_f_ptr = &f_info[oldfeat];
         feature_type *f_ptr = &f_info[newfeat];
+        bool player_mining = (action == FF_TUNNEL);
+        bool mined_vein = player_mining && _mining_vein_p(old_f_ptr)
+            && !_mining_vein_p(f_ptr);
         bool found = FALSE;
+
+        if (mined_vein)
+            _mining_gain_for_feat(old_f_ptr);
 
         /* Handle gold */
         if (have_flag(old_f_ptr->flags, FF_HAS_GOLD) && !have_flag(f_ptr->flags, FF_HAS_GOLD))
         {
             /* Place some gold */
-            place_gold(y, x);
-            found = TRUE;
+            if (player_mining) found = _place_mining_gold(y, x);
+            else
+            {
+                place_gold(y, x);
+                found = TRUE;
+            }
+
+            if (player_mining && _mining_extra_item_check(skills_mining_current()))
+                found |= _place_mining_object(y, x);
         }
 
         /* Handle item */

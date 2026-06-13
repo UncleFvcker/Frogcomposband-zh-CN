@@ -1544,43 +1544,73 @@ static void _warlocks_help(FILE *fp)
 /******************************************************************************
  * Personality Help
  ******************************************************************************/
+static cptr _personality_topic(int idx)
+{
+    switch (idx)
+    {
+    case PERS_ORDINARY: return "Ordinary";
+    case PERS_MIGHTY: return "Mighty";
+    case PERS_SHREWD: return "Shrewd";
+    case PERS_PIOUS: return "Pious";
+    case PERS_NIMBLE: return "Nimble";
+    case PERS_FEARLESS: return "Fearless";
+    case PERS_COMBAT: return "Combat";
+    case PERS_SEXY: return "Sexy";
+    case PERS_LUCKY: return "Lucky";
+    case PERS_PATIENT: return "Patient";
+    case PERS_CRAVEN: return "Craven";
+    case PERS_HASTY: return "Hasty";
+    case PERS_LAZY: return "Lazy";
+    case PERS_UNLUCKY: return "Unlucky";
+    case PERS_CHAOTIC: return "Chaotic";
+    case PERS_MUNDANE: return "Mundane";
+    case PERS_MUNCHKIN: return "Munchkin";
+    case PERS_FRAGILE: return "Fragile";
+    case PERS_SNEAKY: return "Sneaky";
+    case PERS_NOBLE: return "Noble";
+    case PERS_SPLIT: return "Split";
+    }
+    return "Unknown";
+}
+
 static void _personality_help(FILE *fp, int idx)
 {
     personality_ptr pers_ptr = get_personality_aux(idx);
+    cptr topic = _personality_topic(idx);
 
-    fprintf(fp, "<topic:%s><color:o>%s</color>\n", pers_ptr->name, pers_ptr->name);
+    fprintf(fp, "<topic:%s><color:o>%s (%s)</color>\n", topic, pers_ptr->name, topic);
     fprintf(fp, "%s\n\n", pers_ptr->desc);
 
-    fputs("  <indent><style:table><color:G>Stats                   Skills</color>\n", fp);
-    fprintf(fp, "Strength     %+3d        Disarming   %s\n",
+    fputs("  <indent><style:table><color:G>属性                    技能</color>\n", fp);
+    fprintf(fp, "力量         %+3d        解除陷阱    %s\n",
         pers_ptr->stats[A_STR],
         _pers_dis_skill_desc(pers_ptr));
 
-    fprintf(fp, "Intelligence %+3d        Device      %s\n",
+    fprintf(fp, "智力         %+3d        魔法装置    %s\n",
         pers_ptr->stats[A_INT],
         _pers_dev_skill_desc(pers_ptr));
 
-    fprintf(fp, "Wisdom       %+3d        Save        %s\n",
+    fprintf(fp, "感知         %+3d        豁免        %s\n",
         pers_ptr->stats[A_WIS],
         _pers_sav_skill_desc(pers_ptr));
 
-    fprintf(fp, "Dexterity    %+3d        Stealth     %s\n",
+    fprintf(fp, "敏捷         %+3d        潜行        %s\n",
         pers_ptr->stats[A_DEX],
         _pers_stl_skill_desc(pers_ptr));
 
-    fprintf(fp, "Constitution %+3d        Searching   %s\n",
+    fprintf(fp, "体质         %+3d        搜索        %s\n",
         pers_ptr->stats[A_CON],
         _pers_srh_skill_desc(pers_ptr));
 
-    fprintf(fp, "Charisma     %+3d        Perception  %s\n",
+    fprintf(fp, "魅力         %+3d        察觉        %s\n",
         pers_ptr->stats[A_CHR],
         _pers_fos_skill_desc(pers_ptr));
 
-    fprintf(fp, "Life Rating  %3d%%       Melee       %s\n",
+    fprintf(fp, "生命评级    %3d%%        近战        %s\n",
         pers_ptr->life,
         _pers_thn_skill_desc(pers_ptr));
 
-    fprintf(fp, "Experience   %3d%%       Archery     %s\n",
+    fprintf(fp, "经验值      %3d%%        箭术        %s\n",
         pers_ptr->exp,
         _pers_thb_skill_desc(pers_ptr));
     fputs("</style></indent>\n", fp);
@@ -1590,20 +1620,15 @@ static void _personalities_help(FILE* fp)
 {
     int i;
 
-    fprintf(fp, "<style:title>性格</style>\n\n");
-    fputs("Your personality is the way you see and act in the world, and has "
-            "a small but significant effect on your stats and skills. In general, "
-            "you should pick a personality that complements the strengths and "
-            "weaknesses inherent in your race and class. Most personalities only make "
-            "a minor difference, but a few can change the game dramatically.\n\n"
-            "For details on the <color:keyword>Stats</color>, see "
-            "<link:birth.txt#PrimaryStats>. For information about the <color:keyword>Skills</color>, see "
-            "<link:birth.txt#PrimarySkills>. "
-            "The skill descriptions in this document are <color:v>for comparison purposes only</color>; "
-            "for example, your fledgling munchkin will not be born with <color:v>Amber[25]</color> "
-            "melee skill. In general, skills are also influenced by level, race, class, stats and equipment. "
-            "To compare the stat and skill boosts of each personality, take a look "
-            "at the <link:Personalities.txt#Tables> personality tables below.\n\n", fp);
+    fprintf(fp, "<style:title>性格 (The Personalities)</style>\n\n");
+    fputs("你的性格代表你看待世界和在其中行动的方式，它对你的属性和技能有着微小但重要的影响。"
+            "通常，你应该选择一种能够互补你种族和职业固有优缺点的性格。"
+            "大多数性格只产生细微的差别，但有几种会极大地改变游戏体验。\n\n"
+            "关于<color:keyword>属性 (Stats)</color>的详细信息，请参阅 <link:birth.txt#PrimaryStats>。"
+            "关于<color:keyword>技能 (Skills)</color>的信息，请参阅 <link:birth.txt#PrimarySkills>。"
+            "本文档中的技能描述<color:v>仅供比较参考</color>；例如，你初出茅庐的龙傲天角色出生时并不会拥有 "
+            "<color:v>琥珀[25]</color> 的近战技能。通常来说，技能也会受到等级、种族、职业、属性和装备的影响。"
+            "要比较每种性格的属性和技能加成，请查看下面的 <link:Personalities.txt#Tables> 性格表格。\n\n", fp);
     for (i = 0; i < MAX_PERSONALITIES; i++)
     {
         personality_ptr pers_ptr = get_personality_aux(i);

@@ -137,8 +137,8 @@ static personality_ptr _get_chaotic_personality(void)
 
     if (!init)
     {
-        me.name = "混乱";
-        me.desc = "混乱的冒险者是混沌恶魔领主的仆从，在他们升级时通常会收到来自庇护者的奖励——或惩罚。他们的长处和弱点是不可预测的；甚至他们的属性加成也可能会发生变化。";	
+        me.name = "混沌";
+        me.desc = "混沌的冒险者是混沌恶魔领主的仆从，在升级时经常会收到来自赞助人的奖励——或惩罚。他们的优势和劣势不可预测；甚至连属性加成也会发生变化。";
 
         me.life = 99;
         me.exp = 100;
@@ -162,7 +162,7 @@ static personality_ptr _get_combat_personality(void)
     if (!init)
     {
         me.name = "好战";
-        me.desc = "好战的冒险者偏爱近战和射击，而牺牲了诸如解除陷阱、使用魔法装置或豁免等其他技能；然而，这种性格比“强壮”那种粗犷、未经锻炼的肌肉更具有微妙的技巧。";
+        me.desc = "好战的冒险者偏爱近战和射击，这牺牲了其他技能，如解除陷阱、魔法装置或豁免判定；然而，与“强壮”那种未经锻炼的纯粹肌肉相比，这种性格更为细腻。";
 
         me.stats[A_STR] =  1;
         me.stats[A_INT] = -1;
@@ -208,7 +208,7 @@ static personality_ptr _get_craven_personality(void)
     if (!init)
     {
         me.name = "怯懦";
-        me.desc = "怯懦的人是个胆小鬼，他们宁愿不惜一切代价避免战斗。怯懦的冒险者射击和使用魔法装置的能力很好，他们的潜行能力令人印象深刻，而且在非战斗状态下移动速度很快；但是他们的属性和其他技能则有些欠缺。";
+        me.desc = "怯懦的人是胆小鬼，喜欢不惜一切代价避免战斗。怯懦的冒险者擅长射击和使用魔法装置，潜行能力令人印象深刻，而且在非战斗状态下移动速度很快；但他们的属性和其他技能则有所欠缺。";
 
         me.stats[A_STR] = -1;
         me.stats[A_INT] =  1;
@@ -256,7 +256,7 @@ static personality_ptr _get_fearless_personality(void)
     if (!init)
     {
         me.name = "无畏";
-        me.desc = "除了帮助你抵抗恐惧之外，无畏还能提升你的近战技能和人格力量（魅力）；但你的体质和生命值会受到负面影响。";
+        me.desc = "无畏不仅能帮助你抵抗恐惧，还能提高你的近战技能和性格魄力；但会对体质和生命值造成负面影响。";
 
         me.stats[A_STR] =  1;
         me.stats[A_INT] =  0;
@@ -314,7 +314,7 @@ static personality_ptr _get_fragile_personality(void)
     if (!init)
     {
         me.name = "脆弱";
-        me.desc = "作为一名脆弱的冒险者，你缺乏自信和肉体韧性。由于你体力极差，你会很快在近战、远程战斗、魔法战斗或任何其他剧烈活动中精疲力竭。（也许你该待在家里，安安静静地读一些不那么重的书。）";
+        me.desc = "作为一名脆弱的冒险者，你缺乏自信和身体韧性。由于你的耐力低得令人发指，无论是近战、远程战斗、魔法战斗还是任何其他剧烈活动，都会让你迅速筋疲力尽。（也许你只是应该待在家里，安静地读一些不太重的书。）";
 
         me.stats[A_STR] = -3;
         me.stats[A_INT] =  0;
@@ -365,7 +365,7 @@ static personality_ptr _get_hasty_personality(void)
     if (!init)
     {
         me.name = "急躁";
-        me.desc = "急躁的人力求把所有事情都快速完成。速度高于技巧或谨慎，急躁的冒险者在地下城中飞速穿行，并且经常把事情搞砸。";
+        me.desc = "急躁的人力求快速地完成所有事情。对他们来说速度至高无上，而非技巧或严谨，急躁的冒险者在地牢中穿行得很快，但也经常搞砸很多事。";
 
         me.stats[A_STR] =  0;
         me.stats[A_INT] = -1;
@@ -413,7 +413,7 @@ static personality_ptr _get_lazy_personality(void)
     if (!init)
     {
         me.name = "懒惰";
-        me.desc = "懒惰的人没有好的属性，什么行动也做不好。所有的失败率都会受到负面影响。然而，有人传言说，通过做最少的事情而找到的每一件神器，可能会带来更加“懒惰”的奖励...";
+        me.desc = "懒惰的人没有任何优秀的属性，也做不好任何行动。所有的失败率都会受到负面影响。然而有人低语道：你工作得越少，得到的回报就越丰厚……";
 
         me.stats[A_STR] = -2;
         me.stats[A_INT] = -2;
@@ -459,7 +459,7 @@ static personality_ptr _get_lucky_personality(void)
     if (!init)
     {
         me.name = "幸运";
-        me.desc = "幸运的冒险者属性很差，但令人惊讶的是，他们能把所有事情都做好。出于某种原因，好事似乎更经常发生在幸运的玩家身上。";
+        me.desc = "幸运的冒险者属性很差，但令人惊讶的是，他们能把所有事情都做好。出于某种原因，好事似乎更常发生在幸运的玩家身上。";
 
         me.stats[A_STR] = -2;
         me.stats[A_INT] = -2;
@@ -502,7 +502,7 @@ static personality_ptr _get_mighty_personality(void)
     if (!init)
     {
         me.name = "强壮";
-        me.desc = "强壮提升你的物理属性、技能和体力，但会降低你的魔法能力，并对你的法术失败率造成轻微的惩罚。这是最具有战士风格的性格。";
+        me.desc = "强壮会提升你的身体属性、技能和耐力，但会降低你的魔法能力，并使法术失败率略微上升。这是最具战士风格的性格。";
 
         me.stats[A_STR] =  2;
         me.stats[A_INT] = -2;
@@ -566,8 +566,8 @@ static personality_ptr _get_munchkin_personality(void)
 
     if (!init)
     {
-        me.name = "芒奇金";
-        me.desc = "芒奇金性格是为那些喜欢数值碾压的玩家准备的。它会提升你所有的属性和技能；拥有这种性格，你可以轻松赢得游戏，但这样做不会获得任何荣誉。";
+        me.name = "龙傲天";
+        me.desc = "龙傲天性格是为那些喜欢碾压一切的功利玩家准备的。它会提高你所有的属性和技能；拥有这种性格，你可以轻松赢得游戏，但这没有任何荣誉可言。";
 
         me.stats[A_STR] = 3;
         me.stats[A_INT] = 3;
@@ -617,7 +617,7 @@ static personality_ptr _get_mundane_personality(void)
     if (!init)
     {
         me.name = "平凡";
-        me.desc = "平凡的冒险者几乎没有什么天赋可言，并且无法使用法术，也不太擅长使用魔法装置；但是他们的反魔法能力使他们能够抵抗许多危险诅咒的影响。";
+        me.desc = "平凡的冒险者没有什么天赋可言，无法使用法术，也不太擅长使用魔法装置；但他们的反魔法特性使他们能够抵抗许多危险诅咒的影响。";
 
         me.stats[A_STR] = -1;
         me.stats[A_INT] = -1;
@@ -650,8 +650,8 @@ static personality_ptr _get_nimble_personality(void)
 
     if (!init)
     {
-        me.name = "敏捷";
-        me.desc = "敏捷对你的技能有好处，并允许你移动时发出的噪音更小；但你缺乏一些原始的力量，且无法承受那么多次的打击。";
+        me.name = "灵巧";
+        me.desc = "灵巧有利于你的各项技能，并让你移动时的噪音更小；但你的原始力量有些不足，而且你无法承受太多的攻击。";
 
         me.stats[A_STR] = -1;
         me.stats[A_INT] =  1;
@@ -692,8 +692,8 @@ static personality_ptr _get_noble_personality(void)
 
     if (!init)
     {
-        me.name = "高贵";
-        me.desc = "作为一个高贵的人，你享受着上流社会教养带来的好处（至少，你认为这是好处）。你开局就有额外的金钱，并且似乎相对容易获得更多的金钱；但是冒险生活的其他方面对你来说是否也能如此顺理成章，还有待观察。";
+        me.name = "贵族";
+        me.desc = "作为一个贵族，你拥有上层阶级教养带来的好处（至少，你认为这些是好处）。你开局带有额外的金钱，并且似乎能相对轻松地获得更多的金钱；但在冒险生活的其他方面，你是否也能如此自然地适应，还有待观察。";
 
         me.stats[A_STR] = 0;
         me.stats[A_INT] = 0;
@@ -732,7 +732,7 @@ static personality_ptr _get_ordinary_personality(void)
     if (!init)
     {
         me.name = "普通";
-        me.desc = "一个普通人在各方面都很平庸，既不会获得技能、天赋，也不会有属性调整。";
+        me.desc = "普通人在各方面都很平庸，既不会获得技能和天赋加成，也不会有属性调整。";
         me.life = 100;
         me.exp = 100;
 
@@ -760,7 +760,7 @@ static personality_ptr _get_patient_personality(void)
     if (!init)
     {
         me.name = "耐心";
-        me.desc = "耐心的冒险者做事非常谨慎，但并不总是拥有极快的速度或自信的手法。耐心的人物具有高度的韧性，他们缓慢而有条理的动作使他们相对较为隐秘。";
+        me.desc = "耐心的冒险者做事非常谨慎，但在速度或动作的自信上并不总是那么出色。耐心的角色韧性极高，缓慢但有节律的动作使他们相对来说更善于潜行。";
 
         me.stats[A_STR] =  0;
         me.stats[A_INT] =  0;
@@ -800,7 +800,7 @@ static personality_ptr _get_pious_personality(void)
     if (!init)
     {
         me.name = "虔诚";
-        me.desc = "虔诚加深了你对神明的信仰。它使你的物理能力平平，且使你的属性适合成为一名牧师。";
+        me.desc = "虔诚会加深你对神的信仰。这使你的物理能力平平，且属性非常适合牧师。";
 
         me.stats[A_STR] =  0;
         me.stats[A_INT] = -1;
@@ -859,7 +859,7 @@ static personality_ptr _get_sexy_personality(void)
     if (!init)
     {
         me.name = "性感";
-        me.desc = "性感的冒险者拥有出色的属性和技能，但他们傲慢的态度会激怒所有的怪物。";
+        me.desc = "性感的冒险者拥有优秀的属性和技能，但他们傲慢的态度会激怒所有的怪物。";
 
         me.stats[A_STR] = 1;
         me.stats[A_INT] = 1;
@@ -904,7 +904,7 @@ static personality_ptr _get_shrewd_personality(void)
     if (!init)
     {
         me.name = "精明";
-        me.desc = "精明并不能赋予你令人印象深刻的体格，但良好的装置操作能力能让再矮小的人也变得强大；这是典型的法师性格，但也能帮助战士弥补自己的弱点。精明对法术失败率有直接的正面影响。";
+        me.desc = "精明不会给你留下深刻印象的体格，但熟练的魔法装置操作能力能让最弱小的人变强；这是典型的法师性格，但也能帮助战士弥补弱点。精明对法术失败率有直接的正面影响。";
 
         me.stats[A_STR] = -2;
         me.stats[A_INT] =  2;
@@ -952,8 +952,8 @@ static personality_ptr _get_sneaky_personality(void)
 
     if (!init)
     {
-        me.name = "阴险";
-        me.desc = "阴险的冒险者很隐秘，并且非常擅长使用轻型刺击武器；但是使用重型武器进行面对面的战斗则与他们的长处背道而驰。";
+        me.name = "鬼祟";
+        me.desc = "鬼祟的冒险者善于潜行，并且擅长使用轻型刺击武器；但使用重型武器进行面对面战斗则不利于发挥他们的长处。";
 
         me.stats[A_STR] = -3;
         me.stats[A_INT] =  1;
@@ -1221,7 +1221,7 @@ static personality_ptr _get_split_personality(void)
     if (!init)
     {
         me.name = "分裂";
-        me.desc = "你拥有多重人格，并继承了每个人格的优点和缺点。在任何时候，你的其中一个人格处于主导地位，你将获得该人格的全部效果；其余的人格要么被部分抑制，要么被完全抑制。部分抑制的人格会提供减少的属性和技能加成，并且某些其他效果（例如“怯懦”的行走速度加成或“性感”的激怒怪物）将完全消失，但人格的其他部分正常生效。完全休眠的人格目前对你没有任何影响，但以后可能会重新浮现！等级的提升以及受到严重伤害的创伤，可能会导致以前被抑制的人格占据主导地位，反之亦然。";
+        me.desc = "你患有多重人格，并继承了每种人格的优缺点。在任何时候，你的某一个人格会处于主导地位，你将获得该人格的全部效果；其余的人格要么被部分抑制，要么被完全休眠。被部分抑制的人格提供的属性和技能加成会减少，其他一些效果（如“怯懦”的步行速度加成或“性感”的激怒怪物）将完全消失，但该人格的其他部分照常生效。完全休眠的人格目前对你没有影响，但可能会在以后重新浮现！等级的提升以及受到重创的创伤，可能会导致之前被抑制的人格占据主导地位，反之亦然。";
     } 
 
     if (_split_recalc_bonuses) 
@@ -1324,8 +1324,8 @@ static personality_ptr _get_unlucky_personality(void)
 
     if (!init)
     {
-        me.name = "不幸";
-        me.desc = "不幸的冒险者在纸面属性上看起来令人印象深刻，按理说应该能过得很轻松——但不知何故，他们的战斗进行得并不顺利，而且他们最需要的物品似乎永远也不会掉落。";
+        me.name = "倒霉";
+        me.desc = "倒霉的冒险者纸面实力令人印象深刻，按理说应该很轻松才对——但不知为何，他们的战斗总是不那么顺利，他们最需要的物品也似乎永远不会掉落。";
 
         me.stats[A_STR] = 2;
         me.stats[A_INT] = 2;

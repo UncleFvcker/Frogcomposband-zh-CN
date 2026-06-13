@@ -18,10 +18,10 @@
 
 #define VER_MAJOR 1
 #define VER_MINOR 0
-#define VER_PATCH "4"
-#define VER_PATCH_ID 4
+#define VER_PATCH "5"
+#define VER_PATCH_ID 5
 #define VER_EXTRA 0
-#define VERSION_STRING "1.0.0.4"
+#define VERSION_STRING "1.0.0.5"
 #define VERSION_IS_DEVELOPMENT (FALSE)
 
 /*
@@ -4250,6 +4250,7 @@ extern int PlayerUID;
 #define SKILL_MARTIAL_ARTS  0
 #define SKILL_DUAL_WIELDING 1
 #define SKILL_RIDING        2
+#define SKILL_MINING        3
 
 /* Proficiency level */
 #define EXP_LEVEL_UNSKILLED 0

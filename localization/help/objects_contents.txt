@@ -20,6 +20,7 @@
     <link:objects.txt#WeirdNumbers> 物品上的数字
     <link:objects.txt#Equipment> 装备
     <link:objects.txt#Inventory> 物品栏/背包
+    <link:objects.txt#Packages> 包裹
     <link:objects.txt#Pseudo-ID> 伪鉴定
     <link:objects.txt#InscriptionAbbrev> 缩写列表
     <link:objects.txt#InscriptionSummary> 铭刻：总结

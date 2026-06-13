@@ -5237,12 +5237,19 @@ static void _prof_skill_aux(doc_ptr doc, int skill, int mode)
         exp_lvl = weapon_exp_level(exp);
         break;
     case SKILL_RIDING:
-    default: /* gcc warnings ... */
         name = "骑乘";
         exp = skills_riding_current();
         max = skills_riding_max();
         max_lvl = riding_exp_level(max);
         exp_lvl = riding_exp_level(exp);
+        break;
+    case SKILL_MINING:
+    default: /* gcc warnings ... */
+        name = "挖矿";
+        exp = skills_mining_current();
+        max = skills_mining_max();
+        max_lvl = weapon_exp_level(max);
+        exp_lvl = weapon_exp_level(exp);
         break;
     }
     doc_printf(doc, "<color:%c>%-19s</color> ", color, name);
@@ -5282,6 +5289,7 @@ static void _prof_skill_doc(doc_ptr doc, int mode)
     _prof_skill_aux(doc, SKILL_MARTIAL_ARTS, mode);
     _prof_skill_aux(doc, SKILL_DUAL_WIELDING, mode);
     _prof_skill_aux(doc, SKILL_RIDING, mode);
+    _prof_skill_aux(doc, SKILL_MINING, mode);
     doc_newline(doc);
 }
 

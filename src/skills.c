@@ -782,6 +782,39 @@ int skills_riding_max(void)
     return s_info[_class_idx()].s_max[SKILL_RIDING];
 }
 
+int skills_mining_max(void)
+{
+    return WEAPON_EXP_MASTER;
+}
+
+void skills_mining_gain(int amount)
+{
+    int current, update;
+    int max = skills_mining_max();
+
+    if (amount <= 0) return;
+    if (coffee_break) amount *= 2;
+
+    current = p_ptr->skill_exp[SKILL_MINING];
+    update = MIN(max, current + amount);
+
+    if (update > current)
+    {
+        int old_lvl = weapon_exp_level(current);
+        int new_lvl = weapon_exp_level(update);
+
+        p_ptr->skill_exp[SKILL_MINING] = update;
+
+        if (new_lvl > old_lvl)
+            cmsg_print(TERM_L_BLUE, "你的挖矿熟练度提升了。");
+    }
+}
+
+int skills_mining_current(void)
+{
+    return MIN(p_ptr->skill_exp[SKILL_MINING], skills_mining_max());
+}
+
 /* Innate Attacks
  * Note: The Possessor and The Mimic may need to learn a large number of
  * innate attacks, and I'm thinking of making the proficiency depend on the

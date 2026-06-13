@@ -132,7 +132,7 @@ Outpost
 蘑菇店出售许多有用的基础蘑菇，包括总是能派上用场的解毒蘑菇、治疗混乱蘑菇和快速恢复蘑菇。</indent>
 
   <indent><color:B>博物馆 (The Museum)</color> (<$:FF_MUSEUM>)
-这是一个你可以捐赠物品的地方，这些物品随后将被永久展出。使用博物馆没有任何游戏机制上的优势；它纯粹是为了封存回忆。参阅 <link:context_home.txt#Museum> 获取更多信息。</indent>
+博物馆现在作为本地公房使用：你可以把物品存入其中，也可以在同一台电脑上的其他存档中取出，用来在不同角色之间转移道具。参阅 <link:context_home.txt#Museum> 获取更多信息。</indent>
 
 <topic:Buildings><style:heading>特殊建筑 (Special Buildings)</style>
 

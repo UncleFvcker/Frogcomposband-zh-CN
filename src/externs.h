@@ -3024,6 +3024,10 @@ extern void skills_riding_gain_rakuba(int dam);
 extern int skills_riding_current(void);
 extern int skills_riding_max(void);
 
+extern void skills_mining_gain(int amount);
+extern int skills_mining_current(void);
+extern int skills_mining_max(void);
+
 extern int skills_innate_current(cptr name);
 extern int skills_innate_max(cptr name);
 extern void skills_innate_gain(cptr name, int rlvl);
