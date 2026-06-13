@@ -742,7 +742,7 @@ static XImage *ResizeImageSmooth(Display *dpy, XImage *Im,
 	width2 = ox * width1 / ix;
 	height2 = oy * height1 / iy;
 
-	Data = (char *)malloc(width2 * height2 * Im->bits_per_pixel / 8);
+	Data = (char *)malloc((size_t)width2 * (size_t)height2 * Im->bits_per_pixel / 8);
 
 	Tmp = XCreateImage(dpy, visual,
 			   Im->depth, ZPixmap, 0, Data, width2, height2,
